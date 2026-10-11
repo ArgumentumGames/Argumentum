@@ -159,6 +159,8 @@ public class Prompt
 
         var completion = await ChatClient.CompleteChatAsync(messages, options, cancellationToken);
 
+        LogUsage(completion.Value.Usage, log);
+
         var chatMessage = completion.Value.Content.FirstOrDefault()?.Text;
 
         if (completion.Value.ToolCalls.Count > 0)
@@ -247,6 +249,8 @@ public class Prompt
         var response = await ResponsesClient.CreateResponseAsync(options, cancellationToken);
         var result = response.Value;
 
+        LogUsage(result.Usage, log);
+
         // Function-calling path: execute the requested tools (mirrors the Chat Completions branch
         // in Send). The Responses API returns each call as a FunctionCallResponseItem.
         if (result.OutputItems != null)
@@ -320,6 +324,75 @@ public class Prompt
         var result = method.Invoke(funcDef.TargetObject, args.ToArray());
         return result?.ToString() ?? "";
     }
+
+    /// <summary>
+    /// Per-call usage log (tokens come from the API response — measured, never estimated) plus
+    /// the run cumulative from <see cref="PromptUsage"/>. Called on both the Responses and the
+    /// Chat Completions path so every billable call of a campaign is journalized identically
+    /// (the SDK types the two usages differently: <see cref="OpenAI.Responses.ResponseTokenUsage"/>
+    /// vs <see cref="ChatTokenUsage"/>).
+    /// </summary>
+    private static void LogUsage(OpenAI.Responses.ResponseTokenUsage? usage, Action<string> log)
+    {
+        if (usage == null)
+        {
+            return;
+        }
+
+        PromptUsage.Add(usage.InputTokenCount, usage.OutputTokenCount);
+        var (calls, inputTotal, outputTotal) = PromptUsage.Snapshot();
+        log($"Usage: input={usage.InputTokenCount} output={usage.OutputTokenCount} " +
+            $"(reasoning={usage.OutputTokenDetails?.ReasoningTokenCount ?? 0}, " +
+            $"cached={usage.InputTokenDetails?.CachedTokenCount ?? 0}) " +
+            $"— run totals: {calls} calls, input={inputTotal}, output={outputTotal}");
+    }
+
+    private static void LogUsage(ChatTokenUsage? usage, Action<string> log)
+    {
+        if (usage == null)
+        {
+            return;
+        }
+
+        PromptUsage.Add(usage.InputTokenCount, usage.OutputTokenCount);
+        var (calls, inputTotal, outputTotal) = PromptUsage.Snapshot();
+        log($"Usage: input={usage.InputTokenCount} output={usage.OutputTokenCount} " +
+            $"(reasoning={usage.OutputTokenDetails?.ReasoningTokenCount ?? 0}, " +
+            $"cached={usage.InputTokenDetails?.CachedTokenCount ?? 0}) " +
+            $"— run totals: {calls} calls, input={inputTotal}, output={outputTotal}");
+    }
+}
+
+/// <summary>
+/// Run-scoped API usage accumulator. One <see cref="Prompt"/> instance exists per chunk and
+/// chunks run in parallel (<c>MaxDegreeOfParallelismWebService</c>), so the per-call usage log
+/// lines need this shared, thread-safe counter to also report cumulative totals. The campaign
+/// runner resets it before the chunk loop and prints the summary afterwards: tokens always
+/// (measured), cost only when prices are declared — cost is arithmetic on a declared price,
+/// never an estimate (T2 volume condition, #458 c.6107217348).
+/// </summary>
+public static class PromptUsage
+{
+    private static long _inputTokens;
+    private static long _outputTokens;
+    private static long _calls;
+
+    public static void Reset()
+    {
+        Interlocked.Exchange(ref _inputTokens, 0);
+        Interlocked.Exchange(ref _outputTokens, 0);
+        Interlocked.Exchange(ref _calls, 0);
+    }
+
+    public static void Add(long inputTokens, long outputTokens)
+    {
+        Interlocked.Add(ref _inputTokens, inputTokens);
+        Interlocked.Add(ref _outputTokens, outputTokens);
+        Interlocked.Increment(ref _calls);
+    }
+
+    public static (long Calls, long InputTokens, long OutputTokens) Snapshot() =>
+        (Interlocked.Read(ref _calls), Interlocked.Read(ref _inputTokens), Interlocked.Read(ref _outputTokens));
 }
 
 public class FunctionToolDef
