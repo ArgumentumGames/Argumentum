@@ -1,0 +1,43 @@
+**Instructions de Traduction multi-langue (contenu du site DNN app 33 — essai T2, issue #457) :**
+
+Dans le prochain message utilisateur, tu trouveras au format json un ensemble de valeurs de contenu du site web d'Argumentum (application 2sxc n° 33). Chaque entrée comporte les champs :
+- `key` : identifiant pivot (ex. "33|Content|2538A3F0-…|Title") — ne JAMAIS le traduire ni le modifier
+- `app` : numéro d'application (33) — référence, ne pas modifier
+- `content_type` : type 2sxc (Content, Link, Video) — référence, ne pas modifier
+- `guid` : identifiant d'entité 2sxc — référence, ne pas modifier
+- `attribute` : nom de l'attribut traduit (ex. "Title" = titre en texte brut, "Text" = prose HTML) — référence, ne pas modifier
+- `fr` : texte source canonique en français
+- Les champs cibles vides : `en` (anglais), `ru` (russe), `pt` (portugais du Brésil / pt-BR), `es` (espagnol), `ar` (arabe standard moderne / فصحى), `fa` (persan), `zh` (chinois simplifié).
+
+Ta tâche consiste à traduire le champ `fr` vers ces 7 langues, uniquement pour les entrées dont les champs cibles sont vides.
+
+1. **Utilisation du Function calling :** Pour chaque champ cible de chaque entrée, utilise un appel à la fonction `UpdateRecord` avec `primaryKey` = la valeur de `key`, `fieldName` = le nom du champ cible (`en`/`ru`/`pt`/`es`/`ar`/`fa`/`zh`), `newValue` = la traduction. Émets TOUS les appels en parallel tool calls. N'écris JAMAIS de texte libre.
+
+2. **HTML (attribut `Text`) :** Le texte source contient du HTML (`<p>`, `<em>`, `<strong>`…) et des entités HTML (`&eacute;`, `&ccedil;`…). Conserve les balises et leur structure EXACTEMENT ; traduis uniquement le texte visible entre les balises. Si la source emploie des entités HTML, produis les entités équivalentes dans la cible (même convention d'encodage que la source).
+
+3. **Titres (attribut `Title`) :** Texte brut, sans balises — une traduction naturelle de titre de page.
+
+4. **Pas de source → pas de traduction :** Si le champ `fr` d'une entrée est vide, n'émet AUCUN appel UpdateRecord pour cette entrée. Laisse les champs cibles vides.
+
+5. **Registre :** C'est la prose du site public (page « Les règles d'Argumentum » : présentation du jeu, façon de jouer) — registre clair et accueillant de site web, pas des libellés d'interface. Pas de traduction mot à mot.
+
+6. **Termes du jeu :** "Argumentum" (nom du jeu) reste "Argumentum" dans toutes les langues.
+
+7. **RTL :** L'arabe (`ar`) et le persan (`fa`) seront affichés RTL — produis le texte dans le sens de lecture naturel de chaque langue.
+
+8. **Glossaire verrouillé du jeu** (dérivé des cartes imprimées — `tools/1859-app33-glossary-regen.py`, jamais recopié à la main) : les noms des 5 jeux et le terme « cartes » ci-dessous sont les formes OFFICIELLES. Quand le texte source mentionne un jeu du glossaire, reprends sa forme MOT POUR MOT dans la langue cible — jamais une traduction personnelle, jamais une variante. Le terme « cartes » se rend par le lexème du glossaire, accordé selon la grammaire de la langue (ru : карты → картами à l'instrumental ; le radical « карточк- » n'existe pas dans ce jeu).
+
+<!-- GLOSSARY-APP33:BEGIN -->
+- L’école des menteurs (FR) = The school of liars (EN) = Школа лжецов (RU) = A escola dos mentirosos (PT) = La escuela de los mentirosos (ES) = مدرسة الكاذبين (AR) = مدرسهٔ دروغ‌پردازان (FA) = 说谎者学校 (ZH)
+- Le Bingo mixologie argumentative (FR) = Argumentative mixology bingo (EN) = Бинго аргументативной миксологии (RU) = O Bingo de mixologia argumentativa (PT) = El bingo de la mixología argumentativa (ES) = بينغو الخلط البلاغي الحِجاجي (AR) = بینگوی میکسولوژی استدلالی (FA) = 论证调配宾果 (ZH)
+- Le dernier beau parleur (FR) = The Last Smooth Talker (EN) = Последний Софист (RU) = O último boa-lábia (PT) = El último gran orador (ES) = آخر متكلم بارع (AR) = آخرین چرب‌زبان (FA) = 最后的能言善辩者 (ZH)
+- Le moulin à baratin (FR) = The Smooth-Talk Mill (EN) = Мели, Емеля (RU) = O moinho de embromação (PT) = El molino de la palabrería (ES) = طاحونة الثرثرة (AR) = آسیابِ چرب‌زبانی (FA) = 花言巧语磨坊 (ZH)
+- La parlote coinchée (FR) = The Coinched Chat (EN) = Косноязычное красноречие (RU) = A conversa à sueca (PT) = La charla trabada (ES) = الثرثرة المتعثرة (AR) = زبان‌بازیِ گره‌خورده (FA) = 卡壳胡侃 (ZH)
+- cartes (FR) = cards (EN) = карты (RU) = cartas (PT) = cartas (ES) = بطاقات (AR) = کارت‌ها (FA) = 卡牌 (ZH)
+<!-- GLOSSARY-APP33:END -->
+
+9. **Nuances de fidélité :**
+   - `en` : n'ajoute AUCUN superlatif absent de la source (pas de « best », « greatest »… si le français ne le porte pas).
+   - `zh` : « matériel ludique » se rend par « 游戏套装 » (boîte / matériel de jeu) — n'emploie pas « 游戏素材 » (ressources/assets, absent du corpus).
+
+Es-tu prêt à recevoir les données ?

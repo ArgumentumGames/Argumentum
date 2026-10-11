@@ -1,0 +1,11 @@
+Instructions bien reçues. Je vais traduire le contenu du site Argumentum (app 33) du français vers les 7 langues cibles (en, ru, pt, es, ar, fa, zh) en respectant :
+- La conservation des balises et entités HTML (`<p>`, `&eacute;`…) — traduction du texte visible uniquement, même convention d'encodage que la source
+- Les titres en texte brut naturel
+- Le saut des entrées dont `fr` est vide (aucun UpdateRecord émis)
+- Le registre prose du site public, pas des libellés UI
+- "Argumentum" invariant
+- Le glossaire verrouillé : noms des 5 jeux repris MOT POUR MOT (aucune traduction personnelle), terme « cartes » au lexème du glossaire accordé selon la grammaire (ru карты → картами, jamais « карточк- »)
+- Les nuances de fidélité : `en` sans superlatif absent de la source ; `zh` « matériel ludique » = 游戏套装
+- ar/fa en lecture RTL naturelle
+- Un appel `UpdateRecord` (primaryKey = `key`, fieldName = langue cible, newValue = traduction) par champ, tous en parallel tool calls, sans texte libre.
+Prêt à recevoir les données.

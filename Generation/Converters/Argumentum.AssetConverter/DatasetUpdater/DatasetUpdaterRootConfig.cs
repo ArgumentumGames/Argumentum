@@ -2692,6 +2692,77 @@ public class DatasetUpdaterRootConfig
 				MaxGroupItemNb = 12,
 				WriteOneTargetFileByField = false,
 				MaxChildren = 8
+			},
+			// T2 trial re-run (issue #457, review c.6098996342): ONE app33 entity x 7 langs —
+			// pt unlocked by #1855 (305a0ccb), game glossary locked in the prompt (derived from
+			// the cards CSV by tools/1859-app33-glossary-regen.py, guarded by
+			// PromptDnnApp33GlossaryConsistencyTests). Enabled=false committed; the run flips it
+			// as a recipe edit (never committed). $10 cap structurally satisfied: 2 rows x 7
+			// langs, one chunk, MaxOutputTokens 4096. TargetPath = scratch sandbox (P5): the
+			// committed pivot is never the write target.
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "T2 trial app33 — one entity (11392) x 7 langs (glossary re-run)",
+				SourceDataset = KnownDataSets.DnnApp33Content,
+				FieldsToInclude = new List<string>()
+				{
+					"key",
+					"app",
+					"content_type",
+					"guid",
+					"attribute",
+					"fr",
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				PrimaryField = "key",
+				TargetPath = @".\Target\Datasets\app33-content-trial-11392.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptDnnApp33TranslateMultiUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptDnnApp33TranslateMultiAssistant.txt"
+					}
+				},
+				// FR -> 7 languages via OpenAI gpt-5.6-sol on the Responses API (reasoning capped low).
+				Model = "gpt-5.6-sol",
+				OpenAIKeyPath = @".keys\openai-key.txt",
+				UseResponsesApi = true,
+				ReasoningEffort = "low",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 2,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 2,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
 			}
 		};
 }

@@ -108,6 +108,17 @@ namespace Argumentum.AssetConverter
 				CsvType = typeof(Argumentum.AssetConverter.Entities.DnnUiString),
 				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/docs/dnn-localization/dnn-ui-strings.csv",
 				DebugFilePath = @"..\..\..\..\..\..\docs\dnn-localization\dnn-ui-strings.csv"
+			},
+			// T2 trial (issue #457, dispatch 10/10 c.6096790964 §3): witness entity 11392 prose
+			// extract (Title + Text rows, guid 2538A3F0-…), derived from the committed app33 pivot.
+			// CsvType intentionally omitted: DatasetUpdater reads raw headers (GetDictionaryFromCsv);
+			// harvest/mindmap never consume this dataset (Mode-gated away in the updater run).
+			// Volume pass swaps the path for the full prose worklist extract (#1847: ~107 rows).
+			new DataSetInfo()
+			{
+				Name = KnownDataSets.DnnApp33Content,
+				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/docs/dnn-localization/release-validation/exports/DNN-Argumentum-export-app33-2026-10-09/pivots/content-trial-11392.csv",
+				DebugFilePath = @"..\..\..\..\..\..\docs\dnn-localization\release-validation\exports\DNN-Argumentum-export-app33-2026-10-09\pivots\content-trial-11392.csv"
 			}
 		});
 
