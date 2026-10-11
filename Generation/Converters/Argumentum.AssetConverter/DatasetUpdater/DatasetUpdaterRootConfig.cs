@@ -2763,6 +2763,73 @@ public class DatasetUpdaterRootConfig
 				MaxGroupItemNb = 12,
 				WriteOneTargetFileByField = false,
 				MaxChildren = 8
+			},
+			// Owner's Rules 06 lot (issue #1502 c.6098939191, GO c.6098942133): differential
+			// translation of the 2 changed bullets (1a several-cards winner rule, 2a "À 5
+			// joueurs et plus" condition) into the 7 corpus languages, then graft into
+			// Rules_06/RulesPP_06 of both Rules CSVs (the two "+" markers are mechanical,
+			// no LLM). Pivot rows carry <lang>_current context; targets empty by construction.
+			// Enabled=false committed; the run flips it as a recipe edit (never committed).
+			// Guard: Rules06OwnerLotContractTests pins the 3 changes in 8 columns x 2 files.
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Rules 06 owner lot — 2 bullets x 7 langs (differential)",
+				SourceDataset = KnownDataSets.Rules06LotPhrases,
+				FieldsToInclude = new List<string>()
+				{
+					"key",
+					"fr",
+					"en_current", "en",
+					"ru_current", "ru",
+					"pt_current", "pt",
+					"es_current", "es",
+					"ar_current", "ar",
+					"fa_current", "fa",
+					"zh_current", "zh"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				PrimaryField = "key",
+				TargetPath = @".\Target\Datasets\rules06-lot-phrases.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptRules06LotTranslateMultiUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptRules06LotTranslateMultiAssistant.txt"
+					}
+				},
+				// Differential bullet pass via OpenAI gpt-5.6-sol on the Responses API (reasoning capped low).
+				Model = "gpt-5.6-sol",
+				OpenAIKeyPath = @".keys\openai-key.txt",
+				UseResponsesApi = true,
+				ReasoningEffort = "low",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 2,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = true,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 4,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
 			}
 		};
 }

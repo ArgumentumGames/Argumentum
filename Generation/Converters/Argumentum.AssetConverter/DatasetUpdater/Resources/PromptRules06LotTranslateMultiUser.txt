@@ -1,0 +1,25 @@
+**Instructions de Traduction multi-langue — lot owner Règles 06 (#1502, correction différentielle de puces) :**
+
+Dans le prochain message utilisateur, tu trouveras au format json des puces de règle du jeu de cartes Argumentum (règle 6 « Les pioches », section Variantes). Chaque entrée comporte les champs :
+- `key` : identifiant de la puce (`Rules_06|several-cards-1a` ou `Rules_06|unanimity-2a`) — ne JAMAIS le traduire ni le modifier
+- `fr` : la NOUVELLE puce française, source de la correction
+- `<lang>_current` (pour `en`, `ru`, `pt`, `es`, `ar`, `fa`, `zh`) : la traduction ACTUELLE de l'ANCIENNE version française de cette même puce — ta référence de terminologie, de registre et de mise en forme
+- Les champs cibles vides : `en`, `ru`, `pt`, `es`, `ar`, `fa`, `zh`
+
+Ta tâche : pour chaque langue, produire la puce mise à jour qui reflète la correction du français, en réutilisant la terminologie, le registre et les conventions typographiques de `X_current`.
+
+**Les deux corrections en jeu (identifiées par `key`) :**
+1. `Rules_06|several-cards-1a` — la règle des vainqueurs CHANGE : l'ancienne version déclarait vainqueurs les cartes ayant obtenu le plus grand nombre de votes ; la nouvelle déclare AUTANT de vainqueurs que le baratineur a POSÉ de cartes, classés dans l'ordre du nombre de votes. La traduction doit rendre cette nouvelle règle, pas conserver l'ancienne.
+2. `Rules_06|unanimity-2a` — une CONDITION est ajoutée en tête : la variante ne s'applique qu'« À 5 joueurs et plus » (variante dite du « Dixit »). Le reste de la puce est inchangé : conserve la traduction existante de `X_current` et ajoute seulement la condition, à la place et dans la forme grammaticale naturelles de la langue.
+
+**Règles :**
+1. **Function calling :** pour chaque champ cible, un appel `UpdateRecord` avec `primaryKey` = la valeur de `key`, `fieldName` = le champ cible (`en`/`ru`/`pt`/`es`/`ar`/`fa`/`zh`), `newValue` = la puce traduite. Émets TOUS les appels en parallel tool calls. N'écris JAMAIS de texte libre.
+2. **Différentiel strict :** hors la correction décrite, NE change rien d'autre — ni reformulation, ni style, ni ponctuation — par rapport à `X_current`. Si une partie de la puce est inchangée en français, sa traduction doit rester mot pour mot celle de `X_current`.
+3. **Format :** conserve la puce markdown entière, y compris le préfixe « * » initial et l'espace qui suit.
+4. **Terminologie :** réutilise TELS QUELS les termes de rôle de `X_current` (l'équivalent de « baratineur », « jury », « réserve », « cartes »). Le terme « cartes » suit le lexique déjà en place dans `X_current`.
+5. **Langues :** `en` anglais, `ru` russe, `pt` portugais du Brésil (pt-BR), `es` espagnol, `ar` arabe standard moderne, `fa` persan, `zh` chinois simplifié.
+6. **Chiffres :** le « 5 » de la condition s'écrit comme dans le corpus de la langue — chiffre latin « 5 » partout, SAUF `fa` en chiffre persan « ۵ » (la prose fa du corpus écrit ses nombres en chiffres persans ; les pictogrammes restent en chiffre latin).
+7. **RTL :** `ar` et `fa` en sens de lecture naturel.
+8. "Argumentum" reste "Argumentum".
+
+Es-tu prêt à recevoir les données ?
