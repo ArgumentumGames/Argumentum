@@ -16,4 +16,9 @@ public static class KnownDataSets
 	// the updater engine reads raw CSV headers (GetDictionaryFromCsv, no ClassMap), so no
 	// CsvType entity is wired; the harvest/mindmap paths null-guard CsvType and never see it.
 	public static string DnnApp33Content = "DNN App33 Content";
+	// Owner's Rules 06 lot (issue #1502 c.6098939191): the 2 changed bullets of rule 6, one
+	// row per bullet. DatasetUpdater-only dataset — the updater engine reads raw CSV headers
+	// (GetDictionaryFromCsv, no ClassMap), so no CsvType entity is wired; the harvest/mindmap
+	// paths null-guard CsvType and never see it (same wiring as the T2 app33 dataset, #457).
+	public static string Rules06LotPhrases = "Rules 06 Owner Lot Phrases";
 }
