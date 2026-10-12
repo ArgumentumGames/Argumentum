@@ -91,7 +91,9 @@ namespace Argumentum.AssetConverter.Tests
 			("4", "fa", "3e6c985564524dcdc79e45a97a57ef970bcc06267ed9a90e60a5da6a96b09d8d"),
 			("4", "zh", "ec700c6685e151475bbfa201e3c14a8513e262e5ac8e545bb2c98c4b73eba1a0"),
 			("6", "ru", "b6776dce31d0dc24c83efb215a80a552f0ef600899885fdb161f574bf3afc01e"),
-			("6", "pt", "d877aee178d6739dd3e88f2c76d9553bf75f12871e03f323a5c3fa1fced51275"),
+			// Ré-émise 2026-10-12 depuis la mesure (poche ① pt-BR, #458 c.6099000632) :
+			// pk 6 [pt] change UN mot (factos→fatos) — les 23 autres épingles restent vertes, inchangées.
+			("6", "pt", "af2b135b9db4d16cac038e23dbbcad473c1de2d80f88611c1fa2cd25601ddf69"),
 			("6", "es", "f25afb8756c38c9aa04e9121b48ee98d497dac1ec1519f8b84ef2a3c13a01483"),
 			("6", "ar", "09e5a596a662b28ca77a893556494c8ec195518ccc8c3d2b8c9d41e67509d01f"),
 			("6", "fa", "b1f4eca830215c932b0785fc23e99d2f4e1dfde6e934e683f234313f7d21fc96"),
