@@ -120,6 +120,30 @@ namespace Argumentum.AssetConverter
 				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/docs/dnn-localization/release-validation/exports/DNN-Argumentum-export-app33-2026-10-09/pivots/content-trial-11392.csv",
 				DebugFilePath = @"..\..\..\..\..\..\docs\dnn-localization\release-validation\exports\DNN-Argumentum-export-app33-2026-10-09\pivots\content-trial-11392.csv"
 			},
+			// T2 volume worklists (issue #457): derived from the same export by the committed
+			// derivation script run of 12/10 — content 45 / link 20 / video 6 rows. Every
+			// exclusion is auditable in the PR that added the files (7 demo entities per the
+			// manifest markers, trial entity 2538A3F0-… graft-at-assembly, non-prose attribute
+			// families). DatasetUpdater-only (raw CSV headers, no CsvType), same wiring as the
+			// trial dataset above.
+			new DataSetInfo()
+			{
+				Name = KnownDataSets.DnnApp33ContentVolume,
+				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/docs/dnn-localization/release-validation/exports/DNN-Argumentum-export-app33-2026-10-09/pivots/content-volume.csv",
+				DebugFilePath = @"..\..\..\..\..\..\docs\dnn-localization\release-validation\exports\DNN-Argumentum-export-app33-2026-10-09\pivots\content-volume.csv"
+			},
+			new DataSetInfo()
+			{
+				Name = KnownDataSets.DnnApp33LinkVolume,
+				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/docs/dnn-localization/release-validation/exports/DNN-Argumentum-export-app33-2026-10-09/pivots/link-volume.csv",
+				DebugFilePath = @"..\..\..\..\..\..\docs\dnn-localization\release-validation\exports\DNN-Argumentum-export-app33-2026-10-09\pivots\link-volume.csv"
+			},
+			new DataSetInfo()
+			{
+				Name = KnownDataSets.DnnApp33VideoVolume,
+				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/docs/dnn-localization/release-validation/exports/DNN-Argumentum-export-app33-2026-10-09/pivots/video-volume.csv",
+				DebugFilePath = @"..\..\..\..\..\..\docs\dnn-localization\release-validation\exports\DNN-Argumentum-export-app33-2026-10-09\pivots\video-volume.csv"
+			},
 			// Owner's Rules 06 lot (#1502 c.6098939191): translation pivot of the 2 changed
 			// bullets. DatasetUpdater-only (raw CSV headers, no CsvType). The committed pivot
 			// is the read source; the updater writes to its sandbox TargetPath, never here.

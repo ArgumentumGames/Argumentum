@@ -64,6 +64,14 @@ public class DatasetUpdaterConfig
 	/// <summary>Price per MILLION output tokens, in USD — see <see cref="InputTokenPricePerMillion"/>.</summary>
 	public double? OutputTokenPricePerMillion { get; set; }
 
+	/// <summary>
+	/// Price per MILLION CACHED input tokens, in USD — see <see cref="InputTokenPricePerMillion"/>.
+	/// Cached input tokens are a subset of input tokens billed at a cheaper rate; when this is
+	/// unset but cached tokens were used, the run summary prints the full-price cost explicitly
+	/// labelled UPPER BOUND rather than passing it off as exact (#1864 review).
+	/// </summary>
+	public double? CachedInputTokenPricePerMillion { get; set; }
+
 	public DivisionMode DivisionMode { get; set; }
 
 
@@ -169,6 +177,12 @@ public class DatasetUpdaterConfig
 			List<Dictionary<string, object>> records = null;
 			for (int globalPassIndex = 0; globalPassIndex < this.NbGlobalPasses; globalPassIndex++)
 			{
+				// Head of EVERY pass, unconditionally (#1864 review): a pass must never
+				// inherit a previous pass's consumption — its cost summary would be false
+				// by exactly that amount. Placed before the CompareMode branch so the
+				// reset is not conditioned on chunk presence either.
+				PromptUsage.Reset();
+
 				//globalDataTable = DataSetInfo.LoadCsvIntoDataTable(content, ",", PrimaryField);
 
 
@@ -286,10 +300,6 @@ public class DatasetUpdaterConfig
 						}
 
 						var answers = new ConcurrentBag<string>();
-
-						// Per-run usage journal (T2 volume condition: usage per call, tokens measured
-						// from the API response; cost computed only when prices are declared below).
-						PromptUsage.Reset();
 
 						var tokenManager = new TokenManager(MaxTokensPerMinute, Model);
 
@@ -494,29 +504,85 @@ public class DatasetUpdaterConfig
 	/// End-of-run usage summary: call count and token totals always (tokens are measured from the
 	/// API responses, accumulated by <see cref="PromptUsage"/>); cost only when both prices are
 	/// declared. An unset price prints an explicit NOT COMPUTED line rather than silently omitting
-	/// the cost — a missing cost line must never read as a zero cost.
+	/// the cost — a missing cost line must never read as a zero cost. Cached input tokens are a
+	/// subset of the input total: with <see cref="CachedInputTokenPricePerMillion"/> declared the
+	/// cost is exact, otherwise the full-price figure is printed explicitly labelled UPPER BOUND
+	/// (#1864 review — the provider bills cached tokens cheaper).
 	/// </summary>
 	private void LogRunUsage()
 	{
-		var (calls, inputTokens, outputTokens) = PromptUsage.Snapshot();
+		var (calls, inputTokens, outputTokens, cachedInputTokens) = PromptUsage.Snapshot();
 		if (calls == 0)
 		{
 			return;
 		}
 
-		Logger.Log($"Run usage: {calls} calls, input tokens={inputTokens}, output tokens={outputTokens}");
-		if (InputTokenPricePerMillion.HasValue && OutputTokenPricePerMillion.HasValue)
+		Logger.Log($"Run usage: {calls} calls, input tokens={inputTokens} " +
+		           $"(cached={cachedInputTokens}), output tokens={outputTokens}");
+		var report = ComputeRunCost(inputTokens, outputTokens, cachedInputTokens,
+			InputTokenPricePerMillion, OutputTokenPricePerMillion, CachedInputTokenPricePerMillion);
+		switch (report.Kind)
 		{
-			var cost = inputTokens / 1_000_000.0 * InputTokenPricePerMillion.Value
-			           + outputTokens / 1_000_000.0 * OutputTokenPricePerMillion.Value;
-			Logger.Log($"Run cost: ${cost:0.0000} " +
-			           $"(in @ ${InputTokenPricePerMillion.Value:0.####}/MTok, out @ ${OutputTokenPricePerMillion.Value:0.####}/MTok)");
+			case RunCostKind.NotComputed:
+				Logger.Log("Run cost: NOT COMPUTED — InputTokenPricePerMillion/OutputTokenPricePerMillion unset " +
+				           "(token totals above are the measurement; set the prices from the provider's page to compute cost)");
+				break;
+			case RunCostKind.Exact:
+				Logger.Log($"Run cost: ${report.Cost:0.0000} {report.Detail}");
+				break;
+			case RunCostKind.UpperBound:
+				Logger.Log($"Run cost: ${report.Cost:0.0000} UPPER BOUND — {report.Detail}");
+				break;
 		}
-		else
+	}
+
+	internal enum RunCostKind
+	{
+		NotComputed,
+		Exact,
+		UpperBound
+	}
+
+	internal readonly record struct RunCostReport(RunCostKind Kind, double Cost, string Detail);
+
+	/// <summary>
+	/// Pure cost arithmetic over the measured token totals (unit-tested): null prices → NOT
+	/// COMPUTED; cached tokens priced when <paramref name="cachedPrice"/> is declared, otherwise
+	/// the full-price total comes back as UPPER BOUND with the reason. Cached tokens are clamped
+	/// into the input total (the provider reports them as a subset of input).
+	/// </summary>
+	internal static RunCostReport ComputeRunCost(long inputTokens, long outputTokens, long cachedInputTokens,
+		double? inputPrice, double? outputPrice, double? cachedPrice)
+	{
+		if (!inputPrice.HasValue || !outputPrice.HasValue)
 		{
-			Logger.Log("Run cost: NOT COMPUTED — InputTokenPricePerMillion/OutputTokenPricePerMillion unset " +
-			           "(token totals above are the measurement; set the prices from the provider's page to compute cost)");
+			return new RunCostReport(RunCostKind.NotComputed, 0, "");
 		}
+
+		var cached = Math.Clamp(cachedInputTokens, 0, inputTokens);
+		var freshInput = inputTokens - cached;
+		if (cached > 0 && cachedPrice.HasValue)
+		{
+			var cost = freshInput / 1_000_000.0 * inputPrice.Value
+			           + cached / 1_000_000.0 * cachedPrice.Value
+			           + outputTokens / 1_000_000.0 * outputPrice.Value;
+			return new RunCostReport(RunCostKind.Exact, cost,
+				$"(in @ ${inputPrice.Value:0.####}/MTok x{freshInput}, cached @ ${cachedPrice.Value:0.####}/MTok x{cached}, " +
+				$"out @ ${outputPrice.Value:0.####}/MTok)");
+		}
+
+		var fullCost = inputTokens / 1_000_000.0 * inputPrice.Value
+		               + outputTokens / 1_000_000.0 * outputPrice.Value;
+		if (cached > 0)
+		{
+			return new RunCostReport(RunCostKind.UpperBound, fullCost,
+				$"{cached} cached input tokens billed at the full input price; declare " +
+				$"CachedInputTokenPricePerMillion for the exact figure (in @ ${inputPrice.Value:0.####}/MTok, " +
+				$"out @ ${outputPrice.Value:0.####}/MTok)");
+		}
+
+		return new RunCostReport(RunCostKind.Exact, fullCost,
+			$"(in @ ${inputPrice.Value:0.####}/MTok, out @ ${outputPrice.Value:0.####}/MTok)");
 	}
 
 	private async Task DoChatGPTCall(CancellationToken ct, List<Dictionary<string, object>> recordGroup, string openAIKey, string systemPrompt,

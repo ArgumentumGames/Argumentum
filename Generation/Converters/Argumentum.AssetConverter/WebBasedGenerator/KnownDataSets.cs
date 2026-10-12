@@ -16,6 +16,14 @@ public static class KnownDataSets
 	// the updater engine reads raw CSV headers (GetDictionaryFromCsv, no ClassMap), so no
 	// CsvType entity is wired; the harvest/mindmap paths null-guard CsvType and never see it.
 	public static string DnnApp33Content = "DNN App33 Content";
+	// T2 volume (issue #457, volume opened #458 c.6107217348): the app33 volume worklists
+	// derived from the 2026-10-09 export — fr-filled prose rows only, the 7 demo entities
+	// (manifest rendering.demoMarkers) and the reviewed trial entity excluded, non-prose
+	// attributes (file refs, fa-icons, Link/Window/VideoLink paths & enums) filtered out.
+	// Same DatasetUpdater-only wiring as DnnApp33Content above.
+	public static string DnnApp33ContentVolume = "DNN App33 Content Volume";
+	public static string DnnApp33LinkVolume = "DNN App33 Link Volume";
+	public static string DnnApp33VideoVolume = "DNN App33 Video Volume";
 	// Owner's Rules 06 lot (issue #1502 c.6098939191): the 2 changed bullets of rule 6, one
 	// row per bullet. DatasetUpdater-only dataset — the updater engine reads raw CSV headers
 	// (GetDictionaryFromCsv, no ClassMap), so no CsvType entity is wired; the harvest/mindmap
