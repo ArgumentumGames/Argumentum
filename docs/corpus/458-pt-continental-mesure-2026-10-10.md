@@ -67,6 +67,8 @@ Non classés défauts : `dossiê` ×2 (pk 848 Fallacies `example_pt`, pk 146 Vir
 3. **Poche ③ = grain registre, pas dialecte** — router vers l'item « registre pt/es » déjà ouvert (㉚ l'avait pointé : 804, 808). Le vós de Scenarii 5.2.1 (voix divine) se présente comme **choix stylistique à garder**, à trancher au même arbitrage.
 4. **Aucune bascule mécanique globale** — le fond du corpus est déjà BR ; toucher 96,6 % de rangées saines pour 3,4 % de poches serait le geste que l'owner a explicitement écarté.
 
+> **Erratum 2026-10-12 (statut de l'item 1)** : la décision de nommage y est présentée comme arbitrage owner en attente — **tranchée depuis** : ai-01, 10/10 c.6099000632, « factos → fatos » **partout en `_pt`**, traité comme orthographe et non comme renommage de famille. Exécuté le 12/10 : **35 occurrences** (33 minuscules Virtues + le titre capitalisé « Factos verificados » pk 22, attrapé par un scan insensible à la casse après une greffe sensible — + 1 Scenarii 6.1.1), 21 rangées, garde `PtFatosOrthographyTests`. Le référentiel DatasetUpdater (`Resources/`) ne portait aucun « factos » — rien à synchroniser. Rejeu instrument : A=5 B=37 **C=2** (les 35 factos partis ; restent registo/castanho, poches ②-④).
+
 ## N'établit pas
 
 - Que les 61 rangées listées soient les **seules** dérives pt-PT : l'instrument couvre un jeu de motifs déclaré (en-tête du script) ; un marqueur hors liste (p. ex. proclisis systématique, « aeroplano », orthographe pré-AO au-delà de pk 181) lui est invisible.
