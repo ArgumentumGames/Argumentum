@@ -975,93 +975,85 @@ Déclaration de confidentialité sur le site :&lt;/h1&gt;
 	&lt;p align="left"&gt;&lt;a class="topOfPage" href="#top"&gt;Haut de page&lt;/a&gt;&lt;/p&gt;</value>
   </data>
   <data name="MESSAGE_PORTAL_TERMS.Text" xml:space="preserve">
-    <value xml:space="preserve">&lt;div style="padding: 0px 15px 0px 20px"&gt;
-	&lt;P align=left&gt;&lt;STRONG&gt;MENTIONS LÉGALES :&lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=center&gt;&lt;STRONG&gt;IDENTIFICATION DU SITE&lt;br&gt;
-&lt;/STRONG&gt;Les informations suivantes sont fournies en vertu de l&amp;#146;Article 
+    <value xml:space="preserve">&lt;div style=&quot;padding: 0px 15px 0px 20px&quot;&gt;
+	&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;MENTIONS LÉGALES :&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;&lt;strong&gt;IDENTIFICATION DU SITE&lt;br&gt;
+&lt;/strong&gt;Les informations suivantes sont fournies en vertu de l’Article 
 6 de LOI n° 2004-575 du 21 juin 2004
 pour la&lt;br&gt;
-&lt;b&gt;Confiance dans l'Economie 
+&lt;b&gt;Confiance dans l&apos;Economie 
 Numérique&lt;/b&gt;&lt;br&gt;
-(&lt;a target="_blank" href="http://www.legifrance.gouv.fr/affichTexte.do;jsessionid=82B8753F7B5E01BDD97D7DC3B1593F8D.tpdjo09v_2?cidTexte=JORFTEXT000000801164&amp;amp;dateTexte=20080116"&gt;Accéder 
-au texte de loi en vigueur&lt;/a&gt;) &lt;/P&gt;
-&lt;P align=center&gt;&lt;B&gt;Le site Internet &amp;quot;[Portal:PortalName]&amp;quot; est édité par :&lt;/B&gt;&lt;/P&gt;
-&lt;div style="text-align:center;border:1px solid black;"&gt;&lt;em&gt;Vous devez indiquer les 
-		informations relatives au propriétaire du site en éditant la ressource &amp;quot;MESSAGE_PORTAL_TERMS.Text&amp;quot; 
-		que vous trouverez en allant dans :&lt;br&gt;
-		Menu : &amp;quot;Site&amp;quot; &gt; &amp;quot;Langues&amp;quot;.&lt;br&gt;
-		Cliquez sur la ressource &amp;quot;Site&amp;quot; correspondant au Français.&lt;br&gt;
-		Recherchez ensuite la valeur &amp;quot;MESSAGE_PORTAL_TERM.Text&amp;quot; et modifiez les 
-		informations se trouvant ici même.&lt;br&gt;
-		Enregistrez la ressources en cliquant tout en bas sur &amp;quot;Enregistrer le 
-		fichier de ressource&amp;quot;.&lt;/em&gt;&lt;br&gt;
-		&lt;br&gt;&lt;/div&gt;
-&lt;P align=center&gt;&lt;STRONG&gt;ci-après dénommé &amp;quot;Editeur du 
-Site&amp;quot;&lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=center&gt;
-(Propriétaire et exploitant du site &amp;quot;[Portal:PortalName]&amp;quot;)&lt;br&gt;&lt;/P&gt;
-&lt;p align="center"&gt;&lt;B&gt;Le site Internet &amp;quot;[Portal:PortalName]&amp;quot; est hébergé par :&lt;/B&gt;&lt;/p&gt;
-&lt;div style="text-align:center;border:1px solid black;"&gt;&lt;em&gt;Vous devez donner les coordonnées de l'hébergeur du site.&lt;/em&gt;&lt;/div&gt;
-&lt;p align="center"&gt;&lt;b&gt;ci-après dénommé &amp;quot;Hébergeur&amp;quot;&lt;/b&gt;&lt;/p&gt;
-	&lt;p align="center"&gt;&amp;nbsp;&lt;/p&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;ACCEPTATION DES CONDITIONS INHÉRENTES À L&amp;#146;UTILISATION &lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;L&amp;#39;Editeur du Site détient et exploite ce site. Son 
+(&lt;a target=&quot;_blank&quot; href=&quot;http://www.legifrance.gouv.fr/affichTexte.do;jsessionid=82B8753F7B5E01BDD97D7DC3B1593F8D.tpdjo09v_2?cidTexte=JORFTEXT000000801164&amp;amp;dateTexte=20080116&quot;&gt;Accéder 
+au texte de loi en vigueur&lt;/a&gt;) &lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;&lt;b&gt;Le site Internet &quot;Argumentum&quot; est édité par :&lt;/b&gt;&lt;/p&gt;
+&lt;div style=&quot;text-align:center;border:1px solid black;&quot;&gt;&lt;em&gt;ARGUMENTUM SAS, 5 B RUE MARTEL, 75010 PARIS 10&lt;/em&gt;&lt;br&gt;
+		SIREN: 922020276&lt;br&gt;&lt;/div&gt;
+&lt;p align=&quot;center&quot;&gt;&lt;strong&gt;ci-après dénommé &quot;Editeur du 
+Site&quot;&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+(Propriétaire et exploitant du site &quot;Argumentum&quot;)&lt;br&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;&lt;b&gt;Le site Internet &quot;Argumentum&quot; est hébergé par :&lt;/b&gt;&lt;/p&gt;
+&lt;div style=&quot;text-align:center;border:1px solid black;&quot;&gt;&lt;em&gt;MY INTELLIGENCE AGENCY, 5 B RUE MARTEL, 75010 PARIS 10&lt;br&gt;&lt;/em&gt;&lt;/div&gt;
+&lt;p align=&quot;center&quot;&gt;&lt;b&gt;ci-après dénommé &quot;Hébergeur&quot;&lt;/b&gt;&lt;/p&gt;
+	&lt;p align=&quot;center&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;ACCEPTATION DES CONDITIONS INHÉRENTES À L’UTILISATION &lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;L&apos;Editeur du Site détient et exploite ce site. Son 
 utilisation implique que vous acceptez l’ensemble des termes, conditions et 
 notifications contenus et cités dans ce document (les «conditions 
 d’utilisation»). Ces conditions générales d’utilisation ne s’applique qu’au site 
-et aux services de ce Site, et à aucun site tiers. &lt;/P&gt;
-&lt;P align=justify&gt;Si vous n&amp;#146;acceptez pas ces conditions d&amp;#146;utilisation, veuillez ne pas utiliser ce site. Nous nous réservons le droit, à notre discrétion, de mettre à jour ou de modifier les conditions d&amp;#146;utilisation. Par conséquent, veuillez vérifier régulièrement ces dernières afin de savoir si elles ont 
-été modifiées. Nous considérons que vous acceptez une modification des conditions d&amp;#146;utilisation si vous continuez à utiliser le site après publication de cette modification. &lt;/P&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;DROITS DE PROPRIETE &lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;Vous reconnaissez et acceptez que l&amp;#146;ensemble du contenu et des éléments disponibles sur ce site - en particulier, mais de façon non limitative, les cartes, les programmes et logiciels, les bases de données, le texte, les photos, les films, les sons, la musique, la présentation et les logos - sont protégés par des copyrights, droits de protection de base de données, marques déposées, marques de service, brevets, secrets industriels ou autres droits et lois sur la propriété. Le contenu et les 
+et aux services de ce Site, et à aucun site tiers. &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Si vous n’acceptez pas ces conditions d’utilisation, veuillez ne pas utiliser ce site. Nous nous réservons le droit, à notre discrétion, de mettre à jour ou de modifier les conditions d’utilisation. Par conséquent, veuillez vérifier régulièrement ces dernières afin de savoir si elles ont 
+été modifiées. Nous considérons que vous acceptez une modification des conditions d’utilisation si vous continuez à utiliser le site après publication de cette modification. &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;DROITS DE PROPRIETE &lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Vous reconnaissez et acceptez que l’ensemble du contenu et des éléments disponibles sur ce site - en particulier, mais de façon non limitative, les cartes, les programmes et logiciels, les bases de données, le texte, les photos, les films, les sons, la musique, la présentation et les logos - sont protégés par des copyrights, droits de protection de base de données, marques déposées, marques de service, brevets, secrets industriels ou autres droits et lois sur la propriété. Le contenu et les 
 éléments disponibles sont, soit exclusivement détenus et contrôlés par 
-l&amp;#146;Editeur du Site, soit utilisés sous licence. Ces conditions d&amp;#146;utilisation s&amp;#146;appliquent à tout le contenu et à tous les 
-éléments disponibles sur le site. &lt;/P&gt;
-&lt;P align=justify&gt;De plus, lorsque vous utilisez un contenu et des éléments sous licence d&amp;#146;un tiers, il est possible que vous soyez lié par les contrats de licence de ce dernier. Lorsque vous recevez des informations provenant d&amp;#146;un tiers, l&amp;#146;identité de celui-ci vous est indiquée par un logo ou par une autre indication. &lt;/P&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;CONCESSION DE LICENCE LIMITEE &lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;Le contenu et les éléments disponibles sur ce site peuvent 
-contenir d&amp;#146;autres avis de propriété ou décrire des produits, services, processus 
-ou technologies appartenant&amp;nbsp; à des tiers. Aucune partie du présent document ne doit être considérée comme constituant une licence accordée à l&amp;#146;utilisateur sur un copyright, une marque, un brevet ou tout autre droit de propriété intellectuelle détenu par une tierce partie, à l&amp;#146;exception du droit d&amp;#146;utilisation limité qui est expressément défini ci-dessous: &lt;/P&gt;
-&lt;P align=justify&gt;Dans le cadre d&amp;#146;une licence non exclusive et non transférable, vous êtes autorisé à imprimer ou à télécharger un exemplaire des 
+l’Editeur du Site, soit utilisés sous licence. Ces conditions d’utilisation s’appliquent à tout le contenu et à tous les 
+éléments disponibles sur le site. &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;De plus, lorsque vous utilisez un contenu et des éléments sous licence d’un tiers, il est possible que vous soyez lié par les contrats de licence de ce dernier. Lorsque vous recevez des informations provenant d’un tiers, l’identité de celui-ci vous est indiquée par un logo ou par une autre indication. &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;CONCESSION DE LICENCE LIMITEE &lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Le contenu et les éléments disponibles sur ce site peuvent 
+contenir d’autres avis de propriété ou décrire des produits, services, processus 
+ou technologies appartenant&amp;nbsp; à des tiers. Aucune partie du présent document ne doit être considérée comme constituant une licence accordée à l’utilisateur sur un copyright, une marque, un brevet ou tout autre droit de propriété intellectuelle détenu par une tierce partie, à l’exception du droit d’utilisation limité qui est expressément défini ci-dessous: &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Dans le cadre d’une licence non exclusive et non transférable, vous êtes autorisé à imprimer ou à télécharger un exemplaire des 
 éléments ou du contenu de ce site vers un seul ordinateur individuel pour votre utilisation personnelle et non commerciale, à condition que vous gardiez intacts tous les avis de copyright et de propriété. Vous pouvez utiliser le site à des fins légales et pour votre utilisation personnelle, mais en aucun cas dans un but lucratif ou commercial. Si vous souhaitez des 
-éléments d&amp;#146;information pour rédiger un article sur le site, un dossier presse est disponible à votre demande, seules les photos contenues dans ce dossier presse peuvent être publiées. &lt;/P&gt;
-&lt;P align=justify&gt;Vous vous engagez à ne jamais vendre, céder sous licence, louer, distribuer, transmettre, copier, reproduire, présenter publiquement, exécuter publiquement, publier, adapter, 
+éléments d’information pour rédiger un article sur le site, un dossier presse est disponible à votre demande, seules les photos contenues dans ce dossier presse peuvent être publiées. &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Vous vous engagez à ne jamais vendre, céder sous licence, louer, distribuer, transmettre, copier, reproduire, présenter publiquement, exécuter publiquement, publier, adapter, 
 éditer, modifier, décompiler, désassembler ce contenu ou ces éléments, et à ne jamais reconstituer la 
-logique du programme, ni créer d&amp;#146;ouvre dérivée à partir de ce contenu ou de ces 
+logique du programme, ni créer d’ouvre dérivée à partir de ce contenu ou de ces 
 éléments. Vous vous engagez à ne jamais utiliser le contenu ou les éléments 
 disponibles sur le site dans un quelconque but commercial. La récupération 
 systématique de données ou autre depuis ce site pour créer ou établir, 
 directement ou indirectement, une collection, une compilation, une base de 
-données ou un répertoire sans l&amp;#146;autorisation écrite de l&amp;#146;Editeur du Site est interdite. En outre, l&amp;#146;utilisation du contenu ou des 
-éléments à toute fin non expressément autorisée dans ces conditions d&amp;#146;utilisation est interdite. Vous ne jouissez d&amp;#146;aucun droit de propriété sur le contenu, les 
+données ou un répertoire sans l’autorisation écrite de l’Editeur du Site est interdite. En outre, l’utilisation du contenu ou des 
+éléments à toute fin non expressément autorisée dans ces conditions d’utilisation est interdite. Vous ne jouissez d’aucun droit de propriété sur le contenu, les 
 éléments et leurs dérivés, et 
-l&amp;#146;Editeur du Site est le seul détenteur de tels droits. &lt;/P&gt;
-&lt;P&gt;&lt;b&gt;Le non-respect de l&amp;#146;une des clauses de ces conditions d&amp;#146;utilisation mettra fin à cette licence automatiquement et sans préavis de la part de 
-l&amp;#146;Editeur du Site.&lt;/b&gt;&lt;/P&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;UTILISATION DE CE SITE&lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;Vous n&amp;#146;êtes pas autorisé à utiliser le site ou ses services à des fins illégales telles que la publication, la distribution ou la diffusion d&amp;#146;un 
-élément ou d&amp;#146;une information illégale, et en particulier: &lt;/P&gt;
-&lt;UL type=disc align=left&gt;
-&lt;LI&gt;
-&lt;p align="left"&gt;toutes données privatives appartenant à un tiers, notamment les marques déposées et données protégées par copyright (autres que celles pour lesquelles vous possédez une licence); &lt;/LI&gt;&lt;/UL&gt;
-&lt;UL type=disc align=left&gt;
-&lt;LI&gt;
-&lt;p align="left"&gt;tout contenu erroné, diffamatoire, obscène, raciste ou incitant à la haine; &lt;/LI&gt;&lt;/UL&gt;
-&lt;UL type=disc align=left&gt;
-&lt;LI&gt;
-&lt;p align="left"&gt;tout contenu visant à harceler un tiers ou à compromettre sa vie privée; &lt;/LI&gt;&lt;/UL&gt;
-&lt;UL type=disc align=left&gt;
-&lt;LI&gt;
-&lt;p align="left"&gt;tout contenu incitant au crime, au suicide, à la discrimination, à la haine ou à la violence, pour des motifs de différence raciale, ethnique ou de nationalité; &lt;/LI&gt;&lt;/UL&gt;
-&lt;UL type=disc align=left&gt;
-&lt;LI&gt;
-&lt;p align="left"&gt;tout contenu susceptible de nuire à des utilisateurs mineurs ou de porter atteinte à la dignité humaine; &lt;/LI&gt;&lt;/UL&gt;
-&lt;UL type=disc align=left&gt;
-&lt;LI&gt;
-&lt;p align="left"&gt;tout contenu faisant l&amp;#146;éloge du nazisme ou niant l&amp;#146;holocauste. &lt;/LI&gt;&lt;/UL&gt;
-&lt;P align=justify&gt;En outre, vous ne devez pas utiliser le site dans le but de recueillir des informations personnelles, notamment des adresses Internet, concernant d&amp;#146;autres utilisateurs du site. &lt;/P&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;EXCLUSION DE GARANTIE &lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;Tout contenu est propre au site [Portal:PortalName]. Ce site 
+l’Editeur du Site est le seul détenteur de tels droits. &lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Le non-respect de l’une des clauses de ces conditions d’utilisation mettra fin à cette licence automatiquement et sans préavis de la part de 
+l’Editeur du Site.&lt;/b&gt;&lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;UTILISATION DE CE SITE&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Vous n’êtes pas autorisé à utiliser le site ou ses services à des fins illégales telles que la publication, la distribution ou la diffusion d’un 
+élément ou d’une information illégale, et en particulier: &lt;/p&gt;
+&lt;ul align=&quot;left&quot; type=&quot;disc&quot;&gt;
+&lt;li&gt;
+&lt;p align=&quot;left&quot;&gt;toutes données privatives appartenant à un tiers, notamment les marques déposées et données protégées par copyright (autres que celles pour lesquelles vous possédez une licence); &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align=&quot;left&quot; type=&quot;disc&quot;&gt;
+&lt;li&gt;
+&lt;p align=&quot;left&quot;&gt;tout contenu erroné, diffamatoire, obscène, raciste ou incitant à la haine; &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align=&quot;left&quot; type=&quot;disc&quot;&gt;
+&lt;li&gt;
+&lt;p align=&quot;left&quot;&gt;tout contenu visant à harceler un tiers ou à compromettre sa vie privée; &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align=&quot;left&quot; type=&quot;disc&quot;&gt;
+&lt;li&gt;
+&lt;p align=&quot;left&quot;&gt;tout contenu incitant au crime, au suicide, à la discrimination, à la haine ou à la violence, pour des motifs de différence raciale, ethnique ou de nationalité; &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align=&quot;left&quot; type=&quot;disc&quot;&gt;
+&lt;li&gt;
+&lt;p align=&quot;left&quot;&gt;tout contenu susceptible de nuire à des utilisateurs mineurs ou de porter atteinte à la dignité humaine; &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align=&quot;left&quot; type=&quot;disc&quot;&gt;
+&lt;li&gt;
+&lt;p align=&quot;left&quot;&gt;tout contenu faisant l’éloge du nazisme ou niant l’holocauste. &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p align=&quot;justify&quot;&gt;En outre, vous ne devez pas utiliser le site dans le but de recueillir des informations personnelles, notamment des adresses Internet, concernant d’autres utilisateurs du site. &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;EXCLUSION DE GARANTIE &lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Tout contenu est propre au site Argumentum. Ce site 
 peut contenir des inexactitudes techniques ou des erreurs typographiques. 
 l’Editeur du Site se réserve le droit de modifier ou de supprimer toute 
 information ou contenu apparaissant sur ce site sans avis préalable. Ni 
@@ -1070,88 +1062,88 @@ services Internet permettant de faire fonctionner cette application web,
 n’offrent de garantie quant à leur contenu. L’utilisateur assume tous les 
 risques d’utilisation. Aucune responsabilité n’incombe à la l’Editeur du Site, à 
 ses fournisseurs, ou ses prestataires de services, quand à l’utilisation des 
-éléments d’information contenus dans ce site. &lt;/P&gt;
-&lt;P align=justify&gt;LE CONTENU ET LES ELEMENTS FOURNIS SUR CE SITE LE SONT SANS AUCUNE GARANTIE, IMPLICITE OU EXPLICITE. AUCUN AVIS NI AUCUNE INFORMATION FOURNIS 
-PAR L&amp;#146;EDITEUR DU SITE OU L&amp;#146;HEBERGEUR, LEURS SOCIETES MÈRES OU AFFILIEES OU LEURS EMPLOYES RESPECTIFS 
-NE PEUT CREER DE GARANTIE. NI L&amp;#146;EDITEUR DU SITE, NI L&amp;#146;HEBERGEUR, NI LEURS SOCIETES MÈRES OU AFFILIEES NE GARANTISSENT LA PRECISION, LA FIABILITE ET L&amp;#146;EXACTITUDE DU CONTENU ET DES 
-ELEMENTS DU SITE; NI LA DISPONIBILITE DU&lt;/st1:PersonName&gt; SITE EN TOUT LIEU ET À TOUT MOMENT; NI L&amp;#146;ABSENCE DE VIRUS OU D&amp;#146;AUTRE 
+éléments d’information contenus dans ce site. &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;LE CONTENU ET LES ELEMENTS FOURNIS SUR CE SITE LE SONT SANS AUCUNE GARANTIE, IMPLICITE OU EXPLICITE. AUCUN AVIS NI AUCUNE INFORMATION FOURNIS 
+PAR L’EDITEUR DU SITE OU L’HEBERGEUR, LEURS SOCIETES MÈRES OU AFFILIEES OU LEURS EMPLOYES RESPECTIFS 
+NE PEUT CREER DE GARANTIE. NI L’EDITEUR DU SITE, NI L’HEBERGEUR, NI LEURS SOCIETES MÈRES OU AFFILIEES NE GARANTISSENT LA PRECISION, LA FIABILITE ET L’EXACTITUDE DU CONTENU ET DES 
+ELEMENTS DU SITE; NI LA DISPONIBILITE DU SITE EN TOUT LIEU ET À TOUT MOMENT; NI L’ABSENCE DE VIRUS OU D’AUTRE 
 ELEMENT NUISIBLE DANS LE CONTENU, LES INFORMATIONS ET LES LOGICIELS, ET DANS TOUT 
-ELEMENT ACCESSIBLE À PARTIR DU SITE. &lt;/P&gt;
-&lt;P align=left&gt;&lt;BR&gt;&lt;STRONG&gt;LIMITATION DE RESPONSABILITE &lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;&lt;BR&gt;L&amp;#146;EDITEUR DU SITE, L&amp;#146;HEBERGEUR, LEURS SOCIETES MÈRES OU AFFILIEES, PARTENAIRES, FILIALES OU CONCEDANTS DE LICENCE NE SONT EN AUCUN CAS RESPONSABLES DE DOMMAGES DIRECTS OU INDIRECTS - Y COMPRIS, MAIS DE FAÇON NON LIMITATIVE, DE &lt;st1:PersonName ProductID="LA PERTE DE" w:st="on"&gt;LA PERTE DE&lt;/st1:PersonName&gt; BENEFICE, DE CLIENTÈLE OU DE DONNEES - DUS À L&amp;#146;UTILISATION OU À L&amp;#146;INCAPACITE D&amp;#146;UTILISER LE SITE OU LE CONTENU ET LES 
-ELEMENTS AUXQUELS CELUI-CI PERMET D&amp;#146;ACCEDER. CETTE LIMITATION S&amp;#146;APPLIQUE, 
-EN MATIÈRE DELICTUELLE COMME CONTRACTUELLE, MÊME SI L&amp;#146;EDITEUR DU SITE, OU L&amp;#146;HEBERGEUR ONT 
-ETE INFORME DE LA POSSIBILITE D&amp;#146;UN TEL DOMMAGE. &lt;/P&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;INDEMNISATION&lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;A sa demande, vous vous engagez à indemniser 
-l&amp;#146;Editeur du Site, ses sociétés mères ou affiliées, partenaires, filiales ou concédants de licence ainsi que leurs employés, contractants, agents et dirigeants, en cas de mise en cause de leur responsabilité, ainsi que de réclamations et frais (dont honoraires d&amp;#146;avocat) découlant de votre utilisation ou de vos erreurs dans l&amp;#146;utilisation du site. Dans la mesure du possible, vous acceptez de coopérer avec 
-l&amp;#146;Editeur du Site pour sa défense dans le cadre de toute affaire dans laquelle vous devriez offrir une indemnisation. &lt;/P&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;SITES TIERS &lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;Aucune référence à des produits, services, processus, liens hypertexte de tiers ou autre information par citation d&amp;#146;un nom de marque, d&amp;#146;une marque déposée, d&amp;#146;un fabricant, d&amp;#146;un fournisseur ou autre ne constitue ni ne sous-entend une approbation, caution ou recommandation de la part de 
-l&amp;#146;Editeur du Site, de ses sociétés mères ou affiliées, partenaires, filiales ou concédants de licence. De plus, le site peut vous mettre en relation avec d&amp;#146;autres sites Internet par le biais notamment de recherches automatiques, mais ces sites ne sont pas sous le contrôle de la 
-l&amp;#146;Editeur du Site. Vous reconnaissez que l&amp;#146;Editeur du Site n&amp;#146;est pas responsable de l&amp;#146;exactitude, du respect de copyright, de la légalité, de la décence ou de tout autre aspect des sites tiers. &lt;/P&gt;
-&lt;P align=justify&gt;&lt;b&gt;Tout lien hypertexte provenant d’un site tiers et 
-aboutissant sur ce site nécessite l&amp;#146;accord préalable de l&amp;#146;Editeur du Site, et en particulier les liens vers une page autre que la page d&amp;#146;accueil. La demande d&amp;#146;un tel accord peut être faite en adressant un courrier à l&amp;#146;aide du formulaire de contact disponible sur ce site.
-&lt;/b&gt; &lt;/P&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;POLITIQUE DE CONFIDENTIALITE &lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;L&amp;#146;Editeur du site a pour principe de protéger la vie privée de ses utilisateurs. Vous disposez en pied de page de chaque page du site d&amp;#146;un lien vers la politique de confidentialité (Déclaration de confidentialité) mis en place par 
-l&amp;#146;Editeur du site. Veuillez la consulter. &lt;/P&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;CONCESSION PAR L&amp;#146;UTILISATEUR D&amp;#146;UNE LICENCE LIMITEE A L&amp;#146;EDITEUR 
-DU SITE&lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;En publiant, soumettant ou transmettant de toute autre manière des informations, un contenu ou des 
-éléments vers ce site, y compris, mais de façon non limitative, des feedbacks (retour d&amp;#146;informations), données, réponses, questions, commentaires, suggestions, projets, idées, etc., &lt;/P&gt;
-&lt;OL type=1&gt;
-&lt;LI&gt;
-&lt;p align="justify"&gt;sauf cas prévu par la loi, vous autorisez l&amp;#146;Editeur du Site, ses sociétés mères et affiliées, partenaires, filiales et titulaires de licence, à utiliser, reproduire, afficher, exécuter, adapter, modifier, distribuer, faire distribuer et promouvoir les informations, le contenu ou les 
+ELEMENT ACCESSIBLE À PARTIR DU SITE. &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;br&gt;&lt;strong&gt;LIMITATION DE RESPONSABILITE &lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;&lt;br&gt;L’EDITEUR DU SITE, L’HEBERGEUR, LEURS SOCIETES MÈRES OU AFFILIEES, PARTENAIRES, FILIALES OU CONCEDANTS DE LICENCE NE SONT EN AUCUN CAS RESPONSABLES DE DOMMAGES DIRECTS OU INDIRECTS - Y COMPRIS, MAIS DE FAÇON NON LIMITATIVE, DE &lt;st1:personname productid=&quot;LA PERTE DE&quot; w:st=&quot;on&quot;&gt;LA PERTE DE&lt;/st1:personname&gt; BENEFICE, DE CLIENTÈLE OU DE DONNEES - DUS À L’UTILISATION OU À L’INCAPACITE D’UTILISER LE SITE OU LE CONTENU ET LES 
+ELEMENTS AUXQUELS CELUI-CI PERMET D’ACCEDER. CETTE LIMITATION S’APPLIQUE, 
+EN MATIÈRE DELICTUELLE COMME CONTRACTUELLE, MÊME SI L’EDITEUR DU SITE, OU L’HEBERGEUR ONT 
+ETE INFORME DE LA POSSIBILITE D’UN TEL DOMMAGE. &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;INDEMNISATION&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;A sa demande, vous vous engagez à indemniser 
+l’Editeur du Site, ses sociétés mères ou affiliées, partenaires, filiales ou concédants de licence ainsi que leurs employés, contractants, agents et dirigeants, en cas de mise en cause de leur responsabilité, ainsi que de réclamations et frais (dont honoraires d’avocat) découlant de votre utilisation ou de vos erreurs dans l’utilisation du site. Dans la mesure du possible, vous acceptez de coopérer avec 
+l’Editeur du Site pour sa défense dans le cadre de toute affaire dans laquelle vous devriez offrir une indemnisation. &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;SITES TIERS &lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Aucune référence à des produits, services, processus, liens hypertexte de tiers ou autre information par citation d’un nom de marque, d’une marque déposée, d’un fabricant, d’un fournisseur ou autre ne constitue ni ne sous-entend une approbation, caution ou recommandation de la part de 
+l’Editeur du Site, de ses sociétés mères ou affiliées, partenaires, filiales ou concédants de licence. De plus, le site peut vous mettre en relation avec d’autres sites Internet par le biais notamment de recherches automatiques, mais ces sites ne sont pas sous le contrôle de la 
+l’Editeur du Site. Vous reconnaissez que l’Editeur du Site n’est pas responsable de l’exactitude, du respect de copyright, de la légalité, de la décence ou de tout autre aspect des sites tiers. &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;&lt;b&gt;Tout lien hypertexte provenant d’un site tiers et 
+aboutissant sur ce site nécessite l’accord préalable de l’Editeur du Site, et en particulier les liens vers une page autre que la page d’accueil. La demande d’un tel accord peut être faite en adressant un courrier à l’aide du formulaire de contact disponible sur ce site.
+&lt;/b&gt; &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;POLITIQUE DE CONFIDENTIALITE &lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;L’Editeur du site a pour principe de protéger la vie privée de ses utilisateurs. Vous disposez en pied de page de chaque page du site d’un lien vers la politique de confidentialité (Déclaration de confidentialité) mis en place par 
+l’Editeur du site. Veuillez la consulter. &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;CONCESSION PAR L’UTILISATEUR D’UNE LICENCE LIMITEE A L’EDITEUR 
+DU SITE&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;En publiant, soumettant ou transmettant de toute autre manière des informations, un contenu ou des 
+éléments vers ce site, y compris, mais de façon non limitative, des feedbacks (retour d’informations), données, réponses, questions, commentaires, suggestions, projets, idées, etc., &lt;/p&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;
+&lt;p align=&quot;justify&quot;&gt;sauf cas prévu par la loi, vous autorisez l’Editeur du Site, ses sociétés mères et affiliées, partenaires, filiales et titulaires de licence, à utiliser, reproduire, afficher, exécuter, adapter, modifier, distribuer, faire distribuer et promouvoir les informations, le contenu ou les 
 éléments sous quelque forme que ce soit, en quelque lieu que ce soit et pour quelque but commercial ou non que ce soit, sans 
 émettre de restriction ni attendre de compensation, et 
-&lt;LI&gt;
-&lt;p align="justify"&gt;vous garantissez et déclarez que vous possédez, ou contrôlez d&amp;#146;une autre manière, tous les droits liés au contenu et que la diffusion publique et l&amp;#146;utilisation de votre contenu par 
-l&amp;#146;Editeur du Site n&amp;#146;affectera et n&amp;#146;enfreindra pas les droits d&amp;#146;un tiers. &lt;/LI&gt;&lt;/OL&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;CONSENTEMENT DE L&amp;#146;UTILISATEUR RELATIF A LA VERIFICATION ET LA DIVULGATION&lt;/st1:PersonName&gt; &lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;L&amp;#146;Editeur du Site n&amp;#146;a pas d&amp;#146;obligation de vérification des informations résidant sur son site ou transmises à celui-ci. Cependant, toute personne utilisant le site accepte que 
-l&amp;#146;Editeur du Site vérifie périodiquement le contenu de celui-ci, (1) pour se conformer à une loi, à un règlement ou à une demande des autorités; (2) pour faire fonctionner le site correctement ou pour se protéger et protéger ses utilisateurs; ou (3) pour toute autre raison, à sa seule discrétion. 
-L&amp;#146;Editeur du Site se réserve le droit de modifier, de refuser ou de supprimer toute information résidant sur le site ou transmise à celui-ci si 
-l&amp;#146;Editeur du Site considère, à sa seule discrétion, que cette information est inacceptable ou en infraction avec les présentes conditions d&amp;#146;utilisation. &lt;/P&gt;
-&lt;P align=justify&gt;Sauf cas prévu par la loi, si un utilisateur des données de ce site fournit à 
+&lt;/p&gt;&lt;/li&gt;&lt;li&gt;
+&lt;p align=&quot;justify&quot;&gt;vous garantissez et déclarez que vous possédez, ou contrôlez d’une autre manière, tous les droits liés au contenu et que la diffusion publique et l’utilisation de votre contenu par 
+l’Editeur du Site n’affectera et n’enfreindra pas les droits d’un tiers. &lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;CONSENTEMENT DE L’UTILISATEUR RELATIF A LA VERIFICATION ET LA DIVULGATION &lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;L’Editeur du Site n’a pas d’obligation de vérification des informations résidant sur son site ou transmises à celui-ci. Cependant, toute personne utilisant le site accepte que 
+l’Editeur du Site vérifie périodiquement le contenu de celui-ci, (1) pour se conformer à une loi, à un règlement ou à une demande des autorités; (2) pour faire fonctionner le site correctement ou pour se protéger et protéger ses utilisateurs; ou (3) pour toute autre raison, à sa seule discrétion. 
+L’Editeur du Site se réserve le droit de modifier, de refuser ou de supprimer toute information résidant sur le site ou transmise à celui-ci si 
+l’Editeur du Site considère, à sa seule discrétion, que cette information est inacceptable ou en infraction avec les présentes conditions d’utilisation. &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Sauf cas prévu par la loi, si un utilisateur des données de ce site fournit à 
 ce Site des informations, y compris, mais de façon non 
 limitative, des données, réponses, questions, commentaires, suggestions, 
 projets, idées, etc., ces informations seront considérées comme non 
-confidentielles et l&amp;#146;Editeur du Site ne s&amp;#146;engage pas à les protéger de la divulgation. &lt;/P&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;PROCEDURE DE RECLAMATION POUR CONTREFAÇON&lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;Si vous pensez que votre travail a 
-été copié et qu&amp;#146;il est accessible sur ce site d&amp;#146;une manière constituant une contrefaçon, vous pouvez en informer 
-l&amp;#146;Editeur du Site par l&amp;#146;intermédiaire du formulaire de contact mis à disposition sur ce site. &lt;/P&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;LOI APPLICABLE ET TRIBUNAL COMPETENT &lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;Ces conditions d&amp;#146;utilisation seront régies et interprétées par les lois Françaises. Les contrats de licence régissant votre utilisation d&amp;#146;éléments tiers sur le site peuvent contenir des dispositions exigeant l&amp;#146;intervention de tribunaux 
-étrangers pour la résolution de litiges liés à ces contrats. &lt;/P&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;DIVISIBILITE ET INTEGRALITE&lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;Sauf mention contraire dans le présent document, cet accord constitue la totalité du contrat passé entre vous et 
-l&amp;#146;Editeur du Site en ce qui concerne le site, et il annule et remplace toutes les communications et propositions antérieures ou simultanées (qu&amp;#146;elles soient orales, 
+confidentielles et l’Editeur du Site ne s’engage pas à les protéger de la divulgation. &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;PROCEDURE DE RECLAMATION POUR CONTREFAÇON&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Si vous pensez que votre travail a 
+été copié et qu’il est accessible sur ce site d’une manière constituant une contrefaçon, vous pouvez en informer 
+l’Editeur du Site par l’intermédiaire du formulaire de contact mis à disposition sur ce site. &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;LOI APPLICABLE ET TRIBUNAL COMPETENT &lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Ces conditions d’utilisation seront régies et interprétées par les lois Françaises. Les contrats de licence régissant votre utilisation d’éléments tiers sur le site peuvent contenir des dispositions exigeant l’intervention de tribunaux 
+étrangers pour la résolution de litiges liés à ces contrats. &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;DIVISIBILITE ET INTEGRALITE&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Sauf mention contraire dans le présent document, cet accord constitue la totalité du contrat passé entre vous et 
+l’Editeur du Site en ce qui concerne le site, et il annule et remplace toutes les communications et propositions antérieures ou simultanées (qu’elles soient orales, 
 écrites ou électroniques) relatives à ce site entre vous et 
-l&amp;#146;Editeur du Site, ses sociétés mères ou affiliées ou concédants de licence. Si une partie de ces conditions d&amp;#146;utilisation 
-était considérée comme invalide ou inapplicable, elle devrait être interprétée selon la loi en vigueur de manière à identifier au mieux les intentions initiales des parties, et le reste des présentes des conditions demeurera en vigueur. &lt;/P&gt;
-&lt;P align=justify&gt;&lt;STRONG&gt;RESILIATION &lt;/STRONG&gt;&lt;BR&gt;&lt;BR&gt;L&amp;#146;Editeur du Site se réserve le droit, à sa seule discrétion, de mettre fin à votre accès à la totalité ou à une partie de ce site, avec ou sans préavis. &lt;/P&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;EXPORTATION &lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;Vous vous engagez à ne jamais exporter vers quelque destination que ce soit toute partie du contenu ou des 
+l’Editeur du Site, ses sociétés mères ou affiliées ou concédants de licence. Si une partie de ces conditions d’utilisation 
+était considérée comme invalide ou inapplicable, elle devrait être interprétée selon la loi en vigueur de manière à identifier au mieux les intentions initiales des parties, et le reste des présentes des conditions demeurera en vigueur. &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;&lt;strong&gt;RESILIATION &lt;/strong&gt;&lt;br&gt;&lt;br&gt;L’Editeur du Site se réserve le droit, à sa seule discrétion, de mettre fin à votre accès à la totalité ou à une partie de ce site, avec ou sans préavis. &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;EXPORTATION &lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Vous vous engagez à ne jamais exporter vers quelque destination que ce soit toute partie du contenu ou des 
 éléments qui vous sont fournis, ou tout produit directement obtenu par ce contenu ou ces 
-éléments, sauf si cela est en conformité avec les lois, règlements et règles en vigueur en matière d&amp;#146;exportation. &lt;/P&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;AVIS DE COPYRIGHT ET DE MARQUES DEPOSEES &lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=left&gt;[Portal:PortalName]. Tous droits réservés. &lt;/P&gt;
-&lt;P align=justify&gt;La reproduction de tout élément du présent site ou de tout 
+éléments, sauf si cela est en conformité avec les lois, règlements et règles en vigueur en matière d’exportation. &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;AVIS DE COPYRIGHT ET DE MARQUES DEPOSEES &lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;Argumentum. Tous droits réservés. &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;La reproduction de tout élément du présent site ou de tout 
 autre contenu se trouvant sur le site autre que ceux expressément envisagés dans 
 le présent document est strictement interdite. L’utilisation de tous les 
 documents et graphiques associés ainsi que de tout autre élément fourni sur ce 
-site est soumise aux conditions d&amp;#146;utilisation figurant ci-dessus. &lt;/P&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;Marques déposées&lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;Le nom [Portal:PortalName], son logo, ainsi que tous les noms de produits et de services, dessins marques et slogans s&amp;#146;y rapportant sont des marques déposées, marques de service ou marques de commerce déposées de 
-l&amp;#146;Editeur du Site, et ils ne peuvent pas être utilisés à des fins commerciales sans 
-son consentement écrit préalable. Toutes les autres marques de produits et de services de ce site sont des marques déposées de leurs propriétaires respectifs. &lt;/P&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;Autres avis de copyright &lt;/STRONG&gt; &lt;/P&gt;
-&lt;P align=justify&gt;Les autres avis de copyright concernent les données provenant de tiers utilisées pour créer ce service Internet. &lt;/P&gt;
-&lt;P align=left&gt;&lt;STRONG&gt;CONTACT &lt;/STRONG&gt;&lt;/P&gt;
-&lt;P align=justify&gt;Pour obtenir davantage d&amp;#146;informations relatives aux questions juridiques contenues dans ces conditions d&amp;#146;utilisation, ou à des questions ou problèmes concernant ce service, veuillez 
-écrire en utilisant le formulaire de contact mis à votre disposition sur ce site. &lt;/P&gt;&lt;/span&gt;</value>
+site est soumise aux conditions d’utilisation figurant ci-dessus. &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;Marques déposées&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Le nom Argumentum, son logo, ainsi que tous les noms de produits et de services, dessins marques et slogans s’y rapportant sont des marques déposées, marques de service ou marques de commerce déposées de 
+l’Editeur du Site, et ils ne peuvent pas être utilisés à des fins commerciales sans 
+son consentement écrit préalable. Toutes les autres marques de produits et de services de ce site sont des marques déposées de leurs propriétaires respectifs. &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;Autres avis de copyright &lt;/strong&gt; &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Les autres avis de copyright concernent les données provenant de tiers utilisées pour créer ce service Internet. &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;CONTACT &lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Pour obtenir davantage d’informations relatives aux questions juridiques contenues dans ces conditions d’utilisation, ou à des questions ou problèmes concernant ce service, veuillez 
+écrire en utilisant le formulaire de contact mis à votre disposition sur ce site. &lt;/p&gt;&lt;/div&gt;&lt;/span&gt;</value>
   </data>
   <data name="MESSAGE_RETRIEVEPASSWORD_INSTRUCTIONS.Text" xml:space="preserve">
     <value xml:space="preserve">Pour recevoir votre mot de passe, vous devez fournir votre nom d'utilisateur et répondre à votre Question secrète.</value>
