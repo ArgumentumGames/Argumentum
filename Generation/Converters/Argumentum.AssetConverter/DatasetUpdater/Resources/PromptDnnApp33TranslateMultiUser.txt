@@ -40,4 +40,11 @@ Ta tâche consiste à traduire le champ `fr` vers ces 7 langues, uniquement pour
    - `en` : n'ajoute AUCUN superlatif absent de la source (pas de « best », « greatest »… si le français ne le porte pas).
    - `zh` : « matériel ludique » se rend par « 游戏套装 » (boîte / matériel de jeu) — n'emploie pas « 游戏素材 » (ressources/assets, absent du corpus).
 
+10. **Ponctuation de la langue cible (verdict c.6122858964) :** applique les règles TYPOGRAPHIQUES de chaque langue cible.
+   - L'espace (y compris insécable `&nbsp;`) devant `; : ! ?` est PROPRE AU FRANÇAIS — ne la recopie JAMAIS dans une cible : en/ru/pt/es/ar/fa collent la ponctuation au mot précédent.
+   - `zh` : ponctuation PLEINE CHASSE (`：；！？`) sans aucune espace devant.
+   - `es` : toute phrase exclamative ou interrogative porte ses DEUX signes (`¡…!`, `¿…?`).
+   - `fa` : chiffres persans (۰-۹) dans la prose ; un chiffre latin en prose fa est un défaut. Resteront latins tels quels : les blocs de code `{...}`, les formats type `A0`, les noms de produits type `2sxc`.
+   - `ar`/`fa` : ne JAMAIS placer une frontière de balise au milieu d'un mot — les lettres arabes et persanes se lient entre elles, la première lettre d'un mot vit dans la même balise que le reste du mot (si la source française porte une coupure latine du genre `<p>V<span…>ous`, ne la reproduis pas : rends le mot entier dans la première balise).
+
 Es-tu prêt à recevoir les données ?
