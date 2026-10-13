@@ -81,6 +81,39 @@ namespace Argumentum.AssetConverter.Tests.Dnn
             value.Should().Contain("SITE IDENTIFICATION", "le sous-titre d'identification est anglais");
         }
 
+        /// <summary>
+        /// Terminologie juridique (revue ai-01 c.6143944905) : l'« éditeur » de la LCEN se dit
+        /// <i>publisher</i> en anglais juridique — « edited by » / « Editor of the Site » sont
+        /// des faux-amis (un relecteur, un correcteur d'épreuves) et ont été corrigés en
+        /// « published by » / « Publisher of the Site ». La garde épingle la forme corrigée ET
+        /// l'absence des faux-amis : le vecteur de retour couvert est une ré-édition future du
+        /// bloc qui re-réintroduirait le faux-ami (les occurrences historiques sont uniques
+        /// dans la valeur TERMS — vérifié avant l'écriture des NotContain).
+        /// </summary>
+        [Fact]
+        public void NeutralResx_UsesPublisherTerminology_NotTheEditorFauxAmis()
+        {
+            var value = ReadTermsValue(NeutralResx);
+
+            // Le resx replie la désignation sur deux lignes ("Publisher of the" / "Site") : le
+            // newline survit au décodage XML mais se rend comme un ESPACE au navigateur. Les
+            // assertions portent donc sur la vue servie (newlines normalisés en espaces) —
+            // sinon un faux-ami réintroduit avec le même repli échapperait au NotContain.
+            var served = value.Replace("\r", string.Empty).Replace("\n", " ");
+
+            served.Should().Contain("is published by:",
+                "l'« éditeur » de la LCEN se traduit publisher en anglais juridique " +
+                "(revue ai-01 c.6143944905 sur PR #1876)");
+            served.Should().Contain("\"Publisher of the Site\"",
+                "la désignation contractuelle du bloc, forme corrigée");
+
+            served.Should().NotContain("edited by",
+                "faux-ami juridique corrigé : « edited by » = relu/corrigé par, pas « édité » " +
+                "au sens de la LCEN");
+            served.Should().NotContain("Editor of the Site",
+                "faux-ami juridique corrigé : la désignation est « Publisher of the Site »");
+        }
+
         [Fact]
         public void NeutralResx_DnnAgreementTemplate_SurvivesTheDifferentialInsert()
         {
