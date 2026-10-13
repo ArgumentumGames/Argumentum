@@ -178,8 +178,20 @@ yarn-error.log*
 /DNNPlatform/controls/App_LocalResources/*.pt-BR.resx
 /DNNPlatform/Providers/**/App_LocalResources/*.es-ES.resx
 /DNNPlatform/Install/App_LocalResources/*.pt-BR.resx
-# Libs JS servies par DNN (montées de version du portail) — jamais écrites par nous
-/DNNPlatform/Resources/Libraries/
+# Libs JS servies par DNN — RÉPERTOIRES DE VERSION NON SUIVIS uniquement (revue ai-01
+# c.6143945246 : le motif répertoire-entier cachait 16 fichiers suivis — Knockout, Selectize,
+# ToSic, jQuery 03_05_01… — et aurait avalé sans bruit toute future version). Une future
+# montée de version DNN apparaîtra comme non-suivi VISIBLE : c'est voulu.
+/DNNPlatform/Resources/Libraries/DnnPlugins/09_13_10/
+/DNNPlatform/Resources/Libraries/DnnPlugins/10_02_00/
+/DNNPlatform/Resources/Libraries/DnnPlugins/10_03_02/
+/DNNPlatform/Resources/Libraries/HoverIntent/01_10_01/
+/DNNPlatform/Resources/Libraries/jQuery-Migrate/03_04_01/
+/DNNPlatform/Resources/Libraries/jQuery-UI/01_13_03/
+/DNNPlatform/Resources/Libraries/jQuery-UI/01_14_01/
+/DNNPlatform/Resources/Libraries/jQuery.Fileupload/10_07_00/
+/DNNPlatform/Resources/Libraries/jQuery.iframe-transport/10_07_00/
+/DNNPlatform/Resources/Libraries/jQuery/03_07_01/
 # Hors gabarit culturel (noms exacts)
 /DNNPlatform/admin/Skins/App_LocalResources/BreadCrumb.ascx.resx
 # Portals/ — JAMAIS de motif global (Argumentum y écrit : vues 2sxc) — noms exacts
