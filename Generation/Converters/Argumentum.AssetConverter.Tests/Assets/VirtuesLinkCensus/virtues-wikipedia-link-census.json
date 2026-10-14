@@ -2,11 +2,11 @@
  "_meta": {
   "census_date": "2026-10-10",
   "counts": {
-   "alive": 575,
+   "alive": 585,
    "dead": 204,
    "dead_existed_removed": 11,
    "dead_never_existed": 193,
-   "entries": 779,
+   "entries": 789,
    "master_dead_cells": 246,
    "master_distinct_urls": 774,
    "master_wiki_cells": 1139,
@@ -18,7 +18,14 @@
   "probe": "GET, redirects followed, 3 retries, witness fr:Sophisme every 40 URLs (fail-closed) - wiki_census.py",
   "regeneration": "re-probe per wiki_census.py discipline, then regenerate this file; a re-encoded URL counts as a new key and turns the guard red until probed (fail-closed by design)",
   "scope_rule": "absolute URI with host == wikipedia.org or host ending .wikipedia.org - host-based, so the #1851 wayback mirror (web.archive.org host) is out of scope by construction",
-  "source_doc": "docs/corpus/458-v23-g40-virtues-wikipedia-deadlinks-2026-10-10.md (PR #1851)"
+  "source_doc": "docs/corpus/458-v23-g40-virtues-wikipedia-deadlinks-2026-10-10.md (PR #1851)",
+  "sourcing_2026_10_14": {
+   "corpus_distinct_urls": 585,
+   "corpus_wiki_cells": 914,
+   "date": "2026-10-14",
+   "new_entries": 10,
+   "note": "Editorial sourcing of the 8 #1851-newly-linkless nodes (grain pool #458, po-2024): 7 nodes filled (16 cells: 10 new distinct URLs + 6 census-known URLs — Analogie + the 5 syllogism URLs copied from pk 118), pk 203 left empty (facilitation skill, no encyclopedic referent; Pareto refused as approximate) and pk 59 link_fr left empty (no genuine fr article). Probed live per probe discipline (GET, redirects followed, 3 retries, witness fr:Sophisme fail-closed), leads content-verified via REST summaries. See PR for the table."
+  }
  },
  "urls": {
   "https://ar.wikipedia.org/wiki/أخذ_العينات_(إحصاء)": {
@@ -243,6 +250,9 @@
   "https://en.wikipedia.org/wiki/Analytical_reasoning": {
    "verdict": "alive"
   },
+  "https://en.wikipedia.org/wiki/Argument_from_analogy": {
+   "verdict": "alive"
+  },
   "https://en.wikipedia.org/wiki/Argumentation": {
    "verdict": "alive"
   },
@@ -372,6 +382,9 @@
   "https://en.wikipedia.org/wiki/Emotional_blackmail": {
    "verdict": "alive"
   },
+  "https://en.wikipedia.org/wiki/Empirical_evidence": {
+   "verdict": "alive"
+  },
   "https://en.wikipedia.org/wiki/Evidence": {
    "verdict": "alive"
   },
@@ -427,6 +440,9 @@
   "https://en.wikipedia.org/wiki/Intercultural_communication": {
    "verdict": "alive"
   },
+  "https://en.wikipedia.org/wiki/Intercultural_competence": {
+   "verdict": "alive"
+  },
   "https://en.wikipedia.org/wiki/Interpretation_(philosophy)": {
    "verdict": "alive"
   },
@@ -466,6 +482,9 @@
    "verdict": "alive"
   },
   "https://en.wikipedia.org/wiki/Nonviolent_Communication": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Numeracy": {
    "verdict": "alive"
   },
   "https://en.wikipedia.org/wiki/Numerical_precision": {
@@ -546,6 +565,9 @@
   "https://en.wikipedia.org/wiki/SMART_criteria": {
    "verdict": "alive"
   },
+  "https://en.wikipedia.org/wiki/Sample_space": {
+   "verdict": "alive"
+  },
   "https://en.wikipedia.org/wiki/Scientific_method": {
    "verdict": "alive"
   },
@@ -605,6 +627,9 @@
    "verdict": "alive"
   },
   "https://en.wikipedia.org/wiki/Testimony": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Time_management": {
    "verdict": "alive"
   },
   "https://en.wikipedia.org/wiki/Transparency_(behavior)": {
@@ -1159,6 +1184,9 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://fr.wikipedia.org/wiki/Comp%C3%A9tence_interculturelle": {
+   "verdict": "alive"
+  },
   "https://fr.wikipedia.org/wiki/Conjonction_(logique)": {
    "class": "never-existed",
    "verdict": "dead"
@@ -1252,6 +1280,9 @@
   "https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9ralisation_%28logique%29": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Gestion_du_temps": {
+   "verdict": "alive"
   },
   "https://fr.wikipedia.org/wiki/Grammaire": {
    "verdict": "alive"
@@ -1349,6 +1380,9 @@
   "https://fr.wikipedia.org/wiki/Preuve_(logique)": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Preuve_empirique": {
+   "verdict": "alive"
   },
   "https://fr.wikipedia.org/wiki/Preuve_science": {
    "class": "never-existed",
@@ -1525,6 +1559,9 @@
   "https://fr.wikipedia.org/wiki/Transparence_(droit)": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Univers_(probabilit%C3%A9s)": {
+   "verdict": "alive"
   },
   "https://fr.wikipedia.org/wiki/Valeurs_de_la_R%C3%A9publique_fran%C3%A7aise#Respect_de_la_personne_humaine": {
    "class": "never-existed",
