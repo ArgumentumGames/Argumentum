@@ -25,6 +25,19 @@
    "date": "2026-10-14",
    "new_entries": 10,
    "note": "Editorial sourcing of the 8 #1851-newly-linkless nodes (grain pool #458, po-2024): 7 nodes filled (16 cells: 10 new distinct URLs + 6 census-known URLs — Analogie + the 5 syllogism URLs copied from pk 118), pk 203 left empty (facilitation skill, no encyclopedic referent; Pareto refused as approximate) and pk 59 link_fr left empty (no genuine fr article). Probed live per probe discipline (GET, redirects followed, 3 retries, witness fr:Sophisme fail-closed), leads content-verified via REST summaries. See PR for the table."
+  },
+  "sourcing_2026_10_14_ru_pt_es": {
+   "already_censused": 17,
+   "cells_filled": 104,
+   "context": "#458 grain Vertus ru/pt/es — fills depuis langlinks Wikipedia (cible curatee, refus de desambiguisation et hors-sujet documentes), sondes vivantes au 2026-10-14, temoin fr:Sophisme fail-closed",
+   "editorial_refusals": 10,
+   "fills_by_language": {
+    "es": 47,
+    "pt": 26,
+    "ru": 31
+   },
+   "new_census_entries": 73,
+   "no_curated_equivalent_left_empty": "documented in PR body"
   }
  },
  "urls": {
@@ -648,6 +661,9 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://es.wikipedia.org/wiki/Ambigüedad": {
+   "verdict": "alive"
+  },
   "https://es.wikipedia.org/wiki/Ambigüedad_lingüística": {
    "class": "never-existed",
    "verdict": "dead"
@@ -656,6 +672,9 @@
    "verdict": "alive"
   },
   "https://es.wikipedia.org/wiki/Análisis_de_datos#Interpretación_de_los_datos": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Apertura_mental": {
    "verdict": "alive"
   },
   "https://es.wikipedia.org/wiki/Argumentación": {
@@ -680,9 +699,18 @@
   "https://es.wikipedia.org/wiki/Causalidad": {
    "verdict": "alive"
   },
+  "https://es.wikipedia.org/wiki/Chantaje_emocional": {
+   "verdict": "alive"
+  },
   "https://es.wikipedia.org/wiki/Coherencia_(filosofía)": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Competencia_intercultural": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Comunicación_intercultural": {
+   "verdict": "alive"
   },
   "https://es.wikipedia.org/wiki/Conjunción_lógica": {
    "verdict": "alive"
@@ -694,7 +722,22 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://es.wikipedia.org/wiki/Credibilidad": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Criterios_SMART": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Crítica": {
+   "verdict": "alive"
+  },
   "https://es.wikipedia.org/wiki/Cuantificador": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Cuenta_(matemática)": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Cum_hoc_ergo_propter_hoc": {
    "verdict": "alive"
   },
   "https://es.wikipedia.org/wiki/Cálculo_(matemáticas)": {
@@ -702,6 +745,9 @@
    "verdict": "dead"
   },
   "https://es.wikipedia.org/wiki/Debate": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Decisión_por_consenso": {
    "verdict": "alive"
   },
   "https://es.wikipedia.org/wiki/Deducción": {
@@ -724,6 +770,9 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://es.wikipedia.org/wiki/Distinción_analítico-sintético": {
+   "verdict": "alive"
+  },
   "https://es.wikipedia.org/wiki/Disyunción_lógica": {
    "verdict": "alive"
   },
@@ -738,7 +787,13 @@
   "https://es.wikipedia.org/wiki/Empatía": {
    "verdict": "alive"
   },
+  "https://es.wikipedia.org/wiki/Encuadre_(ciencias_sociales)": {
+   "verdict": "alive"
+  },
   "https://es.wikipedia.org/wiki/Escucha_activa": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Espacio_muestral": {
    "verdict": "alive"
   },
   "https://es.wikipedia.org/wiki/Espacio_probabilizado_finito": {
@@ -748,7 +803,13 @@
   "https://es.wikipedia.org/wiki/Estimación_estadística": {
    "verdict": "alive"
   },
+  "https://es.wikipedia.org/wiki/Evidencia": {
+   "verdict": "alive"
+  },
   "https://es.wikipedia.org/wiki/Evidencia_científica": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Evidencia_empírica": {
    "verdict": "alive"
   },
   "https://es.wikipedia.org/wiki/Falacia_de_asociación": {
@@ -767,12 +828,18 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://es.wikipedia.org/wiki/Generalización": {
+   "verdict": "alive"
+  },
   "https://es.wikipedia.org/wiki/Generalización#Excepciones_y_flexibilidad": {
    "verdict": "alive"
   },
   "https://es.wikipedia.org/wiki/Generalización_(lógica)": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Gestión_del_tiempo": {
+   "verdict": "alive"
   },
   "https://es.wikipedia.org/wiki/Gramática": {
    "verdict": "alive"
@@ -786,6 +853,9 @@
   "https://es.wikipedia.org/wiki/Humor": {
    "verdict": "alive"
   },
+  "https://es.wikipedia.org/wiki/Imparcialidad": {
+   "verdict": "alive"
+  },
   "https://es.wikipedia.org/wiki/Independencia_(probabilidad)": {
    "verdict": "alive"
   },
@@ -796,7 +866,13 @@
   "https://es.wikipedia.org/wiki/Jerga": {
    "verdict": "alive"
   },
+  "https://es.wikipedia.org/wiki/Lógica_de_términos": {
+   "verdict": "alive"
+  },
   "https://es.wikipedia.org/wiki/Lógica_formal": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Lógica_modal": {
    "verdict": "alive"
   },
   "https://es.wikipedia.org/wiki/Matemáticas": {
@@ -840,6 +916,9 @@
   "https://es.wikipedia.org/wiki/Neutralidad": {
    "verdict": "alive"
   },
+  "https://es.wikipedia.org/wiki/Numerismo": {
+   "verdict": "alive"
+  },
   "https://es.wikipedia.org/wiki/Objetividad_(filosofía)": {
    "class": "never-existed",
    "verdict": "dead"
@@ -856,6 +935,9 @@
    "verdict": "alive"
   },
   "https://es.wikipedia.org/wiki/Pensamiento_crítico": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Periodismo": {
    "verdict": "alive"
   },
   "https://es.wikipedia.org/wiki/Plagio": {
@@ -883,6 +965,9 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://es.wikipedia.org/wiki/Puntuación_(lingüística)": {
+   "verdict": "alive"
+  },
   "https://es.wikipedia.org/wiki/Razonamiento": {
    "verdict": "alive"
   },
@@ -895,11 +980,20 @@
   "https://es.wikipedia.org/wiki/Razonamiento_inductivo": {
    "verdict": "alive"
   },
+  "https://es.wikipedia.org/wiki/Razonamiento_por_analogía": {
+   "verdict": "alive"
+  },
   "https://es.wikipedia.org/wiki/Razonamiento_valido#Estructura_lógica_del_argumento_válido": {
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://es.wikipedia.org/wiki/Razón": {
+   "verdict": "alive"
+  },
   "https://es.wikipedia.org/wiki/Reductio_ad_absurdum": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Referencia_bibliográfica": {
    "verdict": "alive"
   },
   "https://es.wikipedia.org/wiki/Respeto": {
@@ -912,6 +1006,9 @@
    "verdict": "alive"
   },
   "https://es.wikipedia.org/wiki/Sesgo_cognitivo": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Sesgo_cultural": {
    "verdict": "alive"
   },
   "https://es.wikipedia.org/wiki/Silogismo": {
@@ -935,6 +1032,9 @@
   "https://es.wikipedia.org/wiki/Terminología_técnica": {
    "verdict": "alive"
   },
+  "https://es.wikipedia.org/wiki/Testimonio": {
+   "verdict": "alive"
+  },
   "https://es.wikipedia.org/wiki/Transferencia_(lógica)": {
    "class": "never-existed",
    "verdict": "dead"
@@ -943,12 +1043,21 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://es.wikipedia.org/wiki/Universalismo": {
+   "verdict": "alive"
+  },
   "https://es.wikipedia.org/wiki/Validez_(lógica)": {
    "verdict": "alive"
   },
   "https://es.wikipedia.org/wiki/Valores_de_la_República_Francesa#Respeto_de_la_persona_humana": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://es.wikipedia.org/wiki/Verdad": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Verificación_de_hechos": {
+   "verdict": "alive"
   },
   "https://fa.wikipedia.org/wiki/SMART_(اهداف)": {
    "class": "never-existed",
@@ -1567,6 +1676,9 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://pt.wikipedia.org/wiki/Abdução_(lógica_filosófica)": {
+   "verdict": "alive"
+  },
   "https://pt.wikipedia.org/wiki/Abertura_à_cultura": {
    "class": "never-existed",
    "verdict": "dead"
@@ -1601,6 +1713,9 @@
    "class": "existed-removed",
    "verdict": "dead"
   },
+  "https://pt.wikipedia.org/wiki/Autodepreciação": {
+   "verdict": "alive"
+  },
   "https://pt.wikipedia.org/wiki/Autoridade": {
    "verdict": "alive"
   },
@@ -1632,6 +1747,9 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://pt.wikipedia.org/wiki/Comunicação_multicultural": {
+   "verdict": "alive"
+  },
   "https://pt.wikipedia.org/wiki/Comunicação_não_violenta": {
    "verdict": "alive"
   },
@@ -1654,6 +1772,12 @@
    "verdict": "alive"
   },
   "https://pt.wikipedia.org/wiki/Correlação_não_implica_causalidade": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Critério_SMART": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Crítica": {
    "verdict": "alive"
   },
   "https://pt.wikipedia.org/wiki/Crítica_construtiva": {
@@ -1699,6 +1823,9 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://pt.wikipedia.org/wiki/Distinção_analítico-sintética": {
+   "verdict": "alive"
+  },
   "https://pt.wikipedia.org/wiki/Diálogo_construtivo": {
    "class": "never-existed",
    "verdict": "dead"
@@ -1712,9 +1839,15 @@
   "https://pt.wikipedia.org/wiki/Empatia": {
    "verdict": "alive"
   },
+  "https://pt.wikipedia.org/wiki/Enquadramento_noticioso": {
+   "verdict": "alive"
+  },
   "https://pt.wikipedia.org/wiki/Escuta_ativa": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Espaço_amostral": {
+   "verdict": "alive"
   },
   "https://pt.wikipedia.org/wiki/Espaço_de_probabilidade_finito": {
    "class": "never-existed",
@@ -1725,6 +1858,9 @@
    "verdict": "dead"
   },
   "https://pt.wikipedia.org/wiki/Evidência": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Evidência_empírica": {
    "verdict": "alive"
   },
   "https://pt.wikipedia.org/wiki/Exemplo": {
@@ -1753,6 +1889,9 @@
   "https://pt.wikipedia.org/wiki/Generalização": {
    "verdict": "alive"
   },
+  "https://pt.wikipedia.org/wiki/Gerenciamento_de_tempo": {
+   "verdict": "alive"
+  },
   "https://pt.wikipedia.org/wiki/Gramática": {
    "verdict": "alive"
   },
@@ -1768,6 +1907,9 @@
   "https://pt.wikipedia.org/wiki/Imparcialidade": {
    "verdict": "alive"
   },
+  "https://pt.wikipedia.org/wiki/Independência_(estatística)": {
+   "verdict": "alive"
+  },
   "https://pt.wikipedia.org/wiki/Independência_(probabilidade)": {
    "class": "never-existed",
    "verdict": "dead"
@@ -1777,6 +1919,9 @@
    "verdict": "dead"
   },
   "https://pt.wikipedia.org/wiki/Jargão": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Jornalismo": {
    "verdict": "alive"
   },
   "https://pt.wikipedia.org/wiki/Limitações_da_racionalidade": {
@@ -1808,6 +1953,9 @@
   "https://pt.wikipedia.org/wiki/Método_científico": {
    "verdict": "alive"
   },
+  "https://pt.wikipedia.org/wiki/Método_dedutivo": {
+   "verdict": "alive"
+  },
   "https://pt.wikipedia.org/wiki/Método_matemático": {
    "class": "never-existed",
    "verdict": "dead"
@@ -1824,6 +1972,9 @@
   "https://pt.wikipedia.org/wiki/Neutralidade_política": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://pt.wikipedia.org/wiki/Numeracia": {
+   "verdict": "alive"
   },
   "https://pt.wikipedia.org/wiki/Objetividade": {
    "verdict": "alive"
@@ -1849,6 +2000,9 @@
    "verdict": "dead"
   },
   "https://pt.wikipedia.org/wiki/Premissa": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Princípio_de_caridade": {
    "verdict": "alive"
   },
   "https://pt.wikipedia.org/wiki/Probabilidade": {
@@ -1898,6 +2052,9 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://pt.wikipedia.org/wiki/Razão": {
+   "verdict": "alive"
+  },
   "https://pt.wikipedia.org/wiki/Reductio_ad_absurdum": {
    "verdict": "alive"
   },
@@ -1927,6 +2084,9 @@
   "https://pt.wikipedia.org/wiki/Suspensão_do_julgamento": {
    "verdict": "alive"
   },
+  "https://pt.wikipedia.org/wiki/Teorema": {
+   "verdict": "alive"
+  },
   "https://pt.wikipedia.org/wiki/Teorema_de_Bayes": {
    "verdict": "alive"
   },
@@ -1934,6 +2094,9 @@
    "verdict": "alive"
   },
   "https://pt.wikipedia.org/wiki/Teoria_da_argumentação": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Teoria_da_estimação": {
    "verdict": "alive"
   },
   "https://pt.wikipedia.org/wiki/Terminologia_técnica": {
@@ -1950,6 +2113,9 @@
    "verdict": "alive"
   },
   "https://pt.wikipedia.org/wiki/Universalismo": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Validade": {
    "verdict": "alive"
   },
   "https://pt.wikipedia.org/wiki/Verdade": {
@@ -1975,6 +2141,9 @@
    "verdict": "alive"
   },
   "https://ru.wikipedia.org/wiki/Reductio_ad_absurdum": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/SMART": {
    "verdict": "alive"
   },
   "https://ru.wikipedia.org/wiki/SMART_(критерии)": {
@@ -2046,10 +2215,16 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://ru.wikipedia.org/wiki/Дедуктивное_умозаключение": {
+   "verdict": "alive"
+  },
   "https://ru.wikipedia.org/wiki/Дедукция": {
    "verdict": "alive"
   },
   "https://ru.wikipedia.org/wiki/Деонтология": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Дизъюнкция": {
    "verdict": "alive"
   },
   "https://ru.wikipedia.org/wiki/Дизъюнкция_(логика)": {
@@ -2076,6 +2251,9 @@
   "https://ru.wikipedia.org/wiki/Жаргон": {
    "verdict": "alive"
   },
+  "https://ru.wikipedia.org/wiki/Журналистика": {
+   "verdict": "alive"
+  },
   "https://ru.wikipedia.org/wiki/Идеология": {
    "verdict": "alive"
   },
@@ -2085,6 +2263,9 @@
   "https://ru.wikipedia.org/wiki/Интеллектуальная_честность": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Интерпретация_(методология)": {
+   "verdict": "alive"
   },
   "https://ru.wikipedia.org/wiki/Интерпретация_(философия)": {
    "class": "never-existed",
@@ -2117,6 +2298,9 @@
   "https://ru.wikipedia.org/wiki/Консенсус": {
    "verdict": "alive"
   },
+  "https://ru.wikipedia.org/wiki/Конъюнкция": {
+   "verdict": "alive"
+  },
   "https://ru.wikipedia.org/wiki/Конъюнкция_(логика)": {
    "class": "never-existed",
    "verdict": "dead"
@@ -2146,6 +2330,9 @@
    "verdict": "dead"
   },
   "https://ru.wikipedia.org/wiki/Межкультурная_коммуникация": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Межкультурная_компетенция": {
    "verdict": "alive"
   },
   "https://ru.wikipedia.org/wiki/Метод_PRIOR": {
@@ -2191,6 +2378,9 @@
   "https://ru.wikipedia.org/wiki/Ненасильственное_общение": {
    "verdict": "alive"
   },
+  "https://ru.wikipedia.org/wiki/Неоднозначность": {
+   "verdict": "alive"
+  },
   "https://ru.wikipedia.org/wiki/Неоднозначность_(лингвистика)": {
    "class": "never-existed",
    "verdict": "dead"
@@ -2201,6 +2391,15 @@
   "https://ru.wikipedia.org/wiki/Обобщение_(логика)": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Обобщение_понятий": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Общезначимость": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Объективизм_(философия)": {
+   "verdict": "alive"
   },
   "https://ru.wikipedia.org/wiki/Объективность": {
    "verdict": "alive"
@@ -2238,12 +2437,24 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://ru.wikipedia.org/wiki/Принцип_доверия": {
+   "verdict": "alive"
+  },
   "https://ru.wikipedia.org/wiki/Причинность": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Прозрачность_(поведение)": {
    "verdict": "alive"
   },
   "https://ru.wikipedia.org/wiki/Прозрачность_(право)": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Пространство_элементарных_событий": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Разум": {
+   "verdict": "alive"
   },
   "https://ru.wikipedia.org/wiki/Рассказ": {
    "verdict": "alive"
@@ -2308,6 +2519,9 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://ru.wikipedia.org/wiki/Силлогистика": {
+   "verdict": "alive"
+  },
   "https://ru.wikipedia.org/wiki/Синтаксис": {
    "verdict": "alive"
   },
@@ -2360,6 +2574,12 @@
   "https://ru.wikipedia.org/wiki/Уважение": {
    "verdict": "alive"
   },
+  "https://ru.wikipedia.org/wiki/Универсализм": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Управление_временем": {
+   "verdict": "alive"
+  },
   "https://ru.wikipedia.org/wiki/Факт": {
    "verdict": "alive"
   },
@@ -2372,9 +2592,21 @@
   "https://ru.wikipedia.org/wiki/Формальная_логика": {
    "verdict": "alive"
   },
+  "https://ru.wikipedia.org/wiki/Фрейм_(социальные_науки)": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Числовая_грамотность": {
+   "verdict": "alive"
+  },
   "https://ru.wikipedia.org/wiki/Числовая_точность": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://ru.wikipedia.org/wiki/Эмоциональный_шантаж": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Эмпирические_данные": {
+   "verdict": "alive"
   },
   "https://ru.wikipedia.org/wiki/Юмор": {
    "verdict": "alive"
