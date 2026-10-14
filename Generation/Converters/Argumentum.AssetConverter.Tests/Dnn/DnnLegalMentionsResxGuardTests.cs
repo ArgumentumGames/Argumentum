@@ -26,11 +26,19 @@ namespace Argumentum.AssetConverter.Tests.Dnn
     /// le gabarit stock (c'est exactement l'état constaté sous /en/Terms) — la garde rougit
     /// nommément sur la chaîne d'identité disparue. Les mentions sont des données publiques
     /// (registre légal), pas des secrets.
+    ///
+    /// EXTENSION es-ES / pt-BR (pool ai-01 c.6180321584 item 1, 15/10) : les resx es-ES et pt-BR
+    /// — committés par #1878 avec le gabarit DNN stock anglais, SANS mentions légales — portent
+    /// le même bloc traduit (prose es/pt, identité octet pour octet). NB terminologique : « editor »
+    /// EST le terme légal correct en espagnol et en portugais (LSSI-CE art. 2) — le faux-ami
+    /// « editor = relecteur » n'existe que côté anglais (revue ai-01 c.6143944905).
     /// </summary>
     public class DnnLegalMentionsResxGuardTests
     {
         private const string NeutralResx = "DNNPlatform/App_GlobalResources/GlobalResources.resx";
         private const string FrenchResx = "DNNPlatform/App_GlobalResources/GlobalResources.fr-FR.resx";
+        private const string SpanishResx = "DNNPlatform/App_GlobalResources/GlobalResources.es-ES.resx";
+        private const string PortugueseResx = "DNNPlatform/App_GlobalResources/GlobalResources.pt-BR.resx";
         private const string TermsKey = "MESSAGE_PORTAL_TERMS.Text";
 
         /// <summary>Les trois chaînes d'identité — jamais retapées, extraites du bloc fr-FR #1869.</summary>
@@ -132,6 +140,60 @@ namespace Argumentum.AssetConverter.Tests.Dnn
             MissingIdentities(value).Should().BeEmpty(
                 "le resx fr-FR (source du bloc, #1869) doit porter les mêmes chaînes d'identité — " +
                 "la parité octet pour octet est le contrat qui rend la version EN conforme");
+        }
+
+        [Fact]
+        public void SpanishResx_TermsValue_CarriesTheLegalIdentityBlock()
+        {
+            var value = ReadTermsValue(SpanishResx);
+
+            MissingIdentities(value).Should().BeEmpty(
+                "le resx es-ES doit porter le bloc d'identification légal — l'activation es-ES du site " +
+                "exige des mentions conformes, identité octet pour octet avec le fr-FR");
+        }
+
+        [Fact]
+        public void SpanishResx_LegalNoticeIsInSpanish_WithCorrectLegalTerms()
+        {
+            var value = ReadTermsValue(SpanishResx);
+
+            value.Should().Contain("AVISO LEGAL", "l'intitulé du bloc est espagnol dans le resx es-ES");
+            value.Should().Contain("IDENTIFICACIÓN DEL SITIO", "le sous-titre d'identification est espagnol");
+            value.Should().Contain("está editado por",
+                "l'éditeur LCEN se dit editor en droit espagnol (LSSI-CE art. 2) — le terme N'EST PAS " +
+                "un faux-ami dans cette langue, contrairement à l'anglais");
+            value.Should().Contain("está alojado por", "l'hébergeur : alojado por");
+            value.Should().Contain("\"Editor del Sitio\"", "la désignation contractuelle es-ES");
+            value.Should().Contain("\"Proveedor de Alojamiento\"", "la désignation de l'hébergeur es-ES");
+            value.Should().Contain("AGREEMENT BETWEEN USER AND [Portal:PortalName]",
+                "l'insertion est différentielle : le gabarit DNN existant survit derrière le bloc");
+        }
+
+        [Fact]
+        public void PortugueseResx_TermsValue_CarriesTheLegalIdentityBlock()
+        {
+            var value = ReadTermsValue(PortugueseResx);
+
+            MissingIdentities(value).Should().BeEmpty(
+                "le resx pt-BR doit porter le bloc d'identification légal — l'activation pt-BR du site " +
+                "exige des mentions conformes, identité octet pour octet avec le fr-FR");
+        }
+
+        [Fact]
+        public void PortugueseResx_LegalNoticeIsInPortuguese_WithCorrectLegalTerms()
+        {
+            var value = ReadTermsValue(PortugueseResx);
+
+            value.Should().Contain("AVISO LEGAL", "l'intitulé du bloc est portugais dans le resx pt-BR");
+            value.Should().Contain("IDENTIFICAÇÃO DO SITE", "le sous-titre d'identification est portugais");
+            value.Should().Contain("é editado por",
+                "l'éditeur LCEN se rend editor do site en portugais — même note qu'en espagnol : le " +
+                "terme n'est PAS un faux-ami dans cette langue");
+            value.Should().Contain("é hospedado por", "l'hébergeur pt-BR : hospedado por");
+            value.Should().Contain("\"Editor do Site\"", "la désignation contractuelle pt-BR");
+            value.Should().Contain("\"Provedor de Hospedagem\"", "la désignation de l'hébergeur pt-BR");
+            value.Should().Contain("AGREEMENT BETWEEN USER AND [Portal:PortalName]",
+                "l'insertion est différentielle : le gabarit DNN existant survit derrière le bloc");
         }
 
         /// <summary>
