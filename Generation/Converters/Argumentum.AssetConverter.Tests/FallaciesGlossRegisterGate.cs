@@ -205,13 +205,16 @@ namespace Argumentum.AssetConverter.Tests
 		/// PK 1361 : registre poli (Q-12 3a, PK 1361 seul). ar = laisse tel quel
 		/// (l'arabe standard ne distingue pas tu/vous), en = indifferencie. Les deux sont
 		/// epingles POUR constater le caractere delimite de l'absence de changement.
+		/// pt : littéral porté à la norme pt-BR par la poche ②④ (#458, 2026-10-14) —
+		/// « vi-o a aproveitar » → « vi-o aproveitando ». Le registre poli (A ouvi-lo)
+		/// est inchangé : seule la construction dialectale bouge.
 		/// </summary>
 		public static readonly Dictionary<string, string> Pk1361Expected = new()
 		{
 			{ "fr", "À vous entendre, tout achat est immoral. Pourtant je vous ai vu faire les soldes l’autre jour, et ma morale le tolère." },
 			{ "en", "To hear you tell it, every purchase is immoral. Yet I saw you shopping the sales the other day, and my morality allows it." },
 			{ "ru", "Если вас послушать, всякая покупка аморальна. Однако на днях я видел, как вы ходили на распродажи, и моя мораль это допускает." },
-			{ "pt", "A ouvi-lo, toda compra é imoral. No entanto, vi-o a aproveitar os saldos outro dia, e a minha moral tolera isso." },
+			{ "pt", "A ouvi-lo, toda compra é imoral. No entanto, vi-o aproveitando os saldos outro dia, e a minha moral tolera isso." },
 			{ "es", "Oyéndole, toda compra es inmoral. Sin embargo, le vi ir de rebajas el otro día, y mi moral lo tolera." },
 			{ "ar", "إذا استمعتُ إليك، فكل شراء غير أخلاقي. ومع ذلك فقد رأيتك تتسوق في التخفيضات قبل أيام، وأخلاقيتي تقبل ذلك." },
 			{ "fa", "از حرف‌هایتان که برمی‌آید، هر خریدی غیراخلاقی است. با این حال، چند روز پیش دیدم که در حراج‌ها خرید می‌کردید، و اخلاق من این را تحمل می‌کند." },
