@@ -17,7 +17,7 @@ namespace Argumentum.AssetConverter.Tests.DatasetUpdater
 	/// cible le pt-BR depuis la décision du 14/08 — la poche ① (factos → fatos, #1871) a réglé
 	/// l'orthographe ; celle-ci règle la syntaxe et le lexical.
 	///
-	/// Le grain converti 27 occurrences (2026-10-14) : 19 « estar a + INF » → « estar +
+	/// Le grain converti 27 remplacements dans 24 cellules (2026-10-14 ; re-mesuré au merge `c57916da`, diff _pt intégral — l'écart 26 relevé en revue tenait au comptage) : 19 « estar a + INF » → « estar +
 	/// gerúndio » (avec proclise BR le cas échéant : está se tornando, estão se queixando), 1
 	/// clitique de perception (« vi-o a aproveitar » → « vi-o aproveitando »), 7 lexical
 	/// (camião/camiões → caminhão/caminhões avec accord, ecrã → tela avec le genre — do meu →
@@ -28,8 +28,11 @@ namespace Argumentum.AssetConverter.Tests.DatasetUpdater
 	/// HORS PÉRIMÈTRE (déclaré, jamais pincé par cette garde) : « vós/vosso » = registre, pas
 	/// dialecte — différé au grain « registre pt/es » (la voix divine Scenarii 5.2.1 garde son
 	/// vós, choix stylistique ai-01) ; « dossiê » = employé par les deux variantes (tier C).
-	/// Les pt-PT NON couverts par l'instrument #1858 (golo, guarda-redes, Tenciona…) sont
-	/// signalés au corps de la PR comme candidats d'extension de l'instrument, pas corrigés.
+	/// EXTENSION #1858 (pool ai-01 c.6166753012, 2026-10-14) : les pt-PT relevés au corps des
+	/// PR #1878/#1879 (golo, guarda-redes, Tenciona) deviennent marqueurs bannis ET corrigés :
+	/// 5 remplacements dans 4 cellules, tout Scenarii 7.2.10/7.3.4 — golo → gol ×2,
+	/// guarda-redes → goleiro ×2 (contexte + smoothTalker), Tenciona → Pretende. Chaque
+	/// nouveau marqueur passe le contrôle inverse (Detector_SeesSyntheticContinental).
 	///
 	/// Falsifiabilité : rouge sur l'arbre pré-grain (19 estar-a + lexical) ; ré-injecter
 	/// « estás a ouvir » dans une cellule _pt pince le bannissement ; les littéraux
@@ -89,6 +92,9 @@ namespace Argumentum.AssetConverter.Tests.DatasetUpdater
 			(new Regex(@"\brece[çc][ãa]o\b", RegexOptions.Compiled | RegexOptions.IgnoreCase), "receção", "recepção"),
 			(new Regex(@"\bcontactos?\b", RegexOptions.Compiled | RegexOptions.IgnoreCase), "contacto", "contato"),
 			(new Regex(@"\bplaneamento\b", RegexOptions.Compiled | RegexOptions.IgnoreCase), "planeamento", "planejamento"),
+			(new Regex(@"\bgolos?\b", RegexOptions.Compiled | RegexOptions.IgnoreCase), "golo", "gol"),
+			(new Regex(@"\bguarda-redes\b", RegexOptions.Compiled | RegexOptions.IgnoreCase), "guarda-redes", "goleiro"),
+			(new Regex(@"\btenciona(?:r|s|m|mos|va|vam|ram|ndo)?\b", RegexOptions.Compiled | RegexOptions.IgnoreCase), "tenciona(r)", "pretende(r)"),
 		};
 
 		private static string RepoRoot() => TestRepoRoot.Find();
@@ -216,6 +222,16 @@ namespace Argumentum.AssetConverter.Tests.DatasetUpdater
 				"la proclise brésilienne remplace la construction a + INF pronominale");
 			Cell(cells, "virtues", "96", "remark_pt").Should().Contain("Está chovendo",
 				"le Modus Ponens de Virtues parle brésilien");
+			Cell(cells, "scenarii", "7.2.10", "suggestion_pt").Should().Contain("Pretende fazer",
+				"tenciona → Pretende (extension #1858, grain 2026-10-14)");
+			Cell(cells, "scenarii", "7.3.4", "context_pt").Should().Contain("o goleiro que",
+				"guarda-redes → goleiro (extension #1858)");
+			Cell(cells, "scenarii", "7.3.4", "context_pt").Should().Contain("um gol decisivo",
+				"golo → gol (extension #1858)");
+			Cell(cells, "scenarii", "7.3.4", "smoothTalker_pt").Should().Be("O goleiro",
+				"cellule entière convertie (guarda-redes → goleiro)");
+			Cell(cells, "scenarii", "7.3.4", "suggestion_pt").Should().Contain("evitado este gol",
+				"golo → gol (extension #1858)");
 		}
 
 		[Fact]
@@ -228,7 +244,7 @@ namespace Argumentum.AssetConverter.Tests.DatasetUpdater
 			{
 				"mas estás a ouvir?", "Os vizinhos estão a discutir", "Estou a repensar",
 				"vi-o a aproveitar", "Um camião", "os camiões", "no meu ecrã", "os seus contactos",
-				"Desporto ou sofá?", "este pequeno-almoço", "a receção", "Está a chover",
+				"Desporto ou sofá?", "este pequeno-almoço", "a receção", "Está a chover", "um golo decisivo", "o guarda-redes sofreu", "Tenciona fazer alguma coisa",
 			})
 			{
 				var seen = EstarConjugaAInfinitivo.IsMatch(literal)
@@ -244,7 +260,7 @@ namespace Argumentum.AssetConverter.Tests.DatasetUpdater
 			{
 				"estás ouvindo", "estão discutindo", "vi-o aproveitando", "Um caminhão",
 				"da minha tela", "os seus contatos", "Esporte ou sofá?", "café da manhã",
-				"a recepção", "Está chovendo",
+				"a recepção", "Está chovendo", "um gol decisivo", "o goleiro sofreu", "Pretende fazer alguma coisa",
 				"Ele deve convencê-lo a continuar.", // « a » préposition : les deux variantes
 				"a partir de amanhã",                // exemption du scanner #1858
 				"confiai em mim, vós que ouvis",     // vós = registre, hors périmètre déclaré
