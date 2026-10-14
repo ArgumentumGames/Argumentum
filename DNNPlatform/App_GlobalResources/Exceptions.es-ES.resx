@@ -1,0 +1,411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddFileExtensionNotAllowed.Text" xml:space="preserve">
+    <value>No se permite la extensión '{0}'. No se ha añadido el archivo.</value>
+  </data>
+  <data name="AddFileInvalidContent.Text" xml:space="preserve">
+    <value>El contenido de '{0}' no es válido. El archivo no se ha añadido.</value>
+  </data>
+  <data name="AddFilenameNotAllowed.Text" xml:space="preserve">
+    <value>El nombre de archivo '{0}' no está permitido. El archivo no se ha añadido.</value>
+  </data>
+  <data name="AddFileNoSpaceAvailable.Text" xml:space="preserve">
+    <value>El sitio no tiene espacio disponible para guardar el archivo especificado. El archivo no se ha añadido.</value>
+  </data>
+  <data name="AddFilePermissionsNotMet.Text" xml:space="preserve">
+    <value>No se cumplen los permisos. El archivo no se ha añadido.</value>
+  </data>
+  <data name="AddFileUnderlyingSystemError.Text" xml:space="preserve">
+    <value>El sistema subyacente produjo una excepción. El archivo no se ha añadido.</value>
+  </data>
+  <data name="AddFolderAlreadyExists.Text" xml:space="preserve">
+    <value>La carpeta ya existe en la ubicación. La carpeta no se ha añadido.</value>
+  </data>
+  <data name="AddFolderNotAllowed.Text" xml:space="preserve">
+    <value>La carpeta '{0}' no está permitida. La carpeta no se ha añadido.</value>
+  </data>
+  <data name="AddFolderParentCannotBeFound.Text" xml:space="preserve">
+    <value>No se pudo encontrar la carpeta principal.</value>
+  </data>
+  <data name="AddFolderUnderlyingSystemError.Text" xml:space="preserve">
+    <value>No se cumplen los permisos. La carpeta no se ha añadido.</value>
+  </data>
+  <data name="AlreadyFollowingUser.Text" xml:space="preserve">
+    <value>Ya está siguiendo a este usuario.</value>
+  </data>
+  <data name="AmbiguousController.Text" xml:space="preserve">
+    <value>Se han encontrado múltiples tipos que coinciden con el nombre de controlador '{0}' en el espacio de nombres {1}.</value>
+  </data>
+  <data name="ArgumentCannotBeNullOrEmpty.Text" xml:space="preserve">
+    <value>El argumento '{0}' no puede ser nulo o estar vacío.</value>
+  </data>
+  <data name="CannotMoveFolderAlreadyExists.Text" xml:space="preserve">
+    <value>La carpeta '{0}' no se puede mover. Ya existe una carpeta con el mismo nombre en '{1}'.</value>
+  </data>
+  <data name="CannotMoveFolderBetweenFolderType.Text" xml:space="preserve">
+    <value>La carpeta '{0}' no se puede mover. Mover carpetas entre los dos tipos de carpeta seleccionadas no está permitido.</value>
+  </data>
+  <data name="ContentTypeDoesNotExist.Text" xml:space="preserve">
+    <value>El tipo de contenido especificado no es válido.</value>
+  </data>
+  <data name="ContentTypeFieldDefinitionDoesNotExist.Text" xml:space="preserve">
+    <value>El tipo de contenido al que pertenece la definición del campo no es válido.</value>
+  </data>
+  <data name="ControllerNotFound.Text" xml:space="preserve">
+    <value>No se puede localizar el controlador {0}. Espacios de nombres de búsqueda: {1}</value>
+  </data>
+  <data name="CopyFileNoSpaceAvailable.Text" xml:space="preserve">
+    <value>El sitio no tiene espacio disponible para guardar el archivo. El archivo no se ha copiado.</value>
+  </data>
+  <data name="CopyFilePermissionsNotMet.Text" xml:space="preserve">
+    <value>No tiene permisos. El archivo no se ha copiado.</value>
+  </data>
+  <data name="CopyFileUnderlyingSystemError.Text" xml:space="preserve">
+    <value>El sistema subyacente produjo una excepción. El archivo no se ha copiado.</value>
+  </data>
+  <data name="CreateValidatorException.Text" xml:space="preserve">
+    <value>No se puede instanciar el validador - {0}</value>
+  </data>
+  <data name="DeleteFileUnderlyingSystemError.Text" xml:space="preserve">
+    <value>El sistema subyacente produjo una excepción. El archivo no se ha eliminado.</value>
+  </data>
+  <data name="DeleteFolderUnderlyingSystemError.Text" xml:space="preserve">
+    <value>El sistema subyacente produjo una excepción. La carpeta no se ha eliminado.</value>
+  </data>
+  <data name="DynamicContentEntityInUse.Text" xml:space="preserve">
+    <value>El {0} con ID {1} está en uso y no se puede eliminiar.</value>
+  </data>
+  <data name="EntityIsNotValid.Text" xml:space="preserve">
+    <value>El elemento con el tipo '{0}' no es válido.</value>
+  </data>
+  <data name="ErrorCreatingBusinessControllerClass.Text" xml:space="preserve">
+    <value>Se ha producido un error al crear la clase controladora '{0}' del módulo ({1}) id=({2}), página ({3}), portal ({4})</value>
+  </data>
+  <data name="ErrorMessageCannotBeNullOrEmpty.Text" xml:space="preserve">
+    <value>ErrorKey y ErrorMessage no pueden ser nulos o vacíos.</value>
+  </data>
+  <data name="FieldDefinitionInvalidDeadLoop.Text" xml:space="preserve">
+    <value>No se puede crear el campo con el nombre {0} porque crearía una referencia circular.</value>
+  </data>
+  <data name="FileLockedOutOfPublishPeriodError.Text" xml:space="preserve">
+    <value>Archivo bloqueado. El archivo no se puede actualizar porque se encuentra fuera del periodo de publicación.</value>
+  </data>
+  <data name="FileLockedRunningWorkflowError.Text" xml:space="preserve">
+    <value>Archivo bloqueado. El archivo no se puede actualizar porque se encuentra en un flujo de trabajo activo.</value>
+  </data>
+  <data name="FileNameInvalid.Text" xml:space="preserve">
+    <value>El nombre especificado ({0}) no es válido</value>
+  </data>
+  <data name="FolderAlreadyExists.Text" xml:space="preserve">
+    <value>No se puede crear la carpeta ({0}). Ya existe una carpeta con el mismo nombre</value>
+  </data>
+  <data name="FolderDoesNotExists.Text" xml:space="preserve">
+    <value>La carpeta no existe</value>
+  </data>
+  <data name="FolderFileNameHasInvalidcharacters.Text" xml:space="preserve">
+    <value>El nombre contiene caracteres inválidos. Escriba un nombre sin {0}</value>
+  </data>
+  <data name="FolderFileNameIsReserved.Text" xml:space="preserve">
+    <value>Este nombre está reservado. Seleccione un nombre alternativo</value>
+  </data>
+  <data name="InstallPackageError.Text" xml:space="preserve">
+    <value>La instalación del paquete '{0}' ha fallado por '{1}'.</value>
+  </data>
+  <data name="InvalidAnalyzerClass.Text" xml:space="preserve">
+    <value>La clase '{0}' no se puede crear porque no es válida o no es un analizador. Se utilizará el analizador predeterminado.</value>
+  </data>
+  <data name="InvalidMappedPath.Text" xml:space="preserve">
+    <value>La ruta indicada no es válida</value>
+  </data>
+  <data name="InvalidPublishPeriod.Text" xml:space="preserve">
+    <value>La fecha final tiene que ser posterior a la fecha inicial.</value>
+  </data>
+  <data name="InvalidValidatorException.Text" xml:space="preserve">
+    <value>No se puede crear el ValidatorType - {0}.</value>
+  </data>
+  <data name="InvalidZipFile.Text" xml:space="preserve">
+    <value>El archivo especificado no es un archivo comprimido zip.</value>
+  </data>
+  <data name="IPAddressIncorrect.Text" xml:space="preserve">
+    <value>La dirección IP no tiene un formato válido.</value>
+  </data>
+  <data name="JsonContentTypeInvalid.Text" xml:space="preserve">
+    <value>El contentTypeId especificado en el documento json ({0}) no existe.</value>
+  </data>
+  <data name="JsonInvalidField.Text" xml:space="preserve">
+    <value>El tipo de contenido no incluye el campo - {0}.</value>
+  </data>
+  <data name="JsonMissingContent.Text" xml:space="preserve">
+    <value>No hay ningún nodo de contenido en el documento json.</value>
+  </data>
+  <data name="LuceneControllerIsDisposed.Text" xml:space="preserve">
+    <value>LuceneController se ha cerrado y no se puede utilizar de nuevo.</value>
+  </data>
+  <data name="MaxLengthExceeded.Text" xml:space="preserve">
+    <value>La longitud máxima del campo '{0}' se ha excedido.</value>
+  </data>
+  <data name="ModuleDefIdMustBeGreaterThanZero.Text" xml:space="preserve">
+    <value>ModuleDefId tiene que ser mayor que cero cuando SearchTypeId es de un módulo.</value>
+  </data>
+  <data name="ModuleDefIdWhenSearchTypeForModule.Text" xml:space="preserve">
+    <value>ModuleDefId se necesita sólo cuando SearchTypeId es de un módulo.</value>
+  </data>
+  <data name="ModuleDoesNotBelongToPage.Text" xml:space="preserve">
+    <value>Este módulo no pertenece a la página. Vaya a su página maestra para cambiar el módulo.</value>
+  </data>
+  <data name="ModuleIdMustBeGreaterThanZero.Text" xml:space="preserve">
+    <value>ModuleId tiene que ser mayor que cero cuando SearchTypeId es de un módulo.</value>
+  </data>
+  <data name="ModuleIdMustHaveSearchTypeIdForModule.Text" xml:space="preserve">
+    <value>Una búsqueda por ModuleId tiene que tener SearchTypeId sólo para un módulo.</value>
+  </data>
+  <data name="ModuleIdWhenSearchTypeForModule.Text" xml:space="preserve">
+    <value>ModuleId se necesita sólo cuando SearchTypeId es de un módulo.</value>
+  </data>
+  <data name="MoveFolderCannotComplete.Text" xml:space="preserve">
+    <value>La operación no se ha podido completar.</value>
+  </data>
+  <data name="MoveFolderUnderlyingSystemError.Text" xml:space="preserve">
+    <value>El sistema subyacente produjo una excepción. La acción de mover no se ha podido completar. Es posible que sea necesaria una sincronización de la carpeta.</value>
+  </data>
+  <data name="MsgAttachmentsNotAllowed.Text" xml:space="preserve">
+    <value>No se permiten adjuntos.</value>
+  </data>
+  <data name="MsgBodyRequiredError.Text" xml:space="preserve">
+    <value>El mensaje no puede estar vacío.</value>
+  </data>
+  <data name="MsgEmptyToListFoundError.Text" xml:space="preserve">
+    <value>La lista de destinatarios no contiene ningún miembro.</value>
+  </data>
+  <data name="MsgMessageOrRecipientNotFound.Text" xml:space="preserve">
+    <value>Mensaje no encontrado o destinatario del mensaje no encontrado</value>
+  </data>
+  <data name="MsgMessageRequiredError.Text" xml:space="preserve">
+    <value>El objeto mensaje proporcionado no puede ser nulo.</value>
+  </data>
+  <data name="MsgOnlyHostOrAdminOrUserInGroupCanSendToRoleError.Text" xml:space="preserve">
+    <value>Sólo los superusuarios, administradores o usuarios del grupo pueden enviar mensajes al rol.</value>
+  </data>
+  <data name="MsgRecipientLimitExceeded.Text" xml:space="preserve">
+    <value>Se ha sobrepasado el límite permitido de destinatarios. Elimine destinatarios de la lista para poder enviar el mensaje.</value>
+  </data>
+  <data name="MsgRolesOrUsersRequiredError.Text" xml:space="preserve">
+    <value>Tiene que proporcionar una lista de usuarios o roles.</value>
+  </data>
+  <data name="MsgSenderRequiredError.Text" xml:space="preserve">
+    <value>Remitente es nulo o Remitente.UserId es negativo</value>
+  </data>
+  <data name="MsgSubjectOrBodyRequiredError.Text" xml:space="preserve">
+    <value>Asunto y cuerpo del mensaje no pueden ser vacíos.</value>
+  </data>
+  <data name="MsgSubjectTooBigError.Text" xml:space="preserve">
+    <value>El asunto es demasiado largo. Máximo: {0}, actual: {1}.</value>
+  </data>
+  <data name="MsgThrottlingIntervalNotMet.Text" xml:space="preserve">
+    <value>No se puede enviar el mensaje. La configuración actual require un mínimo de {0} minutos antes de poder volver a enviar otro mensaje.</value>
+  </data>
+  <data name="MsgToListTooBigError.Text" xml:space="preserve">
+    <value>Lista de destinatarios demasiado grande. Máximo: {0}, actual: {1}.</value>
+  </data>
+  <data name="NoNetworkAvailableError.Text" xml:space="preserve">
+    <value>Se requiere conectividad pero no hay ninguna red disponible</value>
+  </data>
+  <data name="PrivateMessageDisabledError.Text" xml:space="preserve">
+    <value>La configuración actual de mensajería no permite enviar mensajes a otros usuarios/grupos.</value>
+  </data>
+  <data name="ProfileService_UpdateVanityUrl.Error" xml:space="preserve">
+    <value>Se ha producido un error al actualizar la URL del perfil. Si continua viendo este mensaje, póngase en contacto con el administrador.</value>
+  </data>
+  <data name="PropertyCannotBeEmpty.Text" xml:space="preserve">
+    <value>La propiedad '{1}' en el objeto '{0}' no puede ser vacía (total = 0).</value>
+  </data>
+  <data name="PropertyCannotBeNegative.Text" xml:space="preserve">
+    <value>La propiedad '{1}' en el objeto '{0}' no puede ser negativa.</value>
+  </data>
+  <data name="PropertyCannotBeNull.Text" xml:space="preserve">
+    <value>La propiedad '{1}' en el objeto '{0}' no puede ser nula.</value>
+  </data>
+  <data name="PropertyCannotBeNullOrEmpty.Text" xml:space="preserve">
+    <value>La propiedad '{1}' en el objeto '{0}' no puede ser nula o vacía.</value>
+  </data>
+  <data name="PublishPagePermissionsNotMet" xml:space="preserve">
+    <value>Los permisos no se cumplen. La página no se ha publicado.</value>
+  </data>
+  <data name="RenameFileAlreadyExists.Text" xml:space="preserve">
+    <value>Esta carpeta ya contiene un archivo con ese mismo nombre. El archivo no se ha renombrado.</value>
+  </data>
+  <data name="RenameFileUnderlyingSystemError.Text" xml:space="preserve">
+    <value>El sistema subyacente produjo una excepción. El archivo no se ha renombrado.</value>
+  </data>
+  <data name="RenameFolderAlreadyExists.Text" xml:space="preserve">
+    <value>Ya existe una carpeta con este nombre. La carpeta no se ha renombrado.</value>
+  </data>
+  <data name="RenameFolderUnderlyingSystemError.Text" xml:space="preserve">
+    <value>El sistema subyacente produjo una excepción. La carpeta no se ha renombrado.</value>
+  </data>
+  <data name="SearchAnalyzerMinWordLength.Text" xml:space="preserve">
+    <value>Analizador de búsqueda: longitud mínima de palabra ({0}) es mayor que longitud máxima de palabra ({1})</value>
+  </data>
+  <data name="SearchIndexingDirectoryNoValid.Text" xml:space="preserve">
+    <value>El directorio del índice de búsqueda está vacío o no existe.</value>
+  </data>
+  <data name="SitemapProviderError.Text" xml:space="preserve">
+    <value>El proveedor de URL de sitemap '{0}' ha fallado con el siguiente error: {1}</value>
+  </data>
+  <data name="SitemapUrlGenerationError.Text" xml:space="preserve">
+    <value>La generación del sitemap para la página '{0} - {1}' ha producido un error: {2}</value>
+  </data>
+  <data name="StartDateMustNotBeInThePast.Text" xml:space="preserve">
+    <value>La fecha inicial no puede haber pasado ya.</value>
+  </data>
+  <data name="StartDateRequired.Text" xml:space="preserve">
+    <value>La fecha inicial es obligatoria.</value>
+  </data>
+  <data name="SubnetMaskIncorrect.Text" xml:space="preserve">
+    <value>La máscara de subred no tiene un formato válido.</value>
+  </data>
+  <data name="SystemContentTypesSecurityException.Text" xml:space="preserve">
+    <value>Los tipos de contenido de sistema solo pueden ser creados, modificados o eliminados por los superusuarios.</value>
+  </data>
+  <data name="SystemDataTypesSecurityException.Text" xml:space="preserve">
+    <value>Los tipos de datos de sistema solo pueden ser creados, modificados o eliminados por los superusuarios.</value>
+  </data>
+  <data name="SystemWorkflowDeletionException.Text" xml:space="preserve">
+    <value>Un flujo de trabajo del sistema no se puede eliminar</value>
+  </data>
+  <data name="TabHasNotAnUnpublishedVersion.Text" xml:space="preserve">
+    <value>La página {0} no tiene ninguna versión no publicada</value>
+  </data>
+  <data name="TabModuleNotExist.Text" xml:space="preserve">
+    <value>La instancia de módulo especificada no existe.</value>
+  </data>
+  <data name="TabNotInPortal.Text" xml:space="preserve">
+    <value>La página indicada no se encuentra en este sitio.</value>
+  </data>
+  <data name="TabVersionAlreadyPublished.Text" xml:space="preserve">
+    <value>La versión {1} de la página {0} ya está publicada</value>
+  </data>
+  <data name="TabVersionCannotBeCreated_UnpublishedVersionAlreadyExists.Text" xml:space="preserve">
+    <value>La nueva versión no publicada de la página {0} no se puede crear dado que ya existe otra versión no publicada. </value>
+  </data>
+  <data name="TabVersionCannotBeCreated_UnpublishedVersionAlreadyExistsConcurrencyProblem.Text" xml:space="preserve">
+    <value>La nueva versión no publicada de la página {0} no se puede crear dado que ya existe otra versión no publicada. Es posible que otro usuario haya realizado alguna acción en la página y su estado haya cambiado. Actualize la página para ver su estado actual.</value>
+  </data>
+  <data name="TabVersionCannotBeDeleted_UnpublishedVersion.Text" xml:space="preserve">
+    <value>La versión {1} de la página {0} no se puede eliminar puesto que no está publicada</value>
+  </data>
+  <data name="TabVersionCannotBeDiscarded_OnlyOneVersion.Text" xml:space="preserve">
+    <value>La página {0} sólo tiene una versión creada y no se puede eliminiar</value>
+  </data>
+  <data name="TabVersionCannotBeRolledBack_LastVersion.Text" xml:space="preserve">
+    <value>La versión {1} de la página {0} no se puede activar puesto que ya es la última versión</value>
+  </data>
+  <data name="TabVersionCannotBeRolledBack_UnpublishedVersionExists.Text" xml:space="preserve">
+    <value>La versión {1} de la página {0} no se puede deshacer dado que ya existe otra versión no publicada</value>
+  </data>
+  <data name="TabVersioningNotEnabled.Text" xml:space="preserve">
+    <value>No se ha activado el versionado de páginas</value>
+  </data>
+  <data name="UnableToCreateLuceneWriter.Text" xml:space="preserve">
+    <value>No se puede crear el escritor Lucene (hay un bloqueo en uso). Reinicie el grupo de aplicaciones en IIS para liberar el bloquo.</value>
+  </data>
+  <data name="UnderlyingSystemError.Text" xml:space="preserve">
+    <value>El sistema subyacente produjo una excepción.</value>
+  </data>
+  <data name="UpdateUserMembershipFailed.Text" xml:space="preserve">
+    <value>Ha fallado la actualización de la cuenta Asp.net. Posible causa: ha activado "requiresrequiresUniqueEmail" en la sección "membership" del archivo web.config y sin embargo hay varios usuarios con el mismo correo que el usuario actual.</value>
+  </data>
+  <data name="UserCannotReviewWorkflowState.Text" xml:space="preserve">
+    <value>El usuario no puede modificar el estado del flujo de trabajo</value>
+  </data>
+  <data name="UserDoesNotExist.Text" xml:space="preserve">
+    <value>El usuario que quiere seguir ya no existe.</value>
+  </data>
+  <data name="UserHasNoPermissionToAdd.Text" xml:space="preserve">
+    <value>El usuario no tiene permisos para añadir carpetas en esta ruta</value>
+  </data>
+  <data name="UserHasNoPermissionToBrowseFolder.Text" xml:space="preserve">
+    <value>El usuario no tiene permisos para ver el contenido de esta carpeta</value>
+  </data>
+  <data name="UserHasNoPermissionToEditFile.Text" xml:space="preserve">
+    <value>El usuario no tiene permisos para editar este archivo</value>
+  </data>
+  <data name="UserHasNoPermissionToEditFolder.Text" xml:space="preserve">
+    <value>El usuario no tiene permisos para editar esta carpeta</value>
+  </data>
+  <data name="UserRelationshipBlockedError.Text" xml:space="preserve">
+    <value>El usuario '{0}' ha bloqueado la relación '{1}' del usuario '{2}'.</value>
+  </data>
+  <data name="UserRelationshipDoesNotExistError.Text" xml:space="preserve">
+    <value>UserRelationshipID '{0}' no existe.</value>
+  </data>
+  <data name="UserRelationshipExistsError.Text" xml:space="preserve">
+    <value>Ya existe una relación entre el usuario '{0}' y el usuario '{1}' RelationshipID '{2}'.</value>
+  </data>
+  <data name="UserRelationshipForDifferentPortalError.Text" xml:space="preserve">
+    <value>El ID del sitio ('{0}') del usuario iniciador es diferente del ID del sitio ('{1}') del usuario destinatario.</value>
+  </data>
+  <data name="UserRelationshipForSameUsersError.Text" xml:space="preserve">
+    <value>El usuario iniciador y el destinatario no pueden tener el mismo UserID '{0}'.</value>
+  </data>
+  <data name="ValueCannotBeNegative.Text" xml:space="preserve">
+    <value>El argumento '{0}' no puede ser negativo.</value>
+  </data>
+  <data name="ValueMustBeOfType.Text" xml:space="preserve">
+    <value>El argumento '{0}' debe ser del tipo '{1}'.</value>
+  </data>
+  <data name="WorkflowAlreadyStarted.Text" xml:space="preserve">
+    <value>El flujo de trabajo no se puede iniciar para este elemento de contenido, ya se ha iniciado.</value>
+  </data>
+  <data name="WorkflowAuthorNotFound.Text" xml:space="preserve">
+    <value>No se puede encontrar el autor. La notificación no se enviará.</value>
+  </data>
+  <data name="WorkflowCannotDiscard.Text" xml:space="preserve">
+    <value>No se puede descartar el último estado del flujo de trabajo</value>
+  </data>
+  <data name="WorkflowConcurrencyException.Text" xml:space="preserve">
+    <value>El estado actual del flujo de trabajo no es el mismo que se ha especificado en el parámetro de entrada</value>
+  </data>
+  <data name="WorkflowDoesNotExistException.Text" xml:space="preserve">
+    <value>El flujo de trabajo no existe</value>
+  </data>
+  <data name="WorkflowInUsageException.Text" xml:space="preserve">
+    <value>No se puede eliminar un flujo de trabajo en uso</value>
+  </data>
+  <data name="WorkflowNameAlreadyExistsException.Text" xml:space="preserve">
+    <value>Ya existe un flujo de trabajo con el mismo nombre</value>
+  </data>
+  <data name="WorkflowNewStateCannotBeAddedToSystemWorkflows.Text" xml:space="preserve">
+    <value>No se pueden añadir nuevos estados a los flujos de trabajo del sistema</value>
+  </data>
+  <data name="WorkflowStateCannotBeMoved.Text" xml:space="preserve">
+    <value>El estado del flujo de trabajo no se puede mover</value>
+  </data>
+  <data name="WorkflowStateInUsageException.Text" xml:space="preserve">
+    <value>No se puede eliminar un estado en uso</value>
+  </data>
+  <data name="WorkflowStateNameAlreadyExistsException.Text" xml:space="preserve">
+    <value>Ya existe un estado del flujo de trabajo con el mismo nombre</value>
+  </data>
+  <data name="WorkflowSystemWorkflowStateCannotBeDeleted.Text" xml:space="preserve">
+    <value>No se puede eliminar un estada de un flujo de trabajo de sistema</value>
+  </data>
+  <data name="WorkflowSystemWorkflowStateCannotComplete.Text" xml:space="preserve">
+    <value>No se puede completar el estado del flujo de trabajo de sistema</value>
+  </data>
+  <data name="WriteFileToResponsePermissionsNotMet.Text" xml:space="preserve">
+    <value>Los permisos no se cumplen. No se puede descargar el archivo.</value>
+  </data>
+</root>

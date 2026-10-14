@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllItemsCheckedString.Text">
+    <value xml:space="preserve">Todos activados</value>
+  </data>
+  <data name="Cancel.Text">
+    <value xml:space="preserve">Cancelar</value>
+  </data>
+  <data name="CheckAllString.Text">
+    <value xml:space="preserve">Activar todos</value>
+  </data>
+  <data name="ComboBox.EmptyMessage">
+    <value xml:space="preserve">Não há elementos na lista.</value>
+  </data>
+  <data name="ConfirmPasswordMatched.Text">
+    <value xml:space="preserve">A contrasenha coincide</value>
+  </data>
+  <data name="ConfirmPasswordUnmatched.Text">
+    <value xml:space="preserve">A contrasenha não coincide</value>
+  </data>
+  <data name="CriteriaAtLeastNChars.Text">
+    <value xml:space="preserve">Mínimo {0} caracteres</value>
+  </data>
+  <data name="CriteriaAtLeastNSpecialChars.Text" lastModified="2015-12-28 10:12:51">
+    <value xml:space="preserve">Mínimo {0} caracteres especiales</value>
+  </data>
+  <data name="CriteriaValidationExpression.Text" lastModified="2015-12-28 08:58:50">
+    <value xml:space="preserve">Expresión de validação:m {0}</value>
+  </data>
+  <data name="FieldSuffix.Text">
+    <value xml:space="preserve">: </value>
+  </data>
+  <data name="File.Text">
+    <value xml:space="preserve">Arquivo</value>
+  </data>
+  <data name="FileUpload.CloseButton.Text">
+    <value xml:space="preserve">Cerrar</value>
+  </data>
+  <data name="FileUpload.DecompressingFile.Text">
+    <value xml:space="preserve">Descomprimiendo Arquivo</value>
+  </data>
+  <data name="FileUpload.DecompressLabel.Text">
+    <value xml:space="preserve">Descomprimir Arquivos Zip</value>
+  </data>
+  <data name="FileUpload.DragAndDropAreaTitle.Text">
+    <value xml:space="preserve">Arrastre Arquivos aquí o clique para explorar</value>
+  </data>
+  <data name="FileUpload.EmptyFileUpload.Error">
+    <value xml:space="preserve">Su navegador não suporta a carga de Arquivos vazia</value>
+  </data>
+  <data name="FileUpload.ErrorDialogTitle.Text">
+    <value xml:space="preserve">Error</value>
+  </data>
+  <data name="FileUpload.FileAlreadyExists.Error">
+    <value xml:space="preserve">O arquivo que quiere cargar já existe nesta pasta</value>
+  </data>
+  <data name="FileUpload.FileIsTooLarge.Error">
+    <value xml:space="preserve">Tamaño de Arquivo maior que {0}</value>
+  </data>
+  <data name="FileUpload.FileUploadCancelled.Error">
+    <value xml:space="preserve">Carga cancelada</value>
+  </data>
+  <data name="FileUpload.FileUploaded.Text">
+    <value xml:space="preserve">Arquivo cargado</value>
+  </data>
+  <data name="FileUpload.FileUploadFailed.Error">
+    <value xml:space="preserve">Error na carga</value>
+  </data>
+  <data name="FileUpload.InvalidFileExtensions.Error">
+    <value xml:space="preserve">Algunos Arquivos com extensões não permitidas não se podem cargar. somente pode cargar Arquivos com as seguintes extensões: {0}</value>
+  </data>
+  <data name="FileUpload.KeepButton.Text">
+    <value xml:space="preserve">Mantener</value>
+  </data>
+  <data name="FileUpload.ReplaceButton.Text">
+    <value xml:space="preserve">Reemplazar</value>
+  </data>
+  <data name="FileUpload.Title.Text">
+    <value xml:space="preserve">Cargar Arquivos</value>
+  </data>
+  <data name="FileUpload.TooManyFiles.Error">
+    <value xml:space="preserve">Não pode cargar más de {0} Arquivo(s) a vez.</value>
+  </data>
+  <data name="FileUpload.UploadFileMethod.Text">
+    <value xml:space="preserve">Cargar Arquivo</value>
+  </data>
+  <data name="FileUpload.UploadFromWebButton.Text">
+    <value xml:space="preserve">Cargar</value>
+  </data>
+  <data name="FileUpload.UploadFromWebMethod.Text">
+    <value xml:space="preserve">Desde URL</value>
+  </data>
+  <data name="FileUpload.UploadStopped.Text">
+    <value xml:space="preserve">Carga de Arquivo detenida</value>
+  </data>
+  <data name="FileUpload.UploadToFolderLabel.Text">
+    <value xml:space="preserve">Cargar a:</value>
+  </data>
+  <data name="FileUpload.UrlTooltip.Text">
+    <value xml:space="preserve">Introduzca a URL do recurso (por ejemplo http://dominio.com/imagenes/imagen.png)</value>
+  </data>
+  <data name="Folder.Text">
+    <value xml:space="preserve">Pasta</value>
+  </data>
+  <data name="ItemsCheckedString.Text">
+    <value xml:space="preserve">elementos activados</value>
+  </data>
+  <data name="MyFolder.Text">
+    <value xml:space="preserve">Mi pasta</value>
+  </data>
+  <data name="NoMatches.Text">
+    <value xml:space="preserve">Nenhuma coincidencia</value>
+  </data>
+  <data name="NoPermission.Text">
+    <value xml:space="preserve">Não dispone de permissões para ver nenhum Arquivo do sistema</value>
+  </data>
+  <data name="Ok.Text">
+    <value xml:space="preserve">Aceptar</value>
+  </data>
+  <data name="PasswordRulesBodyText.Text" lastModified="2015-09-14 06:39:41">
+    <value xml:space="preserve">contém ao menos {1} caracteres, 1 letra mayúscula, 1 número e {1}</value>
+  </data>
+  <data name="PasswordRulesHeadText.Text" lastModified="2015-09-14 06:39:41">
+    <value xml:space="preserve">Reglas de contrasenha:</value>
+  </data>
+  <data name="PasswordStrengthFair.Text">
+    <value xml:space="preserve">medio</value>
+  </data>
+  <data name="PasswordStrengthMinLength.Text">
+    <value xml:space="preserve">-caracteres mínimo</value>
+  </data>
+  <data name="PasswordStrengthStrong.Text">
+    <value xml:space="preserve">segura</value>
+  </data>
+  <data name="PasswordStrengthWeak.Text">
+    <value xml:space="preserve">insegura</value>
+  </data>
+  <data name="PortalRoot.Text">
+    <value xml:space="preserve">Raíz do portal</value>
+  </data>
+  <data name="Save.Text">
+    <value xml:space="preserve">Guardar Arquivo</value>
+  </data>
+  <data name="ShowMoreFormatString.Text">
+    <value xml:space="preserve">Elementos &lt;strong&gt;1&lt;/strong&gt;-&lt;strong&gt;{0}&lt;/strong&gt; de &lt;strong&gt;{1}&lt;/strong&gt;</value>
+  </data>
+  <data name="Upload.Text">
+    <value xml:space="preserve">Cargar Arquivo</value>
+  </data>
+  <data name="UploadError.Text">
+    <value xml:space="preserve">O tipo de Arquivo {1} não é válido em este contexto. Os tipos de Arquivo válidos son: {0}</value>
+  </data>
+</root>
