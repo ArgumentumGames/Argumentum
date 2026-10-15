@@ -26,8 +26,9 @@ namespace Argumentum.AssetConverter.Tests
     /// discipline #1435).</para>
     /// <para><b>Refus éditoriaux épinglés vides</b> : homonymies mécaniques (pk 9/13/14 en pt/ru)
     /// et hors-sujets sémantiques (pk 15 es : fiabilité des systèmes = génie pour un nœud de
-    /// journalisme ; pk 52 es/pt : collusion orthogonale au nœud ; pk 174 es/pt : pays neutre =
-    /// un État, pas une personne). Une cellule vide ici est un <b>état délibéré</b>, pas une lacune.</para>
+    /// journalisme ; pk 174 es/pt : pays neutre = un État, pas une personne ; pk 52 es/pt : collusion
+    /// orthogonale — RENVERSÉ le 2026-10-15 pour es et tranché pour pt, voir « Re-curation » ci-dessous).
+    /// Une cellule vide ici est un <b>état délibéré</b>, pas une lacune.</para>
     /// <para><b>Grain de suivi ar/zh/fa (2026-10-15)</b> : les colonnes portaient 72/88/82 cellules
     /// non vides ; 30 cellules (12 ar + 8 zh + 10 fa, 13 nœuds) ont été remplies depuis les langlinks
     /// des articles sources fr/en — chaque URL sondée vivante (200, témoins non-ASCII par langue :
@@ -41,6 +42,16 @@ namespace Argumentum.AssetConverter.Tests
     /// source** (têtes de famille abstraites), 11 sources en sans équivalent fr, et **2 refus épinglés**
     /// (pk 52, pk 102 — faiblesses d'origine versées au pool de re-curation ; « un lien qui pointe à
     /// côté est pire qu'une absence », #1435).</para>
+    /// <para><b>Re-curation pk 52/102 (2026-10-15, pool item 2)</b> : les deux refus sont TRANCHÉS par
+    /// correction du référent d'origine, pas contournés — pk 52 « Neutralité émotionnelle » : link_en
+    /// pointait <c>Collusion</c> (orthogonal) → <c>en:Equanimity</c>, l'article du concept (« Emotional
+    /// neutrality » n'existe pas sur en.wiki) ; pk 102 « résolution unitaire » : link_en pointait
+    /// <c>Synthetic_reasoning</c> — une REDIRECTION vers « Analytic–synthetic distinction » (philosophie
+    /// kantienne, autre domaine), et es/pt portaient la même dérive → <c>en:Resolution (logic)</c>, la
+    /// règle d'inférence parente. 12 cellules écrites (5 + 7), langlinks sondés vivants (200, témoin par
+    /// sonde). Restent vides : pk 52 pt/fa/zh (aucun langlink ; candidat pt:Equanimidade 404 mesuré),
+    /// pk 102 ar (aucun langlink). Les 3 refus épinglés fr/es sont RENVERSÉS ci-dessous, motif conservé
+    /// en commentaire (« l'exclusion meurt AVEC sa raison »).</para>
     /// </remarks>
     public class VirtuesLanguageLinkParityTests
     {
@@ -53,17 +64,20 @@ namespace Argumentum.AssetConverter.Tests
         /// <summary>Nœuds du corpus Virtus au grain (mesuré 2026-10-14) — un plancher de couverture sur un CSV amputé de rangées serait vacue.</summary>
         private const int NodeCount = 223;
 
-        private const int RuLinkFloor = 174;
+        /// <summary>Re-curation pk 52/102 (2026-10-15) : ru 174→176, es 172→173 (correction, pas fill).</summary>
+        private const int RuLinkFloor = 176;
         private const int PtLinkFloor = 167;
-        private const int EsLinkFloor = 172;
+        private const int EsLinkFloor = 173;
 
-        /// <summary>Grain ar/zh/fa (2026-10-15) : mesuré 72/88/82 avant, 84/96/92 après les 30 fills langlinks.</summary>
-        private const int ArLinkFloor = 84;
-        private const int ZhLinkFloor = 96;
-        private const int FaLinkFloor = 92;
+        /// <summary>Grain ar/zh/fa (2026-10-15) : mesuré 72/88/82 avant, 84/96/92 après les 30 fills langlinks ;
+        /// re-curation pk 52/102 (même jour) : 84→85, 96→97, 92→93.</summary>
+        private const int ArLinkFloor = 85;
+        private const int ZhLinkFloor = 97;
+        private const int FaLinkFloor = 93;
 
-        /// <summary>Grain link_fr (2026-10-15) : mesuré 140 avant, 181 après les 41 fills langlinks.</summary>
-        private const int FrLinkFloor = 181;
+        /// <summary>Grain link_fr (2026-10-15) : mesuré 140 avant, 181 après les 41 fills langlinks ;
+        /// re-curation pk 52/102 (même jour) : 181→183.</summary>
+        private const int FrLinkFloor = 183;
 
         private static string VirtuesCsv => Path.Combine(
             TestRepoRoot.Find(), "Cards", "Fallacies", VirtuesCsvName);
@@ -79,15 +93,15 @@ namespace Argumentum.AssetConverter.Tests
 
             foreach (var (column, floor, pre) in new[]
             {
-                ("link_ru", RuLinkFloor, 143), ("link_pt", PtLinkFloor, 141), ("link_es", EsLinkFloor, 125),
-                ("link_ar", ArLinkFloor, 72), ("link_zh", ZhLinkFloor, 88), ("link_fa", FaLinkFloor, 82),
-                ("link_fr", FrLinkFloor, 140),
+                ("link_ru", RuLinkFloor, 174), ("link_pt", PtLinkFloor, 167), ("link_es", EsLinkFloor, 172),
+                ("link_ar", ArLinkFloor, 84), ("link_zh", ZhLinkFloor, 96), ("link_fa", FaLinkFloor, 92),
+                ("link_fr", FrLinkFloor, 181),
             })
             {
                 var filled = csv.LoadColumn(column).Count(v => v.Length > 0);
                 filled.Should().BeGreaterThanOrEqualTo(floor,
-                    because: $"états mesurés : {pre} avant le grain (pré-remplissage, backup du 2026-10-14), " +
-                             $"{floor} après les fills langlinks — lu : {filled}. Une perte ne peut venir que " +
+                    because: $"états mesurés : {pre} avant le dernier grain, {floor} après (re-curation " +
+                             $"pk 52/102 du 2026-10-15 comprise) — lu : {filled}. Une perte ne peut venir que " +
                              "d'une vidange ou d'un rollback partiel, jamais d'un ajout");
             }
         }
@@ -161,6 +175,21 @@ namespace Argumentum.AssetConverter.Tests
                 ("21", "link_fr", "https://fr.wikipedia.org/wiki/Journalisme"),
                 ("193", "link_fr", "https://fr.wikipedia.org/wiki/Biais_cognitif"),
                 ("124", "link_fr", "https://fr.wikipedia.org/wiki/Syllogisme"),
+                // Re-curation pk 52/102 (2026-10-15, pool item 2) — référents d'origine corrigés
+                // (Collusion → Equanimity ; redirection Synthetic_reasoning → Resolution (logic)),
+                // 12 cellules, langlinks sondés vivants (200).
+                ("52", "link_en", "https://en.wikipedia.org/wiki/Equanimity"),
+                ("52", "link_fr", "https://fr.wikipedia.org/wiki/Équanimité"),
+                ("52", "link_es", "https://es.wikipedia.org/wiki/Ecuanimidad"),
+                ("52", "link_ru", "https://ru.wikipedia.org/wiki/Хладнокровие"),
+                ("52", "link_ar", "https://ar.wikipedia.org/wiki/رباطة_الجأش"),
+                ("102", "link_en", "https://en.wikipedia.org/wiki/Resolution_(logic)"),
+                ("102", "link_es", "https://es.wikipedia.org/wiki/Resolución_(lógica)"),
+                ("102", "link_pt", "https://pt.wikipedia.org/wiki/Princípio_da_resolução"),
+                ("102", "link_fr", "https://fr.wikipedia.org/wiki/Règle_de_résolution"),
+                ("102", "link_ru", "https://ru.wikipedia.org/wiki/Правило_резолюций"),
+                ("102", "link_fa", "https://fa.wikipedia.org/wiki/رزولوشن_(منطق)"),
+                ("102", "link_zh", "https://zh.wikipedia.org/wiki/归结原理"),
             };
             foreach (var (pk, column, url) in pinnedUrls)
             {
@@ -177,14 +206,17 @@ namespace Argumentum.AssetConverter.Tests
                 ("14", "link_pt", "page d'homonymie (desambiguação)"),
                 ("14", "link_ru", "page d'homonymie (значения)"),
                 ("15", "link_es", "Fiabilidad de sistemas = génie, nœud = journalisme"),
-                ("52", "link_es", "Colusión orthogonal au nœud"),
-                ("52", "link_pt", "Conluio orthogonal au nœud"),
                 ("174", "link_es", "País neutral = un État, pas une personne"),
                 ("174", "link_pt", "País neutro = un État, pas une personne"),
-                // Grain link_fr (2026-10-15) : faiblesses d'origine versées au pool item 4 —
-                // remplir ces deux cellules exige l'arbitrage de re-curation, pas un contournement.
-                ("52", "link_fr", "link_en = Collusion, faiblesse d'origine (pool item 4)"),
-                ("102", "link_fr", "link_en = Distinction analytique-synthétique, faiblesse d'origine (pool item 4)"),
+                // VERDICTS RENVERSÉS le 2026-10-15 (re-curation, pool item 2) — motifs d'origine conservés :
+                // pk 52 link_es « Colusión orthogonal au nœud » → REMPLI (Ecuanimidad) : le refus tenait au
+                //   référent fautif Collusion, corrigé à la source (link_en → Equanimity) ;
+                // pk 52 link_fr « link_en = Collusion, faiblesse d'origine » → REMPLI (Équanimité), même
+                //   tranchement ;
+                // pk 102 link_fr « link_en = Distinction analytique-synthétique » → REMPLI (Règle de
+                //   résolution) : la source était une REDIRECTION Synthetic_reasoning vers la distinction
+                //   kantienne, domaine étranger à la résolution unitaire.
+                ("52", "link_pt", "aucun équivalent pt : en:Equanimity sans langlink pt, candidat direct pt:Equanimidade 404 mesuré (2026-10-15)"),
             };
             foreach (var (pk, column, reason) in pinnedEmpties)
             {

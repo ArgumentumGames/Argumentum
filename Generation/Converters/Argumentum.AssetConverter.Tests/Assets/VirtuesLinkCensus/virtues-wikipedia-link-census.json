@@ -2969,6 +2969,42 @@
   },
   "https://zh.wikipedia.org/wiki/非暴力沟通": {
    "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Equanimity": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Équanimité": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Ecuanimidad": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Хладнокровие": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/رباطة_الجأش": {
+   "verdict": "alive"
+  },
+  "https://en.wikipedia.org/wiki/Resolution_(logic)": {
+   "verdict": "alive"
+  },
+  "https://es.wikipedia.org/wiki/Resolución_(lógica)": {
+   "verdict": "alive"
+  },
+  "https://pt.wikipedia.org/wiki/Princípio_da_resolução": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Règle_de_résolution": {
+   "verdict": "alive"
+  },
+  "https://ru.wikipedia.org/wiki/Правило_резолюций": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/رزولوشن_(منطق)": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/归结原理": {
+   "verdict": "alive"
   }
  }
 }
