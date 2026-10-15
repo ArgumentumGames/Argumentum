@@ -32,6 +32,12 @@ namespace Argumentum.AssetConverter.Tests.Dnn
     /// le même bloc traduit (prose es/pt, identité octet pour octet). NB terminologique : « editor »
     /// EST le terme légal correct en espagnol et en portugais (LSSI-CE art. 2) — le faux-ami
     /// « editor = relecteur » n'existe que côté anglais (revue ai-01 c.6143944905).
+    ///
+    /// GRAIN SUITE fr (pool ai-01 c.6203990682 item 1, 16/10) : capitales accentuées
+    /// (« L’ÉDITEUR » ×5), accord pluriel (« ne s’appliquent »), articles doublés ×2 (dont un à
+    /// travers un repli de ligne), insécables avant ; : ! ? de prose (×11). Le détecteur ne voit
+    /// que la prose (balises et entités consommées — le CSS inline n'est pas de la prose) et la
+    /// chaîne d'identité « SIREN: » est exemptée : parité byte 4 resx (contrat plus fort).
     /// </summary>
     public class DnnLegalMentionsResxGuardTests
     {
@@ -255,6 +261,152 @@ namespace Argumentum.AssetConverter.Tests.Dnn
             // ne peut pas passer au travers de l'accent.
             served.Should().NotContain("Editeur",
                 "l'orthographe sans accent est un reste de gabarit : 29 occurrences converties");
+        }
+
+        /// <summary>
+        /// GRAIN SUITE (pool ai-01 c.6203990682 item 1, 16/10) — typographie fr, deuxième passe.
+        /// Le bloc portait encore : « L’EDITEUR » sans accent en capitales (×5, sections
+        /// LIMITATION/EXCLUSION), un accord fautif (« conditions générales … ne s’applique »),
+        /// deux articles doublés (« à la l’Éditeur », « contrôle de la \nl’Éditeur » — la seconde
+        /// à travers un repli de ligne) et 11 ponctuations doubles de prose sans insécable
+        /// (9 « ; » + 2 « : » — « ! » et « ? » : 0 occurrence mesurée).
+        /// </summary>
+        [Fact]
+        public void FrenchResx_TypoSuite_CapitalsCarryTheAccent_Everywhere()
+        {
+            var value = ReadTermsValue(FrenchResx);
+
+            // « É » (U+00C9) ≠ « E » en ordinal : le compteur ne peut pas confondre les formes.
+            CountOf(value, "L’ÉDITEUR").Should().Be(5,
+                "5 occurrences en capitales mesurées au grain (sections LIMITATION DE GARANTIE / " +
+                "EXCLUSION) — toute divergence = un retour de gabarit ou une 6e section mal accentuée");
+            value.Should().Contain("NI L’ÉDITEUR DU SITE, NI",
+                "échantillon des sections capitales : l'accent survit à la mise en majuscules");
+            value.Should().NotContain("L’EDITEUR",
+                "la forme sans accent en capitales est un reste de gabarit : 5 occurrences converties");
+        }
+
+        [Fact]
+        public void FrenchResx_TypoSuite_PluralAgreement_AndNoDoubledArticle()
+        {
+            var value = ReadTermsValue(FrenchResx);
+            // Vue normalisée (repli de ligne → espace unique) : la seconde occurrence de l'article
+            // doublé vivait À TRAVERS un \n (« de la \nl’Éditeur ») — invisible à un Contain brut.
+            var normalized = System.Text.RegularExpressions.Regex.Replace(
+                value.Replace("\r", string.Empty).Replace("\n", " "), "[ \t]+", " ");
+
+            normalized.Should().Contain("ne s’appliquent qu’au site",
+                "accord pluriel : le sujet est « les conditions générales d’utilisation »");
+            value.Should().NotContain("s’applique qu’au",
+                "l'accord fautif ne doit plus exister nulle part (ordinal : « s’appliquent » ne " +
+                "contient pas « s’applique qu’au »)");
+            normalized.Should().NotContain("la l’Éditeur",
+                "article doublé corrigé ×2 — dont une occurrence à travers le repli de ligne, " +
+                "que seule la vue normalisée voit");
+            normalized.Should().Contain("contrôle de l’Éditeur du Site",
+                "la phrase de la 2e occurrence, après suppression de « la » (repli conservé)");
+        }
+
+        /// <summary>
+        /// En français, la ponctuation double (; : ! ?) est précédée d'une espace insécable —
+        /// dans la PROSE seulement : le détecteur consomme les balises HTML (le CSS inline
+        /// « border:1px solid black; » vit dans les attributs, pas dans la prose) et les entités
+        /// (&amp;amp;nbsp; et consœurs). Les chaînes d'identité sont exemptées AVANT détection :
+        /// « SIREN: 922020276 » est byte-parity dans les 4 resx (contrat #1869/#1883), plus fort
+        /// que la convention typographique fr — imposer l'insécable fr aux blocs en/es/pt
+        /// contredirait le grain #1886 (chaque langue suit SA typographie).
+        /// </summary>
+        [Fact]
+        public void FrenchResx_TypoSuite_NbspBeforeProseDoublePunctuation()
+        {
+            var offenders = ProseDoublePunctuationWithoutNbsp(ReadTermsValue(FrenchResx));
+
+            offenders.Should().BeEmpty(
+                "11 ponctuations de prose corrigées au grain (9 « ; » + 2 « : » ; les 3 « : » " +
+                "déjà insécables de #1886 et le SIREN exempté passent) — contrevenantes : " +
+                $"{string.Join(" | ", offenders.Take(3))}{(offenders.Length > 3 ? " …" : "")}");
+        }
+
+        /// <summary>
+        /// Contrôle inverse du détecteur typographique : il doit FLAGUER chaque cas positif
+        /// synthétique (espace pleine avant ; — et les bras ! / ?, qui comptent 0 occurrence
+        /// dans le corpus : un bras jamais témoins est un bras mort) et SAUTER tag CSS, entité,
+        /// insécable déjà présente et chaîne d'identité. Sans ce témoin, un vert sur le fichier
+        /// réel pourrait n'être que la cécité du détecteur.
+        /// </summary>
+        [Fact]
+        public void Witness_TypoSuiteDetector_FlagsEverySyntheticPositive_AndSkipsTagsEntitiesIdentity()
+        {
+            const string synthetic =
+                "<p style=\"border:1px solid black;\">mot ; suite</p>" +
+                "<p>état\u00a0: déjà correct</p>" +
+                "<p>entité&nbsp; conservée</p>" +
+                "<p>SIREN: 922020276</p>" +
+                "<p>cri ! question ?</p>";
+
+            var offenders = ProseDoublePunctuationWithoutNbsp(synthetic);
+
+            var joined = string.Join(" | ", offenders);
+            offenders.Should().HaveCount(3,
+                "exactement les 3 positifs : « mot ; », « cri ! », « question ? » — le « : » du CSS " +
+                "est dans la balise, l'entité et l'insécable sont reconnus, le SIREN est exempté " +
+                "comme chaîne d'identité (pas comme mot)");
+            joined.Should().Contain("mot ;", "le cas positif canonique : espace pleine avant ;");
+            joined.Should().Contain("cri !", "témoin du bras « ! » (0 occurrence corpus)");
+            joined.Should().Contain("question ?", "témoin du bras « ? » (0 occurrence corpus)");
+        }
+
+        private static int CountOf(string haystack, string needle) =>
+            System.Text.RegularExpressions.Regex.Matches(
+                haystack, System.Text.RegularExpressions.Regex.Escape(needle)).Count;
+
+        /// <summary>
+        /// Détecteur : liste les ponctuations doubles (; : ! ?) de PROSE non précédées d'une
+        /// espace insécable (U+00A0). Balises &lt;…&gt; et entités &amp;…; consommées ; chaînes
+        /// d'identité retirées avant classification (parité byte 4 resx).
+        /// </summary>
+        private static string[] ProseDoublePunctuationWithoutNbsp(string termsValue)
+        {
+            foreach (var id in IdentityStrings)
+                termsValue = termsValue.Replace(id, string.Empty, StringComparison.Ordinal);
+
+            var offenders = new System.Collections.Generic.List<string>();
+            var i = 0;
+            var inTag = false;
+            char prev = '\0';
+            while (i < termsValue.Length)
+            {
+                var c = termsValue[i];
+                if (!inTag && c == '<') { inTag = true; i++; prev = '\0'; continue; }
+                if (inTag)
+                {
+                    if (c == '>') inTag = false;
+                    i++; continue;
+                }
+                if (c == '&')
+                {
+                    var m = System.Text.RegularExpressions.Regex.Match(
+                        termsValue.Substring(i), "^&#?\\w+;");
+                    if (m.Success) { i += m.Length; prev = '\0'; continue; }
+                }
+                if (";:!?".IndexOf(c) >= 0)
+                {
+                    if (prev != '\u00a0')
+                        offenders.Add(Snippet(termsValue, i));
+                    prev = c; i++; continue;
+                }
+                prev = c; i++;
+            }
+            return offenders.ToArray();
+        }
+
+        /// <summary>Contexte lisible autour d'une position (replis et insécables rendus visibles).</summary>
+        private static string Snippet(string s, int pos)
+        {
+            var start = Math.Max(0, pos - 18);
+            var len = Math.Min(30, s.Length - start);
+            return s.Substring(start, len)
+                .Replace("\r", string.Empty).Replace("\n", "\\n").Replace("\u00a0", "␣");
         }
 
         [Fact]
