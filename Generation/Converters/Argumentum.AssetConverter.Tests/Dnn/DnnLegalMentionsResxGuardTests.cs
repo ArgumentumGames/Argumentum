@@ -112,8 +112,9 @@ namespace Argumentum.AssetConverter.Tests.Dnn
             served.Should().Contain("is published by:",
                 "l'« éditeur » de la LCEN se traduit publisher en anglais juridique " +
                 "(revue ai-01 c.6143944905 sur PR #1876)");
-            served.Should().Contain("\"Publisher of the Site\"",
-                "la désignation contractuelle du bloc, forme corrigée");
+            served.Should().Contain("“Publisher of the Site”",
+                "la désignation contractuelle du bloc, forme corrigée, guillemets typographiques " +
+                "anglais “ ” (grain typographie 15/10)");
 
             served.Should().NotContain("edited by",
                 "faux-ami juridique corrigé : « edited by » = relu/corrigé par, pas « édité » " +
@@ -163,8 +164,11 @@ namespace Argumentum.AssetConverter.Tests.Dnn
                 "l'éditeur LCEN se dit editor en droit espagnol (LSSI-CE art. 2) — le terme N'EST PAS " +
                 "un faux-ami dans cette langue, contrairement à l'anglais");
             value.Should().Contain("está alojado por", "l'hébergeur : alojado por");
-            value.Should().Contain("\"Editor del Sitio\"", "la désignation contractuelle es-ES");
-            value.Should().Contain("\"Proveedor de Alojamiento\"", "la désignation de l'hébergeur es-ES");
+            value.Should().Contain("«Editor del Sitio»",
+                "la désignation contractuelle es-ES, guillemets espagnols « » sans espace " +
+                "intérieure (grain typographie 15/10)");
+            value.Should().Contain("«Proveedor de Alojamiento»",
+                "la désignation de l'hébergeur es-ES, guillemets espagnols");
             value.Should().Contain("AGREEMENT BETWEEN USER AND [Portal:PortalName]",
                 "l'insertion est différentielle : le gabarit DNN existant survit derrière le bloc");
         }
@@ -190,10 +194,102 @@ namespace Argumentum.AssetConverter.Tests.Dnn
                 "l'éditeur LCEN se rend editor do site en portugais — même note qu'en espagnol : le " +
                 "terme n'est PAS un faux-ami dans cette langue");
             value.Should().Contain("é hospedado por", "l'hébergeur pt-BR : hospedado por");
-            value.Should().Contain("\"Editor do Site\"", "la désignation contractuelle pt-BR");
-            value.Should().Contain("\"Provedor de Hospedagem\"", "la désignation de l'hébergeur pt-BR");
+            value.Should().Contain("“Editor do Site”",
+                "la désignation contractuelle pt-BR, guillemets typographiques “ ” (grain typographie 15/10)");
+            value.Should().Contain("“Provedor de Hospedagem”",
+                "la désignation de l'hébergeur pt-BR, guillemets typographiques");
+            value.Should().Contain("nº 2004-575",
+                "le numéro de la loi en abrégé brésilien « nº » (grain typographie 15/10)");
+            value.Should().NotContain("n.º",
+                "« n.º » est la graphie pt-PT ; le site cible est pt-BR (#1095)");
             value.Should().Contain("AGREEMENT BETWEEN USER AND [Portal:PortalName]",
                 "l'insertion est différentielle : le gabarit DNN existant survit derrière le bloc");
+        }
+
+        /// <summary>
+        /// GRAIN TYPOGRAPHIE (pool ai-01 c.6190391294 item 1, 15/10). Les quatre blocs portaient
+        /// des guillemets droits <c>"..."</c> autour des désignations (« Argumentum », éditeur,
+        /// hébergeur) et l'URL Légifrance embarquait un <c>jsessionid</c> figé — une URL de
+        /// session dans un artefact committé est non canonique par construction. Le grain pose :
+        /// fr « … » (guillemets + espace insécable intérieure), es «…» (sans espace,
+        /// usage RAE), en/pt “…” (guillemets typographiques), pt « nº » au lieu de « n.º »,
+        /// et l'URL canonique <c>https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000801164</c>
+        /// (vérifiée par lecture du contenu : la page sert bien la Loi 2004-575 du 21 juin 2004 —
+        /// un sondage HTTP python rend 403 uniformément, anti-bot : l'instrument était aveugle,
+        /// le titre lu dans la page est la preuve). L'identité octet pour octet et le gabarit DNN
+        /// (zone « AGREEMENT », guillemets droits compris) ne bougent PAS.
+        /// </summary>
+        [Fact]
+        public void AllLanguages_LegifranceUrlIsCanonical_NeverCarriesASessionId()
+        {
+            var canonical = "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000801164";
+            foreach (var resx in new[] { NeutralResx, FrenchResx, SpanishResx, PortugueseResx })
+            {
+                var value = ReadTermsValue(resx);
+                value.Should().Contain(canonical,
+                    "{0} : le lien LCEN est l'URL canonique Légifrance (même identifiant JORFTEXT, " +
+                    "version consolidée courante — le libellé du lien dit « en vigueur »)", resx);
+                value.Should().NotContain("jsessionid",
+                    "{0} : un identifiant de session figé dans un artefact committé ne peut pas " +
+                    "rester — l'URL qu'il décorait est morte à la première expiration de session", resx);
+            }
+        }
+
+        [Fact]
+        public void FrenchResx_EditeurCarriesTheAccentInEveryOccurrence()
+        {
+            var value = ReadTermsValue(FrenchResx);
+            var served = value.Replace("\r", string.Empty).Replace("\n", " ");
+
+            served.Should().Contain("Éditeur du Site détient",
+                "la prose courante porte l'accent (la désignation comme le texte)");
+            // La désignation est épinglée sur la valeur BRUTE : elle est repliée sur deux lignes
+            // dans le resx (« du » + newline + « Site », repli hérité du gabarit d'origine, comme
+            // sa sœur anglaise) — la vue servie y montrerait un double espace, artefact du repli.
+            // Les échappements   restent visibles en source : l'insécable est invisible.
+            value.Should().Contain("« Éditeur du \nSite »",
+                "la désignation contractuelle : guillemets français AVEC espaces insécables " +
+                "intérieures (\\u00a0 en source, jamais un espace plein)");
+            // Ordinal : « Editeur » (sans accent) ne doit plus exister — ni dans la désignation,
+            // ni dans la prose. « Éditeur » (U+00C9) ne contient pas « Editeur » : le NotContain
+            // ne peut pas passer au travers de l'accent.
+            served.Should().NotContain("Editeur",
+                "l'orthographe sans accent est un reste de gabarit : 29 occurrences converties");
+        }
+
+        [Fact]
+        public void NeutralResx_UsesEnglishCurlyQuotes_DnnTemplateKeepsStraightOnes()
+        {
+            var value = ReadTermsValue(NeutralResx);
+
+            value.Should().Contain("“Argumentum”",
+                "les citations du nom du site en anglais prennent les guillemets typographiques “ ”");
+            value.Should().Contain("“Host”", "la désignation de l'hébergeur, guillemets typographiques");
+            value.Should().Contain("\"Linked Sites\"",
+                "CONTRÔLE DE PÉRIMÈTRE : le gabarit DNN derrière AGREEMENT garde ses guillemets DROITS — " +
+                "l'insertion est différentielle, la typographie du grain ne touche que le bloc légal");
+        }
+
+        [Fact]
+        public void SpanishResx_UsesSpanishGuillemets_DnnTemplateKeepsStraightOnes()
+        {
+            var value = ReadTermsValue(SpanishResx);
+
+            value.Should().Contain("«Argumentum»",
+                "espagnol : guillemets « » SANS espace intérieure (usage RAE, contrairement au français)");
+            value.Should().Contain("\"Linked Sites\"",
+                "CONTRÔLE DE PÉRIMÈTRE : le gabarit DNN garde ses guillemets droits");
+        }
+
+        [Fact]
+        public void PortugueseResx_UsesCurlyQuotes_DnnTemplateKeepsStraightOnes()
+        {
+            var value = ReadTermsValue(PortugueseResx);
+
+            value.Should().Contain("“Argumentum”",
+                "portugais brésilien : guillemets typographiques “ ” (usage brésilien courant)");
+            value.Should().Contain("\"Linked Sites\"",
+                "CONTRÔLE DE PÉRIMÈTRE : le gabarit DNN garde ses guillemets droits");
         }
 
         /// <summary>
