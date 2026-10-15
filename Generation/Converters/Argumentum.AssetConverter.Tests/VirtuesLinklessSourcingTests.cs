@@ -20,9 +20,15 @@ namespace Argumentum.AssetConverter.Tests
     /// aucun article encyclopédique ne couvre le nœud tel que défini. « Pareto principle » vit mais
     /// a été REFUSÉ comme approximatif — un lien qui pointe à côté est pire qu'une absence, il est
     /// cliqué (discipline #1435).</item>
-    /// <item><b>PK 59 « Sens quantitatif » link_fr</b> : aucun article fr correspondant
+    /// <item><s>PK 59 « Sens quantitatif » link_fr : aucun article fr correspondant
     /// (« Raisonnement quantitatif » = 404 mesuré) ; link_en = Numeracy, l'article qui couvre le
-    /// concept (en l'absence d'article « Quantitative reasoning », 404 mesuré).</item>
+    /// concept (en l'absence d'article « Quantitative reasoning », 404 mesuré).</s>
+    /// ⚠️ <b>VERDICT RENVERSÉ le 15/10/2026</b> (grain link_fr, po-2024) : le 404 mesurait un titre
+    /// <i>candidat inventé</i>, jamais le référent. Le partenaire interwiki que Wikipédia donne
+    /// lui-même à <c>en:Numeracy</c> — l'article que ce paragraphe tient pour « celui qui couvre le
+    /// concept » — est <c>fr:Numératie</c>, sondé vivant (HEAD 200). Un 404 sur un titre deviné
+    /// n'établit pas une absence. La cellule n'est pas laissée libre : elle est désormais
+    /// <b>épinglée vivante</b> dans <c>Filled</c>.</item>
     /// </list>
     ///
     /// Les attendus sont INSCRITS ici : toute dérive du CSV fait rouge et NOMME la cellule.
@@ -35,6 +41,9 @@ namespace Argumentum.AssetConverter.Tests
             ("23", "link_fr", "https://fr.wikipedia.org/wiki/Preuve_empirique"),
             ("23", "link_en", "https://en.wikipedia.org/wiki/Empirical_evidence"),
             ("59", "link_en", "https://en.wikipedia.org/wiki/Numeracy"),
+            // pk 59 link_fr, libéré du vide justifié le 15/10/2026 (grain link_fr, po-2024) :
+            // Numératie est le partenaire interwiki de en:Numeracy (langlink, pas un titre deviné).
+            ("59", "link_fr", "https://fr.wikipedia.org/wiki/Numératie"),
             ("63", "link_fr", "https://fr.wikipedia.org/wiki/Analogie"),
             ("63", "link_en", "https://en.wikipedia.org/wiki/Argument_from_analogy"),
             ("70", "link_fr", "https://fr.wikipedia.org/wiki/Univers_(probabilit%C3%A9s)"),
@@ -54,7 +63,10 @@ namespace Argumentum.AssetConverter.Tests
 
         private static readonly (string pk, string column, string reason)[] JustifiedEmpty =
         {
-            ("59", "link_fr", "aucun article fr correspondant (404 mesuré) — Numeracy couvre link_en seulement"),
+            // pk 59/link_fr RETIRÉ le 15/10/2026 (grain link_fr, po-2024) : le motif « aucun article fr
+            // correspondant » reposait sur un 404 mesuré contre un titre candidat inventé, pas contre
+            // le référent. Le CSV porte désormais fr:Numératie, épinglé vivant dans Filled ci-dessus.
+            // L'exclusion meurt AVEC son motif — laissée ici en commentaire, pas silencieusement ôtée.
             ("203", "link_fr", "compétence de facilitation, aucun référent encyclopédique (Pareto refusé comme approximatif)"),
             ("203", "link_en", "compétence de facilitation, aucun référent encyclopédique (Pareto refusé comme approximatif)"),
         };

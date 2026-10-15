@@ -35,6 +35,12 @@ namespace Argumentum.AssetConverter.Tests
     /// pas Wikipedia (cairn, halshs, LSE… — pas de langlinks) et les articles wiki restants n'ont
     /// pas d'équivalent ar/zh/fa. Les partages sont légitimes (pk 104-115/120/121 pointent déjà
     /// le même قياس ar ; pk 136/138 le même تعريف) — 26 clés distinctes pour 30 fills.</para>
+    /// <para><b>Grain link_fr (2026-10-15)</b> : la colonne portait 140 cellules non vides ; 41 ont été
+    /// remplies depuis les langlinks fr des sources en du corpus (33 articles distincts, partages
+    /// légitimes), chaque URL sondée vivante (200, témoin fr:Logique). Restent vides : **29 nœuds sans
+    /// source** (têtes de famille abstraites), 11 sources en sans équivalent fr, et **2 refus épinglés**
+    /// (pk 52, pk 102 — faiblesses d'origine versées au pool de re-curation ; « un lien qui pointe à
+    /// côté est pire qu'une absence », #1435).</para>
     /// </remarks>
     public class VirtuesLanguageLinkParityTests
     {
@@ -56,6 +62,9 @@ namespace Argumentum.AssetConverter.Tests
         private const int ZhLinkFloor = 96;
         private const int FaLinkFloor = 92;
 
+        /// <summary>Grain link_fr (2026-10-15) : mesuré 140 avant, 181 après les 41 fills langlinks.</summary>
+        private const int FrLinkFloor = 181;
+
         private static string VirtuesCsv => Path.Combine(
             TestRepoRoot.Find(), "Cards", "Fallacies", VirtuesCsvName);
 
@@ -72,6 +81,7 @@ namespace Argumentum.AssetConverter.Tests
             {
                 ("link_ru", RuLinkFloor, 143), ("link_pt", PtLinkFloor, 141), ("link_es", EsLinkFloor, 125),
                 ("link_ar", ArLinkFloor, 72), ("link_zh", ZhLinkFloor, 88), ("link_fa", FaLinkFloor, 82),
+                ("link_fr", FrLinkFloor, 140),
             })
             {
                 var filled = csv.LoadColumn(column).Count(v => v.Length > 0);
@@ -147,6 +157,10 @@ namespace Argumentum.AssetConverter.Tests
                 ("70", "link_ar", "https://ar.wikipedia.org/wiki/فضاء_العينة"),
                 ("177", "link_zh", "https://zh.wikipedia.org/wiki/概率"),
                 ("120", "link_ar", "https://ar.wikipedia.org/wiki/قياس_(منطق)"),
+                ("141", "link_fr", "https://fr.wikipedia.org/wiki/Définition"),
+                ("21", "link_fr", "https://fr.wikipedia.org/wiki/Journalisme"),
+                ("193", "link_fr", "https://fr.wikipedia.org/wiki/Biais_cognitif"),
+                ("124", "link_fr", "https://fr.wikipedia.org/wiki/Syllogisme"),
             };
             foreach (var (pk, column, url) in pinnedUrls)
             {
@@ -167,6 +181,10 @@ namespace Argumentum.AssetConverter.Tests
                 ("52", "link_pt", "Conluio orthogonal au nœud"),
                 ("174", "link_es", "País neutral = un État, pas une personne"),
                 ("174", "link_pt", "País neutro = un État, pas une personne"),
+                // Grain link_fr (2026-10-15) : faiblesses d'origine versées au pool item 4 —
+                // remplir ces deux cellules exige l'arbitrage de re-curation, pas un contournement.
+                ("52", "link_fr", "link_en = Collusion, faiblesse d'origine (pool item 4)"),
+                ("102", "link_fr", "link_en = Distinction analytique-synthétique, faiblesse d'origine (pool item 4)"),
             };
             foreach (var (pk, column, reason) in pinnedEmpties)
             {

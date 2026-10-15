@@ -1287,9 +1287,15 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://fr.wikipedia.org/wiki/Abduction_(logique)": {
+   "verdict": "alive"
+  },
   "https://fr.wikipedia.org/wiki/Ambigu%C3%AFt%C3%A9_(linguistique)": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Ambiguïté": {
+   "verdict": "alive"
   },
   "https://fr.wikipedia.org/wiki/Analogie": {
    "verdict": "alive"
@@ -1319,10 +1325,19 @@
   "https://fr.wikipedia.org/wiki/Biais_cognitif": {
    "verdict": "alive"
   },
+  "https://fr.wikipedia.org/wiki/Biais_culturel": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Cadrage_(sciences_sociales)": {
+   "verdict": "alive"
+  },
   "https://fr.wikipedia.org/wiki/Calcul_(math%C3%A9matiques)": {
    "verdict": "alive"
   },
   "https://fr.wikipedia.org/wiki/Causalit%C3%A9": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Chantage_émotionnel": {
    "verdict": "alive"
   },
   "https://fr.wikipedia.org/wiki/Charge_de_la_preuve": {
@@ -1354,7 +1369,13 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://fr.wikipedia.org/wiki/Corrélation_n'implique_pas_causalité": {
+   "verdict": "alive"
+  },
   "https://fr.wikipedia.org/wiki/Critique#Critique_constructive": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Crédibilité": {
    "verdict": "alive"
   },
   "https://fr.wikipedia.org/wiki/D%C3%A9bat": {
@@ -1385,7 +1406,13 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://fr.wikipedia.org/wiki/Distinction_analytique-synthétique": {
+   "verdict": "alive"
+  },
   "https://fr.wikipedia.org/wiki/Dramatisation": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Définition": {
    "verdict": "alive"
   },
   "https://fr.wikipedia.org/wiki/Espace_probabilis%C3%A9_fini": {
@@ -1435,6 +1462,9 @@
   "https://fr.wikipedia.org/wiki/Grammaire": {
    "verdict": "alive"
   },
+  "https://fr.wikipedia.org/wiki/Généralisation": {
+   "verdict": "alive"
+  },
   "https://fr.wikipedia.org/wiki/Honn%C3%AAtet%C3%A9_intellectuelle": {
    "class": "never-existed",
    "verdict": "dead"
@@ -1445,7 +1475,13 @@
   "https://fr.wikipedia.org/wiki/Hypoth%C3%A8se": {
    "verdict": "alive"
   },
+  "https://fr.wikipedia.org/wiki/Impartialité": {
+   "verdict": "alive"
+  },
   "https://fr.wikipedia.org/wiki/Ind%C3%A9pendance_(probabilit%C3%A9s)": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Induction_(logique)": {
    "verdict": "alive"
   },
   "https://fr.wikipedia.org/wiki/Interpr%C3%A9tation_(philosophie)": {
@@ -1455,11 +1491,17 @@
   "https://fr.wikipedia.org/wiki/Jargon": {
    "verdict": "alive"
   },
+  "https://fr.wikipedia.org/wiki/Journalisme": {
+   "verdict": "alive"
+  },
   "https://fr.wikipedia.org/wiki/Langage_rigoureux": {
    "class": "never-existed",
    "verdict": "dead"
   },
   "https://fr.wikipedia.org/wiki/Logique_formelle": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Logique_traditionnelle": {
    "verdict": "alive"
   },
   "https://fr.wikipedia.org/wiki/M%C3%A9thode_PRIOR": {
@@ -1496,9 +1538,18 @@
    "origin": "rewritten-by-#1851",
    "verdict": "alive"
   },
+  "https://fr.wikipedia.org/wiki/Neutralité_(relations_internationales)": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Numératie": {
+   "verdict": "alive"
+  },
   "https://fr.wikipedia.org/wiki/Objectif_SMART": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Objectifs_et_indicateurs_SMART": {
+   "verdict": "alive"
   },
   "https://fr.wikipedia.org/wiki/Objectivit%C3%A9_(philosophie)": {
    "class": "never-existed",
@@ -1511,6 +1562,9 @@
   "https://fr.wikipedia.org/wiki/Ouverture_culturelle": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Ouverture_d'esprit": {
+   "verdict": "alive"
   },
   "https://fr.wikipedia.org/wiki/Pens%C3%A9e_critique": {
    "verdict": "alive"
@@ -1549,6 +1603,9 @@
    "class": "existed-removed",
    "verdict": "dead"
   },
+  "https://fr.wikipedia.org/wiki/Précision": {
+   "verdict": "alive"
+  },
   "https://fr.wikipedia.org/wiki/Prémisse": {
    "verdict": "alive"
   },
@@ -1556,10 +1613,16 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://fr.wikipedia.org/wiki/Qualité_des_données": {
+   "verdict": "alive"
+  },
   "https://fr.wikipedia.org/wiki/Quantificateur": {
    "verdict": "alive"
   },
   "https://fr.wikipedia.org/wiki/R%C3%A9cit": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Raison": {
    "verdict": "alive"
   },
   "https://fr.wikipedia.org/wiki/Raisonnement#Validation_du_raisonnement": {
@@ -1620,9 +1683,15 @@
   "https://fr.wikipedia.org/wiki/Rh%C3%A9torique#Figure_de_style_et_proc%C3%A9d%C3%A9s_rh%C3%A9toriques_acceptables": {
    "verdict": "alive"
   },
+  "https://fr.wikipedia.org/wiki/Référence_bibliographique": {
+   "verdict": "alive"
+  },
   "https://fr.wikipedia.org/wiki/Sophisme_d%27association": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Sophisme_par_association": {
+   "verdict": "alive"
   },
   "https://fr.wikipedia.org/wiki/Source_impartiale": {
    "class": "never-existed",
@@ -1700,6 +1769,12 @@
   "https://fr.wikipedia.org/wiki/Th%C3%A9orie_de_l%27argumentation": {
    "verdict": "alive"
   },
+  "https://fr.wikipedia.org/wiki/Théorie_de_l'estimation": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Théorème": {
+   "verdict": "alive"
+  },
   "https://fr.wikipedia.org/wiki/Transfert_(logique)": {
    "class": "never-existed",
    "verdict": "dead"
@@ -1714,6 +1789,12 @@
   "https://fr.wikipedia.org/wiki/Valeurs_de_la_R%C3%A9publique_fran%C3%A7aise#Respect_de_la_personne_humaine": {
    "class": "never-existed",
    "verdict": "dead"
+  },
+  "https://fr.wikipedia.org/wiki/Validité_(logique)": {
+   "verdict": "alive"
+  },
+  "https://fr.wikipedia.org/wiki/Vérité": {
+   "verdict": "alive"
   },
   "https://pt.wikipedia.org/wiki/Abdução_(lógica_filosófica)": {
    "verdict": "alive"
