@@ -136,6 +136,9 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://ar.wikipedia.org/wiki/حقيقة": {
+   "verdict": "alive"
+  },
   "https://ar.wikipedia.org/wiki/دراما": {
    "verdict": "alive"
   },
@@ -167,6 +170,9 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://ar.wikipedia.org/wiki/صحافة": {
+   "verdict": "alive"
+  },
   "https://ar.wikipedia.org/wiki/صورة_بيانية": {
    "verdict": "alive"
   },
@@ -178,7 +184,19 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://ar.wikipedia.org/wiki/عطف_منطقي": {
+   "verdict": "alive"
+  },
   "https://ar.wikipedia.org/wiki/علم_القياس": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/علم_النحو": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/فصل_منطقي": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/فضاء_العينة": {
    "verdict": "alive"
   },
   "https://ar.wikipedia.org/wiki/فكاهة": {
@@ -243,6 +261,9 @@
    "verdict": "dead"
   },
   "https://ar.wikipedia.org/wiki/نصل_أوكام": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/نفي_(رياضيات)": {
    "verdict": "alive"
   },
   "https://ar.wikipedia.org/wiki/نقد": {
@@ -1081,6 +1102,9 @@
   "https://fa.wikipedia.org/wiki/احتمال": {
    "verdict": "alive"
   },
+  "https://fa.wikipedia.org/wiki/احتمالات": {
+   "verdict": "alive"
+  },
   "https://fa.wikipedia.org/wiki/ارتباط_بدون_خشونت": {
    "verdict": "alive"
   },
@@ -1136,6 +1160,9 @@
   "https://fa.wikipedia.org/wiki/تعریف": {
    "verdict": "alive"
   },
+  "https://fa.wikipedia.org/wiki/تعمیم": {
+   "verdict": "alive"
+  },
   "https://fa.wikipedia.org/wiki/تعمیم_(منطق)": {
    "class": "never-existed",
    "verdict": "dead"
@@ -1155,6 +1182,9 @@
   "https://fa.wikipedia.org/wiki/تیغ_اوکام": {
    "verdict": "alive"
   },
+  "https://fa.wikipedia.org/wiki/حقیقت_(فلسفه)": {
+   "verdict": "alive"
+  },
   "https://fa.wikipedia.org/wiki/داوری_همتا": {
    "verdict": "alive"
   },
@@ -1169,6 +1199,9 @@
    "verdict": "dead"
   },
   "https://fa.wikipedia.org/wiki/روایت": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/روزنامه‌نگاری": {
    "verdict": "alive"
   },
   "https://fa.wikipedia.org/wiki/روش_علمی": {
@@ -1196,6 +1229,9 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://fa.wikipedia.org/wiki/فضای_نمونه": {
+   "verdict": "alive"
+  },
   "https://fa.wikipedia.org/wiki/قضیه_بیز": {
    "verdict": "alive"
   },
@@ -1222,6 +1258,9 @@
    "verdict": "alive"
   },
   "https://fa.wikipedia.org/wiki/نقد": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/نقیض": {
    "verdict": "alive"
   },
   "https://fa.wikipedia.org/wiki/نمونه‌گیری_(آمار)": {
@@ -2614,6 +2653,9 @@
   "https://zh.wikipedia.org/wiki/SMART原则": {
    "verdict": "alive"
   },
+  "https://zh.wikipedia.org/wiki/三段論": {
+   "verdict": "alive"
+  },
   "https://zh.wikipedia.org/wiki/三段论": {
    "verdict": "alive"
   },
@@ -2702,6 +2744,9 @@
   "https://zh.wikipedia.org/wiki/幽默": {
    "verdict": "alive"
   },
+  "https://zh.wikipedia.org/wiki/广义化": {
+   "verdict": "alive"
+  },
   "https://zh.wikipedia.org/wiki/归纳推理": {
    "verdict": "alive"
   },
@@ -2731,6 +2776,9 @@
    "class": "never-existed",
    "verdict": "dead"
   },
+  "https://zh.wikipedia.org/wiki/新闻学": {
+   "verdict": "alive"
+  },
   "https://zh.wikipedia.org/wiki/新闻客观性": {
    "verdict": "alive"
   },
@@ -2739,6 +2787,9 @@
    "verdict": "dead"
   },
   "https://zh.wikipedia.org/wiki/术语学": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/样本空间": {
    "verdict": "alive"
   },
   "https://zh.wikipedia.org/wiki/概括_(逻辑)": {

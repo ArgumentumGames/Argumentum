@@ -28,6 +28,13 @@ namespace Argumentum.AssetConverter.Tests
     /// et hors-sujets sémantiques (pk 15 es : fiabilité des systèmes = génie pour un nœud de
     /// journalisme ; pk 52 es/pt : collusion orthogonale au nœud ; pk 174 es/pt : pays neutre =
     /// un État, pas une personne). Une cellule vide ici est un <b>état délibéré</b>, pas une lacune.</para>
+    /// <para><b>Grain de suivi ar/zh/fa (2026-10-15)</b> : les colonnes portaient 72/88/82 cellules
+    /// non vides ; 30 cellules (12 ar + 8 zh + 10 fa, 13 nœuds) ont été remplies depuis les langlinks
+    /// des articles sources fr/en — chaque URL sondée vivante (200, témoins non-ASCII par langue :
+    /// ar:منطق, zh:逻辑, fa:منطق). Le reste est <b>sans équivalent</b> : sur les 115 sources, 28 ne sont
+    /// pas Wikipedia (cairn, halshs, LSE… — pas de langlinks) et les articles wiki restants n'ont
+    /// pas d'équivalent ar/zh/fa. Les partages sont légitimes (pk 104-115/120/121 pointent déjà
+    /// le même قياس ar ; pk 136/138 le même تعريف) — 26 clés distinctes pour 30 fills.</para>
     /// </remarks>
     public class VirtuesLanguageLinkParityTests
     {
@@ -44,6 +51,11 @@ namespace Argumentum.AssetConverter.Tests
         private const int PtLinkFloor = 167;
         private const int EsLinkFloor = 172;
 
+        /// <summary>Grain ar/zh/fa (2026-10-15) : mesuré 72/88/82 avant, 84/96/92 après les 30 fills langlinks.</summary>
+        private const int ArLinkFloor = 84;
+        private const int ZhLinkFloor = 96;
+        private const int FaLinkFloor = 92;
+
         private static string VirtuesCsv => Path.Combine(
             TestRepoRoot.Find(), "Cards", "Fallacies", VirtuesCsvName);
 
@@ -59,6 +71,7 @@ namespace Argumentum.AssetConverter.Tests
             foreach (var (column, floor, pre) in new[]
             {
                 ("link_ru", RuLinkFloor, 143), ("link_pt", PtLinkFloor, 141), ("link_es", EsLinkFloor, 125),
+                ("link_ar", ArLinkFloor, 72), ("link_zh", ZhLinkFloor, 88), ("link_fa", FaLinkFloor, 82),
             })
             {
                 var filled = csv.LoadColumn(column).Count(v => v.Length > 0);
@@ -126,6 +139,14 @@ namespace Argumentum.AssetConverter.Tests
                 ("23", "link_ru", "https://ru.wikipedia.org/wiki/Эмпирические_данные"),
                 ("171", "link_es", "https://es.wikipedia.org/wiki/Competencia_intercultural"),
                 ("204", "link_ru", "https://ru.wikipedia.org/wiki/Управление_временем"),
+                // Grain ar/zh/fa (2026-10-15) — sondées vivantes ; le pin fa:21 porte un ZWNJ (U+200C) invisible.
+                ("141", "link_ar", "https://ar.wikipedia.org/wiki/تعريف"),
+                ("141", "link_zh", "https://zh.wikipedia.org/wiki/定义"),
+                ("141", "link_fa", "https://fa.wikipedia.org/wiki/تعریف"),
+                ("21", "link_fa", "https://fa.wikipedia.org/wiki/روزنامه‌نگاری"),
+                ("70", "link_ar", "https://ar.wikipedia.org/wiki/فضاء_العينة"),
+                ("177", "link_zh", "https://zh.wikipedia.org/wiki/概率"),
+                ("120", "link_ar", "https://ar.wikipedia.org/wiki/قياس_(منطق)"),
             };
             foreach (var (pk, column, url) in pinnedUrls)
             {
