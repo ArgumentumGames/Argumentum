@@ -53,13 +53,13 @@
     </div>
     <div class="offcanvas-body bg-primary px-0">
       <dnn:MENU MenuStyle="nav/main-mobile" NodeSelector="*,0,6" runat="server" />
-      <ToSic:languagenavigation runat="server" Languages="de-DE:DE,en-US:EN,fr-FR:FR,it-IT:IT" />
+      <ToSic:languagenavigation runat="server" Languages="fr-FR:FR,en-US:EN,es-ES:ES,pt-BR:PT" />
     </div>
   </div>
     
     <nav id="nav-desktop" class="d-none d-lg-flex flex-column align-items-end">
       <div class="d-none d-lg-flex">
-        <ToSic:languagenavigation runat="server" Languages="de-DE:DE,en-US:EN,fr-FR:FR,it-IT:IT" />
+        <ToSic:languagenavigation runat="server" Languages="fr-FR:FR,en-US:EN,es-ES:ES,pt-BR:PT" />
         <%
         if(DotNetNuke.Security.PortalSecurity.IsInRoles(PortalSettings.AdministratorRoleName)) {
         %>
