@@ -6,7 +6,7 @@
    "dead": 204,
    "dead_existed_removed": 11,
    "dead_never_existed": 193,
-   "entries": 789,
+   "entries": 1040,
    "master_dead_cells": 246,
    "master_distinct_urls": 774,
    "master_wiki_cells": 1139,
@@ -38,6 +38,14 @@
    },
    "new_census_entries": 73,
    "no_curated_equivalent_left_empty": "documented in PR body"
+  },
+  "extension_20261016": {
+   "grain": "langlinks integrale (GO ai-01 c.6213886301), sonde llcontinue corrigee",
+   "urls_added": 122,
+   "urls_already_covered": 69,
+   "probe_date": "2026-10-16",
+   "probe": "200 apres redirections, 2 essais, fail-closed (une morte nest jamais ecrite)",
+   "refused": "pk 174 ar/fa/zh : referent Etat (refus es/pt du 2026-10-14 etendu)"
   }
  },
  "urls": {
@@ -3004,6 +3012,372 @@
    "verdict": "alive"
   },
   "https://zh.wikipedia.org/wiki/归结原理": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/حجة_(منطق)": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/برهان_(منطق)": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/逻辑论证": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/نظرية_الحجج": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/نظریه_استدلال": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/證據": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/Example": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/استشهاد": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/استناد": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/參考文獻": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/مصداقية": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/باورپذیری": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/公信力": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/سلطة_(مجتمع)": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/اقتدار": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/权威": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/شهادة_الشهود": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/شهادت_(قانون)": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/口供": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/دليل": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/گواه": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/تدقيق_الحقائق": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/راستی‌آزمایی": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/事實查核": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/دليل_تجريبي": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/شواهد_تجربی": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/经验证据": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/فرضية": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/فرضیه": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/假说": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/نزاهة_(توضيح)": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/بی‌طرفی": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/平等原則": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/التفسير_الفلسفي": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/ذهنیت_و_عینیت_(فلسفه)": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/نصل_هانلون": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/تیغ_هنلون": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/الأخلاق_الواجبة": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/اخلاق_وظیفه‌گرا": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/义务伦理学": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/زبان_حرفه‌ای": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/行話": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/استنكار_الذات": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/ابتزاز_عاطفي": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/情緒勒索": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/اتصال": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/ارتباط": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/沟通": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/حساب_(مهارة)": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/计算能力": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/الحجة_من_القياس": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/类推论证": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/相關不蘊涵因果": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/نظرية_التقدير": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/نظریه_برآورد": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/متغیر_تصادفی_مستقل": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/حساب": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/محاسبه": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/计算": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/اعتبار_(منطق)": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/有效性": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/定理": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/مكمم": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/量化_(数理逻辑)": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/منطق_موجهات": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/پیش‌فرض": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/قياس_استثنائي": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/نفی_تالی": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/برهان_الخلف": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/تعلیق_به_محال": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/歸謬法": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/传统逻辑": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/عقل_(منطق)": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/理智": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/عقل": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/تمييز_تحليلي_تأليفي": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/گزاره_تحلیلی–ترکیبی": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/分析-綜合區別": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/قياس_احتمالي": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/تمثیل_(منطق)": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/類比": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/ذنب_بالتداعي_(مغالطة)": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/ترقيم": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/نشانه‌گذاری_(زبان‌شناسی)": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/标点符号": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/صداقت_روشنفکری": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/真理": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/شفافية_(سلوك)": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/شفافیت_(رفتار)": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/تأطير": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/چارچوب‌بندی_(علوم_اجتماعی)": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/框架_(社會科學)": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/هدف_ذكي": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/معیارهای_اسمارت": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/كونية": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/普世主义": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/كفاءة_التفاعل_بين_الثقافات": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/شایستگی_فرهنگی": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/انحياز_ثقافي": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/تبعیض_فرهنگی": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/文化偏误": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/التواصل_بين_الثقافات": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/跨文化傳播": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/انحياز_استعرافي": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/認知偏誤": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/الحكم_القضائي_الواقف": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/تعلیق_قضاوت": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/إنصات_إيجابي": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/گوش_دادن_فعال": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/積極聆聽": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/انفتاح_ذهني": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/گشودگی_ذهن": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/قرار_بالإجماع": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/تصمیم‌گیری_بر_اساس_اجماع": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/共识决策法": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/نقاش_مجتمعي": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/إدارة_الوقت": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/مدیریت_زمان": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/时间管理": {
+   "verdict": "alive"
+  },
+  "https://fa.wikipedia.org/wiki/اصل_حسن_ظن": {
+   "verdict": "alive"
+  },
+  "https://zh.wikipedia.org/wiki/寬容原則": {
+   "verdict": "alive"
+  },
+  "https://ar.wikipedia.org/wiki/تواصل_لاعنفي": {
    "verdict": "alive"
   }
  }
