@@ -38,6 +38,15 @@ namespace Argumentum.AssetConverter.Tests.Dnn
     /// travers un repli de ligne), insécables avant ; : ! ? de prose (×11). Le détecteur ne voit
     /// que la prose (balises et entités consommées — le CSS inline n'est pas de la prose) et la
     /// chaîne d'identité « SIREN: » est exemptée : parité byte 4 resx (contrat plus fort).
+    ///
+    /// GRAIN CAPITALES fr (pool ai-01 c.6213886301 item 2, 16/10) : recensement dérivé de TOUS
+    /// les tokens majuscules du bloc — 31 mots sans accent / 42 occurrences converties (AFFILIÉES,
+    /// HÉBERGEUR ×4, SOCIÉTÉS ×3, ÉLÉMENT(S) ×5, PRÉCISION, FIABILITÉ, DÉLICTUELLE…) + 3
+    /// prépositions « A » isolées → « À ». Exclusions LUES EN CONTEXTE, déclarées : « TEL » =
+    /// adjectif (« d’un tel dommage »), EXACTITUDE/RESPONSABLE/CONCESSION… = aucun accent en
+    /// français, MARTEL/PARIS/ARGUMENTUM = noms propres, SAS/SIREN = sigles. « INFORME » = participe
+    /// passé → INFORMÉ (le contexte tranche : verbe « informe » sans accent, participe avec).
+    /// Identité byte et gabarit DNN intouchés.
     /// </summary>
     public class DnnLegalMentionsResxGuardTests
     {
@@ -360,6 +369,14 @@ namespace Argumentum.AssetConverter.Tests.Dnn
             System.Text.RegularExpressions.Regex.Matches(
                 haystack, System.Text.RegularExpressions.Regex.Escape(needle)).Count;
 
+        /// <summary>Compteur à frontières de mot (lettres latines + accentuées) — le grain
+        /// capitales l'exige : « ÉLÉMENT » est préfixe de « ÉLÉMENTS », un compteur de
+        /// sous-chaîne lirait 5 au lieu de 2 (mesuré : le premier passage a rougi là-dessus).</summary>
+        private static int CountWord(string haystack, string word) =>
+            System.Text.RegularExpressions.Regex.Matches(
+                haystack,
+                "(?<![A-Za-zÀ-ÿ])" + System.Text.RegularExpressions.Regex.Escape(word) + "(?![A-Za-zÀ-ÿ])").Count;
+
         /// <summary>
         /// Détecteur : liste les ponctuations doubles (; : ! ?) de PROSE non précédées d'une
         /// espace insécable (U+00A0). Balises &lt;…&gt; et entités &amp;…; consommées ; chaînes
@@ -443,6 +460,84 @@ namespace Argumentum.AssetConverter.Tests.Dnn
             value.Should().Contain("\"Linked Sites\"",
                 "CONTRÔLE DE PÉRIMÈTRE : le gabarit DNN garde ses guillemets droits");
         }
+
+        /// <summary>
+        /// GRAIN CAPITALES (pool ai-01 c.6213886301 item 2, 16/10) — recensement dérivé du bloc
+        /// entier : chaque mot majuscule dont l'orthographe française porte un accent doit
+        /// l'avoir. 31 mots / 42 occurrences + 3 prépositions « A » isolées. Les attendus sont
+        /// les comptes MESURÉS post-grain dans la valeur TERMS (⚠️ le « DONNÉES » préexistant
+        /// du fichier vit dans la clé License.Text, hors bloc — compté fichier-entier il
+        /// ferait attendre 2 à tort ; l'invariant reste la disparition des formes sans accent).
+        /// </summary>
+        [Fact]
+        public void FrenchResx_CapitalsSuite_EveryUppercaseWordCarriesItsAccent()
+        {
+            var value = ReadTermsValue(FrenchResx);
+
+            foreach (var (bare, accented, expected) in UppercaseAccentMap)
+            {
+                CountWord(value, bare).Should().Be(0,
+                    "{0} : la forme majuscule sans accent est un reste de gabarit — " +
+                    "en français soigné, les capitales portent leurs accents", bare);
+                CountWord(value, accented).Should().Be(expected,
+                    "{0} : compte mesuré post-grain (préexistant + convertis) — toute divergence " +
+                    "est un retour de gabarit ou une sur-conversion. Frontières de mot : " +
+                    "ÉLÉMENT ⊂ ÉLÉMENTS, un compteur de sous-chaîne lirait 5 au lieu de 2", accented);
+            }
+
+            // Les 3 prépositions isolées : épinglées en phrase (le « A » isolé du français est
+            // toujours la préposition « à », jamais l'article — les 3 contextes ont été lus).
+            value.Should().Contain("LIMITÉE À L’ÉDITEUR",
+                "préposition à en capitales : accord de licence");
+            value.Should().Contain("RELATIF À LA VÉRIFICATION",
+                "préposition à en capitales : consentement relatif");
+            value.Should().Contain("À sa demande, vous",
+                "la préposition ouvrant la clause d'indemnisation (nommée par le dispatch)");
+        }
+
+        /// <summary>
+        /// Contrôle inverse du grain capitales : la boucle de
+        /// <see cref="FrenchResx_CapitalsSuite_EveryUppercaseWordCarriesItsAccent"/> doit VOIR
+        /// une forme sans accent si elle revient — un vert sur le fichier réel ne prouve rien
+        /// sans ce témoin (les asserts sont des Contain/CountOf ordinaires : ce témoin prouve
+        /// que la carte couvre bien les mots qu'elle prétend couvrir).
+        /// </summary>
+        [Fact]
+        public void Witness_CapitalsSuiteMap_FlagsEverySyntheticBareUppercase()
+        {
+            const string synthetic =
+                "PAR L’HEBERGEUR ET LEURS SOCIETES MÈRES OU AFFILIEES, LA PRECISION ET LA " +
+                "FIABILITE, ONT ETE INFORME, DONT BENEFICE ET DONNEES";
+
+            var seen = UppercaseAccentMap
+                .Where(m => synthetic.Contains(m.Bare, StringComparison.Ordinal))
+                .Select(m => m.Bare).ToArray();
+
+            seen.Should().BeEquivalentTo(new[]
+                { "HEBERGEUR", "SOCIETES", "AFFILIEES", "PRECISION", "FIABILITE", "ETE", "INFORME", "BENEFICE", "DONNEES" },
+                "les 9 formes injectées doivent chacune être couvertes par la carte — une " +
+                "absence ici = un mot que la garde ne saurait pas voir revenir");
+        }
+
+        /// <summary>Carte mesurée du grain capitales : (forme sans accent, forme accentuée, compte post-grain).</summary>
+        private static readonly (string Bare, string Accented, int Expected)[] UppercaseAccentMap =
+        {
+            ("ACCEDER", "ACCÉDER", 1), ("AFFILIEES", "AFFILIÉES", 3),
+            ("BENEFICE", "BÉNÉFICE", 1), ("COMPETENT", "COMPÉTENT", 1),
+            ("CONCEDANTS", "CONCÉDANTS", 1), ("CONFIDENTIALITE", "CONFIDENTIALITÉ", 1),
+            ("CREER", "CRÉER", 1), ("DELICTUELLE", "DÉLICTUELLE", 1),
+            ("DEPOSEES", "DÉPOSÉES", 1), ("DISPONIBILITE", "DISPONIBILITÉ", 1),
+            ("DIVISIBILITE", "DIVISIBILITÉ", 1), ("DONNEES", "DONNÉES", 1),
+            ("ELEMENT", "ÉLÉMENT", 2), ("ELEMENTS", "ÉLÉMENTS", 3),
+            ("EMPLOYES", "EMPLOYÉS", 1), ("ETE", "ÉTÉ", 1),
+            ("FIABILITE", "FIABILITÉ", 1), ("HEBERGEUR", "HÉBERGEUR", 4),
+            ("INCAPACITE", "INCAPACITÉ", 1), ("INFORME", "INFORMÉ", 1),
+            ("INTEGRALITE", "INTÉGRALITÉ", 1), ("LIMITEE", "LIMITÉE", 2),
+            ("POSSIBILITE", "POSSIBILITÉ", 1), ("PRECISION", "PRÉCISION", 1),
+            ("PROCEDURE", "PROCÉDURE", 1), ("PROPRIETE", "PROPRIÉTÉ", 1),
+            ("RESILIATION", "RÉSILIATION", 1), ("RESPONSABILITE", "RESPONSABILITÉ", 1),
+            ("SOCIETES", "SOCIÉTÉS", 3), ("VERIFICATION", "VÉRIFICATION", 1),
+        };
 
         /// <summary>
         /// Contrôle inverse : l'instrument doit VOIR une absence. Un resx synthétique portant le
