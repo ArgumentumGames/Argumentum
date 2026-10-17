@@ -52,6 +52,17 @@ namespace Argumentum.AssetConverter.Tests
     /// sonde). Restent vides : pk 52 pt/fa/zh (aucun langlink ; candidat pt:Equanimidade 404 mesuré),
     /// pk 102 ar (aucun langlink). Les 3 refus épinglés fr/es sont RENVERSÉS ci-dessous, motif conservé
     /// en commentaire (« l'exclusion meurt AVEC sa raison »).</para>
+    /// <para><b>Grain langlinks intégral (2026-10-16, GO ai-01 c.6213886301)</b> : la mesure du
+    /// 16/10 matin (« ar/fa/zh : 11-13 dérivables, le reste sans-langlink ») était <b>TRONQUÉE</b> —
+    /// l'API <c>langlinks</c> coupe à 500 liens par requête et la sonde ne suivait pas
+    /// <c>llcontinue</c> ; corrigée, le lot dérivable explose : <b>191 cellules</b> ar/fa/zh
+    /// remplies (70+64+60 moins 3 refus, ci-dessous), chaque URL sondée vivante (200) et
+    /// <b>auditée en épaisseur</b> : 2 pages fines seulement, déclarées (zh:Example 225 o pk 8).
+    /// Le refus éditorial pk 174 est <b>ÉTENDU à ar/fa/zh</b> : la dérivation mécanique y pointait
+    /// دولة_حيادية / بی‌طرفی (روابط بین‌الملل) / 中立國 — l'État, exactement le référent pour
+    /// lequel es/pt sont épinglés vides ; « un lien qui pointe à côté est pire qu'une absence ».
+    /// ⚠️ Les verdicts « sans équivalent ar/zh/fa » du grain du 2026-10-15 sont MORTS avec
+    /// l'instrument qui les a produits — ne pas les citer.</para>
     /// </remarks>
     public class VirtuesLanguageLinkParityTests
     {
@@ -70,10 +81,11 @@ namespace Argumentum.AssetConverter.Tests
         private const int EsLinkFloor = 173;
 
         /// <summary>Grain ar/zh/fa (2026-10-15) : mesuré 72/88/82 avant, 84/96/92 après les 30 fills langlinks ;
-        /// re-curation pk 52/102 (même jour) : 84→85, 96→97, 92→93.</summary>
-        private const int ArLinkFloor = 85;
-        private const int ZhLinkFloor = 97;
-        private const int FaLinkFloor = 93;
+        /// re-curation pk 52/102 (même jour) : 84→85, 96→97, 92→93. Grain langlinks du 2026-10-16
+        /// (sonde corrigée <c>llcontinue</c>, voir remarks) : 85→154, 97→156, 93→156.</summary>
+        private const int ArLinkFloor = 154;
+        private const int ZhLinkFloor = 156;
+        private const int FaLinkFloor = 156;
 
         /// <summary>Grain link_fr (2026-10-15) : mesuré 140 avant, 181 après les 41 fills langlinks ;
         /// re-curation pk 52/102 (même jour) : 181→183.</summary>
@@ -190,6 +202,25 @@ namespace Argumentum.AssetConverter.Tests
                 ("102", "link_ru", "https://ru.wikipedia.org/wiki/Правило_резолюций"),
                 ("102", "link_fa", "https://fa.wikipedia.org/wiki/رزولوشن_(منطق)"),
                 ("102", "link_zh", "https://zh.wikipedia.org/wiki/归结原理"),
+                // Grain langlinks intégral (2026-10-16, sonde llcontinue corrigée) — 191 fills,
+                // sondés vivants (200) ; échantillon épinglé, convention Unicode brut conservée.
+                ("0", "link_ar", "https://ar.wikipedia.org/wiki/حجة_(منطق)"),
+                ("0", "link_fa", "https://fa.wikipedia.org/wiki/برهان_(منطق)"),
+                ("0", "link_zh", "https://zh.wikipedia.org/wiki/逻辑论证"),
+                ("1", "link_ar", "https://ar.wikipedia.org/wiki/نظرية_الحجج"),
+                ("6", "link_zh", "https://zh.wikipedia.org/wiki/證據"),
+                ("10", "link_zh", "https://zh.wikipedia.org/wiki/參考文獻"),
+                ("23", "link_ar", "https://ar.wikipedia.org/wiki/دليل_تجريبي"),
+                ("23", "link_fa", "https://fa.wikipedia.org/wiki/شواهد_تجربی"),
+                ("55", "link_zh", "https://zh.wikipedia.org/wiki/沟通"),
+                ("59", "link_ar", "https://ar.wikipedia.org/wiki/حساب_(مهارة)"),
+                ("63", "link_ar", "https://ar.wikipedia.org/wiki/الحجة_من_القياس"),
+                ("124", "link_zh", "https://zh.wikipedia.org/wiki/三段論"),
+                ("129", "link_zh", "https://zh.wikipedia.org/wiki/理智"),
+                ("190", "link_zh", "https://zh.wikipedia.org/wiki/積極聆聽"),
+                ("205", "link_zh", "https://zh.wikipedia.org/wiki/寬容原則"),
+                ("8", "link_zh", "https://zh.wikipedia.org/wiki/Example"), // page FINE (225 o) :
+                // le langlink mécanique de en:Example — vivante, même référent, déclarée au PR.
             };
             foreach (var (pk, column, url) in pinnedUrls)
             {
@@ -217,6 +248,12 @@ namespace Argumentum.AssetConverter.Tests
                 //   résolution) : la source était une REDIRECTION Synthetic_reasoning vers la distinction
                 //   kantienne, domaine étranger à la résolution unitaire.
                 ("52", "link_pt", "aucun équivalent pt : en:Equanimity sans langlink pt, candidat direct pt:Equanimidade 404 mesuré (2026-10-15)"),
+                // Grain 2026-10-16 — refus ÉTENDU : la sonde corrigée TROUVE des langlinks ar/fa/zh
+                // pour pk 174, mais ils pointent l'État (中性國 = pays neutre), le référent refusé
+                // en es/pt dès le 2026-10-14. La mécanique ne prime pas sur le verdict éditorial.
+                ("174", "link_ar", "دولة_حيادية = un État, pas une personne (refus es/pt étendu)"),
+                ("174", "link_fa", "بی‌طرفی (روابط بین‌الملل) = relations internationales, pas une personne"),
+                ("174", "link_zh", "中立國 = pays neutre, pas une personne"),
             };
             foreach (var (pk, column, reason) in pinnedEmpties)
             {
