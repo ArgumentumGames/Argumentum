@@ -19,7 +19,7 @@
     <value xml:space="preserve">Aceptar petição de amistad</value>
   </data>
   <data name="Add.Text">
-    <value xml:space="preserve">Añadir</value>
+    <value xml:space="preserve">Adicionar</value>
   </data>
   <data name="AdminOnly.Text">
     <value xml:space="preserve">somente Administrador</value>
@@ -34,7 +34,7 @@
     <value xml:space="preserve">&lt; Todos os roles &gt;</value>
   </data>
   <data name="AllUsers.Text">
-    <value xml:space="preserve">Todos os usuarios</value>
+    <value xml:space="preserve">Todos os usuários</value>
   </data>
   <data name="ASSEMBLY_Added.Text">
     <value xml:space="preserve">Ensamblados registrados</value>
@@ -169,7 +169,7 @@
     <value xml:space="preserve">Pulse para mostrar a ayuda acerca de página</value>
   </data>
   <data name="cmdHelp.Text">
-    <value xml:space="preserve">Ayuda</value>
+    <value xml:space="preserve">Ajuda</value>
   </data>
   <data name="cmdNext.Help">
     <value xml:space="preserve">Pulse para ir a página seguinte</value>
@@ -382,7 +382,7 @@
     <value xml:space="preserve">Este módulo se comparte com outros portais do mesmo grupo. Si elimina esta instância se borrarán tambien as instâncias compartidas em outros portales. Para ver em que portais se comparte o módulo, vá para Configuração &gt; Configuração do módulo &gt; Agregado a as páginas. Está seguro que quer continuar e eliminar este módulo e todas as instâncias compartidas?</value>
   </data>
   <data name="DeletetUser.Text">
-    <value xml:space="preserve">Está seguro que quer eliminar este usuario?</value>
+    <value xml:space="preserve">Tem certeza de que deseja excluir este usuário?</value>
   </data>
   <data name="DeleteUploadFolder.Error">
     <value xml:space="preserve">Error eliminando pasta previamente cargada</value>
@@ -457,7 +457,7 @@
     <value xml:space="preserve">Selecione uma pasta</value>
   </data>
   <data name="DropDownList.SelectUserDefaultText">
-    <value xml:space="preserve">Selecione um usuario</value>
+    <value xml:space="preserve">Selecione um usuário</value>
   </data>
   <data name="DropDownList.SelectWebPageDefaultText">
     <value xml:space="preserve">Selecione uma página web</value>
@@ -769,10 +769,10 @@
     <value xml:space="preserve">Correto</value>
   </data>
   <data name="Help.Text">
-    <value xml:space="preserve">Ayuda</value>
+    <value xml:space="preserve">Ajuda</value>
   </data>
   <data name="Home.Text">
-    <value xml:space="preserve">Inicio</value>
+    <value xml:space="preserve">Início</value>
   </data>
   <data name="HostRootFolder.Name">
     <value xml:space="preserve">Raíz sistema</value>
@@ -1144,7 +1144,7 @@
     <value xml:space="preserve">Módulo caducado - {0}</value>
   </data>
   <data name="ModuleHelp.Text">
-    <value xml:space="preserve">Ayuda do módulo</value>
+    <value xml:space="preserve">Ajuda do módulo</value>
   </data>
   <data name="ModuleLoad.Error">
     <value xml:space="preserve">Error inesperado cargando módulo.</value>
@@ -1345,7 +1345,7 @@
     <value xml:space="preserve">Não especificado</value>
   </data>
   <data name="PermissionUserHeader.Text">
-    <value xml:space="preserve">Usuario</value>
+    <value xml:space="preserve">Usuário</value>
   </data>
   <data name="PortalRoot.Text">
     <value xml:space="preserve">Raíz do portal</value>
@@ -1671,7 +1671,7 @@
     <value xml:space="preserve">Verdadero</value>
   </data>
   <data name="UnauthenticatedUsers.Text">
-    <value xml:space="preserve">Usuarios não autenticados</value>
+    <value xml:space="preserve">Usuários não autenticados</value>
   </data>
   <data name="Unauthorized.Text">
     <value xml:space="preserve">Desautorizados</value>
@@ -1731,13 +1731,13 @@
     <value xml:space="preserve">UrlProvider desregistrado</value>
   </data>
   <data name="User.Text">
-    <value xml:space="preserve">Usuario:</value>
+    <value xml:space="preserve">Usuário:</value>
   </data>
   <data name="UserDeleteError.Text">
     <value xml:space="preserve">Error eliminando o usuário</value>
   </data>
   <data name="UserEmailExists.Text">
-    <value xml:space="preserve">Já existe um usuario com a conta de correo especificada. Regístrese com outra conta de correo o bien utilice o recordatorio de contrasenha com su conta de correo atual.</value>
+    <value xml:space="preserve">Já existe um usuário com este endereço de e-mail. Registre-se com outro endereço de e-mail ou solicite um lembrete de senha usando seu endereço de e-mail atual.</value>
   </data>
   <data name="UserFolderTitle.Text">
     <value xml:space="preserve">Mis Arquivos</value>
@@ -1746,7 +1746,7 @@
     <value xml:space="preserve">Nome do usuário:</value>
   </data>
   <data name="UserNameExists.Text">
-    <value xml:space="preserve">Já existe um usuario com este mesmo nome. Regístrese novamente utilizando outro nome.</value>
+    <value xml:space="preserve">Já existe um usuário com este nome. Registre-se novamente usando outro nome de usuário.</value>
   </data>
   <data name="UserRejected.Text">
     <value xml:space="preserve">O registro do usuário foi sido rechazado. Póngase em contato com o administrador da web para obtener más informação.</value>
@@ -1789,7 +1789,7 @@
   </data>
   <data name="Wizard.Success.SuccessDetail">
     <value xml:space="preserve">&lt;p&gt;
-¡Enhorabuena! O asistente foi finalizado com éxito.
+Parabéns! O assistente foi concluído com êxito.
 &lt;/p&gt;</value>
   </data>
   <data name="Wizard.Success.SuccessTitle">
@@ -1856,10 +1856,10 @@
     <value xml:space="preserve">Actualizado por {1}, versão {2} - Data: {3}</value>
   </data>
   <data name="Year.Text">
-    <value xml:space="preserve">Año</value>
+    <value xml:space="preserve">Ano</value>
   </data>
   <data name="Years.Text">
-    <value xml:space="preserve">Años</value>
+    <value xml:space="preserve">Anos</value>
   </data>
   <data name="YellowWarning.Text">
     <value xml:space="preserve">Aviso</value>
