@@ -40,7 +40,7 @@
     <value xml:space="preserve">Contato</value>
   </data>
   <data name="//Home.String">
-    <value xml:space="preserve">Inicio</value>
+    <value xml:space="preserve">Início</value>
   </data>
   <data name="//Host.String">
     <value xml:space="preserve">Sistema</value>
@@ -250,15 +250,15 @@
     <value xml:space="preserve">Editar módulo</value>
   </data>
   <data name="EMAIL_AFFILIATE_NOTIFICATION_BODY.Text">
-    <value xml:space="preserve">Apreciado [Custom:0],
+    <value xml:space="preserve">Prezado(a) [Custom:0],
 
-Su conta do programa de afiliados em [Portal:PortalName] foi sido criada.
+Sua conta no programa de afiliados de [Portal:PortalName] foi criada.
 
-Para começar a recibir ingresos, use a seguinte URL para enlazar com nuestro sitio:
+Para começar a ganhar recompensas, use a seguinte URL para criar um link para o nosso site:
 
 [Custom:1]
 
-Gracias,
+Obrigado,
 [Portal:PortalName]</value>
   </data>
   <data name="EMAIL_AFFILIATE_NOTIFICATION_SUBJECT.Text">
@@ -561,65 +561,68 @@ Operação completada:  [Custom:3]
 &lt;/table&gt;&lt;/div&gt;</value>
   </data>
   <data name="EMAIL_PASSWORD_REMINDER_BODY.Text" lastModified="2016-11-29 04:08:40">
-    <value xml:space="preserve">Apreciado [User:DisplayName],
+    <value xml:space="preserve">Prezado(a) [User:DisplayName],
 
-Foi solicitado o envio do enlace para reiniciar a contrasenha em [Portal:PortalName].
+Você solicitou a redefinição de sua senha em [Portal:PortalName].
 
-Pode iniciar a sesión utilizando a seguinte informação:
+Você pode iniciar a sessão utilizando as seguintes informações:
 
-Sitio web: [Portal:URL]
-Usuario: [User:UserName]
+Endereço do site: [Portal:URL]
+Usuário: [User:UserName]
 
-Enlace para reiniciar a contrasenha:
+Link para redefinir a senha:
 [Portal:PASSWORDREMINDERURL]?ctl=PasswordReset&amp;resetToken=[Membership:PasswordResetToken] 
 
-Atentamente,
+Atenciosamente,
 [Portal:PortalName]
 
-*Si não foi solicitado esta informação, elimine este mensagem e não o tenga em conta.</value>
+*Observação: se você não solicitou esta redefinição de senha, ignore esta mensagem.</value>
   </data>
   <data name="EMAIL_PASSWORD_REMINDER_SUBJECT.Text">
-    <value xml:space="preserve">[Portal:PortalName] Recordatorio de contrasenha</value>
+    <value xml:space="preserve">[Portal:PortalName] Lembrete de senha</value>
   </data>
   <data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_BODY.Text" lastModified="2015-09-12 18:28:09">
-    <value xml:space="preserve">Apreciado [User:DisplayName],
+    <value xml:space="preserve">Prezado(a) [User:DisplayName],
 
-Foi solicitado uma petição de recordatorio/cambio de contrasenha em [Portal:PortalName] mas su conta está pendiente de aprobação.
+Você solicitou a redefinição de sua senha em [Portal:PortalName], mas sua conta está pendente de aprovação.
 
-Podrá restablecer su contrasenha quando se apruebe su conta.
+A senha poderá ser redefinida após a aprovação da conta.
 
-Atentamente,
+Atenciosamente,
 [Portal:PortalName]
 
-*Si não foi solicitado esta informação, elimine este mensagem e não o tenga em conta.
+*Observação: se você não solicitou esta redefinição de senha, ignore esta mensagem.
 </value>
   </data>
   <data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_SUBJECT.Text" lastModified="2015-09-12 18:28:09">
-    <value xml:space="preserve">[Portal:PortalName] Recordatorio de contrasenha</value>
+    <value xml:space="preserve">[Portal:PortalName] Lembrete de senha</value>
   </data>
   <data name="EMAIL_PASSWORD_UPDATED_BODY.Text">
-    <value xml:space="preserve">Apreciado [User:DisplayName],
+    <value xml:space="preserve">Prezado(a) [User:DisplayName],
 
-Su contrasenha em  [Portal:PortalName] foi cambiado.
+Sua senha em [Portal:PortalName] foi alterada.
 
-Pode ponerse em contato com o administrador não email [Portal:Email]
+Você pode entrar em contato com o administrador do site pelo e-mail [Portal:Email]
 
-Atentamente,
+Atenciosamente,
 [Portal:PortalName]</value>
   </data>
   <data name="EMAIL_PASSWORD_UPDATED_SUBJECT.Text">
-    <value xml:space="preserve">[Portal:PortalName] Contrasenha actualizada</value>
+    <value xml:space="preserve">[Portal:PortalName] Senha atualizada</value>
   </data>
   <data name="EMAIL_PORTAL_SIGNUP_BODY.Text">
-    <value xml:space="preserve">Apreciado [User:DisplayName],
+    <value xml:space="preserve">Prezado(a) [User:DisplayName],
 
-Su web foi creado corretamente. Lea detenidamente a seguinte informação e asegúrese de conservar a buen recaudo este mensagem para futuras consultas.
+Seu site foi criado com sucesso. Leia com atenção as informações a seguir e guarde esta mensagem em local seguro para consultas futuras.
 
-Direção da web: [Portal:URL]
-Usuario: [Membership:UserName]
+Endereço do site: [Portal:URL]
+Usuário: [Membership:UserName]
 Código de verificação: [User:VerificationCode]
 
-Atentamente,
+Aproveite para visitar o site, revisar seu conteúdo e desfrutar de seus recursos.
+
+Obrigado pelo seu apoio...
+
 [Host:HostTitle]
 	</value>
   </data>
@@ -627,27 +630,27 @@ Atentamente,
     <value xml:space="preserve">[Host:HostTitle] - Creação de portal</value>
   </data>
   <data name="EMAIL_PROFILE_UPDATED_BODY.Text">
-    <value xml:space="preserve">Apreciado [User:DisplayName],
+    <value xml:space="preserve">Prezado(a) [User:DisplayName],
 
-Su perfil em [Portal:PortalName] foi sido actualizado corretamente.
+Seu perfil em [Portal:PortalName] foi atualizado com sucesso.
 
-Atentamente,
+Atenciosamente,
 [Portal:PortalName]</value>
   </data>
   <data name="EMAIL_PROFILE_UPDATED_SUBJECT.Text">
     <value xml:space="preserve">[Portal:PortalName] - Notificação de actualização de perfil</value>
   </data>
   <data name="EMAIL_ROLE_ASSIGNMENT_BODY.Text">
-    <value xml:space="preserve">Apreciado [User:DisplayName],
+    <value xml:space="preserve">Prezado(a) [User:DisplayName],
 
-Su conta do usuário em [Portal:PortalName] foi sido actualizada para incluir o Acesso ao seguinte rol de seguridade:
+Sua conta de usuário em [Portal:PortalName] foi atualizada para incluir acesso à seguinte função de segurança:
 
-Rol: [Custom:0]
-Descripção: [Custom:1]
-Data efectiva: [Custom:2]
+Função: [Custom:0]
+Descrição: [Custom:1]
+Data efetiva: [Custom:2]
 Data de expiração: [Custom:3]
 
-Atentamente,
+Obrigado pelo seu apoio...
 [Portal:PortalName]
 </value>
   </data>
@@ -655,14 +658,14 @@ Atentamente,
     <value xml:space="preserve">[Portal:PortalName]  - Actualização de conta do usuário</value>
   </data>
   <data name="EMAIL_ROLE_UNASSIGNMENT_BODY.Text">
-    <value xml:space="preserve">Apreciado [User:DisplayName],
+    <value xml:space="preserve">Prezado(a) [User:DisplayName],
 
-Su conta do usuário em [Portal:PortalName] foi sido actualizada para restringir o Acesso ao seguinte rol de seguridade:
+Sua conta de usuário em [Portal:PortalName] foi atualizada para restringir o acesso à seguinte função de segurança:
 
-Rol: [Custom:0]
-Descripção: [Custom:1]
+Função: [Custom:0]
+Descrição: [Custom:1]
 
-Atentamente,
+Obrigado pelo seu apoio...
 [Portal:PortalName]
 </value>
   </data>
@@ -670,16 +673,16 @@ Atentamente,
     <value xml:space="preserve">[Portal:PortalName] - Actualização de conta do usuário</value>
   </data>
   <data name="EMAIL_ROLE_UPDATE_BODY.Text">
-    <value xml:space="preserve">Apreciado [User:DisplayName],
+    <value xml:space="preserve">Prezado(a) [User:DisplayName],
 
-Su conta do usuário em [Portal:PortalName] foi sido actualizada para modificar o Acesso ao seguinte rol de seguridade:
+Sua conta de usuário em [Portal:PortalName] foi atualizada para modificar o acesso à seguinte função de segurança:
 
-Rol: [Custom:0]
-Descripção: [Custom:1]
-Data efectiva: [Custom:2]
+Função: [Custom:0]
+Descrição: [Custom:1]
+Data efetiva: [Custom:2]
 Data de expiração: [Custom:3]
 
-Atentamente,
+Obrigado pelo seu apoio...
 [Portal:PortalName]
 </value>
   </data>
@@ -699,23 +702,24 @@ Atentamente,
     <value xml:space="preserve">Novo mensagem de {0}</value>
   </data>
   <data name="EMAIL_USER_AUTHORIZED_BODY.Text" lastModified="2016-11-29 02:51:26">
-    <value xml:space="preserve">Apreciado [User:DisplayName],
+    <value xml:space="preserve">Prezado(a) [User:DisplayName],
 
-Gracias por registrarse em [Portal:PortalName]. Su registro foi sido aprobado e su conta foi activado.
+Obrigado por se registrar em [Portal:PortalName]. Seu registro foi aprovado e sua conta está ativa.
 
-Direção da web: [Portal:URL]
-Usuario: [User:UserName]
+Endereço do site: [Portal:URL]
+Usuário: [User:UserName]
 
-Atentamente,
+Obrigado pelo seu apoio.
+
 [Portal:PortalName]</value>
   </data>
   <data name="EMAIL_USER_AUTHORIZED_SUBJECT.Text" lastModified="2016-11-29 01:43:23">
-    <value xml:space="preserve">O registro para [Portal:URL] foi sido aprobado</value>
+    <value xml:space="preserve">Seu registro para [Portal:URL] foi aprovado</value>
   </data>
   <data name="EMAIL_USER_LOCKOUT_BODY.Text">
-    <value xml:space="preserve">foi intentado acceder a uma conta do usuário bloqueada (Usuario: [Custom:0] ) o [Date:Current]. 
+    <value xml:space="preserve">Uma tentativa de acesso a uma conta de usuário bloqueada foi detectada (Usuário: [Custom:0]) em [Date:Current]. Convém investigar o assunto...
 
-Atentamente,
+Atenciosamente,
 [Portal:PortalName]
 </value>
   </data>
@@ -732,16 +736,17 @@ Email: [User:Email]
     <value xml:space="preserve">[Portal:PortalName] - Novo registro do usuário</value>
   </data>
   <data name="EMAIL_USER_REGISTRATION_PRIVATE_BODY.Text">
-    <value xml:space="preserve">Apreciado [User:DisplayName],
+    <value xml:space="preserve">Prezado(a) [User:DisplayName],
 
-Gracias por registrarse em [Portal:PortalName]. Lea detenidamente a seguinte informação e asegúrese de conservar a buen recaudo este mensagem para futuras consultas.
+Obrigado por se registrar em [Portal:PortalName]. Leia com atenção as informações a seguir e guarde esta mensagem em local seguro para consultas futuras.
 
-Direção da web: [Portal:URL]
-Usuario: [User:UserName]
+Endereço do site: [Portal:URL]
+Usuário: [User:UserName]
 
-Os detalles de su conta serán revisadados pelo Administrador do portal e recibirá uma notificação quando se ative su conta.
+Os dados da sua conta serão revisados pelo administrador do site e você receberá uma notificação quando a conta for ativada.
 
-Atentamente,
+Obrigado pelo seu apoio...
+
 [Portal:PortalName]
 </value>
   </data>
@@ -749,53 +754,52 @@ Atentamente,
     <value xml:space="preserve">[Portal:PortalName] - Novo registro do usuário</value>
   </data>
   <data name="EMAIL_USER_REGISTRATION_PUBLIC_BODY.Text">
-    <value xml:space="preserve">Apreciado [User:DisplayName],
+    <value xml:space="preserve">Prezado(a) [User:DisplayName],
 
-Le comunicamos que foi sido añadido como usuario em  [Portal:PortalName]. Lea detenidamente a seguinte informação e asegúrese de conservar a buen recaudo este mensagem para futuras consultas.
+Temos o prazer de informar que você foi adicionado como usuário registrado em [Portal:PortalName]. Leia com atenção as informações a seguir e guarde esta mensagem em local seguro para consultas futuras.
 
-Direção da web: [Portal:URL]
-Usuario: [User:UserName]
+Endereço do site: [Portal:URL]
+Usuário: [User:UserName]
 
-Atentamente,
-[Portal:PortalName]
-</value>
+Atenciosamente,
+[Portal:PortalName]</value>
   </data>
   <data name="EMAIL_USER_REGISTRATION_PUBLIC_SUBJECT.Text">
     <value xml:space="preserve">[Portal:PortalName] - Novo registro do usuário</value>
   </data>
   <data name="EMAIL_USER_REGISTRATION_VERIFIED_BODY.Text">
-    <value xml:space="preserve">Apreciado [User:DisplayName],
+    <value xml:space="preserve">Prezado(a) [User:DisplayName],
 
-Le comunicamos que foi sido añadido como usuario registrado em [Portal:PortalName]. Lea detenidamente a seguinte informação e asegúrese de conservar a buen recaudo este mensagem para futuras consultas.
+Temos o prazer de informar que você foi adicionado como usuário registrado em [Portal:PortalName]. Leia com atenção as informações a seguir e guarde esta mensagem em local seguro para consultas futuras.
 
-Direção da web: [Portal:URL]
-Usuario: [User:UserName]
+Endereço do site: [Portal:URL]
+Usuário: [User:UserName]
 
-Pode utilizar o seguinte enlace para verificar su conta:
+Você pode usar o seguinte link para concluir seu registro verificado:
 
 http://[Portal:URL]/default.aspx?ctl=Login&amp;username=[Custom:0]&amp;verificationcode=[Custom:1]
 
-Atentamente,
+Atenciosamente,
 [Portal:PortalName]</value>
   </data>
   <data name="EMAIL_USER_REGISTRATION_VERIFIED_SUBJECT.Text">
     <value xml:space="preserve">[Portal:PortalName] - Novo registro do usuário</value>
   </data>
   <data name="EMAIL_USER_UNAUTHORIZED_BODY.Text" lastModified="2017-04-28 05:16:28">
-    <value xml:space="preserve">Apreciado [User:DisplayName],
+    <value xml:space="preserve">Prezado(a) [User:DisplayName],
 
-Su conta em [Portal:PortalName] foi sido desautorizada.
+Sua conta em [Portal:PortalName] foi desautorizada.
 
-Direção da web: [Portal:URL]
-Usuario: [User:UserName]
+Endereço do site: [Portal:URL]
+Usuário: [User:UserName]
 
-Si tem alguna consulta, póngase em contato com o administrador em [Portal:Email
+Se tiver alguma dúvida, entre em contato com o administrador em [Portal:Email]
 
-Atentamente,
+Atenciosamente,
 [Portal:PortalName]</value>
   </data>
   <data name="EMAIL_USER_UNAUTHORIZED_SUBJECT.Text" lastModified="2017-04-28 05:16:28">
-    <value xml:space="preserve">Su conta foi sido desautorizada em [Portal:URL]</value>
+    <value xml:space="preserve">Sua conta foi desautorizada em [Portal:URL]</value>
   </data>
   <data name="EMAIL_USER_UNREGISTER_BODY.Text">
     <value xml:space="preserve">Data: [Date:Current]
@@ -815,20 +819,20 @@ Email: [User:Email]
     <value xml:space="preserve">[Portal:PortalName] - Cancelação de registro</value>
   </data>
   <data name="EMAIL_USER_UPDATED_OWN_PASSWORD_BODY.Text">
-    <value xml:space="preserve">Apreciado [User:DisplayName],
+    <value xml:space="preserve">Prezado(a) [User:DisplayName],
 
-Su contrasenha em [Portal:PortalName] foi cambiado.
+Você alterou sua senha em [Portal:PortalName].
 
-Pode iniciar a sesión utilizando a seguinte informação:
+Você pode iniciar a sessão utilizando as seguintes informações:
 
-Direção da web: [Portal:URL]
-Usuario:   [User:Username]
+Endereço do site: [Portal:URL]
+Usuário:   [User:Username]
 
-Atentamente,
+Atenciosamente,
 [Portal:PortalName]</value>
   </data>
   <data name="EMAIL_USER_UPDATED_OWN_PASSWORD_SUBJECT.Text">
-    <value xml:space="preserve">[Portal:PortalName] Contrasenha actualizada</value>
+    <value xml:space="preserve">[Portal:PortalName] Senha atualizada</value>
   </data>
   <data name="EMAIL_VENDOR_REGISTRATION_ADMINISTRATOR_BODY.Text">
     <value xml:space="preserve">Data: [Custom:0]
@@ -910,10 +914,10 @@ SOFTWARE.&lt;/p&gt;</value>
     <value xml:space="preserve">Registra o usuário, data e hora de cada clic</value>
   </data>
   <data name="LogEnd.Text">
-    <value xml:space="preserve">Inicio </value>
+    <value xml:space="preserve">Final </value>
   </data>
   <data name="LogStart.Text">
-    <value xml:space="preserve">Final </value>
+    <value xml:space="preserve">Início </value>
   </data>
   <data name="Manage.Text">
     <value xml:space="preserve">Administrar</value>
@@ -1226,7 +1230,7 @@ SIREN: 922020276&lt;br&gt;&lt;/div&gt;
     <value xml:space="preserve">Administrador</value>
   </data>
   <data name="ModuleHelp.Action">
-    <value xml:space="preserve">Ayuda</value>
+    <value xml:space="preserve">Ajuda</value>
   </data>
   <data name="ModulePermissions.Action">
     <value xml:space="preserve">Permissões</value>
@@ -1268,13 +1272,13 @@ SIREN: 922020276&lt;br&gt;&lt;/div&gt;
     <value xml:space="preserve">Não hubo errores durante o envío.</value>
   </data>
   <data name="NoLoginControl.Text">
-    <value xml:space="preserve">Foi sido redireccionado a esta página de inicio padrão porque a página de inicio para este sitio web não contém um módulo DotNetNuke correto de inicio de sesión, o as permissões não están corretamente configurados.</value>
+    <value xml:space="preserve">Você foi redirecionado para esta página de login padrão porque a página de login definida para este site não contém um módulo de login DNN válido ou as permissões não estão configuradas corretamente.</value>
   </data>
   <data name="NoSitesForThisInstallation.Error" lastModified="2016-03-16 14:34:37">
     <value xml:space="preserve">Não há nenhum sitio nesta instalação.</value>
   </data>
   <data name="OnlineHelp.Action">
-    <value xml:space="preserve">Ayuda em línea</value>
+    <value xml:space="preserve">Ajuda online</value>
   </data>
   <data name="PortalLinks.Text">
     <value xml:space="preserve">Enlaces do portal</value>
