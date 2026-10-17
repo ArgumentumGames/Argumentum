@@ -45,7 +45,11 @@ namespace Argumentum.AssetConverter.Tests.Dnn
     /// prépositions « A » isolées → « À ». Exclusions LUES EN CONTEXTE, déclarées : « TEL » =
     /// adjectif (« d’un tel dommage »), EXACTITUDE/RESPONSABLE/CONCESSION… = aucun accent en
     /// français, MARTEL/PARIS/ARGUMENTUM = noms propres, SAS/SIREN = sigles. « INFORME » = participe
-    /// passé → INFORMÉ (le contexte tranche : verbe « informe » sans accent, participe avec).
+    /// passé → INFORMÉ (le contexte tranche : verbe « informe » sans accent, participe avec) ;
+    /// SUITE 2 (17/10) : accord pluriel → INFORMÉS (verbe ONT), + RÉCLAMATION (balayage
+    /// dictionnaire externe — 27 autres candidats lus en contexte = homographes exclus :
+    /// OU conjonction ×12, MAIS, SUR, EXPLICITE adj., APPLIQUE verbe, MARQUES/MARCHANDE/
+    /// USAGE/TIERCES/CADRE/TENUS noms, DE/DES/DU/LA/LES/NE mots-outils).
     /// Identité byte et gabarit DNN intouchés.
     /// </summary>
     public class DnnLegalMentionsResxGuardTests
@@ -464,7 +468,11 @@ namespace Argumentum.AssetConverter.Tests.Dnn
         /// <summary>
         /// GRAIN CAPITALES (pool ai-01 c.6213886301 item 2, 16/10) — recensement dérivé du bloc
         /// entier : chaque mot majuscule dont l'orthographe française porte un accent doit
-        /// l'avoir. 31 mots / 42 occurrences + 3 prépositions « A » isolées. Les attendus sont
+        /// l'avoir. 31 mots / 42 occurrences + 3 prépositions « A » isolées. SUITE 2 (17/10) :
+        /// + RÉCLAMATION (l'oubli du classement manuel, attrapé par le balayage dictionnaire
+        /// EXTERNE — le lexique tiré du resx seul ne contient pas « réclamation ») ; INFORMÉ
+        /// singulier → 0 (l'occurrence est devenue INFORMÉS, accord porté par son propre fait).
+        /// Les attendus sont
         /// les comptes MESURÉS post-grain dans la valeur TERMS (⚠️ le « DONNÉES » préexistant
         /// du fichier vit dans la clé License.Text, hors bloc — compté fichier-entier il
         /// ferait attendre 2 à tort ; l'invariant reste la disparition des formes sans accent).
@@ -496,6 +504,27 @@ namespace Argumentum.AssetConverter.Tests.Dnn
         }
 
         /// <summary>
+        /// SUITE 2 (17/10, ai-01 relit le diff de #1892) : accord du participe. Le bloc portait
+        /// « L'ÉDITEUR DU SITE, OU L'HÉBERGEUR ONT ÉTÉ INFORMÉ » — singulier derrière le verbe
+        /// pluriel ONT régi par le sujet coordonné. L'arbitrage aligne le participle :
+        /// INFORMÉS. (Un dictionnaire ne voit pas cet accord : la carte ci-dessus attend
+        /// INFORMÉ singulier = 0 — c'est CE fait qui porte la raison.)
+        /// ⚠️ ancré sur « ÉTÉ INFORMÉS » : le fichier brut porte un saut de ligne entre
+        /// ONT et ÉTÉ, un Contains("ONT ÉTÉ…") serait faux-négatif de fabrication.
+        /// </summary>
+        [Fact]
+        public void FrenchResx_Informes_AgreesWithPluralVerb()
+        {
+            var value = ReadTermsValue(FrenchResx);
+
+            value.Should().Contain("ÉTÉ INFORMÉS DE LA POSSIBILITÉ",
+                "sujet coordonné + verbe pluriel (ONT) ⇒ participe pluriel INFORMÉS — " +
+                "accord nommé par ai-01 au diff de #1892");
+            CountWord(value, "INFORMÉ").Should().Be(0,
+                "le singulier ne survit nulle part : sa seule occurrence est devenue INFORMÉS");
+        }
+
+        /// <summary>
         /// Contrôle inverse du grain capitales : la boucle de
         /// <see cref="FrenchResx_CapitalsSuite_EveryUppercaseWordCarriesItsAccent"/> doit VOIR
         /// une forme sans accent si elle revient — un vert sur le fichier réel ne prouve rien
@@ -507,16 +536,17 @@ namespace Argumentum.AssetConverter.Tests.Dnn
         {
             const string synthetic =
                 "PAR L’HEBERGEUR ET LEURS SOCIETES MÈRES OU AFFILIEES, LA PRECISION ET LA " +
-                "FIABILITE, ONT ETE INFORME, DONT BENEFICE ET DONNEES";
+                "FIABILITE, ONT ETE INFORME, DONT BENEFICE ET DONNEES, PROCEDURE DE RECLAMATION";
 
             var seen = UppercaseAccentMap
                 .Where(m => synthetic.Contains(m.Bare, StringComparison.Ordinal))
                 .Select(m => m.Bare).ToArray();
 
             seen.Should().BeEquivalentTo(new[]
-                { "HEBERGEUR", "SOCIETES", "AFFILIEES", "PRECISION", "FIABILITE", "ETE", "INFORME", "BENEFICE", "DONNEES" },
-                "les 9 formes injectées doivent chacune être couvertes par la carte — une " +
-                "absence ici = un mot que la garde ne saurait pas voir revenir");
+                { "HEBERGEUR", "SOCIETES", "AFFILIEES", "PRECISION", "FIABILITE", "ETE", "INFORME", "BENEFICE", "DONNEES", "PROCEDURE", "RECLAMATION" },
+                "les 11 formes injectées doivent chacune être couvertes par la carte — une " +
+                "absence ici = un mot que la garde ne saurait pas voir revenir. RECLAMATION : " +
+                "l'oubli nommé par ai-01 au diff de #1892 (suite 2, 17/10)");
         }
 
         /// <summary>Carte mesurée du grain capitales : (forme sans accent, forme accentuée, compte post-grain).</summary>
@@ -531,10 +561,11 @@ namespace Argumentum.AssetConverter.Tests.Dnn
             ("ELEMENT", "ÉLÉMENT", 2), ("ELEMENTS", "ÉLÉMENTS", 3),
             ("EMPLOYES", "EMPLOYÉS", 1), ("ETE", "ÉTÉ", 1),
             ("FIABILITE", "FIABILITÉ", 1), ("HEBERGEUR", "HÉBERGEUR", 4),
-            ("INCAPACITE", "INCAPACITÉ", 1), ("INFORME", "INFORMÉ", 1),
+            ("INCAPACITE", "INCAPACITÉ", 1), ("INFORME", "INFORMÉ", 0),
             ("INTEGRALITE", "INTÉGRALITÉ", 1), ("LIMITEE", "LIMITÉE", 2),
             ("POSSIBILITE", "POSSIBILITÉ", 1), ("PRECISION", "PRÉCISION", 1),
             ("PROCEDURE", "PROCÉDURE", 1), ("PROPRIETE", "PROPRIÉTÉ", 1),
+            ("RECLAMATION", "RÉCLAMATION", 1),
             ("RESILIATION", "RÉSILIATION", 1), ("RESPONSABILITE", "RESPONSABILITÉ", 1),
             ("SOCIETES", "SOCIÉTÉS", 3), ("VERIFICATION", "VÉRIFICATION", 1),
         };
