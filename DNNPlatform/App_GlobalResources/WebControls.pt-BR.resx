@@ -37,7 +37,7 @@
     <value xml:space="preserve">Mínimo {0} caracteres especiales</value>
   </data>
   <data name="CriteriaValidationExpression.Text" lastModified="2015-12-28 08:58:50">
-    <value xml:space="preserve">Expresión de validação:m {0}</value>
+    <value xml:space="preserve">Expressão de validação: {0}</value>
   </data>
   <data name="FieldSuffix.Text">
     <value xml:space="preserve">: </value>
@@ -55,19 +55,19 @@
     <value xml:space="preserve">Descomprimir Arquivos Zip</value>
   </data>
   <data name="FileUpload.DragAndDropAreaTitle.Text">
-    <value xml:space="preserve">Arrastre Arquivos aquí o clique para explorar</value>
+    <value xml:space="preserve">Arraste arquivos aqui ou clique para procurar</value>
   </data>
   <data name="FileUpload.EmptyFileUpload.Error">
     <value xml:space="preserve">Su navegador não suporta a carga de Arquivos vazia</value>
   </data>
   <data name="FileUpload.ErrorDialogTitle.Text">
-    <value xml:space="preserve">Error</value>
+    <value xml:space="preserve">Erro</value>
   </data>
   <data name="FileUpload.FileAlreadyExists.Error">
     <value xml:space="preserve">O arquivo que quiere cargar já existe nesta pasta</value>
   </data>
   <data name="FileUpload.FileIsTooLarge.Error">
-    <value xml:space="preserve">Tamaño de Arquivo maior que {0}</value>
+    <value xml:space="preserve">Tamanho de arquivo maior que {0}</value>
   </data>
   <data name="FileUpload.FileUploadCancelled.Error">
     <value xml:space="preserve">Carga cancelada</value>
@@ -88,16 +88,16 @@
     <value xml:space="preserve">Reemplazar</value>
   </data>
   <data name="FileUpload.Title.Text">
-    <value xml:space="preserve">Cargar Arquivos</value>
+    <value xml:space="preserve">Carregar Arquivos</value>
   </data>
   <data name="FileUpload.TooManyFiles.Error">
-    <value xml:space="preserve">Não pode cargar más de {0} Arquivo(s) a vez.</value>
+    <value xml:space="preserve">Não é possível carregar mais de {0} arquivo(s) por vez.</value>
   </data>
   <data name="FileUpload.UploadFileMethod.Text">
-    <value xml:space="preserve">Cargar Arquivo</value>
+    <value xml:space="preserve">Carregar Arquivo</value>
   </data>
   <data name="FileUpload.UploadFromWebButton.Text">
-    <value xml:space="preserve">Cargar</value>
+    <value xml:space="preserve">Carregar</value>
   </data>
   <data name="FileUpload.UploadFromWebMethod.Text">
     <value xml:space="preserve">Desde URL</value>
@@ -106,7 +106,7 @@
     <value xml:space="preserve">Carga de Arquivo detenida</value>
   </data>
   <data name="FileUpload.UploadToFolderLabel.Text">
-    <value xml:space="preserve">Cargar a:</value>
+    <value xml:space="preserve">Carregar para:</value>
   </data>
   <data name="FileUpload.UrlTooltip.Text">
     <value xml:space="preserve">Introduzca a URL do recurso (por ejemplo http://dominio.com/imagenes/imagen.png)</value>
@@ -157,7 +157,7 @@
     <value xml:space="preserve">Elementos &lt;strong&gt;1&lt;/strong&gt;-&lt;strong&gt;{0}&lt;/strong&gt; de &lt;strong&gt;{1}&lt;/strong&gt;</value>
   </data>
   <data name="Upload.Text">
-    <value xml:space="preserve">Cargar Arquivo</value>
+    <value xml:space="preserve">Carregar Arquivo</value>
   </data>
   <data name="UploadError.Text">
     <value xml:space="preserve">O tipo de Arquivo {1} não é válido em este contexto. Os tipos de Arquivo válidos son: {0}</value>

@@ -139,7 +139,7 @@
     <value xml:space="preserve">Cerrar</value>
   </data>
   <data name="cmdBack.Help">
-    <value xml:space="preserve">Pulse para ir a página anterior</value>
+    <value xml:space="preserve">Clique para ir à página anterior</value>
   </data>
   <data name="cmdBack.Text">
     <value xml:space="preserve">Atrás</value>
@@ -166,13 +166,13 @@
     <value xml:space="preserve">Ir</value>
   </data>
   <data name="cmdHelp.Help">
-    <value xml:space="preserve">Pulse para mostrar a ayuda acerca de página</value>
+    <value xml:space="preserve">Clique para exibir a ajuda sobre esta página</value>
   </data>
   <data name="cmdHelp.Text">
     <value xml:space="preserve">Ajuda</value>
   </data>
   <data name="cmdNext.Help">
-    <value xml:space="preserve">Pulse para ir a página seguinte</value>
+    <value xml:space="preserve">Clique para ir à página seguinte</value>
   </data>
   <data name="cmdNext.Text">
     <value xml:space="preserve">Seguinte</value>
@@ -187,7 +187,7 @@
     <value xml:space="preserve">Atualizar</value>
   </data>
   <data name="cmdUpload.Text">
-    <value xml:space="preserve">Cargar novo Arquivo</value>
+    <value xml:space="preserve">Carregar novo Arquivo</value>
   </data>
   <data name="CollapseAll.Text">
     <value xml:space="preserve">Contraer todo</value>
@@ -238,7 +238,7 @@
     <value xml:space="preserve">Tipo de conteúdo</value>
   </data>
   <data name="ContractExpired.Error">
-    <value xml:space="preserve">O contrato de alojamiento para {0} expiró o {1}. Póngase em contato com &lt;a href="mailto:{2}"&gt;{2}&lt;/a&gt; para más informação.</value>
+    <value xml:space="preserve">O contrato de hospedagem para {0} expirou em {1}. Entre em contato com &lt;a href="mailto:{2}"&gt;{2}&lt;/a&gt; para mais informações.</value>
   </data>
   <data name="ControlDirective.Text">
     <value xml:space="preserve">Formateando a directiva de controle</value>
@@ -271,7 +271,7 @@
     <value xml:space="preserve">foi producido um error ao criar uma asignação de pasta a partir do arquivo de configuração</value>
   </data>
   <data name="CriticalError.Error">
-    <value xml:space="preserve">Foi ocurrido um error crítico. Compruebe o Visor de eventos para más informação.</value>
+    <value xml:space="preserve">Ocorreu um erro crítico. Verifique o Visualizador de Eventos para mais informações.</value>
   </data>
   <data name="Daily.Text">
     <value xml:space="preserve">Diario</value>
@@ -367,16 +367,16 @@
     <value xml:space="preserve">Borrado</value>
   </data>
   <data name="DeleteItem.Text">
-    <value xml:space="preserve">Está seguro que quer eliminar este elemento?</value>
+    <value xml:space="preserve">Tem certeza de que deseja excluir este item?</value>
   </data>
   <data name="DeleteItems.Confirm">
-    <value xml:space="preserve">Está seguro que quer eliminar estos elementos?</value>
+    <value xml:space="preserve">Tem certeza de que deseja excluir estes itens?</value>
   </data>
   <data name="DeleteItems.Text">
-    <value xml:space="preserve">Está seguro que quer eliminar estos elementos?</value>
+    <value xml:space="preserve">Tem certeza de que deseja excluir estes itens?</value>
   </data>
   <data name="DeleteModule.Confirm">
-    <value xml:space="preserve">Está seguro que quer eliminar este módulo?</value>
+    <value xml:space="preserve">Tem certeza de que deseja excluir este módulo?</value>
   </data>
   <data name="DeleteSharedModule.Confirm">
     <value xml:space="preserve">Este módulo se comparte com outros portais do mesmo grupo. Si elimina esta instância se borrarán tambien as instâncias compartidas em outros portales. Para ver em que portais se comparte o módulo, vá para Configuração &gt; Configuração do módulo &gt; Agregado a as páginas. Está seguro que quer continuar e eliminar este módulo e todas as instâncias compartidas?</value>
@@ -391,7 +391,7 @@
     <value xml:space="preserve">Está seguro que quiere desfazer a tradução deste módulo?</value>
   </data>
   <data name="DiskSpaceExceeded.Text">
-    <value xml:space="preserve">O arquivo {0} excede a cantidade de espaço em disco disponível actualmente. Póngase em contato com su provedor para solicitar um  aumento de espaço em disco de su sitio web.</value>
+    <value xml:space="preserve">O arquivo {0} excede a quantidade de espaço em disco disponível atualmente. Entre em contato com seu provedor para solicitar um aumento de espaço em disco do seu site.</value>
   </data>
   <data name="Dismiss.Text">
     <value xml:space="preserve">Descartar</value>
@@ -499,7 +499,7 @@
     <value xml:space="preserve">Finalizó o proceso do arquivo zip</value>
   </data>
   <data name="ErrorOccurred.Text">
-    <value xml:space="preserve">Foi ocurrido um error.</value>
+    <value xml:space="preserve">Ocorreu um erro.</value>
   </data>
   <data name="EVENTMESSAGE_CommandMissing.Text">
     <value xml:space="preserve">O comando de proceso não se encontra não manifiesto</value>
@@ -1303,7 +1303,7 @@
     <value xml:space="preserve">Deve escribir um valor válido de contrasenha. Consulte com o administrador do portal si não conoce os requerimientos de contrasenha.</value>
   </data>
   <data name="PasswordMailError.Text">
-    <value xml:space="preserve">A contrasenha foi sido reiniciada, mas ocurrió um error enviando um email de recordatorio.</value>
+    <value xml:space="preserve">A senha foi redefinida, mas ocorreu um erro ao enviar o e-mail de lembrete.</value>
   </data>
   <data name="PasswordMismatch.Text">
     <value xml:space="preserve">As contrasenha não coincidem.</value>
@@ -1408,7 +1408,7 @@
     <value xml:space="preserve">Error </value>
   </data>
   <data name="RegError.Text">
-    <value xml:space="preserve">Foi ocurrido um error inesperado durante o proceso de registro. Póngase em contato com o administrador da web para más informação.</value>
+    <value xml:space="preserve">Ocorreu um erro inesperado durante o processo de registro. Entre em contato com o administrador do site para mais informações.</value>
   </data>
   <data name="Register.Text">
     <value xml:space="preserve">Preferências do usuário</value>
@@ -1482,10 +1482,10 @@
     <value xml:space="preserve">Guardar</value>
   </data>
   <data name="SaveFileError.Text">
-    <value xml:space="preserve">Foi ocurrido um error ao intentar guardar o arquivo {0}. Póngase em contato com su provedor para verificar que a configuração de seguridade do servidor é a correta</value>
+    <value xml:space="preserve">Ocorreu um erro ao tentar salvar o arquivo {0}. Entre em contato com seu provedor para verificar se a configuração de segurança do servidor está correta</value>
   </data>
   <data name="ScriptCollision.Text">
-    <value xml:space="preserve">Esta página include más de uma petição a diferentes versões de uma libreria JavaScript. Pode ver más detalles não visor de eventos.</value>
+    <value xml:space="preserve">Esta página inclui mais de uma solicitação a diferentes versões de uma biblioteca JavaScript. Você pode ver mais detalhes no Visualizador de Eventos.</value>
   </data>
   <data name="Search.Text" lastModified="2017-04-28 05:19:32">
     <value xml:space="preserve">Buscar</value>
@@ -1707,7 +1707,7 @@
     <value xml:space="preserve">Está seguro que quiere marcar este módulo como não traduzido?</value>
   </data>
   <data name="UnverifiedUser.Text" lastModified="2020-05-09 04:28:24">
-    <value xml:space="preserve">Está utilizando uma conta sin verificar. Tem que verificar su conta pulsando o enlace que le hemos enviado não email de verificação. Pulse &lt;a href="#" class="send-verification-mail"&gt;aquí&lt;/a&gt; para reenviar o email de verificação.</value>
+    <value xml:space="preserve">Você está usando uma conta não verificada. É necessário verificar sua conta clicando no link que enviamos no e-mail de verificação. Clique &lt;a href="#" class="send-verification-mail"&gt;aqui&lt;/a&gt; para reenviar o e-mail de verificação.</value>
   </data>
   <data name="Upload.Text">
     <value xml:space="preserve">Cargar</value>
@@ -1749,7 +1749,7 @@
     <value xml:space="preserve">Já existe um usuário com este nome. Registre-se novamente usando outro nome de usuário.</value>
   </data>
   <data name="UserRejected.Text">
-    <value xml:space="preserve">O registro do usuário foi sido rechazado. Póngase em contato com o administrador da web para obtener más informação.</value>
+    <value xml:space="preserve">O registro do usuário foi rejeitado. Entre em contato com o administrador do site para obter mais informações.</value>
   </data>
   <data name="VerificationMailSendSuccessful.Text" lastModified="2020-05-08 20:21:48">
     <value xml:space="preserve">Email de verificação enviado corretamente.</value>

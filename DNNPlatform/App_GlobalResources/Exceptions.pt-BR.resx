@@ -13,7 +13,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddFileExtensionNotAllowed.Text">
-    <value xml:space="preserve">Não se permite a extensión '{0}'. Não foi adicionado o arquivo.</value>
+    <value xml:space="preserve">Não se permite a extensão '{0}'. O arquivo não foi adicionado.</value>
   </data>
   <data name="AddFileInvalidContent.Text" lastModified="2018-03-24 07:25:37">
     <value xml:space="preserve">O conteúdo de '{0}' não é válido. O arquivo não foi adicionado.</value>
@@ -22,7 +22,7 @@
     <value xml:space="preserve">O nome de Arquivo '{0}' não está permitido. O arquivo não foi adicionado.</value>
   </data>
   <data name="AddFileNoSpaceAvailable.Text">
-    <value xml:space="preserve">O sitio não tem espaço disponível para guardar o arquivo especificado. O arquivo não foi adicionado.</value>
+    <value xml:space="preserve">O site não tem espaço disponível para salvar o arquivo especificado. O arquivo não foi adicionado.</value>
   </data>
   <data name="AddFilePermissionsNotMet.Text">
     <value xml:space="preserve">Não foram cumpridas as permissões. O arquivo não foi adicionado.</value>
@@ -55,7 +55,7 @@
     <value xml:space="preserve">A pasta '{0}' não pode ser movida. Já existe uma pasta com o mesmo nome em '{1}'.</value>
   </data>
   <data name="CannotMoveFolderBetweenFolderType.Text">
-    <value xml:space="preserve">A pasta '{0}' não pode ser movida. Mover pastas entre os dos tipos de pasta seleccionadas não está permitido.</value>
+    <value xml:space="preserve">A pasta '{0}' não pode ser movida. Mover pastas entre os dois tipos de pasta selecionados não é permitido.</value>
   </data>
   <data name="ContentTypeDoesNotExist.Text" lastModified="2015-12-28 03:21:43">
     <value xml:space="preserve">O tipo de conteúdo especificado não é válido.</value>
@@ -67,7 +67,7 @@
     <value xml:space="preserve">Não se pode localizar o controlador {0}. espaços de nomes de busca: {1}</value>
   </data>
   <data name="CopyFileNoSpaceAvailable.Text">
-    <value xml:space="preserve">O sitio não tem espaço disponível para guardar o arquivo. O arquivo não foi cópiado.</value>
+    <value xml:space="preserve">O site não tem espaço disponível para salvar o arquivo. O arquivo não foi copiado.</value>
   </data>
   <data name="CopyFilePermissionsNotMet.Text">
     <value xml:space="preserve">Não tem permissões. O arquivo não foi cópiado.</value>
@@ -220,7 +220,7 @@
     <value xml:space="preserve">Lista de destinatários demasiado grande. Máximo: {0}, atual: {1}.</value>
   </data>
   <data name="NoNetworkAvailableError.Text">
-    <value xml:space="preserve">Se requiere conectividade mas não há nenhuma red disponível</value>
+    <value xml:space="preserve">É necessária conectividade, mas não há nenhuma rede disponível</value>
   </data>
   <data name="PrivateMessageDisabledError.Text">
     <value xml:space="preserve">A configuração atual de mensagemría não permite enviar mensagens a outros usuarios/grupos.</value>
@@ -292,7 +292,7 @@
     <value xml:space="preserve">A instância de módulo especificada não existe.</value>
   </data>
   <data name="TabNotInPortal.Text">
-    <value xml:space="preserve">A página indicada não se encontra em este sitio.</value>
+    <value xml:space="preserve">A página indicada não se encontra neste site.</value>
   </data>
   <data name="TabVersionAlreadyPublished.Text">
     <value xml:space="preserve">A versão {1} da página {0} já está publicada</value>
