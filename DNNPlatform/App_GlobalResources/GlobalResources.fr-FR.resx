@@ -1406,5 +1406,14 @@ son consentement écrit préalable. Toutes les autres marques de produits et de 
   <data name="DefaultSynonymGroup.Text">
     <value>dnn,dotnetnuke</value>
   </data>
+  <data name="cc_dismiss.Text">
+    <value xml:space="preserve">Compris !</value>
+  </data>
+  <data name="cc_link.Text">
+    <value xml:space="preserve">En savoir plus</value>
+  </data>
+  <data name="cc_message.Text">
+    <value xml:space="preserve">Ce site utilise des cookies pour vous garantir la meilleure expérience sur notre site.</value>
+  </data>
   <!---->
 </root>
