@@ -16,7 +16,7 @@
     <value xml:space="preserve">O arquivo já existe.</value>
   </data>
   <data name="ErrorMessage.Text">
-    <value xml:space="preserve">O arquivo '{0}' não foi podido cargar: {1}</value>
+    <value xml:space="preserve">Não foi possível carregar o arquivo '{0}': {1}.</value>
   </data>
   <data name="ExtensionNotAllowed.Text">
     <value xml:space="preserve">Extensão de arquivo não permitida.</value>

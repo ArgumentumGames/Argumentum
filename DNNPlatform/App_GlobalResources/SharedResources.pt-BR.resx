@@ -178,10 +178,10 @@
     <value xml:space="preserve">Seguinte</value>
   </data>
   <data name="cmdReturn.Text">
-    <value xml:space="preserve">Volver</value>
+    <value xml:space="preserve">Voltar</value>
   </data>
   <data name="cmdStop.Text">
-    <value xml:space="preserve">Detener</value>
+    <value xml:space="preserve">Parar</value>
   </data>
   <data name="cmdUpdate.Text">
     <value xml:space="preserve">Atualizar</value>
@@ -298,16 +298,16 @@
     <value xml:space="preserve">Tipo de datos</value>
   </data>
   <data name="Day.Text">
-    <value xml:space="preserve">Día</value>
+    <value xml:space="preserve">Dia</value>
   </data>
   <data name="DayAgo.Text">
-    <value xml:space="preserve">Hace {0} día</value>
+    <value xml:space="preserve">Há {0} dia</value>
   </data>
   <data name="Days.Text">
-    <value xml:space="preserve">Días</value>
+    <value xml:space="preserve">Dias</value>
   </data>
   <data name="DaysAgo.Text">
-    <value xml:space="preserve">Hace {0} días</value>
+    <value xml:space="preserve">Há {0} dias</value>
   </data>
   <data name="DefaultDirectPublishWorkflowDescription.Text">
     <value xml:space="preserve">Permite a um autor publicar directamente conteúdos não portal</value>
@@ -781,7 +781,7 @@
     <value xml:space="preserve">Hora</value>
   </data>
   <data name="HourAgo.Text">
-    <value xml:space="preserve">Hace {0} hora</value>
+    <value xml:space="preserve">Há {0} hora</value>
   </data>
   <data name="Hourly.Text">
     <value xml:space="preserve">Cada hora</value>
@@ -790,7 +790,7 @@
     <value xml:space="preserve">Horas</value>
   </data>
   <data name="HoursAgo.Text">
-    <value xml:space="preserve">Hace {0} horas</value>
+    <value xml:space="preserve">Há {0} horas</value>
   </data>
   <data name="Ignore.Text">
     <value xml:space="preserve">Ignorar</value>
@@ -1075,13 +1075,13 @@
     <value xml:space="preserve">Minuto</value>
   </data>
   <data name="MinuteAgo.Text">
-    <value xml:space="preserve">Hace {0} minuto</value>
+    <value xml:space="preserve">Há {0} minuto</value>
   </data>
   <data name="Minutes.Text">
     <value xml:space="preserve">Minutos</value>
   </data>
   <data name="MinutesAgo.Text">
-    <value xml:space="preserve">Hace {0} minutos</value>
+    <value xml:space="preserve">Há {0} minutos</value>
   </data>
   <data name="MODULE_AdminPageAdded.Text" lastModified="2015-12-27 20:55:22">
     <value xml:space="preserve">Página de administração {0} añadida ao portal {1}.</value>
@@ -1171,7 +1171,7 @@
     <value xml:space="preserve">Mes</value>
   </data>
   <data name="MonthAgo.Text">
-    <value xml:space="preserve">Hace {0} mes</value>
+    <value xml:space="preserve">Há {0} mês</value>
   </data>
   <data name="Monthly.Text">
     <value xml:space="preserve">Mensual</value>
@@ -1180,7 +1180,7 @@
     <value xml:space="preserve">Meses</value>
   </data>
   <data name="MonthsAgo.Text">
-    <value xml:space="preserve">Hace {0} meses</value>
+    <value xml:space="preserve">Há {0} meses</value>
   </data>
   <data name="MyFolderName.Text">
     <value xml:space="preserve">Mi pasta</value>
@@ -1500,7 +1500,7 @@
     <value xml:space="preserve">Segundos</value>
   </data>
   <data name="SecondsAgo.Text">
-    <value xml:space="preserve">Hace {0} segundos</value>
+    <value xml:space="preserve">Há {0} segundos</value>
   </data>
   <data name="SECURITY_Installer.Text">
     <value xml:space="preserve">Não tem Acesso para instalar este componente</value>
@@ -1710,7 +1710,7 @@
     <value xml:space="preserve">Você está usando uma conta não verificada. É necessário verificar sua conta clicando no link que enviamos no e-mail de verificação. Clique &lt;a href="#" class="send-verification-mail"&gt;aqui&lt;/a&gt; para reenviar o e-mail de verificação.</value>
   </data>
   <data name="Upload.Text">
-    <value xml:space="preserve">Cargar</value>
+    <value xml:space="preserve">Carregar</value>
   </data>
   <data name="URL.Text">
     <value xml:space="preserve">URL: </value>
@@ -1770,7 +1770,7 @@
     <value xml:space="preserve">Semana</value>
   </data>
   <data name="WeekAgo.Text">
-    <value xml:space="preserve">Hace {0} semana</value>
+    <value xml:space="preserve">Há {0} semana</value>
   </data>
   <data name="Weekly.Text">
     <value xml:space="preserve">Semanal</value>
@@ -1779,7 +1779,7 @@
     <value xml:space="preserve">Semanas</value>
   </data>
   <data name="WeeksAgo.Text">
-    <value xml:space="preserve">Hace {0} semanas</value>
+    <value xml:space="preserve">Há {0} semanas</value>
   </data>
   <data name="Wizard.Success.FailureDetail">
     <value xml:space="preserve">&lt;p&gt;Foi ocurrido um error não asistente. Revise a mensagem que aparece debajo e notifíquelo a su provedor.&lt;/p&gt;</value>

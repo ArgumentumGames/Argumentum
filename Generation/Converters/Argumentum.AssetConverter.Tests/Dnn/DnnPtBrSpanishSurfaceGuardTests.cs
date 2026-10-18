@@ -76,6 +76,32 @@ namespace Argumentum.AssetConverter.Tests
 			"Year.Text", "Years.Text",
 		};
 
+		private const string FileUploadResx = "DNNPlatform/App_GlobalResources/FileUpload.pt-BR.resx";
+		private const string WebControlsResx = "DNNPlatform/App_GlobalResources/WebControls.pt-BR.resx";
+
+		// Passe 3 (dispatch ai-01 18/10 23:11, réserve NanoClaw #1899 confirmée) :
+		// famille temporelle « Hace {0}… », contrôles standard (Upload/cmdReturn
+		// + cmdStop même barre), et module d'upload WebControls CORRIGÉ EN ENTIER
+		// (14 clés cassées sur 22 — corriger les seules citées aurait laissé un
+		// dialogue moitié espagnol et forcément une passe 4 pour 2 boutons).
+		private static readonly string[] SharedKeysPass3 =
+		{
+			"SecondsAgo.Text", "MinuteAgo.Text", "MinutesAgo.Text", "HourAgo.Text", "HoursAgo.Text",
+			"DayAgo.Text", "DaysAgo.Text", "WeekAgo.Text", "WeeksAgo.Text", "MonthAgo.Text", "MonthsAgo.Text",
+			"Day.Text", "Days.Text", "Upload.Text", "cmdReturn.Text", "cmdStop.Text",
+		};
+
+		private static readonly string[] FileUploadKeys = { "ErrorMessage.Text" };
+
+		private static readonly string[] WebControlsUploadKeys =
+		{
+			"FileUpload.CloseButton.Text", "FileUpload.DecompressingFile.Text", "FileUpload.DecompressLabel.Text",
+			"FileUpload.EmptyFileUpload.Error", "FileUpload.FileAlreadyExists.Error", "FileUpload.FileUploadCancelled.Error",
+			"FileUpload.FileUploaded.Text", "FileUpload.FileUploadFailed.Error", "FileUpload.InvalidFileExtensions.Error",
+			"FileUpload.KeepButton.Text", "FileUpload.ReplaceButton.Text", "FileUpload.UploadFromWebMethod.Text",
+			"FileUpload.UploadStopped.Text", "FileUpload.UrlTooltip.Text",
+		};
+
 		// Marqueurs espagnols FORTS — formes qui ne sont PAS du portugais
 		// valide (self-test du script de mesure : Inicio/Ayuda/Añadir/Gracias
 		// hit ; Início/Ajuda/Adicionar/Obrigado miss).
@@ -97,6 +123,19 @@ namespace Argumentum.AssetConverter.Tests
 			new(@"\baños\b", RegexOptions.IgnoreCase),
 			new(@"\bespañol\w*\b", RegexOptions.IgnoreCase),
 			new(@"\bsu\s+correo\b", RegexOptions.IgnoreCase),
+			// Élargissement passe 3 — cibles ai-01 (Hace/Cargar/Volver + upload) et
+			// lexique du module. Self-test : « Há 5 dias », « Carregar », « Voltar »,
+			// « Parar », « Manter », « Fechar », « Substituir », « exemplo » miss ;
+			// « Hace », « días », « Cargar », « Mantener », « ejemplo » hit.
+			new(@"\bHace\b"),
+			new(@"\bdías?\b"),                                              // accent = es ; pt « dia/dias »
+			new(@"\bcargar\b|\bcargad[oa]s?\b", RegexOptions.IgnoreCase),   // 1 r = es ; pt « carregar »
+			new(@"\bvolver\b", RegexOptions.IgnoreCase),
+			new(@"\bMantener\b|\bDetener\b|\bCerrar\b|\bReemplazar\b"),
+			new(@"\bIntroduzca\b|\bejemplo\b", RegexOptions.IgnoreCase),
+			new(@"\bDescomprim\w*", RegexOptions.IgnoreCase),               // es ; pt « descompactar »
+			new(@"\bdetenid[oa]s?\b", RegexOptions.IgnoreCase),
+			new(@"\bDesde\s+URL\b"),
 		};
 
 		[Fact]
@@ -226,6 +265,86 @@ namespace Argumentum.AssetConverter.Tests
 				"le reste du paquet n'est PAS encore corrigé (workflow admin) — ce témoin prouve que la garde " +
 				"marque-taux ci-dessus est scopée aux 44 clés et non à tout le fichier ; sa correction rougira " +
 				"ce fait au grain suivant (chiffrage → arbitrage ai-01).");
+		}
+
+		// ===================== Passe 3 (18/10, dispatch 23:11) =====================
+
+		[Fact]
+		public void Pass3_TimeFamily_StandardControls_UploadFlow_CarryNoSpanishMarker()
+		{
+			var offenders = new List<string>();
+			foreach (var (path, keys) in new[]
+			{
+				(SharedResx, SharedKeysPass3),
+				(FileUploadResx, FileUploadKeys),
+				(WebControlsResx, WebControlsUploadKeys),
+			})
+			foreach (var key in keys)
+			foreach (var marker in SpanishMarkers)
+				if (marker.IsMatch(ResxValue(path, key)))
+					offenders.Add($"{key} [{marker}]");
+			offenders.Should().BeEmpty(
+				"passe 3 : famille temporelle, contrôles standard et module d'upload pt-BR corrigés — " +
+				"tout marqueur restant est une réinjection : {0}", string.Join(", ", offenders));
+		}
+
+		/// <summary>Le module d'upload WebControls est corrigé EN ENTIER (passe 3) :
+		/// la garde marque-taux couvre les 22 clés du préfixe FileUpload.*, y
+		/// compris celles qui étaient déjà saines — une réinjection n'importe où
+		/// dans le module rougit, pas seulement sur les clés listées.</summary>
+		[Fact]
+		public void WebControls_WholeFileUploadModule_NoSpanishMarker()
+		{
+			var path = Path.Combine(TestRepoRoot.Find(), WebControlsResx.Replace('/', Path.DirectorySeparatorChar));
+			var offenders = new List<string>();
+			foreach (var d in XDocument.Load(path).Root!.Elements("data"))
+			{
+				var name = d.Attribute("name")?.Value ?? "";
+				if (!name.StartsWith("FileUpload.", StringComparison.Ordinal))
+					continue;
+				var val = (d.Element("value")?.Value ?? d.Value).Trim();
+				foreach (var marker in SpanishMarkers)
+					if (marker.IsMatch(val))
+						offenders.Add($"{name} [{marker}]");
+			}
+			offenders.Should().BeEmpty(
+				"module d'upload WebControls pt-BR sain sur TOUTES ses clés (passe 3) : {0}",
+				string.Join(", ", offenders));
+		}
+
+		[Fact]
+		public void Pass3_Pins_ExactValues()
+		{
+			var pins = new Dictionary<(string path, string key), string>
+			{
+				[(SharedResx, "SecondsAgo.Text")] = "Há {0} segundos",
+				[(SharedResx, "MinuteAgo.Text")] = "Há {0} minuto",
+				[(SharedResx, "MinutesAgo.Text")] = "Há {0} minutos",
+				[(SharedResx, "HourAgo.Text")] = "Há {0} hora",
+				[(SharedResx, "HoursAgo.Text")] = "Há {0} horas",
+				[(SharedResx, "DayAgo.Text")] = "Há {0} dia",
+				[(SharedResx, "DaysAgo.Text")] = "Há {0} dias",
+				[(SharedResx, "WeekAgo.Text")] = "Há {0} semana",
+				[(SharedResx, "WeeksAgo.Text")] = "Há {0} semanas",
+				[(SharedResx, "MonthAgo.Text")] = "Há {0} mês",
+				[(SharedResx, "MonthsAgo.Text")] = "Há {0} meses",
+				[(SharedResx, "Day.Text")] = "Dia",
+				[(SharedResx, "Days.Text")] = "Dias",
+				[(SharedResx, "Upload.Text")] = "Carregar",
+				[(SharedResx, "cmdReturn.Text")] = "Voltar",
+				[(SharedResx, "cmdStop.Text")] = "Parar",
+				[(FileUploadResx, "ErrorMessage.Text")] = "Não foi possível carregar o arquivo '{0}': {1}.",
+				[(WebControlsResx, "FileUpload.CloseButton.Text")] = "Fechar",
+				[(WebControlsResx, "FileUpload.KeepButton.Text")] = "Manter",
+				[(WebControlsResx, "FileUpload.ReplaceButton.Text")] = "Substituir",
+				[(WebControlsResx, "FileUpload.FileUploadFailed.Error")] = "Erro no carregamento",
+				[(WebControlsResx, "FileUpload.FileUploadCancelled.Error")] = "Carregamento cancelado",
+				[(WebControlsResx, "FileUpload.UploadStopped.Text")] = "Carregamento de arquivo interrompido",
+				[(WebControlsResx, "FileUpload.UrlTooltip.Text")] =
+					"Insira a URL do recurso (por exemplo http://dominio.com/imagens/imagem.png)",
+			};
+			foreach (var ((path, key), expected) in pins)
+				ResxValue(path, key).Should().Be(expected, "pin D3 passe 3 — clé visible {0}.", key);
 		}
 	}
 }
