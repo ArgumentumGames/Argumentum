@@ -13,7 +13,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AC.Text">
-    <value>Isla da Ascensión</value>
+    <value>Ilha da Ascensão</value>
   </data>
   <data name="AD.Text">
     <value>Andorra</value>
@@ -232,7 +232,7 @@
     <value>Etiopía</value>
   </data>
   <data name="EU.Text">
-    <value>Unión Europea</value>
+    <value>União Europeia</value>
   </data>
   <data name="FI.Text">
     <value>Finlandia</value>
@@ -310,7 +310,7 @@
     <value>Guyana</value>
   </data>
   <data name="HK.Text">
-    <value>Región Administrativa Especial de Hong Kong da República Popular China</value>
+    <value>Região Administrativa Especial de Hong Kong da República Popular da China</value>
   </data>
   <data name="HM.Text">
     <value>Islas Heard e McDonald</value>
@@ -472,7 +472,7 @@
     <value>Mongolia</value>
   </data>
   <data name="MO.Text">
-    <value>Región Administrativa Especial de Macao da República Popular China</value>
+    <value>Região Administrativa Especial de Macau da República Popular da China</value>
   </data>
   <data name="MP.Text">
     <value>Islas Marianas do Norte</value>
@@ -595,7 +595,7 @@
     <value>Territorios alejados de Oceanía</value>
   </data>
   <data name="RE.Text">
-    <value>Reunión</value>
+    <value>Reunião</value>
   </data>
   <data name="RO.Text">
     <value>Rumanía</value>
@@ -778,6 +778,6 @@
     <value>Zimbabue</value>
   </data>
   <data name="ZZ.Text">
-    <value>Región desconocida o não válida</value>
+    <value>Região desconhecida ou não válida</value>
   </data>
 </root>

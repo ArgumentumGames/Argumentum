@@ -208,16 +208,16 @@
     <value xml:space="preserve">Aceptar</value>
   </data>
   <data name="cc_link.Text" lastModified="2020-05-08 09:00:20">
-    <value xml:space="preserve">Saber más</value>
+    <value xml:space="preserve">Saber mais</value>
   </data>
   <data name="cc_message.Text" lastModified="2020-05-08 09:00:20">
-    <value xml:space="preserve">Este sitio utiliza cookies para asegurar a mejor experiencia de navegação na web.</value>
+    <value xml:space="preserve">Este site utiliza cookies para garantir a melhor experiência de navegação na web.</value>
   </data>
   <data name="ClearCache.Action">
     <value xml:space="preserve">Limpar cache</value>
   </data>
   <data name="CustomUrlPathCleaned.Error">
-    <value xml:space="preserve">A URL da página contenía caracteres inválidos que foin eliminado. Pulse o botão Atualizar de novo para aceptar os cambios realizados.&lt;br/&gt;Atenção. Pode ver a lista de caracteres inválidos em a seguinte lista: &lt;&gt;\?:&amp;=+|%# </value>
+    <value xml:space="preserve">A URL da página continha caracteres inválidos que foram eliminados. Clique no botão Atualizar de novo para aceitar as alterações realizadas.&lt;br/&gt;Atenção. Você pode ver a lista de caracteres inválidos na seguinte lista: &lt;&gt;\?:&amp;=+|%#</value>
   </data>
   <data name="DefaultStopwordGroup.Text" lastModified="2017-04-28 07:18:19">
     <value xml:space="preserve">y,é,mas,para,em,não,o,este,esta,a,ella,ellos,ellas,era,será,com</value>
@@ -238,10 +238,10 @@
     <value xml:space="preserve">Arrastre este módulo a uma nova zona</value>
   </data>
   <data name="DropModuleHint.Text">
-    <value xml:space="preserve">Suelte o botão do ratón para soltar o módulo aquí.</value>
+    <value xml:space="preserve">Solte o botão do mouse para soltar o módulo aqui.</value>
   </data>
   <data name="DropModuleTarget.Text">
-    <value xml:space="preserve">Soltar o módulo aquí</value>
+    <value xml:space="preserve">Soltar o módulo aqui</value>
   </data>
   <data name="Edit Tab.Permission">
     <value xml:space="preserve">Editar página</value>
@@ -869,7 +869,7 @@ Atentamente,
     <value xml:space="preserve">Nome inglés</value>
   </data>
   <data name="Error.Text">
-    <value xml:space="preserve">Foi ocurrido um error.</value>
+    <value xml:space="preserve">Ocorreu um erro.</value>
   </data>
   <data name="ExecutingScript.Text">
     <value xml:space="preserve">Ejecutando script</value>
@@ -1275,7 +1275,7 @@ SIREN: 922020276&lt;br&gt;&lt;/div&gt;
     <value xml:space="preserve">Você foi redirecionado para esta página de login padrão porque a página de login definida para este site não contém um módulo de login DNN válido ou as permissões não estão configuradas corretamente.</value>
   </data>
   <data name="NoSitesForThisInstallation.Error" lastModified="2016-03-16 14:34:37">
-    <value xml:space="preserve">Não há nenhum sitio nesta instalação.</value>
+    <value xml:space="preserve">Não há nenhum site nesta instalação.</value>
   </data>
   <data name="OnlineHelp.Action">
     <value xml:space="preserve">Ajuda online</value>
@@ -1311,13 +1311,13 @@ SIREN: 922020276&lt;br&gt;&lt;/div&gt;
     <value xml:space="preserve">Tipo de relação actualizada {0}</value>
   </data>
   <data name="Return.Text">
-    <value xml:space="preserve">Volver ao sitio</value>
+    <value xml:space="preserve">Voltar ao site</value>
   </data>
   <data name="SearchCrawler Admin.String">
     <value xml:space="preserve">Configuração de indexação</value>
   </data>
   <data name="SiteAccessedWhileInstallationWasInProgress.Error" lastModified="2016-03-16 14:34:37">
-    <value xml:space="preserve">O sitio foi recibido petições de Acesso mientras a instação/actualização estaba em proceso.</value>
+    <value xml:space="preserve">O site recebeu solicitações de acesso enquanto a instalação/atualização estava em processo.</value>
   </data>
   <data name="SkinLoadError.Text">
     <value xml:space="preserve">Não se pudo cargar o tema: {0},  Erro: {1}&lt;br/&gt;</value>
@@ -1326,7 +1326,7 @@ SIREN: 922020276&lt;br&gt;&lt;/div&gt;
     <value xml:space="preserve">Suscripção (RSS)</value>
   </data>
   <data name="ThereIsAInstallationCurrentlyInProgress.Error" lastModified="2016-03-16 14:34:37">
-    <value xml:space="preserve">Há uma instalação em proceso. Vuelva a intentarlo em unos minutos.</value>
+    <value xml:space="preserve">Há uma instalação em processo. Volte a tentar em alguns minutos.</value>
   </data>
   <data name="TokenReplaceRestrictedProperty.Text">
     <value xml:space="preserve">Error de Acesso [{0}:{1}], o Acesso a {1} está restringido para a fonte de datos {0}.</value>

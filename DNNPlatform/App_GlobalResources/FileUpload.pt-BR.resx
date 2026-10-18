@@ -19,7 +19,7 @@
     <value xml:space="preserve">O arquivo '{0}' não foi podido cargar: {1}</value>
   </data>
   <data name="ExtensionNotAllowed.Text">
-    <value xml:space="preserve">Extensión de Arquivo não permitida.</value>
+    <value xml:space="preserve">Extensão de arquivo não permitida.</value>
   </data>
   <data name="NoPermission.Text">
     <value xml:space="preserve">Não tem permissões.</value>
