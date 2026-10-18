@@ -45,7 +45,7 @@ namespace Argumentum.AssetConverter.Tests
                 "Ce site utilise des cookies pour vous garantir la meilleure expérience sur notre site.",
                 "bandeau cookies visible sous /fr — sans la clé, fallback EN.");
             ResxValue(GlobalResx, "cc_link.Text").Should().Be("En savoir plus", "lien du bandeau cookies.");
-            ResxValue(GlobalResx, "cc_dismiss.Text").Should().Be("Compris !", "bouton du bandeau cookies.");
+            ResxValue(GlobalResx, "cc_dismiss.Text").Should().Be("Compris\u00a0!", "bouton du bandeau cookies.");
         }
 
         [Fact]

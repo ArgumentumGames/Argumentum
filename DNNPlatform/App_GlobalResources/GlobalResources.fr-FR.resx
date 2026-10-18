@@ -1407,7 +1407,7 @@ son consentement écrit préalable. Toutes les autres marques de produits et de 
     <value>dnn,dotnetnuke</value>
   </data>
   <data name="cc_dismiss.Text">
-    <value xml:space="preserve">Compris !</value>
+    <value xml:space="preserve">Compris !</value>
   </data>
   <data name="cc_link.Text">
     <value xml:space="preserve">En savoir plus</value>
