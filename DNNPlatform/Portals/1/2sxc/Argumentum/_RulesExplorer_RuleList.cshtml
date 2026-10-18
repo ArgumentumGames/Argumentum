@@ -1,5 +1,15 @@
 @inherits Custom.Hybrid.Razor14
 
+@{
+    // D1 (#458): player-count caption localized — strings arbitrated by ai-01 18/10.
+    // Keep the culture switch in sync with _RulesExplorer_RuleDetail.cshtml.
+    var lang = (CmsContext.Culture.CurrentCode ?? "fr-FR").Split(new[] { '-' })[0].ToLowerInvariant();
+    var playersFormat = lang == "en" ? "{0} to {1} players"
+        : lang == "es" ? "de {0} a {1} jugadores"
+        : lang == "pt" ? "de {0} a {1} jogadores"
+        : "de {0} à {1} joueurs";
+}
+
 <link rel="stylesheet" href="@App.Path/src/styles/argumentum.css" data-enableoptimizations="150" />
 @foreach (var ruleEntity in AsList(Data))
 {
@@ -12,7 +22,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="nbPlayers mb-3 mb-md-0 col-12 col-md-6 col-lg-4">
-                        <h6>de @ruleEntity.MinNbPlayers &agrave; @ruleEntity.MaxNbPlayers joueurs </h6>
+                        <h6>@string.Format(playersFormat, ruleEntity.MinNbPlayers, ruleEntity.MaxNbPlayers)</h6>
                     </div>
                     <div class="col-12 col-md-6 col-lg-8">
                         @Html.Raw(ruleEntity.Summary)

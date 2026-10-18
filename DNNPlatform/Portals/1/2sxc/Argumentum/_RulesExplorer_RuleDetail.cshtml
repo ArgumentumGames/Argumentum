@@ -4,6 +4,13 @@
 @{
     var ruleEntity = AsList(Data).FirstOrDefault();
 
+    // D1 (#458): player-count caption localized — strings arbitrated by ai-01 18/10.
+    // Keep the culture switch in sync with _RulesExplorer_RuleList.cshtml.
+    var lang = (CmsContext.Culture.CurrentCode ?? "fr-FR").Split(new[] { '-' })[0].ToLowerInvariant();
+    var playersFormat = lang == "en" ? "{0} to {1} players"
+        : lang == "es" ? "de {0} a {1} jugadores"
+        : lang == "pt" ? "de {0} a {1} jogadores"
+        : "de {0} à {1} joueurs";
 
     //QRCode logic
 
@@ -33,7 +40,7 @@
         <h1>
             @ruleEntity.Title
         </h1>
-        <h5>de @ruleEntity.MinNbPlayers &agrave; @ruleEntity.MaxNbPlayers joueurs </h5>
+        <h5>@string.Format(playersFormat, ruleEntity.MinNbPlayers, ruleEntity.MaxNbPlayers)</h5>
         <h2>@Resources.RuleSummary</h2>
         @Html.Raw(ruleEntity.Summary)
     </div>
