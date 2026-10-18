@@ -46,46 +46,46 @@
     <value xml:space="preserve">Arquivo</value>
   </data>
   <data name="FileUpload.CloseButton.Text">
-    <value xml:space="preserve">Cerrar</value>
+    <value xml:space="preserve">Fechar</value>
   </data>
   <data name="FileUpload.DecompressingFile.Text">
-    <value xml:space="preserve">Descomprimiendo Arquivo</value>
+    <value xml:space="preserve">Descompactando arquivo</value>
   </data>
   <data name="FileUpload.DecompressLabel.Text">
-    <value xml:space="preserve">Descomprimir Arquivos Zip</value>
+    <value xml:space="preserve">Descompactar arquivos Zip</value>
   </data>
   <data name="FileUpload.DragAndDropAreaTitle.Text">
     <value xml:space="preserve">Arraste arquivos aqui ou clique para procurar</value>
   </data>
   <data name="FileUpload.EmptyFileUpload.Error">
-    <value xml:space="preserve">Su navegador não suporta a carga de Arquivos vazia</value>
+    <value xml:space="preserve">Seu navegador não oferece suporte ao carregamento de arquivos vazios.</value>
   </data>
   <data name="FileUpload.ErrorDialogTitle.Text">
     <value xml:space="preserve">Erro</value>
   </data>
   <data name="FileUpload.FileAlreadyExists.Error">
-    <value xml:space="preserve">O arquivo que quiere cargar já existe nesta pasta</value>
+    <value xml:space="preserve">O arquivo que você deseja carregar já existe nesta pasta.</value>
   </data>
   <data name="FileUpload.FileIsTooLarge.Error">
     <value xml:space="preserve">Tamanho de arquivo maior que {0}</value>
   </data>
   <data name="FileUpload.FileUploadCancelled.Error">
-    <value xml:space="preserve">Carga cancelada</value>
+    <value xml:space="preserve">Carregamento cancelado</value>
   </data>
   <data name="FileUpload.FileUploaded.Text">
-    <value xml:space="preserve">Arquivo cargado</value>
+    <value xml:space="preserve">Arquivo carregado</value>
   </data>
   <data name="FileUpload.FileUploadFailed.Error">
-    <value xml:space="preserve">Error na carga</value>
+    <value xml:space="preserve">Erro no carregamento</value>
   </data>
   <data name="FileUpload.InvalidFileExtensions.Error">
-    <value xml:space="preserve">Algunos Arquivos com extensões não permitidas não se podem cargar. somente pode cargar Arquivos com as seguintes extensões: {0}</value>
+    <value xml:space="preserve">Alguns arquivos selecionados com extensões inválidas foram excluídos do carregamento. Você só pode carregar arquivos com as seguintes extensões: {0}.</value>
   </data>
   <data name="FileUpload.KeepButton.Text">
-    <value xml:space="preserve">Mantener</value>
+    <value xml:space="preserve">Manter</value>
   </data>
   <data name="FileUpload.ReplaceButton.Text">
-    <value xml:space="preserve">Reemplazar</value>
+    <value xml:space="preserve">Substituir</value>
   </data>
   <data name="FileUpload.Title.Text">
     <value xml:space="preserve">Carregar Arquivos</value>
@@ -100,16 +100,16 @@
     <value xml:space="preserve">Carregar</value>
   </data>
   <data name="FileUpload.UploadFromWebMethod.Text">
-    <value xml:space="preserve">Desde URL</value>
+    <value xml:space="preserve">Da URL</value>
   </data>
   <data name="FileUpload.UploadStopped.Text">
-    <value xml:space="preserve">Carga de Arquivo detenida</value>
+    <value xml:space="preserve">Carregamento de arquivo interrompido</value>
   </data>
   <data name="FileUpload.UploadToFolderLabel.Text">
     <value xml:space="preserve">Carregar para:</value>
   </data>
   <data name="FileUpload.UrlTooltip.Text">
-    <value xml:space="preserve">Introduzca a URL do recurso (por ejemplo http://dominio.com/imagenes/imagen.png)</value>
+    <value xml:space="preserve">Insira a URL do recurso (por exemplo http://dominio.com/imagens/imagem.png)</value>
   </data>
   <data name="Folder.Text">
     <value xml:space="preserve">Pasta</value>
