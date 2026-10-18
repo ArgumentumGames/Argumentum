@@ -15,6 +15,9 @@
   <data name="AddFileExtensionNotAllowed.Text" xml:space="preserve">
     <value xml:space="preserve">L'extension « {0} » n'est pas autorisée. Le fichier n'a pas été ajouté.</value>
   </data>
+  <data name="AddFilenameNotAllowed.Text">
+    <value xml:space="preserve">Le nom de fichier « {0} » n'est pas autorisé. Le fichier n'a pas été ajouté.</value>
+  </data>
   <data name="AddFileNoSpaceAvailable.Text" xml:space="preserve">
     <value xml:space="preserve">Le site n'a aucun espace disponible pour stocker le fichier spécifié. Le fichier n'a pas été ajouté.</value>
   </data>
@@ -401,6 +404,9 @@
   </data>
   <data name="SubnetMaskIncorrect.Text" xml:space="preserve">
     <value>Le masque de sous-réseau n’est pas dans un format correct</value>
+  </data>
+  <data name="AddFolderNotAllowed.Text">
+    <value xml:space="preserve">Le chemin de dossier « {0} » n'est pas autorisé. Le dossier n'a pas été ajouté.</value>
   </data>
   <!---->
 </root>
