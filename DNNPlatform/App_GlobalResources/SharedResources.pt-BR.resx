@@ -1174,7 +1174,7 @@
     <value xml:space="preserve">Há {0} mês</value>
   </data>
   <data name="Monthly.Text">
-    <value xml:space="preserve">Mensual</value>
+    <value xml:space="preserve">Mensal</value>
   </data>
   <data name="Months.Text">
     <value xml:space="preserve">Meses</value>
@@ -1183,7 +1183,7 @@
     <value xml:space="preserve">Há {0} meses</value>
   </data>
   <data name="MyFolderName.Text">
-    <value xml:space="preserve">Mi pasta</value>
+    <value xml:space="preserve">Minha pasta</value>
   </data>
   <data name="New.Text">
     <value xml:space="preserve">Novo</value>
@@ -1297,7 +1297,7 @@
     <value xml:space="preserve">A contrasenha foi modificado.</value>
   </data>
   <data name="PasswordInadequate.Text" lastModified="2015-12-27 20:55:22">
-    <value xml:space="preserve">A nova contrasenha é válida por motivos de seguridade. Introduzca uma nova contrasenha suficientemente larga e compleja para cumplir com os requisitos de seguridade deste sitio.</value>
+    <value xml:space="preserve">A nova senha não é válida por motivos de segurança. Digite uma nova senha suficientemente longa e complexa para cumprir os requisitos de segurança deste site.</value>
   </data>
   <data name="PasswordInvalid.Text">
     <value xml:space="preserve">Deve escribir um valor válido de contrasenha. Consulte com o administrador do portal si não conoce os requerimientos de contrasenha.</value>
@@ -1360,10 +1360,10 @@
     <value xml:space="preserve">Anterior</value>
   </data>
   <data name="PrivateConfirmationMessage.Text" lastModified="2017-04-28 07:20:21">
-    <value xml:space="preserve">&lt;strong&gt;foi enviadao um email com os detalles de su registro ao administrador da web para su verificação. uma vez que su registro haya sido aprobado se le enviará um email a su direção. Mientras tanto pode continuar navegado pelo sitio.&lt;/strong&gt;</value>
+    <value xml:space="preserve">&lt;strong&gt;Foi enviado um e-mail com os detalhes do seu registro ao administrador do site para verificação. Assim que o seu registro for aprovado, você receberá um e-mail no seu endereço. Enquanto isso, você pode continuar navegando pelo site.&lt;/strong&gt;</value>
   </data>
   <data name="PrivateMembership.Text">
-    <value xml:space="preserve">&lt;strong&gt;*Nota:&lt;/strong&gt; O registro em este sitio web é privado. uma vez que envíe su informação o Administrador le notificará si su petição foi sido autorizada. Si su petição se acepta recibirá um correo de notificação com os detalles de Acesso ao sitio web.</value>
+    <value xml:space="preserve">&lt;strong&gt;*Nota:&lt;/strong&gt; O registro neste site é privado. Depois de enviar as suas informações, o administrador notificará se a sua solicitação foi autorizada. Se a solicitação for aceita, você receberá um e-mail de notificação com os detalhes de acesso ao site.</value>
   </data>
   <data name="ProcessObject.Text">
     <value xml:space="preserve">Procesando objeto incrustado</value>
@@ -1381,7 +1381,7 @@
     <value xml:space="preserve">Público</value>
   </data>
   <data name="PublicMembership.Text">
-    <value xml:space="preserve">&lt;strong&gt;*Nota:&lt;/strong&gt; O registro em este sitio web é público. uma vez que envíe su informação de registro tendrá Acesso ao sitio web.</value>
+    <value xml:space="preserve">&lt;strong&gt;*Nota:&lt;/strong&gt; O registro neste site é público. Depois de enviar as suas informações de registro, você terá acesso ao site.</value>
   </data>
   <data name="PURGE.Log">
     <value xml:space="preserve">O registro do portal foi sido vaciado satisfactoriamente</value>
@@ -1758,7 +1758,7 @@
     <value xml:space="preserve">Su conta foi verificado corretamente</value>
   </data>
   <data name="VerifiedMembership.Text">
-    <value xml:space="preserve">&lt;strong&gt;*Nota:&lt;/strong&gt;O registro em este sitio web é verificado. Quando haya enviado sus datos recibirá um correo com um enlace para verificar su conta.</value>
+    <value xml:space="preserve">&lt;strong&gt;*Nota:&lt;/strong&gt; O registro neste site é verificado. Depois de enviar os seus dados, você receberá um e-mail com um link para verificar a sua conta.</value>
   </data>
   <data name="ViewJournal.Text">
     <value xml:space="preserve">Ver</value>
@@ -1782,7 +1782,7 @@
     <value xml:space="preserve">Há {0} semanas</value>
   </data>
   <data name="Wizard.Success.FailureDetail">
-    <value xml:space="preserve">&lt;p&gt;Foi ocurrido um error não asistente. Revise a mensagem que aparece debajo e notifíquelo a su provedor.&lt;/p&gt;</value>
+    <value xml:space="preserve">&lt;p&gt;Ocorreu um erro no assistente. Revise a mensagem exibida abaixo e notifique o seu provedor.&lt;/p&gt;</value>
   </data>
   <data name="Wizard.Success.FailureTitle">
     <value xml:space="preserve">O asistente falló:</value>
