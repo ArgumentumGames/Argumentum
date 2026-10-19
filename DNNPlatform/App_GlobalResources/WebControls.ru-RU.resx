@@ -230,7 +230,7 @@
     <value>Загрузка файла остановлена</value>
   </data>
   <data name="FileUpload.UrlTooltip.Text" xml:space="preserve">
-    <value>Введите URL-адрес ресурса, например http://SomeWebSite.com/Images/About.png</value>
+    <value>Введите URL-адрес ресурса, например https://SomeWebSite.com/Images/About.png</value>
   </data>
   <data name="FileUpload.KeepButton.Text" xml:space="preserve">
     <value>Оставить</value>
@@ -264,5 +264,8 @@
   </data>
   <data name="ConfirmPasswordMatched.Text" xml:space="preserve">
     <value>Пароли совпадают</value>
+  </data>
+  <data name="FieldSuffix.Text" xml:space="preserve">
+    <value>:</value>
   </data>
 </root>

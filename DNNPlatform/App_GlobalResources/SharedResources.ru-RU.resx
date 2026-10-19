@@ -334,7 +334,7 @@
     <value>У Вас недостаточно прав для просмотра этого модуля.</value>
   </data>
   <data name="CriticalError.Error" xml:space="preserve">
-    <value>Возникла критическая ошибка. Подробности доступны в журнале событий.</value>
+    <value>Возникла критическая ошибка. Подробности доступны в журнале администратора.</value>
   </data>
   <data name="ModuleLoad.Error" xml:space="preserve">
     <value>Необработанное исключение при загрузке модуля.</value>
@@ -1978,4 +1978,37 @@
     <value>Письмо для подтверждения успешно отправлено.</value>
   </data>
   
+  <data name="EXCEPTION_GlobDotDotNotSupportedInCleanup.Text" xml:space="preserve">
+    <value>Символ ".." не поддерживается в компоненте очистки (glob), эта очистка была пропущена.</value>
+  </data>
+  <data name="ErrorDecryptingSetting.Text" xml:space="preserve">
+    <value>Не удалось расшифровать параметр {0}</value>
+  </data>
+  <data name="SQL_Manifest_BadFile.Text" xml:space="preserve">
+    <value>Ошибка в манифесте, связанная с файлом {0}</value>
+  </data>
+  <data name="SQL_Manifest_Error.Text" xml:space="preserve">
+    <value>Ошибка в манифесте, связанная со скриптами</value>
+  </data>
+  <data name="DefaultWorkflowState1.OnDiscardMessageBody" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DefaultWorkflowState1.OnDiscardMessageSubject" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DefaultWorkflowState3.OnCompleteMessageBody" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DefaultWorkflowState3.OnCompleteMessageSubject" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DefaultWorkflowState3.OnDiscardMessageBody" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DefaultWorkflowState3.OnDiscardMessageSubject" xml:space="preserve">
+    <value />
+  </data>
+  <data name="File.Text" xml:space="preserve">
+    <value />
+  </data>
 </root>
