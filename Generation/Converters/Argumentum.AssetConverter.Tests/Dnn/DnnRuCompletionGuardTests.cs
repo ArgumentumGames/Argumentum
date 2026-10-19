@@ -20,9 +20,10 @@ namespace Argumentum.AssetConverter.Tests
 	/// fichier List_Country.ru-RU.resx est NOUVEAU : 256 clés ISO alpha-2,
 	/// valeurs CLDR main ru.xml (254) + AN/CS codes abrogés déclarés [K].
 	/// <list type="bullet">
-	/// <item>MESSAGE_PORTAL_PRIVACY.Text reste ABSENT : réécriture juridique
-	/// complète du neutre 9.6 → 10.3.2, traitée en grain miroir avec le bloc
-	/// TERMS (même chantier que #1876/#1883) — témoin dédié ci-dessous.</item>
+	/// <item>MESSAGE_PORTAL_PRIVACY.Text (traduction intégrale) + tête LCEN
+	/// de TERMS (identité ARGUMENTUM) : livrés par le grain juridique empilé
+	/// (même chantier que #1876/#1883) — l'ancien témoin d'absence est
+	/// devenu la garde de présence ci-dessous.</item>
 	/// <item>Les 10 clés « r7-only » (DASHBOARD_*, Insecure*, retirées du
 	/// neutre 10.3.2) sont laissées telles qu'importées (décision ai-01).</item>
 	/// <item>Les 6 verbatim sont vérifiés par ÉGALITÉ au neutre (miroir
@@ -247,17 +248,50 @@ namespace Argumentum.AssetConverter.Tests
 				ru.Should().ContainKey(code).WhoseValue.Should().Be(expected, "pin CLDR {0}.", code);
 		}
 
-		/// <summary>Témoin du report déclaré : PRIVACY part en grain
-		/// juridique (réécriture 9.6→10.3.2 du bloc légal, chantier
-		/// #1876/#1883). Sa livraison rougira ce fait — attendu.</summary>
+		/// <summary>Grain juridique : PRIVACY livré — présence, cyrillique,
+		/// parité de jetons DÉRIVÉE du neutre vivant (substitutions de portail,
+		/// courriel de contact) et les 6 sous-titres localisés.</summary>
 		[Fact]
-		public void MessagePortalPrivacy_StillAbsent_UntilLegalMirrorGrain()
+		public void MessagePortalPrivacy_Present_TranslatedWithTokens()
 		{
-			HasKey(GlobalResx, "MESSAGE_PORTAL_PRIVACY.Text").Should().BeFalse(
-				"le bloc vie privée neutre a été réécrit juridiquement en 10.3.2 : traduction en grain miroir " +
-				"(avec TERMS), pas une retouche de complétion — témoin du report déclaré.");
-			HasKey(GlobalResx, "MESSAGE_PORTAL_TERMS.Text").Should().BeTrue(
-				"TERMS, lui, est présent (valeur R7 9.6) — il reste à rafraîchir au même grain juridique.");
+			HasKey(GlobalResx, "MESSAGE_PORTAL_PRIVACY.Text").Should().BeTrue(
+				"livré par le grain juridique (miroir #1876/#1883) — l'ancien témoin d'absence est retourné.");
+			var ru = ResxValue(GlobalResx, "MESSAGE_PORTAL_PRIVACY.Text");
+			var neutral = ResxValue(GlobalNeutralResx, "MESSAGE_PORTAL_PRIVACY.Text");
+			new Regex("[А-Яа-яЁё]").IsMatch(ru).Should().BeTrue("la traduction RU porte du cyrillique.");
+			Regex.Matches(ru, Regex.Escape("[Portal:PortalName]")).Count.Should().Be(
+				Regex.Matches(neutral, Regex.Escape("[Portal:PortalName]")).Count,
+				"chaque substitution de portail du neutre est préservée (parité dérivée, pas de pin figé).");
+			ru.Should().Contain("mailto:[Portal:Email]", "le lien de contact garde son jeton de courriel.");
+			Regex.Matches(ru, "SubHead").Count.Should().Be(6, "les 6 sous-titres du neutre sont localisés.");
+			ru.Should().StartWith("<div align=\"left\">");
+			ru.Should().EndWith("</div>", "structure HTML du bloc préservée.");
+		}
+
+		/// <summary>Grain juridique : TERMS = tête LCEN 10.3.2 traduite (identité
+		/// légale VERBATIM — adresse, SIREN et URL legifrance ne se traduisent pas)
+		/// + corps R7 préservé (boilerplate EN byte-identique entre 9.6 et 10.3.2,
+		/// mesuré 15 715 car — pas de retraduction nécessaire).</summary>
+		[Fact]
+		public void LegalTerms_LcenHeadTranslated_IdentityVerbatim_R7BodyPreserved()
+		{
+			var v = ResxValue(GlobalResx, "MESSAGE_PORTAL_TERMS.Text");
+			v.Should().Contain("ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ", "en-tête du Legal Notice 10.3.2.");
+			v.Should().Contain("ИДЕНТИФИКАЦИЯ САЙТА", "Site Identification (LCEN).");
+			v.Should().Contain("№ 2004-575", "la loi LCEN citée (article 6).");
+			foreach (var pin in new[]
+			{
+				"ARGUMENTUM SAS, 5 B RUE MARTEL, 75010 PARIS 10",
+				"SIREN: 922020276",
+				"MY INTELLIGENCE AGENCY, 5 B RUE MARTEL, 75010 PARIS 10",
+				"https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000801164",
+			})
+				Regex.Matches(v, Regex.Escape(pin)).Count.Should().Be(1, "identité légale verbatim : {0}.", pin);
+			v.Should().Contain("<span class=\"SubHead\">СОГЛАШЕНИЕ МЕЖДУ ПОЛЬЗОВАТЕЛЕМ И [Portal:PortalName]</span>",
+				"le corps R7 reste la traduction de référence (boilerplate 9.6 == 10.3.2, mesuré).");
+			v.Should().EndWith("</div>", "structure HTML du bloc préservée.");
+			v.Should().NotContain("LEGAL NOTICE", "la tête est localisée, pas bilingue.");
+			v.Should().NotContain("SITE IDENTIFICATION", "idem — aucun résidu anglais de la tête neutre.");
 		}
 	}
 }
