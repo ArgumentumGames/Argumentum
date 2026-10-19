@@ -188,8 +188,9 @@ namespace Argumentum.AssetConverter.Tests.Dnn
                 "intérieure (grain typographie 15/10)");
             value.Should().Contain("«Proveedor de Alojamiento»",
                 "la désignation de l'hébergeur es-ES, guillemets espagnols");
-            value.Should().Contain("AGREEMENT BETWEEN USER AND [Portal:PortalName]",
-                "l'insertion est différentielle : le gabarit DNN existant survit derrière le bloc");
+            value.Should().Contain("ACUERDO ENTRE EL USUARIO Y [Portal:PortalName]",
+                "le gabarit DNN derrière le bloc LCEN est désormais traduit (grain juridique " +
+                "pt/es, miroir #1908) — l'ancre en est le sous-titre localisé");
         }
 
         [Fact]
@@ -221,8 +222,9 @@ namespace Argumentum.AssetConverter.Tests.Dnn
                 "le numéro de la loi en abrégé brésilien « nº » (grain typographie 15/10)");
             value.Should().NotContain("n.º",
                 "« n.º » est la graphie pt-PT ; le site cible est pt-BR (#1095)");
-            value.Should().Contain("AGREEMENT BETWEEN USER AND [Portal:PortalName]",
-                "l'insertion est différentielle : le gabarit DNN existant survit derrière le bloc");
+            value.Should().Contain("ACORDO ENTRE O USUÁRIO E [Portal:PortalName]",
+                "le gabarit DNN derrière le bloc LCEN est désormais traduit (grain juridique " +
+                "pt/es, miroir #1908) — l'ancre en est le sous-titre localisé");
         }
 
         /// <summary>
@@ -450,8 +452,10 @@ namespace Argumentum.AssetConverter.Tests.Dnn
 
             value.Should().Contain("«Argumentum»",
                 "espagnol : guillemets « » SANS espace intérieure (usage RAE, contrairement au français)");
-            value.Should().Contain("\"Linked Sites\"",
-                "CONTRÔLE DE PÉRIMÈTRE : le gabarit DNN garde ses guillemets droits");
+            value.Should().Contain("«Sitios Vinculados»",
+                "CONTRÔLE DE PÉRIMÈTRE (post-traduction) : le gabarit DNN traduit porte les " +
+                "guillemets espagnols, pas des guillemets droits — le gabarit EN « Linked Sites » " +
+                "a disparu avec le grain juridique pt/es");
         }
 
         [Fact]
@@ -461,8 +465,10 @@ namespace Argumentum.AssetConverter.Tests.Dnn
 
             value.Should().Contain("“Argumentum”",
                 "portugais brésilien : guillemets typographiques “ ” (usage brésilien courant)");
-            value.Should().Contain("\"Linked Sites\"",
-                "CONTRÔLE DE PÉRIMÈTRE : le gabarit DNN garde ses guillemets droits");
+            value.Should().Contain("“Sites Vinculados”",
+                "CONTRÔLE DE PÉRIMÈTRE (post-traduction) : le gabarit DNN traduit porte les " +
+                "guillemets typographiques pt-BR, pas des guillemets droits — le gabarit EN " +
+                "« Linked Sites » a disparu avec le grain juridique pt/es");
         }
 
         /// <summary>
