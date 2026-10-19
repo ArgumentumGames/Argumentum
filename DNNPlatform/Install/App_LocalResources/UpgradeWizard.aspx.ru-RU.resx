@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountInfo.Text" xml:space="preserve">
+    <value>Сведения об учетной записи</value>
+  </data>
+  <data name="BestPractices.Text" xml:space="preserve">
+    <value>Вы собираетесь обновить сайт до более свежей версии приложения. Установка обновлений на постоянной основе является лучшим способом обеспечения защиты целостности Ваших инвестиций и безопасности Ваших пользователей и ресурсов. Перед запуском обновления убедитесь в том, что:
+&lt;ul&gt;
+&lt;li&gt;Вы выполняете первую попытку обновления в окружении, позволяющем совершить откат изменений
+&lt;li&gt;Вы задокументировали характеристики текущей установки, провели исследование используемых сторонних расширений на совместимость
+&lt;li&gt;Вы создали необходимые резервные копии текущего окружения для того, чтобы иметь возможность восстановить сайт в случае, если процесс обновления даст сбой.
+&lt;/ul&gt;</value>
+  </data>
+  <data name="VersionsMatch.Text" xml:space="preserve">
+    <value>Версии базы данных и приложения совпадают - обновление не требуется.</value>
+  </data>
+  <data name="VersionsMatchButIncrementalExists.Text" xml:space="preserve">
+    <value>Версии базы данных и приложения совпадают - доступно инкрементальное обновление системы.</value>
+  </data>
+  <data name="CurrentVersion.Text" xml:space="preserve">
+    <value>Текущая версия - {0}</value>
+  </data>
+  <data name="DatabaseUpgrade.Text" xml:space="preserve">
+    <value>Обновляем базу данных</value>
+  </data>
+  <data name="Error.Text" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="ErrorInStep.Text" xml:space="preserve">
+    <value>Произошла ОШИБКА - {0}</value>
+  </data>
+  <data name="ExtensionsUpgrade.Text" xml:space="preserve">
+    <value>Обновляем расширения</value>
+  </data>
+  <data name="IntroDetail.Text" xml:space="preserve">
+    <value>&lt;p&gt;Добро пожаловать на страницу обновления DNN.&lt;/p&gt;
+
+&lt;p&gt;Первый шаг-это выбор языка, который вы хотите использовать для обновления.&lt;/p&gt;
+
+</value>
+  </data>
+  <data name="InvalidCredentials.Text" xml:space="preserve">
+    <value>Имя пользователя и пароль не распознаны.</value>
+  </data>
+  <data name="Next.Text" xml:space="preserve">
+    <value>Обновить сейчас</value>
+  </data>
+  <data name="NoInstallationLog.Text" xml:space="preserve">
+    <value>Журнал установки отсутствует</value>
+  </data>
+  <data name="Password.Help" xml:space="preserve">
+    <value>Пароль администратора хостинга.</value>
+  </data>
+  <data name="Password.Text" xml:space="preserve">
+    <value>Пароль:</value>
+  </data>
+  <data name="ImprovementsProgramTitle.Text" xml:space="preserve">
+    <value>Программа улучшения продукта</value>
+  </data>
+  <data name="ImprovementProgramExplain.Text" xml:space="preserve">
+    <value>Ваше участие в программе улучшения продукта позволит нам лучше понять то, каким образом мы можем
+улучшить DNN для Вас. Эти данные помогут нам проанализировать использование продукта и то, что важно
+для использующих его людей. Все данные анонимны и предназначены только для внутреннего использования. Узнайте больше &lt;a href="http://www.dnnsoftware.com/dnn-improvement-program" target="_blank"&gt;о программе улучшения продукта&lt;/a&gt;.</value>
+  </data>
+  <data name="ImprovementProgramLabel.Text" xml:space="preserve">
+    <value>Оправлять анонимную информацию об использовании в DNN</value>
+  </data>
+  <data name="Retry.Text" xml:space="preserve">
+    <value>Попробовать снова</value>
+  </data>
+  <data name="SeeLogs.Text" xml:space="preserve">
+    <value>Открыть журнал</value>
+  </data>
+  <data name="TimerMinutes.Text" xml:space="preserve">
+    <value>минут</value>
+  </data>
+  <data name="Title.Text" xml:space="preserve">
+    <value>Обновление</value>
+  </data>
+  <data name="Upgrade.Text" xml:space="preserve">
+    <value>Обновление</value>
+  </data>
+  <data name="UpgradeDone.Text" xml:space="preserve">
+    <value>Обновление завершено</value>
+  </data>
+  <data name="UpgradingDatabase.Text" xml:space="preserve">
+    <value>Обновляем базу данных</value>
+  </data>
+  <data name="Username.Help" xml:space="preserve">
+    <value>Имя пользователя для учетной записи администратора хостинга.</value>
+  </data>
+  <data name="Username.Text" xml:space="preserve">
+    <value>Администратор хостинга:</value>
+  </data>
+  <data name="Version.Text" xml:space="preserve">
+    <value>Обновление - версия {0}</value>
+  </data>
+  <data name="ViewWebsite.Text" xml:space="preserve">
+    <value>Переключить сайт</value>
+  </data>
+  <data name="VisitWebsite.Text" xml:space="preserve">
+    <value>Перейти на сайт</value>
+  </data>
+  <data name="UpgradeStarted.Text" xml:space="preserve">
+    <value>Обновление начато в</value>
+  </data>
+  <data name="AcceptTerms.Required" xml:space="preserve">
+    <value>Примите условия лицензионного соглашения, чтобы продолжить работу.</value>
+  </data>
+  <data name="AcceptTerms.Text" xml:space="preserve">
+    <value>Я принимаю условия &lt;a href="../Licenses/Dnn_Corp_License.pdf" target="_blank"&gt;принять условия&lt;/a&gt;</value>
+  </data>
+</root>

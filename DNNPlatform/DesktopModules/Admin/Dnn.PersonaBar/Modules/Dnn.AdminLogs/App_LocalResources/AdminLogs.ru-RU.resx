@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="plPortalID.Text" xml:space="preserve">
+    <value>Вебсайт</value>
+  </data>
+  <data name="plPortalID.Help" xml:space="preserve">
+    <value>Выберите сайт, журнал которого вы хотите просмотреть.</value>
+  </data>
+  <data name="plLogType.Text" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="plLogType.Help" xml:space="preserve">
+    <value>Вы можете отфильтровать журнал по определенному типу событий.</value>
+  </data>
+  <data name="plShowRecords.Text" xml:space="preserve">
+    <value>Показать записи</value>
+  </data>
+  <data name="plShowRecords.Help" xml:space="preserve">
+    <value>Выберите записи, которые вы хотите просмотреть.</value>
+  </data>
+  <data name="ColorCoding.Text" xml:space="preserve">
+    <value>Цветовое выделение записей</value>
+  </data>
+  <data name="Settings.Text" xml:space="preserve">
+    <value>Параметры ведения журнала</value>
+  </data>
+  <data name="Legend.Text" xml:space="preserve">
+    <value>Расшифровка цветового выделения</value>
+  </data>
+  <data name="Date.Text" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="Type.Text" xml:space="preserve">
+    <value>Тип событий</value>
+  </data>
+  <data name="Username.Text" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="Portal.Text" xml:space="preserve">
+    <value>Вебсайт</value>
+  </data>
+  <data name="Summary.Text" xml:space="preserve">
+    <value>Кратко</value>
+  </data>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>Удалить отмеченное</value>
+  </data>
+  <data name="btnClear.Text" xml:space="preserve">
+    <value>Очистить журнал</value>
+  </data>
+  <data name="SendExceptions.Text" xml:space="preserve">
+    <value>Отправить записи</value>
+  </data>
+  <data name="ExceptionsWarning.Text" xml:space="preserve">
+    <value>&lt;b&gt;Обратите внимание&lt;/b&gt;: При использвании данной функции Вы &lt;i&gt;можете&lt;/i&gt; отправлять некоторые конфиденциальные данные через Интернет в открытом виде (&lt;i&gt;НЕ&lt;/i&gt; зашифрованными). Перед тем, как отправить отчет об ошибках, пожалуйста, еще раз просмотрите содержимое журнала ошибок, чтобы убедиться, что он не содержит каких-либо сведений, нежелательных для отправки. Будут отправлены только отмеченные записи.</value>
+  </data>
+  <data name="SendExceptionsEmail.Text" xml:space="preserve">
+    <value>Отправить записи по эл. почте</value>
+  </data>
+  <data name="plEmailAddress.Text" xml:space="preserve">
+    <value>Адрес эл. почты</value>
+  </data>
+  
+  <data name="SendMessage.Text" xml:space="preserve">
+    <value>Комментарий (необязательно)</value>
+  </data>
+  <data name="SendMessage.Help" xml:space="preserve">
+    <value>Включить дополнительный комментарий к записям.</value>
+  </data>
+  
+  <data name="AddContent.Action" xml:space="preserve">
+    <value>Добавить конфигурацию журнала</value>
+  </data>
+  <data name="NoEntries.Text" xml:space="preserve">
+    <value>В настоящий момент в журнале нет ни одной записи.</value>
+  </data>
+  <data name="Showing.Text" xml:space="preserve">
+    <value>Показаны записи с {0} по {1} из {2}</value>
+  </data>
+  <data name="DeleteSuccess.Text" xml:space="preserve">
+    <value>Выбранные записи успешно удалены.</value>
+  </data>
+  <data name="EmailSuccess.Text" xml:space="preserve">
+    <value>Ваше сообщение отправлено.</value>
+  </data>
+  <data name="EmailFailure.Text" xml:space="preserve">
+    <value>Ваше сообщение &lt;b&gt;НЕ&lt;/b&gt; отправлено.</value>
+  </data>
+  <data name="ServiceUnavailable.Text" xml:space="preserve">
+    <value>Веб-служба по адресу DotNetNuke.com в настоящий момент недоступен.</value>
+  </data>
+  <data name="ServerName.Text" xml:space="preserve">
+    <value>&lt;b&gt;Имя сервера&lt;/b&gt;: </value>
+  </data>
+  <data name="LogCleared.Text" xml:space="preserve">
+    <value>Журнал очищен.</value>
+  </data>
+  <data name="ClickRow.Text" xml:space="preserve">
+    <value>Нажмите на строку для получения более подробной информации.</value>
+  </data>
+  <data name="ExceptionCode.Text" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="ItemCreatedCode.Text" xml:space="preserve">
+    <value>Создание элемента</value>
+  </data>
+  <data name="ItemUpdatedCode.Text" xml:space="preserve">
+    <value>Изменение элемента</value>
+  </data>
+  <data name="ItemDeletedCode.Text" xml:space="preserve">
+    <value>Удаление элемента</value>
+  </data>
+  <data name="SuccessCode.Text" xml:space="preserve">
+    <value>Успешная операция</value>
+  </data>
+  <data name="FailureCode.Text" xml:space="preserve">
+    <value>Сбой операции</value>
+  </data>
+  <data name="AdminOpCode.Text" xml:space="preserve">
+    <value>Общая административная операция</value>
+  </data>
+  <data name="AdminAlertCode.Text" xml:space="preserve">
+    <value>Административный сигнал</value>
+  </data>
+  <data name="HostAlertCode.Text" xml:space="preserve">
+    <value>Сигнал хост-уровня</value>
+  </data>
+  <data name="ToEmail.Text" xml:space="preserve">
+    <value>На указанный адрес эл. почты</value>
+  </data>
+  <data name="ControlTitle_.Text" xml:space="preserve">
+    <value>Просмотр журнала</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;О просмотрщике журнала&lt;/h1&gt;&lt;p&gt;Позволяет задать события, которые будут записаны в журнал.&lt;/p&gt;</value>
+  </data>
+  <data name="SecurityException.Text" xml:space="preserve">
+    <value>Исключение по безопасности</value>
+  </data>
+  <data name="plSubject.Help" xml:space="preserve">
+    <value>Введите тему электронной почты.</value>
+  </data>
+  <data name="plSubject.Text" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="InavlidEmailAddress.Text" xml:space="preserve">
+    <value>'{0}' не допустимый адрес электронной почты.</value>
+  </data>
+  <data name="Viewer.Text" xml:space="preserve">
+    <value>Просмотр</value>
+  </data>
+  <data name="ClearLog.Text" xml:space="preserve">
+    <value>Уверены, что хотите удалить все записи журнала?</value>
+  </data>
+  <data name="SelectException.Text" xml:space="preserve">
+    <value>Выберите хотя бы одну запись в журнале.</value>
+  </data>
+  <data name="LogEntryDefaultMsg.Text" xml:space="preserve">
+    <value>Во вложении - записи из журнала ошибок.</value>
+  </data>
+  <data name="LogEntryDefaultSubject.Text" xml:space="preserve">
+    <value>Журналы ошибок</value>
+  </data>
+  <data name="LogType.Header" xml:space="preserve">
+    <value>Тип событий</value>
+  </data>
+  <data name="Portal.Header" xml:space="preserve">
+    <value>Вебсайт</value>
+  </data>
+  <data name="Active.Header" xml:space="preserve">
+    <value>Активен</value>
+  </data>
+  <data name="FileName.Header" xml:space="preserve">
+    <value>Имя файла</value>
+  </data>
+  <data name="Edit.EditText" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="plIsActive.Text" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="plIsActive.Help" xml:space="preserve">
+    <value>Отметьте, если желаете сохранять события.</value>
+  </data>
+  <data name="plLogTypeKey.Text" xml:space="preserve">
+    <value>Тип событий</value>
+  </data>
+  <data name="plLogTypeKey.Help" xml:space="preserve">
+    <value>Выберите тип событий для этого журнала.</value>
+  </data>
+  <data name="plLogTypePortalID.Text" xml:space="preserve">
+    <value>Вебсайт</value>
+  </data>
+  <data name="plLogTypePortalID.Help" xml:space="preserve">
+    <value>С каким сайтом связан данный журнал.</value>
+  </data>
+  <data name="plKeepMostRecent.Text" xml:space="preserve">
+    <value>Сохранять последние</value>
+  </data>
+  <data name="plFileName.Text" xml:space="preserve">
+    <value>Имя файла</value>
+  </data>
+  <data name="plFileName.Help" xml:space="preserve">
+    <value>Укажите имя файла, предназначенного для хранения журнала.</value>
+  </data>
+  <data name="plEmailNotificationStatus.Text" xml:space="preserve">
+    <value>Уведомление по электронной почте</value>
+  </data>
+  <data name="plEmailNotificationStatus.Help" xml:space="preserve">
+    <value>Отметьте, если желаете отправлять сообщения при появлении данного типа событий.</value>
+  </data>
+  
+  <data name="plMailFromAddress.Text" xml:space="preserve">
+    <value>Оправлять с адреса</value>
+  </data>
+  <data name="plMailFromAddress.Help" xml:space="preserve">
+    <value>Адрес электронной почты, от имени которого будут оправляться уведомления.</value>
+  </data>
+  <data name="plMailToAddress.Text" xml:space="preserve">
+    <value>Оправлять кому</value>
+  </data>
+  <data name="plMailToAddress.Help" xml:space="preserve">
+    <value>Адрес эл. почты, на который будут оправляться уведомления</value>
+  </data>
+  <data name="EmailSettings.Text" xml:space="preserve">
+    <value>Параметры уведомлений по эл. почте</value>
+  </data>
+  <data name="ConfigDeleted.Text" xml:space="preserve">
+    <value>Выбранная конфигурация журнала удалена.</value>
+  </data>
+  <data name="ConfigUpdated.Text" xml:space="preserve">
+    <value>Конфигурация журнала изменена.</value>
+  </data>
+  <data name="ConfigAdded.Text" xml:space="preserve">
+    <value>Конфигурация журнала успешно добавлена.</value>
+  </data>
+  <data name="LogEntry.Text" xml:space="preserve">
+    <value> Запись в журнале</value>
+  </data>
+  <data name="LogEntries.Text" xml:space="preserve">
+    <value>Записей в журнале</value>
+  </data>
+  <data name="Occurence.Text" xml:space="preserve">
+    <value> Вхождение</value>
+  </data>
+  <data name="Occurences.Text" xml:space="preserve">
+    <value> Вхождений</value>
+  </data>
+  <data name="In.Text" xml:space="preserve">
+    <value>в</value>
+  </data>
+  <data name="ControlTitle_edit.Text" xml:space="preserve">
+    <value>Параметры ведения журнала</value>
+  </data>
+  <data name="DeleteError.Text" xml:space="preserve">
+    <value>Выбранная конфигурация журнала не может быть удалена. Сначала требуется удалить все записи данного типа из журнала.</value>
+  </data>
+  <data name="TimeType_1.Text" xml:space="preserve">
+    <value>Секунд</value>
+  </data>
+  <data name="TimeType_2.Text" xml:space="preserve">
+    <value>минут</value>
+  </data>
+  <data name="TimeType_3.Text" xml:space="preserve">
+    <value>часов</value>
+  </data>
+  <data name="TimeType_4.Text" xml:space="preserve">
+    <value>дней</value>
+  </data>
+  
+  
+  
+  <data name="ConfigBtnCancel.Text" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="ConfigBtnDelete.Text" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="ConfigBtnSave.Text" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  
+  
+  
+  
+  <data name="False.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  
+  <data name="no.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="True.Text" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="yes.Text" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="btnSend.Text" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+</root>

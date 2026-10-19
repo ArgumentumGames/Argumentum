@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>Настройки консоли</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;p&gt;Модуль консоли отображает дочерние страницы в виде значков и ссылок или категорий для удобной навигации. Модуль консоли имеет 4 различных режима отображения:
+&lt;ul&gt;&lt;li&gt;маленькие значки с подробностями во всплывающей подсказке (Малые значки, Простой просмотр)&lt;/li&gt;
+&lt;li&gt;большие значки с подробностями в подсказке (Большие значки, Простой просмотр)&lt;/li&gt;
+&lt;li&gt;список с маленькими значками и подробностями (Малые значки, Подробный просмотр)&lt;/li&gt;
+&lt;li&gt;список с большими значками и подробностями (Большие значки, Подробный просмотр)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;
+&lt;h3&gt;Настройки страницы, которые использует модуль консоли:&lt;/h3&gt;
+&lt;table cellpadding="4" border="1" style="border:solid 1px #dcdcdc;border-collapse:collapse;"&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Название страницы&lt;/td&gt;&lt;td&gt;Название страницы отображается в качестве заголовка ссылки.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Описание страницы&lt;/td&gt;&lt;td&gt;Описание страницы отображается во всплывающей подсказке или подробностях.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Отключено&lt;/td&gt;&lt;td&gt;Если страница отключена, будут показаны названия категорий. Дочерние страницы отключенной будут показаны под заголовком.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Значок&lt;/td&gt;&lt;td&gt;Этот значок используется для режимов с маленькими значками.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Большой значок&lt;/td&gt;&lt;td&gt;Этот значок используется для режимов с большими значками.&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;i&gt;Совет: Настройка 'Включить в меню' скрывает страницу в меню, но не в консоли.&lt;/i&gt;
+&lt;br /&gt;&lt;br /&gt;
+&lt;h3&gt;Настройки модуля консоли&lt;/h3&gt;
+&lt;table cellpadding="4" border="1" style="border:solid 1px #dcdcdc;border-collapse:collapse;"&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Показать дочерние&lt;/td&gt;&lt;td&gt;При выборе страницы будут отображаться все ее дочерние страницы. Оставьте это поле пустым, чтобы отобразить все дочерние страницы для текущей страницы.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Размер значка по умолчанию&lt;/td&gt;&lt;td&gt;Задает размер значков.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Разрешить изменение размера значков&lt;/td&gt;&lt;td&gt;Позволяет пользователю изменять размер значков.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Вид по умолчанию&lt;/td&gt;&lt;td&gt;Задает вид по умолчанию. Простой вид покажет значки с описаниями страниц в виде всплывающих подсказок. Детальный просмотр покажет список с описаниями для каждого элемента.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Разрешить изменение вида&lt;/td&gt;&lt;td&gt;Позволяет пользователю переключаться между подробным и простым видами.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Показывать подсказку&lt;/td&gt;&lt;td&gt;Показать всплывающую подсказку с подробным описанием при наведении курсора на значки в режиме простого просмотра.&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;Ширина&lt;/td&gt;&lt;td&gt;Оставьте это поле пустым, чтобы равномерно значки распределить значки по горизонтали или введите значение в пикселях, чтобы минимизировать ширину консоли. Например, установите это значение в 400 для 2-х столбцов значков.&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;i&gt;Совет: Вы можете запретить пользователям изменять макет страницы отключив настройки 'Разрешить изменение размера значков' и 'Разрешить изменение вида'.&lt;/i&gt;</value>
+  </data>
+  <data name="AllowResize.Help" xml:space="preserve">
+    <value>Разрешить изменение размера используемых значков.</value>
+  </data>
+  <data name="AllowResize.Text" xml:space="preserve">
+    <value>Разрешить изменение размера значков</value>
+  </data>
+  <data name="AllowViewChange.Help" xml:space="preserve">
+    <value>Разрешить переключение между подробным и простым представлениями.</value>
+  </data>
+  <data name="AllowViewChange.Text" xml:space="preserve">
+    <value>Разрешить переключение представлений</value>
+  </data>
+  <data name="DefaultSize.Help" xml:space="preserve">
+    <value>Определяет размер значков.</value>
+  </data>
+  <data name="DefaultSize.Text" xml:space="preserve">
+    <value>Размер значков по-умолчанию</value>
+  </data>
+  <data name="DefaultView.Help" xml:space="preserve">
+    <value>Определяет представление по-умолчанию. В простом представлении описания страниц отображаются в виде всплывающих подсказок к значкам. В подробном представлении отображается список с описаниями страниц для каждого пункта.</value>
+  </data>
+  <data name="DefaultView.Text" xml:space="preserve">
+    <value>Представление по-умолчанию</value>
+  </data>
+  <data name="ParentTab.Help" xml:space="preserve">
+    <value>Выбор страницы приведет к отображению всех подчиненных ей страниц. Оставьте этот поле пустым, чтобы отобразить все подчиненные страницы для текущей страницы.</value>
+  </data>
+  <data name="ParentTab.Text" xml:space="preserve">
+    <value>Показывать дочерние элементы</value>
+  </data>
+  <data name="Hide.Text" xml:space="preserve">
+    <value>Простое представление</value>
+  </data>
+  <data name="IconFile.Text" xml:space="preserve">
+    <value>Маленькие значки (16px)</value>
+  </data>
+  <data name="IconFileLarge.Text" xml:space="preserve">
+    <value>Большие значки (32px)</value>
+  </data>
+  <data name="Show.Text" xml:space="preserve">
+    <value>Подробное представление</value>
+  </data>
+  <data name="ShowTooltip.Help" xml:space="preserve">
+    <value>Показывать подсказки с подробным описанием, при наведении на значки в простом представлении.</value>
+  </data>
+  <data name="ShowTooltip.Text" xml:space="preserve">
+    <value>Показывать подсказки</value>
+  </data>
+  <data name="ConsoleWidth.Help" xml:space="preserve">
+    <value>Оставьте это поле пустым, чтобы разрешить значкам распространяться по горизонтали. Установите конкретное значение, чтобы минимизировать ширину консоли. Например, установка этого значения в 400 приведет к отображению значков в 2 столбца.</value>
+  </data>
+  <data name="ConsoleWidth.Text" xml:space="preserve">
+    <value>Ширина</value>
+  </data>
+  <data name="IncludeParent.Help" xml:space="preserve">
+    <value>Отметьте этот флаг для включения в список вышестоящей страницы.</value>
+  </data>
+  <data name="IncludeParent.Text" xml:space="preserve">
+    <value>Включать вышестоящую страницу</value>
+  </data>
+  <data name="Group.Text" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="Normal.Text" xml:space="preserve">
+    <value>Обычный</value>
+  </data>
+  <data name="Profile.Text" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
+  <data name="Mode.Help" xml:space="preserve">
+    <value>Выберите режим работы модуля.</value>
+  </data>
+  <data name="Mode.Text" xml:space="preserve">
+    <value>Режим</value>
+  </data>
+  <data name="tabsLabel.Help" xml:space="preserve">
+    <value>Вы можете управлять видимостью отдельных страниц.</value>
+  </data>
+  <data name="tabsLabel.Text" xml:space="preserve">
+    <value>Настройки видимости страницы:</value>
+  </data>
+  <data name="Friends.Text" xml:space="preserve">
+    <value>Друзья</value>
+  </data>
+  <data name="User.Text" xml:space="preserve">
+    <value>Пользователь</value>
+  </data>
+  <data name="IconNone.Text" xml:space="preserve">
+    <value>Без значков</value>
+  </data>
+  <data name="Members.Text" xml:space="preserve">
+    <value>Участники</value>
+  </data>
+  <data name="Owner.Text" xml:space="preserve">
+    <value>Владелец</value>
+  </data>
+  <data name="OrderTabsByHierarchy.Help" xml:space="preserve">
+    <value>Когда установлен этот флаг, список страниц будет упорядочен таким образом, что страницы, имеющие подчиненные страницы, перемещаются в конец списка. Это сделано для того, чтобы страницы одного уровня отображались в одном месте модуля Console.</value>
+  </data>
+  <data name="OrderTabsByHierarchy.Text" xml:space="preserve">
+    <value>Упорядочить по месту в иерархии</value>
+  </data>
+  <data name="IncludeHiddenPages.Help" xml:space="preserve">
+    <value>Отметьте, чтобы отображать также страницы, которые скрыты в меню.</value>
+  </data>
+  <data name="IncludeHiddenPages.Text" xml:space="preserve">
+    <value>Показать скрытые страницы</value>
+  </data>
+</root>

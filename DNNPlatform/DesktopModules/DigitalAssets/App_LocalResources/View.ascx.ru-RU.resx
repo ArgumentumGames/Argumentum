@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ChooseFiles.Text" xml:space="preserve">
+    <value>Выбрать файлы</value>
+  </data>
+  <data name="Close.Text" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="EditModule.Text" xml:space="preserve">
+    <value>Редактировать модуль</value>
+  </data>
+  <data name="FolderName.Help" xml:space="preserve">
+    <value>Введите имя папки.</value>
+  </data>
+  <data name="FolderName.Text" xml:space="preserve">
+    <value>Имя папки</value>
+  </data>
+  <data name="FolderType.Help" xml:space="preserve">
+    <value>Выберите тип папки.</value>
+  </data>
+  <data name="FolderType.Text" xml:space="preserve">
+    <value>Тип папки</value>
+  </data>
+  <data name="Modified.Header" xml:space="preserve">
+    <value>Изменено</value>
+  </data>
+  <data name="Name.Header" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="rfvFolderName.ErrorMessage" xml:space="preserve">
+    <value>Укажите имя папки.</value>
+  </data>
+  <data name="Save.Text" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="UploadFiles.DropHere" xml:space="preserve">
+    <value>ПЕРЕТАЩИТЕ ФАЙЛЫ СЮДА</value>
+  </data>
+  <data name="UploadFiles.Info" xml:space="preserve">
+    <value>При выборе можно указать сразу несколько файлов для подгрузки.</value>
+  </data>
+  <data name="CreateNewFolderTitle.Text" xml:space="preserve">
+    <value>Новая папка</value>
+  </data>
+  <data name="Loading.Text" xml:space="preserve">
+    <value>загрузка...</value>
+  </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="NoItemsSelected.Text" xml:space="preserve">
+    <value>Выберите хотя бы один элемент для удаления.</value>
+  </data>
+  <data name="DeleteConfirm.Text" xml:space="preserve">
+    <value>Уверены, что хотите удалить [ITEMS]?</value>
+  </data>
+  <data name="OneFile.Text" xml:space="preserve">
+    <value>1 файл</value>
+  </data>
+  <data name="OneFolder.Text" xml:space="preserve">
+    <value>1 папка</value>
+  </data>
+  <data name="Items.Text" xml:space="preserve">
+    <value>Элемент(ов)</value>
+  </data>
+  <data name="UploadError.Text" xml:space="preserve">
+    <value>Ошибка подгрузки файла</value>
+  </data>
+  <data name="And.Text" xml:space="preserve">
+    <value>[FILES] и [FOLDERS]</value>
+  </data>
+  <data name="NoItems.Text" xml:space="preserve">
+    <value>Папка пуста.</value>
+  </data>
+  <data name="ExtensionChangeConfirmContent.Text" xml:space="preserve">
+    <value>Если изменить расширение имени файла, файл может стать недоступен.&lt;br/&gt;Уверены, что хотите изменить расширение?</value>
+  </data>
+  <data name="ExtensionChangeConfirmTitle.Text" xml:space="preserve">
+    <value>Расширение изменено.</value>
+  </data>
+  <data name="NoConfirm.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="OkConfirm.Text" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="CopyFiles.Text" xml:space="preserve">
+    <value>Копировать файлы</value>
+  </data>
+  <data name="CopyFiles.Title" xml:space="preserve">
+    <value>Копировать [SELECTION] в...</value>
+  </data>
+  <data name="NFiles.Text" xml:space="preserve">
+    <value>[NUM] файлов</value>
+  </data>
+  <data name="NFolders.Text" xml:space="preserve">
+    <value>[NUM] папок</value>
+  </data>
+  <data name="NoItemsDeletedDescription.Text" xml:space="preserve">
+    <value>У Вас нет разрешений для удаления следующих элементов:</value>
+  </data>
+  <data name="NoItemsDeleted.Title" xml:space="preserve">
+    <value>[ITEMS] невозможно удалить</value>
+  </data>
+  <data name="Move.Title" xml:space="preserve">
+    <value>Переместить [SELECTION] в...</value>
+  </data>
+  <data name="Keep.Text" xml:space="preserve">
+    <value>Оставить</value>
+  </data>
+  <data name="Replace.Text" xml:space="preserve">
+    <value>Заменить</value>
+  </data>
+  <data name="DuplicateCopy.Subtext" xml:space="preserve">
+    <value>Элементы с такими же именами файлов, как Вы пытались скопировать, уже существуют здесь.</value>
+  </data>
+  <data name="DuplicateFilesExist.Text" xml:space="preserve">
+    <value>Обнаружены конфликты имен</value>
+  </data>
+  <data name="DuplicateMove.Subtext" xml:space="preserve">
+    <value>Элементы с такими же именами файлов, как Вы пытались переместить, уже существуют в здесь.</value>
+  </data>
+  <data name="DuplicateUpload.Subtext" xml:space="preserve">
+    <value>Элементы с такими же именами файлов, как Вы пытались подгрузить, уже существуют здесь.</value>
+  </data>
+  <data name="KeepAll.Text" xml:space="preserve">
+    <value>Оставить все</value>
+  </data>
+  <data name="ReplaceAll.Text" xml:space="preserve">
+    <value>Заменить все</value>
+  </data>
+  <data name="CreateFolderError.Title" xml:space="preserve">
+    <value>Произошла ошибка при создании папки.</value>
+  </data>
+  <data name="DeleteItemsError.Title" xml:space="preserve">
+    <value>Произошла ошибка при удалении элементов.</value>
+  </data>
+  <data name="LoadFolderContentError.Title" xml:space="preserve">
+    <value>Произошла ошибка при загрузке содержимого папки.</value>
+  </data>
+  <data name="LoadSubFoldersError.Title" xml:space="preserve">
+    <value>Произошла ошибка при загрузке подпапок.</value>
+  </data>
+  <data name="RenameFileError.Title" xml:space="preserve">
+    <value>Ошибка переименования файла.</value>
+  </data>
+  <data name="RenameFolderError.Title" xml:space="preserve">
+    <value>Ошибка переименования папки.</value>
+  </data>
+  <data name="UploadFiles.Title" xml:space="preserve">
+    <value>Подгрузка файлов.</value>
+  </data>
+  <data name="FileUploadAlreadyExists.Text" xml:space="preserve">
+    <value>Файл с таким именем, как вы хотите подгрузить, уже существует здесь.</value>
+  </data>
+  <data name="FileUploadErrorOccurred.Error" xml:space="preserve">
+    <value>Произошла ошибка при подгрузке файла.</value>
+  </data>
+  <data name="FileUploadStopped.Text" xml:space="preserve">
+    <value>Подгрузка файла остановлена.</value>
+  </data>
+  <data name="ExpandFile.Text" xml:space="preserve">
+    <value>Распаковать</value>
+  </data>
+  <data name="KeepCompressed.Text" xml:space="preserve">
+    <value>Оставить сжатыми</value>
+  </data>
+  <data name="ZipConfirmation.Text" xml:space="preserve">
+    <value>Вы пытаетесь подгрузить архив формата zip с именем [FILE].&lt;br /&gt;Нужно ли его распаковать?</value>
+  </data>
+  <data name="GetUrl.Text" xml:space="preserve">
+    <value>Получить URL</value>
+  </data>
+  <data name="GetUrl.Title" xml:space="preserve">
+    <value>Получить URL</value>
+  </data>
+  <data name="GetUrlAltText.Text" xml:space="preserve">
+    <value>Кликните и нажмите CTRL+C, чтобы скопировать...</value>
+  </data>
+  <data name="GetFileUrlLabel.Text" xml:space="preserve">
+    <value>URL файла:</value>
+  </data>
+  <data name="GetUrlError.Title" xml:space="preserve">
+    <value>Произошла ошибка при получении URL.</value>
+  </data>
+  <data name="ManageFolderTypes.Text" xml:space="preserve">
+    <value>Управление типами папок</value>
+  </data>
+  <data name="ParentFolder.Header" xml:space="preserve">
+    <value>Родительская папка</value>
+  </data>
+  <data name="SearchBreadcrumb.Text" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="NoItemsSearch.Text" xml:space="preserve">
+    <value>Нет элементов, соответствующих условиям поиска</value>
+  </data>
+  <data name="Copy.Text" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="CreateFolder.Text" xml:space="preserve">
+    <value>Создать папку</value>
+  </data>
+  <data name="DeleteFolder.Text" xml:space="preserve">
+    <value>Удалить папку</value>
+  </data>
+  <data name="RefreshFolder.Text" xml:space="preserve">
+    <value>Обновить папку</value>
+  </data>
+  <data name="RenameFolder.Text" xml:space="preserve">
+    <value>Переименовать папку</value>
+  </data>
+  <data name="ViewFolderProperties.Text" xml:space="preserve">
+    <value>Свойства папки</value>
+  </data>
+  <data name="Download.Text" xml:space="preserve">
+    <value>Загрузить</value>
+  </data>
+  <data name="Move.Text" xml:space="preserve">
+    <value>Переместить</value>
+  </data>
+  <data name="Rename.Text" xml:space="preserve">
+    <value>Переименовать</value>
+  </data>
+  <data name="ViewProperties.Text" xml:space="preserve">
+    <value>Свойства</value>
+  </data>
+  <data name="Size.Header" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="Copy.Error" xml:space="preserve">
+    <value>Ошибка копирования</value>
+  </data>
+  <data name="Move.Error" xml:space="preserve">
+    <value>Ошибка перемещения</value>
+  </data>
+  <data name="LeftPaneFilesTab.Text" xml:space="preserve">
+    <value>Файлы</value>
+  </data>
+  <data name="UploadFilesDragDrop.Info" xml:space="preserve">
+    <value>Также можно перетащить файлы на расположенную ниже площадку</value>
+  </data>
+  <data name="ParentFolder.Text" xml:space="preserve">
+    <value>Родительская папка</value>
+  </data>
+  <data name="ParentFolder.Help" xml:space="preserve">
+    <value>Папка, в которой будет создана новая папка.</value>
+  </data>
+  <data name="Moving.Text" xml:space="preserve">
+    <value>Перемещаем [SELECTION]</value>
+  </data>
+  <data name="MappedPath.Help" xml:space="preserve">
+    <value>Введите путь к этой папке в поставщике папок. Путь должен быть указан относительно корневой папки поставщика. Поэтому, если оставить поле пустым, то в папку будет отображен корневая папка поставщика.</value>
+  </data>
+  <data name="MappedPath.Text" xml:space="preserve">
+    <value>Отображенный путь</value>
+  </data>
+  <data name="SelectAll.Text" xml:space="preserve">
+    <value>Выбрать все</value>
+  </data>
+  <data name="UnselectAll.Text" xml:space="preserve">
+    <value>Снять все</value>
+  </data>
+  <data name="All.Text" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="PagerFirstPage.Text" xml:space="preserve">
+    <value>&lt;&lt;</value>
+  </data>
+  <data name="PagerFirstPage.ToolTip" xml:space="preserve">
+    <value>На первую страницу</value>
+  </data>
+  <data name="PagerLastPage.Text" xml:space="preserve">
+    <value>&gt;&gt;</value>
+  </data>
+  <data name="PagerLastPage.ToolTip" xml:space="preserve">
+    <value>На последнюю страницу</value>
+  </data>
+  <data name="PagerNextPage.Text" xml:space="preserve">
+    <value>След.</value>
+  </data>
+  <data name="PagerNextPage.ToolTip" xml:space="preserve">
+    <value>На следующую страницу</value>
+  </data>
+  <data name="PagerPageSize.Text" xml:space="preserve">
+    <value>Показывать элементов:</value>
+  </data>
+  <data name="PagerPreviousPage.Text" xml:space="preserve">
+    <value>Пред.</value>
+  </data>
+  <data name="PagerPreviousPage.ToolTip" xml:space="preserve">
+    <value>На предыдущую страницу</value>
+  </data>
+  <data name="PagerTextFormatMultiplePages.Text" xml:space="preserve">
+    <value>[ITEMS] элементов на [PAGES] страницах</value>
+  </data>
+  <data name="PagerTextFormatOnePage.Text" xml:space="preserve">
+    <value>[ITEMS] элементов</value>
+  </data>
+  <data name="PagerTextFormatOnePageOneItem.Text" xml:space="preserve">
+    <value>[ITEMS] элемент</value>
+  </data>
+  <data name="MaxFileUploadSizeError.Text" xml:space="preserve">
+    <value>Невозможно подгрузить: размер файла больше максимального в [MAXFILESIZE]</value>
+  </data>
+  <data name="Delete.Title" xml:space="preserve">
+    <value>Удалить [ITEMS] ...</value>
+  </data>
+  <data name="UnzipFile.Text" xml:space="preserve">
+    <value>Распаковать</value>
+  </data>
+  <data name="UnzipFileErrorTitle.Text" xml:space="preserve">
+    <value>Произошла ошибка при распаковке файла.</value>
+  </data>
+  <data name="MappedPathRegExValidator.ErrorMessage" xml:space="preserve">
+    <value>Путь должен быть указан относительно корневой папки поставщика.</value>
+  </data>
+  <data name="FileUploadEmptyFileIsNotSupported.Error" xml:space="preserve">
+    <value>Ваш браузер не поддерживает подгрузку пустых файлов.</value>
+  </data>
+  <data name="UploadingExtracting.Text" xml:space="preserve">
+    <value>Подгрузка и распаковка...</value>
+  </data>
+  <data name="InvalidGroup.Error" xml:space="preserve">
+    <value>Не задан идентификатор группы. Вернитесь на страницу групп и выберите нужную группу.</value>
+  </data>
+  <data name="InvalidUser.Error" xml:space="preserve">
+    <value>Модуль настроен на использование в режиме пользователя, поэтому не может использоваться неаутентифицированными пользователями.</value>
+  </data>
+  <data name="ControlTitle_.Text" xml:space="preserve">
+    <value>Управление файлами</value>
+  </data>
+  <data name="ToolbarTitle.Actions.Text" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="ToolbarTitle.Views.Text" xml:space="preserve">
+    <value>Просмотров</value>
+  </data>
+  <data name="Unlink.Text" xml:space="preserve">
+    <value>Отсоединить</value>
+  </data>
+  <data name="UnlinkFolder.Text" xml:space="preserve">
+    <value>Отсоединить папку</value>
+  </data>
+  <data name="UnlinkFolderError.Title" xml:space="preserve">
+    <value>Произошла ошибка при отсоединении папки.</value>
+  </data>
+  <data name="Unlink.Title" xml:space="preserve">
+    <value>Отсоединить папку...</value>
+  </data>
+  <data name="UnlinkConfirm.Text" xml:space="preserve">
+    <value>Уверены,, что хотите отсоединить данную папку?</value>
+  </data>
+  <data name="DeleteConfirmWithMappedSubfolder.Text" xml:space="preserve">
+    <value>Примечание: Выбранные папки содержат [COUNT] внешнюю папу. Эта папка будет отсоединена от сайта, но папка и файлы в ней по-прежнему будут доступны во внешнем хранилище.</value>
+  </data>
+  <data name="DeleteConfirmWithMappedSubfolders.Text" xml:space="preserve">
+    <value>Примечание: Выбранные папки содержат [COUNT] внешних папок. Эти папки будут отсоединены от сайта, но папки и файлы в них по-прежнему будут доступны во внешнем хранилище.</value>
+  </data>
+  <data name="FileLabel.Text" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="FileMultLabel.Text" xml:space="preserve">
+    <value>Файлы</value>
+  </data>
+  <data name="FolderLabel.Text" xml:space="preserve">
+    <value>Папка</value>
+  </data>
+  <data name="FolderMultLabel.Text" xml:space="preserve">
+    <value>Папки</value>
+  </data>
+</root>

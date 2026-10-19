@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="nav_Analytics.Text" xml:space="preserve">
+    <value>Статистика</value>
+  </data>
+  <data name="nav_Dashboard.Text" xml:space="preserve">
+    <value>Панель управления</value>
+  </data>
+  <data name="nav_Logout.Text" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="nav_Settings.Text" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="nav_Tasks.Text" xml:space="preserve">
+    <value>Задачи</value>
+  </data>
+  <data name="nav_Edit.Text" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="nav_Manage.Text" xml:space="preserve">
+    <value>Управление</value>
+  </data>
+  <data name="nav_Content.Text" xml:space="preserve">
+    <value>Содержимое</value>
+  </data>
+  <data name="nav_Tools.Text" xml:space="preserve">
+    <value>Инструменты</value>
+  </data>
+  
+  <data name="nav_DocCenter.Text" xml:space="preserve">
+    <value>Документы</value>
+  </data>
+  <data name="nav_Help.Text" xml:space="preserve">
+    <value>Справка</value>
+  </data>
+  <data name="nav_Site.Text" xml:space="preserve">
+    <value>Просмотреть сайт</value>
+  </data>
+  <data name="err_BetweenMinMax.Text" xml:space="preserve">
+    <value>Значение может быть только между Минимальным значением и Максимальным значением</value>
+  </data>
+  <data name="err_Email.Text" xml:space="preserve">
+    <value>Допускается только действительная электронная почта</value>
+  </data>
+  <data name="err_Minimum.Text" xml:space="preserve">
+    <value>Текст должен содержать не менее {0} символов</value>
+  </data>
+  <data name="err_MinLessThanMax.Text" xml:space="preserve">
+    <value>Минимальное значение должно быть меньше Максимального значения</value>
+  </data>
+  <data name="err_NoLargerThanExp.Text" xml:space="preserve">
+    <value>Очки репутации не могут быть больше очков опыта</value>
+  </data>
+  <data name="err_NonDecimalNumber.Text" xml:space="preserve">
+    <value>Десятичные числа не допускаются</value>
+  </data>
+  <data name="err_NonNegativeNumber.Text" xml:space="preserve">
+    <value>Отрицательные числа не допускаются</value>
+  </data>
+  <data name="err_NoUserFolder.Text" xml:space="preserve">
+    <value>{0} не владеет никакими ресурсами.</value>
+  </data>
+  <data name="err_Number.Text" xml:space="preserve">
+    <value>Разрешены только цифры</value>
+  </data>
+  <data name="err_OneActionNeeded.Text" xml:space="preserve">
+    <value>Необходимо хотя бы одно действие</value>
+  </data>
+  <data name="err_PositiveNumber.Text" xml:space="preserve">
+    <value>Допускаются только положительные числа</value>
+  </data>
+  <data name="err_Required.Text" xml:space="preserve">
+    <value>Требуется текст</value>
+  </data>
+  <data name="err_RoleAssignedToUser.Text" xml:space="preserve">
+    <value>Эта роль уже назначена данному пользователю.</value>
+  </data>
+  <data name="nav_Home.Text" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="permissiongrid.Actions.Text" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="permissiongrid.Add Content.Text" xml:space="preserve">
+    <value>Добавить содержимое</value>
+  </data>
+  <data name="permissiongrid.Add User.Text" xml:space="preserve">
+    <value>Добавить пользователя</value>
+  </data>
+  <data name="permissiongrid.Add.Text" xml:space="preserve">
+    <value>Новая</value>
+  </data>
+  <data name="permissiongrid.AllRoles.Text" xml:space="preserve">
+    <value>&lt;Все роли&gt;</value>
+  </data>
+  <data name="permissiongrid.Copy.Text" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="permissiongrid.Delete.Text" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="permissiongrid.Display Name.Text" xml:space="preserve">
+    <value>Отображаемое имя:</value>
+  </data>
+  <data name="permissiongrid.Edit Content.Text" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="permissiongrid.Edit Tab.Text" xml:space="preserve">
+    <value>Полный контроль</value>
+  </data>
+  <data name="permissiongrid.Edit.Text" xml:space="preserve">
+    <value>Полный контроль</value>
+  </data>
+  <data name="permissiongrid.Export.Text" xml:space="preserve">
+    <value>Экспорт</value>
+  </data>
+  <data name="permissiongrid.Filter By Group.Text" xml:space="preserve">
+    <value>Фильтр по группам</value>
+  </data>
+  <data name="permissiongrid.GlobalRoles.Text" xml:space="preserve">
+    <value>&lt;Глобальные роли&gt;</value>
+  </data>
+  <data name="permissiongrid.Import.Text" xml:space="preserve">
+    <value>Импорт</value>
+  </data>
+  <data name="permissiongrid.Manage Settings.Text" xml:space="preserve">
+    <value>Управление настройками</value>
+  </data>
+  <data name="permissiongrid.Navigate.Text" xml:space="preserve">
+    <value>Навигация</value>
+  </data>
+  <data name="permissiongrid.Select Role.Text" xml:space="preserve">
+    <value>Выберите Роль</value>
+  </data>
+  <data name="permissiongrid.Type-roles.Text" xml:space="preserve">
+    <value>Роли</value>
+  </data>
+  <data name="permissiongrid.Type-users.Text" xml:space="preserve">
+    <value>Пользователи</value>
+  </data>
+  <data name="permissiongrid.View Tab.Text" xml:space="preserve">
+    <value>Просмотр</value>
+  </data>
+  <data name="permissiongrid.View.Text" xml:space="preserve">
+    <value>Просмотр</value>
+  </data>
+  <data name="nav_SiteAssets.Text" xml:space="preserve">
+    <value>Материалы сайта</value>
+  </data>
+  <data name="nav_GlobalAssets.Text" xml:space="preserve">
+    <value>Глобальные ресурсы</value>
+  </data>
+  <data name="title_Tasks.Text" xml:space="preserve">
+    <value>Задачи</value>
+  </data>
+  <data name="txt_ViewIndex.Text" xml:space="preserve">
+    <value>Просмотр {0} из {1}</value>
+  </data>
+  <data name="btn_LoadMore.Text" xml:space="preserve">
+    <value>Еще</value>
+  </data>
+  <data name="Documentation.Text" xml:space="preserve">
+    <value>Документация</value>
+  </data>
+  
+  <data name="LicenseKey.Text" xml:space="preserve">
+    <value>Лицензионный Ключ</value>
+  </data>
+  <data name="ServerName.Text" xml:space="preserve">
+    <value>Имя сервера</value>
+  </data>
+  <data name="UpgradeLicense.Text" xml:space="preserve">
+    <value>[ Обновление до Evoq ]</value>
+  </data>
+  <data name="btn_CloseDialog.Text" xml:space="preserve">
+    <value>Хорошо</value>
+  </data>
+  <data name="CriticalUpdate.Text" xml:space="preserve">
+    <value>[ Критическое обновление ]</value>
+  </data>
+  <data name="NormalUpdate.Text" xml:space="preserve">
+    <value>[ Новое обновление ]</value>
+  </data>
+  <data name="LockEditMode.Help" xml:space="preserve">
+    <value>При блокировке значок будет отображаться синим цветом, и вы будете оставаться в режиме редактирования даже при переходе на другие страницы.</value>
+  </data>
+  <data name="LockEditMode.Text" xml:space="preserve">
+    <value>Нажмите, чтобы заблокировать режим редактирования.</value>
+  </data>
+  <data name="UnlockEditMode.Help" xml:space="preserve">
+    <value>После разблокировки вы будете выходить из режима редактирования всякий раз, когда перейдете на другую страницу или завершите свои изменения.</value>
+  </data>
+  <data name="UnlockEditMode.Text" xml:space="preserve">
+    <value>Нажмите, чтобы разблокировать режим редактирования.</value>
+  </data>
+</root>

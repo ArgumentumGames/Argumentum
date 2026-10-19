@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="plWorkflow1.Text" xml:space="preserve">
+    <value>Рабочий процесс</value>
+  </data>
+  <data name="plWorkflow1.Help" xml:space="preserve">
+    <value>Выберите рабочий процесс для управления</value>
+  </data>
+  <data name="plWorkflow2.Text" xml:space="preserve">
+    <value>Рабочий процесс</value>
+  </data>
+  <data name="plWorkflow2.Help" xml:space="preserve">
+    <value>Введите имя рабочего процесса</value>
+  </data>
+  <data name="plDescription.Text" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="plDescription.Help" xml:space="preserve">
+    <value>Введите описание рабочего процесса</value>
+  </data>
+  <data name="plHistory.Text" xml:space="preserve">
+    <value>Журнал</value>
+  </data>
+  <data name="plHistory.Help" xml:space="preserve">
+    <value>Укажите максимальное количество хранимых версий</value>
+  </data>
+  <data name="plDeleted.Text" xml:space="preserve">
+    <value>Удалено</value>
+  </data>
+  <data name="plDeleted.Help" xml:space="preserve">
+    <value>Отметьте, если рабочий процесс активен</value>
+  </data>
+  <data name="cmdAddWorkflow.Text" xml:space="preserve">
+    <value>Новый рабочий процесс</value>
+  </data>
+  <data name="WorkflowExists.Text" xml:space="preserve">
+    <value>Рабочий процесс с таким именем уже существует на сайте</value>
+  </data>
+  <data name="dshStates.Text" xml:space="preserve">
+    <value>Состояния</value>
+  </data>
+  <data name="State.Header" xml:space="preserve">
+    <value>Состояние</value>
+  </data>
+  <data name="Active.Header" xml:space="preserve">
+    <value>Активен</value>
+  </data>
+  <data name="cmdAddState.Text" xml:space="preserve">
+    <value>Добавить состояние</value>
+  </data>
+  <data name="dshPermissions.Text" xml:space="preserve">
+    <value>Настройки состояния</value>
+  </data>
+  <data name="plState.Text" xml:space="preserve">
+    <value>Состояние</value>
+  </data>
+  <data name="plState.Help" xml:space="preserve">
+    <value>Введите имя состояния</value>
+  </data>
+  <data name="plPermissions.Text" xml:space="preserve">
+    <value>Проверящие</value>
+  </data>
+  <data name="plPermissions.Help" xml:space="preserve">
+    <value>Укажите, кто может проверять содержимое в этом состоянии</value>
+  </data>
+  <data name="plNotify.Text" xml:space="preserve">
+    <value>Уведомлять</value>
+  </data>
+  <data name="plNotify.Help" xml:space="preserve">
+    <value>Отметьте данный флаг в том случае, если необходимо, чтобы автор и проверяющие получали уведомления по эл. почте, связанные с этим состоянием</value>
+  </data>
+  <data name="plActive.Text" xml:space="preserve">
+    <value>Активен</value>
+  </data>
+  <data name="plActive.Help" xml:space="preserve">
+    <value>Отметьте, если состояние активно</value>
+  </data>
+  <data name="dshVersions.Text" xml:space="preserve">
+    <value>История версий</value>
+  </data>
+  <data name="plMaximumVersionHistory.Text" xml:space="preserve">
+    <value>Журнал</value>
+  </data>
+  <data name="plMaximumVersionHistory.Help" xml:space="preserve">
+    <value>Укажите максимальное количество версий содержимого, хранимых в истории модуля (введите 0, чтобы хранить все версии)</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;P&gt;Модуль Текст/HTML отображает простой текст, текст с форматированием или HTML. Доступны пять различных режимов редактирования: &lt;/P&gt;
+&lt;OL&gt;
+&lt;LI&gt;&lt;STRONG&gt;Простой текст / Текст&lt;/STRONG&gt;: Отображает текст и теги HTML. Перед текстом, введенным с новой строки, вставляется тег разрыва строки. Стиль текста - Normal, определяется таблицей стилей.
+&lt;LI&gt;&lt;STRONG&gt;Простой текст / HTML&lt;/STRONG&gt;: Отображает простой текст в формате HTML.
+&lt;LI&gt;&lt;STRONG&gt;Простой текст / Сырой&lt;/STRONG&gt;: Отображает простой текст в формате HTML. Перед текстом, введенным с новой строки, НЕ вставляется тег разрыва строки.
+&lt;LI&gt;&lt;STRONG&gt;Текст с форматированием / HTML&lt;/STRONG&gt;: Позволяет вставлять HTML из сторонних источников.
+&lt;LI&gt;&lt;STRONG&gt;Текст с форматированием / Дизайн&lt;/STRONG&gt;: Полнофункциональный текстовый процессор с возможностью работы с гиперссылками, ссылками на адреса эл. почты, диспетчером файлов и поддержкой галереи изображений, списками, проверкой правописания и др.</value>
+  </data>
+  <data name="ControlTitle_workflow.Text" xml:space="preserve">
+    <value>Управление рабочими процессами</value>
+  </data>
+  <data name="WorkFlowStateHelp.Text" xml:space="preserve">
+    <value>В данном разделе вы можете управлять состояниями рабочих процессов. Имейте ввиду, что как только рабочий процесс начинает использоваться, вы не сможете удалить какие-либо из его состояний. Кроме того, первое и последнее состояния рабочего процесса также не могут быть удалены.</value>
+  </data>
+</root>

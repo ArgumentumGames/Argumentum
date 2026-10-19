@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="alternateItemTemplateLabel.Help" xml:space="preserve">
+    <value>Шаблон альтернативной записи используется при отображении данных каждого четного участника в списке. </value>
+  </data>
+  <data name="alternateItemTemplateLabel.Text" xml:space="preserve">
+    <value>Шаблон альтернативной записи</value>
+  </data>
+  <data name="itemTemplateLabel.Help" xml:space="preserve">
+    <value>Шаблон записи используется при отображении данных каждого нечетного участника в списке.</value>
+  </data>
+  <data name="itemTemplateLabel.Text" xml:space="preserve">
+    <value>Шаблон записи:</value>
+  </data>
+  <data name="Templates.Text" xml:space="preserve">
+    <value>Шаблоны</value>
+  </data>
+  <data name="popUpTemplateLabel.Help" xml:space="preserve">
+    <value>Данный шаблон используется для отображения подробной информации об участнике во всплывающем окне.</value>
+  </data>
+  <data name="popUpTemplateLabel.Text" xml:space="preserve">
+    <value>Шаблон вспывающего окна:</value>
+  </data>
+  <data name="filterBySelectorLabel.Help" xml:space="preserve">
+    <value>Вы можете применить фильтр к отображаемому списку участников. Выберите тип фильтра, а также роль, отношение или свойство профиля из выпадающего списка.</value>
+  </data>
+  <data name="filterBySelectorLabel.Text" xml:space="preserve">
+    <value>Фильтровать по:</value>
+  </data>
+  <data name="Filters.Text" xml:space="preserve">
+    <value>Фильтры и сортировка</value>
+  </data>
+  <data name="None.Text" xml:space="preserve">
+    <value>Без фильтрации</value>
+  </data>
+  <data name="ProfileProperty.Text" xml:space="preserve">
+    <value>Свойство профайла</value>
+  </data>
+  <data name="Relationship.Text" xml:space="preserve">
+    <value>Отношение</value>
+  </data>
+  <data name="Group.Text" xml:space="preserve">
+    <value>Группа</value>
+  </data>
+  <data name="Search.Text" xml:space="preserve">
+    <value>Настройки поиска</value>
+  </data>
+  <data name="searchField1Label.Help" xml:space="preserve">
+    <value>Укажите первое поле, используемое в расширенном поиске.</value>
+  </data>
+  <data name="searchField1Label.Text" xml:space="preserve">
+    <value>Поле поиска 1:</value>
+  </data>
+  <data name="searchField2Label.Help" xml:space="preserve">
+    <value>Укажите второе поле, используемое в расширенном поиске.</value>
+  </data>
+  <data name="searchField2Label.Text" xml:space="preserve">
+    <value>Поле поиска 2:</value>
+  </data>
+  <data name="searchField3Label.Help" xml:space="preserve">
+    <value>Укажите 3-е поле, используемое в расширенном поиске.</value>
+  </data>
+  <data name="searchField3Label.Text" xml:space="preserve">
+    <value>Поле поиска 3:</value>
+  </data>
+  <data name="searchField4Label.Help" xml:space="preserve">
+    <value>Укажите 4-е поле, используемое в расширенном поиске.</value>
+  </data>
+  <data name="searchField4Label.Text" xml:space="preserve">
+    <value>Поле поиска 4:</value>
+  </data>
+  <data name="displaySearchLabel.Help" xml:space="preserve">
+    <value>Выберите используемый отображаемый вариант поиска. "Нет" для отключения поиск; "Простой" для отображения только простого поиска; "Простой и расширенный" для того, чтобы разрешить пользователю использовать оба варианта.</value>
+  </data>
+  <data name="displaySearchLabel.Text" xml:space="preserve">
+    <value>Поиск:</value>
+  </data>
+  <data name="User.Text" xml:space="preserve">
+    <value>Пользователь</value>
+  </data>
+  <data name="enablePopUpLabel.Help" xml:space="preserve">
+    <value>Отметьте, чтобы всплывающее окно для отображения данных участника.</value>
+  </data>
+  <data name="enablePopUpLabel.Text" xml:space="preserve">
+    <value>Всплывающее окно:</value>
+  </data>
+  <data name="sortFieldListLabel.Help" xml:space="preserve">
+    <value>Укажите поле, используемое для сортировки списка участников.</value>
+  </data>
+  <data name="sortFieldListLabel.Text" xml:space="preserve">
+    <value>Поле сортировки:</value>
+  </data>
+  <data name="sortOrderListLabel.Help" xml:space="preserve">
+    <value>Укажите направление сортировки списка участников.</value>
+  </data>
+  <data name="sortOrderListLabel.Text" xml:space="preserve">
+    <value>Порядок сортировки:</value>
+  </data>
+  <data name="Ascending.Text" xml:space="preserve">
+    <value>По возрастанию</value>
+  </data>
+  <data name="Descending.Text" xml:space="preserve">
+    <value>По убыванию</value>
+  </data>
+  <data name="DisplayName.Text" xml:space="preserve">
+    <value>Отображаемое имя</value>
+  </data>
+  <data name="Email.Text" xml:space="preserve">
+    <value>Email-адрес</value>
+  </data>
+  <data name="Username.Text" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>Настройки каталога участников</value>
+  </data>
+  <data name="DateCreated.Text" xml:space="preserve">
+    <value>Дата создания</value>
+  </data>
+  <data name="UserId.Text" xml:space="preserve">
+    <value>Ид. пользователя</value>
+  </data>
+  <data name="Paging.Text" xml:space="preserve">
+    <value>Настройки разбивки на страницы</value>
+  </data>
+  <data name="disablePagerLabel.Help" xml:space="preserve">
+    <value>Отметьте, чтобы не показывать кнопку "Еще". В этом случае будет показана только первая страница.</value>
+  </data>
+  <data name="disablePagerLabel.Text" xml:space="preserve">
+    <value>Отключить разбивку на страницы:</value>
+  </data>
+  <data name="pageSize.Error" xml:space="preserve">
+    <value>Количество записей на страницу должно быть от 1 до 100.</value>
+  </data>
+  <data name="pageSizeLabel.Help" xml:space="preserve">
+    <value>Можно задать количество записей, отображаемых на одной странице, указав значение от 1 до 100.</value>
+  </data>
+  <data name="pageSizeLabel.Text" xml:space="preserve">
+    <value>Записей на страницу:</value>
+  </data>
+  <data name="DisplaySearch_Both.Text" xml:space="preserve">
+    <value>Простой и расширенный поиск</value>
+  </data>
+  <data name="DisplaySearch_None.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="DisplaySearch_Simple.Text" xml:space="preserve">
+    <value>Простой поиск</value>
+  </data>
+  <data name="ExcludeHostUsersLabel.Help" xml:space="preserve">
+    <value>Если отмечено, администраторы хостинга не будут показаны в результатах поиска.</value>
+  </data>
+  <data name="ExcludeHostUsersLabel.Text" xml:space="preserve">
+    <value>Исключить администраторов хостинга:</value>
+  </data>
+  <data name="Prefix.Text" xml:space="preserve">
+    <value>Префикс</value>
+  </data>
+  <data name="FirstName.Text" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="LastName.Text" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="MiddleName.Text" xml:space="preserve">
+    <value>Отчество</value>
+  </data>
+  <data name="Suffix.Text" xml:space="preserve">
+    <value>Суффикс</value>
+  </data>
+  <data name="Unit.Text" xml:space="preserve">
+    <value>Офис</value>
+  </data>
+  <data name="Street.Text" xml:space="preserve">
+    <value>Улица</value>
+  </data>
+  <data name="City.Text" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="Region.Text" xml:space="preserve">
+    <value>Регион</value>
+  </data>
+  <data name="Country.Text" xml:space="preserve">
+    <value>Страна</value>
+  </data>
+  <data name="PostalCode.Text" xml:space="preserve">
+    <value>Почтовый индекс</value>
+  </data>
+  <data name="Telephone.Text" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="Cell.Text" xml:space="preserve">
+    <value>Мобильный телефон</value>
+  </data>
+  <data name="Fax.Text" xml:space="preserve">
+    <value>Факс</value>
+  </data>
+  <data name="IM.Text" xml:space="preserve">
+    <value>Ид. клиента мгновенных сообщений</value>
+  </data>
+  <data name="Website.Text" xml:space="preserve">
+    <value>Вебсайт</value>
+  </data>
+  <data name="Biography.Text" xml:space="preserve">
+    <value>Биография</value>
+  </data>
+  <data name="TimeZone.Text" xml:space="preserve">
+    <value>Часовой пояс</value>
+  </data>
+  <data name="PreferredLocale.Text" xml:space="preserve">
+    <value>Предпочтительный язык</value>
+  </data>
+</root>

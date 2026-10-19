@@ -1,0 +1,535 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ContentOptions.Action" xml:space="preserve">
+    <value>Состояние заданий</value>
+  </data>
+  <data name="ScheduleHistory.Action" xml:space="preserve">
+    <value>Просмотр журнала</value>
+  </data>
+  <data name="plType.Text" xml:space="preserve">
+    <value>Полное название класса и сборки</value>
+  </data>
+  <data name="plEnabled.Text" xml:space="preserve">
+    <value>Включить Планировщик</value>
+  </data>
+  <data name="plTimeLapse.Text" xml:space="preserve">
+    <value>Частота</value>
+  </data>
+  <data name="plTimeLapse.Help" xml:space="preserve">
+    <value>Пример: задайте "5" и выберите "Минут" для запуска задачи каждые 5 минут.</value>
+  </data>
+  <data name="Minutes.Text" xml:space="preserve">
+    <value>минут</value>
+  </data>
+  <data name="Days.Text" xml:space="preserve">
+    <value>дней</value>
+  </data>
+  <data name="Hours.Text" xml:space="preserve">
+    <value>часов</value>
+  </data>
+  <data name="Weeks.Text" xml:space="preserve">
+    <value>недель</value>
+  </data>
+  <data name="Months.Text" xml:space="preserve">
+    <value>месяцев</value>
+  </data>
+  <data name="Years.Text" xml:space="preserve">
+    <value>лет</value>
+  </data>
+  <data name="plRetryTimeLapse.Text" xml:space="preserve">
+    <value>Повторение</value>
+  </data>
+  <data name="plRetryTimeLapse.Help" xml:space="preserve">
+    <value>Пример: задайте "5" и выберите "Минут" для повторного запуска задачи каждые 5 минут после сбоя.</value>
+  </data>
+  <data name="plRetainHistoryNum.Text" xml:space="preserve">
+    <value>Сохранить историю Планировщика</value>
+  </data>
+  <data name="plRetainHistoryNum.Help" xml:space="preserve">
+    <value>Пример: Выберите "10" для сохранения в истории десяти последних записей.</value>
+  </data>
+  <data name="plAttachToEvent.Text" xml:space="preserve">
+    <value>Запуск по событию</value>
+  </data>
+  <data name="plAttachToEvent.Help" xml:space="preserve">
+    <value>Пример: Выберите "ЗАПУСК_ПРИЛОЖЕНИЯ", чтобы запускать это задание при старте веб-приложения. Обратите внимание, что задания, назначенные на "ЗАВЕРШЕНИЕ_ПРИЛОЖЕНИЯ" могут не запускаться со 100%-ной надежностью на некоторых хостах.</value>
+  </data>
+  <data name="None.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="All.Text" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="APPLICATION_START.Text" xml:space="preserve">
+    <value>ЗАПУСК_ПРИЛОЖЕНИЯ</value>
+  </data>
+  <data name="plCatchUpEnabled.Text" xml:space="preserve">
+    <value>Решить задачи</value>
+  </data>
+  <data name="plCatchUpEnabled.Help" xml:space="preserve">
+    <value>Отметьте, если желаете, чтобы задание выполнилось столько раз, сколько раз оно могло быть пропущено в результате временной неработоспособности сервера.</value>
+  </data>
+  <data name="plObjectDependencies.Text" xml:space="preserve">
+    <value>Зависимости</value>
+  </data>
+  <data name="plObjectDependencies.Help" xml:space="preserve">
+    <value>Укажите таблицы БД или иные объекты, от которых зависит данное задание. Например: "SiteLog,Users,UsersOnline"</value>
+  </data>
+  <data name="UpdateSuccess.Text" xml:space="preserve">
+    <value>Изменения сохранены.</value>
+  </data>
+  <data name="DeleteSuccess.Text" xml:space="preserve">
+    <value>Задание было удалено из расписания.</value>
+  </data>
+  <data name="DeleteError.Text" xml:space="preserve">
+    <value>Не удалось удалить элемент расписания. Пожалуйста, попробуйте позже.</value>
+  </data>
+  <data name="ControlTitle_edit.Text" xml:space="preserve">
+    <value>Редактировать задачу</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;О модуле "Планировщик заданий"&lt;/h1&gt;&lt;p&gt;Модуль позволяет управлять заданиями, выполняемыми по расписанию.&lt;/p&gt;</value>
+  </data>
+  <data name="plType.Help" xml:space="preserve">
+    <value>Это полное имя класса с указанием имени сборки.  Например: "DotNetNuke.Entities.Users.PurgeUsersOnline, DOTNETNUKE"</value>
+  </data>
+  <data name="plServers.Text" xml:space="preserve">
+    <value>Имя сервера:</value>
+  </data>
+  <data name="plServers.Help" xml:space="preserve">
+    <value>Конкретный сервер (или все), на котором будут запускаться запланированные задачи.</value>
+  </data>
+  <data name="Seconds.Text" xml:space="preserve">
+    <value>Секунд</value>
+  </data>
+  <data name="plEnabled.Help" xml:space="preserve">
+    <value>Отметьте, чтобы разрешить выполнение заданий по расписанию.</value>
+  </data>
+  <data name="plFriendlyName.Help" xml:space="preserve">
+    <value>Введите имя для запланированного задания.</value>
+  </data>
+  <data name="plFriendlyName.Text" xml:space="preserve">
+    <value>Понятное имя</value>
+  </data>
+  <data name="cmdRun.Text" xml:space="preserve">
+    <value>Выполнить сейчас</value>
+  </data>
+  <data name="cmdDelete.Text" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="RunNow.Text" xml:space="preserve">
+    <value>Добавленный элемент, намеченый для немедленного выполнения.</value>
+  </data>
+  <data name="TypeRequired.Text" xml:space="preserve">
+    <value>Укажите вид задания.</value>
+  </data>
+  <data name="TimeLapseValidator.ErrorMessage" xml:space="preserve">
+    <value>Значение частоты должно быть в диапазоне от 1 до 999999.</value>
+  </data>
+  <data name="TimeLapseRequired.ErrorMessage" xml:space="preserve">
+    <value>Вы должны установить значение частоты от 1 до 999999.</value>
+  </data>
+  <data name="RetryTimeLapseValidator.ErrorMessage" xml:space="preserve">
+    <value>Значение частоты повторов должно быть в диапазоне от 1 до 999999.</value>
+  </data>
+  
+  <data name="plScheduleStartDate.Help" xml:space="preserve">
+    <value>Введите дату и время запуска запланированной задачи. Примечание: Если сервер будет выключен или будет выполнять другие задачи в это время, задача будет запущена как только сервер загрузится или завершит выполнение других задач.</value>
+  </data>
+  <data name="InvalidFrequencyAndRetry.Text" xml:space="preserve">
+    <value>Значения частоты и повтора некорректны, так как интервал повтора превышает интервал частоты.</value>
+  </data>
+  <data name="AddContent.Action" xml:space="preserve">
+    <value>Добавить запланированную задачу</value>
+  </data>
+  <data name="Type.Header" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="Enabled.Header" xml:space="preserve">
+    <value>ВКЛЮЧЕНО</value>
+  </data>
+  <data name="Enabled.Label" xml:space="preserve">
+    <value>Включено</value>
+  </data>
+  <data name="Frequency.Header" xml:space="preserve">
+    <value>ЧАСТОТА</value>
+  </data>
+  
+  <data name="NextStart.Header" xml:space="preserve">
+    <value>Следующий запуск</value>
+  </data>
+  <data name="NextStart.Label" xml:space="preserve">
+    <value>Следующий запуск</value>
+  </data>
+  <data name="lnkHistory.Text" xml:space="preserve">
+    <value>Журнал</value>
+  </data>
+  <data name="TimeLapsePrefix.Text" xml:space="preserve">
+    <value>Каждый</value>
+  </data>
+  <data name="Minute.Text" xml:space="preserve">
+    <value>минута</value>
+  </data>
+  <data name="Hour.Text" xml:space="preserve">
+    <value>час</value>
+  </data>
+  <data name="Day.Text" xml:space="preserve">
+    <value>день</value>
+  </data>
+  <data name="n/a.Text" xml:space="preserve">
+    <value>н/д</value>
+  </data>
+  <data name="ControlTitle_.Text" xml:space="preserve">
+    <value>Планировщик</value>
+  </data>
+  <data name="Name.Header" xml:space="preserve">
+    <value>Имя задачи</value>
+  </data>
+  <data name="History.Text" xml:space="preserve">
+    <value>История</value>
+  </data>
+  <data name="Status.Text" xml:space="preserve">
+    <value>Состояние</value>
+  </data>
+  <data name="ViewLog.Header" xml:space="preserve">
+    <value>Журнал</value>
+  </data>
+  <data name="plSchedulerMode.Text" xml:space="preserve">
+    <value>Режим планировщика:</value>
+  </data>
+  <data name="plSchedulerMode.Help" xml:space="preserve">
+    <value>Метод запуска по таймеру порождает отдельный поток для работы планировщика, работающий параллельно и независимо от основного рабочего процесса. Метод запуска по запросу запускает планировщик при выполнении HTTP-запросов. Вы также можете запретить работу планировщика задач.</value>
+  </data>
+  <data name="Disabled.Text" xml:space="preserve">
+    <value>Отключена</value>
+  </data>
+  <data name="TimerMethod.Text" xml:space="preserve">
+    <value>По таймеру</value>
+  </data>
+  <data name="RequestMethod.Text" xml:space="preserve">
+    <value>По запросу</value>
+  </data>
+  <data name="Settings.Text" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  
+  <data name="plScheduleAppStartDelay.Help" xml:space="preserve">
+    <value>Число минут, которые системы должна ожидать перед началом исполнения запланированных задач после запуска или перезапуска. По умолчанию 1 мин.</value>
+  </data>
+  <data name="ScheduleAppStartDelayValidation.Text" xml:space="preserve">
+    <value>Значение должно быть указано в минутах.</value>
+  </data>
+  <data name="Started.Header" xml:space="preserve">
+    <value>Запущена</value>
+  </data>
+  <data name="Ended.Header" xml:space="preserve">
+    <value>Завершилась</value>
+  </data>
+  <data name="Duration.Header" xml:space="preserve">
+    <value>Длительность (сек.)</value>
+  </data>
+  <data name="Succeeded.Header" xml:space="preserve">
+    <value>Успешно</value>
+  </data>
+  <data name="Start/End/Next Start.Header" xml:space="preserve">
+    <value>Запуск/Останов/След. запуск</value>
+  </data>
+  <data name="Notes.Header" xml:space="preserve">
+    <value>Примечания</value>
+  </data>
+  <data name="ControlTitle_history.Text" xml:space="preserve">
+    <value>История задач</value>
+  </data>
+  <data name="Description.Header" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Start.Header" xml:space="preserve">
+    <value>Запуск/Останов/След. запуск</value>
+  </data>
+  <data name="Server.Header" xml:space="preserve">
+    <value>Выполнялся на сервере</value>
+  </data>
+  <data name="lblStatusLabel.Text" xml:space="preserve">
+    <value>Состояние:</value>
+  </data>
+  <data name="lblMaxThreadsLabel.Text" xml:space="preserve">
+    <value>Макс. потоков:</value>
+  </data>
+  <data name="lblActiveThreadsLabel.Text" xml:space="preserve">
+    <value>Активных потоков:</value>
+  </data>
+  <data name="lblFreeThreadsLabel.Text" xml:space="preserve">
+    <value>Свободных потоков:</value>
+  </data>
+  <data name="lblCommand.Text" xml:space="preserve">
+    <value>Команда:</value>
+  </data>
+  <data name="lblProcessing.Text" xml:space="preserve">
+    <value>В обработке</value>
+  </data>
+  <data name="ScheduleID.Header" xml:space="preserve">
+    <value>ID: </value>
+  </data>
+  <data name="ObjectDependencies.Header" xml:space="preserve">
+    <value>Зависимости объектов: </value>
+  </data>
+  <data name="TriggeredBy.Header" xml:space="preserve">
+    <value>Срабатывает на: </value>
+  </data>
+  <data name="Thread.Header" xml:space="preserve">
+    <value>Поток: </value>
+  </data>
+  <data name="Servers.Header" xml:space="preserve">
+    <value>Серверы: </value>
+  </data>
+  <data name="lblQueue.Text" xml:space="preserve">
+    <value>В очереди</value>
+  </data>
+  <data name="Overdue.Header" xml:space="preserve">
+    <value>Просрочено (секунды): </value>
+  </data>
+  <data name="TimeRemaining.Header" xml:space="preserve">
+    <value>Оставшееся время: </value>
+  </data>
+  
+  
+  
+  <data name="ManuallyStopped.Text" xml:space="preserve">
+    <value>Остановлена вручную</value>
+  </data>
+  <data name="cmdStart.Text" xml:space="preserve">
+    <value>Запуск</value>
+  </data>
+  <data name="cmdStop.Text" xml:space="preserve">
+    <value>Останов</value>
+  </data>
+  <data name="cmdSave.Text" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="ControlTitle_status.Text" xml:space="preserve">
+    <value>Состояние планировщика</value>
+  </data>
+  <data name="Stop.Header" xml:space="preserve">
+    <value>Останов</value>
+  </data>
+  <data name="TabTaskQueue.Text" xml:space="preserve">
+    <value>ОЧЕРЕДЬ ЗАДАЧ</value>
+  </data>
+  <data name="TabScheduler.Text" xml:space="preserve">
+    <value>ПЛАНИРОВЩИК</value>
+  </data>
+  <data name="TabHistory.Text" xml:space="preserve">
+    <value>ИСТОРИЯ</value>
+  </data>
+  <data name="TabHistoryTitle.Text" xml:space="preserve">
+    <value>Журнал выполнения задач</value>
+  </data>
+  <data name="HistoryModalTitle.Text" xml:space="preserve">
+    <value>История задач: </value>
+  </data>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Update.Text" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  <data name="STOPPED.Text" xml:space="preserve">
+    <value>ОСТАНОВЛЕНО</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="Yes.Text" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="No.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  
+  <data name="ServerTime.Text" xml:space="preserve">
+    <value>Время сервера:</value>
+  </data>
+  
+  
+  
+  <data name="Servers.Text" xml:space="preserve">
+    <value>Серверы</value>
+  </data>
+  
+  
+  
+  
+  
+  <data name="DaySingular.Text" xml:space="preserve">
+    <value>день</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</root>

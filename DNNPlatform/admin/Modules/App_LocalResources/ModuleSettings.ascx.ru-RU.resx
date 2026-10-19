@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ModuleSettings.Text" xml:space="preserve">
+    <value>Настройки модуля</value>
+  </data>
+  <data name="plFriendlyName.Text" xml:space="preserve">
+    <value>Модуль:</value>
+  </data>
+  <data name="plFriendlyName.Help" xml:space="preserve">
+    <value>Отображать имя модуля.</value>
+  </data>
+  <data name="plTitle.Text" xml:space="preserve">
+    <value>Заголовок:</value>
+  </data>
+  <data name="plTitle.Help" xml:space="preserve">
+    <value>Укажите заголовок данного модуля.  Он будет показан в заголовке контейнера модуля, если позволяет выбранный контейнер.</value>
+  </data>
+  <data name="PageSettings.Text" xml:space="preserve">
+    <value>Модуль на странице</value>
+  </data>
+  <data name="Security.Text" xml:space="preserve">
+    <value>Расширенные настройки</value>
+  </data>
+  <data name="plAllTabs.Text" xml:space="preserve">
+    <value>Показывать на всех страницах</value>
+  </data>
+  <data name="plAllTabs.Help" xml:space="preserve">
+    <value>Отметьте этот флаг, если нужно, чтобы данный модуль отображался на всех страницах сайта в таком же расположении.</value>
+  </data>
+  <data name="plVisibility.Text" xml:space="preserve">
+    <value>Показывать:</value>
+  </data>
+  <data name="plVisibility.Help" xml:space="preserve">
+    <value>Выберите для этого модуля по умолчанию режим видимости (показывать или нет).</value>
+  </data>
+  <data name="plTab.Text" xml:space="preserve">
+    <value>Переместить на страницу:</value>
+  </data>
+  <data name="plTab.Help" xml:space="preserve">
+    <value>Переместить этот экземпляр модуля на другую страницу.</value>
+  </data>
+  <data name="plHeader.Text" xml:space="preserve">
+    <value>Текст перед:</value>
+  </data>
+  <data name="plHeader.Help" xml:space="preserve">
+    <value>Укажите текст, который будет выведен перед содержимым модуля.</value>
+  </data>
+  <data name="plFooter.Text" xml:space="preserve">
+    <value>Текст после:</value>
+  </data>
+  <data name="plFooter.Help" xml:space="preserve">
+    <value>Введите текст, который будет выведен после содержимого модуля.</value>
+  </data>
+  <data name="plIcon.Text" xml:space="preserve">
+    <value>Значок:</value>
+  </data>
+  <data name="plIcon.Help" xml:space="preserve">
+    <value>Выберите значок для модуля, который будет отображаться в заголовке.</value>
+  </data>
+  <data name="plAlign.Text" xml:space="preserve">
+    <value>Выравнивание:</value>
+  </data>
+  <data name="plAlign.Help" xml:space="preserve">
+    <value>Выберите тип выравнивания модуля на панели.</value>
+  </data>
+  <data name="plColor.Text" xml:space="preserve">
+    <value>Цвет:</value>
+  </data>
+  <data name="plColor.Help" xml:space="preserve">
+    <value>Укажите цвет для этого модуля.</value>
+  </data>
+  <data name="plBorder.Text" xml:space="preserve">
+    <value>Ширина рамки:</value>
+  </data>
+  <data name="plBorder.Help" xml:space="preserve">
+    <value>Укажите ширину рамки для модуля в пикселах.</value>
+  </data>
+  <data name="plModuleContainer.Text" xml:space="preserve">
+    <value>Контейнер модуля:</value>
+  </data>
+  <data name="plModuleContainer.Help" xml:space="preserve">
+    <value>Выберите контейнер для этого модуля (для добавления новых контейнеров используйте Управление файлами).</value>
+  </data>
+  <data name="plPermissions.Text" xml:space="preserve">
+    <value>Разрешения:</value>
+  </data>
+  <data name="plPermissions.Help" xml:space="preserve">
+    <value>Сформируйте права на просмотр и изменение данного модуля путем установки или снятия нужных отметок.  Модули могут наследовать права от страниц, на которых расположены.  Чтобы сделать это, отметьте опцию "Унаследовать права на просмотр от страницы".</value>
+  </data>
+  <data name="plCacheTime.Text" xml:space="preserve">
+    <value>Время кэширования (сек):</value>
+  </data>
+  <data name="plCacheTime.Help" xml:space="preserve">
+    <value>Укажите время хранения содержимого этого модуля в кэше.</value>
+  </data>
+  <data name="plStartDate.Text" xml:space="preserve">
+    <value>Начало публикации:</value>
+  </data>
+  <data name="plStartDate.Help" xml:space="preserve">
+    <value>Укажите дату начала публикации модуля. До этой даты модуль будет виден только для пользователей с разрешениями на управление им.</value>
+  </data>
+  <data name="plEndDate.Text" xml:space="preserve">
+    <value>Окончание публикации:</value>
+  </data>
+  <data name="plEndDate.Help" xml:space="preserve">
+    <value>Дата окончания публикации модуля. После этой даты, модуль будет виден только пользователям с правами на управление им.</value>
+  </data>
+  <data name="plMoniker.Text" xml:space="preserve">
+    <value>Псевдоним модуля:</value>
+  </data>
+  <data name="plMoniker.Help" xml:space="preserve">
+    <value>Уникальный идентификатор этого модуля на странице. Может использоваться при вызове методов WEB API для задания контекста страницы или модуля.</value>
+  </data>
+  <data name="plDefault.Text" xml:space="preserve">
+    <value>Использовать по умолчанию</value>
+  </data>
+  <data name="plDefault.Help" xml:space="preserve">
+    <value>Отметьте этот флаг, если нужно, чтобы настройки этого модуля на текущей странице страницы стали параметрами по-умолчанию для всех вновь добавляемых модулей. Опция доступна только администраторам сайта и хостинга.</value>
+  </data>
+  <data name="plAllModules.Text" xml:space="preserve">
+    <value>Применить ко всем модулям</value>
+  </data>
+  <data name="plAllModules.Help" xml:space="preserve">
+    <value>Отметьте, если хотите, чтобы настройки этого модуля на текущей странице были применены ко всем существующим модулям сайта. Опция доступна только администраторам сайта и хостинга.</value>
+  </data>
+  <data name="GeneralDetails.Text" xml:space="preserve">
+    <value>Основные настройки</value>
+  </data>
+  <data name="Appearance.Text" xml:space="preserve">
+    <value>Основные настройки</value>
+  </data>
+  <data name="OtherSettings.Text" xml:space="preserve">
+    <value>Расширенные настройки</value>
+  </data>
+  <data name="InheritPermissions.Text" xml:space="preserve">
+    <value>Унаследовать права на &lt;b&gt;просмотр&lt;/b&gt; от &lt;b&gt;страницы&lt;/b&gt;</value>
+  </data>
+  <data name="ControlTitle_module.Text" xml:space="preserve">
+    <value>Свойства модуля</value>
+  </data>
+  <data name="plDisplayTitle.Text" xml:space="preserve">
+    <value>Показывать контейнер</value>
+  </data>
+  <data name="plDisplayTitle.Help" xml:space="preserve">
+    <value>Выберите эту опцию, если нужно, чтобы отображался контейнер модуля.</value>
+  </data>
+  <data name="plDisplaySyndicate.Text" xml:space="preserve">
+    <value>Разрешить публичный экспорт</value>
+  </data>
+  <data name="plDisplayPrint.Help" xml:space="preserve">
+    <value>Отметьте этот флаг, если хотите разрешить печать содержимого данного модуля.</value>
+  </data>
+  <data name="plDisplaySyndicate.Help" xml:space="preserve">
+    <value>Отметьте, если хотите разрешить для этого модуля функцию публичного экпорта в формате RSS.</value>
+  </data>
+  <data name="plDisplayPrint.Text" xml:space="preserve">
+    <value>Разрешить печать</value>
+  </data>
+  <data name="valStartDate.ErrorMessage" xml:space="preserve">
+    <value>Неверная дата начала.</value>
+  </data>
+  <data name="valEndDate.ErrorMessage" xml:space="preserve">
+    <value>Недопустимая дата окончания.</value>
+  </data>
+  <data name="valCacheTime.ErrorMessage" xml:space="preserve">
+    <value>Недопустимое время кэширования.</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;Настройки модуля&lt;/h1&gt;&lt;p&gt;Администраторы могут управлять свойствами экземпляра модуля, размещенного на странице. Здесь можно установить различные характеристики модуля, такие как свойства содержимого, разрешения и параметры вывода на экран.&lt;/p&gt;</value>
+  </data>
+  <data name="valBorder.ErrorMessage" xml:space="preserve">
+    <value>Недопустимый параметр рамки (должен быть целым числом в пределах от 0 до 9).</value>
+  </data>
+  <data name="valEndDate2.ErrorMessage" xml:space="preserve">
+    <value>Дата окончания публикации должна быть позже даты начала.</value>
+  </data>
+  <data name="plNewTabs.Help" xml:space="preserve">
+    <value>Отметьте это флаг, чтобы разрешить добавление этого модуля только на новые страницы. Опция доступна только администраторам сайта и хостинга.</value>
+  </data>
+  <data name="plNewTabs.Text" xml:space="preserve">
+    <value>Только на новых страницах</value>
+  </data>
+  <data name="plWebSlice.Help" xml:space="preserve">
+    <value>Отметьте этот флаг, чтобы сделать этот модуль веб-фрагментом IE8.</value>
+  </data>
+  <data name="plWebSlice.Text" xml:space="preserve">
+    <value>Веб-фрагмент</value>
+  </data>
+  <data name="plWebSliceExpiry.Help" xml:space="preserve">
+    <value>Введите дату окончания срока действия веб-фрагмента. Если оставить это поле пустым, в качестве этой даты будет использована дата окончания публикации модуля.</value>
+  </data>
+  <data name="plWebSliceExpiry.Text" xml:space="preserve">
+    <value>Истечение срока действия веб-фрагмента:</value>
+  </data>
+  <data name="plWebSliceTitle.Help" xml:space="preserve">
+    <value>Укажите заголовок для веб-фрагмента. Если оставить это поле пустым, в качестве заголовка будет использован заголовок самого модуля.</value>
+  </data>
+  <data name="plWebSliceTitle.Text" xml:space="preserve">
+    <value>Заголовок веб-фрагмента:</value>
+  </data>
+  <data name="plWebSliceTTL.Help" xml:space="preserve">
+    <value>Введите время активности (TTL) данного веб-фрагмента в минутах. Если оставить поле пустым, будет использоваться время кеширования (переведенное в минуты).</value>
+  </data>
+  <data name="plWebSliceTTL.Text" xml:space="preserve">
+    <value>Время активности веб-фрагмента:</value>
+  </data>
+  <data name="valWebSliceExpiry.ErrorMessage" xml:space="preserve">
+    <value>Неверная дата истечения срока действия</value>
+  </data>
+  <data name="valWebSliceTTL.ErrorMessage" xml:space="preserve">
+    <value>Неверное время активности веб-фрагмента - значение должно быть целым числом.</value>
+  </data>
+  <data name="InstalledOn.Text" xml:space="preserve">
+    <value>Модуль добавлен на следующие страницы:</value>
+  </data>
+  <data name="ModuleInstalledOn.Text" xml:space="preserve">
+    <value>Добавлен на страницы</value>
+  </data>
+  <data name="InstalledOn.Help" xml:space="preserve">
+    <value>В этом списке перечислены страницы, содержащие данный модуль. Существующий модуль может быть добавлен на другие страницы с помощью команды в панели Модули &gt; Существующий модуль.</value>
+  </data>
+  <data name="MsgInstalledOnNone.Text" xml:space="preserve">
+    <value>Этот экземпляр модуля не был добавлен на другие страницы.</value>
+  </data>
+  <data name="MsgInstalledOnAll.Text" xml:space="preserve">
+    <value>Этот экземпляр модуля отображается на всех страницах сайта.</value>
+  </data>
+  <data name="CustomSettings.Text" xml:space="preserve">
+    <value>{0} настройки</value>
+  </data>
+  <data name="ModuleExists.Text" xml:space="preserve">
+    <value>Этот модуль уже присутствует на целевой странице (возможно, он удален и находится в корзине). Только один экземпляр одного и того же модуля может располагаться на странице.</value>
+  </data>
+  <data name="CacheProvider.Help" xml:space="preserve">
+    <value>Укажите поставщика кеширования для этой страницы.</value>
+  </data>
+  <data name="CacheDuration.Help" xml:space="preserve">
+    <value>Введите длительность (в секундах) кеширования страницы. Значение должно быть целым числом.</value>
+  </data>
+  <data name="CacheProvider.Text" xml:space="preserve">
+    <value>Поставщик кеширования</value>
+  </data>
+  <data name="CacheDuration.Text" xml:space="preserve">
+    <value>Длительность кеширования (сек.)</value>
+  </data>
+  <data name="cmdClearTabModuleCache.Text" xml:space="preserve">
+    <value>Очистить кеш этого модуля на текущей странице</value>
+  </data>
+  <data name="cmdClearAllTabModuleCache.Text" xml:space="preserve">
+    <value>Очистить кеш этого модуля на всех страницах</value>
+  </data>
+  <data name="lblCachedItemCount.Text" xml:space="preserve">
+    <value>Текущее число кеша: {0} записей для этого модуля на странице.</value>
+  </data>
+  <data name="CacheDurationWarning.Text" xml:space="preserve">
+    <value>Содержимое этого модуля не рекомендуется кешировать (выберите Не указан в списке Поставщик кеширования). Включение кеширования может привести к отображению устаревших или некорректных данных.</value>
+  </data>
+  <data name="CacheInherited.Text" xml:space="preserve">
+    <value>Унаследовано</value>
+  </data>
+  <data name="plTags.Help" xml:space="preserve">
+    <value>Выберите метки для данного модуля из выпадающего списка.</value>
+  </data>
+  <data name="plTags.Text" xml:space="preserve">
+    <value>Метки:</value>
+  </data>
+  <data name="plAdminBorder.Help" xml:space="preserve">
+    <value>Отметьте это флаг, чтобы деактивировать красную рамку, отображаемую вокруг модуля для всех администраторов.</value>
+  </data>
+  <data name="plAdminBorder.Text" xml:space="preserve">
+    <value>Скрыть рамку администратора</value>
+  </data>
+  <data name="cultureLabel.Help" xml:space="preserve">
+    <value>Культура (язык) данного модуля.</value>
+  </data>
+  <data name="cultureLabel.Text" xml:space="preserve">
+    <value>Культура:</value>
+  </data>
+  <data name="defaultCultureLabel.Help" xml:space="preserve">
+    <value>Нажмите эту сслыку для просмотра исходной версии данного модуля - в культуре по-умолчанию.</value>
+  </data>
+  <data name="defaultCultureLabel.Text" xml:space="preserve">
+    <value>Культура по умолчанию:</value>
+  </data>
+  <data name="Bind.Text" xml:space="preserve">
+    <value>Привязать</value>
+  </data>
+  <data name="edit.Text" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="UnBind.Text" xml:space="preserve">
+    <value>Отвязать</value>
+  </data>
+  <data name="LocalizedModules.Text" xml:space="preserve">
+    <value>Локализация модуля</value>
+  </data>
+  <data name="Translated.Text" xml:space="preserve">
+    <value>Пометить как переведнный</value>
+  </data>
+  <data name="UnTranslated.Text" xml:space="preserve">
+    <value>Пометить как не переведенный</value>
+  </data>
+  <data name="CreateBoundCopies.Text" xml:space="preserve">
+    <value>Создать связанные копии</value>
+  </data>
+  <data name="Permissions.Text" xml:space="preserve">
+    <value>Разрешения</value>
+  </data>
+  <data name="CacheSettings.Text" xml:space="preserve">
+    <value>Настройки кеширования</value>
+  </data>
+  <data name="ContainerPreview.Text" xml:space="preserve">
+    <value>Препросмотр</value>
+  </data>
+  <data name="ExpandAll.Text" xml:space="preserve">
+    <value>Развернуть все</value>
+  </data>
+  <data name="PreviewNoSelectionMessage.Text" xml:space="preserve">
+    <value>Выберите контейнер для предварительного просмотра.</value>
+  </data>
+  <data name="lblNoRecords.Text" xml:space="preserve">
+    <value>Этот модуль не был добавлен ни на какие другие страницы.</value>
+  </data>
+  <data name="Page.Header" xml:space="preserve">
+    <value>Страница</value>
+  </data>
+  <data name="Site.Header" xml:space="preserve">
+    <value>Сайт</value>
+  </data>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>{0} настройки</value>
+  </data>
+  <data name="AllowIndexLabel.Help" xml:space="preserve">
+    <value>Эта опция контролирует, будет ли модуль индексироваться поисковыми роботами.</value>
+  </data>
+  <data name="AllowIndexLabel.Text" xml:space="preserve">
+    <value>Разрешить индексирование</value>
+  </data>
+  <data name="isShareableLabel.Help" xml:space="preserve">
+    <value>Отметьте флаг, чтобы позволить совместное использование этого модуля на различных сайтах хостинга.</value>
+  </data>
+  <data name="isShareableLabel.Text" xml:space="preserve">
+    <value>Совместно используемый</value>
+  </data>
+  <data name="isShareableViewOnlyLabel.Help" xml:space="preserve">
+    <value>Отметьте этот флаг, чтобы ограничить совместное использование только в режиме просмотра.</value>
+  </data>
+  <data name="isShareableViewOnlyLabel.Text" xml:space="preserve">
+    <value>Только просмотр</value>
+  </data>
+  <data name="MonikerExists.Text" xml:space="preserve">
+    <value>Введенное значение псевдонима модуля уже существует; оно должно быть уникальным для сайта.</value>
+  </data>
+</root>

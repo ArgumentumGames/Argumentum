@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  
+  <data name="URLManagementTab.Text" xml:space="preserve">
+    <value>Управление URL</value>
+  </data>
+  <data name="GeneralSettingsTab.Text" xml:space="preserve">
+    <value>ОБЩИЕ НАСТРОЙКИ</value>
+  </data>
+  <data name="ExtensionUrlProvidersTab.Text" xml:space="preserve">
+    <value>ПОСТАВЩИКИ URL-АДРЕСОВ РАСШИРЕНИЙ</value>
+  </data>
+  <data name="ExpressionsTab.Text" xml:space="preserve">
+    <value>ВЫПОЛНЕНИЯ</value>
+  </data>
+  <data name="TestURLTab.Text" xml:space="preserve">
+    <value>ТЕСТОВЫЙ URL-АДРЕС</value>
+  </data>
+  <data name="SitemapSettingsTab.Text" xml:space="preserve">
+    <value>Настройки карты сайта</value>
+  </data>
+  <data name="minusCharacter.Text" xml:space="preserve">
+    <value>"-" например, название страницы</value>
+  </data>
+  <data name="underscoreCharacter.Text" xml:space="preserve">
+    <value>"_" например, имя страницы</value>
+  </data>
+  <data name="Do301RedirectToPortalHome.Text" xml:space="preserve">
+    <value>Главная страница сайта</value>
+  </data>
+  <data name="Do404Error.Text" xml:space="preserve">
+    <value>Ошибка 404</value>
+  </data>
+  
+  
+  <data name="enableSystemGeneratedUrlsLabel.Text" xml:space="preserve">
+    <value>Объединить страницы</value>
+  </data>
+  <data name="enableSystemGeneratedUrlsLabel.Help" xml:space="preserve">
+    <value>Вы можете настроить, как система будет генерировать URL-адреса.</value>
+  </data>
+  <data name="enableLowerCaseLabel.Help" xml:space="preserve">
+    <value>Установите этот флажок, чтобы принудительно преобразовать URL-адреса в строчные буквы.</value>
+  </data>
+  <data name="enableLowerCaseLabel.Text" xml:space="preserve">
+    <value>Преобразование URL-адресов в строчные буквы</value>
+  </data>
+  <data name="autoAsciiConvertLabel.Help" xml:space="preserve">
+    <value>Если этот флажок установлен, то все акцентированные (диакритические) символы, такие как å и è, будут преобразованы в их обычный ascii-эквивалент. Пример : å -&gt; a и è -&gt; e.</value>
+  </data>
+  <data name="autoAsciiConvertLabel.Text" xml:space="preserve">
+    <value>Преобразование символов с ударением</value>
+  </data>
+  <data name="setDefaultSiteLanguageLabel.Help" xml:space="preserve">
+    <value>Если этот флажок установлен, то язык по умолчанию для этого сайта всегда будет установлен в переписанном URL-адресе, если другой язык не найден.</value>
+  </data>
+  <data name="setDefaultSiteLanguageLabel.Text" xml:space="preserve">
+    <value>Установить язык сайта по умолчанию</value>
+  </data>
+  <data name="UrlRewriter.Text" xml:space="preserve">
+    <value>ПЕРЕЗАПИСИ URL-АДРЕСОВ</value>
+  </data>
+  <data name="UrlRedirects.Text" xml:space="preserve">
+    <value>ПЕРЕАДРЕСАЦИЯ</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="ExtensionUrlProviders.Text" xml:space="preserve">
+    <value>ПОСТАВЩИКИ URL-АДРЕСОВ РАСШИРЕНИЙ</value>
+  </data>
+  
+  
+  
+  <data name="Yes.Text" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="No.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="NoneSpecified.Text" xml:space="preserve">
+    <value>Не указано</value>
+  </data>
+  <data name="None.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  
+  
+  
+  
+  <data name="resultingUrlsLabel.Text" xml:space="preserve">
+    <value>Результат URL-адресов</value>
+  </data>
+  
+  
+  <data name="testUrlRewritingButton.Text" xml:space="preserve">
+    <value>Тестовое переписывание URL-адресов</value>
+  </data>
+  <data name="testUrlRewritingLabel.Text" xml:space="preserve">
+    <value>URL для тестирования</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="Exception.Text" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="File_Url.Text" xml:space="preserve">
+    <value>Url-Адрес Файла</value>
+  </data>
+  <data name="Host_Portal_Used.Text" xml:space="preserve">
+    <value>Используемый Хост-Портал</value>
+  </data>
+  
+  
+  
+  
+  <data name="Page_404.Text" xml:space="preserve">
+    <value>Страница 404</value>
+  </data>
+  <data name="Requested_404.Text" xml:space="preserve">
+    <value>Запрошено 404</value>
+  </data>
+  <data name="Requested_404_In_Url.Text" xml:space="preserve">
+    <value>Запрошено 404 в адресе</value>
+  </data>
+  
+  
+  <data name="SiteUrls_Config_Rule.Text" xml:space="preserve">
+    <value>Правило конфигурации сайта</value>
+  </data>
+  <data name="Site_Root_Home.Text" xml:space="preserve">
+    <value>Корневая система сайта</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  <data name="Wrong_Portal_Alias.Text" xml:space="preserve">
+    <value>Неверный псевдоним портала</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="lblCache.Help" xml:space="preserve">
+    <value>Включите данную функцию, если Вы хотите, чтобы карта сайта кэшировалась, не требуя генерирования страницы каждый раз при отправке запроса. Это особенно важно для больших сайтов. Если на сайте более 50 тысяч URL-адресов, карта сайта будет кэшироваться с интервалом по умолчанию в 1 день. Установите значение 0, чтобы отключить кэширование.</value>
+  </data>
+  <data name="lblCache.Text" xml:space="preserve">
+    <value>Дней кэширования карты сайта для</value>
+  </data>
+  <data name="lnkResetCache.Text" xml:space="preserve">
+    <value>Очистка кеша</value>
+  </data>
+  <data name="lblExcludePriority.Help" xml:space="preserve">
+    <value>Данная функция может использоваться для удаления определенных страниц из карты сайта. Например, Вы можете установить приоритет для страницы -1 и ввести -1, чтобы не включать страницу в генерируемую карту сайта.</value>
+  </data>
+  
+  <data name="lblMinPagePriority.Help" xml:space="preserve">
+    <value>При использовании "приоритетов страниц на основании их уровня" минимальный приоритет страниц может использоваться для установки низшего приоритета, используемого для страниц низкого уровня</value>
+  </data>
+  
+  <data name="lblIncludeHidden.Help" xml:space="preserve">
+    <value>Если отмечено, скрытые страницы (невидимые в меню) также будут включены в карту сайта. По умолчанию скрытые страницы не включаются в карту сайта.</value>
+  </data>
+  <data name="lblIncludeHidden.Text" xml:space="preserve">
+    <value>Показать скрытые страницы</value>
+  </data>
+  <data name="lblLevelPriority.Help" xml:space="preserve">
+    <value>Если отмечено, то приоритеты для каждой страницы будут рассчитываться в зависимости от уровня страницы в иерархии. Страницы высшего уровня имеют значение 1, второго уровня - 0.9, третьего уровня - 0.8... Эта настройка не изменяет значений, установленных в настройках страницы, но в случае необходимости будет использоваться расчетное значение.</value>
+  </data>
+  
+  <data name="1Day.Text" xml:space="preserve">
+    <value>1 день</value>
+  </data>
+  <data name="2Days.Text" xml:space="preserve">
+    <value>2 дня</value>
+  </data>
+  <data name="3Days.Text" xml:space="preserve">
+    <value>3 дня</value>
+  </data>
+  <data name="4Days.Text" xml:space="preserve">
+    <value>4 дня</value>
+  </data>
+  <data name="5Days.Text" xml:space="preserve">
+    <value>5 дней</value>
+  </data>
+  <data name="6Days.Text" xml:space="preserve">
+    <value>6 дней</value>
+  </data>
+  <data name="7Days.Text" xml:space="preserve">
+    <value>7 дней</value>
+  </data>
+  <data name="DisableCaching.Text" xml:space="preserve">
+    <value>Отключить кэширование</value>
+  </data>
+  
+  
+  <data name="overridePriority.Help" xml:space="preserve">
+    <value>Переопределить приоритет</value>
+  </data>
+  <data name="overridePriority.Text" xml:space="preserve">
+    <value>Переопределить приоритет</value>
+  </data>
+  
+  <data name="Enabled.Header" xml:space="preserve">
+    <value>Включено</value>
+  </data>
+  <data name="Priority.Header" xml:space="preserve">
+    <value>Важность</value>
+  </data>
+  <data name="lblSearchEngine.Help" xml:space="preserve">
+    <value>Отправьте ваш сайт выбранной поисковой системе для индексации.</value>
+  </data>
+  
+  
+  
+  <data name="Submit.Text" xml:space="preserve">
+    <value>Отправить</value>
+  </data>
+  <data name="Create.Text" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  
+  
+</root>
