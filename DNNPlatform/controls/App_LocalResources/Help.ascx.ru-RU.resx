@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string"/>
+							<xsd:attribute name="type" type="xsd:string"/>
+							<xsd:attribute name="mimetype" type="xsd:string"/>
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required"/>
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="ResMimeType">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="Version">
+		<value>1.0.0.0</value>
+	</resheader>
+	<resheader name="Reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.3300.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="Writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.3300.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="ControlTitle_help.Text">
+		<value>Справка по модулю</value>
+	</data>
+	<data name="lblHelp.Text">
+		<value>Справка по данному модулю недоступна.</value>
+	</data>
+	<data name="cmdHelp.Text">
+		<value>Справка онлайн</value>
+	</data>
+	<data name="lblInfo.Text">
+		<value>&lt;h1&gt;Информация о модуле&lt;/h1&gt;&lt;p&gt;Отображает технические детали относительно связанного с ним экземпляра модуля.&lt;br /&gt;&lt;br /&gt;&lt;b&gt;Организация:&lt;/b&gt; [ORGANIZATION]&lt;br /&gt;&lt;b&gt;Владелец:&lt;/b&gt; [OWNER]&lt;br /&gt;&lt;b&gt;Эл. почта:&lt;/b&gt; [EMAIL]&lt;br /&gt;&lt;b&gt;URL:&lt;/b&gt; [URL]&lt;br /&gt;&lt;br /&gt;&lt;b&gt;Модуль:&lt;/b&gt; [MODULE]&lt;br /&gt;&lt;b&gt;Версия:&lt;/b&gt; [VERSION]&lt;br /&gt;&lt;b&gt;Определение:&lt;/b&gt; [DEFINITION]&lt;br /&gt;&lt;b&gt;Элемент управления:&lt;/b&gt; [CONTROL]&lt;br /&gt;&lt;b&gt;Файл исходного кода:&lt;/b&gt; [SRC]&lt;/p&gt;</value>
+	</data>
+</root>

@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="nav_SiteImportExport.Text" xml:space="preserve">
+    <value>Импорт / Экспорт</value>
+  </data>
+  <data name="SiteImportExport.Header" xml:space="preserve">
+    <value>Импорт / Экспорт</value>
+  </data>
+  <data name="ImportButton.Text" xml:space="preserve">
+    <value>Импортировать данные</value>
+  </data>
+  <data name="ExportButton.Text" xml:space="preserve">
+    <value>Экспортировать данные</value>
+  </data>
+  <data name="LastImport.Text" xml:space="preserve">
+    <value>Последний импорт</value>
+  </data>
+  <data name="LastExport.Text" xml:space="preserve">
+    <value>Последний экспорт</value>
+  </data>
+  <data name="LastUpdate.Text" xml:space="preserve">
+    <value>Последнее обновление</value>
+  </data>
+  <data name="JobDate.Header" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="JobType.Header" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="JobUser.Header" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="JobPortal.Header" xml:space="preserve">
+    <value>Вебсайт</value>
+  </data>
+  <data name="JobStatus.Header" xml:space="preserve">
+    <value>Состояние</value>
+  </data>
+  <data name="LegendExport.Text" xml:space="preserve">
+    <value>Экспорт сайта</value>
+  </data>
+  <data name="LegendImport.Text" xml:space="preserve">
+    <value>Импорт сайта</value>
+  </data>
+  
+  <data name="ShowSiteLabel.Text" xml:space="preserve">
+    <value>Сайт: </value>
+  </data>
+  <data name="ShowFilterLabel.Text" xml:space="preserve">
+    <value>Фильтр: </value>
+  </data>
+  
+  
+  
+  <data name="SearchPlaceHolder.Text" xml:space="preserve">
+    <value>Искать по ключевому слову</value>
+  </data>
+  <data name="SummaryNoteTitle.Text" xml:space="preserve">
+    <value>*Примечание:</value>
+  </data>
+  
+  <data name="ExportSummary.Text" xml:space="preserve">
+    <value>Сводка по экспорту</value>
+  </data>
+  
+  <data name="BackToImportExport.Text" xml:space="preserve">
+    <value>Вернуться к импорту / экспорту</value>
+  </data>
+  <data name="Export.Text" xml:space="preserve">
+    <value>Экспортировать данные</value>
+  </data>
+  <data name="Import.Text" xml:space="preserve">
+    <value>Импортировать данные</value>
+  </data>
+  <data name="ExportSettings.Text" xml:space="preserve">
+    <value>Настройки экспорта</value>
+  </data>
+  <data name="Site.Text" xml:space="preserve">
+    <value>Сайт</value>
+  </data>
+  <data name="Description.Text" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Name.Text" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="IncludeInExport.Text" xml:space="preserve">
+    <value>Включить в экспорт</value>
+  </data>
+  <data name="PagesInExport.Text" xml:space="preserve">
+    <value>Страницы в экспорте</value>
+  </data>
+  <data name="BeginExport.Text" xml:space="preserve">
+    <value>Начать экспорт</value>
+  </data>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Content.Text" xml:space="preserve">
+    <value>Содержимое</value>
+  </data>
+  <data name="ProfileProperties.Text" xml:space="preserve">
+    <value>Свойства профиля</value>
+  </data>
+  <data name="Permissions.Text" xml:space="preserve">
+    <value>Разрешения</value>
+  </data>
+  <data name="Extensions.Text" xml:space="preserve">
+    <value>Расширения</value>
+  </data>
+  
+  <data name="ExportName.ErrorMessage" xml:space="preserve">
+    <value>Укажите имя.</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="JobStatus4.Text" xml:space="preserve">
+    <value>Отменено</value>
+  </data>
+  
+  
+  
+  <data name="lblLanguages.Help" xml:space="preserve">
+    <value>Позволяет выбрать, какие языки будут включены в шаблон при экспорте страниц.</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="Continue.Text" xml:space="preserve">
+    <value>Продолжить</value>
+  </data>
+  
+  
+  
+  
+  
+  <data name="Pages.Text" xml:space="preserve">
+    <value>Страницы</value>
+  </data>
+  <data name="Users.Text" xml:space="preserve">
+    <value>Пользователи</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="FolderName.Text" xml:space="preserve">
+    <value>Имя папки</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  <data name="ExportModeComplete.Text" xml:space="preserve">
+    <value>Полный</value>
+  </data>
+  
+  
+  
+  <data name="KeepImport.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="Yes.Text" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="No.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  
+  
+  
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="Website.Text" xml:space="preserve">
+    <value>Вебсайт</value>
+  </data>
+  <data name="Mode.Text" xml:space="preserve">
+    <value>Режим</value>
+  </data>
+  <data name="FileSize.Text" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  
+  <data name="DeletedPortal.Text" xml:space="preserve">
+    <value>Удалено</value>
+  </data>
+  <data name="RunNow.Text" xml:space="preserve">
+    <value>Выполнить сейчас</value>
+  </data>
+  
+    
+   
+  
+</root>

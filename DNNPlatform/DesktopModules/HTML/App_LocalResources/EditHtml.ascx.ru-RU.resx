@@ -1,0 +1,294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="plPublish.Text" xml:space="preserve">
+    <value>Опубликовать</value>
+  </data>
+  <data name="plPublish.Help" xml:space="preserve">
+    <value>Показывает, готов ли контент к публикации</value>
+  </data>
+  <data name="dshHistory.Text" xml:space="preserve">
+    <value>История изменений</value>
+  </data>
+  <data name="plPreviewVersion.Text" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="plPreviewVersion.Help" xml:space="preserve">
+    <value>Номер версии содержимого</value>
+  </data>
+  <data name="plPreviewWorkflowInUse.Text" xml:space="preserve">
+    <value>Рабочий процесс</value>
+  </data>
+  <data name="plPreviewWorkflowInUse.Help" xml:space="preserve">
+    <value>Имя рабочего процесса, используемого модулем в настоящий момент.</value>
+  </data>
+  <data name="lblPreviewWorkflowState.Text" xml:space="preserve">
+    <value>Состояние</value>
+  </data>
+  <data name="plWorkflowState.Help" xml:space="preserve">
+    <value>Отображает текущее состояние содержимого</value>
+  </data>
+  <data name="Date.Header" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="State.Header" xml:space="preserve">
+    <value>Состояние</value>
+  </data>
+  <data name="Version.Header" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="Item.Text" xml:space="preserve">
+    <value>Предпросмотр</value>
+  </data>
+  <data name="Edit.Text" xml:space="preserve">
+    <value>Восстановить содержимое в этой версии</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;P&gt;Модуль Текст/HTML отображает простой текст, текст с форматированием или HTML. Доступны пять различных режимов редактирования: &lt;/P&gt;
+&lt;OL&gt;
+&lt;LI&gt;&lt;STRONG&gt;Простой текст / Текст&lt;/STRONG&gt;: Отображает текст и теги HTML. Перед текстом, введенным с новой строки, вставляется тег разрыва строки. Стиль текста - Normal, определяется таблицей стилей.
+&lt;LI&gt;&lt;STRONG&gt;Простой текст / HTML&lt;/STRONG&gt;: Отображает простой текст в формате HTML.
+&lt;LI&gt;&lt;STRONG&gt;Простой текст / Сырой&lt;/STRONG&gt;: Отображает простой текст в формате HTML. Перед текстом, введенным с новой строки, НЕ вставляется тег разрыва строки.
+&lt;LI&gt;&lt;STRONG&gt;Текст с форматированием / HTML&lt;/STRONG&gt;: Позволяет вставлять HTML из сторонних источников.
+&lt;LI&gt;&lt;STRONG&gt;Текст с форматированием / Дизайн&lt;/STRONG&gt;: Полнофункциональный текстовый процессор с возможностью работы с гиперссылками, ссылками на адреса эл. почты, диспетчером файлов и поддержкой галереи изображений, списками, проверкой правописания и др.</value>
+  </data>
+  <data name="ControlTitle_edit.Text" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="AddContent.Text" xml:space="preserve">
+    <value>Добавить содержимое...</value>
+  </data>
+  <data name="cmdPreview.Text" xml:space="preserve">
+    <value>Препросмотр</value>
+  </data>
+  <data name="cmdSave.Text" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="User.Header" xml:space="preserve">
+    <value>Пользователь</value>
+  </data>
+  <data name="Content Staging.Text" xml:space="preserve">
+    <value>Движение контента</value>
+  </data>
+  <data name="Direct Publish.Text" xml:space="preserve">
+    <value>Прямая публикация</value>
+  </data>
+  <data name="Draft.Text" xml:space="preserve">
+    <value>Черновик</value>
+  </data>
+  <data name="Published.Text" xml:space="preserve">
+    <value>Опубликовано</value>
+  </data>
+  <data name="False.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="True.Text" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="dshMaster.Text" xml:space="preserve">
+    <value>Версия основного языка</value>
+  </data>
+  <data name="chkPublish.Text" xml:space="preserve">
+    <value>Публиковать изменения?</value>
+  </data>
+  <data name="plActionOnSave.Help" xml:space="preserve">
+    <value>Действие, которое должно быть выполнено дополнительно при сохранении содержимого модуля по нажатию на кнопку 'Сохранить'.</value>
+  </data>
+  <data name="plCurrentWorkflowInUse.Help" xml:space="preserve">
+    <value>Имя рабочего процесса, используемого модулем в настоящий момент.</value>
+  </data>
+  <data name="plCurrentWorkflowState.Help" xml:space="preserve">
+    <value>Текущее состояние используемого модулем рабочего процесса.</value>
+  </data>
+  <data name="plMaxVersions.Help" xml:space="preserve">
+    <value>Максимальное количество хранимых версий содержимого модуля.</value>
+  </data>
+  <data name="plPreviewWorkflowState.Help" xml:space="preserve">
+    <value>Состояние используемого модулем рабочего процесса для показанного содержимого.</value>
+  </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Удалить эту версию</value>
+  </data>
+  <data name="cmdCancelSubmit.Text" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="cmdCancel.Text" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="EditPreviewState.Text" xml:space="preserve">
+    <value>Редактировать предпросмотр</value>
+  </data>
+  <data name="plActionOnSave.Text" xml:space="preserve">
+    <value>Действие при сохранении</value>
+  </data>
+  <data name="plCurrentWorkflowInUse.Text" xml:space="preserve">
+    <value>Рабочий процесс</value>
+  </data>
+  <data name="plCurrentWorkflowState.Text" xml:space="preserve">
+    <value>Состояние рабочего процесса</value>
+  </data>
+  <data name="plMaxVersions.Text" xml:space="preserve">
+    <value>Макс. число хранимых версий</value>
+  </data>
+  <data name="plPreviewWorkflowState.Text" xml:space="preserve">
+    <value>Состояние рабочего процесса</value>
+  </data>
+  <data name="dshCurrentContent.Text" xml:space="preserve">
+    <value>Текущее содержимое</value>
+  </data>
+  <data name="DeleteVersion.Confirm" xml:space="preserve">
+    <value>Уверены, что хотите безвозвратно удалить версию [VERSION] ([STATE]), созданную [DATECREATED] пользователем [USERNAME]?</value>
+  </data>
+  <data name="plCurrentWorkVersion.Help" xml:space="preserve">
+    <value>Номер версии содержимого</value>
+  </data>
+  <data name="plCurrentWorkVersion.Text" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="lblNoRecords.Text" xml:space="preserve">
+    <value>Нет истории содержимого. </value>
+  </data>
+  <data name="VersionsPreview.Text" xml:space="preserve">
+    <value>Препросмотр</value>
+  </data>
+  <data name="VersionsRemove.Text" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="VersionsRollback.Text" xml:space="preserve">
+    <value>Восстановить</value>
+  </data>
+  <data name="NoVersions.Text" xml:space="preserve">
+    <value>Нет версий содержимого.</value>
+  </data>
+  <data name="cmdHistory.Text" xml:space="preserve">
+    <value>История версий</value>
+  </data>
+  <data name="cmdHideMasterContent.Text" xml:space="preserve">
+    <value>Скрыть версию на исходном языке</value>
+  </data>
+  <data name="cmdShowMasterContent.Text" xml:space="preserve">
+    <value>Показать версию на исходном языке</value>
+  </data>
+  <data name="liBasicText.Text" xml:space="preserve">
+    <value>Простой</value>
+  </data>
+  <data name="liRichText.Text" xml:space="preserve">
+    <value>С форматированием</value>
+  </data>
+</root>

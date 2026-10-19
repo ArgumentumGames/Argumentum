@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Roles.Action" xml:space="preserve">
+    <value>Управление ролями пользователя</value>
+  </data>
+  <data name="ControlTitle_edit.Text" xml:space="preserve">
+    <value>Редактирование учетных записей</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;О модуле управления пользователями&lt;/h1&lt;p&gt;Данный модуль позволяет Администраторам управлять своими зарегистрированными пользователями. Этот модуль позволяет вам добавлять новых пользователей, обновлять существующих, удалять пользователей, а также управлять ролями пользователей.&lt;/p&gt;
+</value>
+  </data>
+  <data name="UserLockedOut.Text" xml:space="preserve">
+    <value>Эта учетная запись в настоящее время заблокирована в результате множественных неудачных попыток входа в систему.</value>
+  </data>
+  <data name="InvalidUser.Text" xml:space="preserve">
+    <value>Этой учетной записи нет на этом портале.</value>
+  </data>
+  <data name="SuperUser.Text" xml:space="preserve">
+    <value>Эта учетная запись принадлежит администратору хостинга. У Вас нет прав на  редактирование учетных записей администраторов хостинга.</value>
+  </data>
+  <data name="NoUser.Text" xml:space="preserve">
+    <value>Эта учетная запись не существует.</value>
+  </data>
+  <data name="plNewPassword.Text" xml:space="preserve">
+    <value>Новый пароль:</value>
+  </data>
+  <data name="plNewPassword.Help" xml:space="preserve">
+    <value>Введите новый пароль.</value>
+  </data>
+  <data name="plNewConfirm.Text" xml:space="preserve">
+    <value>Подтвердите новый пароль:</value>
+  </data>
+  <data name="plNewConfirm.Help" xml:space="preserve">
+    <value>Повторно введите новый пароль, чтобы удостовериться в отсутствии опечаток.</value>
+  </data>
+  <data name="ResetPassword.Text" xml:space="preserve">
+    <value>Сбросить пароль</value>
+  </data>
+  <data name="cmdUpdatePassword.Text" xml:space="preserve">
+    <value>Изменить пароль</value>
+  </data>
+  <data name="NewPassword.Text" xml:space="preserve">
+    <value>Вы должны ввести новый пароль.</value>
+  </data>
+  <data name="UserTitle.Text" xml:space="preserve">
+    <value>Редактирование пользователя - {0} (Id: {1})</value>
+  </data>
+  <data name="MembershipTitle.Text" xml:space="preserve">
+    <value>Информация об участии</value>
+  </data>
+  <data name="AddContent.Action" xml:space="preserve">
+    <value>Новый пользователь</value>
+  </data>
+  <data name="Profile.Action" xml:space="preserve">
+    <value>Управление профилем пользователя</value>
+  </data>
+  <data name="Password.Action" xml:space="preserve">
+    <value>Управление паролем пользователя</value>
+  </data>
+  <data name="cmdUser.Text" xml:space="preserve">
+    <value>Управление учетной записью</value>
+  </data>
+  <data name="cmdRoles.Text" xml:space="preserve">
+    <value>Управление ролями пользователя</value>
+  </data>
+  <data name="cmdPassword.Text" xml:space="preserve">
+    <value>Управление паролем</value>
+  </data>
+  <data name="cmdProfile.Text" xml:space="preserve">
+    <value>Управление профилем</value>
+  </data>
+  <data name="AddUser.Text" xml:space="preserve">
+    <value>Новый пользователь</value>
+  </data>
+  <data name="UserUnAuthorized.Text" xml:space="preserve">
+    <value>Авторизация пользователя успешно отменена.</value>
+  </data>
+  <data name="UserAuthorized.Text" xml:space="preserve">
+    <value>Пользователь успешно авторизован.</value>
+  </data>
+  <data name="PasswordQAChanged.Text" xml:space="preserve">
+    <value>Вопрос о пароле и ответ на него, успешно обновленны.</value>
+  </data>
+  <data name="ControlTitle_profile.Text" xml:space="preserve">
+    <value>Управление профилем</value>
+  </data>
+  <data name="NotAuthorized.Text" xml:space="preserve">
+    <value>Вам не разрешено редактировать этого пользователя.</value>
+  </data>
+  <data name="ControlTitle_register.Text" xml:space="preserve">
+    <value>Зарегистрироваться</value>
+  </data>
+  <data name="cmdServices.Text" xml:space="preserve">
+    <value>Управление услугами</value>
+  </data>
+  <data name="ManageProfile.Action" xml:space="preserve">
+    <value>Управление свойствами профиля</value>
+  </data>
+  <data name="cmdRegister.Text" xml:space="preserve">
+    <value>Зарегистрироваться</value>
+  </data>
+  <data name="ExceededRegisterQuota.Text" xml:space="preserve">
+    <value>Сейчас Вы не можете зарегистрироваться на этом сайте. Пожалуйста, свяжитесь с вашим администратором сайта, чтобы узнать, когда регистрация будет возобновлена.</value>
+  </data>
+  <data name="ExceededUserQuota.Text" xml:space="preserve">
+    <value>Добавление этого пользователя превысит квоту на количество пользователей для этого сайта. Пожалуйста, свяжитесь с вашим провайдером для запроса, связанным с увеличением вашей квоты на количество пользователей сайта.</value>
+  </data>
+  <data name="UserSubscribed.Text" xml:space="preserve">
+    <value>Вы успешно подписаны на роль {0}.</value>
+  </data>
+  <data name="UserUnSubscribed.Text" xml:space="preserve">
+    <value>Вы были успешно отписаны от роли {0}.</value>
+  </data>
+  <data name="EmailError.Text" xml:space="preserve">
+    <value>Этот портал требует уникального адреса электронной почты. Адрес электронной почты, который Вы ввели, уже используется.</value>
+  </data>
+  <data name="CannotAddUser.Text" xml:space="preserve">
+    <value>Ваша конфигурация требует, чтобы пользователь ввел секретный вопрос и ответ для восстановления пароля. Это несовместимо с добавлением пользователей администраторами, поэтому данная возможность недоступна для этого портала.</value>
+  </data>
+  <data name="cmdLogin.Text" xml:space="preserve">
+    <value>Продолжить - войти в систему</value>
+  </data>
+  <data name="plCaptcha.Help" xml:space="preserve">
+    <value>Введите код безопасности.</value>
+  </data>
+  <data name="plCaptcha.Text" xml:space="preserve">
+    <value>Код безопасности:</value>
+  </data>
+  <data name="UserPasswordUpdateChanged.Text" xml:space="preserve">
+    <value>Пользователь должен обновить пароль при следующем входе в систему.</value>
+  </data>
+  <data name="RegisterWarning.Text" xml:space="preserve">
+    <value>&lt;em&gt;(&lt;strong&gt;Примечание:&lt;/strong&gt; Регистрация может занять несколько секунд. После того, как Вы нажмете на кнопку Регистрация, пожалуйста подождите, пока система не ответит.)&lt;/em&gt;</value>
+  </data>
+  <data name="AddUser.Title" xml:space="preserve">
+    <value>Новый пользователь</value>
+  </data>
+  <data name="Register.Text" xml:space="preserve">
+    <value>Регистрация пользователя</value>
+  </data>
+  <data name="Register.Title" xml:space="preserve">
+    <value>Регистрация пользователя</value>
+  </data>
+  <data name="AccountSettings.Text" xml:space="preserve">
+    <value>Настройки учетной записи</value>
+  </data>
+  <data name="MembershipDetails.Text" xml:space="preserve">
+    <value>Информация об учетной записи</value>
+  </data>
+  <data name="UserPromotedToSuperuser.Text" xml:space="preserve">
+    <value>Пользователь получил полномочия администратора хоста.</value>
+  </data>
+  <data name="UserDemotedFromSuperuser.Text" xml:space="preserve">
+    <value>С пользователя сняты полномочия администратора хостинга.</value>
+  </data>
+</root>

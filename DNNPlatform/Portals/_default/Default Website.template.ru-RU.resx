@@ -1,0 +1,676 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="LocalizedTemplateName.Text" xml:space="preserve">
+    <value>Сайт с наполнением</value>
+  </data>
+  <data name="PortalDescription.Text" xml:space="preserve">
+    <value>Шаблон сайта с наполнением</value>
+  </data>
+  <data name="RoleGroup.Description.Text" xml:space="preserve">
+    <value>Имя, представляющее Глобальные роли</value>
+  </data>
+  <data name="Setting.DefaultLanguage.Text" xml:space="preserve">
+    <value>ru-RU</value>
+  </data>
+  <data name="Setting.FooterText.Text" xml:space="preserve">
+    <value>Все права защищены [year], корпорация DNN</value>
+  </data>
+  <data name="Tab.404ErrorPage..Module.Content.Text" xml:space="preserve">
+    <value>Приносим свои извинения - страница, которую Вы пытаетесь открыть, не найдена. Возможно, она удалена, переименована или временно недоступна. Рекомендуем вернуться на главную страницу и начать заново. Свяжитесь с нами, если данная ошибка продолжит Вас беспокоить.</value>
+  </data>
+  <data name="Tab.404ErrorPage..Module.Title.Text" xml:space="preserve">
+    <value>Страница не найдена</value>
+  </data>
+  <data name="Tab.404ErrorPage.Content.Text" xml:space="preserve">
+    <value>Страница ошибки 404</value>
+  </data>
+  <data name="Tab.404ErrorPage.Title.Text" xml:space="preserve">
+    <value>Страница ошибки 404</value>
+  </data>
+  <data name="Tab.ActivityFeed.CenterPane.JournalModule.Title.Text" xml:space="preserve">
+    <value>Журнал</value>
+  </data>
+  <data name="Tab.ActivityFeed.CenterPane.ProfileModule.Title.Text" xml:space="preserve">
+    <value>Просмотр профиля</value>
+  </data>
+  <data name="Tab.ActivityFeed.Content.Text" xml:space="preserve">
+    <value>Журнал активности</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterCenterPane.Module.Content.0.Text" xml:space="preserve">
+    <value>Журнал</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterCenterPane.Module.Content.1.Text" xml:space="preserve">
+    <value>Вакансии</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterCenterPane.Module.Content.2.Text" xml:space="preserve">
+    <value>Правовая информация</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterCenterPane.Module.Title.Text" xml:space="preserve">
+    <value>Компания</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterLeftOuterPane.Module.Content.0.Text" xml:space="preserve">
+    <value>Горные</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterLeftOuterPane.Module.Content.1.Text" xml:space="preserve">
+    <value>Гравитация</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterLeftOuterPane.Module.Content.2.Text" xml:space="preserve">
+    <value>Дорожные</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterLeftOuterPane.Module.Content.3.Text" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterLeftOuterPane.Module.Content.4.Text" xml:space="preserve">
+    <value>Детские</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterLeftOuterPane.Module.Content.5.Text" xml:space="preserve">
+    <value>Грунтовый/ Городской</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterLeftOuterPane.Module.Title.Text" xml:space="preserve">
+    <value>Продукты</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterLeftPane.Module.Content.0.Text" xml:space="preserve">
+    <value>ЧаВо</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterLeftPane.Module.Content.1.Text" xml:space="preserve">
+    <value>Инструкции к велосипедам</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterLeftPane.Module.Content.2.Text" xml:space="preserve">
+    <value>Каталоги продукции</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterLeftPane.Module.Content.3.Text" xml:space="preserve">
+    <value>Архив продукции</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterLeftPane.Module.Content.4.Text" xml:space="preserve">
+    <value>Поддержка</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterLeftPane.Module.Content.5.Text" xml:space="preserve">
+    <value>Гарантия на велосипеды</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterLeftPane.Module.Title.Text" xml:space="preserve">
+    <value>Поддержка покупателей</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterRightOuterPane.Module.Title.Text" xml:space="preserve">
+    <value>Присоединяйтесь</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterRightPane.Module.Content.0.Text" xml:space="preserve">
+    <value>Корпорация "Крутые велики"</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterRightPane.Module.Content.1.Text" xml:space="preserve">
+    <value>
+3457 ул. Велосипедная
+г. Велодром, Россия, 12345</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterRightPane.Module.Content.2.Text" xml:space="preserve">
+    <value>
+Телефон: (555) 555-4563</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterRightPane.Module.Content.3.Text" xml:space="preserve">
+    <value>
+Факс: (555) 555-4564</value>
+  </data>
+  <data name="Tab.ActivityFeed.FooterRightPane.Module.Title.Text" xml:space="preserve">
+    <value>Контакты</value>
+  </data>
+  <data name="Tab.ActivityFeed.Name.Text" xml:space="preserve">
+    <value>Журнал активности</value>
+  </data>
+  <data name="Tab.ActivityFeed.RightPane.Module.Title.Text" xml:space="preserve">
+    <value>Каталог участников</value>
+  </data>
+  <data name="Tab.ActivityFeed.Title.Text" xml:space="preserve">
+    <value>Журнал активности</value>
+  </data>
+  <data name="Tab.DigitalAssetsManagement.Content.Text" xml:space="preserve">
+    <value>Управление файлами</value>
+  </data>
+  <data name="Tab.DigitalAssetsManagement.ContentPane.Module.Title.Text" xml:space="preserve">
+    <value>Управление файлами</value>
+  </data>
+  <data name="Tab.DigitalAssetsManagement.Description.Text" xml:space="preserve">
+    <value>Управление ресурсами сайта.</value>
+  </data>
+  <data name="Tab.DigitalAssetsManagement.Name.Text" xml:space="preserve">
+    <value>Управление файлами</value>
+  </data>
+  <data name="Tab.DigitalAssetsManagement.Title.Text" xml:space="preserve">
+    <value>Управление файлами</value>
+  </data>
+  <data name="Tab.Home.PageName.Content" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="Tab.Home.PageName.Title" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  
+  <data name="Tab.Home.Header.Title" xml:space="preserve">
+    <value>Каждое путешествие начинается с первого шага. </value>
+  </data>
+  <data name="Tab.Home.Main.Title" xml:space="preserve">
+    <value>ПОДКЛЮЧАЙТЕСЬ и УЧАСТВУЙТЕ</value>
+  </data>
+  
+  <data name="Tab.Home.Main.Docs.Title" xml:space="preserve">
+    <value>Документация</value>
+  </data>
+  
+  <data name="Tab.Home.Main.Docs.SubLink.Text" xml:space="preserve">
+    <value>Перейти к документации DNN</value>
+  </data>
+  
+  <data name="Tab.Home.Main.Community.Title" xml:space="preserve">
+    <value>Сообщество</value>
+  </data>
+  
+  <data name="Tab.Home.Main.Community.SubLink.Text" xml:space="preserve">
+    <value>Посетить сайт сообщества DNN</value>
+  </data>
+  
+  <data name="Tab.Home.Main.Code.Title" xml:space="preserve">
+    <value>Код</value>
+  </data>
+  
+  <data name="Tab.Home.Main.Code.SubLink.Text" xml:space="preserve">
+    <value>Посетить проект DNN на GitHub</value>
+  </data>
+  
+  <data name="Tab.Home.Main.Forums.Title" xml:space="preserve">
+    <value>Форумы</value>
+  </data>
+  
+  <data name="Tab.Home.Main.Forums.SubLink.Text" xml:space="preserve">
+    <value>Посетить форумы DNN</value>
+  </data>
+  
+  <data name="Tab.Home.Main.Blogs.Title" xml:space="preserve">
+    <value>Блоги</value>
+  </data>
+  
+  <data name="Tab.Home.Main.Blogs.SubLink.Text" xml:space="preserve">
+    <value>Посетить блоги DNN</value>
+  </data>
+  
+  <data name="Tab.Home.Main.Extensions.Title" xml:space="preserve">
+    <value>Расширения</value>
+  </data>
+  
+  <data name="Tab.Home.Main.Extensions.SubLink.Text" xml:space="preserve">
+    <value>Посетить сайт расширений DNN</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="Tab.MyFriends.CenterPane.MemberDirectoryModule.Title.Text" xml:space="preserve">
+    <value>Каталог участников</value>
+  </data>
+  <data name="Tab.MyFriends.CenterPane.ViewProfileModule.Title.Text" xml:space="preserve">
+    <value>Просмотр профиля</value>
+  </data>
+  <data name="Tab.MyFriends.Content.Text" xml:space="preserve">
+    <value>Мои друзья</value>
+  </data>
+  <data name="Tab.MyFriends.FooterCenterPane.Module.Content.0.Text" xml:space="preserve">
+    <value>Журнал</value>
+  </data>
+  <data name="Tab.MyFriends.FooterCenterPane.Module.Content.1.Text" xml:space="preserve">
+    <value>Вакансии</value>
+  </data>
+  <data name="Tab.MyFriends.FooterCenterPane.Module.Content.2.Text" xml:space="preserve">
+    <value>Правовая информация</value>
+  </data>
+  <data name="Tab.MyFriends.FooterCenterPane.Module.Title.Text" xml:space="preserve">
+    <value>Компания</value>
+  </data>
+  <data name="Tab.MyFriends.FooterLeftOuterPane.Module.Content.0.Text" xml:space="preserve">
+    <value>Горные</value>
+  </data>
+  <data name="Tab.MyFriends.FooterLeftOuterPane.Module.Content.1.Text" xml:space="preserve">
+    <value>Гравитация</value>
+  </data>
+  <data name="Tab.MyFriends.FooterLeftOuterPane.Module.Content.2.Text" xml:space="preserve">
+    <value>Дорожные</value>
+  </data>
+  <data name="Tab.MyFriends.FooterLeftOuterPane.Module.Content.3.Text" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="Tab.MyFriends.FooterLeftOuterPane.Module.Content.4.Text" xml:space="preserve">
+    <value>Детские</value>
+  </data>
+  <data name="Tab.MyFriends.FooterLeftOuterPane.Module.Content.5.Text" xml:space="preserve">
+    <value>Грунтовый/ Городской</value>
+  </data>
+  <data name="Tab.MyFriends.FooterLeftOuterPane.Module.Title.Text" xml:space="preserve">
+    <value>Продукты</value>
+  </data>
+  <data name="Tab.MyFriends.FooterLeftPane.Module.Content.0.Text" xml:space="preserve">
+    <value>ЧаВо</value>
+  </data>
+  <data name="Tab.MyFriends.FooterLeftPane.Module.Content.1.Text" xml:space="preserve">
+    <value>Инструкции к велосипедам</value>
+  </data>
+  <data name="Tab.MyFriends.FooterLeftPane.Module.Content.2.Text" xml:space="preserve">
+    <value>Каталоги продукции</value>
+  </data>
+  <data name="Tab.MyFriends.FooterLeftPane.Module.Content.3.Text" xml:space="preserve">
+    <value>Архив продукции</value>
+  </data>
+  <data name="Tab.MyFriends.FooterLeftPane.Module.Content.4.Text" xml:space="preserve">
+    <value>Поддержка</value>
+  </data>
+  <data name="Tab.MyFriends.FooterLeftPane.Module.Content.5.Text" xml:space="preserve">
+    <value>Гарантия на велосипеды</value>
+  </data>
+  <data name="Tab.MyFriends.FooterLeftPane.Module.Title.Text" xml:space="preserve">
+    <value>Поддержка покупателей</value>
+  </data>
+  <data name="Tab.MyFriends.FooterRightOuterPane.Module.Title.Text" xml:space="preserve">
+    <value>Присоединяйтесь</value>
+  </data>
+  <data name="Tab.MyFriends.FooterRightPane.Module.Content.0.Text" xml:space="preserve">
+    <value>Корпорация "Крутые велики"</value>
+  </data>
+  <data name="Tab.MyFriends.FooterRightPane.Module.Content.1.Text" xml:space="preserve">
+    <value>
+3457 ул. Велосипедная
+г. Велодром, Россия, 12345</value>
+  </data>
+  <data name="Tab.MyFriends.FooterRightPane.Module.Content.2.Text" xml:space="preserve">
+    <value>
+Телефон: (555) 555-4563</value>
+  </data>
+  <data name="Tab.MyFriends.FooterRightPane.Module.Content.3.Text" xml:space="preserve">
+    <value>
+Факс: (555) 555-4564</value>
+  </data>
+  <data name="Tab.MyFriends.FooterRightPane.Module.Title.Text" xml:space="preserve">
+    <value>Контакты</value>
+  </data>
+  <data name="Tab.MyFriends.LeftPane.Module.Title.Text" xml:space="preserve">
+    <value>Просмотр профиля</value>
+  </data>
+  <data name="Tab.MyFriends.Name.Text" xml:space="preserve">
+    <value>Друзья</value>
+  </data>
+  <data name="Tab.MyFriends.RightPane.MemberDirectoryModule.Title.Text" xml:space="preserve">
+    <value>Каталог участников</value>
+  </data>
+  <data name="Tab.MyFriends.RightPane.NavigationModule.Title.Text" xml:space="preserve">
+    <value>Навигация</value>
+  </data>
+  <data name="Tab.MyFriends.Title.Text" xml:space="preserve">
+    <value>Мои друзья</value>
+  </data>
+  <data name="Tab.MyMessages.CenterPane.MessageCenterModule.Title.Text" xml:space="preserve">
+    <value>Центр сообщений</value>
+  </data>
+  <data name="Tab.MyMessages.CenterPane.ViewProfileModule.Title.Text" xml:space="preserve">
+    <value>Просмотр профиля</value>
+  </data>
+  <data name="Tab.MyMessages.Content.Text" xml:space="preserve">
+    <value>Мои сообщения</value>
+  </data>
+  <data name="Tab.MyMessages.FooterCenterPane.Module.Content.0.Text" xml:space="preserve">
+    <value>Журнал</value>
+  </data>
+  <data name="Tab.MyMessages.FooterCenterPane.Module.Content.1.Text" xml:space="preserve">
+    <value>Вакансии</value>
+  </data>
+  <data name="Tab.MyMessages.FooterCenterPane.Module.Content.2.Text" xml:space="preserve">
+    <value>Правовая информация</value>
+  </data>
+  <data name="Tab.MyMessages.FooterCenterPane.Module.Title.Text" xml:space="preserve">
+    <value>Компания</value>
+  </data>
+  <data name="Tab.MyMessages.FooterLeftOuterPane.Module.Content.0.Text" xml:space="preserve">
+    <value>Горные</value>
+  </data>
+  <data name="Tab.MyMessages.FooterLeftOuterPane.Module.Content.1.Text" xml:space="preserve">
+    <value>Гравитация</value>
+  </data>
+  <data name="Tab.MyMessages.FooterLeftOuterPane.Module.Content.2.Text" xml:space="preserve">
+    <value>Дорожные</value>
+  </data>
+  <data name="Tab.MyMessages.FooterLeftOuterPane.Module.Content.3.Text" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="Tab.MyMessages.FooterLeftOuterPane.Module.Content.4.Text" xml:space="preserve">
+    <value>Детские</value>
+  </data>
+  <data name="Tab.MyMessages.FooterLeftOuterPane.Module.Content.5.Text" xml:space="preserve">
+    <value>Грунтовый/ Городской</value>
+  </data>
+  <data name="Tab.MyMessages.FooterLeftOuterPane.Module.Title.Text" xml:space="preserve">
+    <value>Продукты</value>
+  </data>
+  <data name="Tab.MyMessages.FooterLeftPane.Module.Content.0.Text" xml:space="preserve">
+    <value>ЧаВо</value>
+  </data>
+  <data name="Tab.MyMessages.FooterLeftPane.Module.Content.1.Text" xml:space="preserve">
+    <value>Инструкции к велосипедам</value>
+  </data>
+  <data name="Tab.MyMessages.FooterLeftPane.Module.Content.2.Text" xml:space="preserve">
+    <value>Каталоги продукции</value>
+  </data>
+  <data name="Tab.MyMessages.FooterLeftPane.Module.Content.3.Text" xml:space="preserve">
+    <value>Архив продукции</value>
+  </data>
+  <data name="Tab.MyMessages.FooterLeftPane.Module.Content.4.Text" xml:space="preserve">
+    <value>Поддержка</value>
+  </data>
+  <data name="Tab.MyMessages.FooterLeftPane.Module.Content.5.Text" xml:space="preserve">
+    <value>Гарантия на велосипеды</value>
+  </data>
+  <data name="Tab.MyMessages.FooterLeftPane.Module.Title.Text" xml:space="preserve">
+    <value>Поддержка покупателей</value>
+  </data>
+  <data name="Tab.MyMessages.FooterRightOuterPane.Module.Title.Text" xml:space="preserve">
+    <value>Присоединяйтесь</value>
+  </data>
+  <data name="Tab.MyMessages.FooterRightPane.Module.Content.0.Text" xml:space="preserve">
+    <value>Корпорация "Крутые велики"</value>
+  </data>
+  <data name="Tab.MyMessages.FooterRightPane.Module.Content.1.Text" xml:space="preserve">
+    <value>
+3457 ул. Велосипедная
+г. Велодром, Россия, 12345</value>
+  </data>
+  <data name="Tab.MyMessages.FooterRightPane.Module.Content.2.Text" xml:space="preserve">
+    <value>
+Телефон: (555) 555-4563</value>
+  </data>
+  <data name="Tab.MyMessages.FooterRightPane.Module.Content.3.Text" xml:space="preserve">
+    <value>
+Факс: (555) 555-4564</value>
+  </data>
+  <data name="Tab.MyMessages.FooterRightPane.Module.Title.Text" xml:space="preserve">
+    <value>Контакты</value>
+  </data>
+  <data name="Tab.MyMessages.LeftPane.Module.Title.Text" xml:space="preserve">
+    <value>Просмотр профиля</value>
+  </data>
+  <data name="Tab.MyMessages.Name.Text" xml:space="preserve">
+    <value>Сообщений</value>
+  </data>
+  <data name="Tab.MyMessages.RightPane.MemberDirectoryModule.Title.Text" xml:space="preserve">
+    <value>Каталог участников</value>
+  </data>
+  <data name="Tab.MyMessages.RightPane.NavigationModule.Title.Text" xml:space="preserve">
+    <value>Навигация</value>
+  </data>
+  <data name="Tab.MyMessages.Title.Text" xml:space="preserve">
+    <value>Мои сообщения</value>
+  </data>
+  <data name="Tab.MyProfile.CenterPane.ViewProfileModule.Title.Text" xml:space="preserve">
+    <value>Просмотр профиля</value>
+  </data>
+  <data name="Tab.MyProfile.Content.Text" xml:space="preserve">
+    <value>Мой профиль</value>
+  </data>
+  <data name="Tab.MyProfile.FooterCenterPane.Module.Content.0.Text" xml:space="preserve">
+    <value>Журнал</value>
+  </data>
+  <data name="Tab.MyProfile.FooterCenterPane.Module.Content.1.Text" xml:space="preserve">
+    <value>Вакансии</value>
+  </data>
+  <data name="Tab.MyProfile.FooterCenterPane.Module.Content.2.Text" xml:space="preserve">
+    <value>Правовая информация</value>
+  </data>
+  <data name="Tab.MyProfile.FooterCenterPane.Module.Title.Text" xml:space="preserve">
+    <value>Компания</value>
+  </data>
+  <data name="Tab.MyProfile.FooterLeftOuterPane.Module.Content.0.Text" xml:space="preserve">
+    <value>Горные</value>
+  </data>
+  <data name="Tab.MyProfile.FooterLeftOuterPane.Module.Content.1.Text" xml:space="preserve">
+    <value>Гравитация</value>
+  </data>
+  <data name="Tab.MyProfile.FooterLeftOuterPane.Module.Content.2.Text" xml:space="preserve">
+    <value>Дорожные</value>
+  </data>
+  <data name="Tab.MyProfile.FooterLeftOuterPane.Module.Content.3.Text" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="Tab.MyProfile.FooterLeftOuterPane.Module.Content.4.Text" xml:space="preserve">
+    <value>Детские</value>
+  </data>
+  <data name="Tab.MyProfile.FooterLeftOuterPane.Module.Content.5.Text" xml:space="preserve">
+    <value>Грунтовый/ Городской</value>
+  </data>
+  <data name="Tab.MyProfile.FooterLeftOuterPane.Module.Title.Text" xml:space="preserve">
+    <value>Продукты</value>
+  </data>
+  <data name="Tab.MyProfile.FooterLeftPane.Module.Content.0.Text" xml:space="preserve">
+    <value>ЧаВо</value>
+  </data>
+  <data name="Tab.MyProfile.FooterLeftPane.Module.Content.1.Text" xml:space="preserve">
+    <value>Инструкции к велосипедам</value>
+  </data>
+  <data name="Tab.MyProfile.FooterLeftPane.Module.Content.2.Text" xml:space="preserve">
+    <value>Каталоги продукции</value>
+  </data>
+  <data name="Tab.MyProfile.FooterLeftPane.Module.Content.3.Text" xml:space="preserve">
+    <value>Архив продукции</value>
+  </data>
+  <data name="Tab.MyProfile.FooterLeftPane.Module.Content.4.Text" xml:space="preserve">
+    <value>Поддержка</value>
+  </data>
+  <data name="Tab.MyProfile.FooterLeftPane.Module.Content.5.Text" xml:space="preserve">
+    <value>Гарантия на велосипеды</value>
+  </data>
+  <data name="Tab.MyProfile.FooterLeftPane.Module.Title.Text" xml:space="preserve">
+    <value>Поддержка покупателей</value>
+  </data>
+  <data name="Tab.MyProfile.FooterRightOuterPane.Module.Title.Text" xml:space="preserve">
+    <value>Присоединяйтесь</value>
+  </data>
+  <data name="Tab.MyProfile.FooterRightPane.Module.Content.0.Text" xml:space="preserve">
+    <value>Корпорация "Крутые велики"</value>
+  </data>
+  <data name="Tab.MyProfile.FooterRightPane.Module.Content.1.Text" xml:space="preserve">
+    <value>
+3457 ул. Велосипедная
+г. Велодром, Россия, 12345</value>
+  </data>
+  <data name="Tab.MyProfile.FooterRightPane.Module.Content.2.Text" xml:space="preserve">
+    <value>
+Телефон: (555) 555-4563</value>
+  </data>
+  <data name="Tab.MyProfile.FooterRightPane.Module.Content.3.Text" xml:space="preserve">
+    <value>
+Факс: (555) 555-4564</value>
+  </data>
+  <data name="Tab.MyProfile.FooterRightPane.Module.Title.Text" xml:space="preserve">
+    <value>Контакты</value>
+  </data>
+  <data name="Tab.MyProfile.LeftPane.Module.Title.Text" xml:space="preserve">
+    <value>Просмотр профиля</value>
+  </data>
+  <data name="Tab.MyProfile.Name.Text" xml:space="preserve">
+    <value>Мой профиль</value>
+  </data>
+  <data name="Tab.MyProfile.RightPane.MemberDirectoryModule.Title.Text" xml:space="preserve">
+    <value>Каталог участников</value>
+  </data>
+  <data name="Tab.MyProfile.RightPane.NavigationModule.Title.Text" xml:space="preserve">
+    <value>Навигация</value>
+  </data>
+  <data name="Tab.MyProfile.Title.Text" xml:space="preserve">
+    <value>Мой профиль</value>
+  </data>
+  <data name="Tab.PortalAdministration.Content.Text" xml:space="preserve">
+    <value>Администрирование сайта</value>
+  </data>
+  <data name="Tab.PortalAdministration.ContentPane.Module.Title.Text" xml:space="preserve">
+    <value>Основные возможности</value>
+  </data>
+  <data name="Tab.PortalAdministration.Name.Text" xml:space="preserve">
+    <value>Админ</value>
+  </data>
+  <data name="Tab.PortalAdministration.Title.Text" xml:space="preserve">
+    <value>Администрирование сайта</value>
+  </data>
+  <data name="Tab.SearchResultsCE.Content.Text" xml:space="preserve">
+    <value>Результаты поиска</value>
+  </data>
+  <data name="Tab.SearchResultsCE.ContentPane.ResultsModule.Title.Text" xml:space="preserve">
+    <value>Результат</value>
+  </data>
+  <data name="Tab.SearchResultsCE.ContentPane.SearchResultsModule.Title.Text" xml:space="preserve">
+    <value>Результаты поиска</value>
+  </data>
+  <data name="Tab.SearchResultsCE.Name.Text" xml:space="preserve">
+    <value>Результаты поиска</value>
+  </data>
+  <data name="Tab.SearchResultsCE.Title.Text" xml:space="preserve">
+    <value>Результаты поиска</value>
+  </data>
+  <data name="Tab.SearchResultsPro.ContentPane.ResultsModule.Title.Text" xml:space="preserve">
+    <value>Результат</value>
+  </data>
+  <data name="Tab.SearchResultsPro.ContentPane.SearchResultsModule.Title.Text" xml:space="preserve">
+    <value>Результаты поиска</value>
+  </data>
+  <data name="Tab.SearchResultsPro.Name.Text" xml:space="preserve">
+    <value>Результаты поиска</value>
+  </data>
+  <data name="Tab.SearchResultsPro.Title.Text" xml:space="preserve">
+    <value>Результаты поиска</value>
+  </data>
+  <data name="Tab.UserAccounts.Content.Text" xml:space="preserve">
+    <value>Пользователи сайта</value>
+  </data>
+  <data name="Tab.UserAccounts.ContentPane.Module.Title.Text" xml:space="preserve">
+    <value>Пользователи сайта</value>
+  </data>
+  <data name="Tab.UserAccounts.Description.Text" xml:space="preserve">
+    <value>Управление учетными записями пользователей.</value>
+  </data>
+  <data name="Tab.UserAccounts.Name.Text" xml:space="preserve">
+    <value>Пользователи сайта</value>
+  </data>
+  <data name="Tab.UserAccounts.Title.Text" xml:space="preserve">
+    <value>Пользователи сайта</value>
+  </data>
+</root>

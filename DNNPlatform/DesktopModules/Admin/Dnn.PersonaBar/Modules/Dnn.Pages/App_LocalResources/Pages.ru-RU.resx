@@ -1,0 +1,962 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ErrorPages.Text" xml:space="preserve">
+    <value>Нужно выбрать как минимум одну страницу для экспорта.</value>
+  </data>
+  <data name="nav_Pages.Text" xml:space="preserve">
+    <value>Страницы</value>
+  </data>
+  <data name="SiteDetails_Pages.Text" xml:space="preserve">
+    <value>Страницы</value>
+  </data>
+  <data name="Description.Label" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="HomeDirectory.Label" xml:space="preserve">
+    <value>Домашняя папка</value>
+  </data>
+  <data name="Title.Label" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Edit.Text" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="Settings.Text" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="View.Text" xml:space="preserve">
+    <value>Просмотр</value>
+  </data>
+  <data name="Hidden.Text" xml:space="preserve">
+    <value>Скрыта в меню</value>
+  </data>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Continue.Text" xml:space="preserve">
+    <value>Продолжить</value>
+  </data>
+  <data name="UpdateLocalizationWarning.Text" xml:space="preserve">
+    <value>Обновление настроек локализации может занять несколько минут в зависимости от количества модулей. Пожалуйста, подождите, пока процесс не завершится полностью.</value>
+  </data>
+  <data name="UpdateLocalizationSuccess.Text" xml:space="preserve">
+    <value>Готово!</value>
+  </data>
+  <data name="DragPageTooltip.Text" xml:space="preserve">
+    <value>Перетащите страницу в нужное место</value>
+  </data>
+  <data name="DragInvalid.Text" xml:space="preserve">
+    <value>Вы не можете сделать эту страницу дочерней к самой себе.</value>
+  </data>
+  <data name="DeletePageConfirm.Text" xml:space="preserve">
+    <value>&lt;p&gt;Пожалуйста, подтвердите, что вы хотите удалить эту страницу.&lt;/p&gt;</value>
+  </data>
+  <data name="Pending.Text" xml:space="preserve">
+    <value>Пожалуйста, перетащите страницу в нужное место.</value>
+  </data>
+  <data name="Search.Text" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="page_name_tooltip" xml:space="preserve">
+    <value>Имя страницы</value>
+  </data>
+  <data name="page_title_tooltip" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="AnErrorOccurred.Text" xml:space="preserve">
+    <value>Произошла ошибка.</value>
+  </data>
+  <data name="DeleteModuleConfirm.Text" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить модуль "[MODULETITLE]" с этой страницы?</value>
+  </data>
+  <data name="SitemapPriority.Text" xml:space="preserve">
+    <value>Важность</value>
+  </data>
+  <data name="SitemapPriority_tooltip.Text" xml:space="preserve">
+    <value>Введите желаемый приоритет (от 0 до 1,0). Данное значение участвует в определении того, как эта страница ранжируется в Google по отношению к другим страницам на вашем сайте (0,5 по умолчанию).</value>
+  </data>
+  <data name="PageHeaderTags.Text" xml:space="preserve">
+    <value>Мета-теги заголовка</value>
+  </data>
+  <data name="PageHeaderTags_tooltip.Text" xml:space="preserve">
+    <value>Введите любые мета-теги, которые должны отображаться внутри раздела "HEAD" в коде HTML страницы.</value>
+  </data>
+  <data name="AddUrl.Text" xml:space="preserve">
+    <value>Добавить URL</value>
+  </data>
+  <data name="UrlsForThisPage.Text" xml:space="preserve">
+    <value>URL-адреса этой страницы</value>
+  </data>
+  <data name="Url.Text" xml:space="preserve">
+    <value>Ссылка</value>
+  </data>
+  <data name="UrlType.Text" xml:space="preserve">
+    <value>Тип URL</value>
+  </data>
+  
+  <data name="None.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="Include.Text" xml:space="preserve">
+    <value>Включить</value>
+  </data>
+  <data name="Exclude.Text" xml:space="preserve">
+    <value>Исключить</value>
+  </data>
+  <data name="Security.Text" xml:space="preserve">
+    <value>Безопасность</value>
+  </data>
+  <data name="SecureConnection.Text" xml:space="preserve">
+    <value>Безопасное соединение</value>
+  </data>
+  <data name="SecureConnection_tooltip.Text" xml:space="preserve">
+    <value>Укажите, необходимо ли использовать защищенное соединение (SSL) для этой страницы. Эта возможность будет включена только в том случае, если поддержка SSL включена на уровне сайта.</value>
+  </data>
+  <data name="AllowIndexing.Text" xml:space="preserve">
+    <value>Разрешить индексирование</value>
+  </data>
+  <data name="AllowIndexing_tooltip.Text" xml:space="preserve">
+    <value>Эта настройка управляет тем, должна ли страница индексироваться поисковыми роботами. При этом используются значения INDEX/NOINDEX мета-тега ROBOTS.</value>
+  </data>
+  <data name="CacheSettings.Text" xml:space="preserve">
+    <value>Настройки кеширования</value>
+  </data>
+  <data name="OutputCacheProvider.Text" xml:space="preserve">
+    <value>Поставщик кеширования</value>
+  </data>
+  <data name="OutputCacheProvider_tooltip.Text" xml:space="preserve">
+    <value>Укажите поставщика кеширования для этой страницы.</value>
+  </data>
+  <data name="CacheDuration.Text" xml:space="preserve">
+    <value>Длительность кеширования (сек.)</value>
+  </data>
+  <data name="CacheDuration_tooltip.Text" xml:space="preserve">
+    <value>Введите длительность кэширования страницы (в секундах). Значение должно быть целым числом.</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  <data name="VaryByLimit.Text" xml:space="preserve">
+    <value>Макс. версий кеша</value>
+  </data>
+  
+  <data name="ModulesOnThisPage.Text" xml:space="preserve">
+    <value>Модули на странице</value>
+  </data>
+  <data name="NoModules.Text" xml:space="preserve">
+    <value>На этой странице нет модулей.</value>
+  </data>
+  <data name="Advanced.Text" xml:space="preserve">
+    <value>Расширенный</value>
+  </data>
+  <data name="Appearance.Text" xml:space="preserve">
+    <value>Представление</value>
+  </data>
+  
+  <data name="CopyPermissionsToDescendantPages.Text" xml:space="preserve">
+    <value>Копировать разрешения на подчиненные страницы</value>
+  </data>
+  <data name="Layout.Text" xml:space="preserve">
+    <value>Разметка</value>
+  </data>
+  <data name="PageContainer.Text" xml:space="preserve">
+    <value>Шаблон оформления модулей</value>
+  </data>
+  <data name="PageStyleSheet.Text" xml:space="preserve">
+    <value>Таблица стилей</value>
+  </data>
+  <data name="PageTheme.Text" xml:space="preserve">
+    <value>Тема страницы</value>
+  </data>
+  <data name="PageThemeTooltip.Text" xml:space="preserve">
+    <value>Выбранная тема будет применена к текущей странице.</value>
+  </data>
+  
+  <data name="PageContainerTooltip.Text" xml:space="preserve">
+    <value>Выбранный шаблон оформления модулей будет применен ко всем модулям на этой странице.</value>
+  </data>
+  
+  <data name="NotEmptyNameError.Text" xml:space="preserve">
+    <value>Это поле является обязательным</value>
+  </data>
+  <data name="AddPage.Text" xml:space="preserve">
+    <value>Добавить страницу</value>
+  </data>
+  <data name="PageSettings.Text" xml:space="preserve">
+    <value>Модуль на странице</value>
+  </data>
+  
+  <data name="AdvancedFilters.Text" xml:space="preserve">
+    <value>Расширенные фильтры</value>
+  </data>
+  <data name="Clear.Text" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="Apply.Text" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="NameTooltip.Text" xml:space="preserve">
+    <value>Это название страницы. Введенный текст будет отображаться в меню.</value>
+  </data>
+  <data name="DisplayInMenu.Text" xml:space="preserve">
+    <value>Отображать в меню</value>
+  </data>
+  <data name="DisplayInMenuTooltip.Text" xml:space="preserve">
+    <value>Вы можете выбрать, следует ли показывать страницу в меню сайта или нет. Если страница не включена в меню, попасть на нее по-прежнему можно, указав URL страницы в адресной строке браузера.</value>
+  </data>
+  <data name="Name.Text" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  
+  
+  <data name="StartDate.Text" xml:space="preserve">
+    <value>Дата начала публикации</value>
+  </data>
+  <data name="EndDate.Text" xml:space="preserve">
+    <value>Дата окончания публикации</value>
+  </data>
+  
+  <data name="Keywords.Text" xml:space="preserve">
+    <value>Ключевые слова</value>
+  </data>
+  <data name="Tags.Text" xml:space="preserve">
+    <value>Метки</value>
+  </data>
+  <data name="ExistingPage.Text" xml:space="preserve">
+    <value>Существующая страница</value>
+  </data>
+  <data name="ExistingPageTooltip.Text" xml:space="preserve">
+    <value>Перенаправление на существующую страницу вашего сайта.</value>
+  </data>
+  <data name="ExternalUrl.Text" xml:space="preserve">
+    <value>Внешний URL</value>
+  </data>
+  
+  <data name="PermanentRedirect.Text" xml:space="preserve">
+    <value>Постоянное перенаправление</value>
+  </data>
+  
+  
+  <data name="OpenLinkInNewWindowTooltip.Text" xml:space="preserve">
+    <value>Открыть ссылку в новом окне браузера</value>
+  </data>
+  <data name="Save.Text" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Details.Text" xml:space="preserve">
+    <value>Подробности</value>
+  </data>
+  <data name="Permissions.Text" xml:space="preserve">
+    <value>Разрешения</value>
+  </data>
+  <data name="Modules.Text" xml:space="preserve">
+    <value>Модули</value>
+  </data>
+  
+  <data name="More.Text" xml:space="preserve">
+    <value>Ещё</value>
+  </data>
+  <data name="Created.Text" xml:space="preserve">
+    <value>Создана</value>
+  </data>
+  
+  
+  <data name="Status.Text" xml:space="preserve">
+    <value>Состояние</value>
+  </data>
+  <data name="PageType.Text" xml:space="preserve">
+    <value>Тип страницы</value>
+  </data>
+  <data name="Standard.Text" xml:space="preserve">
+    <value>Встроенная</value>
+  </data>
+  
+  <data name="File.Text" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="PageStyleSheetTooltip.Text" xml:space="preserve">
+    <value>Имя файла таблицы стилей CSS, загружаемой для этой конкретной страницы. Файл должен быть расположен в корне или одной из папок сайта.</value>
+  </data>
+  
+  
+  
+  <data name="BackToPages.Text" xml:space="preserve">
+    <value>Вернуться на страницу</value>
+  </data>
+  <data name="ChangesNotSaved.Text" xml:space="preserve">
+    <value>Изменения не были сохранены</value>
+  </data>
+  
+  
+  <data name="CopyPermissionsToDescendantPagesSuccess.Text" xml:space="preserve">
+    <value>Разрешения были успешно скопированы на подчиненные страницы</value>
+  </data>
+  <data name="DeletePageModuleSuccess.Text" xml:space="preserve">
+    <value>Модуль"[MODULETITLE]" был успешно удалён</value>
+  </data>
+  
+  
+  <data name="AddPages.Text" xml:space="preserve">
+    <value>Добавить страницы</value>
+  </data>
+  
+  <data name="NoContainers.Text" xml:space="preserve">
+    <value>Эта тема не содержит контейнеров</value>
+  </data>
+  
+  
+  
+  
+  <data name="PleaseSelectLayoutContainer.Text" xml:space="preserve">
+    <value>Вы должны выбрать макет и контейнер для выполнения этой операции.</value>
+  </data>
+  
+  <data name="PathDuplicateWithAlias.Text" xml:space="preserve">
+    <value>Уже есть страница с таким же именем, {0} по тому же пути URL {1}.</value>
+  </data>
+  <data name="PathDuplicateWithPage.Text" xml:space="preserve">
+    <value>Уже есть страница по тому же пути URL {0}.</value>
+  </data>
+  <data name="TabExists.Text" xml:space="preserve">
+    <value>Выбранное имя страницы уже используется другой страницей на том же уровне в этом разделе.</value>
+  </data>
+  <data name="TabRecycled.Text" xml:space="preserve">
+    <value>Страница с таким именем уже существует в Корзине. Для восстановления страницы воспользуйтесь возможностями Корзины.</value>
+  </data>
+  
+  
+  <data name="System.Text" xml:space="preserve">
+    <value>Система</value>
+  </data>
+  <data name="EmptyTabName.Text" xml:space="preserve">
+    <value>Укажите имя страницы</value>
+  </data>
+  <data name="InvalidTabName.Text" xml:space="preserve">
+    <value>Недопустимый заголовок страницы {0}.</value>
+  </data>
+  
+  <data name="CustomUrlPortalAlias.Error" xml:space="preserve">
+    <value>Пожалуйста, выберите правильный псевдоним сайта для данного пользовательского URL.</value>
+  </data>
+  <data name="DuplicateUrl.Error" xml:space="preserve">
+    <value>Данный URL дублирует существующий URL.</value>
+  </data>
+  <data name="InvalidRequest.Error" xml:space="preserve">
+    <value>Запрос некорректен</value>
+  </data>
+  
+  <data name="Pages_Seo_QueryString.Text" xml:space="preserve">
+    <value>Строка запроса</value>
+  </data>
+  <data name="Pages_Seo_SelectedAliasUsage.Help" xml:space="preserve">
+    <value>Если выбранный псевдоним сайта отличается от основного псевдонима сайта, то выберите вариант использования.</value>
+  </data>
+  <data name="Pages_Seo_SelectedAliasUsage.Text" xml:space="preserve">
+    <value>Использование выбранного псевдонима сайта</value>
+  </data>
+  <data name="Pages_Seo_SelectedAliasUsageOptionPageAndChildPages.Text" xml:space="preserve">
+    <value>Страница и дочерние страницы</value>
+  </data>
+  <data name="Pages_Seo_SelectedAliasUsageOptionSameAsParent.Text" xml:space="preserve">
+    <value>Так же, как и для родительской страницы</value>
+  </data>
+  <data name="Pages_Seo_SelectedAliasUsageOptionThisPageOnly.Text" xml:space="preserve">
+    <value>Только эта страница</value>
+  </data>
+  <data name="Pages_Seo_SiteAlias.Help" xml:space="preserve">
+    <value>Выберите псевдоним для страницы, если нужно использовать особый псевдоним.</value>
+  </data>
+  <data name="Pages_Seo_SiteAlias.Text" xml:space="preserve">
+    <value>Псевдоним сайта</value>
+  </data>
+  <data name="Pages_Seo_UrlPath.Help" xml:space="preserve">
+    <value>Укажите путь для URL. Не используйте http:// или псевдоним сайта.</value>
+  </data>
+  <data name="Pages_Seo_UrlPath.Text" xml:space="preserve">
+    <value>Путь URL</value>
+  </data>
+  
+  <data name="Pages_Seo_UrlType.Text" xml:space="preserve">
+    <value>Тип URL</value>
+  </data>
+  <data name="UrlPathNotUnique.Error" xml:space="preserve">
+    <value>Выбранный URL уже занят. Если Вы хотите принять предложенную альтернативу, нажмите Сохранить.</value>
+  </data>
+  <data name="Pages_Seo_DeleteWarningMessage.Text" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить этот URL?</value>
+  </data>
+  <data name="NoneSpecified.Text" xml:space="preserve">
+    <value>&lt; Не указано&gt; </value>
+  </data>
+  <data name="CannotCopyPermissionsToDescendantPages.Text" xml:space="preserve">
+    <value>У вас нет прав на копирование разрешений на подчиненные страницы</value>
+  </data>
+  <data name="SaveAsTemplate.Text" xml:space="preserve">
+    <value>Сохранить как шаблон</value>
+  </data>
+  <data name="BackToPageSettings.Text" xml:space="preserve">
+    <value>Вернуться к настройкам страницы</value>
+  </data>
+  <data name="DuplicatePage.Text" xml:space="preserve">
+    <value>Дублировать страницу</value>
+  </data>
+  
+  <data name="ModuleSettings.Text" xml:space="preserve">
+    <value>Настройки модуля</value>
+  </data>
+  
+  <data name="Folder.Text" xml:space="preserve">
+    <value>Папка</value>
+  </data>
+  <data name="TemplateName.Text" xml:space="preserve">
+    <value>Имя шаблона</value>
+  </data>
+  <data name="IncludeContent.Text" xml:space="preserve">
+    <value>Включая содержимое</value>
+  </data>
+  <data name="FolderTooltip.Text" xml:space="preserve">
+    <value>Укажите папку, в которую следует сохранить шаблон страницы.</value>
+  </data>
+  <data name="TemplateNameTooltip.Text" xml:space="preserve">
+    <value>Введите имя шаблона страницы.</value>
+  </data>
+  <data name="TemplateDescriptionTooltip.Text" xml:space="preserve">
+    <value>Введите описание шаблона.</value>
+  </data>
+  <data name="IncludeContentTooltip.Text" xml:space="preserve">
+    <value>Отметьте, чтобы экспортировать также содержимое модулей.</value>
+  </data>
+  
+  
+  <data name="MakeNeutral.ErrorMessage" xml:space="preserve">
+    <value>Страница не может быть приведена к нейтральной культуре, так как у нее есть подчиненные страницы.</value>
+  </data>
+  <data name="Detached.Text" xml:space="preserve">
+    <value>Отделено {0}</value>
+  </data>
+  <data name="ModuleDeleted.Text" xml:space="preserve">
+    <value>Модуль удален, но присутствует в корзине.</value>
+  </data>
+  <data name="ModuleInfo.Text" xml:space="preserve">
+    <value>Модуль: {0}&lt;br/&gt;Заголовок: {1}&lt;br/&gt;Панель: {2}</value>
+  </data>
+  <data name="ModuleInfoForNonAdmins.Text" xml:space="preserve">
+    <value>У вас недостаточно разрешений для изменения заголовка данного модуля.</value>
+  </data>
+  <data name="NotTranslated.Text" xml:space="preserve">
+    <value>Не переведено {0}</value>
+  </data>
+  <data name="Reference.Text" xml:space="preserve">
+    <value>Ссылка {0}</value>
+  </data>
+  <data name="ReferenceDefault.Text" xml:space="preserve">
+    <value>Ссылается на базовый язык {0}</value>
+  </data>
+  <data name="Translated.Text" xml:space="preserve">
+    <value>Переведено {0}</value>
+  </data>
+  <data name="Default.Text" xml:space="preserve">
+    <value>[Базовый язык]</value>
+  </data>
+  <data name="NotActive.Text" xml:space="preserve">
+    <value>[Язык выключен]</value>
+  </data>
+  <data name="TranslationMessageConfirmMessage.Error" xml:space="preserve">
+    <value>В процессе уведомления переводчиков возникли сложности.</value>
+  </data>
+  <data name="TranslationMessageConfirmMessage.Text" xml:space="preserve">
+    <value>Переводчики уведомлены.</value>
+  </data>
+  
+  <data name="NewContentMessage.Subject" xml:space="preserve">
+    <value>Новое содержимое готово к переводу</value>
+  </data>
+  <data name="MakePagesTranslatable.Text" xml:space="preserve">
+    <value>Сделать страницу переводимой</value>
+  </data>
+  
+  <data name="Site.Text" xml:space="preserve">
+    <value>Сайт</value>
+  </data>
+  <data name="BadTemplate.Text" xml:space="preserve">
+    <value>Шаблон страницы не является правильным документом XML. Выберите другой шаблон и попытайтесь снова.</value>
+  </data>
+  <data name="AddMissingLanguages.Text" xml:space="preserve">
+    <value>Добавить недостающие языки</value>
+  </data>
+  <data name="NotifyTranslators.Text" xml:space="preserve">
+    <value>Уведомить переводчиков</value>
+  </data>
+  <data name="UpdateLocalization.Text" xml:space="preserve">
+    <value>Сохранить перевод</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  <data name="CopyModule.Text" xml:space="preserve">
+    <value>Копировать модуль</value>
+  </data>
+  <data name="TranslatedCheckbox.Text" xml:space="preserve">
+    <value>Переведено</value>
+  </data>
+  <data name="PublishedCheckbox.Text" xml:space="preserve">
+    <value>Опубликовано</value>
+  </data>
+  <data name="MakeNeutralWarning.Text" xml:space="preserve">
+    <value>При этом все переведенные версии страницы будут удалены, останется только базовая версия страницы. Уверены, что хотите продолжить?</value>
+  </data>
+  
+  
+  
+  
+  <data name="Description.Text" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Title.Text" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="AddRole.Text" xml:space="preserve">
+    <value>Новая</value>
+  </data>
+  
+  <data name="AddUser.Text" xml:space="preserve">
+    <value>Новая</value>
+  </data>
+  
+  
+  <data name="EditTab.Text" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  
+  
+  <data name="FilterByGroup.Text" xml:space="preserve">
+    <value>Фильтровать по группе:</value>
+  </data>
+  
+  
+  
+  <data name="Role.Text" xml:space="preserve">
+    <value>Роль</value>
+  </data>
+  <data name="Status_Hidden.Text" xml:space="preserve">
+    <value>Скрытый</value>
+  </data>
+  <data name="Status_Visible.Text" xml:space="preserve">
+    <value>Показывать</value>
+  </data>
+  <data name="Status_Disabled.Text" xml:space="preserve">
+    <value>Отключена</value>
+  </data>
+  <data name="User.Text" xml:space="preserve">
+    <value>Пользователь</value>
+  </data>
+  <data name="ViewTab.Text" xml:space="preserve">
+    <value>Просмотр</value>
+  </data>
+  
+  <data name="ClearPageCache.Text" xml:space="preserve">
+    <value>Очистить кеш - Эта страница</value>
+  </data>
+  <data name="lblCachedItemCount.Text" xml:space="preserve">
+    <value>Сейчас в кеше: {0} версий страницы</value>
+  </data>
+  
+  
+  <data name="addTagsPlaceholder.Text" xml:space="preserve">
+    <value>Добавить метки</value>
+  </data>
+  
+  
+  <data name="ParentPage.Text" xml:space="preserve">
+    <value>Страница верхнего уровня</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="Prompt_DeletePage_FlagName.Text" xml:space="preserve">
+    <value>Имя удаляемой страницы (не заголовок).</value>
+  </data>
+  
+  
+  
+  
+  <data name="Prompt_GetPage_FlagName.Text" xml:space="preserve">
+    <value>Имя страницы (не заголовок).</value>
+  </data>
+  
+  
+  
+  
+  <data name="Prompt_Goto_FlagName.Text" xml:space="preserve">
+    <value>Имя страницы (не заголовок).</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="Prompt_ListRoles_FlagMax.Text" xml:space="preserve">
+    <value>Размер страницы. Максимум 500.</value>
+  </data>
+  
+  
+  <data name="Prompt_NewPage_Description.Text" xml:space="preserve">
+    <value>Создает новую страницу на портале</value>
+  </data>
+  <data name="Prompt_NewPage_FlagDescription.Text" xml:space="preserve">
+    <value>Описание для этой страницы</value>
+  </data>
+  <data name="Prompt_NewPage_FlagKeywords.Text" xml:space="preserve">
+    <value>Ключевые слова для этой страницы</value>
+  </data>
+  
+  
+  <data name="Prompt_NewPage_FlagTitle.Text" xml:space="preserve">
+    <value>Отображаемый заголовок для страницы</value>
+  </data>
+  
+  
+  
+  <data name="Prompt_SetPage_Description.Text" xml:space="preserve">
+    <value>Задает или обновляет свойства указанной страницы</value>
+  </data>
+  <data name="Prompt_SetPage_FlagDescription.Text" xml:space="preserve">
+    <value>Описание для этой страницы</value>
+  </data>
+  <data name="Prompt_SetPage_FlagId.Text" xml:space="preserve">
+    <value>Идентификатор страницы, которую вы хотите обновить.</value>
+  </data>
+  <data name="Prompt_SetPage_FlagKeywords.Text" xml:space="preserve">
+    <value>Ключевые слова для этой страницы</value>
+  </data>
+  <data name="Prompt_SetPage_FlagName.Text" xml:space="preserve">
+    <value>Имя для страницы</value>
+  </data>
+  
+  <data name="Prompt_SetPage_FlagTitle.Text" xml:space="preserve">
+    <value>Отображаемый заголовок для страницы</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="ModuleCopyType.New" xml:space="preserve">
+    <value>Новый</value>
+  </data>
+  <data name="ModuleCopyType.Copy" xml:space="preserve">
+    <value>Копировать</value>
+  </data>
+  <data name="ModuleCopyType.Reference" xml:space="preserve">
+    <value>Существующий модуль</value>
+  </data>
+  
+  
+  
+  <data name="lblDraft.Text" xml:space="preserve">
+    <value>Черновик</value>
+  </data>
+  
+  <data name="lblNone.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  
+  <data name="lblPublished.Text" xml:space="preserve">
+    <value>Опубликовано</value>
+  </data>
+  
+  
+  <data name="lblExpandAll.Text" xml:space="preserve">
+    <value>РАЗВЕРНУТЬ ВСЕ</value>
+  </data>
+  
+  <data name="PageCreatedMessage.Text" xml:space="preserve">
+    <value>Страница успешно создана</value>
+  </data>
+  <data name="lblDateRange.Text" xml:space="preserve">
+    <value>Диапазон дат</value>
+  </data>
+  
+  
+  <data name="lblPublishDate.Text" xml:space="preserve">
+    <value>Дата публикации</value>
+  </data>
+  <data name="lblPublishStatus.Text" xml:space="preserve">
+    <value>Состояние публикации</value>
+  </data>
+  <data name="lblAll.Text" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="lblFile.Text" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="lblNormal.Text" xml:space="preserve">
+    <value>Встроенная</value>
+  </data>
+  <data name="lblUrl.Text" xml:space="preserve">
+    <value>Ссылка</value>
+  </data>
+  <data name="lblModifiedDate.Text" xml:space="preserve">
+    <value>Дата изменения</value>
+  </data>
+  
+  <data name="PagesSearchHeader.Text" xml:space="preserve">
+    <value>Результаты поиска страниц</value>
+  </data>
+  <data name="TagsInstructions.Text" xml:space="preserve">
+    <value>Начните печатать для фильтрации по тегам.</value>
+  </data>
+  
+  
+  <data name="BrowseButton.Text" xml:space="preserve">
+    <value>Выбрать файл</value>
+  </data>
+  <data name="DefaultImageTitle.Text" xml:space="preserve">
+    <value>Изображение</value>
+  </data>
+  <data name="DragDefault.Text" xml:space="preserve">
+    <value>Перетащите файл или выберите нужный параметр</value>
+  </data>
+  <data name="DragOver.Text" xml:space="preserve">
+    <value>Перетащите файл</value>
+  </data>
+  <data name="LinkButton.Text" xml:space="preserve">
+    <value>Введите ссылку</value>
+  </data>
+  
+  
+  <data name="LinkInputTitle.Text" xml:space="preserve">
+    <value>Ссылка</value>
+  </data>
+  <data name="NotSpecified.Text" xml:space="preserve">
+    <value>&lt;Не указано&gt;</value>
+  </data>
+  <data name="SearchFilesPlaceHolder.Text" xml:space="preserve">
+    <value>Поиск файлов...</value>
+  </data>
+  <data name="SearchFoldersPlaceHolder.Text" xml:space="preserve">
+    <value>Поиск папок...</value>
+  </data>
+  <data name="UploadButton.Text" xml:space="preserve">
+    <value>Загрузить файл</value>
+  </data>
+  <data name="UploadComplete.Text" xml:space="preserve">
+    <value>Загрузка завершена</value>
+  </data>
+  
+  <data name="UploadFailed.Text" xml:space="preserve">
+    <value>Ошибка загрузки</value>
+  </data>
+  <data name="Uploading.Text" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="WrongFormat.Text" xml:space="preserve">
+    <value>Неверный формат</value>
+  </data>
+  <data name="ExternalRedirectionUrlRequired.Text" xml:space="preserve">
+    <value>Требуется URL.</value>
+  </data>
+  
+  
+  
+  <data name="BulkPageValidateResponseTotalMessage.Text" xml:space="preserve">
+    <value>[PAGES_TOTAL] страниц было проверено.</value>
+  </data>
+  <data name="EditContent.Text" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  
+  
+  <data name="IconFile.Text" xml:space="preserve">
+    <value>Значок в меню</value>
+  </data>
+  
+  <data name="IconFileLarge.Text" xml:space="preserve">
+    <value>Значок в консоли</value>
+  </data>
+  <data name="ClickToLocalizeModule_tooltip.Text" xml:space="preserve">
+    <value>Нажмите, чтобы включить локализацию для этого модуля</value>
+  </data>
+  <data name="ClickToDeLocalizeModule_tooltip.Text" xml:space="preserve">
+    <value>Нажмите, чтобы отключить локализацию для этого модуля</value>
+  </data>
+  <data name="CheckToTranslateModule_tooltip.Text" xml:space="preserve">
+    <value>Отметить модуль как переведённый</value>
+  </data>
+  
+  <data name="CheckToTranslateAllModules_tooltip.Text" xml:space="preserve">
+    <value>Отметить все модули как переведенные</value>
+  </data>
+  
+  <data name="ClickToLocalizeAllModules_tooltip.Text" xml:space="preserve">
+    <value>Нажмите, чтобы локализовать все модули</value>
+  </data>
+  <data name="ClickToDeLocalizeAllModules_tooltip.Text" xml:space="preserve">
+    <value>Нажмите, чтобы отключить локализацию для всех модулей</value>
+  </data>
+  <data name="CheckToTransalePage_tooltip.Text" xml:space="preserve">
+    <value>Отметьте эту страницу как переведенную для данного языка</value>
+  </data>
+  <data name="UnCheckTransaledPage_tooltip.Text" xml:space="preserve">
+    <value>Снимите флажок, чтобы пометить эту страницу как ожидающую перевода для данного языка</value>
+  </data>
+  <data name="CheckToPublishPage_tooltip.Text" xml:space="preserve">
+    <value>Отметьте эту страницу как опубликованную для данного языка</value>
+  </data>
+  
+  
+</root>

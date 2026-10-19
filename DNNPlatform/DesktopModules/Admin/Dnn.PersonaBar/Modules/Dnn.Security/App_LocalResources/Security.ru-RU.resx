@@ -1,0 +1,676 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="nav_Security.Text" xml:space="preserve">
+    <value>Безопасность</value>
+  </data>
+  <data name="cmdAdd.Text" xml:space="preserve">
+    <value>Добавить фильтр</value>
+  </data>
+  <data name="cmdCancel.Text" xml:space="preserve">
+    <value>Отмена редактирования</value>
+  </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Удалить правило</value>
+  </data>
+  <data name="Edit.Text" xml:space="preserve">
+    <value>Изменить фильтр</value>
+  </data>
+  <data name="saveRule.Text" xml:space="preserve">
+    <value>Сохранить фильтр</value>
+  </data>
+  <data name="Actions.Header" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="IPFilter.Header" xml:space="preserve">
+    <value>Фильтр адресов IP</value>
+  </data>
+  <data name="AllowIP.Text" xml:space="preserve">
+    <value>Разрешить</value>
+  </data>
+  <data name="DenyIP.Text" xml:space="preserve">
+    <value>Запретить</value>
+  </data>
+  <data name="CannotDelete.Text" xml:space="preserve">
+    <value>Невозможно удалить данное правило, поскольку это приведет к блокировке адреса IP текущего сеанса.</value>
+  </data>
+  <data name="TabLoginSettings.Text" xml:space="preserve">
+    <value>Параметры входа</value>
+  </data>
+  <data name="TabMoreSecuritySettings.Text" xml:space="preserve">
+    <value>ДОПОЛНИТЕЛЬНЫЕ ПАРАМЕТРЫ БЕЗОПАСНОСТИ</value>
+  </data>
+  <data name="TabMore.Text" xml:space="preserve">
+    <value>Подробнее</value>
+  </data>
+  <data name="TabSecurityBulletins.Text" xml:space="preserve">
+    <value>Бюллетени безопасности</value>
+  </data>
+  <data name="TabSecurityAnalyzer.Text" xml:space="preserve">
+    <value>Анализатор безопасности</value>
+  </data>
+  <data name="TabSslSettings.Text" xml:space="preserve">
+    <value>НАСТРОЙКИ SSL</value>
+  </data>
+  <data name="TabMemberAccounts.Text" xml:space="preserve">
+    <value>Учетные записи пользователей</value>
+  </data>
+  <data name="TabBasicLoginSettings.Text" xml:space="preserve">
+    <value>ОСНОВНЫЕ НАСТРОЙКИ ВХОДА В СИСТЕМУ</value>
+  </data>
+  
+  
+  
+  <data name="DefaultAuthProvider.Text" xml:space="preserve">
+    <value>Поставщик аутентификации по-умолчанию</value>
+  </data>
+  <data name="DefaultAuthProvider.Help" xml:space="preserve">
+    <value>Вы можете выбрать поставщик аутентификации по-умолчанию для входа пользователя. Можно выбрать только таких поставщиков, которые поддерживают аутентификацию с помощью форм.</value>
+  </data>
+  
+  <data name="plAdministrator.Help" xml:space="preserve">
+    <value>Выберите администратора данного сайта.</value>
+  </data>
+  
+  
+  
+  
+  <data name="Security_RequireValidProfileAtLogin.Help" xml:space="preserve">
+    <value>Вы можете потребовать от пользователей обновить свои профили перед входом на сайт, если их профили недействительны.</value>
+  </data>
+  
+  <data name="Security_CaptchaLogin.Help" xml:space="preserve">
+    <value>Указывает, должен ли этот сайт использовать код безопасности для связывания учетных записей, таких как openId, liveId, CardSpace</value>
+  </data>
+  
+  <data name="Security_CaptchaRetrivePassword.Help" xml:space="preserve">
+    <value>Отметьте, чтобы использовать код безопасности при восстановлении пароля.</value>
+  </data>
+  
+  <data name="Security_CaptchaChangePassword.Help" xml:space="preserve">
+    <value>Отметьте, чтобы использовать код безопасности при смене пароля.</value>
+  </data>
+  
+  <data name="plHideLoginControl.Help" xml:space="preserve">
+    <value>Отметьте, чтобы скрыть ссылку входа в систему на странице.</value>
+  </data>
+  
+  
+  
+  <data name="Save.Text" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  
+  
+  
+  
+  
+  <data name="Yes.Text" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="No.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="plRuleSpecifity.Help" xml:space="preserve">
+    <value>Определяет,  будет ли применяться правило фильтра к отдельному адресу IP или диапазону IP адресов.</value>
+  </data>
+  <data name="plRuleSpecifity.Text" xml:space="preserve">
+    <value>Применять к</value>
+  </data>
+  <data name="plRuleType.Help" xml:space="preserve">
+    <value>Определяет, является ли правило фильтра разрешающим или запрещающим.</value>
+  </data>
+  <data name="plRuleType.Text" xml:space="preserve">
+    <value>Действие</value>
+  </data>
+  <data name="SingleIP.Text" xml:space="preserve">
+    <value>Отдельный адрес IP</value>
+  </data>
+  <data name="IPRange.Text" xml:space="preserve">
+    <value>Диапазон IP адресов</value>
+  </data>
+  <data name="plFirstIP.Text" xml:space="preserve">
+    <value>Начальный IP</value>
+  </data>
+  <data name="plFirstIP.Help" xml:space="preserve">
+    <value>Может использоваться как отдельный адрес IP, так и адрес совместно с маской подсети для вычисления диапазона IP адресов.</value>
+  </data>
+  <data name="plSubnet.Text" xml:space="preserve">
+    <value>Маска</value>
+  </data>
+  <data name="plSubnet.Help" xml:space="preserve">
+    <value>Маска подсети будет использована совместно с начальным адресом IP для вычисления диапазона IP адресов фильтра.</value>
+  </data>
+  
+  
+  
+  <data name="IPValidation.ErrorMessage" xml:space="preserve">
+    <value>Укажите адрес/маску IP в правильном формате.</value>
+  </data>
+  
+  
+  
+  <data name="plResetLinkValidity.Help" xml:space="preserve">
+    <value>Ссылки для сброса пароля будут действительны в течении заданного количества минут.</value>
+  </data>
+  <data name="plAdminResetLinkValidity.Text" xml:space="preserve">
+    <value>Время жизни ссылки для сброса пароля для администраторов (минут)</value>
+  </data>
+  <data name="plAdminResetLinkValidity.Help" xml:space="preserve">
+    <value>Ссылки для сброса пароля администратора будут действительны в течении заданного количества минут.</value>
+  </data>
+  <data name="plEnablePasswordHistory.Help" xml:space="preserve">
+    <value>Устанавливает, будет ли храниться список недавно использованных паролей и будет ли он использоваться для предотвращения повторного использования одних и тех же паролей.</value>
+  </data>
+  
+  
+  <data name="plNumberPasswords.Help" xml:space="preserve">
+    <value>Установите число старых паролей, хранимых для проверки повторного использования</value>
+  </data>
+  
+  
+  <data name="plEnableBannedList.Text" xml:space="preserve">
+    <value>Включить список запрещенных паролей:</value>
+  </data>
+  <data name="plEnableBannedList.Help" xml:space="preserve">
+    <value>Устанавливает, будут ли пароли сравниваться со списком запрещенных паролей.</value>
+  </data>
+  
+  <data name="plEnableStrengthMeter.Help" xml:space="preserve">
+    <value>Устанавливает, будет ли в окне регистрации показываться индикатор силы пароля</value>
+  </data>
+  
+  <data name="plEnableIPChecking.Help" xml:space="preserve">
+    <value>Устанавливает, будет ли адрес IP проверяться в процессе входа пользователя в систему</value>
+  </data>
+  <data name="PasswordConfig_PasswordExpiry.Help" xml:space="preserve">
+    <value>Число дней, которое должно пройти прежде, чем пользователю нужно будет сменить пароль (если указать значение 0, то срок действия пароля будет неограничен).</value>
+  </data>
+  
+  <data name="PasswordConfig_PasswordExpiryReminder.Help" xml:space="preserve">
+    <value>Число дней, за которое пользователь будет предупрежден о том, что срок действия его пароля истекает.</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="None.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="Private.Text" xml:space="preserve">
+    <value>Приватная</value>
+  </data>
+  <data name="Public.Text" xml:space="preserve">
+    <value>Общедоступная</value>
+  </data>
+  <data name="Verified.Text" xml:space="preserve">
+    <value>С подтверждением</value>
+  </data>
+  <data name="Standard.Text" xml:space="preserve">
+    <value>Встроенная</value>
+  </data>
+  <data name="Custom.Text" xml:space="preserve">
+    <value>Другой</value>
+  </data>
+  <data name="plUserRegistration.Text" xml:space="preserve">
+    <value>Регистрация пользователя</value>
+  </data>
+  <data name="plUserRegistration.Help" xml:space="preserve">
+    <value>Установите порядок регистрации пользователей на данном сайте.</value>
+  </data>
+  <data name="NoEmail.Text" xml:space="preserve">
+    <value>Вы должны, как минимум, включить поле "Email".</value>
+  </data>
+  <data name="NoDisplayName.Text" xml:space="preserve">
+    <value>Вы отметили флаг "Требовать уникальное отображаемое имя", но не включили отображаемое имя в список полей.</value>
+  </data>
+  <data name="ContainsDuplicateAddresses.Text" xml:space="preserve">
+    <value>База данных пользователей сайта содержит повторяющиеся адреса эл. почты. Если вы хотите использовать адреса эл. почты в качестве имен пользователей, то нужно сначала исправить эти записи.</value>
+  </data>
+  <data name="registrationFormTypeLabel.Help" xml:space="preserve">
+    <value>Выберите тип используемой регистрационной формы.</value>
+  </data>
+  
+  <data name="Security_DisplayNameFormat.Help" xml:space="preserve">
+    <value>Вы можете, если нужно, определить формат отображения имени пользователей. Формат может включать теги для динамической замены, типа [FIRSTNAME] [LASTNAME]. Если формат отображения имени будет определен, то отображение имени больше не будет доступно для редактирования через пользовательский интерфейс.</value>
+  </data>
+  
+  
+  
+  <data name="Security_EmailValidation.Help" xml:space="preserve">
+    <value>Вы можете видоизменить предлагаемое выражение для проверки введенного адреса электронной почты.</value>
+  </data>
+  
+  <data name="Registration_ExcludeTerms.Help" xml:space="preserve">
+    <value>Вы можете задать здесь список терминов, которые пользователи не могут использовать в имени пользователя или отображаемом имени. Разделяйте элементы списка запятой.</value>
+  </data>
+  
+  
+  
+  <data name="plEnableRegisterNotification.Help" xml:space="preserve">
+    <value>Будет ли администратор сайта получать оповещение по эл. почте при регистрации нового пользователя.</value>
+  </data>
+  
+  <data name="Registration_UseAuthProviders.Help" xml:space="preserve">
+    <value>Выберите эту настройку для использования поставщиков аутентификации в процессе регистрации. Примечание - не все поставщики это поддерживают.</value>
+  </data>
+  
+  <data name="Registration_UseProfanityFilter.Help" xml:space="preserve">
+    <value>Выберите эту настройку для того, чтобы включить фильтр плохих слов для полей имени пользователя и отображаемого имени в процессе регистрации.</value>
+  </data>
+  
+  <data name="Registration_UseEmailAsUserName.Help" xml:space="preserve">
+    <value>Отметьте, чтобы использовать адрес электронной почты в качестве имени пользователя. В этом случае, поле имени пользователя не будет показано в регистрационной форме.</value>
+  </data>
+  
+  <data name="Registration_RequireUniqueDisplayName.Help" xml:space="preserve">
+    <value>С помощью данной настройки Вы можете потребовать от пользователей иметь уникальные отображаемые имена. Если пользователь выберет уже существующее имя, ему будет предложено другое (измененное) имя для замены.</value>
+  </data>
+  
+  <data name="Registration_RandomPassword.Help" xml:space="preserve">
+    <value>Установите этот флаг, чтобы генерировать случайные пароли при регистрации - вместо того, чтобы отображать поле ввода пароля.</value>
+  </data>
+  
+  <data name="Registration_RequireConfirmPassword.Help" xml:space="preserve">
+    <value>Установите этот флаг для того, чтобы требовать подтверждения пароля при регистрации.</value>
+  </data>
+  
+  <data name="Security_RequireValidProfile.Help" xml:space="preserve">
+    <value>Вы можете потребовать, чтобы новый пользователь также заполнил свой профиль при регистрации.</value>
+  </data>
+  
+  <data name="Security_CaptchaRegister.Help" xml:space="preserve">
+    <value>Указывает, должен использоваться код безопасности при регистрации на этом сайте.</value>
+  </data>
+  
+  <data name="RequiresUniqueEmail.Help" xml:space="preserve">
+    <value>Если отмечено, от каждого пользователя потребуется указание уникального адреса электронной почты. Это означает, что пользователь не сможет зарегистрироваться несколько раз с одним и тем же адресов электронной почты.</value>
+  </data>
+  
+  <data name="PasswordFormat.Help" xml:space="preserve">
+    <value>Формат пароля.</value>
+  </data>
+  
+  <data name="PasswordRetrievalEnabled.Help" xml:space="preserve">
+    <value>Будет ли пароль пользователя храниться в формате, предусматривающем возможность его извлечения.</value>
+  </data>
+  
+  
+  
+  
+  
+  <data name="RequiresQuestionAndAnswerTitle.Help" xml:space="preserve">
+    <value>Задает, будет ли использоваться секретный вопрос и ответ в процессе регистрации. Данная настройка может быть изменена только в файле web.config.</value>
+  </data>
+  
+  <data name="PasswordStrengthRegularExpressionTitle.Help" xml:space="preserve">
+    <value>Регулярное выражение, используемое для проверки сложности пароля для поставщика аутентификации, указанного в поле Поставщик. Данная настройка может быть изменена только в файле web.config, путем добавления/изменения узла passwordStrengthRegularExpression в AspNetSqlMembershipProvider. Примечание: это проверка на стороне сервера отличается от индикатора силы пароля, появившегося в версии 7.1.0, который только помогает оценить силу пароля, в то время как это выражение (если определено) задает необходимые трабования для новых паролей.</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="registrationFieldsLabel.Help" xml:space="preserve">
+    <value>Вы можете указать здесь список полей, которые Вы хотите включить в регистрационную форму. Элементы списка разделяются запятой. Эта настройка имеет более высокий приоритет, чем другие. Возможные поля включают: Username, Email, Password, ConfirmPassword, DisplayName и все доступные настройки профиля.</value>
+  </data>
+  <data name="registrationFieldsLabel.Text" xml:space="preserve">
+    <value>Поля регистрационной формы:</value>
+  </data>
+  
+  
+  
+  <data name="plSSLEnabled.Help" xml:space="preserve">
+    <value>Отметьте, если для данного сайта установлен сертификат SSL.</value>
+  </data>
+  
+  <data name="plSSLEnforced.Help" xml:space="preserve">
+    <value>Если задана эта опция, то все страницы, которые не отмечены явно как защищенные, будут недоступны по SSL (HTTPS).</value>
+  </data>
+  
+  <data name="plSSLURL.Help" xml:space="preserve">
+    <value>Дополнительно можно задать URL, который будет использоваться для защищенного доступа к этому сайту. Это необходимо только, если у вас нет сертификата SSL, установленного для стандартного URL вашего сайта. Примером может служить случай разделяемого хостинга, когда провайдер хостинга предоставляет вам общий  URL с SSL.</value>
+  </data>
+  
+  <data name="plSTDURL.Help" xml:space="preserve">
+    <value>Если вы выше задали URL для SSL, то вам также необходимо задать   стандартный URL для не защищенных соединений.</value>
+  </data>
+  <data name="plShowCriticalErrors.Help" xml:space="preserve">
+    <value>Эта настройка определяет, будут ли сообщения об ошибках, передаваемые в сроке запроса, отображаться также и на странице.</value>
+  </data>
+  
+  <data name="plDebugMode.Help" xml:space="preserve">
+    <value>Если отмечено, приложение будет работь в так называемом "режиме отладки", в котором различные его части будут формировать более детальную информацию в журналах и т.п. Заметьте, что это может привести к снижению производительности.</value>
+  </data>
+  
+  
+  <data name="plRememberMe.Help" xml:space="preserve">
+    <value>Разрешает флажок "запомнить меня" на элементах управления при регистрации пользователя. Если "запомнить меня" разрешен, то пользователи могут создать cookies, которые будут сохранены для множества посещений.</value>
+  </data>
+  
+  <data name="plAutoAccountUnlock.Help" xml:space="preserve">
+    <value>После того, как учетная запись пользователя блокируется при достижении максимального числа попыток неудачного входа, она может быть автоматически разблокирована по истечении определенного интервала времени.  Укажите интервал времени в минутах, по истечении которого учетные записи будут разблокированы автоматически.  Укажите "0" для отключения возможности авто-разблокировки.</value>
+  </data>
+  <data name="plAsyncTimeout.Help" xml:space="preserve">
+    <value>Значение задает время в секундах, по истечении которого асинхронный запрос отменяется, если не был получен ответ. Значение должно быть в диапазоне 90-9999 секунд.</value>
+  </data>
+  
+  
+  
+  <data name="maxUploadSize.Error" xml:space="preserve">
+    <value>Максимальный размер подгружаемого файла должен быть между 12 и {0}</value>
+  </data>
+  
+  <data name="plFileExtensions.Text" xml:space="preserve">
+    <value>Типы файлов для загрузки:</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="cmdSearch.Text" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  
+  
+  
+  
+  <data name="Authorized.Header" xml:space="preserve">
+    <value>Авторизирован</value>
+  </data>
+  
+  
+  
+  
+  
+  <data name="Email.Header" xml:space="preserve">
+    <value>Email-адрес</value>
+  </data>
+  
+  
+  
+  
+  
+  <data name="Username.Header" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="Filename.Header" xml:space="preserve">
+    <value>Имя файла</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="HostSettings.Text" xml:space="preserve">
+    <value>Настройки хостинга</value>
+  </data>
+  
+  <data name="ModuleSettings.Text" xml:space="preserve">
+    <value>Настройки модуля</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="SearchPlaceHolder.Text" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="NoneSpecified.Text" xml:space="preserve">
+    <value>Не указано</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</root>

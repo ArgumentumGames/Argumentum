@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BasicSettings.Text" xml:space="preserve">
+    <value>Основные настройки</value>
+  </data>
+  <data name="cmdCancel.Text" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  
+  
+  <data name="DefaultLanguage.Text" xml:space="preserve">
+    <value>язык {0} установлен в качестве языка по-умолчанию для выбранного сайта</value>
+  </data>
+  <data name="ErrorPages.Text" xml:space="preserve">
+    <value>Нужно выбрать как минимум одну страницу для экспорта.</value>
+  </data>
+  
+  <data name="ErrorAncestorPages.Text" xml:space="preserve">
+    <value>Вы должны отметить также все страницы-предки данной страницы, начиная с корневого узла, чтобы экспортировать эту страницу в шаблон.</value>
+  </data>
+  <data name="ChildExists.Text" xml:space="preserve">
+    <value>Указанное имя дочернего сайта уже существует. Выберите другое имя сайта.</value>
+  </data>
+  <data name="DuplicatePortalAlias.Text" xml:space="preserve">
+    <value>Псевдоним портала, заданный вами уже существует. Пожалуйста, выберите другое имя для алиаса портала.</value>
+  </data>
+  <data name="DuplicateWithTab.Text" xml:space="preserve">
+    <value>Уже существует страница с именем, совпадающим с псевдонимом сайта. Пожалуйста, измените псевдоним сайта и повторите попытку.</value>
+  </data>
+  <data name="InvalidHomeFolder.Text" xml:space="preserve">
+    <value>Каталог, который вы задали в качестве домашнего, не допустим.</value>
+  </data>
+  <data name="CreatePortalHomeFolderExists.Error" xml:space="preserve">
+    <value>Папка портала {0} уже используется.</value>
+  </data>
+  <data name="InvalidName.Text" xml:space="preserve">
+    <value>Имя сайта не должно содержать пробелы и знаки препинания.</value>
+  </data>
+  <data name="InvalidPassword.Text" xml:space="preserve">
+    <value>Введенные значения паролей не совпадают.</value>
+  </data>
+  <data name="SendMail.Error" xml:space="preserve">
+    <value>Произошла ошибка при отправке электронных писем с уведомлением - {0}  Тем не менее, сайт был успешно создан. &lt;a href='{1}' {2}&gt;Нажмите здесь для перехода на новый сайт&lt;/a&gt;</value>
+  </data>
+  <data name="UnknownEmailAddress.Error" xml:space="preserve">
+    <value>Не обнаружено адреса электронной почты, установленного для уровне сайта или хостинга.</value>
+  </data>
+  <data name="UnknownSendMail.Error" xml:space="preserve">
+    <value>Проблема при отсылке письма с подтверждением. Тем не менее, сайт был создан. &lt;a href='{0}' {1}&gt;Нажмите сюда для перехода на новый сайт&lt;/a&gt;</value>
+  </data>
+  <data name="lblAdminOnly.Text" xml:space="preserve">
+    <value>Для администраторов</value>
+  </data>
+  <data name="lblDisabled.Text" xml:space="preserve">
+    <value>Отключена</value>
+  </data>
+  <data name="lblEveryone.Text" xml:space="preserve">
+    <value>Общедоступна</value>
+  </data>
+  <data name="lblFiles.Help" xml:space="preserve">
+    <value>Отметьте, если Вы хотите экспортировать все файлы и папки сайта при создании шаблона.</value>
+  </data>
+  
+  <data name="lblHidden.Text" xml:space="preserve">
+    <value>Скрыта в меню</value>
+  </data>
+  <data name="lblHome.Text" xml:space="preserve">
+    <value>Главная страница</value>
+  </data>
+  <data name="lblLanguages.Help" xml:space="preserve">
+    <value>Позволяет выбрать, какие языки будут включены в шаблон при экспорте страниц.</value>
+  </data>
+  
+  <data name="lblModules.Help" xml:space="preserve">
+    <value>Отметьте, чтобы включить разрешения модулей во вновь создаваемый шаблон. Обратите внимание, что это может потребовать также экспортировать роли.</value>
+  </data>
+  
+  <data name="lblMultilanguage.Help" xml:space="preserve">
+    <value>Если для экспортируемого сайта включена локализация содержимого, Вы можете выбрать, нужно ли создать шаблон мультиязычного сайта, или же создать шаблон, содержащий материалы на одном из языков.</value>
+  </data>
+  
+  
+  <data name="lblNoteSingleLanguage.Text" xml:space="preserve">
+    <value>Подсказка: язык по-умолчанию &lt;b&gt;{0}&lt;/b&gt;</value>
+  </data>
+  
+  
+  <data name="lblProfile.Help" xml:space="preserve">
+    <value>Отметьте, если Вы хотите экспортировать определения свойств профиля пользователя во вновь создаваемый шаблон.</value>
+  </data>
+  
+  <data name="lblRedirect.Text" xml:space="preserve">
+    <value>Перенаправление страницы</value>
+  </data>
+  <data name="lblRegistered.Text" xml:space="preserve">
+    <value>Для зарегистрированных пользователей</value>
+  </data>
+  <data name="lblRoles.Help" xml:space="preserve">
+    <value>Отметьте, если Вы хотите экспортировать роли пользователей во вновь создаваемый шаблон.</value>
+  </data>
+  
+  <data name="lblSecure.Text" xml:space="preserve">
+    <value>Для отдельных ролей</value>
+  </data>
+  
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;О Шаблонах&lt;/h1&gt;
+&lt;p&gt;При помощи этой функции можно создавать шаблоны для построения новых сайтов путем экспорта параметров существующих сайтов в файл шаблона.&lt;/p&gt;</value>
+  </data>
+  <data name="nav_Sites.Text" xml:space="preserve">
+    <value>Сайты</value>
+  </data>
+  <data name="plContent.Help" xml:space="preserve">
+    <value>Отметьте, если хотите экспортировать содержимое в файл шаблона.</value>
+  </data>
+  
+  <data name="plDescription.Help" xml:space="preserve">
+    <value>Тестовое описание для файла шаблона.</value>
+  </data>
+  
+  <data name="plPortals.Help" xml:space="preserve">
+    <value>Выберите сайт для экспорта.</value>
+  </data>
+  <data name="plPortals.Text" xml:space="preserve">
+    <value>Сайт</value>
+  </data>
+  <data name="plTemplateName.Help" xml:space="preserve">
+    <value>Укажите имя файла шаблона, который будет создан.</value>
+  </data>
+  
+  <data name="PortalSetup.Text" xml:space="preserve">
+    <value>Настройка сайта</value>
+  </data>
+  <data name="Settings.Text" xml:space="preserve">
+    <value>Расширенные настройки</value>
+  </data>
+  
+  <data name="valDescription.ErrorMessage" xml:space="preserve">
+    <value>Описание шаблона обязательно.</value>
+  </data>
+  <data name="valFileName.ErrorMessage" xml:space="preserve">
+    <value>Имя файла шаблона обязательно.</value>
+  </data>
+  <data name="SiteDetails_Pages.Text" xml:space="preserve">
+    <value>Страницы</value>
+  </data>
+  
+  
+  <data name="SiteDetails_Users.Text" xml:space="preserve">
+    <value>Пользователи</value>
+  </data>
+  <data name="CancelPortalDelete.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="ConfirmPortalDelete.Text" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  
+  <data name="AddNewSite.Header" xml:space="preserve">
+    <value>Добавить сайт</value>
+  </data>
+  
+  <data name="cmdCreateSite.Text" xml:space="preserve">
+    <value>Создать сайт</value>
+  </data>
+  <data name="Description.Label" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  
+  
+  <data name="HomeDirectory.Label" xml:space="preserve">
+    <value>Домашняя папка</value>
+  </data>
+  
+  <data name="SiteType.Label" xml:space="preserve">
+    <value>Тип сайта:</value>
+  </data>
+  
+  <data name="Title.Label" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="CreateSite_AdminEmail.Label" xml:space="preserve">
+    <value>Email-адрес</value>
+  </data>
+  <data name="CreateSite_AdminFirstName.Label" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="CreateSite_AdminLastName.Label" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="CreateSite_AdminPassword.Label" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="CreateSite_AdminPasswordConfirm.Label" xml:space="preserve">
+    <value>Подтвердите новый пароль</value>
+  </data>
+  
+  
+  <data name="EmailRequired.Error" xml:space="preserve">
+    <value>Адрес эл. почты обязателен.</value>
+  </data>
+  <data name="FirstNameRequired.Error" xml:space="preserve">
+    <value>Имя обязательно.</value>
+  </data>
+  <data name="LastNameRequired.Error" xml:space="preserve">
+    <value>Фамилия обязательна.</value>
+  </data>
+  <data name="PasswordConfirmRequired.Error" xml:space="preserve">
+    <value>Повторный ввод пароля обязателен.</value>
+  </data>
+  
+  
+  
+  <data name="UsernameRequired.Error" xml:space="preserve">
+    <value>Имя учётной записи пользователя обязательно.</value>
+  </data>
+  
+  
+  <data name="LoadMore.Button" xml:space="preserve">
+    <value>Еще</value>
+  </data>
+  
+  <data name="DeleteSite.Text" xml:space="preserve">
+    <value>Удалить сайт</value>
+  </data>
+  <data name="ExportTemplate.Text" xml:space="preserve">
+    <value>Экспортировать шаблон</value>
+  </data>
+  <data name="SiteSettings.Text" xml:space="preserve">
+    <value>Настройки сайта</value>
+  </data>
+  
+  <data name="SiteExport.Text" xml:space="preserve">
+    <value>Экспорт сайта</value>
+  </data>
+  <data name="SiteImport.Text" xml:space="preserve">
+    <value>Импорт сайта</value>
+  </data>
+  <data name="AddNewSite.Text" xml:space="preserve">
+    <value>Добавить сайт</value>
+  </data>
+  <data name="Sites.Text" xml:space="preserve">
+    <value>Сайты</value>
+  </data>
+  <data name="Description.Text" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+</root>
