@@ -28,7 +28,7 @@
     <value xml:space="preserve">Mensagens</value>
   </data>
   <data name="//ActivityFeed//MyProfile.String">
-    <value xml:space="preserve">Mi perfil</value>
+    <value xml:space="preserve">Meu perfil</value>
   </data>
   <data name="//Admin.String">
     <value xml:space="preserve">Administração</value>
@@ -104,44 +104,44 @@
   </data>
   <data name="404.Error" lastModified="2020-05-09 04:09:26">
     <value xml:space="preserve">&lt;p style="height: 100%; width: 90%;"&gt;
-    &lt;span style="color: red;"&gt;&lt;strong&gt;O dominio {0} não existe na base de datos&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;
+    &lt;span style="color: red;"&gt;&lt;strong&gt;O domínio {0} não existe no banco de dados&lt;/strong&gt;&lt;/span&gt;&lt;br /&gt;
     &lt;br /&gt;
-        Este sistema soporta m&amp;uacute;ltiples portais em uma mesma instalaci&amp;oacute;n/base de datos. Isto se consigue traduciendo a URL do navegador a um registro v&amp;aacute;lido da tabela Portals da base de datos. Os pasos seguintes describen o proceso:
+        Este sistema oferece suporte a vários portais em uma mesma instalação/banco de dados. Isso é obtido traduzindo a URL do navegador em um registro válido da tabela Portals do banco de dados. As etapas a seguir descrevem o processo:
     &lt;br /&gt;
     &lt;br /&gt;
 &lt;/p&gt;
 &lt;ol style="text-align: left; list-style-type: decimal; list-style-position: outside;"&gt;
     &lt;li&gt;
-        &lt;strong&gt;Proceso não servidor web&lt;/strong&gt;&lt;br /&gt;
+        &lt;strong&gt;Processo no servidor web&lt;/strong&gt;&lt;br /&gt;
         &lt;ul style="list-style-type: disc;"&gt;
-            &lt;li&gt;Quando o servidor recibe uma petici&amp;oacute;n de um cliente a compara a extensi&amp;oacute;n do nome de Arquivo solicitado com as extensões de aplicaci&amp;oacute;n mapeadas em IIS.&lt;/li&gt;
-            &lt;li&gt;Em base a as coincidencias encontradas, IIS envia a petici&amp;oacute;n ao ejecutable definido (aspnet_asapi.dll não caso de petições de ASP.NET).&lt;/li&gt;
-            &lt;li&gt;O proceso aspnet_isapi.dll gestiona a petici&amp;oacute;n medieante um conjunto de eventos ordenados que empiezan com Application_BeginRequest.&lt;/li&gt;
+            &lt;li&gt;Quando o servidor recebe uma solicitação de um cliente, ele compara a extensão do nome do arquivo solicitado com as extensões de aplicativo mapeadas no IIS.&lt;/li&gt;
+            &lt;li&gt;Com base nas correspondências encontradas, o IIS envia a solicitação ao executável definido (aspnet_asapi.dll no caso de solicitações ASP.NET).&lt;/li&gt;
+            &lt;li&gt;O processo aspnet_isapi.dll trata a solicitação por meio de um conjunto de eventos ordenados que começam com Application_BeginRequest.&lt;/li&gt;
         &lt;/ul&gt;
     &lt;/li&gt;
     &lt;li&gt;
         &lt;strong&gt;HttpModule.URLRewrite OnBeginRequest (UrlRewriteModule.vb)&lt;/strong&gt;&lt;br /&gt;
         &lt;ul style="list-style-type: disc;"&gt;
-            &lt;li&gt;A petici&amp;oacute;n se analiza em base ao car&amp;aacute;cter "/"&lt;/li&gt;
+            &lt;li&gt;A solicitação é analisada com base no caractere "/"&lt;/li&gt;
             &lt;li&gt;
-                Se construye o dominio com os elementos analizados.
+                O domínio é construído com os elementos analisados.
                 &lt;br /&gt;
                 &lt;br /&gt;
-                Por ejemplo:
+                Por exemplo:
                 &lt;br /&gt;
                 &lt;br /&gt;
-                URL: http://www.domain.com/default.aspx = Nome de dominio: www.domain.com&lt;br /&gt;
-                URL: http://209.75.24.131/default.aspx = Nome de dominio: 209.75.24.131&lt;br /&gt;
-                URL: http://localhost/DotNetNuke/default.aspx = Nome de dominio: localhost/DotNetNuke&lt;br /&gt;
-                URL: http://www.domain.com/virtualdirectory/default.aspx = Nome de dominio: www.domain.com/virtualdirectory&lt;br /&gt;
-                URL: http://www.domain.com/directory/default.aspx = Nome de dominio: www.domain.com/directory&lt;br /&gt;
+                URL: http://www.domain.com/default.aspx = Nome de domínio: www.domain.com&lt;br /&gt;
+                URL: http://209.75.24.131/default.aspx = Nome de domínio: 209.75.24.131&lt;br /&gt;
+                URL: http://localhost/DotNetNuke/default.aspx = Nome de domínio: localhost/DotNetNuke&lt;br /&gt;
+                URL: http://www.domain.com/virtualdirectory/default.aspx = Nome de domínio: www.domain.com/virtualdirectory&lt;br /&gt;
+                URL: http://www.domain.com/directory/default.aspx = Nome de domínio: www.domain.com/directory&lt;br /&gt;
                 &lt;br /&gt;
             &lt;/li&gt;
             &lt;li&gt;
-                Com o nome de dominio a aplicaci&amp;oacute;n consulta a tabela PortalAlias na base de datos para encontrar uma coincidencia.
+                Com o nome de domínio, o aplicativo consulta a tabela PortalAlias no banco de dados para encontrar uma correspondência.
                 &lt;br/&gt;
                 &lt;br/&gt;
-                Nota: Si est&amp;aacute; instalando a aplicaci&amp;oacute;n em um servidor remoto, tem que modificar o valor do campo HTTPAlias na tabela PortalAlias para o registro correspondiente.
+                Observação: se você estiver instalando o aplicativo em um servidor remoto, é preciso modificar o valor do campo HTTPAlias na tabela PortalAlias para o registro correspondente.
             &lt;/li&gt;
         &lt;/ul&gt;
     &lt;/li&gt;
@@ -435,7 +435,7 @@ Operação completada:  [Custom:3]
                                 &lt;tr&gt;
                                     &lt;td align="right"&gt;
                                         &lt;p&gt;
-                                            Problemas para ver o correo? &lt;a href="[NOTIFICATIONURL]"&gt;&lt;span&gt;Clique aquí para verlo online.&lt;/span&gt;&lt;/a&gt;
+                                            Problemas para ver o e-mail? &lt;a href="[NOTIFICATIONURL]"&gt;&lt;span&gt;Clique aqui para ver online.&lt;/span&gt;&lt;/a&gt;
                                         &lt;/p&gt;
                                     &lt;/td&gt;
                                 &lt;/tr&gt;
@@ -506,7 +506,7 @@ Operação completada:  [Custom:3]
                                     &lt;td valign="top" class="footerContent"&gt;
                                         &lt;table border="0" cellpadding="0" cellspacing="0" width="100%"&gt;
                                             &lt;tr&gt;
-                                                &lt;td align="center"&gt;&lt;a href="[UNSUBSCRIBEURL]"&gt;Gestione sus suscripções&lt;/a&gt; &amp;nbsp; | &amp;nbsp;&lt;/td&gt;
+                                                &lt;td align="center"&gt;&lt;a href="[UNSUBSCRIBEURL]"&gt;Gerencie as suas assinaturas&lt;/a&gt; &amp;nbsp; | &amp;nbsp;&lt;/td&gt;
                                             &lt;/tr&gt;
                                         &lt;/table&gt;
                                     &lt;/td&gt;
@@ -524,8 +524,8 @@ Operação completada:  [Custom:3]
                             &lt;table border="0" cellpadding="0" cellspacing="0" align="center"&gt;
                                 &lt;tr&gt;
                                     &lt;td align="center"&gt;
-                                        &lt;p&gt;Copyright 2013 &lt;a href="[SITEURL]"&gt;[PORTALNAME]&lt;/a&gt; Todos os derechos reservados.&lt;/p&gt;
-                                        &lt;p&gt;Si não quiere recibir más correos, pode &lt;a href="[UNSUBSCRIBEURL]"&gt;cancelar a suscripção&lt;/a&gt;.&lt;/p&gt;
+                                        &lt;p&gt;Copyright 2013 &lt;a href="[SITEURL]"&gt;[PORTALNAME]&lt;/a&gt; Todos os direitos reservados.&lt;/p&gt;
+                                        &lt;p&gt;Se não quiser receber mais e-mails, você pode &lt;a href="[UNSUBSCRIBEURL]"&gt;cancelar a assinatura&lt;/a&gt;.&lt;/p&gt;
                                     &lt;/td&gt;
                                 &lt;/tr&gt;
                             &lt;/table&gt;

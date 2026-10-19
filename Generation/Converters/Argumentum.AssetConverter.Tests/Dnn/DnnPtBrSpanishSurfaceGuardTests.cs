@@ -346,5 +346,102 @@ namespace Argumentum.AssetConverter.Tests
 			foreach (var ((path, key), expected) in pins)
 				ResxValue(path, key).Should().Be(expected, "pin D3 passe 3 — clé visible {0}.", key);
 		}
+
+		// ===================== Passe 4 (19/10, dispatch ai-01 00:28) =====================
+
+		// Les 12 clés V (visibles joueur/visiteur) du classement passe 3. Les
+		// 3 clés modules citées par ai-01 (« Recordar inicio de sesión » ×2
+		// Login.ascx, Security_EmailValidation.Help security.resx) vivent dans
+		// des resx NON suivis git — geste webroot po-2023, hors PR.
+		private static readonly string[] SharedKeysPass4 =
+		{
+			"Monthly.Text", "MyFolderName.Text", "PasswordInadequate.Text",
+			"PrivateConfirmationMessage.Text", "PrivateMembership.Text",
+			"PublicMembership.Text", "VerifiedMembership.Text", "Wizard.Success.FailureDetail",
+		};
+
+		private static readonly string[] GlobalKeysPass4 =
+		{
+			"//ActivityFeed//MyProfile.String", "404.Error", "EMAIL_MESSAGING_DISPATCH_BODY.Text",
+		};
+
+		private static readonly string[] WebControlsKeysPass4 = { "MyFolder.Text" };
+
+		// Marqueurs passe 4 — espagnol macaronique des notes d'inscription et
+		// du 404. Self-test : « Meu perfil », « Minha pasta », « Mensal »,
+		// « domínio », « banco de dados », « etapas », « processo », « assinaturas »,
+		// « direitos », « aqui », « site » miss ; les formes es hit.
+		// ⚠ « dominio »/« proceso »/« pasos » sans accent ni double s = es ; les
+		// formes pt sont « domínio »/« processo »/« passos ». Cette grille reste
+		// HORS du Fact préfixe FileUpload.* : UrlTooltip cite l'URL exemple
+		// « http://dominio.com/… » (pass 3) qui rougirait à tort.
+		private static readonly Regex[] SpanishMarkersPass4 =
+		{
+			new(@"\bMi\s+(perfil|pasta)\b"),
+			new(@"\bMensual\b"),
+			new(@"\bdominio\b"),
+			new(@"\bdatos\b"),
+			new(@"\bpasos\b"),
+			new(@"\bproceso\b"),
+			new(@"\bsuscrip\w*", RegexOptions.IgnoreCase),
+			new(@"\bderechos\b"),
+			new(@"\baquí\b"),
+			new(@"\bsitio\b"),
+			new(@"\bhaya\b"),
+		};
+
+		[Fact]
+		public void Pass4_VisibleKeys_NoSpanishMarker()
+		{
+			var offenders = new List<string>();
+			foreach (var (path, keys) in new[]
+			{
+				(SharedResx, SharedKeysPass4),
+				(GlobalResx, GlobalKeysPass4),
+				(WebControlsResx, WebControlsKeysPass4),
+			})
+			foreach (var key in keys)
+			foreach (var marker in SpanishMarkers.Concat(SpanishMarkersPass4))
+				if (marker.IsMatch(ResxValue(path, key)))
+					offenders.Add($"{key} [{marker}]");
+			offenders.Should().BeEmpty(
+				"passe 4 : notes d'inscription, 404, profil/dossier et courriel membres pt-BR corrigés — " +
+				"tout marqueur restant est une réinjection : {0}", string.Join(", ", offenders));
+		}
+
+		[Fact]
+		public void Pass4_Pins_ExactValues()
+		{
+			ResxValue(SharedResx, "Monthly.Text").Should().Be("Mensal");
+			ResxValue(SharedResx, "MyFolderName.Text").Should().Be("Minha pasta");
+			ResxValue(WebControlsResx, "MyFolder.Text").Should().Be("Minha pasta");
+			ResxValue(GlobalResx, "//ActivityFeed//MyProfile.String").Should().Be("Meu perfil");
+			ResxValue(SharedResx, "PasswordInadequate.Text").Should().Be(
+				"A nova senha não é válida por motivos de segurança. Digite uma nova senha suficientemente " +
+				"longa e complexa para cumprir os requisitos de segurança deste site.");
+			ResxValue(SharedResx, "Wizard.Success.FailureDetail").Should().Be(
+				"<p>Ocorreu um erro no assistente. Revise a mensagem exibida abaixo e notifique o seu provedor.</p>");
+			ResxValue(SharedResx, "PublicMembership.Text").Should().Be(
+				"<strong>*Nota:</strong> O registro neste site é público. Depois de enviar as suas informações " +
+				"de registro, você terá acesso ao site.");
+			foreach (var (key, expected) in new[]
+			{
+				("PrivateMembership.Text", "O registro neste site é privado."),
+				("PrivateConfirmationMessage.Text", "Foi enviado um e-mail com os detalhes do seu registro"),
+				("VerifiedMembership.Text", "um link para verificar a sua conta."),
+			})
+				ResxValue(SharedResx, key).Should().Contain(expected, "pin D3 passe 4 — {0}.", key);
+			var err404 = ResxValue(GlobalResx, "404.Error");
+			err404.Should().Contain("O domínio {0} não existe no banco de dados", "pin passe 4 — 404.Error.");
+			err404.Should().Contain("Nome de domínio:", "pin passe 4 — les 5 lignes d'exemples URL du 404.");
+			var email = ResxValue(GlobalResx, "EMAIL_MESSAGING_DISPATCH_BODY.Text");
+			email.Should().Contain("Clique aqui para ver online.", "pin passe 4 — préheader du courriel membres.");
+			email.Should().Contain("Gerencie as suas assinaturas", "pin passe 4 — pied du courriel membres.");
+			email.Should().Contain("Todos os direitos reservados.", "pin passe 4 — copyright du courriel membres.");
+			email.Should().Contain("cancelar a assinatura", "pin passe 4 — désabonnement du courriel membres.");
+			foreach (var token in new[]
+			{ "[NOTIFICATIONURL]", "[SITEURL]", "[LOGOURL]", "[PORTALNAME]", "[MESSAGEBODY]", "[UNSUBSCRIBEURL]" })
+				email.Should().Contain(token, "EMAIL_MESSAGING_DISPATCH_BODY : token {0} préservé.", token);
+		}
 	}
 }
