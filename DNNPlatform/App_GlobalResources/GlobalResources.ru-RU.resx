@@ -211,7 +211,7 @@
     <value>Просмотр содержимого папки</value>
   </data>
   <data name="EMAIL_SMTP_TEST_SUBJECT.Text" xml:space="preserve">
-    <value>[Host:HostTitle] Тест конфигурации SMTP</value>
+    <value>[Host:HostTitle] Тест конфигурации SMTP от [Portal:PortalName]</value>
   </data>
   
   <data name="EMAIL_PORTAL_SIGNUP_SUBJECT.Text" xml:space="preserve">
@@ -964,5 +964,277 @@ Sincerely,
   </data>
   <data name="cc_message.Text" xml:space="preserve">
     <value>Наш веб-сайт использует файлы cookie для того, чтобы обеспечить вам удобство работы.</value>
+  </data>
+  <data name="403_3.Error" xml:space="preserve">
+    <value>&lt;div style="height: 100%; width: 90%;"&gt;     &lt;h3&gt;Ошибка конфигурации DNN&lt;/h3&gt;     &lt;p&gt;{0}&lt;/p&gt;     &lt;p&gt;Похоже, в вашей установке DNN есть проблема с параметрами безопасности (скорее всего, с правами доступа). DNN предоставляет широкие возможности загрузки файлов для контента, модулей и тем. Эти функции требуют настраиваемых параметров безопасности, чтобы приложение могло создавать и удалять файлы на вашем сайте.&lt;/p&gt;     &lt;p&gt;На веб-сервере откройте корневую папку сайта (по умолчанию C:\DotNetNuke) в Проводнике Windows. Щёлкните папку правой кнопкой мыши и выберите в контекстном меню «Общий доступ и безопасность». Откройте вкладку «Безопасность». Добавьте соответствующую учётную запись пользователя и задайте нужные права для пользователя ASP.Net, указанного в дополнительных параметрах пула приложений IIS, в котором работает ваш сайт.&lt;/p&gt;     &lt;ul style="text-align: left; list-style-type: none; list-style-position: outside;"&gt;         &lt;li&gt;&lt;strong&gt;Если используется именованная учётная запись, например встроенная «NT AUTHORITY\NETWORK SERVICE»&lt;/strong&gt;&lt;br/&gt;             &lt;ol style="list-style-type: circle;"&gt;                 &lt;li&gt;Учётной записи пользователя должны быть предоставлены права на чтение, запись, чтение и выполнение, а также изменение.&lt;/li&gt;             &lt;/ol&gt;             &lt;br/&gt;         &lt;/li&gt;         &lt;li&gt;&lt;strong&gt;Если используется «ApplicationPoolIdentity» (рекомендуется)&lt;/strong&gt;&lt;br/&gt;             &lt;ol style="list-style-type: circle;"&gt;                 &lt;li&gt;Учётной записи IIS AppPool\[имя пула] (замените [имя пула] на реальное имя пула приложений IIS) должны быть предоставлены права на чтение, запись, чтение и выполнение, а также изменение.&lt;/li&gt;            &lt;/ol&gt;         &lt;/li&gt;     &lt;/ul&gt;     &lt;p&gt;&lt;img alt="Изображение: параметры безопасности корневой папки сайта должны быть настроены на чтение, запись и изменение для именованной учётной записи." src="images/403-3.gif"&gt;&lt;/p&gt; &lt;/div&gt;</value>
+  </data>
+  <data name="404.Error" xml:space="preserve">
+    <value>&lt;div style="height: 100%; width: 90%;"&gt;
+   &lt;p style="color:red; font-weight:bold;"&gt;Домен {0} не существует в базе данных&lt;/p&gt;
+   &lt;p&gt;Эта система поддерживает несколько порталов в одной установке/базе данных. Это достигается путём преобразования URL-адреса браузера в действительную запись таблицы Portals базы данных. Ниже описан этот процесс:&lt;/p&gt;
+    &lt;ol style="text-align: left; list-style-type: decimal; list-style-position: outside;"&gt;
+        &lt;li&gt;&lt;strong&gt;Процесс на веб-сервере&lt;/strong&gt;&lt;br /&gt;
+            &lt;ul style="list-style-type: disc;"&gt;
+                &lt;li&gt;Когда сервер получает запрос от клиента, он сравнивает расширение имени запрошенного файла с расширениями приложений, сопоставленными в IIS.&lt;/li&gt;
+                &lt;li&gt;На основе найденных совпадений IIS передаёт запрос заданному исполняемому файлу (aspnet_asapi.dll в случае запросов ASP.NET).&lt;/li&gt;
+                &lt;li&gt;Процесс aspnet_isapi.dll обрабатывает запрос через упорядоченную последовательность событий, начинающуюся с Application_BeginRequest.&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;HttpModule.URLRewrite OnBeginRequest (UrlRewriteModule.vb)&lt;/strong&gt;&lt;br /&gt;
+            &lt;ul style="list-style-type: disc;"&gt;
+                &lt;li&gt;Запрос анализируется по символу "/"&lt;/li&gt;
+                &lt;li&gt;Домен конструируется из проанализированных элементов.&lt;br /&gt;
+                    &lt;br /&gt;
+                    Например:&lt;br /&gt;
+
+                    URL: https://www.domain.com/default.aspx = Имя домена: www.domain.com&lt;br /&gt;
+                    URL: https://209.75.24.131/default.aspx = Имя домена: 209.75.24.131&lt;br /&gt;
+                    URL: https://localhost/DotNetNuke/default.aspx = Имя домена: localhost/DotNetNuke&lt;br /&gt;
+                    URL: https://www.domain.com/virtualdirectory/default.aspx = Имя домена: www.domain.com/virtualdirectory&lt;br /&gt;
+                    URL: https://www.domain.com/directory/default.aspx = Имя домена: www.domain.com/directory&lt;br /&gt;
+                    &lt;br /&gt;
+                &lt;/li&gt;
+                &lt;li&gt;По имени домена приложение обращается к таблице PortalAlias в базе данных, чтобы найти совпадение.&lt;br /&gt;
+                    &lt;br /&gt;
+                    Примечание: если вы устанавливаете приложение на удалённый сервер, необходимо изменить значение поля HTTPAlias в таблице PortalAlias для соответствующей записи. &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/div&gt;</value>
+  </data>
+  <data name="EMAIL_MESSAGING_DISPATCH_BODY.Text" xml:space="preserve">
+    <value>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="https://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
+    &lt;style type="text/css"&gt;
+            /* Reset Styles */
+        html, body{height:100%;width:100%;}
+        body{
+            margin:0; padding:0;
+            font-family:sans-serif;
+            font-size:0.83em;
+            color:#333;
+        }
+        img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
+        table td{border-collapse:collapse;}
+        p{margin: 0 0 1.6em 0;}
+        a{color:#417CD3;}
+        #backgroundTable{height:100% !important; margin:0; padding:0; width:100% !important;}
+        body{ background-color:#fafafa; }
+
+        #templateContainer{
+            border: 1px solid #eeeeee;
+            box-shadow: 0px 0px 3px 0px #eee;
+        }
+
+            /* Pre Header Styles */
+        .preheaderContent{
+            padding:15px 0 5px 0;
+            font-size:0.9em;
+            color:#999;
+        }
+        .headerContent {background-color:#bbb;}
+        .headerContent a{display:block;}
+        .headerContent img{ margin-bottom:0;}
+
+            /* Sub Header Styles */
+        #templateSubHeader{ color:#ffffff; }
+        #templateSubHeader td{ padding:5px 20px; }
+
+            /* Template Footer Styles */
+        .footerContent table td{
+            padding-top:20px;
+            border-top:1px solid #ddd;
+            font-size:0.8em;
+        }
+
+            /* Body Template Footer Styles */
+        #bodyTemplateFooter{
+            padding:15px 0 5px 0;
+            font-size:0.9em;
+            color:#999;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0"&gt;
+&lt;table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" id="backgroundTable"&gt;
+    &lt;tr&gt;
+        &lt;td align="center" valign="top"&gt;
+            &lt;!-- // Begin Template Preheader \\ --&gt;
+            &lt;table border="0" cellpadding="0" cellspacing="0" id="templatePreheader" width="600"&gt;
+                &lt;tr align="right"&gt;
+                    &lt;td valign="top" class="preheaderContent" style="border-top:5px solid #417CD3;"&gt;
+
+                        &lt;!-- // Begin Module: Standard Preheader \ --&gt;
+                        &lt;table border="0" cellpadding="0" cellspacing="0" &gt;
+                            &lt;tr&gt;
+                                &lt;td align="right"&gt;
+                                    &lt;p&gt;Проблемы с просмотром письма? &lt;a href="[NOTIFICATIONURL]"&gt;&lt;span&gt;Нажмите здесь, чтобы просмотреть онлайн.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+                        &lt;!-- // End Module: Standard Preheader \ --&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+            &lt;!-- // End Template Preheader \\ --&gt;
+            &lt;!-- // Begin Template body \\ --&gt;
+            &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateContainer" style="border:1px solid #eeeeee; " &gt;
+                &lt;tr &gt;
+                    &lt;td align="center" valign="top"&gt;
+                        &lt;!-- // Begin Template Header \\ --&gt;
+                        &lt;table border="0" cellpadding="30" cellspacing="0" width="600" id="templateHeader"&gt;
+                            &lt;tr&gt;
+                                &lt;td class="headerContent"&gt;
+                                    &lt;a href="[SITEURL]"&gt;
+                                        &lt;!--&lt;img src="[LOGOURL]" style="max-width:600px;" id="headerImage campaign-icon" /&gt;--&gt;
+                                        &lt;img src="[LOGOURL]" style="max-width:600px;" id="headerImage campaign-icon" width="200" /&gt;
+                                    &lt;/a&gt;
+
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+                        &lt;!-- // End Template Header \\ --&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr &gt;
+                    &lt;td align="center" valign="top"&gt;
+                        &lt;!-- // Begin Template Sub Header \\ --&gt;
+                        &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateSubHeader"&gt;
+                            &lt;tr&gt;
+                                &lt;td class="subHeaderContent" bgcolor="#417CD3" width="66%" align="left"&gt;
+                                    &lt;h2 style="color:#fff; font-weight:100; font-size:24px;"&gt;Уведомления&lt;/h2&gt;
+                                &lt;/td&gt;&lt;!--close subHeaderContent--&gt;
+                                &lt;td width="33%" bgcolor="#417CD3" align="right"&gt;
+                                    &lt;p style="color:#fff;"&gt;&lt;/p&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+                        &lt;!-- // End Template Sub Header \\ --&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td align="center" valign="top" bgcolor="#ffffff"&gt;
+                        &lt;!-- // Begin Template Body \\ --&gt;
+                        &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody"&gt;
+                            &lt;tr&gt;
+                                &lt;td valign="top" class="bodyContent"&gt;
+                                    &lt;!-- // Begin Module: Standard Content \\ --&gt;
+                                    &lt;table border="0" cellpadding="30" cellspacing="0" width="100%"&gt;
+                                        &lt;tr&gt;
+                                            &lt;td valign="top"&gt;
+                                                [MESSAGEBODY]
+                                            &lt;/td&gt;
+                                        &lt;/tr&gt;
+                                    &lt;/table&gt;
+                                    &lt;!-- // End Module: Standard Content \\ --&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+                        &lt;!-- // End Template Body \\ --&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td align="center" valign="top"&gt;
+                        &lt;table border="0" cellpadding="30" cellspacing="0" width="600" id="templateFooter"&gt;
+                            &lt;tr&gt;
+                                &lt;td valign="top" class="footerContent"&gt;
+                                    &lt;table border="0" cellpadding="0" cellspacing="0" width="100%"&gt;
+                                        &lt;tr&gt;
+                                            &lt;td align="center"&gt;
+                                                &lt;a href="[UNSUBSCRIBEURL]" &gt; Управление подписками&lt;/a&gt; &amp;nbsp; |  &amp;nbsp;&lt;a href="[NOTIFICATIONURL]" &gt; Просмотреть онлайн&lt;/a&gt;
+                                            &lt;/td&gt;
+                                        &lt;/tr&gt;
+                                    &lt;/table&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;&lt;!-- // End Template Body \\ --&gt;
+            &lt;!-- // Begin Template footer \\ --&gt;
+            &lt;table border="0" cellpadding="0" cellspacing="0" id="bodyTemplateFooter" width="600"&gt;
+                &lt;tr&gt;
+                    &lt;td valign="top" class="bodyFooterContent"&gt;
+
+                        &lt;!-- // Begin Module: Standard Preheader \ --&gt;
+                        &lt;table border="0" cellpadding="0" cellspacing="0" align="center" &gt;
+
+                            &lt;tr&gt;
+                                &lt;td align="center"&gt;
+                                    &lt;p&gt;Copyright [YEAR] &lt;a href="[SITEURL]"&gt;[PORTALNAME]&lt;/a&gt; Все права защищены.&lt;/p&gt;
+                                    &lt;p&gt;Если вы не хотите получать больше писем, вы можете &lt;a href="[UNSUBSCRIBEURL]"&gt;отменить подписку&lt;/a&gt;.&lt;/p&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+                        &lt;!-- // End Module: Standard Preheader \ --&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+            &lt;!-- // End Template footer \\ --&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;!-- wrapper table --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="500.Error" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="DefaultSynonymGroup.Text" xml:space="preserve">
+    <value>dnn,dotnetnuke</value>
+  </data>
+  <data name="EMAIL_BANNER_NOTIFICATION_SUBJECT.Text" xml:space="preserve">
+    <value>[Custom:0]</value>
+  </data>
+  <data name="EMAIL_MESSAGING_DISPATCH_ITEM.Text" xml:space="preserve">
+    <value>&lt;div style="width:100%;"&gt;&lt;h5&gt;[TITLE]&lt;/h5&gt;&lt;table width="600" border="0" cellpadding="0" cellspacing="0" class="contenttable" style="background:#fafafa;"&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;table width="80" border="0" cellspacing="0" cellpadding="8" align="left"&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;&lt;a href="[PROFILEURL]"&gt;&lt;img src="[PROFILEPICURL]" /&gt;&lt;/a&gt;&lt;br/&gt;[DISPLAYNAME]&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+            &lt;table width="350" border="0" cellspacing="0" cellpadding="8" align="left"&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;[CONTENT][FRIENDREQUESTACTIONS][FOLLOWREQUESTACTIONS]&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="License.Text" xml:space="preserve">
+    <value>&lt;h2&gt;The MIT License (MIT)&lt;/h2&gt;
+
+&lt;h3&gt;Copyright (c) .NET Foundation and Contributors&lt;/h3&gt;
+&lt;p&gt;All Rights Reserved&lt;/p&gt;
+
+&lt;p&gt;Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:&lt;/p&gt;
+
+&lt;p&gt;The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.&lt;/p&gt;
+
+&lt;p&gt;THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.&lt;/p&gt;</value>
+  </data>
+  <data name="MESSAGE_LOGIN_INSTRUCTIONS.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MESSAGE_REGISTRATION_INSTRUCTIONS.Text" xml:space="preserve">
+    <value />
   </data>
 </root>
