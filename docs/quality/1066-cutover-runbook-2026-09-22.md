@@ -106,7 +106,21 @@ servir à dispatcher ce geste.
 préprod n'est donc PAS un gap servi. **Bornes** : copie Phase 1 datée (10/08), chemins directs uniquement
 (assets servis via combiner ou DB non couverts), bin/config exclus volontairement.
 
-### R6 — Interdictions transverses (toujours vraies)
+### R6 — Le compte stocké en clair (#1091)
+
+- **Geste** : pendant la séance de bascule **uniquement** (prod gelée d'ici là, #972), passer le compte
+  `contact@argumentum.games` au format **haché** dans la **base de production**, puis en changer la valeur.
+  La nouvelle valeur est choisie **par l'owner** ; ⛔ aucune valeur, empreinte ou sel ne transite par une
+  issue, un commit, le dashboard ou ce fichier.
+- **Contrôle** : relire, dans la base cible, le **format de stockage** de ce compte (haché attendu — même
+  format que sur la préprod depuis le 19/08), puis **se connecter avec la nouvelle valeur** (arbitrage owner
+  du 20/10 : « OK pour changer le mdp en temps voulu »).
+- **Rollback** : ⛔ **aucun retour au format en clair**. En cas d'échec de connexion : nouvelle valeur choisie
+  par l'owner, même format haché.
+- **État** : posé au runbook le 20/10 (grain ⁹ du pool po-2023) ; #1091 reste ouverte jusqu'au geste en
+  production et à son contrôle.
+
+### R7 — Interdictions transverses (toujours vraies)
 
 ⛔ Zéro écriture prod (#972) · ⛔ `/MIR` et synchronisation de répertoire (divergence webroot↔dépôt
 **bidirectionnelle** : un miroir détruit ce qui ne vit que d'un côté) · ⛔ `git checkout` sur un webroot ·
