@@ -127,6 +127,39 @@ préprod n'est donc PAS un gap servi. **Bornes** : copie Phase 1 datée (10/08),
 ⛔ copie du `web.config` préprod → prod · cache-buster sur chaque sonde · `-L` systématique · statiques sans
 query string · jamais conclure d'une sonde unique (résultat uniforme = signal d'instrument).
 
+### R8 — Les paquets de langue (es-ES, pt-BR, ru-RU ; zh-CN gated)
+
+- **Geste** : pour CHAQUE culture exposée au go-live (aujourd'hui es-ES, pt-BR, ru-RU — zh-CN gated
+  paquet+visa), **construire le paquet au hash du go-live** avec `tools/458-langpack-build.py` (#1915) :
+  `python tools/458-langpack-build.py --culture <xx-XX> --commit <hash-go-live> --upstream-manifest
+  <manifeste-amont.dnn> --license <fichier> --apply` (dry-run par défaut : comptages + contrôles, rien
+  d'écrit). L'outil **refuse de livrer** si ensemble(manifeste) ≠ ensemble(payload) ≠ ensemble(master) à la
+  casse près, si un antislash survit au manifeste, ou si un resx n'est pas XML — un refus s'investigue, ne se
+  force pas. ⚠️ Un paquet construit avant le hash final est **périmé** (pt-BR a déjà bougé : #1912 →
+  `c4529918` ; décision actée : chaque paquet porte le hash de master dont il est construit). Installer le
+  zip par le mécanisme `Install/Install.aspx?mode=installresources` — la page est **retirée du webroot** par
+  `DeleteInstallerFiles()` : la restaurer depuis l'asset `DNN_Platform_10.3.2_Upgrade.zip` avec
+  `Install/DotNetNuke.install.config.resources`, et retirer ces fichiers après le geste — avec
+  **quarantaine préalable des strays** `Install/*/` (le trigger installe TOUT ce qui s'y trouve ; mesuré
+  préprod : 3 `.resources` CodeDom + `DnnJwtAuth_09.11.01` posés hors périmètre). L'installation crée la
+  langue host et déploie les resx mais **n'active pas le portail** (`PortalLanguages` non touché) :
+  l'activation suit l'arbitrage « on n'active une langue qu'avec son contenu ».
+- **Contrôle** : (1) le sidecar `<culture>_langpack_master-<hash>.build.json` du build fait foi — sha256 par
+  fichier + comptages, et fraîcheur `git log --oneline <hash>..master -- '*.<culture>.resx'` **vide** au
+  moment du build ; (2) `git status` du webroot avant/après installation : **0 écart** (les resx installés
+  sont octet-identiques au dépôt — un écart signifie que le paquet n'a pas été construit au bon hash) ;
+  (3) par langue, **les sondes du visa de surface** (modèle po-2024 21/21 : page d'accueil `lang` correcte,
+  compteurs de joueurs localisés, TERMS/PRIVACY traduits avec SIREN, fiches EAV, témoins des autres langues
+  inchangés) ; (4) le paquet est **enregistré par DNN** (`Packages`, type CoreLanguagePack).
+- **Rollback** : désinstaller le paquet par DNN (la désinstallation retire les fichiers qu'elle a posés ;
+  le webroot reste à l'état git puisque les octets installés = octets master) ; retirer l'activation portail
+  si elle a été posée. ⛔ Jamais de `git checkout` sur un webroot (R7).
+- **État** : posé le 20/10 (grain ⑫ du pool po-2023, sur l'outil #1915). Outil livré, CI 5/5 ; paquet ru-RU
+  construit à `1d81a9c3` (rapport #458 c.6281045558) — **à reconstruire au hash du go-live** ; es-ES/pt-BR
+  : installés en **préprod** le 12/10 depuis des builds antérieurs à `1d81a9c3` ⇒ paquets **prod** à
+  reconstruire. **Répétition d'installation sur le site de test = prérequis avant cutover** (grain ⑭ : seul
+  moyen de savoir si le manifeste régénéré s'installe — en cas d'échec, le consigner, ne pas corriger à chaud).
+
 ## Ce que ce runbook n'établit pas
 
 - **R5 couvre son jeu de candidats, pas l'univers** : une source plus fraîche que la copie Phase 1 (10/08)
