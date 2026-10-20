@@ -132,12 +132,35 @@ namespace Argumentum.AssetConverter.Tests
 		/// prend le masculin par défaut — et les deux blocs disent déjà « o site ».
 		/// L'accord distant « TIVER SIDO AVISADO » suit le masculin depuis la bascule.
 		/// </summary>
-		private const string FeminineArticleBeforePortalToken =
-			@"(?<![A-Za-zÀ-ÿ])(?:A|a|as|As|à|às|À|Às|da|das|Da|Das|DA|pela|pelas|Pela|na|nas|Na|Nas)\s\[Portal:(?:PortalName|Email|FooterText)\]";
+		/// Grain ⑪ (pool c.6285651619) : l'alternance est CONSTRUITE par règle (10 bases
+		/// féminines portugaises × 3 casses) — la liste énumérée de #1912 oubliait les
+		/// tout-caps (AS, ÀS, DAS, PELA, PELAS, NAS) ; une construction ne peut rien oublier.
+		private static readonly string[] FeminineArticleBases =
+			{ "a", "as", "à", "às", "da", "das", "pela", "pelas", "na", "nas" };
+
+		private static string FeminineArticleAlternation() => string.Join("|",
+			FeminineArticleBases
+				.SelectMany(b => new[] { b, char.ToUpperInvariant(b[0]) + b[1..], b.ToUpperInvariant() })
+				.Distinct()
+				.OrderByDescending(f => f.Length)); // les formes longues d'abord
+
+		private static readonly string FeminineArticleBeforePortalToken =
+			@"(?<![A-Za-zÀ-ÿ])(?:" + FeminineArticleAlternation() + @")\s\[Portal:(?:PortalName|Email|FooterText)\]";
 
 		[Fact]
 		public void Terms_And_Privacy_PtBr_PortalTokenArticle_Is_Masculine_Only()
 		{
+			// auto-contrôle positif : chaque variante construite DOIT être vue par le motif
+			// (un 0 en dessous ne vaut que si l'instrument peut voir un 1)
+			var allForms = FeminineArticleBases
+				.SelectMany(b => new[] { b, char.ToUpperInvariant(b[0]) + b[1..], b.ToUpperInvariant() })
+				.Distinct();
+			foreach (var form in allForms)
+			{
+				Regex.IsMatch(form + " [Portal:PortalName]", FeminineArticleBeforePortalToken).Should()
+					.BeTrue($"le motif doit voir la forme féminine « {form} » devant un jeton portail");
+			}
+
 			var terms = ResxValue(LocaleResx("pt-BR"), "MESSAGE_PORTAL_TERMS.Text");
 			var privacy = ResxValue(LocaleResx("pt-BR"), "MESSAGE_PORTAL_PRIVACY.Text");
 
