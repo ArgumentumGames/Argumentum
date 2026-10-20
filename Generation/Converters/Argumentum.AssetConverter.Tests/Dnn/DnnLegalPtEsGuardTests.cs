@@ -124,6 +124,37 @@ namespace Argumentum.AssetConverter.Tests
 			terms.Should().Contain("responsável", "la graphie portugaise correcte doit porter le corps");
 		}
 
+		/// <summary>
+		/// Grain #458 po-2024 (20/10) : l'article devant [Portal:PortalName] était
+		/// féminin dans TERMS (A/a/da/pela/à/À/DA, 35 occurrences + la crase fusionnée
+		/// « fornecidas à ou coletadas pela ») et masculin dans PRIVACY. Harmonisé au
+		/// MASCULIN : « Argumentum », emprunt latin sans genre établi en portugais,
+		/// prend le masculin par défaut — et les deux blocs disent déjà « o site ».
+		/// L'accord distant « TIVER SIDO AVISADO » suit le masculin depuis la bascule.
+		/// </summary>
+		private const string FeminineArticleBeforePortalToken =
+			@"(?<![A-Za-zÀ-ÿ])(?:A|a|as|As|à|às|À|Às|da|das|Da|Das|DA|pela|pelas|Pela|na|nas|Na|Nas)\s\[Portal:(?:PortalName|Email|FooterText)\]";
+
+		[Fact]
+		public void Terms_And_Privacy_PtBr_PortalTokenArticle_Is_Masculine_Only()
+		{
+			var terms = ResxValue(LocaleResx("pt-BR"), "MESSAGE_PORTAL_TERMS.Text");
+			var privacy = ResxValue(LocaleResx("pt-BR"), "MESSAGE_PORTAL_PRIVACY.Text");
+
+			foreach (var (label, text) in new[] { ("TERMS", terms), ("PRIVACY", privacy) })
+			{
+				Regex.Matches(text, FeminineArticleBeforePortalToken).Count.Should().Be(0,
+					$"{label} pt-BR : plus aucun article/préposition féminin devant un jeton portail");
+			}
+
+			terms.Should().Contain("O [Portal:PortalName]", "TERMS porte désormais l'article masculin");
+			privacy.Should().Contain("do [Portal:PortalName]", "PRIVACY reste au masculin");
+			terms.Should().Contain("fornecidas a ou coletadas pelo [Portal:PortalName]",
+					"la crase de la forme fusionnée est levée au masculin")
+				.And.NotContain("fornecidas à ou coletadas pela")
+				.And.NotContain("TIVER SIDO AVISADA", "l'accord distant suit le masculin : AVISADO");
+		}
+
 		[Theory]
 		[InlineData("pt-BR", "Declaração de Privacidade")]
 		[InlineData("es-ES", "Declaración de Privacidad")]
