@@ -3039,6 +3039,259 @@ public class DatasetUpdaterRootConfig
 				MaxGroupItemNb = 12,
 				WriteOneTargetFileByField = false,
 				MaxChildren = 8
+			},
+			// Grain ㉓a (#458 c.6296494826, user mandate 20/10 "Claude API credits"): per-corpus
+			// Haiku-correction tasks on the Anthropic OpenAI-compatible endpoint. Disabled by
+			// default — arming one is a recipe edit at run time (never committed), same pattern
+			// as the Rules 06 lot above. During the ~10-day credit window the mandate replaces
+			// the "gpt-5.6-sol only" rule: Haiku 5.5 first, then Sonnet/Opus/Fable by rejection
+			// rate (>50% rejections on a pass = next tier). UseResponsesApi=false because the
+			// compat address serves Chat Completions, not /v1/responses (SUPPOSED — the
+			// one-call sonde tranches when the key arrives). Prices = published Haiku 5.5
+			// per-MTok (mandate facts, support article 17154008) so the end-of-run summary
+			// reports measured spend (mandate deliverable d). Correction scope adds the EN
+			// columns to the cascade multi-lang set: the mandate covers the 8 languages, and
+			// function calling lets the model pick which cells to touch anyway.
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Fallacies Haiku correction claude-haiku-5-5",
+				SourceDataset = KnownDataSets.FallaciesTaxonomy,
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					"text_fr","desc_fr","example_fr",
+					"text_en","desc_en","example_en",
+					"text_ru","desc_ru","example_ru",
+					"text_pt","desc_pt","example_pt",
+					"text_es","desc_es","example_es",
+					"text_ar","desc_ar","example_ar",
+					"text_fa","desc_fa","example_fa",
+					"text_zh","desc_zh","example_zh",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"text_en","desc_en","example_en",
+					"text_ru","desc_ru","example_ru",
+					"text_pt","desc_pt","example_pt",
+					"text_es","desc_es","example_es",
+					"text_ar","desc_ar","example_ar",
+					"text_fa","desc_fa","example_fa",
+					"text_zh","desc_zh","example_zh",
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Fallacies - Taxonomy.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptFallaciesCascadeDriftUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptFallaciesCascadeDriftAssistant.txt"
+					}
+				},
+				// Anthropic compat endpoint, per task (Prompt.cs ChatClient honors BaseUrl).
+				BaseUrl = "https://api.anthropic.com/v1/",
+				Model = "claude-haiku-5-5",
+				OpenAIKeyPath = @".keys\anthropic-key.txt",
+				UseResponsesApi = false,
+				InputTokenPricePerMillion = 0.10,
+				OutputTokenPricePerMillion = 0.50,
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.PKHierarchicalChar,
+				PKHierarchicalChar = '.',
+				PKHierarchyLevel = 2,
+				ChunkSize = 4,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 20
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Virtues Haiku correction claude-haiku-5-5",
+				SourceDataset = KnownDataSets.VirtuesTaxonomy,
+				FieldsToInclude = new List<string>()
+				{
+					"pk",
+					"title_fr","description_fr","remark_fr",
+					"title_en","description_en","remark_en",
+					"title_ru","description_ru","remark_ru",
+					"title_pt","description_pt","remark_pt",
+					"title_es","description_es","remark_es",
+					"title_ar","description_ar","remark_ar",
+					"title_fa","description_fa","remark_fa",
+					"title_zh","description_zh","remark_zh",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"title_en","description_en","remark_en",
+					"title_ru","description_ru","remark_ru",
+					"title_pt","description_pt","remark_pt",
+					"title_es","description_es","remark_es",
+					"title_ar","description_ar","remark_ar",
+					"title_fa","description_fa","remark_fa",
+					"title_zh","description_zh","remark_zh",
+				},
+				PrimaryField = "pk",
+				TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptVirtuesCascadeDriftUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptVirtuesCascadeDriftAssistant.txt"
+					}
+				},
+				BaseUrl = "https://api.anthropic.com/v1/",
+				Model = "claude-haiku-5-5",
+				OpenAIKeyPath = @".keys\anthropic-key.txt",
+				UseResponsesApi = false,
+				InputTokenPricePerMillion = 0.10,
+				OutputTokenPricePerMillion = 0.50,
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 6,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Scenarii Haiku correction claude-haiku-5-5",
+				SourceDataset = KnownDataSets.Scenarii,
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					"titre","contexte","enjeu","suggestion",
+					"title","context","issue","suggestion_en",
+					"title_ru","context_ru","issue_ru","suggestion_ru",
+					"title_pt","context_pt","issue_pt","suggestion_pt",
+					"title_es","context_es","issue_es","suggestion_es",
+					"title_ar","context_ar","issue_ar","suggestion_ar",
+					"title_fa","context_fa","issue_fa","suggestion_fa",
+					"title_zh","context_zh","issue_zh","suggestion_zh",
+				},
+				// Scenarii EN columns are bare (title/context/issue — no _en suffix;
+				// suggestion keeps one) — same asymmetry the cascade tasks carry.
+				FieldsToUpdate = new List<string>()
+				{
+					"title","context","issue","suggestion_en",
+					"title_ru","context_ru","issue_ru","suggestion_ru",
+					"title_pt","context_pt","issue_pt","suggestion_pt",
+					"title_es","context_es","issue_es","suggestion_es",
+					"title_ar","context_ar","issue_ar","suggestion_ar",
+					"title_fa","context_fa","issue_fa","suggestion_fa",
+					"title_zh","context_zh","issue_zh","suggestion_zh",
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Scenarii - Cards.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptScenariiCascadeDriftUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptScenariiCascadeDriftAssistant.txt"
+					}
+				},
+				BaseUrl = "https://api.anthropic.com/v1/",
+				Model = "claude-haiku-5-5",
+				OpenAIKeyPath = @".keys\anthropic-key.txt",
+				UseResponsesApi = false,
+				InputTokenPricePerMillion = 0.10,
+				OutputTokenPricePerMillion = 0.50,
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 12,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Rules Haiku correction claude-haiku-5-5",
+				SourceDataset = KnownDataSets.Rules,
+				FieldsToInclude = new List<string>()
+				{
+					"pk",
+					"Text",
+					"Text_en",
+					"Text_ru","Text_pt","Text_es",
+					"Text_ar","Text_fa","Text_zh",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"Text_en",
+					"Text_ru","Text_pt","Text_es",
+					"Text_ar","Text_fa","Text_zh",
+				},
+				PrimaryField = "pk",
+				TargetPath = @".\Target\Datasets\Argumentum Rules - Cards.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptRulesCascadeDriftUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptRulesCascadeDriftAssistant.txt"
+					}
+				},
+				BaseUrl = "https://api.anthropic.com/v1/",
+				Model = "claude-haiku-5-5",
+				OpenAIKeyPath = @".keys\anthropic-key.txt",
+				UseResponsesApi = false,
+				InputTokenPricePerMillion = 0.10,
+				OutputTokenPricePerMillion = 0.50,
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 8,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
 			}
 		};
 }
