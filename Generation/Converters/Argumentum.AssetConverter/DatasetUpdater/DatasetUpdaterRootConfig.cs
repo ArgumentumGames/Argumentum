@@ -3097,7 +3097,14 @@ public class DatasetUpdaterRootConfig
 				UseResponsesApi = false,
 				InputTokenPricePerMillion = 0.10,
 				OutputTokenPricePerMillion = 0.50,
-				MaxOutputTokens = 4096,
+				// Sonde finding (20/10, #458 grain 23b): without a forced tool choice the
+				// compat endpoint lets Haiku answer as raw JSON content — 0 tool calls,
+				// payload truncated at the output cap, nothing applied. Forcing the
+				// UpdateRecord tool choice makes the parallel calls land (5 calls, 5 cells
+				// written on the 8-row Rules chunk). 8192 = cascade value, leaves room for
+				// multi-row tool payloads.
+				FunctionName = "UpdateRecord",
+				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 70000,
 				DivisionMode = DivisionMode.PKHierarchicalChar,
 				PKHierarchicalChar = '.',
@@ -3160,7 +3167,14 @@ public class DatasetUpdaterRootConfig
 				UseResponsesApi = false,
 				InputTokenPricePerMillion = 0.10,
 				OutputTokenPricePerMillion = 0.50,
-				MaxOutputTokens = 4096,
+				// Sonde finding (20/10, #458 grain 23b): without a forced tool choice the
+				// compat endpoint lets Haiku answer as raw JSON content — 0 tool calls,
+				// payload truncated at the output cap, nothing applied. Forcing the
+				// UpdateRecord tool choice makes the parallel calls land (5 calls, 5 cells
+				// written on the 8-row Rules chunk). 8192 = cascade value, leaves room for
+				// multi-row tool payloads.
+				FunctionName = "UpdateRecord",
+				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 70000,
 				DivisionMode = DivisionMode.SequentialChunks,
 				ChunkSize = 6,
@@ -3223,7 +3237,14 @@ public class DatasetUpdaterRootConfig
 				UseResponsesApi = false,
 				InputTokenPricePerMillion = 0.10,
 				OutputTokenPricePerMillion = 0.50,
-				MaxOutputTokens = 4096,
+				// Sonde finding (20/10, #458 grain 23b): without a forced tool choice the
+				// compat endpoint lets Haiku answer as raw JSON content — 0 tool calls,
+				// payload truncated at the output cap, nothing applied. Forcing the
+				// UpdateRecord tool choice makes the parallel calls land (5 calls, 5 cells
+				// written on the 8-row Rules chunk). 8192 = cascade value, leaves room for
+				// multi-row tool payloads.
+				FunctionName = "UpdateRecord",
+				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 70000,
 				DivisionMode = DivisionMode.SequentialChunks,
 				ChunkSize = 12,
@@ -3276,7 +3297,14 @@ public class DatasetUpdaterRootConfig
 				UseResponsesApi = false,
 				InputTokenPricePerMillion = 0.10,
 				OutputTokenPricePerMillion = 0.50,
-				MaxOutputTokens = 4096,
+				// Sonde finding (20/10, #458 grain 23b): without a forced tool choice the
+				// compat endpoint lets Haiku answer as raw JSON content — 0 tool calls,
+				// payload truncated at the output cap, nothing applied. Forcing the
+				// UpdateRecord tool choice makes the parallel calls land (5 calls, 5 cells
+				// written on the 8-row Rules chunk). 8192 = cascade value, leaves room for
+				// multi-row tool payloads.
+				FunctionName = "UpdateRecord",
+				MaxOutputTokens = 8192,
 				MaxTokensPerMinute = 70000,
 				DivisionMode = DivisionMode.SequentialChunks,
 				ChunkSize = 8,
