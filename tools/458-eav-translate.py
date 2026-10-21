@@ -72,7 +72,9 @@ PROMPT = (
     "unchanged. Respond with JSON only."
 )
 
-PRICES = {"claude-haiku-5-5": (0.10, 0.50), "claude-sonnet-5-5": (3.00, 15.00)}
+# Published per-MTok prices. Sonnet 5.5 is 2/10, not 3/15: the first version of
+# this table overstated every Sonnet run by 1.5x (caught in review, #1924).
+PRICES = {"claude-haiku-5-5": (0.10, 0.50), "claude-sonnet-5-5": (2.00, 10.00)}
 
 
 def load(path):
