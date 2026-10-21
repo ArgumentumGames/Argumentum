@@ -5,6 +5,7 @@
 
 @{
   var parts = CreateInstance("./shared/_Parts.cshtml");
+  var newsHelpers = CreateInstance("../shared/Helpers.cs"); // #458 ⑰-a: Gregorian "d" dates
   var page = GetService<ToSic.Sxc.Web.IPageService>(); // Service to set titles etc. on the page
   var article = AsList(Data).FirstOrDefault();
   var filteredCategory = CmsContext.Page.Parameters["category"];
@@ -22,7 +23,7 @@
   }
 
   page.AddMeta("description", Tags.Strip(article.Teaser));
-  page.SetTitle(article.Date.ToString("d") + " - " + article.Title);
+  page.SetTitle(newsHelpers.DateShortGregorian(article.Date) + " - " + article.Title);
 }
 
 <div class="app-news5 app-news5-detail" @Edit.TagToolbar(article)>

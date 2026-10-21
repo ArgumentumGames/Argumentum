@@ -3,6 +3,11 @@
 @using Dynlist = System.Collections.Generic.IEnumerable<dynamic>;
 @using Connect.Koi;
 
+@functions {
+  // #458 ⑰-a: Gregorian-forced "d" dates (shared/Helpers.cs DateShortGregorian) for @helper scope
+  dynamic NewsHelpers() { return CreateInstance("../../shared/Helpers.cs"); }
+}
+
 @* Show warning that the details page needs to be changed *@
 @helper DetailsPageConfigWarning() {
   if(App.Settings.DetailsPageShowWarning) {
@@ -150,7 +155,7 @@
   var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
   var dateBorder = displayCategories ? "app-date-border" : "";
 
-  <span class="app-news5-date @dateBorder">@article.Date.ToString("d")</span>
+  <span class="app-news5-date @dateBorder">@NewsHelpers().DateShortGregorian(article.Date)</span>
   if(displayCategories) {
     <span class="app-news5-categories">
       @foreach (var cat in article.Categories) {
