@@ -162,7 +162,7 @@
 
 <!-- include files -->
 <dnn:DnnCssInclude runat="server" FilePath="dist/dnn-default.min.css" Priority="99" PathNameAlias="SkinPath" HtmlAttributesAsString="rel:'stylesheet preload', as:'style'" />
-<dnn:DnnCssInclude runat="server" FilePath="dist/theme.min.css" Priority="100" PathNameAlias="SkinPath" HtmlAttributesAsString="rel:'stylesheet preload', as:'style'" />
+<dnn:DnnCssInclude ID="ThemeCss" runat="server" FilePath="dist/theme.min.css" Priority="100" PathNameAlias="SkinPath" HtmlAttributesAsString="rel:'stylesheet preload', as:'style'" />
 <dnn:DnnJsInclude runat="server" FilePath="dist/lib/bootstrap.bundle.min.js" ForceProvider="DnnFormBottomProvider" Priority="100" PathNameAlias="SkinPath" HtmlAttributesAsString="defer, async" />
 <dnn:DnnJsInclude runat="server" FilePath="dist/theme.min.js" ForceProvider="DnnFormBottomProvider" Priority="130" PathNameAlias="SkinPath" HtmlAttributesAsString="defer, async" />
 
@@ -171,6 +171,14 @@
 
   protected bool IsHome = false;
 
+  // RTL cultures (ar-SA, fa-IR) get the mirrored stylesheet; DNN already emits dir="rtl" on <html> for them.
+  // NB: Thread.CurrentCulture is the request-resolved culture (same source as the <html lang> attribute).
+  // PortalSettings.CultureCode was measured to return the portal default (fr-FR) for /en — wrong source.
+  protected bool IsRtl
+  {
+    get { return System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft; }
+  }
+
   protected override void OnLoad(EventArgs e)
   {
     base.OnLoad(e);
@@ -178,6 +186,10 @@
 
     var portal = DotNetNuke.Entities.Portals.PortalSettings.Current;
     IsHome = portal.HomeTabId == portal.ActiveTab.TabID;
+
+    // RTL switch — NB: assigned here, not via <% if %> in markup: code-render blocks do not gate
+    // server controls (measured: both DnnCssInclude branches rendered on every page).
+    ThemeCss.FilePath = IsRtl ? "dist/theme.rtl.min.css" : "dist/theme.min.css";
 
     // Set various FavIcon and Icon headers according to best practices
     // The next line is disabled by default, because it requires RazorBlade to be installed.
