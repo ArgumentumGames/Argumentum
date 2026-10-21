@@ -1,1 +1,1 @@
-{"name":"pdf-validation","version":"1.0.0","scripts":{"validate":"node validate-pdfs.js"},"dependencies":{"playwright":"^1.63.0"}}
+{"name":"pdf-validation","version":"1.0.0","scripts":{"validate":"node validate-pdfs.js"},"dependencies":{"playwright":"^1.64.1"}}
