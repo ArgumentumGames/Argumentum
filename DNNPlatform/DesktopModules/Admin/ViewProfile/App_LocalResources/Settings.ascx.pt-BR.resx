@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle_settings.Text">
+    <value xml:space="preserve">Configuração do perfil</value>
+  </data>
+  <data name="IncludeButton.Help">
+    <value xml:space="preserve">Ative esta opção para incluir o botão de Editar perfil</value>
+  </data>
+  <data name="IncludeButton.Text">
+    <value xml:space="preserve">Incluir botón de editar</value>
+  </data>
+  <data name="LoadDefault.Confirm">
+    <value xml:space="preserve">Está ação sobrescribirá a planilha existente. Está seguro de que quer continuar?</value>
+  </data>
+  <data name="LoadDefault.Text">
+    <value xml:space="preserve">Cargar predeterminada</value>
+  </data>
+  <data name="plTemplate.Help">
+    <value xml:space="preserve">Entre a planilha para mostrar o perfil do usuario.</value>
+  </data>
+  <data name="plTemplate.Text">
+    <value xml:space="preserve">planilha de perfil:</value>
+  </data>
+</root>

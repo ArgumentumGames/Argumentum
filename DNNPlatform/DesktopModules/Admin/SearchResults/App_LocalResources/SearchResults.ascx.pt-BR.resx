@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddTag.Text">
+    <value xml:space="preserve">Adicionar etiqueta</value>
+  </data>
+  <data name="Advanced.Text">
+    <value xml:space="preserve">Avanzado</value>
+  </data>
+  <data name="AdvancedSearchHint.Text">
+    <value xml:space="preserve">&lt;table class="dnnSearchResult-hint-tbl dnnTableDisplay"&gt;
+    &lt;tr&gt;
+        &lt;th style="width: 150px"&gt;
+            &lt;span&gt;Tipo&lt;/span&gt;
+        &lt;/th&gt;
+        &lt;th style="width: 250px"&gt;
+            &lt;span&gt;Ejemplo&lt;/span&gt;
+        &lt;/th&gt;
+        &lt;th&gt;
+            &lt;span&gt;Notas&lt;/span&gt;
+        &lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Aproximada&lt;/td&gt;
+        &lt;td&gt;casa&lt;b&gt;~&lt;/b&gt;&lt;/td&gt;
+        &lt;td&gt;inclui términos que son similares a palabra buscada, por ejemplo &lt;i&gt;masa&lt;/i&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Global&lt;/td&gt;
+        &lt;td&gt;casa*&lt;/td&gt;
+        &lt;td&gt;inclui términos que empiezan pela palabra buscada, por ejemplo &lt;em&gt;casado&lt;/em&gt; e também a mesma palabra &lt;em&gt;casa&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Exacta-única&lt;/td&gt;
+        &lt;td&gt;casa&lt;/td&gt;
+        &lt;td&gt;busca exacta, somente a palabra &lt;em&gt;casa&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Exacta-frase&lt;/td&gt;
+        &lt;td&gt;"dnn é genial"&lt;/td&gt;
+        &lt;td&gt;Busca a frase exacta &lt;em&gt;dnn é genial&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;OR&lt;/td&gt;
+        &lt;td&gt;casa naranja&lt;/td&gt;
+        &lt;td&gt;Busca conteúdos que incluyan alguna das palabras indicadas, &lt;em&gt;casa&lt;/em&gt; o &lt;em&gt;naranja&lt;/em&gt;, o ambas. &lt;strong&gt;OR tem que estar em mayúscula quando se utiliza&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;/td&gt;
+        &lt;td&gt;casa &lt;b&gt;OR&lt;/b&gt; naranja&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;AND&lt;/td&gt;
+        &lt;td&gt;casa &lt;b&gt;AND&lt;/b&gt; naranja&lt;/td&gt;
+        &lt;td&gt;Busca conteúdos que incluyan todas as palabras indicadas, &lt;em&gt;casa&lt;/em&gt; e &lt;em&gt;naranja&lt;/em&gt;. &lt;strong&gt;AND tem que estar em mayúscula quando se utiliza&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Combinada&lt;/td&gt;
+        &lt;td&gt;(naraja &lt;b&gt;OR&lt;/b&gt; blanca) &lt;b&gt;AND&lt;/b&gt; casa&lt;/td&gt;
+        &lt;td&gt;Búqueda combinada, contém &lt;i&gt;casa&lt;/i&gt; e tambien &lt;i&gt;naranja&lt;/i&gt; y/o &lt;i&gt;blanca&lt;/i&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</value>
+  </data>
+  <data name="AllFeaturesSelected.Text">
+    <value xml:space="preserve">Todas</value>
+  </data>
+  <data name="Author.Text">
+    <value xml:space="preserve">Autor:</value>
+  </data>
+  <data name="btnClear.Text">
+    <value xml:space="preserve">Cerrar</value>
+  </data>
+  <data name="btnSearch.Text">
+    <value xml:space="preserve">Buscar</value>
+  </data>
+  <data name="Comments.Text">
+    <value xml:space="preserve">Comentarios:</value>
+  </data>
+  <data name="CurrentPageIndex.Text">
+    <value xml:space="preserve">Página:</value>
+  </data>
+  <data name="Date.Text">
+    <value xml:space="preserve">Data</value>
+  </data>
+  <data name="DefaultText.Text">
+    <value xml:space="preserve">Entrar o término de busca</value>
+  </data>
+  <data name="LastModified.Text">
+    <value xml:space="preserve">Actualizado:</value>
+  </data>
+  <data name="lblAdvancedDates.Help">
+    <value xml:space="preserve">Limitar busca a conteúdos modificados em as datass indicadas</value>
+  </data>
+  <data name="lblAdvancedDates.Text">
+    <value xml:space="preserve">Última modificação:</value>
+  </data>
+  <data name="lblAdvancedExactSearch.Help">
+    <value xml:space="preserve">Os resultados tienem que contener as palabras exactas</value>
+  </data>
+  <data name="lblAdvancedExactSearch.Text">
+    <value xml:space="preserve">busca exacta:</value>
+  </data>
+  <data name="lblAdvancedScope.Help">
+    <value xml:space="preserve">Limitar a busca a os tipos de conteúdos seleccionados</value>
+  </data>
+  <data name="lblAdvancedScope.Text">
+    <value xml:space="preserve">Buscar:</value>
+  </data>
+  <data name="lblAdvancedTags.Help">
+    <value xml:space="preserve">Limitar a busca según etiquetas dos conteúdos</value>
+  </data>
+  <data name="lblAdvancedTags.Text">
+    <value xml:space="preserve">Filtrar según etiquetas:</value>
+  </data>
+  <data name="Likes.Text">
+    <value xml:space="preserve">Votações:</value>
+  </data>
+  <data name="linkAdvancedTip.Text">
+    <value xml:space="preserve">Ayuda</value>
+  </data>
+  <data name="NoResults.Text">
+    <value xml:space="preserve">Não se encontraron resultados para &lt;strong&gt;&lt;em&gt;{0}&lt;/em&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="optionAll.Text">
+    <value xml:space="preserve">Todos</value>
+  </data>
+  <data name="optionDay.Text">
+    <value xml:space="preserve">1 día</value>
+  </data>
+  <data name="optionMonth.Text">
+    <value xml:space="preserve">30 días</value>
+  </data>
+  <data name="optionQuarter.Text">
+    <value xml:space="preserve">90 días</value>
+  </data>
+  <data name="optionWeek.Text">
+    <value xml:space="preserve">7 días</value>
+  </data>
+  <data name="optionYear.Text">
+    <value xml:space="preserve">1 año</value>
+  </data>
+  <data name="Relevance.Text">
+    <value xml:space="preserve">Relevancia</value>
+  </data>
+  <data name="ResultPerPage.Text">
+    <value xml:space="preserve">Resultados por página:</value>
+  </data>
+  <data name="ResultsCount.Text">
+    <value xml:space="preserve">Aproximadamente {0} resultados</value>
+  </data>
+  <data name="Source.Text">
+    <value xml:space="preserve">Origen:</value>
+  </data>
+  <data name="Tags.Text">
+    <value xml:space="preserve">Etiquetas:</value>
+  </data>
+  <data name="Views.Text">
+    <value xml:space="preserve">Visualizações:</value>
+  </data>
+</root>

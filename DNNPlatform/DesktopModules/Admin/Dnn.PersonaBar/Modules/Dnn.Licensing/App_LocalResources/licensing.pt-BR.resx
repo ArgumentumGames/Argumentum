@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Activated.Header">
+    <value xml:space="preserve">Activada</value>
+  </data>
+  <data name="Community" lastModified="2020-05-09 00:37:05">
+    <value xml:space="preserve">DNN tem uma comunidade activa e vibrante. Visítenos e participe em nuestras actividades. Obtenga ayuda, discuta proyectos e manténgase ao día de todas as novedades.</value>
+  </data>
+  <data name="Community.Header" lastModified="2020-05-09 00:37:05">
+    <value xml:space="preserve">A COMUNIDADE</value>
+  </data>
+  <data name="Docs" lastModified="2020-05-09 02:38:57">
+    <value xml:space="preserve">DNN Docs tambíen é Open Souce! Aprenda como empezar com DNN, realize tutoriales paso a paso o lea a documentação da API.</value>
+  </data>
+  <data name="Docs.Header" lastModified="2020-05-09 02:38:57">
+    <value xml:space="preserve">DOCUMENTAÇÃO</value>
+  </data>
+  <data name="Error.ACT1.Text">
+    <value xml:space="preserve">Error na activação da licencia. Os detalles proporcionados não coincidem com uma licencia válida.&lt;br /&gt;&lt;br /&gt;Verifique os detalles de su licencia em &lt;a href="{0}" target="_blank"&gt;sua página de licencias em www.dnnsoftware.com&lt;/a&gt; e inténtelo de novo. Se o error continúa, póngase em contato com o departamento de soporte técnico.</value>
+  </data>
+  <data name="Error.ACT2.Text">
+    <value xml:space="preserve">Error na activação da licencia. Já existe uma activação de produção de {0} em uso.</value>
+  </data>
+  <data name="Error.ACT3.Text">
+    <value xml:space="preserve">Foi sobrepasado o límite de activações permitidas</value>
+  </data>
+  <data name="Error.ACT4.Text">
+    <value xml:space="preserve">Error na activação da licencia. Já existe uma activação de produção de {0} em uso.</value>
+  </data>
+  <data name="Error.ACT6.Text">
+    <value xml:space="preserve">Error na activação da licencia. O período de validez de esta licencia caducó o {0:d}. Póngase em contato com &lt;a href="mailto:customercare@dnnsoftware.com"&gt;customercare@dnnsoftware.com&lt;/a&gt;.</value>
+  </data>
+  <data name="Error.ContactServer.activate">
+    <value xml:space="preserve">Não foi podido activar a licencia. A conexión com o servidor de licencias não foi sido possível. Inténtelo de novo más tarde o use a activação manual. Se o error persiste póngase em contato com o departamento de soporte técnico.</value>
+  </data>
+  <data name="Error.ContactServer.canrenew">
+    <value xml:space="preserve">A conexión com o servidor de licencias não foi sido possível. Não podrá activar o renovar automáticamente sus licencias, mas pode utilizar a activação manual para activar sus licencias.&lt;br /&gt;&lt;br /&gt;
+Para renovar licencias póngase em contato com &lt;a href="mailto:customercare@dnnsoftware.com"&gt;customercare@dnnsoftware.com&lt;/a&gt;.</value>
+  </data>
+  <data name="Error.ContactServer.deactivate">
+    <value xml:space="preserve">Su licencia foi borrado.&lt;br /&gt;&lt;br /&gt;
+Não foi podido adicionar a activação de novo a su factura debido a um problema de conexión com o servidor de licencias. Póngase em contato com o departamento de soporte técnico para activar a licencia.</value>
+  </data>
+  <data name="Error.ContactServer.renew">
+    <value xml:space="preserve">Não foi podido renovar a licencia. A conexión com o servidor de licencias não foi sido possível. Inténtelo de novo más tarde o póngase em contato com &lt;a href="mailto:customercare@dnnsoftware.com"&gt;customercare@dnnsoftware.com&lt;/a&gt;.</value>
+  </data>
+  <data name="Error.DEA1.Text">
+    <value xml:space="preserve">Não foi podido borrar a licencia. A licencia não foi encontrado.</value>
+  </data>
+  <data name="Error.ExpiredLicense">
+    <value xml:space="preserve">Não foi podido activar a licencia. Su licencia expiró o {0:d}. Comprueba sus licencias em &lt;a href="{1}" target="_blank"&gt;sua página de licencias em www.dnnsoftware.com&lt;/a&gt;. Inicie sesión usando a conta que recibió a primera vez que compró o producto.</value>
+  </data>
+  <data name="Error.LicenseAlreadyExists">
+    <value xml:space="preserve">Não foi podido activar a licencia. O sistema {0} já tem a licencia {1}.</value>
+  </data>
+  <data name="Error.Unknown">
+    <value xml:space="preserve">Não foi podido procesar a petição, vuelva a intentarlo.</value>
+  </data>
+  <data name="Error.Unknown.Activation">
+    <value xml:space="preserve">Não foi podido procesar a petição, vuelva a intentarlo o utilice a activação manual.</value>
+  </data>
+  <data name="Expires.Header">
+    <value xml:space="preserve">CADUCA</value>
+  </data>
+  <data name="GitHub" lastModified="2020-05-09 08:44:50">
+    <value xml:space="preserve">A plataforma DNN se gestiona como um proyecto Open Source em GitHub. Visítenos em GitHub e participe. Registre incidencias, proporcione feedback e contribuya.</value>
+  </data>
+  <data name="GitHub.Header" lastModified="2020-05-09 08:44:50">
+    <value xml:space="preserve">CÓDIGO</value>
+  </data>
+  <data name="Intro" lastModified="2020-05-09 08:44:50">
+    <value xml:space="preserve">DNN® (anteriormente DotNetNuke®) é a plataforma Open Source líder para gestión de conteúdos (CMS) não ecosistema Microsoft. Com DNN se podem criar portais web profesionales e fáciles de utilizar, intranets sociales, portales de comunidades, o extranets de partners. Com conteúdos dinámicos de muchos tipos diferentes, os portais DNN se podem instalar e atualizar muy fácilmente. A plataforma DNN foi descargado más de 8 millones de veces e gestiona más de 750.000 portais web a nivel mundial. A comunidade DNN de más de 1 millón de usuarios proporciona uma potente red de soporte.</value>
+  </data>
+  <data name="Intro.Header" lastModified="2020-05-08 22:34:59">
+    <value xml:space="preserve">DNN Platform</value>
+  </data>
+  <data name="InvoiceNumber.Header">
+    <value xml:space="preserve">NÚMERO DE FACTURA</value>
+  </data>
+  <data name="LicenseType.Development">
+    <value xml:space="preserve">Desarrollo</value>
+  </data>
+  <data name="LicenseType.Failover">
+    <value xml:space="preserve">Failover</value>
+  </data>
+  <data name="LicenseType.Header">
+    <value xml:space="preserve">TIPO DE LICENCIA</value>
+  </data>
+  <data name="LicenseType.Production">
+    <value xml:space="preserve">Produção</value>
+  </data>
+  <data name="LicenseType.Staging">
+    <value xml:space="preserve">Servidor provisional</value>
+  </data>
+  <data name="LicenseType.Test">
+    <value xml:space="preserve">Test</value>
+  </data>
+  <data name="nav_Licensing.Text">
+    <value xml:space="preserve">Acerca de</value>
+  </data>
+  <data name="NoLicense.Header">
+    <value xml:space="preserve">Não tem licencias EVOQ... aún</value>
+  </data>
+  <data name="NoLicense.Text">
+    <value xml:space="preserve">Actualice a EVOQ para acceder a funções profesionales para sus portais.</value>
+  </data>
+  <data name="Success.DevLicenseActivated">
+    <value xml:space="preserve">A licencia de desarrollo foi activado corretamente.</value>
+  </data>
+  <data name="Success.FailoverLicenseActivated">
+    <value xml:space="preserve">A licencia de conmutação por error foi activado corretamente.</value>
+  </data>
+  <data name="Success.LicenseActivated">
+    <value xml:space="preserve">A licencia de produção foi activado corretamente.</value>
+  </data>
+  <data name="Success.LicenseDeactivated">
+    <value xml:space="preserve">A licencia foi eliminado corretamente.</value>
+  </data>
+  <data name="Success.LicenseDeactivatedContactServerErr">
+    <value xml:space="preserve">A licencia foi eliminado. &lt;br/&gt;&lt;br/&gt;Não foi podido adicionar a activação de novo a su pedido porque a conexión com o servidor de licencias falhou. Si necessita activar uma licencia de produção, póngase em contato com soporte técnico.</value>
+  </data>
+  <data name="Success.LicenseDeactivatedNoActivationIncrease">
+    <value xml:space="preserve">A licencia foi eliminado. &lt;br/&gt;&lt;br/&gt;Não foi podido adicionar a activação de novo a su pedido. Si necessita activar uma licencia de produção, póngase em contato com soporte técnico.</value>
+  </data>
+  <data name="Success.LicenseRenewed">
+    <value xml:space="preserve">A licencia foi renovado corretamente.</value>
+  </data>
+  <data name="Success.StagingLicenseActivated">
+    <value xml:space="preserve">A licencia provisional foi activado corretamente.</value>
+  </data>
+  <data name="Success.TestLicenseActivated">
+    <value xml:space="preserve">A licencia de test foi activado corretamente.</value>
+  </data>
+  <data name="Success.TrialActivation">
+    <value xml:space="preserve">Su licencia ampliada de prueba foi sido corretamente instalada.</value>
+  </data>
+  <data name="Success.TrialExtensionRequest">
+    <value xml:space="preserve">Su solicitud de licencia ampliada de prueba foi enviado. Devería recibir um mensagem em 1 día laborable com as instrucções para ampliar su licencia. Si tem preguntas sobre ampliações da licencia de prueba, llame ao Departamento Comercial de DotNetNuke Corp. não 650-288-3150.</value>
+  </data>
+  <data name="WebLicenseList.url">
+    <value xml:space="preserve">http://www.dnnsoftware.com/Support/Success-Network/License-Management</value>
+  </data>
+  <data name="WebServer.Header">
+    <value xml:space="preserve">SERVIDOR WEB</value>
+  </data>
+</root>

@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <!--DOTWARE TST S.L.-->
+  <data name="AllEntries.Text">
+    <value xml:space="preserve">Todo</value>
+  </data>
+  <data name="Cancel.Text">
+    <value xml:space="preserve">Cancelar</value>
+  </data>
+  <data name="Connection.Text">
+    <value xml:space="preserve">Conexión:</value>
+  </data>
+  <data name="Delete.Text">
+    <value xml:space="preserve">Borrar</value>
+  </data>
+  <data name="DeleteConfirm.Text">
+    <value xml:space="preserve">Confirme que quer borrar esta consulta.</value>
+  </data>
+  <data name="EmptyName.Text">
+    <value xml:space="preserve">Não se pode guardar a consulta sin um nome.</value>
+  </data>
+  <data name="Export.Text">
+    <value xml:space="preserve">Exportar</value>
+  </data>
+  <data name="ExportClipboard.Text">
+    <value xml:space="preserve">Cópiar ao portapapeles</value>
+  </data>
+  <data name="ExportClipboardFailed.Text">
+    <value xml:space="preserve">Não foi podido cópiar ao portapapeles</value>
+  </data>
+  <data name="ExportClipboardSuccessful.Text">
+    <value xml:space="preserve">foi cópiado ao portapapeles</value>
+  </data>
+  <data name="ExportCSV.Text">
+    <value xml:space="preserve">Exportar a CSV</value>
+  </data>
+  <data name="ExportExcel.Text">
+    <value xml:space="preserve">Exportar a Excel</value>
+  </data>
+  <data name="ExportPDF.Text">
+    <value xml:space="preserve">Exportar a PDF</value>
+  </data>
+  <data name="nav_SqlConsole.Text">
+    <value xml:space="preserve">Consola SQL</value>
+  </data>
+  <data name="NewQuery.Text">
+    <value xml:space="preserve">&lt; Nova consulta &gt;</value>
+  </data>
+  <data name="NoData.Text">
+    <value xml:space="preserve">A consulta não devolvió nenhum dato</value>
+  </data>
+  <data name="PageInfo.Text">
+    <value xml:space="preserve">Mostrando {0}-{1} de {2} elementos</value>
+  </data>
+  <data name="PageSize.Text">
+    <value xml:space="preserve">{0} elementos</value>
+  </data>
+  <data name="Query.Text">
+    <value xml:space="preserve">Consulta:</value>
+  </data>
+  <data name="QueryFailed.Text">
+    <value xml:space="preserve">A consulta falhou.</value>
+  </data>
+  <data name="QuerySuccessful.Text">
+    <value xml:space="preserve">A consulta de foi realizado corretamente.</value>
+  </data>
+  <data name="QueryTabTitle.Text">
+    <value xml:space="preserve">Consulta {0}</value>
+  </data>
+  <data name="RunScript.Text">
+    <value xml:space="preserve">Ejecutar script</value>
+  </data>
+  <data name="SaveQuery.Text">
+    <value xml:space="preserve">Guardar consulta</value>
+  </data>
+  <data name="SaveQueryInfo.Text">
+    <value xml:space="preserve">Introduzca um nome para a consulta:</value>
+  </data>
+  <data name="Search.Text">
+    <value xml:space="preserve">Buscar</value>
+  </data>
+  <data name="Title.Text">
+    <value xml:space="preserve">Consola SQL</value>
+  </data>
+  <data name="UploadFile.Text">
+    <value xml:space="preserve">Cargar um arquivo</value>
+  </data>
+</root>

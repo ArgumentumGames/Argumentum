@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle_editgroup.Text">
+    <value xml:space="preserve">Editar grupo de roles</value>
+  </data>
+  <data name="DuplicateRoleGroup.Text">
+    <value xml:space="preserve">Existe um grupo de roles com o mesmo nome. O novo grupo não foi sido añadido.</value>
+  </data>
+  <data name="ModuleHelp.Text">
+    <value xml:space="preserve">&lt;h1&gt;Acerca da edição de grupos de roles&lt;/h1&gt;&lt;p&gt;Os Administradores podem administrar os grupos de roles de seguridade definidos para este sitio. O módulo permite adicionar novos grupos, modificar e borrar os grupos.&lt;/p&gt;</value>
+  </data>
+  <data name="plDescription.Help">
+    <value xml:space="preserve">Introduzca a descripção do grupo de roles.</value>
+  </data>
+  <data name="plDescription.Text">
+    <value xml:space="preserve">Descripção:</value>
+  </data>
+  <data name="plRoleGroupName.Help">
+    <value xml:space="preserve">Introduzca o nome do grupo de roles.</value>
+  </data>
+  <data name="plRoleGroupName.Text">
+    <value xml:space="preserve">Nome do grupo:</value>
+  </data>
+  <data name="valRoleGroupName.Text">
+    <value xml:space="preserve">&lt;br/&gt;Tem que introducir um nome válido</value>
+  </data>
+</root>

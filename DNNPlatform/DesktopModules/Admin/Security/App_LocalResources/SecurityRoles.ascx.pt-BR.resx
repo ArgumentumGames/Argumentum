@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddRole.Text">
+    <value xml:space="preserve">Adicionar rol ao usuario</value>
+  </data>
+  <data name="AddUser.Text">
+    <value xml:space="preserve">Adicionar usuario ao rol</value>
+  </data>
+  <data name="cmdAdd.Text">
+    <value xml:space="preserve">Adicionar rol</value>
+  </data>
+  <data name="cmdValidate.Text">
+    <value xml:space="preserve">Validar</value>
+  </data>
+  <data name="ControlTitle_user roles.Text">
+    <value xml:space="preserve">Roles do usuário</value>
+  </data>
+  <data name="DeleteRoleFromUser.Text">
+    <value xml:space="preserve">Está seguro que quiere eliminar o rol '{1}' de '{0}'?</value>
+  </data>
+  <data name="DeleteUsersFromRole.Text">
+    <value xml:space="preserve">Está seguro que quer eliminar '{0}' do rol '{1}'?</value>
+  </data>
+  <data name="EffectiveDate.Header">
+    <value xml:space="preserve">Data efectiva</value>
+  </data>
+  <data name="ExpiryDate.Header">
+    <value xml:space="preserve">Data de expiração</value>
+  </data>
+  <data name="IsOwner.Header">
+    <value xml:space="preserve">É propietario</value>
+  </data>
+  <data name="lblIsOwner.Help">
+    <value xml:space="preserve">Adicionar ao usuario como propietario do grupo.</value>
+  </data>
+  <data name="lblIsOwner.Text">
+    <value xml:space="preserve">É propietario</value>
+  </data>
+  <data name="ModuleHelp.Text">
+    <value xml:space="preserve">&lt;h1&gt;Acerca de roles do usuario&lt;/h1&gt;&lt;p&gt;Os Administradores podem definir os roles de seguridade que estarán disponívels não portal web. Em este módulo podem asignar o usuário a os roles de seguridade disponívels.&lt;/p&gt;</value>
+  </data>
+  <data name="NotAuthorized.Text">
+    <value xml:space="preserve">Não está autorizado para editar este rol.</value>
+  </data>
+  <data name="plEffectiveDate.Help">
+    <value xml:space="preserve">Especifique a data na que o rol asignado deve começar (opcional). Si não mostra um valor o rol tomará efecto inmediatamente.</value>
+  </data>
+  <data name="plEffectiveDate.Text">
+    <value xml:space="preserve">Data efectiva</value>
+  </data>
+  <data name="plExpiryDate.Help">
+    <value xml:space="preserve">Escriba a data na que esta asignação deve expirar. Não introduzca nenhum valor para indicar que não deve expirar.</value>
+  </data>
+  <data name="plExpiryDate.Text">
+    <value xml:space="preserve">Data de expiração</value>
+  </data>
+  <data name="plRoles.Help">
+    <value xml:space="preserve">Selecione o rol de seguridade</value>
+  </data>
+  <data name="plRoles.Text">
+    <value xml:space="preserve">Rol de seguridade</value>
+  </data>
+  <data name="plUsers.Help">
+    <value xml:space="preserve">Selecione o nome do usuário</value>
+  </data>
+  <data name="plUsers.Text">
+    <value xml:space="preserve">Nome do usuário</value>
+  </data>
+  <data name="RoleRemoveError.Text">
+    <value xml:space="preserve">não é possível quitar o rol de Administrador do portal ni o rol de Usuarios registrados.</value>
+  </data>
+  <data name="RoleTitle.Text">
+    <value xml:space="preserve">Administrar os usuarios do rol: {0}</value>
+  </data>
+  <data name="SecurityRole.Header">
+    <value xml:space="preserve">Rol de seguridade</value>
+  </data>
+  <data name="SendNotification.Text">
+    <value xml:space="preserve">Enviar email?</value>
+  </data>
+  <data name="UpdateRole.Text">
+    <value xml:space="preserve">Atualizar rol do usuário</value>
+  </data>
+  <data name="UserName.Header">
+    <value xml:space="preserve">Nome do usuário</value>
+  </data>
+  <data name="UserTitle.Text">
+    <value xml:space="preserve">Administrar roles do usuario: {0}</value>
+  </data>
+  <data name="valDates.Text">
+    <value xml:space="preserve">A data de expiração deve ser maior que a data efectiva.</value>
+  </data>
+  <data name="valEffectiveDate.Text">
+    <value xml:space="preserve">Data efectiva inválida</value>
+  </data>
+  <data name="valExpiryDate.Text">
+    <value xml:space="preserve">Data de expiração inválida</value>
+  </data>
+</root>

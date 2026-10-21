@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CellRequired.Text">
+    <value xml:space="preserve">O número de móvil é obrigatório</value>
+  </data>
+  <data name="CityRequired.Text">
+    <value xml:space="preserve">A poblação é obrigatória</value>
+  </data>
+  <data name="CountryRequired.Text">
+    <value xml:space="preserve">O país é obrigatório</value>
+  </data>
+  <data name="FaxRequired.Text">
+    <value xml:space="preserve">O número de fax é obrigatório</value>
+  </data>
+  <data name="plCell.Help">
+    <value xml:space="preserve">Entre o número de móvil</value>
+  </data>
+  <data name="plCell.Text">
+    <value xml:space="preserve">Móvil</value>
+  </data>
+  <data name="plCity.Help">
+    <value xml:space="preserve">Entre a poblação</value>
+  </data>
+  <data name="plCity.Text">
+    <value xml:space="preserve">Poblação</value>
+  </data>
+  <data name="plCountry.Help">
+    <value xml:space="preserve">Entre o país</value>
+  </data>
+  <data name="plCountry.Text">
+    <value xml:space="preserve">País</value>
+  </data>
+  <data name="plFax.Help">
+    <value xml:space="preserve">Entre o número de fax</value>
+  </data>
+  <data name="plFax.Text">
+    <value xml:space="preserve">Fax: </value>
+  </data>
+  <data name="plPostal.Help">
+    <value xml:space="preserve">Entre o código postal</value>
+  </data>
+  <data name="plPostal.Text">
+    <value xml:space="preserve">Código postal</value>
+  </data>
+  <data name="plProvince.Help">
+    <value xml:space="preserve">Selecione a provincia na lista</value>
+  </data>
+  <data name="plProvince.Text">
+    <value xml:space="preserve">Provincia</value>
+  </data>
+  <data name="plRegion.Help">
+    <value xml:space="preserve">Entre a región</value>
+  </data>
+  <data name="plRegion.Text">
+    <value xml:space="preserve">Región:</value>
+  </data>
+  <data name="plState.Help">
+    <value xml:space="preserve">Selecione a provincia na lista</value>
+  </data>
+  <data name="plState.Text">
+    <value xml:space="preserve">Provincia:</value>
+  </data>
+  <data name="plStreet.Help">
+    <value xml:space="preserve">Entre a direção</value>
+  </data>
+  <data name="plStreet.Text">
+    <value xml:space="preserve">Calle:</value>
+  </data>
+  <data name="plTelephone.Help">
+    <value xml:space="preserve">Entre o número de teléfono</value>
+  </data>
+  <data name="plTelephone.Text">
+    <value xml:space="preserve">Teléfono:</value>
+  </data>
+  <data name="plUnit.Help">
+    <value xml:space="preserve">Entre o número</value>
+  </data>
+  <data name="plUnit.Text">
+    <value xml:space="preserve">Número:</value>
+  </data>
+  <data name="plZip.Help">
+    <value xml:space="preserve">Entre o código postal</value>
+  </data>
+  <data name="plZip.Text">
+    <value xml:space="preserve">Código Postal:</value>
+  </data>
+  <data name="PostalRequired.Text">
+    <value xml:space="preserve">O código postal é obrigatório</value>
+  </data>
+  <data name="ProvinceRequired.Text">
+    <value xml:space="preserve">A provincia é obrigatória</value>
+  </data>
+  <data name="RegionRequired.Text">
+    <value xml:space="preserve">A región é obrigatória</value>
+  </data>
+  <data name="StateRequired.Text">
+    <value xml:space="preserve">O estado é obrigatório</value>
+  </data>
+  <data name="StreetRequired.Text">
+    <value xml:space="preserve">A calle é obrigatória</value>
+  </data>
+  <data name="TelephoneRequired.Text">
+    <value xml:space="preserve">O número de teléfonão é obrigatório</value>
+  </data>
+</root>

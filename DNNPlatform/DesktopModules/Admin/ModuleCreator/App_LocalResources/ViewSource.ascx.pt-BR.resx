@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add.Text">
+    <value xml:space="preserve">Adicionar Arquivo</value>
+  </data>
+  <data name="AddControlError.Text">
+    <value xml:space="preserve">Tem que selecionar uma planilha de módulo e entrar um nome de controle.</value>
+  </data>
+  <data name="AddFile.Text">
+    <value xml:space="preserve">Adicionar Arquivo</value>
+  </data>
+  <data name="C#.Text">
+    <value xml:space="preserve">C#</value>
+  </data>
+  <data name="cmdConfigure.Text">
+    <value xml:space="preserve">Configurar</value>
+  </data>
+  <data name="cmdCreate.Text">
+    <value xml:space="preserve">criar</value>
+  </data>
+  <data name="cmdPackage.Text">
+    <value xml:space="preserve">criar paquete</value>
+  </data>
+  <data name="cmdSave.Text">
+    <value xml:space="preserve">Guardar</value>
+  </data>
+  <data name="cmdSaveAs.Text">
+    <value xml:space="preserve">Guardar como</value>
+  </data>
+  <data name="cmdUpdate.Text">
+    <value xml:space="preserve">Atualizar</value>
+  </data>
+  <data name="ControlCreated.Text">
+    <value xml:space="preserve">O arquivo foi creado corretamente.</value>
+  </data>
+  <data name="ControlTitle_viewsource.Text">
+    <value xml:space="preserve">Ver código fonte</value>
+  </data>
+  <data name="ControlUpdated.Text">
+    <value xml:space="preserve">O arquivo foi guardado corretamente.</value>
+  </data>
+  <data name="DeleteSnippet.Text">
+    <value xml:space="preserve">Borrar fragmento de código?</value>
+  </data>
+  <data name="Edit.Text">
+    <value xml:space="preserve">Editar Arquivo</value>
+  </data>
+  <data name="EditFile.Text">
+    <value xml:space="preserve">Editar Arquivo</value>
+  </data>
+  <data name="FolderNameInvalid.Text">
+    <value xml:space="preserve">O nome da pasta identificada em o módulo não existe. Revise a configuração do módulo em Sistema - Extensões.</value>
+  </data>
+  <data name="NoFileTypeSelected.Text">
+    <value xml:space="preserve">Tem que selecionar um tipo de Arquivo para editar antes de clicar o botão Atualizar.</value>
+  </data>
+  <data name="plControl.Help">
+    <value xml:space="preserve">Introduzca um nome único para o controle.</value>
+  </data>
+  <data name="plControl.Text">
+    <value xml:space="preserve">Nome do controle:</value>
+  </data>
+  <data name="plFile.Help">
+    <value xml:space="preserve">Selecione o arquivo de código fonte que quiera visualizar.</value>
+  </data>
+  <data name="plFile.Text">
+    <value xml:space="preserve">Selecionar Arquivo:</value>
+  </data>
+  <data name="plLanguage.Help">
+    <value xml:space="preserve">Selecione o lenguaje de programação do módulo</value>
+  </data>
+  <data name="plLanguage.Text">
+    <value xml:space="preserve">Lenguaje:</value>
+  </data>
+  <data name="plSource.Help">
+    <value xml:space="preserve">Pode ver o conteúdo do arquivo na caja de texto inferior. Se estiver executando o sitio em um PC local também podrá editar e modificar o código fonte.</value>
+  </data>
+  <data name="plSource.Text">
+    <value xml:space="preserve">Pasta:</value>
+  </data>
+  <data name="plTemplate.Help">
+    <value xml:space="preserve">Selecione a planilha de módulo que quiere utilizar. As planilhas para creação de módulos se encontran em a pasta Modules em a pasta principal do sistema.</value>
+  </data>
+  <data name="plTemplate.Text">
+    <value xml:space="preserve">planilha:</value>
+  </data>
+  <data name="plType.Help">
+    <value xml:space="preserve">Selecione o tipo de controle.</value>
+  </data>
+  <data name="plType.Text">
+    <value xml:space="preserve">Tipo de controle:</value>
+  </data>
+  <data name="Snippet.Text">
+    <value xml:space="preserve">Fragmentos de código</value>
+  </data>
+  <data name="SourceFile.Text">
+    <value xml:space="preserve">Arquivo fonte - {0}</value>
+  </data>
+  <data name="VB.Text">
+    <value xml:space="preserve">Visual Basic</value>
+  </data>
+  <data name="View.Text">
+    <value xml:space="preserve">Mostrar</value>
+  </data>
+</root>

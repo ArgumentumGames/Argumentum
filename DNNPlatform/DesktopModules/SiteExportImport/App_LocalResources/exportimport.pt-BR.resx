@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="InvalidPortal.Text" lastModified="2017-04-29 05:13:56">
+    <value xml:space="preserve">Sitio inválido.</value>
+  </data>
+  <data name="JobNotExist.Text" lastModified="2017-04-29 05:13:56">
+    <value xml:space="preserve">Não se encontra o proceso.</value>
+  </data>
+  <data name="JobStatus_Cancelled.Text" lastModified="2017-04-29 05:13:56">
+    <value xml:space="preserve">Cancelado</value>
+  </data>
+  <data name="JobStatus_DoneFailure.Text" lastModified="2017-04-29 05:13:56">
+    <value xml:space="preserve">Error</value>
+  </data>
+  <data name="JobStatus_DoneSuccess.Text" lastModified="2017-04-29 05:13:56">
+    <value xml:space="preserve">Finalizado</value>
+  </data>
+  <data name="JobStatus_InProgress.Text" lastModified="2017-04-29 05:13:56">
+    <value xml:space="preserve">Em proceso</value>
+  </data>
+  <data name="JobStatus_Submitted.Text" lastModified="2017-04-29 05:13:56">
+    <value xml:space="preserve">Enviado</value>
+  </data>
+  <data name="JobType_Export.Text" lastModified="2017-04-29 05:13:56">
+    <value xml:space="preserve">Exportar sitio</value>
+  </data>
+  <data name="JobType_Import.Text" lastModified="2017-04-29 05:13:56">
+    <value xml:space="preserve">Importar sitio</value>
+  </data>
+  <data name="NotPortalAdmin.Text" lastModified="2017-04-29 05:13:56">
+    <value xml:space="preserve">O usuário não é um administrado do portal</value>
+  </data>
+</root>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="captchaLabel.Help">
+    <value xml:space="preserve">Introduzca o código de seguridade</value>
+  </data>
+  <data name="captchaLabel.Text">
+    <value xml:space="preserve">Código de seguridade:</value>
+  </data>
+  <data name="cmdRegister.Text">
+    <value xml:space="preserve">Registrar</value>
+  </data>
+  <data name="ControlTitle_register.Text">
+    <value xml:space="preserve">Registro</value>
+  </data>
+  <data name="NoEmail.Text">
+    <value xml:space="preserve">O provedor de autenticação utilizado para o registro não foi proporcionado nenhum email. Introduzca su direção email e clique o botão Registrar para completar o registro.</value>
+  </data>
+  <data name="RegisterWarning.Text" lastModified="2015-12-29 06:57:21">
+    <value xml:space="preserve">&lt;em&gt;(&lt;strong&gt;Atenção:&lt;/strong&gt; - O registro pode tardar unos momentos. Espere unos momentos después de clicar o botão Registrar hasta que o proceso termine.)&lt;/em&gt;</value>
+  </data>
+</root>

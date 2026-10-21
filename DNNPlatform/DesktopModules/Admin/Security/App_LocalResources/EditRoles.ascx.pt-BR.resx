@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AdvancedSettings.Text">
+    <value xml:space="preserve">Configuração avançada</value>
+  </data>
+  <data name="AdvancedSettingsHelp.Text">
+    <value xml:space="preserve">Nesta seção podrá establecer a configuração avançada para o rol.</value>
+  </data>
+  <data name="AssignToExistUsers.Help">
+    <value xml:space="preserve">Asignar o rol a todos os usuarios existentes.</value>
+  </data>
+  <data name="AssignToExistUsers.Text">
+    <value xml:space="preserve">Asignar a usuarios existentes:</value>
+  </data>
+  <data name="AutoAssignment.Help">
+    <value xml:space="preserve">Mostra si se deve asignar este rol automáticamente a os usuarios</value>
+  </data>
+  <data name="AutoAssignment.Text">
+    <value xml:space="preserve">Asignação automática?</value>
+  </data>
+  <data name="BasicSettings.Text">
+    <value xml:space="preserve">Configuração básica</value>
+  </data>
+  <data name="BasicSettingsDescription.Text">
+    <value xml:space="preserve">Nesta seção podrá establecer a configuração básica para o rol.</value>
+  </data>
+  <data name="BillingPeriod.Help">
+    <value xml:space="preserve">Estos dos campos se utilizan conjuntamente para definir um período de facturação. Por ejemplo, 2 semanas o 1 mes.</value>
+  </data>
+  <data name="BillingPeriod.Text">
+    <value xml:space="preserve">Período de facturação (cada)</value>
+  </data>
+  <data name="cmdManage.Text">
+    <value xml:space="preserve">Administrar usuarios</value>
+  </data>
+  <data name="ControlTitle_edit.Text">
+    <value xml:space="preserve">Editar roles de seguridade</value>
+  </data>
+  <data name="Description.Help">
+    <value xml:space="preserve">Introduzca a descripção deste rol.</value>
+  </data>
+  <data name="Description.Text">
+    <value xml:space="preserve">Descripção</value>
+  </data>
+  <data name="DuplicateRole.Text">
+    <value xml:space="preserve">Já existe um rol com o mesmo. O rol não foi adicionado.</value>
+  </data>
+  <data name="IncompatívelFee.Text">
+    <value xml:space="preserve">A tarifa introducida "{0}" é incompatível com a frecuencia de facturação "Nenhuma".</value>
+  </data>
+  <data name="ModuleHelp.Text">
+    <value xml:space="preserve">&lt;h1&gt;Acerca de roles de seguridade&lt;/h1&gt;&lt;p&gt;Os Administradores podem gestionar os distintos roles disponívels não portal.  O módulo provee a funcionalidade para adicionar roles de seguridade, modificar e eliminar roles existentes, así como asignar usuarios a éstos.&lt;/p&gt;</value>
+  </data>
+  <data name="plIcon.Help">
+    <value xml:space="preserve">Selecione um icone para o rol.</value>
+  </data>
+  <data name="plIcon.Text">
+    <value xml:space="preserve">Icone:</value>
+  </data>
+  <data name="plRoleGroups.Help">
+    <value xml:space="preserve">Selecione o grupo de roles ao qual pertencerá.</value>
+  </data>
+  <data name="plRoleGroups.Text">
+    <value xml:space="preserve">Grupo de roles</value>
+  </data>
+  <data name="plRSVPCode.Help">
+    <value xml:space="preserve">Entre um código RSVP para o rol. Este código podrá usarse para que os usuarios puedan añadirse a um rol directamente mediante o código.</value>
+  </data>
+  <data name="plRSVPCode.Text">
+    <value xml:space="preserve">Código RSVP:</value>
+  </data>
+  <data name="plRSVPLink.Help">
+    <value xml:space="preserve">Si foi entrado um código RSVP, pode utilizar esta URL para difundirlo.</value>
+  </data>
+  <data name="plRSVPLink.Text">
+    <value xml:space="preserve">Enlace RSVP:</value>
+  </data>
+  <data name="ProcessorWarning.Text">
+    <value xml:space="preserve">&lt;strong&gt;ATENCION:&lt;/strong&gt; Deve introducir a configuração do procesador de pagos em Administração do portal, para permitir a os usuarios suscribirse a os roles e servicios de pago.</value>
+  </data>
+  <data name="PublicRole.Help">
+    <value xml:space="preserve">Mostra se o rol é público</value>
+  </data>
+  <data name="PublicRole.Text">
+    <value xml:space="preserve">Rol público?</value>
+  </data>
+  <data name="RoleName.Help">
+    <value xml:space="preserve">Escriba o nome do rol.</value>
+  </data>
+  <data name="RoleName.Text">
+    <value xml:space="preserve">Nome do rol</value>
+  </data>
+  <data name="securityModeListLabel.Help">
+    <value xml:space="preserve">Selecione o modo de seguridade para este rol/grupo.</value>
+  </data>
+  <data name="securityModeListLabel.Text">
+    <value xml:space="preserve">Modo de seguridade:</value>
+  </data>
+  <data name="ServiceFee.Help">
+    <value xml:space="preserve">Introduzca a tarifa a cobrar a os usuarios asignados a este rol.</value>
+  </data>
+  <data name="ServiceFee.Text">
+    <value xml:space="preserve">Tarifa do servicio</value>
+  </data>
+  <data name="statusListLabel.Help">
+    <value xml:space="preserve">Selecione o estado deste rol/grupo.</value>
+  </data>
+  <data name="statusListLabel.Text">
+    <value xml:space="preserve">Estado:</value>
+  </data>
+  <data name="SystemRoleWarning.Text">
+    <value xml:space="preserve">Este é um rol de sistema, somente se podem editar algunos valores.</value>
+  </data>
+  <data name="TrialFee.Help">
+    <value xml:space="preserve">Introduzca a tarifa do período de prueba a cobrar a os usuarios asignados a este rol.</value>
+  </data>
+  <data name="TrialFee.Text">
+    <value xml:space="preserve">Tarifa do período de prueba</value>
+  </data>
+  <data name="TrialPeriod.Help">
+    <value xml:space="preserve">Estos dos campos se utilizan conjuntamente para definir um período de prueba. Por ejemplo, 2 semanas o 1 mes.</value>
+  </data>
+  <data name="TrialPeriod.Text">
+    <value xml:space="preserve">Período de prueba (cada)</value>
+  </data>
+  <data name="valBillingPeriod1.Text">
+    <value xml:space="preserve">&lt;br/&gt;O valor do período de facturação não é válido</value>
+  </data>
+  <data name="valBillingPeriod2.Text">
+    <value xml:space="preserve">&lt;br/&gt;O valor do período de facturação deve ser maior que zero</value>
+  </data>
+  <data name="valRoleName.Text">
+    <value xml:space="preserve">&lt;br/&gt;O nome não é correto</value>
+  </data>
+  <data name="valRoleName2.Text">
+    <value xml:space="preserve">&lt;br/&gt;O nome é incorreto. Os nomes de rol não podem incluir os caracteres seguintes: &amp; $ + , / ? ~ # &lt; &gt;  ¡ « » !  . :  * ' [ ]</value>
+  </data>
+  <data name="valServiceFee1.Text">
+    <value xml:space="preserve">&lt;br/&gt;O valor da tarifa por servicio não é válido</value>
+  </data>
+  <data name="valServiceFee2.Text">
+    <value xml:space="preserve">&lt;br/&gt;O valor da tarifa por servicio deve ser maior o igual que zero</value>
+  </data>
+  <data name="valTrialFee1.Text">
+    <value xml:space="preserve">&lt;br/&gt;O valor da tarifa do período de prueba não é válido</value>
+  </data>
+  <data name="valTrialFee2.Text">
+    <value xml:space="preserve">&lt;br/&gt;A tarifa do período de prueba deve ser maior o igual que zero</value>
+  </data>
+  <data name="valTrialPeriod1.Text">
+    <value xml:space="preserve">&lt;br/&gt;O valor do período de prueba não é válido</value>
+  </data>
+  <data name="valTrialPeriod2.Text">
+    <value xml:space="preserve">&lt;br/&gt;O período de prueba deve ser maior que zero</value>
+  </data>
+</root>

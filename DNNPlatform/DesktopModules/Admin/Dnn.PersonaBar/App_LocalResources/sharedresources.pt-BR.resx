@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="All.Text">
+    <value xml:space="preserve">Todo</value>
+  </data>
+  <data name="AllSites.Text" lastModified="2017-02-05 13:44:43">
+    <value xml:space="preserve">Todos os portais</value>
+  </data>
+  <data name="Anonymous.Text">
+    <value xml:space="preserve">Anónimo</value>
+  </data>
+  <data name="btnCancel.Text">
+    <value xml:space="preserve">Cancelar</value>
+  </data>
+  <data name="btnSave.Text">
+    <value xml:space="preserve">Guardar</value>
+  </data>
+  <data name="Day.Text">
+    <value xml:space="preserve">día</value>
+  </data>
+  <data name="DayAgo.Text">
+    <value xml:space="preserve">hace {0} día</value>
+  </data>
+  <data name="Days.Text">
+    <value xml:space="preserve">días</value>
+  </data>
+  <data name="DaysAgo.Text">
+    <value xml:space="preserve">hace {0} días</value>
+  </data>
+  <data name="ErrMissPermissions.Text">
+    <value xml:space="preserve">Não tem permiso para cargar Arquivos.</value>
+  </data>
+  <data name="ErrUploadFile.Text">
+    <value xml:space="preserve">Erro: o arquivo não foi podido cargar.</value>
+  </data>
+  <data name="ErrUploadStream.Text">
+    <value xml:space="preserve">A imagen não foi podido guardar.</value>
+  </data>
+  <data name="FolderDoesNotExist.Error">
+    <value xml:space="preserve">A pasta não existe.</value>
+  </data>
+  <data name="GenericErrorMessage.Error">
+    <value xml:space="preserve">foi producido um error desconocido. Revise o registro de eventos para ver más informação.</value>
+  </data>
+  <data name="Hour.Text">
+    <value xml:space="preserve">hora</value>
+  </data>
+  <data name="HourAgo.Text">
+    <value xml:space="preserve">hace {0} hora</value>
+  </data>
+  <data name="Hours.Text">
+    <value xml:space="preserve">horas</value>
+  </data>
+  <data name="HoursAgo.Text">
+    <value xml:space="preserve">hace {0} horas</value>
+  </data>
+  <data name="JustNow.Text">
+    <value xml:space="preserve">hace um momento</value>
+  </data>
+  <data name="LongTimeAgo.Text">
+    <value xml:space="preserve">hace mucho tempo</value>
+  </data>
+  <data name="Minute.Text">
+    <value xml:space="preserve">minuto</value>
+  </data>
+  <data name="MinuteAgo.Text">
+    <value xml:space="preserve">hace {0} minuto</value>
+  </data>
+  <data name="Minutes.Text">
+    <value xml:space="preserve">minutos</value>
+  </data>
+  <data name="MinutesAgo.Text">
+    <value xml:space="preserve">hace {0} minutos</value>
+  </data>
+  <data name="Month.Text">
+    <value xml:space="preserve">mes</value>
+  </data>
+  <data name="MonthAgo.Text">
+    <value xml:space="preserve">hace {0} mes</value>
+  </data>
+  <data name="Months.Text">
+    <value xml:space="preserve">meses</value>
+  </data>
+  <data name="MonthsAgo.Text">
+    <value xml:space="preserve">hace {0} meses</value>
+  </data>
+  <data name="Never.Text">
+    <value xml:space="preserve">Nunca</value>
+  </data>
+  <data name="Promp_MainFlagIsRequired.Text" lastModified="2018-03-24 11:13:29">
+    <value xml:space="preserve">'[0]' é obrigatório. Utilice a opção --[1] o incluya o valor como primer argumento después do nome do comando.\n</value>
+  </data>
+  <data name="Promp_PositiveValueRequired.Text" lastModified="2018-03-24 11:13:29">
+    <value xml:space="preserve">'[0]' tem que ser maior que 0.\n</value>
+  </data>
+  <data name="Prompt_FlagIsRequired.Text" lastModified="2018-03-24 11:13:29">
+    <value xml:space="preserve">'[0]' é obrigatório.\n</value>
+  </data>
+  <data name="Prompt_InvalidType.Text" lastModified="2018-03-24 11:13:29">
+    <value xml:space="preserve">O valor proporcionado para '[0]' não é válido '[1]'.\n</value>
+  </data>
+  <data name="RegisterationFailed.Text">
+    <value xml:space="preserve">{0}</value>
+  </data>
+  <data name="RegistrationUsernameAlreadyPresent.Text">
+    <value xml:space="preserve">O nome do usuário já existe.</value>
+  </data>
+  <data name="Root.Text">
+    <value xml:space="preserve">Inicio</value>
+  </data>
+  <data name="Second.Text">
+    <value xml:space="preserve">segundo</value>
+  </data>
+  <data name="SecondAgo.Text">
+    <value xml:space="preserve">hace {0} segundo</value>
+  </data>
+  <data name="Seconds.Text">
+    <value xml:space="preserve">segundos</value>
+  </data>
+  <data name="SecondsAgo.Text">
+    <value xml:space="preserve">hace {0} segundos</value>
+  </data>
+  <data name="SwitchOff.Text" lastModified="2020-05-08 16:21:27">
+    <value xml:space="preserve">Off</value>
+  </data>
+  <data name="SwitchOn.Text" lastModified="2020-05-08 16:21:27">
+    <value xml:space="preserve">On</value>
+  </data>
+  <data name="UnauthorizedRequest.Text">
+    <value xml:space="preserve">foi negado a autorização para esta petição.</value>
+  </data>
+  <data name="UserHasNoPermissionToReadFile.Error">
+    <value xml:space="preserve">O usuário não tem permiso para leer este Arquivo.</value>
+  </data>
+  <data name="UserHasNoPermissionToReadFolder.Error">
+    <value xml:space="preserve">O usuário não tem permiso para ver esta pasta.</value>
+  </data>
+  <data name="VisívelOnPage.Header">
+    <value xml:space="preserve">Visível em a página</value>
+  </data>
+  <data name="WeekAgo.Text">
+    <value xml:space="preserve">hace {0} semana</value>
+  </data>
+  <data name="WeeksAgo.Text">
+    <value xml:space="preserve">hace {0} semanas</value>
+  </data>
+  <data name="Year.Text">
+    <value xml:space="preserve">año</value>
+  </data>
+  <data name="YearAgo.Text">
+    <value xml:space="preserve">hace {0} año</value>
+  </data>
+  <data name="Years.Text">
+    <value xml:space="preserve">años</value>
+  </data>
+  <data name="YearsAgo.Text">
+    <value xml:space="preserve">hace {0} años</value>
+  </data>
+</root>

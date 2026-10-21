@@ -1,0 +1,887 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddContent.Action">
+    <value xml:space="preserve">Adicionar tarea ao programador</value>
+  </data>
+  <data name="All.Text">
+    <value xml:space="preserve">Todos</value>
+  </data>
+  <data name="APPLICATION_START.Text">
+    <value xml:space="preserve">APPLICATION_START </value>
+  </data>
+  <data name="Cancel.Text">
+    <value xml:space="preserve">Cancelar</value>
+  </data>
+  <data name="cmdAddTask.Text">
+    <value xml:space="preserve">Adicionar tarea</value>
+  </data>
+  <data name="cmdDelete.Text">
+    <value xml:space="preserve">Eliminar</value>
+  </data>
+  <data name="cmdRun.Text">
+    <value xml:space="preserve">Ejecutar ahora</value>
+  </data>
+  <data name="cmdSave.Text">
+    <value xml:space="preserve">Guardar</value>
+  </data>
+  <data name="cmdStart.Text">
+    <value xml:space="preserve">Iniciar</value>
+  </data>
+  <data name="cmdStop.Text">
+    <value xml:space="preserve">Detener</value>
+  </data>
+  <data name="ContentOptions.Action">
+    <value xml:space="preserve">Ver estado do programador</value>
+  </data>
+  <data name="ControlTitle_.Text">
+    <value xml:space="preserve">Programador</value>
+  </data>
+  <data name="ControlTitle_edit.Text">
+    <value xml:space="preserve">Editar tarea</value>
+  </data>
+  <data name="ControlTitle_history.Text">
+    <value xml:space="preserve">Historial de ejecuções</value>
+  </data>
+  <data name="ControlTitle_status.Text">
+    <value xml:space="preserve">Estado do programador</value>
+  </data>
+  <data name="Day.Text">
+    <value xml:space="preserve">Día</value>
+  </data>
+  <data name="DayPlural.Text" lastModified="2018-03-24 12:10:43">
+    <value xml:space="preserve">días</value>
+  </data>
+  <data name="Days.Text">
+    <value xml:space="preserve">Días</value>
+  </data>
+  <data name="DaySingular.Text" lastModified="2018-03-24 12:10:43">
+    <value xml:space="preserve">día</value>
+  </data>
+  <data name="DeleteError.Text">
+    <value xml:space="preserve">Não foi podido eliminar a tarea do programador. Vuelva a intentarlo.</value>
+  </data>
+  <data name="DeleteSuccess.Text">
+    <value xml:space="preserve">A tarea foi eliminado.</value>
+  </data>
+  <data name="Description.Header">
+    <value xml:space="preserve">Descripção</value>
+  </data>
+  <data name="DescriptionColumn.Text">
+    <value xml:space="preserve">DESCRIPção</value>
+  </data>
+  <data name="Disabled.Text">
+    <value xml:space="preserve">Desactivado</value>
+  </data>
+  <data name="DisabledMessage.Text">
+    <value xml:space="preserve">O programado está desactivado.</value>
+  </data>
+  <data name="Duration.Header">
+    <value xml:space="preserve">Duração (segundos)</value>
+  </data>
+  <data name="DurationColumn.Text">
+    <value xml:space="preserve">DURAÇÃO (SEG)</value>
+  </data>
+  <data name="Enabled.Header">
+    <value xml:space="preserve">ACTIVA</value>
+  </data>
+  <data name="Enabled.Label">
+    <value xml:space="preserve">Activa</value>
+  </data>
+  <data name="Ended.Header">
+    <value xml:space="preserve">Finalizado</value>
+  </data>
+  <data name="Frequency.Header">
+    <value xml:space="preserve">FRECUENCIA</value>
+  </data>
+  <data name="History.Text">
+    <value xml:space="preserve">Ver o historial</value>
+  </data>
+  <data name="HistoryModalTitle.Text">
+    <value xml:space="preserve">Historial da tarea:</value>
+  </data>
+  <data name="Hour.Text">
+    <value xml:space="preserve">Hora</value>
+  </data>
+  <data name="HourPlural.Text" lastModified="2018-03-24 14:12:04">
+    <value xml:space="preserve">horas</value>
+  </data>
+  <data name="Hours.Text">
+    <value xml:space="preserve">Horas</value>
+  </data>
+  <data name="HourSingular.Text" lastModified="2018-03-24 14:12:04">
+    <value xml:space="preserve">hora</value>
+  </data>
+  <data name="InvalidFrequencyAndRetry.Text">
+    <value xml:space="preserve">Os valores de frecuencia e reintentos não son corretos. O valor da frecuencia tem que ser superior ao dos reintentos.</value>
+  </data>
+  <data name="lblAtiveThreadsLabel.Text">
+    <value xml:space="preserve">Hilos activos:</value>
+  </data>
+  <data name="lblCommand.Text">
+    <value xml:space="preserve">Comando:</value>
+  </data>
+  <data name="lblFreeThreadsLabel.Text">
+    <value xml:space="preserve">Hilos libres:</value>
+  </data>
+  <data name="lblMaxThreadsLabel.Text">
+    <value xml:space="preserve">Hilos máximos:</value>
+  </data>
+  <data name="lblProcessing.Text">
+    <value xml:space="preserve">Tareas em proceso</value>
+  </data>
+  <data name="lblQueue.Text">
+    <value xml:space="preserve">Tareas na cola</value>
+  </data>
+  <data name="lblStartDelay.Text">
+    <value xml:space="preserve">Retardo de inicio do programador (mins):</value>
+  </data>
+  <data name="lblStatusLabel.Text">
+    <value xml:space="preserve">Estado:</value>
+  </data>
+  <data name="LessThanMinute.Text" lastModified="2018-03-24 14:12:04">
+    <value xml:space="preserve">menos de um minuto</value>
+  </data>
+  <data name="lnkHistory.Text">
+    <value xml:space="preserve">Ver histórico</value>
+  </data>
+  <data name="ManuallyStopped.Text">
+    <value xml:space="preserve">Detenido manualmente desda página de estado do programador</value>
+  </data>
+  <data name="Minute.Text">
+    <value xml:space="preserve">Minuto</value>
+  </data>
+  <data name="MinutePlural.Text" lastModified="2018-03-24 14:12:04">
+    <value xml:space="preserve">minutos</value>
+  </data>
+  <data name="Minutes.Text">
+    <value xml:space="preserve">Minutos</value>
+  </data>
+  <data name="MinuteSingular.Text" lastModified="2018-03-24 14:12:04">
+    <value xml:space="preserve">minuto</value>
+  </data>
+  <data name="ModuleHelp.Text">
+    <value xml:space="preserve">&lt;h1&gt;Acerca do programador de tareas&lt;/h1&gt;&lt;p&gt;Permite programar tareas para ser ejecutadas a intervalos establecidos.&lt;/p&gt;</value>
+  </data>
+  <data name="Months.Text">
+    <value xml:space="preserve">Meses</value>
+  </data>
+  <data name="n/a.Text">
+    <value xml:space="preserve">n/a</value>
+  </data>
+  <data name="Name.Header">
+    <value xml:space="preserve">Nome de tarea</value>
+  </data>
+  <data name="nav_TaskScheduler.Text">
+    <value xml:space="preserve">Programador</value>
+  </data>
+  <data name="NextStart.Header">
+    <value xml:space="preserve">Próxima ejecução</value>
+  </data>
+  <data name="NextStart.Label">
+    <value xml:space="preserve">Próxima ejecução</value>
+  </data>
+  <data name="Não.Text">
+    <value xml:space="preserve">Não</value>
+  </data>
+  <data name="None.Text">
+    <value xml:space="preserve">Nenhum</value>
+  </data>
+  <data name="NOT_SET.Text">
+    <value xml:space="preserve">NÃO ESTABLECIDO</value>
+  </data>
+  <data name="NoTasks.Text" lastModified="2018-03-25 05:29:50">
+    <value xml:space="preserve">Não há tareas na cola.</value>
+  </data>
+  <data name="NoTasksMessage.Text" lastModified="2018-03-25 00:28:13">
+    <value xml:space="preserve">Si há tareas na cola o ejecutándose, se mostrarán aquí.</value>
+  </data>
+  <data name="Notes.Header">
+    <value xml:space="preserve">Notas</value>
+  </data>
+  <data name="ObjectDependencies.Header">
+    <value xml:space="preserve">Dependencias de objetos:</value>
+  </data>
+  <data name="Overdue.Header">
+    <value xml:space="preserve">Vencida (segundos)</value>
+  </data>
+  <data name="pagerSummary.Text">
+    <value xml:space="preserve">Mostrando {0}-{1} de {2} resultados</value>
+  </data>
+  <data name="pageSizeOption.Text">
+    <value xml:space="preserve">{0} resultos por página</value>
+  </data>
+  <data name="plAttachToEvent.Help">
+    <value xml:space="preserve">Selecione "Application Start" para que se ejecute esta tarea quando arranca a aplicação. NOTA: os eventos programados para APPLICATION_END pode que não se ejecuten de forma fiable em algunos entornos.</value>
+  </data>
+  <data name="plAttachToEvent.Text">
+    <value xml:space="preserve">Ejecutar em evento:</value>
+  </data>
+  <data name="plCatchUpEnabled.Help">
+    <value xml:space="preserve">Si esta opção está marcada, quando o servidor vuelva a estar em ejecução después de um periodo de inactividade, ejecutará a tarea uma vez para cada repetição que não foiya ejecutado durante o periodo de inactividade.</value>
+  </data>
+  <data name="plCatchUpEnabled.Text">
+    <value xml:space="preserve">Recuperação habilitada</value>
+  </data>
+  <data name="plEnabled.Help">
+    <value xml:space="preserve">Ative esta opção para activar a programação.</value>
+  </data>
+  <data name="plEnabled.Text">
+    <value xml:space="preserve">Activar</value>
+  </data>
+  <data name="plFriendlyName.Help">
+    <value xml:space="preserve">Introduzca o nome da tarea programada.</value>
+  </data>
+  <data name="plFriendlyName.Text">
+    <value xml:space="preserve">Nome</value>
+  </data>
+  <data name="plObjectDependencies.Help">
+    <value xml:space="preserve">Escriba as tablas u objetos dos cuales depende este evento. Ejemplo: "SiteLog,Users,UsersOnline"</value>
+  </data>
+  <data name="plObjectDependencies.Text">
+    <value xml:space="preserve">Dependencias de objetos</value>
+  </data>
+  <data name="plRetainHistoryNum.Help">
+    <value xml:space="preserve">Entre o número de elementos a conservar não historial do programador.</value>
+  </data>
+  <data name="plRetainHistoryNum.Text">
+    <value xml:space="preserve">Conservar histórico do programador:</value>
+  </data>
+  <data name="plRetryTimeLapse.Help">
+    <value xml:space="preserve">Entre o intervalo de tempo para volver a ejecutar uma tarea que falhou.</value>
+  </data>
+  <data name="plRetryTimeLapse.Text">
+    <value xml:space="preserve">Frecuencia de reintentos</value>
+  </data>
+  <data name="plScheduleAppStartDelay.Help">
+    <value xml:space="preserve">Número de minutos que o sistema tem que esperar antes de empezar a ejecutar as tareas después de um reinicio do sistema. O valor predeterminado é de 1 minuto.</value>
+  </data>
+  <data name="plScheduleAppStartDelay.Text">
+    <value xml:space="preserve">Retardo ao inicio:</value>
+  </data>
+  <data name="plSchedulerMode.Help">
+    <value xml:space="preserve">O modo Temporizador mantiene uma tarea independiente para ejecutar as tareas mientras o proceso do web este activo. O modo Petição ejecuta as tareas quando se reciben petições HTTP. Pode desactivar o programador seleccionando a opção Desactivado.</value>
+  </data>
+  <data name="plSchedulerMode.Text">
+    <value xml:space="preserve">Modo do programador:</value>
+  </data>
+  <data name="plScheduleStartDate.Help">
+    <value xml:space="preserve">Introduzca a data/hora de inicio da tarea. Atenção: Se o servidor não está activo em este momento o há outras tareas ejecutándose, esta tarea se ejecutará tan pronto como o servidor esté disponível de novo.</value>
+  </data>
+  <data name="plScheduleStartDate.Text">
+    <value xml:space="preserve">Data e hora de inicio da tarea.</value>
+  </data>
+  <data name="plServers.Help">
+    <value xml:space="preserve">Filtre as tareas según o servidor o Todas para ver todas as tareas.</value>
+  </data>
+  <data name="plServers.Text">
+    <value xml:space="preserve">Servidor:</value>
+  </data>
+  <data name="plTimeLapse.Help">
+    <value xml:space="preserve">Entre a frecuencia com a que se va a ejecutar a tarea.</value>
+  </data>
+  <data name="plTimeLapse.Text">
+    <value xml:space="preserve">Frecuencia</value>
+  </data>
+  <data name="plType.Help">
+    <value xml:space="preserve">O nome completo de classe seguido pelo nome de ensamblado. Ejemplo: "DotNetNuke.Entities.Users.PurgeUsersOnline, DOTNETNUKE"</value>
+  </data>
+  <data name="plType.Text">
+    <value xml:space="preserve">Nome completo de classe e ensamblado</value>
+  </data>
+  <data name="processing.Text">
+    <value xml:space="preserve">Em proceso...</value>
+  </data>
+  <data name="Prompt_FetchTaskFailed.Text" lastModified="2018-03-24 13:11:45">
+    <value xml:space="preserve">Não foin podido obtener os detalles da tarea. Consulte o registro de eventos para ver más detalles.</value>
+  </data>
+  <data name="Prompt_FlagCantBeEmpty.Text" lastModified="2018-03-25 00:28:13">
+    <value xml:space="preserve">Si se inclui, a opção --{0} não pode ser vazia.\n</value>
+  </data>
+  <data name="Prompt_FlagMustBeNumber.Text" lastModified="2018-03-25 00:28:13">
+    <value xml:space="preserve">Si se inclui, a opção --{0} tem que ser um número.\n</value>
+  </data>
+  <data name="Prompt_FlagMustBeTrueFalse.Text" lastModified="2018-03-25 00:28:13">
+    <value xml:space="preserve">Si se inclui, a opção --{0} tem que ser 'true' o 'false'.\n</value>
+  </data>
+  <data name="Prompt_FlagRequired.Text" lastModified="2018-03-24 22:21:33">
+    <value xml:space="preserve">A opção --{0} é obrigatória.\n</value>
+  </data>
+  <data name="Prompt_GetTask_Description.Text" lastModified="2018-03-24 19:19:55">
+    <value xml:space="preserve">Obtiene os detalles de uma tarea específica do programador.</value>
+  </data>
+  <data name="Prompt_GetTask_FlagId.Text" lastModified="2018-03-24 23:23:17">
+    <value xml:space="preserve">O ID da tarea que quiere mostrar. Si introduce o ID como primer valor después do nome do comando não tem que utilizar explícitamente o nome da opção &lt;span class="mono"&gt;--id&lt;/span&gt;.</value>
+  </data>
+  <data name="Prompt_GetTask_ResultHtml.Text" lastModified="2018-03-24 18:18:25">
+    <value xml:space="preserve">&lt;h4&gt;Obtener uma tarea&lt;/h4&gt;
+  &lt;code class="block"&gt;
+    get-task 11
+  &lt;/code&gt;
+  O
+  &lt;code class="block"&gt;
+    get-task --id 11
+  &lt;/code&gt;
+
+  &lt;h4&gt;Resultado&lt;/h4&gt;
+  &lt;table class="command-result-tbl"&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ScheduleId&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;11&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;FreindlyName&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;Messaging Dispatch&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;TypeName&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;DotNteNuke.Services.Social.Messaging.Scheduler.CoreMessagingScheduler,DotNetNuke&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;NextStart&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;2017-01-02T08:19:49.53&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Enabled&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;true&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;CatchUp&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;false&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Created&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;0001-01-01T00:00:00&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;StartDate&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;0001-01-01T00:00:00&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;</value>
+  </data>
+  <data name="Prompt_ListTasks_Description.Text" lastModified="2018-03-24 19:19:55">
+    <value xml:space="preserve">Obtiene uma lista de tareas do programador según os criterios de busca especificados. </value>
+  </data>
+  <data name="Prompt_ListTasks_FlagEnabled.Text" lastModified="2018-03-25 00:28:13">
+    <value xml:space="preserve">Si se mostra, Prompt obtendrá as tareas que está activas (se a opção é true) o inactivas (se a opção és false). Se a opção não se especifica, Prompt devolverá todas a tareas.</value>
+  </data>
+  <data name="Prompt_ListTasks_FlagName.Text" lastModified="2018-03-25 00:28:13">
+    <value xml:space="preserve">Si se mostra, Prompt obtendrá as tareas cujo nome coincida com a expresión. Se pode utilizar o comodín asterisco ( &lt;span class="mono"&gt;*&lt;/span&gt; ) para indicar zero (0) o más caracteres.</value>
+  </data>
+  <data name="Prompt_ListTasks_ResultHtml.Text" lastModified="2018-03-24 18:18:25">
+    <value xml:space="preserve">&lt;h4&gt;Obtener todas as tareas&lt;/h4&gt;
+  &lt;code class="block"&gt;
+    list-tasks
+  &lt;/code&gt;
+
+  &lt;h4&gt;Resultado&lt;/h4&gt;
+  &lt;table class="command-result-tbl"&gt;
+    &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;ScheduleId&lt;/th&gt;
+      &lt;th&gt;FriendlyName&lt;/th&gt;
+      &lt;th&gt;NextStart&lt;/th&gt;
+      &lt;th&gt;Enabled&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;11&lt;/td&gt;
+      &lt;td&gt;MessagingDispatch&lt;/td&gt;
+      &lt;td&gt;2017-01-02T08:19:49.53&lt;/td&gt;
+      &lt;td&gt;true&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;9&lt;/td&gt;
+      &lt;td&gt;Purge Cache&lt;/td&gt;
+      &lt;td&gt;2017-01-02T08:08:07.4342281-07:00&lt;/td&gt;
+      &lt;td&gt;false&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;12&lt;/td&gt;
+      &lt;td&gt;Purge Client Dependency Files&lt;/td&gt;
+      &lt;td&gt;2017-01-02T08:08:07.4342281-07:00&lt;/td&gt;
+      &lt;td&gt;false&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;Purge Log Buffer&lt;/td&gt;
+      &lt;td&gt;2017-01-02T08:08:07.4342281-07:00&lt;/td&gt;
+      &lt;td&gt;false&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td&gt;Purge Module Cache&lt;/td&gt;
+      &lt;td&gt;2017-01-02T08:19:50.533&lt;/td&gt;
+      &lt;td&gt;true&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td colspan="4"&gt;...&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td colspan="4"&gt;10 tasks found&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+
+  &lt;h4&gt;Obtener todas as tareas activas&lt;/h4&gt;
+  &lt;code class="block"&gt;
+    list-tasks true
+  &lt;/code&gt;
+  O
+  &lt;code class="block"&gt;
+    list-tasks --enabled true
+  &lt;/code&gt;
+
+  &lt;h4&gt;Resultado&lt;/h4&gt;
+  &lt;table class="command-result-tbl"&gt;
+    &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;ScheduleId&lt;/th&gt;
+      &lt;th&gt;FriendlyName&lt;/th&gt;
+      &lt;th&gt;NextStart&lt;/th&gt;
+      &lt;th&gt;Enabled&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;11&lt;/td&gt;
+      &lt;td&gt;MessagingDispatch&lt;/td&gt;
+      &lt;td&gt;2017-01-02T08:19:49.53&lt;/td&gt;
+      &lt;td class="bg-info"&gt;true&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td&gt;Purge Module Cache&lt;/td&gt;
+      &lt;td&gt;2017-01-02T08:19:50.533&lt;/td&gt;
+      &lt;td class="bg-info"&gt;true&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;Purge Schedule History&lt;/td&gt;
+      &lt;td&gt;2017-01-03T08:08:10.45&lt;/td&gt;
+      &lt;td class="bg-info"&gt;true&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;6&lt;/td&gt;
+      &lt;td&gt;Search: Site Crawler&lt;/td&gt;
+      &lt;td&gt;2017-01-02T09:09:09.94&lt;/td&gt;
+      &lt;td class="bg-info"&gt;true&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td colspan="4"&gt;4 tasks found&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+
+  &lt;h4&gt;Obtener todas as tareas cujo nome empieza por &amp;quot;purge&amp;quot;&lt;/h4&gt;
+  &lt;code class="block"&gt;
+    list-tasks purge*
+  &lt;/code&gt;
+  O
+  &lt;code class="block"&gt;
+    list-tasks --name purge*
+  &lt;/code&gt;
+
+  &lt;h4&gt;Results&lt;/h4&gt;
+  &lt;table class="command-result-tbl"&gt;
+    &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;ScheduleId&lt;/th&gt;
+      &lt;th&gt;FriendlyName&lt;/th&gt;
+      &lt;th&gt;NextStart&lt;/th&gt;
+      &lt;th&gt;Enabled&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;9&lt;/td&gt;
+      &lt;td class="bg-info"&gt;Purge Cache&lt;/td&gt;
+      &lt;td&gt;2017-01-02T09:08:55.2867143-07:00&lt;/td&gt;
+      &lt;td&gt;false&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;12&lt;/td&gt;
+      &lt;td class="bg-info"&gt;Purge Client Dependency Files&lt;/td&gt;
+      &lt;td&gt;2017-01-02T09:08:55.2867143-07:00&lt;/td&gt;
+      &lt;td&gt;false&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td class="bg-info"&gt;Purge Log Buffer&lt;/td&gt;
+      &lt;td&gt;2017-01-02T09:08:55.2867143-07:00&lt;/td&gt;
+      &lt;td&gt;false&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td class="bg-info"&gt;Purge Module Cache&lt;/td&gt;
+      &lt;td&gt;2017-01-02T09:17:20.48&lt;/td&gt;
+      &lt;td&gt;true&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;13&lt;/td&gt;
+      &lt;td class="bg-info"&gt;Purge Output Cache&lt;/td&gt;
+      &lt;td&gt;2017-01-02T09:08:55.2867143-07:00&lt;/td&gt;
+      &lt;td&gt;false&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td class="bg-info"&gt;Purge Schedule History&lt;/td&gt;
+      &lt;td&gt;2017-01-03T08:08:10.45&lt;/td&gt;
+      &lt;td&gt;true&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td class="bg-info"&gt;Purge Users Online&lt;/td&gt;
+      &lt;td&gt;2017-01-02T09:08:55.2867143-07:00&lt;/td&gt;
+      &lt;td&gt;false&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td colspan="4"&gt;7 tasks found&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+
+  &lt;h4&gt;Obtener todas as tareas activas cujo nome empieza por &amp;quot;purge&amp;quot;&lt;/h4&gt;
+  &lt;code class="block"&gt;
+    list-tasks purge* --enabled true
+  &lt;/code&gt;
+  O
+  &lt;code class="block"&gt;
+    list-tasks true --name purge*
+  &lt;/code&gt;
+  O
+  &lt;code class="block"&gt;
+    list-tasks --enabled true --name purge*
+  &lt;/code&gt;
+
+  &lt;h4&gt;Resultado&lt;/h4&gt;
+  &lt;table class="command-result-tbl"&gt;
+    &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;ScheduleId&lt;/th&gt;
+      &lt;th&gt;FriendlyName&lt;/th&gt;
+      &lt;th&gt;NextStart&lt;/th&gt;
+      &lt;th&gt;Enabled&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td class="bg-info"&gt;Purge Module Cache&lt;/td&gt;
+      &lt;td&gt;2017-01-02T09:17:20.48&lt;/td&gt;
+      &lt;td class="bg-info"&gt;true&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td class="bg-info"&gt;Purge Schedule History&lt;/td&gt;
+      &lt;td&gt;2017-01-03T08:08:10.45&lt;/td&gt;
+      &lt;td class="bg-info"&gt;true&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td colspan="4"&gt;2 tasks found&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;</value>
+  </data>
+  <data name="Prompt_ScheduleFlagRequired.Text" lastModified="2018-03-25 01:28:56">
+    <value xml:space="preserve">Tem que  indicar o ID da tarea utilizando a opção --{0} o incluyendo o ID como primer argumento do comando.\n</value>
+  </data>
+  <data name="Prompt_SchedulerCategory.Text" lastModified="2018-03-24 20:20:15">
+    <value xml:space="preserve">Comandos do progamador de tareas</value>
+  </data>
+  <data name="Prompt_SetTask_Description.Text" lastModified="2018-03-24 21:20:42">
+    <value xml:space="preserve">Establece o actualiza as propriedadees da tarea especificada.</value>
+  </data>
+  <data name="Prompt_SetTask_FlagEnabled.Text" lastModified="2018-03-25 00:28:13">
+    <value xml:space="preserve">Quando é 'true', a tarea especificada se activará. Quando é 'false', a tarea especificada se desactivará.</value>
+  </data>
+  <data name="Prompt_SetTask_FlagId.Text" lastModified="2018-03-24 23:23:17">
+    <value xml:space="preserve">O ID da tarea que quiere atualizar. Si introduce o ID como primer valor después do nome do comando não tem que utilizar explícitamente o nome da opção &lt;span class="mono"&gt;--id&lt;/span&gt;.</value>
+  </data>
+  <data name="Prompt_SetTask_ResultHtml.Text" lastModified="2018-03-24 17:14:27">
+    <value xml:space="preserve">&lt;h4&gt;Desactivar a tarea &amp;quot;Purge Schedule History&amp;quot;&lt;/h4&gt;
+  &lt;code class="block"&gt;
+    set-task 3 --enabled false
+  &lt;/code&gt;
+  O
+  &lt;code class="block"&gt;
+    set-task --id 3 --enabled false
+  &lt;/code&gt;
+
+  &lt;h4&gt;Resultado&lt;/h4&gt;
+  &lt;table class="command-result-tbl"&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ScheduleId&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;FreindlyName&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;Purge Schedule History&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;TypeName&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;DotNetNuke.Services.Scheduling.PurgeScheduleHistory, DOTNETNUKE&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;NextStart&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;2017-01-02T09:08:55.2867143-07:00&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Enabled&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;false&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;CatchUp&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;false&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Created&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;0001-01-01T00:00:00&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;StartDate&lt;/td&gt;
+      &lt;td&gt;:&lt;/td&gt;
+      &lt;td&gt;2017-01-02T09:47:31.79&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td colspan="3"&gt;
+        1 tarea actualizada
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;</value>
+  </data>
+  <data name="Prompt_TaskAlreadyDisabled.Text" lastModified="2018-03-24 22:21:33">
+    <value xml:space="preserve">A tarea já está desactivada.</value>
+  </data>
+  <data name="Prompt_TaskAlreadyEnabled.Text" lastModified="2018-03-24 22:21:33">
+    <value xml:space="preserve">A tarea já está activada.</value>
+  </data>
+  <data name="Prompt_TaskNotFound.Text" lastModified="2018-03-24 16:13:09">
+    <value xml:space="preserve">Não foi encontrado a tarea com ID {0}.</value>
+  </data>
+  <data name="Prompt_TasksFound.Text" lastModified="2018-03-24 11:10:27">
+    <value xml:space="preserve">{0} tareas encontradas.</value>
+  </data>
+  <data name="Prompt_TaskUpdated.Text" lastModified="2018-03-24 22:21:33">
+    <value xml:space="preserve">A tarea foi actualizado corretamente.</value>
+  </data>
+  <data name="Prompt_TaskUpdateFailed.Text" lastModified="2018-03-24 13:11:45">
+    <value xml:space="preserve">Não foi podido atualizar a tarea.</value>
+  </data>
+  <data name="RanOnServerColumn.Text">
+    <value xml:space="preserve">SERVIDOR</value>
+  </data>
+  <data name="RequestMethod.Text">
+    <value xml:space="preserve">Modo Petição</value>
+  </data>
+  <data name="RetryTimeLapse.Header">
+    <value xml:space="preserve">FRECUENCIA DE REINTENTOS</value>
+  </data>
+  <data name="RetryTimeLapseValidator.ErrorMessage">
+    <value xml:space="preserve">O rango válido para a frecuencia é entre 1 e 999999</value>
+  </data>
+  <data name="RUNNING_EVENT_SCHEDULE.Text">
+    <value xml:space="preserve">EJECUTANDO TAREA EVENTO</value>
+  </data>
+  <data name="RUNNING_REQUEST_SCHEDULE.Text">
+    <value xml:space="preserve">EJECUTANDO TAREA PETIção</value>
+  </data>
+  <data name="RUNNING_TIMER_SCHEDULE.Text">
+    <value xml:space="preserve">EJECUTANDO TAREA TEMPORIZADOR</value>
+  </data>
+  <data name="RunNow.Text">
+    <value xml:space="preserve">Tarea agregada a programação para su ejecução inmediata.</value>
+  </data>
+  <data name="RunNowError.Text">
+    <value xml:space="preserve">Não foi podido adicionar a tarea ao programador. Vuelva a intentarlo.</value>
+  </data>
+  <data name="ScheduleAppStartDelayValidation.Text">
+    <value xml:space="preserve">Introduzca um valor em minutos</value>
+  </data>
+  <data name="ScheduleHistory.Action">
+    <value xml:space="preserve">Ver historial do programador</value>
+  </data>
+  <data name="ScheduleID.Header">
+    <value xml:space="preserve">ID:</value>
+  </data>
+  <data name="ScheduleItemCreateError.Text">
+    <value xml:space="preserve">Não foi podido criar a tarea. Vuelva a intentarlo.</value>
+  </data>
+  <data name="ScheduleItemCreateSuccess.Text">
+    <value xml:space="preserve">A tarea foi creado.</value>
+  </data>
+  <data name="ScheduleItemDeletedWarning.Text">
+    <value xml:space="preserve">Está seguro que quer eliminar esta tarea?</value>
+  </data>
+  <data name="ScheduleItemUpdateError.Text">
+    <value xml:space="preserve">Não foi podido atualizar a tarea do programador. Vuelva a intentarlo.</value>
+  </data>
+  <data name="ScheduleItemUpdateSuccess.Text">
+    <value xml:space="preserve">A tarea foi actualizado.</value>
+  </data>
+  <data name="SchedulerStartError.Text">
+    <value xml:space="preserve">Não foi podido iniciar o programador. Vuelva a intentarlo.</value>
+  </data>
+  <data name="SchedulerStartSuccess.Text">
+    <value xml:space="preserve">O programador foi iniciado.</value>
+  </data>
+  <data name="SchedulerStopError.Text">
+    <value xml:space="preserve">Não foi podido detener o programador. Vuelva a intentarlo.</value>
+  </data>
+  <data name="SchedulerStopSuccess.Text">
+    <value xml:space="preserve">O programador foi detenido.</value>
+  </data>
+  <data name="SchedulerUpdateError.Text">
+    <value xml:space="preserve">Não foi podido atualizar a configuração do programador. Vuelva a intentarlo.</value>
+  </data>
+  <data name="SchedulerUpdateSuccess.Text">
+    <value xml:space="preserve">foi guardado a configuração.</value>
+  </data>
+  <data name="Seconds.Text">
+    <value xml:space="preserve">Segundos</value>
+  </data>
+  <data name="Server.Header">
+    <value xml:space="preserve">Ejecutada não servidor</value>
+  </data>
+  <data name="Servers.Header">
+    <value xml:space="preserve">Servidores:</value>
+  </data>
+  <data name="Servers.Text" lastModified="2017-04-27 19:30:46">
+    <value xml:space="preserve">Servidores</value>
+  </data>
+  <data name="ServerTime.Text">
+    <value xml:space="preserve">Hora do servidor:</value>
+  </data>
+  <data name="Settings.Text">
+    <value xml:space="preserve">Configuração</value>
+  </data>
+  <data name="SettingsRestoreWarning.Text">
+    <value xml:space="preserve">Está seguro que quer cancelar os cambios?</value>
+  </data>
+  <data name="SHUTTING_DOWN.Text">
+    <value xml:space="preserve">DETENER</value>
+  </data>
+  <data name="Start.Header">
+    <value xml:space="preserve">Inicio/final/seguinte</value>
+  </data>
+  <data name="Start/End/Next Start.Header">
+    <value xml:space="preserve">Inicio/final/seguinte</value>
+  </data>
+  <data name="Started.Header">
+    <value xml:space="preserve">Iniciado</value>
+  </data>
+  <data name="StartEndColumn.Text">
+    <value xml:space="preserve">INICIO/FIN</value>
+  </data>
+  <data name="StartSchedule.Text">
+    <value xml:space="preserve">Iniciar programador</value>
+  </data>
+  <data name="Status.Text">
+    <value xml:space="preserve">Ver estado</value>
+  </data>
+  <data name="Stop.Header">
+    <value xml:space="preserve">Detenido</value>
+  </data>
+  <data name="STOPPED.Text">
+    <value xml:space="preserve">DETENIDO</value>
+  </data>
+  <data name="StopSchedule.Text">
+    <value xml:space="preserve">Detener programador</value>
+  </data>
+  <data name="Succeeded.Header">
+    <value xml:space="preserve">Correto</value>
+  </data>
+  <data name="SucceededColumn.Text">
+    <value xml:space="preserve">CORRETO</value>
+  </data>
+  <data name="TabHistory.Text">
+    <value xml:space="preserve">HISTÓRICO</value>
+  </data>
+  <data name="TabHistoryTitle.Text">
+    <value xml:space="preserve">Histórico</value>
+  </data>
+  <data name="TabScheduler.Text">
+    <value xml:space="preserve">PROGRAMADOR</value>
+  </data>
+  <data name="TabTaskQueue.Text">
+    <value xml:space="preserve">COLA DE TAREAS</value>
+  </data>
+  <data name="Thread.Header">
+    <value xml:space="preserve">Hilo:</value>
+  </data>
+  <data name="TimeLapsePrefix.Text">
+    <value xml:space="preserve">Frecuencia</value>
+  </data>
+  <data name="TimeLapseRequired.ErrorMessage">
+    <value xml:space="preserve">O rango válido para a frecuencia é entre 1 e 999999</value>
+  </data>
+  <data name="TimeLapseValidator.ErrorMessage">
+    <value xml:space="preserve">O rango válido para a frecuencia é entre 1 e 999999</value>
+  </data>
+  <data name="TimeRemaining.Header" lastModified="2018-03-25 03:29:33">
+    <value xml:space="preserve">Tempo restante:</value>
+  </data>
+  <data name="TimerMethod.Text">
+    <value xml:space="preserve">Modo Temporizador</value>
+  </data>
+  <data name="TriggeredBy.Header">
+    <value xml:space="preserve">Iniciado por:</value>
+  </data>
+  <data name="Type.Header">
+    <value xml:space="preserve">Tipo</value>
+  </data>
+  <data name="TypeRequired.Text">
+    <value xml:space="preserve">O tipo da tarea é obrigatório.</value>
+  </data>
+  <data name="Update.Text">
+    <value xml:space="preserve">Atualizar</value>
+  </data>
+  <data name="UpdateSuccess.Text">
+    <value xml:space="preserve">foin guardado os cambios.</value>
+  </data>
+  <data name="ViewLog.Header">
+    <value xml:space="preserve">Registro</value>
+  </data>
+  <data name="WAITING_FOR_OPEN_THREAD.Text">
+    <value xml:space="preserve">ESPERANDO HILOS disponívelS</value>
+  </data>
+  <data name="WAITING_FOR_REQUEST.Text">
+    <value xml:space="preserve">ESPERANDO PETIção</value>
+  </data>
+  <data name="Weeks.Text">
+    <value xml:space="preserve">Semanas</value>
+  </data>
+  <data name="Years.Text">
+    <value xml:space="preserve">Años</value>
+  </data>
+  <data name="Yes.Text">
+    <value xml:space="preserve">Sí</value>
+  </data>
+</root>
