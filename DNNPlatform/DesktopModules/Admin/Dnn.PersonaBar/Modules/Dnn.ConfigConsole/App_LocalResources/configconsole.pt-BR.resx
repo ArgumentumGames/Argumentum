@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <!--DOTWARE TST S.L.-->
+  <data name="CancelButton.Text">
+    <value xml:space="preserve">Não</value>
+  </data>
+  <data name="cmdExecute.Text">
+    <value xml:space="preserve">Ejecutar combinação</value>
+  </data>
+  <data name="cmdLoad.Text">
+    <value xml:space="preserve">Cargar</value>
+  </data>
+  <data name="cmdSave.Text">
+    <value xml:space="preserve">Guardar cambios</value>
+  </data>
+  <data name="cmdUpload.Text">
+    <value xml:space="preserve">Subir Arquivo XML</value>
+  </data>
+  <data name="ConfigConsole.Text">
+    <value xml:space="preserve">Configuração</value>
+  </data>
+  <data name="ConfigFilesTab.Text">
+    <value xml:space="preserve">Gestión de Arquivos de configuração</value>
+  </data>
+  <data name="Configuration.Text">
+    <value xml:space="preserve">Arquivos</value>
+  </data>
+  <data name="ControlTitle_.Text">
+    <value xml:space="preserve">Gestión de Arquivos de configuração</value>
+  </data>
+  <data name="ERROR_ConfigurationFormat.Text">
+    <value xml:space="preserve">Su Arquivo de configuração não é um arquivo XML válido. Corrija o problema de formato e vuelva a guardar o arquivo. Erro: {0}</value>
+  </data>
+  <data name="ERROR_Merge.Text">
+    <value xml:space="preserve">O sistema foi detectado um error ao aplicar os cambios de configuração especificados. Revise o registro de sucesos para más detalles do error.</value>
+  </data>
+  <data name="fileLabel.Help">
+    <value xml:space="preserve">Pode modificar o arquivo antes de hacer cambios</value>
+  </data>
+  <data name="fileLabel.Text">
+    <value xml:space="preserve">Arquivo:</value>
+  </data>
+  <data name="LoadConfigWarning.Text">
+    <value xml:space="preserve">Perderá os cambios actuales si carga um novo Arquivo de configuração</value>
+  </data>
+  <data name="Merge.Text">
+    <value xml:space="preserve">Scripts de combinação</value>
+  </data>
+  <data name="MergeConfirm.Text">
+    <value xml:space="preserve">Está seguro que quer combinar os cambios a este Arquivo de configuração?</value>
+  </data>
+  <data name="MergeScriptsTab.Text">
+    <value xml:space="preserve">Scripts de combinação</value>
+  </data>
+  <data name="nav_ConfigConsole.Text">
+    <value xml:space="preserve">Arquivos de configuração</value>
+  </data>
+  <data name="plConfig.Text">
+    <value xml:space="preserve">Arquivo de configuração</value>
+  </data>
+  <data name="plConfigHelp.Text">
+    <value xml:space="preserve">Selecione um arquivo de configuração para a edição.</value>
+  </data>
+  <data name="plScript.Text">
+    <value xml:space="preserve">Script de combinação</value>
+  </data>
+  <data name="plScriptNote.Text">
+    <value xml:space="preserve">*ATENção:</value>
+  </data>
+  <data name="plScriptNoteDesc.Text">
+    <value xml:space="preserve">quando haya cargado o arquivo o podrá editar na caja inferior antes de ejecutarlo</value>
+  </data>
+  <data name="SaveButton.Text">
+    <value xml:space="preserve">Sí</value>
+  </data>
+  <data name="SaveConfirm.Text">
+    <value xml:space="preserve">Está seguro que quer guardar os cambios em este Arquivo de configuração?</value>
+  </data>
+  <data name="SaveWarning.Text">
+    <value xml:space="preserve">Mudar o arquivo web.config hará que su sitio web se reinicie e pode disminuir o rendimiento do portal mientras que a aplicação se vuelve a cargar. Está seguro que quer continuar?</value>
+  </data>
+  <data name="scriptLabel.Help">
+    <value xml:space="preserve">Pode editar o script antes de su ejecução.</value>
+  </data>
+  <data name="scriptLabel.Text">
+    <value xml:space="preserve">Script: </value>
+  </data>
+  <data name="SelectConfig.Text">
+    <value xml:space="preserve">Selecione um arquivo de configuração</value>
+  </data>
+  <data name="Success.Text">
+    <value xml:space="preserve">Cambios aplicados corretamente.</value>
+  </data>
+</root>

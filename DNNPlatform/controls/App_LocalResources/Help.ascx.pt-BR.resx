@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cmdHelp.Text">
+    <value xml:space="preserve">Ver ayuda online</value>
+  </data>
+  <data name="ControlTitle_help.Text">
+    <value xml:space="preserve">Ayuda online</value>
+  </data>
+  <data name="lblHelp.Text">
+    <value xml:space="preserve">Não foi proporcionado ayuda para este módulo.</value>
+  </data>
+  <data name="lblInfo.Text">
+    <value xml:space="preserve">&lt;h1&gt;Informação de módulo&lt;/h1&gt;&lt;p&gt;Muestra os detalles técnicos da instância do módulo asociado&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Organização:&lt;/strong&gt; [ORGANIZATION]&lt;br /&gt;&lt;strong&gt;Propietario:&lt;/strong&gt; [OWNER]&lt;br /&gt;&lt;strong&gt;Email:&lt;/strong&gt; [EMAIL]&lt;br /&gt;&lt;strong&gt;URL&lt;/strong&gt; [URL]&lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Módulo:&lt;/strong&gt; [MODULE]&lt;br /&gt;&lt;strong&gt;Versão:&lt;/strong&gt; [VERSION]&lt;br /&gt;&lt;strong&gt;Definição:&lt;/strong&gt; [DEFINITION]&lt;br /&gt;&lt;strong&gt;Controle:&lt;/strong&gt; [CONTROLE]&lt;br /&gt;&lt;strong&gt;Código:&lt;/strong&gt; [SRC]&lt;/p&gt;</value>
+  </data>
+</root>

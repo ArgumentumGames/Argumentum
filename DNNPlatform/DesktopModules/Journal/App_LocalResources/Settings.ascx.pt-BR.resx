@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllowFiles.Help">
+    <value xml:space="preserve">Entre se os usuarios podrán adjuntar Arquivos a os mensagens.</value>
+  </data>
+  <data name="AllowFiles.Text">
+    <value xml:space="preserve">Permitir adjuntar Arquivos</value>
+  </data>
+  <data name="AllowPhotos.Help">
+    <value xml:space="preserve">Entre se os usuarios podrán adjuntar fotos a os mensagens.</value>
+  </data>
+  <data name="AllowPhotos.Text">
+    <value xml:space="preserve">Pemitir adjuntar fotos</value>
+  </data>
+  <data name="AllowResize.Help">
+    <value xml:space="preserve">Entre se quiser que se redimensionen as imágenes grandes. somente se redimensionarán as imágenes que tengan alguna dimensión (altura o anchura) maior de 400px.</value>
+  </data>
+  <data name="AllowResize.Text">
+    <value xml:space="preserve">Redimensionar fotos</value>
+  </data>
+  <data name="ControlTitle_settings.Text">
+    <value xml:space="preserve">Configuração da actividade</value>
+  </data>
+  <data name="DefaultPageSize.Help">
+    <value xml:space="preserve">Selecione o número de mensagens que se mostrarán em uma página.</value>
+  </data>
+  <data name="DefaultPageSize.Text">
+    <value xml:space="preserve">Número de mensagens por página</value>
+  </data>
+  <data name="EnableEditor.Help">
+    <value xml:space="preserve">Ative esta opção para activar o desactivar a entrada directa de elementos não editor de actividade.</value>
+  </data>
+  <data name="EnableEditor.Text">
+    <value xml:space="preserve">Activar o editor de actividade</value>
+  </data>
+  <data name="JournalFilters.Help">
+    <value xml:space="preserve">Selecione os tipos de actividade que quiere mostrar.</value>
+  </data>
+  <data name="JournalFilters.Text">
+    <value xml:space="preserve">Tipos de actividade</value>
+  </data>
+  <data name="MaxMessageLength.Help">
+    <value xml:space="preserve">Entre o número máximo de caracteres permitidos nos mensagens.</value>
+  </data>
+  <data name="MaxMessageLength.Text">
+    <value xml:space="preserve">Número máximo de caracteres por mensagem</value>
+  </data>
+  <data name="MessageLength_Unlimited.Text">
+    <value xml:space="preserve">Sin límite</value>
+  </data>
+</root>

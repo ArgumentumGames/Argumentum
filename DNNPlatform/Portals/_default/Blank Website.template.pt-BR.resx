@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="LocalizedTemplateName.Text">
+    <value xml:space="preserve">Sitio web em branco</value>
+  </data>
+  <data name="PortalDescription.Text">
+    <value xml:space="preserve">planilha de sitio web em branco</value>
+  </data>
+  <data name="RoleGroup.Description.Text">
+    <value xml:space="preserve">Um grupo de roles que representa os roles globales</value>
+  </data>
+  <data name="Setting.DefaultLanguage.Text">
+    <value xml:space="preserve">pt-BR</value>
+  </data>
+  <data name="Setting.FooterText.Text">
+    <value xml:space="preserve">Copyright [year] mi sitio web</value>
+  </data>
+  <data name="Tab.404ErrorPage..Module.Content.Text">
+    <value xml:space="preserve">O sentimos, a página que esta buscando não foi encontrado. Pode que a página foiya borrado, su nome haya cambiado o bien esté temporalmente desactivada. Le sugerimos que empieze de novo em a página inicial. Póngase em contato com nosoutros se o problema persiste o não pode encontrar o que necessita.</value>
+  </data>
+  <data name="Tab.404ErrorPage..Module.Title.Text">
+    <value xml:space="preserve">A página não se pode encontrar</value>
+  </data>
+  <data name="Tab.404ErrorPage.Content.Text">
+    <value xml:space="preserve">Página de error 404</value>
+  </data>
+  <data name="Tab.404ErrorPage.Title.Text">
+    <value xml:space="preserve">Página de error 404</value>
+  </data>
+  <data name="Tab.About.RightPane.OtherModule.Content.8.Text">
+    <value xml:space="preserve">Compartilhe sus comentarios</value>
+  </data>
+  <data name="Tab.DigitalAssetsManagement.Title.Text" lastModified="2015-12-29 07:06:21">
+    <value xml:space="preserve">Gestión de Arquivos</value>
+  </data>
+  <data name="Tab.Home.Name.Text">
+    <value xml:space="preserve">Inicio</value>
+  </data>
+  <data name="Tab.MyFriends.Title.Text" lastModified="2015-12-29 07:06:21">
+    <value xml:space="preserve">Mis amigos</value>
+  </data>
+  <data name="Tab.MyMessages.Title.Text" lastModified="2015-12-29 07:06:21">
+    <value xml:space="preserve">Mis mensagens</value>
+  </data>
+  <data name="Tab.MyProfile.Title.Text" lastModified="2015-12-29 07:06:21">
+    <value xml:space="preserve">Mi perfil</value>
+  </data>
+  <data name="Tab.PortalAdministration.Title.Text" lastModified="2015-12-29 07:06:21">
+    <value xml:space="preserve">Administração do portal web</value>
+  </data>
+  <data name="Tab.SearchResultsCE.Title.Text" lastModified="2015-12-29 07:06:21">
+    <value xml:space="preserve">Resultados de buscas</value>
+  </data>
+  <data name="Tab.UserAccounts.Title.Text" lastModified="2015-12-29 07:06:21">
+    <value xml:space="preserve">Contas de usuarios</value>
+  </data>
+  <data name="Tab.Home.Description.Text">
+    <value>
+    </value>
+  </data>
+  <data name="Tab.Home.Keywords.Text">
+    <value>
+    </value>
+  </data>
+  <data name="Tab.Home.PageHeadText.Text">
+    <value>
+    </value>
+  </data>
+  <data name="Tab.Home.Title.Text">
+    <value>
+    </value>
+  </data>
+</root>

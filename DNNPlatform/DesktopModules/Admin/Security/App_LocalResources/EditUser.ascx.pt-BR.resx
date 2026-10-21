@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountInfo.Text">
+    <value xml:space="preserve">Informação de conta</value>
+  </data>
+  <data name="AccountSettings.Text">
+    <value xml:space="preserve">Configuração de conta</value>
+  </data>
+  <data name="cmdCommunications.Text">
+    <value xml:space="preserve">Comunicações</value>
+  </data>
+  <data name="cmdDelete.Text">
+    <value xml:space="preserve">Cancelar registro</value>
+  </data>
+  <data name="cmdProfile.Text">
+    <value xml:space="preserve">Gestionar perfil</value>
+  </data>
+  <data name="cmdServices.Text">
+    <value xml:space="preserve">Gestionar servicios</value>
+  </data>
+  <data name="cmdUpdate.Text">
+    <value xml:space="preserve">Atualizar</value>
+  </data>
+  <data name="cmdUser.Text">
+    <value xml:space="preserve">Gestionar conta</value>
+  </data>
+  <data name="ControlTitle_profile.Text">
+    <value xml:space="preserve">Perfil</value>
+  </data>
+  <data name="DisplayNameNotUnique.Text">
+    <value xml:space="preserve">O nome para mostrar que foi escogido já o utiliza outro usuario, selecione outro diferente.</value>
+  </data>
+  <data name="ErrorDialogTitle.Text">
+    <value xml:space="preserve">Error inesperado</value>
+  </data>
+  <data name="PasswordSettings.Text">
+    <value xml:space="preserve">Gestionar contrasenha</value>
+  </data>
+  <data name="SuccessMessage.Text">
+    <value xml:space="preserve">foi actualizado corretamente a URL de perfil.</value>
+  </data>
+  <data name="UserSubscribed.Text">
+    <value xml:space="preserve">foi suscrito corretamente ao rol {0}.</value>
+  </data>
+  <data name="UserUnSubscribed.Text">
+    <value xml:space="preserve">foi cancelado su suscripció ao rol {0} corretamente.</value>
+  </data>
+  <data name="UserUpdated.Text">
+    <value xml:space="preserve">foi actualizado corretamente a conta.</value>
+  </data>
+  <data name="UserUpdatedError.Text">
+    <value xml:space="preserve">foi producido um error inesperado ao guardar su conta.</value>
+  </data>
+  <data name="VanityUrlHeader.Text">
+    <value xml:space="preserve">Atenção: somente pode atualizar uma vez su URL pública de perfil.</value>
+  </data>
+  <data name="VanityUrlLabel.Help">
+    <value xml:space="preserve">Pode entrar uma URL personalizada para acceder a su perfil público e compartilhar com outros miembros da comunidade.</value>
+  </data>
+  <data name="VanityUrlLabel.Text">
+    <value xml:space="preserve">URL perfil:</value>
+  </data>
+</root>

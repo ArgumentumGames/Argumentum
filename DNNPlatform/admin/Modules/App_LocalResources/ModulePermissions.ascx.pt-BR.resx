@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle_module.Text">
+    <value xml:space="preserve">Módulo</value>
+  </data>
+  <data name="InheritPermissions.Text">
+    <value xml:space="preserve">Herdar permissões de &lt;strong&gt;Visualização da Página&lt;/strong&gt;</value>
+  </data>
+  <data name="Permissions.Text">
+    <value xml:space="preserve">Permissões</value>
+  </data>
+  <data name="plPermissions.Help" lastModified="2015-12-28 06:50:12">
+    <value xml:space="preserve">Selecione as permissões de Visualização e Edição marcando/desmarcando as caixas na grade. Marque a caixa "Herdar Permissões de Visualização" para permitir que o módulo herde as permissões da página.</value>
+  </data>
+  <data name="plPermissions.Text">
+    <value xml:space="preserve">Permissões:</value>
+  </data>
+</root>

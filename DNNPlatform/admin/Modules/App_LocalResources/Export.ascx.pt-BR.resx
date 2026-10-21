@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cmdExport.Text">
+    <value xml:space="preserve">Exportar</value>
+  </data>
+  <data name="ControlTitle_exportmodule.Text">
+    <value xml:space="preserve">Exportar Módulo</value>
+  </data>
+  <data name="Error.Text" lastModified="2024-07-26 16:12:26">
+    <value xml:space="preserve">Um erro ocorreu durante a exportação.</value>
+  </data>
+  <data name="ExportNotSupported.Text" lastModified="2024-07-26 16:12:26">
+    <value xml:space="preserve">O módulo especificado não suporta a exportação de conteúdo.</value>
+  </data>
+  <data name="ModuleHelp.Text">
+    <value xml:space="preserve">&lt;h1&gt;Exportar o módulo&lt;/h1&gt;&lt;p&gt;Os administradores podem exportar conteúdo para o módulo especificado.&lt;/p&gt;</value>
+  </data>
+  <data name="NoContent.Text" lastModified="2024-07-26 00:00:00">
+    <value xml:space="preserve">O módulo selecionado não tem nenhum conteúdo.</value>
+  </data>
+  <data name="plFile.Help" lastModified="2024-07-26 00:00:00">
+    <value xml:space="preserve">Entre o nome do arquivo para exportação.</value>
+  </data>
+  <data name="plFile.Text">
+    <value xml:space="preserve">Arquivo</value>
+  </data>
+  <data name="plFolder.Help" lastModified="2024-07-26 00:00:00">
+    <value xml:space="preserve">Selecione a pasta de exportação.</value>
+  </data>
+  <data name="plFolder.Text">
+    <value xml:space="preserve">Pasta</value>
+  </data>
+  <data name="Root.Text">
+    <value xml:space="preserve">Raiz</value>
+  </data>
+  <data name="Validation.Text" lastModified="2024-07-26 00:00:00">
+    <value xml:space="preserve">Você deve especificar uma pasta e um arquivo para exportação.</value>
+  </data>
+</root>

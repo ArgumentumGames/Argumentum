@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cmdUpdate.Text">
+    <value xml:space="preserve">Atualizar Código</value>
+  </data>
+  <data name="ControlTitle_viewsource.Text">
+    <value xml:space="preserve">Ver Código-fonte do Módulo</value>
+  </data>
+  <data name="NoFileTypeSelected.Text">
+    <value xml:space="preserve">Tipo de arquivo a ser editado deve ser escolhido antes de clicar o botão Atualizar.</value>
+  </data>
+  <data name="plFile.Help">
+    <value xml:space="preserve">Selecione o arquivo cujo código deseja ver.</value>
+  </data>
+  <data name="plFile.Text">
+    <value xml:space="preserve">Selecionar Arquivo:</value>
+  </data>
+  <data name="plSource.Help">
+    <value xml:space="preserve">Você pode ver o código-fonte do controle do módulo na caixa de texto abaixo. Se você estiver usando uma máquina local, também poderá editar e modificar o código-fonte.</value>
+  </data>
+  <data name="plSource.Text">
+    <value xml:space="preserve">Código-fonte do controle de módulo:</value>
+  </data>
+  <data name="SourceFile.Text">
+    <value xml:space="preserve">Arquivo de código-fonte: {0}</value>
+  </data>
+</root>
