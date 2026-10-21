@@ -726,78 +726,78 @@ parent_path,child_path,child_pk,depth,family,subfamily,subsubfamily
 4,"4,13112",723,2,Erreur de raisonnement,Causalité douteuse,Effet cigogne
 4,"4,132",724,2,Erreur de raisonnement,Causalité douteuse,Effet cigogne
 4,"4,134",725,2,Erreur de raisonnement,Causalité douteuse,Effet cigogne
-4,"4,2",726,2,Erreur de raisonnement,Mauvaise composition,
-4,"4,21",727,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle
-4,"4,211",728,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle
-4,"4,2111",729,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle
-4,"4,212",730,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle
-4,"4,2121",731,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle
-4,"4,213",732,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle
-4,"4,2131",733,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle
-4,"4,2132",734,2,Erreur de raisonnement,Mauvaise composition,Erreur de logique propositionnelle
-4,"4,22",735,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
-4,"4,221",736,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
-4,"4,2211",737,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
-4,"4,2213",738,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
-4,"4,2214",739,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
-4,"4,222",740,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
-4,"4,2221",741,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
-4,"4,2222",742,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
-4,"4,22221",743,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
-4,"4,2223",744,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
-4,"4,2224",745,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
-4,"4,2225",746,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
-4,"4,2226",747,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
-4,"4,2227",748,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
-4,"4,223",749,2,Erreur de raisonnement,Mauvaise composition,Erreur de quantification
-4,"4,23",750,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité
-4,"4,231",751,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité
-4,"4,2311",752,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité
-4,"4,232",753,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité
-4,"4,233",754,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité
-4,"4,234",755,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité
-4,"4,2341",756,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité
-4,"4,235",757,2,Erreur de raisonnement,Mauvaise composition,Erreur de modalité
-4,"4,3",758,2,Erreur de raisonnement,Mauvaise déduction,
-4,"4,31",759,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,311",760,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,3111",761,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,3112",762,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,31121",763,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,311211",764,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,3113",765,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,3114",766,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,31141",767,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,312",768,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,3121",769,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,313",770,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,314",771,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,3141",772,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,315",773,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,316",774,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,317",775,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,318",776,2,Erreur de raisonnement,Mauvaise déduction,Conclusion hâtive
-4,"4,32",777,2,Erreur de raisonnement,Mauvaise déduction,Inconsistance
-4,"4,321",778,2,Erreur de raisonnement,Mauvaise déduction,Inconsistance
-4,"4,3211",779,2,Erreur de raisonnement,Mauvaise déduction,Inconsistance
-4,"4,322",780,2,Erreur de raisonnement,Mauvaise déduction,Inconsistance
-4,"4,3221",781,2,Erreur de raisonnement,Mauvaise déduction,Inconsistance
-4,"4,3222",782,2,Erreur de raisonnement,Mauvaise déduction,Inconsistance
-4,"4,323",783,2,Erreur de raisonnement,Mauvaise déduction,Inconsistance
-4,"4,33",784,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
-4,"4,331",785,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
-4,"4,3311",786,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
-4,"4,33111",787,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
-4,"4,3312",788,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
-4,"4,33121",789,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
-4,"4,33122",790,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
-4,"4,332",791,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
-4,"4,3321",792,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
-4,"4,3322",793,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
-4,"4,3323",794,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
-4,"4,333",795,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
-4,"4,3331",796,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
-4,"4,3332",797,2,Erreur de raisonnement,Mauvaise déduction,Syllogisme invalide
+4,"4,2",726,2,Erreur de raisonnement,Composition fautive,
+4,"4,21",727,2,Erreur de raisonnement,Composition fautive,Erreur de logique propositionnelle
+4,"4,211",728,2,Erreur de raisonnement,Composition fautive,Erreur de logique propositionnelle
+4,"4,2111",729,2,Erreur de raisonnement,Composition fautive,Erreur de logique propositionnelle
+4,"4,212",730,2,Erreur de raisonnement,Composition fautive,Erreur de logique propositionnelle
+4,"4,2121",731,2,Erreur de raisonnement,Composition fautive,Erreur de logique propositionnelle
+4,"4,213",732,2,Erreur de raisonnement,Composition fautive,Erreur de logique propositionnelle
+4,"4,2131",733,2,Erreur de raisonnement,Composition fautive,Erreur de logique propositionnelle
+4,"4,2132",734,2,Erreur de raisonnement,Composition fautive,Erreur de logique propositionnelle
+4,"4,22",735,2,Erreur de raisonnement,Composition fautive,Erreur de quantification
+4,"4,221",736,2,Erreur de raisonnement,Composition fautive,Erreur de quantification
+4,"4,2211",737,2,Erreur de raisonnement,Composition fautive,Erreur de quantification
+4,"4,2213",738,2,Erreur de raisonnement,Composition fautive,Erreur de quantification
+4,"4,2214",739,2,Erreur de raisonnement,Composition fautive,Erreur de quantification
+4,"4,222",740,2,Erreur de raisonnement,Composition fautive,Erreur de quantification
+4,"4,2221",741,2,Erreur de raisonnement,Composition fautive,Erreur de quantification
+4,"4,2222",742,2,Erreur de raisonnement,Composition fautive,Erreur de quantification
+4,"4,22221",743,2,Erreur de raisonnement,Composition fautive,Erreur de quantification
+4,"4,2223",744,2,Erreur de raisonnement,Composition fautive,Erreur de quantification
+4,"4,2224",745,2,Erreur de raisonnement,Composition fautive,Erreur de quantification
+4,"4,2225",746,2,Erreur de raisonnement,Composition fautive,Erreur de quantification
+4,"4,2226",747,2,Erreur de raisonnement,Composition fautive,Erreur de quantification
+4,"4,2227",748,2,Erreur de raisonnement,Composition fautive,Erreur de quantification
+4,"4,223",749,2,Erreur de raisonnement,Composition fautive,Erreur de quantification
+4,"4,23",750,2,Erreur de raisonnement,Composition fautive,Erreur de modalité
+4,"4,231",751,2,Erreur de raisonnement,Composition fautive,Erreur de modalité
+4,"4,2311",752,2,Erreur de raisonnement,Composition fautive,Erreur de modalité
+4,"4,232",753,2,Erreur de raisonnement,Composition fautive,Erreur de modalité
+4,"4,233",754,2,Erreur de raisonnement,Composition fautive,Erreur de modalité
+4,"4,234",755,2,Erreur de raisonnement,Composition fautive,Erreur de modalité
+4,"4,2341",756,2,Erreur de raisonnement,Composition fautive,Erreur de modalité
+4,"4,235",757,2,Erreur de raisonnement,Composition fautive,Erreur de modalité
+4,"4,3",758,2,Erreur de raisonnement,Déduction invalide,
+4,"4,31",759,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,311",760,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,3111",761,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,3112",762,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,31121",763,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,311211",764,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,3113",765,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,3114",766,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,31141",767,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,312",768,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,3121",769,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,313",770,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,314",771,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,3141",772,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,315",773,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,316",774,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,317",775,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,318",776,2,Erreur de raisonnement,Déduction invalide,Conclusion hâtive
+4,"4,32",777,2,Erreur de raisonnement,Déduction invalide,Inconsistance
+4,"4,321",778,2,Erreur de raisonnement,Déduction invalide,Inconsistance
+4,"4,3211",779,2,Erreur de raisonnement,Déduction invalide,Inconsistance
+4,"4,322",780,2,Erreur de raisonnement,Déduction invalide,Inconsistance
+4,"4,3221",781,2,Erreur de raisonnement,Déduction invalide,Inconsistance
+4,"4,3222",782,2,Erreur de raisonnement,Déduction invalide,Inconsistance
+4,"4,323",783,2,Erreur de raisonnement,Déduction invalide,Inconsistance
+4,"4,33",784,2,Erreur de raisonnement,Déduction invalide,Syllogisme invalide
+4,"4,331",785,2,Erreur de raisonnement,Déduction invalide,Syllogisme invalide
+4,"4,3311",786,2,Erreur de raisonnement,Déduction invalide,Syllogisme invalide
+4,"4,33111",787,2,Erreur de raisonnement,Déduction invalide,Syllogisme invalide
+4,"4,3312",788,2,Erreur de raisonnement,Déduction invalide,Syllogisme invalide
+4,"4,33121",789,2,Erreur de raisonnement,Déduction invalide,Syllogisme invalide
+4,"4,33122",790,2,Erreur de raisonnement,Déduction invalide,Syllogisme invalide
+4,"4,332",791,2,Erreur de raisonnement,Déduction invalide,Syllogisme invalide
+4,"4,3321",792,2,Erreur de raisonnement,Déduction invalide,Syllogisme invalide
+4,"4,3322",793,2,Erreur de raisonnement,Déduction invalide,Syllogisme invalide
+4,"4,3323",794,2,Erreur de raisonnement,Déduction invalide,Syllogisme invalide
+4,"4,333",795,2,Erreur de raisonnement,Déduction invalide,Syllogisme invalide
+4,"4,3331",796,2,Erreur de raisonnement,Déduction invalide,Syllogisme invalide
+4,"4,3332",797,2,Erreur de raisonnement,Déduction invalide,Syllogisme invalide
 ,5,798,1,Abus de langage,,
 5,"5,1",799,2,Abus de langage,Définition inexacte,
 5,"5,11",800,2,Abus de langage,Définition inexacte,Acception vague
@@ -826,13 +826,13 @@ parent_path,child_path,child_pk,depth,family,subfamily,subsubfamily
 5,"5,12322",823,2,Abus de langage,Définition inexacte,Acception arbitraire
 5,"5,123224",824,2,Abus de langage,Définition inexacte,Acception arbitraire
 5,"5,12323",825,2,Abus de langage,Définition inexacte,Acception arbitraire
-5,"5,13",826,2,Abus de langage,Définition inexacte,Définition inconsistante
-5,"5,131",827,2,Abus de langage,Définition inexacte,Définition inconsistante
-5,"5,1311",828,2,Abus de langage,Définition inexacte,Définition inconsistante
-5,"5,132",829,2,Abus de langage,Définition inexacte,Définition inconsistante
-5,"5,1321",830,2,Abus de langage,Définition inexacte,Définition inconsistante
-5,"5,1322",831,2,Abus de langage,Définition inexacte,Définition inconsistante
-5,"5,133",832,2,Abus de langage,Définition inexacte,Définition inconsistante
+5,"5,13",826,2,Abus de langage,Définition inexacte,Définition incohérente
+5,"5,131",827,2,Abus de langage,Définition inexacte,Définition incohérente
+5,"5,1311",828,2,Abus de langage,Définition inexacte,Définition incohérente
+5,"5,132",829,2,Abus de langage,Définition inexacte,Définition incohérente
+5,"5,1321",830,2,Abus de langage,Définition inexacte,Définition incohérente
+5,"5,1322",831,2,Abus de langage,Définition inexacte,Définition incohérente
+5,"5,133",832,2,Abus de langage,Définition inexacte,Définition incohérente
 5,"5,2",833,2,Abus de langage,Comparaison fallacieuse,
 5,"5,21",834,2,Abus de langage,Comparaison fallacieuse,Comparaison abusive
 5,"5,211",835,2,Abus de langage,Comparaison fallacieuse,Comparaison abusive
@@ -855,27 +855,27 @@ parent_path,child_path,child_pk,depth,family,subfamily,subsubfamily
 5,"5,3131",852,2,Abus de langage,Ambiguïté,Amphibologie
 5,"5,314",853,2,Abus de langage,Ambiguïté,Amphibologie
 5,"5,315",854,2,Abus de langage,Ambiguïté,Amphibologie
-5,"5,32",855,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,321",856,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,3211",857,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,3212",858,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,32121",859,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,322",860,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,3221",861,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,3222",862,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,32221",863,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,3223",864,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,323",865,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,3231",866,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,32311",867,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,3232",868,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,32321",869,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,323211",870,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,323212",871,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,32322",872,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,323221",873,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,32323",874,2,Abus de langage,Ambiguïté,Equivoque
-5,"5,32324",875,2,Abus de langage,Ambiguïté,Equivoque
+5,"5,32",855,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,321",856,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,3211",857,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,3212",858,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,32121",859,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,322",860,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,3221",861,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,3222",862,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,32221",863,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,3223",864,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,323",865,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,3231",866,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,32311",867,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,3232",868,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,32321",869,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,323211",870,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,323212",871,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,32322",872,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,323221",873,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,32323",874,2,Abus de langage,Ambiguïté,Équivoque
+5,"5,32324",875,2,Abus de langage,Ambiguïté,Équivoque
 5,"5,33",876,2,Abus de langage,Ambiguïté,Ambiguïté narrative
 5,"5,331",877,2,Abus de langage,Ambiguïté,Ambiguïté narrative
 5,"5,3311",878,2,Abus de langage,Ambiguïté,Ambiguïté narrative
@@ -992,26 +992,26 @@ parent_path,child_path,child_pk,depth,family,subfamily,subsubfamily
 6,"6,214",989,2,Tricherie,Changement de cap,Exigence renforcée
 6,"6,2141",990,2,Tricherie,Changement de cap,Exigence renforcée
 6,"6,215",991,2,Tricherie,Changement de cap,Exigence renforcée
-6,"6,22",992,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,221",993,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,2211",994,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,22111",995,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,2212",996,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,222",997,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,2221",998,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,2222",999,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,2223",1000,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,223",1407,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,224",1001,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,2241",1002,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,2242",1003,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,225",1004,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,2251",1005,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,2252",1006,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,2253",1007,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,226",1008,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,2261",1009,2,Tricherie,Changement de cap,Beurre et argent du beurre
-6,"6,2262",1010,2,Tricherie,Changement de cap,Beurre et argent du beurre
+6,"6,22",992,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,221",993,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,2211",994,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,22111",995,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,2212",996,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,222",997,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,2221",998,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,2222",999,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,2223",1000,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,223",1407,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,224",1001,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,2241",1002,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,2242",1003,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,225",1004,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,2251",1005,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,2252",1006,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,2253",1007,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,226",1008,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,2261",1009,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
+6,"6,2262",1010,2,Tricherie,Changement de cap,Vouloir le beurre et l’argent du beurre
 6,"6,23",1011,2,Tricherie,Changement de cap,Exigence relâchée
 6,"6,231",1012,2,Tricherie,Changement de cap,Exigence relâchée
 6,"6,232",1013,2,Tricherie,Changement de cap,Exigence relâchée
@@ -1024,263 +1024,263 @@ parent_path,child_path,child_pk,depth,family,subfamily,subsubfamily
 6,"6,234",1020,2,Tricherie,Changement de cap,Exigence relâchée
 6,"6,2341",1021,2,Tricherie,Changement de cap,Exigence relâchée
 6,"6,235",1022,2,Tricherie,Changement de cap,Exigence relâchée
-6,"6,3",1023,2,Tricherie,Pensée biaisée,
-6,"6,31",1024,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311",1025,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3111",1026,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31111",1027,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311111",1028,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3111111",1029,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3111112",1030,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3111113",1031,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311112",1032,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311113",1033,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3111131",1034,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3111132",1035,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311114",1036,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311115",1037,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31112",1038,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311121",1039,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3111211",1040,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31112111",1041,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31112112",1042,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3111212",1043,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31112121",1044,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311121211",1045,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3111213",1046,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3111214",1047,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311122",1048,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3111221",1049,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31112211",1050,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31112212",1051,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31112213",1052,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3111224",1053,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3111225",1054,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31112251",1055,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3111226",1056,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31113",1057,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311131",1058,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311132",1059,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311133",1060,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311134",1061,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311135",1062,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3111351",1063,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311136",1064,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3112",1065,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31121",1066,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311211",1067,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311212",1068,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311213",1069,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311214",1070,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311215",1071,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311216",1072,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3112161",1073,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311217",1074,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31122",1075,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311221",1076,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311222",1077,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311223",1078,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311224",1079,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311225",1080,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311226",1081,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311227",1082,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31123",1083,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311231",1084,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311232",1085,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311233",1086,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311234",1087,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,311235",1088,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3112351",1089,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312",1090,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121",1091,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31211",1092,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312111",1093,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121111",1094,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121112",1095,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121113",1096,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31211131",1097,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312112",1098,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121121",1099,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31211211",1100,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31211212",1101,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121122",1102,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121123",1103,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31212",1104,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312121",1105,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121211",1106,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121212",1107,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121213",1108,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312122",1109,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121221",1110,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121222",1111,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121223",1112,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121224",1113,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312123",1114,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121231",1115,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121232",1116,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121233",1117,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3121234",1118,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3122",1119,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31221",1120,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312211",1121,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312212",1122,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312213",1123,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312214",1124,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312215",1125,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31222",1126,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312221",1127,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312222",1128,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312223",1129,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3122231",1130,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3122232",1131,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3122233",1132,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312224",1133,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3122241",1134,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3122242",1135,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3122243",1136,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312225",1137,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31223",1138,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312231",1139,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3122311",1140,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3122312",1141,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312232",1142,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312233",1143,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312234",1144,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3122341",1145,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123",1146,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31231",1147,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312311",1148,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123111",1149,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123112",1150,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123113",1151,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123114",1152,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312312",1153,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123121",1154,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123122",1155,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123123",1156,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31231231",1157,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312313",1158,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123131",1159,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123132",1160,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123133",1161,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123134",1162,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312314",1163,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31232",1164,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312321",1165,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123211",1166,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123212",1167,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123213",1168,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312322",1169,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123221",1170,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,3123222",1171,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,312323",1172,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,31233",1173,2,Tricherie,Pensée biaisée,Biais naturels
-6,"6,32",1174,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,321",1175,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,3211",1176,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32111",1177,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,321111",1178,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,321112",1179,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,321113",1180,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32112",1181,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32113",1182,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32114",1183,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,3212",1184,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32121",1185,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,321211",1186,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,321212",1187,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32122",1188,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,321221",1189,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,321222",1190,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32123",1191,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,321231",1192,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,3213",1193,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32131",1194,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,321311",1195,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32132",1196,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32133",1197,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,322",1198,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,3221",1199,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32211",1200,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32212",1201,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,3222",1202,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32221",1203,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,322211",1204,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,322212",1205,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,3222121",1206,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,3222122",1207,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,322213",1208,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,322214",1209,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,322215",1210,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,3222151",1211,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,322216",1212,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,3222161",1213,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,322217",1214,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32222",1215,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,322221",1216,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32223",1217,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32224",1218,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,322241",1219,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,322242",1220,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,322243",1221,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,322244",1222,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,322245",1223,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,322246",1224,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,3223",1225,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,323",1226,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,3231",1227,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32311",1228,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32312",1229,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32313",1230,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32314",1231,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,323141",1232,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32315",1233,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32316",1234,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32317",1235,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32318",1236,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,3232",1237,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32321",1238,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32322",1239,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32323",1240,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,32324",1241,2,Tricherie,Pensée biaisée,Biais culturels
-6,"6,33",1242,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,331",1243,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,3311",1244,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,33111",1245,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,331111",1246,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,3312",1247,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,3313",1248,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,33131",1249,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,331311",1250,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,33132",1251,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,331321",1252,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,331322",1253,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,331323",1254,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,3314",1255,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,3315",1256,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,3316",1257,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,33161",1258,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,332",1259,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,3321",1260,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,33211",1261,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,3323",1262,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,3325",1263,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,33251",1264,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,33252",1265,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,3326",1266,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,33261",1267,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,333",1268,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,3331",1269,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,33311",1270,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,33312",1271,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,333121",1272,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,33313",1273,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,33314",1274,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,3332",1275,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,3333",1276,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,3334",1277,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,3335",1278,2,Tricherie,Pensée biaisée,Biais théoriques
-6,"6,3336",1279,2,Tricherie,Pensée biaisée,Biais théoriques
+6,"6,3",1023,2,Tricherie,Raisonnement biaisé,
+6,"6,31",1024,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311",1025,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3111",1026,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31111",1027,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311111",1028,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3111111",1029,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3111112",1030,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3111113",1031,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311112",1032,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311113",1033,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3111131",1034,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3111132",1035,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311114",1036,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311115",1037,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31112",1038,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311121",1039,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3111211",1040,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31112111",1041,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31112112",1042,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3111212",1043,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31112121",1044,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311121211",1045,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3111213",1046,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3111214",1047,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311122",1048,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3111221",1049,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31112211",1050,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31112212",1051,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31112213",1052,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3111224",1053,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3111225",1054,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31112251",1055,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3111226",1056,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31113",1057,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311131",1058,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311132",1059,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311133",1060,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311134",1061,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311135",1062,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3111351",1063,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311136",1064,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3112",1065,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31121",1066,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311211",1067,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311212",1068,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311213",1069,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311214",1070,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311215",1071,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311216",1072,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3112161",1073,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311217",1074,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31122",1075,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311221",1076,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311222",1077,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311223",1078,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311224",1079,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311225",1080,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311226",1081,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311227",1082,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31123",1083,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311231",1084,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311232",1085,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311233",1086,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311234",1087,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,311235",1088,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3112351",1089,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312",1090,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121",1091,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31211",1092,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312111",1093,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121111",1094,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121112",1095,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121113",1096,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31211131",1097,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312112",1098,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121121",1099,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31211211",1100,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31211212",1101,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121122",1102,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121123",1103,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31212",1104,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312121",1105,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121211",1106,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121212",1107,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121213",1108,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312122",1109,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121221",1110,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121222",1111,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121223",1112,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121224",1113,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312123",1114,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121231",1115,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121232",1116,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121233",1117,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3121234",1118,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3122",1119,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31221",1120,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312211",1121,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312212",1122,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312213",1123,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312214",1124,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312215",1125,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31222",1126,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312221",1127,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312222",1128,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312223",1129,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3122231",1130,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3122232",1131,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3122233",1132,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312224",1133,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3122241",1134,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3122242",1135,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3122243",1136,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312225",1137,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31223",1138,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312231",1139,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3122311",1140,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3122312",1141,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312232",1142,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312233",1143,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312234",1144,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3122341",1145,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123",1146,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31231",1147,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312311",1148,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123111",1149,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123112",1150,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123113",1151,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123114",1152,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312312",1153,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123121",1154,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123122",1155,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123123",1156,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31231231",1157,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312313",1158,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123131",1159,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123132",1160,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123133",1161,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123134",1162,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312314",1163,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31232",1164,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312321",1165,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123211",1166,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123212",1167,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123213",1168,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312322",1169,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123221",1170,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,3123222",1171,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,312323",1172,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,31233",1173,2,Tricherie,Raisonnement biaisé,Biais naturels
+6,"6,32",1174,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,321",1175,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,3211",1176,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32111",1177,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,321111",1178,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,321112",1179,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,321113",1180,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32112",1181,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32113",1182,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32114",1183,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,3212",1184,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32121",1185,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,321211",1186,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,321212",1187,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32122",1188,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,321221",1189,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,321222",1190,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32123",1191,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,321231",1192,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,3213",1193,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32131",1194,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,321311",1195,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32132",1196,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32133",1197,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,322",1198,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,3221",1199,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32211",1200,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32212",1201,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,3222",1202,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32221",1203,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,322211",1204,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,322212",1205,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,3222121",1206,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,3222122",1207,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,322213",1208,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,322214",1209,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,322215",1210,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,3222151",1211,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,322216",1212,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,3222161",1213,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,322217",1214,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32222",1215,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,322221",1216,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32223",1217,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32224",1218,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,322241",1219,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,322242",1220,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,322243",1221,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,322244",1222,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,322245",1223,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,322246",1224,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,3223",1225,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,323",1226,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,3231",1227,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32311",1228,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32312",1229,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32313",1230,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32314",1231,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,323141",1232,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32315",1233,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32316",1234,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32317",1235,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32318",1236,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,3232",1237,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32321",1238,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32322",1239,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32323",1240,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,32324",1241,2,Tricherie,Raisonnement biaisé,Biais culturels
+6,"6,33",1242,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,331",1243,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,3311",1244,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,33111",1245,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,331111",1246,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,3312",1247,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,3313",1248,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,33131",1249,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,331311",1250,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,33132",1251,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,331321",1252,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,331322",1253,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,331323",1254,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,3314",1255,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,3315",1256,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,3316",1257,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,33161",1258,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,332",1259,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,3321",1260,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,33211",1261,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,3323",1262,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,3325",1263,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,33251",1264,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,33252",1265,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,3326",1266,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,33261",1267,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,333",1268,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,3331",1269,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,33311",1270,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,33312",1271,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,333121",1272,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,33313",1273,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,33314",1274,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,3332",1275,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,3333",1276,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,3334",1277,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,3335",1278,2,Tricherie,Raisonnement biaisé,Biais théoriques
+6,"6,3336",1279,2,Tricherie,Raisonnement biaisé,Biais théoriques
 ,7,1280,1,Obstruction,,
 7,"7,1",1281,2,Obstruction,Refus du débat,
 7,"7,11",1282,2,Obstruction,Refus du débat,Relativisme abusif
@@ -1313,65 +1313,65 @@ parent_path,child_path,child_pk,depth,family,subfamily,subsubfamily
 7,"7,1352",1309,2,Obstruction,Refus du débat,Preuve par assertion
 7,"7,136",1310,2,Obstruction,Refus du débat,Preuve par assertion
 7,"7,137",1311,2,Obstruction,Refus du débat,Preuve par assertion
-7,"7,2",1312,2,Obstruction,Saboter le débat,
-7,"7,21",1313,2,Obstruction,Saboter le débat,Evasion
-7,"7,211",1314,2,Obstruction,Saboter le débat,Evasion
-7,"7,2111",1315,2,Obstruction,Saboter le débat,Evasion
-7,"7,21111",1316,2,Obstruction,Saboter le débat,Evasion
-7,"7,21112",1317,2,Obstruction,Saboter le débat,Evasion
-7,"7,211121",1318,2,Obstruction,Saboter le débat,Evasion
-7,"7,21113",1319,2,Obstruction,Saboter le débat,Evasion
-7,"7,21114",1320,2,Obstruction,Saboter le débat,Evasion
-7,"7,2112",1321,2,Obstruction,Saboter le débat,Evasion
-7,"7,21121",1322,2,Obstruction,Saboter le débat,Evasion
-7,"7,211211",1323,2,Obstruction,Saboter le débat,Evasion
-7,"7,211212",1324,2,Obstruction,Saboter le débat,Evasion
-7,"7,21122",1325,2,Obstruction,Saboter le débat,Evasion
-7,"7,21123",1326,2,Obstruction,Saboter le débat,Evasion
-7,"7,212",1327,2,Obstruction,Saboter le débat,Evasion
-7,"7,2121",1328,2,Obstruction,Saboter le débat,Evasion
-7,"7,21211",1329,2,Obstruction,Saboter le débat,Evasion
-7,"7,2122",1330,2,Obstruction,Saboter le débat,Evasion
-7,"7,2123",1331,2,Obstruction,Saboter le débat,Evasion
-7,"7,2124",1332,2,Obstruction,Saboter le débat,Evasion
-7,"7,21241",1333,2,Obstruction,Saboter le débat,Evasion
-7,"7,213",1334,2,Obstruction,Saboter le débat,Evasion
-7,"7,2131",1335,2,Obstruction,Saboter le débat,Evasion
-7,"7,21311",1336,2,Obstruction,Saboter le débat,Evasion
-7,"7,21312",1337,2,Obstruction,Saboter le débat,Evasion
-7,"7,2132",1338,2,Obstruction,Saboter le débat,Evasion
-7,"7,21321",1339,2,Obstruction,Saboter le débat,Evasion
-7,"7,213211",1340,2,Obstruction,Saboter le débat,Evasion
-7,"7,21322",1341,2,Obstruction,Saboter le débat,Evasion
-7,"7,2133",1342,2,Obstruction,Saboter le débat,Evasion
-7,"7,21331",1343,2,Obstruction,Saboter le débat,Evasion
-7,"7,21332",1344,2,Obstruction,Saboter le débat,Evasion
-7,"7,22",1345,2,Obstruction,Saboter le débat,Complication exagérée
-7,"7,221",1346,2,Obstruction,Saboter le débat,Complication exagérée
-7,"7,2211",1347,2,Obstruction,Saboter le débat,Complication exagérée
-7,"7,22111",1348,2,Obstruction,Saboter le débat,Complication exagérée
-7,"7,2212",1349,2,Obstruction,Saboter le débat,Complication exagérée
-7,"7,222",1350,2,Obstruction,Saboter le débat,Complication exagérée
-7,"7,223",1351,2,Obstruction,Saboter le débat,Complication exagérée
-7,"7,23",1352,2,Obstruction,Saboter le débat,Empoisonner le puits
-7,"7,231",1353,2,Obstruction,Saboter le débat,Empoisonner le puits
-7,"7,232",1354,2,Obstruction,Saboter le débat,Empoisonner le puits
-7,"7,233",1355,2,Obstruction,Saboter le débat,Empoisonner le puits
-7,"7,2331",1356,2,Obstruction,Saboter le débat,Empoisonner le puits
-7,"7,234",1357,2,Obstruction,Saboter le débat,Empoisonner le puits
-7,"7,2341",1358,2,Obstruction,Saboter le débat,Empoisonner le puits
-7,"7,2342",1359,2,Obstruction,Saboter le débat,Empoisonner le puits
+7,"7,2",1312,2,Obstruction,Sabotage du débat,
+7,"7,21",1313,2,Obstruction,Sabotage du débat,Évasion
+7,"7,211",1314,2,Obstruction,Sabotage du débat,Évasion
+7,"7,2111",1315,2,Obstruction,Sabotage du débat,Évasion
+7,"7,21111",1316,2,Obstruction,Sabotage du débat,Évasion
+7,"7,21112",1317,2,Obstruction,Sabotage du débat,Évasion
+7,"7,211121",1318,2,Obstruction,Sabotage du débat,Évasion
+7,"7,21113",1319,2,Obstruction,Sabotage du débat,Évasion
+7,"7,21114",1320,2,Obstruction,Sabotage du débat,Évasion
+7,"7,2112",1321,2,Obstruction,Sabotage du débat,Évasion
+7,"7,21121",1322,2,Obstruction,Sabotage du débat,Évasion
+7,"7,211211",1323,2,Obstruction,Sabotage du débat,Évasion
+7,"7,211212",1324,2,Obstruction,Sabotage du débat,Évasion
+7,"7,21122",1325,2,Obstruction,Sabotage du débat,Évasion
+7,"7,21123",1326,2,Obstruction,Sabotage du débat,Évasion
+7,"7,212",1327,2,Obstruction,Sabotage du débat,Évasion
+7,"7,2121",1328,2,Obstruction,Sabotage du débat,Évasion
+7,"7,21211",1329,2,Obstruction,Sabotage du débat,Évasion
+7,"7,2122",1330,2,Obstruction,Sabotage du débat,Évasion
+7,"7,2123",1331,2,Obstruction,Sabotage du débat,Évasion
+7,"7,2124",1332,2,Obstruction,Sabotage du débat,Évasion
+7,"7,21241",1333,2,Obstruction,Sabotage du débat,Évasion
+7,"7,213",1334,2,Obstruction,Sabotage du débat,Évasion
+7,"7,2131",1335,2,Obstruction,Sabotage du débat,Évasion
+7,"7,21311",1336,2,Obstruction,Sabotage du débat,Évasion
+7,"7,21312",1337,2,Obstruction,Sabotage du débat,Évasion
+7,"7,2132",1338,2,Obstruction,Sabotage du débat,Évasion
+7,"7,21321",1339,2,Obstruction,Sabotage du débat,Évasion
+7,"7,213211",1340,2,Obstruction,Sabotage du débat,Évasion
+7,"7,21322",1341,2,Obstruction,Sabotage du débat,Évasion
+7,"7,2133",1342,2,Obstruction,Sabotage du débat,Évasion
+7,"7,21331",1343,2,Obstruction,Sabotage du débat,Évasion
+7,"7,21332",1344,2,Obstruction,Sabotage du débat,Évasion
+7,"7,22",1345,2,Obstruction,Sabotage du débat,Complication exagérée
+7,"7,221",1346,2,Obstruction,Sabotage du débat,Complication exagérée
+7,"7,2211",1347,2,Obstruction,Sabotage du débat,Complication exagérée
+7,"7,22111",1348,2,Obstruction,Sabotage du débat,Complication exagérée
+7,"7,2212",1349,2,Obstruction,Sabotage du débat,Complication exagérée
+7,"7,222",1350,2,Obstruction,Sabotage du débat,Complication exagérée
+7,"7,223",1351,2,Obstruction,Sabotage du débat,Complication exagérée
+7,"7,23",1352,2,Obstruction,Sabotage du débat,Empoisonnement du puits
+7,"7,231",1353,2,Obstruction,Sabotage du débat,Empoisonnement du puits
+7,"7,232",1354,2,Obstruction,Sabotage du débat,Empoisonnement du puits
+7,"7,233",1355,2,Obstruction,Sabotage du débat,Empoisonnement du puits
+7,"7,2331",1356,2,Obstruction,Sabotage du débat,Empoisonnement du puits
+7,"7,234",1357,2,Obstruction,Sabotage du débat,Empoisonnement du puits
+7,"7,2341",1358,2,Obstruction,Sabotage du débat,Empoisonnement du puits
+7,"7,2342",1359,2,Obstruction,Sabotage du débat,Empoisonnement du puits
 7,"7,3",1360,2,Obstruction,Ad hominem,
-7,"7,31",1361,2,Obstruction,Ad hominem,Procès en inconsistance
-7,"7,311",1362,2,Obstruction,Ad hominem,Procès en inconsistance
-7,"7,3111",1363,2,Obstruction,Ad hominem,Procès en inconsistance
-7,"7,3112",1364,2,Obstruction,Ad hominem,Procès en inconsistance
-7,"7,312",1365,2,Obstruction,Ad hominem,Procès en inconsistance
-7,"7,3121",1366,2,Obstruction,Ad hominem,Procès en inconsistance
-7,"7,3122",1367,2,Obstruction,Ad hominem,Procès en inconsistance
-7,"7,313",1368,2,Obstruction,Ad hominem,Procès en inconsistance
-7,"7,3131",1369,2,Obstruction,Ad hominem,Procès en inconsistance
-7,"7,3132",1370,2,Obstruction,Ad hominem,Procès en inconsistance
+7,"7,31",1361,2,Obstruction,Ad hominem,Procès en incohérence
+7,"7,311",1362,2,Obstruction,Ad hominem,Procès en incohérence
+7,"7,3111",1363,2,Obstruction,Ad hominem,Procès en incohérence
+7,"7,3112",1364,2,Obstruction,Ad hominem,Procès en incohérence
+7,"7,312",1365,2,Obstruction,Ad hominem,Procès en incohérence
+7,"7,3121",1366,2,Obstruction,Ad hominem,Procès en incohérence
+7,"7,3122",1367,2,Obstruction,Ad hominem,Procès en incohérence
+7,"7,313",1368,2,Obstruction,Ad hominem,Procès en incohérence
+7,"7,3131",1369,2,Obstruction,Ad hominem,Procès en incohérence
+7,"7,3132",1370,2,Obstruction,Ad hominem,Procès en incohérence
 7,"7,32",1371,2,Obstruction,Ad hominem,Sophisme génétique
 7,"7,321",1372,2,Obstruction,Ad hominem,Sophisme génétique
 7,"7,3211",1373,2,Obstruction,Ad hominem,Sophisme génétique

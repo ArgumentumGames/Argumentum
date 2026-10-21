@@ -76,7 +76,9 @@ def load_csv():
 def _write_csv(path, fields, rows):
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=fields)
+        # LF terminator: the committed artefacts are LF in the blob; the csv
+        # module's CRLF default would flip every line of the tree on refresh.
+        w = csv.DictWriter(f, fieldnames=fields, lineterminator="\n")
         w.writeheader()
         for r in rows:
             w.writerow(r)

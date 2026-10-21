@@ -97,7 +97,7 @@ fallacyOfAccident,inverts,overgeneralization
 falseDilemma,inverts,denyingTheCorrelative
 gamblersFallacy,inverts,inverseGamblersFallacy
 golemEffect,inverts,pygmalionEffect
-hastyInduction,inverts,slothfulInduction
+hastyGeneralization,inverts,slothfulInduction
 illicitAffirmative,inverts,illicitNegative
 illicitNegative,inverts,illicitAffirmative
 illicitSubalternation,inverts,illicitSuperalternation
@@ -126,14 +126,13 @@ pygmalionEffect,inverts,golemEffect
 selfBlame,inverts,buckPassing
 selfBlame,inverts,victimBlaming
 selfDefeatingProphecy,inverts,autosuggestion
-slothfulInduction,inverts,hastyInduction
+slothfulInduction,inverts,hastyGeneralization
 subjectiveIdealism,inverts,materialism
 tautology,inverts,oxymoron
 victimBlaming,inverts,selfBlame
 adPopulum,isRelatedTo,appealToTheMajority
 allegedCertainty,isRelatedTo,appealToConfidence
 allegedCertainty,isRelatedTo,truthiness
-alternativeAdvance,isRelatedTo,polarizing
 amazingFamiliarity,isRelatedTo,conclusionContradictingAPremise
 amazingFamiliarity,isRelatedTo,amazingFamiliarity
 anecdotalEvidence,isRelatedTo,misleadingVividness
@@ -155,7 +154,7 @@ argumentFromAuthority,isRelatedTo,authorityBias
 argumentFromDesign,isRelatedTo,hastyConclusion
 argumentFromHearsay,isRelatedTo,canard
 argumentFromHearsay,isRelatedTo,urbanLegend
-argumentFromSmallNumbers,isRelatedTo,hastyGeneralization
+argumentFromSmallNumbers,isRelatedTo,sloppyArgument
 argumentumASilentio,isRelatedTo,appealToIgnorance
 astroturfing,isRelatedTo,socialConditioning
 authorityBias,isRelatedTo,argumentFromAuthority
@@ -165,7 +164,7 @@ bait,isRelatedTo,decoyEffect
 baitingForTruth,isRelatedTo,lying
 bandwagonFallacy,isRelatedTo,appealToTheMajority
 beggingTheQuestion,isRelatedTo,beggingTheQuestion
-beggingTheQuestion,isRelatedTo,circularReasoning
+beggingTheQuestion,isRelatedTo,circularDefinition
 brokenWindowFallacy,isRelatedTo,causalReductionism
 bromide,isRelatedTo,clichéThinking
 canard,isRelatedTo,argumentFromHearsay
@@ -173,8 +172,8 @@ catAndMouseGame,isRelatedTo,hypercriticalMethod
 causalReductionism,isRelatedTo,brokenWindowFallacy
 causalReductionism,isRelatedTo,lumpOfLabourFallacy
 chlick,isRelatedTo,refusingDebate
+circularDefinition,isRelatedTo,beggingTheQuestion
 circularReasoning,isRelatedTo,homunculusArgument
-circularReasoning,isRelatedTo,beggingTheQuestion
 clicheThinking,isRelatedTo,clichéThinking
 clichéThinking,isRelatedTo,bromide
 clichéThinking,isRelatedTo,clicheThinking
@@ -192,6 +191,7 @@ drawingTheWrongConclusion,isRelatedTo,galileoGambit
 elGrecoFallacy,isRelatedTo,denyingTheCommonCause
 emotionalReasoning,isRelatedTo,emotionalReasoning
 fallacyOfExclusion,isRelatedTo,streetlightEffect
+falseAlternative,isRelatedTo,polarizing
 falseAnalogy,isRelatedTo,appealToTheMoon
 falseAttribution,isRelatedTo,grayPropaganda
 falseEquivalence,isRelatedTo,wrongerThanWrong
@@ -208,14 +208,9 @@ guiltInduction,isRelatedTo,appealToLoyalty
 hastyConclusion,isRelatedTo,theGoldenHammer
 hastyConclusion,isRelatedTo,argumentFromDesign
 hastyConclusion,isRelatedTo,faultyGeneralisation
-hastyConclusion,isRelatedTo,hastyGeneralization
+hastyConclusion,isRelatedTo,sloppyArgument
 hastyConclusion,isRelatedTo,hastyConclusion
 hastyConclusion,isRelatedTo,quantumPhysicsFallacy
-hastyGeneralization,isRelatedTo,argumentFromSmallNumbers
-hastyGeneralization,isRelatedTo,insensitivityToSampleSize
-hastyGeneralization,isRelatedTo,nutpicking
-hastyGeneralization,isRelatedTo,proofByExample
-hastyGeneralization,isRelatedTo,hastyConclusion
 hollowArgument,isRelatedTo,limitedScope
 hollowArgument,isRelatedTo,tautology
 homunculusArgument,isRelatedTo,circularReasoning
@@ -224,7 +219,7 @@ idiosyncraticLanguage,isRelatedTo,idiosyncraticLanguage
 illusoryTruthEffect,isRelatedTo,illusoryTruthEffect
 incompatiblePremises,isRelatedTo,conflictingConditions
 inconsistency,isRelatedTo,paradox
-insensitivityToSampleSize,isRelatedTo,hastyGeneralization
+insensitivityToSampleSize,isRelatedTo,sloppyArgument
 insensitivityToSampleSize,isRelatedTo,insensitivityToSampleSize
 internalContradiction,isRelatedTo,trivialism
 inverseStoppedClock,isRelatedTo,theBrokenClock
@@ -235,7 +230,7 @@ lying,isRelatedTo,baitingForTruth
 magicalThinking,isRelatedTo,questionableCausality
 misleadingVividness,isRelatedTo,anecdotalEvidence
 moralPanic,isRelatedTo,moralPanic
-nutpicking,isRelatedTo,hastyGeneralization
+nutpicking,isRelatedTo,sloppyArgument
 pIDOOMA,isRelatedTo,unfoundedSupport
 packageDealFallacy,isRelatedTo,storkEffect
 paradox,isRelatedTo,inconsistency
@@ -243,9 +238,9 @@ parembole,isRelatedTo,digression
 philosophicalFallacy,isRelatedTo,deepity
 poisoningTheWell,isRelatedTo,appealToLoyalty
 poisoningTheWell,isRelatedTo,kafkatrap
-polarizing,isRelatedTo,alternativeAdvance
+polarizing,isRelatedTo,falseAlternative
 postHocErgoPropterHoc,isRelatedTo,appealToNovelty
-proofByExample,isRelatedTo,hastyGeneralization
+proofByExample,isRelatedTo,sloppyArgument
 proofSurrogate,isRelatedTo,proofSurrogate
 propositionalLogicFallacy,isRelatedTo,credoQuiaAbsurdum
 quantifierShift,isRelatedTo,suppressedQuantifier
@@ -257,6 +252,11 @@ regressionFallacy,isRelatedTo,regressiveFallacy
 regressiveFallacy,isRelatedTo,regressionFallacy
 semanticAmbiguity,isRelatedTo,takingAdvantageOfTheNaySayer
 shiftingGround,isRelatedTo,shiftingGround
+sloppyArgument,isRelatedTo,argumentFromSmallNumbers
+sloppyArgument,isRelatedTo,insensitivityToSampleSize
+sloppyArgument,isRelatedTo,nutpicking
+sloppyArgument,isRelatedTo,proofByExample
+sloppyArgument,isRelatedTo,hastyConclusion
 socialConditioning,isRelatedTo,astroturfing
 spiderManFallacy,isRelatedTo,anecdotalEvidence
 stolenConceptFallacy,isRelatedTo,conclusionContradictingAPremise
@@ -305,6 +305,7 @@ appealToMystery,leverages,appealToComplexity
 appealToNovelty,leverages,recencyBias
 argumentByGibberish,leverages,deepity
 argumentByGibberish,leverages,failureToElucidate
+argumentByQuestion,leverages,beggingTheQuestion
 argumentByScenario,leverages,pIDOOMA
 argumentByScenario,leverages,framing
 argumentFromEditorsIntent,leverages,appealToMalintention
@@ -316,6 +317,7 @@ attentionalBias,leverages,emotionalBiases
 attributionBias,leverages,essentialism
 availabilityHeuristic,leverages,recencyBias
 avoidingTheIssue,leverages,redHerring
+backpedaling,leverages,polysemicLexicalShift
 badFaith,leverages,oneSidedArgument
 baitingForTruth,leverages,covertInterrogation
 bandwagonFallacy,leverages,socialConditioning
@@ -329,7 +331,7 @@ bromide,leverages,lapalissade
 bullshit,leverages,sellingSnakeOil
 buzzword,leverages,proofByPrestigiousJargon
 cacophony,leverages,alliteration
-"calling""Cards""",leverages,strawMan
+callingCards,leverages,strawMan
 cellophaneParadox,leverages,broadDefinition
 circumlocution,leverages,failureToElucidate
 claimVictoryDespiteDefeat,leverages,denyingTheCounterevidence
@@ -369,7 +371,7 @@ distancingLanguage,leverages,vagueness
 dogWhistlePolitics,leverages,polysemicLexicalShift
 doubleSpeak,leverages,talkingPoints
 doubleSpeak,leverages,buzzword
-drinkingTheKoolAid./PeerPressure,leverages,socialConditioning
+drinkingTheKoolAid/PeerPressure,leverages,socialConditioning
 egotism,leverages,mindProjectionFallacy
 emotionalBiases,leverages,attentionalBias
 emotionalBlackmail,leverages,guiltTrip
@@ -402,11 +404,11 @@ falseMemory,leverages,falsePremise
 falsePrecision,leverages,falsePrecision
 farFetchedHypothesis,leverages,farFetchedHypothesis
 fastFoodChristianity,leverages,breadAndCircuses
-faultyGeneralisation,leverages,hastyGeneralization
+faultyGeneralisation,leverages,sloppyArgument
 fearUncertaintyAndDoubt,leverages,fearUncertaintyAndDoubt
 fedspeak,leverages,vagueness
 firehoseOfFalsehood,leverages,spreading
-flagWaving,leverages,drinkingTheKoolAid./PeerPressure
+flagWaving,leverages,drinkingTheKoolAid/PeerPressure
 flyingCarpet,leverages,appealToSpite
 fundamentalism,leverages,dogmatism
 fundingBias,leverages,selectiveThinking
@@ -421,6 +423,8 @@ groupshift,leverages,socialDesirabilityBias
 groupshift,leverages,socialComparisonBias
 guiltByAssociation,leverages,associationFallacy
 harassment,leverages,nagging
+hook,leverages,argumentBySlogan
+hook,leverages,talkingPoints
 hostileAttributionBias,leverages,fundamentalAttributionError
 humiliation,leverages,verbalAbuse
 hypercriticalMethod,leverages,nirvanaFallacy
@@ -447,7 +451,6 @@ leapOfFaith,leverages,leapOfFaith
 liarParadox,leverages,internalContradiction
 limitedHangout,leverages,misrepresentation
 linkingToAuthority,leverages,falseAttribution
-loadedQuestion,leverages,beggingTheQuestion
 lyingWithStatistics,leverages,proofByLargeNumbers
 magicalThinking,leverages,superstition
 magnificationAndMinimization,leverages,minimisation
@@ -463,9 +466,8 @@ minimisation,leverages,weaselWord
 mistakesWereMade,leverages,reification
 misuseOfSymbol,leverages,referentialFallacy
 moralLuck,leverages,dispositionalAttribution
-mortonsFork,leverages,alternativeAdvance
+mortonsFork,leverages,falseAlternative
 motteAndBailey,leverages,baitAndSwitch
-movingTheGoalposts,leverages,polysemicLexicalShift
 narcissismInTheWorkplace,leverages,scapegoating
 naïveCynicism,leverages,biasBlindSpot
 nirvanaFallacy,leverages,hypercriticalMethod
@@ -548,8 +550,6 @@ socialEngineering(politics),leverages,subconsciousInfluence
 socialEngineering(security),leverages,commitment
 socialEngineering(security),leverages,disruptThenReframe
 socialEngineering(security),leverages,persistence
-soundBite,leverages,argumentBySlogan
-soundBite,leverages,talkingPoints
 spiritualFallacy,leverages,polysemyBySemanticChange
 spiritualFallacy,leverages,pseudodogmas
 spreading,leverages,gishGallop
@@ -583,7 +583,7 @@ timeSavingBias,leverages,numericalError
 tokenEndorsement,leverages,anecdotalEvidence
 tokenEndorsement,leverages,appealToIdentity
 toneArgument,leverages,evasion
-toupéeFallacy,leverages,hastyGeneralization
+toupéeFallacy,leverages,sloppyArgument
 traitAscriptionBias,leverages,dispositionalAttribution
 triangulation,leverages,pressureTactics
 trivialObjections,leverages,hypercriticalMethod
@@ -652,7 +652,7 @@ appealToWilledIgnorance,predatesOn,willedIgnorance
 applause,predatesOn,standingOvation
 bait,predatesOn,decoyEffect
 bandwagonFallacy,predatesOn,bandwagonEffect
-contrastEffect,predatesOn,contrastEffect
+contrastFraming,predatesOn,contrastEffect
 dogmatism,predatesOn,fundamentalism
 emotionalReasoning,predatesOn,emotionalReasoning
 enumeratio,predatesOn,conglobatio

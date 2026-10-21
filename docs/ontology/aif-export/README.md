@@ -1,10 +1,19 @@
 # AIF attack-graph export — typed attack-edges + inter-fallacy relations
 
-**Generated** : 2026-09-15 (po-2023, pool #458 grain ① — refresh sur l'OWL frais #1379) · édition précédente 2026-07-19 (po-2024, #828/#829/#833)
-**Sources** : `Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv` (master `c089d526`) + `docs/ontology/argumentum.owl` (régénéré #1379 `2b572787`)
+**Generated** : 2026-10-22 (po-2024, G-AIF — refresh sur master `2662c795`, dispatch ai-01 du 21/10) · édition précédente 2026-09-15 (po-2023, pool #458 grain ① — refresh sur l'OWL frais #1379) · 2026-07-19 (po-2024, #828/#829/#833)
+**Sources** : `Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv` (dernier commit `5795e5be` #1895) + `docs/ontology/argumentum.owl` (dernier commit `6a071b98` #1767) + `Cards/Fallacies/Argumentum Virtues - Taxonomy.csv` (`da1251e3` #1928) + `docs/ontology/argumentum_virtues.owl` (`c1491de9` #1681) — le tout à master **`2662c795`**
 **Posture** : read-only export of EXISTING AIF modelling. 0 new modelling. 0 write to sources.
 **Consumer** : CoursIA ICT-series #7289 / uplift #5721/#6409 (strate-6 argumentation), Argumentum Layer C v1.0 (#790).
 
+> **Refresh 2026-10-22 (G-AIF) — ce qui a bougé depuis le 2026-09-15.** Re-exécution des deux exporteurs sur master `2662c795` (CSV Fallacies `5795e5be`, OWL `6a071b98`, CSV Virtues `da1251e3`, OWL Virtues `c1491de9`). Motif : la revue CoursIA d'ai-01 (21/10) a mesuré que l'export publié **142** attack-edges OWL alors que master en donne **143**, avec des IRI renommés — les copies CoursIA étaient figées sur l'ancien état.
+>
+> - **OWL attack-edges 142 → 143** (85u/53m/5r). Détail des IRI (−6/+7), appariés sur la description FR identique à l'octet dans l'OWL avant/après : *undercut* (net 0) `faultyLogics` → `faultyReasoning` · `hastyGeneralization` → `sloppyArgument` · `wrongReasoning` → `inappropriateOperation` ; *undermine* (net +1) `biasedDefinition` → `inexactDefinition` · `pseudoExplanation` → `fallacyOfExplanation` · `misleadingPresentationOfFacts` → `spinDoctoring`, et **`imprecision` entre** (l'edge net).
+> - **attack-edges (CSV) : 44 rangées touchées, total stable 145** (87/53/5, 0 violation) — renommage de sous-familles (« Mauvaise composition » → « Composition fautive », branche 4) propagé depuis #833.
+> - **tree : 435 rangées touchées, total stable 1408** — même propagation des libellés/chemins décimaux.
+> - **relations : 27 rangées, total stable 674** — fragments d'IRI mis à jour (distribution inchangée : leverages 324, isRelatedTo 148, inverts 62, allows 60, opposes 38, predatesOn 31, denounces 9, mirrors 2).
+> - **Virtues : V-A 35 rangées touchées (total 142) · V-B 222 avec 1 IRI renommé** (`considerationOfOnesIdeologicalBiases` → `recognitionOfPersonalIdeologicalBiases`). Concepts 60/14 et schémas 14 inchangés (byte-identiques).
+> - **Exporteurs : les writers émettent désormais LF** — le csv module écrit CRLF par défaut et le dialecte committé est LF ; la note « normalize to LF before committing » ci-dessous devient historique. Vérifié : sans ce patch, le refresh réécrit 9 fichiers entiers ; avec, 6 fichiers chirurgicaux.
+>
 > **Refresh 2026-09-15 — ce qui a bougé depuis le 2026-07-19 (et pourquoi).** L'export n'avait pas été
 > re-exécuté depuis #833 ; les artefacts suivaient l'état de l'OWL de juillet. Cette passe re-synchronise
 > sur l'OWL régénéré (#1379) et le CSV master :
@@ -82,7 +91,7 @@ The AIF ontology vocabulary referenced by the 145 attackers via skos.
 
 The full Fallacies taxonomy tree (all 1408 fallacies, not just the 145 fully-modeled). `parent_path` → `child_path` (child_pk). Useful as the backbone graph; the 145 attack-edges are a typed decoration on a subset of leaves.
 
-### `aif-owl-attack-edges.csv` — 142 attack-edges from the OWL (cross-view)
+### `aif-owl-attack-edges.csv` — 143 attack-edges from the OWL (cross-view, refresh 2026-10-22)
 
 Same AIF attack graph, extracted from `argumentum.owl` AnnotationAssertions (`aifAttackType` + `aifAttackedNode`). `attacker_iri_fragment` is a camelCase fallacy individual (e.g. `hastyGeneralization`), NOT a PK. **Not bijective with the CSV** (see granularity note below).
 
@@ -109,12 +118,12 @@ Same AIF attack graph, extracted from `argumentum.owl` AnnotationAssertions (`ai
 
 ## CSV ↔ OWL granularity note (not a contradiction)
 
-The two attack-edge files (CSV 145, OWL 142) are **not a bijective cross-check**:
+The two attack-edge files (CSV 145, OWL 143) are **not a bijective cross-check**:
 
 - **CSV** encodes AIF at **taxonomy-row** granularity (PK-keyed) — one entry per fallacy row with populated `AIF_attackType`+`AIF_attackedNode`.
 - **OWL** encodes AIF at **fallacy-individual** granularity (camelCase IRI, e.g. `hastyGeneralization`).
 
-The CSV has no PK→IRI column, so a 1:1 row↔individual mapping cannot be established without a separate join key. Both views are internally consistent (0 axiom violations each) and are exported independently. `attackType` distribution is closely aligned (CSV 87u/53m/5r vs OWL 85u/52m/5r). Depuis le refresh 2026-09-15 l'OWL est **frais** (régénéré #1379 depuis le CSV master) : l'écart résiduel 145↔142 est **structurel** (granularités row-taxonomie vs individu), plus un retard de modélisation.
+The CSV has no PK→IRI column, so a 1:1 row↔individual mapping cannot be established without a separate join key. Both views are internally consistent (0 axiom violations each) and are exported independently. `attackType` distribution is closely aligned (CSV 87u/53m/5r vs OWL 85u/53m/5r). Depuis le refresh 2026-09-15 l'OWL est **frais** (régénéré #1379 depuis le CSV master) : l'écart résiduel 145↔143 est **structurel** (granularités row-taxonomie vs individu), plus un retard de modélisation.
 
 ---
 
@@ -177,7 +186,7 @@ python tools/aif-attack-graph-export.py   # Fallacies (5 CSVs)
 python tools/aif-virtues-export.py        # Virtues  (4 CSVs)
 ```
 
-Idempotent, 0 external dependency (Python stdlib + `xml.etree`), runtime ~3s each. Overwrites the CSVs in this directory. 0 write to the source CSV/OWL. ⚠️ The tools write **CRLF** (`csv` module default) while the committed dialect of these CSVs is **LF** (`core.autocrlf=false` ici) — normalize to LF before committing, or the diff shows whole-file rewrites.
+Idempotent, 0 external dependency (Python stdlib + `xml.etree`), runtime ~3s each. Overwrites the CSVs in this directory. 0 write to the source CSV/OWL. *(Historique)* ⚠️ Avant le 2026-10-22 les writers émettaient **CRLF** (`csv` module default) alors que le dialecte committé est **LF** (`core.autocrlf=false` ici) — il fallait normaliser avant de committer. Les deux exporteurs émettent désormais `lineterminator="\n"` : le diff d'un refresh ne porte plus que les changements réels.
 
 ---
 

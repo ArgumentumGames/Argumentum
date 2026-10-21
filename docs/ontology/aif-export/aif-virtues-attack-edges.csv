@@ -3,7 +3,7 @@ attacker_pk,attacker_label,family,subfamily,subsubfamily,decimal_path,attack_typ
 4,Argument déductif,Argument pertinent,Argument fondé,Argument réel,1.1110000,undercut,RA-node,Argument from Rule,,,RA-node,1
 6,Preuves tangibles,Argument pertinent,Argument fondé,Preuves tangibles,1.1200000,undermine,I-node,Argument from Sign,,,I-node,1
 8,Illustrer par des exemples,Argument pertinent,Argument fondé,Preuves tangibles,1.1220000,undercut,RA-node,Argument from Example,,,RA-node,1
-11,Raisonner sans biais,Argument pertinent,Argument fondé,Raisonnement non orienté,1.1300000,undermine,I-node,Argument from Bias,,,I-node,1
+11,Raisonner sans biais,Argument pertinent,Argument fondé,Raisonner sans biais,1.1300000,undermine,I-node,Argument from Bias,,,I-node,1
 19,Témoignage non controversé,Argument pertinent,Prémisses fiables,Sources crédibles,1.2114000,undermine,I-node,Argument from Witness Testimony,,,I-node,1
 20,Conclusion validée,Argument pertinent,Prémisses fiables,Sources crédibles,1.2120000,undermine,I-node,Argument from Expert Opinion,,,I-node,1
 22,Faits vérifiés,Argument pertinent,Prémisses fiables,Sources crédibles,1.2131000,undermine,I-node,Argument from Sign,,,I-node,1
@@ -29,10 +29,10 @@ attacker_pk,attacker_label,family,subfamily,subsubfamily,decimal_path,attack_typ
 47,Humour inclusif,Présentation intègre,Rhétorique acceptable,Humour de bon goût,2.1230000,undermine,I-node,Argument from Values,,,I-node,1
 48,Style adapté,Présentation intègre,Rhétorique acceptable,Style adapté,2.1300000,undermine,I-node,Argument from Analogy,,,I-node,1
 49,Éloquence véridique,Présentation intègre,Rhétorique acceptable,Style adapté,2.1310000,undermine,I-node,Argument from Verbal Classification,,,I-node,1
-51,Équilibre émotionnel,Présentation intègre,Equilibre émotionnel,,2.2000000,undermine,I-node,Argument from Values,,,I-node,1
-52,Neutralité émotionnelle,Présentation intègre,Equilibre émotionnel,Connexion émotionnelle neutre,2.2100000,undermine,I-node,Argument from Bias,,,I-node,1
-53,Sobriété dramatique,Présentation intègre,Equilibre émotionnel,Réticence dramatique,2.2200000,undermine,I-node,Argument from Consequences,,,I-node,1
-54,Sans chantage aux conséquences,Présentation intègre,Equilibre émotionnel,Pas de chantage par les conséquences,2.2300000,undermine,I-node,Argument from Consequences,,,I-node,1
+51,Équilibre émotionnel,Présentation intègre,Équilibre émotionnel,,2.2000000,undermine,I-node,Argument from Values,,,I-node,1
+52,Neutralité émotionnelle,Présentation intègre,Équilibre émotionnel,Neutralité émotionnelle,2.2100000,undermine,I-node,Argument from Bias,,,I-node,1
+53,Sobriété dramatique,Présentation intègre,Équilibre émotionnel,Sobriété dramatique,2.2200000,undermine,I-node,Argument from Consequences,,,I-node,1
+54,Sans chantage aux conséquences,Présentation intègre,Équilibre émotionnel,Sans chantage aux conséquences,2.2300000,undermine,I-node,Argument from Consequences,,,I-node,1
 55,Communication authentique,Présentation intègre,Communication authentique,,2.3000000,undermine,I-node,Argument from Commitment,,,I-node,1
 56,Transparence,Présentation intègre,Communication authentique,Transparence,2.3100000,undermine,I-node,Argument from Commitment,,,I-node,1
 57,Neutralité bienveillante,Présentation intègre,Communication authentique,Neutralité bienveillante,2.3200000,undermine,I-node,Argument from Bias,,,I-node,1
@@ -40,22 +40,22 @@ attacker_pk,attacker_label,family,subfamily,subsubfamily,decimal_path,attack_typ
 59,Sens quantitatif,Sens quantitatif,,,3.0000000,undermine,I-node,Argument from Sign,,,I-node,1
 62,Prise en compte des exceptions,Sens quantitatif,Généralisations justifiées,Prise en compte des exceptions,3.1200000,undercut,RA-node,Argument from Rule,,,RA-node,1
 63,Transfert licite,Sens quantitatif,Généralisations justifiées,Transfert licite,3.1300000,undercut,RA-node,Argument from Analogy,,,RA-node,1
-64,Interprétation rigoureuse des données,Sens quantitatif,Interprétation adéquate des données,,3.2000000,undermine,I-node,Argument from Sign,,,I-node,1
-65,Corrélations avérées,Sens quantitatif,Interprétation adéquate des données,Corrélations avérées,3.2100000,undercut,RA-node,Argument from Sign,,,RA-node,1
-67,Probabilités maîtrisées,Sens quantitatif,Interprétation adéquate des données,Probabilités maîtrisées,3.2200000,undermine,I-node,Argument from Sign,,,I-node,1
+64,Interprétation rigoureuse des données,Sens quantitatif,Interprétation rigoureuse des données,,3.2000000,undermine,I-node,Argument from Sign,,,I-node,1
+65,Corrélations avérées,Sens quantitatif,Interprétation rigoureuse des données,Corrélations avérées,3.2100000,undercut,RA-node,Argument from Sign,,,RA-node,1
+67,Probabilités maîtrisées,Sens quantitatif,Interprétation rigoureuse des données,Probabilités maîtrisées,3.2200000,undermine,I-node,Argument from Sign,,,I-node,1
 72,Mesures précises,Sens quantitatif,Résultats valides,Mesures précises,3.3100000,undermine,I-node,Argument from Sign,,,I-node,1
 75,Exactitude numérique,Sens quantitatif,Résultats valides,Calculs exacts,3.3210000,undermine,I-node,Argument from Sign,,,I-node,1
 79,Inférence maîtrisée,Inférence maîtrisée,,,4.0000000,undercut,RA-node,Argument from Commitment,,,RA-node,1
-80,Causalités bien identifiées,Inférence maîtrisée,Identification précise des causalités,,4.1000000,undercut,RA-node,Argument from Cause to Effect,,,RA-node,1
-81,Indépendance des prémisses,Inférence maîtrisée,Identification précise des causalités,Indépendance des prémisses de la conclusion,4.1100000,undermine,I-node,Argument from Rule,,,I-node,1
-82,Causalité bien orientée,Inférence maîtrisée,Identification précise des causalités,Causalité correctement orientée,4.1200000,undercut,RA-node,Argument from Cause to Effect,,,RA-node,1
-83,Exclusion des causes alternatives,Inférence maîtrisée,Identification précise des causalités,Exclusion de causes alternatives,4.1300000,undercut,RA-node,Argument from Cause to Effect,,,RA-node,1
-84,Énoncés rigoureux,Inférence maîtrisée,Construction rigoureuse des énoncés,,4.2000000,undercut,RA-node,Argument from Rule,,,RA-node,1
-85,Énoncés propositionnels,Inférence maîtrisée,Construction rigoureuse des énoncés,Enoncés propositionnels bien formés,4.2100000,undercut,RA-node,Argument from Rule,,,RA-node,1
-86,Énoncés quantifiés,Inférence maîtrisée,Construction rigoureuse des énoncés,Enoncés quantifiés bien formés,4.2200000,undercut,RA-node,Argument from Verbal Classification,,,RA-node,1
-87,Modalités adéquates,Inférence maîtrisée,Construction rigoureuse des énoncés,Utilisation adéquate des modalités,4.2300000,undercut,RA-node,Argument from Rule,,,RA-node,1
+80,Causalités bien identifiées,Inférence maîtrisée,Causalités bien identifiées,,4.1000000,undercut,RA-node,Argument from Cause to Effect,,,RA-node,1
+81,Indépendance des prémisses,Inférence maîtrisée,Causalités bien identifiées,Indépendance des prémisses,4.1100000,undermine,I-node,Argument from Rule,,,I-node,1
+82,Causalité bien orientée,Inférence maîtrisée,Causalités bien identifiées,Causalité bien orientée,4.1200000,undercut,RA-node,Argument from Cause to Effect,,,RA-node,1
+83,Exclusion des causes alternatives,Inférence maîtrisée,Causalités bien identifiées,Exclusion des causes alternatives,4.1300000,undercut,RA-node,Argument from Cause to Effect,,,RA-node,1
+84,Énoncés rigoureux,Inférence maîtrisée,Énoncés rigoureux,,4.2000000,undercut,RA-node,Argument from Rule,,,RA-node,1
+85,Énoncés propositionnels,Inférence maîtrisée,Énoncés rigoureux,Énoncés propositionnels,4.2100000,undercut,RA-node,Argument from Rule,,,RA-node,1
+86,Énoncés quantifiés,Inférence maîtrisée,Énoncés rigoureux,Énoncés quantifiés,4.2200000,undercut,RA-node,Argument from Verbal Classification,,,RA-node,1
+87,Modalités adéquates,Inférence maîtrisée,Énoncés rigoureux,Modalités adéquates,4.2300000,undercut,RA-node,Argument from Rule,,,RA-node,1
 88,Déductions correctes,Inférence maîtrisée,Déductions correctes,,4.3000000,undercut,RA-node,Argument from Commitment,,,RA-node,1
-89,Raisonnement jalonné,Inférence maîtrisée,Déductions correctes,Raisonnement jaloné,4.3100000,undercut,RA-node,Argument from Rule,,,RA-node,1
+89,Raisonnement jalonné,Inférence maîtrisée,Déductions correctes,Raisonnement jalonné,4.3100000,undercut,RA-node,Argument from Rule,,,RA-node,1
 91,Cohérence des prémisses,Inférence maîtrisée,Déductions correctes,Démonstration cohérente,4.3210000,undermine,I-node,Argument from Commitment,,,I-node,1
 93,Raisonnement concluant,Inférence maîtrisée,Déductions correctes,Raisonnement concluant,4.3300000,undercut,RA-node,Argument from Rule,,,RA-node,1
 94,Validité formelle,Inférence maîtrisée,Déductions correctes,Raisonnement concluant,4.3310000,undercut,RA-node,Argument from Rule,,,RA-node,1
@@ -93,10 +93,10 @@ attacker_pk,attacker_label,family,subfamily,subsubfamily,decimal_path,attack_typ
 129,Raisonnement analytique solide,Inférence maîtrisée,Déductions correctes,Raisonnement concluant,4.3321000,undercut,RA-node,Argument from Rule,,,RA-node,1
 132,Abduction correcte,Inférence maîtrisée,Déductions correctes,Raisonnement concluant,4.3324000,undercut,RA-node,Argument from Cause to Effect,,,RA-node,1
 133,Analogie correcte,Inférence maîtrisée,Déductions correctes,Raisonnement concluant,4.3325000,undercut,RA-node,Argument from Analogy,,,RA-node,1
-137,Langage précis,Justesse lexicale,Définitions recevables,Acceptions claires,5.1110000,undercut,RA-node,Argument from Verbal Classification,,,RA-node,1
-140,Terminologie technique,Justesse lexicale,Définitions recevables,Définition conforme,5.1210000,undercut,RA-node,Argument from Expert Opinion,,,RA-node,1
+137,Langage précis,Justesse lexicale,Définitions claires,Acceptions claires,5.1110000,undercut,RA-node,Argument from Verbal Classification,,,RA-node,1
+140,Terminologie technique,Justesse lexicale,Définitions claires,Définition conforme,5.1210000,undercut,RA-node,Argument from Expert Opinion,,,RA-node,1
 142,Comparaisons justifiées,Justesse lexicale,Comparaisons justifiées,,5.2000000,undercut,RA-node,Argument from Analogy,,,RA-node,1
-143,Comparaison adéquate,Justesse lexicale,Comparaisons justifiées,Comparaison adequate,5.2100000,undercut,RA-node,Argument from Analogy,,,RA-node,1
+143,Comparaison adéquate,Justesse lexicale,Comparaisons justifiées,Comparaison adéquate,5.2100000,undercut,RA-node,Argument from Analogy,,,RA-node,1
 144,Analogie appropriée,Justesse lexicale,Comparaisons justifiées,Analogie appropriée,5.2200000,undercut,RA-node,Argument from Analogy,,,RA-node,1
 146,Clarté linguistique,Justesse lexicale,Clarté linguistique,,5.3000000,undercut,RA-node,Argument from Verbal Classification,,,RA-node,1
 151,Narration claire,Justesse lexicale,Clarté linguistique,Narration claire,5.3300000,undermine,I-node,Argument from Witness Testimony,,,I-node,1
@@ -118,26 +118,26 @@ attacker_pk,attacker_label,family,subfamily,subsubfamily,decimal_path,attack_typ
 170,Comprendre les biais d’autrui,Honnêteté intellectuelle,Effort d’objectivité,Universalisme,6.3120000,undermine,I-node,Argument from Bias,,,I-node,1
 172,Reconnaître ses biais culturels,Honnêteté intellectuelle,Effort d’objectivité,Conscience interculturelle,6.3210000,undermine,I-node,Argument from Bias,,,I-node,1
 173,Comprendre les biais culturels d’autrui,Honnêteté intellectuelle,Effort d’objectivité,Conscience interculturelle,6.3220000,undermine,I-node,Argument from Bias,,,I-node,1
-174,Mettre les idéologies à distance,Honnêteté intellectuelle,Effort d’objectivité,Mise à distance des idéologies,6.3300000,undermine,I-node,Argument from Bias,,,I-node,1
-176,Tenir compte des biais idéologiques,Honnêteté intellectuelle,Effort d’objectivité,Mise à distance des idéologies,6.3320000,undermine,I-node,Argument from Bias,,,I-node,1
+174,Mettre les idéologies à distance,Honnêteté intellectuelle,Effort d’objectivité,Mettre les idéologies à distance,6.3300000,undermine,I-node,Argument from Bias,,,I-node,1
+176,Tenir compte des biais idéologiques,Honnêteté intellectuelle,Effort d’objectivité,Mettre les idéologies à distance,6.3320000,undermine,I-node,Argument from Bias,,,I-node,1
 179,Échange enrichissant,Échange enrichissant,,,7.0000000,rebut,CA-node,Argument from Commitment,,,CA-node,1
-181,Réalité objective,Échange enrichissant,Contribution positive,Reconnaissance d’une réalité objective,7.1100000,undermine,I-node,Argument from Sign,,,I-node,1
+181,Réalité objective,Échange enrichissant,Contribution positive,Réalité objective,7.1100000,undermine,I-node,Argument from Sign,,,I-node,1
 185,Prémisses réfutables,Échange enrichissant,Contribution positive,Explications suffisantes,7.1230000,rebut,CA-node,Argument from Commitment,,,CA-node,1
-187,Recherche de la vérité,Échange enrichissant,Contribution positive,Disponibilité au dialogue,7.1310000,undermine,I-node,Argument from Bias,,,I-node,1
-191,Empathie,Échange enrichissant,Contribution positive,Disponibilité au dialogue,7.1321100,undermine,I-node,Argument from Bias,,,I-node,1
-193,Identifier ses biais,Échange enrichissant,Contribution positive,Disponibilité au dialogue,7.1331000,undermine,I-node,Argument from Bias,,,I-node,1
-194,Reconnaître ses erreurs,Échange enrichissant,Contribution positive,Disponibilité au dialogue,7.1332000,rebut,CA-node,Argument from Commitment,,,CA-node,1
-195,Cerner les limites d’un argument,Échange enrichissant,Contribution positive,Disponibilité au dialogue,7.1333000,undercut,RA-node,Argument from Commitment,,,RA-node,1
+187,Recherche de la vérité,Échange enrichissant,Contribution positive,Ouverture au dialogue,7.1310000,undermine,I-node,Argument from Bias,,,I-node,1
+191,Empathie,Échange enrichissant,Contribution positive,Ouverture au dialogue,7.1321100,undermine,I-node,Argument from Bias,,,I-node,1
+193,Identifier ses biais,Échange enrichissant,Contribution positive,Ouverture au dialogue,7.1331000,undermine,I-node,Argument from Bias,,,I-node,1
+194,Reconnaître ses erreurs,Échange enrichissant,Contribution positive,Ouverture au dialogue,7.1332000,rebut,CA-node,Argument from Commitment,,,CA-node,1
+195,Cerner les limites d’un argument,Échange enrichissant,Contribution positive,Ouverture au dialogue,7.1333000,undercut,RA-node,Argument from Commitment,,,RA-node,1
 206,Présomption de bonne foi,Échange enrichissant,Participation efficace,Principe de charité,7.2310000,undermine,I-node,Argument from Bias,,,I-node,1
 207,Respect de la personne,Échange enrichissant,Respect de la personne,,7.3000000,undermine,I-node,Argument from Bias,,,I-node,1
-208,Évaluation loyale de la position adverse,Échange enrichissant,Respect de la personne,Evaluation raisonnable de la position adverse,7.3100000,undermine,I-node,Argument from Commitment,,,I-node,1
-209,Critique axée sur les arguments,Échange enrichissant,Respect de la personne,Evaluation raisonnable de la position adverse,7.3110000,undermine,I-node,Argument from Commitment,,,I-node,1
+208,Évaluation loyale de la position adverse,Échange enrichissant,Respect de la personne,Évaluation loyale de la position adverse,7.3100000,undermine,I-node,Argument from Commitment,,,I-node,1
+209,Critique axée sur les arguments,Échange enrichissant,Respect de la personne,Évaluation loyale de la position adverse,7.3110000,undermine,I-node,Argument from Commitment,,,I-node,1
 212,Respect de l’origine des idées,Échange enrichissant,Respect de la personne,Respect de l’origine des idées,7.3200000,undermine,I-node,Argument from Commitment,,,I-node,1
 213,Principe de non-disqualification,Échange enrichissant,Respect de la personne,Respect de l’origine des idées,7.3210000,undermine,I-node,Argument from Bias,,,I-node,1
 214,Valorisation de la provenance,Échange enrichissant,Respect de la personne,Respect de l’origine des idées,7.3220000,undermine,I-node,Argument from Witness Testimony,,,I-node,1
 215,Collaboration argumentative,Échange enrichissant,Respect de la personne,Respect de l’origine des idées,7.3230000,rebut,CA-node,Argument from Commitment,,,CA-node,1
-216,Courtoisie dans le désaccord,Échange enrichissant,Respect de la personne,Courtoisie dans la divergence,7.3300000,undermine,I-node,Argument from Commitment,,,I-node,1
-217,Éviter les attaques personnelles,Échange enrichissant,Respect de la personne,Courtoisie dans la divergence,7.3310000,undermine,I-node,Argument from Bias,,,I-node,1
-218,Communication non violente,Échange enrichissant,Respect de la personne,Courtoisie dans la divergence,7.3311000,undermine,I-node,Argument from Commitment,,,I-node,1
-221,Ton respectueux,Échange enrichissant,Respect de la personne,Courtoisie dans la divergence,7.3330000,undermine,I-node,Argument from Commitment,,,I-node,1
-222,Engagement mutuel,Échange enrichissant,Respect de la personne,Courtoisie dans la divergence,7.3340000,rebut,CA-node,Argument from Commitment,,,CA-node,1
+216,Courtoisie dans le désaccord,Échange enrichissant,Respect de la personne,Courtoisie dans le désaccord,7.3300000,undermine,I-node,Argument from Commitment,,,I-node,1
+217,Éviter les attaques personnelles,Échange enrichissant,Respect de la personne,Courtoisie dans le désaccord,7.3310000,undermine,I-node,Argument from Bias,,,I-node,1
+218,Communication non violente,Échange enrichissant,Respect de la personne,Courtoisie dans le désaccord,7.3311000,undermine,I-node,Argument from Commitment,,,I-node,1
+221,Ton respectueux,Échange enrichissant,Respect de la personne,Courtoisie dans le désaccord,7.3330000,undermine,I-node,Argument from Commitment,,,I-node,1
+222,Engagement mutuel,Échange enrichissant,Respect de la personne,Courtoisie dans le désaccord,7.3340000,rebut,CA-node,Argument from Commitment,,,CA-node,1

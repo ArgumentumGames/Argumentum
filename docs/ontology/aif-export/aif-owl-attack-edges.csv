@@ -37,15 +37,15 @@ falseImplication,undercut,RA-node,RA-node,1
 falsePrecision,undercut,RA-node,RA-node,1
 faultyComparison,undercut,RA-node,RA-node,1
 faultyGeneralisation,undercut,RA-node,RA-node,1
-faultyLogics,undercut,RA-node,RA-node,1
+faultyReasoning,undercut,RA-node,RA-node,1
 grayPropaganda,undercut,RA-node,RA-node,1
 hastyConclusion,undercut,RA-node,RA-node,1
-hastyGeneralization,undercut,RA-node,RA-node,1
 havingYourCakeAndEatingItToo,undercut,RA-node,RA-node,1
 heterosemy,undercut,RA-node,RA-node,1
 homonym,undercut,RA-node,RA-node,1
 illicitContrast,undercut,RA-node,RA-node,1
 illicitTransference,undercut,RA-node,RA-node,1
+inappropriateOperation,undercut,RA-node,RA-node,1
 incongruity,undercut,RA-node,RA-node,1
 inconsistentDefinition,undercut,RA-node,RA-node,1
 insinuation,undercut,RA-node,RA-node,1
@@ -74,6 +74,7 @@ secundumQuid,undercut,RA-node,RA-node,1
 semanticAmbiguity,undercut,RA-node,RA-node,1
 semanticSlipperySlope,undercut,RA-node,RA-node,1
 slipperySlope,undercut,RA-node,RA-node,1
+sloppyArgument,undercut,RA-node,RA-node,1
 spuriousComposition,undercut,RA-node,RA-node,1
 stolenConceptFallacy,undercut,RA-node,RA-node,1
 storkEffect,undercut,RA-node,RA-node,1
@@ -88,7 +89,6 @@ unfoundedRelationship,undercut,RA-node,RA-node,1
 weakerDemands,undercut,RA-node,RA-node,1
 whisperingCampaign,undercut,RA-node,RA-node,1
 wrongEntailment,undercut,RA-node,RA-node,1
-wrongReasoning,undercut,RA-node,RA-node,1
 adHocRescue,undermine,I-node,I-node,1
 adHominem,undermine,I-node,I-node,1
 adPersonam,undermine,I-node,I-node,1
@@ -97,7 +97,6 @@ apophenia,undermine,I-node,I-node,1
 appealToConsequences,undermine,I-node,I-node,1
 appealToFear,undermine,I-node,I-node,1
 beggingTheQuestion,undermine,I-node,I-node,1
-biasedDefinition,undermine,I-node,I-node,1
 biasedThinking,undermine,I-node,I-node,1
 conditioning,undermine,I-node,I-node,1
 connivance,undermine,I-node,I-node,1
@@ -108,6 +107,7 @@ erroneousCalculation,undermine,I-node,I-node,1
 essentialism,undermine,I-node,I-node,1
 fallaciousComparison,undermine,I-node,I-node,1
 fallacyOfCorrelatives,undermine,I-node,I-node,1
+fallacyOfExplanation,undermine,I-node,I-node,1
 falseAttribution,undermine,I-node,I-node,1
 falseDilemma,undermine,I-node,I-node,1
 falseEquivalence,undermine,I-node,I-node,1
@@ -116,12 +116,13 @@ geneticFallacy,undermine,I-node,I-node,1
 hollowArgument,undermine,I-node,I-node,1
 humanNatureBias,undermine,I-node,I-node,1
 humour,undermine,I-node,I-node,1
+imprecision,undermine,I-node,I-node,1
 inconsistency,undermine,I-node,I-node,1
+inexactDefinition,undermine,I-node,I-node,1
 insufficiency,undermine,I-node,I-node,1
 lackOfParsimony,undermine,I-node,I-node,1
 loadedLanguage,undermine,I-node,I-node,1
 lying,undermine,I-node,I-node,1
-misleadingPresentationOfFacts,undermine,I-node,I-node,1
 movingTheGoalposts,undermine,I-node,I-node,1
 narrativeAmbiguity,undermine,I-node,I-node,1
 negativityBias,undermine,I-node,I-node,1
@@ -133,11 +134,11 @@ powerGames,undermine,I-node,I-node,1
 prejudice,undermine,I-node,I-node,1
 probabilisticFallacy,undermine,I-node,I-node,1
 proofByAssertion,undermine,I-node,I-node,1
-pseudoExplanation,undermine,I-node,I-node,1
 psychologicalManipulation,undermine,I-node,I-node,1
 samplingBias,undermine,I-node,I-node,1
 selectiveAttention,undermine,I-node,I-node,1
 selfServingBias,undermine,I-node,I-node,1
+spinDoctoring,undermine,I-node,I-node,1
 theoreticalBiases,undermine,I-node,I-node,1
 vagueDefinition,undermine,I-node,I-node,1
 vagueness,undermine,I-node,I-node,1
