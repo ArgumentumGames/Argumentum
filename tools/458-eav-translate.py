@@ -53,6 +53,13 @@ NEVER = {"UrlKey", "Path", "Email", "Link", "Images", "AlbumThumbnail", "Image",
          "RuleMemoCardDownload"}
 # Content types whose fields are identities (people, brands, mailboxes, slugs).
 SKIP_TYPES = {"Contributor", "Location", "Person"}
+# Game Rule fields whose single source is the Rules CSV (owner decision 10/10):
+# the site cards ARE the printed cards' Text_* — po-2023 injects them from the
+# CSV (method of #458 c.6281223831, applied to es/pt 17/10, ru 19/10, zh 20/10).
+# Translating them here would put another wording than the printed card on the
+# site (ar title measured in the #1924 review). They stay empty in the pivot.
+CSV_SOURCED = {"Game Rule": {"Title", "Summary", "Material", "Installation",
+                             "Content", "Variants"}}
 
 PROMPT = (
     "You translate user-visible web content. The source text is French or English. "
@@ -74,7 +81,11 @@ PROMPT = (
 
 # Published per-MTok prices. Sonnet 5.5 is 2/10, not 3/15: the first version of
 # this table overstated every Sonnet run by 1.5x (caught in review, #1924).
-PRICES = {"claude-haiku-5-5": (0.10, 0.50), "claude-sonnet-5-5": (2.00, 10.00)}
+# Opus 5.5 and Fable 5.1 from the 2025-Epita mandate message (20/10) relayed in
+# the same review — a model absent from this table FAILS the run below, because
+# the previous `PRICES.get(model, (0, 0))` silently billed Opus and Fable at $0.
+PRICES = {"claude-haiku-5-5": (0.10, 0.50), "claude-sonnet-5-5": (2.00, 10.00),
+          "claude-opus-5-5": (4.00, 20.00), "claude-fable-5-1": (10.00, 50.00)}
 
 
 def load(path):
@@ -104,6 +115,8 @@ def select(rows, apps, types, langs, overwrite, only=None):
             continue
         field = r.get("field") or ""
         if field in NEVER or field not in TRANSLATABLE:
+            continue
+        if field in CSV_SOURCED.get(r.get("content_type") or "", ()):
             continue
         src = (r.get("fr") or "").strip()
         if not src:
@@ -250,10 +263,13 @@ def main():
             print(f"  {r['app_id']}/{r['content_type']}/{r['field']}: {r['fr'][:50]!r} -> {missing}")
         return 0
 
+    if a.model not in PRICES:
+        raise SystemExit(f"unknown model {a.model!r}: no published price, refusing to run "
+                         f"(priced models: {', '.join(sorted(PRICES))})")
     key = open(a.key_path, encoding="utf-8").read()
     assert key and "\n" not in key.strip(), "key file must be a single line"
     key = key.strip()
-    pin, pout = PRICES.get(a.model, (0.0, 0.0))
+    pin, pout = PRICES[a.model]
     tin = tout = 0
     done = 0
     rejects = []
