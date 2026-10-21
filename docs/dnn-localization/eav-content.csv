@@ -1702,26 +1702,26 @@ CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E|Content,52,News,CFE7E2D1-7DD3-4D26-8BCB-906
 <p><strong>&agrave; 19h</strong>, un verre &agrave; la main, nous pr&eacute;senterons le jeu, sa gen&egrave;se et les d&eacute;veloppements &agrave; venir avant de lancer quelques tables pour <strong>un ap&eacute;ro ludique</strong> endiabl&eacute;.</p>
 <p><strong>&agrave; 20h30</strong>, nous vous proposerons de poursuivre ou de nous rejoindre &agrave; la cantina, &agrave; la m&ecirc;me adresse, pour s'y restaurer et continuer &agrave; f&ecirc;ter, dans la <strong>bonne humeur </strong>et juste ce qu'il faut de <strong>mauvais esprit</strong>, <strong>l'esprit critique</strong>, la rh&eacute;torique et le d&eacute;bat public.</p>",,,,,,,
 CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E|UrlKey,52,News,CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E,UrlKey,String,editorial,soiree-de-lancement-argumentum,,,,,,,
-D4D9773B-3131-4656-BF5C-B047E0AE5566|GoBackText,59,App-Resources,D4D9773B-3131-4656-BF5C-B047E0AE5566,GoBackText,String,label,Retour à la liste,,,,,,,
-D4D9773B-3131-4656-BF5C-B047E0AE5566|MoreText,59,App-Resources,D4D9773B-3131-4656-BF5C-B047E0AE5566,MoreText,String,label,en savoir plus,,,,,,,
-D4D9773B-3131-4656-BF5C-B047E0AE5566|GlossaryMenu,59,App-Resources,D4D9773B-3131-4656-BF5C-B047E0AE5566,GlossaryMenu,String,label,Annuaire des amis d'Argumentum,,,,,,,
-D4D9773B-3131-4656-BF5C-B047E0AE5566|TermNotFoundTitle,59,App-Resources,D4D9773B-3131-4656-BF5C-B047E0AE5566,TermNotFoundTitle,String,label,Term not found,,,,,,,
-D4D9773B-3131-4656-BF5C-B047E0AE5566|TermNotFoundText,59,App-Resources,D4D9773B-3131-4656-BF5C-B047E0AE5566,TermNotFoundText,String,label,The requested term was not found.,,,,,,,
-3FEDE42F-E494-4BE6-BFB6-08C1CE79F910|Title,59,Term,3FEDE42F-E494-4BE6-BFB6-08C1CE79F910,Title,String,editorial,Petits Débrouillards (les),,,,,,,
+D4D9773B-3131-4656-BF5C-B047E0AE5566|GoBackText,59,App-Resources,D4D9773B-3131-4656-BF5C-B047E0AE5566,GoBackText,String,label,Retour à la liste,Back to the list,Назад к списку,Voltar à lista,Volver a la lista,العودة إلى القائمة,بازگشت به فهرست,返回列表
+D4D9773B-3131-4656-BF5C-B047E0AE5566|MoreText,59,App-Resources,D4D9773B-3131-4656-BF5C-B047E0AE5566,MoreText,String,label,en savoir plus,learn more,узнать больше,saiba mais,saber más,اعرف المزيد,بیشتر بدانید,了解更多
+D4D9773B-3131-4656-BF5C-B047E0AE5566|GlossaryMenu,59,App-Resources,D4D9773B-3131-4656-BF5C-B047E0AE5566,GlossaryMenu,String,label,Annuaire des amis d'Argumentum,Directory of Friends of Argumentum,Справочник друзей Argumentum,Diretório dos amigos do Argumentum,Directorio de amigos de Argumentum,دليل أصدقاء Argumentum,فهرست دوستان Argumentum,Argumentum 之友名录
+D4D9773B-3131-4656-BF5C-B047E0AE5566|TermNotFoundTitle,59,App-Resources,D4D9773B-3131-4656-BF5C-B047E0AE5566,TermNotFoundTitle,String,label,Term not found,Term not found,Термин не найден,Termo não encontrado,Término no encontrado,لم يتم العثور على المصطلح,اصطلاح پیدا نشد,未找到该术语
+D4D9773B-3131-4656-BF5C-B047E0AE5566|TermNotFoundText,59,App-Resources,D4D9773B-3131-4656-BF5C-B047E0AE5566,TermNotFoundText,String,label,The requested term was not found.,The requested term was not found.,Запрошенный термин не найден.,O termo solicitado não foi encontrado.,No se encontró el término solicitado.,لم يتم العثور على المصطلح المطلوب.,اصطلاح درخواستی پیدا نشد.,未找到所请求的术语。
+3FEDE42F-E494-4BE6-BFB6-08C1CE79F910|Title,59,Term,3FEDE42F-E494-4BE6-BFB6-08C1CE79F910,Title,String,editorial,Petits Débrouillards (les),Petits Débrouillards (les),Petits Débrouillards (les),Petits Débrouillards (les),Petits Débrouillards (les),Petits Débrouillards (les),Petits Débrouillards (les),Petits Débrouillards (les)
 3FEDE42F-E494-4BE6-BFB6-08C1CE79F910|UrlKey,59,Term,3FEDE42F-E494-4BE6-BFB6-08C1CE79F910,UrlKey,String,editorial,petits-debrouillards,,,,,,,
 3FEDE42F-E494-4BE6-BFB6-08C1CE79F910|Abbreviation,59,Term,3FEDE42F-E494-4BE6-BFB6-08C1CE79F910,Abbreviation,String,editorial,,,,,,,,
-3FEDE42F-E494-4BE6-BFB6-08C1CE79F910|Summary,59,Term,3FEDE42F-E494-4BE6-BFB6-08C1CE79F910,Summary,String,editorial,Les petits débrouillards sont un réseau national pour l'éducation populaire aux sciences.,,,,,,,
-3FEDE42F-E494-4BE6-BFB6-08C1CE79F910|Details,59,Term,3FEDE42F-E494-4BE6-BFB6-08C1CE79F910,Details,String,editorial,"<p><a href=""https://www.lespetitsdebrouillards.org/index.php"" target=""_blank"" rel=""noopener""><img src=""/Portals/1/adam/Glossary3/L-TtP5Tk5ku_tgjBznn5EA/Details/Lespetitsd&eacute;brouillards.png"" alt=""Lespetitsd&eacute;brouillards"" /></a></p>",,,,,,,
-6CEAD752-8F86-4C1C-BF9F-266FF22236D2|Title,59,Term,6CEAD752-8F86-4C1C-BF9F-266FF22236D2,Title,String,editorial,Chiasma,,,,,,,
+3FEDE42F-E494-4BE6-BFB6-08C1CE79F910|Summary,59,Term,3FEDE42F-E494-4BE6-BFB6-08C1CE79F910,Summary,String,editorial,Les petits débrouillards sont un réseau national pour l'éducation populaire aux sciences.,Les Petits Débrouillards is a national network for popular science education.,Les Petits Débrouillards — это национальная сеть народного научного образования.,Les Petits Débrouillards é uma rede nacional de educação popular em ciências.,Les Petits Débrouillards es una red nacional de educación popular en ciencias.,Les Petits Débrouillards هي شبكة وطنية للتربية الشعبية في مجال العلوم.,Les Petits Débrouillards یک شبکه ملی برای آموزش همگانی علوم است.,Les Petits Débrouillards 是一个致力于大众科学教育的全国性网络。
+3FEDE42F-E494-4BE6-BFB6-08C1CE79F910|Details,59,Term,3FEDE42F-E494-4BE6-BFB6-08C1CE79F910,Details,String,editorial,"<p><a href=""https://www.lespetitsdebrouillards.org/index.php"" target=""_blank"" rel=""noopener""><img src=""/Portals/1/adam/Glossary3/L-TtP5Tk5ku_tgjBznn5EA/Details/Lespetitsd&eacute;brouillards.png"" alt=""Lespetitsd&eacute;brouillards"" /></a></p>","<p><a href=""https://www.lespetitsdebrouillards.org/index.php"" target=""_blank"" rel=""noopener""><img src=""/Portals/1/adam/Glossary3/L-TtP5Tk5ku_tgjBznn5EA/Details/Lespetitsd&eacute;brouillards.png"" alt=""Lespetitsd&eacute;brouillards"" /></a></p>","<p><a href=""https://www.lespetitsdebrouillards.org/index.php"" target=""_blank"" rel=""noopener""><img src=""/Portals/1/adam/Glossary3/L-TtP5Tk5ku_tgjBznn5EA/Details/Lespetitsd&eacute;brouillards.png"" alt=""Lespetitsd&eacute;brouillards"" /></a></p>","<p><a href=""https://www.lespetitsdebrouillards.org/index.php"" target=""_blank"" rel=""noopener""><img src=""/Portals/1/adam/Glossary3/L-TtP5Tk5ku_tgjBznn5EA/Details/Lespetitsd&eacute;brouillards.png"" alt=""Lespetitsd&eacute;brouillards"" /></a></p>","<p><a href=""https://www.lespetitsdebrouillards.org/index.php"" target=""_blank"" rel=""noopener""><img src=""/Portals/1/adam/Glossary3/L-TtP5Tk5ku_tgjBznn5EA/Details/Lespetitsd&eacute;brouillards.png"" alt=""Lespetitsd&eacute;brouillards"" /></a></p>","<p><a href=""https://www.lespetitsdebrouillards.org/index.php"" target=""_blank"" rel=""noopener""><img src=""/Portals/1/adam/Glossary3/L-TtP5Tk5ku_tgjBznn5EA/Details/Lespetitsd&eacute;brouillards.png"" alt=""Lespetitsd&eacute;brouillards"" /></a></p>","<p><a href=""https://www.lespetitsdebrouillards.org/index.php"" target=""_blank"" rel=""noopener""><img src=""/Portals/1/adam/Glossary3/L-TtP5Tk5ku_tgjBznn5EA/Details/Lespetitsd&eacute;brouillards.png"" alt=""Lespetitsd&eacute;brouillards"" /></a></p>","<p><a href=""https://www.lespetitsdebrouillards.org/index.php"" target=""_blank"" rel=""noopener""><img src=""/Portals/1/adam/Glossary3/L-TtP5Tk5ku_tgjBznn5EA/Details/Lespetitsd&eacute;brouillards.png"" alt=""Lespetitsd&eacute;brouillards"" /></a></p>"
+6CEAD752-8F86-4C1C-BF9F-266FF22236D2|Title,59,Term,6CEAD752-8F86-4C1C-BF9F-266FF22236D2,Title,String,editorial,Chiasma,Chiasma,Chiasma,Chiasma,Chiasma,Chiasma,Chiasma,Chiasma
 6CEAD752-8F86-4C1C-BF9F-266FF22236D2|UrlKey,59,Term,6CEAD752-8F86-4C1C-BF9F-266FF22236D2,UrlKey,String,editorial,chiasma,,,,,,,
 6CEAD752-8F86-4C1C-BF9F-266FF22236D2|Abbreviation,59,Term,6CEAD752-8F86-4C1C-BF9F-266FF22236D2,Abbreviation,String,editorial,,,,,,,,
-6CEAD752-8F86-4C1C-BF9F-266FF22236D2|Summary,59,Term,6CEAD752-8F86-4C1C-BF9F-266FF22236D2,Summary,String,editorial,"Chiasma est une association d'éducation en sciences cognitives qui organise des débats, conférences et ateliers afin de mieux comprendre et expliquer les mécanismes qui sous-tendent la formation et le développement de nos croyances.",,,,,,,
-6CEAD752-8F86-4C1C-BF9F-266FF22236D2|Details,59,Term,6CEAD752-8F86-4C1C-BF9F-266FF22236D2,Details,String,editorial,"<p><a href=""https://www.chiasma.co/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/UtfqbIaPHEy_nyZv8iI20g/Details/chiasma.png"" alt=""chiasma"" /></a></p>",,,,,,,
-BB66F63A-C403-4DA7-A62D-65BBF2AA418F|Title,59,Term,BB66F63A-C403-4DA7-A62D-65BBF2AA418F,Title,String,editorial,Drenche (le),,,,,,,
+6CEAD752-8F86-4C1C-BF9F-266FF22236D2|Summary,59,Term,6CEAD752-8F86-4C1C-BF9F-266FF22236D2,Summary,String,editorial,"Chiasma est une association d'éducation en sciences cognitives qui organise des débats, conférences et ateliers afin de mieux comprendre et expliquer les mécanismes qui sous-tendent la formation et le développement de nos croyances.","Chiasma is a cognitive science education association that organizes debates, lectures and workshops to better understand and explain the mechanisms underlying the formation and development of our beliefs.","Chiasma — это ассоциация по образованию в области когнитивных наук, которая организует дебаты, лекции и мастер-классы, чтобы лучше понимать и объяснять механизмы, лежащие в основе формирования и развития наших убеждений.","Chiasma é uma associação de educação em ciências cognitivas que organiza debates, conferências e oficinas para compreender e explicar melhor os mecanismos que sustentam a formação e o desenvolvimento das nossas crenças.","Chiasma es una asociación de educación en ciencias cognitivas que organiza debates, conferencias y talleres para comprender y explicar mejor los mecanismos que subyacen a la formación y el desarrollo de nuestras creencias.",Chiasma جمعية للتربية في مجال العلوم المعرفية تنظّم نقاشات ومحاضرات وورش عمل من أجل فهم وشرح الآليات التي تقوم عليها نشأة معتقداتنا وتطورها بشكل أفضل.,Chiasma یک انجمن آموزش علوم شناختی است که بحث‌ها، سخنرانی‌ها و کارگاه‌هایی برگزار می‌کند تا سازوکارهای زیربنایی شکل‌گیری و تحول باورهای ما بهتر درک و تبیین شوند.,Chiasma 是一个认知科学教育协会，通过举办辩论、讲座和工作坊，帮助人们更好地理解和解释我们信念形成与发展背后的机制。
+6CEAD752-8F86-4C1C-BF9F-266FF22236D2|Details,59,Term,6CEAD752-8F86-4C1C-BF9F-266FF22236D2,Details,String,editorial,"<p><a href=""https://www.chiasma.co/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/UtfqbIaPHEy_nyZv8iI20g/Details/chiasma.png"" alt=""chiasma"" /></a></p>","<p><a href=""https://www.chiasma.co/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/UtfqbIaPHEy_nyZv8iI20g/Details/chiasma.png"" alt=""chiasma"" /></a></p>","<p><a href=""https://www.chiasma.co/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/UtfqbIaPHEy_nyZv8iI20g/Details/chiasma.png"" alt=""chiasma"" /></a></p>","<p><a href=""https://www.chiasma.co/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/UtfqbIaPHEy_nyZv8iI20g/Details/chiasma.png"" alt=""chiasma"" /></a></p>","<p><a href=""https://www.chiasma.co/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/UtfqbIaPHEy_nyZv8iI20g/Details/chiasma.png"" alt=""chiasma"" /></a></p>","<p><a href=""https://www.chiasma.co/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/UtfqbIaPHEy_nyZv8iI20g/Details/chiasma.png"" alt=""chiasma"" /></a></p>","<p><a href=""https://www.chiasma.co/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/UtfqbIaPHEy_nyZv8iI20g/Details/chiasma.png"" alt=""chiasma"" /></a></p>","<p><a href=""https://www.chiasma.co/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/UtfqbIaPHEy_nyZv8iI20g/Details/chiasma.png"" alt=""chiasma"" /></a></p>"
+BB66F63A-C403-4DA7-A62D-65BBF2AA418F|Title,59,Term,BB66F63A-C403-4DA7-A62D-65BBF2AA418F,Title,String,editorial,Drenche (le),Drenche (le),Drenche (le),Drenche (le),Drenche (le),Drenche (le),Drenche (le),Drenche (le)
 BB66F63A-C403-4DA7-A62D-65BBF2AA418F|UrlKey,59,Term,BB66F63A-C403-4DA7-A62D-65BBF2AA418F,UrlKey,String,editorial,drenche,,,,,,,
 BB66F63A-C403-4DA7-A62D-65BBF2AA418F|Abbreviation,59,Term,BB66F63A-C403-4DA7-A62D-65BBF2AA418F,Abbreviation,String,editorial,,,,,,,,
-BB66F63A-C403-4DA7-A62D-65BBF2AA418F|Summary,59,Term,BB66F63A-C403-4DA7-A62D-65BBF2AA418F,Summary,String,editorial,Le Drenche est un journal visant à aider les citoyens à se forger leur opinion.,,,,,,,
-BB66F63A-C403-4DA7-A62D-65BBF2AA418F|Details,59,Term,BB66F63A-C403-4DA7-A62D-65BBF2AA418F,Details,String,editorial,"<p><a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/OvZmuwPEp02mLWW78qpBjw/Details/Drenche-Logo_site.jpg"" alt=""Drenche-Logo_site"" /></a></p>",,,,,,,
+BB66F63A-C403-4DA7-A62D-65BBF2AA418F|Summary,59,Term,BB66F63A-C403-4DA7-A62D-65BBF2AA418F,Summary,String,editorial,Le Drenche est un journal visant à aider les citoyens à se forger leur opinion.,Le Drenche is a newspaper that aims to help citizens form their own opinions.,"Le Drenche — это газета, цель которой — помогать гражданам формировать собственное мнение.",Le Drenche é um jornal que tem como objetivo ajudar os cidadãos a formarem a sua própria opinião.,Le Drenche es un periódico que tiene como objetivo ayudar a los ciudadanos a formarse su propia opinión.,Le Drenche هي صحيفة تهدف إلى مساعدة المواطنين على تكوين رأيهم الخاص.,Le Drenche روزنامه‌ای است که هدف آن کمک به شهروندان برای شکل‌دادن به دیدگاه خودشان است.,Le Drenche 是一份报纸，旨在帮助公民形成自己的观点。
+BB66F63A-C403-4DA7-A62D-65BBF2AA418F|Details,59,Term,BB66F63A-C403-4DA7-A62D-65BBF2AA418F,Details,String,editorial,"<p><a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/OvZmuwPEp02mLWW78qpBjw/Details/Drenche-Logo_site.jpg"" alt=""Drenche-Logo_site"" /></a></p>","<p><a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/OvZmuwPEp02mLWW78qpBjw/Details/Drenche-Logo_site.jpg"" alt=""Drenche-Logo_site"" /></a></p>","<p><a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/OvZmuwPEp02mLWW78qpBjw/Details/Drenche-Logo_site.jpg"" alt=""Drenche-Logo_site"" /></a></p>","<p><a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/OvZmuwPEp02mLWW78qpBjw/Details/Drenche-Logo_site.jpg"" alt=""Drenche-Logo_site"" /></a></p>","<p><a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/OvZmuwPEp02mLWW78qpBjw/Details/Drenche-Logo_site.jpg"" alt=""Drenche-Logo_site"" /></a></p>","<p><a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/OvZmuwPEp02mLWW78qpBjw/Details/Drenche-Logo_site.jpg"" alt=""Drenche-Logo_site"" /></a></p>","<p><a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/OvZmuwPEp02mLWW78qpBjw/Details/Drenche-Logo_site.jpg"" alt=""Drenche-Logo_site"" /></a></p>","<p><a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener""><img style=""width: 40%;"" src=""/Portals/1/adam/Glossary3/OvZmuwPEp02mLWW78qpBjw/Details/Drenche-Logo_site.jpg"" alt=""Drenche-Logo_site"" /></a></p>"
 34CE33D2-022F-484F-B4EA-CA777726ED0B|Title,60,Album,34CE33D2-022F-484F-B4EA-CA777726ED0B,Title,String,credit,Demo - click on the editing of this title to create your own...,,,,,,,
 34CE33D2-022F-484F-B4EA-CA777726ED0B|Path,60,Album,34CE33D2-022F-484F-B4EA-CA777726ED0B,Path,String,credit,this-is-a-demo,,,,,,,
 34CE33D2-022F-484F-B4EA-CA777726ED0B|Introduction,60,Album,34CE33D2-022F-484F-B4EA-CA777726ED0B,Introduction,String,credit,"<p>You are currently viewing a gallery with demo data. Click edit to fill it with your images, descriptions and more. You can also redesign everything to your liking.</p>
@@ -1735,15 +1735,15 @@ F95E977F-0989-4CEB-8D23-79CFC16A2E0D|Images,60,Album,F95E977F-0989-4CEB-8D23-79C
 F95E977F-0989-4CEB-8D23-79CFC16A2E0D|AlbumThumbnail,60,Album,F95E977F-0989-4CEB-8D23-79CFC16A2E0D,AlbumThumbnail,Hyperlink,credit,,,,,,,,
 8687A9FB-C0BA-4720-B6CA-0CF63CDF6B4B|HeadingType,60,AlbumPresentation,8687A9FB-C0BA-4720-B6CA-0CF63CDF6B4B,HeadingType,String,credit,h1,,,,,,,
 8687A9FB-C0BA-4720-B6CA-0CF63CDF6B4B|SortMode,60,AlbumPresentation,8687A9FB-C0BA-4720-B6CA-0CF63CDF6B4B,SortMode,String,credit,File asc,,,,,,,
-DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleSummary,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleSummary,String,label,Résumé,Overview,Краткое содержание,Resumo,Resumen,,,概述
-DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMaterial,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleMaterial,String,label,Matériel,Components,Комплектация,Material,Material,,,材料
-DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleInstallation,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleInstallation,String,label,Installation,Setup,Начало игры,Preparação,Preparación,,,准备
-DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleContent,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleContent,String,label,Contenu,Contents,Ход игры,Conteúdo,Contenido,,,内容
-DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleVariants,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleVariants,String,label,Variantes,Variants,Варианты,Variantes,Variantes,,,变体
-DEA9410D-274B-4A4E-B47C-7D5D00692348|Licence,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,Licence,String,label,Licence,License,Лицензия,Licença,Licencia,,,许可
-DEA9410D-274B-4A4E-B47C-7D5D00692348|Author,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,Author,String,label,Auteur,Author,Автор,Autor,Autor,,,作者
-DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCard,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleMemoCard,String,label,Carte Mémo,Memo card,Карта Мемо,Carta de ajuda,Carta recordatorio,,,提示卡
-DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoInstructions,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleMemoInstructions,String,label,<p>Vous pouvez t&eacute;l&eacute;charger la carte de m&eacute;mo suivante pour retrouver facilement les r&egrave;gles.&nbsp;</p>,<p>You can download the following memo card to easily look up the rules.&nbsp;</p>,"<p>Вы можете скачать следующую карту Мемо, чтобы легко вспоминать правила.&nbsp;</p>",<p>Você pode baixar a carta de ajuda a seguir para consultar as regras com facilidade.&nbsp;</p>,<p>Puede descargar la siguiente carta recordatorio para encontrar fácilmente las reglas.&nbsp;</p>,,,<p>您可以下载以下提示卡，以便轻松查阅规则。&nbsp;</p>
+DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleSummary,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleSummary,String,label,Résumé,Overview,Краткое содержание,Resumo,Resumen,ملخص اللعبة,خلاصهٔ بازی,概述
+DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMaterial,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleMaterial,String,label,Matériel,Components,Комплектация,Material,Material,المكوّنات,محتویات,材料
+DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleInstallation,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleInstallation,String,label,Installation,Setup,Начало игры,Preparação,Preparación,الإعداد,آماده‌سازی,准备
+DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleContent,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleContent,String,label,Contenu,Contents,Ход игры,Conteúdo,Contenido,سير الجولة,روند دور,内容
+DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleVariants,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleVariants,String,label,Variantes,Variants,Варианты,Variantes,Variantes,تنويعات,گونه‌ها,变体
+DEA9410D-274B-4A4E-B47C-7D5D00692348|Licence,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,Licence,String,label,Licence,License,Лицензия,Licença,Licencia,الترخيص,مجوز,许可
+DEA9410D-274B-4A4E-B47C-7D5D00692348|Author,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,Author,String,label,Auteur,Author,Автор,Autor,Autor,المؤلف,نویسنده,作者
+DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCard,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleMemoCard,String,label,Carte Mémo,Memo card,Карта Мемо,Carta de ajuda,Carta recordatorio,بطاقة تذكيرية,کارت یادآور,提示卡
+DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoInstructions,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleMemoInstructions,String,label,<p>Vous pouvez t&eacute;l&eacute;charger la carte de m&eacute;mo suivante pour retrouver facilement les r&egrave;gles.&nbsp;</p>,<p>You can download the following memo card to easily look up the rules.&nbsp;</p>,"<p>Вы можете скачать следующую карту Мемо, чтобы легко вспоминать правила.&nbsp;</p>",<p>Você pode baixar a carta de ajuda a seguir para consultar as regras com facilidade.&nbsp;</p>,<p>Puede descargar la siguiente carta recordatorio para encontrar fácilmente las reglas.&nbsp;</p>,<p>يمكنكم تنزيل بطاقة التذكير التالية للعثور بسهولة على القواعد.&nbsp;</p>,<p>می‌توانید کارت یادآور زیر را دانلود کنید تا به‌راحتی قوانین را پیدا کنید.&nbsp;</p>,<p>您可以下载以下提示卡，以便轻松查阅规则。&nbsp;</p>
 DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardFileNamePrefix,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleMemoCardFileNamePrefix,String,label,Argumentum - Règle,Argumentum - Rule,,Argumentum - Regra,Argumentum - Regla,,,
 DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleMemoCardDownload,String,label,Télécharger la carte mémo,Download the memo card,Скачать карту Мемо,Baixar a carta de ajuda,Descargar la carta recordatorio,,,下载提示卡
 0CE0C537-DE53-4CFA-9B2F-59190AD9A0EA|FullName,60,Contributor,0CE0C537-DE53-4CFA-9B2F-59190AD9A0EA,FullName,String,credit,Argumenteam,,,,,,,
@@ -2470,7 +2470,175 @@ AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78|Memo,60,Game Rule,AE1EDEFA-6F1B-4593-8230-9
 <li>✅👇🎭➜✅+1🎴</li>
 </ul>
 </li>
-</ul>",,,,,,,
+</ul>","<h3>Victory conditions</h3>
+<ul>
+<li>🥇👇👇...➜🏆</li>
+<li>🥈👇👇≟🥈👇👇
+<ul>
+<li>✅🎭➜🎭🏆</li>
+<li>❌🎭
+<ul>
+<li>✅👇🎭➜👇🏆</li>
+<li>❌👇🎭➜🎭🏆</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Number of draws</h3>
+<ul>
+<li>✅🏆➜❌0🎴</li>
+<li>❌🏆➜✅1🎴
+<ul>
+<li>✅🧲👇➜✅+1🎴</li>
+<li>✅👇🎭➜✅+1🎴</li>
+</ul>
+</li>
+</ul>","<h3>Условия победы</h3>
+<ul>
+<li>🥇👇👇...➜🏆</li>
+<li>🥈👇👇≟🥈👇👇
+<ul>
+<li>✅🎭➜🎭🏆</li>
+<li>❌🎭
+<ul>
+<li>✅👇🎭➜👇🏆</li>
+<li>❌👇🎭➜🎭🏆</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Количество карт для добора</h3>
+<ul>
+<li>✅🏆➜❌0🎴</li>
+<li>❌🏆➜✅1🎴
+<ul>
+<li>✅🧲👇➜✅+1🎴</li>
+<li>✅👇🎭➜✅+1🎴</li>
+</ul>
+</li>
+</ul>","<h3>Condições de vitória</h3>
+<ul>
+<li>🥇👇👇...➜🏆</li>
+<li>🥈👇👇≟🥈👇👇
+<ul>
+<li>✅🎭➜🎭🏆</li>
+<li>❌🎭
+<ul>
+<li>✅👇🎭➜👇🏆</li>
+<li>❌👇🎭➜🎭🏆</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Número de compras</h3>
+<ul>
+<li>✅🏆➜❌0🎴</li>
+<li>❌🏆➜✅1🎴
+<ul>
+<li>✅🧲👇➜✅+1🎴</li>
+<li>✅👇🎭➜✅+1🎴</li>
+</ul>
+</li>
+</ul>","<h3>Condiciones de victoria</h3>
+<ul>
+<li>🥇👇👇...➜🏆</li>
+<li>🥈👇👇≟🥈👇👇
+<ul>
+<li>✅🎭➜🎭🏆</li>
+<li>❌🎭
+<ul>
+<li>✅👇🎭➜👇🏆</li>
+<li>❌👇🎭➜🎭🏆</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>Número de robos</h3>
+<ul>
+<li>✅🏆➜❌0🎴</li>
+<li>❌🏆➜✅1🎴
+<ul>
+<li>✅🧲👇➜✅+1🎴</li>
+<li>✅👇🎭➜✅+1🎴</li>
+</ul>
+</li>
+</ul>","<h3>شروط الفوز</h3>
+<ul>
+<li>🥇👇👇...➜🏆</li>
+<li>🥈👇👇≟🥈👇👇
+<ul>
+<li>✅🎭➜🎭🏆</li>
+<li>❌🎭
+<ul>
+<li>✅👇🎭➜👇🏆</li>
+<li>❌👇🎭➜🎭🏆</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>عدد مرات السحب</h3>
+<ul>
+<li>✅🏆➜❌0🎴</li>
+<li>❌🏆➜✅1🎴
+<ul>
+<li>✅🧲👇➜✅+1🎴</li>
+<li>✅👇🎭➜✅+1🎴</li>
+</ul>
+</li>
+</ul>","<h3>شرایط پیروزی</h3>
+<ul>
+<li>🥇👇👇...➜🏆</li>
+<li>🥈👇👇≟🥈👇👇
+<ul>
+<li>✅🎭➜🎭🏆</li>
+<li>❌🎭
+<ul>
+<li>✅👇🎭➜👇🏆</li>
+<li>❌👇🎭➜🎭🏆</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>تعداد کشیدن کارت</h3>
+<ul>
+<li>✅🏆➜❌0🎴</li>
+<li>❌🏆➜✅1🎴
+<ul>
+<li>✅🧲👇➜✅+1🎴</li>
+<li>✅👇🎭➜✅+1🎴</li>
+</ul>
+</li>
+</ul>","<h3>胜利条件</h3>
+<ul>
+<li>🥇👇👇...➜🏆</li>
+<li>🥈👇👇≟🥈👇👇
+<ul>
+<li>✅🎭➜🎭🏆</li>
+<li>❌🎭
+<ul>
+<li>✅👇🎭➜👇🏆</li>
+<li>❌👇🎭➜🎭🏆</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>抽牌数量</h3>
+<ul>
+<li>✅🏆➜❌0🎴</li>
+<li>❌🏆➜✅1🎴
+<ul>
+<li>✅🧲👇➜✅+1🎴</li>
+<li>✅👇🎭➜✅+1🎴</li>
+</ul>
+</li>
+</ul>"
 AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78|UrlKey,60,Game Rule,AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78,UrlKey,String,editorial,l-ecole-des-menteurs,,,,,,,
 FD774E10-7DCA-46E0-8621-B39E5E1B0778|Title,60,ImageMetadata,FD774E10-7DCA-46E0-8621-B39E5E1B0778,Title,String,credit,Demo Title,,,,,,,
 FD774E10-7DCA-46E0-8621-B39E5E1B0778|Description,60,ImageMetadata,FD774E10-7DCA-46E0-8621-B39E5E1B0778,Description,String,credit,Demo Description,,,,,,,
