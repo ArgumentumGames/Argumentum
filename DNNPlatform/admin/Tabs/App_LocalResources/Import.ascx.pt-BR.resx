@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cmdImport.Text">
+    <value xml:space="preserve">Importar</value>
+  </data>
+  <data name="ControlTitle_importtab.Text">
+    <value xml:space="preserve">Importar página</value>
+  </data>
+  <data name="EmptyTabName.Text" lastModified="2016-03-17 07:32:55">
+    <value xml:space="preserve">Tem que indicar um nome para a página</value>
+  </data>
+  <data name="Error.Text">
+    <value xml:space="preserve">Um erro ocorreu durante a importação</value>
+  </data>
+  <data name="InsertAfter.Text">
+    <value xml:space="preserve">Después</value>
+  </data>
+  <data name="InsertAtEnd.Text">
+    <value xml:space="preserve">Adicionar ao final</value>
+  </data>
+  <data name="InsertBefore.Text">
+    <value xml:space="preserve">Antes</value>
+  </data>
+  <data name="InsertPosition.Help">
+    <value xml:space="preserve">Selecione a página antes o después da cual se insertará a nova página</value>
+  </data>
+  <data name="InsertPosition.Text">
+    <value xml:space="preserve">Insertar página:</value>
+  </data>
+  <data name="InvalidTabName.Text" lastModified="2016-03-17 07:32:55">
+    <value xml:space="preserve">O nome da página não é válido</value>
+  </data>
+  <data name="ModeAdd.Text">
+    <value xml:space="preserve">criar uma nova página</value>
+  </data>
+  <data name="ModeReplace.Text">
+    <value xml:space="preserve">Reemplazar a página atual</value>
+  </data>
+  <data name="ModeSettings.Text">
+    <value xml:space="preserve">Editar página importada</value>
+  </data>
+  <data name="ModeView.Text">
+    <value xml:space="preserve">Ver página importada</value>
+  </data>
+  <data name="ModuleHelp.Text">
+    <value xml:space="preserve">&lt;h1&gt;Importar Página&lt;/h1&gt;&lt;p&gt;Os Administradores podem importar conteúdo para a página especificada.&lt;/p&gt;</value>
+  </data>
+  <data name="NoTabsInTemplate.Text">
+    <value xml:space="preserve">A planilha não contém nenhuma página.</value>
+  </data>
+  <data name="NotCorrectType.Text">
+    <value xml:space="preserve">O arquivo de importação especificado não tem o tipo correto para esta página.</value>
+  </data>
+  <data name="NotValidXml.Text">
+    <value xml:space="preserve">O arquivo que foi selecionado não contém uma estructura XML válida</value>
+  </data>
+  <data name="plFolder.Help">
+    <value xml:space="preserve">Selecione a pasta de importação</value>
+  </data>
+  <data name="plFolder.Text">
+    <value xml:space="preserve">Pasta:</value>
+  </data>
+  <data name="plMode.Help">
+    <value xml:space="preserve">Selecione o modo de importação</value>
+  </data>
+  <data name="plMode.Text">
+    <value xml:space="preserve">Modo de importação:</value>
+  </data>
+  <data name="plParentTab.Help">
+    <value xml:space="preserve">Selecione de que página deve ser descendiente a nova página.</value>
+  </data>
+  <data name="plParentTab.Text">
+    <value xml:space="preserve">Página madre</value>
+  </data>
+  <data name="plRedirect.Help">
+    <value xml:space="preserve">Selecione donde quiere ir después da importação</value>
+  </data>
+  <data name="plRedirect.Text">
+    <value xml:space="preserve">Modo de redireção?</value>
+  </data>
+  <data name="plTabName.Help">
+    <value xml:space="preserve">Entre o nome para a nova página.</value>
+  </data>
+  <data name="plTabName.Text">
+    <value xml:space="preserve">Nome de página:</value>
+  </data>
+  <data name="plTemplate.Help">
+    <value xml:space="preserve">Selecione a planilha de página para importação.</value>
+  </data>
+  <data name="plTemplate.Text">
+    <value xml:space="preserve">planilha:</value>
+  </data>
+  <data name="Root.Text">
+    <value xml:space="preserve">Raíz</value>
+  </data>
+  <data name="SpecifyFile.Text">
+    <value xml:space="preserve">Selecione a planilha de importação</value>
+  </data>
+  <data name="SpecifyMode.Text">
+    <value xml:space="preserve">Especifique o modo de importação.</value>
+  </data>
+  <data name="TabExists.Text">
+    <value xml:space="preserve">O nome de página que eligió já se está usando por outra página não mesmo nivel na jerarquía de páginas.</value>
+  </data>
+  <data name="TabRecycled.Text">
+    <value xml:space="preserve">Já existe uma página com o mesmo nome na papelera de reciclagem. Para restaurar esta página utilice a papelera de reciclagem.</value>
+  </data>
+  <data name="valTemplate.ErrorMessage">
+    <value xml:space="preserve">Selecione uma planilha</value>
+  </data>
+</root>

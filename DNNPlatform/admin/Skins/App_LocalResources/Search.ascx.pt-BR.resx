@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DropDownGlyph.AltText">
+    <value xml:space="preserve">Selecione o tipo de busca</value>
+  </data>
+  <data name="NoResult.Text">
+    <value xml:space="preserve">Não foin encontrado resultados</value>
+  </data>
+  <data name="Placeholder.Text">
+    <value xml:space="preserve">Buscar...</value>
+  </data>
+  <data name="Search.Text">
+    <value xml:space="preserve">Buscar</value>
+  </data>
+  <data name="SearchClearQuery.Text" lastModified="2015-12-28 09:12:57">
+    <value xml:space="preserve">Limpar texto de busca</value>
+  </data>
+  <data name="SeeMoreResults.Text">
+    <value xml:space="preserve">Ver más resultados</value>
+  </data>
+  <data name="Site.Text">
+    <value xml:space="preserve">Sitio</value>
+  </data>
+  <data name="Site.ToolTip">
+    <value xml:space="preserve">Buscar não portal</value>
+  </data>
+  <data name="URL.Text">
+    <value xml:space="preserve">http://www.google.com/custom?q=[TEXT]&amp;sa=Search&amp;client=pub-9770992166002654&amp;forid=1&amp;ie=ISO-8859-1&amp;oe=ISO-8859-1&amp;cof=GALT%3A%23008000%3BGL%3A1%3BDIV%3A%23336699%3BVLC%3A663399%3BAH%3Acenter%3BBGC%3AFFFFFF%3BLBGC%3A336699%3BALC%3A0000FF%3BLC%3A0000FF%3BT%3A000000%3BGFNT%3A0000FF%3BGIMP%3A0000FF%3BFORID%3A1&amp;hl=em&amp;sitesearch=[DOMAIN]</value>
+  </data>
+  <data name="Web.Text">
+    <value xml:space="preserve">Web </value>
+  </data>
+  <data name="Web.ToolTip">
+    <value xml:space="preserve">Buscar em Google</value>
+  </data>
+</root>

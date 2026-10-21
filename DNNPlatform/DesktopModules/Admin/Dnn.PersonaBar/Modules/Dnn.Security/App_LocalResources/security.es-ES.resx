@@ -1,0 +1,1407 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Actions.Header" xml:space="preserve">
+    <value>Acciones</value>
+  </data>
+  <data name="Active.Text" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="AdminMembershipResetLinkValidity.ErrorMessage" xml:space="preserve">
+    <value>El tiempo de validez de los enlaces de reinicio tiene que ser un número entre 0 y 10000.</value>
+  </data>
+  <data name="Alert.Text" xml:space="preserve">
+    <value>ALERTA</value>
+  </data>
+  <data name="All.Text" xml:space="preserve">
+    <value>Todos</value>
+  </data>
+  <data name="AllowIP.Text" xml:space="preserve">
+    <value>Permitir</value>
+  </data>
+  <data name="ApiKeys.Help" xml:space="preserve">
+    <value>Esto define a qué partes de la API disponible puede acceder el token.</value>
+  </data>
+  <data name="ApiKeys.Text" xml:space="preserve">
+    <value>API</value>
+  </data>
+  <data name="ApiTokenCreated.Text" xml:space="preserve">
+    <value>Este es el token de API. Asegúrese de copiarlo en un lugar seguro. No se volverá a mostrar.</value>
+  </data>
+  <data name="ApiTokensDisabled.Help" xml:space="preserve">
+    <value>Los tokens de API están desactivados en esta instalación. El administrador del sistema deberá activarlos en el archivo web.config.</value>
+  </data>
+  <data name="ApiTokenSettingsError.Text" xml:space="preserve">
+    <value>Se ha producido un error. No se ha podido actualizar la configuración de los tokens de API. Consulte el Registro de eventos para determinar la causa de este error.</value>
+  </data>
+  <data name="ApiTokenSettingsRestoreWarning.Text" xml:space="preserve">
+    <value>Se descartarán los cambios realizados en la configuración de los tokens de API. ¿Desea continuar?</value>
+  </data>
+  <data name="ApiTokenSettingsUpdateSuccess.Text" xml:space="preserve">
+    <value>Configuración de tokens de API actualizada</value>
+  </data>
+  <data name="ApiTokenStatus.Header" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="ApiTokenStatus.Text" xml:space="preserve">
+    <value>Estado del token</value>
+  </data>
+  <data name="AsyncTimeout.ErrorMessage" xml:space="preserve">
+    <value>El tiempo de espera de peticiones tiene que ser un número entre 09 y 10000.</value>
+  </data>
+  <data name="AuditChecks.Text" xml:space="preserve">
+    <value>Auditoría</value>
+  </data>
+  <data name="AuditExplanation.Text" xml:space="preserve">
+    <value>Atención: el sistema realizará automáticamente validaciones de mejores prácticas.</value>
+  </data>
+  <data name="Authorized.Header" xml:space="preserve">
+    <value>Autorizado</value>
+  </data>
+  <data name="AutoAccountUnlockDuration.ErrorMessage" xml:space="preserve">
+    <value>La duración de autodesbloquear cuentas tiene que ser un número entre 0 y 1000.</value>
+  </data>
+  <data name="BasicLoginSettingsError" xml:space="preserve">
+    <value>No se ha podido guardar la configuración de identificación. Vuelva a intentarlo.</value>
+  </data>
+  <data name="BasicLoginSettingsUpdateSuccess" xml:space="preserve">
+    <value>Se ha actualizado la configuración.</value>
+  </data>
+  <data name="BulletinDescription.Text" xml:space="preserve">
+    <value>DESCRIPCIÓN</value>
+  </data>
+  <data name="BulletinLink.Text" xml:space="preserve">
+    <value>ENLACES</value>
+  </data>
+  <data name="Bulletins.Text" xml:space="preserve">
+    <value>BOLETINES</value>
+  </data>
+  <data name="BulletinsDoNotExist.Text" xml:space="preserve">
+    <value>No se ha encontrado ningún boletín de seguridad para la versión de DNN Platform {0}.</value>
+  </data>
+  <data name="BulletinsExist.Text" xml:space="preserve">
+    <value>Se han encontrado {0} boletines de seguridad para la versión de DNN Platform {1}: </value>
+  </data>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="CannotDelete.Text" xml:space="preserve">
+    <value>No puede eliminar esta regla puesto que causaría el bloqueo de la IP actual.</value>
+  </data>
+  <data name="Check.Text" xml:space="preserve">
+    <value>[ Comprobar ]</value>
+  </data>
+  <data name="CheckAllowableFileExtensionsFailure.Text" xml:space="preserve">
+    <value>Se han encontrado las extensiones asp, aspx o php en las extensiones permitidas. Esto puede permitir cargar archivos con código ejecutable. Puede borrar estas extensiones en Configuración - Más - Más opciones de seguridad - Extensiones permitidas.</value>
+  </data>
+  <data name="CheckAllowableFileExtensionsName.Text" xml:space="preserve">
+    <value>Comprueba si se permite la carga de archivos con extensiones peligrosas.</value>
+  </data>
+  <data name="CheckAllowableFileExtensionsReason.Text" xml:space="preserve">
+    <value>Se han encontrado las extensiones asp, aspx o php en las extensiones permitidas. Esto puede permitir cargar archivos con código ejecutable. Puede borrar estas extensiones en Configuración - Más - Más opciones de seguridad - Extensiones permitidas.</value>
+  </data>
+  <data name="CheckAllowableFileExtensionsSuccess.Text" xml:space="preserve">
+    <value>Las extensiones permitidas son correctas.</value>
+  </data>
+  <data name="CheckBiographyFailure.Text" xml:space="preserve">
+    <value>El campo permite texto enriquecido. Los spammers pueden añadir enlaces a webs en su campo de biografía. El tipo del campo se puede cambiar en CONFIGURACIÓN -&gt; Configuración del sitio -&gt; Comportamiento del sitio -&gt; Perfil de usuario.</value>
+  </data>
+  <data name="CheckBiographyName.Text" xml:space="preserve">
+    <value>Valida si el perfil público permite texto enriquecido.</value>
+  </data>
+  <data name="CheckBiographyReason.Text" xml:space="preserve">
+    <value>El campo de biografía es un vector frecuente para los spammers puesto que pueden añadir enlaces o html. A partir de DNN 7.2.0 este campo se ha cambiado a un campo de texto que elimina este riesgo.</value>
+  </data>
+  <data name="CheckBiographySuccess.Text" xml:space="preserve">
+    <value>El campo no está activado o está definido como un campo de texto.</value>
+  </data>
+  <data name="CheckDebugFailure.Text" xml:space="preserve">
+    <value>debug está activado. Debería modificar el archivo web.config y establecer este valor a 'false'.</value>
+  </data>
+  <data name="CheckDebugName.Text" xml:space="preserve">
+    <value>Validar estado de debug</value>
+  </data>
+  <data name="CheckDebugReason.Text" xml:space="preserve">
+    <value>Si el atributo 'debug' está activado, hay un impacto en el rendimiento y se pueden mostrar detalles en los eventos de seguridad útiles para los hackers.</value>
+  </data>
+  <data name="CheckDebugSuccess.Text" xml:space="preserve">
+    <value>El modo debug está desactivado.</value>
+  </data>
+  <data name="CheckDefaultPageFailure.Text" xml:space="preserve">
+    <value>Los archivos "default.aspx" se han modificado. Le recomendamos que verifique estos archivos puesto que pueden haber sido modificados por un hacker para añadir código maliciosos. Compare los archivos con una versión estándar del producto. Verifique que realiza la comprobación con los archivos de la misma versión de DNN. Si hay problemas, le recomendamos restaurar los archivos a partir de los de la versión original.</value>
+  </data>
+  <data name="CheckDefaultPageName.Text" xml:space="preserve">
+    <value>Verificar si default.aspx o default.aspx.cs han sido modificados</value>
+  </data>
+  <data name="CheckDefaultPageReason.Text" xml:space="preserve">
+    <value>DNN utiliza los archivos default.aspx y default.aspx.cs para cargar todo el sistema en cada petición que realizan los usuarios. Si estos archivos están comprometidos puede producirse un riesgo muy elevado.</value>
+  </data>
+  <data name="CheckDefaultPageSuccess.Text" xml:space="preserve">
+    <value>Los archivos default.aspx y default.aspx.cs no se han modificado.</value>
+  </data>
+  <data name="CheckDiskAccessFailure.Text" xml:space="preserve">
+    <value>Los hackers pueden acceder a carpetas fuera de la web</value>
+  </data>
+  <data name="CheckDiskAccessName.Text" xml:space="preserve">
+    <value>Verifica el acceso a carpetas fuera de la web</value>
+  </data>
+  <data name="CheckDiskAccessReason.Text" xml:space="preserve">
+    <value>Las credenciales de usuario de la web tienen acceso a otras carpetas fuera de la carpeta raíz de la web. Un hacker podría potencialmente leer o escribir en estas carpetas.</value>
+  </data>
+  <data name="CheckDiskAccessSuccess.Text" xml:space="preserve">
+    <value>Los hackers no pueden acceder a carpetas fuera de la web</value>
+  </data>
+  <data name="CheckFileExists.Error" xml:space="preserve">
+    <value>La cuenta SQL Server puede executar el comando xp_filexist, que se puede utilizar para detectar si determinado archivos existen en el servidor.</value>
+  </data>
+  <data name="CheckHiddenSystemFilesFailure.Text" xml:space="preserve">
+    <value>Se han encontrado archivos ocultos o de sistema en la carpeta de la web.</value>
+  </data>
+  <data name="CheckHiddenSystemFilesName.Text" xml:space="preserve">
+    <value>Verificar archivos ocultos</value>
+  </data>
+  <data name="CheckHiddenSystemFilesReason.Text" xml:space="preserve">
+    <value>Los hackers pueden cargar archivos ocultos o de sistema a la web para que no se detecten en el explorador de archivos.</value>
+  </data>
+  <data name="CheckHiddenSystemFilesSuccess.Text" xml:space="preserve">
+    <value>No se han encontrado archivos ocultos o de sistema en la carpeta de la web.</value>
+  </data>
+  <data name="CheckKnownHostGuidFailure.Text" xml:space="preserve">
+    <value>Se ha encontrado un valor común conocido de GUID de Host en su instalación. Este es un problema menor que debilita ligeramente el cifrado de la configuración segura. Puede eliminar la fila del GUID en la tabla SQL HostSettings y se generará uno nuevo al visitar cualquier módulo que cargue HostSettings. Sin embargo, esto hará que toda la configuración cifrada deje de ser válida y puede romper algunas soluciones de licenciamiento.</value>
+  </data>
+  <data name="CheckKnownHostGuidName.Text" xml:space="preserve">
+    <value>Comprueba la presencia de valores comunes conocidos de GUID de Host</value>
+  </data>
+  <data name="CheckKnownHostGuidReason.Text" xml:space="preserve">
+    <value>Algunas versiones de DNN se publicaron accidentalmente con un GUID de Host común, y este valor debe ser único por instalación.</value>
+  </data>
+  <data name="CheckKnownHostGuidSuccess.Text" xml:space="preserve">
+    <value>No se ha encontrado ningún valor común conocido de GUID de Host.</value>
+  </data>
+  <data name="CheckModuleHeaderAndFooterFailure.Text" xml:space="preserve">
+    <value>Se han encontrado módulos que tienen textos de cabecera o pie. Verifique que estos textos son legítimos.</value>
+  </data>
+  <data name="CheckModuleHeaderAndFooterName.Text" xml:space="preserve">
+    <value>Verificar configuración de cabeceras y pies de módulos</value>
+  </data>
+  <data name="CheckModuleHeaderAndFooterReason.Text" xml:space="preserve">
+    <value>Los hackers pueden utilizar las cabeceras o pies para inyectar código malicioso en las páginas.</value>
+  </data>
+  <data name="CheckModuleHeaderAndFooterSuccess.Text" xml:space="preserve">
+    <value>No se han encontrado módulos con cabeceras o pies configurados.</value>
+  </data>
+  <data name="CheckPasswordFormatFailure.Text" xml:space="preserve">
+    <value>La opción "passwordFormat" no está establecida como "Hashed" en web.config. Considere cambiar esta opción a "Hashed". Para más información consulte &lt;a href="http://www.dnnsoftware.com/wiki/hashed-passwords" target="_blank"&gt;aquí&lt;/a&gt;.</value>
+  </data>
+  <data name="CheckPasswordFormatName.Text" xml:space="preserve">
+    <value>Verificar configuración del formato de contraseñas</value>
+  </data>
+  <data name="CheckPasswordFormatReason.Text" xml:space="preserve">
+    <value>Si el valor es "Clear" o "Encrypted", los hackers pueden recuperar las contraseñas de los usuarios de la base de datos.</value>
+  </data>
+  <data name="CheckPasswordFormatSuccess.Text" xml:space="preserve">
+    <value>"passwordFormat" está establecido en "Hashed" en web.config.</value>
+  </data>
+  <data name="CheckPurpose.Header" xml:space="preserve">
+    <value>Motivo de la validación</value>
+  </data>
+  <data name="CheckRarelyUsedSuperuserFailure.Text" xml:space="preserve">
+    <value>Se ha encontrado uno o más superusuarios sin actividad o que no se han indentificado en seis meses. Considere eliminar estos usuarios como una buena práctica.</value>
+  </data>
+  <data name="CheckRarelyUsedSuperuserName.Text" xml:space="preserve">
+    <value>Verificar superusuarios que no se utilizan</value>
+  </data>
+  <data name="CheckRarelyUsedSuperuserReason.Text" xml:space="preserve">
+    <value>Los superusuarios son las cuentas más potentes de DNN. Como buena práctica debe limitarse su uso.</value>
+  </data>
+  <data name="CheckRarelyUsedSuperuserSuccess.Text" xml:space="preserve">
+    <value>Todos los usuarios son usuarios habituales del sistema.</value>
+  </data>
+  <data name="CheckSiteRegistrationFailure.Text" xml:space="preserve">
+    <value>Uno o más sitios utilizan registro público.</value>
+  </data>
+  <data name="CheckSiteRegistrationName.Text" xml:space="preserve">
+    <value>Verificar si algún sitio utiliza registro público</value>
+  </data>
+  <data name="CheckSiteRegistrationReason.Text" xml:space="preserve">
+    <value>Los sitios que permiten el registro público son el principal objectivo de los spammers.</value>
+  </data>
+  <data name="CheckSiteRegistrationSuccess.Text" xml:space="preserve">
+    <value>Todos los sitios utilizan registro no público.</value>
+  </data>
+  <data name="CheckSqlRiskFailure.Text" xml:space="preserve">
+    <value>La conexión actual de SQL puede ejecutar comandos peligrosos en su servidor SQL.</value>
+  </data>
+  <data name="CheckSqlRiskName.Text" xml:space="preserve">
+    <value>Verificar permisos de la cuenta SQL</value>
+  </data>
+  <data name="CheckSqlRiskReason.Text" xml:space="preserve">
+    <value>Si la cuenta SQL Server no se configura correctamente, hay riesgo de que los hackers puedan ejecutar scripts en el servidor.</value>
+  </data>
+  <data name="CheckSqlRiskSuccess.Text" xml:space="preserve">
+    <value>Configuración de la cuenta SQL Server correcta.</value>
+  </data>
+  <data name="CheckSuperuserOldPasswordFailure.Text" xml:space="preserve">
+    <value>Al menos un superusuario tiene una contraseña que no se ha cambiado en los últimos 6 meses.</value>
+  </data>
+  <data name="CheckSuperuserOldPasswordName.Text" xml:space="preserve">
+    <value>Verificar si los superusuarios actulizan la contraseña regularmente.</value>
+  </data>
+  <data name="CheckSuperuserOldPasswordReason.Text" xml:space="preserve">
+    <value>Los superusuarios son las cuentas más potentes en DNN. Una buena práctica es actulizar regularmente la contraseña de este tipo de cuentas.</value>
+  </data>
+  <data name="CheckSuperuserOldPasswordSuccess.Text" xml:space="preserve">
+    <value>Todos los superusuarios han actualizado su contraseña en los últimos 6 meses.</value>
+  </data>
+  <data name="CheckTelerikPresenceFailure.Text" xml:space="preserve">
+    <value>Los componentes Telerik se han encontrado en este sitio.</value>
+  </data>
+  <data name="CheckTelerikPresenceInstalledAndUsed.Text" xml:space="preserve">
+    <value>Se descubrieron dependencias en Telerik en ensamblados que NO se solucionarán mediante la desinstalación según las instrucciones de 9.8.0. La siguiente lista incluye los elementos encontrados:</value>
+  </data>
+  <data name="CheckTelerikPresenceInstalledButNotUsed.Text" xml:space="preserve">
+    <value>Telerik se encontró en este sitio, pero no se descubrieron dependencias de Telerik. Debe tener una expectativa razonable de que es seguro desinstalar Telerik según las instrucciones de la versión 9.8.0.</value>
+  </data>
+  <data name="CheckTelerikPresenceName.Text" xml:space="preserve">
+    <value>Compruebar si Telerik está instalado.</value>
+  </data>
+  <data name="CheckTelerikPresenceReason.Text" xml:space="preserve">
+    <value>En DNN 10.x, la eliminación de Telerik será forzada y ya no será opcional.</value>
+  </data>
+  <data name="CheckTelerikPresenceSuccess.Text" xml:space="preserve">
+    <value>El componente Telerik no está instalado.</value>
+  </data>
+  <data name="CheckTracing.Text" xml:space="preserve">
+    <value>Tracing está activado. Debería modificar el archivo web.config y establecer este valor a 'false'.</value>
+  </data>
+  <data name="CheckTracingFailure.Text" xml:space="preserve">
+    <value>Tracing está activao. Esto permite a hackers potenciales ver la actividad de sitio web.</value>
+  </data>
+  <data name="CheckTracingName.Text" xml:space="preserve">
+    <value>Verifica si el 'tracing' asp.net está activado.</value>
+  </data>
+  <data name="CheckTracingReason.Text" xml:space="preserve">
+    <value>Si el atributo 'tracing' está activado, los hackers potenciales pueden ver la actividad del sitio web.</value>
+  </data>
+  <data name="CheckTracingSuccess.Text" xml:space="preserve">
+    <value>Tracing no está activado.</value>
+  </data>
+  <data name="CheckUnexpectedExtensionsFailure.Text" xml:space="preserve">
+    <value>Se han encontrado archivos con extensión 'asp' o 'php'. Estos archivos pueden ser legítimos pero a veces esto indica que el sitio web ha sido hackeado y estos archivos son herramientas. Revise atentamente estos archivos para verificar si son legítimos.</value>
+  </data>
+  <data name="CheckUnexpectedExtensionsName.Text" xml:space="preserve">
+    <value>Validar si hay archivos asp o php.</value>
+  </data>
+  <data name="CheckUnexpectedExtensionsReason.Text" xml:space="preserve">
+    <value>DNN es una aplicación web ASP.NET. En condiciones normales otras extensiones de aplicación como .asp o .php no se deberían encontrar presentes.</value>
+  </data>
+  <data name="CheckUnexpectedExtensionsSuccess.Text" xml:space="preserve">
+    <value>No se han encontrado archivos con extensiones peligrosas.</value>
+  </data>
+  <data name="CheckUserProfilePageFailure.Text" xml:space="preserve">
+    <value>La página de perfil de usuario es pública.</value>
+  </data>
+  <data name="CheckUserProfilePageName.Text" xml:space="preserve">
+    <value>Verifique el acceso a la página de perfil de usuario</value>
+  </data>
+  <data name="CheckUserProfilePageReason.Text" xml:space="preserve">
+    <value>La página perfil de usuario puede que sea visible para todos los usuarios sin querer.</value>
+  </data>
+  <data name="CheckUserProfilePageSuccess.Text" xml:space="preserve">
+    <value>La página de perfil de usuario no es pública.</value>
+  </data>
+  <data name="CheckViewstatemacFailure.Text" xml:space="preserve">
+    <value>viewstatemac no está activado.</value>
+  </data>
+  <data name="CheckViewstatemacName.Text" xml:space="preserve">
+    <value>Verificar si el Viewstate está protegido.</value>
+  </data>
+  <data name="CheckViewstatemacReason.Text" xml:space="preserve">
+    <value>Un Viewstate MAC es una versión encriptada de la variable oculta donde se guarda el estado de la página cuando ésta se envia al navegador. Si esta propiedad está activada, el campo encriptado se verifica para comprobar que el estado no se haya modificado en el cliente.</value>
+  </data>
+  <data name="CheckViewstatemacSuccess.Text" xml:space="preserve">
+    <value>El Viewstate está protegido con el uso de MAC.</value>
+  </data>
+  <data name="cmdAdd.Text" xml:space="preserve">
+    <value>Añadir nuevo filtro</value>
+  </data>
+  <data name="cmdCancel.Text" xml:space="preserve">
+    <value>Cancelar edición</value>
+  </data>
+  <data name="cmdCheck.Text" xml:space="preserve">
+    <value>Verificar</value>
+  </data>
+  <data name="cmdModifiedFiles.Text" xml:space="preserve">
+    <value>Buscar archivos modificados recientemente</value>
+  </data>
+  <data name="cmdSearch.Text" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="ContainsDuplicateAddresses.Text" xml:space="preserve">
+    <value>Hay emails duplicados en la lista de usuarios del sitio. Si quiere utilizar el email como nombre de usuario tiene que corregir primero estas entradas.</value>
+  </data>
+  <data name="CreatedBy.Header" xml:space="preserve">
+    <value>Creado por</value>
+  </data>
+  <data name="CreatedBy.Help" xml:space="preserve">
+    <value>Nombre para mostrar y nombre de usuario del usuario que creó el token.</value>
+  </data>
+  <data name="CreatedBy.Text" xml:space="preserve">
+    <value>Creado por</value>
+  </data>
+  <data name="CreatedDate.Header" xml:space="preserve">
+    <value>Fecha de creación</value>
+  </data>
+  <data name="CreatedDate.Text" xml:space="preserve">
+    <value>FECHA CREACIÓN</value>
+  </data>
+  <data name="CreatedOn.Header" xml:space="preserve">
+    <value>Creado</value>
+  </data>
+  <data name="CreatedOnDate.Text" xml:space="preserve">
+    <value>Creado el</value>
+  </data>
+  <data name="CspDisabled.Help" xml:space="preserve">
+    <value>La Política de seguridad de contenido (CSP) se ha desactivado en el archivo web.config. Vuelva a activarla para usar esta función.</value>
+  </data>
+  <data name="CspHeader.Message" xml:space="preserve">
+    <value>Encabezado CSP no válido</value>
+  </data>
+  <data name="CspHeaderModeOff.Help" xml:space="preserve">
+    <value>El encabezado CSP no se añadirá a la respuesta.</value>
+  </data>
+  <data name="CspHeaderModeOff.Text" xml:space="preserve">
+    <value>Desactivado</value>
+  </data>
+  <data name="CspHeaderModeOn.Help" xml:space="preserve">
+    <value>El encabezado CSP se añadirá a la respuesta HTTP y se aplicará.</value>
+  </data>
+  <data name="CspHeaderModeOn.Text" xml:space="preserve">
+    <value>Activado</value>
+  </data>
+  <data name="CspHeaderModeReportOnly.Help" xml:space="preserve">
+    <value>El encabezado CSP se añadirá a la respuesta, pero no se aplicará.</value>
+  </data>
+  <data name="CspHeaderModeReportOnly.Text" xml:space="preserve">
+    <value>Solo informe</value>
+  </data>
+  <data name="CspLockConfirm.Text" xml:space="preserve">
+    <value>Confirmo que soy consciente de los riesgos de usar el modo «bloqueado».</value>
+  </data>
+  <data name="CspReportingHeader.Message" xml:space="preserve">
+    <value>Encabezado de informes CSP no válido</value>
+  </data>
+  <data name="CspSettings.Help" xml:space="preserve">
+    <value>El acceso a los paneles de administración de DNN depende de funciones de JavaScript. La función de Política de seguridad de contenido (CSP) de DNN emite de forma predeterminada una configuración de “mejor esfuerzo” usando los ajustes siguientes, pero permitiendo que los módulos y temas amplíen lo permitido en el sitio. Puede desactivar esto usando el modo “bloqueado”. Al usar este modo “bloqueado”, utilice primero “solo informe” y asegúrese de que su sitio sigue funcionando revisando cualquier error en la consola del navegador. En el modo “bloqueado”, la CSP se ampliará con el mínimo necesario para admitir WebForms o MVC. Tenga en cuenta que la CSP puede desactivarse globalmente en el archivo web.config en caso de que se haya bloqueado a sí mismo.</value>
+  </data>
+  <data name="CspSettingsError.Text" xml:space="preserve">
+    <value>Se ha producido un error. No se ha podido actualizar la configuración de CSP. Consulte el Registro de eventos para determinar la causa de este error.</value>
+  </data>
+  <data name="CspSettingsRestoreWarning.Text" xml:space="preserve">
+    <value>Se descartarán los cambios realizados en la configuración de CSP. ¿Desea continuar?</value>
+  </data>
+  <data name="CspSettingsUpdateSuccess.Text" xml:space="preserve">
+    <value>Configuración de CSP actualizada</value>
+  </data>
+  <data name="Custom.Text" xml:space="preserve">
+    <value>Personalizado</value>
+  </data>
+  <data name="DatabaseInstance.Text" xml:space="preserve">
+    <value>INSTACIA DE BASE DE DATOS</value>
+  </data>
+  <data name="DatabaseValue.Text" xml:space="preserve">
+    <value>VALOR</value>
+  </data>
+  <data name="Days180.Text" xml:space="preserve">
+    <value>180 días</value>
+  </data>
+  <data name="Days30.Text" xml:space="preserve">
+    <value>30 días</value>
+  </data>
+  <data name="Days60.Text" xml:space="preserve">
+    <value>60 días</value>
+  </data>
+  <data name="Days90.Text" xml:space="preserve">
+    <value>90 días</value>
+  </data>
+  <data name="DefaultAuthProvider.Help" xml:space="preserve">
+    <value>Puede seleccionar el proveedor de autenticación predeterminado para la identificación de usuarios. Sólo puede seleccionar los proveedores que soporten autenticación de formularios.</value>
+  </data>
+  <data name="DefaultAuthProvider.Text" xml:space="preserve">
+    <value>Proveedor de autenticación predeterminado</value>
+  </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Eliminar filtro</value>
+  </data>
+  <data name="DeleteApiKey.Confirm" xml:space="preserve">
+    <value>¿Desea eliminar este token de API? Tenga en cuenta que esta acción no se puede deshacer.</value>
+  </data>
+  <data name="DeleteApiKey.Text" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="DeletedTab.Text" xml:space="preserve">
+    <value>La página con el ID {0} está eliminada.</value>
+  </data>
+  <data name="DeleteError.Text" xml:space="preserve">
+    <value>No se ha podido eliminar el filtro. Vuelva a intentarlo.</value>
+  </data>
+  <data name="DeleteExpired.Confirm" xml:space="preserve">
+    <value>Esto eliminará todos los tokens caducados y revocados. ¿Desea continuar?</value>
+  </data>
+  <data name="DeleteExpired.Text" xml:space="preserve">
+    <value>Eliminar caducados</value>
+  </data>
+  <data name="DeleteSuccess.Text" xml:space="preserve">
+    <value>Se ha eliminado el filtro.</value>
+  </data>
+  <data name="DenyIP.Text" xml:space="preserve">
+    <value>Bloquear</value>
+  </data>
+  <data name="Disabled.Text" xml:space="preserve">
+    <value>La página con el ID {0} está desactivada.</value>
+  </data>
+  <data name="DisplayName.Header" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Edit.Text" xml:space="preserve">
+    <value>Editar filtro</value>
+  </data>
+  <data name="Email.Header" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Empty.Text" xml:space="preserve">
+    <value>{0} no puede estar vacío.</value>
+  </data>
+  <data name="ExecuteCommand.Error" xml:space="preserve">
+    <value>La cuenta SQL Server puede ejecutar xp_cmdshell que permite ejecutar programas en la línea de comandos del servidor SQL Server.</value>
+  </data>
+  <data name="Expired.Text" xml:space="preserve">
+    <value>Caducado</value>
+  </data>
+  <data name="ExpiresIn.Help" xml:space="preserve">
+    <value>Seleccione durante cuánto tiempo será válido este token.</value>
+  </data>
+  <data name="ExpiresIn.Text" xml:space="preserve">
+    <value>Caduca en</value>
+  </data>
+  <data name="ExpiresOn.Header" xml:space="preserve">
+    <value>Caduca</value>
+  </data>
+  <data name="ExpiresOn.Help" xml:space="preserve">
+    <value>Después de esta fecha y hora, el token dejará de funcionar.</value>
+  </data>
+  <data name="ExpiresOn.Text" xml:space="preserve">
+    <value>Caduca el</value>
+  </data>
+  <data name="Fail.Text" xml:space="preserve">
+    <value>FALLO</value>
+  </data>
+  <data name="Filename.Header" xml:space="preserve">
+    <value>Archivo</value>
+  </data>
+  <data name="FileName.Text" xml:space="preserve">
+    <value>NOMBRE ARCHIVO</value>
+  </data>
+  <data name="FilterType.Header" xml:space="preserve">
+    <value>TIPO FILTRO</value>
+  </data>
+  <data name="FirstName.Header" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="GetFolderTree.Error" xml:space="preserve">
+    <value>La cuenta SQL Server puede ejecutar xp_dirtree que permite ver la estructura de carpetas del servidor SQL Server.</value>
+  </data>
+  <data name="GlobalSetting.Text" xml:space="preserve">
+    <value>Este un parámetro global. Los cambios afectarán a todos los sitios de la instalación.</value>
+  </data>
+  <data name="GlobalSettingsTab.Text" xml:space="preserve">
+    <value>Este un parámetro global. Los cambios afectarán a todos los sitios de la instalación.</value>
+  </data>
+  <data name="HighRiskFiles.Text" xml:space="preserve">
+    <value>Archivos riesgo alto</value>
+  </data>
+  <data name="Host.Text" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="HostSettings.Text" xml:space="preserve">
+    <value>Configuración del sistema</value>
+  </data>
+  <data name="IncorrectDisplayNameConfiguration.Text" xml:space="preserve">
+    <value>La configuración del nombre para mostrar no es correcta. Proporcione el formato del nombre para mostrar o incluya el nombre para mostrar en la lista de campos.</value>
+  </data>
+  <data name="IpAddress.Header" xml:space="preserve">
+    <value>DIRECCIÓN IP</value>
+  </data>
+  <data name="IPFilter.Header" xml:space="preserve">
+    <value>Filtro IP</value>
+  </data>
+  <data name="IpFilterDeletedWarning.Text" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar este filtro?</value>
+  </data>
+  <data name="IPFiltersDisabled.Text" xml:space="preserve">
+    <value>El filtro de autenticación por IP está desactivado. Para activarlo, marque la opción Activar verificación de IP en la configuración de Seguridad.</value>
+  </data>
+  <data name="IpFilterUpdateError.Text" xml:space="preserve">
+    <value>No se ha podido actualizar el fitro. Vuelva a intentarlo.</value>
+  </data>
+  <data name="IpFilterUpdateSuccess.Text" xml:space="preserve">
+    <value>Se ha actualizado el filtro.</value>
+  </data>
+  <data name="IPRange.Text" xml:space="preserve">
+    <value>Rango IP</value>
+  </data>
+  <data name="IPValidation.ErrorMessage" xml:space="preserve">
+    <value>Introduzca un valor válido de IP/máscara.</value>
+  </data>
+  <data name="LastActivityDate.Header" xml:space="preserve">
+    <value>Fecha última actividad</value>
+  </data>
+  <data name="LastActivityDate.Text" xml:space="preserve">
+    <value>FECHA ÚLTIMA ACTIVIDAD</value>
+  </data>
+  <data name="LastLogin.Header" xml:space="preserve">
+    <value>Último inicio de sesión</value>
+  </data>
+  <data name="LastLogin.Text" xml:space="preserve">
+    <value>ÚLTIMA SESIÓN</value>
+  </data>
+  <data name="LastModifiedDate.Header" xml:space="preserve">
+    <value>Última fecha de modificación</value>
+  </data>
+  <data name="LastName.Header" xml:space="preserve">
+    <value>Apellidos</value>
+  </data>
+  <data name="LastUsedOnDate.Text" xml:space="preserve">
+    <value>Último uso</value>
+  </data>
+  <data name="LastWriteTime.Text" xml:space="preserve">
+    <value>FECHA ÚLTIMA MODIFICACIÓN</value>
+  </data>
+  <data name="LoginSettingsRestoreWarning.Text" xml:space="preserve">
+    <value>¿Está seguro que desea cancelar los cambios?</value>
+  </data>
+  <data name="LowRiskFiles.Text" xml:space="preserve">
+    <value>Archivos riesgo bajo</value>
+  </data>
+  <data name="MaxApiTokenDuration.Error" xml:space="preserve">
+    <value>Debe ser un valor entero positivo.</value>
+  </data>
+  <data name="MaxInvalidPasswordAttemptsTitle.Help" xml:space="preserve">
+    <value>Indica el número de veces que se puede fallar al entrar la contraseña antes de bloquear la cuenta. Solo se puede cambiar en el archivo web.config.</value>
+  </data>
+  <data name="MaxInvalidPasswordAttemptsTitle.Text" xml:space="preserve">
+    <value>Errores de identificación permitidos</value>
+  </data>
+  <data name="maxUploadSize.Error" xml:space="preserve">
+    <value>El tamaño máximo de archivos para cargar tiene que estar entre 12 y {0}</value>
+  </data>
+  <data name="MemberSettingsError.Text" xml:space="preserve">
+    <value>No se puede actualizar la configuración de usuarios. Vuelva a intentarlo.</value>
+  </data>
+  <data name="MemberSettingsRestoreWarning.Text" xml:space="preserve">
+    <value>¿Está seguro que desea cancelar los cambios?</value>
+  </data>
+  <data name="MemberSettingsUpdateSuccess.Text" xml:space="preserve">
+    <value>Se ha actualizado la configuración de usuarios.</value>
+  </data>
+  <data name="MembershipDaysBeforePasswordReuse.ErrorMessage" xml:space="preserve">
+    <value>El número de días antes la reutilización de contrañas tiene que ser un números entre 0 y 10000.</value>
+  </data>
+  <data name="MembershipNumberPasswords.ErrorMessage" xml:space="preserve">
+    <value>El número de contraseñas a guardar tiene que ser un número entre 0 y 10000.</value>
+  </data>
+  <data name="MembershipResetLinkValidity.ErrorMessage" xml:space="preserve">
+    <value>El tiempo de validez de los enlaces de reinicio tiene que ser un número entre 0 y 10000.</value>
+  </data>
+  <data name="MinNonAlphanumericCharactersTitle.Help" xml:space="preserve">
+    <value>Número mínimo de caracteres no alfanuméricos obligatorios en la contraseña.</value>
+  </data>
+  <data name="MinNonAlphanumericCharactersTitle.Text" xml:space="preserve">
+    <value>Número mínimo de caracteres no alfanuméricos:</value>
+  </data>
+  <data name="MinPasswordLengthTitle.Help" xml:space="preserve">
+    <value>Indica el número mínimo de caracteres especiales que debe incluir la contraseña. Solo se puedo configurar en el archivo web.config.</value>
+  </data>
+  <data name="MinPasswordLengthTitle.Text" xml:space="preserve">
+    <value>Número mínimo de caracteres de la contraseña</value>
+  </data>
+  <data name="ModifiedFiles.Text" xml:space="preserve">
+    <value>Archivos modificados recientemente</value>
+  </data>
+  <data name="ModifiedFilesLoadWarning.Text" xml:space="preserve">
+    <value>Esta opción mostrará todos los archivos del sistema que se han modificado recientemente. Esta acción puede tardar bastante si el sitio tiene muchos archivos.</value>
+  </data>
+  <data name="ModifiedSettings.Text" xml:space="preserve">
+    <value>Configuraciones modificadas recientemente</value>
+  </data>
+  <data name="ModuleId.Text" xml:space="preserve">
+    <value>ID MÓDULO</value>
+  </data>
+  <data name="ModuleSettings.Text" xml:space="preserve">
+    <value>Configuración módulos</value>
+  </data>
+  <data name="nav_Security.Text" xml:space="preserve">
+    <value>Seguridad</value>
+  </data>
+  <data name="No.Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoDatabaseResults.Text" xml:space="preserve">
+    <value>El término de búsqueda no se ha encontrado en la base de datos</value>
+  </data>
+  <data name="NoDisplayName.Text" xml:space="preserve">
+    <value>Ha seleccionado la opción "Requerir nombres únicos" pero no ha incluido el nombre en la lista de campos disponibles.</value>
+  </data>
+  <data name="NoEmail.Text" xml:space="preserve">
+    <value>Como mínimo tiene que incluir el campo EMail</value>
+  </data>
+  <data name="NoFileResults.Text" xml:space="preserve">
+    <value>El término de búsqueda no se ha encontrado en ningún archivo</value>
+  </data>
+  <data name="None.Text" xml:space="preserve">
+    <value>Ninguno</value>
+  </data>
+  <data name="NoneSpecified.Text" xml:space="preserve">
+    <value>Sin especificar</value>
+  </data>
+  <data name="Notes.Header" xml:space="preserve">
+    <value>Notas</value>
+  </data>
+  <data name="Notes.Text" xml:space="preserve">
+    <value>ATENCIÓN</value>
+  </data>
+  <data name="NotValid.Text" xml:space="preserve">
+    <value>{0} {1} no és válido.</value>
+  </data>
+  <data name="OptDays.Text" xml:space="preserve">
+    <value>Días</value>
+  </data>
+  <data name="OptMonths.Text" xml:space="preserve">
+    <value>Meses</value>
+  </data>
+  <data name="OptWeeks.Text" xml:space="preserve">
+    <value>Semanas</value>
+  </data>
+  <data name="OptYears.Text" xml:space="preserve">
+    <value>Años</value>
+  </data>
+  <data name="OtherSettingsError.Text" xml:space="preserve">
+    <value>No se ha podido actualizar la configuración. Vuelva a intentarlo.</value>
+  </data>
+  <data name="OtherSettingsRestoreWarning.Text" xml:space="preserve">
+    <value>¿Está seguro que desea cancelar los cambios?</value>
+  </data>
+  <data name="OtherSettingsUpdateSuccess.Text" xml:space="preserve">
+    <value>La configuración se ha actualizado.</value>
+  </data>
+  <data name="PageSizeOptions.Text" xml:space="preserve">
+    <value>{0} resultados por página</value>
+  </data>
+  <data name="PageSummary.Text" xml:space="preserve">
+    <value>Mostrando {0}-{1} de {2} resultados</value>
+  </data>
+  <data name="Pass.Text" xml:space="preserve">
+    <value>CORRECTO</value>
+  </data>
+  <data name="PasswordAttemptWindowTitle.Help" xml:space="preserve">
+    <value>El período de tiempo (en minutos) para controlar el máximo de intentos de identificación</value>
+  </data>
+  <data name="PasswordAttemptWindowTitle.Text" xml:space="preserve">
+    <value>Período de intentos de identificación (minutos):</value>
+  </data>
+  <data name="PasswordConfig_PasswordExpiry.Help" xml:space="preserve">
+    <value>Indica cada cuando tiempo los usuarios tienen que cambiar la contraseña (0 indica que la contraseña no caduca nunca).</value>
+  </data>
+  <data name="PasswordConfig_PasswordExpiry.Text" xml:space="preserve">
+    <value>Caducidad de contraseña (en días):</value>
+  </data>
+  <data name="PasswordConfig_PasswordExpiryReminder.Help" xml:space="preserve">
+    <value>Indica el número de días antes de que caduque la contraseña, en que los usuarios recibirán el recordatorio para cambiar su contraseña.</value>
+  </data>
+  <data name="PasswordConfig_PasswordExpiryReminder.Text" xml:space="preserve">
+    <value>Recordatorio de caducidad de contraseña (en días):</value>
+  </data>
+  <data name="PasswordExpiry.ErrorMessage" xml:space="preserve">
+    <value>El tiempo de caducidad tiene que ser un número entre 0 y 10000.</value>
+  </data>
+  <data name="PasswordExpiryReminder.ErrorMessage" xml:space="preserve">
+    <value>El tiempo de recordatorio tiene que ser un número entre 0 y 10000.</value>
+  </data>
+  <data name="PasswordFormat.Help" xml:space="preserve">
+    <value>Formato de la contraseña.</value>
+  </data>
+  <data name="PasswordFormat.Text" xml:space="preserve">
+    <value>Formato de la contraseña</value>
+  </data>
+  <data name="PasswordResetEnabledTitle.Help" xml:space="preserve">
+    <value>Indica si los usuarios pueden solicitar el reinicio de la contraseña. Solo se puede modificar en el archivo web.config.</value>
+  </data>
+  <data name="PasswordResetEnabledTitle.Text" xml:space="preserve">
+    <value>Reinicio de contraseña permitido</value>
+  </data>
+  <data name="PasswordRetrievalEnabled.Help" xml:space="preserve">
+    <value>Indica si los usuarios pueden solicitar que se envie su contraseña por email. Solo se puede configurar en el archivo web.config.</value>
+  </data>
+  <data name="PasswordRetrievalEnabled.Text" xml:space="preserve">
+    <value>Recuperación de contraseña activado</value>
+  </data>
+  <data name="PasswordStrengthRegularExpressionTitle.Help" xml:space="preserve">
+    <value>Expresión regular que se utilizará para evaluar la complejidad de la contraseña. Solo se puede modificar en el archivo web.config cambiando el valor del nodo passwordStrengthRegularExpression de AspNetSqlMembershipProvider. Atención: esta validación es diferente de la visualización de seguridad introducida en la versión 7.1.0, la cual solo muestra sugerencias de seguridad, mientras que esta expressión es un requisito para las nuevas contraseñas (si está definido).</value>
+  </data>
+  <data name="PasswordStrengthRegularExpressionTitle.Text" xml:space="preserve">
+    <value>Expresión regular de seguridad de contraseña</value>
+  </data>
+  <data name="plAdministrator.Help" xml:space="preserve">
+    <value>El usuario administrador del sitio que recibirá notificaciones de las actividades de los miembros.</value>
+  </data>
+  <data name="plAdministrator.Text" xml:space="preserve">
+    <value>Administrador principal</value>
+  </data>
+  <data name="plAdminResetLinkValidity.Help" xml:space="preserve">
+    <value>Tiempo de validez de los enlaces de reinicio del administrador (en minutos).</value>
+  </data>
+  <data name="plAdminResetLinkValidity.Text" xml:space="preserve">
+    <value>Tiempo de vida del enlace de reinicio de administrador (minutos)</value>
+  </data>
+  <data name="plAllowApiTokens.Help" xml:space="preserve">
+    <value>Permitir tokens de API en este sitio</value>
+  </data>
+  <data name="plAllowApiTokens.Text" xml:space="preserve">
+    <value>Permitir tokens de API</value>
+  </data>
+  <data name="plAllowOverrideThemeViaQueryString.Help" xml:space="preserve">
+    <value>Si es verdadero, cualquier visitante puede cargar temas, incluidos los no utilizados, usando el parámetro QueryString SkinSrc.</value>
+  </data>
+  <data name="plAllowOverrideThemeViaQueryString.Text" xml:space="preserve">
+    <value>Permitir sobrescribir el tema mediante QueryString</value>
+  </data>
+  <data name="plAllowRichTextModuleTitle.Help" xml:space="preserve">
+    <value>Si está activado, se permitirá contenido HTML como título de los módulos.</value>
+  </data>
+  <data name="plAllowRichTextModuleTitle.Text" xml:space="preserve">
+    <value>Permitir títulos de módulo con texto enriquecido</value>
+  </data>
+  <data name="plAsyncTimeout.Help" xml:space="preserve">
+    <value>Indique el tiempo máximo, en segundos, que se mantendrá activa una llamada asíncrona antes de cerrar la petición. El valor tiene que estar entre 90-9999 segundos.</value>
+  </data>
+  <data name="plAsyncTimeout.Text" xml:space="preserve">
+    <value>Tiempo de validez de petición asíncrona</value>
+  </data>
+  <data name="plAutoAccountUnlock.Help" xml:space="preserve">
+    <value>Después de que una cuenta se haya bloqueado debido a intentos de inicio de sesión incorrectos, ésta puede desbloquearse después de que haya pasado un cierto periodo de tiempo. Escriba el número de minutos que hay que esperar para que la cuenta se desbloquee automáticamente. Escriba "0" para desactivar la característica de autodesbloqueo</value>
+  </data>
+  <data name="plAutoAccountUnlock.Text" xml:space="preserve">
+    <value>Autodesbloquear cuentas después de (minutos)</value>
+  </data>
+  <data name="plCspHeader.Help" xml:space="preserve">
+    <value>El encabezado CSP que se añadirá a la respuesta HTTP.</value>
+  </data>
+  <data name="plCspHeader.Text" xml:space="preserve">
+    <value>Encabezado CSP (Content-Security-Policy o Content-Security-Policy-Report-Only)</value>
+  </data>
+  <data name="plCspHeaderFixed.Help" xml:space="preserve">
+    <value>Si está activado, el encabezado CSP quedará bloqueado, es decir, establecido según la configuración siguiente, y no podrá ser modificado dinámicamente por temas (skins) o módulos.</value>
+  </data>
+  <data name="plCspHeaderFixed.Text" xml:space="preserve">
+    <value>No permitir sobrescritura por extensiones</value>
+  </data>
+  <data name="plCspHeaderMode.Help" xml:space="preserve">
+    <value>El modo CSP que se utilizará: Desactivado, Solo informe, Activado.</value>
+  </data>
+  <data name="plCspHeaderMode.Text" xml:space="preserve">
+    <value>Política de seguridad de contenido</value>
+  </data>
+  <data name="plCspReportingHeader.Help" xml:space="preserve">
+    <value>El encabezado de informes CSP que se añadirá a la respuesta HTTP, por ejemplo: csp-endpoint="https://example.com/csp-reports"</value>
+  </data>
+  <data name="plCspReportingHeader.Text" xml:space="preserve">
+    <value>Encabezado de informes CSP (Reporting-Endpoints)</value>
+  </data>
+  <data name="plDebugMode.Help" xml:space="preserve">
+    <value>Si está activo, la instalación se ejecuta en modo de depuración. De esta manera algunas partes de la aplicación registrarán los errores de forma más extensa. Tenga en cuenta que esto puede comportar una degradación del rendimiento del sistema.</value>
+  </data>
+  <data name="plDebugMode.Text" xml:space="preserve">
+    <value>Modo depuración</value>
+  </data>
+  <data name="plDefaultEndUserExtensionWhitelist.Help" xml:space="preserve">
+    <value>Lista de extensiones de archivos permitidas para usuarios para subir al sitio web. Los administradores del sitio pueden sobreescribir esta opción pero no podrán añadir otros tipos no incluidos en la lista principal. Nota: esta lista se filtrará con la lista superior al guardar.</value>
+  </data>
+  <data name="plDefaultEndUserExtensionWhitelist.Text" xml:space="preserve">
+    <value>Lista permitida de extensiones para usuarios</value>
+  </data>
+  <data name="plEnableBannedList.Help" xml:space="preserve">
+    <value>Indica si se comprobarán las contraseñas a partir de la lista de términos prohibidos.</value>
+  </data>
+  <data name="plEnableBannedList.Text" xml:space="preserve">
+    <value>Activar la lista de contraseñas prohibidas</value>
+  </data>
+  <data name="plEnableIPChecking.Help" xml:space="preserve">
+    <value>Activa esta opción para validar la dirección IP desde la que se inicia la sesión.</value>
+  </data>
+  <data name="plEnableIPChecking.Text" xml:space="preserve">
+    <value>Activar la validación de dirección IP</value>
+  </data>
+  <data name="plEnablePasswordHistory.Help" xml:space="preserve">
+    <value>Indica si se guardará y utilizará una lista de contraseñas usadas anteriormente para evitar la repetición de contraseñas.</value>
+  </data>
+  <data name="plEnablePasswordHistory.Text" xml:space="preserve">
+    <value>Activar historial de contraseñas</value>
+  </data>
+  <data name="plEnableRegisterNotification.Help" xml:space="preserve">
+    <value>Indique si el administrador debe recibir emails de notificación cuando se registren nuevos usuarios.</value>
+  </data>
+  <data name="plEnableRegisterNotification.Text" xml:space="preserve">
+    <value>Recibir notificaciones de registro de usuarios:</value>
+  </data>
+  <data name="plEnableStrengthMeter.Help" xml:space="preserve">
+    <value>Active esta opción para mostrar el medidor de seguridad de contraseñas en la pantalla de registro</value>
+  </data>
+  <data name="plEnableStrengthMeter.Text" xml:space="preserve">
+    <value>Activar la validación de seguridad de contraseña</value>
+  </data>
+  <data name="plEnableUnapprovedPasswordReminderNotification.Help" xml:space="preserve">
+    <value>Marque esta casilla para enviar notificaciones por correo electrónico al administrador principal cuando un usuario no aprobado solicite un recordatorio o restablecimiento de contraseña.</value>
+  </data>
+  <data name="plEnableUnapprovedPasswordReminderNotification.Text" xml:space="preserve">
+    <value>Recibir notificación de recordatorio de contraseña de usuario no aprobado</value>
+  </data>
+  <data name="plFileExtensions.Help" xml:space="preserve">
+    <value>Escriba las extensiones de archivos permitidas (separadas por comas) para los archivos que suban los administradores del sitio.</value>
+  </data>
+  <data name="plFileExtensions.Text" xml:space="preserve">
+    <value>Extensiones de archivos permitidas:</value>
+  </data>
+  <data name="plFirstIP.Help" xml:space="preserve">
+    <value>Este valor puede ser un valor único de filtro de IP o una máscara de red para calcular un rango de IPs.</value>
+  </data>
+  <data name="plFirstIP.Text" xml:space="preserve">
+    <value>Primera IP</value>
+  </data>
+  <data name="plForceLogOutAfterPasswordChanged.Help" xml:space="preserve">
+    <value>Forzar el cierre de sesión en otros navegadores después de cambiar la contraseña de un usuario.</value>
+  </data>
+  <data name="plForceLogOutAfterPasswordChanged.Text" xml:space="preserve">
+    <value>Forzar cierre de sesión al cambiar contraseña</value>
+  </data>
+  <data name="plHideLoginControl.Help" xml:space="preserve">
+    <value>Marque esta opción para ocultar el enlace a la página de identificación.</value>
+  </data>
+  <data name="plHideLoginControl.Text" xml:space="preserve">
+    <value>Ocultar control de identificación</value>
+  </data>
+  <data name="plMaximumSiteTimespan.Help" xml:space="preserve">
+    <value>Establezca la duración máxima de los tokens de API para cualquier sitio en esta instancia de DNN.</value>
+  </data>
+  <data name="plMaximumSiteTimespan.Text" xml:space="preserve">
+    <value>Duración máxima del sitio</value>
+  </data>
+  <data name="plMaxUploadSize.Help" xml:space="preserve">
+    <value>Indica el tamaño máximo de los archivos que se pueden cargar en el sitio. El valor mínimo de 12 MB.</value>
+  </data>
+  <data name="plMaxUploadSize.Text" xml:space="preserve">
+    <value>Tamaño máximo de carga</value>
+  </data>
+  <data name="plNotes.Help" xml:space="preserve">
+    <value>Notas opcionales sobre esta regla.</value>
+  </data>
+  <data name="plNotes.Text" xml:space="preserve">
+    <value>Notas</value>
+  </data>
+  <data name="plNumberPasswords.Help" xml:space="preserve">
+    <value>Indica el número de contraseñas anteriores que se guardarán para la validación de reuso</value>
+  </data>
+  <data name="plNumberPasswords.Text" xml:space="preserve">
+    <value>Número de contraseñas a guardar</value>
+  </data>
+  <data name="plPasswordDays.Help" xml:space="preserve">
+    <value>Indique los días que tienen que pasar antes de poder reutilizar una contraseña.</value>
+  </data>
+  <data name="plPasswordDays.Text" xml:space="preserve">
+    <value>Número de días antes de reutilizar contraseñas</value>
+  </data>
+  <data name="plRememberMe.Help" xml:space="preserve">
+    <value>Configura la casilla de verificación Recordar en los controles de acceso. Si activa esta opción los usuarios podrán crear cookies persistentes para recordar la identificación</value>
+  </data>
+  <data name="plRememberMe.Text" xml:space="preserve">
+    <value>Habilitar recordar en controles de acceso</value>
+  </data>
+  <data name="plResetLinkValidity.Help" xml:space="preserve">
+    <value>Indica el tiempo (en minutos) durante el cual será válido el enlace para reiniciar la contraseña.</value>
+  </data>
+  <data name="plResetLinkValidity.Text" xml:space="preserve">
+    <value>Tiempo de validez del enlace de reinicio (minutos)</value>
+  </data>
+  <data name="plRuleSpecifity.Help" xml:space="preserve">
+    <value>Indica si la regla se aplica a una única IP o a un rango de direcciones IP.</value>
+  </data>
+  <data name="plRuleSpecifity.Text" xml:space="preserve">
+    <value>Ámbito de la regla</value>
+  </data>
+  <data name="plRuleType.Help" xml:space="preserve">
+    <value>Indica si la regla permite o bloquea el acceso</value>
+  </data>
+  <data name="plRuleType.Text" xml:space="preserve">
+    <value>Tipo de regla</value>
+  </data>
+  <data name="plSearchTerm.Text" xml:space="preserve">
+    <value>Término de búsqueda</value>
+  </data>
+  <data name="plShowCriticalErrors.Help" xml:space="preserve">
+    <value>Indica si los errores que se envíen como parámetros en las URLs se tienen que mostrar en línea en la página.</value>
+  </data>
+  <data name="plShowCriticalErrors.Text" xml:space="preserve">
+    <value>Mostrar errores críticos en pantalla</value>
+  </data>
+  <data name="plSSLEnforced.Help" xml:space="preserve">
+    <value>Marque esta opción que las páginas marcadas como inseguras no puedan ser accesibles mediante HTTPS y se redirijan siempre a HTTP.</value>
+  </data>
+  <data name="plSSLEnforced.Text" xml:space="preserve">
+    <value>Modo mixto</value>
+  </data>
+  <data name="plSSLOffload.Help" xml:space="preserve">
+    <value>Indique el nombre de la cabecera HTTP que se debe comprobar para saber si se ha utilizado un balanceador de red para el procesamiento de SSL (SSL Offloading)</value>
+  </data>
+  <data name="plSSLOffload.Text" xml:space="preserve">
+    <value>Valor de cabecera SSL Offloading</value>
+  </data>
+  <data name="plSSLURL.Help" xml:space="preserve">
+    <value>Opcionalmente puede especificar una URL que será usada para las conexiones seguras para este sitio. Esto solo es necesario si no tiene un certificado SSL instalado para la URL estándar del sitio. Por ejemplo si utiliza una cuenta de alojamiento que le suministra un certificado SSL compartido.</value>
+  </data>
+  <data name="plSSLURL.Text" xml:space="preserve">
+    <value>URL SSL</value>
+  </data>
+  <data name="plSTDURL.Help" xml:space="preserve">
+    <value>Si especifica una URL SSL necesitará indicar una dirección estándar URL para conexiones no seguras.</value>
+  </data>
+  <data name="plSTDURL.Text" xml:space="preserve">
+    <value>URL estándar</value>
+  </data>
+  <data name="plSubnet.Help" xml:space="preserve">
+    <value>La máscara de red se combinará con la primera IP para calcular el rango de IPs a filtrar.</value>
+  </data>
+  <data name="plSubnet.Text" xml:space="preserve">
+    <value>Máscara</value>
+  </data>
+  <data name="plUserRegistration.Help" xml:space="preserve">
+    <value>El tipo de registro de usuarios a utilizar en el sitio. El registro Privado require que los administradores aprueben los nuevos registros para activarlos. El registro Público permite acceso inmediato a los usuarios. El registro Verificado requiere la validación del email del usuario utilizado en el registro.</value>
+  </data>
+  <data name="plUserRegistration.Text" xml:space="preserve">
+    <value>Registro de usuarios</value>
+  </data>
+  <data name="plUserRequestIpHeader.Help" xml:space="preserve">
+    <value>Cuando se establezca, este encabezado se utilizará para encontrar la IP real del usuario en escenarios en los que la solicitud se reenvíe, por ejemplo WAF, proxy inverso, equilibrador de carga, etc. “X-Forwarded-For” es un encabezado utilizado habitualmente para esto. Si no se establece, la variable de servidor “REMOTE_ADDR” se utilizará para toda la identificación de direcciones IP de usuarios.</value>
+  </data>
+  <data name="plUserRequestIpHeader.Text" xml:space="preserve">
+    <value>Encabezado IP de solicitud de usuario</value>
+  </data>
+  <data name="plUserTokenTimespan.Help" xml:space="preserve">
+    <value>Establezca la duración de los tokens de API generados por usuarios en este sitio.</value>
+  </data>
+  <data name="plUserTokenTimespan.Text" xml:space="preserve">
+    <value>Duración del token de API de usuario</value>
+  </data>
+  <data name="Portal.Header" xml:space="preserve">
+    <value>Sitio</value>
+  </data>
+  <data name="Portal.Text" xml:space="preserve">
+    <value>Sitio</value>
+  </data>
+  <data name="PortalId.Text" xml:space="preserve">
+    <value>ID PORTAL</value>
+  </data>
+  <data name="PortalSettings.Text" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="Private.Text" xml:space="preserve">
+    <value>Privado</value>
+  </data>
+  <data name="Public.Text" xml:space="preserve">
+    <value>Público</value>
+  </data>
+  <data name="RedirectionMovedToSiteSettings.Text" xml:space="preserve">
+    <value>Las redirecciones se han movido a la Configuración</value>
+  </data>
+  <data name="Registration_ExcludeTerms.Help" xml:space="preserve">
+    <value>Puede introducir una lista separada por comas de términos que los usuarios no podrán seleccionar como nombre de usuario o nombre para mostrar.</value>
+  </data>
+  <data name="Registration_ExcludeTerms.Text" xml:space="preserve">
+    <value>Términos excluidos</value>
+  </data>
+  <data name="Registration_RandomPassword.Help" xml:space="preserve">
+    <value>Marque esta opción para asignar contraseñas aleatorias a los usuarios en el registro en vez de permitir que escriban la suya.</value>
+  </data>
+  <data name="Registration_RandomPassword.Text" xml:space="preserve">
+    <value>Utilizar contraseñas aleatorias</value>
+  </data>
+  <data name="Registration_RequireConfirmPassword.Help" xml:space="preserve">
+    <value>Marque esta opción para mostrar una caja de confirmación de la contraseña en el registro.</value>
+  </data>
+  <data name="Registration_RequireConfirmPassword.Text" xml:space="preserve">
+    <value>Utilizar confirmación de contraseña</value>
+  </data>
+  <data name="Registration_RequireUniqueDisplayName.Help" xml:space="preserve">
+    <value>Puede obligar a los usuarios a que utilicen un nombre para mostrar único. Si un usuario utiliza un nombre que ya se utiliza se le sugerirá un nuevo nombre.</value>
+  </data>
+  <data name="Registration_RequireUniqueDisplayName.Text" xml:space="preserve">
+    <value>Requerir nombres únicos</value>
+  </data>
+  <data name="Registration_UseAuthProviders.Help" xml:space="preserve">
+    <value>Seleccione esta opción para utilizar proveedores de autenticación durante el registro. Atención: no todos los proveedores soportan esta opción.</value>
+  </data>
+  <data name="Registration_UseAuthProviders.Text" xml:space="preserve">
+    <value>Utilizar proveedores de autenticación</value>
+  </data>
+  <data name="Registration_UseEmailAsUserName.Help" xml:space="preserve">
+    <value>Marque esta opción para utilizar el EMail como nombre de usuario. Si marca esta opción no se mostrará la caja de nombre de usuario en el registro.</value>
+  </data>
+  <data name="Registration_UseEmailAsUserName.Text" xml:space="preserve">
+    <value>Utilizar el EMail como nombre de usuario</value>
+  </data>
+  <data name="Registration_UseProfanityFilter.Help" xml:space="preserve">
+    <value>Si marca esta opción de utilizará el filtro de lenguaje inapropiado para el nombre de usuario y nombre para mostrar durante el registro</value>
+  </data>
+  <data name="Registration_UseProfanityFilter.Text" xml:space="preserve">
+    <value>Utilizar el filtro de lenguaje inapropiado</value>
+  </data>
+  <data name="registrationFieldsLabel.Help" xml:space="preserve">
+    <value>Puede especificar la lista de campos que desea incluir como una lista separada por comas. Si se utiliza esta opción tendrá preferencia sobre las otras opciones. Los campos disponibles incluyen: Username, Email, Password, ConfirmPassword, DisplayName y todas las propiedades del perfil.</value>
+  </data>
+  <data name="registrationFieldsLabel.Text" xml:space="preserve">
+    <value>Campos del registro</value>
+  </data>
+  <data name="registrationFormTypeLabel.Help" xml:space="preserve">
+    <value>Seleccione el tipo de formulario de registro que quiere utilizar.</value>
+  </data>
+  <data name="registrationFormTypeLabel.Text" xml:space="preserve">
+    <value>Tipo de formulario de registro</value>
+  </data>
+  <data name="RegistrationSettingsError.Text" xml:space="preserve">
+    <value>No se ha podido actualizar la configuración de registro. Vuelva a intentarlo.</value>
+  </data>
+  <data name="RegistrationSettingsRestoreWarning.Text" xml:space="preserve">
+    <value>¿Está seguro que desea cancelar los cambios?</value>
+  </data>
+  <data name="RegistrationSettingsUpdateSuccess.Text" xml:space="preserve">
+    <value>Se ha actualizado la configuración de registro.</value>
+  </data>
+  <data name="RegRead.Error" xml:space="preserve">
+    <value>La cuenta SQL Server puede leer valores del registro. Tiene que verificar los permisos de los procedimientos: xp_regread, xp_regwrite, xp_regenumkeys, xp_regenumvalues, xp_regdeletekey, xp_regdeletekey, xp_regdeletevalue, xp_instance_regread, xp_instance_regwrite, xp_instance_regenumkeys, xp_instance_regenumvalues, xp_instance_regdeletekey, xp_instance_regdeletekey, xp_instance_regdeletevalue.</value>
+  </data>
+  <data name="RequestFailed_Admin.Text" xml:space="preserve">
+    <value>No se ha podido realizar la conexión a {0}. Verifique que la dirección de origen es correcta y que el proveedor de alojamiento ha configurado correctamente su servidor proxy.</value>
+  </data>
+  <data name="RequestFailed_User.Text" xml:space="preserve">
+    <value>El origen de noticias no está disponible en este momento. Se ha producido el siguiente error: </value>
+  </data>
+  <data name="RequiresQuestionAndAnswerTitle.Help" xml:space="preserve">
+    <value>Indica si es necesario que el usuario introduzca una pregunta y respuesta de seguridad para poder recuperar la contraseña. Los administradores no podrán añadir nuevos usuario o editar los existentes si esta opción está activada.</value>
+  </data>
+  <data name="RequiresQuestionAndAnswerTitle.Text" xml:space="preserve">
+    <value>Requerir pregunta y respuesta de seguridad</value>
+  </data>
+  <data name="RequiresUniqueEmail.Help" xml:space="preserve">
+    <value>Marque esta opción para requerir un EMail único para cada usuario. Esto implica que un usuario no se podrá registrar múltiples veces con un mismo EMail.</value>
+  </data>
+  <data name="RequiresUniqueEmail.Text" xml:space="preserve">
+    <value>Requerir EMail único</value>
+  </data>
+  <data name="Result.Header" xml:space="preserve">
+    <value>Resultado</value>
+  </data>
+  <data name="Result.Text" xml:space="preserve">
+    <value>RESULTADO</value>
+  </data>
+  <data name="Revoke.Confirm" xml:space="preserve">
+    <value>¿Desea revocar este token? Tenga en cuenta que esta acción no se puede deshacer.</value>
+  </data>
+  <data name="Revoke.Text" xml:space="preserve">
+    <value>Revocar</value>
+  </data>
+  <data name="Revoked.Text" xml:space="preserve">
+    <value>Revocado</value>
+  </data>
+  <data name="RevokedBy.Header" xml:space="preserve">
+    <value>Revocado por</value>
+  </data>
+  <data name="RevokedBy.Help" xml:space="preserve">
+    <value>Nombre para mostrar y nombre de usuario del usuario que revocó el token.</value>
+  </data>
+  <data name="RevokedBy.Text" xml:space="preserve">
+    <value>Revocado por</value>
+  </data>
+  <data name="RevokedOn.Header" xml:space="preserve">
+    <value>Revocado el</value>
+  </data>
+  <data name="RevokedOn.Text" xml:space="preserve">
+    <value>Revocado el</value>
+  </data>
+  <data name="RevokedOrExpired.Text" xml:space="preserve">
+    <value>Revocado o caducado</value>
+  </data>
+  <data name="Save.Text" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="saveRule.Text" xml:space="preserve">
+    <value>Actualizar filtro</value>
+  </data>
+  <data name="ScannerChecks.Text" xml:space="preserve">
+    <value>Buscar en sistema de archivos y base de datos</value>
+  </data>
+  <data name="Scope.Header" xml:space="preserve">
+    <value>Ámbito</value>
+  </data>
+  <data name="Scope.Help" xml:space="preserve">
+    <value>El ámbito define el nivel en el que puede funcionar el token. Hay tres niveles: Usuario, Sitio y Host. El ámbito de usuario permite que el token acceda a los datos de un usuario. El ámbito de sitio permite que el token acceda a datos de nivel de sitio y el ámbito de Host permite que el token acceda a datos de nivel de sistema.</value>
+  </data>
+  <data name="Scope.Text" xml:space="preserve">
+    <value>Ámbito</value>
+  </data>
+  <data name="SearchDatabaseResult.Text" xml:space="preserve">
+    <value>Base de datos: se han encontrado {0} ocurrencias</value>
+  </data>
+  <data name="SearchFileSystemResult.Text" xml:space="preserve">
+    <value>Sistema de archivos: se han encontrado {0} ocurrencias</value>
+  </data>
+  <data name="SearchPlaceHolder.Text" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="SearchTermRequired.Text" xml:space="preserve">
+    <value>El término de búsqueda es obligatorio</value>
+  </data>
+  <data name="Security_CaptchaChangePassword.Help" xml:space="preserve">
+    <value>Indique si quiere utilizar un control CAPTCHA para el cambio de contraseña</value>
+  </data>
+  <data name="Security_CaptchaChangePassword.Text" xml:space="preserve">
+    <value>Utilizar CAPTCHA para cambiar contraseña</value>
+  </data>
+  <data name="Security_CaptchaLogin.Help" xml:space="preserve">
+    <value>Indica si se va a utilizar un control CAPTCHA para poder asociar usuarios por ejemplo OpenId, LiveId, Cardspace.</value>
+  </data>
+  <data name="Security_CaptchaLogin.Text" xml:space="preserve">
+    <value>Utilizar CAPTCHA para asociar usuarios</value>
+  </data>
+  <data name="Security_CaptchaRegister.Help" xml:space="preserve">
+    <value>Indica si se va a utilizar un control CAPTCHA para el registro de usuarios</value>
+  </data>
+  <data name="Security_CaptchaRegister.Text" xml:space="preserve">
+    <value>Utilizar CAPTCHA para el registro</value>
+  </data>
+  <data name="Security_CaptchaRetrivePassword.Help" xml:space="preserve">
+    <value>Indica si se va a utilizar un control CAPTCHA para recuperar la contraseña</value>
+  </data>
+  <data name="Security_CaptchaRetrivePassword.Text" xml:space="preserve">
+    <value>Utilizar CAPTCHA para recuperar contraseñas</value>
+  </data>
+  <data name="Security_DisplayNameFormat.Help" xml:space="preserve">
+    <value>Puede especificar el formato del nombre para mostrar de los usuarios. El formato puede incluir Token como [FIRSTNAME] [LASTNAME]. Si proporciona un formato, el campo nombre para mostrar no se mostrará como editable.</value>
+  </data>
+  <data name="Security_DisplayNameFormat.Text" xml:space="preserve">
+    <value>Formato del nombre para mostrar</value>
+  </data>
+  <data name="Security_EmailValidation.Help" xml:space="preserve">
+    <value>Puede modificar la expresión regular de validación de EMails que se utiliza para verificar la validez de las direcciones EMail</value>
+  </data>
+  <data name="Security_EmailValidation.Text" xml:space="preserve">
+    <value>Validación de EMails</value>
+  </data>
+  <data name="Security_RequireValidProfile.Help" xml:space="preserve">
+    <value>Active esta opción si los usuarios tienen que completar todos los campos obligatorios durante el registro.</value>
+  </data>
+  <data name="Security_RequireValidProfile.Text" xml:space="preserve">
+    <value>Requerir perfil válido en el registro</value>
+  </data>
+  <data name="Security_RequireValidProfileAtLogin.Help" xml:space="preserve">
+    <value>Active esta opción si los usuarios tienen que completar todos los campos obligatorios durante el inicio de sesión.</value>
+  </data>
+  <data name="Security_RequireValidProfileAtLogin.Text" xml:space="preserve">
+    <value>Requerir perfil válido para iniciar sesión</value>
+  </data>
+  <data name="Security_UserNameMinLength.ErrorMessage" xml:space="preserve">
+    <value>La longitud mínima del nombre de usuario debe ser un número entero mayor que 0 y menor o igual a 100.</value>
+  </data>
+  <data name="Security_UserNameMinLength.Help" xml:space="preserve">
+    <value>Especifique la longitud mínima de los nombres de usuario para usuarios nuevos o nombres de usuario modificados.</value>
+  </data>
+  <data name="Security_UserNameMinLength.Text" xml:space="preserve">
+    <value>Longitud mínima del nombre de usuario</value>
+  </data>
+  <data name="Security_UserNameValidation.Help" xml:space="preserve">
+    <value>Puede introducir una expresión regular para validar los nombres de usuarios proporcionados. Si cambia esta opción tiene que proporcionar el mensaje de error que se mostrará a los usuarios cuando seleccionen un nombre de usuario inválido en Configuración - Configuración del sitio - Idiomas.</value>
+  </data>
+  <data name="Security_UserNameValidation.Text" xml:space="preserve">
+    <value>Validación de nombre de usuario</value>
+  </data>
+  <data name="SecurityCheck.Text" xml:space="preserve">
+    <value>VERIFICACIÓN DE SEGURIDAD</value>
+  </data>
+  <data name="SettingName.Text" xml:space="preserve">
+    <value>NOMBRE PARÁMETRO</value>
+  </data>
+  <data name="SettingValue.Text" xml:space="preserve">
+    <value>VALOR PARÁMETRO</value>
+  </data>
+  <data name="Severity.Header" xml:space="preserve">
+    <value>Gravedad</value>
+  </data>
+  <data name="SingleIP.Text" xml:space="preserve">
+    <value>IP única</value>
+  </data>
+  <data name="SslAdvanced.Help" xml:space="preserve">
+    <value>En este modo, su sitio web mostrará páginas seguras y no seguras según la configuración de la página. Tenga en cuenta que tiene [NumberOfNonSecureTabs] páginas no seguras en este sitio.</value>
+  </data>
+  <data name="SslAdvanced.Text" xml:space="preserve">
+    <value>Avanzado</value>
+  </data>
+  <data name="SslOff.Help" xml:space="preserve">
+    <value>Utilice esta opción cuando no tenga un certificado SSL instalado en su servidor</value>
+  </data>
+  <data name="SslOff.Text" xml:space="preserve">
+    <value>Desactivado</value>
+  </data>
+  <data name="SslOn.Help" xml:space="preserve">
+    <value>Utilice está opción para mostrar todo el contenido de forma segura</value>
+  </data>
+  <data name="SslOn.Text" xml:space="preserve">
+    <value>Activado</value>
+  </data>
+  <data name="SslSetAllPagesSecure.Completed" xml:space="preserve">
+    <value>Todas las páginas del sitio han sido configuradas para ser seguras.</value>
+  </data>
+  <data name="SslSetAllPagesSecure.Confirm" xml:space="preserve">
+    <value>¿Desea configurar todas las páginas de este sitio para que solo se pueda acceder a través de https?</value>
+  </data>
+  <data name="SslSetAllPagesSecure.Text" xml:space="preserve">
+    <value>Establecer todas las páginas como seguras</value>
+  </data>
+  <data name="SslSettingsError.Text" xml:space="preserve">
+    <value>No se ha podido actualizar la configuración SSL. Vuelva a intentarlo.</value>
+  </data>
+  <data name="SslSettingsRestoreWarning.Text" xml:space="preserve">
+    <value>¿Está seguro que desea cancelar los cambios?</value>
+  </data>
+  <data name="SslSettingsUpdateSuccess.Text" xml:space="preserve">
+    <value>Se ha actualizado la configuración SSL.</value>
+  </data>
+  <data name="Standard.Text" xml:space="preserve">
+    <value>Estándar</value>
+  </data>
+  <data name="SuperuserActivity.Text" xml:space="preserve">
+    <value>Activida de superusuarios</value>
+  </data>
+  <data name="SuperUserActivityExplaination.Text" xml:space="preserve">
+    <value>En esta sección puede ver la actividad de los superusuarios. Verifique especialmente la fecha de creación y de última actividad de los usuarios.</value>
+  </data>
+  <data name="SwitchOff.Text" xml:space="preserve">
+    <value>Desactivado</value>
+  </data>
+  <data name="SwitchOn.Text" xml:space="preserve">
+    <value>Activado</value>
+  </data>
+  <data name="SysAdmin.Error" xml:space="preserve">
+    <value>La cuenta SQL Server es 'sysadmin'.</value>
+  </data>
+  <data name="TabApiTokens.Text" xml:space="preserve">
+    <value>Tokens de API</value>
+  </data>
+  <data name="TabApiTokenSettings.Text" xml:space="preserve">
+    <value>CONFIGURACIÓN DE TOKENS DE API</value>
+  </data>
+  <data name="TabAuditChecks.Text" xml:space="preserve">
+    <value>AUDITORÍA</value>
+  </data>
+  <data name="TabAuthenticationSettings.Text" xml:space="preserve">
+    <value>Autenticación</value>
+  </data>
+  <data name="TabBasicLoginSettings.Text" xml:space="preserve">
+    <value>CONFIGURACIÓN BÁSICA DE IDENTIFICACIÓN</value>
+  </data>
+  <data name="TabCspSettings.Text" xml:space="preserve">
+    <value>CONFIGURACIÓN DE CSP</value>
+  </data>
+  <data name="TabId.Text" xml:space="preserve">
+    <value>ID PÁGINA</value>
+  </data>
+  <data name="TabIpFilters.Text" xml:space="preserve">
+    <value>FILTROS IP DE IDENTIFICACIÓN</value>
+  </data>
+  <data name="TabMemberAccounts.Text" xml:space="preserve">
+    <value>Cuentas</value>
+  </data>
+  <data name="TabMemberSettings.Text" xml:space="preserve">
+    <value>GESTIÓN DE MIEMBROS</value>
+  </data>
+  <data name="TabMore.Text" xml:space="preserve">
+    <value>Más</value>
+  </data>
+  <data name="TabMoreSecuritySettings.Text" xml:space="preserve">
+    <value>MÁS OPCIONES DE SEGURIDAD</value>
+  </data>
+  <data name="TabRegistrationSettings.Text" xml:space="preserve">
+    <value>CONFIGURACIÓN DE REGISTRO</value>
+  </data>
+  <data name="TabScannerCheck.Text" xml:space="preserve">
+    <value>VERIFICACIÓN DE ESCÁNER</value>
+  </data>
+  <data name="TabSecurityAnalyzer.Text" xml:space="preserve">
+    <value>Análisis de seguridad</value>
+  </data>
+  <data name="TabSecurityBulletins.Text" xml:space="preserve">
+    <value>Boletines de seguridad</value>
+  </data>
+  <data name="TabSettings.Text" xml:space="preserve">
+    <value>Configuración de páginas</value>
+  </data>
+  <data name="TabSslSettings.Text" xml:space="preserve">
+    <value>CONFIGURACIÓN SSL</value>
+  </data>
+  <data name="TabSuperuserActivity.Text" xml:space="preserve">
+    <value>ACTIVIDAD DE SUPERUSUARIOS</value>
+  </data>
+  <data name="TokenName.Header" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="TokenName.Help" xml:space="preserve">
+    <value>Un nombre descriptivo para el token. Puede dejarlo en blanco.</value>
+  </data>
+  <data name="TokenName.Text" xml:space="preserve">
+    <value>Nombre del token</value>
+  </data>
+  <data name="User.Text" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="UserId.Text" xml:space="preserve">
+    <value>ID USUARIO</value>
+  </data>
+  <data name="Username.Header" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="Username.Text" xml:space="preserve">
+    <value>USUARIO</value>
+  </data>
+  <data name="UserNotMemberOfRole.Text" xml:space="preserve">
+    <value>El usuario no es miembro del rol {0}.</value>
+  </data>
+  <data name="Verified.Text" xml:space="preserve">
+    <value>Verificado</value>
+  </data>
+  <data name="Years1.Text" xml:space="preserve">
+    <value>1 año</value>
+  </data>
+  <data name="Years2.Text" xml:space="preserve">
+    <value>2 años</value>
+  </data>
+  <data name="Yes.Text" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+</root>

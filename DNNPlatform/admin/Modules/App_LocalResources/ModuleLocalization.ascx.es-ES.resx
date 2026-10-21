@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BindConfirm.Text" xml:space="preserve">
+    <value>La vinculación a la versión del idioma por omisión eliminará el contenido de las demás versiones. Esta acción es irreversible. ¿Está seguro que desea continuar?</value>
+  </data>
+  <data name="bindModule.Text" xml:space="preserve">
+    <value>Referencia a idioma por omisión</value>
+  </data>
+  <data name="Edit.Header" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="Language.Header" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="markModuleTranslated.Text" xml:space="preserve">
+    <value>Marcar como traducido</value>
+  </data>
+  <data name="markModuleUnTranslated.Text" xml:space="preserve">
+    <value>Marcar como no traducido</value>
+  </data>
+  <data name="ModuleTitle.Header" xml:space="preserve">
+    <value>Título del módulo</value>
+  </data>
+  <data name="ModuleType.Header" xml:space="preserve">
+    <value>Módulo</value>
+  </data>
+  <data name="NA.Text" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="Translated.Header" xml:space="preserve">
+    <value>¿Traducido?</value>
+  </data>
+  <data name="unbindModule.Text" xml:space="preserve">
+    <value>Desvincular del idioma por omisión</value>
+  </data>
+  <data name="UnBound.Header" xml:space="preserve">
+    <value>¿Desvinculado?</value>
+  </data>
+</root>

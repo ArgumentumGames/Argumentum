@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btn_CloseDialog.Text" lastModified="2017-02-05 13:44:19">
+    <value xml:space="preserve">Aceptar</value>
+  </data>
+  <data name="btn_LoadMore.Text">
+    <value xml:space="preserve">Cargar más</value>
+  </data>
+  <data name="CriticalUpdate.Text" lastModified="2017-02-05 13:44:19">
+    <value xml:space="preserve">[ Actualização crítica ]</value>
+  </data>
+  <data name="Documentation.Text" lastModified="2017-02-05 13:44:19">
+    <value xml:space="preserve">Documentação</value>
+  </data>
+  <data name="err_BetweenMinMax.Text">
+    <value xml:space="preserve">O valor tem que estar entre o mínimo e máximo permitidos.</value>
+  </data>
+  <data name="err_Email.Text">
+    <value xml:space="preserve">Tem que escribir um email válido.</value>
+  </data>
+  <data name="err_Minimum.Text">
+    <value xml:space="preserve">O texto tem que ter ao menos {0} caracteres.</value>
+  </data>
+  <data name="err_MinLessThanMax.Text">
+    <value xml:space="preserve">O valor mínimo tem que ser menor que o máximo.</value>
+  </data>
+  <data name="err_NoLargerThanExp.Text">
+    <value xml:space="preserve">Os puntos de reputação tem que ser menores que os puntos de experiencia.</value>
+  </data>
+  <data name="err_NonDecimalNumber.Text">
+    <value xml:space="preserve">O se permiten números decimales.</value>
+  </data>
+  <data name="err_NonNegativeNumber.Text">
+    <value xml:space="preserve">Não se permiten números negativos.</value>
+  </data>
+  <data name="err_NoUserFolder.Text">
+    <value xml:space="preserve">{0} não posee nenhum recurso.</value>
+  </data>
+  <data name="err_Number.Text">
+    <value xml:space="preserve">somente se permiten números.</value>
+  </data>
+  <data name="err_OneActionNeeded.Text">
+    <value xml:space="preserve">Se requiere ao menos uma ação.</value>
+  </data>
+  <data name="err_PositiveNumber.Text">
+    <value xml:space="preserve">somente se permiten números positivos.</value>
+  </data>
+  <data name="err_Required.Text">
+    <value xml:space="preserve">O texto é obrigatório.</value>
+  </data>
+  <data name="err_RoleAssignedToUser.Text">
+    <value xml:space="preserve">Este rol já foi asignado ao usuario.</value>
+  </data>
+  <data name="Framework.Text" lastModified="2017-02-05 13:44:19">
+    <value xml:space="preserve">.Net Framework</value>
+  </data>
+  <data name="LicenseKey.Text" lastModified="2017-02-05 13:44:19">
+    <value xml:space="preserve">Clave de licencia</value>
+  </data>
+  <data name="LockEditMode.Help" lastModified="2018-03-24 11:09:33">
+    <value xml:space="preserve">Quando esta bloqueado, o icone se mostrará de color azul, o modo de de edição se mantendrá incluso ao navegar a outras páginas.</value>
+  </data>
+  <data name="LockEditMode.Text" lastModified="2018-03-24 11:09:33">
+    <value xml:space="preserve">Clique para bloquear o modo de edição.</value>
+  </data>
+  <data name="nav_Analytics.Text">
+    <value xml:space="preserve">Analíticas</value>
+  </data>
+  <data name="nav_Content.Text">
+    <value xml:space="preserve">Conteúdo</value>
+  </data>
+  <data name="nav_Dashboard.Text">
+    <value xml:space="preserve">Tablón de mandos</value>
+  </data>
+  <data name="nav_DocCenter.Text">
+    <value xml:space="preserve">Documentos</value>
+  </data>
+  <data name="nav_Edit.Text">
+    <value xml:space="preserve">Editar</value>
+  </data>
+  <data name="nav_GlobalAssets.Text">
+    <value xml:space="preserve">Recursos globales</value>
+  </data>
+  <data name="nav_Help.Text">
+    <value xml:space="preserve">Ayuda</value>
+  </data>
+  <data name="nav_Home.Text">
+    <value xml:space="preserve">Inicio</value>
+  </data>
+  <data name="nav_Logout.Text">
+    <value xml:space="preserve">Salir</value>
+  </data>
+  <data name="nav_Manage.Text">
+    <value xml:space="preserve">Gestionar</value>
+  </data>
+  <data name="nav_Settings.Text">
+    <value xml:space="preserve">Configuração</value>
+  </data>
+  <data name="nav_Site.Text">
+    <value xml:space="preserve">Ver o sitio</value>
+  </data>
+  <data name="nav_SiteAssets.Text">
+    <value xml:space="preserve">Recursos do portal</value>
+  </data>
+  <data name="nav_Tasks.Text">
+    <value xml:space="preserve">Tareas</value>
+  </data>
+  <data name="nav_Tools.Text">
+    <value xml:space="preserve">Herramientas</value>
+  </data>
+  <data name="NormalUpdate.Text" lastModified="2017-02-05 13:44:19">
+    <value xml:space="preserve">[ Nova actualização ]</value>
+  </data>
+  <data name="permissiongrid.Actions.Text">
+    <value xml:space="preserve">Acções</value>
+  </data>
+  <data name="permissiongrid.Add Content.Text">
+    <value xml:space="preserve">Adicionar conteúdo</value>
+  </data>
+  <data name="permissiongrid.Add User.Text">
+    <value xml:space="preserve">Adicionar usuario</value>
+  </data>
+  <data name="permissiongrid.Add.Text">
+    <value xml:space="preserve">Añadir</value>
+  </data>
+  <data name="permissiongrid.AllRoles.Text">
+    <value xml:space="preserve">&lt; Todos os roles &gt;</value>
+  </data>
+  <data name="permissiongrid.Copy.Text">
+    <value xml:space="preserve">Cópiar</value>
+  </data>
+  <data name="permissiongrid.Delete.Text">
+    <value xml:space="preserve">Eliminar</value>
+  </data>
+  <data name="permissiongrid.Display Name.Text">
+    <value xml:space="preserve">Nome:</value>
+  </data>
+  <data name="permissiongrid.Edit Content.Text">
+    <value xml:space="preserve">Editar conteúdo</value>
+  </data>
+  <data name="permissiongrid.Edit Tab.Text">
+    <value xml:space="preserve">Controle total</value>
+  </data>
+  <data name="permissiongrid.Edit.Text">
+    <value xml:space="preserve">Controle total</value>
+  </data>
+  <data name="permissiongrid.Export.Text">
+    <value xml:space="preserve">Exportar</value>
+  </data>
+  <data name="permissiongrid.Filter By Group.Text">
+    <value xml:space="preserve">Filtrar por grupo</value>
+  </data>
+  <data name="permissiongrid.GlobalRoles.Text">
+    <value xml:space="preserve">&lt; Roles globales &gt;</value>
+  </data>
+  <data name="permissiongrid.Import.Text">
+    <value xml:space="preserve">Importar</value>
+  </data>
+  <data name="permissiongrid.Manage Settings.Text">
+    <value xml:space="preserve">Gestionar configuração</value>
+  </data>
+  <data name="permissiongrid.Navigate.Text">
+    <value xml:space="preserve">Navegar</value>
+  </data>
+  <data name="permissiongrid.Select Role.Text">
+    <value xml:space="preserve">Selecionar rol</value>
+  </data>
+  <data name="permissiongrid.Type-roles.Text">
+    <value xml:space="preserve">Roles</value>
+  </data>
+  <data name="permissiongrid.Type-users.Text">
+    <value xml:space="preserve">Usuarios</value>
+  </data>
+  <data name="permissiongrid.View Tab.Text">
+    <value xml:space="preserve">Ver</value>
+  </data>
+  <data name="permissiongrid.View.Text">
+    <value xml:space="preserve">Ver</value>
+  </data>
+  <data name="ServerName.Text" lastModified="2017-02-05 13:44:19">
+    <value xml:space="preserve">Nome servidor</value>
+  </data>
+  <data name="title_Tasks.Text">
+    <value xml:space="preserve">Tareas</value>
+  </data>
+  <data name="txt_ViewIndex.Text">
+    <value xml:space="preserve">Mostrando {0} de {1}</value>
+  </data>
+  <data name="UnlockEditMode.Help" lastModified="2018-03-24 12:10:49">
+    <value xml:space="preserve">Quando esta desbloqueado, o modo de edição se desactivará ao navegar a outras páginas o quando complete sus cambios.</value>
+  </data>
+  <data name="UnlockEditMode.Text" lastModified="2018-03-24 12:10:49">
+    <value xml:space="preserve">Clique para desbloquear o modo de edição.</value>
+  </data>
+  <data name="UpgradeLicense.Text" lastModified="2017-02-05 13:44:19">
+    <value xml:space="preserve">[ Atualizar a Evoq ]</value>
+  </data>
+</root>

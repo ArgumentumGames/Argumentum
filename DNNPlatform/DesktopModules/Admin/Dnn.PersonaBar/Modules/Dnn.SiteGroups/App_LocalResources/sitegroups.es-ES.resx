@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add.Button" xml:space="preserve">
+    <value>Añadir</value>
+  </data>
+  <data name="AuthenticationDomain.Help" xml:space="preserve">
+    <value>Opcionalmente, puede proporcionar el dominio raíz para la cookie de autenticación, lo que permite a los usuarios permanecer conectados entre subdominios que compartan el mismo dominio raíz.</value>
+  </data>
+  <data name="AuthenticationDomain.Label" xml:space="preserve">
+    <value>Dominio de autenticación:</value>
+  </data>
+  <data name="Cancel.Button" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="ChooseASite.Label" xml:space="preserve">
+    <value>Seleccione un sitio</value>
+  </data>
+  <data name="Delete.Button" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="DeleteGroup.Confirm" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar este grupo de sitios?</value>
+  </data>
+  <data name="Description.Help" xml:space="preserve">
+    <value>Descripción del grupo de sitios</value>
+  </data>
+  <data name="Description.Label" xml:space="preserve">
+    <value>Descripción:</value>
+  </data>
+  <data name="Edit.Button" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="EditModule_Assigned.Label" xml:space="preserve">
+    <value>Asignado</value>
+  </data>
+  <data name="EditModule_Unassigned.Label" xml:space="preserve">
+    <value>No asignado</value>
+  </data>
+  <data name="GroupName.Header" xml:space="preserve">
+    <value>Nombre del grupo</value>
+  </data>
+  <data name="GroupName.Help" xml:space="preserve">
+    <value>El nombre ayuda a identificar el grupo de sitios.</value>
+  </data>
+  <data name="GroupName.Label" xml:space="preserve">
+    <value>Nombre del grupo:</value>
+  </data>
+  <data name="GroupName.Required" xml:space="preserve">
+    <value>El nombre del grupo es obligatorio.</value>
+  </data>
+  <data name="MasterSite.Header" xml:space="preserve">
+    <value>Sitio principal</value>
+  </data>
+  <data name="MasterSite.Help" xml:space="preserve">
+    <value>El sitio principal del grupo.</value>
+  </data>
+  <data name="MasterSite.Label" xml:space="preserve">
+    <value>Sitio principal:</value>
+  </data>
+  <data name="nav_SiteGroups.Text" xml:space="preserve">
+    <value>Grupos de sitios</value>
+  </data>
+  <data name="NewSiteGroup.Button" xml:space="preserve">
+    <value>Nuevo grupo</value>
+  </data>
+  <data name="NoData.Text" xml:space="preserve">
+    <value>No hay ningún grupo definido.</value>
+  </data>
+  <data name="Save.Button" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="SiteGroup.Label" xml:space="preserve">
+    <value>Grupo de sitios:</value>
+  </data>
+  <data name="Sites.Label" xml:space="preserve">
+    <value>Sitios:</value>
+  </data>
+</root>

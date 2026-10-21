@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cmdExport.Text">
+    <value xml:space="preserve">Exportar</value>
+  </data>
+  <data name="ControlTitle_exporttab.Text">
+    <value xml:space="preserve">Exportar Página</value>
+  </data>
+  <data name="Error.Text">
+    <value xml:space="preserve">Um erro ocorreu durante a exportação</value>
+  </data>
+  <data name="ExportedMessage.Text">
+    <value xml:space="preserve">A planilha de página em  &lt;strong&gt;{0}&lt;/strong&gt; foi criada</value>
+  </data>
+  <data name="ModuleHelp.Text">
+    <value xml:space="preserve">&lt;h1&gt;Exportar Página&lt;/h1&gt;&lt;p&gt;Os Administradores podem exportar conteúdo da página especificada.&lt;/p&gt;</value>
+  </data>
+  <data name="plContent.Help">
+    <value xml:space="preserve">Selecione para incluir o conteúdo dos módulos</value>
+  </data>
+  <data name="plContent.Text">
+    <value xml:space="preserve">Incluir conteúdo:</value>
+  </data>
+  <data name="plDescription.Help">
+    <value xml:space="preserve">Entre uma descripção para a planilha.</value>
+  </data>
+  <data name="plDescription.Text">
+    <value xml:space="preserve">Descripção:</value>
+  </data>
+  <data name="plFile.Help">
+    <value xml:space="preserve">Entre um nome para a planilha</value>
+  </data>
+  <data name="plFile.Text">
+    <value xml:space="preserve">Nome de planilha:</value>
+  </data>
+  <data name="plFolder.Help">
+    <value xml:space="preserve">Selecione a pasta donde se guardará a planilha</value>
+  </data>
+  <data name="plFolder.Text">
+    <value xml:space="preserve">Pasta:</value>
+  </data>
+  <data name="Root.Text">
+    <value xml:space="preserve">Raíz</value>
+  </data>
+  <data name="valDescription.ErrorMessage">
+    <value xml:space="preserve">Deve proporcionar uma descripção para a planilha.</value>
+  </data>
+  <data name="valFileName.ErrorMessage">
+    <value xml:space="preserve">Deve ser proporcionado um nome de arquivo para a planilha.</value>
+  </data>
+  <data name="Validation.Text">
+    <value xml:space="preserve">Devem ser especificadas uma pasta e nome de planilha para a exportação.</value>
+  </data>
+</root>

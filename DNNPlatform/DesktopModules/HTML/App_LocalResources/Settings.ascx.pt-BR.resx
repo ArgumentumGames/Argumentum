@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="chkReplace.Text">
+    <value xml:space="preserve">Reemplazar a configuração atual?</value>
+  </data>
+  <data name="cmdWorkflow.Text">
+    <value xml:space="preserve">Gestionar fluxos de trabalho</value>
+  </data>
+  <data name="ControlTitle_settings.Text">
+    <value xml:space="preserve">Configuração do módulo HTML</value>
+  </data>
+  <data name="Module.Text">
+    <value xml:space="preserve">Módulo</value>
+  </data>
+  <data name="ModuleHelp.Text">
+    <value xml:space="preserve">Ayuda de configuração</value>
+  </data>
+  <data name="Page.Text">
+    <value xml:space="preserve">Página</value>
+  </data>
+  <data name="plApplyTo.Help">
+    <value xml:space="preserve">Selecione a qué objeto desea aplicar este fluxo de trabalho.</value>
+  </data>
+  <data name="plApplyTo.Text">
+    <value xml:space="preserve">Aplicar fluxo de trabalho a:</value>
+  </data>
+  <data name="plDecorate.Help">
+    <value xml:space="preserve">Mostra si se tem que modificar o estilo dos controles de formulario añadidos para mantener o mesmo aspecto que o resto da web.</value>
+  </data>
+  <data name="plDecorate.Text">
+    <value xml:space="preserve">Estilizar campos de formulario:</value>
+  </data>
+  <data name="plReplaceTokens.Help">
+    <value xml:space="preserve">Activar &lt;strong&gt;Reemplazo mejorado&lt;/strong&gt; para reemplazar tokens como "[object:property|format]" para os objectos Tab, Module, PortalSettings o User com os valores de entorno adecuados.&lt;br /&gt;
+        Nota: a edição integrada (inline) e a cache de módulo serán desactivados, si se usa reemplazo de tokens.</value>
+  </data>
+  <data name="plReplaceTokens.Text">
+    <value xml:space="preserve">Reemplazar tokens:</value>
+  </data>
+  <data name="plSearchDescLength.Help">
+    <value xml:space="preserve">Define a longituda máxima de texto utilizada para as buscas não portal.</value>
+  </data>
+  <data name="plSearchDescLength.Text">
+    <value xml:space="preserve">longitude máxima de descripção para buscas:</value>
+  </data>
+  <data name="plWorkflow.Help">
+    <value xml:space="preserve">Selecione um fluxo de trabalho para publicação</value>
+  </data>
+  <data name="plWorkflow.Text">
+    <value xml:space="preserve">fluxo de trabalho</value>
+  </data>
+  <data name="Site.Text">
+    <value xml:space="preserve">Sitio</value>
+  </data>
+  <data name="valSearchDescLength.ErrorMessage">
+    <value xml:space="preserve">Tem que entrar um número para a longitude máxima para buscas</value>
+  </data>
+</root>

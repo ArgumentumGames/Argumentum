@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddContent.Action" xml:space="preserve">
+    <value>Añadir nueva propiedad del perfil</value>
+  </data>
+  <data name="Category.Header" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
+  <data name="cmdApply.Text" xml:space="preserve">
+    <value>Aplicar cambios</value>
+  </data>
+  <data name="cmdRefresh.Text" xml:space="preserve">
+    <value>Actualizar datos</value>
+  </data>
+  <data name="ControlTitle_manageprofile.Text" xml:space="preserve">
+    <value>Administrar propiedades del perfil</value>
+  </data>
+  <data name="DataType.Header" xml:space="preserve">
+    <value>Tipo de datos</value>
+  </data>
+  <data name="DefaultValue.Header" xml:space="preserve">
+    <value>Valor por omisión</value>
+  </data>
+  <data name="DefaultVisibility.Header" xml:space="preserve">
+    <value>Visibilidad por omisión</value>
+  </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="Edit.Text" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="Length.Header" xml:space="preserve">
+    <value>Longitud</value>
+  </data>
+  <data name="MoveDown.Text" xml:space="preserve">
+    <value>Bajar</value>
+  </data>
+  <data name="MoveUp.Text" xml:space="preserve">
+    <value>Subir</value>
+  </data>
+  <data name="Name.Header" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="ProfilePropertiesHelp.Text" xml:space="preserve">
+    <value>Puede cambiar el orden de los campos del perfil e indicar cuales son obligatorios o visibles en esta pantalla. Haga clic en "Aplicar cambios" para guardar cualquier cambio que haga. Para editar los detalles de cada propiedad del perfil haga clic en el icono de lápiz en la primera columna de la tabla.</value>
+  </data>
+  <data name="Required.Header" xml:space="preserve">
+    <value>Obligatorio</value>
+  </data>
+  <data name="ValidationExpression.Header" xml:space="preserve">
+    <value>Expresión de validación</value>
+  </data>
+  <data name="Visible.Header" xml:space="preserve">
+    <value>Visible </value>
+  </data>
+</root>

@@ -1,0 +1,513 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="1Day.Text" xml:space="preserve">
+    <value>1 día</value>
+  </data>
+  <data name="2Days.Text" xml:space="preserve">
+    <value>2 días</value>
+  </data>
+  <data name="3Days.Text" xml:space="preserve">
+    <value>3 días</value>
+  </data>
+  <data name="4Days.Text" xml:space="preserve">
+    <value>4 días</value>
+  </data>
+  <data name="5Days.Text" xml:space="preserve">
+    <value>5 días</value>
+  </data>
+  <data name="6Days.Text" xml:space="preserve">
+    <value>6 días</value>
+  </data>
+  <data name="7Days.Text" xml:space="preserve">
+    <value>7 días</value>
+  </data>
+  <data name="Alias_In_Url.Text" xml:space="preserve">
+    <value>Alias en URL</value>
+  </data>
+  <data name="autoAsciiConvertLabel.Help" xml:space="preserve">
+    <value>Activar esta opción para reemplazar los caracteres con tilde por sus correspondientes sin acentos. Por exemplo: á -&gt; a, é -&gt; e.</value>
+  </data>
+  <data name="autoAsciiConvertLabel.Text" xml:space="preserve">
+    <value>Convertir caracteres con tilde</value>
+  </data>
+  <data name="Built_In_Url.Text" xml:space="preserve">
+    <value>URL creada</value>
+  </data>
+  <data name="Create.Text" xml:space="preserve">
+    <value>Crear</value>
+  </data>
+  <data name="Custom_Tab_Alias.Text" xml:space="preserve">
+    <value>Alias de página personalizado</value>
+  </data>
+  <data name="Deleted_Page.Text" xml:space="preserve">
+    <value>Eliminar página</value>
+  </data>
+  <data name="Diacritic_Characters.Text" xml:space="preserve">
+    <value>Caracteres con tilde</value>
+  </data>
+  <data name="DisableCaching.Text" xml:space="preserve">
+    <value>Desactivar caché</value>
+  </data>
+  <data name="Disabled_Page.Text" xml:space="preserve">
+    <value>Página desactivada</value>
+  </data>
+  <data name="Do301RedirectToPortalHome.Text" xml:space="preserve">
+    <value>Página de inicio del sitio</value>
+  </data>
+  <data name="Do404Error.Text" xml:space="preserve">
+    <value>Error 404</value>
+  </data>
+  <data name="doNotRedirectHttpsUrlRegExInvalidPattern.Text" xml:space="preserve">
+    <value>Expresión regular para no redireccionar HTTPS no es válida</value>
+  </data>
+  <data name="doNotRedirectHttpsUrlRegExLabel.Help" xml:space="preserve">
+    <value>Esta expresión regular le permite indicar que URLs no deben redirigirse entre HTTP y HTTPS. Evita las URLs que cumplen la condición se redireccionen y funciona en ambos sentidos: HTTP -&gt; HTTPS y HTTPS -&gt; HTTP.</value>
+  </data>
+  <data name="doNotRedirectHttpsUrlRegExLabel.Text" xml:space="preserve">
+    <value>Expresión regular para no redireccionar HTTPS</value>
+  </data>
+  <data name="doNotRedirectUrlRegExInvalidPattern.Text" xml:space="preserve">
+    <value>La espresión regular para no redireccionar no es válida.</value>
+  </data>
+  <data name="doNotRedirectUrlRegExLabel.Help" xml:space="preserve">
+    <value>Esta expresión regular le permite indicar que URLs no se van a redireccionar en ningún caso. Utilice esta opción cuando una URL se esté redireccionando de forma incorrecta.</value>
+  </data>
+  <data name="doNotRedirectUrlRegExLabel.Text" xml:space="preserve">
+    <value>Expresión regular para no redireccionar</value>
+  </data>
+  <data name="doNotRewriteRegExInvalidPattern.Text" xml:space="preserve">
+    <value>La espresión regular para no redireccionar no es válida.</value>
+  </data>
+  <data name="doNotRewriteRegExLabel.Help" xml:space="preserve">
+    <value>Esta expresión regular le permite indicar que URLs no se van a reescribir en ningún caso. Utilice esta opción cuando una URL se esté interpretando como una URL de DNN y no deba hacerse.</value>
+  </data>
+  <data name="doNotRewriteRegExLabel.Text" xml:space="preserve">
+    <value>Expresión regular para no reescribir</value>
+  </data>
+  <data name="doNotUseFriendlyUrlsRegExInvalidPattern.Text" xml:space="preserve">
+    <value>La espresión regular para no utilizar URLs amigables no es válida.</value>
+  </data>
+  <data name="doNotUseFriendlyUrlsRegExLabel.Help" xml:space="preserve">
+    <value>Esta expresión regular le permite indicar que URLs no van a utilizar el formato amigable de URLs de DNN. Esta opción se utiliza normalmente para compatibilidad con versiones anteriores.</value>
+  </data>
+  <data name="doNotUseFriendlyUrlsRegExLabel.Text" xml:space="preserve">
+    <value>La espresión regular para no utilizar URLs amigables</value>
+  </data>
+  <data name="enable301RedirectsLabel.Help" xml:space="preserve">
+    <value>Active esta opción si desea redireccionar las URLs anteriors "no amigables" a las nuevas.</value>
+  </data>
+  <data name="enable301RedirectsLabel.Text" xml:space="preserve">
+    <value>Redireccionar a URLs amigables</value>
+  </data>
+  <data name="Enabled.Header" xml:space="preserve">
+    <value>Activado</value>
+  </data>
+  <data name="enableLowerCaseLabel.Help" xml:space="preserve">
+    <value>Active esta opción para convertir las URLs a minúsculas.</value>
+  </data>
+  <data name="enableLowerCaseLabel.Text" xml:space="preserve">
+    <value>Convertir URLs a minúsculas</value>
+  </data>
+  <data name="enableSitemapProvider.Help" xml:space="preserve">
+    <value>Activar proveedor de Sitemap</value>
+  </data>
+  <data name="enableSitemapProvider.Text" xml:space="preserve">
+    <value>Activar proveedor de Sitemap</value>
+  </data>
+  <data name="enableSystemGeneratedUrlsLabel.Help" xml:space="preserve">
+    <value>Puede configurar como el sistema generará las URLs de navegación.</value>
+  </data>
+  <data name="enableSystemGeneratedUrlsLabel.Text" xml:space="preserve">
+    <value>Concatenar URLs de página</value>
+  </data>
+  <data name="Error_Event.Text" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Exception.Text" xml:space="preserve">
+    <value>Excepción</value>
+  </data>
+  <data name="ExpressionsTab.Text" xml:space="preserve">
+    <value>EXPRESIONES</value>
+  </data>
+  <data name="ExtensionUrlProviders.Text" xml:space="preserve">
+    <value>PROVEEDORES DE URLS DE EXTENSIONES</value>
+  </data>
+  <data name="ExtensionUrlProvidersTab.Text" xml:space="preserve">
+    <value>PROVEEDORES DE URLS DE EXTENSIONES</value>
+  </data>
+  <data name="File_Url.Text" xml:space="preserve">
+    <value>URL de archivo</value>
+  </data>
+  <data name="GeneralSettingsTab.Text" xml:space="preserve">
+    <value>CONFIGURACIÓN GENERAL</value>
+  </data>
+  <data name="GlobalSetting.Text" xml:space="preserve">
+    <value>Este un parámetro global. Los cambios afectarán a todos los sitios de la instalación.</value>
+  </data>
+  <data name="Host_Portal_Used.Text" xml:space="preserve">
+    <value>Portal de sistema utilizado</value>
+  </data>
+  <data name="identifiedTabLabel.Help" xml:space="preserve">
+    <value>El nombre de la página DNN que se ha identificado durante el proceso de reescritura de la URL.</value>
+  </data>
+  <data name="identifiedTabLabel.Text" xml:space="preserve">
+    <value>Página identificada</value>
+  </data>
+  <data name="ignoreRegExInvalidPattern.Text" xml:space="preserve">
+    <value>La expresión regular para URLs que se ignorarán no es válida.</value>
+  </data>
+  <data name="ignoreRegExLabel.Help" xml:space="preserve">
+    <value>La expresión regular para ignorar URLs se utiliza para detener el proceso de URLs. Debe utilizarse cuando la URLs no deba reescribirse, redireccionarse o procesarse por el módulo URL Rewriter. Algunos ejemplos pueden ser: imágenes, archivos css, archivos pdf, peticiones de servicio y peticiones de recursos no asociados a DNN.</value>
+  </data>
+  <data name="ignoreRegExLabel.Text" xml:space="preserve">
+    <value>Expresión regular para URLs que se ignorarán</value>
+  </data>
+  <data name="keepInQueryStringRegExInvalidPattern.Text" xml:space="preserve">
+    <value>La expresión regular para parámetros que se deben mantener no es válida.</value>
+  </data>
+  <data name="keepInQueryStringRegExLabel.Help" xml:space="preserve">
+    <value>La expresión regular para parametros que se deben mantener permite identificar una parte de la URL y garantizar que se mantiene. Cuando se genera una URL DotNetNuke del tipo /página/clave/valor, una expresión regular /clave/valor identificará esta parte y la dejará como parámetro de la URL generada, per ejemplo: /página?clave=valor.</value>
+  </data>
+  <data name="keepInQueryStringRegExLabel.Text" xml:space="preserve">
+    <value>Expresión regular para parámetros que se deben mantener</value>
+  </data>
+  <data name="languageLabel.Help" xml:space="preserve">
+    <value>Muestra el código de idioma identificado durante el proceso de reescritura.</value>
+  </data>
+  <data name="languageLabel.Text" xml:space="preserve">
+    <value>Idioma identificado</value>
+  </data>
+  <data name="lblCache.Help" xml:space="preserve">
+    <value>Active esta opción si quiere almacenar el Sitemap de manera que no se genere cada vez que se solicite. Esto es especialmente necesario para los sitios grandes. Si el sitio tiene más de 50.000 direcciones el sitemap se guardará en caché de forma predeterminada por un día. Establezca este valor en 0 para deshabilitar el almacenamiento en caché.</value>
+  </data>
+  <data name="lblCache.Text" xml:space="preserve">
+    <value>Días a guardar sitemap en caché</value>
+  </data>
+  <data name="lblExcludePriority.Help" xml:space="preserve">
+    <value>Esta opción puede utilizarse para eliminar ciertas páginas del Sitemap. Por ejemplo, puede configurar una prioridad de 0.1 para una página y entrar 0.1 aquí para hacer que la página no este incluida en el Sitemap generado.</value>
+  </data>
+  <data name="lblExcludePriority.Text" xml:space="preserve">
+    <value>Excluir URLs con una prioridad inferior a:</value>
+  </data>
+  <data name="lblIncludeHidden.Help" xml:space="preserve">
+    <value>Cuando se activa, la prioridad de cada página se calcula a partir del nivel de la jerarquía de la página. Las páginas de nivel superior tendrán un valor de 1, las de segundo nivel de 0,9, las de tercer nivel 0,8, ... Este ajuste no va a cambiar el valor almacenado en la página real, sino que usará el valor calculado cuando sea necesario.</value>
+  </data>
+  <data name="lblIncludeHidden.Text" xml:space="preserve">
+    <value>Incluir páginas ocultas</value>
+  </data>
+  <data name="lblLevelPriority.Help" xml:space="preserve">
+    <value>Cuando el utilice prioridades basadas en el nivel de página, puede establecer aquí la prioridad mínima que se asignará a una página independientemente del nivel en el que se encuentre.</value>
+  </data>
+  <data name="lblLevelPriority.Text" xml:space="preserve">
+    <value>Usar prioridades basadas en nivel de página</value>
+  </data>
+  <data name="lblMinPagePriority.Help" xml:space="preserve">
+    <value>Cuando el utilice prioridades basadas en el nivel de página, puede establecer aquí la prioridad mínima que se asignará a una página independientemente del nivel en el que se encuentre.</value>
+  </data>
+  <data name="lblMinPagePriority.Text" xml:space="preserve">
+    <value>Prioridad mínima para páginas</value>
+  </data>
+  <data name="lblSearchEngine.Help" xml:space="preserve">
+    <value>Enviar el site al motor de búsqueda seleccionado para su indexación.</value>
+  </data>
+  <data name="lblSearchEngine.Text" xml:space="preserve">
+    <value>Motor de búsqueda</value>
+  </data>
+  <data name="lblVerification.Help" xml:space="preserve">
+    <value>Al regisrarse en Google Webmaster Tools, tendrá que verificar la propiedad de su sitio. Elija la opción "Cargar un archivo HTML"  en la pantalla de verificación de Google. Introduzca el nombre de archivo mostrado (por ejemplo google53c0cef435b2b81e.html) en el cuadro de texto de verificación y haga clic en Crear. Vuelva a Google y seleccione el botón Verificar.</value>
+  </data>
+  <data name="lblVerification.Text" xml:space="preserve">
+    <value>Verificación</value>
+  </data>
+  <data name="lnkResetCache.Text" xml:space="preserve">
+    <value>Limpiar caché</value>
+  </data>
+  <data name="minusCharacter.Text" xml:space="preserve">
+    <value>"-" por exemplo "nombre-página"</value>
+  </data>
+  <data name="Module_Provider_Redirect.Text" xml:space="preserve">
+    <value>Proveedor de redirección de módulo</value>
+  </data>
+  <data name="Module_Provider_Rewrite_Redirect.Text" xml:space="preserve">
+    <value>Proveedor de redirección reescritura de módulo</value>
+  </data>
+  <data name="Name.Header" xml:space="preserve">
+    <value>NOMBRE</value>
+  </data>
+  <data name="nav_Seo.Text" xml:space="preserve">
+    <value>S E O</value>
+  </data>
+  <data name="No.Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="No_Portal_Alias.Text" xml:space="preserve">
+    <value>Sin alias de sitio</value>
+  </data>
+  <data name="NoExtensionUrlProviders.Text" xml:space="preserve">
+    <value>No se ha encontrado ningún proveedor de URLs</value>
+  </data>
+  <data name="None.Text" xml:space="preserve">
+    <value>Ninguno</value>
+  </data>
+  <data name="NoneSpecified.Text" xml:space="preserve">
+    <value>Sin especificar</value>
+  </data>
+  <data name="Not_Redirected.Text" xml:space="preserve">
+    <value>No redireccionado</value>
+  </data>
+  <data name="operationMessagesLabel.Help" xml:space="preserve">
+    <value>Mensajes de depuración generados durante al prueba del proceso de reescritura de URLs.</value>
+  </data>
+  <data name="operationMessagesLabel.Text" xml:space="preserve">
+    <value>Mensajes operativos</value>
+  </data>
+  <data name="overridePriority.Help" xml:space="preserve">
+    <value>Reemplazar prioridad</value>
+  </data>
+  <data name="overridePriority.Text" xml:space="preserve">
+    <value>Reemplazar prioridad</value>
+  </data>
+  <data name="Page_404.Text" xml:space="preserve">
+    <value>Página 404</value>
+  </data>
+  <data name="pageNameLabel.Help" xml:space="preserve">
+    <value>Algunos módulos generan URLs forzando la última parte de la URL explícitamente. Si es el caso, introduzca el valor de "nombrepágina" que se utiliza al generar la URL. Si no tiene un valor explícito o no sabe como cuando utilizar este valor déjelo en blanco.</value>
+  </data>
+  <data name="pageNameLabel.Text" xml:space="preserve">
+    <value>Nombre de página personalizado / Cadena final de URL (opcional)</value>
+  </data>
+  <data name="plDeletedPages.Help" xml:space="preserve">
+    <value>Indique la acción que tiene que ocurrir cuando un usuario navega a una página borrada, expirada o desactivada.</value>
+  </data>
+  <data name="plDeletedPages.Text" xml:space="preserve">
+    <value>Redireccionar páginas borradas, expiradas o desactivas a</value>
+  </data>
+  <data name="preventLowerCaseUrlRegExInvalidPattern.Text" xml:space="preserve">
+    <value>La expresión regular de no conversión a minúscula no es válida.</value>
+  </data>
+  <data name="preventLowerCaseUrlRegExLabel.Help" xml:space="preserve">
+    <value>La expresión regular impide que las URLs que coincidan se conviertan a minúscula. Utilize esta opción pare evitar que ciertas URLs que deben mantener un valor concreto se conviertan a minúscula. Se utiliza frecuentemente cuando la URL incluye caracteres codificados o que deban distinguir entre mayúscula y minúscula.</value>
+  </data>
+  <data name="preventLowerCaseUrlRegExLabel.Text" xml:space="preserve">
+    <value>Expresión regular para URLs que no se deban convertir a minúscula</value>
+  </data>
+  <data name="Priority.Header" xml:space="preserve">
+    <value>Prioridad</value>
+  </data>
+  <data name="queryStringLabel.Help" xml:space="preserve">
+    <value>Para generar una URL que incluya información adicional en la ruta, añada la información en formato QueryString. Por ejemplo, si entra &amp;clave=valor, se modificará la URL genera para que incluya /clave/valor en la ruta URL. Utilize esta opción para probar URLs generadas por otros módulos.</value>
+  </data>
+  <data name="queryStringLabel.Text" xml:space="preserve">
+    <value>Añadir QueryString (opcional)</value>
+  </data>
+  <data name="redirectionReasonLabel.Help" xml:space="preserve">
+    <value>Motivo por el que la URL se ha redireccionado</value>
+  </data>
+  <data name="redirectionReasonLabel.Text" xml:space="preserve">
+    <value>Motivo de redirección</value>
+  </data>
+  <data name="redirectionResultLabel.Help" xml:space="preserve">
+    <value>Si la URL probada se redirecciona, muestra la redirección de la URL.</value>
+  </data>
+  <data name="redirectionResultLabel.Text" xml:space="preserve">
+    <value>Resultado de la redirección</value>
+  </data>
+  <data name="redirectOnWrongCaseLabel.Help" xml:space="preserve">
+    <value>Si esta marcada, cualquier URL que no esté en minúscula se redireccionará a la versión en minúscula de la URL</value>
+  </data>
+  <data name="redirectOnWrongCaseLabel.Text" xml:space="preserve">
+    <value>Redireccionar URLs que no esten en minúscula</value>
+  </data>
+  <data name="RegularExpressions.Text" xml:space="preserve">
+    <value>EXPRESIONES REGULARES</value>
+  </data>
+  <data name="ReplacementCharacter.Help" xml:space="preserve">
+    <value>Caracter de sustitución</value>
+  </data>
+  <data name="ReplacementCharacter.Text" xml:space="preserve">
+    <value>Caracter de sustitución</value>
+  </data>
+  <data name="Requested_404.Text" xml:space="preserve">
+    <value>Petición 404</value>
+  </data>
+  <data name="Requested_404_In_Url.Text" xml:space="preserve">
+    <value>Petición 404 en URL</value>
+  </data>
+  <data name="Requested_SplashPage.Text" xml:space="preserve">
+    <value>Petición página de bienvenida</value>
+  </data>
+  <data name="resultingUrlsLabel.Help" xml:space="preserve">
+    <value>Muestra la lista de URLs que se pueden generar para la página, dependiendo del alias e idioma.</value>
+  </data>
+  <data name="resultingUrlsLabel.Text" xml:space="preserve">
+    <value>URLs resultantes</value>
+  </data>
+  <data name="rewritingResultLabel.Help" xml:space="preserve">
+    <value>Muestra la URL reescrita con el formato sin procesar que verá la plataforma DotNetNuke y otras extensiones</value>
+  </data>
+  <data name="rewritingResultLabel.Text" xml:space="preserve">
+    <value>Resultado de la reescritura</value>
+  </data>
+  <data name="Secure_Page_Requested.Text" xml:space="preserve">
+    <value>Petición de página segura</value>
+  </data>
+  <data name="selectPageToTestLabel.Help" xml:space="preserve">
+    <value>Seleccione una página del sitio para probar la generación de URLs. Puede utilizar el botón Buscar para filtrar la lista de páginas.</value>
+  </data>
+  <data name="selectPageToTestLabel.Text" xml:space="preserve">
+    <value>Seleccione una página para verificar</value>
+  </data>
+  <data name="setDefaultSiteLanguageLabel.Help" xml:space="preserve">
+    <value>Si está marcada, el idioma por omisión del sitio se añadirá siempre a la URL reescrita quan no haya ya otro idioma.</value>
+  </data>
+  <data name="setDefaultSiteLanguageLabel.Text" xml:space="preserve">
+    <value>Indicar siempre idioma por omisión</value>
+  </data>
+  <data name="SettingsError.Text" xml:space="preserve">
+    <value>No se ha podido guardar la configuración. Vuelva a intentarlo.</value>
+  </data>
+  <data name="SettingsRestoreWarning.Text" xml:space="preserve">
+    <value>¿Está seguro que desea cancelar los cambios?</value>
+  </data>
+  <data name="SettingsUpdateSuccess.Text" xml:space="preserve">
+    <value>La configuración se ha actualizado.</value>
+  </data>
+  <data name="Site_Root_Home.Text" xml:space="preserve">
+    <value>Raíz del sitio</value>
+  </data>
+  <data name="SitemapProviders.Text" xml:space="preserve">
+    <value>PROVEEDORES DE SITEMAP</value>
+  </data>
+  <data name="SitemapSettings.Text" xml:space="preserve">
+    <value>CONFIGURACIÓN GENERAL DE SITEMAP</value>
+  </data>
+  <data name="SitemapSettingsTab.Text" xml:space="preserve">
+    <value>Configuración del Sitemap</value>
+  </data>
+  <data name="sitemapUrlLabel.Help" xml:space="preserve">
+    <value>Envíe su Sitemap a Google para una mejor optimización de búsqueda. Haga clic en Enviar para obtener una cuenta de Webmaster Tools de Google y verificar la propiedad del sitio (con la opción de verificación de más abajo). Una vez verificado, se puede seleccionar la opción Añadir un sitio web general de la ficha de Google Sitemaps y pegar la URL del Sitemap mostrado.</value>
+  </data>
+  <data name="sitemapUrlLabel.Text" xml:space="preserve">
+    <value>URL del sitemap</value>
+  </data>
+  <data name="SiteSubmission.Text" xml:space="preserve">
+    <value>ENVIAR SITIO</value>
+  </data>
+  <data name="SiteUrls_Config_Rule.Text" xml:space="preserve">
+    <value>Regla del archivo SiteURLs</value>
+  </data>
+  <data name="siteUrlsOnlyRegExInvalidPattern.Text" xml:space="preserve">
+    <value>La expresión regular para URLs de siteurls.config no es válida.</value>
+  </data>
+  <data name="siteUrlsOnlyRegExLabel.Help" xml:space="preserve">
+    <value>La expresión regular para URLs de siteurls.config modifica el orden de proceso de las URLs. Cuando una URL coincida, primero se evaluará con el archivo siteurls.config, sin antes verificar en la lista de URLs amigables del sitio. Utilize esta opción para forzar el proceso del archivo siteurls.config para ULRs que estan incluidas en el archivo.</value>
+  </data>
+  <data name="siteUrlsOnlyRegExLabel.Text" xml:space="preserve">
+    <value>Expresión regular para URLs que deban utilizar siteurls.config</value>
+  </data>
+  <data name="Spaces_Replaced.Text" xml:space="preserve">
+    <value>Espacios reemplazados</value>
+  </data>
+  <data name="Submit.Text" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="Tab_External_Url.Text" xml:space="preserve">
+    <value>URL Externa en página</value>
+  </data>
+  <data name="Tab_Permanent_Redirect.Text" xml:space="preserve">
+    <value>Redirección permanente en página</value>
+  </data>
+  <data name="TestPageUrl.Text" xml:space="preserve">
+    <value>PRUEBA URL DE PÁGINA</value>
+  </data>
+  <data name="TestUrlButtonCaption.Text" xml:space="preserve">
+    <value>Probar URL</value>
+  </data>
+  <data name="TestUrlRewriting.Text" xml:space="preserve">
+    <value>PRUEBA DE REESCRITURA DE URL</value>
+  </data>
+  <data name="testUrlRewritingButton.Text" xml:space="preserve">
+    <value>Prueba de reescritura</value>
+  </data>
+  <data name="testUrlRewritingLabel.Help" xml:space="preserve">
+    <value>Introduzca una URL completa (incluyendo http:// o https://) en la caja de texto para probar la URL reescrita / redireccionada</value>
+  </data>
+  <data name="testUrlRewritingLabel.Text" xml:space="preserve">
+    <value>URL de prueba</value>
+  </data>
+  <data name="TestURLTab.Text" xml:space="preserve">
+    <value>PRUEBA DE URL</value>
+  </data>
+  <data name="underscoreCharacter.Text" xml:space="preserve">
+    <value>"_" por ejemplo nombre_página</value>
+  </data>
+  <data name="Unfriendly_Url_Child_Portal.Text" xml:space="preserve">
+    <value>Unfriendly URL Sitio hijo</value>
+  </data>
+  <data name="Unfriendly_Url_TabId.Text" xml:space="preserve">
+    <value>Unfriendly URL TabId</value>
+  </data>
+  <data name="URLManagementTab.Text" xml:space="preserve">
+    <value>Gestión de URLs</value>
+  </data>
+  <data name="UrlRedirects.Text" xml:space="preserve">
+    <value>REDIRECCIÓN URL</value>
+  </data>
+  <data name="UrlRewriter.Text" xml:space="preserve">
+    <value>REESCRITURA URL</value>
+  </data>
+  <data name="urlsWithNoExtensionRegExInvalidPattern.Text" xml:space="preserve">
+    <value>La expresión regular para URLs sin extensión no es válida.</value>
+  </data>
+  <data name="urlsWithNoExtensionRegExLabel.Help" xml:space="preserve">
+    <value>La expresión regular para URLs sin extensión se utiliza para validar URLs de recursos del servidor que no son páginas DotNetNuke pero pueden solicitarse con URLs sin extension. La URLs que coincidan no se tratarán como un error 404 cuando no se encuentre una página DotNetNuke.</value>
+  </data>
+  <data name="urlsWithNoExtensionRegExLabel.Text" xml:space="preserve">
+    <value>Expresión regular para URLs sin extensión</value>
+  </data>
+  <data name="User_Profile_Url.Text" xml:space="preserve">
+    <value>URL de perfil de usuario</value>
+  </data>
+  <data name="validFriendlyUrlRegExInvalidPattern.Text" xml:space="preserve">
+    <value>La expresión regular no es válida</value>
+  </data>
+  <data name="validFriendlyUrlRegExLabel.Help" xml:space="preserve">
+    <value>La expresión se utiliza para determinar si los caráteres utilizados en el nombre de la página son válidos para crear una URL de página amigable. Los caracteres que no coincidan con el patrón se borrarán.</value>
+  </data>
+  <data name="validFriendlyUrlRegExLabel.Text" xml:space="preserve">
+    <value>Expresión regular para URLs amigables válidas</value>
+  </data>
+  <data name="VerificationValidity.ErrorMessage" xml:space="preserve">
+    <value>El archivo tiene que tener la extensión .html (por ejemplo google53c0cef435b2b81e.html)</value>
+  </data>
+  <data name="Wrong_Portal_Alias.Text" xml:space="preserve">
+    <value>Alias de portal incorrecto</value>
+  </data>
+  <data name="Wrong_Portal_Alias_For_Browser_Type.Text" xml:space="preserve">
+    <value>Alias de portal incorrecto para tipo de navegador</value>
+  </data>
+  <data name="Wrong_Portal_Alias_For_Culture.Text" xml:space="preserve">
+    <value>Alias de portal incorrecto para idioma</value>
+  </data>
+  <data name="Wrong_Portal_Alias_For_Culture_And_Browser.Text" xml:space="preserve">
+    <value>Alias de portal incorrecto para idioma y navegador</value>
+  </data>
+  <data name="Wrong_Sub_Domain.Text" xml:space="preserve">
+    <value>Subdominio incorrecto</value>
+  </data>
+  <data name="Yes.Text" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+</root>

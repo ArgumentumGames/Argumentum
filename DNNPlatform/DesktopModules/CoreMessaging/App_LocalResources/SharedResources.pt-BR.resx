@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Actions.Text">
+    <value xml:space="preserve">Acções</value>
+  </data>
+  <data name="Activity.Text">
+    <value xml:space="preserve">Actividade</value>
+  </data>
+  <data name="Daily.Text">
+    <value xml:space="preserve">Diario</value>
+  </data>
+  <data name="Hourly.Text">
+    <value xml:space="preserve">Horario</value>
+  </data>
+  <data name="Instant.Text">
+    <value xml:space="preserve">Instantáneo</value>
+  </data>
+  <data name="Items.Text">
+    <value xml:space="preserve">[ITEMS] elementos</value>
+  </data>
+  <data name="ItemsOnPage.Text">
+    <value xml:space="preserve">[ITEMS] elementos em [PAGES] páginas</value>
+  </data>
+  <data name="ItemsPerPage.Text">
+    <value xml:space="preserve">Elementos por página:</value>
+  </data>
+  <data name="Never.Text">
+    <value xml:space="preserve">Nunca</value>
+  </data>
+  <data name="Next.Text">
+    <value xml:space="preserve">Seguinte</value>
+  </data>
+  <data name="Não.Text">
+    <value xml:space="preserve">Não</value>
+  </data>
+  <data name="NoResults.Text">
+    <value xml:space="preserve">foin encontrado resultados</value>
+  </data>
+  <data name="Of.Text">
+    <value xml:space="preserve">de</value>
+  </data>
+  <data name="OneItem.Text">
+    <value xml:space="preserve">1 elemento</value>
+  </data>
+  <data name="Prev.Text">
+    <value xml:space="preserve">Anterior</value>
+  </data>
+  <data name="ResultCount.Text">
+    <value xml:space="preserve">{0}</value>
+  </data>
+  <data name="Save.Text">
+    <value xml:space="preserve">Guardar</value>
+  </data>
+  <data name="Search.Text">
+    <value xml:space="preserve">Buscar</value>
+  </data>
+  <data name="Searching.Text">
+    <value xml:space="preserve">Buscando...</value>
+  </data>
+  <data name="SingleResultCount.Text">
+    <value xml:space="preserve">{0}</value>
+  </data>
+  <data name="UnsubscribeConfirm.Text">
+    <value xml:space="preserve">Está seguro que quiere cancelar su suscripção?</value>
+  </data>
+  <data name="UnsubscribeConfirmTitle.Text">
+    <value xml:space="preserve">Cancelar suscripção</value>
+  </data>
+  <data name="ViewedActivites_desc.Text">
+    <value xml:space="preserve">Visualizó uma página do portal que lista diversas actividades disponívels não portal.</value>
+  </data>
+  <data name="ViewedActivities.Text">
+    <value xml:space="preserve">Actividades vistas</value>
+  </data>
+  <data name="ViewedBadges.Text">
+    <value xml:space="preserve">Insignias vistas</value>
+  </data>
+  <data name="ViewedBadges_desc.Text">
+    <value xml:space="preserve">Visualizó uma página do portal que lista as insignias disponívels não portal.</value>
+  </data>
+  <data name="Weekly.Text">
+    <value xml:space="preserve">Semanal</value>
+  </data>
+  <data name="Yes.Text">
+    <value xml:space="preserve">Sí</value>
+  </data>
+</root>
