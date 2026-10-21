@@ -50,7 +50,7 @@ TRANSLATABLE = {
 # Shapes that must never be translated even when the field name looks prose-y.
 NEVER = {"UrlKey", "Path", "Email", "Link", "Images", "AlbumThumbnail", "Image",
          "CropAnchor", "SortMode", "HeadingType", "RuleMemoCardFileNamePrefix",
-         "RuleMemoCardDownload"}
+         "RuleMemoCardDownload", "PlaceholderMissingImage"}
 # Content types whose fields are identities (people, brands, mailboxes, slugs).
 SKIP_TYPES = {"Contributor", "Location", "Person"}
 # Game Rule fields whose single source is the Rules CSV (owner decision 10/10):
