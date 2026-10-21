@@ -1,0 +1,348 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddAsset.Text" xml:space="preserve">
+    <value>Añadir elemento</value>
+  </data>
+  <data name="AddFolder.Text" xml:space="preserve">
+    <value>Añadir carpeta</value>
+  </data>
+  <data name="AddFolderType.Text" xml:space="preserve">
+    <value>Añadir tipo de carpeta</value>
+  </data>
+  <data name="AssetsPanelEmpty_Subtitle.Text" xml:space="preserve">
+    <value>Utilize estas herramientas para añadir un elemento o crear una carpeta</value>
+  </data>
+  <data name="AssetsPanelEmpty_Title.Text" xml:space="preserve">
+    <value>La carpeta está vacía</value>
+  </data>
+  <data name="AssetsPanelNoSearchResults.Text" xml:space="preserve">
+    <value>No se ha encontrado ningún resultado.</value>
+  </data>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="Close.Text" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="CollapseFolders.Text" xml:space="preserve">
+    <value>Contraer carpetas</value>
+  </data>
+  <data name="ConfirmDeleteMessage.Text" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar los elementos seleccionados?</value>
+  </data>
+  <data name="ConfirmMoveMessage.Text" xml:space="preserve">
+    <value>¿Está seguro que desea mover los elementos seleccionados?</value>
+  </data>
+  <data name="ConfirmUnlinkMessage.Text" xml:space="preserve">
+    <value>¿Está seguro que desea desenlazar las carpetas seleccionadas?</value>
+  </data>
+  <data name="CopyUrl.Text" xml:space="preserve">
+    <value>Copiar URL</value>
+  </data>
+  <data name="Created.Text" xml:space="preserve">
+    <value>Creado</value>
+  </data>
+  <data name="CreatedOnDate.Text" xml:space="preserve">
+    <value>Creado el</value>
+  </data>
+  <data name="Database.Text" xml:space="preserve">
+    <value>Base de datos</value>
+  </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="DeleteItems.Text" xml:space="preserve">
+    <value>Eliminar elementos</value>
+  </data>
+  <data name="DeletingItems.Text" xml:space="preserve">
+    <value>Eliminando elementos</value>
+  </data>
+  <data name="Description.Text" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="DisabledForAnonymousUsersMessage.Text" xml:space="preserve">
+    <value>Desactivado para usuarios anónimos.</value>
+  </data>
+  <data name="Download.Text" xml:space="preserve">
+    <value>Descargar</value>
+  </data>
+  <data name="Edit.Text" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="EditFolderMappings.Text" xml:space="preserve">
+    <value>Editar asignación de carpetas</value>
+  </data>
+  <data name="EditFolderType.Text" xml:space="preserve">
+    <value>Editar tipos de carpeta</value>
+  </data>
+  <data name="ExpandFolders.Text" xml:space="preserve">
+    <value>Expandir carpetas</value>
+  </data>
+  <data name="ExtractUploads.Text" xml:space="preserve">
+    <value>Descomprimir los archivos cargados</value>
+  </data>
+  <data name="FileAlreadyExistsMessage.Text" xml:space="preserve">
+    <value>El archivo que está cargando y existe en esta carpeta.</value>
+  </data>
+  <data name="FileId.Text" xml:space="preserve">
+    <value>Id de archivo</value>
+  </data>
+  <data name="Files.Text" xml:space="preserve">
+    <value>Archivos</value>
+  </data>
+  <data name="FileSizeErrorMessage.Text" xml:space="preserve">
+    <value> es demasiado grande. El tamaño máximo de archivo es </value>
+  </data>
+  <data name="FileUploadedMessage.Text" xml:space="preserve">
+    <value>Archvo cargado.</value>
+  </data>
+  <data name="FileUploadPanelMessage.Text" xml:space="preserve">
+    <value>Arrastre y suelte un archivo o seleccione una opción</value>
+  </data>
+  <data name="FileUploadStoppedMessage.Text" xml:space="preserve">
+    <value>La carga del archivo se ha detenido</value>
+  </data>
+  <data name="FolderId.Text" xml:space="preserve">
+    <value>Id de carpeta</value>
+  </data>
+  <data name="FolderNamePlaceholder.Text" xml:space="preserve">
+    <value>Introduzca el nombre de la carpeta</value>
+  </data>
+  <data name="FolderNameRequiredMessage.Text" xml:space="preserve">
+    <value>Tiene que entrar el nombre de la carpeta</value>
+  </data>
+  <data name="FolderParent.Text" xml:space="preserve">
+    <value>Carpeta principal</value>
+  </data>
+  <data name="FolderProvider.Text" xml:space="preserve">
+    <value>Proveedor de carpeta</value>
+  </data>
+  <data name="Folders.Text" xml:space="preserve">
+    <value>Carpetas</value>
+  </data>
+  <data name="FolderType.Text" xml:space="preserve">
+    <value>Tipo de carpeta</value>
+  </data>
+  <data name="FolderTypeDefinitions.Text" xml:space="preserve">
+    <value>Definiciones de tipos de carpeta</value>
+  </data>
+  <data name="FolderTypeRequiredMessage.Text" xml:space="preserve">
+    <value>Tiene que seleccionar el tipo de carpeta</value>
+  </data>
+  <data name="General.Text" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="GenericErrorMessage.Text" xml:space="preserve">
+    <value>Se ha encontrado un error.</value>
+  </data>
+  <data name="GlobalAssets.Text" xml:space="preserve">
+    <value>Recursos globales</value>
+  </data>
+  <data name="GroupAssets.Text" xml:space="preserve">
+    <value>{0} elementos</value>
+  </data>
+  <data name="GroupIconCantBeDeleted.Error" xml:space="preserve">
+    <value>El icono del grupo no se puede eliminar.</value>
+  </data>
+  <data name="InvalidExtensionMessage.Text" xml:space="preserve">
+    <value> no es tipo de archivo permitido</value>
+  </data>
+  <data name="ItemName.Text" xml:space="preserve">
+    <value>Nombre de elemento</value>
+  </data>
+  <data name="ItemNameRequiredMessage.Text" xml:space="preserve">
+    <value>Tiene que entrar el nombre</value>
+  </data>
+  <data name="Items.Text" xml:space="preserve">
+    <value>Elementos</value>
+  </data>
+  <data name="ItemSavedMessage.Text" xml:space="preserve">
+    <value>Elemento guardado.</value>
+  </data>
+  <data name="LastModified.Text" xml:space="preserve">
+    <value>Última modificación</value>
+  </data>
+  <data name="LastModifiedOnDate.Text" xml:space="preserve">
+    <value>Última modificación en</value>
+  </data>
+  <data name="ManageFolderTypes.Text" xml:space="preserve">
+    <value>Gestionar tipos de carpetas</value>
+  </data>
+  <data name="MappedPath.Text" xml:space="preserve">
+    <value>Carpeta vinculada</value>
+  </data>
+  <data name="Move.Text" xml:space="preserve">
+    <value>Mover</value>
+  </data>
+  <data name="MoveItems.Text" xml:space="preserve">
+    <value>Mover elemento(s)</value>
+  </data>
+  <data name="MovingItems.Text" xml:space="preserve">
+    <value>Moviendo elemento</value>
+  </data>
+  <data name="Name.Text" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="NewLocation.Text" xml:space="preserve">
+    <value>Nuevo destino</value>
+  </data>
+  <data name="No.Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoFolderSelected.Text" xml:space="preserve">
+    <value>No se ha seleccionado ninguna carpeta</value>
+  </data>
+  <data name="OpenFile.Text" xml:space="preserve">
+    <value>Abrir</value>
+  </data>
+  <data name="Overwrite.Text" xml:space="preserve">
+    <value>Sobrescribir</value>
+  </data>
+  <data name="Permissions.Text" xml:space="preserve">
+    <value>Permisos</value>
+  </data>
+  <data name="Refresh.Text" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="RemoveFolderType.Text" xml:space="preserve">
+    <value>Eliminar tipo de carpeta</value>
+  </data>
+  <data name="RemoveFolderTypeDialogBody.Text" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar este tipo de carpeta?</value>
+  </data>
+  <data name="RemoveFolderTypeDialogHeader.Text" xml:space="preserve">
+    <value>Eliminar tipo de carpeta</value>
+  </data>
+  <data name="RolePermissions.Text" xml:space="preserve">
+    <value>Permisos de roles</value>
+  </data>
+  <data name="Save.Text" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="Search.Text" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="SearchFolder.Text" xml:space="preserve">
+    <value>Buscar carpeta</value>
+  </data>
+  <data name="SearchInputPlaceholder.Text" xml:space="preserve">
+    <value>Buscar archivos</value>
+  </data>
+  <data name="Secure.Text" xml:space="preserve">
+    <value>Seguro</value>
+  </data>
+  <data name="SelectDestinationFolder.Text" xml:space="preserve">
+    <value>Seleccione la carpeta destino.</value>
+  </data>
+  <data name="SiteAssets.Text" xml:space="preserve">
+    <value>Recursos del sitio</value>
+  </data>
+  <data name="Size.Text" xml:space="preserve">
+    <value>Tamaño</value>
+  </data>
+  <data name="Sort.Text" xml:space="preserve">
+    <value>Ordenar</value>
+  </data>
+  <data name="SortField_CreatedOnDate.Text" xml:space="preserve">
+    <value>Fecha de creación</value>
+  </data>
+  <data name="SortField_ItemName.Text" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="SortField_LastModifiedOnDate.Text" xml:space="preserve">
+    <value>Última modificación</value>
+  </data>
+  <data name="SortField_ParentFolder.Text" xml:space="preserve">
+    <value>Carpeta principal</value>
+  </data>
+  <data name="SortField_Size.Text" xml:space="preserve">
+    <value>Tamaño</value>
+  </data>
+  <data name="SortOrder_Ascending.Text" xml:space="preserve">
+    <value>Ascendente</value>
+  </data>
+  <data name="SortOrder_Descending.Text" xml:space="preserve">
+    <value>Descendente</value>
+  </data>
+  <data name="Standard.Text" xml:space="preserve">
+    <value>Estándar</value>
+  </data>
+  <data name="StatusBarMessage.Text" xml:space="preserve">
+    <value>Mostrando {0} de {1} elementos</value>
+  </data>
+  <data name="Sync.Text" xml:space="preserve">
+    <value>Sincronizar</value>
+  </data>
+  <data name="SyncThisFolder.Text" xml:space="preserve">
+    <value>Sincronizar esta carpeta</value>
+  </data>
+  <data name="SyncThisFolderAndSubfolders.Text" xml:space="preserve">
+    <value>Sincronizar esta carpeta y subcarpetas</value>
+  </data>
+  <data name="Title.Text" xml:space="preserve">
+    <value>Título</value>
+  </data>
+  <data name="Type.Text" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="Unlink.Text" xml:space="preserve">
+    <value>Desvincular</value>
+  </data>
+  <data name="UnlinkFolders.Text" xml:space="preserve">
+    <value>Desvincular carpeta(s)</value>
+  </data>
+  <data name="UnlinkingFolders.Text" xml:space="preserve">
+    <value>Desvinculando carpetas</value>
+  </data>
+  <data name="Upload.Text" xml:space="preserve">
+    <value>Cargar</value>
+  </data>
+  <data name="URL.Text" xml:space="preserve">
+    <value>URL</value>
+  </data>
+  <data name="UrlCopiedMessage.Text" xml:space="preserve">
+    <value>Se ha copiado la URL al portapapeles</value>
+  </data>
+  <data name="UserAssets.Text" xml:space="preserve">
+    <value>{0} elementos</value>
+  </data>
+  <data name="UserHasNoPermissionToAddFolders.Error" xml:space="preserve">
+    <value>El usuario no tiene permisos para añadir carpetas.</value>
+  </data>
+  <data name="UserHasNoPermissionToDeleteFile.Error" xml:space="preserve">
+    <value>El usuario no tiene permisos para eliminar el archivo.</value>
+  </data>
+  <data name="UserHasNoPermissionToDeleteFolder.Error" xml:space="preserve">
+    <value>El usuario no tiene permisos para eliminar la carpeta.</value>
+  </data>
+  <data name="UserHasNoPermissionToDownload.Error" xml:space="preserve">
+    <value>El usuario no tiene permisos para descargar el archivo.</value>
+  </data>
+  <data name="UserHasNoPermissionToManageFileProperties.Error" xml:space="preserve">
+    <value>El usuario no tiene permisos para gestionar las propiedades del archivo.</value>
+  </data>
+  <data name="UserHasNoPermissionToManageFolder.Error" xml:space="preserve">
+    <value>El usuario no tiene permisos para gestionar la carpeta.</value>
+  </data>
+  <data name="UserHasNoPermissionToReadFileProperties.Error" xml:space="preserve">
+    <value>El usuario no tiene permisos para ver las propiedades del archivo.</value>
+  </data>
+  <data name="UserPermissions.Text" xml:space="preserve">
+    <value>Permisos de usuario</value>
+  </data>
+  <data name="Yes.Text" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+</root>

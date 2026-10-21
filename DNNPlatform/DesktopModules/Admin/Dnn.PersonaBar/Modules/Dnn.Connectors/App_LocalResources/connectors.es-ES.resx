@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btn_Cancel.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="btn_Checking.Text" xml:space="preserve">
+    <value>Verificando ...</value>
+  </data>
+  <data name="btn_Connect.Text" xml:space="preserve">
+    <value>Conectar</value>
+  </data>
+  <data name="btn_Edit.Text" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="btn_Save.Text" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="ErrConnectorNotFound.Text" xml:space="preserve">
+    <value>Conector no encontrado.</value>
+  </data>
+  <data name="nav_Connectors.Text" xml:space="preserve">
+    <value>Conectores</value>
+  </data>
+  <data name="Save.Text" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="title_Connections.Text" xml:space="preserve">
+    <value>Configura conexiones</value>
+  </data>
+  <data name="txt_AddNew.Text" xml:space="preserve">
+    <value>Añadir</value>
+  </data>
+  <data name="txt_clickToEdit.Text" xml:space="preserve">
+    <value>Pulse para editar el nombre del conector</value>
+  </data>
+  <data name="txt_Deleted.Text" xml:space="preserve">
+    <value>El elemento se ha eliminado correctamente.</value>
+  </data>
+  <data name="txt_DisplayNameIsNotUnique.Text" xml:space="preserve">
+    <value>El nombre tiene que ser único.</value>
+  </data>
+  <data name="txt_DisplayNameIsNotValid.Text" xml:space="preserve">
+    <value>El nombre sólo puede contener letras y números.</value>
+  </data>
+  <data name="txt_Saved.Text" xml:space="preserve">
+    <value>El elemento se ha guardado correctamente.</value>
+  </data>
+  <data name="txt_SetupConnections.Text" xml:space="preserve">
+    <value>Configure los conectores para comparir contenidos</value>
+  </data>
+</root>

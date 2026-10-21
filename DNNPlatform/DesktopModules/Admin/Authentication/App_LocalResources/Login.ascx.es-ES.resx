@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AssociateHelp.Text" xml:space="preserve">
+    <value>Puede asociar su inicio de sesión con una cuenta de usuario existente indicando su nombre de usuario y contraseña.</value>
+  </data>
+  <data name="AssociateTitle.Text" xml:space="preserve">
+    <value>Asociar con una cuenta existente</value>
+  </data>
+  <data name="AssociationFailed.Text" xml:space="preserve">
+    <value>Se ha producido un error al asociar la identidad con el usuario. Recuerde que los nombres de usuario y contraseñas son sensibles a mayúsculas y minúsculas.</value>
+  </data>
+  <data name="AuthenticatedHelp.Text" xml:space="preserve">
+    <value>Ha sido autenticado satisfactoriamente. Sin embargo, esta identidad de autenticación no es un miembro del sitio. Puede asociar la identidad con un usuario existente (entrando el nombre de usuario y la contraseña) o puede registrarse como un nuevo miembro.</value>
+  </data>
+  <data name="AuthenticatedTitle.Text" xml:space="preserve">
+    <value>Autenticado</value>
+  </data>
+  <data name="cmdAssociate.Text" xml:space="preserve">
+    <value>Asociar con cuenta de usuario</value>
+  </data>
+  <data name="cmdCreate.Text" xml:space="preserve">
+    <value>Crear una nueva cuenta</value>
+  </data>
+  <data name="cmdForgotPassword.Text" xml:space="preserve">
+    <value>¿Olvidó su contraseña?</value>
+  </data>
+  <data name="cmdPassword.Text" xml:space="preserve">
+    <value>Recordar contraseña</value>
+  </data>
+  <data name="cmdProceed.Text" xml:space="preserve">
+    <value>Continuar (cambiar la contraseña más tarde)</value>
+  </data>
+  <data name="cmdRegister.Text" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="ControlTitle_.Text" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="ControlTitle_login.Text" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="ControlTitle_signin.Text" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="CreateTitle.Text" xml:space="preserve">
+    <value>Crear una cuenta nueva</value>
+  </data>
+  <data name="EnterCode.Text" xml:space="preserve">
+    <value>Indique su código de verificación</value>
+  </data>
+  <data name="FailedToRemoveAccount.Text" xml:space="preserve">
+    <value>No se ha podido eliminar la cuenta. Póngase en contacto con el administrador del sistema para informarle que quiere cancelar su cuenta.</value>
+  </data>
+  <data name="InvalidCode.Text" xml:space="preserve">
+    <value>Código de verificación incorrecto</value>
+  </data>
+  <data name="IPAddressBanned.Text" xml:space="preserve">
+    <value>No puede identificarse en el sitio web desde está dirección IP.</value>
+  </data>
+  <data name="LoginFailed.Text" xml:space="preserve">
+    <value>El inicio de sesión ha fallado. Recuerde que las contraseñas son sensibles a mayúsculas y minúsculas</value>
+  </data>
+  <data name="MustConsent.Text" xml:space="preserve">
+    <value>Tiene que aceptar las condiciones para poder continuar</value>
+  </data>
+  <data name="PasswordExpired.Text" xml:space="preserve">
+    <value>Su contraseña caducó el {0}. Actualice su contraseña antes de continuar.</value>
+  </data>
+  <data name="PasswordExpiring.Text" xml:space="preserve">
+    <value>Su contraseña caducará el {0}. Actualice su contraseña antes de continuar.</value>
+  </data>
+  <data name="PasswordInvalid.Text" xml:space="preserve">
+    <value>Debe indicar una contraseña correcta. Póngase en contacto con el administrador del sitio si desconoce los requisitos de seguridad de la contraseña.</value>
+  </data>
+  <data name="PasswordMismatch.Text" xml:space="preserve">
+    <value>Los valores para las contraseñas indicados no coinciden.</value>
+  </data>
+  <data name="PasswordMissing.Text" xml:space="preserve">
+    <value>Debe proporcionar su contraseña actual para poder cambiar la contraseña.</value>
+  </data>
+  <data name="PasswordNotDifferent.Text" xml:space="preserve">
+    <value>La nueva contraseña es la misma que la anterior. Indique una contraseña diferente.</value>
+  </data>
+  <data name="PasswordSent.Text" xml:space="preserve">
+    <value>La contraseña ha sido enviada a &lt;br/&gt;su dirección email.</value>
+  </data>
+  <data name="PasswordUpdate.Text" xml:space="preserve">
+    <value>Actualice su contraseña antes de continuar.</value>
+  </data>
+  <data name="plToken.Help" xml:space="preserve">
+    <value>El token único que identifica al usuario.</value>
+  </data>
+  <data name="plToken.Text" xml:space="preserve">
+    <value>Token de usuario:</value>
+  </data>
+  <data name="plType.Help" xml:space="preserve">
+    <value>El tipo de autenticación</value>
+  </data>
+  <data name="plType.Text" xml:space="preserve">
+    <value>Tipo:</value>
+  </data>
+  <data name="ProfileUpdate.Text" xml:space="preserve">
+    <value>Actualice su perfil antes de continuar.</value>
+  </data>
+  <data name="RegisterTitle.Text" xml:space="preserve">
+    <value>Registre una cuenta nueva</value>
+  </data>
+  <data name="Remember.Text" xml:space="preserve">
+    <value>Recordar inicio de sesión</value>
+  </data>
+  <data name="UserLockedOut.Text" xml:space="preserve">
+    <value>Esta cuenta ha sido bloqueada durante unos minutos después de varios intentos de inicio de sesión fallidos. Espere {0} minutos antes de reintentarlo de nuevo. Si ha olvidado su contraseña utilice la opción "Recordar contraseña" antes de ponerse en contacto con el administrador.</value>
+  </data>
+  <data name="UserLockedOut_ContactAdmin.Text" xml:space="preserve">
+    <value>Esta cuenta ha sido bloqueada durante unos minutos después de varios intentos de inicio de sesión fallidos. Póngase en contacto con el administrador del sitio.</value>
+  </data>
+  <data name="UsernameError.Text" xml:space="preserve">
+    <value>El nombre de usuario no existe</value>
+  </data>
+  <data name="UserNotAuthorized.Text" xml:space="preserve">
+    <value>Actualmente no está autorizado a iniciar la sesión en este sitio.</value>
+  </data>
+</root>

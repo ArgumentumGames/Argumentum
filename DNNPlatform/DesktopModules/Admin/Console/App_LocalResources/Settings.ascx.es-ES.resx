@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllowResize.Help" xml:space="preserve">
+    <value>Indica si se pueden redimensionar los iconos</value>
+  </data>
+  <data name="AllowResize.Text" xml:space="preserve">
+    <value>Permitir redimensión de iconos</value>
+  </data>
+  <data name="AllowViewChange.Help" xml:space="preserve">
+    <value>Permitir cambiar entre vista detallada y simple.</value>
+  </data>
+  <data name="AllowViewChange.Text" xml:space="preserve">
+    <value>Permitir cambiar de vista</value>
+  </data>
+  <data name="ConsoleWidth.Help" xml:space="preserve">
+    <value>Deje este valor en blanco para permitir que los iconos se expandan horizontalmente. Establezca este valor para minimizar el ancho de la consola. Por ejemplo, establezca este valor a 400 para 2 columnas de iconos.</value>
+  </data>
+  <data name="ConsoleWidth.Text" xml:space="preserve">
+    <value>Ancho</value>
+  </data>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>Configuración de la consola</value>
+  </data>
+  <data name="DefaultSize.Help" xml:space="preserve">
+    <value>Determina el tamaño del icono.</value>
+  </data>
+  <data name="DefaultSize.Text" xml:space="preserve">
+    <value>Tamaño por omisión del icono</value>
+  </data>
+  <data name="DefaultView.Help" xml:space="preserve">
+    <value>Determina la vista por omisión. La vista simple mostrará los iconos con descripciones como textos de ayuda. La vista detallada mostrará una lista con descripciones para cada elemento.</value>
+  </data>
+  <data name="DefaultView.Text" xml:space="preserve">
+    <value>Vista por omisión</value>
+  </data>
+  <data name="Friends.Text" xml:space="preserve">
+    <value>Amigos</value>
+  </data>
+  <data name="Group.Text" xml:space="preserve">
+    <value>Grupos</value>
+  </data>
+  <data name="Hide.Text" xml:space="preserve">
+    <value>Vista simple</value>
+  </data>
+  <data name="IconFile.Text" xml:space="preserve">
+    <value>Iconos pequeños (16px)</value>
+  </data>
+  <data name="IconFileLarge.Text" xml:space="preserve">
+    <value>Iconos grandes (32px)</value>
+  </data>
+  <data name="IconNone.Text" xml:space="preserve">
+    <value>Sin iconos</value>
+  </data>
+  <data name="IncludeHiddenPages.Help" xml:space="preserve">
+    <value>Active esta opción para incluir en la vista las páginas ocultas.</value>
+  </data>
+  <data name="IncludeHiddenPages.Text" xml:space="preserve">
+    <value>Incluir páginas ocultas</value>
+  </data>
+  <data name="IncludeParent.Help" xml:space="preserve">
+    <value>Active esta opción para incluir también la página principal.</value>
+  </data>
+  <data name="IncludeParent.Text" xml:space="preserve">
+    <value>Incluir principal</value>
+  </data>
+  <data name="Members.Text" xml:space="preserve">
+    <value>Miembros</value>
+  </data>
+  <data name="Mode.Help" xml:space="preserve">
+    <value>Seleccione el modo del módulo</value>
+  </data>
+  <data name="Mode.Text" xml:space="preserve">
+    <value>Modo</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;p&gt;El m&amp;oacute;dulo de consola visualiza las p&amp;aacute;ginas como iconos y enlaces o categor&amp;iacute;as para asistencia en la navegaci&amp;oacute;n. El m&amp;oacute;dulo del consola tiene 4 modos diferentes:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;iconos peque&amp;ntilde;os con detalles como ayudas contextuales (Iconos Peque&amp;ntilde;os, Vista Simple)&lt;/li&gt;
+    &lt;li&gt;iconos grandes con detalles como ayudas conextuales (Iconos Grandes, Vista Simple)&lt;/li&gt;
+    &lt;li&gt;lista de iconos peque&amp;ntilde;os con detalles (Iconos Peuqe&amp;ntilde;os, Vista Detallada)&lt;/li&gt;
+    &lt;li&gt;lista de iconos grandes con detalles (Iconos Grandes, Vista Detallada)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;h3&gt;El m&amp;oacute;dulo de consola depende de los siguientes par&amp;aacute;metros de configuraci&amp;oacute;n de la p&amp;aacute;gina:&lt;/h3&gt;
+&lt;table cellpadding="4" border="1" style="border:1px solid #dcdcdc;   border-collapse: collapse;"&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td style="white-space: nowrap;"&gt;Nombre de la p&amp;aacute;gina&lt;/td&gt;
+            &lt;td&gt;El nombre de la p&amp;aacute;gina se muestra como un t&amp;iacute;tulo de enlace.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style="white-space: nowrap;"&gt;Descripci&amp;oacute;n de la p&amp;aacute;gina&lt;/td&gt;
+            &lt;td&gt;La descripci&amp;oacute;n de la p&amp;aacute;gina se muestra como ayuda contextual o detalle.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style="white-space: nowrap;"&gt;Desactivada&lt;/td&gt;
+            &lt;td&gt;Si la p&amp;aacute;gina tiene la marca de "Desactivada" se mostrar&amp;aacute; el t&amp;iacute;tulo y una lista de las p&amp;aacute;ginas descendientes debajo.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style="white-space: nowrap;"&gt;Icono&lt;/td&gt;
+            &lt;td&gt;Este icono se usa en la vista de iconos peque&amp;ntilde;os.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style="white-space: nowrap;"&gt;Icono grande&lt;/td&gt;
+            &lt;td&gt;Este icono se usa en la vista de iconos grandes.&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;em&gt;Atenci&amp;oacute;n: la opci&amp;oacute;n "Incluir en&amp;nbsp;men&amp;uacute;" ocultar&amp;aacute; las p&amp;aacute;ginas en el men&amp;uacute; pero no en la consola.&lt;/em&gt; &lt;br /&gt;
+&lt;br /&gt;
+&amp;nbsp;&lt;/p&gt;
+&lt;h3&gt;Configuraci&amp;oacute;n del m&amp;oacute;dulo Consola&lt;/h3&gt;
+&lt;table cellpadding="4" border="1" style="border:1px solid #dcdcdc;   border-collapse: collapse;"&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td style="white-space: nowrap;"&gt;Mostrar hijas de&lt;/td&gt;
+            &lt;td&gt;Seleccionando una p&amp;aacute;gina se mostrar&amp;aacute;n todas las p&amp;aacute;ginas hijas de esa p&amp;aacute;gina. Dejar este campo en blanco para mostrar todas las p&amp;aacute;ginas hijas de la p&amp;aacute;gina actual.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style="white-space: nowrap;"&gt;Tama&amp;ntilde;o por omisi&amp;oacute;n de iconos&lt;/td&gt;
+            &lt;td&gt;Determina el tama&amp;ntilde;o de los iconos.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style="white-space: nowrap;"&gt;Permitir redimensionar iconos&lt;/td&gt;
+            &lt;td&gt;Permitir al usuario redimensionar los iconos.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style="white-space: nowrap;"&gt;Vista por omisi&amp;oacute;n&lt;/td&gt;
+            &lt;td&gt;Determina la vista por omisi&amp;oacute;n. La vista simple mostrar&amp;aacute; los iconos con descripciones como ayudas contextuales. La vista detallada mostrar&amp;aacute; una lista con descripciones para cada elemento.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style="white-space: nowrap;"&gt;Permitir cambiar vista&lt;/td&gt;
+            &lt;td&gt;Permitir al usuario cambiar entre vista detallada y simple.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style="white-space: nowrap;"&gt;Mostrar ayuda&lt;/td&gt;
+            &lt;td&gt;Mostrar un texto de ayuda con descripci&amp;oacute;n detallada cuando pase por encima de los iconos en la vista simple.&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td style="white-space: nowrap;"&gt;Ancho&lt;/td&gt;
+            &lt;td&gt;Dejar este valor en blanco para permitir que los iconos se expandan horizontalmente. Establecer este valor para minimizar el ancho de la consola. Por ejemplo, establecer este valor a 400 para 2 columnas de iconos.&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;em&gt;Atenci&amp;oacute;n: puede prevenir que los usuarios cambien la vista de la p&amp;aacute;gina desmarcando 'Permitir redimensi&amp;oacute;n de iconos' y 'Permitir cambiar vista'.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;</value>
+  </data>
+  <data name="Normal.Text" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="OrderTabsByHierarchy.Help" xml:space="preserve">
+    <value>Si activa esta opción las páginas que tengan descendientes de ordenarán al final de la lista. De esta manera se  consigue que las páginas del mismo nivel se muestren en la misma zona del módulo.</value>
+  </data>
+  <data name="OrderTabsByHierarchy.Text" xml:space="preserve">
+    <value>Ordenar según jerarquía</value>
+  </data>
+  <data name="Owner.Text" xml:space="preserve">
+    <value>Propietario</value>
+  </data>
+  <data name="ParentTab.Help" xml:space="preserve">
+    <value>Seleccionando una página visualizará todas las páginas hijas para esa página. Deje este campo en blanco para visualizar todas las páginas hija de la página actual.</value>
+  </data>
+  <data name="ParentTab.Text" xml:space="preserve">
+    <value>Mostrar hijas de</value>
+  </data>
+  <data name="Profile.Text" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="Show.Text" xml:space="preserve">
+    <value>Vista detallada</value>
+  </data>
+  <data name="ShowTooltip.Help" xml:space="preserve">
+    <value>Mostrar un texto alternativo con descripciones cuando pasamos sobre los iconos en vista simple.</value>
+  </data>
+  <data name="ShowTooltip.Text" xml:space="preserve">
+    <value>Mostrar texto alternativo</value>
+  </data>
+  <data name="tabsLabel.Help" xml:space="preserve">
+    <value>Con esta opción puede gestionar la visibilidad de las páginas individualmente.</value>
+  </data>
+  <data name="tabsLabel.Text" xml:space="preserve">
+    <value>Configuración de visibilidad de páginas:</value>
+  </data>
+  <data name="User.Text" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+</root>

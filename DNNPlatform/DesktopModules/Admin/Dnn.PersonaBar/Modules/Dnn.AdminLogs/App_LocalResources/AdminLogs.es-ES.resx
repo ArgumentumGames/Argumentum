@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Active.Header" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="AddContent.Action" xml:space="preserve">
+    <value>Añadir una configuración de registro</value>
+  </data>
+  <data name="AdminAlertCode.Text" xml:space="preserve">
+    <value>Alerta para administrador</value>
+  </data>
+  <data name="AdminLogs.Header" xml:space="preserve">
+    <value>Registro de eventos</value>
+  </data>
+  <data name="AdminOpCode.Text" xml:space="preserve">
+    <value>Operación general del administrador</value>
+  </data>
+  <data name="AllTypes.Text" xml:space="preserve">
+    <value>Todos los tipos</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="btnClear.Text" xml:space="preserve">
+    <value>Borrar registro</value>
+  </data>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>Borrar seleccionadas</value>
+  </data>
+  <data name="btnEmail.Text" xml:space="preserve">
+    <value>Enviar seleccionadas</value>
+  </data>
+  <data name="btnSend.Text" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="ClearLog.Text" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar todas las entradas del registro?</value>
+  </data>
+  <data name="ClickRow.Text" xml:space="preserve">
+    <value>Haga clic en una fila para ver los detalles.</value>
+  </data>
+  <data name="ColorCoding.Text" xml:space="preserve">
+    <value>Codificación con colores habilitada</value>
+  </data>
+  <data name="ConfigAdded.Text" xml:space="preserve">
+    <value>Se ha añadido la nueva configuración.</value>
+  </data>
+  <data name="ConfigAddError.Text" xml:space="preserve">
+    <value>No se ha podido añadir la configuración. Vuelva a interntarlo.</value>
+  </data>
+  <data name="ConfigBtnCancel.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="ConfigBtnDelete.Text" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="ConfigBtnSave.Text" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="ConfigDeleteCancelled.Text" xml:space="preserve">
+    <value>Se ha cancelado la eliminación.</value>
+  </data>
+  <data name="ConfigDeleted.Text" xml:space="preserve">
+    <value>Se ha borrado la configuración del registro seleccionada.</value>
+  </data>
+  <data name="ConfigDeletedWarning.Text" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar está configuración de registro?</value>
+  </data>
+  <data name="ConfigDeleteInconsistency.Text" xml:space="preserve">
+    <value>Se ha producido un error. Carge la página de nuevo y vuelva a intentarlo.</value>
+  </data>
+  <data name="ConfigUpdated.Text" xml:space="preserve">
+    <value>Se ha guardado la configuración seleccionada.</value>
+  </data>
+  <data name="ConfigUpdateError.Text" xml:space="preserve">
+    <value>No se ha podido guardar la configuración. Vuelva a interntarlo.</value>
+  </data>
+  <data name="ControlTitle_.Text" xml:space="preserve">
+    <value>Registro de eventos</value>
+  </data>
+  <data name="ControlTitle_edit.Text" xml:space="preserve">
+    <value>Configuración del registro de eventos</value>
+  </data>
+  <data name="Date.Text" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="DeleteError.Text" xml:space="preserve">
+    <value>La configuración del registro seleccionada no se puede eliminar. Debe eliminar primero todas las entradas para este tipo de registro.</value>
+  </data>
+  <data name="DeleteSuccess.Text" xml:space="preserve">
+    <value>Se han borrado las entradas seleccionadas.</value>
+  </data>
+  <data name="Edit.EditText" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="Email.Message" xml:space="preserve">
+    <value>Tiene que entrar un email válido.</value>
+  </data>
+  <data name="EmailFailure.Text" xml:space="preserve">
+    <value>Su email &lt;strong&gt;no&lt;/strong&gt; ha sido enviado.</value>
+  </data>
+  <data name="EmailSettings.Text" xml:space="preserve">
+    <value>Configuración de notificación por email</value>
+  </data>
+  <data name="EmailSuccess.Text" xml:space="preserve">
+    <value>Su email ha sido enviado.</value>
+  </data>
+  <data name="EntriesPerPage.Text" xml:space="preserve">
+    <value> elementos por página</value>
+  </data>
+  <data name="ExceptionCode.Text" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ExceptionsWarning.Text" xml:space="preserve">
+    <value>&lt;strong&gt;Atención&lt;/strong&gt;: Si utiliza esta opción, &lt;em&gt;podría&lt;/em&gt; estar enviando información sensible por la red  &lt;em&gt;sin&lt;/em&gt; cifrar. Antes de enviar las excepciones revise el contenido del registro de excepciones para que no contenga información confidencial. Solamente se enviarán las entradas del registro seleccionadas.</value>
+  </data>
+  <data name="FailureCode.Text" xml:space="preserve">
+    <value>Fallo en la operación</value>
+  </data>
+  <data name="False.Text" xml:space="preserve">
+    <value>Falso</value>
+  </data>
+  <data name="FileName.Header" xml:space="preserve">
+    <value>Nombre de archivo</value>
+  </data>
+  <data name="HostAlertCode.Text" xml:space="preserve">
+    <value>Alerta del sistema</value>
+  </data>
+  <data name="In.Text" xml:space="preserve">
+    <value>en</value>
+  </data>
+  <data name="InavlidEmailAddress.Text" xml:space="preserve">
+    <value>'{0}' no es una dirección válida de email.</value>
+  </data>
+  <data name="ItemCreatedCode.Text" xml:space="preserve">
+    <value>Elemento creado</value>
+  </data>
+  <data name="ItemDeletedCode.Text" xml:space="preserve">
+    <value>Elemento eliminado</value>
+  </data>
+  <data name="ItemUpdatedCode.Text" xml:space="preserve">
+    <value>Elemento actualizado</value>
+  </data>
+  <data name="Legend.Text" xml:space="preserve">
+    <value>Leyenda de la codificación de colores</value>
+  </data>
+  <data name="LogCleared.Text" xml:space="preserve">
+    <value>El registro ha sido vaciado.</value>
+  </data>
+  <data name="LogDeleteWarning.Text" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar todas las entradas del registro seleccionadas?</value>
+  </data>
+  <data name="LogEntries.Text" xml:space="preserve">
+    <value> entradas de registro</value>
+  </data>
+  <data name="LogEntry.Text" xml:space="preserve">
+    <value> entrada de registro</value>
+  </data>
+  <data name="LogEntryDefaultMsg.Text" xml:space="preserve">
+    <value>Adjunto puede ver el registro de errores.</value>
+  </data>
+  <data name="LogEntryDefaultSubject.Text" xml:space="preserve">
+    <value>Registro de errores</value>
+  </data>
+  <data name="LogSettings.Header" xml:space="preserve">
+    <value>Configuración del registro</value>
+  </data>
+  <data name="LogType.Header" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="MailToAddress.Message" xml:space="preserve">
+    <value>Tiene que introducir un email válido.</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;Acerca del registro de eventos&lt;/h1&gt;&lt;p&gt;Permite ver las entradas del registro correspondientes a eventos ocurridos en el sitio.&lt;/p&gt;</value>
+  </data>
+  <data name="nav_AdminLogs.Text" xml:space="preserve">
+    <value>Registro eventos</value>
+  </data>
+  <data name="no.Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoEntries.Text" xml:space="preserve">
+    <value>No hay ninguna entrada en el registro.</value>
+  </data>
+  <data name="Occurence.Text" xml:space="preserve">
+    <value> repetición</value>
+  </data>
+  <data name="Occurences.Text" xml:space="preserve">
+    <value> repeticiones</value>
+  </data>
+  <data name="plEmailAddress.Help" xml:space="preserve">
+    <value>Introduzca el email de la persona que quiere que reciba el registro de eventos. Puede introducir múltiples emails separados por coma (,) or punt y coma (;).</value>
+  </data>
+  <data name="plEmailAddress.Text" xml:space="preserve">
+    <value>Dirección de email </value>
+  </data>
+  <data name="plEmailNotificationStatus.Help" xml:space="preserve">
+    <value>Seleccione esta opción para enviar un email cuando este evento ocurra.</value>
+  </data>
+  <data name="plEmailNotificationStatus.Text" xml:space="preserve">
+    <value>Email de notificación</value>
+  </data>
+  <data name="plFileName.Help" xml:space="preserve">
+    <value>Nombre del archivo de registro.</value>
+  </data>
+  <data name="plFileName.Text" xml:space="preserve">
+    <value>Nombre de archivo</value>
+  </data>
+  <data name="plIsActive.Help" xml:space="preserve">
+    <value>Active esta opción para activar el registro.</value>
+  </data>
+  <data name="plIsActive.Text" xml:space="preserve">
+    <value>Registro activo</value>
+  </data>
+  <data name="plKeepMostRecent.Text" xml:space="preserve">
+    <value>Guardar registros recientes</value>
+  </data>
+  <data name="plLogType.Help" xml:space="preserve">
+    <value>Seleccione el tipo de eventos que desea ver</value>
+  </data>
+  <data name="plLogType.Text" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="plLogTypeKey.Help" xml:space="preserve">
+    <value>Indica el tipo de evento que corresponde a este registro.</value>
+  </data>
+  <data name="plLogTypeKey.Text" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="plLogTypePortalID.Help" xml:space="preserve">
+    <value>Indica con que sitio está relacionado este evento del registro</value>
+  </data>
+  <data name="plLogTypePortalID.Text" xml:space="preserve">
+    <value>Sitio</value>
+  </data>
+  <data name="plMailFromAddress.Help" xml:space="preserve">
+    <value>Dirección de email a usar como origen para el envío de notificaciones</value>
+  </data>
+  <data name="plMailFromAddress.Text" xml:space="preserve">
+    <value>Dirección de email de origen</value>
+  </data>
+  <data name="plMailToAddress.Help" xml:space="preserve">
+    <value>Dirección de email a usar como destino para el envío de notificaciones</value>
+  </data>
+  <data name="plMailToAddress.Text" xml:space="preserve">
+    <value>Dirección de email de destino</value>
+  </data>
+  <data name="plPortalID.Help" xml:space="preserve">
+    <value>Seleccione el sitio que desea ver</value>
+  </data>
+  <data name="plPortalID.Text" xml:space="preserve">
+    <value>Sitio</value>
+  </data>
+  <data name="plShowRecords.Help" xml:space="preserve">
+    <value>Seleccione qué registros desea ver</value>
+  </data>
+  <data name="plShowRecords.Text" xml:space="preserve">
+    <value>Mostrar registros</value>
+  </data>
+  <data name="plSubject.Help" xml:space="preserve">
+    <value>Indica el asunto para el email.</value>
+  </data>
+  <data name="plSubject.Text" xml:space="preserve">
+    <value>Asunto</value>
+  </data>
+  <data name="plThreshold.Text" xml:space="preserve">
+    <value>Límite de ocurrencias</value>
+  </data>
+  <data name="Portal.Header" xml:space="preserve">
+    <value>Sitio</value>
+  </data>
+  <data name="Portal.Text" xml:space="preserve">
+    <value>Sitio</value>
+  </data>
+  <data name="SecurityException.Text" xml:space="preserve">
+    <value>Errores de seguridad</value>
+  </data>
+  <data name="SelectException.Text" xml:space="preserve">
+    <value>Seleccione por lo menos una entrada del registro.</value>
+  </data>
+  <data name="SendExceptions.Text" xml:space="preserve">
+    <value>Enviar entradas</value>
+  </data>
+  <data name="SendExceptionsEmail.Text" xml:space="preserve">
+    <value>Enviar entras por email</value>
+  </data>
+  <data name="SendMessage.Help" xml:space="preserve">
+    <value>Incluya un mensaje opcional junto con las entradas</value>
+  </data>
+  <data name="SendMessage.Text" xml:space="preserve">
+    <value>Mensaje (opcional)</value>
+  </data>
+  <data name="ServerName.Text" xml:space="preserve">
+    <value>&lt;strong&gt;Nombre del servidor&lt;/strong&gt;: </value>
+  </data>
+  <data name="ServiceUnavailable.Text" xml:space="preserve">
+    <value>El servicio web en DotNetNuke.com no está disponible en este momento.</value>
+  </data>
+  <data name="Settings.Text" xml:space="preserve">
+    <value>Configuraciones del registro</value>
+  </data>
+  <data name="Showing.Text" xml:space="preserve">
+    <value>Mostrando {0} a {1} de {2}</value>
+  </data>
+  <data name="ShowingOne.Text" xml:space="preserve">
+    <value>Mostrando 1 entrada</value>
+  </data>
+  <data name="ShowingTotal.Text" xml:space="preserve">
+    <value>Mostrando {0} entradas</value>
+  </data>
+  <data name="SuccessCode.Text" xml:space="preserve">
+    <value>Operación finalizada correctamente</value>
+  </data>
+  <data name="Summary.Text" xml:space="preserve">
+    <value>Resumen</value>
+  </data>
+  <data name="TimeType_1.Text" xml:space="preserve">
+    <value>Segundos</value>
+  </data>
+  <data name="TimeType_2.Text" xml:space="preserve">
+    <value>Minutos</value>
+  </data>
+  <data name="TimeType_3.Text" xml:space="preserve">
+    <value>Horas</value>
+  </data>
+  <data name="TimeType_4.Text" xml:space="preserve">
+    <value>Días</value>
+  </data>
+  <data name="ToEmail.Text" xml:space="preserve">
+    <value>A una dirección de email específica</value>
+  </data>
+  <data name="True.Text" xml:space="preserve">
+    <value>Cierto</value>
+  </data>
+  <data name="Type.Text" xml:space="preserve">
+    <value>Tipo de evento</value>
+  </data>
+  <data name="UnAuthorizedToSendLog.Text" xml:space="preserve">
+    <value>No está autorizado a ver este registro de eventos.</value>
+  </data>
+  <data name="Username.Text" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="Viewer.Text" xml:space="preserve">
+    <value>Filtro</value>
+  </data>
+  <data name="yes.Text" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+</root>

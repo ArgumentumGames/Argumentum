@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AdminHelp.Text" xml:space="preserve">
+    <value>Este editor le permite configurar el Proveedor de autenticación.</value>
+  </data>
+  <data name="AuthenticationSettings.Text" xml:space="preserve">
+    <value>Parámetros de autenticación</value>
+  </data>
+  <data name="AuthenticationType.Help" xml:space="preserve">
+    <value>El tipo del sistema de autenticación (LiveID, OpenID, etc)</value>
+  </data>
+  <data name="AuthenticationType.Text" xml:space="preserve">
+    <value>Tipo de autenticación:</value>
+  </data>
+  <data name="cmdUpdate.Text" xml:space="preserve">
+    <value>Guardar la configuración de autenticación</value>
+  </data>
+  <data name="HostHelp.Text" xml:space="preserve">
+    <value>Este editor le permite configurar el Proveedor de autenticación. Puede  indicar la carpeta de los archivos del proveedor y activarlo. Los proveedores activados estarán disponibles para los administradores del sitio, que luego pueden configurarlo en su propio sitio.</value>
+  </data>
+  <data name="IsEnabled.Help" xml:space="preserve">
+    <value>Marque la casilla para activar el sistema de Autenticación.</value>
+  </data>
+  <data name="IsEnabled.Text" xml:space="preserve">
+    <value>¿Activado?</value>
+  </data>
+  <data name="LoginControlSrc.Help" xml:space="preserve">
+    <value>El origen del control de identificación para  el sistema de autenticación.</value>
+  </data>
+  <data name="LoginControlSrc.Text" xml:space="preserve">
+    <value>Origen del control de identificación:</value>
+  </data>
+  <data name="LogoffControlSrc.Help" xml:space="preserve">
+    <value>El origen del control de desconexión para  el sistema de autenticación.</value>
+  </data>
+  <data name="LogoffControlSrc.Text" xml:space="preserve">
+    <value>Origen del control de desconexión:</value>
+  </data>
+  <data name="NoSettings.Text" xml:space="preserve">
+    <value>Este sistema de autenticación no tiene parámetros para configurar.</value>
+  </data>
+  <data name="SettingsControlSrc.Help" xml:space="preserve">
+    <value>El origen del control de configuración para el sistema de autenticación.</value>
+  </data>
+  <data name="SettingsControlSrc.Text" xml:space="preserve">
+    <value>Origne del control de configuración:</value>
+  </data>
+</root>

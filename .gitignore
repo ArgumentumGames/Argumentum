@@ -168,15 +168,15 @@ yarn-error.log*
 # déjà suivis restent suivis (gitignore ne touche pas au suivi existant) : ces motifs
 # ne cachent que du non-suivi NOUVEAU. Comptes mesurés sur le webroot le 13/10.
 # Exception : App_GlobalResources (13 resx es-ES/pt-BR) = COMMITTÉS, pas ignorés.
-/DNNPlatform/DesktopModules/**/App_LocalResources/*.es-ES.resx
+# ── Grain ⑯ (#458, 21/10) : les motifs es-ES ci-dessous sont RETIRÉS — le pack amont
+# es-ES est importé dans le dépôt (modèle #1903 ru-RU, une PR par culture) pour la
+# complétude des paquets prod (tools/458-langpack-build.py = tout *.es-ES.resx suivi).
+# Les motifs pt-BR restent jusqu'à leur PR d'import dédiée.
 /DNNPlatform/DesktopModules/**/App_LocalResources/*.pt-BR.resx
 # NBright : module de boutique SUIVI au dépôt (23 resx es-ES trackés) — jamais ignoré
 !/DNNPlatform/DesktopModules/NBright/**
-/DNNPlatform/admin/**/App_LocalResources/*.es-ES.resx
 /DNNPlatform/admin/**/App_LocalResources/*.pt-BR.resx
-/DNNPlatform/controls/App_LocalResources/*.es-ES.resx
 /DNNPlatform/controls/App_LocalResources/*.pt-BR.resx
-/DNNPlatform/Providers/**/App_LocalResources/*.es-ES.resx
 /DNNPlatform/Install/App_LocalResources/*.pt-BR.resx
 # Libs JS servies par DNN — RÉPERTOIRES DE VERSION NON SUIVIS uniquement (revue ai-01
 # c.6143945246 : le motif répertoire-entier cachait 16 fichiers suivis — Knockout, Selectize,
@@ -195,9 +195,7 @@ yarn-error.log*
 # Hors gabarit culturel (noms exacts)
 /DNNPlatform/admin/Skins/App_LocalResources/BreadCrumb.ascx.resx
 # Portals/ — JAMAIS de motif global (Argumentum y écrit : vues 2sxc) — noms exacts
-/DNNPlatform/Portals/_default/Blank Website.template.es-ES.resx
 /DNNPlatform/Portals/_default/Blank Website.template.pt-BR.resx
-/DNNPlatform/Portals/_default/Default Website.template.es-ES.resx
 /DNNPlatform/Portals/_default/Default Website.template.pt-BR.resx
 /DNNPlatform/Portals/1-System/Sitemap/sitemap.fr-fr.xml
 /DNNPlatform/Portals/1-System/dnn-css-variables.css
