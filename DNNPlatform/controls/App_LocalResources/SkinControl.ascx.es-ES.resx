@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Application.Text" xml:space="preserve">
+    <value>Valor por omisión de la aplicación</value>
+  </data>
+  <data name="Host.Text" xml:space="preserve">
+    <value>Sistema</value>
+  </data>
+  <data name="Page.Text" xml:space="preserve">
+    <value>Valor por omisión de la página</value>
+  </data>
+  <data name="Portal.Text" xml:space="preserve">
+    <value>Valor por omisión del sitio</value>
+  </data>
+  <data name="Preview.Text" xml:space="preserve">
+    <value>Previsualizar</value>
+  </data>
+  <data name="Site.Text" xml:space="preserve">
+    <value>Sitio</value>
+  </data>
+  <data name="System.Text" xml:space="preserve">
+    <value>Valor por omisión del sistema</value>
+  </data>
+</root>

@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cmdExport.Text" xml:space="preserve">
+    <value>Exportar</value>
+  </data>
+  <data name="ControlTitle_exporttab.Text" xml:space="preserve">
+    <value>Exportar página</value>
+  </data>
+  <data name="Error.Text" xml:space="preserve">
+    <value>Se ha producido un error durante la exportación</value>
+  </data>
+  <data name="ExportedMessage.Text" xml:space="preserve">
+    <value>Se ha creado la plantilla de página en  &lt;strong&gt;{0}&lt;/strong&gt;</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;Exportar Página&lt;/h1&gt;&lt;p&gt;Los administradores pueden exportar contenido de la página especificada.&lt;/p&gt;</value>
+  </data>
+  <data name="plContent.Help" xml:space="preserve">
+    <value>Seleccione para incluir el contenido de los módulos</value>
+  </data>
+  <data name="plContent.Text" xml:space="preserve">
+    <value>Incluir contenido:</value>
+  </data>
+  <data name="plDescription.Help" xml:space="preserve">
+    <value>Indique una descripción para la plantilla.</value>
+  </data>
+  <data name="plDescription.Text" xml:space="preserve">
+    <value>Descripción:</value>
+  </data>
+  <data name="plFile.Help" xml:space="preserve">
+    <value>Indique un nombre para la plantilla</value>
+  </data>
+  <data name="plFile.Text" xml:space="preserve">
+    <value>Nombre de plantilla:</value>
+  </data>
+  <data name="plFolder.Help" xml:space="preserve">
+    <value>Seleccione la carpeta donde se guardará la plantilla</value>
+  </data>
+  <data name="plFolder.Text" xml:space="preserve">
+    <value>Carpeta:</value>
+  </data>
+  <data name="Root.Text" xml:space="preserve">
+    <value>Raíz</value>
+  </data>
+  <data name="valDescription.ErrorMessage" xml:space="preserve">
+    <value>Debe proporcionar una descripción para la plantilla.</value>
+  </data>
+  <data name="valFileName.ErrorMessage" xml:space="preserve">
+    <value>Debe proporcionar un nombre de archivo para la plantilla.</value>
+  </data>
+  <data name="Validation.Text" xml:space="preserve">
+    <value>Debe especificar una carpeta y nombre de plantilla para la exportación.</value>
+  </data>
+</root>

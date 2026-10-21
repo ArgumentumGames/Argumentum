@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>Configuración del perfil</value>
+  </data>
+  <data name="IncludeButton.Help" xml:space="preserve">
+    <value>Active esta opción para incluir el botón de Editar perfil</value>
+  </data>
+  <data name="IncludeButton.Text" xml:space="preserve">
+    <value>Incluir botón de editar</value>
+  </data>
+  <data name="LoadDefault.Confirm" xml:space="preserve">
+    <value>Está acción sobrescribirá la plantilla existente. ¿Está seguro de que desea continuar?</value>
+  </data>
+  <data name="LoadDefault.Text" xml:space="preserve">
+    <value>Cargar predeterminada</value>
+  </data>
+  <data name="plTemplate.Help" xml:space="preserve">
+    <value>Indique la plantilla para mostrar el perfil del usuario.</value>
+  </data>
+  <data name="plTemplate.Text" xml:space="preserve">
+    <value>Plantilla de perfil:</value>
+  </data>
+</root>

@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddNewSite.Header" xml:space="preserve">
+    <value>Añadir nuevo sitio</value>
+  </data>
+  <data name="AddNewSite.Text" xml:space="preserve">
+    <value>Añadir nuevo sitio</value>
+  </data>
+  <data name="AssignCurrentUserAsAdmin.Label" xml:space="preserve">
+    <value>Añadir usuario actual como Administrador</value>
+  </data>
+  <data name="BackToSites.Text" xml:space="preserve">
+    <value>Volver a la lista de sitios</value>
+  </data>
+  <data name="BasicSettings.Text" xml:space="preserve">
+    <value>Configuración básica</value>
+  </data>
+  <data name="CancelPortalDelete.Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="ChildExists.Text" xml:space="preserve">
+    <value>El nombre del sitio utilizado ya existe. Introduzca un nombre diferente.</value>
+  </data>
+  <data name="cmdCancel.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="cmdCreateSite.Text" xml:space="preserve">
+    <value>Crear sitio</value>
+  </data>
+  <data name="cmdExport.Text" xml:space="preserve">
+    <value>Crear plantilla</value>
+  </data>
+  <data name="ConfirmPortalDelete.Text" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="ControlTitle_template.Text" xml:space="preserve">
+    <value>Crear plantilla de sitio</value>
+  </data>
+  <data name="CreatePortalHomeFolderExists.Error" xml:space="preserve">
+    <value>La carpeta de portal {0} ya está en uso.</value>
+  </data>
+  <data name="CreateSite_AdminEmail.Label" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="CreateSite_AdminFirstName.Label" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="CreateSite_AdminLastName.Label" xml:space="preserve">
+    <value>Apellidos</value>
+  </data>
+  <data name="CreateSite_AdminPassword.Label" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="CreateSite_AdminPasswordConfirm.Label" xml:space="preserve">
+    <value>Confirmación de contraseña</value>
+  </data>
+  <data name="CreateSite_AdminUserName.Label" xml:space="preserve">
+    <value>Adminstrador</value>
+  </data>
+  <data name="CreateSite_SelectTemplate.Overlay" xml:space="preserve">
+    <value>seleccione una plantilla</value>
+  </data>
+  <data name="DefaultLanguage.Text" xml:space="preserve">
+    <value>El idioma predeterminado del sitio es {0}</value>
+  </data>
+  <data name="deletePortal.Text" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar {0}?</value>
+  </data>
+  <data name="DeleteSite.Text" xml:space="preserve">
+    <value>Eliminar sitio</value>
+  </data>
+  <data name="Description.Label" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="Description.Text" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="Directory.Text" xml:space="preserve">
+    <value>Carpeta</value>
+  </data>
+  <data name="Domain.Text" xml:space="preserve">
+    <value>Dominio</value>
+  </data>
+  <data name="DuplicatePortalAlias.Text" xml:space="preserve">
+    <value>El alias que ha especificado ya existe. Introduzca un nombre de alias diferente.</value>
+  </data>
+  <data name="DuplicateWithTab.Text" xml:space="preserve">
+    <value>Ya existe una página con el mismo nombre que ha entrado en un alias del sitio. Cambie el alias del sitio y vuelva a intentarlo.</value>
+  </data>
+  <data name="EmailRequired.Error" xml:space="preserve">
+    <value>El email es obligatorio.</value>
+  </data>
+  <data name="ErrorAncestorPages.Text" xml:space="preserve">
+    <value>Tiene que seleccionar todas las páginas superiores para poder incluir una página descendiente.</value>
+  </data>
+  <data name="ErrorPages.Text" xml:space="preserve">
+    <value>Tiene que seleccionar al menos una página para exportar.</value>
+  </data>
+  <data name="ExportedMessage.Text" xml:space="preserve">
+    <value>La plantilla del portal se ha guardado en la carpeta: &lt;br/&gt;&lt;strong&gt;{0}&lt;/strong&gt;</value>
+  </data>
+  <data name="ExportTemplate.Text" xml:space="preserve">
+    <value>Exportar plantilla</value>
+  </data>
+  <data name="FirstNameRequired.Error" xml:space="preserve">
+    <value>El nombre es obligatorio.</value>
+  </data>
+  <data name="HomeDirectory.Label" xml:space="preserve">
+    <value>Carpeta raíz</value>
+  </data>
+  <data name="InvalidHomeFolder.Text" xml:space="preserve">
+    <value>La carpeta de inicio que ha especificado no es válida</value>
+  </data>
+  <data name="InvalidName.Text" xml:space="preserve">
+    <value>El nombre del sitio no puede contener espacios o caracteres de puntuación.</value>
+  </data>
+  <data name="InvalidPassword.Text" xml:space="preserve">
+    <value>Los valores de las contraseñas introducidas no coinciden.</value>
+  </data>
+  <data name="LastNameRequired.Error" xml:space="preserve">
+    <value>Los apellidos son obligatorios.</value>
+  </data>
+  <data name="lblAdminOnly.Text" xml:space="preserve">
+    <value>Visible sólo para administradores</value>
+  </data>
+  <data name="lblDisabled.Text" xml:space="preserve">
+    <value>La página está desactivada</value>
+  </data>
+  <data name="lblEveryone.Text" xml:space="preserve">
+    <value>La página es visible para todos los usuarios</value>
+  </data>
+  <data name="lblFiles.Help" xml:space="preserve">
+    <value>Active esta opción para incluir los archivos y carpetas en la plantilla de exportación.</value>
+  </data>
+  <data name="lblFiles.Text" xml:space="preserve">
+    <value>Incluir archivos</value>
+  </data>
+  <data name="lblHidden.Text" xml:space="preserve">
+    <value>La página no se muestra en el menú</value>
+  </data>
+  <data name="lblHome.Text" xml:space="preserve">
+    <value>Página de inicio del sitio</value>
+  </data>
+  <data name="lblLanguages.Help" xml:space="preserve">
+    <value>Seleccione los idiomas adicionales que quiera incluir en la plantilla multi idioma, o bién el idioma principal si se trata de un plantilla con un solo idioma.</value>
+  </data>
+  <data name="lblLanguages.Text" xml:space="preserve">
+    <value>Exportar idiomas</value>
+  </data>
+  <data name="lblModules.Help" xml:space="preserve">
+    <value>Active esta opción para incluir los permisos de utilización de módulos en la plantilla de exportación. Tenga en cuenta que si activa esta opción puede ser necesario activar también la exportación de roles.</value>
+  </data>
+  <data name="lblModules.Text" xml:space="preserve">
+    <value>Incluir permisos de utilización de módulos</value>
+  </data>
+  <data name="lblMultilanguage.Help" xml:space="preserve">
+    <value>Active esta opción para crear una plantilla para un sitio multi idioma y seleccione los idiomas que quiera incluir, además del idioma predeterminado.</value>
+  </data>
+  <data name="lblMultilanguage.Text" xml:space="preserve">
+    <value>Exportar como sitio multi idioma</value>
+  </data>
+  <data name="lblNote.Text" xml:space="preserve">
+    <value>El idioma predeterminado ({0}) se incluirá siempre.</value>
+  </data>
+  <data name="lblNoteSingleLanguage.Text" xml:space="preserve">
+    <value>Atención: el idioma predeterminado es &lt;strong&gt;{0}&lt;/strong&gt;</value>
+  </data>
+  <data name="lblPages.Help" xml:space="preserve">
+    <value>Seleccione las páginas que quiera incluir en la plantilla de exportación.&lt;br/&gt;&lt;Si pretende utilizar esta plantilla para crear un sitio nuevo tiene que incluir todas las páginas de administración. Si no se incluyen, los sitios creados con esta plantilla no tendrán acceso al menú de administración.</value>
+  </data>
+  <data name="lblPages.Text" xml:space="preserve">
+    <value>Páginas a exportar</value>
+  </data>
+  <data name="lblProfile.Help" xml:space="preserve">
+    <value>Active esta opción para incluir las definiciones de propiedades del perfil en la plantilla de exportación.</value>
+  </data>
+  <data name="lblProfile.Text" xml:space="preserve">
+    <value>Incluir propiedades del perfil de usuario</value>
+  </data>
+  <data name="lblRedirect.Text" xml:space="preserve">
+    <value>Redirección de página</value>
+  </data>
+  <data name="lblRegistered.Text" xml:space="preserve">
+    <value>Visible para usuarios registrados</value>
+  </data>
+  <data name="lblRoles.Help" xml:space="preserve">
+    <value>Active esta opción para incluir los roles en la plantilla de exportación.</value>
+  </data>
+  <data name="lblRoles.Text" xml:space="preserve">
+    <value>Incluir roles</value>
+  </data>
+  <data name="lblSecure.Text" xml:space="preserve">
+    <value>Visible solo para roles específicos</value>
+  </data>
+  <data name="lblSelectLanguages.Text" xml:space="preserve">
+    <value>&lt; Seleccionar idiomas &gt;</value>
+  </data>
+  <data name="LoadMore.Button" xml:space="preserve">
+    <value>Ver más</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;Acerca de plantillas&lt;/h1&gt;&lt;p&gt;Permite exportar la estructura y también el contenido de un portal a una plantilla. Esta plantilla puede ser utilizada luego para construir nuevos portales.&lt;/p&gt;</value>
+  </data>
+  <data name="nav_Sites.Text" xml:space="preserve">
+    <value>Sitios</value>
+  </data>
+  <data name="PasswordConfirmRequired.Error" xml:space="preserve">
+    <value>La confirmación de la contraseña es obligatoria.</value>
+  </data>
+  <data name="PasswordRequired.Error" xml:space="preserve">
+    <value>La contraseña es obligatoria. Introduzca un mínimo de 7 caracteres.</value>
+  </data>
+  <data name="plContent.Help" xml:space="preserve">
+    <value>Active esta opción para incluir en la plantilla el contenido de los módulos</value>
+  </data>
+  <data name="plContent.Text" xml:space="preserve">
+    <value>Incluir contenido</value>
+  </data>
+  <data name="plDescription.Help" xml:space="preserve">
+    <value>Escriba una descripción para el archivo de plantilla</value>
+  </data>
+  <data name="plDescription.Text" xml:space="preserve">
+    <value>Descripción de la plantilla</value>
+  </data>
+  <data name="plPortals.Help" xml:space="preserve">
+    <value>Seleccione el sitio a exportar</value>
+  </data>
+  <data name="plPortals.Text" xml:space="preserve">
+    <value>Sitio</value>
+  </data>
+  <data name="plTemplateName.Help" xml:space="preserve">
+    <value>Escriba le nombre del archivo de plantilla</value>
+  </data>
+  <data name="plTemplateName.Text" xml:space="preserve">
+    <value>Nombre del archivo de plantilla</value>
+  </data>
+  <data name="PortalDeletionDenied.Text" xml:space="preserve">
+    <value>No se puede eliminar el sitio.</value>
+  </data>
+  <data name="PortalNotFound.Text" xml:space="preserve">
+    <value>No se ha encontrado el sitio.</value>
+  </data>
+  <data name="PortalSetup.Text" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="SendMail.Error" xml:space="preserve">
+    <value>Ha ocurrido un error enviando los mensajes de confirmación - {0}. No obstante, el sitio web se ha creado correctamente. &lt;a href='{1}' {2}&gt;Haga clic aquí para acceder al nuevo sitio&lt;/a&gt;</value>
+  </data>
+  <data name="Settings.Text" xml:space="preserve">
+    <value>Configuración avanzada</value>
+  </data>
+  <data name="SiteAliasRequired.Error" xml:space="preserve">
+    <value>El alias del sitio es obligatorio. &lt;ul style="
+    word-break: normal;
+    margin: 10px auto;
+    list-style: none;
+"&gt;&lt;li style="margin-bottom:10px"&gt;Requisitios de dominio: sin espacios, sin caracteres especiales (sólo : , .). &lt;/li&gt;&lt;li&gt;Requisitos de carpeta: sin espacios, sin caracteres especiales (sólo : _ , -).&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="SiteDetails_Pages.Text" xml:space="preserve">
+    <value>Páginas</value>
+  </data>
+  <data name="SiteDetails_SiteID.Text" xml:space="preserve">
+    <value>ID del sitio</value>
+  </data>
+  <data name="SiteDetails_Updated.Text" xml:space="preserve">
+    <value>Actualizado</value>
+  </data>
+  <data name="SiteDetails_Users.Text" xml:space="preserve">
+    <value>Usuarios</value>
+  </data>
+  <data name="SiteExport.Text" xml:space="preserve">
+    <value>Exportar sitio</value>
+  </data>
+  <data name="SiteImport.Text" xml:space="preserve">
+    <value>Impotar sitio</value>
+  </data>
+  <data name="Sites.Text" xml:space="preserve">
+    <value>Sitios</value>
+  </data>
+  <data name="SiteSettings.Text" xml:space="preserve">
+    <value>Configuración del sitio</value>
+  </data>
+  <data name="SiteTemplate.Label" xml:space="preserve">
+    <value>Plantilla del sitio</value>
+  </data>
+  <data name="SiteTitleRequired.Error" xml:space="preserve">
+    <value>El título del sitio es obligatorio.</value>
+  </data>
+  <data name="SiteType.Label" xml:space="preserve">
+    <value>Tipo de sitio:</value>
+  </data>
+  <data name="SiteUrl.Label" xml:space="preserve">
+    <value>URL del sitio</value>
+  </data>
+  <data name="Title.Label" xml:space="preserve">
+    <value>Titulo</value>
+  </data>
+  <data name="titleTemplateInfo.Text" xml:space="preserve">
+    <value>Información de la plantilla del sitio</value>
+  </data>
+  <data name="UnknownEmailAddress.Error" xml:space="preserve">
+    <value>No se ha establecido un email en la configuración del sistema o del sitio.</value>
+  </data>
+  <data name="UnknownSendMail.Error" xml:space="preserve">
+    <value>Ha ocurrido un error enviando los mensajes de confirmación. No obstante, el sitio web se ha creado correctamente. &lt;a href='{0}' {1}&gt;Haga clic aquí para acceder al nuevo sitio&lt;/a&gt;</value>
+  </data>
+  <data name="UsernameRequired.Error" xml:space="preserve">
+    <value>El nombre de usuario es obligatorio.</value>
+  </data>
+  <data name="valDescription.ErrorMessage" xml:space="preserve">
+    <value>La descripción de la plantilla es obligatoria.</value>
+  </data>
+  <data name="valFileName.ErrorMessage" xml:space="preserve">
+    <value>El nombre del archivo de la plantilla es obligatorio.</value>
+  </data>
+  <data name="ViewSite.Text" xml:space="preserve">
+    <value>Ver sitio</value>
+  </data>
+</root>

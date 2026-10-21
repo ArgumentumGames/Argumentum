@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle.Text" xml:space="preserve">
+    <value>Tipo de carpeta {0}</value>
+  </data>
+  <data name="ControlTitle_editfoldermapping.Text" xml:space="preserve">
+    <value>Editar asignación de carpeta</value>
+  </data>
+  <data name="Description.Text" xml:space="preserve">
+    <value>Utilice este diálogo para definir un nuevo tipo de carpeta</value>
+  </data>
+  <data name="DuplicateMappingName.Text" xml:space="preserve">
+    <value>Ya existe una asignación con el mismo nombre. No se han guardado los cambios.</value>
+  </data>
+  <data name="FolderProviderLabel.Help" xml:space="preserve">
+    <value>Seleccione el proveedor de carpetas que quiere utilizar.</value>
+  </data>
+  <data name="FolderProviderLabel.Text" xml:space="preserve">
+    <value>Proveedor de carpetas</value>
+  </data>
+  <data name="FolderProviderSettings.Text" xml:space="preserve">
+    <value>Configuración del proveedor de carpetas</value>
+  </data>
+  <data name="FolderProviderValidator.ErrorMessage" xml:space="preserve">
+    <value>Tiene que seleccionar el proveedor de carpetas</value>
+  </data>
+  <data name="GeneralSettings.Text" xml:space="preserve">
+    <value>Configuración general</value>
+  </data>
+  <data name="NameLabel.Help" xml:space="preserve">
+    <value>Introduzca el nombre de esta asignación.</value>
+  </data>
+  <data name="NameLabel.Text" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="NameValidator.ErrorMessage" xml:space="preserve">
+    <value>Tiene que entrar el nombre</value>
+  </data>
+  <data name="RequiredFields.Text" xml:space="preserve">
+    <value>Indica los campos obligatorios</value>
+  </data>
+  <data name="SelectFolderProvider.Text" xml:space="preserve">
+    <value>- Seleccione un proveedor -</value>
+  </data>
+  <data name="SyncWarning.Text" xml:space="preserve">
+    <value>Después de guardar un tipo de carpeta, se ejecutará una sincronización en las carpetas de este tipo. Esto puede llevar algún tiempo, dependiendo del número de carpetas que coincidan con los criterios.</value>
+  </data>
+  <data name="Update.Text" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+</root>

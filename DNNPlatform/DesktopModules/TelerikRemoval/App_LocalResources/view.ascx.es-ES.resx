@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BackupConfirmation.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>Confirmo que he realizado una copia de seguridad de los archivos y la base de datos de mi sitio web.</value>
+  </data>
+  <data name="RemoveTelerik.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>Eliminar Telerik ahora</value>
+  </data>
+  <data name="SuperUserRequiredHeading.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>Se requiere un superusuario</value>
+  </data>
+  <data name="SuperUserRequiredInfo.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>Esta operación require permisos de superusuario</value>
+  </data>
+  <data name="TelerikInstalledAndUsedInfo.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>Este sitio utiliza Telerik en los siguiente archivos:</value>
+  </data>
+  <data name="TelerikInstalledAndUsedWarning.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>Parece que hay extensiones que dependen de Telerik. No se pueden eliminar las dependencias que se han detectado y enumerado anteriormente. Sin embargo, asegúrese de haber parcheado correctamente Telerik y eliminado todos los componentes de Telerik distribuidos por la plataforma DNN según la guía que se encuentra &lt;a href="https://docs.dnncommunity.org/content/getting-started/setup/telerik-removal /index.html" target="_blank"&gt;aquí&lt;/a&gt;. Tenga en cuenta que NO podrá actualizar a DNN 10 con esas dependencias a menos que se distribuyan con su propia copia de Telerik.</value>
+  </data>
+  <data name="TelerikInstalledBulletin.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>En agosto de 2021 se publicó un boletín de seguridad que recomienda la eliminación inmediata de este componente debido a las vulnerabilidades de seguridad de alto nivel presentes. Puede leer más sobre este tema en el &lt;a href="https://dnncommunity.org/security" target="_blank"&gt;Centro de seguridad DNN&lt;/a&gt;.</value>
+  </data>
+  <data name="TelerikInstalledButNotUsedInfo.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>Dado que su instalación NO parece utilizar ninguno de estos componentes, debe eliminarlos ahora para mejorar la seguridad de su aplicación.</value>
+  </data>
+  <data name="TelerikInstalledDetected.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>Se ha detectado la presencia de los componentes de desarrollador de Telerik previamente distribuidos. La versión de Telerik detectada es:</value>
+  </data>
+  <data name="TelerikInstalledHeading.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>Alerta de seguridad</value>
+  </data>
+  <data name="TelerikInvalidAntiForgeryToken.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>Token antifalsificación de Telerik no válido.</value>
+  </data>
+  <data name="TelerikNotInstalledHeading.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>Listo para futuras actualizaciones</value>
+  </data>
+  <data name="TelerikNotInstalledInfo.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>Hemos confirmado que ha eliminado Telerik, su sitio esté listo para DNN 10.0.0.</value>
+  </data>
+  <data name="TelerikUninstallInfo.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>Tenga en cuenta que al seleccionar "Sí" a continuación se completarán &lt;a href="https://docs.dnncommunity.org/content/getting-started/setup/telerik-removal/index.html" target="_blank"&gt;estos pasos. &lt;/a&gt; automáticamente.</value>
+  </data>
+  <data name="TelerikUninstallNo.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>No, dejar el sitio inseguro</value>
+  </data>
+  <data name="TelerikUninstallYes.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>Sí, mejorar laseguridad y eliminar Telerik ahora</value>
+  </data>
+  <data name="UninstallReportHeading.Text" xml:space="preserve" lastModified="2024-05-27 19:13:31">
+    <value>Informe de desinstalación de Telerik</value>
+  </data>
+  <data name="UninstallReportNotesColumn.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>Notas</value>
+  </data>
+  <data name="UninstallReportResultColumn.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>Resultado</value>
+  </data>
+  <data name="UninstallReportStepColumn.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>Paso</value>
+  </data>
+  <data name="UninstallStepCleanupDependencyRecords.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>Limpiar registros de dependencias para el paquete '{0}'</value>
+  </data>
+  <data name="UninstallStepCleanupExtensionFilesFormat.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>Eliminar archivos '{0}'</value>
+  </data>
+  <data name="UninstallStepClearCache.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>Limpiar caché</value>
+  </data>
+  <data name="UninstallStepCountOfFilesDeleted.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>{0} archivos eliminados</value>
+  </data>
+  <data name="UninstallStepCountOfMatchesFound.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>{0} coincidencias encontradas.</value>
+  </data>
+  <data name="UninstallStepCountOfRecordsAffected.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>{0} registros afectados.</value>
+  </data>
+  <data name="UninstallStepInstallPackage.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>Paquete de instalación '{0}'</value>
+  </data>
+  <data name="UninstallStepInternalError.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>Error interno.</value>
+  </data>
+  <data name="UninstallStepModuleNotFoundInPage.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>Módulo '{0}' no encontrado en la página '{1}'</value>
+  </data>
+  <data name="UninstallStepNoMatchesFound.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>No se han encontrado coincidencias.</value>
+  </data>
+  <data name="UninstallStepPackageAlreadyInstalled.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>El paquete '{0}' ya está instalado.</value>
+  </data>
+  <data name="UninstallStepPackageAlreadyUninstalled.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>El paquete '{0}' ya está desinstalado.</value>
+  </data>
+  <data name="UninstallStepPackageNotFound.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>El paquete {0} no se ha encontrado.</value>
+  </data>
+  <data name="UninstallStepPageNotFoundInPortal.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>Página '{0}' no encontrada en el portal '{1}'</value>
+  </data>
+  <data name="UninstallStepRemoveBindingRedirects.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>Eliminar redirecciones de 'assembly bindings' de Telerik</value>
+  </data>
+  <data name="UninstallStepRemoveExtension.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>Eliminar extensión '{0}'</value>
+  </data>
+  <data name="UninstallStepRemoveRewriteRules.Text" xml:space="preserve" lastModified="2024-05-27 19:19:17">
+    <value>Eliminar reglas de reescritura de Telerik</value>
+  </data>
+  <data name="UninstallStepRemoveSystemAttribute.Text" xml:space="preserve" lastModified="2024-05-27 19:22:11">
+    <value>Eliminar el atributo 'System' del paquete '{0}'</value>
+  </data>
+  <data name="UninstallStepReplacePageModule.Text" xml:space="preserve" lastModified="2024-05-27 19:22:11">
+    <value>Reemplazar '{0}' por '{1}'</value>
+  </data>
+  <data name="UninstallStepReplacePortalPageModule.Text" xml:space="preserve" lastModified="2024-05-27 19:22:11">
+    <value>Reemplazar '{0}' por '{1}' en el portal '{2}'</value>
+  </data>
+  <data name="UninstallStepRequiredPropertiesNotSet.Text" xml:space="preserve" lastModified="2024-05-27 19:22:11">
+    <value>Las siguientes propiedades obligatorias no se han configuradas: {0}</value>
+  </data>
+  <data name="UninstallStepSectionNotFound.Text" xml:space="preserve" lastModified="2024-05-27 19:22:11">
+    <value>La sección {0} no se ha encontrado.</value>
+  </data>
+  <data name="UninstallStepUninstallExtension.Text" xml:space="preserve" lastModified="2024-05-27 19:22:11">
+    <value>Desinstalar la extensión '{0}'</value>
+  </data>
+  <data name="UninstallStepUpdateDataTypeListFormat.Text" xml:space="preserve" lastModified="2024-05-27 19:22:11">
+    <value>Actualizar proveedor '{0}' en la lista de DataType</value>
+  </data>
+  <data name="UninstallStepUpdateWebConfigFormat.Text" xml:space="preserve" lastModified="2024-05-27 19:22:11">
+    <value>Web.config: Eliminar Telerik de {0}</value>
+  </data>
+</root>

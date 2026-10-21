@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="PortalDescription.Text" xml:space="preserve">
+    <value>Plantilla de sitio web en blanco</value>
+  </data>
+  <data name="Setting.DefaultLanguage.Text" xml:space="preserve">
+    <value>es-ES</value>
+  </data>
+  <data name="Setting.FooterText.Text" xml:space="preserve">
+    <value>Copyright [year] My Website</value>
+  </data>
+  <data name="Tab.404ErrorPage.Content.Text" xml:space="preserve">
+    <value>Página de error 404</value>
+  </data>
+  <data name="Tab.404ErrorPage.Module.Content.Text" xml:space="preserve">
+    <value>Lo sentimos, no se puede encontrar la página que busca y es posible que se haya eliminado, que haya cambiado de nombre o que no esté disponible temporalmente. Le recomendamos que vuelva a empezar desde la página de inicio. No dude en ponerse en contacto con nosotros si el problema persiste o si no encuentra lo que busca.</value>
+  </data>
+  <data name="Tab.404ErrorPage.Module.Title.Text" xml:space="preserve">
+    <value>No se puede encontrar la página</value>
+  </data>
+  <data name="Tab.404ErrorPage.Name.Text" xml:space="preserve">
+    <value>Página de error 404</value>
+  </data>
+  <data name="Tab.404ErrorPage.Title.Text" xml:space="preserve">
+    <value>Página de error 404</value>
+  </data>
+  <data name="Tab.ActivityFeed.Content.Text" xml:space="preserve">
+    <value>Fuente de actividad</value>
+  </data>
+  <data name="Tab.ActivityFeed.ContentPane.Module.Journal.Title.Text" xml:space="preserve">
+    <value>Diario</value>
+  </data>
+  <data name="Tab.ActivityFeed.ContentPane.Module.MemberDirectory.Title.Text" xml:space="preserve">
+    <value>Directorio de miembros</value>
+  </data>
+  <data name="Tab.ActivityFeed.ContentPane.Module.Navigation.Title.Text" xml:space="preserve">
+    <value>Navegación</value>
+  </data>
+  <data name="Tab.ActivityFeed.ContentPane.Module.ViewProfile.Title.Text" xml:space="preserve">
+    <value>Ver perfil</value>
+  </data>
+  <data name="Tab.ActivityFeed.Name.Text" xml:space="preserve">
+    <value>Fuente de actividad</value>
+  </data>
+  <data name="Tab.ActivityFeed.Title.Text" xml:space="preserve">
+    <value>Fuente de actividad</value>
+  </data>
+  <data name="Tab.FileManagement.Content.Text" xml:space="preserve">
+    <value>Gestión de archivos</value>
+  </data>
+  <data name="Tab.FileManagement.ContentPane.Module.ResourceManager.Title.Text" xml:space="preserve">
+    <value>Gestor de recursos</value>
+  </data>
+  <data name="Tab.FileManagement.Name.Text" xml:space="preserve">
+    <value>Gestión de archivos</value>
+  </data>
+  <data name="Tab.FileManagement.Title.Text" xml:space="preserve">
+    <value>Administración del sitio web</value>
+  </data>
+  <data name="Tab.Home.Content.Text" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="Tab.Home.Name.Text" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="Tab.Home.Title.Text" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="Tab.MyFriends.Content.Text" xml:space="preserve">
+    <value>Mis amigos</value>
+  </data>
+  <data name="Tab.MyFriends.ContentPane.Module.MemberDirectory.Title.Text" xml:space="preserve">
+    <value>Directorio de miembros</value>
+  </data>
+  <data name="Tab.MyFriends.ContentPane.Module.Navigation.Title.Text" xml:space="preserve">
+    <value>Navegación</value>
+  </data>
+  <data name="Tab.MyFriends.ContentPane.Module.ViewProfile.Title.Text" xml:space="preserve">
+    <value>Ver perfil</value>
+  </data>
+  <data name="Tab.MyFriends.Name.Text" xml:space="preserve">
+    <value>Amigos</value>
+  </data>
+  <data name="Tab.MyFriends.Title.Text" xml:space="preserve">
+    <value>Mis amigos</value>
+  </data>
+  <data name="Tab.MyMessages.Content.Text" xml:space="preserve">
+    <value>Mis mensajes</value>
+  </data>
+  <data name="Tab.MyMessages.ContentPane.Module.MemberDirectory.Title.Text" xml:space="preserve">
+    <value>Directorio de miembros</value>
+  </data>
+  <data name="Tab.MyMessages.ContentPane.Module.MessageCenter.Title.Text" xml:space="preserve">
+    <value>Centro de mensajes</value>
+  </data>
+  <data name="Tab.MyMessages.ContentPane.Module.Navigation.Title.Text" xml:space="preserve">
+    <value>Navegación</value>
+  </data>
+  <data name="Tab.MyMessages.ContentPane.Module.ViewProfile.Title.Text" xml:space="preserve">
+    <value>Ver perfil</value>
+  </data>
+  <data name="Tab.MyMessages.Name.Text" xml:space="preserve">
+    <value>Mensajes</value>
+  </data>
+  <data name="Tab.MyMessages.Title.Text" xml:space="preserve">
+    <value>Mis mensajes</value>
+  </data>
+  <data name="Tab.MyProfile.Content.Text" xml:space="preserve">
+    <value>Mi perfil</value>
+  </data>
+  <data name="Tab.MyProfile.ContentPane.Module.MemberDirectory.Title.Text" xml:space="preserve">
+    <value>Directorio de miembros</value>
+  </data>
+  <data name="Tab.MyProfile.ContentPane.Module.Navigation.Title.Text" xml:space="preserve">
+    <value>Navegación</value>
+  </data>
+  <data name="Tab.MyProfile.ContentPane.Module.ViewProfile.Title.Text" xml:space="preserve">
+    <value>Ver perfil</value>
+  </data>
+  <data name="Tab.MyProfile.Name.Text" xml:space="preserve">
+    <value>Mi perfil</value>
+  </data>
+  <data name="Tab.MyProfile.Title.Text" xml:space="preserve">
+    <value>Mi perfil</value>
+  </data>
+  <data name="Tab.SearchResults.Content.Text" xml:space="preserve">
+    <value>Resultados de búsqueda</value>
+  </data>
+  <data name="Tab.SearchResults.ContentPane.Module.SearchResults.Title.Text" xml:space="preserve">
+    <value>Resultados de búsqueda</value>
+  </data>
+  <data name="Tab.SearchResults.Name.Text" xml:space="preserve">
+    <value>Resultados de búsqueda</value>
+  </data>
+  <data name="Tab.SearchResults.Title.Text" xml:space="preserve">
+    <value>Resultados de búsqueda</value>
+  </data>
+  <data name="Tab.WebsiteAdministration.Content.Text" xml:space="preserve">
+    <value>Administración del sitio web</value>
+  </data>
+  <data name="Tab.WebsiteAdministration.ContentPane.Module.BasicFeatures.Title.Text" xml:space="preserve">
+    <value>Funciones básicas</value>
+  </data>
+  <data name="Tab.WebsiteAdministration.Name.Text" xml:space="preserve">
+    <value>Admin</value>
+  </data>
+  <data name="Tab.WebsiteAdministration.Title.Text" xml:space="preserve">
+    <value>Administración del sitio web</value>
+  </data>
+</root>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccessDenied.ErrorMessage" xml:space="preserve">
+    <value>Se ha denegado el acceso.</value>
+  </data>
+  <data name="AccountKey.Text" xml:space="preserve">
+    <value>Clave de cuenta:</value>
+  </data>
+  <data name="AccountKeyCannotBeEmpty.ErrorMessage" xml:space="preserve">
+    <value>La clave es obligatoria.</value>
+  </data>
+  <data name="AccountName.Text" xml:space="preserve">
+    <value>Nombre de cuenta:</value>
+  </data>
+  <data name="AccountNameCannotBeEmpty.ErrorMessage" xml:space="preserve">
+    <value>El nombre de cuenta es obligatorio.</value>
+  </data>
+  <data name="AccountNotFound.ErrorMessage" xml:space="preserve">
+    <value>La cuenta indicada no se ha encontrado.</value>
+  </data>
+  <data name="AuthenticationFailure.ErrorMessage" xml:space="preserve">
+    <value>Se ha producido un error de autenticación.</value>
+  </data>
+  <data name="Container.Text" xml:space="preserve">
+    <value>Nombre del container:</value>
+  </data>
+  <data name="ErrorInvalidContainerName.Text" xml:space="preserve">
+    <value>El nombre de container introducido no es válido.</value>
+  </data>
+  <data name="ErrorMappingNameExists.Text" xml:space="preserve">
+    <value>El nombre de conexión ya existe.</value>
+  </data>
+  <data name="ErrorRequiredFields.Text" xml:space="preserve">
+    <value>La clave y nombre de cuenta son obligatorios.</value>
+  </data>
+  <data name="InvalidAccountKey.ErrorMessage" xml:space="preserve">
+    <value>El valor introducido no es una clave válida.</value>
+  </data>
+  <data name="InvalidAccountName.ErrorMessage" xml:space="preserve">
+    <value>El valor introducido no es un nombre de cuenta válido.</value>
+  </data>
+  <data name="SelectContainer.Text" xml:space="preserve">
+    <value>- Seleccione un Container -</value>
+  </data>
+</root>

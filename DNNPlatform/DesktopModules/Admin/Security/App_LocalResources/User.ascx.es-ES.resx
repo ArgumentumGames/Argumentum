@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CaptchaText.Text" xml:space="preserve">
+    <value>Escriba el texto que aparece arriba en el campo inferior</value>
+  </data>
+  <data name="cmdAdd.Text" xml:space="preserve">
+    <value>Añadir nuevo usuario</value>
+  </data>
+  <data name="cmdRemove.Text" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
+  <data name="cmdRestore.Text" xml:space="preserve">
+    <value>Restaurar</value>
+  </data>
+  <data name="ComparePasswordsValidator.ErrorMessage" xml:space="preserve">
+    <value>La contraseña y la confirmación no coinciden</value>
+  </data>
+  <data name="ConfirmUnRegister.Text" xml:space="preserve">
+    <value>¿Está seguro que desa cancelar el registro?</value>
+  </data>
+  <data name="CreateUser.Text" xml:space="preserve">
+    <value>Crear usuario</value>
+  </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="DisplayNameNotUnique.Text" xml:space="preserve">
+    <value>El nombre para mostrar que ha escogido ya lo utiliza otro usuario, seleccione otro diferente.</value>
+  </data>
+  <data name="HideSiteList.Text" xml:space="preserve">
+    <value>Ocultar lista de sitios</value>
+  </data>
+  <data name="InvalidCaptcha.Text" xml:space="preserve">
+    <value>Código de seguridad incorrecto</value>
+  </data>
+  <data name="Password.Text" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="PasswordHelpAdmin.Text" xml:space="preserve">
+    <value>Opcionalmente introduzca una contraseña para este usuario o permita que el sistema genere una.</value>
+  </data>
+  <data name="PasswordHelpUser.Text" xml:space="preserve">
+    <value>Introduzca una contraseña</value>
+  </data>
+  <data name="plAnswer.Help" xml:space="preserve">
+    <value>Indique una respuesta para la pregunta secreta</value>
+  </data>
+  <data name="plAnswer.Text" xml:space="preserve">
+    <value>Respueta secreta:</value>
+  </data>
+  <data name="plAuthorize.Help" xml:space="preserve">
+    <value>Autorizar a este usuario</value>
+  </data>
+  <data name="plAuthorize.Text" xml:space="preserve">
+    <value>Autorizado:</value>
+  </data>
+  <data name="plConfirm.Help" xml:space="preserve">
+    <value>Introduzca de nuevo la contraseña para confirmar que la ha escrito correctamente</value>
+  </data>
+  <data name="plConfirm.Text" xml:space="preserve">
+    <value>Confimar contraseña:</value>
+  </data>
+  <data name="plNotify.Help" xml:space="preserve">
+    <value>Envia email al usuario</value>
+  </data>
+  <data name="plNotify.Text" xml:space="preserve">
+    <value>Notificar:</value>
+  </data>
+  <data name="plPassword.Help" xml:space="preserve">
+    <value>Introduzca una contraseña para este usuario</value>
+  </data>
+  <data name="plPassword.Text" xml:space="preserve">
+    <value>Contraseña:</value>
+  </data>
+  <data name="plQuestion.Help" xml:space="preserve">
+    <value>Escriba una pregunta secreta para ser usada en el proceso de recuperación de contraseña</value>
+  </data>
+  <data name="plQuestion.Text" xml:space="preserve">
+    <value>Pregunta secreta:</value>
+  </data>
+  <data name="plRandom.Help" xml:space="preserve">
+    <value>Seleccione esta opción para generar una contraseña aleatoria</value>
+  </data>
+  <data name="plRandom.Text" xml:space="preserve">
+    <value>Contraseña aleatoria</value>
+  </data>
+  <data name="UnRegister.Text" xml:space="preserve">
+    <value>Desregistrar</value>
+  </data>
+  <data name="UpdateUserName.Text" xml:space="preserve">
+    <value>Atención: este usuario está registrado en los {0} sitios</value>
+  </data>
+  <data name="ViewSiteList.Text" xml:space="preserve">
+    <value>Mostrar lista de sitios</value>
+  </data>
+</root>

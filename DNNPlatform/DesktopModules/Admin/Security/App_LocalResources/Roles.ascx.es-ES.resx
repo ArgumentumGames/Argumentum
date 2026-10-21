@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddContent.Action" xml:space="preserve">
+    <value>Añadir nuevo rol</value>
+  </data>
+  <data name="AddGroup.Action" xml:space="preserve">
+    <value>Añadir nuevo grupo de roles</value>
+  </data>
+  <data name="Auto.Header" xml:space="preserve">
+    <value>Automático</value>
+  </data>
+  <data name="ControlTitle_.Text" xml:space="preserve">
+    <value>Roles de seguridad</value>
+  </data>
+  <data name="Description.Header" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="Every.Header" xml:space="preserve">
+    <value>Cada</value>
+  </data>
+  <data name="Fee.Header" xml:space="preserve">
+    <value>Tarifa</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;Acerca de roles de seguridad&lt;/h1&gt;&lt;p&gt;Los administradores pueden gestionar los distintos roles disponibles en el sitio web.  El módulo provee la funcionalidad para añadir roles de seguridad, modificar y eliminar roles existentes, así como asignar usuarios a éstos.&lt;/p&gt;</value>
+  </data>
+  <data name="Name.Header" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Period.Header" xml:space="preserve">
+    <value>Periodo</value>
+  </data>
+  <data name="plRoleGroups.Help" xml:space="preserve">
+    <value>Selecione el grupo de roles que desea ver</value>
+  </data>
+  <data name="plRoleGroups.Text" xml:space="preserve">
+    <value>Filtrar por grupo de roles:</value>
+  </data>
+  <data name="Public.Header" xml:space="preserve">
+    <value>Público</value>
+  </data>
+  <data name="Trial.Header" xml:space="preserve">
+    <value>Prueba</value>
+  </data>
+  <data name="UserCount.Header" xml:space="preserve">
+    <value>Usuarios</value>
+  </data>
+  <data name="UserRoles.Text" xml:space="preserve">
+    <value>Administrar usuarios</value>
+  </data>
+  <data name="UserSettings.Action" xml:space="preserve">
+    <value>Configuración de usuario</value>
+  </data>
+</root>

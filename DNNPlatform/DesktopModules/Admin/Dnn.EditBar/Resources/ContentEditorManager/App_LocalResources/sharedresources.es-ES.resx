@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="25% + 50% + 25%.Text" xml:space="preserve">
+    <value>Tres columnas 25 - 50 - 25</value>
+  </data>
+  <data name="25% + 75%.Text" xml:space="preserve">
+    <value>Dos columnas 25 - 75</value>
+  </data>
+  <data name="33% + 33% + 33%.Text" xml:space="preserve">
+    <value>Tres columnas 33 - 33 - 33</value>
+  </data>
+  <data name="50% + 50%.Text" xml:space="preserve">
+    <value>Dos columnas 50 - 50</value>
+  </data>
+  <data name="75% + 25%.Text" xml:space="preserve">
+    <value>Dos columnas 75 - 25</value>
+  </data>
+  <data name="AddExistingModule.Text" xml:space="preserve">
+    <value>Añadir módulo existente</value>
+  </data>
+  <data name="AddModule.Text" xml:space="preserve">
+    <value>Añadir módulo</value>
+  </data>
+  <data name="Blank.Text" xml:space="preserve">
+    <value>Nueva</value>
+  </data>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="CancelConfirm.Text" xml:space="preserve">
+    <value>¿Está seguro que desea cancelar añadir el módulo a la página?</value>
+  </data>
+  <data name="Category_All.Text" xml:space="preserve">
+    <value>Todas</value>
+  </data>
+  <data name="Category_Recommended.Text" xml:space="preserve">
+    <value>Recomendado</value>
+  </data>
+  <data name="CloseLabel.Text" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="ConfirmNo.Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="ConfirmTitle.Text" xml:space="preserve">
+    <value>Confirmación</value>
+  </data>
+  <data name="ConfirmYes.Text" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+  <data name="ContentLayout.Delete.Text" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar este diseño?</value>
+  </data>
+  <data name="ContentLayout.Text" xml:space="preserve">
+    <value>Diseño del contenido</value>
+  </data>
+  <data name="DeleteModuleConfirm.Text" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar este módulo?</value>
+  </data>
+  <data name="DiscardLabel.Text" xml:space="preserve">
+    <value>Descartar</value>
+  </data>
+  <data name="DragTip.Text" xml:space="preserve">
+    <value>&lt;p&gt;AÑADIR MÓDULO:&lt;/p&gt;&lt;p&gt;Haga clic y arrastre y suelte el módulo en el panel deseado&lt;/p&gt;</value>
+  </data>
+  <data name="EditBarMessageLabel.Text" xml:space="preserve">
+    <value>Los cambios mostrados no están publicados</value>
+  </data>
+  <data name="MakeCopy.Text" xml:space="preserve">
+    <value>Crear copia</value>
+  </data>
+  <data name="NoModules.Text" xml:space="preserve">
+    <value>No hay ningún módulo disponible para utilizar en esta página.</value>
+  </data>
+  <data name="Page.Text" xml:space="preserve">
+    <value>Página:</value>
+  </data>
+  <data name="pagePicker_clearButtonTooltip.Text" xml:space="preserve">
+    <value>Limpiar</value>
+  </data>
+  <data name="pagePicker_loadingResultText.Text" xml:space="preserve">
+    <value>Cargando resultados...</value>
+  </data>
+  <data name="pagePicker_resultsText.Text" xml:space="preserve">
+    <value>Resultados</value>
+  </data>
+  <data name="pagePicker_searchButtonTooltip.Text" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="pagePicker_searchInputPlaceHolder.Text" xml:space="preserve">
+    <value>Nombre de la página</value>
+  </data>
+  <data name="pagePicker_selectedItemCollapseTooltip.Text" xml:space="preserve">
+    <value>Clicar para cerrar</value>
+  </data>
+  <data name="pagePicker_selectedItemExpandTooltip.Text" xml:space="preserve">
+    <value>Clicar para expandir</value>
+  </data>
+  <data name="pagePicker_selectItemDefaultText.Text" xml:space="preserve">
+    <value>&lt;Sin especificar&gt;</value>
+  </data>
+  <data name="pagePicker_sortAscendingButtonTitle.Text" xml:space="preserve">
+    <value>A-Z</value>
+  </data>
+  <data name="pagePicker_sortAscendingButtonTooltip.Text" xml:space="preserve">
+    <value>Orden ascendente</value>
+  </data>
+  <data name="pagePicker_unsortedOrderButtonTooltip.Text" xml:space="preserve">
+    <value>Quitar ordenación</value>
+  </data>
+  <data name="pagerPicker_sortDescendingButtonTooltip.Text" xml:space="preserve">
+    <value>Orden descendente</value>
+  </data>
+  <data name="PendingSave.Text" xml:space="preserve">
+    <value>Todavía no ha acabado de añadir el módulo, ¿está seguro que quiere continuar sin guardar?</value>
+  </data>
+  <data name="PublishLabel.Text" xml:space="preserve">
+    <value>Publicar</value>
+  </data>
+  <data name="SearchPlaceHolder.Text" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="Service_CopyPermissionError.Text" xml:space="preserve">
+    <value>Ha ocurrido un error al copiar los permisos a las páginas descendientes.</value>
+  </data>
+  <data name="Service_CopyPermissionSuccessful.Text" xml:space="preserve">
+    <value>Se han copiado los permisos a las páginas descendientes.</value>
+  </data>
+  <data name="Service_LayoutNotExist.Text" xml:space="preserve">
+    <value>Se ha eliminado el diseño.</value>
+  </data>
+  <data name="Service_ModuleNotExist.Text" xml:space="preserve">
+    <value>Se ha eliminado el módulo.</value>
+  </data>
+  <data name="Service_RemoveTabError.Text" xml:space="preserve">
+    <value>La página {0} no se puede eliminar hasta que no se hayan eliminado sus descendientes.&lt;br/&gt;</value>
+  </data>
+  <data name="Service_RemoveTabModuleError.Text" xml:space="preserve">
+    <value>Ha ocurrido un error al eliminar la página:&lt;br/&gt;{0}</value>
+  </data>
+  <data name="Service_RestoreModuleError.Text" xml:space="preserve">
+    <value>Ha ocurrido un error al restaurar el módulo {0} en la página {1}. La página está eliminada.</value>
+  </data>
+  <data name="Service_RestoreTabError.Text" xml:space="preserve">
+    <value>La página {0} no se puede restaurar hasta que su página madre se restaure primero.&lt;br/&gt;</value>
+  </data>
+  <data name="Service_RestoreTabModuleError.Text" xml:space="preserve">
+    <value>Ha ocurrido un error al restaurar la página:&lt;br/&gt;{0}</value>
+  </data>
+  <data name="Site.Text" xml:space="preserve">
+    <value>Sitio:</value>
+  </data>
+  <data name="System.Text" xml:space="preserve">
+    <value>Sistema</value>
+  </data>
+</root>

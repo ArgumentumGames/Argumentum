@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AnonymizeIp.Text" xml:space="preserve">
+    <value>Anonimizar IP:</value>
+  </data>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>Eliminar conexión</value>
+  </data>
+  <data name="ConnectorName.Text" xml:space="preserve">
+    <value>Conector de Google Analytics (antiguo UA)</value>
+  </data>
+  <data name="DataConsent.Text" xml:space="preserve">
+    <value>Atención: esta opción está activada automáticamente dado que el consentimiento de datos está activado.</value>
+  </data>
+  <data name="TrackAdministrators.Text" xml:space="preserve">
+    <value>Rastrear administradores:</value>
+  </data>
+  <data name="TrackingCodeFormat.ErrorMessage" xml:space="preserve">
+    <value>El código de rastreo no se puede dejar vacío.</value>
+  </data>
+  <data name="TrackingID.Text" xml:space="preserve">
+    <value>ID de rastreo:</value>
+  </data>
+  <data name="TrackUserId.Text" xml:space="preserve">
+    <value>UserID de rastreo:</value>
+  </data>
+  <data name="UrlParameter.Text" xml:space="preserve">
+    <value>Parámetro URL:</value>
+  </data>
+</root>

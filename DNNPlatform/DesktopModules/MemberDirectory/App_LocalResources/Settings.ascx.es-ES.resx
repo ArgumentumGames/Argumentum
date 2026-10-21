@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="alternateItemTemplateLabel.Help" xml:space="preserve">
+    <value>La plantilla de elementos alternos se utiliza para representar los detalles de los miembros alternos. Si se deja vacío la plantilla del elemento se utiliza para todos los miembros.</value>
+  </data>
+  <data name="alternateItemTemplateLabel.Text" xml:space="preserve">
+    <value>Plantilla de elemento alterno</value>
+  </data>
+  <data name="Ascending.Text" xml:space="preserve">
+    <value>Ascendente</value>
+  </data>
+  <data name="Biography.Text" xml:space="preserve">
+    <value>Biografía</value>
+  </data>
+  <data name="Cell.Text" xml:space="preserve">
+    <value>Móvil</value>
+  </data>
+  <data name="City.Text" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>Configuración del directorio de miembros</value>
+  </data>
+  <data name="Country.Text" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="DateCreated.Text" xml:space="preserve">
+    <value>Fecha de creación:</value>
+  </data>
+  <data name="Descending.Text" xml:space="preserve">
+    <value>Descendente</value>
+  </data>
+  <data name="disablePagerLabel.Help" xml:space="preserve">
+    <value>Active esta opción para desactivar el botón "Cargar más". Si lo hace solo podrá acceder a la primera página.</value>
+  </data>
+  <data name="disablePagerLabel.Text" xml:space="preserve">
+    <value>Desactivar paginación:</value>
+  </data>
+  <data name="DisplayName.Text" xml:space="preserve">
+    <value>Nombre para mostrar</value>
+  </data>
+  <data name="DisplaySearch_Both.Text" xml:space="preserve">
+    <value>Simple y avanzada</value>
+  </data>
+  <data name="DisplaySearch_None.Text" xml:space="preserve">
+    <value>Ninguna</value>
+  </data>
+  <data name="DisplaySearch_Simple.Text" xml:space="preserve">
+    <value>Simple</value>
+  </data>
+  <data name="displaySearchLabel.Help" xml:space="preserve">
+    <value>Indique las opciones de búsqueda: "Ninguna" para ocultar la opción de búsqueda, "Simple" para mostrar solo la búsqueda simple y "Simple y avanzada" para mostrar ambas opciones.</value>
+  </data>
+  <data name="displaySearchLabel.Text" xml:space="preserve">
+    <value>Mostrar búsqueda:</value>
+  </data>
+  <data name="Email.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="enablePopUpLabel.Help" xml:space="preserve">
+    <value>Active esta opción para activar la plantilla emergente.</value>
+  </data>
+  <data name="enablePopUpLabel.Text" xml:space="preserve">
+    <value>Activar ventana emergente:</value>
+  </data>
+  <data name="ExcludeHostUsersLabel.Help" xml:space="preserve">
+    <value>Si está activo los superusuarios no se mostrarán en los resultados.</value>
+  </data>
+  <data name="ExcludeHostUsersLabel.Text" xml:space="preserve">
+    <value>Excluir superusuarios:</value>
+  </data>
+  <data name="Fax.Text" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="filterBySelectorLabel.Help" xml:space="preserve">
+    <value>Si lo desea, puede optar por aplicar un filtro a la lista de los miembros a mostrar. Seleccione el tipo de filtro que desee aplicar y, a continuación, seleccione el rol, relación o perfil apropiado de la lista desplegable.</value>
+  </data>
+  <data name="filterBySelectorLabel.Text" xml:space="preserve">
+    <value>Filtrar por:</value>
+  </data>
+  <data name="Filters.Text" xml:space="preserve">
+    <value>Filtros y ordenación</value>
+  </data>
+  <data name="FirstName.Text" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="Group.Text" xml:space="preserve">
+    <value>Grupo</value>
+  </data>
+  <data name="IM.Text" xml:space="preserve">
+    <value>IM</value>
+  </data>
+  <data name="itemTemplateLabel.Help" xml:space="preserve">
+    <value>La plantilla de elemento se utiliza para representar los detalles acerca del miembro.</value>
+  </data>
+  <data name="itemTemplateLabel.Text" xml:space="preserve">
+    <value>Plantilla de elemento:</value>
+  </data>
+  <data name="LastName.Text" xml:space="preserve">
+    <value>Apellidos</value>
+  </data>
+  <data name="MiddleName.Text" xml:space="preserve">
+    <value>Inicial</value>
+  </data>
+  <data name="None.Text" xml:space="preserve">
+    <value>Sin filtro</value>
+  </data>
+  <data name="pageSize.Error" xml:space="preserve">
+    <value>El tamaño de página tiene que estar entre 1 y 100</value>
+  </data>
+  <data name="pageSizeLabel.Help" xml:space="preserve">
+    <value>Puede establecer el tamaño de página entrando un número entre 1 y 100.</value>
+  </data>
+  <data name="pageSizeLabel.Text" xml:space="preserve">
+    <value>Tamaño de página:</value>
+  </data>
+  <data name="Paging.Text" xml:space="preserve">
+    <value>Opciones de paginación</value>
+  </data>
+  <data name="popUpTemplateLabel.Help" xml:space="preserve">
+    <value>La plantilla emergente que se utiliza para representar un detalle de los distintos miembros dentro de una ventana emergente.</value>
+  </data>
+  <data name="popUpTemplateLabel.Text" xml:space="preserve">
+    <value>Plantilla emergente:</value>
+  </data>
+  <data name="PostalCode.Text" xml:space="preserve">
+    <value>Código postal</value>
+  </data>
+  <data name="PreferredLocale.Text" xml:space="preserve">
+    <value>Idioma preferido</value>
+  </data>
+  <data name="Prefix.Text" xml:space="preserve">
+    <value>Prefijo</value>
+  </data>
+  <data name="ProfileProperty.Text" xml:space="preserve">
+    <value>Propiedad Perfil</value>
+  </data>
+  <data name="Region.Text" xml:space="preserve">
+    <value>Región</value>
+  </data>
+  <data name="Relationship.Text" xml:space="preserve">
+    <value>Relación</value>
+  </data>
+  <data name="Search.Text" xml:space="preserve">
+    <value>Configuración de búsquedas</value>
+  </data>
+  <data name="searchField1Label.Help" xml:space="preserve">
+    <value>Seleccione el primer campo que desea mostrar en la Búsqueda avanzada</value>
+  </data>
+  <data name="searchField1Label.Text" xml:space="preserve">
+    <value>Campo de búsqueda 1:</value>
+  </data>
+  <data name="searchField2Label.Help" xml:space="preserve">
+    <value>Seleccione el segundo campo que desea mostrar en la Búsqueda avanzada</value>
+  </data>
+  <data name="searchField2Label.Text" xml:space="preserve">
+    <value>Campo de búsqueda 2:</value>
+  </data>
+  <data name="searchField3Label.Help" xml:space="preserve">
+    <value>Seleccione el tercer campo que desea mostrar en la Búsqueda avanzada</value>
+  </data>
+  <data name="searchField3Label.Text" xml:space="preserve">
+    <value>Campo de búsqueda 3:</value>
+  </data>
+  <data name="searchField4Label.Help" xml:space="preserve">
+    <value>Seleccione el cuarto campo que desea mostrar en la Búsqueda avanzada</value>
+  </data>
+  <data name="searchField4Label.Text" xml:space="preserve">
+    <value>Campo de búsqueda 4:</value>
+  </data>
+  <data name="sortFieldListLabel.Help" xml:space="preserve">
+    <value>Seleccione el campo de ordenación de la lista</value>
+  </data>
+  <data name="sortFieldListLabel.Text" xml:space="preserve">
+    <value>Campo de ordenación:</value>
+  </data>
+  <data name="sortOrderListLabel.Help" xml:space="preserve">
+    <value>Seleccione la dirección de ordenación</value>
+  </data>
+  <data name="sortOrderListLabel.Text" xml:space="preserve">
+    <value>Dirección de ordenación:</value>
+  </data>
+  <data name="Street.Text" xml:space="preserve">
+    <value>Calle</value>
+  </data>
+  <data name="Suffix.Text" xml:space="preserve">
+    <value>Sufijo</value>
+  </data>
+  <data name="Telephone.Text" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="Templates.Text" xml:space="preserve">
+    <value>Plantillas</value>
+  </data>
+  <data name="TimeZone.Text" xml:space="preserve">
+    <value>Zona horaria</value>
+  </data>
+  <data name="Unit.Text" xml:space="preserve">
+    <value>Unidad</value>
+  </data>
+  <data name="User.Text" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="UserId.Text" xml:space="preserve">
+    <value>Id usuario;</value>
+  </data>
+  <data name="Username.Text" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="Website.Text" xml:space="preserve">
+    <value>Sitio web</value>
+  </data>
+</root>
