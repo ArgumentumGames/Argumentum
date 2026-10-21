@@ -200,7 +200,7 @@ namespace Argumentum.AssetConverter
         public static void ConvertToCmyk(this MagickImage image)
         {
 
-            image.Alpha(AlphaOption.Remove);
+            image.Alpha(AlphaAction.Remove);
             image.Settings.BackgroundColor = MagickColors.White;
             // ⚠️ Ne pas réintroduire de strip d'alpha ici : voir StripAlphaOnWhite, câblé en amont
             // dans LoadAndProcessImageUrl (c'est lui qui détient l'invariant d'opacité des PNG).
@@ -216,7 +216,7 @@ namespace Argumentum.AssetConverter
         /// Composite le canal alpha sur fond blanc puis le retire. Restaure l'opacité des PNG
         /// écrits par <c>LoadAndProcessImageUrl</c> SANS le round-trip colorimétrique de #1111 :
         /// la conversion per-image retirée par #1321 strippait l'alpha par effet de bord de
-        /// <c>Alpha(AlphaOption.Remove)</c>, et sa suppression laisse le RGBA des captures
+        /// <c>Alpha(AlphaAction.Remove)</c>, et sa suppression laisse le RGBA des captures
         /// domtoimage atteindre les PDFs (SMask), que la passe PDF/X aplatit à sa résolution
         /// device par défaut — 720 dpi, ×5,76 pixels pour zéro information (#134). La même
         /// opération de retrait est réintroduite seule, sans transformation de profil.
@@ -226,7 +226,7 @@ namespace Argumentum.AssetConverter
         public static void StripAlphaOnWhite(this MagickImage image)
         {
             image.BackgroundColor = MagickColors.White;
-            image.Alpha(AlphaOption.Remove);
+            image.Alpha(AlphaAction.Remove);
         }
 
         /// <summary>
