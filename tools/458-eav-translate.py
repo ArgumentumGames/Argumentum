@@ -24,6 +24,7 @@ import csv
 import io
 import json
 import os
+import re
 import sys
 import urllib.error
 import urllib.request
@@ -43,11 +44,15 @@ TRANSLATABLE = {
     # game rule blocks
     "RuleSummary", "RuleMaterial", "RuleInstallation", "RuleContent", "RuleVariants",
     "RuleMemoInstructions", "Material", "Installation", "Variants", "Memo",
+    # a *label*, not the asset it points at (RuleMemoCardDownload is the URL)
+    "RuleMemoCard",
 }
 # Shapes that must never be translated even when the field name looks prose-y.
 NEVER = {"UrlKey", "Path", "Email", "Link", "Images", "AlbumThumbnail", "Image",
          "CropAnchor", "SortMode", "HeadingType", "RuleMemoCardFileNamePrefix",
-         "RuleMemoCardDownload", "RuleMemoCard"}
+         "RuleMemoCardDownload"}
+# Content types whose fields are identities (people, brands, mailboxes, slugs).
+SKIP_TYPES = {"Contributor", "Location", "Person"}
 
 PROMPT = (
     "You translate user-visible web content. The source text is French or English. "
@@ -55,10 +60,15 @@ PROMPT = (
     "object mapping each requested language code to the translation. "
     "Rules: (1) HTML fragments are common — keep every tag, attribute, class, href, "
     "src, GUID and URL byte-for-byte; translate only human-readable text nodes and "
-    "alt/title attribute values. (2) Never translate brand names, proper nouns, "
-    "product names, e-mail addresses or slugs unless a conventional exonym exists. "
-    "(3) Keep the register of a public educational game site. (4) Do not add or drop "
-    "information. (5) If a value is a pure identifier or an empty string, echo it "
+    "alt/title attribute values. (2) Never translate brand names, organisation names, "
+    "people's names, e-mail addresses or slugs unless a conventional exonym exists. "
+    "(2b) Creative titles — of a game rule, an activity, a workshop, an article — are "
+    "content, not brands: translate them the way the other languages of the site do. "
+    "(3) Emoji, arrows and symbol sequences (🥇 ✅ ➜ 🏆 …) are game notation: copy them "
+    "exactly as they appear, in the same order, and translate only the words around them. "
+    "HTML entities such as &eacute; or &rsquo; may stay as they are. "
+    "(4) Keep the register of a public educational game site. (5) Do not add or drop "
+    "information. (6) If a value is a pure identifier or an empty string, echo it "
     "unchanged. Respond with JSON only."
 )
 
@@ -79,10 +89,16 @@ def save(path, rows, header):
     open(path, "w", encoding="utf-8", newline="").write(buf.getvalue())
 
 
-def select(rows, apps, langs, overwrite):
+def select(rows, apps, types, langs, overwrite, only=None):
     todo = []
     for r in rows:
+        if only and not re.search(only, r.get("key") or ""):
+            continue
         if apps and str(r.get("app_id")) not in apps:
+            continue
+        if types and (r.get("content_type") or "") not in types:
+            continue
+        if (r.get("content_type") or "") in SKIP_TYPES:
             continue
         field = r.get("field") or ""
         if field in NEVER or field not in TRANSLATABLE:
@@ -98,6 +114,40 @@ def select(rows, apps, langs, overwrite):
 
 def key_of(r):
     return r["key"]
+
+
+# Ranges that carry pictograms, arrows and marker sequences in this corpus.
+MARKER_RANGES = ((0x2190, 0x21FF), (0x2200, 0x22FF), (0x2300, 0x23FF),
+                 (0x2460, 0x24FF), (0x2600, 0x27BF), (0x2B00, 0x2BFF),
+                 (0x1F000, 0x1FAFF), (0xFE00, 0xFE0F), (0x200D, 0x200D))
+
+
+def markers(s):
+    """Multiset of symbol characters — a translation must preserve every one."""
+    return {c: s.count(c) for c in set(s)
+            if any(lo <= ord(c) <= hi for lo, hi in MARKER_RANGES)}
+
+
+def validate(src, tgt):
+    """A cell is written only if the markup and the marker sequence survive intact.
+
+    Returns a list of problems; an empty list means the translation is admissible.
+    """
+    if not tgt or not tgt.strip():
+        return ["empty translation"]
+    problems = []
+    tags = lambda s: sorted(re.findall(r"</?([a-zA-Z][a-zA-Z0-9]*)", s.lower()))
+    attrs = lambda s: sorted(re.findall(r"\s([a-zA-Z-]+)\s*=", s))
+    urls = lambda s: sorted(re.findall(r'(?:href|src)="([^"]*)"', s))
+    if tags(src) != tags(tgt):
+        problems.append(f"HTML tags differ: {tags(src)} -> {tags(tgt)}")
+    if attrs(src) != attrs(tgt):
+        problems.append(f"HTML attributes differ: {attrs(src)} -> {attrs(tgt)}")
+    if urls(src) != urls(tgt):
+        problems.append(f"URLs differ: {urls(src)} -> {urls(tgt)}")
+    if markers(src) != markers(tgt):
+        problems.append(f"pictograms differ: {markers(src)} -> {markers(tgt)}")
+    return problems
 
 
 def schema_for(payload):
@@ -157,6 +207,8 @@ def main():
     ap.add_argument("--in", dest="src", default="docs/dnn-localization/eav-content.csv")
     ap.add_argument("--out", default=None)
     ap.add_argument("--apps", default="")
+    ap.add_argument("--types", default="")
+    ap.add_argument("--only", default="", help="regex on the row key (GUID|Field)")
     ap.add_argument("--langs", default=",".join(LANGS))
     ap.add_argument("--model", default="claude-sonnet-5-5")
     ap.add_argument("--base", default="https://api.anthropic.com/v1")
@@ -170,10 +222,11 @@ def main():
     a = ap.parse_args()
 
     apps = {x.strip() for x in a.apps.split(",") if x.strip()}
+    types = {x.strip() for x in a.types.split(",") if x.strip()}
     langs = [x.strip() for x in a.langs.split(",") if x.strip()]
     rows = load(a.src)
     header = list(rows[0].keys())
-    todo = select(rows, apps, langs, a.overwrite)
+    todo = select(rows, apps, types, langs, a.overwrite, a.only or None)
 
     if a.self_test:
         # Serialization must round-trip the untouched pivot byte-for-byte.
@@ -188,7 +241,8 @@ def main():
     if a.limit:
         todo = todo[: a.limit]
     cells = sum(len(m) for _, m in todo)
-    print(f"selection: {len(todo)} rows, {cells} cells, apps={sorted(apps) or 'ALL'} langs={langs}")
+    print(f"selection: {len(todo)} rows, {cells} cells, apps={sorted(apps) or 'ALL'} "
+          f"types={sorted(types) or 'ALL'} langs={langs}")
     if a.dry_run or not todo:
         for r, missing in todo[:10]:
             print(f"  {r['app_id']}/{r['content_type']}/{r['field']}: {r['fr'][:50]!r} -> {missing}")
@@ -200,6 +254,7 @@ def main():
     pin, pout = PRICES.get(a.model, (0.0, 0.0))
     tin = tout = 0
     done = 0
+    rejects = []
     for i in range(0, len(todo), a.batch):
         batch = todo[i : i + a.batch]
         payload = {key_of(r): {l: r["fr"] for l in missing} for r, missing in batch}
@@ -217,14 +272,22 @@ def main():
             got = out.get(key_of(r)) or {}
             for l in missing:
                 v = got.get(l)
-                if isinstance(v, str) and v.strip():
-                    r[l] = v
-                    done += 1
+                if not isinstance(v, str):
+                    continue
+                bad = validate(r["fr"], v)
+                if bad:
+                    rejects.append((r["key"], r["field"], l, "; ".join(bad)[:220]))
+                    continue
+                r[l] = v
+                done += 1
         print(f"  batch {i // a.batch + 1}: {len(batch)} rows, cumulative cells={done}, "
               f"in={tin} out={tout}")
 
+    for rej in rejects:
+        print("  REJECT", rej[0][:8], rej[1], rej[2], "::", rej[3], file=sys.stderr)
     spend = tin / 1e6 * pin + tout / 1e6 * pout
-    print(f"TOTAL cells written={done} tokens in={tin} out={tout} spend=${spend:.4f} ({a.model})")
+    print(f"TOTAL cells written={done} rejected={len(rejects)} tokens in={tin} out={tout} "
+          f"spend=${spend:.4f} ({a.model})")
     if a.out:
         save(a.out, rows, header)
         print("written", a.out)
