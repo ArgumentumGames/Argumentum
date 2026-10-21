@@ -339,6 +339,11 @@ namespace Argumentum.AssetConverter.Tests.DatasetUpdater
 			"ténis",
 			"unilaterais",
 			"universais",
+			// Passe 3 Virtues (21/10) : « provas úteis » — pluriel de l'adjectif « útil »,
+			// aucun verbe *utir. Accent sur l'antépénultième (Ú-teis), là où une 2pl
+			// porte l'accent sur la finale (atribuís, constróis). Mesuré absent des 5
+			// corpus avant cette passe, donc jamais listé — contrôle négatif ci-dessous.
+			"úteis",
 			"valores",
 			"variáveis",
 			"verbais",
@@ -591,6 +596,7 @@ namespace Argumentum.AssetConverter.Tests.DatasetUpdater
 				"constróis uma representação",
 				"atribuis erroneamente tuas emoções",
 				"que Vossa Majestade não se zangue",
+				"apoiado em provas úteis para a conclusão",
 				"https://pt.wikipedia.org/wiki/Divis%C3%A3o_(fal%C3%A1cia)",
 			})
 			{
