@@ -9,7 +9,7 @@ namespace Argumentum.AssetConverter.Tests
 	/// <summary>
 	/// #134 (720 dpi) — contrat de régression du strip d'alpha sur blanc
 	/// (<c>ImageHelper.StripAlphaOnWhite</c>). Le round-trip per-image retiré par #1321 strippait
-	/// l'alpha par effet de bord de <c>Alpha(AlphaOption.Remove)</c> ; sans lui, le RGBA des
+	/// l'alpha par effet de bord de <c>Alpha(AlphaAction.Remove)</c> ; sans lui, le RGBA des
 	/// captures domtoimage survit jusqu'aux PDFs (SMask) et la passe PDF/X aplatit la transparence
 	/// à sa résolution device par défaut (720 dpi). Ce contrat épingle la propriété qui autorise
 	/// le strip : il est une <b>identité exacte sur tout pixel α=255</b> — le garde-fou contre un
