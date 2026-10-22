@@ -75,14 +75,16 @@ namespace Argumentum.AssetConverter.Tests.Localization
         {
             (MainRulesCsv, "Rules_02",  "Text_ru", "a23bfc05251d0538630e2be5b6310f771812f0176d3804fa32c1b131498cca7e"),
             (MainRulesCsv, "Rules_09",  "Text_ar", "735a7ab8017508431287f23c5a513e8c04b258a18c42aa6a49382107f3902c42"),
-            (MainRulesCsv, "Rules_11",  "Text_es", "653fc8262b038a2384a03c67c057c13ca6e0eb763624a3cd813b8d179884355d"),
+            // Rules_11/13 Text_es re-pinned with the piocheur term swap (lector -> robador,
+            // dispatch ai-01 22/10 17:17): re-derived from the corrected CSV, same commit.
+            (MainRulesCsv, "Rules_11",  "Text_es", "ac93df65300b5feb6d7b8027f9cc7647a8d7caeb9152fb20d63a209c9fadc5fe"),
             // Rules_13 ar/es re-pinned 05/10 in the same commit as the 32 -> 28 fix (grain 4 of
             // pool c.5988407613, GO owner): the full-cell pin reddens on ANY byte change, which
             // is its job — these two cells legitimately changed (« 32 cartes » -> 28, the source
             // contradiction of dossier regles-sources-fr-en §4.1). Re-derived from the corrected
             // CSV, cross-checked against RulesEnCorrectionsGuardTests' own pins (identical).
             (MainRulesCsv, "Rules_13",  "Text_ar", "3ea7636d8980c0799acd99b1cb1a442679fe0428e7e18dac2cca52432368bf0b"),
-            (MainRulesCsv, "Rules_13",  "Text_es", "1f2ffdd998fcdfc05d80451fa7cdd6f522a03b4a7b0a60a11c6f4a93acd269be"),
+            (MainRulesCsv, "Rules_13",  "Text_es", "414c1fada5250939f1a06f42737f34ef8f39ce90ecf5dc347671035a31087d85"),
             (PpRulesCsv,   "RulesPP_02", "Text_ru", "a23bfc05251d0538630e2be5b6310f771812f0176d3804fa32c1b131498cca7e"),
         };
 
