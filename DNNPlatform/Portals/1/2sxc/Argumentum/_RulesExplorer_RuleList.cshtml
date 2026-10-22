@@ -9,6 +9,8 @@
         : lang == "pt" ? "de {0} a {1} jogadores"
         : lang == "ru" ? "от {0} до {1} игроков"
         : lang == "zh" ? "{0}至{1}名玩家"
+        : lang == "ar" ? "من {0} إلى {1} لاعبين"
+        : lang == "fa" ? "از {0} تا {1} بازیکن"
         : "de {0} à {1} joueurs";
 }
 
@@ -17,6 +19,22 @@
 {
     var view1Parameters = "details=" + ruleEntity.UrlKey+ "&mid=" + CmsContext.Module.Id;
 
+    // #458 19: fa cards carry PERSIAN digits - see _RulesExplorer_RuleDetail.cshtml.
+    var playersText = string.Format(playersFormat, ruleEntity.MinNbPlayers, ruleEntity.MaxNbPlayers);
+    if (lang == "fa")
+    {
+        var persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+        var digits = playersText.ToCharArray();
+        for (var i = 0; i < digits.Length; i++)
+        {
+            if (digits[i] >= (char)48 && digits[i] <= (char)57)
+            {
+                digits[i] = persianDigits[digits[i] - 48];
+            }
+        }
+        playersText = new string(digits);
+    }
+
     <div class="rule row mb-4 mb-md-5" @Edit.TagToolbar(ruleEntity)>
         <div class="col-md-12 position-relative">
             <h2>@ruleEntity.Title</h2>
@@ -24,7 +42,7 @@
             <div class="col-md-12">
                 <div class="row">
                     <div class="nbPlayers mb-3 mb-md-0 col-12 col-md-6 col-lg-4">
-                        <h6>@string.Format(playersFormat, ruleEntity.MinNbPlayers, ruleEntity.MaxNbPlayers)</h6>
+                        <h6>@playersText</h6>
                     </div>
                     <div class="col-12 col-md-6 col-lg-8">
                         @Html.Raw(ruleEntity.Summary)

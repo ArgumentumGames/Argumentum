@@ -27,7 +27,8 @@ namespace Argumentum.AssetConverter.Tests
 	/// repli fr (le commutateur ne peut pas « échouer », il se replie).</item>
 	/// <item><b>Attestation</b> — la chaîne de chaque branche, nombres substitués, existe
 	/// dans les cartes de SA langue (<c>Text</c>, <c>Text_en</c>, <c>Text_es</c>,
-	/// <c>Text_pt</c>, <c>Text_ru</c>, <c>Text_zh</c> du CSV Règles). Une forme de gabarit
+	/// <c>Text_pt</c>, <c>Text_ru</c>, <c>Text_zh</c>, <c>Text_ar</c>, <c>Text_fa</c> du
+	/// CSV Règles). Une forme de gabarit
 	/// que rien ne porte dans le corpus serait servie sans preuve d'usage.</item>
 	/// </list>
 	///
@@ -53,6 +54,18 @@ namespace Argumentum.AssetConverter.Tests
 			["pt"] = "Text_pt",
 			["ru"] = "Text_ru",
 			["zh"] = "Text_zh",
+			["ar"] = "Text_ar",
+			["fa"] = "Text_fa",
+		};
+
+		/// <summary>Langues dont le gabarit CONVERTIT le système de chiffres, avec la raison
+		/// mesurée. Le canal est à deux sens : une conversion sans corpus non-ASCII serait une
+		/// invention ; un corpus non-ASCII sans conversion laisserait la légende en ASCII sous
+		/// une carte en chiffres persans. Mesure 22/10 sur le CSV Règles : <c>Text_fa</c> porte
+		/// 94 chiffres persans contre 20 ASCII, les sept autres colonnes 0 non-ASCII.</summary>
+		private static readonly IReadOnlyDictionary<string, string> ConvertingLangs = new Dictionary<string, string>
+		{
+			["fa"] = "Text_fa : 94 chiffres persans contre 20 ASCII (mesuré 22/10 sur le CSV Règles)",
 		};
 
 		// ── Détecteur pur (calibrable sur des textes fabriqués) ──────────────────────────
@@ -155,6 +168,87 @@ namespace Argumentum.AssetConverter.Tests
 			return unattested;
 		}
 
+		/// <summary>Systèmes de chiffres décimaux d'une cellule/colonne : ASCII (U+0030–U+0039)
+		/// contre tout autre chiffre décimal Unicode Nd (arabo-indien U+0660–, persan U+06F0–…).
+		/// L'ASCII est testé en premier : <c>char.IsDigit</c> est vrai pour lui aussi.</summary>
+		internal static (int Ascii, int NonAscii) DigitSystemCounts(string columnText)
+		{
+			var ascii = 0;
+			var nonAscii = 0;
+			foreach (var ch in columnText ?? string.Empty)
+			{
+				if (ch >= '0' && ch <= '9') ascii++;
+				else if (char.IsDigit(ch)) nonAscii++;
+			}
+			return (ascii, nonAscii);
+		}
+
+		/// <summary>Branches dont le SYSTÈME DE CHIFFRES servi ne suit pas le corpus.
+		/// Le gabarit rend les nombres via <c>string.Format</c>, et .NET n'applique JAMAIS
+		/// <c>NumberFormatInfo.NativeDigits</c> : la forme servie est ASCII pour toutes les
+		/// langues. Ce canal ne l'affirme pas d'autorité — il le confronte au corpus et
+		/// rougit si une langue bascule vers un autre système sans que le gabarit suive.
+		/// Vide = vert.</summary>
+		internal static List<string> DigitSystemOffenders(
+			IReadOnlyList<(string Lang, string Format)> branches,
+			IReadOnlyDictionary<string, string> columnTextByLang,
+			ICollection<string> convertingLangs)
+		{
+			var offenders = new List<string>();
+			foreach (var (lang, format) in branches)
+			{
+				if (!columnTextByLang.TryGetValue(lang, out var column) || string.IsNullOrEmpty(column))
+				{
+					offenders.Add($"{lang} : colonne CSV absente ou vide — système de chiffres non jugeable");
+					continue;
+				}
+				if (!AttestationPattern(format).IsMatch(column))
+				{
+					offenders.Add($"{lang} : forme « {format} » non attestée — système de chiffres non jugeable");
+					continue;
+				}
+				var (ascii, nonAscii) = DigitSystemCounts(column);
+				var converts = convertingLangs.Contains(lang);
+				if (nonAscii > ascii && !converts)
+					offenders.Add($"{lang} : le corpus porte {nonAscii} chiffres non-ASCII contre {ascii} ASCII mais le gabarit ne convertit pas — la légende servie serait en ASCII sous une carte qui ne l'est pas");
+				if (nonAscii <= ascii && converts)
+					offenders.Add($"{lang} : le gabarit convertit alors que le corpus est ASCII-dominant ({ascii} ASCII contre {nonAscii} non-ASCII) — conversion sans preuve d'usage");
+			}
+			return offenders;
+		}
+
+		/// <summary>Blocs de contrôle Razor écrits SANS accolades. Payé le 22/10 : un
+		/// <c>for</c> suivi d'un <c>if</c> non accoladés dans le corps d'un <c>@foreach</c> ont
+		/// fait rendre « Error Showing Content » à la page servie — le parseur Razor ne prend
+		/// pas le corps d'un <c>for</c> non accoladé pour du code, et la page entière est
+		/// perdue (trouvé par bisection, 2 allers-retours sur la préprod). Un bloc dont le
+		/// corps tient sur une seule instruction n'est pas une exception : ici, les accolades.
+		/// Vide = vert.</summary>
+		internal static List<string> UnbracedControlBlocks(string templateText)
+		{
+			var offenders = new List<string>();
+			var lines = (templateText ?? string.Empty).Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+			for (var i = 0; i < lines.Length; i++)
+			{
+				var line = lines[i].TrimStart();
+				var keyword = Regex.Match(line, @"^(?:@)?(?<kw>for|if|while|foreach)\s*\(");
+				if (!keyword.Success)
+					continue;
+				// Le corps sur la même ligne (« for (...) { ») ou l'accolade à la ligne suivante.
+				var sameLine = line.IndexOf('{') >= 0;
+				var nextLine = false;
+				for (var j = i + 1; j < lines.Length && !nextLine; j++)
+				{
+					var next = lines[j].Trim();
+					if (next.Length == 0) continue;
+					nextLine = next.StartsWith("{", StringComparison.Ordinal);
+				}
+				if (!sameLine && !nextLine)
+					offenders.Add($"ligne {i + 1} : « {line.Trim()} » sans accolade — le parseur Razor peut perdre la page entière");
+			}
+			return offenders;
+		}
+
 		// ── Lecture du corpus ────────────────────────────────────────────────────────────
 
 		private static string GabaritPath(string root, string name)
@@ -212,12 +306,12 @@ namespace Argumentum.AssetConverter.Tests
 			var detail = ParseCultureSwitch(File.ReadAllText(detailPath));
 			var list = ParseCultureSwitch(File.ReadAllText(listPath));
 
-			// Anti-vacuité : le commutateur d'aujourd'hui porte 6 branches (repli fr +
-			// en/es/pt/ru/zh, mesuré 20/10 sur dd912f67). Un parseur qui ne verrait plus
-			// rien rendrait la garde verte sur 0 branche — le plancher attrape ça.
-			detail.Should().HaveCount(c => c >= 6,
-				"le commutateur D1 porte aujourd'hui 6 branches (fr + en/es/pt/ru/zh) — moins signifie un parseur cassé ou un commutateur amputé");
-			detail.Select(b => b.Lang).Should().ContainInOrder(new[] { "en", "es", "pt", "ru", "zh", "fr" },
+			// Anti-vacuité : le commutateur d'aujourd'hui porte 8 branches (repli fr +
+			// en/es/pt/ru/zh/ar/fa, mesuré 22/10 sur 503460c6). Un parseur qui ne verrait
+			// plus rien rendrait la garde verte sur 0 branche — le plancher attrape ça.
+			detail.Should().HaveCount(c => c >= 8,
+				"le commutateur D1 porte aujourd'hui 8 branches (fr + en/es/pt/ru/zh/ar/fa) — moins signifie un parseur cassé ou un commutateur amputé");
+			detail.Select(b => b.Lang).Should().ContainInOrder(new[] { "en", "es", "pt", "ru", "zh", "ar", "fa", "fr" },
 				"l'ordre mesuré des branches — une langue déplacée doit passer par ici, pas par le diff");
 
 			SwitchDifferences(detail, list).Should().BeEmpty(
@@ -233,6 +327,57 @@ namespace Argumentum.AssetConverter.Tests
 				"la chaîne de chaque branche D1 doit être attestée dans les cartes de SA langue après substitution des nombres " +
 				"(« celle des cartes », décision ai-01 20/10 01:17) — une forme que le corpus ne porte pas est servie sans preuve d'usage. Non attestées : " +
 				string.Join(" | ", UnattestedBranches(detail, texts)));
+		}
+
+		/// <summary>Canal du système de chiffres (grain ⑲). La forme fr est le contrôle
+		/// positif : sans elle, un compte à 0 ne distinguerait pas « corpus ASCII » d'un
+		/// instrument aveugle.</summary>
+		[Fact]
+		public void Le_Systeme_De_Chiffres_Servi_Suit_Celui_Dominant_Du_Corpus()
+		{
+			var root = TestRepoRoot.Find();
+			var (header, rows) = ReadRulesCsv(root);
+			var texts = ColumnTextsByLang(header, rows);
+			var detail = ParseCultureSwitch(File.ReadAllText(GabaritPath(root, DetailName)));
+
+			// Contrôle positif : l'instrument VOIT des chiffres non-ASCII quand il y en a
+			// (mesuré 22/10 : Text_fa en porte 274 pour 3 813 ASCII). Un zéro ici
+			// signalerait un compteur cassé, pas un corpus propre.
+			DigitSystemCounts(texts["fa"]).NonAscii.Should().BeGreaterThan(0,
+				"contrôle positif : le corpus fa porte des chiffres persans (mesuré 274) — 0 signalerait un instrument aveugle");
+
+			// Le mécanisme doit EXISTER dans les deux gabarits, pas seulement être déclaré ici :
+			// la table de conversion, et un appel qui passe par la variable convertie (plus
+			// aucun formatage inline dans la sortie Razor).
+			foreach (var name in new[] { DetailName, ListName })
+			{
+				var templateText = File.ReadAllText(GabaritPath(root, name));
+				foreach (var (convertedLang, reason) in ConvertingLangs)
+				{
+					templateText.Should().Contain("۰۱۲۳۴۵۶۷۸۹",
+						$"{name} doit porter la table de chiffres persans — {convertedLang} : {reason}");
+					templateText.Should().NotContain("@string.Format(playersFormat",
+						$"{name} doit rendre via la variable convertie, pas formater inline dans la sortie Razor");
+					templateText.Should().Contain("@playersText",
+						$"{name} doit sortir la variable convertie");
+				}
+			}
+
+			// Le parseur Razor ne signale rien : une accolade manquante se paie par une page
+			// morte (« Error Showing Content »), pas par un test rouge. D'où ce canal statique.
+			foreach (var name in new[] { DetailName, ListName })
+			{
+				var unbraced = UnbracedControlBlocks(File.ReadAllText(GabaritPath(root, name)));
+				unbraced.Should().BeEmpty(
+					$"{name} : un bloc de contrôle sans accolades fait perdre la page servie entière — " +
+					string.Join(" | ", unbraced));
+			}
+
+			var offenders = DigitSystemOffenders(detail, texts, ConvertingLangs.Keys.ToList());
+			offenders.Should().BeEmpty(
+				"le système de chiffres servi (ASCII, ce que rend string.Format) doit rester celui qui domine le corpus de chaque langue — " +
+				"une langue qui bascule vers des chiffres non-ASCII sans conversion dans le gabarit est signalée. Contrevenants : " +
+				string.Join(" | ", offenders));
 		}
 
 		// ── Calibrations (le dispatch exige le rouge démontré sur chaque canal) ──────────
@@ -279,6 +424,53 @@ namespace Argumentum.AssetConverter.Tests
 			unattested.Should().ContainSingle("seule la branche mutée doit être signalée");
 			unattested[0].Should().Contain("fr").And.Contain("participants",
 				"le signalement est nominatif : langue ET forme du mutant");
+		}
+
+		/// <summary>Mutation du canal « système de chiffres » : une colonne fabriquée où les
+		/// chiffres non-ASCII dominent doit être signalée, et la même colonne en ASCII ne doit
+		/// pas l'être — les deux sens, sinon le canal ne prouve que sa propre vacuité.</summary>
+		[Fact]
+		public void Detecteur_Rouge_Sur_Systeme_De_Chiffres_Non_Servi()
+		{
+			var branches = new List<(string Lang, string Format)> { ("fa", "از {0} تا {1} بازیکن") };
+
+			var persian = new Dictionary<string, string>
+			{
+				["fa"] = "از ۳ تا ۱۰ بازیکن، و ۲۰ و ۳۰ و ۴۰ و ۵۰ و ۶۰ و ۷۰",
+			};
+			// 1) corpus persan, aucune conversion déclarée => rouge nominatif.
+			var offenders = DigitSystemOffenders(branches, persian, new List<string>());
+			offenders.Should().ContainSingle("une majorité de chiffres persans sans conversion doit être signalée");
+			offenders[0].Should().Contain("fa").And.Contain("non-ASCII",
+				"le signalement est nominatif : langue ET système de chiffres");
+
+			// 2) même corpus, conversion déclarée => vert.
+			DigitSystemOffenders(branches, persian, new List<string> { "fa" }).Should().BeEmpty(
+				"un corpus persan AVEC conversion ne doit rien signaler — sinon le canal rougit sur la forme saine");
+
+			// 3) corpus ASCII, conversion déclarée => rouge (conversion sans preuve d'usage).
+			var ascii = new Dictionary<string, string>
+			{
+				["fa"] = "از 3 تا 10 بازیکن، و 20 و 30 و 40 و 50 و 60 و 70",
+			};
+			var invented = DigitSystemOffenders(branches, ascii, new List<string> { "fa" });
+			invented.Should().ContainSingle("une conversion sans corpus non-ASCII doit être signalée");
+			invented[0].Should().Contain("ASCII-dominant");
+		}
+
+		/// <summary>Calibration du canal « accolades » dans les deux sens : la forme qui a cassé
+		/// la préprod le 22/10 doit être signalée, et la même en accolades ne doit pas l'être.</summary>
+		[Fact]
+		public void Detecteur_Rouge_Sur_Bloc_Sans_Accolades()
+		{
+			var broken = "@foreach (var x in AsList(Data))\n{\n    if (lang == \"fa\")\n        playersText = Convert(playersText);\n}";
+			var offenders = UnbracedControlBlocks(broken);
+			offenders.Should().ContainSingle("un if non accoladé doit être signalé");
+			offenders[0].Should().Contain("if", "le signalement nomme le bloc");
+
+			var fixedForm = "@foreach (var x in AsList(Data))\n{\n    if (lang == \"fa\")\n    {\n        playersText = Convert(playersText);\n    }\n}";
+			UnbracedControlBlocks(fixedForm).Should().BeEmpty(
+				"la même forme en accolades ne doit RIEN signaler — sinon le canal rougit sur le correctif");
 		}
 	}
 }
