@@ -12,7 +12,29 @@
         : lang == "pt" ? "de {0} a {1} jogadores"
         : lang == "ru" ? "от {0} до {1} игроков"
         : lang == "zh" ? "{0}至{1}名玩家"
+        : lang == "ar" ? "من {0} إلى {1} لاعبين"
+        : lang == "fa" ? "از {0} تا {1} بازیکن"
         : "de {0} à {1} joueurs";
+
+    // #458 ⑲: the fa cards carry PERSIAN digits («از ۳ تا ۱۰ بازیکن» — Text_fa holds 94
+    // Persian digits against 20 ASCII, measured 22/10; every other language column is pure
+    // ASCII). .NET number formatting never applies NumberFormatInfo.NativeDigits, so the
+    // caption would come out ASCII and disagree with the card - convert to match it.
+    // Keep the conversion in sync with _RulesExplorer_RuleList.cshtml.
+    var playersText = string.Format(playersFormat, ruleEntity.MinNbPlayers, ruleEntity.MaxNbPlayers);
+    if (lang == "fa")
+    {
+        var persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+        var digits = playersText.ToCharArray();
+        for (var i = 0; i < digits.Length; i++)
+        {
+            if (digits[i] >= (char)48 && digits[i] <= (char)57)
+            {
+                digits[i] = persianDigits[digits[i] - 48];
+            }
+        }
+        playersText = new string(digits);
+    }
 
     //QRCode logic
 
@@ -42,7 +64,7 @@
         <h1>
             @ruleEntity.Title
         </h1>
-        <h5>@string.Format(playersFormat, ruleEntity.MinNbPlayers, ruleEntity.MaxNbPlayers)</h5>
+        <h5>@playersText</h5>
         <h2>@Resources.RuleSummary</h2>
         @Html.Raw(ruleEntity.Summary)
     </div>
