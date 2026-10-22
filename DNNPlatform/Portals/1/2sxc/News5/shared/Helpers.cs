@@ -50,7 +50,11 @@ public class Helpers: Custom.Hybrid.Code12
     if(!(ci.Calendar is GregorianCalendar)) {
       GregorianCalendar greg = null;
       foreach(var cal in ci.OptionalCalendars) {
-        if(cal is GregorianCalendar) { greg = (GregorianCalendar)cal; break; }
+        var g = cal as GregorianCalendar;
+        if(g == null) { continue; }
+        // prefer Localized (day-month order): ar-SA lists USEnglish first -> would render 2/28/2023
+        if(g.CalendarType == GregorianCalendarTypes.Localized) { greg = g; break; }
+        if(greg == null) { greg = g; }
       }
       if(greg == null) { greg = new GregorianCalendar(); }
       ci.DateTimeFormat.Calendar = greg;
