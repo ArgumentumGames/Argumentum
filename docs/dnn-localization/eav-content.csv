@@ -1607,10 +1607,10 @@ F2978F96-0847-4B7F-B533-C72E747C3214|UrlKey,52,Category,F2978F96-0847-4B7F-B533-
 FB8CBFA6-77D1-4EEF-94D5-87B0B740E467|Name,52,Category,FB8CBFA6-77D1-4EEF-94D5-87B0B740E467,Name,String,editorial,Vidéo,Video,Видео,Vídeo,Vídeo,فيديو,ویدئو,视频
 FB8CBFA6-77D1-4EEF-94D5-87B0B740E467|PageTitle,52,Category,FB8CBFA6-77D1-4EEF-94D5-87B0B740E467,PageTitle,String,editorial,Vidéo,Video,Видео,Vídeo,Vídeo,فيديو,ویدئو,视频
 FB8CBFA6-77D1-4EEF-94D5-87B0B740E467|UrlKey,52,Category,FB8CBFA6-77D1-4EEF-94D5-87B0B740E467,UrlKey,String,editorial,video,,,,,,,
-15939744-22B3-4D23-8995-E61F9405269F|Title,52,News,15939744-22B3-4D23-8995-E61F9405269F,Title,String,editorial,Lancement d'Argumentum - Interview des co-créateurs,,,,,,,
+15939744-22B3-4D23-8995-E61F9405269F|Title,52,News,15939744-22B3-4D23-8995-E61F9405269F,Title,String,editorial,Lancement d'Argumentum - Interview des co-créateurs,Launch of Argumentum - Interview with the Co-Creators,Запуск Argumentum — интервью с соавторами,Lançamento do Argumentum - Entrevista com os cocriadores,Lanzamiento de Argumentum - Entrevista con los cocreadores,إطلاق Argumentum - مقابلة مع المبتكرين المشاركين,راه‌اندازی Argumentum - مصاحبه با خالقان مشترک,Argumentum 发布——联合创作者访谈
 15939744-22B3-4D23-8995-E61F9405269F|Image,52,News,15939744-22B3-4D23-8995-E61F9405269F,Image,Hyperlink,editorial,file:771,,,,,,,
 15939744-22B3-4D23-8995-E61F9405269F|CropAnchor,52,News,15939744-22B3-4D23-8995-E61F9405269F,CropAnchor,String,editorial,middlecenter,,,,,,,
-15939744-22B3-4D23-8995-E61F9405269F|Teaser,52,News,15939744-22B3-4D23-8995-E61F9405269F,Teaser,String,editorial,"À l'occasion du lancement d'Argumentum, nous présentons la genèse du projet, nos souhaits pour l'avenir, notre matériel et les premières règles du jeu pour découvrir l'univers du jeu de cartes en douceur.",,,,,,,
+15939744-22B3-4D23-8995-E61F9405269F|Teaser,52,News,15939744-22B3-4D23-8995-E61F9405269F,Teaser,String,editorial,"À l'occasion du lancement d'Argumentum, nous présentons la genèse du projet, nos souhaits pour l'avenir, notre matériel et les premières règles du jeu pour découvrir l'univers du jeu de cartes en douceur.","To mark the launch of Argumentum, we present the origins of the project, our hopes for the future, our materials and the first rules of the game, for a gentle introduction to the world of the card game.","По случаю запуска Argumentum мы рассказываем об истории возникновения проекта, о наших планах на будущее, о наших материалах и о первых правилах игры, чтобы плавно погрузиться в мир этой карточной игры.","Por ocasião do lançamento do Argumentum, apresentamos a génese do projeto, os nossos desejos para o futuro, o nosso material e as primeiras regras do jogo, para descobrir com suavidade o universo do jogo de cartas.","Con motivo del lanzamiento de Argumentum, presentamos la génesis del proyecto, nuestros deseos para el futuro, nuestro material y las primeras reglas del juego para descubrir con suavidad el universo del juego de cartas.",بمناسبة إطلاق Argumentum، نقدّم نشأة المشروع وتطلعاتنا للمستقبل ومواردنا وأولى قواعد اللعبة، لاكتشاف عالم لعبة الورق بسلاسة.,به مناسبت راه‌اندازی Argumentum، پیدایش پروژه، آرزوهای ما برای آینده، وسایل بازی و نخستین قوانین آن را معرفی می‌کنیم تا ورود به دنیای بازی ورق به‌آرامی و روان انجام شود.,值 Argumentum 发布之际，我们将介绍项目的缘起、对未来的期许、游戏材料以及最初的几条游戏规则，帮助大家轻松自然地走进纸牌游戏的世界。
 15939744-22B3-4D23-8995-E61F9405269F|Content,52,News,15939744-22B3-4D23-8995-E61F9405269F,Content,String,editorial,"<p>Vous retrouverez l'int&eacute;gralit&eacute; de notre pr&eacute;sentation <a href=""https://www.youtube.com/watch?v=559XtnjE57E&amp;t=4520s"" target=""_blank"" rel=""noopener"">&agrave; la suite de la table ronde sur notre cha&icirc;ne Youtube</a>.</p>
 <p>En plus du jeu de carte, l'ensemble du mat&eacute;riel num&eacute;rique libre de droit est disponible dans notre <a href=""/T&eacute;l&eacute;chargements"">page de t&eacute;l&eacute;chargement</a>.</p>
 <p>Durant cette pr&eacute;sentation, plusieurs notions suppl&eacute;mentaires sont abord&eacute;es:</p>
@@ -1645,24 +1645,304 @@ FB8CBFA6-77D1-4EEF-94D5-87B0B740E467|UrlKey,52,Category,FB8CBFA6-77D1-4EEF-94D5-
 <ul>
 <li>Le livre <a href=""https://www.seuil.com/ouvrage/le-pouvoir-rhetorique-clement-viktorovitch/9782021465877"" target=""_blank"" rel=""noopener"">Le pouvoir rh&eacute;torique</a> de <a href=""https://fr.wikipedia.org/wiki/Cl%C3%A9ment_Viktorovitch"" target=""_blank"" rel=""noopener"">Cl&eacute;ment Viktorovitch</a></li>
 </ul>
-<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Viktorovitch - Le pouvoir rh&eacute;torique.jpg"" alt=""Viktorovitch - Le pouvoir rh&eacute;torique"" /></p>",,,,,,,
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Viktorovitch - Le pouvoir rh&eacute;torique.jpg"" alt=""Viktorovitch - Le pouvoir rh&eacute;torique"" /></p>","<p>You will find our full presentation <a href=""https://www.youtube.com/watch?v=559XtnjE57E&amp;t=4520s"" target=""_blank"" rel=""noopener"">following the round table on our Youtube channel</a>.</p>
+<p>In addition to the card game, all of the royalty-free digital material is available on our <a href=""/T&eacute;l&eacute;chargements"">download page</a>.</p>
+<p>During this presentation, several additional concepts are covered:</p>
+<ul>
+<li><strong>The pyramid of the different types of intelligence</strong>, with argumentative reasoning falling under symbolic intelligence</li>
+</ul>
+<p><img style=""width: 100%; display: block; margin-left: auto; margin-right: auto;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Cours d'IA - Pyramide des Intelligences.png"" alt=""AI course - Pyramid of Intelligences"" /></p>
+<ul>
+<li><strong>the <a href=""https://www.informationisbeautiful.net/visualizations/rhetological-fallacies/"" target=""_blank"" rel=""noopener"">McCandless classification</a></strong>, also available for download.</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/942_Rhetological-960x491.png"" alt=""942_Rhetological-960x491"" /></p>
+<ul>
+<li><a href=""https://www.informationisbeautiful.net/visualizations/rhetological-fallacies/"">The intellectual code of conduct</a> of Argumentation</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Standard Ethique.png"" alt=""Ethical Standard"" /></p>
+<ul>
+<li><strong>The 5 criteria met by a good argument&nbsp;</strong></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Standard Proc&eacute;dural.png"" alt=""Procedural Standard"" /></p>
+<ul>
+<li><a href=""https://fr.wikipedia.org/wiki/Biais_cognitif"">The codex of cognitive biases</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Codex des biais cognitifs.png"" alt=""Codex of cognitive biases"" /></p>
+<ul>
+<li>The <a href=""https://en.wikipedia.org/wiki/Argument_Interchange_Format"" target=""_blank"" rel=""noopener"">Argument Interchange Format</a> ontology</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Argumentation-schemes-in-AIF-ontology.png"" alt=""Argumentation-schemes-in-AIF-ontology"" /></p>
+<ul>
+<li><a href=""https://unicode.org/emoji/charts/full-emoji-list.html"" target=""_blank"" rel=""noopener"">List of official Unicode emojis</a>.</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Emojis.png"" alt=""Emojis"" /></p>
+<ul>
+<li>The book <a href=""https://www.seuil.com/ouvrage/le-pouvoir-rhetorique-clement-viktorovitch/9782021465877"" target=""_blank"" rel=""noopener"">Le pouvoir rh&eacute;torique</a> by <a href=""https://fr.wikipedia.org/wiki/Cl%C3%A9ment_Viktorovitch"" target=""_blank"" rel=""noopener"">Cl&eacute;ment Viktorovitch</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Viktorovitch - Le pouvoir rh&eacute;torique.jpg"" alt=""Viktorovitch - Le pouvoir rh&eacute;torique"" /></p>","<p>Полную версию нашей презентации вы найдёте <a href=""https://www.youtube.com/watch?v=559XtnjE57E&amp;t=4520s"" target=""_blank"" rel=""noopener"">после круглого стола на нашем канале Youtube</a>.</p>
+<p>Помимо карточной игры, все цифровые материалы, свободные от авторских прав, доступны на нашей <a href=""/T&eacute;l&eacute;chargements"">странице загрузки</a>.</p>
+<p>В ходе этой презентации рассматриваются и другие понятия:</p>
+<ul>
+<li><strong>Пирамида различных типов интеллекта</strong>, при этом аргументативное рассуждение относится к символическому интеллекту</li>
+</ul>
+<p><img style=""width: 100%; display: block; margin-left: auto; margin-right: auto;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Cours d'IA - Pyramide des Intelligences.png"" alt=""Курс по ИИ - Пирамида интеллектов"" /></p>
+<ul>
+<li><strong><a href=""https://www.informationisbeautiful.net/visualizations/rhetological-fallacies/"" target=""_blank"" rel=""noopener"">классификация McCandless</a></strong>, также доступная для скачивания.</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/942_Rhetological-960x491.png"" alt=""942_Rhetological-960x491"" /></p>
+<ul>
+<li><a href=""https://www.informationisbeautiful.net/visualizations/rhetological-fallacies/"">Кодекс интеллектуального поведения</a> в аргументации</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Standard Ethique.png"" alt=""Этический стандарт"" /></p>
+<ul>
+<li><strong>5 критериев, которым соответствует хороший аргумент&nbsp;</strong></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Standard Proc&eacute;dural.png"" alt=""Процедурный стандарт"" /></p>
+<ul>
+<li><a href=""https://fr.wikipedia.org/wiki/Biais_cognitif"">Кодекс когнитивных искажений</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Codex des biais cognitifs.png"" alt=""Кодекс когнитивных искажений"" /></p>
+<ul>
+<li>Онтология <a href=""https://en.wikipedia.org/wiki/Argument_Interchange_Format"" target=""_blank"" rel=""noopener"">Argument Interchange Format</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Argumentation-schemes-in-AIF-ontology.png"" alt=""Argumentation-schemes-in-AIF-ontology"" /></p>
+<ul>
+<li><a href=""https://unicode.org/emoji/charts/full-emoji-list.html"" target=""_blank"" rel=""noopener"">Список официальных эмодзи Unicode</a>.</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Emojis.png"" alt=""Эмодзи"" /></p>
+<ul>
+<li>Книга <a href=""https://www.seuil.com/ouvrage/le-pouvoir-rhetorique-clement-viktorovitch/9782021465877"" target=""_blank"" rel=""noopener"">Le pouvoir rh&eacute;torique</a> автора <a href=""https://fr.wikipedia.org/wiki/Cl%C3%A9ment_Viktorovitch"" target=""_blank"" rel=""noopener"">Cl&eacute;ment Viktorovitch</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Viktorovitch - Le pouvoir rh&eacute;torique.jpg"" alt=""Viktorovitch - Le pouvoir rh&eacute;torique"" /></p>","<p>Você encontrará a íntegra da nossa apresentação <a href=""https://www.youtube.com/watch?v=559XtnjE57E&amp;t=4520s"" target=""_blank"" rel=""noopener"">após a mesa-redonda no nosso canal do Youtube</a>.</p>
+<p>Além do jogo de cartas, todo o material digital livre de direitos está disponível na nossa <a href=""/T&eacute;l&eacute;chargements"">página de download</a>.</p>
+<p>Durante esta apresentação, várias noções adicionais são abordadas:</p>
+<ul>
+<li><strong>A pirâmide dos diferentes tipos de inteligência</strong>, sendo o raciocínio argumentativo parte da inteligência simbólica</li>
+</ul>
+<p><img style=""width: 100%; display: block; margin-left: auto; margin-right: auto;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Cours d'IA - Pyramide des Intelligences.png"" alt=""Curso de IA - Pirâmide das Inteligências"" /></p>
+<ul>
+<li><strong>a <a href=""https://www.informationisbeautiful.net/visualizations/rhetological-fallacies/"" target=""_blank"" rel=""noopener"">classificação de McCandless</a></strong>, também disponível para download.</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/942_Rhetological-960x491.png"" alt=""942_Rhetological-960x491"" /></p>
+<ul>
+<li><a href=""https://www.informationisbeautiful.net/visualizations/rhetological-fallacies/"">O código de conduta intelectual</a> da Argumentação</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Standard Ethique.png"" alt=""Padrão Ético"" /></p>
+<ul>
+<li><strong>Os 5 critérios que um bom argumento respeita&nbsp;</strong></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Standard Proc&eacute;dural.png"" alt=""Padrão Procedimental"" /></p>
+<ul>
+<li><a href=""https://fr.wikipedia.org/wiki/Biais_cognitif"">O códice dos vieses cognitivos</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Codex des biais cognitifs.png"" alt=""Códice dos vieses cognitivos"" /></p>
+<ul>
+<li>A ontologia <a href=""https://en.wikipedia.org/wiki/Argument_Interchange_Format"" target=""_blank"" rel=""noopener"">Argument Interchange Format</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Argumentation-schemes-in-AIF-ontology.png"" alt=""Argumentation-schemes-in-AIF-ontology"" /></p>
+<ul>
+<li><a href=""https://unicode.org/emoji/charts/full-emoji-list.html"" target=""_blank"" rel=""noopener"">Lista dos emojis oficiais do Unicode</a>.</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Emojis.png"" alt=""Emojis"" /></p>
+<ul>
+<li>O livro <a href=""https://www.seuil.com/ouvrage/le-pouvoir-rhetorique-clement-viktorovitch/9782021465877"" target=""_blank"" rel=""noopener"">Le pouvoir rh&eacute;torique</a> de <a href=""https://fr.wikipedia.org/wiki/Cl%C3%A9ment_Viktorovitch"" target=""_blank"" rel=""noopener"">Cl&eacute;ment Viktorovitch</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Viktorovitch - Le pouvoir rh&eacute;torique.jpg"" alt=""Viktorovitch - Le pouvoir rh&eacute;torique"" /></p>","<p>Encontrará la presentación completa <a href=""https://www.youtube.com/watch?v=559XtnjE57E&amp;t=4520s"" target=""_blank"" rel=""noopener"">a continuación de la mesa redonda en nuestro canal de Youtube</a>.</p>
+<p>Además del juego de cartas, todo el material digital libre de derechos está disponible en nuestra <a href=""/T&eacute;l&eacute;chargements"">página de descargas</a>.</p>
+<p>Durante esta presentación se abordan varias nociones adicionales:</p>
+<ul>
+<li><strong>La pirámide de los diferentes tipos de inteligencia</strong>, donde el razonamiento argumentativo forma parte de la inteligencia simbólica</li>
+</ul>
+<p><img style=""width: 100%; display: block; margin-left: auto; margin-right: auto;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Cours d'IA - Pyramide des Intelligences.png"" alt=""Curso de IA - Pirámide de las Inteligencias"" /></p>
+<ul>
+<li><strong>la <a href=""https://www.informationisbeautiful.net/visualizations/rhetological-fallacies/"" target=""_blank"" rel=""noopener"">clasificación de McCandless</a></strong>, también disponible para descargar.</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/942_Rhetological-960x491.png"" alt=""942_Rhetological-960x491"" /></p>
+<ul>
+<li><a href=""https://www.informationisbeautiful.net/visualizations/rhetological-fallacies/"">El código de conducta intelectual</a> de la Argumentación</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Standard Ethique.png"" alt=""Estándar Ético"" /></p>
+<ul>
+<li><strong>Los 5 criterios que cumple un buen argumento&nbsp;</strong></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Standard Proc&eacute;dural.png"" alt=""Estándar Procedimental"" /></p>
+<ul>
+<li><a href=""https://fr.wikipedia.org/wiki/Biais_cognitif"">El códice de los sesgos cognitivos</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Codex des biais cognitifs.png"" alt=""Códice de los sesgos cognitivos"" /></p>
+<ul>
+<li>La ontología <a href=""https://en.wikipedia.org/wiki/Argument_Interchange_Format"" target=""_blank"" rel=""noopener"">Argument Interchange Format</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Argumentation-schemes-in-AIF-ontology.png"" alt=""Argumentation-schemes-in-AIF-ontology"" /></p>
+<ul>
+<li><a href=""https://unicode.org/emoji/charts/full-emoji-list.html"" target=""_blank"" rel=""noopener"">Lista de los emojis oficiales de Unicode</a>.</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Emojis.png"" alt=""Emojis"" /></p>
+<ul>
+<li>El libro <a href=""https://www.seuil.com/ouvrage/le-pouvoir-rhetorique-clement-viktorovitch/9782021465877"" target=""_blank"" rel=""noopener"">Le pouvoir rh&eacute;torique</a> de <a href=""https://fr.wikipedia.org/wiki/Cl%C3%A9ment_Viktorovitch"" target=""_blank"" rel=""noopener"">Cl&eacute;ment Viktorovitch</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Viktorovitch - Le pouvoir rh&eacute;torique.jpg"" alt=""Viktorovitch - Le pouvoir rh&eacute;torique"" /></p>","<p>يمكنكم مشاهدة عرضنا كاملاً <a href=""https://www.youtube.com/watch?v=559XtnjE57E&amp;t=4520s"" target=""_blank"" rel=""noopener"">بعد المائدة المستديرة على قناتنا على يوتيوب</a>.</p>
+<p>إضافةً إلى لعبة البطاقات، تتوفر جميع المواد الرقمية الحرة الاستخدام في <a href=""/T&eacute;l&eacute;chargements"">صفحة التنزيل</a> الخاصة بنا.</p>
+<p>خلال هذا العرض، تم تناول عدة مفاهيم إضافية:</p>
+<ul>
+<li><strong>هرم أنواع الذكاء المختلفة</strong>، حيث يندرج الاستدلال الحجاجي ضمن الذكاء الرمزي</li>
+</ul>
+<p><img style=""width: 100%; display: block; margin-left: auto; margin-right: auto;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Cours d'IA - Pyramide des Intelligences.png"" alt=""درس في الذكاء الاصطناعي - هرم الذكاءات"" /></p>
+<ul>
+<li><strong><a href=""https://www.informationisbeautiful.net/visualizations/rhetological-fallacies/"" target=""_blank"" rel=""noopener"">تصنيف ماكاندلس</a></strong>، المتوفر أيضاً للتنزيل.</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/942_Rhetological-960x491.png"" alt=""942_Rhetological-960x491"" /></p>
+<ul>
+<li><a href=""https://www.informationisbeautiful.net/visualizations/rhetological-fallacies/"">مدونة السلوك الفكري</a> للحجاج</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Standard Ethique.png"" alt=""المعيار الأخلاقي"" /></p>
+<ul>
+<li><strong>المعايير الخمسة التي تتوفر في الحجة الجيدة&nbsp;</strong></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Standard Proc&eacute;dural.png"" alt=""المعيار الإجرائي"" /></p>
+<ul>
+<li><a href=""https://fr.wikipedia.org/wiki/Biais_cognitif"">مدونة التحيزات المعرفية</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Codex des biais cognitifs.png"" alt=""مدونة التحيزات المعرفية"" /></p>
+<ul>
+<li>الأنطولوجيا <a href=""https://en.wikipedia.org/wiki/Argument_Interchange_Format"" target=""_blank"" rel=""noopener"">Argument Interchange Format</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Argumentation-schemes-in-AIF-ontology.png"" alt=""Argumentation-schemes-in-AIF-ontology"" /></p>
+<ul>
+<li><a href=""https://unicode.org/emoji/charts/full-emoji-list.html"" target=""_blank"" rel=""noopener"">قائمة الرموز التعبيرية الرسمية في يونيكود</a>.</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Emojis.png"" alt=""الرموز التعبيرية"" /></p>
+<ul>
+<li>كتاب <a href=""https://www.seuil.com/ouvrage/le-pouvoir-rhetorique-clement-viktorovitch/9782021465877"" target=""_blank"" rel=""noopener"">القوة البلاغية</a> لـ<a href=""https://fr.wikipedia.org/wiki/Cl%C3%A9ment_Viktorovitch"" target=""_blank"" rel=""noopener"">كليمان فيكتوروفيتش</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Viktorovitch - Le pouvoir rh&eacute;torique.jpg"" alt=""فيكتوروفيتش - القوة البلاغية"" /></p>","<p>می‌توانید نسخه کامل ارائه ما را <a href=""https://www.youtube.com/watch?v=559XtnjE57E&amp;t=4520s"" target=""_blank"" rel=""noopener"">پس از میزگرد در کانال یوتیوب ما</a> ببینید.</p>
+<p>علاوه بر بازی کارتی، تمام مواد دیجیتال آزاد و بدون حق کپی‌رایت در <a href=""/T&eacute;l&eacute;chargements"">صفحه دانلود</a> ما در دسترس است.</p>
+<p>در طول این ارائه، چند مفهوم تکمیلی نیز مطرح شده است:</p>
+<ul>
+<li><strong>هرم انواع مختلف هوش</strong>، که استدلال بحثی در حوزه هوش نمادین قرار می‌گیرد</li>
+</ul>
+<p><img style=""width: 100%; display: block; margin-left: auto; margin-right: auto;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Cours d'IA - Pyramide des Intelligences.png"" alt=""درس هوش مصنوعی - هرم هوش‌ها"" /></p>
+<ul>
+<li><strong><a href=""https://www.informationisbeautiful.net/visualizations/rhetological-fallacies/"" target=""_blank"" rel=""noopener"">طبقه‌بندی مک‌کندلس</a></strong>، که به‌صورت قابل دانلود نیز ارائه شده است.</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/942_Rhetological-960x491.png"" alt=""942_Rhetological-960x491"" /></p>
+<ul>
+<li><a href=""https://www.informationisbeautiful.net/visualizations/rhetological-fallacies/"">منشور رفتار فکری</a> در استدلال‌ورزی</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Standard Ethique.png"" alt=""معیار اخلاقی"" /></p>
+<ul>
+<li><strong>۵ معیاری که یک استدلال خوب رعایت می‌کند&nbsp;</strong></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Standard Proc&eacute;dural.png"" alt=""معیار رویه‌ای"" /></p>
+<ul>
+<li><a href=""https://fr.wikipedia.org/wiki/Biais_cognitif"">کدکس سوگیری‌های شناختی</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Codex des biais cognitifs.png"" alt=""کدکس سوگیری‌های شناختی"" /></p>
+<ul>
+<li>هستی‌شناسی <a href=""https://en.wikipedia.org/wiki/Argument_Interchange_Format"" target=""_blank"" rel=""noopener"">Argument Interchange Format</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Argumentation-schemes-in-AIF-ontology.png"" alt=""Argumentation-schemes-in-AIF-ontology"" /></p>
+<ul>
+<li><a href=""https://unicode.org/emoji/charts/full-emoji-list.html"" target=""_blank"" rel=""noopener"">فهرست ایموجی‌های رسمی یونیکد</a>.</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Emojis.png"" alt=""ایموجی‌ها"" /></p>
+<ul>
+<li>کتاب <a href=""https://www.seuil.com/ouvrage/le-pouvoir-rhetorique-clement-viktorovitch/9782021465877"" target=""_blank"" rel=""noopener"">قدرت بلاغی</a> نوشته <a href=""https://fr.wikipedia.org/wiki/Cl%C3%A9ment_Viktorovitch"" target=""_blank"" rel=""noopener"">کلمان ویکتوروویچ</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Viktorovitch - Le pouvoir rh&eacute;torique.jpg"" alt=""ویکتوروویچ - قدرت بلاغی"" /></p>","<p>您可以在<a href=""https://www.youtube.com/watch?v=559XtnjE57E&amp;t=4520s"" target=""_blank"" rel=""noopener"">圆桌讨论之后的YouTube频道视频</a>中观看我们完整的演示。</p>
+<p>除了卡牌游戏之外，所有可自由使用的数字资料都可以在我们的<a href=""/T&eacute;l&eacute;chargements"">下载页面</a>中获取。</p>
+<p>在本次演示中，还涉及了几个补充概念：</p>
+<ul>
+<li><strong>不同类型智能的金字塔</strong>，其中论证推理属于符号智能</li>
+</ul>
+<p><img style=""width: 100%; display: block; margin-left: auto; margin-right: auto;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Cours d'IA - Pyramide des Intelligences.png"" alt=""人工智能课程 - 智能金字塔"" /></p>
+<ul>
+<li><strong><a href=""https://www.informationisbeautiful.net/visualizations/rhetological-fallacies/"" target=""_blank"" rel=""noopener"">麦坎德利斯分类法</a></strong>，同样提供下载。</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/942_Rhetological-960x491.png"" alt=""942_Rhetological-960x491"" /></p>
+<ul>
+<li>论证的<a href=""https://www.informationisbeautiful.net/visualizations/rhetological-fallacies/"">智识行为准则</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Standard Ethique.png"" alt=""伦理标准"" /></p>
+<ul>
+<li><strong>一个好论证应遵守的5条标准&nbsp;</strong></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Standard Proc&eacute;dural.png"" alt=""程序标准"" /></p>
+<ul>
+<li><a href=""https://fr.wikipedia.org/wiki/Biais_cognitif"">认知偏差法典</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Codex des biais cognitifs.png"" alt=""认知偏差法典"" /></p>
+<ul>
+<li>本体论 <a href=""https://en.wikipedia.org/wiki/Argument_Interchange_Format"" target=""_blank"" rel=""noopener"">Argument Interchange Format</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Argumentation-schemes-in-AIF-ontology.png"" alt=""Argumentation-schemes-in-AIF-ontology"" /></p>
+<ul>
+<li><a href=""https://unicode.org/emoji/charts/full-emoji-list.html"" target=""_blank"" rel=""noopener"">Unicode官方表情符号列表</a>。</li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Emojis.png"" alt=""表情符号"" /></p>
+<ul>
+<li><a href=""https://fr.wikipedia.org/wiki/Cl%C3%A9ment_Viktorovitch"" target=""_blank"" rel=""noopener"">克莱芒·维克托罗维奇</a>所著的<a href=""https://www.seuil.com/ouvrage/le-pouvoir-rhetorique-clement-viktorovitch/9782021465877"" target=""_blank"" rel=""noopener"">《修辞的力量》</a></li>
+</ul>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/RJeTFbMiI02JleYflAUmnw/Content/Viktorovitch - Le pouvoir rh&eacute;torique.jpg"" alt=""维克托罗维奇 - 修辞的力量"" /></p>"
 15939744-22B3-4D23-8995-E61F9405269F|UrlKey,52,News,15939744-22B3-4D23-8995-E61F9405269F,UrlKey,String,editorial,lancement-d-argumentum-interview-des-co-createurs,,,,,,,
-28DEB2E1-DD95-4115-9D3E-D62EE2508F9C|Title,52,News,28DEB2E1-DD95-4115-9D3E-D62EE2508F9C,Title,String,editorial,On peut commander le jeu de cartes sur ce site,,,,,,,
+28DEB2E1-DD95-4115-9D3E-D62EE2508F9C|Title,52,News,28DEB2E1-DD95-4115-9D3E-D62EE2508F9C,Title,String,editorial,On peut commander le jeu de cartes sur ce site,The card game can be ordered on this site,Карточную игру можно заказать на этом сайте,É possível encomendar o jogo de cartas neste site,Se puede pedir el juego de cartas en este sitio,يمكن طلب لعبة الورق عبر هذا الموقع,می‌توانید بازی کارتی را از این سایت سفارش دهید,可以在本网站订购卡牌游戏
 28DEB2E1-DD95-4115-9D3E-D62EE2508F9C|Image,52,News,28DEB2E1-DD95-4115-9D3E-D62EE2508F9C,Image,Hyperlink,editorial,file:813,,,,,,,
 28DEB2E1-DD95-4115-9D3E-D62EE2508F9C|CropAnchor,52,News,28DEB2E1-DD95-4115-9D3E-D62EE2508F9C,CropAnchor,String,editorial,middlecenter,,,,,,,
-28DEB2E1-DD95-4115-9D3E-D62EE2508F9C|Teaser,52,News,28DEB2E1-DD95-4115-9D3E-D62EE2508F9C,Teaser,String,editorial,"Anciennement vendus sur le Drenche, la commande en ligne se passe désormais sur ce site. Vous devez créer un compte pour pouvoir passer et gérer vos commandes.",,,,,,,
+28DEB2E1-DD95-4115-9D3E-D62EE2508F9C|Teaser,52,News,28DEB2E1-DD95-4115-9D3E-D62EE2508F9C,Teaser,String,editorial,"Anciennement vendus sur le Drenche, la commande en ligne se passe désormais sur ce site. Vous devez créer un compte pour pouvoir passer et gérer vos commandes.","Previously sold through the Drenche, the games can now be ordered online on this site. You must create an account to place and manage your orders.","Раньше игры продавались через Drenche, теперь онлайн-заказ оформляется на этом сайте. Чтобы делать заказы и управлять ими, необходимо создать учётную запись.","Anteriormente vendidos através do Drenche, os jogos passam agora a ser encomendados online neste site. É necessário criar uma conta para fazer e gerir as suas encomendas.",Antes se vendían a través del Drenche; ahora los pedidos en línea se realizan en este sitio. Debe crear una cuenta para poder hacer y gestionar sus pedidos.,كانت اللعبة تُباع سابقًا عبر Drenche، أما الآن فيتم الطلب عبر الإنترنت من خلال هذا الموقع. يجب إنشاء حساب لتتمكنوا من تقديم طلباتكم وإدارتها.,این بازی پیش‌تر از طریق Drenche فروخته می‌شد و اکنون سفارش آنلاین در این سایت انجام می‌شود. برای ثبت و مدیریت سفارش‌ها باید یک حساب کاربری بسازید.,此前通过 Drenche 销售，现在改为在本网站在线订购。您需要创建账户才能下单并管理订单。
 28DEB2E1-DD95-4115-9D3E-D62EE2508F9C|Content,52,News,28DEB2E1-DD95-4115-9D3E-D62EE2508F9C,Content,String,editorial,"<p style=""background-color:rgba(220,15,10,0.12);border:1px solid rgba(220,15,10,0.45);border-radius:6px;padding:12px 16px;text-align:center;color:#c00d09;font-weight:600;"">Bient&ocirc;t de retour &mdash; la commande en ligne est momentan&eacute;ment suspendue.</p>
 <p>Le magasin d'achat en ligne de notre site est enfin op&eacute;rationnel et nous pouvons &agrave; nouveau prendre des commandes.</p>
 <p>Un grand merci au <a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener"">Drenche</a> qui nous a assur&eacute; les d&eacute;buts de notre distribution durant pr&egrave;s d'un an et toutes nos excuses &agrave; ceux qui ont fait les frais d'une transition un peu tardive.</p>
 <p>La nouvelle principale, c'est la cr&eacute;ation de notre soci&eacute;t&eacute;, la mise en place d'une facturation, et tous les branchements jusqu'&agrave; notre interface de paiement.</p>
 <p>Cette nouvelle gestion nous demandera sans doute du rodage et nous vous remercions encore par avance pour votre patience et votre int&eacute;ret renouvell&eacute;.</p>
 <p>Le site <a target=""_blank"" rel=""noopener"">www.argumentum.games</a> est con&ccedil;u sous la plateforme DNN et l'extension que nous avons choisie d'int&eacute;grer s'appelle <a href=""https://www.openstore-ecommerce.com/fr-fr/"" target=""_blank"" rel=""noopener"">Open Store</a>, logiciel open-source propos&eacute; par David Lee, anglais install&eacute; en Aveyron et qui y a <a href=""https://dnn-connect.org/events/2022"" target=""_blank"" rel=""noopener"">re&ccedil;u la communaut&eacute; DNN</a>.&nbsp;</p>
-<p>Une autre nouveaut&eacute;, c'est que vous pouvez cr&eacute;er un compte sur ce site, et vous devez le faire pour passer commande. Notre vision est qu'&agrave; l'avenir le site proposera des possibilit&eacute;s d'interactions communautaires. La mise en route des comptes utilisateurs est une premi&egrave;re &eacute;tape.</p>",,,,,,,
+<p>Une autre nouveaut&eacute;, c'est que vous pouvez cr&eacute;er un compte sur ce site, et vous devez le faire pour passer commande. Notre vision est qu'&agrave; l'avenir le site proposera des possibilit&eacute;s d'interactions communautaires. La mise en route des comptes utilisateurs est une premi&egrave;re &eacute;tape.</p>","<p style=""background-color:rgba(220,15,10,0.12);border:1px solid rgba(220,15,10,0.45);border-radius:6px;padding:12px 16px;text-align:center;color:#c00d09;font-weight:600;"">Back soon &mdash; online ordering is temporarily suspended.</p>
+<p>The online shop on our site is finally up and running, and we can take orders again.</p>
+<p>A big thank you to the <a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener"">Drenche</a>, which handled the start of our distribution for nearly a year, and our apologies to those who bore the brunt of a somewhat late transition.</p>
+<p>The main news is the creation of our company, the setup of invoicing, and all the connections to our payment interface.</p>
+<p>This new way of working will no doubt take some time to run smoothly, and we thank you once again in advance for your patience and your renewed interest.</p>
+<p>The site <a target=""_blank"" rel=""noopener"">www.argumentum.games</a> is built on the DNN platform, and the extension we chose to integrate is called <a href=""https://www.openstore-ecommerce.com/fr-fr/"" target=""_blank"" rel=""noopener"">Open Store</a>, open-source software offered by David Lee, an Englishman based in Aveyron, who <a href=""https://dnn-connect.org/events/2022"" target=""_blank"" rel=""noopener"">hosted the DNN community</a> there.&nbsp;</p>
+<p>Another novelty: you can create an account on this site, and you must do so to place an order. Our vision is that in the future the site will offer opportunities for community interaction. Setting up user accounts is a first step.</p>","<p style=""background-color:rgba(220,15,10,0.12);border:1px solid rgba(220,15,10,0.45);border-radius:6px;padding:12px 16px;text-align:center;color:#c00d09;font-weight:600;"">Скоро вернёмся &mdash; онлайн-заказ временно приостановлен.</p>
+<p>Интернет-магазин на нашем сайте наконец заработал, и мы снова можем принимать заказы.</p>
+<p>Большое спасибо <a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener"">Drenche</a>, который почти год обеспечивал начало нашей дистрибуции, и наши извинения тем, кому пришлось пострадать из-за несколько запоздавшего перехода.</p>
+<p>Главная новость &mdash; создание нашей компании, налаживание выставления счетов и все подключения к нашей платёжной системе.</p>
+<p>Этому новому порядку, без сомнения, потребуется время на обкатку, и мы заранее ещё раз благодарим вас за терпение и неизменный интерес.</p>
+<p>Сайт <a target=""_blank"" rel=""noopener"">www.argumentum.games</a> создан на платформе DNN, а расширение, которое мы решили интегрировать, называется <a href=""https://www.openstore-ecommerce.com/fr-fr/"" target=""_blank"" rel=""noopener"">Open Store</a> &mdash; это программа с открытым исходным кодом, предложенная Дэвидом Ли, англичанином, поселившимся в Авероне, где он <a href=""https://dnn-connect.org/events/2022"" target=""_blank"" rel=""noopener"">принимал сообщество DNN</a>.&nbsp;</p>
+<p>Ещё одна новинка: вы можете создать учётную запись на этом сайте, и это необходимо для оформления заказа. Мы видим будущее так: сайт предложит возможности для взаимодействия сообщества. Запуск учётных записей пользователей &mdash; первый шаг.</p>","<p style=""background-color:rgba(220,15,10,0.12);border:1px solid rgba(220,15,10,0.45);border-radius:6px;padding:12px 16px;text-align:center;color:#c00d09;font-weight:600;"">Voltamos em breve &mdash; a encomenda online está temporariamente suspensa.</p>
+<p>A loja online do nosso site está finalmente operacional e podemos voltar a receber encomendas.</p>
+<p>Um grande obrigado ao <a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener"">Drenche</a>, que assegurou o início da nossa distribuição durante quase um ano, e as nossas desculpas a quem sofreu com uma transição um pouco tardia.</p>
+<p>A principal novidade é a criação da nossa empresa, a implementação da faturação e todas as ligações à nossa interface de pagamento.</p>
+<p>Esta nova gestão exigirá sem dúvida alguma rodagem e agradecemos mais uma vez, antecipadamente, a vossa paciência e o vosso renovado interesse.</p>
+<p>O site <a target=""_blank"" rel=""noopener"">www.argumentum.games</a> é construído sobre a plataforma DNN e a extensão que escolhemos integrar chama-se <a href=""https://www.openstore-ecommerce.com/fr-fr/"" target=""_blank"" rel=""noopener"">Open Store</a>, um software de código aberto proposto por David Lee, inglês radicado em Aveyron, que aí <a href=""https://dnn-connect.org/events/2022"" target=""_blank"" rel=""noopener"">recebeu a comunidade DNN</a>.&nbsp;</p>
+<p>Outra novidade: pode criar uma conta neste site, e tem de o fazer para efetuar uma encomenda. A nossa visão é que, no futuro, o site ofereça possibilidades de interação comunitária. A abertura das contas de utilizador é uma primeira etapa.</p>","<p style=""background-color:rgba(220,15,10,0.12);border:1px solid rgba(220,15,10,0.45);border-radius:6px;padding:12px 16px;text-align:center;color:#c00d09;font-weight:600;"">Volvemos pronto &mdash; el pedido en línea está suspendido temporalmente.</p>
+<p>La tienda en línea de nuestro sitio por fin está operativa y podemos volver a aceptar pedidos.</p>
+<p>Muchas gracias al <a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener"">Drenche</a>, que se encargó del inicio de nuestra distribución durante casi un año, y nuestras disculpas a quienes sufrieron las consecuencias de una transición algo tardía.</p>
+<p>La novedad principal es la creación de nuestra empresa, la puesta en marcha de la facturación y todas las conexiones con nuestra interfaz de pago.</p>
+<p>Esta nueva gestión requerirá sin duda un periodo de rodaje y les damos las gracias de nuevo por adelantado por su paciencia y su renovado interés.</p>
+<p>El sitio <a target=""_blank"" rel=""noopener"">www.argumentum.games</a> está construido sobre la plataforma DNN y la extensión que hemos elegido integrar se llama <a href=""https://www.openstore-ecommerce.com/fr-fr/"" target=""_blank"" rel=""noopener"">Open Store</a>, un software de código abierto ofrecido por David Lee, inglés afincado en Aveyron, donde <a href=""https://dnn-connect.org/events/2022"" target=""_blank"" rel=""noopener"">recibió a la comunidad DNN</a>.&nbsp;</p>
+<p>Otra novedad: puede crear una cuenta en este sitio, y debe hacerlo para realizar un pedido. Nuestra visión es que en el futuro el sitio ofrezca posibilidades de interacción comunitaria. La puesta en marcha de las cuentas de usuario es una primera etapa.</p>","<p style=""background-color:rgba(220,15,10,0.12);border:1px solid rgba(220,15,10,0.45);border-radius:6px;padding:12px 16px;text-align:center;color:#c00d09;font-weight:600;"">سنعود قريبًا &mdash; الطلب عبر الإنترنت متوقف مؤقتًا.</p>
+<p>أصبح المتجر الإلكتروني في موقعنا جاهزًا للعمل أخيرًا، ويمكننا من جديد استقبال الطلبات.</p>
+<p>شكرًا جزيلًا لـ <a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener"">Drenche</a> الذي تولّى بدايات توزيعنا لمدة قاربت السنة، ونعتذر لمن تضرّر من انتقال تأخّر بعض الشيء.</p>
+<p>الخبر الرئيسي هو تأسيس شركتنا، وإعداد نظام الفوترة، وجميع الوصلات مع واجهة الدفع لدينا.</p>
+<p>من المؤكد أن هذه الإدارة الجديدة ستحتاج إلى بعض الوقت لتستقر، ونشكركم مجددًا مسبقًا على صبركم واهتمامكم المتجدد.</p>
+<p>موقع <a target=""_blank"" rel=""noopener"">www.argumentum.games</a> مبني على منصة DNN، والإضافة التي اخترنا دمجها تسمى <a href=""https://www.openstore-ecommerce.com/fr-fr/"" target=""_blank"" rel=""noopener"">Open Store</a>، وهي برمجية مفتوحة المصدر يقدّمها ديفيد لي، وهو إنجليزي مقيم في أفيرون، حيث <a href=""https://dnn-connect.org/events/2022"" target=""_blank"" rel=""noopener"">استضاف مجتمع DNN</a>.&nbsp;</p>
+<p>من المستجدات أيضًا أنه يمكنكم إنشاء حساب على هذا الموقع، وعليكم القيام بذلك لتقديم طلب. رؤيتنا هي أن يوفّر الموقع في المستقبل إمكانيات للتفاعل المجتمعي. وإطلاق حسابات المستخدمين هو الخطوة الأولى.</p>","<p style=""background-color:rgba(220,15,10,0.12);border:1px solid rgba(220,15,10,0.45);border-radius:6px;padding:12px 16px;text-align:center;color:#c00d09;font-weight:600;"">به‌زودی برمی‌گردیم &mdash; سفارش آنلاین موقتاً متوقف شده است.</p>
+<p>فروشگاه آنلاین سایت ما سرانجام راه‌اندازی شده است و دوباره می‌توانیم سفارش بپذیریم.</p>
+<p>از <a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener"">Drenche</a> که نزدیک به یک سال آغاز توزیع ما را بر عهده داشت بسیار سپاسگزاریم و از کسانی که تبعات یک گذار کمی دیرهنگام را متحمل شدند پوزش می‌خواهیم.</p>
+<p>خبر اصلی، تأسیس شرکت ما، راه‌اندازی صدور فاکتور و برقراری همه‌ی اتصالات تا درگاه پرداخت ماست.</p>
+<p>بی‌تردید این شیوه‌ی جدید مدیریت به مدتی زمان برای روان شدن نیاز دارد و بار دیگر پیشاپیش از صبر و علاقه‌ی دوباره‌ی شما سپاسگزاریم.</p>
+<p>سایت <a target=""_blank"" rel=""noopener"">www.argumentum.games</a> بر بستر DNN ساخته شده و افزونه‌ای که برای یکپارچه‌سازی انتخاب کرده‌ایم <a href=""https://www.openstore-ecommerce.com/fr-fr/"" target=""_blank"" rel=""noopener"">Open Store</a> نام دارد؛ نرم‌افزاری متن‌باز از دیوید لی، انگلیسی ساکن آوِیرون، که در آنجا <a href=""https://dnn-connect.org/events/2022"" target=""_blank"" rel=""noopener"">میزبان جامعه‌ی DNN بوده است</a>.&nbsp;</p>
+<p>نوآوری دیگر این است که می‌توانید در این سایت حساب کاربری بسازید و برای ثبت سفارش باید این کار را انجام دهید. دیدگاه ما این است که در آینده سایت امکان تعامل اجتماعی را فراهم کند. راه‌اندازی حساب‌های کاربری نخستین گام است.</p>","<p style=""background-color:rgba(220,15,10,0.12);border:1px solid rgba(220,15,10,0.45);border-radius:6px;padding:12px 16px;text-align:center;color:#c00d09;font-weight:600;"">即将恢复 &mdash; 在线订购暂时暂停。</p>
+<p>我们网站的在线商店终于投入运行，我们又可以接受订单了。</p>
+<p>衷心感谢 <a href=""https://ledrenche.ouest-france.fr/"" target=""_blank"" rel=""noopener"">Drenche</a> 在近一年的时间里负责我们发行的起步阶段，也对因过渡稍晚而受到影响的朋友表示歉意。</p>
+<p>主要的新消息是：我们的公司已经成立，开票系统已经建立，并且与我们的支付接口的所有连接均已完成。</p>
+<p>这种新的管理方式无疑需要一段磨合期，我们提前再次感谢您的耐心和再度关注。</p>
+<p>网站 <a target=""_blank"" rel=""noopener"">www.argumentum.games</a> 基于 DNN 平台构建，我们选择集成的扩展名为 <a href=""https://www.openstore-ecommerce.com/fr-fr/"" target=""_blank"" rel=""noopener"">Open Store</a>，这是一款开源软件，由定居在阿韦龙的英国人 David Lee 提供，他曾在那里 <a href=""https://dnn-connect.org/events/2022"" target=""_blank"" rel=""noopener"">接待过 DNN 社区</a>。&nbsp;</p>
+<p>另一项新变化是：您可以在本网站创建账户，而且下单时必须创建账户。我们的愿景是，未来本网站将提供社区互动的可能性。启用用户账户是第一步。</p>"
 28DEB2E1-DD95-4115-9D3E-D62EE2508F9C|UrlKey,52,News,28DEB2E1-DD95-4115-9D3E-D62EE2508F9C,UrlKey,String,editorial,argumentum-est-vendu-sur-argumentum-games,,,,,,,
-857B89C4-AE62-4376-AC23-C728213800D9|Title,52,News,857B89C4-AE62-4376-AC23-C728213800D9,Title,String,editorial,Lancement d'Argumentum - Table ronde,,,,,,,
+857B89C4-AE62-4376-AC23-C728213800D9|Title,52,News,857B89C4-AE62-4376-AC23-C728213800D9,Title,String,editorial,Lancement d'Argumentum - Table ronde,Launch of Argumentum - Round table,Запуск Argumentum — круглый стол,Lançamento do Argumentum - Mesa-redonda,Lanzamiento de Argumentum - Mesa redonda,إطلاق Argumentum - طاولة مستديرة,راه‌اندازی Argumentum - میزگرد,Argumentum 发布会 - 圆桌讨论
 857B89C4-AE62-4376-AC23-C728213800D9|Image,52,News,857B89C4-AE62-4376-AC23-C728213800D9,Image,Hyperlink,editorial,file:770,,,,,,,
 857B89C4-AE62-4376-AC23-C728213800D9|CropAnchor,52,News,857B89C4-AE62-4376-AC23-C728213800D9,CropAnchor,String,editorial,middlecenter,,,,,,,
-857B89C4-AE62-4376-AC23-C728213800D9|Teaser,52,News,857B89C4-AE62-4376-AC23-C728213800D9,Teaser,String,editorial,"Voici la vidéo de la table ronde organisée pour le lancement d'Argumentum sur le thème « vitalité démocratique, crise de (mauvaise) foi et immunité collective ». ",,,,,,,
+857B89C4-AE62-4376-AC23-C728213800D9|Teaser,52,News,857B89C4-AE62-4376-AC23-C728213800D9,Teaser,String,editorial,"Voici la vidéo de la table ronde organisée pour le lancement d'Argumentum sur le thème « vitalité démocratique, crise de (mauvaise) foi et immunité collective ». ","Here is the video of the round table organised for the launch of Argumentum on the theme ""democratic vitality, the crisis of (bad) faith and collective immunity"".","Вот видео круглого стола, организованного по случаю запуска Argumentum на тему «демократическая жизнеспособность, кризис (не)добросовестности и коллективный иммунитет».","Aqui está o vídeo da mesa-redonda organizada para o lançamento do Argumentum sobre o tema «vitalidade democrática, crise de (má) fé e imunidade coletiva».","Aquí está el vídeo de la mesa redonda organizada para el lanzamiento de Argumentum sobre el tema «vitalidad democrática, crisis de (mala) fe e inmunidad colectiva».",إليكم فيديو الطاولة المستديرة التي نُظمت بمناسبة إطلاق Argumentum حول موضوع «الحيوية الديمقراطية، وأزمة (سوء) النية، والمناعة الجماعية».,این ویدیوی میزگردی است که به مناسبت راه‌اندازی Argumentum با موضوع «پویایی دموکراتیک، بحران (سوء) نیت و ایمنی جمعی» برگزار شد.,这是为 Argumentum 发布会组织的圆桌讨论视频，主题为“民主活力、（恶意）信念危机与集体免疫”。
 857B89C4-AE62-4376-AC23-C728213800D9|Content,52,News,857B89C4-AE62-4376-AC23-C728213800D9,Content,String,editorial,"<p>Vous retrouvez l'int&eacute;gralit&eacute; de cette table ronde, anim&eacute;e par Thomas Vermorel de l'argumenteam, <a href=""https://www.youtube.com/watch?v=559XtnjE57E"" target=""_blank"" rel=""noopener"">sur notre cha&icirc;ne Youtube</a>.&nbsp;</p>
 <p>Les invit&eacute;s de cette table ronde &eacute;taient:</p>
 <ul>
@@ -1672,12 +1952,75 @@ FB8CBFA6-77D1-4EEF-94D5-87B0B740E467|UrlKey,52,Category,FB8CBFA6-77D1-4EEF-94D5-
 <li><strong>Fanny B&eacute;nard</strong>, adjointe au Maire du 18e arrondissement de Paris <a href=""https://web.archive.org/web/20251215104931/https://mairie18.paris.fr/pages/fanny-benard-12740"" target=""_blank"" rel=""noopener"">charg&eacute;e de la participation citoyenne</a>.</li>
 </ul>
 <p>Un grand merci &agrave; l'&eacute;quipe d'<a href=""http://www.avc-france.fr/"" target=""_blank"" rel=""noopener"">AVC</a>, <a href=""https://fr.linkedin.com/in/nicolas-bost-8764a740"" target=""_blank"" rel=""noopener"">Nicolas Bost</a> et <a href=""https://fr.linkedin.com/in/guillaume-piau-502085152"" target=""_blank"" rel=""noopener"">Guillaume Piau</a> qui ont r&eacute;alis&eacute; cet enregistrement vi&eacute;do.</p>
-<p>&nbsp;</p>",,,,,,,
+<p>&nbsp;</p>","<p>You can watch the full round table, moderated by Thomas Vermorel of the argumenteam, <a href=""https://www.youtube.com/watch?v=559XtnjE57E"" target=""_blank"" rel=""noopener"">on our YouTube channel</a>.&nbsp;</p>
+<p>The guests at this round table were:</p>
+<ul>
+<li><strong>Camille Lakhlifi</strong>, PhD student at the Haute Autorit&eacute; de Sant&eacute; and the <a href=""https://institutducerveau-icm.org/"" target=""_blank"" rel=""noopener"">Institut du Cerveau</a> and an active member of the association <a href=""https://www.chiasma.co/"" target=""_blank"" rel=""noopener"">Chiasma,</a></li>
+<li><strong>Benjamin Mathieu</strong>, journalist at the <a href=""https://www.francetvinfo.fr/redaction/benjamin-mathieu/"" target=""_blank"" rel=""noopener"">politics desk of franceinfo</a>,</li>
+<li><strong>Fran&ccedil;ois Deroo</strong>, director of the <a href=""http://www.lespetitsdebrouillards.org/"" target=""_blank"" rel=""noopener"">Petits D&eacute;brouillards</a> network.</li>
+<li><strong>Fanny B&eacute;nard</strong>, deputy mayor of the 18th arrondissement of Paris <a href=""https://web.archive.org/web/20251215104931/https://mairie18.paris.fr/pages/fanny-benard-12740"" target=""_blank"" rel=""noopener"">in charge of citizen participation</a>.</li>
+</ul>
+<p>Many thanks to the <a href=""http://www.avc-france.fr/"" target=""_blank"" rel=""noopener"">AVC</a> team, <a href=""https://fr.linkedin.com/in/nicolas-bost-8764a740"" target=""_blank"" rel=""noopener"">Nicolas Bost</a> and <a href=""https://fr.linkedin.com/in/guillaume-piau-502085152"" target=""_blank"" rel=""noopener"">Guillaume Piau</a>, who made this video recording.</p>
+<p>&nbsp;</p>","<p>Полную запись этого круглого стола, который провёл Thomas Vermorel из argumenteam, вы можете посмотреть <a href=""https://www.youtube.com/watch?v=559XtnjE57E"" target=""_blank"" rel=""noopener"">на нашем канале на YouTube</a>.&nbsp;</p>
+<p>Гостями круглого стола были:</p>
+<ul>
+<li><strong>Camille Lakhlifi</strong>, аспирантка Haute Autorit&eacute; de Sant&eacute; и <a href=""https://institutducerveau-icm.org/"" target=""_blank"" rel=""noopener"">Института мозга</a>, активный член ассоциации <a href=""https://www.chiasma.co/"" target=""_blank"" rel=""noopener"">Chiasma,</a></li>
+<li><strong>Benjamin Mathieu</strong>, журналист <a href=""https://www.francetvinfo.fr/redaction/benjamin-mathieu/"" target=""_blank"" rel=""noopener"">политической редакции franceinfo</a>,</li>
+<li><strong>Fran&ccedil;ois Deroo</strong>, директор сети <a href=""http://www.lespetitsdebrouillards.org/"" target=""_blank"" rel=""noopener"">Petits D&eacute;brouillards</a>.</li>
+<li><strong>Fanny B&eacute;nard</strong>, заместитель мэра 18-го округа Парижа, <a href=""https://web.archive.org/web/20251215104931/https://mairie18.paris.fr/pages/fanny-benard-12740"" target=""_blank"" rel=""noopener"">отвечающая за участие граждан</a>.</li>
+</ul>
+<p>Большое спасибо команде <a href=""http://www.avc-france.fr/"" target=""_blank"" rel=""noopener"">AVC</a>, <a href=""https://fr.linkedin.com/in/nicolas-bost-8764a740"" target=""_blank"" rel=""noopener"">Nicolas Bost</a> и <a href=""https://fr.linkedin.com/in/guillaume-piau-502085152"" target=""_blank"" rel=""noopener"">Guillaume Piau</a>, которые сделали эту видеозапись.</p>
+<p>&nbsp;</p>","<p>Você pode assistir à mesa-redonda completa, moderada por Thomas Vermorel da argumenteam, <a href=""https://www.youtube.com/watch?v=559XtnjE57E"" target=""_blank"" rel=""noopener"">no nosso canal do YouTube</a>.&nbsp;</p>
+<p>Os convidados desta mesa-redonda foram:</p>
+<ul>
+<li><strong>Camille Lakhlifi</strong>, doutoranda na Haute Autorit&eacute; de Sant&eacute; e no <a href=""https://institutducerveau-icm.org/"" target=""_blank"" rel=""noopener"">Institut du Cerveau</a> e membro ativo da associação <a href=""https://www.chiasma.co/"" target=""_blank"" rel=""noopener"">Chiasma,</a></li>
+<li><strong>Benjamin Mathieu</strong>, jornalista da <a href=""https://www.francetvinfo.fr/redaction/benjamin-mathieu/"" target=""_blank"" rel=""noopener"">editoria de política da franceinfo</a>,</li>
+<li><strong>Fran&ccedil;ois Deroo</strong>, diretor da rede <a href=""http://www.lespetitsdebrouillards.org/"" target=""_blank"" rel=""noopener"">Petits D&eacute;brouillards</a>.</li>
+<li><strong>Fanny B&eacute;nard</strong>, vice-prefeita do 18.º distrito de Paris <a href=""https://web.archive.org/web/20251215104931/https://mairie18.paris.fr/pages/fanny-benard-12740"" target=""_blank"" rel=""noopener"">responsável pela participação cidadã</a>.</li>
+</ul>
+<p>Muito obrigado à equipe da <a href=""http://www.avc-france.fr/"" target=""_blank"" rel=""noopener"">AVC</a>, <a href=""https://fr.linkedin.com/in/nicolas-bost-8764a740"" target=""_blank"" rel=""noopener"">Nicolas Bost</a> e <a href=""https://fr.linkedin.com/in/guillaume-piau-502085152"" target=""_blank"" rel=""noopener"">Guillaume Piau</a>, que realizaram esta gravação em vídeo.</p>
+<p>&nbsp;</p>","<p>Puedes ver la mesa redonda completa, moderada por Thomas Vermorel de la argumenteam, <a href=""https://www.youtube.com/watch?v=559XtnjE57E"" target=""_blank"" rel=""noopener"">en nuestro canal de YouTube</a>.&nbsp;</p>
+<p>Los invitados de esta mesa redonda fueron:</p>
+<ul>
+<li><strong>Camille Lakhlifi</strong>, doctoranda en la Haute Autorit&eacute; de Sant&eacute; y en el <a href=""https://institutducerveau-icm.org/"" target=""_blank"" rel=""noopener"">Institut du Cerveau</a> y miembro activa de la asociación <a href=""https://www.chiasma.co/"" target=""_blank"" rel=""noopener"">Chiasma,</a></li>
+<li><strong>Benjamin Mathieu</strong>, periodista de la <a href=""https://www.francetvinfo.fr/redaction/benjamin-mathieu/"" target=""_blank"" rel=""noopener"">sección de política de franceinfo</a>,</li>
+<li><strong>Fran&ccedil;ois Deroo</strong>, director de la red <a href=""http://www.lespetitsdebrouillards.org/"" target=""_blank"" rel=""noopener"">Petits D&eacute;brouillards</a>.</li>
+<li><strong>Fanny B&eacute;nard</strong>, teniente de alcalde del distrito 18 de París <a href=""https://web.archive.org/web/20251215104931/https://mairie18.paris.fr/pages/fanny-benard-12740"" target=""_blank"" rel=""noopener"">encargada de la participación ciudadana</a>.</li>
+</ul>
+<p>Muchas gracias al equipo de <a href=""http://www.avc-france.fr/"" target=""_blank"" rel=""noopener"">AVC</a>, <a href=""https://fr.linkedin.com/in/nicolas-bost-8764a740"" target=""_blank"" rel=""noopener"">Nicolas Bost</a> y <a href=""https://fr.linkedin.com/in/guillaume-piau-502085152"" target=""_blank"" rel=""noopener"">Guillaume Piau</a>, que realizaron esta grabación de vídeo.</p>
+<p>&nbsp;</p>","<p>يمكنكم مشاهدة الطاولة المستديرة كاملةً، التي أدارها Thomas Vermorel من argumenteam، <a href=""https://www.youtube.com/watch?v=559XtnjE57E"" target=""_blank"" rel=""noopener"">على قناتنا في يوتيوب</a>.&nbsp;</p>
+<p>وكان ضيوف هذه الطاولة المستديرة:</p>
+<ul>
+<li><strong>Camille Lakhlifi</strong>، طالبة دكتوراه في Haute Autorit&eacute; de Sant&eacute; و<a href=""https://institutducerveau-icm.org/"" target=""_blank"" rel=""noopener"">معهد الدماغ</a> وعضوة نشطة في جمعية <a href=""https://www.chiasma.co/"" target=""_blank"" rel=""noopener"">Chiasma،</a></li>
+<li><strong>Benjamin Mathieu</strong>، صحفي في <a href=""https://www.francetvinfo.fr/redaction/benjamin-mathieu/"" target=""_blank"" rel=""noopener"">القسم السياسي في franceinfo</a>،</li>
+<li><strong>Fran&ccedil;ois Deroo</strong>، مدير شبكة <a href=""http://www.lespetitsdebrouillards.org/"" target=""_blank"" rel=""noopener"">Petits D&eacute;brouillards</a>.</li>
+<li><strong>Fanny B&eacute;nard</strong>، نائبة عمدة الدائرة الثامنة عشرة في باريس <a href=""https://web.archive.org/web/20251215104931/https://mairie18.paris.fr/pages/fanny-benard-12740"" target=""_blank"" rel=""noopener"">المكلّفة بالمشاركة المواطنية</a>.</li>
+</ul>
+<p>شكرًا جزيلًا لفريق <a href=""http://www.avc-france.fr/"" target=""_blank"" rel=""noopener"">AVC</a>، <a href=""https://fr.linkedin.com/in/nicolas-bost-8764a740"" target=""_blank"" rel=""noopener"">Nicolas Bost</a> و<a href=""https://fr.linkedin.com/in/guillaume-piau-502085152"" target=""_blank"" rel=""noopener"">Guillaume Piau</a> اللذين أنجزا هذا التسجيل المرئي.</p>
+<p>&nbsp;</p>","<p>می‌توانید کل این میزگرد را که Thomas Vermorel از argumenteam اجرا کرد، <a href=""https://www.youtube.com/watch?v=559XtnjE57E"" target=""_blank"" rel=""noopener"">در کانال یوتیوب ما</a> تماشا کنید.&nbsp;</p>
+<p>مهمانان این میزگرد عبارت بودند از:</p>
+<ul>
+<li><strong>Camille Lakhlifi</strong>، دانشجوی دکتری در Haute Autorit&eacute; de Sant&eacute; و <a href=""https://institutducerveau-icm.org/"" target=""_blank"" rel=""noopener"">مؤسسه مغز</a> و عضو فعال انجمن <a href=""https://www.chiasma.co/"" target=""_blank"" rel=""noopener"">Chiasma،</a></li>
+<li><strong>Benjamin Mathieu</strong>، خبرنگار <a href=""https://www.francetvinfo.fr/redaction/benjamin-mathieu/"" target=""_blank"" rel=""noopener"">بخش سیاسی franceinfo</a>،</li>
+<li><strong>Fran&ccedil;ois Deroo</strong>، مدیر شبکه <a href=""http://www.lespetitsdebrouillards.org/"" target=""_blank"" rel=""noopener"">Petits D&eacute;brouillards</a>.</li>
+<li><strong>Fanny B&eacute;nard</strong>، معاون شهردار منطقه ۱۸ پاریس <a href=""https://web.archive.org/web/20251215104931/https://mairie18.paris.fr/pages/fanny-benard-12740"" target=""_blank"" rel=""noopener"">مسئول مشارکت شهروندی</a>.</li>
+</ul>
+<p>سپاس فراوان از تیم <a href=""http://www.avc-france.fr/"" target=""_blank"" rel=""noopener"">AVC</a>، <a href=""https://fr.linkedin.com/in/nicolas-bost-8764a740"" target=""_blank"" rel=""noopener"">Nicolas Bost</a> و <a href=""https://fr.linkedin.com/in/guillaume-piau-502085152"" target=""_blank"" rel=""noopener"">Guillaume Piau</a> که این ضبط ویدیویی را انجام دادند.</p>
+<p>&nbsp;</p>","<p>您可以在我们的 <a href=""https://www.youtube.com/watch?v=559XtnjE57E"" target=""_blank"" rel=""noopener"">YouTube 频道</a>上观看本次圆桌讨论的完整视频，由 argumenteam 的 Thomas Vermorel 主持。&nbsp;</p>
+<p>本次圆桌讨论的嘉宾有：</p>
+<ul>
+<li><strong>Camille Lakhlifi</strong>，Haute Autorit&eacute; de Sant&eacute; 和<a href=""https://institutducerveau-icm.org/"" target=""_blank"" rel=""noopener"">脑研究所</a>的博士生，也是 <a href=""https://www.chiasma.co/"" target=""_blank"" rel=""noopener"">Chiasma</a> 协会的活跃成员，</li>
+<li><strong>Benjamin Mathieu</strong>，<a href=""https://www.francetvinfo.fr/redaction/benjamin-mathieu/"" target=""_blank"" rel=""noopener"">franceinfo 政治部</a>记者，</li>
+<li><strong>Fran&ccedil;ois Deroo</strong>，<a href=""http://www.lespetitsdebrouillards.org/"" target=""_blank"" rel=""noopener"">Petits D&eacute;brouillards</a> 网络负责人。</li>
+<li><strong>Fanny B&eacute;nard</strong>，巴黎18区副区长，<a href=""https://web.archive.org/web/20251215104931/https://mairie18.paris.fr/pages/fanny-benard-12740"" target=""_blank"" rel=""noopener"">负责公民参与事务</a>。</li>
+</ul>
+<p>衷心感谢 <a href=""http://www.avc-france.fr/"" target=""_blank"" rel=""noopener"">AVC</a> 团队的 <a href=""https://fr.linkedin.com/in/nicolas-bost-8764a740"" target=""_blank"" rel=""noopener"">Nicolas Bost</a> 和 <a href=""https://fr.linkedin.com/in/guillaume-piau-502085152"" target=""_blank"" rel=""noopener"">Guillaume Piau</a>，他们完成了本次视频录制。</p>
+<p>&nbsp;</p>"
 857B89C4-AE62-4376-AC23-C728213800D9|UrlKey,52,News,857B89C4-AE62-4376-AC23-C728213800D9,UrlKey,String,editorial,lancement-d-argumentum-table-ronde,,,,,,,
-C43A15A6-63C3-47F5-A392-D86ABEEFD57D|Title,52,News,C43A15A6-63C3-47F5-A392-D86ABEEFD57D,Title,String,editorial,Argumentum aux Rencontres de l'esprit critique 2022,,,,,,,
+C43A15A6-63C3-47F5-A392-D86ABEEFD57D|Title,52,News,C43A15A6-63C3-47F5-A392-D86ABEEFD57D,Title,String,editorial,Argumentum aux Rencontres de l'esprit critique 2022,Argumentum at the Rencontres de l'esprit critique 2022,Argumentum на Rencontres de l'esprit critique 2022,Argumentum nos Rencontres de l'esprit critique 2022,Argumentum en los Rencontres de l'esprit critique 2022,Argumentum في Rencontres de l'esprit critique 2022,Argumentum در Rencontres de l'esprit critique 2022,Argumentum 亮相 2022 年 Rencontres de l'esprit critique
 C43A15A6-63C3-47F5-A392-D86ABEEFD57D|Image,52,News,C43A15A6-63C3-47F5-A392-D86ABEEFD57D,Image,Hyperlink,editorial,file:792,,,,,,,
 C43A15A6-63C3-47F5-A392-D86ABEEFD57D|CropAnchor,52,News,C43A15A6-63C3-47F5-A392-D86ABEEFD57D,CropAnchor,String,editorial,middlecenter,,,,,,,
-C43A15A6-63C3-47F5-A392-D86ABEEFD57D|Teaser,52,News,C43A15A6-63C3-47F5-A392-D86ABEEFD57D,Teaser,String,editorial,"L'Argumenteam était les 22 et 23 avril derniers à Toulouse, où nous tenions un stand aux REC 2022. Sceptiques, enseignants, zététiciens et toute la grande famille de l'esprit critique à la française s'y étaient donnés rendez-vous pour échanger et assister aux nombreuses conférences. Beaucoup sont venus tester Argumentum ! ",,,,,,,
+C43A15A6-63C3-47F5-A392-D86ABEEFD57D|Teaser,52,News,C43A15A6-63C3-47F5-A392-D86ABEEFD57D,Teaser,String,editorial,"L'Argumenteam était les 22 et 23 avril derniers à Toulouse, où nous tenions un stand aux REC 2022. Sceptiques, enseignants, zététiciens et toute la grande famille de l'esprit critique à la française s'y étaient donnés rendez-vous pour échanger et assister aux nombreuses conférences. Beaucoup sont venus tester Argumentum ! ","The Argumenteam was in Toulouse on 22 and 23 April, where we had a stand at REC 2022. Skeptics, teachers, zetetics and the whole big family of French-style critical thinking had gathered there to exchange ideas and attend the many talks. Many came to try Argumentum!","Argumenteam был 22 и 23 апреля в Тулузе, где у нас был стенд на REC 2022. Скептики, преподаватели, зететики и вся большая семья критического мышления по-французски собрались там, чтобы пообщаться и послушать многочисленные доклады. Многие пришли попробовать Argumentum!","A Argumenteam esteve nos dias 22 e 23 de abril em Toulouse, onde tivemos um stand nos REC 2022. Céticos, professores, zetéticos e toda a grande família do pensamento crítico à francesa marcaram encontro ali para trocar ideias e assistir às inúmeras conferências. Muitos vieram experimentar o Argumentum!","El Argumenteam estuvo los días 22 y 23 de abril en Toulouse, donde tuvimos un stand en los REC 2022. Escépticos, docentes, zetéticos y toda la gran familia del pensamiento crítico a la francesa se dieron cita allí para intercambiar ideas y asistir a las numerosas conferencias. ¡Muchos vinieron a probar Argumentum!",كان فريق Argumenteam يومي 22 و23 أبريل في تولوز، حيث كان لنا جناح في REC 2022. التقى هناك المتشككون والمعلمون والزيتيتيكيون وكل العائلة الكبيرة للتفكير النقدي على الطريقة الفرنسية لتبادل الأفكار وحضور المحاضرات العديدة. وقد جاء كثيرون لتجربة Argumentum!,تیم Argumenteam روزهای ۲۲ و ۲۳ آوریل در تولوز بود و در REC 2022 غرفه‌ای داشتیم. شکاکان، معلمان، زتتیک‌ها و تمام خانوادهٔ بزرگ تفکر انتقادی به سبک فرانسوی در آنجا گرد آمدند تا به تبادل نظر بپردازند و در سخنرانی‌های متعدد شرکت کنند. بسیاری آمدند تا Argumentum را امتحان کنند!,4 月 22 日和 23 日，Argumenteam 来到图卢兹，在 REC 2022 设了展位。怀疑论者、教师、质疑探究者，以及整个法式批判性思维的大家庭都在此相聚，交流并聆听众多讲座。许多人前来试玩 Argumentum！
 C43A15A6-63C3-47F5-A392-D86ABEEFD57D|Content,52,News,C43A15A6-63C3-47F5-A392-D86ABEEFD57D,Content,String,editorial,"<p>Un seul regret: celui de n'avoir pu nous d&eacute;doubler pour en profiter de cette mine de connaissances, de rencontres et de bonnes id&eacute;es.<br /><br />Ces deux jours de festival sont pass&eacute; &agrave; deux cent &agrave; l'heure. Willy Lafran de l'organisation des <a href=""https://www.facebook.com/RECTLSE"" target=""_blank"" rel=""noopener"">REC 2022</a> avait eu la gentillesse de nous accorder un joli stand dans le hall principal en derni&egrave;re minute.</p>
 <p>C'est ainsi que de nombreux participants ont pu s'emparer des cartes d'Argumentum et s'atabler pour les nombreuses s&eacute;ances de d&eacute;monstration que nous avons anim&eacute;es.&nbsp;</p>
 <p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_160008_1.jpg"" alt=""IMG_20220422_160008_1"" /></p>
@@ -1690,17 +2033,129 @@ C43A15A6-63C3-47F5-A392-D86ABEEFD57D|Content,52,News,C43A15A6-63C3-47F5-A392-D86
 <p>Un grand merci &agrave; l'oganisation des REC pour ce pr&eacute;cieux &eacute;v&egrave;nement et la chance d'avoir pu en &ecirc;tre. Nous ne sommes pas peu fiers de nous retrouver parmi les plus belles images qui l'ont clotur&eacute;.</p>
 <p>&nbsp;</p>
 <p><iframe style=""border: none; overflow: hidden;"" src=""https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FRECTLSE%2Fposts%2F285930300410228&amp;show_text=true&amp;width=500"" width=""500"" height=""665"" frameborder=""0"" scrolling=""no"" allowfullscreen=""allowfullscreen""></iframe></p>
-<p>&nbsp;</p>",,,,,,,
+<p>&nbsp;</p>","<p>Only one regret: not being able to split ourselves in two to make the most of this treasure trove of knowledge, encounters and good ideas.<br /><br />The two days of the festival flew by at breakneck speed. Willy Lafran of the <a href=""https://www.facebook.com/RECTLSE"" target=""_blank"" rel=""noopener"">REC 2022</a> organisation had kindly given us a lovely stand in the main hall at the last minute.</p>
+<p>That is how many participants were able to pick up the Argumentum cards and sit down for the numerous demonstration sessions we ran.&nbsp;</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_160008_1.jpg"" alt=""IMG_20220422_160008_1"" /></p>
+<p>From one burst of laughter to the next, with some people's curiosity piqued by others, on the way to one of the talks taking place next door, many were tempted, and not once did the ice fail to be broken.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_152014.jpg"" alt=""IMG_20220422_152014"" /></p>
+<p>Teachers for their students, actors to work on improv, journalists and communicators for eloquence, and passionate players for the pleasure of a good game, coming from Belgium, the United States and all corners of France, all gathered for a friendly game and, for a moment, took themselves for Julius Caesar, the Hefty Smurf or an adulterous husband, alternating the pleasure of acting with that of discovering the secrets of persuasion.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_112637.jpg"" alt=""IMG_20220422_112637"" />&nbsp;</p>
+<p>All the boxes we had brought went like hot cakes, and we left with our address book and our hearts full of new contacts and sunny faces.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_172424.jpg"" alt=""IMG_20220422_172424"" /></p>
+<p>A big thank you to the REC organisation for this precious event and the chance to be part of it. We are not a little proud to find ourselves among the finest images that closed it.</p>
+<p>&nbsp;</p>
+<p><iframe style=""border: none; overflow: hidden;"" src=""https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FRECTLSE%2Fposts%2F285930300410228&amp;show_text=true&amp;width=500"" width=""500"" height=""665"" frameborder=""0"" scrolling=""no"" allowfullscreen=""allowfullscreen""></iframe></p>
+<p>&nbsp;</p>","<p>Лишь одно сожаление: мы не смогли раздвоиться, чтобы в полной мере воспользоваться этой сокровищницей знаний, встреч и хороших идей.<br /><br />Два дня фестиваля пролетели на головокружительной скорости. Willy Lafran из организаторов <a href=""https://www.facebook.com/RECTLSE"" target=""_blank"" rel=""noopener"">REC 2022</a> любезно предоставил нам в последний момент отличный стенд в главном холле.</p>
+<p>Так многие участники смогли взять в руки карты Argumentum и сесть за стол на многочисленных демонстрационных сеансах, которые мы проводили.&nbsp;</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_160008_1.jpg"" alt=""IMG_20220422_160008_1"" /></p>
+<p>Смех сменялся смехом, любопытство одних разжигалось другими по дороге на одну из конференций, проходивших рядом, и многие поддались соблазну — и ни разу лёд не остался нерастопленным.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_152014.jpg"" alt=""IMG_20220422_152014"" /></p>
+<p>Преподаватели — для своих учеников, актёры — чтобы потренировать импровизацию, журналисты и коммуникаторы — ради красноречия, а увлечённые игроки — ради удовольствия от хорошей игры; приехавшие из Бельгии, США и со всех уголков Франции, все собирались ради дружеской партии и на мгновение воображали себя Юлием Цезарем, Смурфом-силачом или неверным мужем, чередуя удовольствие от игры в роли с удовольствием открывать тайны убеждения.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_112637.jpg"" alt=""IMG_20220422_112637"" />&nbsp;</p>
+<p>Все коробки, которые мы привезли, разлетелись как горячие пирожки, а мы уехали с записной книжкой и сердцами, полными новых контактов и солнечных лиц.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_172424.jpg"" alt=""IMG_20220422_172424"" /></p>
+<p>Большое спасибо организаторам REC за это драгоценное событие и возможность в нём участвовать. Мы очень гордимся тем, что оказались среди лучших кадров, завершивших его.</p>
+<p>&nbsp;</p>
+<p><iframe style=""border: none; overflow: hidden;"" src=""https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FRECTLSE%2Fposts%2F285930300410228&amp;show_text=true&amp;width=500"" width=""500"" height=""665"" frameborder=""0"" scrolling=""no"" allowfullscreen=""allowfullscreen""></iframe></p>
+<p>&nbsp;</p>","<p>Um único arrependimento: não termos podido nos desdobrar para aproveitar esta mina de conhecimentos, encontros e boas ideias.<br /><br />Os dois dias de festival passaram a toda a velocidade. Willy Lafran, da organização dos <a href=""https://www.facebook.com/RECTLSE"" target=""_blank"" rel=""noopener"">REC 2022</a>, teve a gentileza de nos conceder um belo stand no hall principal na última hora.</p>
+<p>Assim, muitos participantes puderam pegar as cartas do Argumentum e sentar-se à mesa para as numerosas sessões de demonstração que conduzimos.&nbsp;</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_160008_1.jpg"" alt=""IMG_20220422_160008_1"" /></p>
+<p>De gargalhada em gargalhada, com a curiosidade de uns aguçada pelos outros, na saída de uma das conferências que aconteciam ao lado, foram muitos os que se deixaram tentar, e nem uma só vez o gelo deixou de ser quebrado.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_152014.jpg"" alt=""IMG_20220422_152014"" /></p>
+<p>Professores pelos seus alunos, atores para trabalhar a improvisação, jornalistas e comunicadores pela eloquência, e jogadores apaixonados pelo prazer de um bom jogo, vindos da Bélgica, dos Estados Unidos e de todos os cantos da França, todos se reuniam o tempo de uma partida descontraída e, por um instante, se imaginavam Júlio César, o Smurf Fortão ou um marido adúltero, alternando o prazer da interpretação com o de descobrir os segredos da persuasão.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_112637.jpg"" alt=""IMG_20220422_112637"" />&nbsp;</p>
+<p>Todas as caixas que tínhamos levado saíram como pão quente, e voltamos com a agenda de endereços e o coração cheios de novos contatos e de rostos radiantes.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_172424.jpg"" alt=""IMG_20220422_172424"" /></p>
+<p>Um grande obrigado à organização dos REC por este evento precioso e pela oportunidade de participar. Estamos muito orgulhosos de figurar entre as mais belas imagens que o encerraram.</p>
+<p>&nbsp;</p>
+<p><iframe style=""border: none; overflow: hidden;"" src=""https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FRECTLSE%2Fposts%2F285930300410228&amp;show_text=true&amp;width=500"" width=""500"" height=""665"" frameborder=""0"" scrolling=""no"" allowfullscreen=""allowfullscreen""></iframe></p>
+<p>&nbsp;</p>","<p>Un solo pesar: no haber podido desdoblarnos para aprovechar esta mina de conocimientos, encuentros y buenas ideas.<br /><br />Los dos días de festival pasaron a toda velocidad. Willy Lafran, de la organización de los <a href=""https://www.facebook.com/RECTLSE"" target=""_blank"" rel=""noopener"">REC 2022</a>, tuvo la amabilidad de concedernos un bonito stand en el vestíbulo principal a última hora.</p>
+<p>Así, muchos participantes pudieron hacerse con las cartas de Argumentum y sentarse a la mesa en las numerosas sesiones de demostración que dirigimos.&nbsp;</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_160008_1.jpg"" alt=""IMG_20220422_160008_1"" /></p>
+<p>Entre carcajada y carcajada, con la curiosidad de unos picada por otros, a la salida de una de las conferencias que tenían lugar al lado, fueron muchos los que se dejaron tentar, y ni una sola vez dejó de romperse el hielo.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_152014.jpg"" alt=""IMG_20220422_152014"" /></p>
+<p>Docentes por sus alumnos, actores para trabajar la improvisación, periodistas y comunicadores por la elocuencia, y jugadores apasionados por el placer de un buen juego, llegados de Bélgica, de Estados Unidos y de los cuatro rincones de Francia, todos se reunían el tiempo de una partida distendida y, por un instante, se creían Julio César, el Pitufo Forzudo o un marido adúltero, alternando el placer de la interpretación con el de descubrir los arcanos de la persuasión.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_112637.jpg"" alt=""IMG_20220422_112637"" />&nbsp;</p>
+<p>Todas las cajas que habíamos llevado se vendieron como rosquillas, y nos fuimos con la agenda de direcciones y el corazón llenos de nuevos contactos y de rostros radiantes.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_172424.jpg"" alt=""IMG_20220422_172424"" /></p>
+<p>Un enorme agradecimiento a la organización de los REC por este valioso evento y por la oportunidad de formar parte de él. Estamos muy orgullosos de encontrarnos entre las más bellas imágenes que lo clausuraron.</p>
+<p>&nbsp;</p>
+<p><iframe style=""border: none; overflow: hidden;"" src=""https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FRECTLSE%2Fposts%2F285930300410228&amp;show_text=true&amp;width=500"" width=""500"" height=""665"" frameborder=""0"" scrolling=""no"" allowfullscreen=""allowfullscreen""></iframe></p>
+<p>&nbsp;</p>","<p>أسف واحد فقط: أننا لم نستطع أن ننقسم إلى اثنين للاستفادة من هذا المنجم من المعارف واللقاءات والأفكار الجيدة.<br /><br />مرّ يوما المهرجان بسرعة فائقة. وقد تكرّم Willy Lafran من منظمي <a href=""https://www.facebook.com/RECTLSE"" target=""_blank"" rel=""noopener"">REC 2022</a> بمنحنا جناحًا جميلًا في القاعة الرئيسية في اللحظة الأخيرة.</p>
+<p>وهكذا تمكن كثير من المشاركين من الإمساك ببطاقات Argumentum والجلوس إلى الطاولة في جلسات العرض التوضيحي العديدة التي أدرناها.&nbsp;</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_160008_1.jpg"" alt=""IMG_20220422_160008_1"" /></p>
+<p>ومن ضحكة إلى أخرى، وفضول بعضهم يثيره الآخرون عند الخروج من إحدى المحاضرات التي كانت تُعقد بالجوار، انجذب كثيرون إلينا، ولم يحدث ولو مرة واحدة ألا ينكسر الجليد.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_152014.jpg"" alt=""IMG_20220422_152014"" /></p>
+<p>معلمون من أجل طلابهم، وممثلون لتدريب الارتجال، وصحفيون ومتواصلون من أجل البلاغة، ولاعبون شغوفون بمتعة لعبة جيدة، قادمون من بلجيكا والولايات المتحدة ومن كل أنحاء فرنسا، اجتمعوا جميعًا لمدة جولة ودّية، وتخيّل كل منهم نفسه للحظة يوليوس قيصر أو السنفور القوي أو زوجًا خائنًا، متنقلين بين متعة التمثيل ومتعة اكتشاف أسرار الإقناع.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_112637.jpg"" alt=""IMG_20220422_112637"" />&nbsp;</p>
+<p>نفدت جميع العلب التي أحضرناها بسرعة كبيرة، وعدنا بدفتر عناوين وقلوب مملوءة بالمعارف الجديدة ووجوه مشرقة.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_172424.jpg"" alt=""IMG_20220422_172424"" /></p>
+<p>شكر جزيل لمنظمي REC على هذا الحدث الثمين وعلى فرصة المشاركة فيه. ونحن فخورون جدًا بأن نكون بين أجمل الصور التي اختُتم بها.</p>
+<p>&nbsp;</p>
+<p><iframe style=""border: none; overflow: hidden;"" src=""https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FRECTLSE%2Fposts%2F285930300410228&amp;show_text=true&amp;width=500"" width=""500"" height=""665"" frameborder=""0"" scrolling=""no"" allowfullscreen=""allowfullscreen""></iframe></p>
+<p>&nbsp;</p>","<p>فقط یک افسوس: اینکه نتوانستیم خودمان را دو نفر کنیم تا از این گنجینهٔ دانش، دیدارها و ایده‌های خوب بهره ببریم.<br /><br />دو روز جشنواره با سرعتی سرسام‌آور گذشت. Willy Lafran از برگزارکنندگان <a href=""https://www.facebook.com/RECTLSE"" target=""_blank"" rel=""noopener"">REC 2022</a> لطف کرد و در لحظهٔ آخر غرفه‌ای زیبا در سالن اصلی در اختیار ما گذاشت.</p>
+<p>به این ترتیب بسیاری از شرکت‌کنندگان توانستند کارت‌های Argumentum را در دست بگیرند و پای میز بنشینند، در جلسات نمایشی متعددی که ما برگزار کردیم.&nbsp;</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_160008_1.jpg"" alt=""IMG_20220422_160008_1"" /></p>
+<p>از خنده‌ای به خنده‌ای دیگر، در حالی که کنجکاوی عده‌ای با دیگران برانگیخته می‌شد، هنگام خروج از یکی از سخنرانی‌هایی که آن نزدیکی برگزار می‌شد، بسیاری وسوسه شدند و حتی یک بار هم پیش نیامد که یخ نشکند.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_152014.jpg"" alt=""IMG_20220422_152014"" /></p>
+<p>معلمانی برای دانش‌آموزانشان، بازیگرانی برای تمرین بداهه‌پردازی، روزنامه‌نگاران و ارتباط‌گران برای فصاحت، و بازیکنان مشتاق برای لذت یک بازی خوب، از بلژیک، ایالات متحده و گوشه‌گوشهٔ فرانسه، همه برای یک دور بازی دوستانه گرد هم می‌آمدند و لحظه‌ای خود را ژولیوس سزار، اسمورف قوی یا شوهری خیانتکار می‌پنداشتند و میان لذت ایفای نقش و لذت کشف رازهای متقاعدسازی در رفت‌وآمد بودند.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_112637.jpg"" alt=""IMG_20220422_112637"" />&nbsp;</p>
+<p>همهٔ جعبه‌هایی که آورده بودیم مثل نان داغ فروش رفت و ما با دفترچهٔ نشانی و دل‌هایی پر از آشنایی‌های تازه و چهره‌هایی پرنور بازگشتیم.</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_172424.jpg"" alt=""IMG_20220422_172424"" /></p>
+<p>سپاسی بزرگ از برگزارکنندگان REC برای این رویداد ارزشمند و فرصت حضور در آن. بسیار مفتخریم که در میان زیباترین تصاویری هستیم که پایان‌بخش آن بودند.</p>
+<p>&nbsp;</p>
+<p><iframe style=""border: none; overflow: hidden;"" src=""https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FRECTLSE%2Fposts%2F285930300410228&amp;show_text=true&amp;width=500"" width=""500"" height=""665"" frameborder=""0"" scrolling=""no"" allowfullscreen=""allowfullscreen""></iframe></p>
+<p>&nbsp;</p>","<p>唯一的遗憾是：我们无法分身，好好享受这座知识、相遇与好点子的宝库。<br /><br />两天的节日转瞬即逝。<a href=""https://www.facebook.com/RECTLSE"" target=""_blank"" rel=""noopener"">REC 2022</a> 的组织者 Willy Lafran 很热心，在最后一刻为我们在主厅安排了一个漂亮的展位。</p>
+<p>就这样，许多参与者拿起 Argumentum 的卡牌，围坐在桌旁，参加了我们主持的多场演示活动。&nbsp;</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_160008_1.jpg"" alt=""IMG_20220422_160008_1"" /></p>
+<p>笑声不断，一些人的好奇心被另一些人勾了起来，在隔壁某场讲座结束后顺道过来，许多人都忍不住试了一把，而且每一次，冰都被打破了。</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_152014.jpg"" alt=""IMG_20220422_152014"" /></p>
+<p>有的教师为了学生，有的演员为了练习即兴表演，有的记者和传播工作者为了锻炼口才，还有热爱游戏、只为享受一局好游戏的玩家，他们来自比利时、美国和法国各地，大家聚在一起玩一局轻松愉快的游戏，一时间把自己当成尤利乌斯·凯撒、大力蓝精灵或出轨的丈夫，在享受角色扮演的乐趣和探索说服奥秘的乐趣之间切换。</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_112637.jpg"" alt=""IMG_20220422_112637"" />&nbsp;</p>
+<p>我们带来的所有盒子都被抢购一空，离开时，我们的通讯录里添满了新的联系人，心中也装满了新朋友和一张张阳光般的笑脸。</p>
+<p><img style=""width: 100%;"" src=""/Portals/1/adam/News5/phU6xMNj9Uejkthqvu_VfQ/Content/IMG_20220422_172424.jpg"" alt=""IMG_20220422_172424"" /></p>
+<p>衷心感谢 REC 的组织者举办了这场珍贵的活动，并给了我们参与的机会。我们非常自豪能出现在为活动画上句号的最美画面之中。</p>
+<p>&nbsp;</p>
+<p><iframe style=""border: none; overflow: hidden;"" src=""https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FRECTLSE%2Fposts%2F285930300410228&amp;show_text=true&amp;width=500"" width=""500"" height=""665"" frameborder=""0"" scrolling=""no"" allowfullscreen=""allowfullscreen""></iframe></p>
+<p>&nbsp;</p>"
 C43A15A6-63C3-47F5-A392-D86ABEEFD57D|UrlKey,52,News,C43A15A6-63C3-47F5-A392-D86ABEEFD57D,UrlKey,String,editorial,argumentum-aux-rencontres-de-l-esprit-critique-2022,,,,,,,
-CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E|Title,52,News,CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E,Title,String,editorial,Soirée de lancement Argumentum,,,,,,,
+CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E|Title,52,News,CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E,Title,String,editorial,Soirée de lancement Argumentum,Argumentum Launch Party,Вечер запуска Argumentum,Noite de lançamento do Argumentum,Velada de lanzamiento de Argumentum,حفل إطلاق Argumentum,مراسم راه‌اندازی Argumentum,Argumentum 发布之夜
 CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E|Image,52,News,CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E,Image,Hyperlink,editorial,file:755,,,,,,,
 CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E|CropAnchor,52,News,CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E,CropAnchor,String,editorial,middlecenter,,,,,,,
-CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E|Teaser,52,News,CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E,Teaser,String,editorial,"À l’occasion de la troisième journée mondiale de l’esprit critique ce 1er avril 2022, nous organisons vendredi prochain la soirée de lancement d’un nouveau jeu de cartes, Argumentum, outil ludique et pédagogique que nous avons développé pour la pratique de la rhétorique et la reconnaissance des arguments fallacieux.",,,,,,,
+CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E|Teaser,52,News,CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E,Teaser,String,editorial,"À l’occasion de la troisième journée mondiale de l’esprit critique ce 1er avril 2022, nous organisons vendredi prochain la soirée de lancement d’un nouveau jeu de cartes, Argumentum, outil ludique et pédagogique que nous avons développé pour la pratique de la rhétorique et la reconnaissance des arguments fallacieux.","On the occasion of the third World Critical Thinking Day on April 1, 2022, next Friday we are hosting the launch party for a new card game, Argumentum, a fun and educational tool we developed for practising rhetoric and recognising fallacious arguments.","По случаю третьего Всемирного дня критического мышления 1 апреля 2022 года в следующую пятницу мы проводим вечер запуска новой карточной игры Argumentum — игрового и образовательного инструмента, который мы разработали для практики риторики и распознавания ложных аргументов.","Por ocasião do terceiro Dia Mundial do Pensamento Crítico, em 1.º de abril de 2022, organizamos na próxima sexta-feira a noite de lançamento de um novo jogo de cartas, Argumentum, ferramenta lúdica e pedagógica que desenvolvemos para a prática da retórica e o reconhecimento de argumentos falaciosos.","Con motivo del tercer Día Mundial del Pensamiento Crítico, el 1 de abril de 2022, el próximo viernes organizamos la velada de lanzamiento de un nuevo juego de cartas, Argumentum, herramienta lúdica y pedagógica que hemos desarrollado para la práctica de la retórica y el reconocimiento de argumentos falaces.",بمناسبة اليوم العالمي الثالث للتفكير النقدي في 1 أبريل 2022، ننظم يوم الجمعة القادم حفل إطلاق لعبة بطاقات جديدة، Argumentum، وهي أداة ترفيهية وتعليمية طورناها لممارسة الخطابة والتعرف على الحجج المغالطة.,به مناسبت سومین روز جهانی تفکر انتقادی در ۱ آوریل ۲۰۲۲، جمعه آینده مراسم راه‌اندازی یک بازی کارتی جدید به نام Argumentum را برگزار می‌کنیم؛ ابزاری سرگرم‌کننده و آموزشی که برای تمرین بلاغت و شناخت استدلال‌های مغالطه‌آمیز ساخته‌ایم.,值2022年4月1日第三届世界批判性思维日之际，我们将于下周五举办新卡牌游戏 Argumentum 的发布之夜。这是我们为练习修辞、识别谬误论证而开发的寓教于乐的工具。
 CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E|Content,52,News,CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E,Content,String,editorial,"<p>Certains le d&eacute;couvre, d&rsquo;autres l&rsquo;attendent depuis d&eacute;j&agrave; de trop nombreuses ann&eacute;es. Argumentum, le jeu de carte des arguments fallacieux sera enfin tr&egrave;s prochainement <strong>disponible</strong>.<br />Nous vous proposons de le (re) d&eacute;couvrir avec ses cr&eacute;ateurs &agrave; l'occasion de <strong>la f&ecirc;te de l'esprit critique</strong> , le <strong>1er avril au 81 boulevard Voltaire &agrave; Paris 11</strong>, dans le local associatif des Petits d&eacute;brouillards. Nous les remercions pour leur hospitalit&eacute;.</p>
 <p>Cet &eacute;v&egrave;nement fera l'objet d'une retransmission en multiplex sur <a href=""https://www.youtube.com/watch?v=559XtnjE57E"" target=""_blank"" rel=""noopener"">un live Youtube</a>, Facebook, et Twith.</p>
 <p>Nous commencerons &agrave; <strong>18h </strong>par <strong>une table ronde</strong> &agrave; propos du d&eacute;bat public, un sujet particuli&egrave;rement br&ucirc;lant.</p>
 <p><strong>&agrave; 19h</strong>, un verre &agrave; la main, nous pr&eacute;senterons le jeu, sa gen&egrave;se et les d&eacute;veloppements &agrave; venir avant de lancer quelques tables pour <strong>un ap&eacute;ro ludique</strong> endiabl&eacute;.</p>
-<p><strong>&agrave; 20h30</strong>, nous vous proposerons de poursuivre ou de nous rejoindre &agrave; la cantina, &agrave; la m&ecirc;me adresse, pour s'y restaurer et continuer &agrave; f&ecirc;ter, dans la <strong>bonne humeur </strong>et juste ce qu'il faut de <strong>mauvais esprit</strong>, <strong>l'esprit critique</strong>, la rh&eacute;torique et le d&eacute;bat public.</p>",,,,,,,
+<p><strong>&agrave; 20h30</strong>, nous vous proposerons de poursuivre ou de nous rejoindre &agrave; la cantina, &agrave; la m&ecirc;me adresse, pour s'y restaurer et continuer &agrave; f&ecirc;ter, dans la <strong>bonne humeur </strong>et juste ce qu'il faut de <strong>mauvais esprit</strong>, <strong>l'esprit critique</strong>, la rh&eacute;torique et le d&eacute;bat public.</p>","<p>Some are discovering it, others have been waiting for it for far too many years. Argumentum, the fallacious arguments card game, will finally be <strong>available</strong> very soon.<br />We invite you to (re)discover it with its creators on the occasion of <strong>the Critical Thinking Celebration</strong>, on <strong>April 1 at 81 boulevard Voltaire in Paris 11</strong>, in the association premises of the Petits d&eacute;brouillards. We thank them for their hospitality.</p>
+<p>This event will be broadcast in multiplex on <a href=""https://www.youtube.com/watch?v=559XtnjE57E"" target=""_blank"" rel=""noopener"">a YouTube live</a>, Facebook, and Twith.</p>
+<p>We will start at <strong>6 pm </strong>with <strong>a round table</strong> about public debate, a particularly burning topic.</p>
+<p><strong>At 7 pm</strong>, drink in hand, we will present the game, its origins and the developments to come, before setting up a few tables for a lively <strong>game-filled aperitif</strong>.</p>
+<p><strong>At 8:30 pm</strong>, we invite you to continue or to join us at the cantina, at the same address, to eat and keep celebrating, in <strong>good spirits </strong>and with just the right amount of <strong>mischief</strong>, <strong>critical thinking</strong>, rhetoric and public debate itself.</p>","<p>Одни открывают её для себя, другие ждут её уже слишком много лет. Argumentum, карточная игра о ложных аргументах, наконец-то очень скоро станет <strong>доступна</strong>.<br />Предлагаем (пере)открыть её вместе с создателями по случаю <strong>праздника критического мышления</strong> — <strong>1 апреля по адресу 81 boulevard Voltaire, Париж, 11-й округ</strong>, в помещении ассоциации Petits d&eacute;brouillards. Благодарим их за гостеприимство.</p>
+<p>Это мероприятие будет транслироваться одновременно в <a href=""https://www.youtube.com/watch?v=559XtnjE57E"" target=""_blank"" rel=""noopener"">прямом эфире на YouTube</a>, в Facebook и Twith.</p>
+<p>Мы начнём в <strong>18:00 </strong>с <strong>круглого стола</strong> об общественных дебатах — особенно жгучей теме.</p>
+<p><strong>В 19:00</strong> с бокалом в руке мы представим игру, историю её создания и дальнейшее развитие, а затем запустим несколько столов для зажигательного <strong>игрового аперитива</strong>.</p>
+<p><strong>В 20:30</strong> мы предлагаем вам продолжить вечер или присоединиться к нам в кантине по тому же адресу, чтобы поужинать и продолжить праздновать в <strong>хорошем настроении </strong>и с нужной долей <strong>озорства</strong> — <strong>критическое мышление</strong>, риторику и общественные дебаты.</p>","<p>Alguns estão a descobri-lo, outros esperam por ele há demasiados anos. Argumentum, o jogo de cartas dos argumentos falaciosos, estará finalmente <strong>disponível</strong> muito em breve.<br />Propomos-lhe (re)descobri-lo com os seus criadores por ocasião da <strong>festa do pensamento crítico</strong>, a <strong>1 de abril no 81 boulevard Voltaire, em Paris 11</strong>, no espaço associativo dos Petits d&eacute;brouillards. Agradecemos-lhes a hospitalidade.</p>
+<p>Este evento será transmitido em multiplex num <a href=""https://www.youtube.com/watch?v=559XtnjE57E"" target=""_blank"" rel=""noopener"">direto no YouTube</a>, no Facebook e no Twith.</p>
+<p>Começaremos às <strong>18h </strong>com uma <strong>mesa-redonda</strong> sobre o debate público, um tema particularmente candente.</p>
+<p><strong>Às 19h</strong>, de copo na mão, apresentaremos o jogo, a sua génese e os desenvolvimentos futuros, antes de lançar algumas mesas para um <strong>aperitivo lúdico</strong> endiabrado.</p>
+<p><strong>Às 20h30</strong>, propomos-lhe continuar ou juntar-se a nós na cantina, no mesmo endereço, para jantar e continuar a celebrar, com <strong>bom humor </strong>e na medida certa de <strong>espírito de contradição</strong>, o <strong>pensamento crítico</strong>, a retórica e o debate público.</p>","<p>Algunos lo descubren, otros lo esperan desde hace demasiados años. Argumentum, el juego de cartas de los argumentos falaces, estará por fin <strong>disponible</strong> muy pronto.<br />Les proponemos (re)descubrirlo con sus creadores con motivo de <strong>la fiesta del pensamiento crítico</strong>, el <strong>1 de abril en el 81 boulevard Voltaire, en París 11</strong>, en el local asociativo de los Petits d&eacute;brouillards. Les agradecemos su hospitalidad.</p>
+<p>Este evento se retransmitirá en multiplex en <a href=""https://www.youtube.com/watch?v=559XtnjE57E"" target=""_blank"" rel=""noopener"">un directo de YouTube</a>, Facebook y Twith.</p>
+<p>Empezaremos a las <strong>18 h </strong>con una <strong>mesa redonda</strong> sobre el debate público, un tema especialmente candente.</p>
+<p><strong>A las 19 h</strong>, con una copa en la mano, presentaremos el juego, su génesis y los desarrollos futuros antes de poner en marcha algunas mesas para un <strong>aperitivo lúdico</strong> endiablado.</p>
+<p><strong>A las 20:30 h</strong>, les propondremos continuar o unirse a nosotros en la cantina, en la misma dirección, para cenar y seguir celebrando, con <strong>buen humor </strong>y justo la dosis necesaria de <strong>mala idea</strong>, el <strong>pensamiento crítico</strong>, la retórica y el debate público.</p>","<p>بعضهم يكتشفها، وآخرون ينتظرونها منذ سنوات طويلة جدًا. ستكون Argumentum، لعبة بطاقات الحجج المغالطة، <strong>متاحة</strong> أخيرًا قريبًا جدًا.<br />ندعوكم إلى (إعادة) اكتشافها مع مبتكريها بمناسبة <strong>عيد التفكير النقدي</strong> يوم <strong>1 أبريل في 81 boulevard Voltaire في باريس 11</strong>، في مقر جمعية Petits d&eacute;brouillards. نشكرهم على حسن ضيافتهم.</p>
+<p>سيُبث هذا الحدث بالتزامن عبر <a href=""https://www.youtube.com/watch?v=559XtnjE57E"" target=""_blank"" rel=""noopener"">بث مباشر على يوتيوب</a> وفيسبوك وTwith.</p>
+<p>سنبدأ في الساعة <strong>18:00 </strong>بـ<strong>طاولة مستديرة</strong> حول النقاش العام، وهو موضوع ساخن بشكل خاص.</p>
+<p><strong>في الساعة 19:00</strong>، وكأس في اليد، سنقدم اللعبة ونشأتها والتطورات القادمة، قبل أن نفتتح بعض الطاولات من أجل <strong>أمسية تسلية</strong> حماسية.</p>
+<p><strong>في الساعة 20:30</strong>، ندعوكم إلى المتابعة أو الانضمام إلينا في الكانتينا، في العنوان نفسه، لتناول الطعام ومواصلة الاحتفال، بـ<strong>روح مرحة </strong>ومقدار مناسب من <strong>الشقاوة</strong>، <strong>بالتفكير النقدي</strong> والخطابة والنقاش العام.</p>","<p>برخی آن را کشف می‌کنند و برخی دیگر سال‌هاست بیش از حد منتظرش بوده‌اند. Argumentum، بازی کارتی استدلال‌های مغالطه‌آمیز، سرانجام بسیار به‌زودی <strong>در دسترس</strong> خواهد بود.<br />پیشنهاد می‌کنیم آن را به‌مناسبت <strong>جشن تفکر انتقادی</strong> همراه با سازندگانش (دوباره) کشف کنید؛ در <strong>۱ آوریل در 81 boulevard Voltaire در پاریس ۱۱</strong>، در محل انجمن Petits d&eacute;brouillards. از میزبانی آنان سپاسگزاریم.</p>
+<p>این رویداد به‌صورت هم‌زمان از طریق <a href=""https://www.youtube.com/watch?v=559XtnjE57E"" target=""_blank"" rel=""noopener"">پخش زنده یوتیوب</a>، فیسبوک و Twith پخش خواهد شد.</p>
+<p>ساعت <strong>۱۸ </strong>با یک <strong>میزگرد</strong> درباره بحث عمومی، موضوعی بسیار داغ، شروع می‌کنیم.</p>
+<p><strong>ساعت ۱۹</strong>، با یک نوشیدنی در دست، بازی، چگونگی شکل‌گیری آن و پیشرفت‌های آینده را معرفی می‌کنیم و سپس چند میز برای یک <strong>آپریتیف بازی‌محور</strong> پرشور راه می‌اندازیم.</p>
+<p><strong>ساعت ۲۰:۳۰</strong>، از شما دعوت می‌کنیم ادامه دهید یا در کانتینا، در همان نشانی، به ما بپیوندید تا شام بخورید و با <strong>روحیه‌ای خوش </strong>و به اندازه‌ی لازم <strong>شیطنت</strong>، جشن <strong>تفکر انتقادی</strong>، بلاغت و بحث عمومی را ادامه دهیم.</p>","<p>有些人刚刚发现它，有些人则已经等了太多年。Argumentum，这款诡辩论证纸牌游戏，终于即将<strong>上市</strong>。<br />值<strong>批判精神节</strong>之际，我们邀请您与游戏的创作者们一起（重新）认识它，活动将于<strong>4月1日在巴黎11区伏尔泰大道81号</strong>（81 boulevard Voltaire）举行，地点在 Petits d&eacute;brouillards 协会的活动场地。感谢他们的热情接待。</p>
+<p>本次活动将通过多平台同步直播，包括<a href=""https://www.youtube.com/watch?v=559XtnjE57E"" target=""_blank"" rel=""noopener"">Youtube直播</a>、Facebook和Twitch。</p>
+<p>我们将于<strong>18点</strong>以<strong>圆桌讨论</strong>开场，主题是公共辩论，这是一个格外热门的话题。</p>
+<p><strong>19点</strong>，大家手持一杯饮品，我们将介绍这款游戏、它的诞生过程以及未来的发展，然后开几桌，进行一场热闹非凡的<strong>游戏开胃酒会</strong>。</p>
+<p><strong>20点30分</strong>，我们邀请您继续留下或前来与我们会合，到同一地址的小餐馆用餐，在<strong>愉快的气氛</strong>中，带着恰到好处的<strong>坏心眼</strong>，继续庆祝<strong>批判精神</strong>、修辞术和公共辩论。</p>"
 CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E|UrlKey,52,News,CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E,UrlKey,String,editorial,soiree-de-lancement-argumentum,,,,,,,
 D4D9773B-3131-4656-BF5C-B047E0AE5566|GoBackText,59,App-Resources,D4D9773B-3131-4656-BF5C-B047E0AE5566,GoBackText,String,label,Retour à la liste,Back to the list,Назад к списку,Voltar à lista,Volver a la lista,العودة إلى القائمة,بازگشت به فهرست,返回列表
 D4D9773B-3131-4656-BF5C-B047E0AE5566|MoreText,59,App-Resources,D4D9773B-3131-4656-BF5C-B047E0AE5566,MoreText,String,label,en savoir plus,learn more,узнать больше,saiba mais,saber más,اعرف المزيد,بیشتر بدانید,了解更多
