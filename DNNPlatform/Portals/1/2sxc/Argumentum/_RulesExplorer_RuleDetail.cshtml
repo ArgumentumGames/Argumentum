@@ -16,12 +16,27 @@
         : lang == "fa" ? "از {0} تا {1} بازیکن"
         : "de {0} à {1} joueurs";
 
+    // D1 (#458, 22/10): min == max needs no interval - the corpus itself writes the
+    // single form on the 4/4 fiche (Rules_13: «Règles du jeu : 4 joueurs» in Text and
+    // its 7 translations). The plural class is that of the measured value (ru 2-4
+    // => «игрока», ar 3-10 => «لاعبين»). Keep in sync with _RulesExplorer_RuleList.cshtml.
+    var playersFormatSingle = lang == "en" ? "{0} players"
+        : lang == "es" ? "{0} jugadores"
+        : lang == "pt" ? "{0} jogadores"
+        : lang == "ru" ? "{0} игрока"
+        : lang == "zh" ? "{0}名玩家"
+        : lang == "ar" ? "{0} لاعبين"
+        : lang == "fa" ? "{0} بازیکن"
+        : "{0} joueurs";
+
     // #458 ⑲: the fa cards carry PERSIAN digits («از ۳ تا ۱۰ بازیکن» — Text_fa holds 94
     // Persian digits against 20 ASCII, measured 22/10; every other language column is pure
     // ASCII). .NET number formatting never applies NumberFormatInfo.NativeDigits, so the
     // caption would come out ASCII and disagree with the card - convert to match it.
     // Keep the conversion in sync with _RulesExplorer_RuleList.cshtml.
-    var playersText = string.Format(playersFormat, ruleEntity.MinNbPlayers, ruleEntity.MaxNbPlayers);
+    var playersText = ruleEntity.MinNbPlayers == ruleEntity.MaxNbPlayers
+        ? string.Format(playersFormatSingle, ruleEntity.MinNbPlayers)
+        : string.Format(playersFormat, ruleEntity.MinNbPlayers, ruleEntity.MaxNbPlayers);
     if (lang == "fa")
     {
         var persianDigits = "۰۱۲۳۴۵۶۷۸۹";

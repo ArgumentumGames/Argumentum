@@ -72,19 +72,23 @@ namespace Argumentum.AssetConverter.Tests
 
 		/// <summary>Extrait le commutateur <c>playersFormat</c> d'un gabarit : branches
 		/// ordonnées (lang, format), le repli final en dernier avec lang="fr". Jette si le
-		/// commutateur a été renommé/retiré ou si une branche perd ses jetons {0}/{1}.</summary>
-		internal static IReadOnlyList<(string Lang, string Format)> ParseCultureSwitch(string templateText)
+		/// commutateur a été renommé/retiré ou si une branche perd ses jetons {0}/{1}.
+		/// <paramref name="anchor"/> cible le second commutateur (<c>var playersFormatSingle</c>,
+		/// forme min==max ajoutée le 22/10) ; <paramref name="requireInterval"/> exige
+		/// alors {0} SEUL — un {1} dans la forme simple ferait rendre « de 4 à 4 joueurs »,
+		/// le défaut même que le correctif supprime.</summary>
+		internal static IReadOnlyList<(string Lang, string Format)> ParseCultureSwitch(string templateText, string anchor = "var playersFormat", bool requireInterval = true)
 		{
-			var anchor = templateText.IndexOf("var playersFormat", StringComparison.Ordinal);
-			if (anchor < 0)
+			var anchorIndex = templateText.IndexOf(anchor, StringComparison.Ordinal);
+			if (anchorIndex < 0)
 				throw new InvalidOperationException(
-					"GardeD1: 'var playersFormat' introuvable — le commutateur D1 a été renommé ou retiré du gabarit.");
-			var end = templateText.IndexOf("\";", anchor, StringComparison.Ordinal);
+					$"GardeD1: '{anchor}' introuvable — le commutateur D1 a été renommé ou retiré du gabarit.");
+			var end = templateText.IndexOf("\";", anchorIndex, StringComparison.Ordinal);
 			if (end < 0)
 				throw new InvalidOperationException(
-					"GardeD1: fin du commutateur ('\";') introuvable après 'var playersFormat'.");
+					"GardeD1: fin du commutateur ('\";') introuvable après '" + anchor + "'.");
 
-			var slice = templateText.Substring(anchor, end + 1 - anchor);
+			var slice = templateText.Substring(anchorIndex, end + 1 - anchorIndex);
 			var branches = new List<(string Lang, string Format)>();
 			foreach (Match m in Regex.Matches(slice, @"lang == ""(?'lang'[a-z-]+)"" \? ""(?'fmt'[^""]*)"""))
 				branches.Add((m.Groups["lang"].Value, m.Groups["fmt"].Value));
@@ -95,9 +99,14 @@ namespace Argumentum.AssetConverter.Tests
 			branches.Add(("fr", fallback.Groups["fmt"].Value));
 
 			foreach (var (lang, format) in branches)
-				if (!format.Contains("{0}") || !format.Contains("{1}"))
+			{
+				if (requireInterval && (!format.Contains("{0}") || !format.Contains("{1}")))
 					throw new InvalidOperationException(
 						$"GardeD1: la branche '{lang}' porte « {format} » sans {{0}}/{{1}} — l'attestation numérique serait vide.");
+				if (!requireInterval && (!format.Contains("{0}") || format.Contains("{1}")))
+					throw new InvalidOperationException(
+						$"GardeD1: la branche '{lang}' du commutateur min==max porte « {format} » — la forme simple exige {{0}} SANS {{1}}, sinon la légende rend « de 4 à 4 joueurs ».");
+			}
 			return branches;
 		}
 
@@ -471,6 +480,113 @@ namespace Argumentum.AssetConverter.Tests
 			var fixedForm = "@foreach (var x in AsList(Data))\n{\n    if (lang == \"fa\")\n    {\n        playersText = Convert(playersText);\n    }\n}";
 			UnbracedControlBlocks(fixedForm).Should().BeEmpty(
 				"la même forme en accolades ne doit RIEN signaler — sinon le canal rougit sur le correctif");
+		}
+
+		// ── Canal min == max (dispatch 22/10, item 3 — « de 4 à 4 joueurs », 8 langues) ──
+
+		/// <summary>Le corpus lui-même écrit la forme simple sur la fiche 4/4 (Rules_13 :
+		/// « *Règles du jeu : 4 joueurs* » dans <c>Text</c> et ses 7 traductions, mesuré
+		/// 22/10) : le commutateur <c>playersFormatSingle</c> doit exister dans les DEUX
+		/// gabarits, identique branche à branche, chaque forme attestée par les cartes de
+		/// sa langue — le même contrat que le commutateur d'intervalle.</summary>
+		[Fact]
+		public void La_Forme_Min_Egal_Max_Est_Synchronisee_Et_Attestee()
+		{
+			var root = TestRepoRoot.Find();
+			var detail = ParseCultureSwitch(File.ReadAllText(GabaritPath(root, DetailName)), "var playersFormatSingle", requireInterval: false);
+			var list = ParseCultureSwitch(File.ReadAllText(GabaritPath(root, ListName)), "var playersFormatSingle", requireInterval: false);
+
+			// Anti-vacuité et ordre : mêmes 8 branches que le commutateur d'intervalle.
+			detail.Should().HaveCount(c => c >= 8,
+				"le commutateur min==max porte aujourd'hui 8 branches (fr + en/es/pt/ru/zh/ar/fa) — moins signifie un parseur cassé ou un commutateur amputé");
+			detail.Select(b => b.Lang).Should().ContainInOrder(new[] { "en", "es", "pt", "ru", "zh", "ar", "fa", "fr" },
+				"l'ordre mesuré des branches du commutateur min==max");
+
+			SwitchDifferences(detail, list).Should().BeEmpty(
+				"D1 min==max (#458) : les deux gabarits doivent porter le MÊME commutateur playersFormatSingle — une divergence fait retomber liste OU détail sur le repli fr, silencieusement. Divergences : " +
+				string.Join(" | ", SwitchDifferences(detail, list)));
+
+			var (header, rows) = ReadRulesCsv(root);
+			var texts = ColumnTextsByLang(header, rows);
+			UnattestedBranches(detail, texts).Should().BeEmpty(
+				"la forme simple min==max doit être attestée par les cartes de SA langue — le CSV écrit déjà la forme sur la fiche 4/4 (Rules_13, mesuré 22/10 : « 4 joueurs », « 4 players », « 4 jugadores », « 4 jogadores », « 4 игрока », « 4名玩家 », « 4 لاعبين », « ۴ بازیکن »). Non attestées : " +
+				string.Join(" | ", UnattestedBranches(detail, texts)));
+
+			// La conversion des chiffres persans s'applique à la variable partagée playersText :
+			// le canal du système de chiffres doit aussi passer sur la forme simple.
+			DigitSystemOffenders(detail, texts, ConvertingLangs.Keys.ToList()).Should().BeEmpty(
+				"le système de chiffres de la forme simple doit suivre le corpus (fa convertit — « ۴ بازیکن » servi, mesuré 22/10). Contrevenants : " +
+				string.Join(" | ", DigitSystemOffenders(detail, texts, ConvertingLangs.Keys.ToList())));
+		}
+
+		/// <summary>Mutation de synchronisation du commutateur min==max : la branche ru
+		/// retirée du texte RÉEL du RuleList (chirurgie dans la tranche du commutateur
+		/// seul, pour ne pas toucher le commutateur d'intervalle), re-parse et
+		/// comparaison — le signalement doit être nominatif 'ru'.</summary>
+		[Fact]
+		public void Detecteur_Rouge_Sur_Commutateur_Min_Egal_Max_Desynchronise()
+		{
+			var root = TestRepoRoot.Find();
+			var detail = ParseCultureSwitch(File.ReadAllText(GabaritPath(root, DetailName)), "var playersFormatSingle", requireInterval: false);
+			var listText = File.ReadAllText(GabaritPath(root, ListName));
+
+			var anchor = listText.IndexOf("var playersFormatSingle", StringComparison.Ordinal);
+			anchor.Should().BeGreaterOrEqualTo(0, "le commutateur min==max doit exister dans le gabarit vivant");
+			var end = listText.IndexOf("\";", anchor, StringComparison.Ordinal);
+			var slice = listText.Substring(anchor, end + 1 - anchor);
+
+			var mutatedSlice = Regex.Replace(slice, @"lang == ""ru"" \? ""[^""]*""", string.Empty);
+			mutatedSlice.Should().NotBe(slice, "la mutation doit toucher la tranche (la branche ru simple doit exister)");
+
+			var mutated = listText.Replace(slice, mutatedSlice);
+			var diffs = SwitchDifferences(detail, ParseCultureSwitch(mutated, "var playersFormatSingle", requireInterval: false));
+			diffs.Should().NotBeEmpty("un commutateur min==max désynchronisé doit être signalé");
+			diffs.Should().Contain(d => d.Contains("'ru'"), "le signalement est nominatif : la branche manquante est 'ru'");
+		}
+
+		/// <summary>Mutation d'attestation de la forme simple : « {0} participants »
+		/// (mot absent du corpus Text, mesuré au grain ⑬) doit être signalé ; contrôle
+		/// positif d'abord sur la forme fr réelle « {0} joueurs ».</summary>
+		[Fact]
+		public void Detecteur_Rouge_Sur_Forme_Simple_Non_Attestee()
+		{
+			var root = TestRepoRoot.Find();
+			var (header, rows) = ReadRulesCsv(root);
+			var texts = ColumnTextsByLang(header, rows);
+			var detail = ParseCultureSwitch(File.ReadAllText(GabaritPath(root, DetailName)), "var playersFormatSingle", requireInterval: false);
+
+			UnattestedBranches(new List<(string Lang, string Format)> { detail.First(b => b.Lang == "fr") }, texts)
+				.Should().BeEmpty("contrôle positif : la forme fr simple réelle doit être attestée dans Text (fiche 4/4, mesuré 22/10)");
+
+			var mutated = detail
+				.Select(b => b.Lang == "fr" ? ("fr", "{0} participants") : b)
+				.ToList();
+			var unattested = UnattestedBranches(mutated, texts);
+			unattested.Should().ContainSingle("seule la branche mutée doit être signalée");
+			unattested[0].Should().Contain("fr").And.Contain("participants",
+				"le signalement est nominatif : langue ET forme du mutant");
+		}
+
+		/// <summary>Un {1} dans le commutateur simple EST le défaut d'origine (« de 4 à
+		/// 4 joueurs ») : le parseur doit le refuser, nominativement.</summary>
+		[Fact]
+		public void Detecteur_Rouge_Sur_Forme_Simple_Portant_Un_Intervalle()
+		{
+			var root = TestRepoRoot.Find();
+			var listText = File.ReadAllText(GabaritPath(root, ListName));
+			var anchor = listText.IndexOf("var playersFormatSingle", StringComparison.Ordinal);
+			anchor.Should().BeGreaterOrEqualTo(0, "le commutateur min==max doit exister dans le gabarit vivant");
+			var end = listText.IndexOf("\";", anchor, StringComparison.Ordinal);
+			var slice = listText.Substring(anchor, end + 1 - anchor);
+
+			var mutated = listText.Replace(slice,
+				Regex.Replace(slice, @": ""\{0\} joueurs""\s*$", @": ""de {0} à {1} joueurs"""));
+			mutated.Should().NotBe(listText, "la mutation doit toucher la tranche (le repli fr simple doit exister)");
+
+			var act = () => ParseCultureSwitch(mutated, "var playersFormatSingle", requireInterval: false);
+			act.Should().Throw<InvalidOperationException>()
+				.WithMessage("*{1}*« de 4 à 4 joueurs »*",
+					"la forme simple qui porte un intervalle est le défaut d'origine — le refus doit être nominatif");
 		}
 	}
 }
