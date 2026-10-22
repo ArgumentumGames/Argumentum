@@ -12,7 +12,7 @@
   @helpers.AdminArticleInformation(article)
 
   @((Tag.Custom(DynamicModel.HeadingType)).Class("app-news5-list").Wrap(article.Title))
-  <span class='app-news5-date @(displayCategories ? "app-date-border" : "")'>@article.Date.ToString("d")</span>
+  <span class='app-news5-date @(displayCategories ? "app-date-border" : "")'>@helpers.DateShortGregorian(article.Date)</span>
   @if(displayCategories) {
     <span class="app-news5-categories">
       @foreach (var cat in article.Categories) {

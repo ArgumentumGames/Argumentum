@@ -27,7 +27,7 @@
   var displayCategories = App.Settings.ActivateCategories && (article.Categories as Dynlist).Any();
   var imageUrl = Text.Has(article.Image) ? article.Image : App.Resources.PlaceholderMissingImage;
   page.AddMeta("description", Tags.Strip(article.Teaser));
-  page.SetTitle(article.Date.ToString("d") + " - " + article.Title);
+  page.SetTitle(helpers.DateShortGregorian(article.Date) + " - " + article.Title);
 }
 
 <div class="app-news5 app-news5-detail" @Edit.TagToolbar(article, toolbar: new [] {"-layout", "%delete&show=true"})>
@@ -39,7 +39,7 @@
     <h2>@article.Title</h2>
 
     @* Show Date and categories *@
-    <span class='app-news5-date @(displayCategories ? "app-news5-date-border" : "")'>@article.Date.ToString("d")</span>
+    <span class='app-news5-date @(displayCategories ? "app-news5-date-border" : "")'>@helpers.DateShortGregorian(article.Date)</span>
     @if(displayCategories) {
       <span class="app-news5-categories">
         @foreach (var cat in article.Categories) {
