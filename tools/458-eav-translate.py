@@ -27,6 +27,7 @@ import os
 import re
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 
 LANGS = ["en", "ru", "pt", "es", "ar", "fa", "zh"]
@@ -44,13 +45,20 @@ TRANSLATABLE = {
     # game rule blocks
     "RuleSummary", "RuleMaterial", "RuleInstallation", "RuleContent", "RuleVariants",
     "RuleMemoInstructions", "Material", "Installation", "Variants", "Memo",
-    # a *label*, not the asset it points at (RuleMemoCardDownload is the URL)
-    "RuleMemoCard",
+    # Labels, not the assets they point at. `RuleMemoCardDownload` is a *button
+    # caption*, not the URL: measured 23/10 on the 579-row pivot, FR reads
+    # "Télécharger la carte mémo" and 6 languages carry a translated caption —
+    # no value anywhere has a URL shape (web2's C4 claimed the field was absent
+    # from the source; it was in this NEVER list, which is why ar/fa stayed empty).
+    "RuleMemoCard", "RuleMemoCardDownload",
 }
 # Shapes that must never be translated even when the field name looks prose-y.
+# `RuleMemoCardFileNamePrefix` stays here: it is the *file name* the download
+# link resolves to, so translating it would point at an asset that need not exist
+# (ar/fa/ru/zh keep it empty → FR fallback name, which is the served-file reality).
 NEVER = {"UrlKey", "Path", "Email", "Link", "Images", "AlbumThumbnail", "Image",
          "CropAnchor", "SortMode", "HeadingType", "RuleMemoCardFileNamePrefix",
-         "RuleMemoCardDownload", "PlaceholderMissingImage"}
+         "PlaceholderMissingImage"}
 # Content types whose fields are identities (people, brands, mailboxes, slugs).
 SKIP_TYPES = {"Contributor", "Location", "Person"}
 # Game Rule fields whose single source is the Rules CSV (owner decision 10/10):
@@ -65,9 +73,11 @@ CSV_SOURCED = {"Game Rule": {"Title", "Summary", "Material", "Installation",
 # counter-review prompt must carry these — a bare "pt" made the working model
 # answer in European Portuguese (3 cells of #1938, corrected by ai-01 in
 # ae5090cc), and the Opus counter-review had validated them as "natural PT-PT"
-# because the variant was nowhere stated. `en` stays unpinned until web2's W7
-# measure; `ru` and `ar` have no competing shipped variant (dispatch 22/10 09:32).
+# because the variant was nowhere stated. `en` is now pinned too: web2's W7
+# counted the shipped corpus 268 American vs 18 British spellings (~15:1).
+# `ru` and `ar` have no competing shipped variant (dispatch 22/10 09:32).
 LANGUAGE_VARIANTS = {
+    "en": "en-US, American English (web2 W7: corpus 268 AmE vs 18 BrE)",
     "pt": "pt-BR, Brazilian Portuguese (decision #1095)",
     "zh": "zh-CN, Simplified Chinese",
     "fa": "fa-IR, Iranian Persian",
@@ -168,9 +178,28 @@ def markers(s):
             if any(lo <= ord(c) <= hi for lo, hi in MARKER_RANGES)}
 
 
-def validate(src, tgt):
+def _norm_url(u, lang):
+    """Erase exactly the two differences a correct localization is allowed to make.
+
+    (a) A localized page is addressed through the cell's own language segment:
+    `/en/Règles/…`, `/ru/Règles/…` (web2's W11, measured 23/10 — all 7 prefixes
+    answer 200 in the right language). Only the *cell's own* prefix is erased, so
+    a `/de/` or a foreign prefix is still a defect.
+    (b) The FR source may spell the same path percent-encoded (`/R%C3%A8gles/…`)
+    while another language keeps the literal character; both decode identically.
+    """
+    u = urllib.parse.unquote(u)
+    if lang and lang != "fr":
+        u = re.sub(r"^/" + re.escape(lang) + r"/", "/", u)
+    return u
+
+
+def validate(src, tgt, lang=None):
     """A cell is written only if the markup and the marker sequence survive intact.
 
+    `lang` is the target language: pass it so that URL comparison tolerates that
+    language's own page prefix (see `_norm_url`). Leaving it None keeps the strict
+    byte-for-byte URL rule, which is what the counter-review importers rely on.
     Returns a list of problems; an empty list means the translation is admissible.
     """
     if not tgt or not tgt.strip():
@@ -183,7 +212,7 @@ def validate(src, tgt):
         problems.append(f"HTML tags differ: {tags(src)} -> {tags(tgt)}")
     if attrs(src) != attrs(tgt):
         problems.append(f"HTML attributes differ: {attrs(src)} -> {attrs(tgt)}")
-    if urls(src) != urls(tgt):
+    if sorted(_norm_url(u, None) for u in urls(src)) != sorted(_norm_url(u, lang) for u in urls(tgt)):
         problems.append(f"URLs differ: {urls(src)} -> {urls(tgt)}")
     if markers(src) != markers(tgt):
         problems.append(f"pictograms differ: {markers(src)} -> {markers(tgt)}")
@@ -276,7 +305,24 @@ def main():
         w.writerows(rows)
         orig = open(a.src, encoding="utf-8", newline="").read()
         assert buf.getvalue() == orig, "round-trip is not byte-identical"
-        print(f"self-test OK: round-trip byte-identical, {len(rows)} rows, {len(todo)} rows to translate")
+        # URL rule (web2 W11): tolerate the cell's own page prefix and the
+        # percent-encoded vs literal spelling of the same path — and prove with
+        # inverse controls that the tolerance did not become a blank cheque.
+        fr_cell = '<a href="/R%C3%A8gles/details/x">t</a>'
+        controls = [
+            (validate(fr_cell, '<a href="/ru/Règles/details/x">т</a>', "ru"), False, "own prefix must pass"),
+            (validate(fr_cell, '<a href="/Règles/details/x">т</a>', "ru"), False, "unprefixed target must pass"),
+            (validate(fr_cell, '<a href="/de/Règles/details/x">т</a>', "ru"), True, "foreign prefix must fail"),
+            (validate(fr_cell, '<a href="/ru/Règles/other">т</a>', "ru"), True, "different path must fail"),
+            (validate(fr_cell, '<a href="/ru/Règles/details/x">т</a>'), True, "lang=None keeps the strict rule"),
+            (validate(fr_cell, "<b>т</b>", "ru"), True, "tag drift must fail"),
+            (validate("<p>🥇➜🏆</p>", "<p>🥈➜🏆</p>", "ru"), True, "pictogram drift must fail"),
+            (validate("<p>🥇➜🏆</p>", "<p>🥇➜🏆</p>", "ru"), False, "identical markup must pass"),
+        ]
+        for problems, want_problems, why in controls:
+            assert bool(problems) == want_problems, f"{why}: {problems}"
+        print(f"self-test OK: round-trip byte-identical, {len(rows)} rows, {len(todo)} to translate; "
+              f"URL rule accepts the own prefix, rejects a foreign one")
 
     if a.limit:
         todo = todo[: a.limit]
@@ -317,7 +363,7 @@ def main():
                 v = got.get(l)
                 if not isinstance(v, str):
                     continue
-                bad = validate(r["fr"], v)
+                bad = validate(r["fr"], v, l)
                 if bad:
                     rejects.append((r["key"], r["field"], l, "; ".join(bad)[:220]))
                     continue
