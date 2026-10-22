@@ -61,6 +61,31 @@ SKIP_TYPES = {"Contributor", "Location", "Person"}
 CSV_SOURCED = {"Game Rule": {"Title", "Summary", "Material", "Installation",
                              "Content", "Variants"}}
 
+# Language variants pinned by fleet decision. The translation prompt AND every
+# counter-review prompt must carry these — a bare "pt" made the working model
+# answer in European Portuguese (3 cells of #1938, corrected by ai-01 in
+# ae5090cc), and the Opus counter-review had validated them as "natural PT-PT"
+# because the variant was nowhere stated. `en` stays unpinned until web2's W7
+# measure; `ru` and `ar` have no competing shipped variant (dispatch 22/10 09:32).
+LANGUAGE_VARIANTS = {
+    "pt": "pt-BR, Brazilian Portuguese (decision #1095)",
+    "zh": "zh-CN, Simplified Chinese",
+    "fa": "fa-IR, Iranian Persian",
+    "es": "es-ES, Peninsular Spanish (name of the shipped pack)",
+}
+
+
+def variant_clause():
+    """The pinning sentence shared by translation and counter-review prompts.
+
+    Counter-review scripts import this module and append the clause to their
+    system prompt, so the pinning has one source of truth.
+    """
+    return ("Language variants are pinned and override your default register: "
+            + "; ".join(f"{code} = {desc}" for code, desc in LANGUAGE_VARIANTS.items())
+            + ". Produce the pinned variant, not the neutral or European default.")
+
+
 PROMPT = (
     "You translate user-visible web content. The source text is French or English. "
     "Return a JSON object with exactly the keys you were given; each value is another "
@@ -76,7 +101,7 @@ PROMPT = (
     "HTML entities such as &eacute; or &rsquo; may stay as they are. "
     "(4) Keep the register of a public educational game site. (5) Do not add or drop "
     "information. (6) If a value is a pure identifier or an empty string, echo it "
-    "unchanged. Respond with JSON only."
+    "unchanged. (7) " + variant_clause() + " Respond with JSON only."
 )
 
 # Published per-MTok prices. Sonnet 5.5 is 2/10, not 3/15: the first version of
