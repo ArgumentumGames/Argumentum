@@ -44,16 +44,21 @@ namespace Argumentum.AssetConverter.Tests
 		private static readonly (string Path, string Column, string Sha256, string Why)[] Fixed =
 		{
 			("Rules_13", "Text", "ccbe33dfadba74970aa234104663f7faf9cf6e1786c75dd405dfa98d2617b28d", "«Une sélection de 32 cartes» -> 28 : la contradiction interne 32/28 (GO owner 05/10)"),
-			("Rules_13", "Text_en", "7e97adaa2b85b5e6ba9504d9c81ca18575e3063a9bb11340ce59fb5a1865fb33", "\"A selection of 32 cards\" -> 28 : l'EN recopiait fidèlement la contradiction de la source"),
+			// Rules_13 en/pt/es re-pinned with the piocheur term swap (reader/leitor/lector ->
+			// drawer/comprador/robador, dispatch ai-01 22/10 17:17): the full-cell pin reddens on
+			// ANY byte change — re-derived from the corrected CSV in the same commit.
+			("Rules_13", "Text_en", "5ce1d8a62839e848bc1c2140bc6a8044a4806d7d95216d59ad4bea34beca4b34", "\"A selection of 32 cards\" -> 28 : l'EN recopiait fidèlement la contradiction de la source"),
 			("Rules_13", "Text_ru", "23b4fced369a3d594399490ec8539b9dfba55a83cc253958af40f206cd8d8a16", "«колода из 32 карт» -> 28 : même contradiction, langue jamais imprimée (délégation)"),
-			("Rules_13", "Text_pt", "5ca3d33a898034d5c71df4833466709c15cd88dbf1376b1af1ce2712a8f95dac", "«Uma seleção de 32 cartas» -> 28 : même contradiction, langue jamais imprimée"),
+			("Rules_13", "Text_pt", "d1048e376bd0e031cf67447071d08af8286741872c3650ef03cb7c198781636e", "«Uma seleção de 32 cartas» -> 28 : même contradiction, langue jamais imprimée"),
 			("Rules_13", "Text_ar", "3ea7636d8980c0799acd99b1cb1a442679fe0428e7e18dac2cca52432368bf0b", "«اختيار من 32 بطاقة» -> 28 : même contradiction, langue jamais imprimée"),
-			("Rules_13", "Text_es", "1f2ffdd998fcdfc05d80451fa7cdd6f522a03b4a7b0a60a11c6f4a93acd269be", "«Una selección de 32 cartas» -> 28 : même contradiction, langue jamais imprimée"),
+			("Rules_13", "Text_es", "414c1fada5250939f1a06f42737f34ef8f39ce90ecf5dc347671035a31087d85", "«Una selección de 32 cartas» -> 28 : même contradiction, langue jamais imprimée"),
 			("Rules_13", "Text_zh", "22694145f17f9d1429a7edd834b4727467fc3ebf4a78e2b194f5253c4c098110", "«共选用32张牌» -> 28 : même contradiction, langue jamais imprimée"),
 			("Rules_13", "Text_fa", "9ba07232f878588bee3ba270a437920a61b67cfe3f21754a40a8e0fe21caa904", "«گزیده‌ای از ۳۲ کارت» -> ۲۸ : même contradiction, chiffres persans, langue jamais imprimée"),
-			("Rules_09", "Text_en", "391faccbe5a576d473bfa180cf949b99b31508deda77823c0afd992d277d8f74", "pack + package -> deck ×2, classes of colors -> color classes : trois mots pour un objet (§3.3/§3.4)"),
-			("Rules_10", "Text_en", "1c8da2df07f8ee48ad6df5faf55bb774b623e8786aad2ef89442cdb045bc1b17", "his/he -> their/they (jamais imprimé, ai-01) + virgule «Otherwise,» + ligne vide double retirée"),
-			("Rules_11", "Text_en", "6b97c0cbf827aac3a86be0b3e1f54f476e0d82456b55b65bd1a2b28b39feb808", "idem Rules_09 + le calque «on a scenario drawn» -> «from a randomly drawn scenario» (§3.2)"),
+			// Rules_09/10/11 Text_en re-pinned with the piocheur term swap (reader -> drawer,
+			// dispatch ai-01 22/10 17:17): full-cell pin, re-derived from the corrected CSV.
+			("Rules_09", "Text_en", "e72b28b2e6bb36bee510301f14af7e23d4be62371d0eb0d87c4cfcd7778ddd82", "pack + package -> deck ×2, classes of colors -> color classes : trois mots pour un objet (§3.3/§3.4)"),
+			("Rules_10", "Text_en", "caee0c08b0c4e5024b896751a3957b4ab93d3333bd2998bf548cbf0faf0fd46e", "his/he -> their/they (jamais imprimé, ai-01) + virgule «Otherwise,» + ligne vide double retirée"),
+			("Rules_11", "Text_en", "16a30fe7b7fd4c8f1ba98b0e9db6dc35b0364896bb406a3bb06681f736d2ea4e", "idem Rules_09 + le calque «on a scenario drawn» -> «from a randomly drawn scenario» (§3.2)"),
 		};
 
 		/// <summary>Les formes déviantes, chacune mesurée ≥ 1 avant la correction et 0 après.</summary>
