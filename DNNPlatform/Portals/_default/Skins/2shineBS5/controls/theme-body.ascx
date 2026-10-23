@@ -206,6 +206,34 @@
       return Localization.GetString(key, ResourceFilePath);
   }
 
+  // #1946: localize the already-served meta description/keywords from the skin resx
+  // (keys Meta.Description / Meta.Keywords). Replaces only values the page already serves —
+  // a page without a description keeps none. Culture = request-resolved thread UI culture
+  // (same source as IsRtl; PortalSettings.CultureCode measured wrong on /en).
+  protected override void OnPreRender(EventArgs e)
+  {
+    base.OnPreRender(e);
+    LocalizeMetaTag("description", "Meta.Description");
+    LocalizeMetaTag("keywords", "Meta.Keywords");
+  }
+  private void LocalizeMetaTag(string metaName, string resxKey)
+  {
+    try
+    {
+      var head = Page.FindControl("Head") as HtmlHead;
+      if (head == null) { return; }
+      foreach (System.Web.UI.Control c in head.Controls)
+      {
+        var meta = c as HtmlMeta;
+        if (meta == null || !string.Equals(meta.Name, metaName, StringComparison.OrdinalIgnoreCase)) { continue; }
+        if (string.IsNullOrWhiteSpace(meta.Content)) { continue; }
+        var s = Localization.GetString(resxKey, ResourceFilePath, System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
+        if (!string.IsNullOrWhiteSpace(s) && s != resxKey) { meta.Content = s; }
+      }
+    }
+    catch { /* SEO only: never break the page on it */ }
+  }
+
   protected string ResourceFilePath
   {
     get
