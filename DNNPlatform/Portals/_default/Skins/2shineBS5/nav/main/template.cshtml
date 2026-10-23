@@ -1,7 +1,24 @@
 @using DotNetNuke.Web.DDRMenu;
-@using System.Dynamic; 
-@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic> 
+@using DotNetNuke.Services.Localization;
+@using System.Dynamic;
+@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic>
 @{ var root = Model.Source.root; }
+
+@* #1946: menu labels/links localized per culture. Keys "Menu.Tab<Id>.Text" / "Menu.Tab<Id>.Url"
+   live in the skin resx (App_LocalResources/2shine.<culture>.resx; fr has no Menu keys, so the
+   French menu stays on the DNN TabName fallback path). Missing key, missing file or lookup
+   error falls back to the DNN value (TabName / tab Url) — the menu cannot break. *@
+@functions {
+    static string MenuLookup(string kind, int tabId, string fallback) {
+        try {
+            var key = "Menu.Tab" + tabId + "." + kind;
+            var s = Localization.GetString(key,
+                "~/Portals/_default/Skins/2shineBS5/App_LocalResources/2shine.resx",
+                System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
+            return (string.IsNullOrWhiteSpace(s) || s == key) ? fallback : s;
+        } catch { return fallback; }
+    }
+}
 
 @helper RenderNodes(IList<MenuNode> nodes) {
 	if (nodes.Count > 0) {
@@ -35,7 +52,7 @@
 				var linkClassString = new HtmlString((linkCssClasses.Count == 0) ? "" : (" class=\"" + String.Join(" ", linkCssClasses.ToArray()) + "\""));
 
 				<li @classString>
-					<a @linkClassString target='@(node.Target == "_blank" ? "_blank" : "_self")' @(!node.Enabled && node.HasChildren() ? "data-bs-toggle=dropdown" : "") href='@(node.Enabled ? node.Url : "javascript:void(0)")'>@node.Text</a>
+					<a @linkClassString target='@(node.Target == "_blank" ? "_blank" : "_self")' @(!node.Enabled && node.HasChildren() ? "data-bs-toggle=dropdown" : "") href='@(node.Enabled ? MenuLookup("Url", node.TabId, node.Url) : "javascript:void(0)")'>@MenuLookup("Text", node.TabId, node.Text)</a>
 
 					@RenderNodes(node.Children)
 				</li>

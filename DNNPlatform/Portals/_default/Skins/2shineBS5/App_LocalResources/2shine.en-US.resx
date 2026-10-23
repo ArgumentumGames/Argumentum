@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <!-- #1946: English (en-US) skin resources. Menu.Tab<Id>.Text localizes the DDRMenu labels
+       (fallback = DNN TabName); Menu.Tab<Id>.Url localizes URL-type tabs (fallback = tab Url).
+       Tab 170 (fallacies mind map) has an English page; Tab 171 (ontology) exists in French
+       only, so it carries no Url key and keeps the declared French fallback. -->
+  <data name="Menu.Tab148.Text" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="Menu.Tab149.Text" xml:space="preserve">
+    <value>Buy the game</value>
+  </data>
+  <data name="Menu.Tab150.Text" xml:space="preserve">
+    <value>Downloads</value>
+  </data>
+  <data name="Menu.Tab151.Text" xml:space="preserve">
+    <value>Friends</value>
+  </data>
+  <data name="Menu.Tab152.Text" xml:space="preserve">
+    <value>Rules</value>
+  </data>
+  <data name="Menu.Tab169.Text" xml:space="preserve">
+    <value>Argumentation</value>
+  </data>
+  <data name="Menu.Tab170.Text" xml:space="preserve">
+    <value>Fallacy mind map</value>
+  </data>
+  <data name="Menu.Tab170.Url" xml:space="preserve">
+    <value>/fallacies_en.html</value>
+  </data>
+  <data name="Menu.Tab171.Text" xml:space="preserve">
+    <value>Fallacy ontology</value>
+  </data>
+  <data name="Imprint.Text" xml:space="preserve">
+    <value>Imprint</value>
+  </data>
+  <data name="Privacy.Text" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="Meta.Description" xml:space="preserve">
+    <value>Argumentum is a card game about argumentation and learning to spot fallacious arguments</value>
+  </data>
+  <data name="Meta.Keywords" xml:space="preserve">
+    <value>Argumentation, rhetoric, fallacies, fallacious arguments</value>
+  </data>
+</root>
