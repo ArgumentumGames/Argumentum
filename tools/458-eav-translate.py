@@ -61,10 +61,30 @@ NEVER = {"UrlKey", "Path", "Email", "Link", "Images", "AlbumThumbnail", "Image",
          "PlaceholderMissingImage"}
 # 2sxc ships every content type with a demo item, and its fields are prose with a
 # French source — so the field allowlist cannot tell them from real content.
-# Measured 23/10: 161 of the 413 "translatable and empty" cells are demo material
+# Measured 23/10 on the pivot: 23 of the 59 candidate rows are demo material
 # ("Demo Slide CR", "Demo content without Caption", lorem ipsum). Translating them
 # would be paid waste and, worse, would put demo text on the site in 7 languages.
-DEMO = re.compile(r"lorem|ipsum|dolor|demo|example|sample|placeholder|cta", re.I)
+#
+# The words are ANCHORED. A bare substring `cta` fires on `respectable`,
+# `dictature`, `spectateur` and `pacta sunt servanda` — all four are excluded by
+# the unanchored form and kept by this one (measured 23/10, reserve 6 of the
+# #1945 review). On a corpus that is *about arguments* that is not hypothetical:
+# it is a silent hole in the todo, and it grows as the corpus does. The anchored
+# form fires on the same 23 rows, none lost, none gained. `lorem`, `ipsum` and
+# `dolor` stay unanchored: they only ever occur inside filler text.
+DEMO = re.compile(r"lorem|ipsum|dolor|\b(demo|example|sample|placeholder|cta)\b", re.I)
+# A decline must be EXPLICIT. The model answers this token, and nothing else,
+# when a value is a CMS default rather than content. An empty string is not a
+# decline: a truncated answer, a wrong-shaped answer or a degenerate generation
+# all produce `""` too, so it is rejected like any other invalid cell (reserve 1
+# of the #1945 review — the previous code short-circuited `validate()` and
+# counted it as a benign skip, so a systematic model failure would have printed
+# `skipped=413 written=0` and read exactly like a clean pass).
+SKIP_TOKEN = "__SKIP__"
+# The four classes every requested cell falls into, and the only ones. A tuple so
+# that the exhaustiveness assert runs over the class list itself and a class added
+# later cannot escape it.
+CLASSES = ("written", "skipped", "rejected", "absent")
 # Content types whose fields are identities (people, brands, mailboxes, slugs).
 SKIP_TYPES = {"Contributor", "Location", "Person"}
 # Game Rule fields whose single source is the Rules CSV (owner decision 10/10):
@@ -116,11 +136,14 @@ PROMPT = (
     "exactly as they appear, in the same order, and translate only the words around them. "
     "HTML entities such as &eacute; or &rsquo; may stay as they are. "
     "(4) Keep the register of a public educational game site. (5) Do not add or drop "
-    "information. (6) If a value is a pure identifier or an empty string, echo it "
-    "unchanged. (6b) Some values are not content but a CMS default or an editing "
-    "instruction (\"New image\", \"Edit this by clicking the pencil icon…\", "
-    "\"Demo Title\"): answer with an EMPTY STRING for those. An empty answer means "
-    "\"nothing to translate here\" — it is recorded as a skip, never written. "
+    "information. (6) If a value is a pure machine identifier — no natural-language "
+    "words, the shape given to the code rather than to a reader, e.g. "
+    "LabelShowFromPill or MoreText_Sub — echo it unchanged. "
+    "(6b) Some values are not content but a CMS default, an editing instruction or a "
+    "demo sample (\"New image\", \"Edit this by clicking the pencil icon…\", "
+    "\"Demo Title\"): answer with exactly " + SKIP_TOKEN + " and nothing else. "
+    "Never answer with an empty string: an empty answer is treated as a defective "
+    "answer, not as a decline. "
     "(7) " + variant_clause() + " Respond with JSON only."
 )
 
@@ -147,7 +170,7 @@ def save(path, rows, header):
     open(path, "w", encoding="utf-8", newline="").write(buf.getvalue())
 
 
-def select(rows, apps, types, langs, overwrite, only=None):
+def select(rows, apps, types, langs, overwrite, only=None, stats=None):
     todo = []
     for r in rows:
         if only and not re.search(only, r.get("key") or ""):
@@ -167,6 +190,11 @@ def select(rows, apps, types, langs, overwrite, only=None):
         if not src:
             continue
         if DEMO.search(src):
+            # A filter that does not say what it drops reads exactly like an
+            # empty corpus. `stats` carries the count out to the run's own
+            # selection line, so every pass declares its perimeter.
+            if stats is not None:
+                stats["demo"] = stats.get("demo", 0) + 1
             continue  # 2sxc demo item — see the DEMO comment above
         missing = [l for l in langs if overwrite or not (r.get(l) or "").strip()]
         if missing:
@@ -229,6 +257,46 @@ def validate(src, tgt, lang=None):
     if markers(src) != markers(tgt):
         problems.append(f"pictograms differ: {markers(src)} -> {markers(tgt)}")
     return problems
+
+
+def apply_answers(batch, out):
+    """Turn one API answer into writes PLUS an exhaustive per-cell accounting.
+
+    Every requested cell lands in exactly one class:
+
+      * `written`  — validated and written into the row;
+      * `skipped`  — the model answered the decline sentinel (`SKIP_TOKEN`);
+      * `rejected` — an answer that did not validate; an empty string is one;
+      * `absent`   — no answer at all: row key missing, value null, language
+                     missing, or the whole batch unparseable.
+
+    The caller asserts that the four add up to the number of cells it asked for.
+    A total that is a lower bound reads exactly like a clean pass: the previous
+    code did `out.get(key) or {}` and skipped a non-string value with `continue`,
+    so a null key, a null value and a missing language were all invisible —
+    precisely the shapes a model chooses when it declines (reserve 2 of the
+    #1945 review).
+    """
+    res = {c: [] for c in CLASSES}
+    for r, missing in batch:
+        got = out.get(key_of(r))
+        for l in missing:
+            if not isinstance(got, dict):
+                res["absent"].append((r["key"], r["field"], l, "row key absent from the answer"))
+                continue
+            v = got.get(l)
+            if not isinstance(v, str):
+                res["absent"].append((r["key"], r["field"], l, f"no string answer ({type(v).__name__})"))
+            elif v.strip() == SKIP_TOKEN:
+                res["skipped"].append((r["key"], r["field"], l, "model declined: not content"))
+            else:
+                bad = validate(r["fr"], v, l)
+                if bad:
+                    res["rejected"].append((r["key"], r["field"], l, "; ".join(bad)[:220]))
+                else:
+                    r[l] = v
+                    res["written"].append((r["key"], r["field"], l, "ok"))
+    return res
 
 
 def schema_for(payload):
@@ -307,7 +375,8 @@ def main():
     langs = [x.strip() for x in a.langs.split(",") if x.strip()]
     rows = load(a.src)
     header = list(rows[0].keys())
-    todo = select(rows, apps, types, langs, a.overwrite, a.only or None)
+    stats = {}
+    todo = select(rows, apps, types, langs, a.overwrite, a.only or None, stats)
 
     if a.self_test:
         # Serialization must round-trip the untouched pivot byte-for-byte.
@@ -342,16 +411,64 @@ def main():
                     "field": "Title", "fr": "Étudiant ou passionné de philosophie"}
         assert select([demo_row], {"1"}, set(), ["en"], False) == [], "demo row must be excluded"
         assert len(select([real_row], {"1"}, set(), ["en"], False)) == 1, "real row must be selected"
-        # A field listed in both allowlists makes the outcome depend on the order
-        # of the `if` — measured 23/10 on PlaceholderMissingImage, which a reader
-        # of TRANSLATABLE alone counted as translatable.
+        # Anchoring, both ways (reserve 6). The four inverse controls are real
+        # sentences of this corpus, excluded by the unanchored form because of the
+        # substring `cta`; the anchored form must keep them. The demo material
+        # must still be excluded — a widened tolerance with no positive control
+        # would just be a filter that no longer filters.
+        for keep in ("Un argument respectable", "La dictature de la majorité",
+                     "Le spectateur", "pacta sunt servanda"):
+            assert not DEMO.search(keep), f"DEMO wrongly excludes real content: {keep!r}"
+        for drop in ("Demo Slide CR", "Demo Title", "Example which is still empty",
+                     "Lorem ipsum dolor sit amet", "PLACEHOLDER"):
+            assert DEMO.search(drop), f"DEMO must still exclude demo material: {drop!r}"
+        # A field listed in both allowlists is a *reading* ambiguity, not an
+        # evaluation-order dependency: `NEVER or field not in TRANSLATABLE`
+        # short-circuits deterministically and NEVER wins either way. Measured
+        # 23/10 on PlaceholderMissingImage — `select()` always excluded it, while
+        # a reader of TRANSLATABLE alone counted 7 cells as translatable.
         assert not (TRANSLATABLE & NEVER), f"field in both lists: {TRANSLATABLE & NEVER}"
-        # A skip must be impossible to write even if the skip branch were removed:
-        # the validator itself has to refuse an empty answer.
+        # The decline is a sentinel, and an empty answer is a defect (reserve 1):
+        # `validate()` refuses it, and the write path below proves the caller no
+        # longer short-circuits that refusal.
         assert validate("Some FR text", "", "en") == ["empty translation"], "empty must not validate"
-        assert "(6b)" in PROMPT, "the prompt must state how to decline"
-        print(f"self-test OK: round-trip byte-identical, {len(rows)} rows, {len(todo)} to translate; "
-              f"URL rule accepts the own prefix, rejects a foreign one")
+        assert "(6b)" in PROMPT and SKIP_TOKEN in PROMPT, "the prompt must name the decline token"
+        assert "Never answer with an empty string" in PROMPT, "the prompt must say empty is a defect"
+
+        # --- behaviour guard (reserve 5) -----------------------------------
+        # A fabricated answer is injected where the API answer would go, and the
+        # accounting is read back. Pinning a label ("(6b)" in PROMPT) stays green
+        # if the rule is rewritten with the opposite meaning; this does not. Each
+        # of the four classes is exercised, and the two that must never write are
+        # asserted to write nothing.
+        def fab():
+            return [({"key": "K|Title", "field": "Title", "fr": "Bonjour"}, ["en", "ru"])]
+
+        empty = apply_answers(fab(), {"K|Title": {"en": ""}})
+        assert empty["written"] == [], "an empty answer must never be written"
+        assert len(empty["rejected"]) == 1, "an empty answer must be rejected"
+        assert empty["rejected"][0][:3] == ("K|Title", "Title", "en"), "and rejected by name"
+        declined = apply_answers(fab(), {"K|Title": {"en": SKIP_TOKEN, "ru": SKIP_TOKEN}})
+        assert declined["written"] == [] and len(declined["skipped"]) == 2, "the sentinel must skip, not write"
+        missing_lang = apply_answers(fab(), {"K|Title": {"en": "Hello"}})
+        assert len(missing_lang["absent"]) == 1, "a missing language must be counted absent"
+        assert missing_lang["absent"][0][2] == "ru", "and named as the missing one"
+        nulled = apply_answers(fab(), {"K|Title": {"en": None, "ru": "Привет"}})
+        assert len(nulled["absent"]) == 1 and nulled["absent"][0][2] == "en", "null must not vanish"
+        assert len(nulled["written"]) == 1, "the other language still writes"
+        no_key = apply_answers(fab(), {})
+        assert len(no_key["absent"]) == 2, "a missing row key must count every cell absent"
+        good = apply_answers(fab(), {"K|Title": {"en": "Hello", "ru": "Привет"}})
+        assert len(good["written"]) == 2, "a valid answer must write (positive control)"
+        # Exhaustive by construction: the four classes always partition the
+        # request, and that is the invariant the run asserts batch by batch.
+        for res, want in ((empty, 2), (declined, 2), (missing_lang, 2), (nulled, 2),
+                          (no_key, 2), (good, 2)):
+            assert sum(len(res[c]) for c in CLASSES) == want, f"accounting is not exhaustive: {res}"
+        print(f"self-test OK: round-trip byte-identical, {len(rows)} rows, {len(todo)} to translate, "
+              f"{stats.get('demo', 0)} demo rows excluded; URL rule accepts the own prefix and "
+              f"rejects a foreign one; DEMO anchored on 4 inverse controls; the 4 accounting "
+              f"classes partition 6 fabricated answers")
         # `--self-test` is TERMINAL. It used to fall through to the selection and,
         # without `--dry-run`, to a real paid pass: measured 23/10 on ai-01, one
         # run of that shape spent $0.17 on 413 cells and wrote nothing. A control
@@ -364,8 +481,8 @@ def main():
     if a.limit:
         todo = todo[: a.limit]
     cells = sum(len(m) for _, m in todo)
-    print(f"selection: {len(todo)} rows, {cells} cells, apps={sorted(apps) or 'ALL'} "
-          f"types={sorted(types) or 'ALL'} langs={langs}")
+    print(f"selection: {len(todo)} rows, {cells} cells, demo-excluded={stats.get('demo', 0)} rows, "
+          f"apps={sorted(apps) or 'ALL'} types={sorted(types) or 'ALL'} langs={langs}")
     if a.dry_run or not todo:
         for r, missing in todo[:10]:
             print(f"  {r['app_id']}/{r['content_type']}/{r['field']}: {r['fr'][:50]!r} -> {missing}")
@@ -379,11 +496,11 @@ def main():
     key = key.strip()
     pin, pout = PRICES[a.model]
     tin = tout = 0
-    done = 0
-    skipped = 0
-    rejects = []
+    requested = 0
+    tally = {c: [] for c in CLASSES}
     for i in range(0, len(todo), a.batch):
         batch = todo[i : i + a.batch]
+        requested += sum(len(m) for _, m in batch)
         payload = {key_of(r): {l: r["fr"] for l in missing} for r, missing in batch}
         data = call_api(a.base, key, a.model, payload, a.max_tokens)
         usage = data.get("usage") or {}
@@ -394,32 +511,38 @@ def main():
             out = json.loads(content)
         except json.JSONDecodeError:
             print("  !! non-JSON answer on batch", i, content[:200], file=sys.stderr)
-            continue
-        for r, missing in batch:
-            got = out.get(key_of(r)) or {}
-            for l in missing:
-                v = got.get(l)
-                if not isinstance(v, str):
-                    continue
-                if not v.strip():
-                    # The model declined: a CMS default or an editing instruction,
-                    # not content. Counted apart from a rejection so that a pass's
-                    # "nothing written" is not read as a failure rate.
-                    skipped += 1
-                    continue
-                bad = validate(r["fr"], v, l)
-                if bad:
-                    rejects.append((r["key"], r["field"], l, "; ".join(bad)[:220]))
-                    continue
-                r[l] = v
-                done += 1
-        print(f"  batch {i // a.batch + 1}: {len(batch)} rows, cumulative cells={done}, "
+            # A batch with no usable answer loses no cell: every one of them is
+            # counted absent (reserve 2 — the old `continue` dropped the batch).
+            for r, missing in batch:
+                for l in missing:
+                    tally["absent"].append((r["key"], r["field"], l, "batch answer was not JSON"))
+        else:
+            got = apply_answers(batch, out)
+            for c in CLASSES:
+                tally[c].extend(got[c])
+        counted = sum(len(tally[c]) for c in CLASSES)
+        assert counted == requested, (
+            f"accounting broken at batch {i // a.batch + 1}: "
+            f"{ {c: len(tally[c]) for c in CLASSES} } sum to {counted}, {requested} requested")
+        print(f"  batch {i // a.batch + 1}: {len(batch)} rows, "
+              f"written={len(tally['written'])} skipped={len(tally['skipped'])} "
+              f"rejected={len(tally['rejected'])} absent={len(tally['absent'])}, "
               f"in={tin} out={tout}")
 
-    for rej in rejects:
-        print("  REJECT", rej[0][:8], rej[1], rej[2], "::", rej[3], file=sys.stderr)
+    # Declined and absent cells are semantics the operator must be able to audit,
+    # not a silent remainder: a decline is a judgement by the model, and a false
+    # negative there costs a cell that never gets translated (reserve 3).
+    for cls in ("rejected", "skipped", "absent"):
+        for key, field, lang, why in tally[cls]:
+            print(f"  {cls.upper()}", key[:8], field, lang, "::", why, file=sys.stderr)
+    counted = sum(len(tally[c]) for c in CLASSES)
+    assert counted == requested, (
+        f"accounting broken: { {c: len(tally[c]) for c in CLASSES} } sum to "
+        f"{counted}, {requested} requested")
     spend = tin / 1e6 * pin + tout / 1e6 * pout
-    print(f"TOTAL cells written={done} skipped={skipped} rejected={len(rejects)} tokens in={tin} out={tout} "
+    print(f"TOTAL cells requested={requested} written={len(tally['written'])} "
+          f"skipped={len(tally['skipped'])} rejected={len(tally['rejected'])} "
+          f"absent={len(tally['absent'])} tokens in={tin} out={tout} "
           f"spend=${spend:.4f} ({a.model})")
     if a.out:
         save(a.out, rows, header)
