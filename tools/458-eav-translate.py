@@ -37,7 +37,7 @@ TRANSLATABLE = {
     # 2sxc app resources / labels (59, 52, 60, 33 …)
     "GoBackText", "MoreText", "GlossaryMenu", "TermNotFoundTitle", "TermNotFoundText",
     "LabelReadMore", "LabelBackToList", "LabelCategoryAll", "LabelEventNotExists",
-    "LabelEventNotExistsText", "PlaceholderMissingImage", "LabelShowFromPill",
+    "LabelEventNotExistsText", "LabelShowFromPill",
     "LabelShowToPill", "LabelAdminMenuNew", "LabelAdminMenuManage", "LabelAdminDetailPageWarning",
     # content fields
     "Title", "Summary", "Details", "Description", "Introduction", "Content", "Teaser",
@@ -59,6 +59,12 @@ TRANSLATABLE = {
 NEVER = {"UrlKey", "Path", "Email", "Link", "Images", "AlbumThumbnail", "Image",
          "CropAnchor", "SortMode", "HeadingType", "RuleMemoCardFileNamePrefix",
          "PlaceholderMissingImage"}
+# 2sxc ships every content type with a demo item, and its fields are prose with a
+# French source — so the field allowlist cannot tell them from real content.
+# Measured 23/10: 161 of the 413 "translatable and empty" cells are demo material
+# ("Demo Slide CR", "Demo content without Caption", lorem ipsum). Translating them
+# would be paid waste and, worse, would put demo text on the site in 7 languages.
+DEMO = re.compile(r"lorem|ipsum|dolor|demo|example|sample|placeholder|cta", re.I)
 # Content types whose fields are identities (people, brands, mailboxes, slugs).
 SKIP_TYPES = {"Contributor", "Location", "Person"}
 # Game Rule fields whose single source is the Rules CSV (owner decision 10/10):
@@ -156,6 +162,8 @@ def select(rows, apps, types, langs, overwrite, only=None):
         src = (r.get("fr") or "").strip()
         if not src:
             continue
+        if DEMO.search(src):
+            continue  # 2sxc demo item — see the DEMO comment above
         missing = [l for l in langs if overwrite or not (r.get(l) or "").strip()]
         if missing:
             todo.append((r, missing))
@@ -321,6 +329,19 @@ def main():
         ]
         for problems, want_problems, why in controls:
             assert bool(problems) == want_problems, f"{why}: {problems}"
+        # The demo filter must actually bite, and must not bite real content: a
+        # filter that excludes nothing reads exactly like a clean corpus. Both
+        # polarities are asserted, on the real `select()`.
+        demo_row = {"key": "X|Title", "app_id": "1", "content_type": "Slide",
+                    "field": "Title", "fr": "Demo Slide CR"}
+        real_row = {"key": "Y|Title", "app_id": "1", "content_type": "Accordion",
+                    "field": "Title", "fr": "Étudiant ou passionné de philosophie"}
+        assert select([demo_row], {"1"}, set(), ["en"], False) == [], "demo row must be excluded"
+        assert len(select([real_row], {"1"}, set(), ["en"], False)) == 1, "real row must be selected"
+        # A field listed in both allowlists makes the outcome depend on the order
+        # of the `if` — measured 23/10 on PlaceholderMissingImage, which a reader
+        # of TRANSLATABLE alone counted as translatable.
+        assert not (TRANSLATABLE & NEVER), f"field in both lists: {TRANSLATABLE & NEVER}"
         print(f"self-test OK: round-trip byte-identical, {len(rows)} rows, {len(todo)} to translate; "
               f"URL rule accepts the own prefix, rejects a foreign one")
 
