@@ -323,6 +323,14 @@ def main():
             assert bool(problems) == want_problems, f"{why}: {problems}"
         print(f"self-test OK: round-trip byte-identical, {len(rows)} rows, {len(todo)} to translate; "
               f"URL rule accepts the own prefix, rejects a foreign one")
+        # `--self-test` is TERMINAL. It used to fall through to the selection and,
+        # without `--dry-run`, to a real paid pass: measured 23/10 on ai-01, one
+        # run of that shape spent $0.17 on 413 cells and wrote nothing. A control
+        # that only asserts is not a control on the control flow — this return is,
+        # and it is measured by running the tool with a key path that does not
+        # exist: the exit stays 0 only if no key is ever read.
+        print("self-test only — the run stops here, before any key read or API call")
+        return 0
 
     if a.limit:
         todo = todo[: a.limit]
