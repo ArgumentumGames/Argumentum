@@ -26,7 +26,7 @@
 
   @* List the articles *@
   <div class="row">
-    @foreach (var article in AsList(Data["News"])) {
+    @foreach (var article in helpers.VisibleNews(AsList(Data["News"]))) {
       <div class="col-12" @Edit.TagToolbar(article, toolbar: new [] {"-layout", "%delete&show=true"})>
         <div class="app-news5-details-link">
           <a class="link-overlay" href="@helpers.LinkToDetailsPage(article)"></a>
