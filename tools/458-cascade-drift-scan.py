@@ -70,9 +70,12 @@ def main():
     ap.add_argument("--langs", default=",".join(LANGS))
     ap.add_argument("--fields", default=",".join(FIELDS))
     ap.add_argument("--min-shrink", type=int, default=MIN_FR_SHRINK)
-    ap.add_argument("--cards-only", action="store_true", help="keep rows with a non-empty 'carte'")
+    ap.add_argument("--cards-only", action="store_true",
+                    help="keep rows the deck actually prints (deck column resolved)")
     ap.add_argument("--key-column", default=None,
                     help="row key column (default: resolved among PK/pk/Id/id)")
+    ap.add_argument("--deck-column", default=None,
+                    help="deck membership column (default: 'carte', else 'card')")
     ap.add_argument("--out", default=None)
     a = ap.parse_args()
 
@@ -81,7 +84,14 @@ def main():
     head_header = next(csv.reader(io.StringIO(
         git("show", "HEAD:%s" % a.csv).decode("utf-8-sig").split("\r\n")[0])))
     keycol = key_of(head_header, a.key_column)
-    print("row key: %r" % keycol)
+    # Fallacies marks deck membership `carte`, Virtues `card` (measured 23/10).
+    # A hardcoded name silently filtered nothing on the wrong corpus.
+    deckcol = a.deck_column
+    if a.cards_only and not deckcol:
+        deckcol = next((c for c in ("carte", "card") if c in head_header), None)
+        if not deckcol:
+            raise SystemExit("--cards-only: no deck column found (pass --deck-column)")
+    print("row key: %r%s" % (keycol, " | deck column: %r" % deckcol if deckcol else ""))
     shas = git("log", "--no-merges", "--format=%H", "--", a.csv).decode().split()
     print("commits touching the corpus (no merges): %d" % len(shas))
 
@@ -96,7 +106,7 @@ def main():
         scanned += 1
         for pk, nr in new.items():
             orow = old.get(pk)
-            if not orow or (a.cards_only and not (nr.get("carte") or "").strip()):
+            if not orow or (deckcol and not (nr.get(deckcol) or "").strip()):
                 continue
             for base in fields:
                 frc = "%s_fr" % base
