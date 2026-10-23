@@ -38,11 +38,30 @@ def git(*args):
     return p.stdout
 
 
-def parse_at(rev, path):
+def key_of(header, forced=None):
+    """The row key. Fallacies spells it `PK`, Virtues and Rules `pk`.
+
+    Measured 23/10: hardcoding `PK` fails on the Virtues corpus with a bare
+    KeyError, so the name is resolved rather than assumed. A corpus with no key
+    column at all (Scenarii has neither `pk` nor `PK` — its `path` column is
+    edition-dependent) is refused loudly instead of silently keyed on "".
+    """
+    if forced:
+        if forced not in header:
+            raise SystemExit("--key-column %r absent from the header (%s)"
+                             % (forced, ", ".join(header[:8]) + " …"))
+        return forced
+    for cand in ("PK", "pk", "Id", "ID", "id"):
+        if cand in header:
+            return cand
+    raise SystemExit("no row key in the header: pass --key-column (looked for PK/pk/Id/id)")
+
+
+def parse_at(rev, path, keycol):
     raw = git("show", "%s:%s" % (rev, path))
     if raw[:3] == b"\xef\xbb\xbf":
         raw = raw[3:]
-    return {r["PK"]: r for r in csv.DictReader(io.StringIO(raw.decode("utf-8"), newline=""))}
+    return {r[keycol]: r for r in csv.DictReader(io.StringIO(raw.decode("utf-8"), newline=""))}
 
 
 def main():
@@ -52,11 +71,17 @@ def main():
     ap.add_argument("--fields", default=",".join(FIELDS))
     ap.add_argument("--min-shrink", type=int, default=MIN_FR_SHRINK)
     ap.add_argument("--cards-only", action="store_true", help="keep rows with a non-empty 'carte'")
+    ap.add_argument("--key-column", default=None,
+                    help="row key column (default: resolved among PK/pk/Id/id)")
     ap.add_argument("--out", default=None)
     a = ap.parse_args()
 
     langs = [x.strip() for x in a.langs.split(",") if x.strip()]
     fields = [x.strip() for x in a.fields.split(",") if x.strip()]
+    head_header = next(csv.reader(io.StringIO(
+        git("show", "HEAD:%s" % a.csv).decode("utf-8-sig").split("\r\n")[0])))
+    keycol = key_of(head_header, a.key_column)
+    print("row key: %r" % keycol)
     shas = git("log", "--no-merges", "--format=%H", "--", a.csv).decode().split()
     print("commits touching the corpus (no merges): %d" % len(shas))
 
@@ -64,8 +89,8 @@ def main():
     scanned = 0
     for sha in shas:
         try:
-            old = parse_at(sha + "^", a.csv)
-            new = parse_at(sha, a.csv)
+            old = parse_at(sha + "^", a.csv, keycol)
+            new = parse_at(sha, a.csv, keycol)
         except SystemExit:
             continue  # root commit, or the file did not exist yet
         scanned += 1
@@ -97,7 +122,7 @@ def main():
     # A candidate is only actionable if the two cells still hold at HEAD: the scan
     # records the values AT THE COMMIT, and a later pass may already have repaired
     # the translation (measured 23/10: 57 of 69 proposals were stale this way).
-    head = parse_at("HEAD", a.csv)
+    head = parse_at("HEAD", a.csv, keycol)
     stale = 0
     for key in list(hits):
         pk, col = key
