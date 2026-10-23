@@ -37,7 +37,7 @@ TRANSLATABLE = {
     # 2sxc app resources / labels (59, 52, 60, 33 …)
     "GoBackText", "MoreText", "GlossaryMenu", "TermNotFoundTitle", "TermNotFoundText",
     "LabelReadMore", "LabelBackToList", "LabelCategoryAll", "LabelEventNotExists",
-    "LabelEventNotExistsText", "PlaceholderMissingImage", "LabelShowFromPill",
+    "LabelEventNotExistsText", "LabelShowFromPill",
     "LabelShowToPill", "LabelAdminMenuNew", "LabelAdminMenuManage", "LabelAdminDetailPageWarning",
     # content fields
     "Title", "Summary", "Details", "Description", "Introduction", "Content", "Teaser",
@@ -59,6 +59,12 @@ TRANSLATABLE = {
 NEVER = {"UrlKey", "Path", "Email", "Link", "Images", "AlbumThumbnail", "Image",
          "CropAnchor", "SortMode", "HeadingType", "RuleMemoCardFileNamePrefix",
          "PlaceholderMissingImage"}
+# 2sxc ships every content type with a demo item, and its fields are prose with a
+# French source — so the field allowlist cannot tell them from real content.
+# Measured 23/10: 161 of the 413 "translatable and empty" cells are demo material
+# ("Demo Slide CR", "Demo content without Caption", lorem ipsum). Translating them
+# would be paid waste and, worse, would put demo text on the site in 7 languages.
+DEMO = re.compile(r"lorem|ipsum|dolor|demo|example|sample|placeholder|cta", re.I)
 # Content types whose fields are identities (people, brands, mailboxes, slugs).
 SKIP_TYPES = {"Contributor", "Location", "Person"}
 # Game Rule fields whose single source is the Rules CSV (owner decision 10/10):
@@ -111,7 +117,11 @@ PROMPT = (
     "HTML entities such as &eacute; or &rsquo; may stay as they are. "
     "(4) Keep the register of a public educational game site. (5) Do not add or drop "
     "information. (6) If a value is a pure identifier or an empty string, echo it "
-    "unchanged. (7) " + variant_clause() + " Respond with JSON only."
+    "unchanged. (6b) Some values are not content but a CMS default or an editing "
+    "instruction (\"New image\", \"Edit this by clicking the pencil icon…\", "
+    "\"Demo Title\"): answer with an EMPTY STRING for those. An empty answer means "
+    "\"nothing to translate here\" — it is recorded as a skip, never written. "
+    "(7) " + variant_clause() + " Respond with JSON only."
 )
 
 # Published per-MTok prices. Sonnet 5.5 is 2/10, not 3/15: the first version of
@@ -156,6 +166,8 @@ def select(rows, apps, types, langs, overwrite, only=None):
         src = (r.get("fr") or "").strip()
         if not src:
             continue
+        if DEMO.search(src):
+            continue  # 2sxc demo item — see the DEMO comment above
         missing = [l for l in langs if overwrite or not (r.get(l) or "").strip()]
         if missing:
             todo.append((r, missing))
@@ -321,6 +333,23 @@ def main():
         ]
         for problems, want_problems, why in controls:
             assert bool(problems) == want_problems, f"{why}: {problems}"
+        # The demo filter must actually bite, and must not bite real content: a
+        # filter that excludes nothing reads exactly like a clean corpus. Both
+        # polarities are asserted, on the real `select()`.
+        demo_row = {"key": "X|Title", "app_id": "1", "content_type": "Slide",
+                    "field": "Title", "fr": "Demo Slide CR"}
+        real_row = {"key": "Y|Title", "app_id": "1", "content_type": "Accordion",
+                    "field": "Title", "fr": "Étudiant ou passionné de philosophie"}
+        assert select([demo_row], {"1"}, set(), ["en"], False) == [], "demo row must be excluded"
+        assert len(select([real_row], {"1"}, set(), ["en"], False)) == 1, "real row must be selected"
+        # A field listed in both allowlists makes the outcome depend on the order
+        # of the `if` — measured 23/10 on PlaceholderMissingImage, which a reader
+        # of TRANSLATABLE alone counted as translatable.
+        assert not (TRANSLATABLE & NEVER), f"field in both lists: {TRANSLATABLE & NEVER}"
+        # A skip must be impossible to write even if the skip branch were removed:
+        # the validator itself has to refuse an empty answer.
+        assert validate("Some FR text", "", "en") == ["empty translation"], "empty must not validate"
+        assert "(6b)" in PROMPT, "the prompt must state how to decline"
         print(f"self-test OK: round-trip byte-identical, {len(rows)} rows, {len(todo)} to translate; "
               f"URL rule accepts the own prefix, rejects a foreign one")
         # `--self-test` is TERMINAL. It used to fall through to the selection and,
@@ -351,6 +380,7 @@ def main():
     pin, pout = PRICES[a.model]
     tin = tout = 0
     done = 0
+    skipped = 0
     rejects = []
     for i in range(0, len(todo), a.batch):
         batch = todo[i : i + a.batch]
@@ -371,6 +401,12 @@ def main():
                 v = got.get(l)
                 if not isinstance(v, str):
                     continue
+                if not v.strip():
+                    # The model declined: a CMS default or an editing instruction,
+                    # not content. Counted apart from a rejection so that a pass's
+                    # "nothing written" is not read as a failure rate.
+                    skipped += 1
+                    continue
                 bad = validate(r["fr"], v, l)
                 if bad:
                     rejects.append((r["key"], r["field"], l, "; ".join(bad)[:220]))
@@ -383,7 +419,7 @@ def main():
     for rej in rejects:
         print("  REJECT", rej[0][:8], rej[1], rej[2], "::", rej[3], file=sys.stderr)
     spend = tin / 1e6 * pin + tout / 1e6 * pout
-    print(f"TOTAL cells written={done} rejected={len(rejects)} tokens in={tin} out={tout} "
+    print(f"TOTAL cells written={done} skipped={skipped} rejected={len(rejects)} tokens in={tin} out={tout} "
           f"spend=${spend:.4f} ({a.model})")
     if a.out:
         save(a.out, rows, header)
