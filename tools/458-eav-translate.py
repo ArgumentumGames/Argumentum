@@ -170,6 +170,38 @@ def save(path, rows, header):
     open(path, "w", encoding="utf-8", newline="").write(buf.getvalue())
 
 
+def _normalise_record_endings(text):
+    """Turn CRLF RECORD separators into LF, leaving quoted field content alone.
+
+    Two different things wear the same bytes. A checkout with `core.autocrlf`
+    materialises the whole file as CRLF — that is transport. This corpus also
+    carries CRLF *inside* quoted HTML cells (2 523 of them, measured 23/10) — that
+    is content, and `csv` preserves it on write. Universal-newline reading erases
+    both and would hide a cell whose embedded CRLF silently became LF; normalising
+    nothing makes the self-test red on every CRLF checkout (ai-01's finding).
+    Quote state is tracked the CSV way: `""` inside a quoted field is an escaped
+    quote, not a delimiter.
+    """
+    out, in_quote, i = [], False, 0
+    while i < len(text):
+        c = text[i]
+        if c == '"':
+            if in_quote and text[i + 1 : i + 2] == '"':
+                out.append('""')
+                i += 2
+                continue
+            in_quote = not in_quote
+            out.append(c)
+        elif not in_quote and text.startswith("\r\n", i):
+            out.append("\n")
+            i += 2
+            continue
+        else:
+            out.append(c)
+        i += 1
+    return "".join(out)
+
+
 def select(rows, apps, types, langs, overwrite, only=None, stats=None):
     todo = []
     for r in rows:
@@ -379,13 +411,33 @@ def main():
     todo = select(rows, apps, types, langs, a.overwrite, a.only or None, stats)
 
     if a.self_test:
-        # Serialization must round-trip the untouched pivot byte-for-byte.
+        # Serialization must round-trip the untouched pivot: what the reader
+        # parsed, the writer reproduces.
         buf = io.StringIO(newline="")
         w = csv.DictWriter(buf, fieldnames=header, lineterminator="\n")
         w.writeheader()
         w.writerows(rows)
-        orig = open(a.src, encoding="utf-8", newline="").read()
-        assert buf.getvalue() == orig, "round-trip is not byte-identical"
+        # Read raw and normalise ONLY the record separators: the writer emits LF
+        # between records but preserves CRLF inside quoted cells, so the two must
+        # be treated differently (see `_normalise_record_endings`).
+        orig = _normalise_record_endings(open(a.src, encoding="utf-8", newline="").read())
+        assert buf.getvalue() == orig, "round-trip is not content-identical"
+        # The normalisation itself, asserted on a literal with both kinds of CRLF.
+        assert _normalise_record_endings('a,"x\r\ny"\r\nb\n') == 'a,"x\r\ny"\nb\n', \
+            "record CRLF must normalise, in-quote CRLF must survive"
+        # Inverse control, and it has to be a construct the WRITER would not
+        # reproduce — otherwise the comparison is a no-op that can never fail
+        # (a value change is invisible here, because `buf` is re-derived from
+        # the file's own parse). A redundantly quoted field is such a construct:
+        # it parses to `abc`, the writer emits `abc`, so the two differ.
+        redundant = 'key,value\r\n"abc",def\r\n'
+        parsed = list(csv.DictReader(io.StringIO(redundant, newline="")))
+        b2 = io.StringIO(newline="")
+        w2 = csv.DictWriter(b2, fieldnames=list(parsed[0].keys()), lineterminator="\n")
+        w2.writeheader()
+        w2.writerows(parsed)
+        assert b2.getvalue() != _normalise_record_endings(redundant), \
+            "a redundantly quoted field must be detected, or the round-trip proves nothing"
         # URL rule (web2 W11): tolerate the cell's own page prefix and the
         # percent-encoded vs literal spelling of the same path — and prove with
         # inverse controls that the tolerance did not become a blank cheque.
@@ -465,7 +517,8 @@ def main():
         for res, want in ((empty, 2), (declined, 2), (missing_lang, 2), (nulled, 2),
                           (no_key, 2), (good, 2)):
             assert sum(len(res[c]) for c in CLASSES) == want, f"accounting is not exhaustive: {res}"
-        print(f"self-test OK: round-trip byte-identical, {len(rows)} rows, {len(todo)} to translate, "
+        print(f"self-test OK: round-trip content-identical (LF tree and CRLF checkout, "
+              f"in-cell CRLF preserved), {len(rows)} rows, {len(todo)} to translate, "
               f"{stats.get('demo', 0)} demo rows excluded; URL rule accepts the own prefix and "
               f"rejects a foreign one; DEMO anchored on 4 inverse controls; the 4 accounting "
               f"classes partition 6 fabricated answers")
