@@ -25,6 +25,7 @@ import argparse
 import csv
 import io
 import json
+import os
 import re
 import sys
 import urllib.error
@@ -141,14 +142,32 @@ def render(value, was_quoted):
     return value
 
 
-def _apply(csv_path, proposals):
+def key_of(header, forced=None):
+    """The row-key column. Fallacies spells it `PK`, Virtues and Rules `pk`.
+
+    Same resolution as `458-cascade-drift-scan.py`: the tool that produces the
+    worklist accepts a `pk` corpus, so the tool that writes it back must too —
+    `idx["PK"]` raised a bare KeyError on Virtues (measured 23/10, #1943).
+    """
+    if forced:
+        if forced not in header:
+            raise SystemExit("--key-column %r absent from the header (%s …)"
+                             % (forced, ", ".join(header[:8])))
+        return forced
+    for cand in ("PK", "pk", "Id", "ID", "id"):
+        if cand in header:
+            return cand
+    raise SystemExit("no row key in the header: pass --key-column (looked for PK/pk/Id/id)")
+
+
+def _apply(csv_path, proposals, key_column=None):
     """Write the kept cells through field spans, never through a whole-file rewrite."""
     raw = open(csv_path, "rb").read()
     bom = raw[:3] == b"\xef\xbb\xbf"
     lines = raw.decode("utf-8-sig").split("\r\n")
     header = next(csv.reader([lines[0]]))
     idx = {name: i for i, name in enumerate(header)}
-    pk_i = idx["PK"]
+    pk_i = idx[key_of(header, key_column)]
     by_pk = {}
     for p in proposals:
         by_pk.setdefault(p["pk"], []).append(p)
@@ -177,7 +196,18 @@ def _apply(csv_path, proposals):
             for k in range(ci + 1, len(spans)):
                 spans[k] = (spans[k][0] + delta, spans[k][1] + delta)
             touched += 1
-    open(csv_path, "wb").write((b"\xef\xbb\xbf" if bom else b"") + "\r\n".join(lines).encode("utf-8"))
+    # Atomic write: the corpus is 4 MB of hand-maintained data, and a crash or a
+    # full disk between open() and write() would leave a half-written file that
+    # parses fine and silently loses rows. Write everything to a sibling temp
+    # file, fsync, then os.replace — same volume, atomic on every filesystem
+    # we run on, and no reader ever sees a partial corpus.
+    data = (b"\xef\xbb\xbf" if bom else b"") + "\r\n".join(lines).encode("utf-8")
+    tmp = csv_path + ".tmp"
+    with open(tmp, "wb") as f:
+        f.write(data)
+        f.flush()
+        os.fsync(f.fileno())
+    os.replace(tmp, csv_path)
     print("applied %d cell(s) to %s (%d mismatched)" % (touched, csv_path, mismatched))
     return touched
 
@@ -189,6 +219,8 @@ def main():
     ap.add_argument("--model", default="claude-opus-5-5")
     ap.add_argument("--base", default="https://api.anthropic.com/v1")
     ap.add_argument("--key-path", default=".keys/anthropic-key.txt")
+    ap.add_argument("--key-column", default=None,
+                    help="row key column (default: resolved among PK/pk/Id/id)")
     ap.add_argument("--max-tokens", type=int, default=6000)
     ap.add_argument("--groups", type=int, default=0, help="limit the number of (row, field) groups")
     ap.add_argument("--dry-run", action="store_true")
@@ -282,7 +314,7 @@ def main():
         print("written", a.proposals)
 
     if a.apply and proposals:
-        _apply(a.csv, proposals)
+        _apply(a.csv, proposals, a.key_column)
     return 0
 
 

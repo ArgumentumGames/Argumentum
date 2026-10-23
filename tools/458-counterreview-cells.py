@@ -106,6 +106,8 @@ def main():
     ap.add_argument("--model", default="claude-fable-5-1")
     ap.add_argument("--base", default="https://api.anthropic.com/v1")
     ap.add_argument("--key-path", default=".keys/anthropic-key.txt")
+    ap.add_argument("--key-column", default=None,
+                    help="row key column (default: resolved among PK/pk/Id/id)")
     ap.add_argument("--max-tokens", type=int, default=6000)
     ap.add_argument("--out", default=None, help="accepted proposals CSV")
     ap.add_argument("--table", default=None, help="markdown verdict table")
@@ -113,9 +115,15 @@ def main():
 
     pf = load_module()
     props = list(csv.DictReader(io.open(a.proposals, encoding="utf-8", newline="")))
+    rdr = csv.DictReader(io.open(a.csv, encoding="utf-8-sig", newline=""))
+    # Same key resolution as the scan and the writer: Virtues and Rules spell it
+    # `pk`, and a bare r["PK"] died on them while the pass tool had just been
+    # fixed for the same reason (measured 23/10, #1943).
+    keycol = pf.key_of(rdr.fieldnames, a.key_column)
+    print("row key: %r" % keycol)
     corpus = {}
-    for r in csv.DictReader(io.open(a.csv, encoding="utf-8-sig", newline="")):
-        corpus[r["PK"]] = r
+    for r in rdr:
+        corpus[r[keycol]] = r
     groups = {}
     for p in props:
         groups.setdefault((p["pk"], p["col"].rsplit("_", 1)[0]), []).append(p)
