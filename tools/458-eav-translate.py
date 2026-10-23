@@ -117,7 +117,11 @@ PROMPT = (
     "HTML entities such as &eacute; or &rsquo; may stay as they are. "
     "(4) Keep the register of a public educational game site. (5) Do not add or drop "
     "information. (6) If a value is a pure identifier or an empty string, echo it "
-    "unchanged. (7) " + variant_clause() + " Respond with JSON only."
+    "unchanged. (6b) Some values are not content but a CMS default or an editing "
+    "instruction (\"New image\", \"Edit this by clicking the pencil icon…\", "
+    "\"Demo Title\"): answer with an EMPTY STRING for those. An empty answer means "
+    "\"nothing to translate here\" — it is recorded as a skip, never written. "
+    "(7) " + variant_clause() + " Respond with JSON only."
 )
 
 # Published per-MTok prices. Sonnet 5.5 is 2/10, not 3/15: the first version of
@@ -342,6 +346,10 @@ def main():
         # of the `if` — measured 23/10 on PlaceholderMissingImage, which a reader
         # of TRANSLATABLE alone counted as translatable.
         assert not (TRANSLATABLE & NEVER), f"field in both lists: {TRANSLATABLE & NEVER}"
+        # A skip must be impossible to write even if the skip branch were removed:
+        # the validator itself has to refuse an empty answer.
+        assert validate("Some FR text", "", "en") == ["empty translation"], "empty must not validate"
+        assert "(6b)" in PROMPT, "the prompt must state how to decline"
         print(f"self-test OK: round-trip byte-identical, {len(rows)} rows, {len(todo)} to translate; "
               f"URL rule accepts the own prefix, rejects a foreign one")
 
@@ -364,6 +372,7 @@ def main():
     pin, pout = PRICES[a.model]
     tin = tout = 0
     done = 0
+    skipped = 0
     rejects = []
     for i in range(0, len(todo), a.batch):
         batch = todo[i : i + a.batch]
@@ -384,6 +393,12 @@ def main():
                 v = got.get(l)
                 if not isinstance(v, str):
                     continue
+                if not v.strip():
+                    # The model declined: a CMS default or an editing instruction,
+                    # not content. Counted apart from a rejection so that a pass's
+                    # "nothing written" is not read as a failure rate.
+                    skipped += 1
+                    continue
                 bad = validate(r["fr"], v, l)
                 if bad:
                     rejects.append((r["key"], r["field"], l, "; ".join(bad)[:220]))
@@ -396,7 +411,7 @@ def main():
     for rej in rejects:
         print("  REJECT", rej[0][:8], rej[1], rej[2], "::", rej[3], file=sys.stderr)
     spend = tin / 1e6 * pin + tout / 1e6 * pout
-    print(f"TOTAL cells written={done} rejected={len(rejects)} tokens in={tin} out={tout} "
+    print(f"TOTAL cells written={done} skipped={skipped} rejected={len(rejects)} tokens in={tin} out={tout} "
           f"spend=${spend:.4f} ({a.model})")
     if a.out:
         save(a.out, rows, header)
