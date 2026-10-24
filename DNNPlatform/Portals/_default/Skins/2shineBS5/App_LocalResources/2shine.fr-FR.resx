@@ -8,17 +8,15 @@
   </resheader>
   <!-- #1946: French skin resources. Deliberately carries NO Menu.Tab* keys — the French
        menu serves the DNN TabName values, which are French, via the mechanism's fallback
-       path (exercised in production by every / request). Meta values mirror Tabs.138. -->
+       path (exercised in production by every / request). Carries NO Meta.* keys either
+       (withdrawn before the skin gesture): fr pages already serve their native meta from
+       two distinct carriers (Tabs.138 on /, PortalLocalization on /Actus), and a resx-side
+       fr override would rewrite /Actus with the / text. Other cultures keep their Meta.*
+       keys — their shared pages serve French otherwise. -->
   <data name="Imprint.Text" xml:space="preserve">
     <value>Mentions légales</value>
   </data>
   <data name="Privacy.Text" xml:space="preserve">
     <value>Confidentialité</value>
-  </data>
-  <data name="Meta.Description" xml:space="preserve">
-    <value>Argumentum est un jeu de cartes sur l'argumentation et l'apprentissage des arguments fallacieux</value>
-  </data>
-  <data name="Meta.Keywords" xml:space="preserve">
-    <value>Argumentation, rhétorique, sophismes, arguments fallacieux</value>
   </data>
 </root>
