@@ -203,13 +203,41 @@
 
   protected string LocalizeString(string key)
   {
-      return Localization.GetString(key, ResourceFilePath);
+      return CultureString(key) ?? Localization.GetString(key, ResourceFilePath);
+  }
+
+  // #1946: the culture file is named EXPLICITLY, never through the culture-name overload.
+  // Measured on preprod 2026-10-24: /en resolves CurrentUICulture.Name to "en-US", yet
+  // Localization.GetString(key, "…/2shine.resx", "en-US") reads the invariant base file and never
+  // 2shine.en-US.resx — DNN normalizes a culture that is not a registered portal language
+  // (en-US has no PortalLocalization row on portal 1; the 7 other cultures do) to the invariant
+  // culture. Markers planted in 2shine.en-US.resx never reached /en; the same markers planted in
+  // the base file did. Every lookup below therefore names the culture file, and a key missing from
+  // it yields nothing instead of falling back to the base file — the base file carries the English
+  // strings, so that fallback is exactly how the French page ended up serving English meta.
+  private const string ResxRoot = "~/Portals/_default/Skins/2shineBS5/App_LocalResources/2shine";
+  private static string CultureResourceFile
+  {
+    get
+    {
+      var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+      return string.IsNullOrEmpty(culture) ? ResxRoot + ".resx" : ResxRoot + "." + culture + ".resx";
+    }
+  }
+  private static string CultureString(string key)
+  {
+    try
+    {
+      var s = Localization.GetString(key, CultureResourceFile);
+      return (string.IsNullOrWhiteSpace(s) || s == key) ? null : s;
+    }
+    catch { return null; }
   }
 
   // #1946: localize the already-served meta description/keywords from the skin resx
   // (keys Meta.Description / Meta.Keywords). Replaces only values the page already serves —
-  // a page without a description keeps none. Culture = request-resolved thread UI culture
-  // (same source as IsRtl; PortalSettings.CultureCode measured wrong on /en).
+  // a page without a description keeps none. fr-FR carries no Meta.* keys on purpose (its pages
+  // serve native meta from Tabs.138 / PortalLocalization), so CultureString returns nothing there.
   protected override void OnPreRender(EventArgs e)
   {
     base.OnPreRender(e);
@@ -227,7 +255,7 @@
         var meta = c as HtmlMeta;
         if (meta == null || !string.Equals(meta.Name, metaName, StringComparison.OrdinalIgnoreCase)) { continue; }
         if (string.IsNullOrWhiteSpace(meta.Content)) { continue; }
-        var s = Localization.GetString(resxKey, ResourceFilePath, System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
+        var s = CultureString(resxKey);
         if (!string.IsNullOrWhiteSpace(s) && s != resxKey) { meta.Content = s; }
       }
     }
