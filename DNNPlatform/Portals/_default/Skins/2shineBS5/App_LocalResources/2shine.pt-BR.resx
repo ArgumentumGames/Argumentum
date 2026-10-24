@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <!-- #1946: pt-BR skin resources. Menu.Tab<Id>.Text localizes the DDRMenu labels
+       (fallback = DNN TabName, which serves the FRENCH label in every culture today,
+       measured on the preprod menu); Menu.Tab170.Url points to the translated mind map
+       served at /fallacies_pt.html (measured 200). Tab 171 (ontology) exists in French only, so it
+       carries no Url key and keeps the declared French fallback. fr-FR is not touched. -->
+  <data name="Menu.Tab148.Text" xml:space="preserve">
+    <value>Novidades</value>
+  </data>
+  <data name="Menu.Tab149.Text" xml:space="preserve">
+    <value>Comprar o jogo</value>
+  </data>
+  <data name="Menu.Tab150.Text" xml:space="preserve">
+    <value>Downloads</value>
+  </data>
+  <data name="Menu.Tab151.Text" xml:space="preserve">
+    <value>Amigos</value>
+  </data>
+  <data name="Menu.Tab152.Text" xml:space="preserve">
+    <value>Regras</value>
+  </data>
+  <data name="Menu.Tab169.Text" xml:space="preserve">
+    <value>Argumentação</value>
+  </data>
+  <data name="Menu.Tab170.Text" xml:space="preserve">
+    <value>Mapa mental das falácias</value>
+  </data>
+  <data name="Menu.Tab170.Url" xml:space="preserve">
+    <value>/fallacies_pt.html</value>
+  </data>
+  <data name="Menu.Tab171.Text" xml:space="preserve">
+    <value>Ontologia das falácias</value>
+  </data>
+  <data name="Imprint.Text" xml:space="preserve">
+    <value>Informações legais</value>
+  </data>
+  <data name="Privacy.Text" xml:space="preserve">
+    <value>Privacidade</value>
+  </data>
+  <data name="Meta.Description" xml:space="preserve">
+    <value>Argumentum é um jogo de cartas sobre argumentação que ensina a reconhecer argumentos falaciosos.</value>
+  </data>
+  <data name="Meta.Keywords" xml:space="preserve">
+    <value>argumentação, retórica, falácias, argumentos falaciosos</value>
+  </data>
+</root>
