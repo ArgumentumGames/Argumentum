@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <!-- #1946: es-ES skin resources. Menu.Tab<Id>.Text localizes the DDRMenu labels
+       (fallback = DNN TabName, which serves the FRENCH label in every culture today,
+       measured on the preprod menu); Menu.Tab170.Url points to the translated mind map
+       served at /fallacies_es.html (measured 200). Tab 171 (ontology) exists in French only, so it
+       carries no Url key and keeps the declared French fallback. fr-FR is not touched. -->
+  <data name="Menu.Tab148.Text" xml:space="preserve">
+    <value>Novedades</value>
+  </data>
+  <data name="Menu.Tab149.Text" xml:space="preserve">
+    <value>Comprar el juego</value>
+  </data>
+  <data name="Menu.Tab150.Text" xml:space="preserve">
+    <value>Descargas</value>
+  </data>
+  <data name="Menu.Tab151.Text" xml:space="preserve">
+    <value>Amigos</value>
+  </data>
+  <data name="Menu.Tab152.Text" xml:space="preserve">
+    <value>Reglas</value>
+  </data>
+  <data name="Menu.Tab169.Text" xml:space="preserve">
+    <value>Argumentación</value>
+  </data>
+  <data name="Menu.Tab170.Text" xml:space="preserve">
+    <value>Mapa mental de falacias</value>
+  </data>
+  <data name="Menu.Tab170.Url" xml:space="preserve">
+    <value>/fallacies_es.html</value>
+  </data>
+  <data name="Menu.Tab171.Text" xml:space="preserve">
+    <value>Ontología de falacias</value>
+  </data>
+  <data name="Imprint.Text" xml:space="preserve">
+    <value>Aviso legal</value>
+  </data>
+  <data name="Privacy.Text" xml:space="preserve">
+    <value>Política de privacidad</value>
+  </data>
+  <data name="Meta.Description" xml:space="preserve">
+    <value>Argumentum es un juego de cartas sobre argumentación que enseña a reconocer argumentos falaces.</value>
+  </data>
+  <data name="Meta.Keywords" xml:space="preserve">
+    <value>argumentación, retórica, falacias, argumentos falaces</value>
+  </data>
+</root>
