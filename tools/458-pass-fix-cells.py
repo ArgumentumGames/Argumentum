@@ -145,9 +145,14 @@ def render(value, was_quoted):
 def key_of(header, forced=None):
     """The row-key column. Fallacies spells it `PK`, Virtues and Rules `pk`.
 
-    Same resolution as `458-cascade-drift-scan.py`: the tool that produces the
-    worklist accepts a `pk` corpus, so the tool that writes it back must too —
-    `idx["PK"]` raised a bare KeyError on Virtues (measured 23/10, #1943).
+    Measured 23/10: hardcoding `PK` fails on the Virtues corpus with a bare
+    KeyError (#1943), so the name is resolved rather than assumed. A corpus with
+    no key column at all (Scenarii has neither `pk` nor `PK` — its `path` column
+    is edition-dependent) is refused loudly instead of silently keyed on "".
+
+    Single definition: `458-cascade-drift-scan.py` and
+    `458-counterreview-cells.py` load this module instead of carrying a copy —
+    the #1954 review flagged two copies with no equality assertion.
     """
     if forced:
         if forced not in header:
@@ -203,11 +208,23 @@ def _apply(csv_path, proposals, key_column=None):
     # we run on, and no reader ever sees a partial corpus.
     data = (b"\xef\xbb\xbf" if bom else b"") + "\r\n".join(lines).encode("utf-8")
     tmp = csv_path + ".tmp"
-    with open(tmp, "wb") as f:
-        f.write(data)
-        f.flush()
-        os.fsync(f.fileno())
-    os.replace(tmp, csv_path)
+    try:
+        with open(tmp, "wb") as f:
+            f.write(data)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, csv_path)
+    except BaseException:
+        # A crash between the write and the replace used to leave `<corpus>.csv.tmp`
+        # behind (flagged in the #1954 review): gitignored, so invisible, but it
+        # makes the next run's atomic write share a name with a stale orphan.
+        # The corpus itself is untouched either way — that is the point of the
+        # sibling-temp write — so failing here means: clean up, re-raise.
+        try:
+            os.remove(tmp)
+        except OSError:
+            pass
+        raise
     print("applied %d cell(s) to %s (%d mismatched)" % (touched, csv_path, mismatched))
     return touched
 
