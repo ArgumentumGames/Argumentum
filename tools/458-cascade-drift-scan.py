@@ -20,6 +20,7 @@ Usage
 """
 import argparse
 import csv
+import importlib.util
 import io
 import subprocess
 import sys
@@ -38,23 +39,20 @@ def git(*args):
     return p.stdout
 
 
-def key_of(header, forced=None):
-    """The row key. Fallacies spells it `PK`, Virtues and Rules `pk`.
+def load_module(path="tools/458-pass-fix-cells.py"):
+    """Load the writer tool for its `key_of`.
 
-    Measured 23/10: hardcoding `PK` fails on the Virtues corpus with a bare
-    KeyError, so the name is resolved rather than assumed. A corpus with no key
-    column at all (Scenarii has neither `pk` nor `PK` — its `path` column is
-    edition-dependent) is refused loudly instead of silently keyed on "".
+    The row-key resolution lived as two identical copies (scan here, writer in
+    the pass tool) — the #1954 review flagged the drift risk of two copies with
+    no equality assertion, so the definition lives once in the pass tool and
+    every consumer loads it (the counter-review `458-counterreview-cells.py`
+    already did). Fallback semantics and error messages are therefore shared
+    by construction, not by discipline.
     """
-    if forced:
-        if forced not in header:
-            raise SystemExit("--key-column %r absent from the header (%s)"
-                             % (forced, ", ".join(header[:8]) + " …"))
-        return forced
-    for cand in ("PK", "pk", "Id", "ID", "id"):
-        if cand in header:
-            return cand
-    raise SystemExit("no row key in the header: pass --key-column (looked for PK/pk/Id/id)")
+    spec = importlib.util.spec_from_file_location("pf", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
 
 
 def parse_at(rev, path, keycol):
@@ -83,7 +81,7 @@ def main():
     fields = [x.strip() for x in a.fields.split(",") if x.strip()]
     head_header = next(csv.reader(io.StringIO(
         git("show", "HEAD:%s" % a.csv).decode("utf-8-sig").split("\r\n")[0])))
-    keycol = key_of(head_header, a.key_column)
+    keycol = load_module().key_of(head_header, a.key_column)
     # Fallacies marks deck membership `carte`, Virtues `card` (measured 23/10).
     # A hardcoded name silently filtered nothing on the wrong corpus.
     deckcol = a.deck_column
