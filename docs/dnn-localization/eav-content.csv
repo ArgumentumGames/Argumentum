@@ -1186,7 +1186,7 @@ CB214139-9A8B-4BA7-939D-EEEC99D6D606|Title,33,Content,CB214139-9A8B-4BA7-939D-EE
 CB214139-9A8B-4BA7-939D-EEEC99D6D606|Text,33,Content,CB214139-9A8B-4BA7-939D-EEEC99D6D606,Text,String,editorial,,,,,,,,
 CB214139-9A8B-4BA7-939D-EEEC99D6D606|Image,33,Content,CB214139-9A8B-4BA7-939D-EEEC99D6D606,Image,Hyperlink,editorial,,,,,,,,
 CB214139-9A8B-4BA7-939D-EEEC99D6D606|ImageCaption,33,Content,CB214139-9A8B-4BA7-939D-EEEC99D6D606,ImageCaption,String,editorial,,,,,,,,
-DBED8812-9575-4BE4-90F4-D32CB9F3EC0A|Title,33,Content,DBED8812-9575-4BE4-90F4-D32CB9F3EC0A,Title,String,editorial,Mentions légales,,,,,,,
+DBED8812-9575-4BE4-90F4-D32CB9F3EC0A|Title,33,Content,DBED8812-9575-4BE4-90F4-D32CB9F3EC0A,Title,String,editorial,Mentions légales,Legal Notice,Правовая информация,Avisos legais,Aviso legal,إشعار قانوني,اطلاعیه حقوقی,法律声明
 DBED8812-9575-4BE4-90F4-D32CB9F3EC0A|Text,33,Content,DBED8812-9575-4BE4-90F4-D32CB9F3EC0A,Text,String,editorial,"<h2>Responsable du contenu des pages</h2>
 <p>Musterfirma AG<br />Peter Muster<br />Musterstrasse 81<br />8000 Z&uuml;rich</p>
 <p><a href=""mailto:peter.muster@musterfirma.com"">peter.muster@musterfirma.com</a></p>
@@ -1459,10 +1459,10 @@ CA0850A8-3DB7-4850-9509-B3205670B1A9|PrintQrAdminHint,47,App-Resources,CA0850A8-
 15D8E97A-EE3B-4844-958B-DB6D98F241A5|Title,47,Link,15D8E97A-EE3B-4844-958B-DB6D98F241A5,Title,String,editorial,,,,,,,,
 15D8E97A-EE3B-4844-958B-DB6D98F241A5|Link,47,Link,15D8E97A-EE3B-4844-958B-DB6D98F241A5,Link,Hyperlink,editorial,,,,,,,,
 15D8E97A-EE3B-4844-958B-DB6D98F241A5|NotesInternal,47,Link,15D8E97A-EE3B-4844-958B-DB6D98F241A5,NotesInternal,String,editorial,,,,,,,,
-1C2B12E8-949D-4AC3-A383-A9D727E03574|Title,47,Link,1C2B12E8-949D-4AC3-A383-A9D727E03574,Title,String,editorial,Link to Current Page,,,,,,,
+1C2B12E8-949D-4AC3-A383-A9D727E03574|Title,47,Link,1C2B12E8-949D-4AC3-A383-A9D727E03574,Title,String,editorial,Link to Current Page,Link to Current Page,Ссылка на текущую страницу,Link para a página atual,Enlace a la página actual,رابط إلى الصفحة الحالية,پیوند به صفحه فعلی,当前页面链接
 1C2B12E8-949D-4AC3-A383-A9D727E03574|Link,47,Link,1C2B12E8-949D-4AC3-A383-A9D727E03574,Link,Hyperlink,editorial,,,,,,,,
 1C2B12E8-949D-4AC3-A383-A9D727E03574|NotesInternal,47,Link,1C2B12E8-949D-4AC3-A383-A9D727E03574,NotesInternal,String,editorial,,,,,,,,
-D2FA3BC0-CED2-45FF-99B6-BF38B7E40E62|Title,47,Link,D2FA3BC0-CED2-45FF-99B6-BF38B7E40E62,Title,String,editorial,Installation checklist,,,,,,,
+D2FA3BC0-CED2-45FF-99B6-BF38B7E40E62|Title,47,Link,D2FA3BC0-CED2-45FF-99B6-BF38B7E40E62,Title,String,editorial,Installation checklist,Installation checklist,Контрольный список по установке,Checklist de instalação,Lista de verificación de instalación,قائمة التحقق من التثبيت,چک‌لیست نصب,安装检查清单
 D2FA3BC0-CED2-45FF-99B6-BF38B7E40E62|Link,47,Link,D2FA3BC0-CED2-45FF-99B6-BF38B7E40E62,Link,Hyperlink,editorial,https://azing.org/2sxc/r/TCmnZ17h,,,,,,,
 D2FA3BC0-CED2-45FF-99B6-BF38B7E40E62|NotesInternal,47,Link,D2FA3BC0-CED2-45FF-99B6-BF38B7E40E62,NotesInternal,String,editorial,<p>This is a demo item.</p>,,,,,,,
 091D81AF-5D6B-458C-89E0-617A5DC47068|Image,49,Slide,091D81AF-5D6B-458C-89E0-617A5DC47068,Image,Hyperlink,editorial,file:722,,,,,,,
@@ -2185,7 +2185,7 @@ BB66F63A-C403-4DA7-A62D-65BBF2AA418F|Details,59,Term,BB66F63A-C403-4DA7-A62D-65B
 34CE33D2-022F-484F-B4EA-CA777726ED0B|AlbumThumbnail,60,Album,34CE33D2-022F-484F-B4EA-CA777726ED0B,AlbumThumbnail,Hyperlink,credit,file:799,,,,,,,
 F95E977F-0989-4CEB-8D23-79CFC16A2E0D|Title,60,Album,F95E977F-0989-4CEB-8D23-79CFC16A2E0D,Title,String,credit,Demo album - without thumbnail,,,,,,,
 F95E977F-0989-4CEB-8D23-79CFC16A2E0D|Path,60,Album,F95E977F-0989-4CEB-8D23-79CFC16A2E0D,Path,String,credit,demo-no-album-thumbnail,,,,,,,
-F95E977F-0989-4CEB-8D23-79CFC16A2E0D|Introduction,60,Album,F95E977F-0989-4CEB-8D23-79CFC16A2E0D,Introduction,String,credit,"<p>Take a look at <a href=""https://azing.org/2sxc/l/JQRsK69v/app-fancybox3-image-gallery"" target=""_blank"" rel=""noopener"">these azing checklists</a>, if you need help.</p>",,,,,,,
+F95E977F-0989-4CEB-8D23-79CFC16A2E0D|Introduction,60,Album,F95E977F-0989-4CEB-8D23-79CFC16A2E0D,Introduction,String,credit,"<p>Take a look at <a href=""https://azing.org/2sxc/l/JQRsK69v/app-fancybox3-image-gallery"" target=""_blank"" rel=""noopener"">these azing checklists</a>, if you need help.</p>","<p>Take a look at <a href=""https://azing.org/2sxc/l/JQRsK69v/app-fancybox3-image-gallery"" target=""_blank"" rel=""noopener"">these azing checklists</a>, if you need help.</p>","<p>Если вам нужна помощь, взгляните на <a href=""https://azing.org/2sxc/l/JQRsK69v/app-fancybox3-image-gallery"" target=""_blank"" rel=""noopener"">эти контрольные списки azing</a>.</p>","<p>Se precisar de ajuda, dê uma olhada <a href=""https://azing.org/2sxc/l/JQRsK69v/app-fancybox3-image-gallery"" target=""_blank"" rel=""noopener"">nestes checklists da azing</a>.</p>","<p>Si necesitas ayuda, echa un vistazo a <a href=""https://azing.org/2sxc/l/JQRsK69v/app-fancybox3-image-gallery"" target=""_blank"" rel=""noopener"">estas listas de verificación de azing</a>.</p>","<p>إذا كنت بحاجة إلى مساعدة، فألقِ نظرة على <a href=""https://azing.org/2sxc/l/JQRsK69v/app-fancybox3-image-gallery"" target=""_blank"" rel=""noopener"">قوائم التحقق هذه من azing</a>.</p>","<p>اگر به کمک نیاز دارید، نگاهی به <a href=""https://azing.org/2sxc/l/JQRsK69v/app-fancybox3-image-gallery"" target=""_blank"" rel=""noopener"">این چک‌لیست‌های azing</a> بیندازید.</p>","<p>如果您需要帮助，请查看<a href=""https://azing.org/2sxc/l/JQRsK69v/app-fancybox3-image-gallery"" target=""_blank"" rel=""noopener"">这些 azing 检查清单</a>。</p>"
 F95E977F-0989-4CEB-8D23-79CFC16A2E0D|Images,60,Album,F95E977F-0989-4CEB-8D23-79CFC16A2E0D,Images,Hyperlink,credit,,,,,,,,
 F95E977F-0989-4CEB-8D23-79CFC16A2E0D|AlbumThumbnail,60,Album,F95E977F-0989-4CEB-8D23-79CFC16A2E0D,AlbumThumbnail,Hyperlink,credit,,,,,,,,
 8687A9FB-C0BA-4720-B6CA-0CF63CDF6B4B|HeadingType,60,AlbumPresentation,8687A9FB-C0BA-4720-B6CA-0CF63CDF6B4B,HeadingType,String,credit,h1,,,,,,,
@@ -3097,7 +3097,7 @@ AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78|Memo,60,Game Rule,AE1EDEFA-6F1B-4593-8230-9
 AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78|UrlKey,60,Game Rule,AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78,UrlKey,String,editorial,l-ecole-des-menteurs,,,,,,,
 FD774E10-7DCA-46E0-8621-B39E5E1B0778|Title,60,ImageMetadata,FD774E10-7DCA-46E0-8621-B39E5E1B0778,Title,String,credit,Demo Title,,,,,,,
 FD774E10-7DCA-46E0-8621-B39E5E1B0778|Description,60,ImageMetadata,FD774E10-7DCA-46E0-8621-B39E5E1B0778,Description,String,credit,Demo Description,,,,,,,
-18AB6A11-50E6-4EB9-98DE-BD59A244FAD3|Name,60,License,18AB6A11-50E6-4EB9-98DE-BD59A244FAD3,Name,String,credit,All rights reserved,,,,,,,
+18AB6A11-50E6-4EB9-98DE-BD59A244FAD3|Name,60,License,18AB6A11-50E6-4EB9-98DE-BD59A244FAD3,Name,String,credit,All rights reserved,All rights reserved,Все права защищены,Todos os direitos reservados,Todos los derechos reservados,جميع الحقوق محفوظة,تمامی حقوق محفوظ است,保留所有权利
 18AB6A11-50E6-4EB9-98DE-BD59A244FAD3|Link,60,License,18AB6A11-50E6-4EB9-98DE-BD59A244FAD3,Link,Hyperlink,credit,copyright/,,,,,,,
-A958F5E2-3941-4070-849D-C0D3772427AB|Name,60,License,A958F5E2-3941-4070-849D-C0D3772427AB,Name,String,credit,Creative Commons (Free to Share and Re-Use),,,,,,,
+A958F5E2-3941-4070-849D-C0D3772427AB|Name,60,License,A958F5E2-3941-4070-849D-C0D3772427AB,Name,String,credit,Creative Commons (Free to Share and Re-Use),Creative Commons (Free to Share and Re-Use),Creative Commons (свободно распространять и использовать повторно),Creative Commons (livre para compartilhar e reutilizar),Creative Commons (libre para compartir y reutilizar),Creative Commons (حرّ للمشاركة وإعادة الاستخدام),Creative Commons (آزاد برای اشتراک‌گذاری و استفاده مجدد),Creative Commons（可自由分享和再利用）
 A958F5E2-3941-4070-849D-C0D3772427AB|Link,60,License,A958F5E2-3941-4070-849D-C0D3772427AB,Link,Hyperlink,credit,https://creativecommons.org/licenses/by/4.0/,,,,,,,
