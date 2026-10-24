@@ -1376,39 +1376,39 @@ DED908FD-A579-40DB-B423-E99495150351|Title,33,Video,DED908FD-A579-40DB-B423-E994
 DED908FD-A579-40DB-B423-E99495150351|Text,33,Video,DED908FD-A579-40DB-B423-E99495150351,Text,String,editorial,"<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Te</p>",,,,,,,
 DED908FD-A579-40DB-B423-E99495150351|Image,33,Video,DED908FD-A579-40DB-B423-E99495150351,Image,Hyperlink,editorial,file:748,,,,,,,
 DED908FD-A579-40DB-B423-E99495150351|VideoLink,33,Video,DED908FD-A579-40DB-B423-E99495150351,VideoLink,Hyperlink,editorial,https://www.youtube.com/watch?v=6Hx8FzJaV18,,,,,,,
-0C3B7D61-ADAA-4165-8907-B96ECDD53896|Title,35,Accordion,0C3B7D61-ADAA-4165-8907-B96ECDD53896,Title,String,editorial,Étudiant ou passionné de philosophie,,,,,,,
+0C3B7D61-ADAA-4165-8907-B96ECDD53896|Title,35,Accordion,0C3B7D61-ADAA-4165-8907-B96ECDD53896,Title,String,editorial,Étudiant ou passionné de philosophie,Student or philosophy enthusiast,Студент или любитель философии,Estudante ou apaixonado por filosofia,Estudiante o apasionado de la filosofía,طالب أو شغوف بالفلسفة,دانشجو یا علاقه‌مند به فلسفه,学生或哲学爱好者
 0C3B7D61-ADAA-4165-8907-B96ECDD53896|Icon,35,Accordion,0C3B7D61-ADAA-4165-8907-B96ECDD53896,Icon,String,editorial,fa-landmark,,,,,,,
-1317A57A-7A39-4D52-8417-E96C9166FDD2|Title,35,Accordion,1317A57A-7A39-4D52-8417-E96C9166FDD2,Title,String,editorial,"Formateur, lycéen, jeune adulte",,,,,,,
+1317A57A-7A39-4D52-8417-E96C9166FDD2|Title,35,Accordion,1317A57A-7A39-4D52-8417-E96C9166FDD2,Title,String,editorial,"Formateur, lycéen, jeune adulte","Trainer, high school student, young adult","Преподаватель, старшеклассник, молодой взрослый","Instrutor, aluno do ensino médio, jovem adulto","Formador, estudiante de bachillerato, joven adulto",مدرّب، تلميذ ثانوي، شاب بالغ,مربی، دانش‌آموز دبیرستانی، جوان بزرگسال,培训师、高中生、青年人
 1317A57A-7A39-4D52-8417-E96C9166FDD2|Icon,35,Accordion,1317A57A-7A39-4D52-8417-E96C9166FDD2,Icon,String,editorial,fa-school,,,,,,,
 1C19FDF7-FF8A-454B-A77F-A289055142B4|Title,35,Accordion,1C19FDF7-FF8A-454B-A77F-A289055142B4,Title,String,editorial,Example with initially expanded,,,,,,,
 1C19FDF7-FF8A-454B-A77F-A289055142B4|Icon,35,Accordion,1C19FDF7-FF8A-454B-A77F-A289055142B4,Icon,String,editorial, fa-adjust,,,,,,,
-4489FF85-7437-4F10-AD61-1FAB1923F722|Title,35,Accordion,4489FF85-7437-4F10-AD61-1FAB1923F722,Title,String,editorial,Citoyen concerné ,,,,,,,
+4489FF85-7437-4F10-AD61-1FAB1923F722|Title,35,Accordion,4489FF85-7437-4F10-AD61-1FAB1923F722,Title,String,editorial,Citoyen concerné ,Concerned citizen,Неравнодушный гражданин,Cidadão engajado,Ciudadano comprometido,مواطن مهتمّ,شهروند دغدغه‌مند,关心社会的公民
 4489FF85-7437-4F10-AD61-1FAB1923F722|Icon,35,Accordion,4489FF85-7437-4F10-AD61-1FAB1923F722,Icon,String,editorial,fa-book-reader,,,,,,,
-49774735-28EB-4BE6-9CA4-E2687E9EF179|Title,35,Accordion,49774735-28EB-4BE6-9CA4-E2687E9EF179,Title,String,editorial,Étudiant ou professionnel du droit,,,,,,,
+49774735-28EB-4BE6-9CA4-E2687E9EF179|Title,35,Accordion,49774735-28EB-4BE6-9CA4-E2687E9EF179,Title,String,editorial,Étudiant ou professionnel du droit,Law student or legal professional,Студент-юрист или юридический специалист,Estudante ou profissional de direito,Estudiante o profesional del derecho,طالب أو محترف في مجال القانون,دانشجو یا متخصص حقوق,法律专业学生或从业者
 49774735-28EB-4BE6-9CA4-E2687E9EF179|Icon,35,Accordion,49774735-28EB-4BE6-9CA4-E2687E9EF179,Icon,String,editorial,fa-gavel,,,,,,,
-4F8017A1-EE56-4937-A164-AAE1C66A73CB|Title,35,Accordion,4F8017A1-EE56-4937-A164-AAE1C66A73CB,Title,String,editorial,Zététicien,,,,,,,
+4F8017A1-EE56-4937-A164-AAE1C66A73CB|Title,35,Accordion,4F8017A1-EE56-4937-A164-AAE1C66A73CB,Title,String,editorial,Zététicien,Zetetician,Зететик,Zetético,Zetético,ممارس للزيتيتيك,زتتیسین,怀疑探究者
 4F8017A1-EE56-4937-A164-AAE1C66A73CB|Icon,35,Accordion,4F8017A1-EE56-4937-A164-AAE1C66A73CB,Icon,String,editorial,fa-hat-wizard,,,,,,,
-52D955A3-4C78-474A-ABE9-C7E235A53E2D|Title,35,Accordion,52D955A3-4C78-474A-ABE9-C7E235A53E2D,Title,String,editorial,"Acteur de théâtre, d'improvisation, metteur en scène",,,,,,,
+52D955A3-4C78-474A-ABE9-C7E235A53E2D|Title,35,Accordion,52D955A3-4C78-474A-ABE9-C7E235A53E2D,Title,String,editorial,"Acteur de théâtre, d'improvisation, metteur en scène","Theater actor, improviser, director","Театральный актёр, импровизатор, режиссёр","Ator de teatro, de improvisação, diretor","Actor de teatro, de improvisación, director de escena",ممثل مسرحي، ممثل ارتجالي، مخرج,بازیگر تئاتر، بازیگر بداهه‌پردازی، کارگردان,戏剧演员、即兴表演演员、导演
 52D955A3-4C78-474A-ABE9-C7E235A53E2D|Icon,35,Accordion,52D955A3-4C78-474A-ABE9-C7E235A53E2D,Icon,String,editorial,fa-theater-masks,,,,,,,
-5F1D0D48-4E3D-43E4-BF77-9D19B137C16A|Title,35,Accordion,5F1D0D48-4E3D-43E4-BF77-9D19B137C16A,Title,String,editorial,Inscription à la Newsletter,,,,,,,
+5F1D0D48-4E3D-43E4-BF77-9D19B137C16A|Title,35,Accordion,5F1D0D48-4E3D-43E4-BF77-9D19B137C16A,Title,String,editorial,Inscription à la Newsletter,Newsletter Sign-Up,Подписка на рассылку,Inscrição na newsletter,Suscripción al boletín,الاشتراك في النشرة الإخبارية,عضویت در خبرنامه,订阅新闻简报
 5F1D0D48-4E3D-43E4-BF77-9D19B137C16A|Icon,35,Accordion,5F1D0D48-4E3D-43E4-BF77-9D19B137C16A,Icon,String,editorial,fa-mail-bulk,,,,,,,
-6254D1DE-DEB1-427F-B441-7C05CF73F649|Title,35,Accordion,6254D1DE-DEB1-427F-B441-7C05CF73F649,Title,String,editorial,Psychologue,,,,,,,
+6254D1DE-DEB1-427F-B441-7C05CF73F649|Title,35,Accordion,6254D1DE-DEB1-427F-B441-7C05CF73F649,Title,String,editorial,Psychologue,Psychologist,Психолог,Psicólogo,Psicólogo,أخصائي نفسي,روان‌شناس,心理学家
 6254D1DE-DEB1-427F-B441-7C05CF73F649|Icon,35,Accordion,6254D1DE-DEB1-427F-B441-7C05CF73F649,Icon,String,editorial,fa-diagnoses,,,,,,,
-64243866-4983-4EEF-BB7B-1783E2B26CD2|Title,35,Accordion,64243866-4983-4EEF-BB7B-1783E2B26CD2,Title,String,editorial,Contactez-nous,,,,,,,
+64243866-4983-4EEF-BB7B-1783E2B26CD2|Title,35,Accordion,64243866-4983-4EEF-BB7B-1783E2B26CD2,Title,String,editorial,Contactez-nous,Contact Us,Свяжитесь с нами,Entre em contato conosco,Contacte con nosotros,اتصلوا بنا,با ما تماس بگیرید,联系我们
 64243866-4983-4EEF-BB7B-1783E2B26CD2|Icon,35,Accordion,64243866-4983-4EEF-BB7B-1783E2B26CD2,Icon,String,editorial,fa-pencil-alt,,,,,,,
 70E4E39F-E5BA-48CF-879D-7DAC1E159442|Title,35,Accordion,70E4E39F-E5BA-48CF-879D-7DAC1E159442,Title,String,editorial,Demo Accordion with long Content,,,,,,,
 70E4E39F-E5BA-48CF-879D-7DAC1E159442|Icon,35,Accordion,70E4E39F-E5BA-48CF-879D-7DAC1E159442,Icon,String,editorial,fa-align-justify,,,,,,,
-859EC0F5-3605-4818-8C71-1A1005ED46AB|Title,35,Accordion,859EC0F5-3605-4818-8C71-1A1005ED46AB,Title,String,editorial,Sociologue,,,,,,,
+859EC0F5-3605-4818-8C71-1A1005ED46AB|Title,35,Accordion,859EC0F5-3605-4818-8C71-1A1005ED46AB,Title,String,editorial,Sociologue,Sociologist,Социолог,Sociólogo,Sociólogo,عالم اجتماع,جامعه‌شناس,社会学家
 859EC0F5-3605-4818-8C71-1A1005ED46AB|Icon,35,Accordion,859EC0F5-3605-4818-8C71-1A1005ED46AB,Icon,String,editorial,fa-id-card,,,,,,,
-8C1A1665-9835-4E2D-965F-BCA6B0731877|Title,35,Accordion,8C1A1665-9835-4E2D-965F-BCA6B0731877,Title,String,editorial,Étudiant en sciences politiques,,,,,,,
+8C1A1665-9835-4E2D-965F-BCA6B0731877|Title,35,Accordion,8C1A1665-9835-4E2D-965F-BCA6B0731877,Title,String,editorial,Étudiant en sciences politiques,Political science student,Студент факультета политологии,Estudante de ciências políticas,Estudiante de ciencias políticas,طالب في العلوم السياسية,دانشجوی علوم سیاسی,政治学专业学生
 8C1A1665-9835-4E2D-965F-BCA6B0731877|Icon,35,Accordion,8C1A1665-9835-4E2D-965F-BCA6B0731877,Icon,String,editorial,fa-vote-yea,,,,,,,
-C2D0D6D2-60F0-4B59-ACF0-4414F54F7773|Title,35,Accordion,C2D0D6D2-60F0-4B59-ACF0-4414F54F7773,Title,String,editorial,Journaliste,,,,,,,
+C2D0D6D2-60F0-4B59-ACF0-4414F54F7773|Title,35,Accordion,C2D0D6D2-60F0-4B59-ACF0-4414F54F7773,Title,String,editorial,Journaliste,Journalist,Журналист,Jornalista,Periodista,صحفي,روزنامه‌نگار,记者
 C2D0D6D2-60F0-4B59-ACF0-4414F54F7773|Icon,35,Accordion,C2D0D6D2-60F0-4B59-ACF0-4414F54F7773,Icon,String,editorial,fa-newspaper,,,,,,,
-CFE0BF89-8568-403F-BB4D-904954432B8A|Title,35,Accordion,CFE0BF89-8568-403F-BB4D-904954432B8A,Title,String,editorial,"Amateur de jeux de société, de rôles",,,,,,,
+CFE0BF89-8568-403F-BB4D-904954432B8A|Title,35,Accordion,CFE0BF89-8568-403F-BB4D-904954432B8A,Title,String,editorial,"Amateur de jeux de société, de rôles",Board game and role-playing game enthusiast,Любитель настольных и ролевых игр,Entusiasta de jogos de tabuleiro e de RPG,Aficionado a los juegos de mesa y de rol,من هواة ألعاب الطاولة وألعاب لعب الأدوار,علاقه‌مند به بازی‌های تخته‌ای و نقش‌آفرینی,桌游和角色扮演游戏爱好者
 CFE0BF89-8568-403F-BB4D-904954432B8A|Icon,35,Accordion,CFE0BF89-8568-403F-BB4D-904954432B8A,Icon,String,editorial,fa-chess,,,,,,,
-D05A70EB-64EB-4EAC-B7BC-70013A0C20DE|Title,35,Accordion,D05A70EB-64EB-4EAC-B7BC-70013A0C20DE,Title,String,editorial,Étudiant en sciences cognitives,,,,,,,
+D05A70EB-64EB-4EAC-B7BC-70013A0C20DE|Title,35,Accordion,D05A70EB-64EB-4EAC-B7BC-70013A0C20DE,Title,String,editorial,Étudiant en sciences cognitives,Cognitive science student,"Студент, изучающий когнитивные науки",Estudante de ciências cognitivas,Estudiante de ciencias cognitivas,طالب في العلوم المعرفية,دانشجوی علوم شناختی,认知科学专业学生
 D05A70EB-64EB-4EAC-B7BC-70013A0C20DE|Icon,35,Accordion,D05A70EB-64EB-4EAC-B7BC-70013A0C20DE,Icon,String,editorial,fa-brain,,,,,,,
-D5635CC8-F3B6-435C-BB9D-77E2846F9DD9|Title,35,Accordion,D5635CC8-F3B6-435C-BB9D-77E2846F9DD9,Title,String,editorial,Syndicaliste,,,,,,,
+D5635CC8-F3B6-435C-BB9D-77E2846F9DD9|Title,35,Accordion,D5635CC8-F3B6-435C-BB9D-77E2846F9DD9,Title,String,editorial,Syndicaliste,Union activist,Профсоюзный активист,Sindicalista,Sindicalista,نقابي,فعال صنفی,工会活动家
 D5635CC8-F3B6-435C-BB9D-77E2846F9DD9|Icon,35,Accordion,D5635CC8-F3B6-435C-BB9D-77E2846F9DD9,Icon,String,editorial,fa-fist-raised,,,,,,,
 E38DF87B-3C62-421E-B0C4-43BFA397389F|Title,35,Accordion,E38DF87B-3C62-421E-B0C4-43BFA397389F,Title,String,editorial,Example which is still empty,,,,,,,
 E38DF87B-3C62-421E-B0C4-43BFA397389F|Icon,35,Accordion,E38DF87B-3C62-421E-B0C4-43BFA397389F,Icon,String,editorial,fa-battery-empty,,,,,,,
