@@ -186,11 +186,11 @@ namespace Argumentum.AssetConverter.Tests
                     missingTranslations["en"]["Desc"].Add(fallacy.Path);
                 if (language_is_missing(fallacy, "en", "Example", fallacy.ExampleEn))
                     missingTranslations["en"]["Example"].Add(fallacy.Path);
-                if (language_is_missing(fallacy, "en", "Family", fallacy.Family))
+                if (language_is_missing(fallacy, "en", "Family", fallacy.FamilyEn))
                     missingTranslations["en"]["Family"].Add(fallacy.Path);
-                if (language_is_missing(fallacy, "en", "Subfamily", fallacy.Subfamily))
+                if (language_is_missing(fallacy, "en", "Subfamily", fallacy.SubfamilyEn))
                     missingTranslations["en"]["Subfamily"].Add(fallacy.Path);
-                if (language_is_missing(fallacy, "en", "Subsubfamily", fallacy.Subsubfamily))
+                if (language_is_missing(fallacy, "en", "Subsubfamily", fallacy.SubsubfamilyEn))
                     missingTranslations["en"]["Subsubfamily"].Add(fallacy.Path);
 
                 // Vérification des traductions en russe
@@ -351,12 +351,12 @@ namespace Argumentum.AssetConverter.Tests
                     termsByLanguageAndLevel["fr"]["Subsubfamily"].Add(fallacy.Soussousfamille.ToLowerInvariant());
 
                 // Anglais
-                if (!string.IsNullOrWhiteSpace(fallacy.Family))
-                    termsByLanguageAndLevel["en"]["Family"].Add(fallacy.Family.ToLowerInvariant());
-                if (!string.IsNullOrWhiteSpace(fallacy.Subfamily))
-                    termsByLanguageAndLevel["en"]["Subfamily"].Add(fallacy.Subfamily.ToLowerInvariant());
-                if (!string.IsNullOrWhiteSpace(fallacy.Subsubfamily))
-                    termsByLanguageAndLevel["en"]["Subsubfamily"].Add(fallacy.Subsubfamily.ToLowerInvariant());
+                if (!string.IsNullOrWhiteSpace(fallacy.FamilyEn))
+                    termsByLanguageAndLevel["en"]["Family"].Add(fallacy.FamilyEn.ToLowerInvariant());
+                if (!string.IsNullOrWhiteSpace(fallacy.SubfamilyEn))
+                    termsByLanguageAndLevel["en"]["Subfamily"].Add(fallacy.SubfamilyEn.ToLowerInvariant());
+                if (!string.IsNullOrWhiteSpace(fallacy.SubsubfamilyEn))
+                    termsByLanguageAndLevel["en"]["Subsubfamily"].Add(fallacy.SubsubfamilyEn.ToLowerInvariant());
 
                 // Russe
                 if (!string.IsNullOrWhiteSpace(fallacy.FamilyRu))
@@ -411,37 +411,37 @@ namespace Argumentum.AssetConverter.Tests
             foreach (var fallacy in _fallacies)
             {
                 // Vérifier la cohérence des familles
-                if (!string.IsNullOrWhiteSpace(fallacy.Famille) && !string.IsNullOrWhiteSpace(fallacy.Family))
+                if (!string.IsNullOrWhiteSpace(fallacy.Famille) && !string.IsNullOrWhiteSpace(fallacy.FamilyEn))
                 {
                     // Vérifier si d'autres entrées utilisent la même famille en français mais une famille différente en anglais
                     var inconsistentFamilies = _fallacies
                         .Where(f => f.Path != fallacy.Path && 
                                    f.Famille == fallacy.Famille && 
-                                   !string.IsNullOrWhiteSpace(f.Family) && 
-                                   f.Family != fallacy.Family)
+                                   !string.IsNullOrWhiteSpace(f.FamilyEn) && 
+                                   f.FamilyEn != fallacy.FamilyEn)
                         .ToList();
 
                     if (inconsistentFamilies.Any())
                     {
                         hasInconsistencies = true;
-                        terminologyInconsistencies.Add($"Famille '{fallacy.Famille}' traduite différemment en anglais : '{fallacy.Family}' vs '{inconsistentFamilies.First().Family}'");
+                        terminologyInconsistencies.Add($"Famille '{fallacy.Famille}' traduite différemment en anglais : '{fallacy.FamilyEn}' vs '{inconsistentFamilies.First().FamilyEn}'");
                     }
                 }
 
                 // Vérifier la cohérence des sous-familles
-                if (!string.IsNullOrWhiteSpace(fallacy.SousFamille) && !string.IsNullOrWhiteSpace(fallacy.Subfamily))
+                if (!string.IsNullOrWhiteSpace(fallacy.SousFamille) && !string.IsNullOrWhiteSpace(fallacy.SubfamilyEn))
                 {
                     var inconsistentSubfamilies = _fallacies
                         .Where(f => f.Path != fallacy.Path && 
                                    f.SousFamille == fallacy.SousFamille && 
-                                   !string.IsNullOrWhiteSpace(f.Subfamily) && 
-                                   f.Subfamily != fallacy.Subfamily)
+                                   !string.IsNullOrWhiteSpace(f.SubfamilyEn) && 
+                                   f.SubfamilyEn != fallacy.SubfamilyEn)
                         .ToList();
 
                     if (inconsistentSubfamilies.Any())
                     {
                         hasInconsistencies = true;
-                        terminologyInconsistencies.Add($"Sous-famille '{fallacy.SousFamille}' traduite différemment en anglais : '{fallacy.Subfamily}' vs '{inconsistentSubfamilies.First().Subfamily}'");
+                        terminologyInconsistencies.Add($"Sous-famille '{fallacy.SousFamille}' traduite différemment en anglais : '{fallacy.SubfamilyEn}' vs '{inconsistentSubfamilies.First().SubfamilyEn}'");
                     }
                 }
             }

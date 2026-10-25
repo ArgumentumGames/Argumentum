@@ -371,9 +371,9 @@ namespace Argumentum.AssetConverter
 						nameof(FallacyMindMapDocumentConfig.SoussousFamilleExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Fallacy.Soussousfamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subsubfamily)), ("ru", nameof(Fallacy.SubsubfamilyRu)), ("pt", nameof(Fallacy.SubsubfamilyPt)), ("es", nameof(Fallacy.SubsubfamilyEs)), ("ar", nameof(Fallacy.SubsubfamilyAr)), ("fa", nameof(Fallacy.SubsubfamilyFa)), ("zh", nameof(Fallacy.SubsubfamilyZh))}) ),
-						(nameof(Fallacy.SousFamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subfamily)), ("ru", nameof(Fallacy.SubfamilyRu)), ("pt", nameof(Fallacy.SubfamilyPt)), ("es", nameof(Fallacy.SubfamilyEs)), ("ar", nameof(Fallacy.SubfamilyAr)), ("fa", nameof(Fallacy.SubfamilyFa)), ("zh", nameof(Fallacy.SubfamilyZh))}) ),
-						(nameof(Fallacy.Famille), new List<(string Language, string destText)>(new []{("en", "Family"), ("ru", nameof(Fallacy.FamilyRu)), ("pt", nameof(Fallacy.FamilyPt)), ("es", nameof(Fallacy.FamilyEs)), ("ar", nameof(Fallacy.FamilyAr)), ("fa", nameof(Fallacy.FamilyFa)), ("zh", nameof(Fallacy.FamilyZh))}) ),
+						(nameof(Fallacy.Soussousfamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.SubsubfamilyEn)), ("ru", nameof(Fallacy.SubsubfamilyRu)), ("pt", nameof(Fallacy.SubsubfamilyPt)), ("es", nameof(Fallacy.SubsubfamilyEs)), ("ar", nameof(Fallacy.SubsubfamilyAr)), ("fa", nameof(Fallacy.SubsubfamilyFa)), ("zh", nameof(Fallacy.SubsubfamilyZh))}) ),
+						(nameof(Fallacy.SousFamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.SubfamilyEn)), ("ru", nameof(Fallacy.SubfamilyRu)), ("pt", nameof(Fallacy.SubfamilyPt)), ("es", nameof(Fallacy.SubfamilyEs)), ("ar", nameof(Fallacy.SubfamilyAr)), ("fa", nameof(Fallacy.SubfamilyFa)), ("zh", nameof(Fallacy.SubfamilyZh))}) ),
+						(nameof(Fallacy.Famille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.FamilyEn)), ("ru", nameof(Fallacy.FamilyRu)), ("pt", nameof(Fallacy.FamilyPt)), ("es", nameof(Fallacy.FamilyEs)), ("ar", nameof(Fallacy.FamilyAr)), ("fa", nameof(Fallacy.FamilyFa)), ("zh", nameof(Fallacy.FamilyZh))}) ),
 					}),
 				},
 				// Virtue text fields: FR property names → localized property names (#636 §2, #665).
