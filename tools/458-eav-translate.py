@@ -53,9 +53,10 @@ TRANSLATABLE = {
     "RuleMemoCard", "RuleMemoCardDownload",
 }
 # Shapes that must never be translated even when the field name looks prose-y.
-# `RuleMemoCardFileNamePrefix` stays here: it is the *file name* the download
-# link resolves to, so translating it would point at an asset that need not exist
-# (ar/fa/ru/zh keep it empty → FR fallback name, which is the served-file reality).
+# `RuleMemoCardFileNamePrefix` stays here: its value is an owner-arbitrated brand
+# policy (#772, `f34ac77c` — "Argumentum" verbatim, descriptor localized), filled
+# by hand from `dnn-ui-strings.csv`, never by the translation pass. Not a file-name
+# concern: `frame.js` renders the PNG in the browser, there is no asset to resolve.
 NEVER = {"UrlKey", "Path", "Email", "Link", "Images", "AlbumThumbnail", "Image",
          "CropAnchor", "SortMode", "HeadingType", "RuleMemoCardFileNamePrefix",
          "PlaceholderMissingImage"}

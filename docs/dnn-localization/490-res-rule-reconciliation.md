@@ -155,6 +155,11 @@ This is the "provisioning list" for jsboige: the per-language values to attach t
 7 non-FR values come from the existing `dnn-ui-strings.csv` translations (gpt-5.5), **except Δ3
 (RuleMemoCardFileNamePrefix) which is HOLD-pending brand-policy arbitration**.
 
+> **Δ3 soldé le 25/10/2026** — l'arbitrage de marque a eu lieu : politique #772 (`f34ac77c`), « Argumentum »
+> verbatim + descripteur localisé, actée owner. Les 8 valeurs canoniques vivent dans
+> `dnn-ui-strings.csv` ligne 10 ; la rangée pivot EAV est remplie (7/7 langues). Le HOLD ci-dessus est
+> historique — ne pas le dispatcher.
+
 > **Mechanism note — App-Resources use 2sxc language dimensions, NOT lang-suffixed attributes.** Unlike
 > the #682 content-type decision (Path A = suffixed attrs + `loc()` cascade), the `res.*` rail is consumed
 > via `@Resources.X`, which the 2sxc framework resolves against the **current culture dimension**
@@ -175,6 +180,10 @@ This is the "provisioning list" for jsboige: the per-language values to attach t
 | `RuleMemoInstructions` | Vous pouvez télécharger la carte de mémo suivante pour retrouver facilement les règles. | You can download the following memo card to refer back to the rules easily. | Вы можете скачать следующую карточку-памятку, чтобы легко вернуться к правилам. | Você pode baixar o cartão-memo a seguir para consultar as regras facilmente. | Puedes descargar la siguiente tarjeta memo para consultar fácilmente las reglas. | يمكنك تنزيل بطاقة التذكير التالية للرجوع إلى القواعد بسهولة. | می‌توانید کارت یادآوری زیر را دانلود کنید تا به‌راحتی به قوانین مراجعه کنید. | 你可以下载以下备忘卡，以便轻松查阅规则。 |
 | `RuleMemoCardFileNamePrefix` | **HOLD ⚠Δ3** (`Argumentum - Règle`? brand policy TBD) | HOLD | HOLD | HOLD | HOLD | HOLD | HOLD | HOLD |
 | `RuleMemoCardDownload` | Télécharger la carte mémo | Download memo card | Скачать карточку-памятку | Baixar cartão-memo | Descargar tarjeta memo | نزّل بطاقة التذكير | دانلود کارت یادآوری | 下载备忘卡 |
+
+> **Ligne `RuleMemoCardFileNamePrefix` ci-dessus soldée le 25/10/2026** : les 8 HOLD sont historiques.
+> Politique de marque arbitrée owner en #772 (`f34ac77c`) — valeurs canoniques dans `dnn-ui-strings.csv`
+> ligne 10 (fr/en/ru/pt/es/ar/fa/zh, « Argumentum » verbatim + descripteur localisé).
 
 **`RuleMemoInstructions`** carries rich HTML in the DB (`<p>…</p>`, HTML entities). The values above are
 the plain-UTF-8 canonical text; on re-import, the DatasetUpdater/toolchain wraps them in the `<p>`
@@ -207,6 +216,9 @@ mutated** (the 3 deltas await jsboige arbitration — mutating speculatively wou
 | 9 | RuleMemoInstructions | → `VERIFIED FR via export #681 (HTML-encoded <p>…</p> in DB); CSV = canonical translation source; en/ru/pt/es/ar/fa/zh via gpt-5.5` |
 | 10 | RuleMemoCardFileNamePrefix | → `VERIFIED FR via export #681; DELTA Δ3 — DB "Argumentum - Règle" (real brand prefix) vs CSV "Mémo" (wrong); brand-policy arbitration jsboige (7 langs HOLD)` |
 | 11 | RuleMemoCardDownload | → `VERIFIED FR via export #681; CSV=DB match` |
+
+> **Item 10 soldé le 25/10/2026** — l'arbitrage de marque a eu lieu (#772, `f34ac77c`) : les « 7 langs HOLD »
+> sont historiques, les 8 valeurs canoniques vivent dans `dnn-ui-strings.csv` ligne 10.
 
 ---
 
