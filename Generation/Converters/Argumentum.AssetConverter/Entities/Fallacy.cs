@@ -64,8 +64,15 @@ namespace Argumentum.AssetConverter.Entities
 
         public string LinkFr { get; set; }
 
-        public string Subfamily { get; set; }
-        public string Subsubfamily { get; set; }
+        // #1961: the EN hierarchy columns land on disjoint members. The previous names
+        // (Subfamily/Subsubfamily) collided case-insensitively with the FR aliases
+        // SubFamily/SubSubFamily inside Dynamic LINQ, which resolved the token to the FR
+        // alias (measured, web2 W20) — and the Family column was mapped on the read-only
+        // FR alias Family => Famille, dropping its values at load. Same shape as
+        // FamilyRu/SubfamilyRu etc.
+        public string FamilyEn { get; set; }
+        public string SubfamilyEn { get; set; }
+        public string SubsubfamilyEn { get; set; }
 
         public string TextEn { get; set; }
         public int? LTen { get; set; }
@@ -228,9 +235,11 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.LinkFr).Name("link_fr");
             Map(m => m.SimpleNameEn).Name("Simple_name_en").Optional();
             Map(m => m.LTen).Name("LTen").Optional();
-            Map(m => m.Family).Name("Family").Optional();
-            Map(m => m.Subfamily).Name("Subfamily").Optional();
-            Map(m => m.Subsubfamily).Name("Subsubfamily").Optional();
+            // #1961: the EN columns land on disjoint members (the previous Family map
+            // targeted the read-only FR alias Family => Famille, dropping values at load).
+            Map(m => m.FamilyEn).Name("Family").Optional();
+            Map(m => m.SubfamilyEn).Name("Subfamily").Optional();
+            Map(m => m.SubsubfamilyEn).Name("Subsubfamily").Optional();
             Map(m => m.TextEn).Name("text_en").Optional();
             Map(m => m.DescEn).Name("desc_en").Optional();
             Map(m => m.Len115).Name("Len115").Optional();
