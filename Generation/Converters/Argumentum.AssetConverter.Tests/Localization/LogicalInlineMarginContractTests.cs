@@ -37,6 +37,22 @@ namespace Argumentum.AssetConverter.Tests.Localization
 	/// The same session re-measured <c>.roles</c> at 3.83 px LTR, reproducing the #1966 figure
 	/// and calibrating the instrument.</para>
 	///
+	/// <para><b>The three remaining margins, measured the same way</b> (2026-10-25, pool item 3).
+	/// <c>.suggestion</c> itself (the container, not the icon) hangs its quote block out of the
+	/// text column with a negative <i>start</i> margin: natively RTL (ar) the hang stayed on the
+	/// physical left — the far side — leaving the block at 13.61/25.00 px from the card edges
+	/// (symmetric, no hang at all) where fr reads 13.61 outside / 25.00 inside. With the logical
+	/// declaration the ar render mirrors fr exactly (25.00/13.61). <c>.baratineur</c> (5% pair
+	/// offset) and <c>.footer div</c> (label gap) live in direction-inert subtrees today — Chrome
+	/// resolves <c>.texte</c> <c>dir=auto</c> to LTR because the Arabic text sits in descendant
+	/// divs that carry their own <c>dir</c>, and the footer has no <c>dir</c> at all — so their
+	/// defect only shows under a forced/true RTL context, exactly like <c>.roles</c> before it:
+	/// forced RTL put the 5% offset mid-row (9.50 px between the pairs instead of following the
+	/// baratineur pair) and the label gap at 3.19 px instead of 6.06; with the logical
+	/// declarations both forced-RTL figures equal their fr values. The fr render is byte-identical
+	/// before/after — under LTR <c>margin-inline-start</c> maps to the same physical side, so no
+	/// shipped language moves.</para>
+	///
 	/// <para><b>Why the JSON is parsed rather than grepped.</b> A template's CSS lives inside a
 	/// JSON string: on disk the quotes are escaped, and a regex over the raw bytes reads the escape
 	/// rather than the declaration. Worse, this file is <i>deserialized</i> by production — the
@@ -60,6 +76,18 @@ namespace Argumentum.AssetConverter.Tests.Localization
 		/// silently match the <c>.suggestion</c> container rule.
 		/// </summary>
 		private const string SuggestionIconSelector = ".suggestion img";
+
+		/// <summary>The suggestion container itself, whose negative start margin hangs the quote block out.</summary>
+		private const string SuggestionContainerSelector = ".suggestion";
+
+		/// <summary>
+		/// The baratineur pair div. Exact match so it cannot silently catch
+		/// <c>.roles .baratineur img</c> (size rule) or <c>.roles &gt; div</c> (flex-basis rule).
+		/// </summary>
+		private const string BaratineurSelector = ".baratineur";
+
+		/// <summary>The CC label div of the footer. Exact match, distinct from <c>.footer</c>/<c>.footer img</c>.</summary>
+		private const string FooterLabelSelector = ".footer div";
 
 		/// <summary>Declarations of every rule whose selector list contains <paramref name="selector"/>.</summary>
 		internal static IReadOnlyList<string> DeclarationsFor(string css, string selector)
@@ -168,6 +196,108 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			declarations.Should().Contain(d => d.Property == "margin-inline-end" && d.Value != "0",
 				$"'{SuggestionIconSelector}' must carry a non-zero margin-inline-end — that declaration is what "
 				+ "produces the 6.03 px icon→text gap in both directions (#458)");
+		}
+
+		/// <summary>
+		/// The suggestion container's hang — the negative start margin that pulls the quote block out
+		/// of the text column — must be logical. Like the icon rule above, the defect is native to
+		/// the ar/fa render (the div ships <c>dir="auto"</c>), measured 2026-10-25: fr 13.61 px
+		/// outside / 25.00 px inside; ar before 13.61/25.00 symmetric — the hang swallowed on the far
+		/// side; ar after the exact fr mirror 25.00/13.61.
+		/// </summary>
+		[Fact]
+		public void Scenarii_suggestion_container_hang_is_declared_with_a_logical_margin()
+		{
+			var css = ScenariiFaceCss();
+
+			DeclarationsFor(css, SuggestionContainerSelector).Should().NotBeEmpty(
+				$"'{SuggestionContainerSelector}' must still be styled in {ScenariiFaceRelPath} — if the rule was "
+				+ "renamed, update this guard rather than letting it pass on an empty selector");
+
+			PhysicalHorizontalMarginsIn(css, SuggestionContainerSelector).Should().BeEmpty(
+				$"the quote block's hang must not be pinned to a physical side: the suggestion div ships "
+				+ "dir=auto, so on ar/fa content the browser resolves RTL by itself and the physical left "
+				+ "lands on the card's outer edge — the block then sits inside the text column instead of "
+				+ "hanging out of it, natively with no forced direction (measured 2026-10-25: fr "
+				+ "13.61/25.00, ar before 13.61/25.00 symmetric = hang swallowed, ar after 25.00/13.61 = "
+				+ "exact fr mirror, #458). Use margin-inline-start instead.");
+
+			var declarations = DeclarationsFor(css, SuggestionContainerSelector).SelectMany(d => d.Split(';'))
+				.Select(d => d.Split(':', 2))
+				.Where(p => p.Length == 2)
+				.Select(p => (Property: p[0].Trim().ToLowerInvariant(), Value: p[1].Trim()))
+				.ToList();
+
+			declarations.Should().Contain(d => d.Property == "margin-inline-start" && d.Value != "0",
+				$"'{SuggestionContainerSelector}' must carry a non-zero margin-inline-start — that declaration "
+				+ "is what hangs the quote block out of the text column in both directions (#458)");
+		}
+
+		/// <summary>
+		/// The baratineur pair's 5% offset must be logical. The pair lives in a direction-inert
+		/// subtree today — Chrome resolves <c>.texte</c>'s <c>dir=auto</c> to LTR because the Arabic
+		/// text sits in descendant divs that carry their own <c>dir</c> — so, exactly like
+		/// <c>.roles</c> before it, the defect shows under a forced/true RTL context: the physical
+		/// offset landed mid-row (9.50 px between the two pairs) instead of following the baratineur
+		/// pair; with the logical declaration the pair follows the row in both directions (measured
+		/// 2026-10-25, #458). Inert in native LTR: the 9.50 px spacing is unchanged.
+		/// </summary>
+		[Fact]
+		public void Scenarii_baratineur_pair_offset_is_declared_with_a_logical_margin()
+		{
+			var css = ScenariiFaceCss();
+
+			DeclarationsFor(css, BaratineurSelector).Should().NotBeEmpty(
+				$"'{BaratineurSelector}' must still be styled in {ScenariiFaceRelPath} — if the rule was "
+				+ "renamed, update this guard rather than letting it pass on an empty selector");
+
+			PhysicalHorizontalMarginsIn(css, BaratineurSelector).Should().BeEmpty(
+				$"the baratineur pair's offset must not be pinned to a physical side: under a true RTL "
+				+ "context the flex .roles row reverses and the physical offset lands mid-row, 9.50 px "
+				+ "between the two pairs instead of following the baratineur pair (measured 2026-10-25, "
+				+ "#458). Use margin-inline-start instead.");
+
+			var declarations = DeclarationsFor(css, BaratineurSelector).SelectMany(d => d.Split(';'))
+				.Select(d => d.Split(':', 2))
+				.Where(p => p.Length == 2)
+				.Select(p => (Property: p[0].Trim().ToLowerInvariant(), Value: p[1].Trim()))
+				.ToList();
+
+			declarations.Should().Contain(d => d.Property == "margin-inline-start" && d.Value != "0",
+				$"'{BaratineurSelector}' must carry a non-zero margin-inline-start — that declaration is what "
+				+ "keeps the 5% offset on the baratineur pair in both directions (#458)");
+		}
+
+		/// <summary>
+		/// The footer CC-label's gap must be logical. The footer carries no <c>dir</c> of its own, so
+		/// the defect is latent — under a forced/true RTL context the physical gap fell on the outer
+		/// side and the label sat 3.19 px from its icons instead of 6.06; with the logical
+		/// declaration both directions read the same 6.06 px gap (measured 2026-10-25, #458).
+		/// Inert in native LTR: fr renders identically before/after.
+		/// </summary>
+		[Fact]
+		public void Scenarii_footer_label_gap_is_declared_with_a_logical_margin()
+		{
+			var css = ScenariiFaceCss();
+
+			DeclarationsFor(css, FooterLabelSelector).Should().NotBeEmpty(
+				$"'{FooterLabelSelector}' must still be styled in {ScenariiFaceRelPath} — if the rule was "
+				+ "renamed, update this guard rather than letting it pass on an empty selector");
+
+			PhysicalHorizontalMarginsIn(css, FooterLabelSelector).Should().BeEmpty(
+				$"the footer label's gap must not be pinned to a physical side: under a true RTL context "
+				+ "the physical margin falls on the outer side and the label sits 3.19 px from its icons "
+				+ "instead of 6.06 (measured 2026-10-25, #458). Use margin-inline-start instead.");
+
+			var declarations = DeclarationsFor(css, FooterLabelSelector).SelectMany(d => d.Split(';'))
+				.Select(d => d.Split(':', 2))
+				.Where(p => p.Length == 2)
+				.Select(p => (Property: p[0].Trim().ToLowerInvariant(), Value: p[1].Trim()))
+				.ToList();
+
+			declarations.Should().Contain(d => d.Property == "margin-inline-start" && d.Value != "0",
+				$"'{FooterLabelSelector}' must carry a non-zero margin-inline-start — that declaration is what "
+				+ "keeps the 6.06 px label→icons gap in both directions (#458)");
 		}
 
 		/// <summary>
