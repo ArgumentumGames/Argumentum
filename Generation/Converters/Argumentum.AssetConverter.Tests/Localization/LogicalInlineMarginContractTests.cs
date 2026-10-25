@@ -10,7 +10,8 @@ using Xunit;
 namespace Argumentum.AssetConverter.Tests.Localization
 {
 	/// <summary>
-	/// Contract for issue #458, grain "Scenarii role label touches its icon in RTL".
+	/// Contract for issue #458, grains "Scenarii role label touches its icon in RTL" and
+	/// "Scenarii suggestion quote icon touches its text in RTL" (same physical-margin family).
 	///
 	/// <para><b>The defect.</b> <c>.roles</c> is a flex row holding two <c>[icon, label]</c> pairs.
 	/// The gap between an icon and its label was declared as a <i>physical</i> right margin. A
@@ -26,6 +27,15 @@ namespace Argumentum.AssetConverter.Tests.Localization
 	/// LTR unchanged at 3.83 / 3.83. A pixel scan of the shipped ar harvest PNG independently
 	/// shows 15-16 px icon→label gaps, so the touch is specific to a right-to-left pass and not
 	/// to the current LTR render.</para>
+	///
+	/// <para><b>The suggestion grain, measured the same way</b> (2026-10-25, same instrument).
+	/// <c>.suggestion</c> is a flex row <c>[quote-icon, text]</c> whose div ships
+	/// <c>dir="auto"</c>: with Arabic content the browser resolves RTL <i>by itself</i>, so the
+	/// defect is native to the shipped render — no forced direction involved. ar payload: gap
+	/// <b>0.00 px</b> (icon edge = text edge); the same DOM forced <c>dir=ltr</c> 6.03 px; with
+	/// the logical declaration 6.03 px under native RTL; fr payload native 6.03 px unchanged.
+	/// The same session re-measured <c>.roles</c> at 3.83 px LTR, reproducing the #1966 figure
+	/// and calibrating the instrument.</para>
 	///
 	/// <para><b>Why the JSON is parsed rather than grepped.</b> A template's CSS lives inside a
 	/// JSON string: on disk the quotes are escaped, and a regex over the raw bytes reads the escape
@@ -44,6 +54,12 @@ namespace Argumentum.AssetConverter.Tests.Localization
 		/// the neighbouring <c>.roles .piocheur img</c> / <c>.roles .baratineur img</c> size rules.
 		/// </summary>
 		private const string RolesIconSelector = ".roles img";
+
+		/// <summary>
+		/// The quote icon of the suggestion block. Written exactly as in the template so it cannot
+		/// silently match the <c>.suggestion</c> container rule.
+		/// </summary>
+		private const string SuggestionIconSelector = ".suggestion img";
 
 		/// <summary>Declarations of every rule whose selector list contains <paramref name="selector"/>.</summary>
 		internal static IReadOnlyList<string> DeclarationsFor(string css, string selector)
@@ -120,6 +136,38 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			declarations.Should().Contain(d => d.Property == "margin-inline-end" && d.Value != "0",
 				$"'{RolesIconSelector}' must carry a non-zero margin-inline-end — that declaration is what "
 				+ "produces the 3.83 px icon→label gap in both directions (#458)");
+		}
+
+		/// <summary>
+		/// The quote icon's gap must be logical for the same reason — with the added twist that the
+		/// suggestion div ships <c>dir="auto"</c>, so the 0 px touch is native to the ar/fa render,
+		/// not something a forced direction would reveal (measured 2026-10-25, #458).
+		/// </summary>
+		[Fact]
+		public void Scenarii_suggestion_icon_gap_is_declared_with_a_logical_margin()
+		{
+			var css = ScenariiFaceCss();
+
+			DeclarationsFor(css, SuggestionIconSelector).Should().NotBeEmpty(
+				$"'{SuggestionIconSelector}' must still be styled in {ScenariiFaceRelPath} — if the rule was "
+				+ "renamed, update this guard rather than letting it pass on an empty selector");
+
+			PhysicalHorizontalMarginsIn(css, SuggestionIconSelector).Should().BeEmpty(
+				$"the gap between the quote icon and its text must not be pinned to a physical side: the "
+				+ "suggestion div ships dir=auto, so on ar/fa content the browser resolves RTL by itself, the "
+				+ "flex row reverses and a physical margin lands on the card's outer edge, leaving 0 px "
+				+ "between the icon and its text — natively, with no forced direction (measured 2026-10-25, "
+				+ "#458). Use margin-inline-end instead.");
+
+			var declarations = DeclarationsFor(css, SuggestionIconSelector).SelectMany(d => d.Split(';'))
+				.Select(d => d.Split(':', 2))
+				.Where(p => p.Length == 2)
+				.Select(p => (Property: p[0].Trim().ToLowerInvariant(), Value: p[1].Trim()))
+				.ToList();
+
+			declarations.Should().Contain(d => d.Property == "margin-inline-end" && d.Value != "0",
+				$"'{SuggestionIconSelector}' must carry a non-zero margin-inline-end — that declaration is what "
+				+ "produces the 6.03 px icon→text gap in both directions (#458)");
 		}
 
 		/// <summary>
