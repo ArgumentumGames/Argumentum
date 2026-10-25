@@ -25,7 +25,11 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 	/// <see cref="UtilityExtensions.Interpolate"/> (the same Dynamic LINQ path the mind map
 	/// generator uses) and asserts the English strings.
 	///
-	/// Red on master by construction: every level evaluates to its French value there.
+	/// Red proof is STAGED, not a master run: on master this file does not compile (the
+	/// EN members do not exist there). At the intermediate state — members added, config
+	/// not yet rewired — all three EN evaluations returned the French values (3 red)
+	/// while the FR companion stayed green, which is exactly the discrimination this
+	/// suite is built for.
 	/// </summary>
 	public class MindMapEnHierarchyEvaluationTests
 	{
@@ -122,6 +126,42 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 				.Should().Be(SousFamilleFr);
 			config.SoussousFamilleExpression.Interpolate(new Dictionary<string, object> { { "item", fallacy } })
 				.Should().Be(SoussousFr);
+		}
+
+		/// <summary>
+		/// The LOAD half of #1961 — cause (a), not covered by the evaluation theory above: the
+		/// CSV columns <c>Family</c>/<c>Subfamily</c>/<c>Subsubfamily</c> must land on the disjoint
+		/// EN members through the REAL <see cref="CsvBase{T,TMap}.LoadFromContent"/> path (the same
+		/// ClassMap + header-normalization the pipeline uses). The previous map targeted the
+		/// read-only FR alias <c>Family =&gt; Famille</c> and silently dropped the values at load —
+		/// a regression back to that (or a header-name typo in the map) yields null here, and a
+		/// swap with the FR columns yields the FR strings — both red on the asserts below.
+		/// Counter-review follow-up (Opus, tick 57): the evaluation suite alone left this untested.
+		/// </summary>
+		[Fact]
+		public void CsvEnHierarchyColumns_LoadOntoDisjointEnMembers()
+		{
+			// Every non-optional mapped header must be present (CsvHelper throws
+			// HeaderValidationException otherwise) — the same required set the real taxonomy CSV carries.
+			var csv = "pk,path,depth,Famille,Famille_camelCase,Sous-Famille,Soussousfamille,état,carte,niveau,"
+				+ "nom_vulgarisé,text_fr,desc_fr,example_fr,link_fr,Remarques,decimal_path_padded,depth_max4,"
+				+ "Family,Subfamily,Subsubfamily\n"
+				+ $"596,1.1,2,{FamilleFr},familleCC,{SousFamilleFr},{SoussousFr},actif,175,2,"
+				+ $"nom,text,desc,example,link,remarques,0001.000,0001,{FamilyEn},{SubfamilyEn},{SubsubfamilyEn}";
+
+			var records = Fallacy.LoadFromContent(csv);
+
+			records.Should().HaveCount(1, "the sample carries one row");
+			var fallacy = records[0];
+			fallacy.FamilyEn.Should().Be(FamilyEn,
+				"the 'Family' column must land on FamilyEn — cause (a) of #1961: the old map targeted the read-only FR alias and dropped the values");
+			fallacy.SubfamilyEn.Should().Be(SubfamilyEn, "the 'Subfamily' column must land on SubfamilyEn");
+			fallacy.SubsubfamilyEn.Should().Be(SubsubfamilyEn, "the 'Subsubfamily' column must land on SubsubfamilyEn");
+
+			// The FR columns keep their own members — the disjoint rename must not disturb the FR load.
+			fallacy.Famille.Should().Be(FamilleFr, "the FR 'Famille' column is unaffected by the EN remap");
+			fallacy.SousFamille.Should().Be(SousFamilleFr, "the FR 'Sous-Famille' column is unaffected by the EN remap");
+			fallacy.Soussousfamille.Should().Be(SoussousFr, "the FR 'Soussousfamille' column is unaffected by the EN remap");
 		}
 	}
 }
