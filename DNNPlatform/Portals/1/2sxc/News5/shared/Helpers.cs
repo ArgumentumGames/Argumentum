@@ -76,9 +76,42 @@ public class Helpers: Custom.Hybrid.Code12
   */
   public bool IsVisibleNow(dynamic article) {
     var now = DateTime.Now;
-    if(article.ShowFrom != null && ((DateTime)article.ShowFrom) > now) { return false; }
-    if(article.ShowTo != null && ((DateTime)article.ShowTo) <= now) { return false; }
+    // statically typed locals: the bound reader is NOT a dynamic call, so a wrong shape
+    // is handled by NewsDateBound instead of failing the binder at render time
+    object rawFrom = article.ShowFrom;
+    object rawTo = article.ShowTo;
+    var showFrom = NewsDateBound(rawFrom);
+    var showTo = NewsDateBound(rawTo);
+    if(showFrom.HasValue && showFrom.Value > now) { return false; }
+    if(showTo.HasValue && showTo.Value <= now) { return false; }
     return true;
+  }
+
+  /**
+  * #458 W13 (web2 contre-revue of C1, 2026-10-23): reads one date bound and can never throw.
+  * The bounds used to be read by an unconditional cast of a `dynamic`; if a field ever arrives
+  * as a string — the shape the retired string filter tolerated — that cast raises
+  * RuntimeBinderException inside the view and takes the WHOLE list page down, which is a worse
+  * outcome than a wrong bound.
+  * Measured 2026-10-25 (read only, TsDynDataAttribute): both News content types (140 and 325)
+  * declare ShowFrom and ShowTo as DateTime, so the cast cannot fail TODAY. This is defence in
+  * depth for the day the field type changes in the 2sxc UI, or the item is not a typed entity.
+  * Accepted shapes: absent => no bound; DateTime; DateTimeOffset; string, parsed with the
+  * INVARIANT culture because a culture-dependent parse is precisely what C1 removed from the
+  * site (a Persian rendering parsed as Latin used to empty /fa/Actus).
+  * An unreadable value is treated as ABSENT, i.e. the article stays visible: a parse failure
+  * must never turn into a hiding decision — that is the exact failure family C1 removes.
+  */
+  private static DateTime? NewsDateBound(object value) {
+    if(value == null) { return null; }
+    if(value is DateTime) { return (DateTime)value; }
+    if(value is DateTimeOffset) { return ((DateTimeOffset)value).DateTime; }
+    var text = value as string;
+    if(text != null) {
+      DateTime parsed;
+      if(DateTime.TryParse(text, CultureInfo.InvariantCulture, DateTimeStyles.None, out parsed)) { return parsed; }
+    }
+    return null;
   }
 
   public IEnumerable<dynamic> VisibleNews(IEnumerable<dynamic> articles) {
