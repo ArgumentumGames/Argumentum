@@ -243,6 +243,77 @@
     base.OnPreRender(e);
     LocalizeMetaTag("description", "Meta.Description");
     LocalizeMetaTag("keywords", "Meta.Keywords");
+    EmitLanguageAlternates();
+  }
+
+  // #458 hreflang: this DNN emits no <link rel="alternate" hreflang> and no canonical at all —
+  // measured 2026-10-25 on 20 routes (preprod + prod), 0 occurrence, and none compiled in the
+  // webroot or in any bin assembly (only AngleSharp.dll carries the string). There is no emitter
+  // to switch on, so the skin emits it.
+  //
+  // The language set is DERIVED FROM THE PORTAL (LocaleController.GetLocales reads
+  // PortalLocalization), never from the visible switcher's Languages="…" attribute: that attribute
+  // lists 5 cultures because zh/ar/fa stay gated on the selector until the minimal chrome ships,
+  // while all 8 cultures are served. hreflang instructs crawlers; the selector serves visitors —
+  // two surfaces, two populations, and pinning the alternates to the menu would under-declare the
+  // site by three cultures.
+  //
+  // URLs come from Globals.NavigateURL(tab, …language…), not from the [URL] token: measured on the
+  // served page, the token returns the *current request's* URL with its query string, and DNN's
+  // friendly-URL provider absorbs that query into the path on a non-default culture
+  // (/en/Actus?cb=… became /en/Actus/cb/…). A canonical carrying a parameterised path names a URL
+  // that does not exist; building from tab+culture makes the canonical bare by construction.
+  private bool _alternatesEmitted;
+  private void EmitLanguageAlternates()
+  {
+    try
+    {
+      if (_alternatesEmitted) { return; }
+
+      var portal = DotNetNuke.Entities.Portals.PortalSettings.Current;
+      var locales = LocaleController.Instance.GetLocales(portal.PortalId);
+      if (locales == null || locales.Count < 2) { return; }   // nothing to alternate on a single-culture portal
+
+      var head = Page.FindControl("Head") as HtmlHead;
+      if (head == null) { return; }
+      _alternatesEmitted = true;
+
+      var tabId = portal.ActiveTab.TabID;
+      var current = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+      var marker = new System.Text.StringBuilder();
+      string currentUrl = null, defaultUrl = null;
+      var emitted = 0;
+
+      foreach (var culture in locales.Keys.OrderBy(k => k, StringComparer.OrdinalIgnoreCase))
+      {
+        var url = DotNetNuke.Common.Globals.NavigateURL(
+          tabId, portal.ActiveTab.IsSuperTab, portal, "", culture, new string[0]);
+        if (string.IsNullOrWhiteSpace(url)) { continue; }
+
+        marker.Append("<link rel=\"alternate\" hreflang=\"").Append(culture)
+              .Append("\" href=\"").Append(url).Append("\" />\n");
+        emitted++;
+
+        if (string.Equals(culture, current, StringComparison.OrdinalIgnoreCase)) { currentUrl = url; }
+        if (string.Equals(culture, portal.DefaultLanguage, StringComparison.OrdinalIgnoreCase)) { defaultUrl = url; }
+      }
+
+      if (emitted < 2) { return; }
+
+      // canonical: self-referencing. If the requesting culture is somehow not among the portal's
+      // locales, fall back to the bare request path rather than inventing a culture.
+      var canonical = currentUrl ?? Request.Url.GetLeftPart(UriPartial.Path);
+      marker.Append("<link rel=\"canonical\" href=\"").Append(canonical).Append("\" />\n");
+
+      // x-default: the portal's default language (decision 2 of #458).
+      if (defaultUrl != null)
+      {
+        marker.Append("<link rel=\"alternate\" hreflang=\"x-default\" href=\"").Append(defaultUrl).Append("\" />\n");
+      }
+
+      head.Controls.Add(new LiteralControl(marker.ToString()));
+    }
+    catch { /* SEO only: never break the page on it */ }
   }
   private void LocalizeMetaTag(string metaName, string resxKey)
   {
