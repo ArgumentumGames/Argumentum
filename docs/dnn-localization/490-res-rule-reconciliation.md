@@ -185,6 +185,15 @@ This is the "provisioning list" for jsboige: the per-language values to attach t
 > Politique de marque arbitrée owner en #772 (`f34ac77c`) — valeurs canoniques dans `dnn-ui-strings.csv`
 > ligne 10 (fr/en/ru/pt/es/ar/fa/zh, « Argumentum » verbatim + descripteur localisé).
 
+> **Réconciliation pivot exécutée le 25/10/2026 ( soir)** — `RuleMemoCard` + `RuleMemoCardDownload` :
+> les 14 cellules non-FR des rangées pivot EAV (lignes 2200/2203) sont désormais **octet-identiques**
+> au présent manifeste (§4), qui reste la source canonique. 12 cellules changées (les valeurs pivot
+> précédentes étaient un jeu machine divergent : « Карта Мемо », « 提示卡 », « Carta de ajuda »…).
+> Les **fr ne sont pas touchés** : `Carte Mémo` (pivot/DB) vs `Carte mémo` (canon) = delta Δ2,
+> arbitrage de casse jsboige toujours ouvert. `RuleMemoInstructions` reste hors périmètre de cette
+> réconciliation (le pivot porte aussi l'ancien jeu « карту Мемо » — à réaligner dans un grain
+> dédié si arbitré).
+
 **`RuleMemoInstructions`** carries rich HTML in the DB (`<p>…</p>`, HTML entities). The values above are
 the plain-UTF-8 canonical text; on re-import, the DatasetUpdater/toolchain wraps them in the `<p>`
 container the view expects (`@Html.Raw`). Confirm the wrap policy with the `tools/dnn_i18n/` re-import
