@@ -1523,7 +1523,7 @@ D1668B0A-4DF0-4735-81A6-E4693D6912D6|Link,49,Slide,D1668B0A-4DF0-4735-81A6-E4693
 D1668B0A-4DF0-4735-81A6-E4693D6912D6|LinkText,49,Slide,D1668B0A-4DF0-4735-81A6-E4693D6912D6,LinkText,String,editorial,CTA Link Text,,,,,,,
 D1668B0A-4DF0-4735-81A6-E4693D6912D6|OverlayEffect,49,Slide,D1668B0A-4DF0-4735-81A6-E4693D6912D6,OverlayEffect,String,editorial,,,,,,,,
 D1668B0A-4DF0-4735-81A6-E4693D6912D6|TextPosition,49,Slide,D1668B0A-4DF0-4735-81A6-E4693D6912D6,TextPosition,String,editorial,,,,,,,,
-06BF255F-B557-49BE-B302-B4604665F268|Title,49,Slider,06BF255F-B557-49BE-B302-B4604665F268,Title,String,editorial,Coverflow Slider,,,,,,,
+06BF255F-B557-49BE-B302-B4604665F268|Title,49,Slider,06BF255F-B557-49BE-B302-B4604665F268,Title,String,editorial,Coverflow Slider,Coverflow Slider,Слайдер Coverflow,Slider Coverflow,Control deslizante Coverflow,شريط تمرير Coverflow,اسلایدر Coverflow,Coverflow 滑块
 06BF255F-B557-49BE-B302-B4604665F268|OverlayEffect,49,Slider,06BF255F-B557-49BE-B302-B4604665F268,OverlayEffect,String,editorial,gradient,,,,,,,
 06BF255F-B557-49BE-B302-B4604665F268|TextPosition,49,Slider,06BF255F-B557-49BE-B302-B4604665F268,TextPosition,String,editorial,,,,,,,,
 06BF255F-B557-49BE-B302-B4604665F268|Width,49,Slider,06BF255F-B557-49BE-B302-B4604665F268,Width,String,editorial,,,,,,,,
@@ -1538,7 +1538,7 @@ D1668B0A-4DF0-4735-81A6-E4693D6912D6|TextPosition,49,Slide,D1668B0A-4DF0-4735-81
 456285C7-BFE8-4619-ADC1-78BB866DE4D9|TextPosition,49,Slider,456285C7-BFE8-4619-ADC1-78BB866DE4D9,TextPosition,String,editorial,,,,,,,,
 456285C7-BFE8-4619-ADC1-78BB866DE4D9|Width,49,Slider,456285C7-BFE8-4619-ADC1-78BB866DE4D9,Width,String,editorial,,,,,,,,
 456285C7-BFE8-4619-ADC1-78BB866DE4D9|Height,49,Slider,456285C7-BFE8-4619-ADC1-78BB866DE4D9,Height,String,editorial,,,,,,,,
-4CAD032C-38C9-45D2-AD74-7F61690484F6|Title,49,Slider,4CAD032C-38C9-45D2-AD74-7F61690484F6,Title,String,editorial,Coverflow Centered Slider,,,,,,,
+4CAD032C-38C9-45D2-AD74-7F61690484F6|Title,49,Slider,4CAD032C-38C9-45D2-AD74-7F61690484F6,Title,String,editorial,Coverflow Centered Slider,Coverflow Centered Slider,Центрированный слайдер Coverflow,Slider Coverflow centralizado,Control deslizante Coverflow centrado,شريط تمرير Coverflow متمركز,اسلایدر Coverflow وسط‌چین,Coverflow 居中滑块
 4CAD032C-38C9-45D2-AD74-7F61690484F6|OverlayEffect,49,Slider,4CAD032C-38C9-45D2-AD74-7F61690484F6,OverlayEffect,String,editorial,,,,,,,,
 4CAD032C-38C9-45D2-AD74-7F61690484F6|TextPosition,49,Slider,4CAD032C-38C9-45D2-AD74-7F61690484F6,TextPosition,String,editorial,tl,,,,,,,
 4CAD032C-38C9-45D2-AD74-7F61690484F6|Width,49,Slider,4CAD032C-38C9-45D2-AD74-7F61690484F6,Width,String,editorial,,,,,,,,
@@ -1552,7 +1552,7 @@ D1668B0A-4DF0-4735-81A6-E4693D6912D6|TextPosition,49,Slide,D1668B0A-4DF0-4735-81
 6E579FA2-1857-4D22-AF33-DC0AEB8F23D6|TextPosition,49,Slider,6E579FA2-1857-4D22-AF33-DC0AEB8F23D6,TextPosition,String,editorial,,,,,,,,
 6E579FA2-1857-4D22-AF33-DC0AEB8F23D6|Width,49,Slider,6E579FA2-1857-4D22-AF33-DC0AEB8F23D6,Width,String,editorial,,,,,,,,
 6E579FA2-1857-4D22-AF33-DC0AEB8F23D6|Height,49,Slider,6E579FA2-1857-4D22-AF33-DC0AEB8F23D6,Height,String,editorial,,,,,,,,
-7F35DA5C-DADF-48C2-ABEB-C1DBED6EC462|Title,49,Slider,7F35DA5C-DADF-48C2-ABEB-C1DBED6EC462,Title,String,editorial,16:9,16:9,16:9,16:9,16:9,16:9,16:9,16:9
+7F35DA5C-DADF-48C2-ABEB-C1DBED6EC462|Title,49,Slider,7F35DA5C-DADF-48C2-ABEB-C1DBED6EC462,Title,String,editorial,16:9,16:9,16:9,16:9,16:9,16:9,۱۶:۹,16:9
 7F35DA5C-DADF-48C2-ABEB-C1DBED6EC462|OverlayEffect,49,Slider,7F35DA5C-DADF-48C2-ABEB-C1DBED6EC462,OverlayEffect,String,editorial,,,,,,,,
 7F35DA5C-DADF-48C2-ABEB-C1DBED6EC462|TextPosition,49,Slider,7F35DA5C-DADF-48C2-ABEB-C1DBED6EC462,TextPosition,String,editorial,tl,,,,,,,
 7F35DA5C-DADF-48C2-ABEB-C1DBED6EC462|Width,49,Slider,7F35DA5C-DADF-48C2-ABEB-C1DBED6EC462,Width,String,editorial,,,,,,,,
@@ -1573,12 +1573,12 @@ EB8866EB-1C36-40C0-B9B7-797DD8F7377B|Title,49,Slider,EB8866EB-1C36-40C0-B9B7-797
 EB8866EB-1C36-40C0-B9B7-797DD8F7377B|OverlayEffect,49,Slider,EB8866EB-1C36-40C0-B9B7-797DD8F7377B,OverlayEffect,String,editorial,,,,,,,,
 EB8866EB-1C36-40C0-B9B7-797DD8F7377B|Width,49,Slider,EB8866EB-1C36-40C0-B9B7-797DD8F7377B,Width,String,editorial,,,,,,,,
 EB8866EB-1C36-40C0-B9B7-797DD8F7377B|Height,49,Slider,EB8866EB-1C36-40C0-B9B7-797DD8F7377B,Height,String,editorial,,,,,,,,
-F43D1BE1-DD2C-49BD-B20B-03C1EB60BDBE|Title,49,Slider,F43D1BE1-DD2C-49BD-B20B-03C1EB60BDBE,Title,String,editorial,Parallax Slider,Parallax Slider,Параллакс-слайдер,Slider Parallax,Slider de paralaje,سلايدر بتأثير البارالاكس,اسلایدر پارالاکس,视差滑块
+F43D1BE1-DD2C-49BD-B20B-03C1EB60BDBE|Title,49,Slider,F43D1BE1-DD2C-49BD-B20B-03C1EB60BDBE,Title,String,editorial,Parallax Slider,Parallax Slider,Параллакс-слайдер,Slider Parallax,Control deslizante de paralaje,شريط تمرير بتأثير البارالاكس,اسلایدر پارالاکس,视差滑块
 F43D1BE1-DD2C-49BD-B20B-03C1EB60BDBE|OverlayEffect,49,Slider,F43D1BE1-DD2C-49BD-B20B-03C1EB60BDBE,OverlayEffect,String,editorial,,,,,,,,
 F43D1BE1-DD2C-49BD-B20B-03C1EB60BDBE|TextPosition,49,Slider,F43D1BE1-DD2C-49BD-B20B-03C1EB60BDBE,TextPosition,String,editorial,,,,,,,,
 F43D1BE1-DD2C-49BD-B20B-03C1EB60BDBE|Width,49,Slider,F43D1BE1-DD2C-49BD-B20B-03C1EB60BDBE,Width,String,editorial,,,,,,,,
 F43D1BE1-DD2C-49BD-B20B-03C1EB60BDBE|Height,49,Slider,F43D1BE1-DD2C-49BD-B20B-03C1EB60BDBE,Height,String,editorial,2:1,,,,,,,
-FDC9055F-CF5E-4B6F-B631-D1E80D799CB5|Title,49,Slider,FDC9055F-CF5E-4B6F-B631-D1E80D799CB5,Title,String,editorial,Cube Slider,Cube Slider,Кубический слайдер,Slider em Cubo,Slider de cubo,سلايدر مكعب,اسلایدر مکعبی,立方体滑块
+FDC9055F-CF5E-4B6F-B631-D1E80D799CB5|Title,49,Slider,FDC9055F-CF5E-4B6F-B631-D1E80D799CB5,Title,String,editorial,Cube Slider,Cube Slider,Кубический слайдер,Slider em cubo,Control deslizante de cubo,شريط تمرير مكعب,اسلایدر مکعبی,立方体滑块
 FDC9055F-CF5E-4B6F-B631-D1E80D799CB5|Width,49,Slider,FDC9055F-CF5E-4B6F-B631-D1E80D799CB5,Width,String,editorial,,,,,,,,
 FDC9055F-CF5E-4B6F-B631-D1E80D799CB5|Height,49,Slider,FDC9055F-CF5E-4B6F-B631-D1E80D799CB5,Height,String,editorial,,,,,,,,
 810061EA-6601-45BD-B158-27FB742D4E82|LabelReadMore,52,App-Resources,810061EA-6601-45BD-B158-27FB742D4E82,LabelReadMore,String,label,en savoir plus ›,read more ›,читать далее ›,saiba mais ›,saber más ›,اقرأ المزيد ›,بیشتر بخوانید ›,了解更多 ›
