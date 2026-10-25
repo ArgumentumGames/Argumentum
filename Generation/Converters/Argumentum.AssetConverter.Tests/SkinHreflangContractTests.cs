@@ -61,15 +61,20 @@ namespace Argumentum.AssetConverter.Tests
 
 		/// <summary>
 		/// The culture set comes from the portal, and no culture literal is enumerated: a hardcoded
-		/// pair such as <c>"fr-FR","en-US"</c> would silently stop tracking the portal the day a
+		/// pair such as <c>"pt-BR","ru-RU"</c> would silently stop tracking the portal the day a
 		/// culture is added or retired, which is exactly the failure this grain exists to avoid.
+		/// All 8 portal culture codes are banned — the emitter block carries no legitimate literal,
+		/// so a partial ban is only a hole (measured in review: a 3-code ban let 5 of 8 through).
 		/// </summary>
 		private static bool DerivesLanguagesFromPortal(string block) =>
 			block.Contains("GetLocales(", StringComparison.Ordinal)
 			&& block.Contains("portal.PortalId", StringComparison.Ordinal)
-			&& !block.Contains("-FR\"", StringComparison.Ordinal)
-			&& !block.Contains("-US\"", StringComparison.Ordinal)
-			&& !block.Contains("-ES\"", StringComparison.Ordinal);
+			&& !BannedCultureLiteralSuffixes.Any(suffix => block.Contains(suffix, StringComparison.Ordinal));
+
+		private static readonly string[] BannedCultureLiteralSuffixes =
+		{
+			"-FR\"", "-US\"", "-ES\"", "-BR\"", "-RU\"", "-CN\"", "-SA\"", "-IR\"",
+		};
 
 		private static bool XDefaultUsesPortalDefault(string block) =>
 			block.Contains("portal.DefaultLanguage", StringComparison.Ordinal);
@@ -153,7 +158,9 @@ namespace Argumentum.AssetConverter.Tests
 		[Fact]
 		public void WithAHardcodedCultureListThePortalDerivationCheckFails()
 		{
-			var mutated = Mutate(EmitterBlock(), "locales.Keys", "new[] { \"fr-FR\", \"en-US\" }");
+			// pt-BR/ru-RU: the pair that escaped the earlier 3-code ban (review-observed) — this
+			// control bites only because all 8 codes are now banned, proving the hole is closed.
+			var mutated = Mutate(EmitterBlock(), "locales.Keys", "new[] { \"pt-BR\", \"ru-RU\" }");
 			Assert.False(DerivesLanguagesFromPortal(mutated),
 				"the hardcoded-culture check passed on a literal culture list — it is vacuous");
 		}
