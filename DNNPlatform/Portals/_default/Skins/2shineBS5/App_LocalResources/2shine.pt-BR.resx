@@ -50,4 +50,11 @@
   <data name="Meta.Keywords" xml:space="preserve">
     <value>argumentação, retórica, falácias, argumentos falaciosos</value>
   </data>
+  <!-- #458: tooltips of the icon-only login/logoff links (theme-body.ascx, Landingpage.ascx). -->
+  <data name="Login.Tooltip" xml:space="preserve">
+    <value>Entrar</value>
+  </data>
+  <data name="Logoff.Tooltip" xml:space="preserve">
+    <value>Sair</value>
+  </data>
 </root>

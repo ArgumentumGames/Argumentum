@@ -47,7 +47,7 @@
             <%
             if (Request.IsAuthenticated) {
             %>
-              <a href="?ctl=logoff" Title="Logoff" class="to-shine-login" target="_self">
+              <a href="?ctl=logoff" Title="<%= LocalizeString("Logoff.Tooltip") %>" class="to-shine-login" target="_self">
                 <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                   viewBox="0 0 12.2 14.5" style="enable-background:new 0 0 12.2 14.5;" xml:space="preserve">
                 <g>
@@ -60,7 +60,7 @@
             <%
             } else {
             %>        
-              <a href="?ctl=login" Title="Login" class="to-shine-login" target="_self">
+              <a href="?ctl=login" Title="<%= LocalizeString("Login.Tooltip") %>" class="to-shine-login" target="_self">
                 <svg version="1.1" id="Lock" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                   viewBox="0 0 12.2 14" style="enable-background:new 0 0 12.2 14;" xml:space="preserve">
                   <g>
