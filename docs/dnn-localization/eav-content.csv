@@ -2157,6 +2157,12 @@ CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E|Content,52,News,CFE7E2D1-7DD3-4D26-8BCB-906
 <p><strong>19点</strong>，大家手持一杯饮品，我们将介绍这款游戏、它的诞生过程以及未来的发展，然后开几桌，进行一场热闹非凡的<strong>游戏开胃酒会</strong>。</p>
 <p><strong>20点30分</strong>，我们邀请您继续留下或前来与我们会合，到同一地址的小餐馆用餐，在<strong>愉快的气氛</strong>中，带着恰到好处的<strong>坏心眼</strong>，继续庆祝<strong>批判精神</strong>、修辞术和公共辩论。</p>"
 CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E|UrlKey,52,News,CFE7E2D1-7DD3-4D26-8BCB-906B61F9250E,UrlKey,String,editorial,soiree-de-lancement-argumentum,,,,,,,
+22A8CBD8-AC77-4902-AD9B-F0E7168EC4B5|Title,52,ViewConfiguration,22A8CBD8-AC77-4902-AD9B-F0E7168EC4B5,Title,String,editorial,Frontpage with images,,,,,,,
+438836CC-C11A-4B56-B81C-9919E8BD44F1|Title,52,ViewConfiguration,438836CC-C11A-4B56-B81C-9919E8BD44F1,Title,String,editorial,Dernières nouvelles,,,,,,,
+5BB8A2E9-D4E9-4EAD-835F-A848496C187E|Title,52,ViewConfiguration,5BB8A2E9-D4E9-4EAD-835F-A848496C187E,Title,String,editorial,Column without images,,,,,,,
+732D177A-1B20-4CF5-ADAB-E0EA3EB00958|Title,52,ViewConfiguration,732D177A-1B20-4CF5-ADAB-E0EA3EB00958,Title,String,editorial,News,,,,,,,
+8E52CAE6-7EEE-4FDE-A1F3-0A7BCF7921FE|Title,52,ViewConfiguration,8E52CAE6-7EEE-4FDE-A1F3-0A7BCF7921FE,Title,String,editorial,Archive news list,,,,,,,
+8F5F09B6-1042-46FB-900B-612327210AE8|Title,52,ViewConfiguration,8F5F09B6-1042-46FB-900B-612327210AE8,Title,String,editorial,By category filtered news list,,,,,,,
 D4D9773B-3131-4656-BF5C-B047E0AE5566|GoBackText,59,App-Resources,D4D9773B-3131-4656-BF5C-B047E0AE5566,GoBackText,String,label,Retour à la liste,Back to the list,Назад к списку,Voltar à lista,Volver a la lista,العودة إلى القائمة,بازگشت به فهرست,返回列表
 D4D9773B-3131-4656-BF5C-B047E0AE5566|MoreText,59,App-Resources,D4D9773B-3131-4656-BF5C-B047E0AE5566,MoreText,String,label,en savoir plus,learn more,узнать больше,saiba mais,saber más,اعرف المزيد,بیشتر بدانید,了解更多
 D4D9773B-3131-4656-BF5C-B047E0AE5566|GlossaryMenu,59,App-Resources,D4D9773B-3131-4656-BF5C-B047E0AE5566,GlossaryMenu,String,label,Annuaire des amis d'Argumentum,Directory of Friends of Argumentum,Справочник друзей Argumentum,Diretório dos amigos do Argumentum,Directorio de amigos de Argumentum,دليل أصدقاء Argumentum,فهرست دوستان Argumentum,Argumentum 之友名录
