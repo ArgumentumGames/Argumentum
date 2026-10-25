@@ -100,6 +100,10 @@ WHITELIST = [
     (52, "News", "editorial"),
     (52, "Category", "editorial"),
     (52, "App-Resources", "label"),
+    # The module's List entity: `Content.Title` is the h1 of /xx/Actus
+    # ("Dernieres nouvelles", served FR on 8/8 - #458 c.6369498492, W17bis).
+    # Absent from the first export because the type wasn't whitelisted.
+    (52, "Content", "editorial"),
     (59, "Term", "editorial"),
     (59, "App-Resources", "label"),
     (60, "Game Rule", "editorial"),
