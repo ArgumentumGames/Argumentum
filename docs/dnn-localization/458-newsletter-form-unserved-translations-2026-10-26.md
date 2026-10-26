@@ -3,18 +3,16 @@
 **Nature : mesure seule. Aucun geste, aucune écriture, aucune soumission de formulaire, `RawData` non lue.**
 Machine : `myia-po-2023`. Cible : `https://dnn.argumentum.myia.io` (préprod).
 
-> ⚠️ **Attribution corrigée le même jour — lire d'abord**
-> [`458-newsletter-rendered-store-identified-2026-10-26.md`](458-newsletter-rendered-store-identified-2026-10-26.md)
-> corrige ce document : la conclusion de **§3** (« app 33, entité 10176, valeurs non sélectionnées ») est
-> **fausse**. Le magasin réellement rendu est l'**app 50 MobiusForms5** (`Resources.*`), dont les 25
-> attributs `Message*`/`Button*`/`Label*` n'existent **qu'en dim 0** — le français servi sur 8 cultures est
-> une **absence de traductions**, pas un défaut de sélection. L'entité 10176 n'a **aucun consommateur**
-> (référencée par zéro JSON de groupe) : ses 14 valeurs localisées ne sont jamais rendues, et les 7/7
-> sondes de §2 prouvaient une **copie** du markup du formulaire, pas un rendu (3ᵉ instance du piège
-> d'égalité de texte). Les trois candidats de **§5** sont **clos** par le document de correction ; §1 et §2
-> restent valides. Dans **§4**, seule la 2ᵉ puce tient (l'attribution à l'app 48 reste réfutée) : la 1ʳᵉ
-> (« non-sélection, pas manque de traduction ») est **renversée** — c'est bien une **absence de traductions**
-> dans le magasin rendu. Ce document est conservé tel quel : c'est la trace de la mesure et du piège.
+> ⚠️ **Attribution corrigée deux fois le même jour — lire d'abord**
+> [`458-newsletter-store-chain-2026-10-26.md`](458-newsletter-store-chain-2026-10-26.md) établit la chaîne
+> complète : le newsletter servi est le **fragment HTML Sendinblue de l'app 48** (E10181, `Html`, 13 314 c.,
+> **sans dimension**), atteint par `module 600 (app 35) → item 10172 → ContentGroupReference 10179 → app 48`.
+> Donc **§2 était la bonne piste** et **§3 est fausse** (« app 33, entité 10176 » : 10176 n'a aucun
+> consommateur, référencée par zéro JSON de groupe). Une correction intermédiaire
+> ([`458-newsletter-rendered-store-identified-2026-10-26.md`](458-newsletter-rendered-store-identified-2026-10-26.md))
+> a attribué le rendu à l'**app 50 MobiusForms5** : c'est le magasin du **formulaire de contact** (item
+> 10182), pas du newsletter. §1 reste valide. Ce document est conservé tel quel : c'est la trace de la
+> mesure et du piège.
 
 ## 1. Ce qui est servi aux visiteurs
 

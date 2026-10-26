@@ -1,5 +1,16 @@
 # Newsletter — le magasin réellement rendu est l'app 50 MobiusForms5 (mesure du 2026-10-26, tick 15:0xZ)
 
+> ⛔ **ATTRIBUTION CENTRALE FAUSSE — corrigée à 16:0xZ par
+> [`458-newsletter-store-chain-2026-10-26.md`](458-newsletter-store-chain-2026-10-26.md).**
+> L'app 50 MobiusForms5 est le magasin du **formulaire de contact** (item d'accordéon 10182 →
+> `ContentGroupReference` 10183 → app 50), **pas** du newsletter. Le newsletter servi est le fragment HTML
+> **Sendinblue de l'app 48** (E10181, `Html`, 13 314 c., sans dimension), atteint par
+> `item 10172 → ContentGroupReference 10179 → app 48`. La cause de l'erreur est instrumentale : un attribut
+> de type `Entity` (`DesignedContent`) vit dans `TsDynDataRelationship`, pas dans `TsDynDataValue` — le zéro
+> lu dans la mauvaise table a été pris pour une absence, et deux blocs voisins du même module ont été
+> confondus. **Reste valide** : E10176 n'a aucun consommateur, le drapeau partagé est éliminé, et la
+> résolution dimensionnelle fonctionne partout où il y a un consommateur.
+
 **Nature : mesure seule, lecture seule (SQL + HTTP + fichiers). Aucune écriture, aucune soumission de formulaire, `RawData` non lue.**
 Machine : `myia-po-2023`. Cible : `https://dnn.argumentum.myia.io` (préprod). Suite de [`458-newsletter-form-unserved-translations-2026-10-26.md`](458-newsletter-form-unserved-translations-2026-10-26.md) — **ce document corrige son attribution** (§3) et clôt ses trois candidats ouverts (§5).
 
