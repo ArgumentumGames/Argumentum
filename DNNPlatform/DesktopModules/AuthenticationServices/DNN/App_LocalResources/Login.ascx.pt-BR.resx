@@ -13,16 +13,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="cmdLogin.Text">
-    <value xml:space="preserve">Iniciar</value>
+    <value xml:space="preserve">Entrar</value>
   </data>
   <data name="cmdPassword.Text">
-    <value xml:space="preserve">Reiniciar contrasenha</value>
+    <value xml:space="preserve">Redefinir senha</value>
   </data>
   <data name="cmdRegister.Text">
     <value xml:space="preserve">Registrar</value>
   </data>
   <data name="Email.Text">
-    <value xml:space="preserve">Email:</value>
+    <value xml:space="preserve">Endereço de e-mail:</value>
   </data>
   <data name="InvalidVerificationCode.Text">
     <value xml:space="preserve">Código de verificação incorreto</value>
@@ -31,12 +31,12 @@
     <value xml:space="preserve">Lembrar login</value>
   </data>
   <data name="Title.Text">
-    <value xml:space="preserve">Estándar</value>
+    <value xml:space="preserve">Padrão</value>
   </data>
   <data name="UserAlreadyVerified.Text">
-    <value xml:space="preserve">Este usuario já está validadeo</value>
+    <value xml:space="preserve">Usuário já verificado</value>
   </data>
   <data name="UserDoesNotExist.Text">
-    <value xml:space="preserve">Este usuario não existe</value>
+    <value xml:space="preserve">Usuário não existe</value>
   </data>
 </root>
