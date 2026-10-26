@@ -105,6 +105,16 @@ Ce qui reste à établir :
 
 Aucun de ces trois points n'est tranché par la mesure ci-dessus.
 
+**Rétrécissement mesuré depuis (26/10, même tick)** — la résolution dimensionnelle **fonctionne** pour un
+autre type de contenu de la **même app 33, même zone 3** : la page `/Téléchargements` (module 593) est
+rendue depuis le type `Link` (352), et ses libellés sortent bien traduits — `/zh/Téléchargements` sert
+`“打印即玩”版本` (valeur zh `28554`) et `下载` ×9 (valeur zh `28547`), `/en/` sert `"Print and Play" Version`
+et `download` ×6, tandis que `/` sert le français. ⇒ l'hypothèse « la carte langue → dimension est cassée
+dans cette zone » est **éliminée** ; le défaut est propre à l'entité 10176 / au type `Content`, ce qui
+laisse les points 2 et 3 ci-dessus comme seuls candidats, et rend le point 1 moins probable.
+Corollaire opérationnel : **écrire des valeurs dimensionnelles sur un attribut de l'app 33 est un levier
+qui sert** — mesuré sur ce type, pas seulement supposé.
+
 ## 6. Portée et suite
 
 - Rien n'a été écrit. Aucune soumission de formulaire. `RawData` (soumissions visiteurs) non lue.
