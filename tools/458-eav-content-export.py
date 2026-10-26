@@ -38,8 +38,18 @@ USAGE
 
     export    write the CSV (deterministic: sorted, LF, UTF-8 no BOM)
     verify    re-read the DB and compare every cell of the CSV; exit 1 on any diff
+    verify --classify [--out-classified F]
+              bucket every diff cell into the three classes of decision 3 on
+              #458 (c.6405473398): registre_avance (CSV filled, DB empty ->
+              injection candidate), base_avance (CSV empty, DB filled ->
+              pull-back-into-registry-by-PR candidate), conflit (both filled,
+              different -> no write, list for ai-01). --out-classified also
+              writes the full cell values per class as CSV, for the injection
+              and pull-back work of the following ticks.
     selftest  inverse control: export -> verify (0 diff) -> mutate one cell ->
-              verify (exactly 1 diff). Proves the verifier can see a difference.
+              verify (exactly 1 diff) -> classify the three mutation shapes
+              (one per class, exactly). Proves the verifier - and the
+              classifier - can see a difference, in the right bucket.
 """
 from __future__ import annotations
 
@@ -405,6 +415,58 @@ def compare(csv_rows: list[dict], db_rows: list[dict]) -> tuple[list[str], int]:
     return problems, diffs
 
 
+# ---------------------------------------------------------------------------
+# classify (decision 3 on #458, c.6405473398: cell-by-cell, three buckets)
+# ---------------------------------------------------------------------------
+# Direction rule, from the decision itself: "Registre en avance -> on injecte ;
+# base en avance -> on rapatrie au registre par PR ; conflit -> aucune ecriture,
+# liste vers ai-01." An empty cell carries no editorial signal, so the only
+# machine-decidable "ahead" is against an empty opposite side; two filled,
+# different values need a human - that is the conflit bucket, on purpose.
+CLASS_ORDER = ["registre_avance", "base_avance", "conflit"]
+
+
+def classify_diffs(
+    csv_rows: list[dict], db_rows: list[dict]
+) -> dict[str, list[dict]]:
+    """Bucket every cell-level diff into the three decision-3 classes.
+
+    Structural key mismatches (rows present on one side only) stay in
+    `compare`'s problems: a cell cannot be classified where one side has no
+    row at all, and those need ai-01 regardless.
+    """
+    csv_by_key = {row["key"]: row for row in csv_rows}
+    db_by_key = {row["key"]: row for row in db_rows}
+    buckets: dict[str, list[dict]] = {name: [] for name in CLASS_ORDER}
+    for key in sorted(set(csv_by_key) & set(db_by_key)):
+        csv_row, db_row = csv_by_key[key], db_by_key[key]
+        for lang in ["fr", *LANGS]:
+            csv_value = csv_row.get(lang, "")
+            db_value = db_row.get(lang, "")
+            if csv_value == db_value:
+                continue
+            cell = {
+                "class": "",
+                "key": key,
+                "lang": lang,
+                "csv_value": csv_value,
+                "db_value": db_value,
+                "app_id": csv_row.get("app_id", db_row.get("app_id", "")),
+                "content_type": csv_row.get(
+                    "content_type", db_row.get("content_type", "")
+                ),
+                "field": csv_row.get("field", db_row.get("field", "")),
+            }
+            if csv_value and not db_value:
+                cell["class"] = "registre_avance"
+            elif db_value and not csv_value:
+                cell["class"] = "base_avance"
+            else:
+                cell["class"] = "conflit"
+            buckets[cell["class"]].append(cell)
+    return buckets
+
+
 def cmd_verify(args: argparse.Namespace) -> int:
     conn = read_connection_string(pathlib.Path(args.config))
     db_rows = fetch_rows(conn)
@@ -416,6 +478,36 @@ def cmd_verify(args: argparse.Namespace) -> int:
     if problems:
         for problem in problems:
             print(f"  - {problem}")
+    if getattr(args, "classify", False):
+        buckets = classify_diffs(csv_rows, db_rows)
+        for name in CLASS_ORDER:
+            cells = buckets[name]
+            print(f"  {name}: {len(cells)}")
+            for cell in cells[:5]:
+                print(
+                    f"    - {cell['key']} [{cell['lang']}] "
+                    f"csv={len(cell['csv_value'])}c db={len(cell['db_value'])}c"
+                )
+        if len(buckets) and len(buckets["conflit"]) > 5:
+            print(f"    … +{len(buckets['conflit']) - 5} autres conflits")
+        out = getattr(args, "out_classified", None)
+        if out:
+            out_path = pathlib.Path(out)
+            out_path.parent.mkdir(parents=True, exist_ok=True)
+            fields = [
+                "class", "key", "lang", "app_id", "content_type", "field",
+                "csv_value", "db_value",
+            ]
+            with out_path.open("w", encoding="utf-8", newline="") as handle:
+                writer = csv.DictWriter(
+                    handle, fieldnames=fields, lineterminator="\n"
+                )
+                writer.writeheader()
+                for name in CLASS_ORDER:
+                    for cell in buckets[name]:
+                        writer.writerow(cell)
+            total = sum(len(buckets[n]) for n in CLASS_ORDER)
+            print(f"  classés -> {out_path} ({total} cellules)")
     if diffs or any(p.startswith(("clé", "type")) for p in problems):
         print("VERDICT: ÉCHEC")
         return 1
@@ -465,7 +557,62 @@ def cmd_selftest(args: argparse.Namespace) -> int:
                 print("  -", problem)
             return 1
         print("PASS étape 2: mutation d'une cellule -> exactement 1 écart détecté")
-        print("VERDICT: instrument validé (il voit un 1)")
+
+        # Step 3 - classify inverse control: one mutation per decision-3 class,
+        # on three distinct keys, must land one cell in each bucket and nowhere
+        # else. A classifier that put everything in one bucket, or dropped a
+        # class, would pass a count-only check - the per-key assertion closes
+        # both ways it could lie.
+        clean_rows = read_csv(clean)
+        filled_fr = [r for r in clean_rows if r["fr"]]
+        if len(filled_fr) < 2:
+            print("ÉCHEC étape 3: moins de 2 lignes fr non vides pour muter")
+            return 1
+        conflit_row = filled_fr[0]
+        base_row = next(r for r in filled_fr if r["key"] != conflit_row["key"])
+        try:
+            reg_row = next(
+                r
+                for r in clean_rows
+                if r["key"] not in (conflit_row["key"], base_row["key"])
+                and r["en"] == ""
+            )
+        except StopIteration:
+            print("ÉCHEC étape 3: aucune ligne en vide pour la classe registre_avance")
+            return 1
+
+        classified = pathlib.Path(tmp) / "classified.csv"
+        with clean.open("r", encoding="utf-8", newline="") as src, classified.open(
+            "w", encoding="utf-8", newline=""
+        ) as dst:
+            reader = csv.DictReader(src)
+            writer = csv.DictWriter(
+                dst, fieldnames=reader.fieldnames, lineterminator="\n"
+            )
+            writer.writeheader()
+            for row in reader:
+                if row["key"] == conflit_row["key"]:
+                    row["fr"] = row["fr"] + " [conflit]"
+                elif row["key"] == base_row["key"]:
+                    row["fr"] = ""
+                elif row["key"] == reg_row["key"]:
+                    row["en"] = "x-registre"
+                writer.writerow(row)
+
+        buckets = classify_diffs(read_csv(classified), db_rows)
+        expected = {
+            "registre_avance": reg_row["key"],
+            "base_avance": base_row["key"],
+            "conflit": conflit_row["key"],
+        }
+        for name in CLASS_ORDER:
+            cells = buckets[name]
+            if len(cells) != 1 or cells[0]["key"] != expected[name]:
+                print(f"ÉCHEC étape 3: {name} -> {len(cells)} cellule(s) "
+                      f"{[c['key'] for c in cells]}, attendu 1x {expected[name]}")
+                return 1
+        print("PASS étape 3: 3 mutations -> 1 cellule par classe, la bonne clé")
+        print("VERDICT: instrument validé (il voit un 1, dans le bon seau)")
     return 0
 
 
@@ -506,7 +653,17 @@ def main(argv: list[str] | None = None) -> int:
         "--csv",
         default=str(REPO_ROOT / "docs" / "dnn-localization" / "eav-content.csv"),
     )
-    verify.set_defaults(func=cmd_verify)
+    verify.add_argument(
+        "--classify",
+        action="store_true",
+        help="bucket les écarts cellule par cellule (décision 3, #458)",
+    )
+    verify.add_argument(
+        "--out-classified",
+        default=None,
+        help="écrit les cellules classées avec leurs valeurs (CSV)",
+    )
+    verify.set_defaults(func=cmd_verify, classify=False, out_classified=None)
 
     selftest = sub.add_parser("selftest", help="contrôle inverse sur une copie temporaire")
     selftest.set_defaults(func=cmd_selftest)
