@@ -32,10 +32,9 @@ namespace Argumentum.AssetConverter.Tests
 
 		/// <summary>
 		/// The emitter block only. The file also carries the visible switcher's
-		/// <c>Languages="fr-FR:FR,…"</c> attribute, which lists 5 cultures on purpose (zh/ar/fa are
-		/// gated until the minimal chrome ships) — an assertion scoped to the whole file would read
-		/// that legitimately hardcoded menu as a violation, or worse, satisfy a "languages are
-		/// declared" check it has nothing to do with.
+		/// <c>Languages="fr-FR:FR,…"</c> attribute, which lists the 8 cultures the switcher exposes —
+		/// an assertion scoped to the whole file would read that legitimately hardcoded menu as a
+		/// violation, or worse, satisfy a "languages are declared" check it has nothing to do with.
 		/// </summary>
 		private static string EmitterBlock()
 		{
