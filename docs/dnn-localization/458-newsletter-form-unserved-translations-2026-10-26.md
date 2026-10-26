@@ -3,6 +3,19 @@
 **Nature : mesure seule. Aucun geste, aucune écriture, aucune soumission de formulaire, `RawData` non lue.**
 Machine : `myia-po-2023`. Cible : `https://dnn.argumentum.myia.io` (préprod).
 
+> ⚠️ **Attribution corrigée le même jour — lire d'abord**
+> [`458-newsletter-rendered-store-identified-2026-10-26.md`](458-newsletter-rendered-store-identified-2026-10-26.md)
+> corrige ce document : la conclusion de **§3** (« app 33, entité 10176, valeurs non sélectionnées ») est
+> **fausse**. Le magasin réellement rendu est l'**app 50 MobiusForms5** (`Resources.*`), dont les 25
+> attributs `Message*`/`Button*`/`Label*` n'existent **qu'en dim 0** — le français servi sur 8 cultures est
+> une **absence de traductions**, pas un défaut de sélection. L'entité 10176 n'a **aucun consommateur**
+> (référencée par zéro JSON de groupe) : ses 14 valeurs localisées ne sont jamais rendues, et les 7/7
+> sondes de §2 prouvaient une **copie** du markup du formulaire, pas un rendu (3ᵉ instance du piège
+> d'égalité de texte). Les trois candidats de **§5** sont **clos** par le document de correction ; §1 et §2
+> restent valides. Dans **§4**, seule la 2ᵉ puce tient (l'attribution à l'app 48 reste réfutée) : la 1ʳᵉ
+> (« non-sélection, pas manque de traduction ») est **renversée** — c'est bien une **absence de traductions**
+> dans le magasin rendu. Ce document est conservé tel quel : c'est la trace de la mesure et du piège.
+
 ## 1. Ce qui est servi aux visiteurs
 
 Le bloc newsletter (formulaire Brevo/Sendinblue) est présent sur **toutes les pages** et son texte visible
@@ -65,6 +78,8 @@ française de consentement Brevo.
 
 ## 3. Ce qui est réellement rendu — les traductions ne sont pas sélectionnées
 
+> ⚠️ **Section réfutée le jour même** — le rendu ne vient pas de l'app 33. Voir le document de correction (en-tête).
+
 Discriminant : on prend les phrases les plus longues de chaque copie stockée et on les cherche
 **verbatim** dans le texte servi de `/zh/Actus` (normalisation : balises retirées, entités décodées,
 espaces condensés).
@@ -81,6 +96,8 @@ est valide, et **n'est pas servie**.
 
 ## 4. Ce que cette mesure réfute
 
+> ⚠️ **1ʳᵉ puce renversée** par le document de correction (en-tête) : le magasin rendu n'a aucune traduction. La 2ᵉ puce (app 48) reste valide.
+
 - **« Le formulaire newsletter n'est pas traduit »** — faux : 14 valeurs localisées existent (7 `Title` + 7 `Text`).
   Le défaut est une **non-sélection**, pas un manque de traduction.
 - **L'attribution de l'Item 8** (`docs/dnn-localization/458-tier3-mobius5-brevo-2026-10-25.md`, §2) : ce document
@@ -90,6 +107,8 @@ est valide, et **n'est pas servie**.
   ⛔ Ne pas écrire dans app 48 avant d'avoir établi lequel des deux magasins alimente le rendu.
 
 ## 5. Ce qui reste ouvert (non établi, ne pas présenter comme un diagnostic)
+
+> ⚠️ **Soldée le jour même** — les trois candidats de cette section sont clos par le document de correction (en-tête) ; §4 reste valide.
 
 Pourquoi les valeurs dimensionnelles de l'entité 10176 ne sont pas sélectionnées. Les injections
 précédentes de la lane (`app 52` h1, `app 60` RuleMemo) ont écrit sur les mêmes dimensions 7-13 de la
