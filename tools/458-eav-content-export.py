@@ -78,9 +78,11 @@ DIM_EXTERNAL_KEY = {
 # `kind`: editorial = page prose | label = visible app label | credit = credits.
 # Deliberately EXCLUDED: Fallacy (1013 entities, CSV-sourced and not displayed -
 # the only mounted module renders _RulesExplorer_RuleList), all *Settings,
-# PresSetText, Effect, ViewConfiguration, VideoPresentation, PresSetMap,
+# PresSetText, Effect, VideoPresentation, PresSetMap,
 # LayoutElement, TestContent (demo), Comment/Scenario (empty), and every
 # NBrightBuy table (orders/clients/user data - never exported).
+# ViewConfiguration is whitelisted for app 52 only, and only for its `Title`
+# field (see FIELD_ALLOW): that is where the /xx/Actus h1 lives.
 # ---------------------------------------------------------------------------
 WHITELIST = [
     (33, "Content", "editorial"),
@@ -100,10 +102,17 @@ WHITELIST = [
     (52, "News", "editorial"),
     (52, "Category", "editorial"),
     (52, "App-Resources", "label"),
-    # The module's List entity: `Content.Title` is the h1 of /xx/Actus
-    # ("Dernieres nouvelles", served FR on 8/8 - #458 c.6369498492, W17bis).
-    # Absent from the first export because the type wasn't whitelisted.
-    (52, "Content", "editorial"),
+    # The h1 of /xx/Actus lives in the *view configuration* of the mounted list
+    # module, NOT in a `Content` entity: app 52 has no content type named
+    # `Content` at all (measured 2026-10-25: its types are App-Resources,
+    # App-Settings, Category, News, ViewConfiguration). The earlier entry
+    # `(52, "Content")` matched zero rows and is replaced by this one.
+    # Carrier: EntityGuid 438836CC-C11A-4B56-B81C-9919E8BD44F1, field `Title`,
+    # value "Dernières nouvelles", **0 dimension row** -> translatable and
+    # untranslated. Two independent instruments agree: the DB value, and the
+    # served page (h1 "Dernières nouvelles" on 8/8 while `<title>` is localized
+    # 8/8: News / Novedades / Novidades / Новости / 新闻 / الأخبار / اخبار).
+    (52, "ViewConfiguration", "editorial"),
     (59, "Term", "editorial"),
     (59, "App-Resources", "label"),
     (60, "Game Rule", "editorial"),
@@ -117,6 +126,15 @@ WHITELIST = [
 
 KIND_BY_TYPE = {(app, ct): kind for app, ct, kind in WHITELIST}
 ALLOWED_TYPES = set(KIND_BY_TYPE)
+
+# Per-type field allowlist, applied after the SQL read. Used where a whitelisted
+# type mixes displayed prose with settings: (52, ViewConfiguration) carries the
+# Actus h1 in `Title` and also ItemsInPage / ShowPagination, which are settings
+# and stay out by the same rule that excludes the *Settings types. Types absent
+# from this dict are exported field for field, as before.
+FIELD_ALLOW = {
+    (52, "ViewConfiguration"): {"Title"},
+}
 
 # Defense in depth: whatever happens, never emit a row for a private/store table.
 FORBIDDEN_TOKENS = ("ORDER", "CLIENT", "USERDATA", "NBrightBuy", "AspNetUsers")
@@ -290,6 +308,13 @@ ORDER BY ct.AppId, ct.Name, CONVERT(nvarchar(64), e.EntityGuid), a.SortOrder;
             (int(row["app_id"]), row["content_type"]), ""
         )
         row["key"] = f'{row["entity_guid"]}|{row["field"]}'
+    # Applied here, not in the SQL, so that export and verify see the same rows.
+    rows = [
+        row
+        for row in rows
+        if (int(row["app_id"]), row["content_type"]) not in FIELD_ALLOW
+        or row["field"] in FIELD_ALLOW[(int(row["app_id"]), row["content_type"])]
+    ]
     return rows
 
 
