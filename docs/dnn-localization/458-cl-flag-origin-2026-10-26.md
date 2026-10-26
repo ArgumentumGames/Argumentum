@@ -22,7 +22,7 @@ la servitude des 8 cultures ne dépend pas du drapeau).
 
 ```
 PortalSettings (portail 1) ContentLocalizationEnabled = True
-  CreatedByUserID     = 1        → contact@argumentum.games (« Argumenteam »), 30/03/2022
+  CreatedByUserID     = 1        → compte administrateur d'origine (créé le 30/03/2022)
   LastModifiedOnDate  = 2026-10-11 15:54:54   (heure locale serveur)
   LastModifiedByUserID = -1      → AUCUNE rangée Users à -1 = contexte sans utilisateur authentifié
 ```
