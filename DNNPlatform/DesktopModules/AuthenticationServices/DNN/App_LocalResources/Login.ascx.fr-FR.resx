@@ -22,7 +22,7 @@
     <value xml:space="preserve">Inscription</value>
   </data>
   <data name="Email.Text">
-    <value xml:space="preserve">Adresse de Courriel :</value>
+    <value xml:space="preserve">Adresse de courriel :</value>
   </data>
   <data name="InvalidVerificationCode.Text">
     <value xml:space="preserve">Code de vérification invalide</value>
