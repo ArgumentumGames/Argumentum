@@ -40,7 +40,7 @@
             <%
             if(LocaleController.Instance.GetLocales(PortalSettings.Current.PortalId).Count() > 1) {
             %>
-              <ToSic:languagenavigation runat="server" Languages="fr-FR:FR,en-US:EN,es-ES:ES,pt-BR:PT,ru-RU:RU" />
+              <ToSic:languagenavigation runat="server" Languages="fr-FR:FR,en-US:EN,es-ES:ES,pt-BR:PT,ru-RU:RU,zh-CN:ZH,ar-SA:AR,fa-IR:FA" />
             <%
             }
             %> 
