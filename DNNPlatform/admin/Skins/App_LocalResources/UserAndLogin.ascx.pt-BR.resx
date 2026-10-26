@@ -19,10 +19,10 @@
     <value xml:space="preserve">Editar perfil</value>
   </data>
   <data name="Login.Text">
-    <value xml:space="preserve">Iniciar</value>
+    <value xml:space="preserve">Entrar</value>
   </data>
   <data name="Logout.Text">
-    <value xml:space="preserve">Salir</value>
+    <value xml:space="preserve">Sair</value>
   </data>
   <data name="MessageCount.Text">
     <value xml:space="preserve">{0} mensagens</value>
