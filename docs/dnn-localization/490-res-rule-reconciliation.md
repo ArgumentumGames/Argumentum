@@ -33,9 +33,9 @@ that is a view fix, not a localization act.
 | `res.RuleMaterial` | `Matériel` | `Materiel` | ⚠ **DELTA** — DB missing accent (typo); CSV correct |
 | `res.RuleInstallation` | `Installation` | `Installation` | ✅ MATCH |
 | `res.RuleVariants` | `Variantes` | `Variantes` | ✅ MATCH |
-| `res.RuleMemoCard` | `Carte mémo` | `Carte Mémo` | ⚠ **DELTA** — case (sentence vs title) |
-| `res.RuleMemoInstructions` | `Vous pouvez télécharger la carte de mémo suivante…` | `<p>Vous pouvez t&eacute;l&eacute;charger la carte de m&eacute;mo suivante…</p>` | ✅ MATCH (CSV = plain canonical; DB = HTML-encoded rendered — same text) |
-| `res.RuleMemoCardFileNamePrefix` | `Mémo` | `Argumentum - Règle` | ⚠ **DELTA** — CSV wrong; DB is the real brand prefix |
+| `res.RuleMemoCard` | `Carte mémo` | `Carte Mémo` | ⚠ **DELTA** — case (sentence vs title) · ✅ **SOLDÉ 26/10/2026** : sentence case, registre réaligné |
+| `res.RuleMemoInstructions` | `Vous pouvez télécharger la carte de mémo suivante…` | `<p>Vous pouvez t&eacute;l&eacute;charger la carte de m&eacute;mo suivante…</p>` | ✅ MATCH (CSV = plain canonical; DB = HTML-encoded rendered — same text) · valeur canonique depuis 26/10 : `…la carte mémo suivante…` |
+| `res.RuleMemoCardFileNamePrefix` | `Mémo` | `Argumentum - Règle` | ⚠ **DELTA** — CSV wrong; DB is the real brand prefix · ✅ **SOLDÉ 25/10/2026** (#772) |
 | `res.RuleMemoCardDownload` | `Télécharger la carte mémo` | `Télécharger la carte mémo` | ✅ MATCH |
 | `res.RuleContent` | *(not in CSV)* | `Contenu` | ❓ **ORPHAN** — DB has it, **no view references it** |
 
@@ -54,7 +54,7 @@ in `dnn-ui-strings.csv` is updated from `INFERRED FR; … verify vs export` →
 - `res.RuleSummary` = `Résumé`
 - `res.RuleInstallation` = `Installation`
 - `res.RuleVariants` = `Variantes`
-- `res.RuleMemoInstructions` = `Vous pouvez télécharger la carte de mémo suivante pour retrouver facilement les règles.` (CSV plain UTF-8 = canonical translation source; DB stores the HTML-encoded `<p>…&eacute;…</p>` rendered form — same text, different encoding for their respective roles)
+- `res.RuleMemoInstructions` = `Vous pouvez télécharger la carte de mémo suivante pour retrouver facilement les règles.` (CSV plain UTF-8 = canonical translation source; DB stores the HTML-encoded `<p>…&eacute;…</p>` rendered form — same text, different encoding for their respective roles). ⚠️ **Valeur citée = mesure du 25/10 ; depuis le 26/10 le canon porte « la carte mémo suivante »** (§4, harmonisation).
 - `res.RuleMemoCardDownload` = `Télécharger la carte mémo`
 
 ---
@@ -71,6 +71,11 @@ in `dnn-ui-strings.csv` is updated from `INFERRED FR; … verify vs export` →
   translated from the *correct* FR, so they remain valid).
 
 ### Δ2 — `res.RuleMemoCard`: case style (sentence vs title)
+
+> **Δ2 soldé le 26/10/2026** — option **(b) sentence case** retenue et actée (jsboige), confirmée par le
+> commentaire de merge de #1990 : « Δ2 n'est pas ouvert ». Le canon `dnn-ui-strings.csv` portait déjà
+> `Carte mémo` ; c'est le **registre** qui restait en `Carte Mémo` et qui est réaligné ici. Les 7
+> traductions de l'époque (`Memo card`/`Памятка`/…) ont depuis été harmonisées elles aussi (voir §4).
 
 - **CSV**: `Carte mémo` (sentence case — lowercase `m`)
 - **DB**: `Carte Mémo` (title case — capital `M`)
@@ -176,23 +181,34 @@ This is the "provisioning list" for jsboige: the per-language values to attach t
 | `RuleMaterial` | **Matériel** ⚠Δ1 (DB typo) | Materials | Материалы | Material | Material | المواد | محتویات بازی | 材料 |
 | `RuleInstallation` | Installation | Setup | Подготовка | Preparação | Preparación | الإعداد | آماده‌سازی | 设置 |
 | `RuleVariants` | Variantes | Variants | Варианты | Variantes | Variantes | الأنواع | گونه‌ها | 变体 |
-| `RuleMemoCard` | Carte mémo ⚠Δ2 (case) | Memo card | Памятка | Cartão de resumo | Tarjeta de resumen | بطاقة تذكيرية | کارت یادآوری | 备忘卡 |
-| `RuleMemoInstructions` | Vous pouvez télécharger la carte de mémo suivante pour retrouver facilement les règles. | You can download the following memo card to refer back to the rules easily. | Вы можете скачать следующую карточку-памятку, чтобы легко вернуться к правилам. | Você pode baixar o cartão-memo a seguir para consultar as regras facilmente. | Puedes descargar la siguiente tarjeta memo para consultar fácilmente las reglas. | يمكنك تنزيل بطاقة التذكير التالية للرجوع إلى القواعد بسهولة. | می‌توانید کارت یادآوری زیر را دانلود کنید تا به‌راحتی به قوانین مراجعه کنید. | 你可以下载以下备忘卡，以便轻松查阅规则。 |
-| `RuleMemoCardFileNamePrefix` | **HOLD ⚠Δ3** (`Argumentum - Règle`? brand policy TBD) | HOLD | HOLD | HOLD | HOLD | HOLD | HOLD | HOLD |
-| `RuleMemoCardDownload` | Télécharger la carte mémo | Download memo card | Скачать карточку-памятку | Baixar cartão-memo | Descargar tarjeta memo | نزّل بطاقة التذكير | دانلود کارت یادآوری | 下载备忘卡 |
+| `RuleMemoCard` | Carte mémo | Memo card | Карточка-памятка | Cartão-lembrete | Tarjeta memo | بطاقة التذكير | کارت یادآوری | 备忘卡 |
+| `RuleMemoInstructions` | Vous pouvez télécharger la carte mémo suivante pour retrouver facilement les règles. | You can download the following memo card to refer back to the rules easily. | Вы можете скачать следующую карточку-памятку, чтобы легко вернуться к правилам. | Você pode baixar o cartão-lembrete a seguir para consultar as regras facilmente. | Puedes descargar la siguiente tarjeta memo para consultar fácilmente las reglas. | يمكنك تنزيل بطاقة التذكير التالية للرجوع إلى القواعد بسهولة. | می‌توانید کارت یادآوری زیر را دانلود کنید تا به‌راحتی به قوانین مراجعه کنید. | 你可以下载以下备忘卡，以便轻松查阅规则。 |
+| `RuleMemoCardFileNamePrefix` | Argumentum - Règle | Argumentum - Rule | Argumentum - Правило | Argumentum - Regra | Argumentum - Regla | Argumentum - قاعدة | Argumentum - قانون | Argumentum - 规则 |
+| `RuleMemoCardDownload` | Télécharger la carte mémo | Download memo card | Скачать карточку-памятку | Baixar cartão-lembrete | Descargar tarjeta memo | نزّل بطاقة التذكير | دانلود کارت یادآوری | 下载备忘卡 |
 
-> **Ligne `RuleMemoCardFileNamePrefix` ci-dessus soldée le 25/10/2026** : les 8 HOLD sont historiques.
-> Politique de marque arbitrée owner en #772 (`f34ac77c`) — valeurs canoniques dans `dnn-ui-strings.csv`
-> ligne 10 (fr/en/ru/pt/es/ar/fa/zh, « Argumentum » verbatim + descripteur localisé).
+> **Ligne `RuleMemoCardFileNamePrefix` ci-dessus soldée le 25/10/2026** : les 8 HOLD sont historiques
+> (la ligne porte maintenant les valeurs réelles). Politique de marque arbitrée owner en #772 (`f34ac77c`)
+> — valeurs canoniques dans `dnn-ui-strings.csv` ligne 10 (fr/en/ru/pt/es/ar/fa/zh, « Argumentum »
+> verbatim + descripteur localisé).
 
 > **Réconciliation pivot exécutée le 25/10/2026 ( soir)** — `RuleMemoCard` + `RuleMemoCardDownload` :
 > les 14 cellules non-FR des rangées pivot EAV (lignes 2200/2203) sont désormais **octet-identiques**
 > au présent manifeste (§4), qui reste la source canonique. 12 cellules changées (les valeurs pivot
 > précédentes étaient un jeu machine divergent : « Карта Мемо », « 提示卡 », « Carta de ajuda »…).
-> Les **fr ne sont pas touchés** : `Carte Mémo` (pivot/DB) vs `Carte mémo` (canon) = delta Δ2,
-> arbitrage de casse jsboige toujours ouvert. `RuleMemoInstructions` reste hors périmètre de cette
-> réconciliation (le pivot porte aussi l'ancien jeu « карту Мемо » — à réaligner dans un grain
-> dédié si arbitré).
+
+> **Harmonisation du terme mémo exécutée le 26/10/2026 (po-2024)** — un terme par langue, écrit
+> **d'abord** dans `dnn-ui-strings.csv`, puis reporté dans les rangées pivot : `RuleMemoCard`
+> (fr « Carte mémo », ru « Карточка-памятка », pt « Cartão-lembrete », es « Tarjeta memo »,
+> ar « بطاقة التذكير »), `RuleMemoInstructions` (les 7 langues réalignées sur le canon, fr
+> « carte de mémo » → « carte mémo »), `RuleMemoCardDownload` (pt « Baixar cartão-lembrete »).
+> **10 cellules canon + 14 cellules pivot**, numstat `3 3` sur chaque fichier.
+> **Δ2 est ACTÉ, pas ouvert** : le commentaire de merge de #1990 dit « Δ2 n'est pas ouvert … le
+> registre doit porter la valeur décidée ». La phrase précédente de cette note, qui parlait d'un
+> « arbitrage de casse jsboige toujours ouvert » et laissait `RuleMemoInstructions` hors périmètre,
+> était **périmée**.
+> `RuleMemoCardFileNamePrefix` n'est **pas** touché : son descripteur est « Règle » (politique #772),
+> pas le terme mémo — l'y inclure contredirait un arbitrage owner. Contre-revue Opus `claude-opus-5-5`
+> sur les 12 cellules cibles : **12 OK · 0 FIX · 0 REJECTED** ($0,0518).
 
 **`RuleMemoInstructions`** carries rich HTML in the DB (`<p>…</p>`, HTML entities). The values above are
 the plain-UTF-8 canonical text; on re-import, the DatasetUpdater/toolchain wraps them in the `<p>`
@@ -241,9 +257,10 @@ mutated** (the 3 deltas await jsboige arbitration — mutating speculatively wou
 | 0 write DNN prod | ✅ export = Method B read-only SELECT; no DB/IIS/CSV-content mutation |
 | PR gated review ai-01 | ✅ this PR |
 
-**Open (jsboige arbitration, non-blocking)**: Δ1 (Material DB typo fix), Δ2 (MemoCard case), Δ3
-(FileNamePrefix brand policy + 7-lang re-translation), §3 (RuleContent view-bug: add `<h2>` heading vs
-drop orphan resource).
+**Open (jsboige arbitration, non-blocking)**: Δ1 (Material DB typo fix), §3 (RuleContent view-bug:
+add `<h2>` heading vs drop orphan resource). ~~Δ2 (MemoCard case)~~ **soldé 26/10/2026** — sentence
+case, canon + registre alignés. ~~Δ3 (FileNamePrefix brand policy + 7-lang re-translation)~~
+**soldé 25/10/2026** — #772 (`f34ac77c`).
 
 ---
 
