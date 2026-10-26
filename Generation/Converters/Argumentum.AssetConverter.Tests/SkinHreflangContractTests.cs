@@ -89,7 +89,12 @@ namespace Argumentum.AssetConverter.Tests
 		private static bool CanonicalNamesTheRequestPath(string block) =>
 			block.Contains("Request.RawUrl", StringComparison.Ordinal)
 			&& block.Contains("Request.Url.GetLeftPart(UriPartial.Path)", StringComparison.Ordinal)
-			&& block.Contains(".Append(requestPath)", StringComparison.Ordinal);
+			&& block.Contains("var canonicalUrl = bareView ? currentUrl : requestPath;", StringComparison.Ordinal)
+			&& block.Contains(".Append(canonicalUrl)", StringComparison.Ordinal);
+
+		private static bool StripsTheRequestQuery(string block) =>
+			block.Contains("var queryAt = raw.IndexOf('?');", StringComparison.Ordinal)
+			&& block.Contains("if (queryAt >= 0) { raw = raw.Substring(0, queryAt); }", StringComparison.Ordinal);
 
 		/// <summary>
 		/// Alternates are gated to the BARE TAB VIEW: the request path must equal the current
@@ -97,7 +102,12 @@ namespace Argumentum.AssetConverter.Tests
 		/// alternate on a detail view could only point back at the list.
 		/// </summary>
 		private static bool AlternatesAreGatedToTheBareTabView(string block) =>
-			block.Contains("string.Equals(requestPath, currentUrl, StringComparison.OrdinalIgnoreCase)", StringComparison.Ordinal);
+			block.Contains("string.Equals(normalizedRequestPath, normalizedCurrentUrl, StringComparison.OrdinalIgnoreCase)", StringComparison.Ordinal);
+
+		private static bool NormalizesOneOptionalTrailingSlash(string block) =>
+			block.Contains("var normalizedRequestPath = requestPath.TrimEnd('/');", StringComparison.Ordinal)
+			&& block.Contains("currentUrl.TrimEnd('/')", StringComparison.Ordinal)
+			&& block.Contains("var canonicalUrl = bareView ? currentUrl : requestPath;", StringComparison.Ordinal);
 
 		/// <summary>
 		/// Per-culture URLs are composed from the portal's CULTURAL ALIAS ROWS — never from
@@ -169,6 +179,10 @@ namespace Argumentum.AssetConverter.Tests
 				"per-culture URLs must be composed from the cultural alias rows, never from per-culture "
 				+ "NavigateURL calls (neutral URLs with localization disabled, #1991) and never by reading "
 				+ "the localization setting");
+			Assert.True(StripsTheRequestQuery(block),
+				"the primary RawUrl query removal must be present; checking only the fallback misses its deletion");
+			Assert.True(NormalizesOneOptionalTrailingSlash(block),
+				"/en and /en/ are the same bare view; the canonical must use the composed form on that view");
 		}
 
 		[Fact]
@@ -230,14 +244,25 @@ namespace Argumentum.AssetConverter.Tests
 		// --- inverse controls for the #1989 rework (canonical on detail views, bare-view gate, alias composition) ---
 
 		[Fact]
-		public void WithTheOldTabCanonicalTheRequestPathCheckFails()
+		public void WithAnUnconditionalTabCanonicalTheRequestPathCheckFails()
 		{
-			// the exact shape that shipped before the rework: canonical from the current culture's
-			// composed URL instead of the request path — names the LIST on /actus/details/<slug>
+			// A composed canonical is correct ONLY on a bare view. On an article it would name the
+			// list, declaring the article a duplicate of /actus (the #1989 review defect).
 			var mutated = Mutate(EmitterBlock(),
-				".Append(requestPath)", ".Append(currentUrl)");
+				"var canonicalUrl = bareView ? currentUrl : requestPath;", "var canonicalUrl = currentUrl;");
 			Assert.False(CanonicalNamesTheRequestPath(mutated),
-				"the request-path canonical check passed on a tab-canonical — it is vacuous");
+				"the request-path canonical check passed on an unconditional tab-canonical — it is vacuous");
+		}
+
+		[Fact]
+		public void WithoutThePrimaryQueryRemovalTheQueryCheckFails()
+		{
+			// This mutates the actual RawUrl branch, not the fallback: the previous inverse control
+			// could stay green after this primary removal was deleted (web2 review on #1989).
+			var mutated = Mutate(EmitterBlock(),
+				"if (queryAt >= 0) { raw = raw.Substring(0, queryAt); }", "if (false) { raw = raw.Substring(0, queryAt); }");
+			Assert.False(StripsTheRequestQuery(mutated),
+				"the primary query-removal check passed with the removal disabled — it is vacuous");
 		}
 
 		[Fact]
@@ -264,9 +289,24 @@ namespace Argumentum.AssetConverter.Tests
 		public void WithoutTheBareViewGateTheGateCheckFails()
 		{
 			var mutated = Mutate(EmitterBlock(),
-				"string.Equals(requestPath, currentUrl, StringComparison.OrdinalIgnoreCase)", "true");
+				"string.Equals(normalizedRequestPath, normalizedCurrentUrl, StringComparison.OrdinalIgnoreCase)", "true");
 			Assert.False(AlternatesAreGatedToTheBareTabView(mutated),
 				"the bare-view gate check passed with the gate removed — it is vacuous");
+		}
+
+		[Fact]
+		public void WithoutTrailingSlashNormalizationTheSlashCheckFails()
+		{
+			// Measured 2026-10-26 on preprod: /en emitted 0 alternates while /en/ emitted 9.
+			// Removing either normalization must break this predicate, not merely change a comment.
+			var withoutRequestNormalization = Mutate(EmitterBlock(),
+				"var normalizedRequestPath = requestPath.TrimEnd('/');", "var normalizedRequestPath = requestPath;");
+			Assert.False(NormalizesOneOptionalTrailingSlash(withoutRequestNormalization),
+				"the slash check passed without request-path normalization — it is vacuous");
+			var withoutCurrentNormalization = Mutate(EmitterBlock(),
+				"currentUrl.TrimEnd('/')", "currentUrl");
+			Assert.False(NormalizesOneOptionalTrailingSlash(withoutCurrentNormalization),
+				"the slash check passed without current-URL normalization — it is vacuous");
 		}
 
 		[Fact]
