@@ -103,8 +103,9 @@ namespace Argumentum.AssetConverter.Tests.Localization
 
 		/// <summary>
 		/// Declarations in <paramref name="selector"/>'s rules that pin a margin to a <i>physical</i>
-		/// side (<c>margin-left</c>, <c>margin-right</c>, or the 4-value shorthand, whose 2nd and 4th
-		/// values are the physical right and left). Logical properties — <c>margin-inline-start</c>,
+		/// side (<c>margin-left</c>, <c>margin-right</c>, or a shorthand with two to four values:
+		/// the second value is always the physical horizontal margin, and a fourth overrides the
+		/// physical left). Logical properties — <c>margin-inline-start</c>,
 		/// <c>margin-inline-end</c> — are deliberately not reported: they follow the writing
 		/// direction, which is the whole point of the fix.
 		/// </summary>
@@ -120,7 +121,7 @@ namespace Argumentum.AssetConverter.Tests.Localization
 				var value = parts[1].Trim();
 
 				var physical = prop is "margin-left" or "margin-right"
-					|| (prop == "margin" && value.Split((char[])null!, StringSplitOptions.RemoveEmptyEntries).Length == 4);
+					|| (prop == "margin" && value.Split((char[])null!, StringSplitOptions.RemoveEmptyEntries).Length is >= 2 and <= 4);
 
 				if (physical) found.Add($"{prop}: {value}");
 			}
@@ -323,15 +324,19 @@ namespace Argumentum.AssetConverter.Tests.Localization
 		}
 
 		/// <summary>
-		/// A four-value <c>margin</c> shorthand also pins both physical sides, so the guard must see
-		/// it too — otherwise a rewrite to <c>margin: 0 0.3em 0 0</c> would pass as "no margin-right".
+		/// Every shorthand with two to four values pins a physical horizontal side. The second
+		/// value is right and left; a third overrides bottom, a fourth overrides left. Treating only
+		/// the four-value form as physical would let <c>margin: 0 0.3em</c> bypass the RTL guard.
 		/// </summary>
-		[Fact]
-		public void The_guard_reports_a_four_value_margin_shorthand()
+		[Theory]
+		[InlineData("0 0.3em")]
+		[InlineData("0 0.3em 1em")]
+		[InlineData("0 0.3em 1em 0")]
+		public void The_guard_reports_every_shorthand_that_pins_a_horizontal_side(string margin)
 		{
-			PhysicalHorizontalMarginsIn(".roles img { margin: 0 0.3em 0 0; }", RolesIconSelector)
-				.Should().ContainSingle().Which.Should().Be("margin: 0 0.3em 0 0",
-					"the 2nd and 4th shorthand values are the physical right and left margins");
+			PhysicalHorizontalMarginsIn($".roles img {{ margin: {margin}; }}", RolesIconSelector)
+				.Should().ContainSingle().Which.Should().Be($"margin: {margin}",
+					"the second shorthand value is the physical right/left margin; a fourth overrides left");
 
 			PhysicalHorizontalMarginsIn(".roles img { margin: 0; }", RolesIconSelector)
 				.Should().BeEmpty("a single-value shorthand applies to all four sides and pins no side");
