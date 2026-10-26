@@ -258,23 +258,24 @@
   // two surfaces, two populations, and pinning the alternates to the menu would under-declare the
   // site by three cultures.
   //
-  // canonical = THE REQUEST'S OWN PATH, query removed (GetLeftPart, which strips the query instead
-  // of letting the friendly-URL provider absorb it into the path — the [URL] token trap measured
-  // 2026-10-25). A canonical built from tab+culture names the LIST on a parameterised view:
-  // articles render on the same tab at /actus/details/<slug> (measured on the prod links, review
-  // on #1989), so a tab-canonical would declare every article a duplicate of the list and get the
-  // articles deindexed. The request path is correct on every view, list and detail alike.
+  // canonical = the request's own path, query removed (RawUrl first; GetLeftPart supplies the
+  // authority and the fallback path). On a BARE TAB VIEW it is replaced below by the current
+  // culture's composed URL, giving one canonical casing/trailing-slash form per page. A canonical
+  // built from tab+culture on a parameterised view would name the LIST: articles render on the
+  // same tab at /actus/details/<slug> (measured on the prod links, review on #1989), so detail
+  // views always keep the request path and never get a tab-canonical.
   //
   // alternates/x-default: BARE TAB VIEW ONLY. A slug has no translation, so an alternate on a
   // detail view could only point back at the list — dishonest to crawlers. The bare-view test
   // compares the request path with the current culture's composed URL, case-insensitively (DNN
-  // serves /Actus and /actus alike).
+  // serves /Actus and /actus alike) and ignoring one optional trailing slash (/en and /en/ are the
+  // same bare view; measured 2026-10-26: the unnormalised comparison emitted no alternates on /en).
   //
   // Per-culture URLs are COMPOSED FROM THE CULTURAL ALIAS ROWS (PortalAlias.CultureCode), never
   // from NavigateURL(…culture…): #1991 measured that with portal content localization DISABLED,
-  // NavigateURL returns NEUTRAL URLs, so the 8 alternates would collapse onto one — and the
-  // go-live state of that flag is still open. The alias rows serve the 8 cultures in BOTH states
-  // (measured, #1991), so they are the flag-independent anchor. The ONE NavigateURL call uses the
+  // NavigateURL returns NEUTRAL URLs, so the 8 alternates would collapse onto one. The alias rows
+  // serve the 8 cultures in BOTH states of that flag (measured, #1991), so they are the
+  // flag-independent anchor. The ONE NavigateURL call uses the
   // DEFAULT culture: the default culture never needs a /<culture> prefix, so its URL is the
   // neutral tab path under either state of the flag; every culture's URL is then
   // scheme://<its alias host+path><neutral tab path>.
@@ -306,6 +307,8 @@
         ? Request.Url.GetLeftPart(UriPartial.Authority) + raw
         : Request.Url.GetLeftPart(UriPartial.Path);
       var marker = new System.Text.StringBuilder();
+      // Keep the request-path canonical ready for every early exit below; a bare view replaces it
+      // with its composed form once currentUrl is known.
       marker.Append("<link rel=\"canonical\" href=\"").Append(requestPath).Append("\" />\n");
 
       var defaultLanguage = portal.DefaultLanguage;
@@ -358,9 +361,19 @@
       }
 
       // bare tab view = the request path IS the current culture's composed URL (query removed,
-      // case aside). On a detail view (/actus/details/<slug>) the paths differ: canonical only.
-      var bareView = currentUrl != null
-        && string.Equals(requestPath, currentUrl, StringComparison.OrdinalIgnoreCase);
+      // case and one optional trailing slash aside). On a detail view (/actus/details/<slug>) the
+      // paths differ: request-path canonical only. TrimEnd preserves the root "/".
+      var normalizedRequestPath = requestPath.TrimEnd('/');
+      var normalizedCurrentUrl = currentUrl == null ? null : currentUrl.TrimEnd('/');
+      var bareView = normalizedCurrentUrl != null
+        && string.Equals(normalizedRequestPath, normalizedCurrentUrl, StringComparison.OrdinalIgnoreCase);
+      var canonicalUrl = bareView ? currentUrl : requestPath;
+      if (bareView)
+      {
+        // Replace the fallback emitted above, so every path emits exactly one canonical.
+        marker.Clear();
+        marker.Append("<link rel=\"canonical\" href=\"").Append(canonicalUrl).Append("\" />\n");
+      }
 
       if (bareView && emitted >= 2)
       {
