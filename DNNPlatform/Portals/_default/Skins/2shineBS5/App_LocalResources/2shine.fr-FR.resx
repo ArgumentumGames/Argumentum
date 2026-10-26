@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <!-- #1946: French skin resources. Deliberately carries NO Menu.Tab* keys — the French
+       menu serves the DNN TabName values, which are French, via the mechanism's fallback
+       path (exercised in production by every / request). Carries NO Meta.* keys either
+       (withdrawn before the skin gesture): fr pages already serve their native meta from
+       two distinct carriers (Tabs.138 on /, PortalLocalization on /Actus), and a resx-side
+       fr override would rewrite /Actus with the / text. Other cultures keep their Meta.*
+       keys — their shared pages serve French otherwise. -->
+  <data name="Imprint.Text" xml:space="preserve">
+    <value>Mentions légales</value>
+  </data>
+  <data name="Privacy.Text" xml:space="preserve">
+    <value>Confidentialité</value>
+  </data>
+  <!-- #458: tooltips of the icon-only login/logoff links (theme-body.ascx, Landingpage.ascx). -->
+  <data name="Login.Tooltip" xml:space="preserve">
+    <value>Connexion</value>
+  </data>
+  <data name="Logoff.Tooltip" xml:space="preserve">
+    <value>Déconnexion</value>
+  </data>
+</root>

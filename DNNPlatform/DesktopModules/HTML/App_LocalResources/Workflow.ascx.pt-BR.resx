@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Ative.Header">
+    <value xml:space="preserve">Activo</value>
+  </data>
+  <data name="cmdAddState.Text">
+    <value xml:space="preserve">Adicionar novo estado</value>
+  </data>
+  <data name="cmdAddWorkflow.Text">
+    <value xml:space="preserve">Adicionar novo fluxo de trabalho</value>
+  </data>
+  <data name="ControlTitle_workflow.Text">
+    <value xml:space="preserve">Administrar fluxos de trabalho</value>
+  </data>
+  <data name="dshPermissions.Text">
+    <value xml:space="preserve">Configuração de estado</value>
+  </data>
+  <data name="dshStates.Text">
+    <value xml:space="preserve">Estados</value>
+  </data>
+  <data name="dshVersions.Text">
+    <value xml:space="preserve">Historial de versões</value>
+  </data>
+  <data name="ModuleHelp.Text">
+    <value xml:space="preserve">&lt;p&gt;O módulo Text/HTML hace texto plano, texto enriquecido e HTML. Están disponívels 5 vistas diferentes de edição: &lt;/p&gt;
+&lt;OL&gt;
+&lt;li&gt;&lt;STRONG&gt;Caja de Texto Básico / Texto&lt;/STRONG&gt;: Interpretação de texto básico e etiquetas HTML. O texto introducido em uma nova linea é maquetado como um salto de linea. O estilo de texto é Normal como foi establecido em su hoja de estilo. 
+&lt;li&gt;&lt;STRONG&gt;Caja de Texto Básico / HTML&lt;/STRONG&gt;: Muestra o texto básico em formato HTML.
+&lt;li&gt;&lt;STRONG&gt;Caja de Texto Básico / Raw&lt;/STRONG&gt;: Muestra o texto básico em formato HTML. O texto introducido em uma nova linea não é interpretado como salto de linea.
+&lt;li&gt;&lt;STRONG&gt;Editor de Texto Enriquecido / HTML&lt;/STRONG&gt;: Permite pegar HTML desde outras fuentes.
+&lt;li&gt;&lt;STRONG&gt;Editor de Texto Enriquecido / Diseño&lt;/STRONG&gt;: Um procesador de texto o editor WYSIWYG (What You See is What You Get) com funcionalidades como hiperenlaces, enlaces de email, Administrador de Arquivos, galería de imágenes, puntos de interrupção, corretor ortográfico, e mucho más.</value>
+  </data>
+  <data name="plAtive.Help">
+    <value xml:space="preserve">Especifique se o estado está activo</value>
+  </data>
+  <data name="plAtive.Text">
+    <value xml:space="preserve">Activo</value>
+  </data>
+  <data name="plDeleted.Help">
+    <value xml:space="preserve">Especifique si este fluxo de trabalho está o não activo</value>
+  </data>
+  <data name="plDeleted.Text">
+    <value xml:space="preserve">Eliminado</value>
+  </data>
+  <data name="plDescription.Help">
+    <value xml:space="preserve">Entre uma descripção para o fluxo de trabalho</value>
+  </data>
+  <data name="plDescription.Text">
+    <value xml:space="preserve">Descripção</value>
+  </data>
+  <data name="plHistory.Help">
+    <value xml:space="preserve">Especificar o número máximo de versões a conservar</value>
+  </data>
+  <data name="plHistory.Text">
+    <value xml:space="preserve">Historial</value>
+  </data>
+  <data name="plMaximumVersionHistory.Help">
+    <value xml:space="preserve">Especificar o número máximo de versões de conteúdo a mantener não histórico para um módulo (entre zero para mantener todas as verões)</value>
+  </data>
+  <data name="plMaximumVersionHistory.Text">
+    <value xml:space="preserve">Histórico</value>
+  </data>
+  <data name="plNotify.Help">
+    <value xml:space="preserve">Especifique se o autor e os revisores deverían recibir notificações por email relacionados com o estado</value>
+  </data>
+  <data name="plNotify.Text">
+    <value xml:space="preserve">Notificar</value>
+  </data>
+  <data name="plPermissions.Help">
+    <value xml:space="preserve">Especifique quién pode revisar conteúdos para o estado</value>
+  </data>
+  <data name="plPermissions.Text">
+    <value xml:space="preserve">Revisores</value>
+  </data>
+  <data name="plState.Help">
+    <value xml:space="preserve">Entre o nome para o estado</value>
+  </data>
+  <data name="plState.Text">
+    <value xml:space="preserve">Estado</value>
+  </data>
+  <data name="plWorkflow1.Help">
+    <value xml:space="preserve">Selecione o fluxo de trabalho a gestionar</value>
+  </data>
+  <data name="plWorkflow1.Text">
+    <value xml:space="preserve">fluxo de Trabalho</value>
+  </data>
+  <data name="plWorkflow2.Help">
+    <value xml:space="preserve">Entre um nome para o fluxo de trabalho</value>
+  </data>
+  <data name="plWorkflow2.Text">
+    <value xml:space="preserve">fluxo de Trabalho</value>
+  </data>
+  <data name="State.Header">
+    <value xml:space="preserve">Estado</value>
+  </data>
+  <data name="WorkflowExists.Text">
+    <value xml:space="preserve">Já existe em este sitio web um fluxo de trabalho com o nome especificado</value>
+  </data>
+  <data name="WorkFlowStateHelp.Text">
+    <value xml:space="preserve">Nesta seção se podem gestionar os estados de fluxo de trabalho. Tenga em conta que uma vez que um fluxo de trabalho se está utilizando não se pode eliminar nenhum dos estados do fluxo de trabalho asociado.Também o primer e último estado de um fluxo de trabalho não podem ser eliminados.</value>
+  </data>
+</root>

@@ -1,52 +1,69 @@
 @inherits Custom.Hybrid.Razor14
-@using ToSic.Razor.Blade;
 
 @{
-    // Culture-aware field selection for the Rule content-type.
-    // Mirrors FallacyExplorer (PR #490): cascade lang -> en -> fr on suffixed fields.
-    // ADDS a 4th fallback on the generic (unsuffixed) field: the Rule content-type
-    // currently exposes generic fields (Summary, Material, ...) holding the FR
-    // canonical value, with no language dimensions wired yet. Without the generic
-    // fallback, Loc() would return "" until the DB gains suffixed fields — breaking
-    // the current FR rendering. The generic fallback preserves FR during the
-    // DB-migration transition (gated on the 2sxc portal export, jsboige).
-    // See investigation PR #669 (RulesExplorer FR-only = cause of audit #662).
-    var lang = (CmsContext.Culture.CurrentCode ?? "fr-fr").Split(new[] { '-' })[0].ToLowerInvariant();
-    var supported = new HashSet<string> { "fr", "en", "ru", "pt", "es", "ar", "fa", "zh" };
-    if (!supported.Contains(lang)) { lang = "fr"; }
+    // D1 (#458): player-count caption localized — strings arbitrated by ai-01 18/10.
+    // Keep the culture switch in sync with _RulesExplorer_RuleDetail.cshtml.
+    var lang = (CmsContext.Culture.CurrentCode ?? "fr-FR").Split(new[] { '-' })[0].ToLowerInvariant();
+    var playersFormat = lang == "en" ? "{0} to {1} players"
+        : lang == "es" ? "de {0} a {1} jugadores"
+        : lang == "pt" ? "de {0} a {1} jogadores"
+        : lang == "ru" ? "от {0} до {1} игроков"
+        : lang == "zh" ? "{0}至{1}名玩家"
+        : lang == "ar" ? "من {0} إلى {1} لاعبين"
+        : lang == "fa" ? "از {0} تا {1} بازیکن"
+        : "de {0} à {1} joueurs";
 
-    string Loc(dynamic entity, string field)
-    {
-        var dict = (IDictionary<string, object>)entity;
-        string pick(string key) => dict.ContainsKey(key) ? entity[key]?.ToString() ?? "" : "";
-        var primary = pick(field + "_" + lang);
-        if (!string.IsNullOrEmpty(primary)) return primary;
-        if (lang != "en") { var en = pick(field + "_en"); if (!string.IsNullOrEmpty(en)) return en; }
-        var fr = pick(field + "_fr");
-        if (!string.IsNullOrEmpty(fr)) return fr;
-        return pick(field);  // generic fallback — current FR canonical value
-    }
+    // D1 (#458, 22/10): min == max needs no interval - the corpus itself writes the
+    // single form on the 4/4 fiche (Rules_13: «Règles du jeu : 4 joueurs» in Text and
+    // its 7 translations). The plural class is that of the measured value (ru 2-4
+    // => «игрока», ar 3-10 => «لاعبين»). Keep in sync with _RulesExplorer_RuleDetail.cshtml.
+    var playersFormatSingle = lang == "en" ? "{0} players"
+        : lang == "es" ? "{0} jugadores"
+        : lang == "pt" ? "{0} jogadores"
+        : lang == "ru" ? "{0} игрока"
+        : lang == "zh" ? "{0}名玩家"
+        : lang == "ar" ? "{0} لاعبين"
+        : lang == "fa" ? "{0} بازیکن"
+        : "{0} joueurs";
 }
 
 <link rel="stylesheet" href="@App.Path/src/styles/argumentum.css" data-enableoptimizations="150" />
 @foreach (var ruleEntity in AsList(Data))
 {
-    var view1Parameters = "details=" + ruleEntity.UrlKey + "&mid=" + CmsContext.Module.Id;
+    var view1Parameters = "details=" + ruleEntity.UrlKey+ "&mid=" + CmsContext.Module.Id;
+
+    // #458 19: fa cards carry PERSIAN digits - see _RulesExplorer_RuleDetail.cshtml.
+    var playersText = ruleEntity.MinNbPlayers == ruleEntity.MaxNbPlayers
+        ? string.Format(playersFormatSingle, ruleEntity.MinNbPlayers)
+        : string.Format(playersFormat, ruleEntity.MinNbPlayers, ruleEntity.MaxNbPlayers);
+    if (lang == "fa")
+    {
+        var persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+        var digits = playersText.ToCharArray();
+        for (var i = 0; i < digits.Length; i++)
+        {
+            if (digits[i] >= (char)48 && digits[i] <= (char)57)
+            {
+                digits[i] = persianDigits[digits[i] - 48];
+            }
+        }
+        playersText = new string(digits);
+    }
 
     <div class="rule row mb-4 mb-md-5" @Edit.TagToolbar(ruleEntity)>
         <div class="col-md-12 position-relative">
-            <h2>@Loc(ruleEntity, "Title")</h2>
+            <h2>@ruleEntity.Title</h2>
             <a class="link-overlay" href="@Link.To(parameters: view1Parameters)"></a>
             <div class="col-md-12">
                 <div class="row">
                     <div class="nbPlayers mb-3 mb-md-0 col-12 col-md-6 col-lg-4">
-                        <h6>de @ruleEntity.MinNbPlayers &agrave; @ruleEntity.MaxNbPlayers joueurs </h6>
+                        <h6>@playersText</h6>
                     </div>
                     <div class="col-12 col-md-6 col-lg-8">
-                        @Html.Raw(Loc(ruleEntity, "Summary"))
+                        @Html.Raw(ruleEntity.Summary)
                     </div>
                 </div>
-
+                
             </div>
         </div>
     </div>

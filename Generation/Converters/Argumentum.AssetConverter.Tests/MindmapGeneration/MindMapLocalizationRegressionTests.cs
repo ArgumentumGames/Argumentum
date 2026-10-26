@@ -64,7 +64,9 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 
         [Theory]
         // lang, expectedSoussousfamille, expectedSousFamille, expectedFamille
-        [InlineData("en", "Subsubfamily", "Subfamily", "Family")]
+        // #1961: the en branch targets the disjoint EN members — never "Family"/"Subfamily"/
+        // "Subsubfamily", which resolve to the FR aliases (alias read-back / case collision).
+        [InlineData("en", "SubsubfamilyEn", "SubfamilyEn", "FamilyEn")]
         [InlineData("ru", "SubsubfamilyRu", "SubfamilyRu", "FamilyRu")]
         [InlineData("pt", "SubsubfamilyPt", "SubfamilyPt", "FamilyPt")]
         [InlineData("es", "SubsubfamilyEs", "SubfamilyEs", "FamilyEs")]

@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Containers.Text" xml:space="preserve">
+    <value>Контейнеры</value>
+  </data>
+  <data name="Layouts.Text" xml:space="preserve">
+    <value>Расположение</value>
+  </data>
+  <data name="nav_Themes.Text" xml:space="preserve">
+    <value>Темы</value>
+  </data>
+  <data name="Settings.Text" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="SiteTheme.Text" xml:space="preserve">
+    <value>Тема сайта:</value>
+  </data>
+  <data name="Themes.Text" xml:space="preserve">
+    <value>Темы</value>
+  </data>
+  <data name="Apply.Text" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Container.Text" xml:space="preserve">
+    <value>Контейнер</value>
+  </data>
+  <data name="EditThemeAttributes.Text" xml:space="preserve">
+    <value>Изменить атрибуты темы</value>
+  </data>
+  <data name="File.Text" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="Layout.Text" xml:space="preserve">
+    <value>Разметка</value>
+  </data>
+  <data name="Localized.Text" xml:space="preserve">
+    <value>Локализован</value>
+  </data>
+  <data name="ParseThemePackage.Text" xml:space="preserve">
+    <value>Прочитать пакет темы</value>
+  </data>
+  <data name="Portable.Text" xml:space="preserve">
+    <value>Портируемый</value>
+  </data>
+  <data name="SetEditContainer.Text" xml:space="preserve">
+    <value>Установить Контейнер редактирования</value>
+  </data>
+  <data name="SetEditLayout.Text" xml:space="preserve">
+    <value>Установить Редактирование макетов</value>
+  </data>
+  <data name="SetSiteContainer.Text" xml:space="preserve">
+    <value>Установить Контейнер редактирования</value>
+  </data>
+  <data name="SetSiteLayout.Text" xml:space="preserve">
+    <value>Установить Макет сайта</value>
+  </data>
+  <data name="Setting.Text" xml:space="preserve">
+    <value>Настройка</value>
+  </data>
+  <data name="StatusEdit.Text" xml:space="preserve">
+    <value>Е</value>
+  </data>
+  
+  <data name="Theme.Text" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="Token.Text" xml:space="preserve">
+    <value>Лексема</value>
+  </data>
+  <data name="Value.Text" xml:space="preserve">
+    <value>Значение</value>
+  </data>
+  <data name="RestoreTheme.Text" xml:space="preserve">
+    <value>[ Восстановить тему по умолчанию ]</value>
+  </data>
+  <data name="Confirm.Text" xml:space="preserve">
+    <value>Подтвердите пароль</value>
+  </data>
+  <data name="RestoreThemeConfirm.Text" xml:space="preserve">
+    <value>Вы уверены, что хотите восстановить тему по умолчанию?</value>
+  </data>
+  <data name="ApplyConfirm.Text" xml:space="preserve">
+    <value>Вы уверены, что хотите применить эту тему?</value>
+  </data>
+  <data name="DeleteConfirm.Text" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить эту тему?</value>
+  </data>
+  <data name="UsePackageUninstall.Text" xml:space="preserve">
+    <value>Эта тема устанавливается как пакет, пожалуйста, перейдите в раздел расширения и удалите ее оттуда.</value>
+  </data>
+  <data name="SearchPlaceHolder.Text" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="Successful.Text" xml:space="preserve">
+    <value>Операция завершена!</value>
+  </data>
+  <data name="NoPermission.Text" xml:space="preserve">
+    <value>У вас нет разрешения на выполнение этого действия.</value>
+  </data>
+  <data name="NoThemeFile.Text" xml:space="preserve">
+    <value>В этой теме не существует файлов тем.</value>
+  </data>
+  <data name="ThemeNotFound.Text" xml:space="preserve">
+    <value>Не удаётся найти конкретную тему.</value>
+  </data>
+  <data name="NoneSpecified.Text" xml:space="preserve">
+    <value>-- Выбрать --</value>
+  </data>
+  <data name="ApplyTheme.Text" xml:space="preserve">
+    <value>Применить</value>
+  </data>
+  <data name="DeleteTheme.Text" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="PreviewTheme.Text" xml:space="preserve">
+    <value>Препросмотр</value>
+  </data>
+  <data name="InstallTheme.Text" xml:space="preserve">
+    <value>Установить тему</value>
+  </data>
+  <data name="BackToThemes.Text" xml:space="preserve">
+    <value>Вернуться к темам</value>
+  </data>
+  <data name="GlobalThemes.Text" xml:space="preserve">
+    <value>Глобальные темы</value>
+  </data>
+  <data name="SiteThemes.Text" xml:space="preserve">
+    <value>Темы сайта</value>
+  </data>
+  <data name="ThemeLevelAll.Text" xml:space="preserve">
+    <value>Все темы</value>
+  </data>
+  <data name="ThemeLevelGlobal.Text" xml:space="preserve">
+    <value>Глобальные темы</value>
+  </data>
+  <data name="ThemeLevelSite.Text" xml:space="preserve">
+    <value>Темы сайта</value>
+  </data>
+  <data name="ShowFilterLabel">
+    <value>Показано:</value>
+  </data>
+  <data name="NoThemes">
+    <value>Темы не найдены.</value>
+  </data>
+  <data name="NoThemesMessage">
+    <value>Попробуйте настроить фильтр поиска или установить новую тему в свою библиотеку.</value>
+  </data>
+</root>

@@ -8,3 +8,10 @@
 # `CR: command not found` - a .sh versioned without this rule is delivered broken
 # to the next clone. Applies to the triage organs under scripts/.
 *.sh text eol=lf
+
+# The dnn_i18n self-test (IC11) compares the fixture's working-tree bytes to
+# the pipeline's regenerated XML (LF). A core.autocrlf=true checkout smudges
+# the fixture to CRLF and the control goes red on a correct tree (measured on
+# ai-01, master 5a132aa8: 177746 bytes on disk vs 177156 regenerated). The
+# blob is already LF - this rule pins the checkout to match, on every box.
+tools/dnn_i18n/fixtures/*.xml text eol=lf

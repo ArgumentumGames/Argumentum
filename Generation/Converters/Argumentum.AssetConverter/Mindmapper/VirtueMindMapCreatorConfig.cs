@@ -58,6 +58,19 @@ namespace Argumentum.AssetConverter.Mindmapper
                         WrapNodeByLink = false,
                         SetSVGNodeAttributes = true,
                         RemoveImages = true,
+                        HtmlWrapperTitles = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                        {
+                            // #457 T4b: <title> = this map's own central topic (already localized in the sibling
+                            // content.svg) + the untranslated brand suffix. Not retyped: derived from the SVG.
+                            ["fr"] = "Argument valable \u2014 Argumentum",
+                            ["en"] = "Valid argument \u2014 Argumentum",
+                            ["ru"] = "\u041E\u0431\u043E\u0441\u043D\u043E\u0432\u0430\u043D\u043D\u044B\u0439 \u0430\u0440\u0433\u0443\u043C\u0435\u043D\u0442 \u2014 Argumentum",
+                            ["pt"] = "Argumento v\u00E1lido \u2014 Argumentum",
+                            ["es"] = "Argumento v\u00E1lido \u2014 Argumentum",
+                            ["ar"] = "\u062D\u062C\u0629 \u0645\u0639\u062A\u0628\u0631\u0629 \u2014 Argumentum",
+                            ["fa"] = "\u0627\u0633\u062A\u062F\u0644\u0627\u0644 \u0645\u0639\u062A\u0628\u0631 \u2014 Argumentum",
+                            ["zh"] = "\u6709\u6548\u8BBA\u8BC1 \u2014 Argumentum",
+                        },
                         HtmlWrappers = new List<DocumentConfig>(new[]
                         {
                             // Issue #196: use [LANGUAGE] placeholder so each language produces its

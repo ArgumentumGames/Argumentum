@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <!--DOTWARE TST S.L.-->
+  <data name="CancelButton.Text">
+    <value xml:space="preserve">Não</value>
+  </data>
+  <data name="ConfirmRestore.Text">
+    <value xml:space="preserve">Está seguro que quer restaurar a hoja de estilos predeterminada? Todos os cambios realizados se perderán.</value>
+  </data>
+  <data name="nav_CssEditor.Text">
+    <value xml:space="preserve">Personalizar CSS</value>
+  </data>
+  <data name="RestoreButton.Text">
+    <value xml:space="preserve">Sí</value>
+  </data>
+  <data name="RestoreDefault.Text">
+    <value xml:space="preserve">Restaurar predeterminado</value>
+  </data>
+  <data name="SaveStyleSheet.Text">
+    <value xml:space="preserve">Guardar hoja de estilos</value>
+  </data>
+  <data name="StylesheetEditor.Text">
+    <value xml:space="preserve">Personalizar CSS</value>
+  </data>
+  <data name="StyleSheetRestored.Text">
+    <value xml:space="preserve">A hoja de estilos foi restaurado.</value>
+  </data>
+  <data name="StyleSheetSaved.Text">
+    <value xml:space="preserve">A hoja de estilos foi guardado.</value>
+  </data>
+</root>

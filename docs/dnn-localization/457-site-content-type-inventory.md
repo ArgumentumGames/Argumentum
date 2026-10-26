@@ -66,14 +66,25 @@ The portal runs **26 2sxc apps** (`Portals/1/2sxc/`): **Argumentum** (custom, th
 
 This confirms PHASE1: the repo holds **application templates**, not portal content.
 
-## 5. The "Materiel" coquille (jsboige flag) — located?
+## 5. The "Materiel" coquille (jsboige flag) — located and fixed (12/10)
 
 Dashboard tracks a live coquille « Materiel » (missing accent, should be « Matériel »).
 **Searched the Argumentum-app scope (`Portals/1/2sxc/Argumentum/`) + the 2 fallacies HTML → not
 found.** The coquille is therefore almost certainly in **content-type D** (2sxc App Resources /
 DB content) — consistent with the pattern appris « DNN i18n »: canonical FR values live in SQL,
-not in repo templates. **Fixing it requires the portal/DB export (jsboige, gated).** This is a
-data-point that the DB-only content bucket (D) is where live-site text corrections must happen.
+not in repo templates.
+
+> **Correctif 12/10** : la supposition « DB-only » était exacte — **localisée puis corrigée
+> le 12/10 par accès DB direct du siège préprod** (le « gated on portal export » est périmé
+> depuis que la lane dispose de l'accès SQL, cf. `reference-dnn-content-eav-storage-edit`) :
+> `TsDynDataValue` **27535**, entité **10340** (la table de libellés des fiches Règles :
+> Auteur / Licence / Variantes / Contenu / Installation / Résumé…), attribut `RuleMaterial`,
+> valeur sans dimension (servie toutes langues). Geste chirurgical `Materiel`→`Matériel`
+> (garde valeur exacte, 1 rangée, backup scratchpad) + recycle. Contrôle rendu : fiche École
+> FR — « Matériel » ×1 / « Materiel » ×0 (⚠️ sur le HTML **décodé** : l'accent est servi en
+> entité numérique, un grep brut du mot accentué rend 0 = faux négatif), non-régression
+> accueil + liste (200, fr-FR). This is a data-point that the DB-only content bucket (D)
+> is where live-site text corrections must happen — now with the lane to do it.
 
 ## 6. What this changes
 
@@ -81,10 +92,13 @@ data-point that the DB-only content bucket (D) is where live-site text correctio
 - **C (HTML pages) is a real, separate repo-extractable lane** — not wired, recommend a
   document-tier translation task for it (follow-up, gated on jsboige deciding whether these
   long-form FR articles are in v0.9.0 scope).
-- **D + E remain the bulk unblocker** — every live-site text correction (incl. the « Materiel »
-  coquille) and the bulk of translation surface lives in SQL and needs the portal export.
+- **D + E remain the bulk unblocker** — every live-site text correction and the bulk of
+  translation surface lives in SQL. ~~needs the portal export~~ *(since 11-12/10: direct
+  DB access from the préprod seat — the « Materiel » coquille was located and fixed this
+  way, see §5).*
 - The **« Materiel » coquille is DB-only** (not in any repo template) — confirmed by negative
-  grep across the Argumentum-app scope.
+  grep across the Argumentum-app scope, then **located (entité 10340) and fixed in préprod
+  on 12/10** (see §5).
 
 ## 7. Gate boundaries
 

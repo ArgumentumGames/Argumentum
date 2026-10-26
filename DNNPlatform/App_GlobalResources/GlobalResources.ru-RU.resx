@@ -1,0 +1,1287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="SyndicateModule.Action" xml:space="preserve">
+    <value>Экспорт в RSS</value>
+  </data>
+  <data name="ExportModule.Action" xml:space="preserve">
+    <value>Экспортировать содержимое</value>
+  </data>
+  <data name="ImportModule.Action" xml:space="preserve">
+    <value>Импорт содержимого</value>
+  </data>
+  <data name="OnlineHelp.Action" xml:space="preserve">
+    <value>Справка онлайн</value>
+  </data>
+  <data name="ModuleHelp.Action" xml:space="preserve">
+    <value>Справка</value>
+  </data>
+  <data name="ModuleSettings.Action" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="DeleteModule.Action" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="PrintModule.Action" xml:space="preserve">
+    <value>Печать</value>
+  </data>
+  <data name="ClearCache.Action" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="MoveTop.Action" xml:space="preserve">
+    <value>Первым</value>
+  </data>
+  <data name="MoveUp.Action" xml:space="preserve">
+    <value>Выше</value>
+  </data>
+  <data name="MoveDown.Action" xml:space="preserve">
+    <value>Ниже</value>
+  </data>
+  <data name="MoveBottom.Action" xml:space="preserve">
+    <value>Последним</value>
+  </data>
+  <data name="MovePane.Action" xml:space="preserve">
+    <value>На</value>
+  </data>
+  <data name="MoveRoot.Action" xml:space="preserve">
+    <value>Переместить</value>
+  </data>
+  <data name="//Admin.String" xml:space="preserve">
+    <value>Админ</value>
+  </data>
+  <data name="//Host.String" xml:space="preserve">
+    <value>Хост</value>
+  </data>
+  <data name="BannerType.Banner.String" xml:space="preserve">
+    <value>Баннер</value>
+  </data>
+  <data name="BannerType.MicroButton.String" xml:space="preserve">
+    <value>Микрокнопка</value>
+  </data>
+  <data name="BannerType.Button.String" xml:space="preserve">
+    <value>Кнопка</value>
+  </data>
+  <data name="BannerType.Block.String" xml:space="preserve">
+    <value>Блок</value>
+  </data>
+  <data name="BannerType.Skyscraper.String" xml:space="preserve">
+    <value>Небоскреб</value>
+  </data>
+  <data name="BannerType.Text.String" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="BannerType.Script.String" xml:space="preserve">
+    <value>Сценарий</value>
+  </data>
+  <data name="View.Permission" xml:space="preserve">
+    <value>Просмотр модуля</value>
+  </data>
+  <data name="Edit.Permission" xml:space="preserve">
+    <value>Редактировать модуль</value>
+  </data>
+  <data name="View Tab.Permission" xml:space="preserve">
+    <value>Просмотр страницы</value>
+  </data>
+  <data name="Edit Tab.Permission" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="View Folder.Permission" xml:space="preserve">
+    <value>Открыть файлы в папке</value>
+  </data>
+  <data name="Write to Folder.Permission" xml:space="preserve">
+    <value>Запись в папку</value>
+  </data>
+  <data name="Browse Folder.Permission" xml:space="preserve">
+    <value>Просмотр содержимого папки</value>
+  </data>
+  <data name="EMAIL_SMTP_TEST_SUBJECT.Text" xml:space="preserve">
+    <value>[Host:HostTitle] Тест конфигурации SMTP от [Portal:PortalName]</value>
+  </data>
+  
+  <data name="EMAIL_PORTAL_SIGNUP_SUBJECT.Text" xml:space="preserve">
+    <value>[Host:HostTitle] Регистрация портала</value>
+  </data>
+  <data name="EMAIL_PORTAL_SIGNUP_BODY.Text" xml:space="preserve">
+    <value>Уважаемый(ая) [User:DisplayName],
+
+Ваш веб-сайт успешно создан. Пожалуйста, внимательно прочтите нижеследующую информацию и сохраните ее в надежном месте для последующего использования.
+
+Веб-адрес сайта: [Portal:URL]
+Имя пользователя:   [Membership:Username]
+Код подтверждения: [User:VerificationCode]
+
+Пожалуйста, найдите возможность посетить данный сайт и ознакомиться с его содержимым, а также с предлагаемыми возможностями и сервисами.
+
+Благодарим Вас за поддержку и сотрудничество...
+
+[Host:HostTitle]
+</value>
+  </data>
+  <data name="MESSAGE_PORTAL_TERMS.Text" xml:space="preserve">
+    <value>&lt;div align="left"&gt;
+        &lt;p align="left"&gt;&lt;strong&gt;ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ:&lt;/strong&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;strong&gt;ИДЕНТИФИКАЦИЯ САЙТА&lt;br&gt;
+&lt;/strong&gt;Следующая информация предоставлена в соответствии со статьёй 6
+Французского закона № 2004-575 от 21 июня 2004 года
+о&lt;br&gt;
+&lt;b&gt;доверии
+к цифровой экономике&lt;/b&gt;&lt;br&gt;
+(&lt;a target="_blank" href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000801164"&gt;Текст
+закона&lt;/a&gt;) &lt;/p&gt;
+&lt;p align="center"&gt;&lt;b&gt;Веб-сайт «Argumentum» издаёт:&lt;/b&gt;&lt;/p&gt;
+&lt;div style="text-align:center;border:1px solid black;"&gt;&lt;em&gt;ARGUMENTUM SAS, 5 B RUE MARTEL, 75010 PARIS 10&lt;/em&gt;&lt;br&gt;
+SIREN: 922020276&lt;br&gt;&lt;/div&gt;
+&lt;p align="center"&gt;&lt;strong&gt;в дальнейшем именуется «Издатель
+сайта»&lt;/strong&gt;&lt;/p&gt;
+&lt;p align="center"&gt;
+(владелец и оператор веб-сайта «Argumentum»)&lt;br&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;b&gt;Веб-сайт «Argumentum» размещается у хостинг-провайдера:&lt;/b&gt;&lt;/p&gt;
+&lt;div style="text-align:center;border:1px solid black;"&gt;&lt;em&gt;MY INTELLIGENCE AGENCY, 5 B RUE MARTEL, 75010 PARIS 10&lt;br&gt;&lt;/em&gt;&lt;/div&gt;
+&lt;p align="center"&gt;&lt;b&gt;в дальнейшем именуется «Хостинг-провайдер»&lt;/b&gt;&lt;/p&gt;
+	&lt;p align="center"&gt;&amp;nbsp;&lt;/p&gt;
+
+&lt;span class="SubHead"&gt;СОГЛАШЕНИЕ МЕЖДУ ПОЛЬЗОВАТЕЛЕМ И [Portal:PortalName]&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+Вебсайт [Portal:PortalName] включает множество веб-страниц, управляемых [Portal:PortalName].&lt;br&gt;&lt;br&gt;
+Вебсайт [Portal:PortalName] предлагается Вам в расчете на Ваше одобрение без изменений ограничений, условий и предупреждений, приведенных в настоящем соглашении.
+Ваше использование вебсайта
+[Portal:PortalName] подтверждает Ваше согласие со всеми ограничениями, 
+условиями, и предупреждениями.&lt;br&gt;&lt;br&gt;
+&lt;span class="SubHead"&gt;ИЗМЕНЕНИЯ НАСТОЯЩИХ УСЛОВИЙ ИСПОЛЬЗОВАНИЯ&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+[Portal:PortalName] 
+Оставляет за собой право изменять ограничения, условия и предупреждения с которыми предлагается [Portal:PortalName], включая, но не ограничивая  расходы, связанные с использованием вебсайта [Portal:PortalName].&lt;br&gt;&lt;br&gt;
+&lt;span class="SubHead"&gt;ССЫЛКИ НА СТОРОННИЕ САЙТЫ&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+Вебсайт [Portal:PortalName] может содержать ссылки на другие вебсайты 
+("Связанные сайты"). [Portal:PortalName] не контролирует связанные сайты и [Portal:PortalName] не отвечает за содержимое любых связанных сайтов, включая ссылки на связанных сайтах или любые изменения или обновления связанных сайтов. 
+[Portal:PortalName] не отвечает за трансляцию или любой способ передачи мультимедиа-контента, полученного с любого связанного сайта. [Portal:PortalName] предоставляет эти ссылки исключительно для Вашего удобства, и включение любых ссылок не означает что [Portal:PortalName] одобряет сайт или любых связанных с ним операторов.&lt;br&gt;&lt;br&gt;
+&lt;span class="SubHead"&gt;НЕ ДОПУСКАЙТЕ ПРОТИВОЗАКОННОГО ИЛИ ЗАПРЕЩЕННОГО ИСПОЛЬЗОВАНИЯ&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+Как условие вашего использования вебсайта 
+[Portal:PortalName], вы гарантируете порталу [Portal:PortalName] что вы не используете  вебсайт [Portal:PortalName] в любых противозаконных целях или целях запрещенных, настоящими ограничениями, условиями и предупреждениями. Запрещено использовать вебсайт
+[Portal:PortalName] любым способом, который может нанести ущерб, вывести из строя, вызывать перегрузку или  ухудшать качество работы вебсайта [Portal:PortalName] или мешать работе других пользователей с вебсайтом [Portal:PortalName]. Запрещается получать или пытаться получать любые материалы или информацию предоставленную не умышленно вебсайтами [Portal:PortalName].&lt;br&gt;&lt;br&gt;
+&lt;span class="SubHead"&gt;ИСПОЛЬЗОВАНИЕ КОММУНИКАЦИОННЫХ СЛУЖБ &lt;/span&gt;&lt;br&gt;&lt;br&gt;
+Вебсайт [Portal:PortalName] может содержать доски объявлений, чаты, группы новостей, форумы, сообщества, персональные веб-страницы, календари и/или другие  коммуникационные средства, разработанные с целью предоставления Вам возможности общаться с группами лиц («Коммуникационные службы»), и Вы согласны использовать коммуникационные службы только для отправки и получения сообщений и материалов, соответствующих и связанных с конкретной коммуникационной службой. Таким образом, например, используя коммуникационные службы вы не должны:
+&lt;br&gt;&lt;br&gt;
+&lt;ul&gt;
+&lt;li&gt;
+Порочить, оскорблять, беспокоить, скрыто преследовать, угрожать или каким-либо другим способом нарушать права 
+(такие, как невмешательство в личную жизнь, или гласность) других лиц.&lt;br&gt;
+&lt;br&gt;
+&lt;li&gt;
+Публиковать, рассылать, загружать, распространять любые недопустимые, грубые, клеветнические, нарушающие чьи либо права, непристойные, неприличные или незаконные темы, слова, материалы и информацию. &lt;br&gt;
+&lt;br&gt;
+&lt;li&gt;
+Загружать файлы, содержащие программное обеспечение или другие материалы, защищенные законами об интеллектуальной собственности (или правом неприкосновенности частной жизни) за исключением случаев, когда Вы являетесь правообладателем или получили все необходимые разрешения.&lt;br&gt;
+&lt;br&gt;
+&lt;li&gt;
+Загружать файлы, содержащие вирусы, поврежденные файлы или любое подобное программное обеспечение, способное нарушить работу других компьютеров.&lt;br&gt;
+&lt;br&gt;
+&lt;li&gt;
+Рекламировать или предлагать продать или купить любые товары или услуги в любых коммерческих целях, за исключением сообщений, специально разрешенных коммуникационной службой. &lt;br&gt;
+&lt;br&gt;
+&lt;li&gt;
+Проводить или рассылать голосования, схемы пирамиды или «письма счастья» (письма, рассылаемые по нескольким адресатам с тем, чтобы получатель разослал его другим адресатам).&lt;br&gt;
+&lt;br&gt;
+&lt;li&gt;
+Загружать любые файлы, размещенные другими пользователями коммуникационной службы, если Вы знаете или предполагаете, что данные файлы не могут законно распространяться.&lt;br&gt;
+&lt;br&gt;
+&lt;li&gt;
+Искажать или удалять любые отметки об авторстве, правовые или другие необходимые предупреждения, обозначения или отметки правообладателя, из исходных материалов программного обеспечения или других материалов, содержащихся в загружаемом файле.&lt;br&gt;
+&lt;br&gt;
+&lt;li&gt;
+Ограничивать или препятствовать использование коммуникационной службы любым пользователям.&lt;br&gt;
+&lt;br&gt;
+&lt;li&gt;
+Нарушать любой код или документы, которые могут потребоваться другим пользователям коммуникационной службы.&lt;br&gt;
+&lt;br&gt;
+&lt;li&gt;
+Собирать информацию о других пользователях, в том числе e-mail адреса, без их согласия.&lt;br&gt;
+&lt;br&gt;
+&lt;li&gt;
+Нарушать любые действующие законы или положения.&lt;/li&gt;
+&lt;/ul&gt;
+[Portal:PortalName] не обязан отслеживать деятельность коммуникационной службы. 
+Тем не менее, [Portal:PortalName] оставляет за собой право просматривать материалы, размещенные в коммуникационной службе и удалять любые материалы на свое усмотрение. 
+[Portal:PortalName] оставляет за собой право прекращать Ваш доступ к любой или всем коммуникационным службам в любое время без уведомления о причине.&lt;br&gt;&lt;br&gt;
+[Portal:PortalName] оставляет за собой право в любое время раскрыть любую требующуюся информацию, необходимую для удовлетворения действующих законов, положений, судебных или правительственных запросов, или редактировать, размещать или удалять любую информацию или материалы частично или в полном объеме на усмотрение  [Portal:PortalName]. &lt;br&gt;&lt;br&gt;
+Всегда используйте предупреждения, при распространении любой персональной информации о себе или о своих детях в любой коммуникационной службе.
+[Portal:PortalName] не контролирует и не подтверждает содержимое сообщений, или информации, найденной в любой коммуникационной службе, поэтому, 
+[Portal:PortalName] снимает с себя любую ответственность за коммуникационные службы и любым последствиям, наступившим в результате Вашего участия в любой коммуникационной службе. Управляющие и поставщики хостинга не авторизованы представители портала [Portal:PortalName], и их точки зрения не являются выражением мнения [Portal:PortalName].&lt;br&gt;&lt;br&gt;
+Материалы, загруженные в коммуникационную службу могут быть подчинены ограничениям на использования, передачи и/или распространения. Вы несете ответственность за следование подобным ограничениям, если вы загружаете себе эти материалы.&lt;br&gt;&lt;br&gt; 
+&lt;span class="SubHead"&gt;МАТЕРИАЛЫ, ПРЕДОСТАВЛНЕННЫЕ ПОРТАЛУ [Portal:PortalName] ИЛИ РАЗМЕЩЕННЫЕ НА ЛЮБОМ ВЕБСАЙТЕ ПОРТАЛА [Portal:PortalName] &lt;/span&gt;&lt;br&gt;&lt;br&gt;
+[Portal:PortalName] не требует прав владения на материалы, которые Вы предоставляете порталу [Portal:PortalName] (включая обратную связь и подсказки) или отправка, загрузка, ввод или заполнение в любом вебсайте [Portal:PortalName] или его службе (далее "Представление"). Тем не менее, размещая, загружая, вводя, предоставляя или заполняя ваше Представление, Вы учитываете [Portal:PortalName], его дочерние подразделения и необходимость сублицензирования разрешений использования Вашего Представления в том числе, в связи с операциями в их Интернет-деятельности, без ограничений на права копирования, распространения, передачи, публичного показа, публичного исполнения, репродукции, редактирования, перевода и переформатирования Вашего Представления; и публикации Вашего имени в связи с Вашим Представлением.&lt;br&gt;&lt;br&gt; 
+За использование Вашего Представления компенсация не предусмотрена. [Portal:PortalName] не имеет обязательств размещения или использования любого Представления, которое Вы можете предоставить и может удалить любое Представление в любое время на усмотрение [Portal:PortalName].&lt;br&gt;&lt;br&gt;
+Отправляя, загружая, вводя, предоставляя или заполняя ваше Представление Вы гарантируете и показываете, что вы являетесь владельцем или контролируете все права на Ваше представление как описано в данном разделе, без ограничений, имея все необходимые права: предоставлять, отправлять, загружать, вводить, заполнять Представление.&lt;br&gt;&lt;br&gt;
+&lt;span class="SubHead"&gt;ОТКАЗ ОТ ОБЯЗАТЕЛЬСТВ&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+ИНФОРМАЦИЯ, ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ, ПРОДУКТЫ И ВКЛЮЧЕННЫЕ ИЛИ ДОСТУПНЫЕ СЛУЖБЫ ЧЕРЕЗ ВЕБ САЙТ [Portal:PortalName] МОГУТ СОДЕРЖАТЬ НЕТОЧНОСТИ ИЛИ ОПЕЧАТКИ. В ДАННУЮ ИНФОРМАЦИЮ ПЕРИОДИЧЕСКИ ВНОСЯТСЯ ИЗМЕНЕНИЯ. [Portal:PortalName] И/ИЛИ ЕГО ПОСТАВЩИКИ МОГУТ ВНОСИТЬ УЛУЧШЕНИЯ И/ИЛИ ИЗМЕНЕНИЯ В ВЕБСАЙТЕ [Portal:PortalName] В ЛЮБОЕ ВРЕМЯ. РЕКОМЕНДАЦИИ, ПОЛУЧЕННЫЕ ЧЕРЕЗ ВЕБСАЙТ [Portal:PortalName] НЕ ДОЛЖНЫ ЗАВИСЕТЬ ОТ ЛИЧНОГО, МЕДИЦИНСКОГО, ЮРИДИЧЕСКОГО ИЛИ ФИНАНСОВОГО РЕШЕНИЯ И ВЫ ДОЛЖНЫ КОНСУЛЬТИРОВАТЬСЯ С СООТВЕТСТВУЮЩИМ ПРОФЕССИОНАЛОМ В ВАШЕЙ КОНКРЕТНОЙ СИТУАЦИИ.&lt;br&gt;&lt;br&gt; 
+[Portal:PortalName] И/ИЛИ ЕГО ПОСТАВЩИКИ НЕ ПРИНИМАЮТ ЖАЛОБ О ИСПРАВНОСТИ, НАДЕЖНОСТИ, ДОСТУПНОСТИ, СВОЕВРЕМЕННОСТИ И ТОЧНОСТИ ИНФОРМАЦИИ, ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ, ПРОДУКТОВ, СЛУЖБ И ГРАФИЧЕСКОГО МАТЕРИАЛА НА ВЕБСАЙТЕ [Portal:PortalName] ДЛЯ ЛЮБЫХ ЦЕЛЕЙ. ДЛЯ МАКСИМАЛЬНОГО УВЕЛИЧЕНИЯ РАЗРЕШЕНИЙ ДЕЙСТВУЮЩИМ ЗАКОНОДАТЕЛЬСТВОМ, ИНФОРМАЦИЯ, ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ, ПРОДУКТЫ, СЛУЖБЫ И СООТВЕТСТВУЮЩИЕ ИМ ГРАФИЧЕСКИЕ МАТЕРИАЛЫ РАСПРОСТРАНЯЮТСЯ ПО ПРИНЦИПУ «КАК ЕСТЬ» («AS IS») БЕЗ КАКИХ ЛИБО ГАРАНТИЙ.
+[Portal:PortalName] И/ИЛИ ЕГО ПОСТАВЩИКИ ОТРИЦАЮТ ВСЕ ГАРАНТИИ И УСЛОВИЯ СЧИТАЯ ЭТУ ИНФОРМАЦИЮ, ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ, ПРОДУКТЫ, СЛУЖБЫ И СООТВЕТСТВУЮЩИЕ ИМ ГРАФИЧЕСКИЕ МАТЕРИАЛЫ, ВКЛЮЧАЯ ВСЕ ПРЕДПОЛАГАЕМЫЕ ГАРАНТИИ ИЛИ УСЛОВИЯ ТОВАРНОЙ ПРИГОДНОСТИ, СООТВЕТСТВИЯ РАЗЛИЧНЫМ ЦЕЛЯМ, НЕОТЪЕМЛЕМОЙ СОБСТВЕННОСТЬЮ. &lt;br&gt;&lt;br&gt; 
+ДЛЯ МАКСИМАЛЬНОГО УВЕЛИЧЕНИЯ РАЗРЕШЕНИЙ ДЕЙСТВУЮЩИМ ЗАКОНОДАТЕЛЬСТВОМ [Portal:PortalName] И/ИЛИ ЕГО ПОСТАВЩИКИ НИ В КОЕМ СЛУЧАЕ НЕ БУДУТ ОТВЕЧАТЬ ЗА ЛЮБОЕ НАПРАВЛЕННОЕ И НЕНАПРАВЛЕННОЕ, СВЯЗАННЫЙ С ПРИМЕНЕНИЕМ НАКАЗАНИЯ, СЛУЧАЙНЫЙ, СПЕЦИАЛЬНЫЙ, КОСВЕННЫЕ ПОВРЕЖДЕНИЯ ИЛИ ЛЮБЫЕ ПОВРЕЖДЕНИЯ, СВЯЗАННЫЕ С ПОТЕРЕЙ ДАННЫХ, ПОТЕРИ ПРИБЫЛИ, ЯВЛЯЮЩИЕСЯ РЕЗУЛЬТАТОМ ИСПОЛЬЗОВАНИЯ РЕСУРСОВ ВЕБСАЙТА [Portal:PortalName], СВЯЗАННЫЕ С ЗАДЕРЖКАМИ ИЛИ НЕДОСТУПНОСТЬЮ ВЕБСАЙТА [Portal:PortalName] ИЛИ СВЯЗАННЫХ С НИМ СЛУЖБ, ПРЕДОСТАВЛЕНИЕ ИЛИ ОШИБКИ ПРЕДОСТАВЛЕНИЯ УСЛУГ, ИЛИ ЛЮБОЙ ИНФОРМАЦИИ, ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ, ПРОДУКЦИИ, СЛУЖБ И СОПУТСТВУЮЩИХ ГРАФИЧЕСКИХ МАТЕРИАЛОВ, ПОЛУЧЕННЫХ ЧЕРЕЗ ВЕБСАЙТ [Portal:PortalName], или же выход за пределы использования вебсайта [Portal:PortalName], НА ОСНОВЕ ПРОЧИХ ОБЯЗАТЕЛЬСТВ, ГРАЖДАНСКОГО ПРАВОНАРУШЕНИЯ, ХАЛАТНОСТИ, ДАЖЕ ЕСЛИ [Portal:PortalName] ИЛИ ЛЮБОЙ ИЗ ЕГО ПОСТАВЩИКОВ БЫЛ УВЕДОМЛЕН О ВОЗМОЖНОСТИ ПОВРЕЖДЕНИЙ. ПОСКОЛЬКУ В НЕКОТОРЫХ ГОСУДАРСТВАХ НЕ РАЗРЕШЕНО ИСКЛЮЧЕНИЕ ИЛИ ОГРАНИЧЕНИЕ ОТВЕТСТВЕННОСТИ ЗА КОСВЕННЫЙ ИЛИ НЕУМЫШЛЕННЫЙ УЩЕРБ, ВЫШЕПРИВЕДЕННОЕ ОГРАНИЧЕНИЕ МОЖЕТ ВАМ НЕ ПОДХОДИТЬ. ЕСЛИ ВЫ НЕУДОВЛЕТВОРЕНЫ ЛЮБОЙ ЧАСТЬЮ ВЕБСАЙТА [Portal:PortalName], ИЛИ ЛЮБЫМИ ОГРАНИЧЕНИЯМИ ИСПОЛЬЗОВАНИЯ, ВЫ МОЖЕТЕ ПРЕКРАТИТЬ ИСПОЛЬЗОВАНИЕ ВЕБСАЙТА [Portal:PortalName].&lt;br&gt;&lt;br&gt; 
+АДРЕС СЛУЖБЫ ПОДДЕРЖКИ: [Portal:Email]&lt;br&gt;&lt;br&gt;
+&lt;span class="SubHead"&gt;ПРЕКРАЩЕНИЕ/ЗАПРЕТ ДОСТУПА&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+[Portal:PortalName] оставляет за собой право на свое усмотрение прекращать Ваш доступ к вебсайту [Portal:PortalName]  и связанным с ним службам или любым его частям в любое время без предупреждения. ГЛАВНОЕ Для максимального увеличения разрешений действующим законодательством, настоящее соглашение подчиняется законодательству штата Вашингтон, США и Вы, таким образом, соглашаетесь на эксклюзивную юрисдикцию графства Вашингтон, США во всех проистекающих спорах или касающийся использования вебсайта  [Portal:PortalName]. Использование вебсайта 
+[Portal:PortalName] является неправомочным в любой юрисдикции, которая не дает эффект всем условиям этих ограничений и условий, включая без ограничения этот параграф. Вы соглашаетесь, что между Вами и [Portal:PortalName] не существуют никакого совместного предприятия, партнерства, или отношения агентства как результат настоящего соглашения или использования вебсайта [Portal:PortalName]. 
+Работа [Portal:PortalName] в соответствие с настоящим соглашением, подчинена действующему законодательству, и ни один из пунктов этого соглашения не ущемляет прав [Portal:PortalName] предоставлять по судебному или правительственному запросу информацию, касающуюся Вашего использования вебсайта [Portal:PortalName] или информации, собранной [Portal:PortalName] за время использования. Если любая часть настоящего соглашения недействительна или невыполнима с точки зрения действующего законодательства, но также не ограничивают отказ от гарантий и ограничений обязательств, описанные выше, недействительные положения будут считаться замененными действительными положениями, наиболее близкими к оригинальным. За исключением противоположного, описанного выше, настоящее соглашение составляет целое соглашение между пользователем и [Portal:PortalName] и касается вебсайта [Portal:PortalName] и замещает все предыдущие другие электронные, устные и письменные соглашения между пользователем и [Portal:PortalName] по отношению к вебсайту [Portal:PortalName]. Печатная версия настоящего соглашения и любого предупреждения, изложенного в электронной форме будут приемлемы в юридическом и административном судебном иске, основанном на отношении настоящего соглашения в той же степени и предмет собственности в том же состоянии как другие деловые документы и записи, сформированные в печатной форме. Выражается пожелание к сторонам о том, что это соглашение и все связанные документы быть составленным на английском языке. &lt;br&gt;&lt;br&gt;
+&lt;span class="SubHead"&gt;ПРЕДУПРЕЖДЕНИЯ ОБ АВТОРСКИХ ПРАВАХ И ТОРГОВЫХ МАРКАХ:&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+Все содержимое вебсайта [Portal:PortalName] является: 
+[Portal:FooterText] и/или его поставщиков. Все права защищены.&lt;br&gt;&lt;br&gt;
+&lt;span class="SubHead"&gt;ТОРГОВЫЕ МАРКИ&lt;/span&gt;&lt;br&gt;&lt;br&gt; 
+Имена настоящих компаний и продуктов, упомянутые выше могут быть торговыми марками соответствующих им владельцев. &lt;br&gt;&lt;br&gt;
+Все имена компаний, организаций, продуктов людей и событий, изображенных выше выдуманы. Сходства с любыми реальными компаниями, организациями, продуктами, людьми или событиями случайны.&lt;br&gt;&lt;br&gt;
+Любые права, неявно оговоренные выше, защищены&lt;br&gt;&lt;br&gt;
+&lt;span class="SubHead"&gt;УВЕДОМЛЕНИЯ И ПРОЦЕДУРА ЖАЛОБ О НАРУШЕНИИ АВТОРСКИХ ПРАВ&lt;/span&gt;&lt;br&gt;&lt;br&gt;
+В соответствии со Статьей 17, Кодексом Соединенных Штатов, Секция 512 (c) (2), уведомления о нарушениях авторских прав на территории США должны быть отправлены выделенному агенту поставщика услуг Интернета.
+НА ВСЕ ЗАПРОСЫ, НЕ ОТНОСЯЩИЕСЯ К СЛЕДУЮЩЕЙ ПРОЦЕДУРЕ НЕ БУДЕТ ОТВЕТА. См. Уведомления и Процедура подачи жалоб о нарушении авторских прав.
+&lt;/span&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;/div&gt;</value>
+  </data>
+  <data name="EMAIL_USER_REGISTRATION_ADMINISTRATOR_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Регистрация нового пользователя</value>
+  </data>
+  <data name="EMAIL_USER_REGISTRATION_ADMINISTRATOR_BODY.Text" xml:space="preserve">
+    <value>Дата: [Date:Current]
+Отображаемое имя: [User:DisplayName]
+Адрес эл. почты: [User:Email]
+</value>
+  </data>
+  <data name="EMAIL_USER_REGISTRATION_PRIVATE_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Регистрация нового пользователя</value>
+  </data>
+  <data name="EMAIL_USER_REGISTRATION_PRIVATE_BODY.Text" xml:space="preserve">
+    <value>Уважаемый(ая) [User:FullName],
+
+Благодарим Вас за регистрацию на веб-сайте [Portal:PortalName]. Пожалуйста, внимательно прочтите нижеследующую информацию и сохраните ее в надежном месте для последующего использования.
+
+Веб-адрес сайта: [Portal:URL]
+Имя пользователя: [Membership:UserName]
+
+Ваши учетные данные будут в ближайшее время рассмотрены администратором сайта, и Вы получите дополнительное уведомление об открытии доступа к сайту.
+
+Благодарим Вас за поддержку и сотрудничество...
+
+[Portal:PortalName]
+</value>
+  </data>
+  
+  <data name="EMAIL_ROLE_ASSIGNMENT_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Обновление учетных данных</value>
+  </data>
+  <data name="EMAIL_ROLE_ASSIGNMENT_BODY.Text" xml:space="preserve">
+    <value>Уважаемый(ая) [User:DisplayName],
+
+Ваша учетная запись на сайте [Portal:PortalName] была только что обновлена для предоставления Вам доступа к возможностям следующей роли безопасности:
+
+Роль: [Custom:0]
+Описание: [Custom:1]
+Дата начала: [Custom:2]
+Дата окончания: [Custom:3]
+
+Благодарим Вас за поддержку и сотрудничество...
+[Portal:PortalName]
+</value>
+  </data>
+  <data name="EMAIL_ROLE_UNASSIGNMENT_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Обновление учетных данных</value>
+  </data>
+  <data name="EMAIL_ROLE_UNASSIGNMENT_BODY.Text" xml:space="preserve">
+    <value>Уважаемый(ая) [User:DisplayName],
+
+Ваша учетная запись на сайте [Portal:PortalName] была только что обновлена для прекращения Вашего доступа к возможностям следующей роли безопасности:
+
+Роль: [Custom:0]
+Описание: [Custom:1]
+
+Благодарим Вас за поддержку и сотрудничество...
+[Portal:PortalName]
+</value>
+  </data>
+  
+  <data name="MESSAGE_RETRIEVEPASSWORD_INSTRUCTIONS.Text" xml:space="preserve">
+    <value>Чтобы восстановить ваш пароль, Вы должны ввести ваше имя пользователя, а также
+			ответ на секретный вопрос о пароле.	
+		</value>
+  </data>
+  <data name="EMAIL_PASSWORD_REMINDER_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Восстановление утерянного пароля</value>
+  </data>
+  <data name="EMAIL_PASSWORD_REMINDER_BODY.Text" xml:space="preserve">
+    <value>Уважаемый(ая) [Profile:DisplayName],
+
+Вы (или кто-то от Вашего имени) запросили сервис восстановления утерянного пароля на сайте [Portal:PortalName].
+
+Пожалуйста, выполните вход на сайт с использованием следующих данных:
+
+Веб-адрес сайта: [Portal:URL]
+Имя пользователя: [User:Username]
+
+Ссылка для сброса пароля: [Portal:PASSWORDREMINDERURL]?ctl=PasswordReset&amp;resetToken=[Membership:PasswordResetToken]
+
+С уважением,
+[Portal:PortalName]
+
+*Примечание: Если Вы не запрашивали восстановление пароля, просто проигнорируйте данное сообщение.
+</value>
+  </data>
+  <data name="EMAIL_USER_AUTHORIZED_SUBJECT.Text" xml:space="preserve">
+    <value>Регистрация была одобрена для сайта [Portal:URL]</value>
+  </data>
+  <data name="EMAIL_USER_AUTHORIZED_BODY.Text" xml:space="preserve">
+    <value>Уважаемый [User:DisplayName],
+
+Благодарим вас за регистрацию на [Portal:PortalName]. Ваша регистрация была одобрена и теперь ваша учетная запись активна.
+
+Адрес веб-сайта: [Portal:URL]
+Имя пользователя: [User:UserName]
+
+Спасибо, мы ценим вашу поддержку.
+
+[Portal:PortalName]
+    </value>
+  </data>
+  <data name="EMAIL_PROFILE_UPDATED_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Оповещение об обновлении профиля</value>
+  </data>
+  <data name="EMAIL_PROFILE_UPDATED_BODY.Text" xml:space="preserve">
+    <value>Уважаемый(ая) [Profile:DisplayName],
+
+Ваш профиль на сайте портала [Portal:PortalName] был успешно обновлен.
+
+С уважением,
+[Portal:PortalName]
+</value>
+  </data>
+  <data name="EMAIL_USER_UNREGISTER_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Удаление регистрации пользователя</value>
+  </data>
+  <data name="EMAIL_USER_UNREGISTER_BODY.Text" xml:space="preserve">
+    <value>Дата: [Date:Current]
+Имя: [Profile:FirstName]
+Фамилия: [Profile:LastName]
+Дом: [Profile:Unit]
+Улица: [Profile:Street]
+Город: [Profile:City]
+Регион: [Profile:Region]
+Страна: [Profile:Country]
+Почтовый индекс: [Profile:PostalCode]
+Телефон: [Profile:Telephone]
+Адрес эл. почты: [User:Email]
+		</value>
+  </data>
+  <data name="EMAIL_USER_REGISTRATION_VERIFIED_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Регистрация нового пользователя</value>
+  </data>
+  <data name="EMAIL_USER_REGISTRATION_VERIFIED_BODY.Text" xml:space="preserve">
+    <value>Уважаемый(ая) [User:DisplayName],
+
+Мы рады сообщить, что вы были добавлены в качестве зарегистрированного пользователя на сайте [Portal:PortalName]. Пожалуйста, внимательно прочтите следующую информацию и не забудьте сохранить это сообщение в безопасном месте для будущего использования.
+
+Адрес сайта: [Portal:URL]
+Имя пользователя: [User:UserName]
+
+Вы можете использовать следующую ссылку для завершения регистрации:
+
+[Portal:FULLURL]/default.aspx?ctl=Login&amp;username=[Custom:0]&amp;verificationcode=[Custom:1]
+
+Спасибо за вашу поддержку...
+
+[Portal:PortalName]
+
+    </value>
+  </data>
+  <data name="EMAIL_USER_REGISTRATION_PUBLIC_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Регистрация нового пользователя</value>
+  </data>
+  <data name="EMAIL_USER_REGISTRATION_PUBLIC_BODY.Text" xml:space="preserve">
+    <value>Уважаемый(ая) [User:DisplayName],
+
+Мы рады сообщить, что вы были добавлены в качестве зарегистрированного пользователя на [Portal:PortalName]. Пожалуйста, внимательно прочтите следующую информацию и не забудьте сохранить это сообщение в безопасном месте для будущего использования.
+
+Адрес сайта портала: [Portal:URL]
+Имя пользователя: [User:UserName]
+
+Если Вы не знаете или не можете запомнить Ваш пароль, пожалуйста, перейдите по ссылке [Portal:FULLURL]/default.aspx?ctl=PasswordReset&amp;resetToken=[Membership:PasswordResetToken], чтобы сбросить его.
+Спасибо, мы ценим вашу поддержку...
+
+[Portal:PortalName]
+
+</value>
+  </data>
+  <data name="EMAIL_AFFILIATE_NOTIFICATION_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Уведомление партнерской программы</value>
+  </data>
+  <data name="EMAIL_AFFILIATE_NOTIFICATION_BODY.Text" xml:space="preserve">
+    <value>Уважаемый(ая) [Custom:0],
+
+Ваша учетная запись для участия в партнерской программе на сайте[Portal:PortalName] успешно создана.
+
+Для того, чтобы начать зарабатывать бонусы, используйте следующий URL для ссылки на наш сайт:
+
+[Custom:1]
+
+Спасибо,
+[Portal:PortalName]
+</value>
+  </data>
+  <data name="EMAIL_BANNER_NOTIFICATION_BODY.Text" xml:space="preserve">
+    <value>Баннер: [Custom:0]
+Описание: [Custom:1]
+Изображение: [Custom:2]
+Цена за тысячу показов/Цена: [Custom:3]
+Впечатления: [Custom:4]
+Начало: [Custom:5]
+Окончание: [Custom:6]
+Показов: [Custom:7]
+Переходов: [Custom:8]</value>
+  </data>
+  
+  <data name="EMAIL_VENDOR_REGISTRATION_ADMINISTRATOR_BODY.Text" xml:space="preserve">
+    <value>Дата: [Custom:0]
+Поставщик: [Custom:1]
+Имя: [Custom:2]
+Фамилия: [Custom:3]
+Офис/квартира: [Custom:4]
+Улица: [Custom:5]
+Город: [Custom:6]
+Регион: [Custom:7]
+Страна: [Custom:8]
+Почтовый индекс: [Custom:9]
+Телефон: [Custom:10]
+Факс: [Custom:11]
+Мобильный телефон: [Custom:12]
+Адрес эл. почты: [Custom:13]
+Веб-сайт: [Custom:14]</value>
+  </data>
+  <data name="EMAIL_VENDOR_REGISTRATION_ADMINISTRATOR_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Заявление от поставщика</value>
+  </data>
+  <data name="EMAIL_VENDOR_REGISTRATION_BODY.Text" xml:space="preserve">
+    <value>Уважаемый(ая) [Custom:0] [Custom:1],
+
+ [Custom:2], был успешно зарегистрирован на [Portal:PortalName].
+
+ Благодарим Вас,
+
+ [Portal:PortalName]</value>
+  </data>
+  <data name="EMAIL_VENDOR_REGISTRATION_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Заявление от поставщика</value>
+  </data>
+  <data name="EMAIL_USER_LOCKOUT_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Предупреждение о блокировке аккаунта</value>
+  </data>
+  <data name="EMAIL_USER_LOCKOUT_BODY.Text" xml:space="preserve">
+    <value>Была сделана попытка использовать заблокированную пользовательскую запись(username: [Custom:0]) в  [Date:Current]. Вы можете позже изучить это подробнее...
+
+Благодарим Вас,
+[Portal:PortalName]
+</value>
+  </data>
+  
+  
+  
+  <data name="Error.Text" xml:space="preserve">
+    <value>Произошла ошибка.</value>
+  </data>
+  <data name="EMAIL_BulkMailConf_Subject.Text" xml:space="preserve">
+    <value>Отчет от рассылке для '{0}'.</value>
+  </data>
+  <data name="EMAIL_BulkMailConf_Html_Body.Text" xml:space="preserve">
+    <value>&lt;h1&gt;Отчет по рассылке&lt;/h1&gt;
+Операция начата в: [Custom:0]&lt;br /&gt;
+Получатели: [Custom:1]&lt;br /&gt;
+Сообщений: [Custom:2]&lt;br /&gt;
+Операция выполнена: [Custom:3]&lt;br /&gt;
+[Custom:4|Количество ошибок:{0}&lt;br /&gt;]
+&lt;br /&gt;
+Отчет: &lt;br /&gt;
+&lt;pre&gt;[Custom:5]&lt;/pre&gt;
+[Custom:6|&lt;hr /&gt;&lt;strong&gt;Получатели:&lt;/strong&gt;&lt;br /&gt;{0}]</value>
+  </data>
+  <data name="EMAIL_BulkMailConf_Text_Body.Text" xml:space="preserve">
+    <value>Операция начата в: [Custom:0]
+Получатели: [Custom:1]
+Сообщения: [Custom:2]
+Операция выполнена: [Custom:3]
+
+[Custom:4|Количество ошибок: {0}
+]Отчет о состоянии:
+[Custom:5]
+--------------------------------
+[Custom:6|Адресаты:
+===========
+{0}]</value>
+  </data>
+  <data name="NoErrorsSending.Text" xml:space="preserve">
+    <value>Ошибок при отправке не произошло.</value>
+  </data>
+  <data name="Return.Text" xml:space="preserve">
+    <value>Вернуться на сайт</value>
+  </data>
+  <data name="UnhandledError.Text" xml:space="preserve">
+    <value>Произошла непредвиденная ошибка.</value>
+  </data>
+  <data name="TokenReplaceUnknownObject.Text" xml:space="preserve">
+    <value>Ошибка доступа к [{0}:{1}], {0} неизвестный признак объектного источника.</value>
+  </data>
+  <data name="TokenReplaceRestrictedProperty.Text" xml:space="preserve">
+    <value>Ошибка доступа к [{0}:{1}], доступ к {1} ограничен источником данных {0}.</value>
+  </data>
+  <data name="TokenReplaceUnknownProperty.Text" xml:space="preserve">
+    <value>Ошибка доступа к [{0}:{1}], {1} неизвестнен в источнике данных {0}.</value>
+  </data>
+  <data name="Can Deploy.Permission" xml:space="preserve">
+    <value>Развернуть модуль</value>
+  </data>
+  <data name="Authentication.String" xml:space="preserve">
+    <value>Аутентификация</value>
+  </data>
+  
+  <data name="SkinLoadError.Text" xml:space="preserve">
+    <value>Не удается загрузить тему: {0},  Ошибка: {1}&lt;br/&gt;</value>
+  </data>
+  <data name="EMAIL_ROLE_UPDATE_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Обновление учетных данных</value>
+  </data>
+  <data name="EMAIL_ROLE_UPDATE_BODY.Text" xml:space="preserve">
+    <value>Уважаемый(ая) [User:DisplayName],
+
+Ваша учетная запись на сайте [Portal:PortalName] была обновлена в целях изменения доступа к следующей роли безопасности:
+
+Роль: [Custom:0]
+Описание: [Custom:1]
+Дата начала: [Custom:2]
+Дата окончания: [Custom:3]
+
+Спасибо за Вашу поддержку и участие...
+[Portal:PortalName]
+</value>
+  </data>
+  <data name="PurgeCacheUnsupported.Text" xml:space="preserve">
+    <value>Данный поставщик кеширования не требует наличия возможности PurgeCache.</value>
+  </data>
+  <data name="NoLoginControl.Text" xml:space="preserve">
+    <value>Вы были перенаправлены на страницу входа по умолчанию, потому что заданная для этого веб-сайта страница входа в систему не содержит действующего модуля входа с помощью учетных записей DNN, или разрешения для него были заданы неправильно.</value>
+  </data>
+  <data name="EMAIL_USER_UPDATED_OWN_PASSWORD_BODY.Text" xml:space="preserve">
+    <value>Dear [User:DisplayName],
+You have changed your Password on [Portal:PortalName].
+Please login using the following information:
+Portal Website Address: [Portal:URL]
+Username:   [User:Username]
+Password: [Membership:Password]
+Sincerely,
+[Portal:PortalName]</value>
+  </data>
+  <data name="EMAIL_USER_UPDATED_OWN_PASSWORD_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Пароль обновлен</value>
+  </data>
+  <data name="ViewSource.Action" xml:space="preserve">
+    <value>Разработка</value>
+  </data>
+  <data name="EnglishName.Text" xml:space="preserve">
+    <value>Имя на английском</value>
+  </data>
+  <data name="NativeName.Text" xml:space="preserve">
+    <value>Имя на родном языке</value>
+  </data>
+  <data name="NeutralCulture.Text" xml:space="preserve">
+    <value>Нейтральная культура</value>
+  </data>
+  <data name="DeLocalize.Action" xml:space="preserve">
+    <value>Делокализовать</value>
+  </data>
+  <data name="Localize.Action" xml:space="preserve">
+    <value>Локализовать</value>
+  </data>
+  <data name="Translate.Action" xml:space="preserve">
+    <value>Пометить как переведнный</value>
+  </data>
+  <data name="UnTranslate.Action" xml:space="preserve">
+    <value>Отметить как не переведенное</value>
+  </data>
+  <data name="SearchCrawler Admin.String" xml:space="preserve">
+    <value>Управления поиском</value>
+  </data>
+  <data name="Manage.Text" xml:space="preserve">
+    <value>Управление</value>
+  </data>
+  <data name="ModuleGenericActions.Action" xml:space="preserve">
+    <value>Админ</value>
+  </data>
+  <data name="ModuleSpecificActions.Action" xml:space="preserve">
+    <value>Редактировать</value>
+  </data>
+  <data name="//AboutUs.String" xml:space="preserve">
+    <value>О нас</value>
+  </data>
+  <data name="//Home.String" xml:space="preserve">
+    <value>Главная</value>
+  </data>
+  <data name="//Host//HTMLEditorManager.String" xml:space="preserve">
+    <value>Диспетчер настроек редактора HTML</value>
+  </data>
+  <data name="//SearchResults.String" xml:space="preserve">
+    <value>Результаты поиска</value>
+  </data>
+  <data name="//UserProfile.String" xml:space="preserve">
+    <value>Профиль пользователя</value>
+  </data>
+  <data name="EMAIL_BulkMailStart_Body.Text" xml:space="preserve">
+    <value>Пользователь {1} отправил рассылку '{0}' {2} адресатам. Пожалуйста, проверьте отчет об отправке на предмет сбоев доставки и папку Входящие на предмет возвращенных писем.</value>
+  </data>
+  <data name="EMAIL_BulkMailStart_Subject.Text" xml:space="preserve">
+    <value>Рассылка '{0}' отправлена</value>
+  </data>
+  <data name="//NewsPromotions.String" xml:space="preserve">
+    <value>Новости и реклама</value>
+  </data>
+  <data name="//OurProducts.String" xml:space="preserve">
+    <value>Наши продукты</value>
+  </data>
+  <data name="//Modules.Text" xml:space="preserve">
+    <value>Модули</value>
+  </data>
+  <data name="//Pages.Text" xml:space="preserve">
+    <value>Страницы</value>
+  </data>
+  <data name="//Tools.Text" xml:space="preserve">
+    <value>Инструменты</value>
+  </data>
+  <data name="RelationshipType_Added.Text" xml:space="preserve">
+    <value>Добавлено RelationshipType {0}</value>
+  </data>
+  <data name="RelationshipType_Deleted.Text" xml:space="preserve">
+    <value>Удалено RelationshipType {0} : ID {1}</value>
+  </data>
+  <data name="RelationshipType_Updated.Text" xml:space="preserve">
+    <value>Обновлено RelationshipType {0}</value>
+  </data>
+  <data name="Relationship_Added.Text" xml:space="preserve">
+    <value>Добавлено отношение {0}</value>
+  </data>
+  <data name="Relationship_Deleted.Text" xml:space="preserve">
+    <value>Удалено отношение {0} : ID {1}</value>
+  </data>
+  <data name="Relationship_Updated.Text" xml:space="preserve">
+    <value>Обновлено отношение {0}</value>
+  </data>
+  <data name="UserRelationshipPreference_Added.Text" xml:space="preserve">
+    <value>Добавлено UserRelationshipPreference ID {0} для User ID {1} и Relationship ID {2}</value>
+  </data>
+  <data name="UserRelationshipPreference_Deleted.Text" xml:space="preserve">
+    <value>Удалено UserRelationshipPreference ID {0} для User ID {1} и Relationship ID {2}</value>
+  </data>
+  <data name="UserRelationshipPreference_Updated.Text" xml:space="preserve">
+    <value>Обновлено UserRelationshipPreference ID {0} для User ID {1} и Relationship ID {2}</value>
+  </data>
+  <data name="UserRelationship_Added.Text" xml:space="preserve">
+    <value>Добавлено UserRelationship ID {0} для UserID {1}, RelatedUserID {2}</value>
+  </data>
+  <data name="UserRelationship_Deleted.Text" xml:space="preserve">
+    <value>Удалено UserRelationship ID {0} для UserID {1}, RelatedUserID {2}</value>
+  </data>
+  <data name="UserRelationship_Updated.Text" xml:space="preserve">
+    <value>Обновлено UserRelationship ID {0} для UserID {1}, RelatedUserID {2}</value>
+  </data>
+  <data name="AddFriendRequestSubject.Text" xml:space="preserve">
+    <value>{0} предлагает дружить</value>
+  </data>
+  <data name="AddFriendRequestBody.Text" xml:space="preserve">
+    <value>{0} предлагает Вам дружить</value>
+  </data>
+  <data name="AddFollowerRequestSubject.Text" xml:space="preserve">
+    <value>{0} теперь следует за Вами</value>
+  </data>
+  <data name="AddFollowerRequestBody.Text" xml:space="preserve">
+    <value>Теперь {0} следует за Вами</value>
+  </data>
+  <data name="//ActivityFeed.String" xml:space="preserve">
+    <value>Журнал активности</value>
+  </data>
+  <data name="//ActivityFeed//Friends.String" xml:space="preserve">
+    <value>Друзья</value>
+  </data>
+  <data name="//ActivityFeed//Messages.String" xml:space="preserve">
+    <value>Сообщений</value>
+  </data>
+  <data name="//ActivityFeed//MyProfile.String" xml:space="preserve">
+    <value>Мой профиль</value>
+  </data>
+  <data name="EMAIL_SUBJECT_FORMAT.Text" xml:space="preserve">
+    <value>Новое сообщение от {0}</value>
+  </data>
+  <data name="EMAIL_BODY_FORMAT.Text" xml:space="preserve">
+    <value>Тема: {0}
+
+{1}
+
+Пожалуйста, не отвечайте на это письмо.</value>
+  </data>
+  <data name="PortalLinks.Text" xml:space="preserve">
+    <value>Ссылки на порталы</value>
+  </data>
+  <data name="LogClicks.Text" xml:space="preserve">
+    <value>Отслеживать пользователя, дату и время клика</value>
+  </data>
+  <data name="TrackClicks.Text" xml:space="preserve">
+    <value>Отслеживать количество кликов</value>
+  </data>
+  <data name="ApplicationUpgrades.Text" xml:space="preserve">
+    <value>Обновления приложений</value>
+  </data>
+  <data name="GeneralUpgrades.Text" xml:space="preserve">
+    <value>Выполняем общее обновление</value>
+  </data>
+  <data name="ExecutingScript.Text" xml:space="preserve">
+    <value>Исполняем сценарий</value>
+  </data>
+  <data name="LogStart.Text" xml:space="preserve">
+    <value>Начало </value>
+  </data>
+  <data name="LogEnd.Text" xml:space="preserve">
+    <value>Конец </value>
+  </data>
+  <data name="ActivatingLicense.Text" xml:space="preserve">
+    <value>Активация лицензии</value>
+  </data>
+  <data name="ModulePermissions.Action" xml:space="preserve">
+    <value>Разрешения</value>
+  </data>
+  <data name="MoveToPane.Action" xml:space="preserve">
+    <value>На {0}</value>
+  </data>
+  <data name="DropModuleTarget.Text" xml:space="preserve">
+    <value>Сбросьте модуль сюда</value>
+  </data>
+  <data name="DragModuleHint.Text" xml:space="preserve">
+    <value>Перетащите этот модуль на новое место</value>
+  </data>
+  <data name="DraggingHintText.Text" xml:space="preserve">
+    <value>Перемещайте указатель над местом сброса.</value>
+  </data>
+  <data name="DropModuleHint.Text" xml:space="preserve">
+    <value>Отпустите кнопку мыши чтобы сбросить модуль сюда.</value>
+  </data>
+  <data name="//AboutUs//StyleGuide.String" xml:space="preserve">
+    <value>Руководство по стилю</value>
+  </data>
+  <data name="//ContactUs.String" xml:space="preserve">
+    <value>Контакты</value>
+  </data>
+  <data name="//Admin//FileManagement.String" xml:space="preserve">
+    <value>Управление файлами</value>
+  </data>
+  <data name="CustomUrlPathCleaned.Error" xml:space="preserve">
+    <value>Введенный URL страницы содержал недопустимые в URL символы. Эти символы были удалены. Нажмите кнопку Сохранить снова чтобы принять измененный URL. &lt;br&gt;[Примечание: Список недопустимых символов: &lt;&gt;\?:&amp;=+|%# ]</value>
+  </data>
+  <data name="UrlPathNotUnique.Error" xml:space="preserve">
+    <value>Выбранный URL уже занят. Если Вы хотите принять предложенную альтернативу, нажмите Сохранить.</value>
+  </data>
+  
+  
+  <data name="EMAIL_PASSWORD_UPDATED_BODY.Text" xml:space="preserve">
+    <value>Уважаемый [User:DisplayName],
+
+Ваш пароль на сайте [Portal:PortalName] был изменен.
+
+Пожалуйста, свяжитесь с администратором сайта по следующему электронному адресу - [Portal:Email]
+
+С уважением,
+[Portal:PortalName]</value>
+  </data>
+  <data name="EMAIL_PASSWORD_UPDATED_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Пароль обновлен</value>
+  </data>
+  <data name="//Host//FileManagement.String" xml:space="preserve">
+    <value>Управление файлами</value>
+  </data>
+  <data name="AspNetHostingPermission.Text" xml:space="preserve">
+    <value>Данное расширение требует уровня доверия Full Trust.</value>
+  </data>
+  <data name="ReflectionPermission.Text" xml:space="preserve">
+    <value>Данное расширение требует разрешения Reflection.</value>
+  </data>
+  <data name="WebPermission.Text" xml:space="preserve">
+    <value>Данное расширение требует разрешения Web.</value>
+  </data>
+  <data name="EMAIL_SOCIAL_FRIENDREQUESTACTIONS.Text" xml:space="preserve">
+    <value>&lt;p&gt;&lt;a href="{0}"&gt;Принять&lt;/a&gt; | &lt;a href="{1}"&gt;Просмотр профиля&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="EMAIL_SOCIAL_FOLLOWREQUESTACTIONS.Text" xml:space="preserve">
+    <value>&lt;p&gt;&lt;a href="{0}"&gt;Подписаться&lt;/a&gt; | &lt;a href="{1}"&gt;Просмотр профиля&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="MESSAGE_USERNAME_CHANGED_INSTRUCTIONS.Text" xml:space="preserve">
+    <value>Пожалуйста, подтвердите смену вашего адреса электронной почты повторным вводом пароля.</value>
+  </data>
+  <data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_BODY.Text" xml:space="preserve">
+    <value>Уважаемый [User:DisplayName],
+
+Вы запросили смену пароля на сайте [Portal:PortalName], но Ваша учетная запись все еще не подтверждена.
+
+Пароль может быть сброшен только после подтверждения учетной записи.
+
+С уважением,
+[Portal:PortalName]
+
+*Примечание: Если Вы не запрашивали смену пароля, просьба игнорировать это сообщение.
+    </value>
+  </data>
+  <data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Восстановление утерянного пароля</value>
+  </data>
+  <data name="503.Error" xml:space="preserve">
+    <value>{0} - 503 Служба недоступна</value>
+  </data>
+  <data name="NoSitesForThisInstallation.Error" xml:space="preserve">
+    <value>В данной установке в настоящее  время нет сайтов.</value>
+  </data>
+  <data name="SiteAccessedWhileInstallationWasInProgress.Error" xml:space="preserve">
+    <value>Обращение к сайту произошло в процессе установки/обновления.</value>
+  </data>
+  <data name="ThereIsAInstallationCurrentlyInProgress.Error" xml:space="preserve">
+    <value>В настоящее время идет установка. Пожалуйста, повторите попытку позже.</value>
+  </data>
+  <data name="EMAIL_USER_UNAUTHORIZED_BODY.Text" xml:space="preserve">
+    <value>Уважаемый(ая) [User:DisplayName],
+
+Авторизация вашей учетной записи на сайте [Portal:PortalName] была отозвана.
+
+Адрес веб-сайта: [Portal:URL]
+Имя пользователя: [User:UserName]
+
+Если у вас есть какие-либо вопросы, свяжитесь с администратором по эл. почте [Portal:Email]
+
+С уважением,
+[Portal:PortalName]</value>
+  </data>
+  <data name="EMAIL_USER_UNAUTHORIZED_SUBJECT.Text" xml:space="preserve">
+    <value>Авторизация вашей учетной записи на сайте [Portal:URL] была отозвана</value>
+  </data>
+  <data name="DefaultStopwordGroup.Text" xml:space="preserve">
+    <value>без,вам,вас,весь,весь,все,всего,всех,дабы,даже,для,его,еще,ещё,затем,зачем,или,итого,как,коли,которая,которое,который,которых,лишь,меня,мне,над,нет,они,откуда,под,после,потом,почему,при,так,таким,только,тот,что</value>
+  </data>
+  
+  <data name="cc_dismiss.Text" xml:space="preserve">
+    <value>Понятно!</value>
+  </data>
+  <data name="cc_link.Text" xml:space="preserve">
+    <value>Узнать больше</value>
+  </data>
+  <data name="cc_message.Text" xml:space="preserve">
+    <value>Наш веб-сайт использует файлы cookie для того, чтобы обеспечить вам удобство работы.</value>
+  </data>
+  <data name="403_3.Error" xml:space="preserve">
+    <value>&lt;div style="height: 100%; width: 90%;"&gt;     &lt;h3&gt;Ошибка конфигурации DNN&lt;/h3&gt;     &lt;p&gt;{0}&lt;/p&gt;     &lt;p&gt;Похоже, в вашей установке DNN есть проблема с параметрами безопасности (скорее всего, с правами доступа). DNN предоставляет широкие возможности загрузки файлов для контента, модулей и тем. Эти функции требуют настраиваемых параметров безопасности, чтобы приложение могло создавать и удалять файлы на вашем сайте.&lt;/p&gt;     &lt;p&gt;На веб-сервере откройте корневую папку сайта (по умолчанию C:\DotNetNuke) в Проводнике Windows. Щёлкните папку правой кнопкой мыши и выберите в контекстном меню «Общий доступ и безопасность». Откройте вкладку «Безопасность». Добавьте соответствующую учётную запись пользователя и задайте нужные права для пользователя ASP.Net, указанного в дополнительных параметрах пула приложений IIS, в котором работает ваш сайт.&lt;/p&gt;     &lt;ul style="text-align: left; list-style-type: none; list-style-position: outside;"&gt;         &lt;li&gt;&lt;strong&gt;Если используется именованная учётная запись, например встроенная «NT AUTHORITY\NETWORK SERVICE»&lt;/strong&gt;&lt;br/&gt;             &lt;ol style="list-style-type: circle;"&gt;                 &lt;li&gt;Учётной записи пользователя должны быть предоставлены права на чтение, запись, чтение и выполнение, а также изменение.&lt;/li&gt;             &lt;/ol&gt;             &lt;br/&gt;         &lt;/li&gt;         &lt;li&gt;&lt;strong&gt;Если используется «ApplicationPoolIdentity» (рекомендуется)&lt;/strong&gt;&lt;br/&gt;             &lt;ol style="list-style-type: circle;"&gt;                 &lt;li&gt;Учётной записи IIS AppPool\[имя пула] (замените [имя пула] на реальное имя пула приложений IIS) должны быть предоставлены права на чтение, запись, чтение и выполнение, а также изменение.&lt;/li&gt;            &lt;/ol&gt;         &lt;/li&gt;     &lt;/ul&gt;     &lt;p&gt;&lt;img alt="Изображение: параметры безопасности корневой папки сайта должны быть настроены на чтение, запись и изменение для именованной учётной записи." src="images/403-3.gif"&gt;&lt;/p&gt; &lt;/div&gt;</value>
+  </data>
+  <data name="404.Error" xml:space="preserve">
+    <value>&lt;div style="height: 100%; width: 90%;"&gt;
+   &lt;p style="color:red; font-weight:bold;"&gt;Домен {0} не существует в базе данных&lt;/p&gt;
+   &lt;p&gt;Эта система поддерживает несколько порталов в одной установке/базе данных. Это достигается путём преобразования URL-адреса браузера в действительную запись таблицы Portals базы данных. Ниже описан этот процесс:&lt;/p&gt;
+    &lt;ol style="text-align: left; list-style-type: decimal; list-style-position: outside;"&gt;
+        &lt;li&gt;&lt;strong&gt;Процесс на веб-сервере&lt;/strong&gt;&lt;br /&gt;
+            &lt;ul style="list-style-type: disc;"&gt;
+                &lt;li&gt;Когда сервер получает запрос от клиента, он сравнивает расширение имени запрошенного файла с расширениями приложений, сопоставленными в IIS.&lt;/li&gt;
+                &lt;li&gt;На основе найденных совпадений IIS передаёт запрос заданному исполняемому файлу (aspnet_asapi.dll в случае запросов ASP.NET).&lt;/li&gt;
+                &lt;li&gt;Процесс aspnet_isapi.dll обрабатывает запрос через упорядоченную последовательность событий, начинающуюся с Application_BeginRequest.&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;HttpModule.URLRewrite OnBeginRequest (UrlRewriteModule.vb)&lt;/strong&gt;&lt;br /&gt;
+            &lt;ul style="list-style-type: disc;"&gt;
+                &lt;li&gt;Запрос анализируется по символу "/"&lt;/li&gt;
+                &lt;li&gt;Домен конструируется из проанализированных элементов.&lt;br /&gt;
+                    &lt;br /&gt;
+                    Например:&lt;br /&gt;
+
+                    URL: https://www.domain.com/default.aspx = Имя домена: www.domain.com&lt;br /&gt;
+                    URL: https://209.75.24.131/default.aspx = Имя домена: 209.75.24.131&lt;br /&gt;
+                    URL: https://localhost/DotNetNuke/default.aspx = Имя домена: localhost/DotNetNuke&lt;br /&gt;
+                    URL: https://www.domain.com/virtualdirectory/default.aspx = Имя домена: www.domain.com/virtualdirectory&lt;br /&gt;
+                    URL: https://www.domain.com/directory/default.aspx = Имя домена: www.domain.com/directory&lt;br /&gt;
+                    &lt;br /&gt;
+                &lt;/li&gt;
+                &lt;li&gt;По имени домена приложение обращается к таблице PortalAlias в базе данных, чтобы найти совпадение.&lt;br /&gt;
+                    &lt;br /&gt;
+                    Примечание: если вы устанавливаете приложение на удалённый сервер, необходимо изменить значение поля HTTPAlias в таблице PortalAlias для соответствующей записи. &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/div&gt;</value>
+  </data>
+  <data name="EMAIL_MESSAGING_DISPATCH_BODY.Text" xml:space="preserve">
+    <value>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;html xmlns="https://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
+    &lt;style type="text/css"&gt;
+            /* Reset Styles */
+        html, body{height:100%;width:100%;}
+        body{
+            margin:0; padding:0;
+            font-family:sans-serif;
+            font-size:0.83em;
+            color:#333;
+        }
+        img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
+        table td{border-collapse:collapse;}
+        p{margin: 0 0 1.6em 0;}
+        a{color:#417CD3;}
+        #backgroundTable{height:100% !important; margin:0; padding:0; width:100% !important;}
+        body{ background-color:#fafafa; }
+
+        #templateContainer{
+            border: 1px solid #eeeeee;
+            box-shadow: 0px 0px 3px 0px #eee;
+        }
+
+            /* Pre Header Styles */
+        .preheaderContent{
+            padding:15px 0 5px 0;
+            font-size:0.9em;
+            color:#999;
+        }
+        .headerContent {background-color:#bbb;}
+        .headerContent a{display:block;}
+        .headerContent img{ margin-bottom:0;}
+
+            /* Sub Header Styles */
+        #templateSubHeader{ color:#ffffff; }
+        #templateSubHeader td{ padding:5px 20px; }
+
+            /* Template Footer Styles */
+        .footerContent table td{
+            padding-top:20px;
+            border-top:1px solid #ddd;
+            font-size:0.8em;
+        }
+
+            /* Body Template Footer Styles */
+        #bodyTemplateFooter{
+            padding:15px 0 5px 0;
+            font-size:0.9em;
+            color:#999;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0"&gt;
+&lt;table cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" id="backgroundTable"&gt;
+    &lt;tr&gt;
+        &lt;td align="center" valign="top"&gt;
+            &lt;!-- // Begin Template Preheader \\ --&gt;
+            &lt;table border="0" cellpadding="0" cellspacing="0" id="templatePreheader" width="600"&gt;
+                &lt;tr align="right"&gt;
+                    &lt;td valign="top" class="preheaderContent" style="border-top:5px solid #417CD3;"&gt;
+
+                        &lt;!-- // Begin Module: Standard Preheader \ --&gt;
+                        &lt;table border="0" cellpadding="0" cellspacing="0" &gt;
+                            &lt;tr&gt;
+                                &lt;td align="right"&gt;
+                                    &lt;p&gt;Проблемы с просмотром письма? &lt;a href="[NOTIFICATIONURL]"&gt;&lt;span&gt;Нажмите здесь, чтобы просмотреть онлайн.&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+                        &lt;!-- // End Module: Standard Preheader \ --&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+            &lt;!-- // End Template Preheader \\ --&gt;
+            &lt;!-- // Begin Template body \\ --&gt;
+            &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateContainer" style="border:1px solid #eeeeee; " &gt;
+                &lt;tr &gt;
+                    &lt;td align="center" valign="top"&gt;
+                        &lt;!-- // Begin Template Header \\ --&gt;
+                        &lt;table border="0" cellpadding="30" cellspacing="0" width="600" id="templateHeader"&gt;
+                            &lt;tr&gt;
+                                &lt;td class="headerContent"&gt;
+                                    &lt;a href="[SITEURL]"&gt;
+                                        &lt;!--&lt;img src="[LOGOURL]" style="max-width:600px;" id="headerImage campaign-icon" /&gt;--&gt;
+                                        &lt;img src="[LOGOURL]" style="max-width:600px;" id="headerImage campaign-icon" width="200" /&gt;
+                                    &lt;/a&gt;
+
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+                        &lt;!-- // End Template Header \\ --&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr &gt;
+                    &lt;td align="center" valign="top"&gt;
+                        &lt;!-- // Begin Template Sub Header \\ --&gt;
+                        &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateSubHeader"&gt;
+                            &lt;tr&gt;
+                                &lt;td class="subHeaderContent" bgcolor="#417CD3" width="66%" align="left"&gt;
+                                    &lt;h2 style="color:#fff; font-weight:100; font-size:24px;"&gt;Уведомления&lt;/h2&gt;
+                                &lt;/td&gt;&lt;!--close subHeaderContent--&gt;
+                                &lt;td width="33%" bgcolor="#417CD3" align="right"&gt;
+                                    &lt;p style="color:#fff;"&gt;&lt;/p&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+                        &lt;!-- // End Template Sub Header \\ --&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td align="center" valign="top" bgcolor="#ffffff"&gt;
+                        &lt;!-- // Begin Template Body \\ --&gt;
+                        &lt;table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody"&gt;
+                            &lt;tr&gt;
+                                &lt;td valign="top" class="bodyContent"&gt;
+                                    &lt;!-- // Begin Module: Standard Content \\ --&gt;
+                                    &lt;table border="0" cellpadding="30" cellspacing="0" width="100%"&gt;
+                                        &lt;tr&gt;
+                                            &lt;td valign="top"&gt;
+                                                [MESSAGEBODY]
+                                            &lt;/td&gt;
+                                        &lt;/tr&gt;
+                                    &lt;/table&gt;
+                                    &lt;!-- // End Module: Standard Content \\ --&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+                        &lt;!-- // End Template Body \\ --&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                    &lt;td align="center" valign="top"&gt;
+                        &lt;table border="0" cellpadding="30" cellspacing="0" width="600" id="templateFooter"&gt;
+                            &lt;tr&gt;
+                                &lt;td valign="top" class="footerContent"&gt;
+                                    &lt;table border="0" cellpadding="0" cellspacing="0" width="100%"&gt;
+                                        &lt;tr&gt;
+                                            &lt;td align="center"&gt;
+                                                &lt;a href="[UNSUBSCRIBEURL]" &gt; Управление подписками&lt;/a&gt; &amp;nbsp; |  &amp;nbsp;&lt;a href="[NOTIFICATIONURL]" &gt; Просмотреть онлайн&lt;/a&gt;
+                                            &lt;/td&gt;
+                                        &lt;/tr&gt;
+                                    &lt;/table&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;&lt;!-- // End Template Body \\ --&gt;
+            &lt;!-- // Begin Template footer \\ --&gt;
+            &lt;table border="0" cellpadding="0" cellspacing="0" id="bodyTemplateFooter" width="600"&gt;
+                &lt;tr&gt;
+                    &lt;td valign="top" class="bodyFooterContent"&gt;
+
+                        &lt;!-- // Begin Module: Standard Preheader \ --&gt;
+                        &lt;table border="0" cellpadding="0" cellspacing="0" align="center" &gt;
+
+                            &lt;tr&gt;
+                                &lt;td align="center"&gt;
+                                    &lt;p&gt;Copyright [YEAR] &lt;a href="[SITEURL]"&gt;[PORTALNAME]&lt;/a&gt; Все права защищены.&lt;/p&gt;
+                                    &lt;p&gt;Если вы не хотите получать больше писем, вы можете &lt;a href="[UNSUBSCRIBEURL]"&gt;отменить подписку&lt;/a&gt;.&lt;/p&gt;
+                                &lt;/td&gt;
+                            &lt;/tr&gt;
+                        &lt;/table&gt;
+                        &lt;!-- // End Module: Standard Preheader \ --&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+            &lt;!-- // End Template footer \\ --&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;!-- wrapper table --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="500.Error" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="DefaultSynonymGroup.Text" xml:space="preserve">
+    <value>dnn,dotnetnuke</value>
+  </data>
+  <data name="EMAIL_BANNER_NOTIFICATION_SUBJECT.Text" xml:space="preserve">
+    <value>[Custom:0]</value>
+  </data>
+  <data name="EMAIL_MESSAGING_DISPATCH_ITEM.Text" xml:space="preserve">
+    <value>&lt;div style="width:100%;"&gt;&lt;h5&gt;[TITLE]&lt;/h5&gt;&lt;table width="600" border="0" cellpadding="0" cellspacing="0" class="contenttable" style="background:#fafafa;"&gt;
+    &lt;tr&gt;
+        &lt;td&gt;
+            &lt;table width="80" border="0" cellspacing="0" cellpadding="8" align="left"&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;&lt;a href="[PROFILEURL]"&gt;&lt;img src="[PROFILEPICURL]" /&gt;&lt;/a&gt;&lt;br/&gt;[DISPLAYNAME]&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+            &lt;table width="350" border="0" cellspacing="0" cellpadding="8" align="left"&gt;
+                &lt;tr&gt;
+                    &lt;td&gt;[CONTENT][FRIENDREQUESTACTIONS][FOLLOWREQUESTACTIONS]&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="License.Text" xml:space="preserve">
+    <value>&lt;h2&gt;The MIT License (MIT)&lt;/h2&gt;
+
+&lt;h3&gt;Copyright (c) .NET Foundation and Contributors&lt;/h3&gt;
+&lt;p&gt;All Rights Reserved&lt;/p&gt;
+
+&lt;p&gt;Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:&lt;/p&gt;
+
+&lt;p&gt;The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.&lt;/p&gt;
+
+&lt;p&gt;THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.&lt;/p&gt;</value>
+  </data>
+  <data name="MESSAGE_LOGIN_INSTRUCTIONS.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MESSAGE_REGISTRATION_INSTRUCTIONS.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MESSAGE_PORTAL_PRIVACY.Text" xml:space="preserve">
+    <value>&lt;div align="left"&gt;
+        &lt;p&gt;[Portal:PortalName] стремится защищать вашу конфиденциальность и развивать технологии, обеспечивающие вам максимально эффективный и безопасный онлайн-опыт. Настоящее Заявление о конфиденциальности распространяется на сайт [Portal:PortalName] и регулирует сбор и использование данных. Используя сайт [Portal:PortalName], вы соглашаетесь с описанными в настоящем заявлении практиками обработки данных.&lt;/p&gt;
+        &lt;p&gt;&lt;span class="SubHead"&gt;Сбор вашей персональной информации&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;[Portal:PortalName] собирает персональные данные, позволяющие установить вашу личность, такие как ваш адрес электронной почты, имя, домашний или рабочий адрес или номер телефона. [Portal:PortalName] также собирает анонимную демографическую информацию, не являющуюся уникальной для вас, такую как почтовый индекс, возраст, пол, предпочтения, интересы и избранное.&lt;/p&gt;
+        &lt;p&gt;Кроме того, [Portal:PortalName] автоматически собирает сведения об аппаратном и программном обеспечении вашего компьютера. Эти сведения могут включать: ваш IP-адрес, тип браузера, доменные имена, время доступа и адреса ссылающихся сайтов. [Portal:PortalName] использует эти сведения для работы службы, поддержания её качества и формирования общей статистики использования сайта [Portal:PortalName].&lt;/p&gt;
+        &lt;p&gt;Имейте в виду: если вы напрямую раскрываете персональные данные или чувствительные сведения через публичные форумы [Portal:PortalName], эта информация может быть собрана и использована другими лицами. Примечание: [Portal:PortalName] не читает ваши приватные сообщения в сети.&lt;/p&gt;
+        &lt;p&gt;[Portal:PortalName] рекомендует вам знакомиться с заявлениями о конфиденциальности сайтов, на которые вы переходитесь с [Portal:PortalName], чтобы понимать, как эти сайты собирают, используют и передают вашу информацию. [Portal:PortalName] не несёт ответственности за заявления о конфиденциальности или иное содержание сайтов, не входящих в [Portal:PortalName] и семейство сайтов [Portal:PortalName].&lt;/p&gt;
+        &lt;p&gt;&lt;span class="SubHead"&gt;Использование вашей персональной информации&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;[Portal:PortalName] собирает и использует вашу персональную информацию для работы сайта [Portal:PortalName] и предоставления запрошенных вами услуг. [Portal:PortalName] также использует ваши персональные данные, чтобы информировать вас о других продуктах или услугах, доступных в [Portal:PortalName] и у её партнёров. [Portal:PortalName] может также связываться с вами посредством опросов, чтобы изучить ваше мнение о существующих услугах или потенциальных новых услугах.&lt;/p&gt;
+        &lt;p&gt;[Portal:PortalName] не продаёт, не сдаёт в аренду и не передаёт иным образом списки своих клиентов третьим лицам. [Portal:PortalName] может время от времени обращаться к вам от имени внешних деловых партнёров по поводу конкретного предложения, которое может вас заинтересовать. В таких случаях ваша уникальная персональная информация (электронная почта, имя, адрес, номер телефона) третьей стороне не передаётся. Кроме того, [Portal:PortalName] может делиться данными с доверенными партнёрами, чтобы помогать нам проводить статистический анализ, отправлять вам электронные или обычные письма, обеспечивать поддержку клиентов или организовывать доставку. Всем таким третьим лицам запрещено использовать вашу персональную информацию, кроме как для предоставления этих услуг [Portal:PortalName], и они обязаны сохранять конфиденциальность вашей информации.&lt;/p&gt;
+        &lt;p&gt;[Portal:PortalName] не использует и не раскрывает чувствительную персональную информацию, такую как раса, религия или политические взгляды, без вашего явного согласия.&lt;/p&gt;
+        &lt;p&gt;[Portal:PortalName] отслеживает, какие сайты и страницы посещают наши клиенты внутри [Portal:PortalName], чтобы определить, какие услуги [Portal:PortalName] наиболее популярны. Эти данные используются для доставки персонализированного контента и рекламы внутри [Portal:PortalName] клиентам, чьё поведение указывает на интерес к определённой тематике.&lt;/p&gt;
+        &lt;p&gt;Сайты [Portal:PortalName] раскроют вашу персональную информацию без уведомления, только если это требуется по закону или при добросовестном убеждении, что такие действия необходимы для того, чтобы: (a) следовать предписаниям закона или исполнить юридические процедуры, предъявленные [Portal:PortalName] или сайту; (b) защитить и отстоять права или собственность [Portal:PortalName]; и (c) действовать в чрезвычайных обстоятельствах для защиты личной безопасности пользователей [Portal:PortalName] или общественности.&lt;/p&gt;
+        &lt;p&gt;&lt;span class="SubHead"&gt;Использование файлов cookie&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;Сайт [Portal:PortalName] использует «cookies» (файлы cookie), чтобы помочь вам персонализировать ваш онлайн-опыт. Cookie — это текстовый файл, размещаемый на вашем жёстком диске сервером веб-страницы. Файлы cookie не могут быть использованы для запуска программ или доставки вирусов на ваш компьютер. Cookie уникально связываются с вами и могут быть прочитаны только веб-сервером в домене, который выдал вам этот файл cookie.&lt;/p&gt;
+        &lt;p&gt;Одна из основных целей файлов cookie — обеспечить удобство и сэкономить ваше время. Назначение файла cookie — сообщить веб-серверу, что вы вернулись на определённую страницу. Например, если вы персонализируете страницы [Portal:PortalName] или регистрируетесь на сайте или в услугах [Portal:PortalName], файл cookie помогает [Portal:PortalName] вспомнить вашу конкретную информацию при последующих посещениях. Это упрощает процесс записи вашей персональной информации, такой как платёжные адреса, адреса доставки и т. п. Когда вы возвращаетесь на тот же сайт [Portal:PortalName], ранее предоставленная информация может быть получена повторно, и вы легко сможете пользоваться настроенными вами функциями [Portal:PortalName].&lt;/p&gt;
+        &lt;p&gt;Вы можете принимать или отклонять файлы cookie. Большинство веб-браузеров автоматически принимают файлы cookie, но обычно вы можете изменить настройки браузера, чтобы отклонять их. Если вы решите отклонять файлы cookie, вы, возможно, не сможете в полной мере использовать интерактивные функции услуг [Portal:PortalName] или посещаемых вами сайтов.&lt;/p&gt;
+        &lt;p&gt;&lt;span class="SubHead"&gt;Безопасность вашей персональной информации&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;[Portal:PortalName] защищает вашу персональную информацию от несанкционированного доступа, использования или раскрытия. [Portal:PortalName] хранит предоставляемую вами персональную информацию на компьютерных серверах в контролируемой, защищённой среде, оберегаемой от несанкционированного доступа, использования или раскрытия. При передаче персональной информации (например, номера кредитной карты) на другие сайты она защищается с помощью шифрования, например протокола Secure Socket Layer (SSL).&lt;/p&gt;
+        &lt;p&gt;&lt;span class="SubHead"&gt;Изменения настоящего заявления&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;[Portal:PortalName] периодически обновляет настоящее Заявление о конфиденциальности с учётом отзывов компании и клиентов. [Portal:PortalName] рекомендует вам периодически перечитывать настоящее Заявление, чтобы знать, как [Portal:PortalName] защищает вашу информацию.&lt;/p&gt;
+        &lt;p&gt;&lt;span class="SubHead"&gt;Контактная информация&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;[Portal:PortalName] приветствует ваши замечания относительно настоящего Заявления о конфиденциальности. Если вы считаете, что [Portal:PortalName] не соблюдает настоящее Заявление, пожалуйста, свяжитесь с [Portal:PortalName] по адресу &lt;a href="mailto:[Portal:Email]"&gt;[Portal:Email]&lt;/a&gt;. Мы приложим коммерчески разумные усилия, чтобы оперативно определить и устранить проблему.&lt;/p&gt;
+    &lt;/div&gt;</value>
+  </data>
+</root>

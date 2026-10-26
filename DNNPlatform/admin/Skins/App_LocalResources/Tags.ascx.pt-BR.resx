@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add.Text">
+    <value xml:space="preserve">Adicionar etiquetas</value>
+  </data>
+  <data name="Add.ToolTip" lastModified="2015-12-28 09:13:15">
+    <value xml:space="preserve">Haga clic em este enlace para adicionar uma etiqueta.</value>
+  </data>
+  <data name="Cancel.Text">
+    <value xml:space="preserve">Cancelar</value>
+  </data>
+  <data name="Cancel.ToolTip" lastModified="2015-12-28 09:13:15">
+    <value xml:space="preserve">Haga clic para cancelar a edição sin guardar.</value>
+  </data>
+  <data name="Category.ToolTip">
+    <value xml:space="preserve">Categorías</value>
+  </data>
+  <data name="Save.Text">
+    <value xml:space="preserve">Guardar</value>
+  </data>
+  <data name="Save.ToolTip" lastModified="2015-12-28 09:13:15">
+    <value xml:space="preserve">Haga clic para guardar as etiquetas.</value>
+  </data>
+  <data name="Tag.ToolTip">
+    <value xml:space="preserve">Etiquetas</value>
+  </data>
+</root>

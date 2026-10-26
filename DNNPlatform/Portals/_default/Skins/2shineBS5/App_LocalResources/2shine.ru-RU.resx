@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <!-- #1946: ru-RU skin resources. Menu.Tab<Id>.Text localizes the DDRMenu labels
+       (fallback = DNN TabName, which serves the FRENCH label in every culture today,
+       measured on the preprod menu); Menu.Tab170.Url points to the translated mind map
+       served at /fallacies_ru.html (measured 200). Tab 171 (ontology) exists in French only, so it
+       carries no Url key and keeps the declared French fallback. fr-FR is not touched. -->
+  <data name="Menu.Tab148.Text" xml:space="preserve">
+    <value>Новости</value>
+  </data>
+  <data name="Menu.Tab149.Text" xml:space="preserve">
+    <value>Купить игру</value>
+  </data>
+  <data name="Menu.Tab150.Text" xml:space="preserve">
+    <value>Загрузки</value>
+  </data>
+  <data name="Menu.Tab151.Text" xml:space="preserve">
+    <value>Друзья</value>
+  </data>
+  <data name="Menu.Tab152.Text" xml:space="preserve">
+    <value>Правила</value>
+  </data>
+  <data name="Menu.Tab169.Text" xml:space="preserve">
+    <value>Аргументация</value>
+  </data>
+  <data name="Menu.Tab170.Text" xml:space="preserve">
+    <value>Карта софизмов</value>
+  </data>
+  <data name="Menu.Tab170.Url" xml:space="preserve">
+    <value>/fallacies_ru.html</value>
+  </data>
+  <data name="Menu.Tab171.Text" xml:space="preserve">
+    <value>Онтология софизмов</value>
+  </data>
+  <data name="Imprint.Text" xml:space="preserve">
+    <value>Выходные данные</value>
+  </data>
+  <data name="Privacy.Text" xml:space="preserve">
+    <value>Конфиденциальность</value>
+  </data>
+  <data name="Meta.Description" xml:space="preserve">
+    <value>Argumentum — карточная игра об аргументации, которая учит распознавать софизмы и некорректные аргументы.</value>
+  </data>
+  <data name="Meta.Keywords" xml:space="preserve">
+    <value>аргументация, риторика, софизмы, некорректные аргументы</value>
+  </data>
+  <!-- #458: tooltips of the icon-only login/logoff links (theme-body.ascx, Landingpage.ascx). -->
+  <data name="Login.Tooltip" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="Logoff.Tooltip" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+</root>

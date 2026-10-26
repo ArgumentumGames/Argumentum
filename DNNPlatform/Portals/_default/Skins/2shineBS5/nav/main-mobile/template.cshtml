@@ -1,7 +1,35 @@
 @using DotNetNuke.Web.DDRMenu;
-@using System.Dynamic; 
-@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic> 
+@using DotNetNuke.Services.Localization;
+@using System.Dynamic;
+@inherits DotNetNuke.Web.Razor.DotNetNukeWebPage<dynamic>
 @{ var root = Model.Source.root; }
+
+@* #1946: menu labels/links localized per culture. Keys "Menu.Tab<Id>.Text" / "Menu.Tab<Id>.Url"
+   live in the skin resx (App_LocalResources/2shine.<culture>.resx; fr has no Menu keys, so the
+   French menu stays on the DNN TabName fallback path). Missing key, missing file or lookup
+   error falls back to the DNN value (TabName / tab Url) — the menu cannot break.
+
+   The culture file is named EXPLICITLY, never through the culture-name overload. Measured on
+   preprod 2026-10-24: /en resolves CurrentUICulture.Name to "en-US", yet
+   GetString(key, "…/2shine.resx", "en-US") reads the invariant base file and never
+   2shine.en-US.resx — DNN normalizes a culture that is not a registered portal language
+   (en-US has no PortalLocalization row on portal 1; the 7 other cultures do) to the invariant
+   culture. Markers planted in 2shine.en-US.resx never reached /en; the same markers planted in
+   the base file did. Naming the culture file reads the English keys on /en, and because a missing
+   key no longer falls back to the base file, the English labels cannot leak onto fr/es. *@
+@functions {
+    static string MenuLookup(string kind, int tabId, string fallback) {
+        try {
+            var key = "Menu.Tab" + tabId + "." + kind;
+            var root = "~/Portals/_default/Skins/2shineBS5/App_LocalResources/2shine";
+            var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+            var s = string.IsNullOrEmpty(culture)
+                ? Localization.GetString(key, root + ".resx")
+                : Localization.GetString(key, root + "." + culture + ".resx");
+            return (string.IsNullOrWhiteSpace(s) || s == key) ? fallback : s;
+        } catch { return fallback; }
+    }
+}
 
 @helper RenderNodes(IList<MenuNode> nodes) {
 	if (nodes.Count > 0) {
@@ -34,7 +62,7 @@
 				var linkClassString = new HtmlString((linkCssClasses.Count == 0) ? "" : (" class=\"" + String.Join(" ", linkCssClasses.ToArray()) + "\""));
 
 				<li @classString>
-					<a @linkClassString target='@(node.Target == "_blank" ? "_blank" : "_self")' href='@(node.Enabled ? node.Url : "javascript:void(0)")'>@node.Text</a>
+					<a @linkClassString target='@(node.Target == "_blank" ? "_blank" : "_self")' href='@(node.Enabled ? MenuLookup("Url", node.TabId, node.Url) : "javascript:void(0)")'>@MenuLookup("Text", node.TabId, node.Text)</a>
 					@if (node.HasChildren()) { 
 						<span class="dropdown-toggle nav-item-sub-opener" @(node.HasChildren() ? "data-bs-toggle=dropdown data-bs-target=.dropdown-" + node.TabId : "") ></span>
 					}

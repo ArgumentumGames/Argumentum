@@ -445,7 +445,15 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 		private bool TryAutomateSvgConversion(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config, bool isInteractive = true)
 		{
-			return TryFreeMindSvgExport(sourceMmPath, destinationSvgPath, config);
+			// #458 reprise (c.5977924514) : un export attendu sans SVG est enregistré pour
+			// le résumé de fin de passe — c'est le trou du §6 du dossier #1744 : avant, une
+			// panne FreeMind ici ne laissait aucune trace comptée.
+			if (TryFreeMindSvgExport(sourceMmPath, destinationSvgPath, config))
+			{
+				return true;
+			}
+			RecordMissingSvgExport(destinationSvgPath);
+			return false;
 		}
 
 		/// <summary>
@@ -719,9 +727,102 @@ namespace Argumentum.AssetConverter.Mindmapper
 			}
 		}
 
+		// ── #458 grain 4 (dispatch c.5975630522) — signaux du repli XSLT ─────────────
+		// Le repli est une VOIE MORTE mesurée (#184) : sur le triplet zh Vertus de la
+		// re-dérivation 3 (#1740, commit 6a10c3ca) il a produit 234 631 o contre
+		// 1 148 515 o pour l'export Batik sain, avec 223 x="NaN" sur 223 nœuds — page
+		// blanche portant les ids, donc verte aux portes qui comptent les ids. Jusqu'ici
+		// il sortait sous un LogSuccess : une carte blanche est entrée dans #1740 sans
+		// signal. Compté ici, rendu dans le résumé de fin de passe mindmaps
+		// (AssetConverterConfig.Apply) — la porte d'arbre de #1740 reste l'autre filet.
+		private static int _xsltFallbackEngagements;
+		private static int _xsltFallbackArtifacts;
+
+		/// <summary>Repli XSLT ENGAGÉ (stylesheet mm2svg.xslt trouvée) depuis la dernière remise à zéro.</summary>
+		public static int XsltFallbackEngagements => System.Threading.Volatile.Read(ref _xsltFallbackEngagements);
+
+		/// <summary>SVG DÉGRADÉS produits par le repli XSLT depuis la dernière remise à zéro.</summary>
+		public static int XsltFallbackArtifacts => System.Threading.Volatile.Read(ref _xsltFallbackArtifacts);
+
+		/// <summary>Ouvre la fenêtre de comptage d'une passe mindmaps (appelée par AssetConverterConfig.Apply).</summary>
+		public static void ResetXsltFallbackSignals()
+		{
+			System.Threading.Interlocked.Exchange(ref _xsltFallbackEngagements, 0);
+			System.Threading.Interlocked.Exchange(ref _xsltFallbackArtifacts, 0);
+			_missingSvgExports = new System.Collections.Concurrent.ConcurrentQueue<string>();
+		}
+
+		// #458 reprise (décision c.5977924514) : un export attendu qui n'a pas produit de
+		// SVG fait désormais ÉCHOUER la passe (résumé, puis throw), comme le
+		// [HARVEST-PARTIAL] de #613. Avant : une panne FreeMind côté sophismes ne laissait
+		// AUCUNE trace comptée (§6 du dossier #1744) — la passe sortait verte avec 0 SVG.
+		private static System.Collections.Concurrent.ConcurrentQueue<string> _missingSvgExports
+			= new System.Collections.Concurrent.ConcurrentQueue<string>();
+
+		/// <summary>Exports SVG attendus mais non produits depuis la dernière remise à zéro (noms de fichiers).</summary>
+		public static IReadOnlyList<string> MissingSvgExports => _missingSvgExports.ToArray();
+
+		/// <summary>Enregistre un export attendu sans SVG (appelé par les DEUX créateurs : Sophismes et Vertus).</summary>
+		internal static void RecordMissingSvgExport(string destinationSvgPath)
+		{
+			_missingSvgExports.Enqueue(Path.GetFileName(destinationSvgPath));
+		}
+
+		/// <summary>
+		/// Ligne du résumé de fin de passe (#458 reprise, c.5977924514). Fonction pure, épingleable.
+		/// </summary>
+		internal static string BuildMissingSvgSummaryLine(int count)
+		{
+			return count == 0
+				? "Mindmap pass summary: every expected SVG export was produced (0 missing)."
+				: $"Mindmap pass summary: {count} expected SVG export(s) MISSING — FreeMind GUI produced no SVG (see the warnings above).";
+		}
+
+		/// <summary>
+		/// Termine la passe mindmaps : résume les exports manquants puis, s'il y en a, jette
+		/// <c>[MINDMAP-PARTIAL]</c> en nommant les cartes (jusqu'à 10, puis le compte) — le
+		/// même contrat que le <c>[HARVEST-PARTIAL]</c> de #613 : une passe incomplète ne
+		/// sort pas verte. Appelé par AssetConverterConfig.Apply après LES DEUX créateurs.
+		/// </summary>
+		internal static void ThrowIfMissingSvgExports()
+		{
+			var missing = _missingSvgExports.ToArray();
+			if (missing.Length == 0)
+			{
+				return;
+			}
+			var named = string.Join(", ", missing.Take(10));
+			var more = missing.Length > 10 ? $" (+{missing.Length - 10} more)" : string.Empty;
+			throw new InvalidOperationException(
+				$"[MINDMAP-PARTIAL] {missing.Length} expected mindmap SVG export(s) missing: {named}{more}. "
+				+ "FreeMind GUI export produced no SVG and the XSLT fallback is retired (dead path #184) — "
+				+ "fix FreeMind (ARGUMENTUM_FREEMIND_PATH) and re-run the pass; do not commit absent or degraded SVGs.");
+		}
+
+		/// <summary>
+		/// Ligne du résumé de fin de passe mindmaps (#458 grain 4). Fonction pure, épinglable
+		/// par la garde : elle ne dit que le MESURÉ (engagements, artefacts) — le cas zéro ne
+		/// prétend pas que tous les SVG viennent de Batik (le chemin Fallacies n'a pas de
+		/// repli : une panne FreeMind y laisse simplement aucun SVG, rien à compter ici).
+		/// </summary>
+		internal static string BuildXsltFallbackSummaryLine(int engagements, int artifacts)
+		{
+			if (artifacts > 0)
+				return $"Mindmap pass summary: XSLT fallback engaged {engagements} time(s) and PRODUCED {artifacts} degraded SVG(s) (dead path #184 — NaN coordinates, blank render). Do not copy them into the repository: replace each with a FreeMind/Batik export.";
+			if (engagements > 0)
+				return $"Mindmap pass summary: XSLT fallback engaged {engagements} time(s) but produced no artifact (stylesheet missing or transform failed — see the warnings above).";
+			return "Mindmap pass summary: XSLT fallback never engaged (no degraded fallback artifact).";
+		}
+
 		/// <summary>
 		/// Fallback SVG conversion using XSLT stylesheets (mm2svg.xslt from tstephen/mindmap).
-		/// Lower fidelity than FreeMind/Freeplane native rendering but works without GUI.
+		/// ⚠ Dead path (#184): its output renders blank (measured 04/10: 223 x="NaN" per 223
+		/// nodes on the rd3 zh Virtues triplet). #458 reprise (c.5977924514) : PLUS AUCUN
+		/// créateur ne l'appelle — le repli Vertus est retiré (aligné sur les sophismes,
+		/// 75a049d3) ; une panne FreeMind fait échouer la passe ([MINDMAP-PARTIAL]) au lieu
+		/// de produire une page blanche. Conservée pour un usage EXPLICITE hors passe (les
+		/// tests d'intégration l'appellent directement pour épingle la voie morte) : tout
+		/// nouvel appelant doit savoir ce qu'il produit.
 		/// </summary>
 		internal static bool TryXsltSvgConversion(string sourceMmPath, string destinationSvgPath)
 		{
@@ -753,7 +854,8 @@ namespace Argumentum.AssetConverter.Mindmapper
 				}
 
 				var xsltPath = Path.Combine(xsltDir, "mm2svg.xslt");
-				Logger.Log($"Using XSLT fallback for SVG conversion: {xsltPath}");
+				System.Threading.Interlocked.Increment(ref _xsltFallbackEngagements);
+				Logger.LogWarning($"Using XSLT fallback for SVG conversion of {Path.GetFileName(sourceMmPath)}: {xsltPath}");
 
 				var xslt = new XslCompiledTransform();
 				var xsltSettings = new XsltSettings(enableDocumentFunction: true, enableScript: false);
@@ -770,7 +872,8 @@ namespace Argumentum.AssetConverter.Mindmapper
 
 				if (File.Exists(destinationSvgPath) && new FileInfo(destinationSvgPath).Length > 0)
 				{
-					Logger.LogSuccess($"SVG via XSLT: {destinationSvgPath} ({new FileInfo(destinationSvgPath).Length / 1024} KB)");
+					System.Threading.Interlocked.Increment(ref _xsltFallbackArtifacts);
+					Logger.LogWarning($"SVG produced via XSLT fallback (degraded, dead path #184): {destinationSvgPath} ({new FileInfo(destinationSvgPath).Length / 1024} KB). Replace with a FreeMind/Batik export before committing.");
 					return true;
 				}
 
@@ -1472,297 +1575,19 @@ if (mapFile != null) {
 
 
 
+		// #458 jumeau Vertus -- l'appariement vit dans MindMapSvgItemPairing, partagé avec
+		// VirtueMindMapDocumentConfig. Les forwarders préservent le contrat réflexion des
+		// tests (SvgDisambiguationContractTests) : méthodes d'instance privées sur la config.
 		private Dictionary<IMindMapItem, List<XElement>> CollectPossibleSvgNodes(IList<IMindMapItem> items, XDocument svgDoc, XNamespace svgNamespace)
-		{
-			Dictionary<IMindMapItem, List<XElement>> itemToSvgNodes = new();
-			var textGroups = svgDoc.Descendants(svgNamespace + "g").Where(g => g.Elements(svgNamespace + "text").Any()).ToList();
-
-			foreach (var item in items)
-			{
-				string title = TitleFunc(item);
-				var matchingGroups = textGroups.Where(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Contains(title)).ToList();
-
-				if (matchingGroups.Any())
-				{
-					// Group the g elements by the length of their text content
-					var groupedGroups = matchingGroups.GroupBy(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Length);
-
-					// Get the minimum length among the groups
-					var groups = groupedGroups as IGrouping<int, XElement>[] ?? groupedGroups.ToArray();
-					var minLength = groups.Min(g => g.Key);
-
-					// Retain only the g elements with the minimum length
-					var minLengthGroups = groups.First(g => g.Key == minLength).ToList();
-
-					itemToSvgNodes[item] = minLengthGroups;
-				}
-				else
-				{
-					// #1700 — le préfixe de diagnostic se tronque à la longueur du titre :
-					// ~150 titres zh font 2 caractères (« 谬论 », « 偏见 »…) et un titre court
-					// sans candidat tuait l'injection zh entière en
-					// ArgumentOutOfRangeException sur Substring(0, 3).
-					var titleHead = title.Length <= 3 ? title : title.Substring(0, 3);
-					var closeMatches = textGroups.Where(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Contains(titleHead)).ToList();
-					var closeMatchesMessages = closeMatches.Select(g => string.Join(" ", g.Elements(svgNamespace + "text").Select(t => t.Value))).ToList().Aggregate("", (s1, s2) => $"{s1}\n{s2}");
-					Logger.LogProblem($"Could not find Svg node for item {TitleFunc(item)}\nClose matches:\n{closeMatchesMessages}");
-				}
-			}
-
-			return itemToSvgNodes;
-		}
-
+			=> MindMapSvgItemPairing.CollectPossibleSvgNodes(items, svgDoc, svgNamespace, TitleFunc);
 
 		private Dictionary<IMindMapItem, XElement> DisambiguateSvgNodes(
 			Dictionary<IMindMapItem, List<XElement>> itemToSvgNodes, IList<IMindMapItem> items, XNamespace svgNamespace)
-		{
-			if (!itemToSvgNodes.Any() || !itemToSvgNodes.First().Value.Any())
-			{
-				Logger.LogProblem("No SVG nodes to disambiguate.");
-				return new Dictionary<IMindMapItem, XElement>();
-			}
+			=> MindMapSvgItemPairing.DisambiguateSvgNodes(itemToSvgNodes, items, svgNamespace, TitleFunc);
 
-			var tempNode = itemToSvgNodes.First().Value.First();
-			var allNodesList = tempNode.Document.Descendants(svgNamespace + tempNode.Name.LocalName).ToList();
-			var nodeIndices = allNodesList.Select((n, i) => new { Node = n, Index = i }).ToDictionary(n => n.Node, n => n.Index);
-
-			foreach (var itemToSvgNode in itemToSvgNodes)
-			{
-				foreach (var svgNode in itemToSvgNode.Value)
-				{
-					if (!nodeIndices.ContainsKey(svgNode))
-					{
-						Logger.LogWarning($"SVG node for item {TitleFunc(itemToSvgNode.Key)} not found in document index. It might be a new or detached node.");
-					}
-				}
-			}
-
-			Dictionary<IMindMapItem, XElement> disambiguatedItemToSvgNode = new();
-			Dictionary<XElement, IMindMapItem> svgNodeToItem = new();
-
-			// #1700 — appariement UN-POUR-UN, indépendant de l'unicité des titres. L'ordre du
-			// document SVG suit le parcours préfixe À FRÈRES INVERSÉS (voir
-			// CompareBatikDocumentOrder) : pour un titre donné, la k-ième occurrence dans cet
-			// ordre correspond à la k-ième occurrence dans l'ordre du document. La première
-			// version (caa5aee3, rejetée) prenait l'ordre de la liste CSV pour ordre du
-			// document — faux pour les frères : ~170 fiches/langue ouvraient le mauvais
-			// homonyme. L'ancien départage d'origine (proximité du parent par troncature de
-			// caractère sur DecimalPath) laissait MUETS les homonymes — parent ET enfant dans
-			// le cas 614/615 — et écrivait deux fois sur le même nœud sans exclure les nœuds
-			// déjà attribués.
-
-			// Pass 1 — groupes homonymes ET groupes triviaux : appariement par rang préfixe
-			// inversé. Les groupes sont parcourus dans l'ordre des items (celui de
-			// itemToSvgNodes), les candidats dans l'ordre du document.
-			var pendingSingles = new List<KeyValuePair<IMindMapItem, List<XElement>>>();
-			foreach (var titleGroup in itemToSvgNodes.GroupBy(pair => TitleFunc(pair.Key) ?? "", StringComparer.Ordinal))
-			{
-				var groupItems = titleGroup.Select(pair => pair.Key)
-					.OrderBy(item => item.Path ?? "", BatikPathComparer.Instance).ToList();
-				var candidates = titleGroup.SelectMany(pair => pair.Value).Distinct()
-					.Where(node => nodeIndices.ContainsKey(node))
-					.OrderBy(node => nodeIndices[node]).ToList();
-				// Un nœud déjà attribué à un item d'UN AUTRE groupe ne se ré-attribue pas :
-				// c'est l'exclusion minimale demandée par #1698 pour les collisions de
-				// sous-chaînes entre titres différents.
-				var available = candidates.Where(node => !svgNodeToItem.ContainsKey(node)).ToList();
-
-				if (available.Count == 0)
-				{
-					Logger.LogProblem($"No available SVG node for title \"{titleGroup.Key}\" ({groupItems.Count} item(s)) - all candidates already attributed to other items.");
-					continue;
-				}
-
-				if (groupItems.Count == 1 && available.Count > 1)
-				{
-					// Titre unique côté items mais plusieurs candidats de longueur minimale :
-					// départage par proximité du PARENT (pass 2, après le rang — le parent
-					// homonyme est alors déjà résolu).
-					pendingSingles.Add(new KeyValuePair<IMindMapItem, List<XElement>>(groupItems[0], available));
-					continue;
-				}
-
-				var paired = Math.Min(groupItems.Count, available.Count);
-				if (available.Count > groupItems.Count)
-				{
-					// #1700 (reprise, surnuméraires) : le SVG porte PLUS d'occurrences du
-					// titre que le CSV d'items — mesuré en zh : un nœud orphelin « 循环论证 »
-					// sous 5.1.3.3 (branche sans enfant CSV, reste d'un texte antérieur à la
-					// re-dérivation). Le k-ième↔k-ième décale alors TOUT le groupe (chaque
-					// item prenait le nœud du suivant). Départage par proximité du PARENT —
-					// le même instrument que le pass 2, dont les groupes parents sont déjà
-					// résolus (ordre des groupes = ordre des items, parent avant enfant) ;
-					// à défaut de parent résolu, le premier candidat restant dans l'ordre du
-					// document. Le surnuméraire reste sans item : journalisé.
-					var remaining = new List<XElement>(available);
-					foreach (var item in groupItems.Take(paired))
-					{
-						var chosen = ChooseNodeNearestToParent(item, remaining, itemToSvgNodes,
-							disambiguatedItemToSvgNode, items, nodeIndices) ?? remaining[0];
-						AssignNode(disambiguatedItemToSvgNode, svgNodeToItem, item, chosen);
-						remaining.Remove(chosen);
-					}
-					var surplus = remaining
-						.Select(node => nodeIndices[node]).ToList();
-					Logger.LogWarning($"Title \"{titleGroup.Key}\": {available.Count} SVG nodes for {groupItems.Count} item(s) - surplus node(s) left unattributed at document index {string.Join(", ", surplus)} (orphan node of an earlier tree state).");
-				}
-				else
-				{
-					for (var k = 0; k < paired; k++)
-					{
-						AssignNode(disambiguatedItemToSvgNode, svgNodeToItem, groupItems[k], available[k]);
-					}
-				}
-				if (available.Count < groupItems.Count)
-				{
-					var unpaired = groupItems.Skip(available.Count)
-						.Select(item => $"{item.Path}-{TitleFunc(item)}").ToList();
-					Logger.LogProblem($"Title \"{titleGroup.Key}\": {groupItems.Count} items for {available.Count} available SVG node(s) - left without node: {string.Join(", ", unpaired)}.");
-				}
-			}
-
-			// Pass 2 — items uniques à candidats multiples : le candidat le plus proche du
-			// nœud du parent, parent calculé par Path en notation pointée ("3.1.2.1" -> "3.1.2"),
-			// robuste à toute profondeur et aux fratries de plus de 9 (l'ancien
-			// DecimalPath.Remove(length-1) ne redonnait le bon parent qu'à partir de la
-			// profondeur 3). Défaut documenté : si le parent est introuvable ou lui-même
-			// irrésolu, on retombe sur le premier candidat disponible dans l'ordre du document
-			// plutôt que de laisser l'item muet.
-			foreach (var pending in pendingSingles)
-			{
-				var item = pending.Key;
-				var available = pending.Value;
-				var chosen = ChooseNodeNearestToParent(item, available, itemToSvgNodes, disambiguatedItemToSvgNode, items, nodeIndices)
-					?? available[0];
-				AssignNode(disambiguatedItemToSvgNode, svgNodeToItem, item, chosen);
-			}
-
-			return disambiguatedItemToSvgNode;
-		}
-
-		/// <summary>
-		/// #1700 — ordre du document SVG produit par FreeMind/Batik, DÉRIVÉ de <paramref name="leftPath"/>/
-		/// <paramref name="rightPath"/> (notation pointée « 4.3.2.1.1 »). Swing peint les enfants du
-		/// DERNIER au PREMIER : le document suit le parcours préfixe À FRÈRES INVERSÉS (mesure ai-01
-		/// sur Fallacies_fr.content.svg @ 9e765e4b : 2 ruptures pour cet ordre contre 891 pour le
-		/// préfixe droit). Trois règles :
-		/// <list type="bullet">
-		/// <item><description>les segments se comparent comme ENTIERS — une fratrie de 24 trie après
-		/// le frère 2 et avant le frère 3, jamais entre 2 et 3 par ordre lexicographique ;</description></item>
-		/// <item><description>à la première divergence, le PLUS GRAND segment vient D'ABORD (frères
-		/// inversés) ;</description></item>
-		/// <item><description>un chemin préfixe de l'autre (l'ancêtre) précède toujours ses
-		/// descendants — le préfixe ne s'inverse pas.</description></item>
-		/// </list>
-		/// Le path vide ou <c>"0"</c> (la racine du map, unique rangée au segment 0 du CSV) est
-		/// peint PREMIER : sans frère, l'inversion ne s'applique pas à lui (mesure : la racine
-		/// ouvre le document dans les 9 content.svg committés).
-		/// </summary>
+		/// <summary>Forwarder vers MindMapSvgItemPairing.CompareBatikDocumentOrder -- conservé ici (interne statique) : les tests l'appellent directement.</summary>
 		internal static int CompareBatikDocumentOrder(string leftPath, string rightPath)
-		{
-			var left = ParsePathSegments(leftPath);
-			var right = ParsePathSegments(rightPath);
-			var leftIsRoot = IsRootPath(left);
-			var rightIsRoot = IsRootPath(right);
-			if (leftIsRoot || rightIsRoot)
-			{
-				return leftIsRoot && rightIsRoot ? 0 : (leftIsRoot ? -1 : 1);
-			}
-			var common = Math.Min(left.Length, right.Length);
-			for (var i = 0; i < common; i++)
-			{
-				if (left[i] != right[i])
-				{
-					// Frères inversés : le plus grand segment est peint EN PREMIER.
-					return right[i].CompareTo(left[i]);
-				}
-			}
-			// Préfixe : l'ancêtre (chemin plus court) précède ses descendants.
-			return left.Length.CompareTo(right.Length);
-		}
-
-		private static int[] ParsePathSegments(string path)
-		{
-			if (string.IsNullOrEmpty(path))
-			{
-				return Array.Empty<int>();
-			}
-			return path.Split('.').Select(segment => int.Parse(segment, CultureInfo.InvariantCulture)).ToArray();
-		}
-
-		/// <summary>La racine du map : path vide, ou réduit au seul segment 0.</summary>
-		private static bool IsRootPath(int[] segments)
-		{
-			return segments.Length == 0 || (segments.Length == 1 && segments[0] == 0);
-		}
-
-		/// <summary>Adapte <see cref="CompareBatikDocumentOrder"/> au tri LINQ sur <c>item.Path</c>.</summary>
-		private sealed class BatikPathComparer : IComparer<string>
-		{
-			public static readonly BatikPathComparer Instance = new();
-
-			public int Compare(string x, string y)
-			{
-				return CompareBatikDocumentOrder(x ?? "", y ?? "");
-			}
-		}
-
-		private void AssignNode(Dictionary<IMindMapItem, XElement> disambiguatedItemToSvgNode,
-			Dictionary<XElement, IMindMapItem> svgNodeToItem, IMindMapItem item, XElement node)
-		{
-			disambiguatedItemToSvgNode[item] = node;
-			if (!svgNodeToItem.TryAdd(node, item))
-			{
-				// Ne peut arriver que par collision de sous-chaînes entre titres DIFFÉRENTS
-				// (les groupes homonymes s'apparient un-pour-un par rang) : le premier
-				// attribué garde le nœud, l'écart est journalisé.
-				Logger.LogProblem($"Conflicting attribution of SVG node to items: {item.Path}-{TitleFunc(item)} and {svgNodeToItem[node].Path}-{TitleFunc(svgNodeToItem[node])}");
-			}
-		}
-
-		private XElement ChooseNodeNearestToParent(IMindMapItem item, List<XElement> availableNodes,
-			Dictionary<IMindMapItem, List<XElement>> itemToSvgNodes,
-			Dictionary<IMindMapItem, XElement> disambiguatedItemToSvgNode, IList<IMindMapItem> items,
-			Dictionary<XElement, int> nodeIndices)
-		{
-			var lastSeparator = (item.Path ?? "").LastIndexOf('.');
-			if (lastSeparator < 0)
-			{
-				Logger.LogProblem($"Cannot determine parent for item {TitleFunc(item)} - {item.Path}");
-				return null;
-			}
-			var parentPath = item.Path.Substring(0, lastSeparator);
-			var parentItem = items.FirstOrDefault(f => f.Path == parentPath);
-			if (parentItem == null)
-			{
-				Logger.LogProblem($"Parent item not found for {TitleFunc(item)} - {item.Path}");
-				return null;
-			}
-
-			XElement parentSvgNode;
-			if (!disambiguatedItemToSvgNode.TryGetValue(parentItem, out parentSvgNode))
-			{
-				if (!itemToSvgNodes.TryGetValue(parentItem, out var parentSvgNodes) || parentSvgNodes.Count != 1)
-				{
-					// Parent homonyme non encore résolu ou sans candidat unique : l'ancien
-					// code abandonnait ici (enfant muet, cas 614/615). Le rang l'a normalement
-					// déjà départagé en pass 1 ; sinon l'appelant retombe sur l'ordre du
-					// document plutôt que de laisser l'item muet.
-					return null;
-				}
-				parentSvgNode = parentSvgNodes[0];
-			}
-
-			if (!nodeIndices.TryGetValue(parentSvgNode, out var parentIndex))
-			{
-				Logger.LogProblem($"SVG Node index for parent item: {parentItem.Path}-{TitleFunc(parentItem)} of item {item.Path}-{TitleFunc(item)} not found");
-				return null;
-			}
-
-			return availableNodes
-				.OrderBy(node => Math.Abs(nodeIndices[node] - parentIndex))
-				.First();
-		}
+			=> MindMapSvgItemPairing.CompareBatikDocumentOrder(leftPath, rightPath);
 
 
 		private void UpdateSvgMatch(SVGFreemindMap svgMap, XElement match, IMindMapItem item, XNamespace svgNamespace,

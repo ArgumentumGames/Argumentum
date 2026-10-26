@@ -66,7 +66,7 @@ scripts/triage/human-requests.sh --self-test  # si ça échoue, l'organe est ave
 
 Puis classer chaque prise **M** (mesure) / **F** (fix) / **D** (décision) / **V** (verdict) et dispatcher M+F aux workers **avec citation verbatim**, le worker répondant lui-même sur GitHub. ai-01 ne rédige plus que D et V.
 
-⚠️ `author.login` **ne discrimine pas** humain/agent : les workers poussent sous le token partagé `jsboige`. Et **Adeline n'a pas de compte** — ses demandes passent par jsboige.
+⚠️ `author.login` **ne discrimine pas** humain/agent : les workers poussent sous le token partagé `jsboige`. Adeline, elle, poste sous **`addinette`** depuis le 05/10/2026 : chercher aussi `gh search issues --commenter addinette`.
 
 📖 Politique complète, mesures et angles morts : [`triage-github.md`](triage-github.md).
 

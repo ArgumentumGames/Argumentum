@@ -24,6 +24,18 @@ namespace Argumentum.AssetConverter.Mindmapper
 			string svgSavedFilePath,
 			Func<Task<string>> svgContent, string language)
 		{
+			// #457 T4b: the wrapper <title>, declared per language on the variant. Resolved once
+			// for the whole variant, not per wrapper file — both wrapper halves share it.
+			var wrapperTitle = MindMapHtmlWrapper.ResolveWrapperTitle(svgMap.HtmlWrapperTitles, language);
+			if (!MindMapHtmlWrapper.HasWrapperTitleFor(svgMap.HtmlWrapperTitles, language))
+			{
+				Logger.LogWarning(
+					$"Html SVG Wrapper title not declared for language '{language}' on '{svgMap.DocumentName}': " +
+					$"resolved '{wrapperTitle ?? "<empty>"}' through the " +
+					$"'{MindMapHtmlWrapper.WrapperTitleFallbackLanguage}' fallback. " +
+					"Declare the language in SVGFreemindMap.HtmlWrapperTitles (#457 T4b).");
+			}
+
 			foreach (var htmlSvgWrapper in svgMap.HtmlWrappers)
 			{
 				var templateFilePath = config.UseDebugParams
@@ -45,7 +57,11 @@ namespace Argumentum.AssetConverter.Mindmapper
 					var svgRelativePath = svgSavedFilePath.GetRelativePathFrom(Path.GetDirectoryName(htmlFileName));
 
 					// Issue #196: single helper, tested separately (see MindMapHtmlWrapperTests).
-					htmlTemplate = MindMapHtmlWrapper.FormatWrapper(htmlTemplate, svgRelativePath, await svgContent());
+					// #457 T4a: language is now consumed by the helper too (the <html lang> token) —
+					// before that it only reached DocumentName, so every wrapper declared lang="en".
+					// #457 T4b: the helper also derives dir=<DirectionFor(language)> and consumes
+					// wrapperTitle — before that every wrapper hardcoded <title>Taxonomy Mind Map</title>.
+					htmlTemplate = MindMapHtmlWrapper.FormatWrapper(htmlTemplate, svgRelativePath, await svgContent(), language, wrapperTitle);
 
 					File.WriteAllText(htmlFileName, htmlTemplate, Encoding.UTF8);
 					Logger.LogSuccess($"Html SVG MindMap wrapper {htmlFileName} successfully saved");

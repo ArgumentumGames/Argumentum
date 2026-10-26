@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CellRequired.Text" xml:space="preserve">
+    <value>El número de móvil es obligatorio</value>
+  </data>
+  <data name="CityRequired.Text" xml:space="preserve">
+    <value>La población es obligatoria</value>
+  </data>
+  <data name="CountryRequired.Text" xml:space="preserve">
+    <value>El país es obligatorio</value>
+  </data>
+  <data name="FaxRequired.Text" xml:space="preserve">
+    <value>El número de fax es obligatorio</value>
+  </data>
+  <data name="plCell.Help" xml:space="preserve">
+    <value>Indique el número de móvil</value>
+  </data>
+  <data name="plCell.Text" xml:space="preserve">
+    <value>Móvil</value>
+  </data>
+  <data name="plCity.Help" xml:space="preserve">
+    <value>Indique la población</value>
+  </data>
+  <data name="plCity.Text" xml:space="preserve">
+    <value>Población</value>
+  </data>
+  <data name="plCountry.Help" xml:space="preserve">
+    <value>Indique el país</value>
+  </data>
+  <data name="plCountry.Text" xml:space="preserve">
+    <value>País</value>
+  </data>
+  <data name="plFax.Help" xml:space="preserve">
+    <value>Indique el número de fax</value>
+  </data>
+  <data name="plFax.Text" xml:space="preserve">
+    <value>Fax: </value>
+  </data>
+  <data name="plPostal.Help" xml:space="preserve">
+    <value>Indique el código postal</value>
+  </data>
+  <data name="plPostal.Text" xml:space="preserve">
+    <value>Código postal</value>
+  </data>
+  <data name="plProvince.Help" xml:space="preserve">
+    <value>Seleccione la provincia en la lista</value>
+  </data>
+  <data name="plProvince.Text" xml:space="preserve">
+    <value>Provincia</value>
+  </data>
+  <data name="plRegion.Help" xml:space="preserve">
+    <value>Indique la región</value>
+  </data>
+  <data name="plRegion.Text" xml:space="preserve">
+    <value>Región:</value>
+  </data>
+  <data name="plState.Help" xml:space="preserve">
+    <value>Seleccione la provincia en la lista</value>
+  </data>
+  <data name="plState.Text" xml:space="preserve">
+    <value>Provincia:</value>
+  </data>
+  <data name="plStreet.Help" xml:space="preserve">
+    <value>Indique la dirección</value>
+  </data>
+  <data name="plStreet.Text" xml:space="preserve">
+    <value>Calle:</value>
+  </data>
+  <data name="plTelephone.Help" xml:space="preserve">
+    <value>Indique el número de teléfono</value>
+  </data>
+  <data name="plTelephone.Text" xml:space="preserve">
+    <value>Teléfono:</value>
+  </data>
+  <data name="plUnit.Help" xml:space="preserve">
+    <value>Indique el número</value>
+  </data>
+  <data name="plUnit.Text" xml:space="preserve">
+    <value>Número:</value>
+  </data>
+  <data name="plZip.Help" xml:space="preserve">
+    <value>Indique el código postal</value>
+  </data>
+  <data name="plZip.Text" xml:space="preserve">
+    <value>Código Postal:</value>
+  </data>
+  <data name="PostalRequired.Text" xml:space="preserve">
+    <value>El código postal es obligatorio</value>
+  </data>
+  <data name="ProvinceRequired.Text" xml:space="preserve">
+    <value>La provincia es obligatoria</value>
+  </data>
+  <data name="RegionRequired.Text" xml:space="preserve">
+    <value>La región es obligatoria</value>
+  </data>
+  <data name="StateRequired.Text" xml:space="preserve">
+    <value>El estado es obligatorio</value>
+  </data>
+  <data name="StreetRequired.Text" xml:space="preserve">
+    <value>La calle es obligatoria</value>
+  </data>
+  <data name="TelephoneRequired.Text" xml:space="preserve">
+    <value>El número de teléfono es obligatorio</value>
+  </data>
+</root>

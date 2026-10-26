@@ -19,7 +19,7 @@
       <div class="mb-2" @termToolbar.For(term)>
         <strong>@fullTermTitle</strong>
         <p class="mb-0">@term.Summary</p>
-        <small><a href='@Link.To(parameters: "term=" + term.UrlKey)'>@Resources.MoreText</a></small>
+        <div class="mt-2">@Html.Raw(term.Details)</div>
       </div>
     }
   </div>

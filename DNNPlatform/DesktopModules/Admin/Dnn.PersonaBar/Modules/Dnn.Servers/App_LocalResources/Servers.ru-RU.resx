@@ -1,0 +1,525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="nav_Servers.Text" xml:space="preserve">
+    <value>Серверы</value>
+  </data>
+  <data name="Servers.Text" xml:space="preserve">
+    <value>Серверы</value>
+  </data>
+  <data name="tabApplicationTitle.Text" xml:space="preserve">
+    <value>Приложение</value>
+  </data>
+  <data name="tabDatabaseTitle.Text" xml:space="preserve">
+    <value>База данных</value>
+  </data>
+  <data name="tabLogsTitle.Text" xml:space="preserve">
+    <value>Журналы</value>
+  </data>
+  
+  
+  
+  
+  <data name="tabWebTitle.Text" xml:space="preserve">
+    <value>Веб</value>
+  </data>
+  <data name="ServerInfo_Framework.Help" xml:space="preserve">
+    <value>Версия .NET.</value>
+  </data>
+  <data name="ServerInfo_Framework.Text" xml:space="preserve">
+    <value>Версия .NET Framework:</value>
+  </data>
+  <data name="ServerInfo_HostName.Help" xml:space="preserve">
+    <value>Имя хоста, на котором запущено приложение.</value>
+  </data>
+  <data name="ServerInfo_HostName.Text" xml:space="preserve">
+    <value>Имя сервера:</value>
+  </data>
+  <data name="ServerInfo_Identity.Help" xml:space="preserve">
+    <value>Учетная запись пользователя Windows, от имени которой выполняется приложение. Этой учетной записи должны быть предоставлены разрешения на нужные папки на сервере.</value>
+  </data>
+  <data name="ServerInfo_Identity.Text" xml:space="preserve">
+    <value>Учетная запись ASP.NET:</value>
+  </data>
+  <data name="ServerInfo_IISVersion.Help" xml:space="preserve">
+    <value>Версия Internet Information Server (IIS).</value>
+  </data>
+  <data name="ServerInfo_IISVersion.Text" xml:space="preserve">
+    <value>Версия веб-сервера:</value>
+  </data>
+  <data name="ServerInfo_OSVersion.Help" xml:space="preserve">
+    <value>Версия Windows на сервере.</value>
+  </data>
+  <data name="ServerInfo_OSVersion.Text" xml:space="preserve">
+    <value>Версия ОС:</value>
+  </data>
+  <data name="ServerInfo_PhysicalPath.Help" xml:space="preserve">
+    <value>Физическое местоположение корня сайта на сервере.</value>
+  </data>
+  <data name="ServerInfo_PhysicalPath.Text" xml:space="preserve">
+    <value>Физический путь:</value>
+  </data>
+  <data name="ServerInfo_RelativePath.Help" xml:space="preserve">
+    <value>Относительное местоположение приложения относительно корня сайта.</value>
+  </data>
+  <data name="ServerInfo_RelativePath.Text" xml:space="preserve">
+    <value>Относительный путь:</value>
+  </data>
+  <data name="ServerInfo_ServerTime.Help" xml:space="preserve">
+    <value>Текущая дата и время на сервере.</value>
+  </data>
+  <data name="ServerInfo_ServerTime.Text" xml:space="preserve">
+    <value>Время сервера:</value>
+  </data>
+  <data name="ServerInfo_Url.Help" xml:space="preserve">
+    <value>Основной URL этого сайта.</value>
+  </data>
+  <data name="ServerInfo_Url.Text" xml:space="preserve">
+    <value>URL сайта:</value>
+  </data>
+  
+  <data name="clearCacheButtonLabel.Text" xml:space="preserve">
+    <value>Очистка кеша</value>
+  </data>
+  
+  
+  
+  <data name="HostInfo_CachingProvider.Help" xml:space="preserve">
+    <value>Поставщик кеширования по-умолчанию для сайта.</value>
+  </data>
+  <data name="HostInfo_CachingProvider.Text" xml:space="preserve">
+    <value>Поставщик кеширования:</value>
+  </data>
+  <data name="HostInfo_FriendlyUrlEnabled.Help" xml:space="preserve">
+    <value>Показывает, включены ли дружественные URL на данном сайте.</value>
+  </data>
+  <data name="HostInfo_FriendlyUrlEnabled.Text" xml:space="preserve">
+    <value>Дружественные URL включены:</value>
+  </data>
+  <data name="HostInfo_FriendlyUrlProvider.Help" xml:space="preserve">
+    <value>Поставщик дружественных URL по-умолчанию для сайта.</value>
+  </data>
+  
+  <data name="HostInfo_FriendlyUrlType.Help" xml:space="preserve">
+    <value>Показывает тип дружественных URL, используемых на сайте.</value>
+  </data>
+  <data name="HostInfo_FriendlyUrlType.Text" xml:space="preserve">
+    <value>Тип дружественных URL:</value>
+  </data>
+  <data name="HostInfo_HtmlEditorProvider.Help" xml:space="preserve">
+    <value>Поставщик редактора HTML по-умолчанию для сайта.</value>
+  </data>
+  <data name="HostInfo_HtmlEditorProvider.Text" xml:space="preserve">
+    <value>Поставщик редактора HTML:</value>
+  </data>
+  <data name="HostInfo_LoggingProvider.Help" xml:space="preserve">
+    <value>Поставщик журнала по-умолчанию для сайта.</value>
+  </data>
+  <data name="HostInfo_LoggingProvider.Text" xml:space="preserve">
+    <value>Поставщик журнала:</value>
+  </data>
+  <data name="HostInfo_Permissions.Help" xml:space="preserve">
+    <value>Разрешения Code Access Security (CAS), доступные для данного сайта.</value>
+  </data>
+  <data name="HostInfo_Permissions.Text" xml:space="preserve">
+    <value>Разрешения CAS:</value>
+  </data>
+  <data name="HostInfo_SchedulerMode.Help" xml:space="preserve">
+    <value>При запуске по таймеру приложение поддерживает специальную "нить" процесса для исполнения запланированных задач - в это время рабочий процесс также может исполнять запросы пользователей к сайту. При запуске по запросу, исполнение задач проводится как часть рабочего процесса при получении запроса HTTP от пользователя. Кроме того, можно отключить автоматическое исполнение задач планировщиком.</value>
+  </data>
+  <data name="HostInfo_SchedulerMode.Text" xml:space="preserve">
+    <value>Режим планировщика:</value>
+  </data>
+  <data name="HostInfo_WebFarmEnabled.Help" xml:space="preserve">
+    <value>Определяет, работает ли сайт в режиме веб-фермы. </value>
+  </data>
+  <data name="HostInfo_WebFarmEnabled.Text" xml:space="preserve">
+    <value>Веб-ферма включена:</value>
+  </data>
+  
+  
+  <data name="plDataProvider.Help" xml:space="preserve">
+    <value>Наименование поставщика доступа к данным по-умолчанию, указанное в файле конфигурации web.config.</value>
+  </data>
+  <data name="plDataProvider.Text" xml:space="preserve">
+    <value>Поставщик данных:</value>
+  </data>
+  <data name="plGUID.Help" xml:space="preserve">
+    <value>Глобально уникальный идентификатор, который может использоваться для идентификации этого приложения.</value>
+  </data>
+  <data name="plGUID.Text" xml:space="preserve">
+    <value>GUID хостинга:</value>
+  </data>
+  <data name="plProduct.Help" xml:space="preserve">
+    <value>Используемое Вами приложение DotNetNuke</value>
+  </data>
+  <data name="plProduct.Text" xml:space="preserve">
+    <value>Продукт DotNetNuke:</value>
+  </data>
+  <data name="plVersion.Help" xml:space="preserve">
+    <value>Версия текущего приложения.</value>
+  </data>
+  <data name="plVersion.Text" xml:space="preserve">
+    <value>Версия:</value>
+  </data>
+  <data name="restartApplicationButtonLabel.Text" xml:space="preserve">
+    <value>Перезапуск пула приложения</value>
+  </data>
+  <data name="UserRestart.Text" xml:space="preserve">
+    <value>Пользователь вызвал перезапуск приложения</value>
+  </data>
+  <data name="DbInfo_ProductEdition.Help" xml:space="preserve">
+    <value>Установленная редакция SQL Server.</value>
+  </data>
+  <data name="DbInfo_ProductEdition.Text" xml:space="preserve">
+    <value>Редакция продукта:</value>
+  </data>
+  <data name="DbInfo_ProductVersion.Help" xml:space="preserve">
+    <value>Версия SQL Server</value>
+  </data>
+  <data name="DbInfo_ProductVersion.Text" xml:space="preserve">
+    <value>Версия базы данных:</value>
+  </data>
+  <data name="DbInfo_ServicePack.Help" xml:space="preserve">
+    <value>Установленные пакеты обновления.</value>
+  </data>
+  <data name="DbInfo_ServicePack.Text" xml:space="preserve">
+    <value>Пакет обновления:</value>
+  </data>
+  <data name="DbInfo_SoftwarePlatform.Help" xml:space="preserve">
+    <value>Описание установленной программной платформы SQL Server.</value>
+  </data>
+  <data name="DbInfo_SoftwarePlatform.Text" xml:space="preserve">
+    <value>Программная платформа:</value>
+  </data>
+  
+  <data name="BackupFinished.Text" xml:space="preserve">
+    <value>Завершено</value>
+  </data>
+  <data name="BackupName.Text" xml:space="preserve">
+    <value>Имя резервной копии</value>
+  </data>
+  <data name="BackupSize.Text" xml:space="preserve">
+    <value>Размер (Кб)</value>
+  </data>
+  <data name="BackupStarted.Text" xml:space="preserve">
+    <value>Запущена</value>
+  </data>
+  <data name="BackupType.Text" xml:space="preserve">
+    <value>Тип резервной копии</value>
+  </data>
+  <data name="FileName.Text" xml:space="preserve">
+    <value>Имя файла</value>
+  </data>
+  <data name="FileType.Text" xml:space="preserve">
+    <value>Тип файла</value>
+  </data>
+  <data name="Name.Text" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="NoBackups.Text" xml:space="preserve">
+    <value>Резервная копия базы данных не была создана.</value>
+  </data>
+  <data name="plBackups.Text" xml:space="preserve">
+    <value>История резервного копирования:</value>
+  </data>
+  <data name="plFiles.Text" xml:space="preserve">
+    <value>Файлы базы данных:</value>
+  </data>
+  <data name="Size.Text" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="EmailTest.Text" xml:space="preserve">
+    <value>Проверить настройки SMTP</value>
+  </data>
+  
+  
+  
+  <data name="plBatch.Help" xml:space="preserve">
+    <value>Число сообщений, отсылаемых рабочим процессом обработки сообщений в рамках каждого пакета.</value>
+  </data>
+  <data name="plBatch.Text" xml:space="preserve">
+    <value>Отсылать сообщения пакетами по:</value>
+  </data>
+  
+  <data name="plConnectionLimit.Text" xml:space="preserve">
+    <value>Макс. соединений:</value>
+  </data>
+  
+  <data name="plMaxIdleTime.Text" xml:space="preserve">
+    <value>Макс. время ожидания:</value>
+  </data>
+  <data name="plSMTPAuthentication.Help" xml:space="preserve">
+    <value>Укажите метод проверки подлинности пользователя SMTP-сервера (по-умолчанию анонимный).</value>
+  </data>
+  <data name="plSMTPAuthentication.Text" xml:space="preserve">
+    <value>Аутентификация SMTP:</value>
+  </data>
+  <data name="plSMTPEnableSSL.Help" xml:space="preserve">
+    <value>Используется для службы SMTP, которая требует безопасного подключения (обычно не нужно).</value>
+  </data>
+  <data name="plSMTPEnableSSL.Text" xml:space="preserve">
+    <value>Включить SSL для SMTP:</value>
+  </data>
+  <data name="plSMTPMode.Help" xml:space="preserve">
+    <value>В режиме хостинга используются настройки SMTP уровня приложения. В режиме сайта вы можете выбрать другой сервер и порт SMTP и режим аутентификации.</value>
+  </data>
+  
+  <data name="plSMTPPassword.Help" xml:space="preserve">
+    <value>Укажите пароль к SMTP-серверу.</value>
+  </data>
+  <data name="plSMTPPassword.Text" xml:space="preserve">
+    <value>Пароль SMTP:</value>
+  </data>
+  <data name="plSMTPServer.Help" xml:space="preserve">
+    <value>Введите имя (адрес) и порт сервера SMTP, который будет использоваться для отправки эл. почты с данного сайта.</value>
+  </data>
+  <data name="plSMTPServer.Text" xml:space="preserve">
+    <value>Адрес и порт сервера SMTP:</value>
+  </data>
+  <data name="plSMTPUsername.Help" xml:space="preserve">
+    <value>Укажите имя пользователя для доступа к SMTP-серверу.</value>
+  </data>
+  <data name="plSMTPUsername.Text" xml:space="preserve">
+    <value>Имя пользователя SMTP:</value>
+  </data>
+  <data name="SaveButtonText.Text" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  
+  <data name="SMTPAnonymous.Text" xml:space="preserve">
+    <value>Аноним</value>
+  </data>
+  <data name="SMTPBasic.Text" xml:space="preserve">
+    <value>Простая</value>
+  </data>
+  
+  
+  
+  <data name="Logs_LogFiles.Text" xml:space="preserve">
+    <value>Файлы журнала:</value>
+  </data>
+  <data name="Logs_LogFilesDefaultOption.Text" xml:space="preserve">
+    <value>Выберите файл журнала для просмотра</value>
+  </data>
+  <data name="Logs_LogFilesTooltip.Text" xml:space="preserve">
+    <value>Список файлов журнала, доступных для просмотра.</value>
+  </data>
+  
+  
+  <data name="PerformanceTab_CacheSetting.Help" xml:space="preserve">
+    <value>Выберите способ оптимизации производительности.</value>
+  </data>
+  
+  <data name="PerformanceTab_Heavy.Text" xml:space="preserve">
+    <value>Полное кэширование</value>
+  </data>
+  <data name="PerformanceTab_Light.Text" xml:space="preserve">
+    <value>Легкое кэширование</value>
+  </data>
+  <data name="PerformanceTab_Memory.Text" xml:space="preserve">
+    <value>В памяти</value>
+  </data>
+  <data name="PerformanceTab_Moderate.Text" xml:space="preserve">
+    <value>Умеренное кэширование</value>
+  </data>
+  <data name="PerformanceTab_None.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="PerformanceTab_Page.Text" xml:space="preserve">
+    <value>Страница</value>
+  </data>
+  <data name="PerformanceTab_PageStatePersistenceMode.Help" xml:space="preserve">
+    <value>Выберите режим использования сохранения состояний страниц. Это может, или быть скрытым полем на странице (Значение по умолчанию), или в памяти (Кэш).</value>
+  </data>
+  <data name="PerformanceTab_PageStatePersistenceMode.Text" xml:space="preserve">
+    <value>Сохранение состояний страниц:</value>
+  </data>
+  <data name="PerformanceTab_AuthCacheability.Help" xml:space="preserve">
+    <value>Установливает заголовок Cache-Control протокола HTTP для аутентифицированных пользователей.</value>
+  </data>
+  
+  
+  
+  
+  <data name="PerformanceTab_ClientResourceManagementTitle.Text" xml:space="preserve">
+    <value>Управление клиенскими ресурсами</value>
+  </data>
+  
+  
+  <data name="PerformanceTab_CurrentHostVersion.Text" xml:space="preserve">
+    <value>Текущая версия хоста:</value>
+  </data>
+  <data name="PerformanceTab_EnableCompositeFiles.Help" xml:space="preserve">
+    <value>Составные файлы представляют собой комбинацию ресурсов (JavaScript и CSS), они создаются для уменьшения количества запросов от браузера к отдельным файлам на сайте. Их использование значительно увеличивает скорость загрузки страницы.</value>
+  </data>
+  
+  
+  <data name="PerformanceTab_IncrementVersion.Text" xml:space="preserve">
+    <value>Увеличить версию</value>
+  </data>
+  
+  
+  <data name="PerformanceTab_MinifyJs.Help" xml:space="preserve">
+    <value>Включение уменьшения JavaScript приведет уменьшению размера кода JavaScript путем использования JSMin. Эта возможность доступна только при включении составных файлов ресурсов.</value>
+  </data>
+  
+  <data name="PerformanceTab_ModuleCacheProviders.Help" xml:space="preserve">
+    <value>Выберите  поставщик кэширования модуля по умолчанию. Эта установка может быть переопределена каждым отдельным модулем.</value>
+  </data>
+  
+  <data name="PerformanceTab_PageCacheProviders.Help" xml:space="preserve">
+    <value>Выберите поставщика кэширования страниц по умолчанию. Поставщика кэширования нужно включить, устанавливая таймаут кэша на каждой странице.</value>
+  </data>
+  <data name="PerformanceTab_PageCacheProviders.Text" xml:space="preserve">
+    <value>Провайдер  вывода кэша страницы</value>
+  </data>
+  
+  
+  
+  <data name="PerformanceTab_UnauthCacheability.Help" xml:space="preserve">
+    <value>Установливает заголовок Cache-Control протокола HTTP для неаутентифицированных пользователей.</value>
+  </data>
+  
+  <data name="EmailSentMessage.Text" xml:space="preserve">
+    <value>Сообщение успешно отправлено от {0} к {1}</value>
+  </data>
+  
+  
+  <data name="PerformanceTab_CurrentPortalVersion.Text" xml:space="preserve">
+    <value>Версия сайта:</value>
+  </data>
+  
+  
+  <data name="PerformanceTab_AjaxWarning.Text" xml:space="preserve">
+    <value>Предупреждение: состояние постоянного нахождения страницы в памяти может вызывать проблемы с Ajax.</value>
+  </data>
+  
+  
+  <data name="PerformanceTab_PortalVersionConfirmNo.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="PerformanceTab_PortalVersionConfirmYes.Text" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  
+  
+  
+  
+</root>

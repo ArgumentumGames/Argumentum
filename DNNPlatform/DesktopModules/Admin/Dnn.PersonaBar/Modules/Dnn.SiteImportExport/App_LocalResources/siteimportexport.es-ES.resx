@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllSites.Text" xml:space="preserve">
+    <value>--TODOS LOS SITIOS--</value>
+  </data>
+  <data name="AnalyzedPackage.Text" xml:space="preserve">
+    <value>Archivos verificados</value>
+  </data>
+  <data name="AnalyzingPackage.Text" xml:space="preserve">
+    <value>Analizando paquete para importación de sitio...</value>
+  </data>
+  <data name="Assets.Text" xml:space="preserve">
+    <value>Recursos</value>
+  </data>
+  <data name="BackToImportExport.Text" xml:space="preserve">
+    <value>Volver a Importar / Exportar</value>
+  </data>
+  <data name="BeginExport.Text" xml:space="preserve">
+    <value>Empezar la exportación</value>
+  </data>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="CancelExport.Text" xml:space="preserve">
+    <value>Cancelar exportación</value>
+  </data>
+  <data name="CancelImport.Text" xml:space="preserve">
+    <value>Cancelar importación</value>
+  </data>
+  <data name="CancelImportMessage.Text" xml:space="preserve">
+    <value>¿Está seguro que desea cancelar el proceso de importación?</value>
+  </data>
+  <data name="CancelJobMessage.Text" xml:space="preserve">
+    <value>¿Está seguro que desea cancelar el proceso?</value>
+  </data>
+  <data name="ClicktoDeselect.Text" xml:space="preserve">
+    <value>pulse para deseleccionar el paquete</value>
+  </data>
+  <data name="ClicktoSelect.Text" xml:space="preserve">
+    <value>pulse para seleccionar el paquete</value>
+  </data>
+  <data name="CompletedOn.Text" xml:space="preserve">
+    <value>Finalizado el </value>
+  </data>
+  <data name="ConfirmCancel.Text" xml:space="preserve">
+    <value>Sí, cancelar</value>
+  </data>
+  <data name="ConfirmDelete.Text" xml:space="preserve">
+    <value>Sí, eliminar</value>
+  </data>
+  <data name="Content.Text" xml:space="preserve">
+    <value>Contenido</value>
+  </data>
+  <data name="Continue.Text" xml:space="preserve">
+    <value>Continuar</value>
+  </data>
+  <data name="CreatedOn.Text" xml:space="preserve">
+    <value>Creado el </value>
+  </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="DeletedPortal.Text" xml:space="preserve">
+    <value>Eliminado</value>
+  </data>
+  <data name="DeleteJobMessage.Text" xml:space="preserve">
+    <value>¿Está seguro que desea eliminar este proceso?</value>
+  </data>
+  <data name="DeletionsInExport.Text" xml:space="preserve">
+    <value>Incluir borrados</value>
+  </data>
+  <data name="Description.Text" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="EmptyDateTime.Text" xml:space="preserve">
+    <value>-- --</value>
+  </data>
+  <data name="Export.Text" xml:space="preserve">
+    <value>Exportar datos</value>
+  </data>
+  <data name="ExportButton.Text" xml:space="preserve">
+    <value>Exportar datos</value>
+  </data>
+  <data name="ExportFile.Text" xml:space="preserve">
+    <value>Exportar archivo</value>
+  </data>
+  <data name="ExportMode.Text" xml:space="preserve">
+    <value>Modo de exportación</value>
+  </data>
+  <data name="ExportModeComplete.Text" xml:space="preserve">
+    <value>Completa</value>
+  </data>
+  <data name="ExportModeDifferential.Text" xml:space="preserve">
+    <value>Diferencial</value>
+  </data>
+  <data name="ExportName.ErrorMessage" xml:space="preserve">
+    <value>Tiene que introducir un nombre.</value>
+  </data>
+  <data name="ExportRequestSubmit.ErrorMessage" xml:space="preserve">
+    <value>Se ha producido un error durante la petición de exportación. Inténtelo de nuevo.</value>
+  </data>
+  <data name="ExportRequestSubmitted" xml:space="preserve">
+    <value>La petición de exportación se ha añadido a la cola y empezará en breve.</value>
+  </data>
+  <data name="ExportSettings.Text" xml:space="preserve">
+    <value>Exportar configuración</value>
+  </data>
+  <data name="ExportSummary.Text" xml:space="preserve">
+    <value>Resumen de exportación</value>
+  </data>
+  <data name="Extensions.Text" xml:space="preserve">
+    <value>Extensiones</value>
+  </data>
+  <data name="FileSize.Text" xml:space="preserve">
+    <value>Tamaño</value>
+  </data>
+  <data name="FinishImporting.Text" xml:space="preserve">
+    <value>Para finalizar la importación de datos a su sitio pulse el botón de continuar, o pulse en cancelar para no realizar ninguna acción.</value>
+  </data>
+  <data name="FolderName.Text" xml:space="preserve">
+    <value>Nombre de la carpeta</value>
+  </data>
+  <data name="Import.Text" xml:space="preserve">
+    <value>Importar datos</value>
+  </data>
+  <data name="ImportButton.Text" xml:space="preserve">
+    <value>Importar datos</value>
+  </data>
+  <data name="ImportRequestSubmit.ErrorMessage" xml:space="preserve">
+    <value>Se ha producido un error durante la petición de importación. Inténtelo de nuevo.</value>
+  </data>
+  <data name="ImportRequestSubmitted" xml:space="preserve">
+    <value>La petición de importación se ha añadido a la cola y empezará en breve.</value>
+  </data>
+  <data name="ImportSummary.Text" xml:space="preserve">
+    <value>Resumen de importación</value>
+  </data>
+  <data name="IncludeContent.Text" xml:space="preserve">
+    <value>Incluir contenido</value>
+  </data>
+  <data name="IncludeDeletions.Text" xml:space="preserve">
+    <value>Incluir borrados</value>
+  </data>
+  <data name="IncludeExtensions.Text" xml:space="preserve">
+    <value>Incluir extensiones</value>
+  </data>
+  <data name="IncludeInExport.Text" xml:space="preserve">
+    <value>Incluir en exportación</value>
+  </data>
+  <data name="IncludePermissions.Text" xml:space="preserve">
+    <value>Incluir permisos</value>
+  </data>
+  <data name="IncludeProfileProperties.Text" xml:space="preserve">
+    <value>Incluir propiedades del perfil</value>
+  </data>
+  <data name="JobCancel.ErrorMessage" xml:space="preserve">
+    <value>Se ha producido un error al cancelar el proceso. Inténtelo de nuevo.</value>
+  </data>
+  <data name="JobCancelled.Text" xml:space="preserve">
+    <value>El proceso se ha cancelado.</value>
+  </data>
+  <data name="JobDate.Header" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="JobDelete.ErrorMessage" xml:space="preserve">
+    <value>Se ha producido un error al eliminar el proceso. Inténtelo de nuevo.</value>
+  </data>
+  <data name="JobDeleted.Text" xml:space="preserve">
+    <value>El proceso se ha eliminado.</value>
+  </data>
+  <data name="JobPortal.Header" xml:space="preserve">
+    <value>Sitio web</value>
+  </data>
+  <data name="JobStatus.Header" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="JobStatus0.Text" xml:space="preserve">
+    <value>Enviado</value>
+  </data>
+  <data name="JobStatus1.Text" xml:space="preserve">
+    <value>En progreso</value>
+  </data>
+  <data name="JobStatus2.Text" xml:space="preserve">
+    <value>Finalizado</value>
+  </data>
+  <data name="JobStatus3.Text" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="JobStatus4.Text" xml:space="preserve">
+    <value>Cancelado</value>
+  </data>
+  <data name="JobType.Header" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="JobTypeAll.Text" xml:space="preserve">
+    <value>Todas las importaciones y exportaciones</value>
+  </data>
+  <data name="JobTypeExport.Text" xml:space="preserve">
+    <value>Todas las exportaciones</value>
+  </data>
+  <data name="JobTypeImport.Text" xml:space="preserve">
+    <value>Todas las importaciones</value>
+  </data>
+  <data name="JobUser.Header" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="KeepImport.Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="LastExport.Text" xml:space="preserve">
+    <value>Última exportación</value>
+  </data>
+  <data name="LastImport.Text" xml:space="preserve">
+    <value>Última importación</value>
+  </data>
+  <data name="LastUpdate.Text" xml:space="preserve">
+    <value>Última actualización</value>
+  </data>
+  <data name="lblLanguages.Help" xml:space="preserve">
+    <value>Seleccione los idiomas adicionales que quiera incluir en la plantilla multi idioma, o seleccione un solo idioma para una plantilla con un único idioma.</value>
+  </data>
+  <data name="lblLanguages.Text" xml:space="preserve">
+    <value>Exportar idiomas</value>
+  </data>
+  <data name="lblNote.Text" xml:space="preserve">
+    <value>El idioma predeterminado ({0}) se incluirá siempre.</value>
+  </data>
+  <data name="lblSelectLanguages.Text" xml:space="preserve">
+    <value>-- Seleccionar idiomas --</value>
+  </data>
+  <data name="LegendExport.Text" xml:space="preserve">
+    <value>Exportación del sitio</value>
+  </data>
+  <data name="LegendImport.Text" xml:space="preserve">
+    <value>Importación del sitio</value>
+  </data>
+  <data name="LogSection.Text" xml:space="preserve">
+    <value>Resultado de importación/exportación</value>
+  </data>
+  <data name="Mode.Text" xml:space="preserve">
+    <value>Modo</value>
+  </data>
+  <data name="Name.Text" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="nav_SiteImportExport.Text" xml:space="preserve">
+    <value>Importar / Exportar</value>
+  </data>
+  <data name="No.Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoExportItem.ErrorMessage" xml:space="preserve">
+    <value>Se ha producido un error al enviar la petición. Inténtelo de nuevo.</value>
+  </data>
+  <data name="NoJobs.Text" xml:space="preserve">
+    <value>No se ha encontrado ningún proceso</value>
+  </data>
+  <data name="NoPackages.Text" xml:space="preserve">
+    <value>No se ha encontrado ningún paquete de importación</value>
+  </data>
+  <data name="OverwriteCollisions.Text" xml:space="preserve">
+    <value>Sobreescribir colisiones</value>
+  </data>
+  <data name="PackageDescription.Text" xml:space="preserve">
+    <value>Descripción del paquete</value>
+  </data>
+  <data name="Pages.Text" xml:space="preserve">
+    <value>Páginas</value>
+  </data>
+  <data name="PagesInExport.Text" xml:space="preserve">
+    <value>Páginas exportadas</value>
+  </data>
+  <data name="PageTemplates.Text" xml:space="preserve">
+    <value>Plantillas de página</value>
+  </data>
+  <data name="Permissions.Text" xml:space="preserve">
+    <value>Permisos</value>
+  </data>
+  <data name="ProfileProperties.Text" xml:space="preserve">
+    <value>Propiedades del perfil</value>
+  </data>
+  <data name="Roles.Text" xml:space="preserve">
+    <value>Roles y grupos</value>
+  </data>
+  <data name="RunNow.Text" xml:space="preserve">
+    <value>Ejecutar ahora</value>
+  </data>
+  <data name="SearchPlaceHolder.Text" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="SelectException.Text" xml:space="preserve">
+    <value>Seleccione un paquete de importación y vuelva a intentarlo.</value>
+  </data>
+  <data name="SelectImportPackage.Text" xml:space="preserve">
+    <value>Seleccione el paquete a importar</value>
+  </data>
+  <data name="ShowFilterLabel.Text" xml:space="preserve">
+    <value>Filtro:</value>
+  </data>
+  <data name="ShowSiteLabel.Text" xml:space="preserve">
+    <value>Sitio:</value>
+  </data>
+  <data name="ShowSortLabel.Text" xml:space="preserve">
+    <value>Orden:</value>
+  </data>
+  <data name="Site.Text" xml:space="preserve">
+    <value>Sitio</value>
+  </data>
+  <data name="SiteImportExport.Header" xml:space="preserve">
+    <value>Importar / Exportar</value>
+  </data>
+  <data name="SortByDateNewest.Text" xml:space="preserve">
+    <value>Fecha (más nuevo)</value>
+  </data>
+  <data name="SortByDateOldest.Text" xml:space="preserve">
+    <value>Fecha (más antiguo)</value>
+  </data>
+  <data name="SortByName.Text" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="SummaryNoteDescription.Text" xml:space="preserve">
+    <value>Los archivos de exportación se han archivo de forma segura en la carpeta de la web: App_Data/ExportImport.</value>
+  </data>
+  <data name="SummaryNoteTitle.Text" xml:space="preserve">
+    <value>*Atención: </value>
+  </data>
+  <data name="SwitchOff.Text" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="SwitchOn.Text" xml:space="preserve">
+    <value>On</value>
+  </data>
+  <data name="Timestamp.Text" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="TotalExportSize.Text" xml:space="preserve">
+    <value>Tamaño total de la exportación</value>
+  </data>
+  <data name="Users.Text" xml:space="preserve">
+    <value>Usuarios</value>
+  </data>
+  <data name="UsersStep1.Text" xml:space="preserve">
+    <value>Usuarios (paso 1 / 2)</value>
+  </data>
+  <data name="UsersStep2.Text" xml:space="preserve">
+    <value>Usuarios (paso 2 / 2)</value>
+  </data>
+  <data name="VerifyPackage.Text" xml:space="preserve">
+    <value>Espere un momento, procesando el paquete...</value>
+  </data>
+  <data name="Vocabularies.Text" xml:space="preserve">
+    <value>Vocabularios</value>
+  </data>
+  <data name="Website.Text" xml:space="preserve">
+    <value>Sitio web</value>
+  </data>
+  <data name="Yes.Text" xml:space="preserve">
+    <value>Sí</value>
+  </data>
+</root>

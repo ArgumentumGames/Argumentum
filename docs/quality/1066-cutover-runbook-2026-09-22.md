@@ -30,6 +30,15 @@ DB `PortalSettings.PageHeadText` rend). **Le volet 2a n'est plus « migrer les b
 2 pages ».** (Bruit d'instrument écarté : `G-S` matché une fois sur actus prod = regex sur un fragment de
 texte, pas un ID ; les IDs réels sont les deux ci-dessus.)
 
+⚠️ **Correction du 2026-10-08 — le « gap résiduel = 2 pages » ci-dessus est PÉRIMÉ, et l'item est clos.**
+Re-mesure en lecture seule (préprod *et* prod dans le même passage, cache-buster sur chaque sonde, témoin
+négatif 404/404 — voir `docs/site/1066-2a-ga4-remesure-2026-10-08.md`) : **`/terms` et `/privacy` portent
+`GTM-TZBQ57M` ×2 ET `G-VHLTL18PEW` ×2 sur la préprod**, valeur pour valeur identiques à la prod, et les 3
+entrées CSP `conditional` sont actives (`frame-src … googletagmanager.com`, `connect-src …
+region1.google-analytics.com`). ⇒ **Aucun correctif à poser, aucune fenêtre à consommer** : la cible du
+`Contrôle` de R4 est déjà atteinte. ⛔ La ligne « GTM sans `G-VHLTL18PEW` » de la table pivot ne doit plus
+servir à dispatcher ce geste.
+
 ---
 
 ## Le runbook — un geste, un contrôle, un rollback par item
@@ -75,7 +84,10 @@ texte, pas un ID ; les IDs réels sont les deux ci-dessus.)
   CSP runtime** (sonde navigateur : les 3 entrées `conditional` de PR #1065 doivent être actives —
   `region1.google-analytics.com` est injecté par GTM à l'exécution, invisible au curl).
 - **Rollback** : retirer la ligne ajoutée dans PageHeadText des 2 pages.
-- **État** : 7/9 mesuré ce jour ; les CSP conditional sont actives préprod (2c état 19/08).
+- **État** : ✅ **clos le 2026-10-08 par la mesure** — `/terms` et `/privacy` portent les deux IDs à parité avec la
+  prod, et les 3 entrées CSP `conditional` sont actives. ⛔ **Ne plus rejouer ce geste** : la cible du `Contrôle`
+  ci-dessus est **déjà atteinte** sur le site. La mention « 7/9 mesuré ce jour » datait du 22/09 (correction en
+  tête de document).
 
 ### R5 — Balayage 2c : méthode (rejouable J-1 du cutover)
 
@@ -94,12 +106,85 @@ texte, pas un ID ; les IDs réels sont les deux ci-dessus.)
 préprod n'est donc PAS un gap servi. **Bornes** : copie Phase 1 datée (10/08), chemins directs uniquement
 (assets servis via combiner ou DB non couverts), bin/config exclus volontairement.
 
-### R6 — Interdictions transverses (toujours vraies)
+### R6 — Le compte stocké en clair (#1091)
+
+- **Geste** : pendant la séance de bascule **uniquement** (prod gelée d'ici là, #972), passer le compte
+  `contact@argumentum.games` au format **haché** dans la **base de production**, puis en changer la valeur.
+  La nouvelle valeur est choisie **par l'owner** ; ⛔ aucune valeur, empreinte ou sel ne transite par une
+  issue, un commit, le dashboard ou ce fichier.
+- **Contrôle** : relire, dans la base cible, le **format de stockage** de ce compte (haché attendu — même
+  format que sur la préprod depuis le 19/08), puis **se connecter avec la nouvelle valeur** (arbitrage owner
+  du 20/10 : « OK pour changer le mdp en temps voulu »).
+- **Rollback** : ⛔ **aucun retour au format en clair**. En cas d'échec de connexion : nouvelle valeur choisie
+  par l'owner, même format haché.
+- **État** : posé au runbook le 20/10 (grain ⁹ du pool po-2023) ; #1091 reste ouverte jusqu'au geste en
+  production et à son contrôle.
+
+### R7 — Interdictions transverses (toujours vraies)
 
 ⛔ Zéro écriture prod (#972) · ⛔ `/MIR` et synchronisation de répertoire (divergence webroot↔dépôt
 **bidirectionnelle** : un miroir détruit ce qui ne vit que d'un côté) · ⛔ `git checkout` sur un webroot ·
 ⛔ copie du `web.config` préprod → prod · cache-buster sur chaque sonde · `-L` systématique · statiques sans
 query string · jamais conclure d'une sonde unique (résultat uniforme = signal d'instrument).
+
+### R8 — Les paquets de langue (es-ES, pt-BR, ru-RU ; zh-CN gated)
+
+- **Geste** : pour CHAQUE culture exposée au go-live (aujourd'hui es-ES, pt-BR, ru-RU — zh-CN gated
+  paquet+visa), **construire le paquet au hash du go-live** avec `tools/458-langpack-build.py` (#1915) :
+  `python tools/458-langpack-build.py --culture <xx-XX> --commit <hash-go-live> --upstream-manifest
+  <manifeste-amont.dnn> --license <fichier> --apply` (dry-run par défaut : comptages + contrôles, rien
+  d'écrit). L'outil **refuse de livrer** si ensemble(manifeste) ≠ ensemble(payload) ≠ ensemble(master) à la
+  casse près, si un antislash survit au manifeste, ou si un resx n'est pas XML — un refus s'investigue, ne se
+  force pas. ⚠️ Un paquet construit avant le hash final est **périmé** (pt-BR a déjà bougé : #1912 →
+  `c4529918` ; décision actée : chaque paquet porte le hash de master dont il est construit). ⚠️ **es-ES
+  et pt-BR ne sont constructibles complets qu'après l'import amont ⑯** (grain #458, modèle #1903 ru-RU) :
+  master ne suit que 32 resx es-ES et **6 pt-BR** (mesuré `a36435ec` : fr 189, ru 166 — le russe est
+  complet parce que #1903 y a importé le pack amont) ; le reste de l'es-ES/pt-BR servi par le site de
+  test vient des packs amont installés le 12/10, absents du dépôt. Un paquet construit avant ⑯ serait
+  incomplet **et le contrôle « 0 écart git » ne le verrait pas** (il ne compare que ce que git suit) ;
+  à l'import, les fichiers déjà suivis gardent la priorité sur les amont (ils portent nos traductions).
+  Installer le
+  zip par le mécanisme `Install/Install.aspx?mode=installresources` — la page est **retirée du webroot** par
+  `DeleteInstallerFiles()` : la restaurer depuis l'asset `DNN_Platform_10.3.2_Upgrade.zip` avec
+  `Install/DotNetNuke.install.config.resources`, et retirer ces fichiers après le geste — avec
+  **quarantaine préalable des strays** `Install/*/` (le trigger installe TOUT ce qui s'y trouve ; mesuré
+  préprod : 3 `.resources` CodeDom + `DnnJwtAuth_09.11.01` posés hors périmètre). L'installation crée la
+  langue host et déploie les resx mais **n'active pas le portail** (`PortalLanguages` non touché) :
+  l'activation suit l'arbitrage « on n'active une langue qu'avec son contenu ».
+- **Contrôle** : (1) le sidecar `<culture>_langpack_master-<hash>.build.json` du build fait foi — sha256 par
+  fichier + comptages, et fraîcheur `git log --oneline <hash>..master -- '*.<culture>.resx'` **vide** au
+  moment du build ; (2) `git status` du webroot avant/après installation : **0 écart** (les resx installés
+  sont octet-identiques au dépôt — un écart signifie que le paquet n'a pas été construit au bon hash) ;
+  (3) par langue, **les sondes du visa de surface** (modèle po-2024 21/21 : page d'accueil `lang` correcte,
+  compteurs de joueurs localisés, TERMS/PRIVACY traduits avec SIREN, fiches EAV, témoins des autres langues
+  inchangés) ; (4) le paquet est **enregistré par DNN** (`Packages`, type CoreLanguagePack).
+- **Rollback** (établi par lecture du code de désinstallation de DNN 10.3.2 — `PackageController.
+  DeleteExtensionPackage`, `ExtensionsController.DeletePackage`, `Installer.UnInstallPackages`,
+  `LanguageInstaller.UnInstall`, `FileInstaller.DeleteFile` ; **aucun geste exécuté**) : la désinstallation
+  d'un CoreLanguagePack par l'UI Extensions **supprime la rangée `LanguagePack`** et laisse **la locale
+  survivre** (le fix DNN-26330 retire l'ancien `Localization.DeleteLanguage`, commenté dans
+  `LanguageInstaller.DeleteLanguage`). Les **fichiers ne sont supprimés que si la case « Delete Files »
+  est cochée** (`DeletePackageDto.DeleteFiles` → `Installer.UnInstall(bool)` → `FileInstaller.DeleteFiles`,
+  faux par défaut) — alors, le manifeste en main, elle **supprimerait les resx suivis par git** (les
+  octets installés = octets master). ⇒ **Rollback = désinstaller SANS « Delete Files »** : la rangée
+  `LanguagePack` sort, la locale ru-RU et les resx survivent, le site continue de servir la langue (c'est
+  l'état pré-install — le ru de la préprod servait avant toute rangée `Packages`), **0 écart git**. Un
+  rollback « propre » (le ru disparaît du site) n'est possible que si la locale a été **ajoutée** par
+  l'installation ET n'est référencée nulle part ailleurs : retirer d'abord `PortalLanguages`, puis la
+  locale — ⛔ jamais « Delete Files ». ⛔ Jamais de `git checkout` sur un webroot (R7).
+- **État** : posé le 20/10 (grain ⑫ du pool po-2023, sur l'outil #1915). Outil livré, CI 5/5 ; paquet ru-RU
+  construit à `1d81a9c3` (rapport #458 c.6281045558) — **à reconstruire au hash du go-live** ; es-ES/pt-BR
+  : installés en **préprod** le 12/10 depuis des builds antérieurs à `1d81a9c3` ⇒ paquets **prod** à
+  reconstruire **après l'import ⑯** (condition nommée ci-dessus). **Répétition d'installation sur le site
+  de test = prérequis avant cutover** (grain ⑭ : seul moyen de savoir si le manifeste régénéré s'installe
+  — en cas d'échec, le consigner, ne pas corriger à chaud). **⑭ SOLDÉE le 20/10 ~18:0x** (#458 c.6285651619,
+  pool cycle 17:17) : paquet reconstruit à `a36435ec` avec l'outil (166 resx, zip 483 967 o, sha256
+  `d2105a12a62a…9ce92`), install « Success » en 6,8 s, +1 rangée `Packages` seulement (`Argumentum.
+  DNNCE.Core.ru-RU` v0.1.0 CoreLanguagePack — `Languages` ru id 5 et `PortalLanguages` inchangés), strays
+  quarantainés 7/7 puis restaurés sha-vérifiés, **`git status` webroot T0 == T1 : zéro écart** ; le sha de
+  page entière ne tient pas comme oracle (jetons volatils — `cdv`, antiforgery : deux GET consécutifs
+  diffèrent) ⇒ les oracles d'« inchangé » = marqueurs sémantiques (sélecteur 5 liens, D1 ru ×5, « Школа
+  лжецов » ×2) + le contrôle git au niveau fichier.
 
 ## Ce que ce runbook n'établit pas
 

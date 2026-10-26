@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CheckMessages.Text" xml:space="preserve">
+    <value>Comprobar mensajes</value>
+  </data>
+  <data name="CheckNotifications.Text" xml:space="preserve">
+    <value>Comprobar notificaciones</value>
+  </data>
+  <data name="Messages.Text" xml:space="preserve">
+    <value>&lt;span&gt;{0}&lt;/span&gt;&lt;strong&gt; Mensajes&lt;/strong&gt;</value>
+  </data>
+  <data name="NewMessages.Text" xml:space="preserve">
+    <value> ({0})</value>
+  </data>
+  <data name="NoMessages.Text" xml:space="preserve">
+    <value>&lt;strong&gt; Mensajes&lt;/strong&gt;</value>
+  </data>
+  <data name="NoNotifications.Text" xml:space="preserve">
+    <value>&lt;strong&gt; Notificaciones&lt;/strong&gt;</value>
+  </data>
+  <data name="Notifications.Text" xml:space="preserve">
+    <value>&lt;span&gt;{0}&lt;/span&gt;&lt;strong&gt; Notificaciones&lt;/strong&gt;</value>
+  </data>
+  <data name="ProfileAvatar.Text" xml:space="preserve">
+    <value>Avatar de perfil</value>
+  </data>
+  <data name="Register.Text" xml:space="preserve">
+    <value>Registro</value>
+  </data>
+  <data name="ToolTip.Text" xml:space="preserve">
+    <value>Haga clic aquí para ver su perfil de usuario.</value>
+  </data>
+  <data name="ToolTipNewMessages.Text" xml:space="preserve">
+    <value>Tiene {0} mensaje(s) nuevo(s). Haga clic aquí para ver su perfil de usuario.</value>
+  </data>
+  <data name="VisitMyProfile.Text" xml:space="preserve">
+    <value>Ver mi perfil</value>
+  </data>
+</root>

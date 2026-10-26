@@ -1,0 +1,1052 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="nav_Extensions.Text" xml:space="preserve">
+    <value>Расширения</value>
+  </data>
+  <data name="ControlTitle_.Text" xml:space="preserve">
+    <value>Расширения</value>
+  </data>
+  <data name="CreateExtension.Action" xml:space="preserve">
+    <value>Создать новое расширение</value>
+  </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Удалить это расширение</value>
+  </data>
+  <data name="ExtensionInstall.Action" xml:space="preserve">
+    <value>Установка расширения</value>
+  </data>
+  <data name="Language.Header" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="Name.Header" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="plPackageTypes.Help" xml:space="preserve">
+    <value>Выберите тип расширения от списка, чтобы отобразились только расширения данного типа.</value>
+  </data>
+  <data name="plPackageTypes.Text" xml:space="preserve">
+    <value>Фильтровать по типу:</value>
+  </data>
+  <data name="Title.Text" xml:space="preserve">
+    <value>Перечислено {0} установленных расширений</value>
+  </data>
+  <data name="TreeHeader.Text" xml:space="preserve">
+    <value>Установленные расширения</value>
+  </data>
+  <data name="Type.Header" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="Upgrade.Header" xml:space="preserve">
+    <value>Обновить?</value>
+  </data>
+  <data name="Version.Header" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="Description.Header" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="ImportModule.Action" xml:space="preserve">
+    <value>Импорт определения модуля</value>
+  </data>
+  <data name="CreateLanguagePack.Action" xml:space="preserve">
+    <value>Создать новый язык</value>
+  </data>
+  <data name="CreateModule.Action" xml:space="preserve">
+    <value>Создать новый модуль</value>
+  </data>
+  <data name="LanguagePackInstall.Action" xml:space="preserve">
+    <value>Установить языковой пакет</value>
+  </data>
+  <data name="ModuleInstall.Action" xml:space="preserve">
+    <value>Установить модуль</value>
+  </data>
+  <data name="CreateSkin.Action" xml:space="preserve">
+    <value>Создать тему</value>
+  </data>
+  <data name="EditSkins.Action" xml:space="preserve">
+    <value>Управление темами</value>
+  </data>
+  <data name="SkinInstall.Action" xml:space="preserve">
+    <value>Установить тему</value>
+  </data>
+  <data name="plLocales.Text" xml:space="preserve">
+    <value>Найти доступные языковые пакеты:</value>
+  </data>
+  <data name="plLocales.Help" xml:space="preserve">
+    <value>Выберите язык от списка, чтобы определить, для каких расширений доступны языковые пакеты на этом языке. Если языковой пакет существует, перейдите по ссылке для его загрузки и последующей установки.</value>
+  </data>
+  <data name="CreateContainer.Action" xml:space="preserve">
+    <value>Создать новый контейнер</value>
+  </data>
+  <data name="InstallExtensions.Action" xml:space="preserve">
+    <value>Установка доступных расширений</value>
+  </data>
+  
+  
+  
+  <data name="UpgradeMessage.Text" xml:space="preserve">
+    <value>Нажмите, чтобы получить обновление</value>
+  </data>
+  <data name="LanguageMessage.Text" xml:space="preserve">
+    <value>Нажмите, чтобы получить языковый пакет</value>
+  </data>
+  <data name="Portal.Header" xml:space="preserve">
+    <value>Вебсайт</value>
+  </data>
+  <data name="lblUpdate.Text" xml:space="preserve">
+    <value>Это приложение содержит сервис обновлений, который отображает значок, если доступна новая версия расширения. На изображении будет содержаться признак, если в настоящий момент установленное расширение будет содержать потенциальную уязвимость. Если уязвимость определена, настоятельно рекомендуется обновить расширение до более новой версии. Щелчок на значке переадресует вас туда, где вы сможете получить новую версию расширения для немедленной установки.</value>
+  </data>
+  <data name="CheckLanguage.Text" xml:space="preserve">
+    <value>Используйте службу обновления, чтобы проверить наличие обновлений языковых пакетов для расширений</value>
+  </data>
+  <data name="Language.Text" xml:space="preserve">
+    <value>Редактировать языковые файлы</value>
+  </data>
+  <data name="Extensions.Text" xml:space="preserve">
+    <value>Расширения</value>
+  </data>
+  <data name="NoResults.Text" xml:space="preserve">
+    <value>Никаких расширений не найдено</value>
+  </data>
+  <data name="Edit.Text" xml:space="preserve">
+    <value>Редактировать это расширение</value>
+  </data>
+  <data name="InstalledOnHost.Tooltip" xml:space="preserve">
+    <value>Установлено на хостинге</value>
+  </data>
+  <data name="InstalledOnPortal.Tooltip" xml:space="preserve">
+    <value>Установлено на {0}</value>
+  </data>
+  <data name="Auth_System.Type" xml:space="preserve">
+    <value>Системы аутентификации</value>
+  </data>
+  <data name="Container.Type" xml:space="preserve">
+    <value>Контейнеры</value>
+  </data>
+  <data name="CoreLanguagePack.Type" xml:space="preserve">
+    <value>Языковые пакеты ядра</value>
+  </data>
+  <data name="DashboardControl.Type" xml:space="preserve">
+    <value>Инструменты панели управления</value>
+  </data>
+  <data name="ExtensionLanguagePack.Type" xml:space="preserve">
+    <value>Языковые пакеты расширений</value>
+  </data>
+  <data name="Library.Type" xml:space="preserve">
+    <value>Библиотеки</value>
+  </data>
+  <data name="Module.Type" xml:space="preserve">
+    <value>Модули</value>
+  </data>
+  <data name="MoreExtensions.Text" xml:space="preserve">
+    <value>Больше расширений</value>
+  </data>
+  
+  <data name="Provider.Type" xml:space="preserve">
+    <value>Поставщики</value>
+  </data>
+  <data name="Skin.Type" xml:space="preserve">
+    <value>Темы</value>
+  </data>
+  <data name="SkinObject.Type" xml:space="preserve">
+    <value>Скин-объекты</value>
+  </data>
+  <data name="Widget.Type" xml:space="preserve">
+    <value>Виджеты</value>
+  </data>
+  <data name="InstalledExtensions.Text" xml:space="preserve">
+    <value>Установленные расширения</value>
+  </data>
+  <data name="AvailableExtensions.Text" xml:space="preserve">
+    <value>Доступные расширения</value>
+  </data>
+  <data name="ExpandAll.Text" xml:space="preserve">
+    <value>Развернуть все</value>
+  </data>
+  <data name="AuthSystem.Type" xml:space="preserve">
+    <value>Системы аутентификации</value>
+  </data>
+  <data name="Language.Type" xml:space="preserve">
+    <value>Языковые пакеты</value>
+  </data>
+  <data name="Catalog.Text" xml:space="preserve">
+    <value>Канал расширений</value>
+  </data>
+  <data name="CatalogModule.Text" xml:space="preserve">
+    <value>Свойства модуля</value>
+  </data>
+  <data name="CatalogSearchTitle.Text" xml:space="preserve">
+    <value>Поиск расширений</value>
+  </data>
+  <data name="CatalogSkin.Text" xml:space="preserve">
+    <value>Тема</value>
+  </data>
+  <data name="SearchLabel.Help" xml:space="preserve">
+    <value>Нажмите Enter для поиска, Esc очищает результаты поиска и отменяет его.</value>
+  </data>
+  <data name="SearchLabel.Text" xml:space="preserve">
+    <value>Поиск:</value>
+  </data>
+  <data name="TypeLabel.Help" xml:space="preserve">
+    <value>Выберите тип расширения.</value>
+  </data>
+  <data name="TypeLabel.Text" xml:space="preserve">
+    <value>Тип:</value>
+  </data>
+  <data name="ClearSearch.Text" xml:space="preserve">
+    <value>Очистить поиск</value>
+  </data>
+  <data name="NameAZ.Text" xml:space="preserve">
+    <value>Имя: в алфавитном порядке</value>
+  </data>
+  <data name="NameZA.Text" xml:space="preserve">
+    <value>Имя: в обратном порядке</value>
+  </data>
+  <data name="PriceHighLow.Text" xml:space="preserve">
+    <value>Цена: по убыванию</value>
+  </data>
+  <data name="PriceLowHigh.Text" xml:space="preserve">
+    <value>Цена: по возрастанию</value>
+  </data>
+  <data name="Search.Text" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="By.Text" xml:space="preserve">
+    <value>Кем</value>
+  </data>
+  <data name="TagCloud.Text" xml:space="preserve">
+    <value>Облако тегов</value>
+  </data>
+  <data name="NotSpecified.Text" xml:space="preserve">
+    <value>Не указано</value>
+  </data>
+  <data name="MoreInformation.Text" xml:space="preserve">
+    <value>Подробнее</value>
+  </data>
+  <data name="DetailsLabel.Text" xml:space="preserve">
+    <value>Подробности</value>
+  </data>
+  <data name="LicenseLabel.Text" xml:space="preserve">
+    <value>Лицензия</value>
+  </data>
+  <data name="TagLabel.Text" xml:space="preserve">
+    <value>Тег:</value>
+  </data>
+  <data name="VendorLabel.Text" xml:space="preserve">
+    <value>Поставщик:</value>
+  </data>
+  <data name="ExtensionsLabel.Text" xml:space="preserve">
+    <value>Расширения</value>
+  </data>
+  <data name="NoneLabel.Text" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="ErrorLabel.Text" xml:space="preserve">
+    <value>Ошибка...</value>
+  </data>
+  <data name="LoadingLabel.Text" xml:space="preserve">
+    <value>Загрузка</value>
+  </data>
+  <data name="OrderLabel.Text" xml:space="preserve">
+    <value>Порядок:</value>
+  </data>
+  <data name="InUse.Header" xml:space="preserve">
+    <value>Используется</value>
+  </data>
+  <data name="PurchasedExtensions.Text" xml:space="preserve">
+    <value>Купленные расширения</value>
+  </data>
+  <data name="installExtension.Text" xml:space="preserve">
+    <value>Установить</value>
+  </data>
+  <data name="Version.Text" xml:space="preserve">
+    <value>Минимальная версия:</value>
+  </data>
+  <data name="DescriptionLabel.Text" xml:space="preserve">
+    <value>Описание продукта</value>
+  </data>
+  <data name="ExtensionDetail.Text" xml:space="preserve">
+    <value>Подробнее</value>
+  </data>
+  <data name="License.Text" xml:space="preserve">
+    <value>Лицензия:</value>
+  </data>
+  <data name="ListExtensions.Text" xml:space="preserve">
+    <value>Узнайте больше о том, как предложить Ваши расширения &lt;a href="http://store.dnnsoftware.com/make-money/become-a-seller" target="_blank" class="info"&gt;здесь&lt;/a&gt;.</value>
+  </data>
+  <data name="JavaScript_Library.Type" xml:space="preserve">
+    <value>Библиотеки JavaScript</value>
+  </data>
+  
+  <data name="CollapseAll.Text" xml:space="preserve">
+    <value>Свернуть все</value>
+  </data>
+  <data name="EditExtension_OwnerDetails.Label" xml:space="preserve">
+    <value>О владельце</value>
+  </data>
+  <data name="EditExtension_PackageDescription.HelpText" xml:space="preserve">
+    <value>Описание пакета.</value>
+  </data>
+  <data name="EditExtension_PackageEmailAddress.HelpText" xml:space="preserve">
+    <value>Электронный адрес автора пакета.</value>
+  </data>
+  <data name="EditExtension_PackageFriendlyName.HelpText" xml:space="preserve">
+    <value>Дружественное имя пакета.</value>
+  </data>
+  <data name="EditExtension_PackageIconFile.HelpText" xml:space="preserve">
+    <value>Имя файла значка для этого пакета.</value>
+  </data>
+  <data name="EditExtension_PackageLicense.HelpText" xml:space="preserve">
+    <value>Лицензия этого пакета.</value>
+  </data>
+  <data name="EditExtension_PackageName.HelpText" xml:space="preserve">
+    <value>Имя пакета (например ИмяКомпании.ИмяПакета).</value>
+  </data>
+  <data name="EditExtension_PackageOrganization.HelpText" xml:space="preserve">
+    <value>Организация, ответственная за данный пакет.</value>
+  </data>
+  <data name="EditExtension_PackageOwner.HelpText" xml:space="preserve">
+    <value>Владелец пакета.</value>
+  </data>
+  <data name="EditExtension_PackageReleaseNotes.HelpText" xml:space="preserve">
+    <value>Заметки к выпуску для данной версии.</value>
+  </data>
+  <data name="EditExtension_PackageType.HelpText" xml:space="preserve">
+    <value>Тип пакета.</value>
+  </data>
+  <data name="EditExtension_PackageURL.HelpText" xml:space="preserve">
+    <value>URL автора.</value>
+  </data>
+  <data name="EditExtension_PackageVersion.HelpText" xml:space="preserve">
+    <value>Версия пакета.</value>
+  </data>
+  
+  <data name="EditAuthSystem_Enabled.Label" xml:space="preserve">
+    <value>Включена?</value>
+  </data>
+  <data name="EditAuthSystem_Enabled.Tooltip" xml:space="preserve">
+    <value>Отметьте, чтобы включить данную систему аутентификации.</value>
+  </data>
+  
+  <data name="EditAuthSystem_LoginCtrlSource.Tooltip" xml:space="preserve">
+    <value>Исходные файл элемента управления входом на сайт для данной системы аутентификации</value>
+  </data>
+  
+  <data name="EditAuthSystem_LogoffCtrlSource.Tooltip" xml:space="preserve">
+    <value>Исходный файла элемента управления выходом с сайта для данной системы аутентификации</value>
+  </data>
+  
+  <data name="EditAuthSystem_SettingsCtrlSource.Tooltip" xml:space="preserve">
+    <value>Отметьте, чтобы включить данную систему аутентификации.</value>
+  </data>
+  <data name="EditAuthSystem_Type.Label" xml:space="preserve">
+    <value>Тип аутентификации</value>
+  </data>
+  <data name="EditAuthSystem_Type.Tooltip" xml:space="preserve">
+    <value>Тип системы аутентификации (например: LiveID, OpenID и др.)</value>
+  </data>
+  <data name="EditExtension_PackageDescription.Label" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="EditExtension_PackageEmailAddress.Label" xml:space="preserve">
+    <value>Адрес эл. почты</value>
+  </data>
+  
+  <data name="EditExtension_PackageIconFile.Label" xml:space="preserve">
+    <value>Значок в меню</value>
+  </data>
+  <data name="EditExtension_PackageName.Label" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="EditExtension_PackageOrganization.Label" xml:space="preserve">
+    <value>Организация</value>
+  </data>
+  <data name="EditExtension_PackageOwner.Label" xml:space="preserve">
+    <value>Владелец</value>
+  </data>
+  <data name="EditExtension_PackageURL.Label" xml:space="preserve">
+    <value>Ссылка</value>
+  </data>
+  <data name="EditExtension_PackageVersion.Label" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="InstallExtension_Cancel.Button" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="InstallExtension_FileUploadDefault.Text" xml:space="preserve">
+    <value>Перетащите файл или щелкните по значку для выбора</value>
+  </data>
+  <data name="InstallExtension_FileUploadDragOver.Text" xml:space="preserve">
+    <value>Перетащите файл</value>
+  </data>
+  <data name="InstallExtension_Or.Text" xml:space="preserve">
+    <value>или</value>
+  </data>
+  <data name="InstallExtension_PackageExists.Error" xml:space="preserve">
+    <value>Этот пакет уже установлен.</value>
+  </data>
+  <data name="InstallExtension_PackageExists.HelpText" xml:space="preserve">
+    <value>Если Вы дошли до этой страницы, то это означает, что установщик должен собрать еще немного информации перед тем, как начать установку.</value>
+  </data>
+  
+  
+  <data name="InstallExtension_Upload.Button" xml:space="preserve">
+    <value>След.</value>
+  </data>
+  <data name="InstallExtension_UploadAFile.Text" xml:space="preserve">
+    <value>Загрузить файл</value>
+  </data>
+  <data name="InstallExtension_UploadComplete.Text" xml:space="preserve">
+    <value>Загрузка завершена</value>
+  </data>
+  
+  
+  <data name="InstallExtension_UploadPackage.Header" xml:space="preserve">
+    <value>Загрузить пакет расширения</value>
+  </data>
+  
+  <data name="NewModule_AddFolder.Button" xml:space="preserve">
+    <value>Добавить папку</value>
+  </data>
+  <data name="NewModule_AddTestPage.HelpText" xml:space="preserve">
+    <value>Отметьте, чтобы создать тестовую страницу для нового модуля.</value>
+  </data>
+  <data name="NewModule_AddTestPage.Label" xml:space="preserve">
+    <value>Добавить тестовую страницу:</value>
+  </data>
+  <data name="NewModule_Cancel.Button" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="NewModule_Create.Button" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  
+  
+  <data name="NewModule_Description.HelpText" xml:space="preserve">
+    <value>Здесь можно задать описание создаваемого модуля.</value>
+  </data>
+  <data name="NewModule_Description.Label" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="NewModule_FileName.HelpText" xml:space="preserve">
+    <value>Введите имя для нового элемента управления модуля</value>
+  </data>
+  <data name="NewModule_FileName.Label" xml:space="preserve">
+    <value>Имя файла</value>
+  </data>
+  
+  <data name="NewModule_Language.Label" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="NewModule_ModuleFolder.HelpText" xml:space="preserve">
+    <value>Это папка, где находятся файлы и папки Вашего модуля.</value>
+  </data>
+  <data name="NewModule_ModuleFolder.Label" xml:space="preserve">
+    <value>Папка модуля</value>
+  </data>
+  <data name="NewModule_ModuleName.HelpText" xml:space="preserve">
+    <value>Введите дружественное имя для создаваемого модуля.</value>
+  </data>
+  <data name="NewModule_ModuleName.Label" xml:space="preserve">
+    <value>Имя модуля</value>
+  </data>
+  <data name="NewModule_NoneSpecified.Text" xml:space="preserve">
+    <value>&lt;Не указано&gt;</value>
+  </data>
+  
+  
+  <data name="AddModuleControl_Cancel.Button" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="AddModuleControl_Definition.HelpText" xml:space="preserve">
+    <value>Это название определения модуля</value>
+  </data>
+  <data name="AddModuleControl_Definition.Label" xml:space="preserve">
+    <value>Определение</value>
+  </data>
+  <data name="AddModuleControl_HelpURL.HelpText" xml:space="preserve">
+    <value>Вы можете указать URL помощи для данного элемента управления. Эта ссылка появится меню действий модуля.</value>
+  </data>
+  
+  
+  <data name="AddModuleControl_Icon.Label" xml:space="preserve">
+    <value>Значок в меню</value>
+  </data>
+  <data name="AddModuleControl_Key.HelpText" xml:space="preserve">
+    <value>Укажите уникальное имя для идентификации этого элемента управления в рамках модуля</value>
+  </data>
+  <data name="AddModuleControl_Key.Label" xml:space="preserve">
+    <value>Ключ</value>
+  </data>
+  <data name="AddModuleControl_Module.HelpText" xml:space="preserve">
+    <value>Это дружественное название модуля.</value>
+  </data>
+  <data name="AddModuleControl_Module.Label" xml:space="preserve">
+    <value>Свойства модуля</value>
+  </data>
+  <data name="AddModuleControl_Source.HelpText" xml:space="preserve">
+    <value>Выберите исходный файл для этого элемента управления, или введите имя типа.</value>
+  </data>
+  
+  <data name="AddModuleControl_SourceFolder.HelpText" xml:space="preserve">
+    <value>Выберите папку с исходным файлом элемента управления.</value>
+  </data>
+  
+  <data name="AddModuleControl_SupportsPartialRendering.HelpText" xml:space="preserve">
+    <value>Данный флаг означает, поддерживает ли элемент управления модуля частичную отрисовку с помощью AJAX.</value>
+  </data>
+  <data name="AddModuleControl_SupportsPartialRendering.Label" xml:space="preserve">
+    <value>Поддерживает частичную отрисовку:</value>
+  </data>
+  <data name="AddModuleControl_SupportsPopups.HelpText" xml:space="preserve">
+    <value>Этот флаг показывает, поддерживает ли элемент управления модуля модальные всплывающие окна.</value>
+  </data>
+  <data name="AddModuleControl_SupportsPopups.Label" xml:space="preserve">
+    <value>Поддерживает всплывающие окна?</value>
+  </data>
+  
+  <data name="AddModuleControl_Title.Label" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="AddModuleControl_Type.HelpText" xml:space="preserve">
+    <value>Выберите тип элемента управления модуля из списка.</value>
+  </data>
+  <data name="AddModuleControl_Type.Label" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="AddModuleControl_Update.Button" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="AddModuleControl_ViewOrder.HelpText" xml:space="preserve">
+    <value>Укажите порядок показа этого элемента управления в списке элементов управления определения модуля.</value>
+  </data>
+  <data name="AddModuleControl_ViewOrder.Label" xml:space="preserve">
+    <value>Порядок показа</value>
+  </data>
+  <data name="EditModule_Assigned.Label" xml:space="preserve">
+    <value>Выбранные</value>
+  </data>
+  <data name="EditModule_AssignedPremiumModules.Label" xml:space="preserve">
+    <value>Доступные премиум-модули</value>
+  </data>
+  <data name="EditModule_BusinessControllerClass.HelpText" xml:space="preserve">
+    <value>Полное имя пространства имен класса, реализующего возможности модуля (IPortable, ISearchable и др.)</value>
+  </data>
+  
+  <data name="EditModule_Dependencies.HelpText" xml:space="preserve">
+    <value>Здесь Вы можете перечислить все зависимости модуля.</value>
+  </data>
+  
+  <data name="EditModule_FolderName.HelpText" xml:space="preserve">
+    <value>Укажите имя папки для данного модуля</value>
+  </data>
+  <data name="EditModule_FolderName.Label" xml:space="preserve">
+    <value>Имя папки</value>
+  </data>
+  <data name="EditModule_IsPortable.HelpText" xml:space="preserve">
+    <value>Указывает, поддерживает ли модуль интерфейс IPortable, что позволяет экспортировать и импортировать его содержимое.</value>
+  </data>
+  <data name="EditModule_IsPortable.Label" xml:space="preserve">
+    <value>Поддерживает импорт/экспорт содержимого?</value>
+  </data>
+  
+  <data name="EditModule_IsPremiumModule.Label" xml:space="preserve">
+    <value>Премиум-модуль?</value>
+  </data>
+  <data name="EditModule_IsSearchable.HelpText" xml:space="preserve">
+    <value>Указывает, поддерживает ли модуль интерфейс ISearchable, позволяющий индексировать содержимое модуля.</value>
+  </data>
+  <data name="EditModule_IsSearchable.Label" xml:space="preserve">
+    <value>Индексируемый?</value>
+  </data>
+  <data name="EditModule_IsUpgradable.HelpText" xml:space="preserve">
+    <value>Указывает, поддерживает ли модуль интерфейс IUpgradable, позволяющий запускать пользовательский код при обновлении модуля до новой версии.</value>
+  </data>
+  <data name="EditModule_IsUpgradable.Label" xml:space="preserve">
+    <value>Обновляемый?</value>
+  </data>
+  <data name="EditModule_ModuleCategory.HelpText" xml:space="preserve">
+    <value>Выберите категорию для данного модуля</value>
+  </data>
+  <data name="EditModule_ModuleCategory.Label" xml:space="preserve">
+    <value>Категория модуля</value>
+  </data>
+  <data name="EditModule_ModuleDefinitions.Header" xml:space="preserve">
+    <value>Определения модуля</value>
+  </data>
+  <data name="EditModule_ModuleName.HelpText" xml:space="preserve">
+    <value>Имя модуля</value>
+  </data>
+  <data name="EditModule_ModuleName.Label" xml:space="preserve">
+    <value>Имя модуля</value>
+  </data>
+  <data name="EditModule_ModuleSharing.HelpText" xml:space="preserve">
+    <value>Указывает, поддерживает ли модуль совместное использование на нескольких сайтах.</value>
+  </data>
+  <data name="EditModule_ModuleSharing.Label" xml:space="preserve">
+    <value>Совместное использование</value>
+  </data>
+  <data name="EditModule_Permissions.HelpText" xml:space="preserve">
+    <value>Вы можете перечислить все разрешения для доступа к коду (CAS), необходимые Вашему модулю.</value>
+  </data>
+  <data name="EditModule_Permissions.Label" xml:space="preserve">
+    <value>Разрешения</value>
+  </data>
+  
+  
+  
+  <data name="ModuleDefinitions_AddDefinition.Button" xml:space="preserve">
+    <value>Добавить определение</value>
+  </data>
+  <data name="ModuleDefinitions_DefaultCacheTime.HelpText" xml:space="preserve">
+    <value>Это время кэширования по умолчанию, которое установлено для данного определения модуля. Время кэширования "-1" означает, что модуль не поддерживает кэширование вывода.</value>
+  </data>
+  
+  <data name="ModuleDefinitions_DefinitionName.HelpText" xml:space="preserve">
+    <value>Неизменяемое имя для определения модуля</value>
+  </data>
+  
+  <data name="ModuleDefinitions_FriendlyName.HelpText" xml:space="preserve">
+    <value>Введите дружественное имя для определения модуля.</value>
+  </data>
+  
+  
+  <data name="ModuleDefinitions_Source.Label" xml:space="preserve">
+    <value>Исходный файл</value>
+  </data>
+  <data name="ModuleDefinitions_Title.Label" xml:space="preserve">
+    <value>Заголовок</value>
+  </data>
+  <data name="NewModule_Resource.HelpText" xml:space="preserve">
+    <value>Выберите ресурс для создания модуля.</value>
+  </data>
+  <data name="NewModule_Resource.Label" xml:space="preserve">
+    <value>Ресурс</value>
+  </data>
+  <data name="CreatePackage_Header.Header" xml:space="preserve">
+    <value>Создать пакет</value>
+  </data>
+  
+  
+  
+  <data name="EditExtension_CreatePackage.Button" xml:space="preserve">
+    <value>Создать пакет</value>
+  </data>
+  <data name="EditModule_Add.Button" xml:space="preserve">
+    <value>Новая</value>
+  </data>
+  <data name="ModuleDefinitions_Cancel.Button" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="ModuleDefinitions_Save.Button" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  
+  
+  <data name="CreatePackage_ChooseAssemblies.Label" xml:space="preserve">
+    <value>Выбрать сборки для включения</value>
+  </data>
+  
+  <data name="CreatePackage_ChooseFiles.Label" xml:space="preserve">
+    <value>Выбрать файлы для включения</value>
+  </data>
+  
+  <data name="CreatePackage_CreateManifest.Label" xml:space="preserve">
+    <value>Создать манифест</value>
+  </data>
+  <data name="CreatePackage_CreateManifestFile.Label" xml:space="preserve">
+    <value>Создать файл манифеста:</value>
+  </data>
+  <data name="CreatePackage_CreatePackage.Label" xml:space="preserve">
+    <value>Создать пакет</value>
+  </data>
+  
+  
+  <data name="CreatePackage_Folder.Label" xml:space="preserve">
+    <value>Папка:</value>
+  </data>
+  <data name="CreatePackage_Logs.HelpText" xml:space="preserve">
+    <value>Результаты создания пакета показаны ниже.</value>
+  </data>
+  <data name="CreatePackage_Logs.Label" xml:space="preserve">
+    <value>Результаты создания пакета</value>
+  </data>
+  
+  
+  <data name="CreatePackage_RefreshFileList.Button" xml:space="preserve">
+    <value>Обновить список файлов</value>
+  </data>
+  <data name="CreatePackage_ReviewManifest.Label" xml:space="preserve">
+    <value>Просмотр манифеста:</value>
+  </data>
+  <data name="EditExtension_ExtensionSettings.TabHeader" xml:space="preserve">
+    <value>Настройки расширения</value>
+  </data>
+  <data name="EditExtension_License.TabHeader" xml:space="preserve">
+    <value>Лицензия</value>
+  </data>
+  <data name="EditExtension_PackageInformation.TabHeader" xml:space="preserve">
+    <value>Информация пакета</value>
+  </data>
+  <data name="EditExtension_ReleaseNotes.TabHeader" xml:space="preserve">
+    <value>Заметки к выпуску</value>
+  </data>
+  <data name="EditExtension_SiteSettings.TabHeader" xml:space="preserve">
+    <value>Настройки сайта</value>
+  </data>
+  <data name="EditContainer_ThemePackageName.HelpText" xml:space="preserve">
+    <value>Введите имя пакета для темы</value>
+  </data>
+  
+  <data name="EditExtensionLanguagePack_Language.HelpText" xml:space="preserve">
+    <value>Выберите язык для этого языкового пакета</value>
+  </data>
+  <data name="EditExtensionLanguagePack_Language.Label" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="EditExtensionLanguagePack_Package.HelpText" xml:space="preserve">
+    <value>Выберите тип пакета, к которому относится данный языковой пакет.</value>
+  </data>
+  <data name="EditExtensionLanguagePack_Package.Label" xml:space="preserve">
+    <value>Пакет</value>
+  </data>
+  <data name="EditJavascriptLibrary_CustomCDN.HelpText" xml:space="preserve">
+    <value>Адрес URL пользовательского CDN для данной библиотеки, который будет использован вместо CDN по умолчанию</value>
+  </data>
+  
+  
+  
+  <data name="EditJavascriptLibrary_DependsOn.HelpText" xml:space="preserve">
+    <value>Отображает список всех пакетов, от которых зависит данная библиотека.</value>
+  </data>
+  
+  <data name="EditJavascriptLibrary_FileName.HelpText" xml:space="preserve">
+    <value>Имя файла JavaScript.</value>
+  </data>
+  <data name="EditJavascriptLibrary_FileName.Label" xml:space="preserve">
+    <value>Имя файла</value>
+  </data>
+  <data name="EditJavascriptLibrary_LibraryName.HelpText" xml:space="preserve">
+    <value>Имя библиотеки JavaScript (например "jQuery")</value>
+  </data>
+  
+  <data name="EditJavascriptLibrary_LibraryVersion.HelpText" xml:space="preserve">
+    <value>Версия библиотеки JavaScript.</value>
+  </data>
+  
+  <data name="EditJavascriptLibrary_ObjectName.HelpText" xml:space="preserve">
+    <value>Имя объекта JavaScript, используемого для доступа к методам библиотеки.</value>
+  </data>
+  
+  
+  
+  <data name="EditJavascriptLibrary_UsedBy.HelpText" xml:space="preserve">
+    <value>Отображает список всех пакетов, использующих данную библиотеку.</value>
+  </data>
+  
+  
+  
+  
+  
+  <data name="EditSkinObject_SupportsPartialRender.HelpText" xml:space="preserve">
+    <value>Этот флаг указывает, поддерживает ли модуль частичную отрисовку с использованием AJAX.</value>
+  </data>
+  
+  <data name="LoadMore.Button" xml:space="preserve">
+    <value>Еще</value>
+  </data>
+  <data name="EditJavascriptLibrary_TableName.Header" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="EditJavascriptLibrary_TableVersion.Header" xml:space="preserve">
+    <value>Версия</value>
+  </data>
+  <data name="AuthSystemSiteSettings_AppEnabled.HelpText" xml:space="preserve">
+    <value>Отметьте флажок чтобы включить данный вид аутентификации для этого сайта.</value>
+  </data>
+  <data name="AuthSystemSiteSettings_AppEnabled.Label" xml:space="preserve">
+    <value>Включено</value>
+  </data>
+  <data name="AuthSystemSiteSettings_AppId.HelpText" xml:space="preserve">
+    <value>Введите значения ид. приложения/ключа API/ключа потребителя, которые были указаны при настройке поставщика аутентификации.</value>
+  </data>
+  
+  <data name="AuthSystemSiteSettings_AppSecret.HelpText" xml:space="preserve">
+    <value>Введите значения ид. приложения/ключа API/ключа потребителя, которые были указаны при настройке поставщика аутентификации.</value>
+  </data>
+  
+  <data name="CreateExtension_Cancel.Button" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="CreateExtension_Save.Button" xml:space="preserve">
+    <value>Создать</value>
+  </data>
+  
+  
+  <data name="CreateNewModule_FolderName.Label" xml:space="preserve">
+    <value>Имя папки</value>
+  </data>
+  
+  
+  <data name="Done.Button" xml:space="preserve">
+    <value>Готово</value>
+  </data>
+  <data name="EditModule_SaveAndClose.Button" xml:space="preserve">
+    <value>Сохранить и закрыть</value>
+  </data>
+  <data name="InstallExtension_AcceptLicense.Label" xml:space="preserve">
+    <value>Принять условия лицензии?</value>
+  </data>
+  <data name="InstallExtension_License.Header" xml:space="preserve">
+    <value>Лицензия</value>
+  </data>
+  
+  <data name="InstallExtension_Logs.Header" xml:space="preserve">
+    <value>Отчет об установке пакета</value>
+  </data>
+  
+  <data name="InstallExtension_ReleaseNotes.Header" xml:space="preserve">
+    <value>Заметки к выпуску</value>
+  </data>
+  <data name="InstallExtension_ReleaseNotes.HelpText" xml:space="preserve">
+    <value>Вы можете прочитать заметки к выпуску для этого пакета.</value>
+  </data>
+  <data name="Next.Button" xml:space="preserve">
+    <value>След.</value>
+  </data>
+  <data name="Cancel.Button" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  
+  <data name="EditExtension_PackageType.Label" xml:space="preserve">
+    <value>Тип расширения</value>
+  </data>
+  <data name="InstallExtension_PackageInfo.Header" xml:space="preserve">
+    <value>Информация пакета</value>
+  </data>
+  <data name="InstallExtension_PackageInfo.HelpText" xml:space="preserve">
+    <value>Следующая информация была найдена в манифесте пакета.</value>
+  </data>
+  <data name="Save.Button" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="UnsavedChanges.Cancel" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="UnsavedChanges.Confirm" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  
+  <data name="CreatePackage_ArchiveFileName.HelpText" xml:space="preserve">
+    <value>Введите имя файла для создания архива (zip).</value>
+  </data>
+  <data name="CreatePackage_ManifestFileName.HelpText" xml:space="preserve">
+    <value>Введите полное имя файла для манифеста.</value>
+  </data>
+  <data name="DeleteExtension.Cancel" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="DeleteExtension.Confirm" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  
+  <data name="Download.Button" xml:space="preserve">
+    <value>Загрузить</value>
+  </data>
+  
+  <data name="EditModule_ModuleSharingSupported.Label" xml:space="preserve">
+    <value>Поддерживается</value>
+  </data>
+  <data name="EditModule_ModuleSharingUnknown.Label" xml:space="preserve">
+    <value>Неизвестно</value>
+  </data>
+  <data name="EditModule_ModuleSharingUnsupported.Label" xml:space="preserve">
+    <value>Не поддерживается</value>
+  </data>
+  <data name="Install.Button" xml:space="preserve">
+    <value>Установить</value>
+  </data>
+  <data name="Previous.Button" xml:space="preserve">
+    <value>Пред.</value>
+  </data>
+  <data name="Errors.Text" xml:space="preserve">
+    <value>ошибки</value>
+  </data>
+  <data name="TryAgain.Text" xml:space="preserve">
+    <value>[Попробовать снова]</value>
+  </data>
+  <data name="ViewErrorLog.Text" xml:space="preserve">
+    <value>[Просмотр журнала ошибок]</value>
+  </data>
+  <data name="Delete.Button" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="DeleteExtension.Action" xml:space="preserve">
+    <value>Удалить расширения - {0}</value>
+  </data>
+  <data name="DeleteFiles.HelpText" xml:space="preserve">
+    <value>Отметьте, чтобы вместе с расширением удалить также все созданные при его установке файлы.</value>
+  </data>
+  <data name="DeleteFiles.Label" xml:space="preserve">
+    <value>Удалить файлы?</value>
+  </data>
+  <data name="Extension.Header" xml:space="preserve">
+    <value>Расширение</value>
+  </data>
+  <data name="Container.Text" xml:space="preserve">
+    <value>Контейнер</value>
+  </data>
+  <data name="InstallError.Text" xml:space="preserve">
+    <value>Ошибка при загрузке файлов из временного каталога - см. ниже.</value>
+  </data>
+  <data name="InvalidExt.Text" xml:space="preserve">
+    <value>Недопустимое расширение файла - {0}</value>
+  </data>
+  <data name="InvalidFiles.Text" xml:space="preserve">
+    <value>Пакет содержит файлы с недопустимыми расширениями ({0})</value>
+  </data>
+  <data name="ZipCriticalError.Text" xml:space="preserve">
+    <value>Критическая ошибка при чтении архива zip.</value>
+  </data>
+  <data name="Deploy.Button" xml:space="preserve">
+    <value>Развернуть</value>
+  </data>
+  
+  <data name="InstallExtension_UploadFailedUnknown.Text" xml:space="preserve">
+    <value>Ошибка при загрузке файла Zip</value>
+  </data>
+  
+  
+  
+  <data name="BackToEditExtension.Text" xml:space="preserve">
+    <value>Вернуться к редактированию расширения {0}</value>
+  </data>
+  
+  <data name="ModuleUsageTitle.Text" xml:space="preserve">
+    <value>Информация об использовании модуля {0}</value>
+  </data>
+  
+  
+  <data name="NoModuleUsageDetail.Text" xml:space="preserve">
+    <value>Этого модуля нет на любой из {0} страниц.</value>
+  </data>
+  
+  
+</root>

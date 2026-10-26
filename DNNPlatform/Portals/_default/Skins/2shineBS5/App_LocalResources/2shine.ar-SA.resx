@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <!-- #1946: ar-SA skin resources. Menu.Tab<Id>.Text localizes the DDRMenu labels
+       (fallback = DNN TabName, which serves the FRENCH label in every culture today,
+       measured on the preprod menu); Menu.Tab170.Url points to the translated mind map
+       served at /fallacies_ar.html (measured 200). Tab 171 (ontology) exists in French only, so it
+       carries no Url key and keeps the declared French fallback. fr-FR is not touched. -->
+  <data name="Menu.Tab148.Text" xml:space="preserve">
+    <value>الأخبار</value>
+  </data>
+  <data name="Menu.Tab149.Text" xml:space="preserve">
+    <value>اشترِ اللعبة</value>
+  </data>
+  <data name="Menu.Tab150.Text" xml:space="preserve">
+    <value>التنزيلات</value>
+  </data>
+  <data name="Menu.Tab151.Text" xml:space="preserve">
+    <value>الأصدقاء</value>
+  </data>
+  <data name="Menu.Tab152.Text" xml:space="preserve">
+    <value>القواعد</value>
+  </data>
+  <data name="Menu.Tab169.Text" xml:space="preserve">
+    <value>الحِجاج</value>
+  </data>
+  <data name="Menu.Tab170.Text" xml:space="preserve">
+    <value>خريطة المغالطات الذهنية</value>
+  </data>
+  <data name="Menu.Tab170.Url" xml:space="preserve">
+    <value>/fallacies_ar.html</value>
+  </data>
+  <data name="Menu.Tab171.Text" xml:space="preserve">
+    <value>أنطولوجيا المغالطات</value>
+  </data>
+  <data name="Imprint.Text" xml:space="preserve">
+    <value>إشعار قانوني</value>
+  </data>
+  <data name="Privacy.Text" xml:space="preserve">
+    <value>الخصوصية</value>
+  </data>
+  <data name="Meta.Description" xml:space="preserve">
+    <value>أرغومنتوم لعبة ورق عن الحِجاج وتعلّم اكتشاف الحجج المغالطة.</value>
+  </data>
+  <data name="Meta.Keywords" xml:space="preserve">
+    <value>الحجاج, البلاغة, المغالطات, الحجج المغالطة</value>
+  </data>
+  <!-- #458: tooltips of the icon-only login/logoff links (theme-body.ascx, Landingpage.ascx). -->
+  <data name="Login.Tooltip" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+  <data name="Logoff.Tooltip" xml:space="preserve">
+    <value>تسجيل الخروج</value>
+  </data>
+</root>

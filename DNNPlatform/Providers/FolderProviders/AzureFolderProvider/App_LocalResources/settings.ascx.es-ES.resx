@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccessDenied.ErrorMessage" xml:space="preserve">
+    <value>Acceso denegado.</value>
+  </data>
+  <data name="AccountNotFound.ErrorMessage" xml:space="preserve">
+    <value>No se encontró la cuenta especificada.</value>
+  </data>
+  <data name="AuthenticationFailure.ErrorMessage" xml:space="preserve">
+    <value>Se produjo un error de autenticación.</value>
+  </data>
+  <data name="CredentialsRequired.ErrorMessage" xml:space="preserve">
+    <value>Introduzca sus credenciales antes de actualizar la lista de contenedores.</value>
+  </data>
+  <data name="ListContainers.ErrorMessage" xml:space="preserve">
+    <value>Se produjo un error al intentar obtener la lista de contenedores.</value>
+  </data>
+  <data name="MultipleFolderMappingsWithSameSettings.ErrorMessage" xml:space="preserve">
+    <value>Hay otra asignación de carpetas que utiliza la misma cuenta y contenedor. Introduzca una cuenta o contenedor diferente.</value>
+  </data>
+  <data name="NewContainer.ErrorMessage" xml:space="preserve">
+    <value>Se produjo un error al crear el nuevo contenedor.</value>
+  </data>
+  <data name="NewContainer.Text" xml:space="preserve">
+    <value>Nuevo contenedor</value>
+  </data>
+  <data name="plAccountKey.Help" xml:space="preserve">
+    <value>Introduzca la clave de la cuenta. Se pueden usar las claves de acceso de Azure primarias o secundarias para la clave de cuenta.</value>
+  </data>
+  <data name="plAccountKey.Text" xml:space="preserve">
+    <value>Clave de la cuenta</value>
+  </data>
+  <data name="plAccountName.Help" xml:space="preserve">
+    <value>Introduzca el nombre de la cuenta.</value>
+  </data>
+  <data name="plAccountName.Text" xml:space="preserve">
+    <value>Nombre de la cuenta</value>
+  </data>
+  <data name="plContainerName.Help" xml:space="preserve">
+    <value>Seleccione o introduzca el nombre del contenedor.</value>
+  </data>
+  <data name="plContainerName.Text" xml:space="preserve">
+    <value>Nombre del contenedor</value>
+  </data>
+  <data name="plCustomDomain.Help" xml:space="preserve">
+    <value>Introduzca el mismo dominio configurado previamente en la cuenta de Azure Storage</value>
+  </data>
+  <data name="plCustomDomain.Text" xml:space="preserve">
+    <value>Dominio</value>
+  </data>
+  <data name="plDirectLink.Help" xml:space="preserve">
+    <value>Si este campo está marcado, la ruta de los archivos de este tipo de carpeta apuntará a la ruta real. Si no está marcado, se utilizará la ruta LinkClick.</value>
+  </data>
+  <data name="plDirectLink.Text" xml:space="preserve">
+    <value>Utilizar enlaces directos</value>
+  </data>
+  <data name="plSyncBatchSize.Help" xml:space="preserve">
+    <value>Establece la cantidad máxima de elementos que se pueden recuperar del almacenamiento de Azure en cada solicitud durante la sincronización de carpetas. Cuanto menor sea el número, más peticiones serán necesarios para recuperar todos los elementos. Un número grande provocará tiempos de espera en el caso de repositorios grandes.</value>
+  </data>
+  <data name="plSyncBatchSize.Text" xml:space="preserve">
+    <value>Tamaño del lote de sincronización</value>
+  </data>
+  <data name="plUseHttps.Help" xml:space="preserve">
+    <value>Seleccione esta opción si desea utilizar los endpoints HTTPS predeterminados.</value>
+  </data>
+  <data name="plUseHttps.Text" xml:space="preserve">
+    <value>Utilizar endpoints HTTPS</value>
+  </data>
+  <data name="RefreshContainerList.Text" xml:space="preserve">
+    <value>&lt;Actualizar&gt;</value>
+  </data>
+  <data name="SelectContainer.Text" xml:space="preserve">
+    <value>&lt;Seleccionar contenedor&gt;</value>
+  </data>
+  <data name="SelectExistingContainer.Text" xml:space="preserve">
+    <value>Seleccionar un contenedor existente</value>
+  </data>
+  <data name="tbCustomDomain.Error" xml:space="preserve">
+    <value>El nombre de dominio debe ser un nombre DNS válido</value>
+  </data>
+  <data name="tbCustomDomain.Help" xml:space="preserve">
+    <value>Introduzca el mismo dominio configurado previamente en la cuenta de Azure Storage</value>
+  </data>
+  <data name="tbSyncBatchSize.Error" xml:space="preserve">
+    <value>El tamaño del lote de sincronización debe ser un número entero positivo</value>
+  </data>
+  <data name="valAccountKey.ErrorMessage" xml:space="preserve">
+    <value>Tiene que introducir la clave de la cuenta</value>
+  </data>
+  <data name="valAccountName.ErrorMessage" xml:space="preserve">
+    <value>Tiene que introducir el nombre de la cuenta</value>
+  </data>
+  <data name="valContainerName.ErrorMessage" xml:space="preserve">
+    <value>Tiene que seleccionar el contenedor</value>
+  </data>
+</root>

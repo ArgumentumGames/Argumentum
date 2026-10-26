@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add.Text" xml:space="preserve">
+    <value>Añadir el elemento seleccionado a la lista de asignados</value>
+  </data>
+  <data name="AddAll.Text" xml:space="preserve">
+    <value>Añadir todos los elementos disponibles a la lista de asignados</value>
+  </data>
+  <data name="Assigned.Text" xml:space="preserve">
+    <value>Asignado</value>
+  </data>
+  <data name="Available.Text" xml:space="preserve">
+    <value>Disponible</value>
+  </data>
+  <data name="Remove.Text" xml:space="preserve">
+    <value>Eliminar elemento seleccionado de la lista de asignados</value>
+  </data>
+  <data name="RemoveAll.Text" xml:space="preserve">
+    <value>Eliminar todos los elementos de la lista de asignados</value>
+  </data>
+</root>

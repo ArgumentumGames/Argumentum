@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Name.Header" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="Username.Header" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="Address.Header" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="Telephone.Header" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="Email.Header" xml:space="preserve">
+    <value>Email-адрес</value>
+  </data>
+  <data name="LastLogin.Header" xml:space="preserve">
+    <value>Последний вход</value>
+  </data>
+  <data name="Authorized.Header" xml:space="preserve">
+    <value>Авторизирован</value>
+  </data>
+  <data name="DeleteUnauthorized.Text" xml:space="preserve">
+    <value>Удалить неавторизованных пользователей</value>
+  </data>
+  <data name="AddContent.Action" xml:space="preserve">
+    <value>Новый пользователь</value>
+  </data>
+  <data name="ControlTitle_.Text" xml:space="preserve">
+    <value>Пользователи сайта</value>
+  </data>
+  <data name="Search.Text" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="RecordsPage.Text" xml:space="preserve">
+    <value>Записей на страницу:</value>
+  </data>
+  <data name="First.Text" xml:space="preserve">
+    <value>&lt;&lt;</value>
+  </data>
+  <data name="Next.Text" xml:space="preserve">
+    <value>След.</value>
+  </data>
+  <data name="Previous.Text" xml:space="preserve">
+    <value>Пред.</value>
+  </data>
+  <data name="Last.Text" xml:space="preserve">
+    <value>&gt;&gt;</value>
+  </data>
+  <data name="CreatedDate.Header" xml:space="preserve">
+    <value>Дата создания</value>
+  </data>
+  <data name="DisplayDate.Text" xml:space="preserve">
+    <value>Показывать дату:</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;О модуле управления пользователями&lt;/h1&lt;p&gt;Данный модуль позволяет Администраторам управлять своими зарегистрированными пользователями. Этот модуль позволяет вам добавлять новых пользователей, обновлять существующих, удалять пользователей, а также управлять ролями пользователей.&lt;/p&gt;
+</value>
+  </data>
+  <data name="ManageProfile.Action" xml:space="preserve">
+    <value>Управление свойствами профиля</value>
+  </data>
+  <data name="UserRoles.Text" xml:space="preserve">
+    <value>Управление ролями</value>
+  </data>
+  <data name="DeleteUnAuthorized.Action" xml:space="preserve">
+    <value>Удалить неавторизованных пользователей</value>
+  </data>
+  <data name="RemoveDeleted.Action" xml:space="preserve">
+    <value>Очистить удаленных пользователей</value>
+  </data>
+  <data name="UserSettings.Action" xml:space="preserve">
+    <value>Настройки пользователя</value>
+  </data>
+  <data name="FirstName.Header" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="LastName.Header" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="DisplayName.Header" xml:space="preserve">
+    <value>Отображаемое имя</value>
+  </data>
+  <data name="Filter.Text" xml:space="preserve">
+    <value>A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,А,Б,В,Г,Д,Е,Ё,Ж,З,И,Й,К,Л,М,Н,О,П,Р,С,Т,У,Ф,Х,Ц,Ч,Ш,Щ,Ы,Э,Ю,Я</value>
+  </data>
+  <data name="UserDeleted.Text" xml:space="preserve">
+    <value>Пользователь успешно удален.</value>
+  </data>
+  <data name="Delete.Text" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Remove.Text" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Restore.Text" xml:space="preserve">
+    <value>Восстановить</value>
+  </data>
+  <data name="Prefix.Text" xml:space="preserve">
+    <value>Префикс</value>
+  </data>
+  <data name="FirstName.Text" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="LastName.Text" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="MiddleName.Text" xml:space="preserve">
+    <value>Отчество</value>
+  </data>
+  <data name="Suffix.Text" xml:space="preserve">
+    <value>Суффикс</value>
+  </data>
+  <data name="Unit.Text" xml:space="preserve">
+    <value>Офис</value>
+  </data>
+  <data name="Street.Text" xml:space="preserve">
+    <value>Улица</value>
+  </data>
+  <data name="City.Text" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="Region.Text" xml:space="preserve">
+    <value>Регион</value>
+  </data>
+  <data name="Country.Text" xml:space="preserve">
+    <value>Страна</value>
+  </data>
+  <data name="PostalCode.Text" xml:space="preserve">
+    <value>Почтовый индекс</value>
+  </data>
+  <data name="Telephone.Text" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="Cell.Text" xml:space="preserve">
+    <value>Мобильный телефон</value>
+  </data>
+  <data name="Fax.Text" xml:space="preserve">
+    <value>Факс</value>
+  </data>
+  <data name="IM.Text" xml:space="preserve">
+    <value>Ид. клиента мгновенных сообщений</value>
+  </data>
+  <data name="Website.Text" xml:space="preserve">
+    <value>Вебсайт</value>
+  </data>
+  <data name="Biography.Text" xml:space="preserve">
+    <value>Биография</value>
+  </data>
+  <data name="TimeZone.Text" xml:space="preserve">
+    <value>Часовой пояс</value>
+  </data>
+  <data name="PreferredLocale.Text" xml:space="preserve">
+    <value>Предпочтительный язык</value>
+  </data>
+  <data name="Email.Text" xml:space="preserve">
+    <value>Email-адрес</value>
+  </data>
+  <data name="Username.Text" xml:space="preserve">
+    <value>Имя пользователя</value>
+  </data>
+  <data name="Online.Text" xml:space="preserve">
+    <value>Сейчас на сайте</value>
+  </data>
+  <data name="Delete.Confirm" xml:space="preserve">
+    <value>Уверены, что хотите удалить этого пользователя?</value>
+  </data>
+  <data name="Remove.Confirm" xml:space="preserve">
+    <value>Уверены, что хотите навсегда удалить этого пользователя?</value>
+  </data>
+  <data name="PreferredTimeZone.Text" xml:space="preserve">
+    <value>Предпочитаемый часовой пояс</value>
+  </data>
+  <data name="Restore.Confirm" xml:space="preserve">
+    <value>Уверены, что хотите восстановить этого пользователя?</value>
+  </data>
+  <data name="DisplayName.Text" xml:space="preserve">
+    <value>Отображаемое имя</value>
+  </data>
+  <data name="PagerPageSize.Text" xml:space="preserve">
+    <value>Элементов на страницу:</value>
+  </data>
+  <data name="PagerTextFormat.Text" xml:space="preserve">
+    <value>{4} страница {0} из {1}, пользователи с {2} по {3} из {5}</value>
+  </data>
+</root>

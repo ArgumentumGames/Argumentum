@@ -108,6 +108,50 @@ namespace Argumentum.AssetConverter
 				CsvType = typeof(Argumentum.AssetConverter.Entities.DnnUiString),
 				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/docs/dnn-localization/dnn-ui-strings.csv",
 				DebugFilePath = @"..\..\..\..\..\..\docs\dnn-localization\dnn-ui-strings.csv"
+			},
+			// T2 trial (issue #457, dispatch 10/10 c.6096790964 §3): witness entity 11392 prose
+			// extract (Title + Text rows, guid 2538A3F0-…), derived from the committed app33 pivot.
+			// CsvType intentionally omitted: DatasetUpdater reads raw headers (GetDictionaryFromCsv);
+			// harvest/mindmap never consume this dataset (Mode-gated away in the updater run).
+			// Volume pass swaps the path for the full prose worklist extract (#1847: ~107 rows).
+			new DataSetInfo()
+			{
+				Name = KnownDataSets.DnnApp33Content,
+				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/docs/dnn-localization/release-validation/exports/DNN-Argumentum-export-app33-2026-10-09/pivots/content-trial-11392.csv",
+				DebugFilePath = @"..\..\..\..\..\..\docs\dnn-localization\release-validation\exports\DNN-Argumentum-export-app33-2026-10-09\pivots\content-trial-11392.csv"
+			},
+			// T2 volume worklists (issue #457): derived from the same export by the committed
+			// derivation script run of 12/10 — content 45 / link 20 / video 6 rows. Every
+			// exclusion is auditable in the PR that added the files (7 demo entities per the
+			// manifest markers, trial entity 2538A3F0-… graft-at-assembly, non-prose attribute
+			// families). DatasetUpdater-only (raw CSV headers, no CsvType), same wiring as the
+			// trial dataset above.
+			new DataSetInfo()
+			{
+				Name = KnownDataSets.DnnApp33ContentVolume,
+				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/docs/dnn-localization/release-validation/exports/DNN-Argumentum-export-app33-2026-10-09/pivots/content-volume.csv",
+				DebugFilePath = @"..\..\..\..\..\..\docs\dnn-localization\release-validation\exports\DNN-Argumentum-export-app33-2026-10-09\pivots\content-volume.csv"
+			},
+			new DataSetInfo()
+			{
+				Name = KnownDataSets.DnnApp33LinkVolume,
+				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/docs/dnn-localization/release-validation/exports/DNN-Argumentum-export-app33-2026-10-09/pivots/link-volume.csv",
+				DebugFilePath = @"..\..\..\..\..\..\docs\dnn-localization\release-validation\exports\DNN-Argumentum-export-app33-2026-10-09\pivots\link-volume.csv"
+			},
+			new DataSetInfo()
+			{
+				Name = KnownDataSets.DnnApp33VideoVolume,
+				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/docs/dnn-localization/release-validation/exports/DNN-Argumentum-export-app33-2026-10-09/pivots/video-volume.csv",
+				DebugFilePath = @"..\..\..\..\..\..\docs\dnn-localization\release-validation\exports\DNN-Argumentum-export-app33-2026-10-09\pivots\video-volume.csv"
+			},
+			// Owner's Rules 06 lot (#1502 c.6098939191): translation pivot of the 2 changed
+			// bullets. DatasetUpdater-only (raw CSV headers, no CsvType). The committed pivot
+			// is the read source; the updater writes to its sandbox TargetPath, never here.
+			new DataSetInfo()
+			{
+				Name = KnownDataSets.Rules06LotPhrases,
+				ReleaseFilePath = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/docs/translation/1502-rules06-owner-lot/pivot-rules06-phrases.csv",
+				DebugFilePath = @"..\..\..\..\..\..\docs\translation\1502-rules06-owner-lot\pivot-rules06-phrases.csv"
 			}
 		});
 
@@ -327,9 +371,9 @@ namespace Argumentum.AssetConverter
 						nameof(FallacyMindMapDocumentConfig.SoussousFamilleExpression),
 					}),
 					StaticConversions = new List<(string sourceText, List<(string Language, string destText)> textConversions)>(new[]{
-						(nameof(Fallacy.Soussousfamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subsubfamily)), ("ru", nameof(Fallacy.SubsubfamilyRu)), ("pt", nameof(Fallacy.SubsubfamilyPt)), ("es", nameof(Fallacy.SubsubfamilyEs)), ("ar", nameof(Fallacy.SubsubfamilyAr)), ("fa", nameof(Fallacy.SubsubfamilyFa)), ("zh", nameof(Fallacy.SubsubfamilyZh))}) ),
-						(nameof(Fallacy.SousFamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.Subfamily)), ("ru", nameof(Fallacy.SubfamilyRu)), ("pt", nameof(Fallacy.SubfamilyPt)), ("es", nameof(Fallacy.SubfamilyEs)), ("ar", nameof(Fallacy.SubfamilyAr)), ("fa", nameof(Fallacy.SubfamilyFa)), ("zh", nameof(Fallacy.SubfamilyZh))}) ),
-						(nameof(Fallacy.Famille), new List<(string Language, string destText)>(new []{("en", "Family"), ("ru", nameof(Fallacy.FamilyRu)), ("pt", nameof(Fallacy.FamilyPt)), ("es", nameof(Fallacy.FamilyEs)), ("ar", nameof(Fallacy.FamilyAr)), ("fa", nameof(Fallacy.FamilyFa)), ("zh", nameof(Fallacy.FamilyZh))}) ),
+						(nameof(Fallacy.Soussousfamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.SubsubfamilyEn)), ("ru", nameof(Fallacy.SubsubfamilyRu)), ("pt", nameof(Fallacy.SubsubfamilyPt)), ("es", nameof(Fallacy.SubsubfamilyEs)), ("ar", nameof(Fallacy.SubsubfamilyAr)), ("fa", nameof(Fallacy.SubsubfamilyFa)), ("zh", nameof(Fallacy.SubsubfamilyZh))}) ),
+						(nameof(Fallacy.SousFamille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.SubfamilyEn)), ("ru", nameof(Fallacy.SubfamilyRu)), ("pt", nameof(Fallacy.SubfamilyPt)), ("es", nameof(Fallacy.SubfamilyEs)), ("ar", nameof(Fallacy.SubfamilyAr)), ("fa", nameof(Fallacy.SubfamilyFa)), ("zh", nameof(Fallacy.SubfamilyZh))}) ),
+						(nameof(Fallacy.Famille), new List<(string Language, string destText)>(new []{("en", nameof(Fallacy.FamilyEn)), ("ru", nameof(Fallacy.FamilyRu)), ("pt", nameof(Fallacy.FamilyPt)), ("es", nameof(Fallacy.FamilyEs)), ("ar", nameof(Fallacy.FamilyAr)), ("fa", nameof(Fallacy.FamilyFa)), ("zh", nameof(Fallacy.FamilyZh))}) ),
 					}),
 				},
 				// Virtue text fields: FR property names → localized property names (#636 §2, #665).
@@ -594,19 +638,33 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 
 			}
 			if (Mode.HasFlag(ConverterMode.Mindmapper))
-		    {
-			    if (AsynchronousPipeline)
-			    {
-				    tasks.Add(Task.Run(() => FallacyMindMapCreatorConfig.Apply(this)));
-				    tasks.Add(Task.Run(() => VirtueMindMapCreatorConfig.Apply(this)));
-				   }
-				   else
-				   {
-				    await FallacyMindMapCreatorConfig.Apply(this);
-				    await VirtueMindMapCreatorConfig.Apply(this);
-				   }
-
-
+			{
+				// #458 grain 4 (dispatch c.5975630522) — fenêtre de comptage du repli XSLT
+				// pour CETTE passe mindmaps ; le résumé est émis après les deux créateurs.
+				// #458 reprise (c.5977924514) — la fenêtre couvre aussi les exports SVG
+				// manquants : la passe ÉCHOUE s'il en manque ([MINDMAP-PARTIAL]).
+				FallacyMindMapDocumentConfig.ResetXsltFallbackSignals();
+				if (AsynchronousPipeline)
+				{
+					var fallacyMapTask = Task.Run(() => FallacyMindMapCreatorConfig.Apply(this));
+					var virtueMapTask = Task.Run(() => VirtueMindMapCreatorConfig.Apply(this));
+					tasks.Add(fallacyMapTask);
+					tasks.Add(virtueMapTask);
+					// Résumé émis d'un seul point, après LES DEUX créateurs (compteurs
+					// process-wide : un résumé par créateur s'entrelacerait ici), puis
+					// verdict de passe : throw si un export attendu manque.
+					tasks.Add(Task.Run(async () =>
+					{
+						await Task.WhenAll(fallacyMapTask, virtueMapTask);
+						CompleteMindmapPass();
+					}));
+				}
+				else
+				{
+					await FallacyMindMapCreatorConfig.Apply(this);
+					await VirtueMindMapCreatorConfig.Apply(this);
+					CompleteMindmapPass();
+				}
 			}
 
 
@@ -751,6 +809,52 @@ public string DocumentsDirectoryName { get; set; } = @"Documents\";
 	    }
 
 	   
+
+		/// <summary>
+		/// #458 grain 4 (dispatch c.5975630522) — résumé de FIN DE PASSE mindmaps : combien
+		/// de fois le repli XSLT (voie morte #184) a été engagé, combien de SVG dégradés
+		/// il a produits. Émis d'un seul point, après LES DEUX créateurs (les compteurs
+		/// sont process-wide : un résumé par créateur s'entrelacerait en mode asynchrone).
+		/// Niveau avertissement dès qu'un artefact dégradé est sorti — c'est ce résumé qui
+		/// manquait quand la carte blanche est entrée dans #1740 (la porte d'arbre
+		/// MindmapXsltFallbackGateTests de #1740 couvre l'arbre committé ; ceci, la passe).
+		/// </summary>
+		private static void LogMindmapXsltFallbackSummary()
+		{
+			var engagements = FallacyMindMapDocumentConfig.XsltFallbackEngagements;
+			var artifacts = FallacyMindMapDocumentConfig.XsltFallbackArtifacts;
+			var line = FallacyMindMapDocumentConfig.BuildXsltFallbackSummaryLine(engagements, artifacts);
+			if (artifacts > 0)
+			{
+				Logger.LogWarning(line);
+			}
+			else
+			{
+				Logger.Log(line);
+			}
+		}
+
+		/// <summary>
+		/// #458 reprise (c.5977924514) — clôture de la passe mindmaps : les deux résumés
+		/// (repli XSLT, exports manquants), puis <c>throw [MINDMAP-PARTIAL]</c> si un export
+		/// attendu n'a pas produit de SVG — le même contrat que le <c>[HARVEST-PARTIAL]</c>
+		/// de #613 : une passe incomplète ne sort pas verte. Appelé après LES DEUX créateurs.
+		/// </summary>
+		private static void CompleteMindmapPass()
+		{
+			LogMindmapXsltFallbackSummary();
+			var missing = FallacyMindMapDocumentConfig.MissingSvgExports;
+			var missingLine = FallacyMindMapDocumentConfig.BuildMissingSvgSummaryLine(missing.Count);
+			if (missing.Count > 0)
+			{
+				Logger.LogWarning(missingLine);
+			}
+			else
+			{
+				Logger.Log(missingLine);
+			}
+			FallacyMindMapDocumentConfig.ThrowIfMissingSvgExports();
+		}
 
 	    public string GetHarvestDirectory(string language)
 	    {

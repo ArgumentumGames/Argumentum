@@ -4,6 +4,52 @@
 @{
     var ruleEntity = AsList(Data).FirstOrDefault();
 
+    // D1 (#458): player-count caption localized — strings arbitrated by ai-01 18/10.
+    // Keep the culture switch in sync with _RulesExplorer_RuleList.cshtml.
+    var lang = (CmsContext.Culture.CurrentCode ?? "fr-FR").Split(new[] { '-' })[0].ToLowerInvariant();
+    var playersFormat = lang == "en" ? "{0} to {1} players"
+        : lang == "es" ? "de {0} a {1} jugadores"
+        : lang == "pt" ? "de {0} a {1} jogadores"
+        : lang == "ru" ? "от {0} до {1} игроков"
+        : lang == "zh" ? "{0}至{1}名玩家"
+        : lang == "ar" ? "من {0} إلى {1} لاعبين"
+        : lang == "fa" ? "از {0} تا {1} بازیکن"
+        : "de {0} à {1} joueurs";
+
+    // D1 (#458, 22/10): min == max needs no interval - the corpus itself writes the
+    // single form on the 4/4 fiche (Rules_13: «Règles du jeu : 4 joueurs» in Text and
+    // its 7 translations). The plural class is that of the measured value (ru 2-4
+    // => «игрока», ar 3-10 => «لاعبين»). Keep in sync with _RulesExplorer_RuleList.cshtml.
+    var playersFormatSingle = lang == "en" ? "{0} players"
+        : lang == "es" ? "{0} jugadores"
+        : lang == "pt" ? "{0} jogadores"
+        : lang == "ru" ? "{0} игрока"
+        : lang == "zh" ? "{0}名玩家"
+        : lang == "ar" ? "{0} لاعبين"
+        : lang == "fa" ? "{0} بازیکن"
+        : "{0} joueurs";
+
+    // #458 ⑲: the fa cards carry PERSIAN digits («از ۳ تا ۱۰ بازیکن» — Text_fa holds 94
+    // Persian digits against 20 ASCII, measured 22/10; every other language column is pure
+    // ASCII). .NET number formatting never applies NumberFormatInfo.NativeDigits, so the
+    // caption would come out ASCII and disagree with the card - convert to match it.
+    // Keep the conversion in sync with _RulesExplorer_RuleList.cshtml.
+    var playersText = ruleEntity.MinNbPlayers == ruleEntity.MaxNbPlayers
+        ? string.Format(playersFormatSingle, ruleEntity.MinNbPlayers)
+        : string.Format(playersFormat, ruleEntity.MinNbPlayers, ruleEntity.MaxNbPlayers);
+    if (lang == "fa")
+    {
+        var persianDigits = "۰۱۲۳۴۵۶۷۸۹";
+        var digits = playersText.ToCharArray();
+        for (var i = 0; i < digits.Length; i++)
+        {
+            if (digits[i] >= (char)48 && digits[i] <= (char)57)
+            {
+                digits[i] = persianDigits[digits[i] - 48];
+            }
+        }
+        playersText = new string(digits);
+    }
 
     //QRCode logic
 
@@ -24,31 +70,6 @@
         height = 100
     };
 
-    // Culture-aware field selection for the Rule content-type.
-    // Mirrors FallacyExplorer (PR #490): cascade lang -> en -> fr on suffixed fields.
-    // ADDS a 4th fallback on the generic (unsuffixed) field: the Rule content-type
-    // currently exposes generic fields (Summary, Material, ...) holding the FR
-    // canonical value, with no language dimensions wired yet. Without the generic
-    // fallback, Loc() would return "" until the DB gains suffixed fields — breaking
-    // the current FR rendering. The generic fallback preserves FR during the
-    // DB-migration transition (gated on the 2sxc portal export, jsboige).
-    // See investigation PR #669 (RulesExplorer FR-only = cause of audit #662).
-    var lang = (CmsContext.Culture.CurrentCode ?? "fr-fr").Split(new[] { '-' })[0].ToLowerInvariant();
-    var supported = new HashSet<string> { "fr", "en", "ru", "pt", "es", "ar", "fa", "zh" };
-    if (!supported.Contains(lang)) { lang = "fr"; }
-
-    string Loc(dynamic entity, string field)
-    {
-        var dict = (IDictionary<string, object>)entity;
-        string pick(string key) => dict.ContainsKey(key) ? entity[key]?.ToString() ?? "" : "";
-        var primary = pick(field + "_" + lang);
-        if (!string.IsNullOrEmpty(primary)) return primary;
-        if (lang != "en") { var en = pick(field + "_en"); if (!string.IsNullOrEmpty(en)) return en; }
-        var fr = pick(field + "_fr");
-        if (!string.IsNullOrEmpty(fr)) return fr;
-        return pick(field);  // generic fallback — current FR canonical value
-    }
-
 }
 
 <link rel="stylesheet" href="@App.Path/src/styles/argumentum.css" data-enableoptimizations="150" />
@@ -56,29 +77,32 @@
 <div class="rule row mb-4 mb-md-5" @Edit.TagToolbar(ruleEntity)>
     <div class="col-md-4 position-relative">
         <h1>
-            @Loc(ruleEntity, "Title")
+            @ruleEntity.Title
         </h1>
-        <h5>de @ruleEntity.MinNbPlayers &agrave; @ruleEntity.MaxNbPlayers joueurs </h5>
+        <h5>@playersText</h5>
         <h2>@Resources.RuleSummary</h2>
-        @Html.Raw(Loc(ruleEntity, "Summary"))
+        @Html.Raw(ruleEntity.Summary)
     </div>
     <div class="col-md-8  position-relative">
         <h2>@Resources.RuleMaterial</h2>
-        @Html.Raw(Loc(ruleEntity, "Material"))
+        @Html.Raw(ruleEntity.Material)
         <h2>@Resources.RuleInstallation</h2>
-        @Html.Raw(Loc(ruleEntity, "Installation"))
+        @Html.Raw(ruleEntity.Installation)
     </div>
     <div class="col-md-12  position-relative">
-        <h2>@Resources.RuleContent</h2>
-        @Html.Raw(Loc(ruleEntity, "Content"))
-        @if (!string.IsNullOrEmpty(Loc(ruleEntity, "Variants")))
+        @if (!string.IsNullOrEmpty(ruleEntity.Content))
+        {
+            <h2>@Resources.RuleContent</h2>
+            @Html.Raw(ruleEntity.Content)
+        }
+        @if (ruleEntity.Variants != "")
         {
             <h2>@Resources.RuleVariants</h2>
-            @Html.Raw(Loc(ruleEntity, "Variants"))
+            @Html.Raw(ruleEntity.Variants)
         }
 
     </div>
-    @if (!string.IsNullOrEmpty(Loc(ruleEntity, "Memo")))
+    @if (!string.IsNullOrEmpty(ruleEntity.Memo))
     {
 <div class="col-md-12">
     <h2>@Resources.RuleMemoCard</h2>
@@ -90,19 +114,19 @@
                     <bleed>
                         <cut>
                             <safe>
-                                <div class="cardName">@Resources.RuleMemoCardFileNamePrefix - @Loc(ruleEntity, "Title")</div>
+                                <div class="cardName">@Resources.RuleMemoCardFileNamePrefix - @ruleEntity.Title</div>
                                 <div>
-                                    <p><em>@Loc(ruleEntity, "Title")</em></p>
+                                    <p><em>@ruleEntity.Title</em></p>
                                     <p><a class="@qrDomId" href='@qrLink' target="_blank"></a></p>
-                                    @Html.Raw(Loc(ruleEntity, "Memo"))
+                                    @Html.Raw(ruleEntity.Memo)
                                 </div>
 
                                 <div class="colorPalette">
                                     <div class="insuffisance"></div>
                                     <div class="influence"></div>
-                                    <div class="erreurMath�matique"></div>
+                                    <div class="erreurMathématique"></div>
                                     <div class="paralogisme"></div>
-                                    <div class="d�tournementDeLaLangue"></div>
+                                    <div class="détournementDeLaLangue"></div>
                                     <div class="tricherie"></div>
                                     <div class="obstruction"></div>
                                 </div>
@@ -120,7 +144,7 @@
 
 </div>
 
-<turnOn turn-on='{ "run": "window.appQr2.init()", "data": { "domId": "@qrDomId", "options": @Html.Raw(Convert.Json.ToJson(qrCodeOptions)) }}'></turnOn>
+<turnOn turn-on='{ "run": "window.appQr2.init()", "data": { "domId": "@qrDomId", "options": @Html.Raw(Kit.Convert.Json.ToJson(qrCodeOptions)) }}'></turnOn>
 <script type="text/javascript" src="@App.Path/dist/appQr2.min.js" data-enableoptimizations="bottom"></script>
 <script type="text/javascript" src="@App.Path/dist/dom-to-image-more.js" data-enableoptimizations="bottom"></script>
 <script type="text/javascript" src="@App.Path/dist/FileSaver.js" data-enableoptimizations="bottom"></script>

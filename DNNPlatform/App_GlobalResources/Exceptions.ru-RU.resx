@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddFileExtensionNotAllowed.Text" xml:space="preserve">
+    <value>Расширение '{0}' недопустимо. Файл не был добавлен.</value>
+  </data>
+  <data name="AddFilenameNotAllowed.Text" xml:space="preserve">
+    <value>Имя файла '{0}' недопустимо. Файл не был добавлен.</value>
+  </data>
+  <data name="AddFileInvalidContent.Text" xml:space="preserve">
+    <value>Содержимое файла '{0}' недопустимо. Файл не был добавлен.</value>
+  </data>
+  <data name="AddFileNoSpaceAvailable.Text" xml:space="preserve">
+    <value>На сайте недостаточно свободного места для хранения указанного файла. Файл не был добавлен.</value>
+  </data>
+  <data name="AddFilePermissionsNotMet.Text" xml:space="preserve">
+    <value>Что-то не так с разрешениями. Файл не был добавлен.</value>
+  </data>
+  <data name="AddFileUnderlyingSystemError.Text" xml:space="preserve">
+    <value>Базовая система выдала исключение. Файл не был добавлен.</value>
+  </data>
+  <data name="AddFolderAlreadyExists.Text" xml:space="preserve">
+    <value>Папка с таким путем уже существует. Папка не была добавлена.</value>
+  </data>
+  <data name="AddFolderParentCannotBeFound.Text" xml:space="preserve">
+    <value>Не найдена родительская папка.</value>
+  </data>
+  <data name="AddFolderUnderlyingSystemError.Text" xml:space="preserve">
+    <value>Базовая система выдала исключение. Папка не была добавлена.</value>
+  </data>
+  <data name="ArgumentCannotBeNullOrEmpty.Text" xml:space="preserve">
+    <value>Аргумент '{0}' не может быть нулевой ссылкой или пустым.</value>
+  </data>
+  <data name="CopyFileNoSpaceAvailable.Text" xml:space="preserve">
+    <value>На сайте недостаточно свободного места для хранения указанного файла. Файл не был скопирован.</value>
+  </data>
+  <data name="CopyFilePermissionsNotMet.Text" xml:space="preserve">
+    <value>Разрешения не выполнены. Файл не был скопирован.</value>
+  </data>
+  <data name="CopyFileUnderlyingSystemError.Text" xml:space="preserve">
+    <value>Базовая система выдала исключение. Файл не был скопирован.</value>
+  </data>
+  <data name="DeleteFileUnderlyingSystemError.Text" xml:space="preserve">
+    <value>Базовая система выдала исключение. Файл не был удален.</value>
+  </data>
+  <data name="DeleteFolderUnderlyingSystemError.Text" xml:space="preserve">
+    <value>Базовая система выдала исключение. Папка не была удалена.</value>
+  </data>
+  <data name="InvalidZipFile.Text" xml:space="preserve">
+    <value>Указанный файл не является сжатым файлом zip.</value>
+  </data>
+  <data name="MoveFolderCannotComplete.Text" xml:space="preserve">
+    <value>Операция не может быть завершена.</value>
+  </data>
+  <data name="MoveFolderUnderlyingSystemError.Text" xml:space="preserve">
+    <value>Базовая система выдала исключение. Операция перемещения не может быть завершена. Может потребоваться синхронизация папок вручную.</value>
+  </data>
+  <data name="NoNetworkAvailableError.Text" xml:space="preserve">
+    <value>Требуется сетевое подключение, но нет никакой доступной сети.</value>
+  </data>
+  <data name="PropertyCannotBeNegative.Text" xml:space="preserve">
+    <value>Свойство '{1}' в объекте '{0}' не может быть отрицательным.</value>
+  </data>
+  <data name="PropertyCannotBeNull.Text" xml:space="preserve">
+    <value>Свойство '{1}' в объекте '{0}' не может быть нулевым.</value>
+  </data>
+  <data name="PropertyCannotBeNullOrEmpty.Text" xml:space="preserve">
+    <value>Свойство '{1}' в объекте '{0}' не может быть пустым или нулевым.</value>
+  </data>
+  <data name="RenameFileAlreadyExists.Text" xml:space="preserve">
+    <value>Эта папка уже содержит файл с тем же именем. Файл не был переименован.</value>
+  </data>
+  <data name="RenameFileUnderlyingSystemError.Text" xml:space="preserve">
+    <value>Базовая система выдала исключение. Файл не был переименован.</value>
+  </data>
+  <data name="RenameFolderAlreadyExists.Text" xml:space="preserve">
+    <value>Папка назначения уже существует. Папка не была переименована.</value>
+  </data>
+  <data name="RenameFolderUnderlyingSystemError.Text" xml:space="preserve">
+    <value>Базовая система выдала исключение. Папка не была переименована.</value>
+  </data>
+  <data name="UnderlyingSystemError.Text" xml:space="preserve">
+    <value>Базовая система выдала исключение.</value>
+  </data>
+  <data name="ValueCannotBeNegative.Text" xml:space="preserve">
+    <value>Аргумент "{0} " не может быть отрицательным.</value>
+  </data>
+  <data name="ValueMustBeOfType.Text" xml:space="preserve">
+    <value>Аргумент " {0}" должен иметь тип " {1}".</value>
+  </data>
+  <data name="WriteFileToResponsePermissionsNotMet.Text" xml:space="preserve">
+    <value>Разрешения не выполнены. Файл не может быть загружен.</value>
+  </data>
+  <data name="UserRelationshipForSameUsersError.Text" xml:space="preserve">
+    <value>Инициирующие и целевые пользователи не могут иметь один и тот же идентификатор пользователя " {0}".</value>
+  </data>
+  <data name="UserRelationshipForDifferentPortalError.Text" xml:space="preserve">
+    <value>Идентификатор веб-сайта " {0}" инициирующего пользователя отличается от идентификатора веб-сайта " {1}" целевого пользователя.</value>
+  </data>
+  <data name="UserRelationshipBlockedError.Text" xml:space="preserve">
+    <value>Целевой пользователь " {0}" заблокировал связь "{1}" с целевым пользователем " {2}".</value>
+  </data>
+  
+  <data name="UserRelationshipDoesNotExistError.Text" xml:space="preserve">
+    <value>UserRelationshipID '{0}' не существует.</value>
+  </data>
+  <data name="MsgSubjectOrBodyRequiredError.Text" xml:space="preserve">
+    <value>И субъект, и тело не могут быть пустыми или пустыми.</value>
+  </data>
+  <data name="MsgBodyRequiredError.Text" xml:space="preserve">
+    <value>Тело сообщения не может быть нулевой ссылкой или пустым.</value>
+  </data>
+  
+  <data name="MsgSubjectTooBigError.Text" xml:space="preserve">
+    <value>Поставляемая тема слишком велика. Максимальный {0}, Фактический {1}.</value>
+  </data>
+  <data name="MsgToListTooBigError.Text" xml:space="preserve">
+    <value>Список поставляемых слишком велик. Максимальный {0}, Фактический {1}.</value>
+  </data>
+  
+  <data name="MsgSenderRequiredError.Text" xml:space="preserve">
+    <value>Либо Отправитель равен нулю, либо Отправитель.UserID является отрицательным.</value>
+  </data>
+  <data name="PrivateMessageDisabledError.Text" xml:space="preserve">
+    <value>Текущие настройки обмена сообщениями не разрешают отправку сообщений другим пользователям/группам.</value>
+  </data>
+  <data name="MsgOnlyHostOrAdminOrUserInGroupCanSendToRoleError.Text" xml:space="preserve">
+    <value>Только Суперпользователи, администраторы и члены группы могут отправлять сообщения в эту роль.</value>
+  </data>
+  <data name="MsgThrottlingIntervalNotMet.Text" xml:space="preserve">
+    <value>Сообщение не может быть отправлено в это время, поскольку администратору требуется минимум {0} минут(ы) между сообщениями от одного и того же пользователя.</value>
+  </data>
+  <data name="MsgAttachmentsNotAllowed.Text" xml:space="preserve">
+    <value>Вложения запрещены.</value>
+  </data>
+  <data name="MsgMessageOrRecipientNotFound.Text" xml:space="preserve">
+    <value>Либо сообщение не найдено, либо получатель отсутствует для этого сообщения.</value>
+  </data>
+  <data name="MsgRecipientLimitExceeded.Text" xml:space="preserve">
+    <value>Достигнут максимальный лимит получателей. Чтобы отправить сообщение, пожалуйста, удалите некоторых получателей из списка.</value>
+  </data>
+  <data name="MsgMessageRequiredError.Text" xml:space="preserve">
+    <value>Предоставленный объект сообщения не может быть нулевым.</value>
+  </data>
+  <data name="TabNotInPortal.Text" xml:space="preserve">
+    <value>Указанной страницы нет на этом сайте.</value>
+  </data>
+  <data name="TabModuleNotExist.Text" xml:space="preserve">
+    <value>Указанный экземпляр модуля не существует.</value>
+  </data>
+  
+  
+  <data name="MaxLengthExceeded.Text" xml:space="preserve">
+    <value>Превышена максимальная длина поля {0}.</value>
+  </data>
+  <data name="InvalidPublishPeriod.Text" xml:space="preserve">
+    <value>Дата окончания должна быть после даты начала.</value>
+  </data>
+  <data name="ProfileService_UpdateVanityUrl.Error" xml:space="preserve">
+    <value>Произошла ошибка при обновлении URL-адреса профиля. Если вы продолжаете видеть это сообщение, пожалуйста, обратитесь к администратору.</value>
+  </data>
+  <data name="StartDateMustNotBeInThePast.Text" xml:space="preserve">
+    <value>Дата начала не должна быть в прошлом.</value>
+  </data>
+  <data name="StartDateRequired.Text" xml:space="preserve">
+    <value>Требуется начальная дата.</value>
+  </data>
+  <data name="FileLockedRunningWorkflowError.Text" xml:space="preserve">
+    <value>Файл заблокирован. Файл не может быть обновлен, поскольку в настоящее время он является частью рабочего процесса.</value>
+  </data>
+  <data name="InstallPackageError.Text" xml:space="preserve">
+    <value>Пакет {0} не удалось установить, потому что " {1}".</value>
+  </data>
+  <data name="FileLockedOutOfPublishPeriodError.Text" xml:space="preserve">
+    <value>Файл заблокирован. Файл не может быть обновлен, поскольку он не находится в пределах допустимой даты начала и окончания публикации.</value>
+  </data>
+  <data name="CannotMoveFolderAlreadyExists.Text" xml:space="preserve">
+    <value>Папка "{0} " не может быть перемещена. Папка с таким именем уже существует в папке " {1}".</value>
+  </data>
+  <data name="CannotMoveFolderBetweenFolderType.Text" xml:space="preserve">
+    <value>Папка с именем "{0} " не может быть перемещена. Операция перемещения папок между этими двумя типами папок не допускается.</value>
+  </data>
+  <data name="ErrorCreatingBusinessControllerClass.Text" xml:space="preserve">
+    <value>Ошибка создания BusinessControllerClass ' {0}' модуля({1}) id=({2}) во вкладке({3}) и портале({4})</value>
+  </data>
+  <data name="InvalidAnalyzerClass.Text" xml:space="preserve">
+    <value>Класс '{0}' не может быть создан, так как он недействителен или не является анализатором, будет использован анализатор по умолчанию.</value>
+  </data>
+  <data name="LuceneControllerIsDisposed.Text" xml:space="preserve">
+    <value>LuceneController утилизирован и больше не может использоваться.</value>
+  </data>
+  <data name="ModuleDefIdMustBeGreaterThanZero.Text" xml:space="preserve">
+    <value>ModuleDefId должен быть больше нуля, если SearchTypeId предназначен для модуля.</value>
+  </data>
+  <data name="ModuleDefIdWhenSearchTypeForModule.Text" xml:space="preserve">
+    <value>ModuleDefId необходим только тогда, когда SearchTypeId предназначен для модуля.</value>
+  </data>
+  <data name="ModuleIdMustBeGreaterThanZero.Text" xml:space="preserve">
+    <value>ModuleId должен быть больше нуля, если SearchTypeId предназначен для модуля.</value>
+  </data>
+  <data name="ModuleIdMustHaveSearchTypeIdForModule.Text" xml:space="preserve">
+    <value>Поиск на основе ModuleId должен иметь SearchTypeId только для модуля.</value>
+  </data>
+  <data name="ModuleIdWhenSearchTypeForModule.Text" xml:space="preserve">
+    <value>ModuleId необходим только тогда, когда SearchTypeId предназначен для модуля.</value>
+  </data>
+  <data name="SearchAnalyzerMinWordLength.Text" xml:space="preserve">
+    <value>Анализатор поиска: минимальная длина слова ({0}) больше максимального значения длины слова ({1}).</value>
+  </data>
+  <data name="SearchIndexingDirectoryNoValid.Text" xml:space="preserve">
+    <value>Каталог индексации поиска либо пуст, либо не существует.</value>
+  </data>
+  <data name="UnableToCreateLuceneWriter.Text" xml:space="preserve">
+    <value>Невозможно создать Lucene writer (используется файл блокировки). Пожалуйста, утилизируйте AppPool в IIS, чтобы освободить блокировку.</value>
+  </data>
+  <data name="PublishPagePermissionsNotMet" xml:space="preserve">
+    <value>Разрешения не выполняются. Страница не была опубликована.</value>
+  </data>
+  
+  <data name="TabVersionAlreadyPublished.Text" xml:space="preserve">
+    <value>Для вкладки {0} версия {1} уже опубликована.</value>
+  </data>
+  <data name="TabVersionCannotBeDeleted_UnpublishedVersion.Text" xml:space="preserve">
+    <value>Для вкладки {0} версия {1} не может быть удалена, поскольку она является неопубликованной версией.</value>
+  </data>
+  
+  <data name="TabVersionCannotBeRolledBack_UnpublishedVersionExists.Text" xml:space="preserve">
+    <value>Для вкладки {0} откат версии {1} невозможен, поскольку существует неопубликованная версия.</value>
+  </data>
+  <data name="TabVersionCannotBeCreated_UnpublishedVersionAlreadyExistsConcurrencyProblem.Text" xml:space="preserve">
+    <value>Для Tab {0} новая неопубликованная версия не может быть создана, так как существует другая неопубликованная версия. Возможно, другой пользователь предпринял действие на странице, и ее состояние было изменено. Пожалуйста, обновите страницу, чтобы увидеть текущее состояние.</value>
+  </data>
+  <data name="TabVersionCannotBeCreated_UnpublishedVersionAlreadyExists.Text" xml:space="preserve">
+    <value>Для Tab {0} новая неопубликованная версия не может быть создана, так как существует другая неопубликованная версия.</value>
+  </data>
+  <data name="TabVersioningNotEnabled.Text" xml:space="preserve">
+    <value>Управление версиями вкладок не включено.</value>
+  </data>
+  <data name="WorkflowInUsageException.Text" xml:space="preserve">
+    <value>Вы не можете удалить используемый рабочий процесс.</value>
+  </data>
+  <data name="WorkflowNameAlreadyExistsException.Text" xml:space="preserve">
+    <value>Рабочий процесс с таким именем уже существует.</value>
+  </data>
+  <data name="SystemWorkflowDeletionException.Text" xml:space="preserve">
+    <value>Системный рабочий процесс не может быть удален.</value>
+  </data>
+  <data name="WorkflowDoesNotExistException.Text" xml:space="preserve">
+    <value>Рабочий процесс не существует.</value>
+  </data>
+  <data name="WorkflowStateNameAlreadyExistsException.Text" xml:space="preserve">
+    <value>Уже существует состояние рабочего процесса с таким именем.</value>
+  </data>
+  <data name="WorkflowConcurrencyException.Text" xml:space="preserve">
+    <value>Текущее состояние рабочего процесса не совпадает с текущим состоянием, указанным во входном параметре.</value>
+  </data>
+  <data name="UserCannotReviewWorkflowState.Text" xml:space="preserve">
+    <value>Пользователь не может пересматривать состояние рабочего процесса.</value>
+  </data>
+  
+  <data name="WorkflowAuthorNotFound.Text" xml:space="preserve">
+    <value>Не удалось найти автора. Уведомление не будет отправлено.</value>
+  </data>
+  <data name="WorkflowCannotDiscard.Text" xml:space="preserve">
+    <value>Невозможно отменить последнее состояние рабочего процесса.</value>
+  </data>
+  <data name="WorkflowStateInUsageException.Text" xml:space="preserve">
+    <value>Невозможно удалить состояние, которое используется.</value>
+  </data>
+  <data name="WorkflowNewStateCannotBeAddedToSystemWorkflows.Text" xml:space="preserve">
+    <value>Новые состояния не могут быть добавлены в системные рабочие процессы.</value>
+  </data>
+  <data name="WorkflowStateCannotBeMoved.Text" xml:space="preserve">
+    <value>Состояние рабочего процесса не может быть перемещено.</value>
+  </data>
+  <data name="WorkflowSystemWorkflowStateCannotBeDeleted.Text" xml:space="preserve">
+    <value>Состояние системного рабочего процесса не может быть удалено.</value>
+  </data>
+  
+  <data name="ModuleDoesNotBelongToPage.Text" xml:space="preserve">
+    <value>Этот модуль не привязан к странице. Переместите модуль на главную страницу, чтобы изменить его.</value>
+  </data>
+  
+  <data name="FolderFileNameHasInvalidcharacters.Text" xml:space="preserve">
+    <value>Имя содержит недопустимые символы. Укажите имя без {0}.</value>
+  </data>
+  <data name="FolderFileNameIsReserved.Text" xml:space="preserve">
+    <value>Имя зарезервировано. Попробуйте другое имя.</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  <data name="FolderDoesNotExists.Text" xml:space="preserve">
+    <value>Папка не существует.</value>
+  </data>
+  
+  
+  
+  
+  
+  
+  
+  
+  <data name="JsonMissingContent.Text" xml:space="preserve">
+    <value>В данном документе json нет узла содержимого.</value>
+  </data>
+  
+  
+  
+  <data name="SystemDataTypesSecurityException.Text" xml:space="preserve">
+    <value>Системные типы данных могут создаваться, изменяться или удаляться только администраторами хостинга.</value>
+  </data>
+  <data name="SystemContentTypesSecurityException.Text" xml:space="preserve">
+    <value>Системные типы контента могут быть созданы, изменены или удалены только администраторами хостинга.</value>
+  </data>
+  
+  
+  
+  <data name="ContentTypeDoesNotExist.Text" xml:space="preserve">
+    <value>Указанный тип содержимого недопустим.</value>
+  </data>
+  <data name="UserDoesNotExist.Text" xml:space="preserve">
+    <value>Пользователь, на которого вы пытаетесь подписаться, больше не существует.</value>
+  </data>
+  <data name="AlreadyFollowingUser.Text" xml:space="preserve">
+    <value>Вы уже подписаны на этого пользователя.</value>
+  </data>
+  <data name="IPAddressIncorrect.Text" xml:space="preserve">
+    <value>Адрес IP имеет неверный формат</value>
+  </data>
+  <data name="SubnetMaskIncorrect.Text" xml:space="preserve">
+    <value>Маска подсети имеет неверный формат</value>
+  </data>
+  
+  <data name="AddFolderNotAllowed.Text" xml:space="preserve">
+    <value>Путь к папке '{0}' запрещён. Папка не была добавлена.</value>
+  </data>
+  <data name="AmbiguousController.Text" xml:space="preserve">
+    <value>Найдено несколько типов, соответствующих контроллеру '{0}' в пространствах имён {1}.</value>
+  </data>
+  <data name="ContentTypeFieldDefinitionDoesNotExist.Text" xml:space="preserve">
+    <value>Тип контента, которому принадлежит определение поля, недействителен.</value>
+  </data>
+  <data name="ControllerNotFound.Text" xml:space="preserve">
+    <value>Не удалось найти контроллер для {0}. Поиск вёлся в пространствах имён: {1}.</value>
+  </data>
+  <data name="CreateValidatorException.Text" xml:space="preserve">
+    <value>Не удалось создать экземпляр валидатора — {0}.</value>
+  </data>
+  <data name="DynamicContentEntityInUse.Text" xml:space="preserve">
+    <value>{0} с идентификатором {1} используется, поэтому его нельзя удалить.</value>
+  </data>
+  <data name="EntityIsNotValid.Text" xml:space="preserve">
+    <value>Сущность типа '{0}' недействительна.</value>
+  </data>
+  <data name="ErrorMessageCannotBeNullOrEmpty.Text" xml:space="preserve">
+    <value>ErorrKey и ErrorMessage не могут быть одновременно пустыми.</value>
+  </data>
+  <data name="FieldDefinitionInvalidDeadLoop.Text" xml:space="preserve">
+    <value>Невозможно создать поле с именем {0}, так как это привело бы к бесконечной циклической зависимости в определениях полей.</value>
+  </data>
+  <data name="FileNameInvalid.Text" xml:space="preserve">
+    <value>Указанное имя ({0}) недействительно.</value>
+  </data>
+  <data name="FolderAlreadyExists.Text" xml:space="preserve">
+    <value>Не удалось создать папку ({0}): папка уже существует в этом расположении.</value>
+  </data>
+  <data name="InvalidMappedPath.Text" xml:space="preserve">
+    <value>Сопоставленный путь (Mapped Path) недействителен.</value>
+  </data>
+  <data name="InvalidValidatorException.Text" xml:space="preserve">
+    <value>Не удалось создать ValidatorType — {0}.</value>
+  </data>
+  <data name="JsonContentTypeInvalid.Text" xml:space="preserve">
+    <value>Указанный в JSON-документе contentTypeId — {0} — не существует.</value>
+  </data>
+  <data name="JsonInvalidField.Text" xml:space="preserve">
+    <value>Тип контента не определяет поле — {0}.</value>
+  </data>
+  <data name="MsgEmptyToListFoundError.Text" xml:space="preserve">
+    <value>При анализе списка пользователей и ролей обнаружен пустой список получателей (To).</value>
+  </data>
+  <data name="MsgRolesOrUsersRequiredError.Text" xml:space="preserve">
+    <value>Роли и пользователи не могут быть одновременно пустыми или отсутствовать.</value>
+  </data>
+  <data name="PropertyCannotBeEmpty.Text" xml:space="preserve">
+    <value>Свойство '{1}' в объекте '{0}' не может быть пустым (количество = 0).</value>
+  </data>
+  <data name="SitemapProviderError.Text" xml:space="preserve">
+    <value>Поставщик карты сайта (sitemap) '{0}' завершился с ошибкой: {1}.</value>
+  </data>
+  <data name="SitemapUrlGenerationError.Text" xml:space="preserve">
+    <value>Генерация URL карты сайта для страницы '{0} - {1}' вызвала исключение: {2}.</value>
+  </data>
+  <data name="TabHasNotAnUnpublishedVersion.Text" xml:space="preserve">
+    <value>Страница {0} не имеет неопубликованной версии.</value>
+  </data>
+  <data name="TabVersionCannotBeDiscarded_OnlyOneVersion.Text" xml:space="preserve">
+    <value>Страница {0} имеет только одну созданную версию. Её нельзя отбросить.</value>
+  </data>
+  <data name="TabVersionCannotBeRolledBack_LastVersion.Text" xml:space="preserve">
+    <value>Для страницы {0} версия {1} не может быть отменена, так как это последняя версия.</value>
+  </data>
+  <data name="UpdateUserMembershipFailed.Text" xml:space="preserve">
+    <value>Сбой обновления пользователя в членстве ASP.NET. Возможные причины: в конфигурации членства включён параметр requiresUniqueEmail, но другой пользователь (или пользователи) уже использует тот же адрес электронной почты, что и текущий пользователь.</value>
+  </data>
+  <data name="UserHasNoPermissionToAdd.Text" xml:space="preserve">
+    <value>У пользователя нет прав на добавление папок в этом расположении.</value>
+  </data>
+  <data name="UserHasNoPermissionToBrowseFolder.Text" xml:space="preserve">
+    <value>У пользователя нет прав на просмотр этой папки.</value>
+  </data>
+  <data name="UserHasNoPermissionToEditFile.Text" xml:space="preserve">
+    <value>У пользователя нет прав на изменение этого файла.</value>
+  </data>
+  <data name="UserHasNoPermissionToEditFolder.Text" xml:space="preserve">
+    <value>У пользователя нет прав на изменение этой папки.</value>
+  </data>
+  <data name="UserRelationshipExistsError.Text" xml:space="preserve">
+    <value>Связь уже существует: инициатор '{0}', адресат '{1}', идентификатор связи '{2}'.</value>
+  </data>
+  <data name="WorkflowAlreadyStarted.Text" xml:space="preserve">
+    <value>Не удалось запустить рабочий процесс для этого элемента контента: уже есть запущенный рабочий процесс.</value>
+  </data>
+  <data name="WorkflowSystemWorkflowStateCannotComplete.Text" xml:space="preserve">
+    <value>Системное состояние рабочего процесса не может быть завершено.</value>
+  </data>
+</root>

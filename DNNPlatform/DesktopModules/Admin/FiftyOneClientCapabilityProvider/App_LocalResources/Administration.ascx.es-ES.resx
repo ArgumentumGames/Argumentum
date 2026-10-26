@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Activate.Header" lastModified="2015-09-13 20:44:23">
+    <value xml:space="preserve">Primeros pasos y activación</value>
+  </data>
+  <data name="ActivateButtonText.Text">
+    <value xml:space="preserve">Activar</value>
+  </data>
+  <data name="ActivatedMessageHtml.Text">
+    <value xml:space="preserve">&lt;p class="{0}"&gt;Se ha activado Premium Data.&lt;/p&gt;</value>
+  </data>
+  <data name="ActivateInstructionsHtml.Text" lastModified="2015-09-14 13:33:32">
+    <value xml:space="preserve">&lt;h3&gt;Activar todas las opciones&lt;/h3&gt;&lt;p&gt;Paso 1 - Obtenga una clave de licencia de 51Degrees.&lt;/p&gt;&lt;br/&gt;&lt;p&gt;Paso 2 - Introduzca su clave de licencia en la caja de texto inferior. Seleccione "Activar" para la clave de licencia en este sitio web.&lt;/p&gt;&lt;br/&gt;</value>
+  </data>
+  <data name="ActivationDataInvalidHtml.Text">
+    <value xml:space="preserve">&lt;div class="{0}"&gt;&lt;p&gt;El origen de datos proporcionado no contiene datos válidos.&lt;/p&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="ActivationFailureCouldNotUpdateConfigHtml.Text">
+    <value xml:space="preserve">&lt;div class="{0}"&gt;&lt;p&gt;El elemento "fiftyOne/detection" del archivo de configuración '{1}' no se ha podido añadir. Verifique que el siguiente texto está presente entre las etiquetas "fiftyOne" y vuelva a intentar activar la licencia de nuevo.&lt;/p&gt;
+&lt;br/&gt;
+&lt;span style="margin-left: 0px !important;"&gt;&lt;code style="color: #000000;"&gt;&amp;lt;&lt;/code&gt;&lt;code&gt;&lt;span style="color: #006699;"&gt;&lt;strong&gt;detection&lt;/strong&gt;&lt;/span&gt;&lt;/code&gt;&amp;nbsp;&lt;code style="color: #808080;"&gt;binaryFilePath&lt;/code&gt;&lt;code style="color: #000000;"&gt;=&lt;/code&gt;&lt;code style="color: blue;"&gt;"~/App_Data/51Degrees-Premium.dat"&lt;/code&gt;&lt;code&gt;&lt;span style="color: #000000;"&gt;/&amp;gt;&lt;/span&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="ActivationFailureCouldNotWriteDataFileHtml.Text">
+    <value xml:space="preserve">&lt;div class="{0}"&gt;
+&lt;p&gt;El archivo de datos de dispositivos '{1}' no se ha podido guardar. Verique que el usuario '{2}' tiene permisos de escritura en la carpeta correspondiente, o cambie la carpeta por una donde tenga permisos de escritura.&lt;/p&gt;
+&lt;/div&gt;</value>
+  </data>
+  <data name="ActivationFailureCouldNotWriteLicenceFileHtml.Text">
+    <value xml:space="preserve">&lt;div class="{0}"&gt;&lt;p&gt;El archivo de licencia '{1}' no se ha podido guardar en la carpeta bin de esta web '{2}'. Cree un archivo de texto con extensión '.lic', copie la clave de licencia en el archivo y guárdelo en la carpeta bin.&lt;/p&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="ActivationFailureGenericHtml.Text">
+    <value xml:space="preserve">&lt;div class="{0}"&gt;&lt;p&gt;Se ha producido un error al activar la licencia. Póngase en &lt;a href="http://51degrees.mobi/AboutUs/ContactUs.aspx"&gt;contacto con nosotros&lt;/a&gt; con más información sobre su web para poder ayudarle an la activación de la licencia.&lt;/p&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="ActivationFailureHttpHtml.Text">
+    <value xml:space="preserve">&lt;div class="{0}"&gt;&lt;p&gt;No se ha podido acceder a la web de validación de licencias de 51Degrees.mobi en '{1}'. Pueder ser debido a una de las siguientes razones:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+La web se está ejecutando en el modo "Medium Trust" y el atributo 
+&lt;a href="http://msdn.microsoft.com/en-us/library/system.web.configuration.trustsection.originurl(v=VS.80).aspx"&gt;originUrl&lt;/a&gt; 
+en el archivo web.config no permite el acceso a '{1}'. Modifique originUrl para incluir '{1}'. Puede incluir múltiples servidores separados por el símbolo '|'.&lt;/li&gt;
+&lt;li&gt;
+El cortafuegos del servidor o otro cortafuegos está bloqueando el acceso al servidor o al puerto SSL 443. Verifique la configuración del cortafuegos.
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Cuando haya comprobado estos puntos vuelva a intentar la activación de nuevo.&lt;/p&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="ActivationFailureInvalidHtml.Text">
+    <value xml:space="preserve">&lt;div class="{0}"&gt;&lt;p&gt;La validación de la licencia ha fallado. Verifique con su proeedor que la licencia es válida.&lt;/p&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="ActivationStreamFailureHtml.Text">
+    <value xml:space="preserve">&lt;div class="{0}"&gt;&lt;p&gt;No se puede leer el origen de datos proporcionado.&lt;/p&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="ActivationSuccessHtml.Text">
+    <value xml:space="preserve">&lt;div class="{0}"&gt;&lt;p&gt;Activación correcta. Seleccione el botón "Actualizar" para recargar la página web y comenzar a usar Premium Device Data.  Nota: se puede producir un tiempo de demora mientras la aplicación se reinicia.&lt;/p&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="BackButtonDevicesText.Text">
+    <value xml:space="preserve">Otros fabricantes</value>
+  </data>
+  <data name="BackButtonDeviceText.Text">
+    <value xml:space="preserve">Otros dispositivos {0}</value>
+  </data>
+  <data name="BackToExplorer.Text">
+    <value xml:space="preserve">Volver al explorador de dispositivos</value>
+  </data>
+  <data name="BrowserList.Header">
+    <value xml:space="preserve">Navegador</value>
+  </data>
+  <data name="Cancel.Action" lastModified="2015-09-13 20:44:23">
+    <value xml:space="preserve">Cancelar</value>
+  </data>
+  <data name="ContentList.Header">
+    <value xml:space="preserve">Contenido</value>
+  </data>
+  <data name="ControlTitle_.Text">
+    <value xml:space="preserve">Detección de dispositivos</value>
+  </data>
+  <data name="DeviceBrowserUnavailable.Html" lastModified="2015-09-13 20:44:23">
+    <value xml:space="preserve">&lt;p&gt;El conjunto de datos de dispositivo utilizado para la detección no incluye suficiente información sobre dispositivos con soporte para web, y por lo tanto la pestaña de exploración de dispositivos no está activa.&lt;/p&gt;
+&lt;p&gt;Los dispositivos disponibles en las versiones ampliadas de la detección de dispositivos puede verse en el sitio web de 51Degrees.&lt;/p&gt;</value>
+  </data>
+  <data name="DeviceBrowserUnavailableButton.Action" lastModified="2015-09-13 20:44:23">
+    <value xml:space="preserve">Explorar dispositivos</value>
+  </data>
+  <data name="DeviceBrowserUnavailableButton.Url" lastModified="2015-09-13 20:44:23">
+    <value xml:space="preserve">https://51degrees.com/resources/device-explorer</value>
+  </data>
+  <data name="DeviceExplorer.Header">
+    <value xml:space="preserve">Explorador de dispositivos</value>
+  </data>
+  <data name="DeviceSearchRequired.Text">
+    <value xml:space="preserve">Obligatorio</value>
+  </data>
+  <data name="Explorer.Header" lastModified="2015-09-13 20:44:23">
+    <value xml:space="preserve">Explorar dispositivos</value>
+  </data>
+  <data name="GetLatestData.Text">
+    <value xml:space="preserve">Obtener datos actualizados</value>
+  </data>
+  <data name="GetStarted.Header" lastModified="2015-09-13 20:44:23">
+    <value xml:space="preserve">Primeros pasos</value>
+  </data>
+  <data name="GetStartedButton.Text" lastModified="2015-09-13 20:44:23">
+    <value xml:space="preserve">Activar funciones</value>
+  </data>
+  <data name="GetStartedDetail.Html" lastModified="2015-09-13 22:54:54">
+    <value xml:space="preserve">&lt;h3&gt;Optimización de imágenes&lt;/h3&gt;
+&lt;p&gt;Garantiza que las imágenes se envían a los visitantes en las medidas exactas añadiendo parámetros en las URLs de las imágenes para devolver imágenes con las dimensiones específicas para el dispositivo. Por ejemplo; &lt;span style="font-family: 'Courier New', Courier, monospace; font-weight: bold;"&gt;&amp;lt;img src="Empty.gif" data-src="/image.png?w=auto"/&amp;gt;&lt;/span&gt; or &lt;a style="font-family: 'Courier New', Courier, monospace; font-weight: bold;" href="/DesktopModules/Admin/FiftyOneClientCapabilityProvider/Images/Optimization.png?w=300" target="_blank"&gt;/DesktopModules/Admin/FiftyOneClientCapabilityProvider/Images/Optimization.png?w=300&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;La imágenes con un tamaño mayor que el tamaño de la pantalla del dispositvo se redimensionarán automáticamente antes de enviarlas.&lt;/p&gt;
+&lt;h3&gt;Detección de dispositivos&lt;/h3&gt;
+&lt;h4&gt;Para administradores de la web&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Incluir contenido optimizado para navegadores de escritorio (p.ej. Flash o vídeos grandes)  en las mismas páginas con contenido para tabletas o móviles.&lt;/li&gt;
+&lt;li&gt;Utilizar "mega menús" para optimizar una rápida navegación con ratón o teclado mientras se mantiene un menú adaptado para pantallas táctiles.&lt;/li&gt;
+&lt;li&gt;Redireccionar visitantes a páginas optimizadas para tabletas y móviles.&lt;/li&gt;
+&lt;li&gt;Mejoras para Google Analytics con información sobre el tamaño de pantalla y capacidades de entrada.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;Para desarrolladores&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Activar o desactivar contenido en función de reglas a nivel de servidor. Por ejemplo; &lt;span style="font-family: 'Courier New', Courier, monospace; font-weight: bold;"&gt;Request.Browser["IsTablet"]&lt;/span&gt; para indicar si el dispositivo es una tableta.&lt;/li&gt;
+&lt;li&gt;Acceder a las capacidades del dispositivo desde JavaScript con &lt;span style="font-family: 'Courier New', Courier, monospace; font-weight: bold;"&gt;http://HOSTNAME/51Degrees.features.js&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="GetStartedIntro.Html" lastModified="2015-09-14 01:05:22">
+    <value xml:space="preserve">&lt;p&gt;El diseño responsive en cliente implica enviar todo el contenido al cliente y dejar que el navegador redimensione y ajuste el contenido. El proveedor de funciones de cliente de 51Degrees activa la opción de controlar el contenido en el servidor, incluyendo el envío de imágenes diferentes, navegación y contenido diferente según dispositivo. Esto reduce el peso de la página para dispositivos móviles y mejora el rendimiento, presenta un interfaz optimizado y mejora la experiencia de usuario.&lt;/p&gt;&lt;p&gt;Más del 85% de las mejores empresas utilizan detección de dispositivos, incluyendo sectores de comercio electrónico, media, publicidad, finanzas y viajes. Vea el siguiente enlace para más casos de estudio e ideas.&lt;/p&gt;&lt;a href="https://51degrees.com/dnn" title="Find out more about device detection with DNN" class="dnnPrimaryAction" target="_blank"&gt;Ver más&lt;/a&gt;</value>
+  </data>
+  <data name="HardwareList.Header">
+    <value xml:space="preserve">Hardware</value>
+  </data>
+  <data name="ManualUpdates.Help" lastModified="2015-09-14 01:05:22">
+    <value xml:space="preserve">Cargar manualmente nuevos archivos de datos de dispositivo</value>
+  </data>
+  <data name="NewDevices.Header" lastModified="2015-09-14 01:05:22">
+    <value xml:space="preserve">Top 5 nuevos dispositivos</value>
+  </data>
+  <data name="NoResultsFound.Text">
+    <value xml:space="preserve">No han encontrado coincidencias con su búsqueda.</value>
+  </data>
+  <data name="PremiumIntro.Text">
+    <value xml:space="preserve">La versión {0} contiene miles de dispositivos, incluyendo consolas de juego, lectores eBook, tabletas, smartphones y teléfons móviles. Cada dispositivo tiene asociado una amplia gama de propiedades, desde tamaño de pantalla y capacidades de entrada hasta sistemas operativos, navegadores y hardware.</value>
+  </data>
+  <data name="PremiumUploadError.Text">
+    <value xml:space="preserve">Se ha producido un error al cargar los datos.</value>
+  </data>
+  <data name="PremiumUploadSuccess.Text">
+    <value xml:space="preserve">Los datos se han cargado correctamente.</value>
+  </data>
+  <data name="Properties.Header" lastModified="2015-09-14 01:05:22">
+    <value xml:space="preserve">Propiedades disponibles</value>
+  </data>
+  <data name="Refresh.Action" lastModified="2015-09-14 01:05:22">
+    <value xml:space="preserve">Actualizar</value>
+  </data>
+  <data name="RefreshButtonText.Text">
+    <value xml:space="preserve">Actualizar</value>
+  </data>
+  <data name="SearchButton.Text">
+    <value xml:space="preserve">Buscar dispositivos</value>
+  </data>
+  <data name="Settings.Header" lastModified="2015-09-14 01:05:22">
+    <value xml:space="preserve">Configuración</value>
+  </data>
+  <data name="SettingsAutoUpdates.Help" lastModified="2015-09-14 03:10:57">
+    <value xml:space="preserve">Activar/desactivar la actualización automática del archivo de datos de dispositivos. Cuando está activo el sitio web se conectará con 51Degrees para descargar nuevos archivos de datos de dispositivos y aplicarlos automáticamente (sin reiniciar la web). Se necesitan datos adicionales para esta opción.</value>
+  </data>
+  <data name="SettingsAutoUpdates.Text" lastModified="2015-09-14 03:10:57">
+    <value xml:space="preserve">¿Actualizar archivos automáticamente?</value>
+  </data>
+  <data name="SettingsChangeError.Text" lastModified="2015-09-14 03:10:57">
+    <value xml:space="preserve">No se ha podido cambiar la configuración de detección de dispositivos. Verifique que los permisos de modificación del archivo 51Degrees.mobi.config son correctos y reinicie el grupo de aplicaciones.</value>
+  </data>
+  <data name="SettingsChangeSuccess.Text" lastModified="2015-09-14 03:10:57">
+    <value xml:space="preserve">Se ha actualizado la configuración de detección de dispositivos. Reinicie el grupo de aplicaciones para que los cambios tenga efecto.</value>
+  </data>
+  <data name="SettingsConfiguration.Header" lastModified="2015-09-14 03:10:57">
+    <value xml:space="preserve">Configuración</value>
+  </data>
+  <data name="SettingsDataSetDeviceCombinations.Help" lastModified="2015-09-14 05:14:04">
+    <value xml:space="preserve">Combinaciones de disposito, sistema operativo y navegadores web que esta web puede detectar.</value>
+  </data>
+  <data name="SettingsDataSetDeviceCombinations.Text" lastModified="2015-09-14 05:14:04">
+    <value xml:space="preserve">Combinaciones</value>
+  </data>
+  <data name="SettingsDataSetHardwareProfiles.Help" lastModified="2015-09-14 05:14:04">
+    <value xml:space="preserve">Número de modelos de dispositivos web que esta web puede detectar.</value>
+  </data>
+  <data name="SettingsDataSetHardwareProfiles.Text" lastModified="2015-09-14 05:14:04">
+    <value xml:space="preserve">Dispositivos</value>
+  </data>
+  <data name="SettingsDataSetName.Help" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Conjunto de datos activo de 51Degrees: Lite, Premium o Enterprise. La versión Lite se incluye con DNN Platform y la versión Premium con Evoq. Con una clave de licencia se puede actualizar DNN Platform a Premium.</value>
+  </data>
+  <data name="SettingsDataSetName.Text" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Nombre</value>
+  </data>
+  <data name="SettingsDataSetNextUpdate.Help" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Previsión de disponibilidad del siguiente conjunto de datos en 51Degrees.</value>
+  </data>
+  <data name="SettingsDataSetNextUpdate.Text" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Próxima actualización</value>
+  </data>
+  <data name="SettingsDataSetPropertyCount.Help" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Número de propiedades disponible en el conjunto de datos actual.</value>
+  </data>
+  <data name="SettingsDataSetPropertyCount.Text" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Número de propiedades</value>
+  </data>
+  <data name="SettingsDataSetPublished.Help" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Fecha de publicación del conjunto de datos actual en 51Degrees.</value>
+  </data>
+  <data name="SettingsDataSetPublished.Text" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Publicado</value>
+  </data>
+  <data name="SettingsDataSetVersion.Help" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Formato del archivo de datos de dispositivos.</value>
+  </data>
+  <data name="SettingsDataSetVersion.Text" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Formato de datos</value>
+  </data>
+  <data name="SettingsEnabled.Help" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Activar/desactivar detección de dispositivos</value>
+  </data>
+  <data name="SettingsEnabled.Text" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">¿Activar detección de dispositivos?</value>
+  </data>
+  <data name="SettingsFactory.Help" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Tipo de gestión de datos activo. "Stream" utiliza menos memoria pero es más lento. En Memoria es más rápido pero utiliza más memoria.</value>
+  </data>
+  <data name="SettingsFactory.Text" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Modo</value>
+  </data>
+  <data name="SettingsFileMode.Help" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">El conjunto de datos se guarda en el sistema de archivos. Porciones pequeñas se cargan en memoria cuando se require y se reduce el uso de memoria. Cuando no está activo se utiliza el modo "en memoria" que carga todos los datos en la memoria del servidor.</value>
+  </data>
+  <data name="SettingsFileMode.Text" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">¿Activar modo de archivo?</value>
+  </data>
+  <data name="SettingsImageOptimiser.Help" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Cuando el optimizador de imágenes y la detección de dispositivos están activos, DNN no enviará imágenes que sean mayores que los tamaños de pantalla de los dispositivos. Se pueden añadir parámetros a las URLs de las imágenes para redimensionarlas automáticamente para mejorar el rendimiento.</value>
+  </data>
+  <data name="SettingsImageOptimiser.Text" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">¿Activar optimización de imágenes?</value>
+  </data>
+  <data name="SettingsManualUpload.Header" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Carga de datos de dispositivos</value>
+  </data>
+  <data name="SettingsRefresh.Help" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Cuando la detección de dispositivos se utiliza con Evoq o la versión ampliada de 51Degrees, esta opción busca una nueva versión de archivos de datos en 51Degrees.</value>
+  </data>
+  <data name="SettingsRefresh.Text" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Actualizar</value>
+  </data>
+  <data name="SettingsShareUsage.Help" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Activar/Desactivar el envío de datos de uso a 51Degrees.</value>
+  </data>
+  <data name="SettingsShareUsage.Text" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">¿Compartir uso de datos?</value>
+  </data>
+  <data name="SettingsStats.Header" lastModified="2015-09-14 09:28:15">
+    <value xml:space="preserve">Información de datos de dispositivos</value>
+  </data>
+  <data name="SettingsUpload.Help" lastModified="2015-09-14 11:29:22">
+    <value xml:space="preserve">Carga un archivos de datos de 51Degrees para la detección de dispositivos. Los archivos nuevos se pueden obtener directamente de 51Degrees.</value>
+  </data>
+  <data name="SettingsUpload.Text" lastModified="2015-09-14 11:29:22">
+    <value xml:space="preserve">Carga manual</value>
+  </data>
+  <data name="Unavailable.Text" lastModified="2015-09-14 11:29:22">
+    <value xml:space="preserve">No disponible</value>
+  </data>
+  <data name="Update.Action" lastModified="2015-09-14 11:29:22">
+    <value xml:space="preserve">Actualizar</value>
+  </data>
+  <data name="UploadButtonText.Text">
+    <value xml:space="preserve">Cargar</value>
+  </data>
+  <data name="UploadData.Text">
+    <value xml:space="preserve">Cargar datos</value>
+  </data>
+  <data name="ValidationFileErrorText.Text">
+    <value xml:space="preserve">Utilice el botón 'Examinar' para seleccionar un archivo de datos Premium para cargar.</value>
+  </data>
+  <data name="ValidationRegExErrorText.Text">
+    <value xml:space="preserve">La clave de licencia solo puede contener caráteres en mayúsculas o números.</value>
+  </data>
+  <data name="ValidationRequiredErrorText.Text">
+    <value xml:space="preserve">Tiene que proporcionar la clave de licencia.</value>
+  </data>
+</root>

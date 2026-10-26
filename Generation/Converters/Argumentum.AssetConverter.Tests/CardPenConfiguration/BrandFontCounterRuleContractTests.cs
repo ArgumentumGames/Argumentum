@@ -45,11 +45,13 @@ namespace Argumentum.AssetConverter.Tests.CardPenConfiguration
 		/// <summary>
 		/// Latin brand fonts a card may legitimately want on its brand mark. DINPro is also the
 		/// base card font, but on a brand container it is a deliberate re-assertion, not a sweep.
-		/// The two fonts that are NOT allowed as the counter-rule here are the RTL/CJK glyph fonts
-		/// — a counter-rule that re-declares Vazirmatn would be the pendulum, not the fix.
+		/// Alfa Slab One joined the list with #1485 (Rules masthead, OFF licence) when it took
+		/// over from TrendSlab. The two fonts that are NOT allowed as the counter-rule here are
+		/// the RTL/CJK glyph fonts — a counter-rule that re-declares Vazirmatn would be the
+		/// pendulum, not the fix.
 		/// </summary>
 		private static readonly Regex BrandFont = new Regex(
-			@"'?(?:Bebas Neue|TrendSlabW00-Four|Oswald|Dosis|Gadugi|DINPro)'?",
+			@"'?(?:Bebas Neue|TrendSlabW00-Four|Alfa Slab One|Oswald|Dosis|Gadugi|DINPro)'?",
 			RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
 		private static readonly Regex LocalGlyphFont = new Regex(
@@ -149,7 +151,7 @@ namespace Argumentum.AssetConverter.Tests.CardPenConfiguration
 						continue;
 					}
 
-					if (HasLatinBrandText(mustache) || HasTrendSlab(css))
+					if (HasLatinBrandText(mustache) || HasBrandMastheadFont(css))
 					{
 						result.Add((relPath, usedBy));
 					}
@@ -192,8 +194,32 @@ namespace Argumentum.AssetConverter.Tests.CardPenConfiguration
 			return Regex.Matches(text, "[A-Za-z]").Count >= 4;
 		}
 
-		private static bool HasTrendSlab(string css) =>
-			Regex.IsMatch(css, @"TrendSlab", RegexOptions.IgnoreCase);
+		/// <summary>
+		/// The template styles its masthead with a latin brand font. TrendSlab was the only
+		/// masthead font until #1485 moved the Rules masthead to Alfa Slab One, so the predicate
+		/// follows the font an <c>h1</c> rule actually carries (any rule whose selector targets an
+		/// h1 and whose body asserts a <see cref="BrandFont"/>), not a name list — a future
+		/// masthead swap keeps the template under the guard. The raw TrendSlab match stays as a
+		/// fallback so a template referencing it outside an h1 rule (e.g. an inert @font-face
+		/// alongside a differently-styled masthead) is not silently dropped either.
+		/// </summary>
+		private static bool HasBrandMastheadFont(string css)
+		{
+			foreach (Match m in RuleBlock.Matches(css))
+			{
+				var selector = m.Groups[1].Value;
+				var body = m.Groups[2].Value;
+
+				if (Regex.IsMatch(selector, @"\bh1\b")
+					&& body.Contains("font-family", StringComparison.OrdinalIgnoreCase)
+					&& BrandFont.IsMatch(body))
+				{
+					return true;
+				}
+			}
+
+			return Regex.IsMatch(css, @"TrendSlab", RegexOptions.IgnoreCase);
+		}
 
 		/// <summary>
 		/// For a given scope (ar/fa/zh), is there a counter-rule re-asserting a latin brand font on
@@ -314,7 +340,7 @@ namespace Argumentum.AssetConverter.Tests.CardPenConfiguration
 				return;
 			}
 
-			if (!HasLatinBrandText(mustache) && !HasTrendSlab(css))
+			if (!HasLatinBrandText(mustache) && !HasBrandMastheadFont(css))
 			{
 				return;
 			}
@@ -325,7 +351,7 @@ namespace Argumentum.AssetConverter.Tests.CardPenConfiguration
 				HasCounterRule(css, scope).Should().BeTrue(
 					"{0} (used by {1}) sweeps the `.argu-lang-{2} *` scope at `!important`, which clobbers " +
 					"the latin brand mark; as of #1225 the scope MUST carry a counter-rule re-asserting a " +
-					"latin brand font (Bebas Neue / TrendSlab / DINPro / …) on the brand container so the " +
+					"latin brand font (Bebas Neue / TrendSlab / Alfa Slab One / DINPro / …) on the brand container so the " +
 					"mark keeps its typeface. Absent that rule, the brand text falls back to Vazirmatn / " +
 					"Noto Sans SC and the mark renders in an Arabic/CJK body font — for the shared Fallacies " +
 					"back and the Rules «Argumentum» masthead this breaks mid-word.",

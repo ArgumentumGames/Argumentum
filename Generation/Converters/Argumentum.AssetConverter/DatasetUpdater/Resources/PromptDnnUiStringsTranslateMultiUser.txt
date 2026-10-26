@@ -6,7 +6,7 @@ Dans le prochain message utilisateur, tu trouveras au format json un ensemble de
 - `source_file` : fichier template .cshtml d'origine (pour référence)
 - `fr` : texte source canonique en français
 - `notes` : notes éditoriales (ex. "INFERRED FR", "keep placeholders")
-- Les champs cibles vides : `en` (anglais), `ru` (russe), `pt` (portugais), `es` (espagnol), `ar` (arabe standard moderne / فصحى), `fa` (persan), `zh` (chinois simplifié)
+- Les champs cibles vides : `en` (anglais), `ru` (russe), `pt` (portugais brésilien, pt-BR), `es` (espagnol), `ar` (arabe standard moderne / فصحى), `fa` (persan), `zh` (chinois simplifié)
 
 Ta tâche consiste à traduire le champ `fr` vers ces 7 langues, uniquement pour les entrées dont les champs cibles sont vides.
 

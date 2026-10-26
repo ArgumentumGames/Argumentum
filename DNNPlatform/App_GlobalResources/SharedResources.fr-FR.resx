@@ -823,6 +823,12 @@ Contactez votre hébergeur afin qu'il vérifie que les options de sécurité son
   <data name="InvalidUserName.Text" xml:space="preserve">
     <value xml:space="preserve">Compte utilisateur incorrect. Veuillez fournir un compte valide.</value>
   </data>
+  <data name="InvalidFirstName.Text">
+    <value xml:space="preserve">Le prénom indiqué est invalide.</value>
+  </data>
+  <data name="InvalidLastName.Text">
+    <value xml:space="preserve">Le nom indiqué est invalide.</value>
+  </data>
   <data name="jQuery.NotInstalled.Text" xml:space="preserve">
     <value xml:space="preserve">jQuery n'est pas installé.</value>
   </data>
@@ -1899,6 +1905,9 @@ Contactez votre hébergeur afin qu'il vérifie que les options de sécurité son
   </data>
   <data name="ModuleShared.Text" xml:space="preserve">
     <value>Module partagé</value>
+  </data>
+  <data name="VerificationMailSendSuccessful.Text">
+    <value xml:space="preserve">Le courriel de vérification a été envoyé.</value>
   </data>
   <!---->
 </root>

@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddContent.Text">
+    <value xml:space="preserve">Adicionar conteúdo</value>
+  </data>
+  <data name="chkPublish.Text">
+    <value xml:space="preserve">Publicar cambios?</value>
+  </data>
+  <data name="cmdCancel.Text">
+    <value xml:space="preserve">Cancelar</value>
+  </data>
+  <data name="cmdCancelSubmit.Text">
+    <value xml:space="preserve">Cancelar</value>
+  </data>
+  <data name="cmdHideMasterContent.Text">
+    <value xml:space="preserve">Ocultar idioma predeterminado</value>
+  </data>
+  <data name="cmdHistory.Text">
+    <value xml:space="preserve">Historial de versões</value>
+  </data>
+  <data name="cmdPreview.Text">
+    <value xml:space="preserve">Previsualizar</value>
+  </data>
+  <data name="cmdSave.Text">
+    <value xml:space="preserve">Guardar</value>
+  </data>
+  <data name="cmdShowMasterContent.Text">
+    <value xml:space="preserve">Mostrar idioma predeterminado</value>
+  </data>
+  <data name="Content Staging.Text">
+    <value xml:space="preserve">Conteúdo provisional</value>
+  </data>
+  <data name="ControlTitle_edit.Text">
+    <value xml:space="preserve">Editar conteúdo</value>
+  </data>
+  <data name="Date.Header">
+    <value xml:space="preserve">Data</value>
+  </data>
+  <data name="Delete.Text">
+    <value xml:space="preserve">Eliminar esta versão</value>
+  </data>
+  <data name="DeleteVersion.Confirm">
+    <value xml:space="preserve">Está seguro que quer eliminar definitivamente a versão [VERSION] ([STATE]) que fue criada o [DATECREATED] por [USERNAME]?</value>
+  </data>
+  <data name="Direct Publish.Text">
+    <value xml:space="preserve">Publicação directa</value>
+  </data>
+  <data name="Draft.Text">
+    <value xml:space="preserve">Borrador</value>
+  </data>
+  <data name="dshCurrentContent.Text">
+    <value xml:space="preserve">Editar conteúdo</value>
+  </data>
+  <data name="dshHistory.Text">
+    <value xml:space="preserve">Detalles do fluxo de trabalho</value>
+  </data>
+  <data name="dshMaster.Text">
+    <value xml:space="preserve">Versão do idioma padrão</value>
+  </data>
+  <data name="Edit.Text">
+    <value xml:space="preserve">Activar esta versão</value>
+  </data>
+  <data name="EditPreviewState.Text">
+    <value xml:space="preserve">Editar previsualização</value>
+  </data>
+  <data name="False.Text">
+    <value xml:space="preserve">Falso</value>
+  </data>
+  <data name="Item.Text">
+    <value xml:space="preserve">Previsualizar conteúdo</value>
+  </data>
+  <data name="lblNoRecords.Text">
+    <value xml:space="preserve">Este conteúdo não tem historial.</value>
+  </data>
+  <data name="lblPreviewWorkflowState.Text">
+    <value xml:space="preserve">Estado</value>
+  </data>
+  <data name="liBasicText.Text">
+    <value xml:space="preserve">Caja de texto simple</value>
+  </data>
+  <data name="liRichText.Text">
+    <value xml:space="preserve">Editor avanzado</value>
+  </data>
+  <data name="ModuleHelp.Text">
+    <value xml:space="preserve">&lt;p&gt;O módulo Text/HTML hace texto plano, texto enriquecido e HTML. Están disponívels 5 vistas diferentes de edição: &lt;/p&gt;
+&lt;OL&gt;
+&lt;li&gt;&lt;STRONG&gt;Caja de Texto Básico / Texto&lt;/STRONG&gt;: Interpretação de texto básico e etiquetas HTML. O texto introducido em uma nova linea é maquetado como um salto de linea. O estilo de texto é Normal como foi establecido em su hoja de estilo. 
+&lt;li&gt;&lt;STRONG&gt;Caja de Texto Básico / HTML&lt;/STRONG&gt;: Muestra o texto básico em formato HTML.
+&lt;li&gt;&lt;STRONG&gt;Caja de Texto Básico / Raw&lt;/STRONG&gt;: Muestra o texto básico em formato HTML. O texto introducido em uma nova linea não é interpretado como salto de linea.
+&lt;li&gt;&lt;STRONG&gt;Editor de Texto Enriquecido / HTML&lt;/STRONG&gt;: Permite pegar HTML desde outras fuentes.
+&lt;li&gt;&lt;STRONG&gt;Editor de Texto Enriquecido / Diseño&lt;/STRONG&gt;: Um procesador de texto o editor WYSIWYG (What You See is What You Get) com funcionalidades como hiperenlaces, enlaces de email, Administrador de Arquivos, galería de imágenes, puntos de interrupção, corretor ortográfico, e mucho más.</value>
+  </data>
+  <data name="NoVersions.Text">
+    <value xml:space="preserve">Não há nenhuma versão não histórico para este conteúdo.</value>
+  </data>
+  <data name="plActionOnSave.Help">
+    <value xml:space="preserve">A ação que o sistema deve ejecutar, además de guardar o conteúdo, quando se pulsa em Guardar.</value>
+  </data>
+  <data name="plActionOnSave.Text">
+    <value xml:space="preserve">Guardar</value>
+  </data>
+  <data name="plCurrentWorkflowInUse.Help">
+    <value xml:space="preserve">fluxo de trabalho que está siendo utilizado actualmente.</value>
+  </data>
+  <data name="plCurrentWorkflowInUse.Text">
+    <value xml:space="preserve">fluxo de trabalho em uso</value>
+  </data>
+  <data name="plCurrentWorkflowState.Help">
+    <value xml:space="preserve">Estado do fluxo de trabalho em uso pelo módulo</value>
+  </data>
+  <data name="plCurrentWorkflowState.Text">
+    <value xml:space="preserve">Estado do fluxo de trabalho</value>
+  </data>
+  <data name="plCurrentWorkVersion.Help">
+    <value xml:space="preserve">Muestra o número de versão do conteúdo</value>
+  </data>
+  <data name="plCurrentWorkVersion.Text">
+    <value xml:space="preserve">Versão</value>
+  </data>
+  <data name="plMaxVersions.Help">
+    <value xml:space="preserve">Número máximo de versões que se guardarán.</value>
+  </data>
+  <data name="plMaxVersions.Text">
+    <value xml:space="preserve">Número máximo de versões</value>
+  </data>
+  <data name="plPreviewVersion.Help">
+    <value xml:space="preserve">Mostrar o número de versão do conteúdo</value>
+  </data>
+  <data name="plPreviewVersion.Text">
+    <value xml:space="preserve">Versão</value>
+  </data>
+  <data name="plPreviewWorkflowInUse.Help">
+    <value xml:space="preserve">Nome da configuração do fluxo de trabalho que o módulo está usando.</value>
+  </data>
+  <data name="plPreviewWorkflowInUse.Text">
+    <value xml:space="preserve">fluxo de trabalho utilizado</value>
+  </data>
+  <data name="plPreviewWorkflowState.Help">
+    <value xml:space="preserve">Estado do fluxo de trabalho do conteúdo visualizado</value>
+  </data>
+  <data name="plPreviewWorkflowState.Text">
+    <value xml:space="preserve">Estado do fluxo de trabalho</value>
+  </data>
+  <data name="plPublish.Help">
+    <value xml:space="preserve">Mostra se o conteúdo está listo para su publicação</value>
+  </data>
+  <data name="plPublish.Text">
+    <value xml:space="preserve">Publicar</value>
+  </data>
+  <data name="plWorkflowState.Help">
+    <value xml:space="preserve">Mostrar o estado atual do conteúdo</value>
+  </data>
+  <data name="Published.Text">
+    <value xml:space="preserve">Publicado</value>
+  </data>
+  <data name="State.Header">
+    <value xml:space="preserve">Estado</value>
+  </data>
+  <data name="True.Text">
+    <value xml:space="preserve">Verdadero</value>
+  </data>
+  <data name="User.Header">
+    <value xml:space="preserve">Usuario</value>
+  </data>
+  <data name="Version.Header">
+    <value xml:space="preserve">Versão</value>
+  </data>
+  <data name="VersionsPreview.Text">
+    <value xml:space="preserve">Previsualizar</value>
+  </data>
+  <data name="VersionsRemove.Text">
+    <value xml:space="preserve">Eliminar</value>
+  </data>
+  <data name="VersionsRollback.Text">
+    <value xml:space="preserve">Activar versão</value>
+  </data>
+</root>

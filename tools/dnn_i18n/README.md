@@ -139,3 +139,124 @@ python tools/dnn_i18n/verify_game_rule_translations.py \
   write). See `684-translation-run-report.md` for the re-import mapping.
 - ❌ Does not modify `Cards/Rules/` CSV (game-content is a separate lane).
 - ❌ Does not declare a QA verdict — that's ai-01.
+
+---
+
+# #457 T1 — site-content pipeline (2sxc v21 export ⇄ CSV ⇄ import XML with dimensions)
+
+Bricks 1 and 2 of the site chain already existed (the committed export, and
+`translate_game_rules.py`). What did **not** exist was the **CSV pivot** and the **import XML
+carrying language dimensions** — the two the dispatch asks for. Both live in
+`site_content_pipeline.py`. Full detail, measurements and open items:
+[`docs/dnn-localization/457-t1-site-content-pipeline.md`](../../docs/dnn-localization/457-t1-site-content-pipeline.md).
+
+| Brick | What | Status |
+|---|---|---|
+| (1) 2sxc → JSON | committed export, app 60 | ✅ `release-validation/exports/DNN-Argumentum-export-2026-07-07/` |
+| (2) JSON → translations | `translate_game_rules.py` → `684-translations.json` | ✅ DoD-verified 0 violations (28 cells × 7 langs) |
+| **(3) JSON → CSV** | the pivot — a `key` plus `fr` plus the 7 target columns | 🆕 `site_content_pipeline.py to-csv` |
+| **(4) CSV → import XML** | one `<Entity>` per (Guid, Language) | 🆕 `site_content_pipeline.py to-xml` |
+
+## Files
+
+- `site_content_pipeline.py` — `to-csv` / `to-xml` / `self-test` / `list-cultures`.
+- `fixtures/one-entity-game-rule-import.xml` — the *"one entity before volume"* payload
+  ("L'école des menteurs", 8 culture blocks), consumed by
+  `Argumentum.AssetConverter.Tests/SiteContentImportXmlInteropTests.cs`.
+
+## Quick start
+
+```bash
+# export + committed translations -> pivot CSV (52 rows, 28 translated)
+python site_content_pipeline.py to-csv --translations \
+    ../../docs/dnn-localization/684-translations.json --out site-content.csv
+
+# CSV -> import XML for ONE entity (the dispatched proof)
+python site_content_pipeline.py to-xml --csv site-content.csv \
+    --entity ae1edefa-6f1b-4593-8230-97fa1edf4f78 --out one-entity.xml
+
+# offline proof: 2 round-trips + controls, zero network, zero prod write
+python site_content_pipeline.py self-test        # also step [5/5] of test_roundtrip.py
+```
+
+## Execution condition (CI wiring)
+
+`test_roundtrip.py` — 5 steps: extract → verify → reimport (dry-run) → site-content self-test —
+and `site_content_pipeline.py self-test` are **offline, std-lib only**, and read nothing but
+**committed files** (the fixtures under `fixtures/`, the committed export and
+`684-translations.json`). That is exactly the condition the CI scaffold
+([`python-tools-tests.yml`](../../.github/workflows/python-tools-tests.yml)) requires before
+wiring a `test_*.py`: no bundle, no `Target/`, no `G:` drive, no network. Both run there as the
+`dnn-i18n-offline` job (dispatch + weekly), so the controls have a durable signal instead of
+only a by-hand green.
+
+⛔ `translate_game_rules.py` is **not** wired and must not be — it calls the paid API.
+⛔ A test that reads `bin/*/Target/` belongs to the #1460 artefact suite (post-tag,
+env-gated), not to this workflow.
+
+## The dimension axis — attested vs unconfirmed
+
+The dialect expresses a language as one `<Entity>` block per (Guid, `Language`). Attested,
+**measured on the live DB** (I2, 2026-10-09 — dimensions are zone-scoped and app 60 lives in
+zone 3): **fr-FR** (dimensionId **6**) and **en-US** (dimensionId **7**). The first version of
+this table said 4/3, copied from the export's `manifest.json` — those are **zone 2's** IDs (the
+dead portal 0), and the same manifest declares `argumentumAppZoneId: 3` (see
+`1781-i2-zone3-inventory.md` §1). The other six culture codes were **provisioned on the live
+portal on 2026-10-10** (#1781 I1b, closing #682 Path A): dimensionIds **8-13** under zone 3's
+Culture Root, SELECT-verified post-insert, app-domain recycled — recipe and measurements in
+[`1781-i1b-culture-dimensions-2026-10-10.md`](../../docs/dnn-localization/1781-i1b-culture-dimensions-2026-10-10.md).
+`to-xml` still **refuses** any culture whose dimension is not attested unless
+`--unconfirmed-ok` is passed — dormant with all 8 attested, it guards against a future 9th
+culture being invented here. `list-cultures` prints the table.
+
+## What is proven, and what is NOT
+
+- ✅ **Proven offline**: the CSV carries the FR source byte-exactly (RT1), and the XML carries
+  every language cell byte-exactly across the dimension axis (RT2) — 17 checks at T1,
+  **21 since T2** (see below), all named.
+- ❌ **Not proven, and claimed nowhere**: that 2sxc v21 *accepts* this XML on import. That is
+  the T1+I3 unknown and it is settled on the live portal, on one entity, before any volume.
+
+## T2 — app 33 (first real lot): per-content-type prose sets
+
+The prose (translatable) attribute set is declared **per content type**
+(`TRANSLATE_FIELDS_BY_CONTENT_TYPE`): Game Rule stays the sibling import (IC6/IC15), and the
+app 33 sets are measured in [`1781-i2-zone3-inventory.md` §3](../../docs/dnn-localization/1781-i2-zone3-inventory.md)
+— `Content` = Title/Text/ImageCaption, `Link` = Title/Description/LinkText, `Video` =
+Title/Text. Two fail-closed refusals come with it:
+
+- an **undeclared** content type refuses at `to-csv` — which is how **Person/Location**
+  (the association's public contact block, I2 §5) stay excluded from bulk translation
+  *by the tool*, not by operator discipline;
+- `to-xml` **refuses a CSV whose `content_type` ≠ the export's** — with several content
+  types in existence, a merged or mis-paired CSV would otherwise emit mislabelled `<Entity
+  Type>` blocks with no warning.
+
+Controls IC12–IC15 pin all of this (falsified by mutation: 3 planted defects → 3
+nominative reds). **Blocked on brick 1**: no app 33 export exists in the repo or
+shared-state (measured 2026-10-09) — requested from the préprod lane.
+Detail: [`docs/dnn-localization/457-t2-app33-first-lot.md`](../../docs/dnn-localization/457-t2-app33-first-lot.md).
+
+---
+
+# #457 T3 — arbitration-dossier replay instruments
+
+The three read-only instruments behind
+[`457-t3-globalresources-arbitrage-dossier-2026-10-10.md`](../../docs/dnn-localization/457-t3-globalresources-arbitrage-dossier-2026-10-10.md)
+(committed at the counter-review's request — re-derivability by a third party is what makes
+the dossier's figures opposable). Each script declares its instrument definition (scope,
+extensions, binding forms) in its header and **exits 2 when its witness is not seen**.
+
+- `resx_variant_composition.py` — §1 replay: 1 241 base entries, prose/single split, fr-FR
+  coverage + extras (the version-drift warning).
+- `resx_reference_surface_site.py` — §2 Argumentum-side replay: 538 files → 1 key
+  (`Home.Text`). 12 extensions (the one file beyond a 6-extension set is
+  `Portals/1/2sxc/web.config`).
+- `resx_reference_surface_source.py` — §2 source-side replay: 970 files → 8 keys under the
+  **call-literal** binding. ⚠️ The source-side count is instrument-dependent (DNN binds via
+  the `Localization.*ResourceFile` constant, not a literal path): 3 / 8 / 9 / 37 across the
+  four instruments of the dossier §7 addendum. The routing conclusion (< 40/1 241 keys,
+  back-office only) is robust across all of them.
+
+⛔ Not wired into `python-tools-tests.yml`: the scans traverse `DNNPlatform/` (970 + 538
+files) — offline and read-only, but heavy for a per-PR leg; replay is a dossier gesture.

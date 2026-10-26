@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <!-- #1946: fa-IR skin resources. Menu.Tab<Id>.Text localizes the DDRMenu labels
+       (fallback = DNN TabName, which serves the FRENCH label in every culture today,
+       measured on the preprod menu); Menu.Tab170.Url points to the translated mind map
+       served at /fallacies_fa.html (measured 200). Tab 171 (ontology) exists in French only, so it
+       carries no Url key and keeps the declared French fallback. fr-FR is not touched. -->
+  <data name="Menu.Tab148.Text" xml:space="preserve">
+    <value>اخبار</value>
+  </data>
+  <data name="Menu.Tab149.Text" xml:space="preserve">
+    <value>خرید بازی</value>
+  </data>
+  <data name="Menu.Tab150.Text" xml:space="preserve">
+    <value>دانلودها</value>
+  </data>
+  <data name="Menu.Tab151.Text" xml:space="preserve">
+    <value>دوستان</value>
+  </data>
+  <data name="Menu.Tab152.Text" xml:space="preserve">
+    <value>قوانین</value>
+  </data>
+  <data name="Menu.Tab169.Text" xml:space="preserve">
+    <value>استدلال</value>
+  </data>
+  <data name="Menu.Tab170.Text" xml:space="preserve">
+    <value>نقشه ذهنی مغالطه</value>
+  </data>
+  <data name="Menu.Tab170.Url" xml:space="preserve">
+    <value>/fallacies_fa.html</value>
+  </data>
+  <data name="Menu.Tab171.Text" xml:space="preserve">
+    <value>هستی‌شناسی مغالطه</value>
+  </data>
+  <data name="Imprint.Text" xml:space="preserve">
+    <value>اطلاعات قانونی</value>
+  </data>
+  <data name="Privacy.Text" xml:space="preserve">
+    <value>حریم خصوصی</value>
+  </data>
+  <data name="Meta.Description" xml:space="preserve">
+    <value>آرگومنتوم یک بازی کارتی درباره استدلال‌ورزی و یادگیری تشخیص استدلال‌های مغالطه‌آمیز است.</value>
+  </data>
+  <data name="Meta.Keywords" xml:space="preserve">
+    <value>استدلال, بلاغت, مغالطه, استدلال مغالطه‌آمیز</value>
+  </data>
+  <!-- #458: tooltips of the icon-only login/logoff links (theme-body.ascx, Landingpage.ascx). -->
+  <data name="Login.Tooltip" xml:space="preserve">
+    <value>ورود</value>
+  </data>
+  <data name="Logoff.Tooltip" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+</root>

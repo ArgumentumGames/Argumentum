@@ -113,10 +113,14 @@ namespace Argumentum.AssetConverter.VisualTests
             var template = await File.ReadAllTextAsync(IncludedTemplatePath);
             var svg = await File.ReadAllTextAsync(svgPath);
 
+            // #457 T4b: the title is head-only and never rendered into the page body, so a fixed
+            // value keeps the visual baseline measuring rendering rather than the title table.
             var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(
                 template,
                 svgRelativePath: svgFileName,
-                svgContent: svg);
+                svgContent: svg,
+                language: lang,
+                title: "Argumentum");
 
             var wrapperPath = Path.Combine(_tempDir, $"included_{lang}.html");
             await File.WriteAllTextAsync(wrapperPath, wrapperHtml);
@@ -164,7 +168,11 @@ namespace Argumentum.AssetConverter.VisualTests
   </g>
 </svg>";
 
-            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg);
+            // #457 T4a/T4b: the language and title arguments are required but not under test here —
+            // these four synthetic-SVG cases measure zoom/click behaviour, not localization. "en"
+            // keeps the wrapper left-to-right, so the visual baselines keep measuring rendering only:
+            // lang, dir and title are head-only declarations and never reach the rendered body.
+            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg, "en", "Argumentum");
             var wrapperPath = Path.Combine(_tempDir, "included_synthetic_click.html");
             await File.WriteAllTextAsync(wrapperPath, wrapperHtml);
 
@@ -224,7 +232,9 @@ namespace Argumentum.AssetConverter.VisualTests
             var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(
                 template,
                 svgRelativePath: svgFileName,
-                svgContent: string.Empty); // external variant ignores SVGCONTENT
+                svgContent: string.Empty, // external variant ignores SVGCONTENT
+                language: lang,
+                title: "Argumentum");
 
             // Stage both the wrapper AND the SVG side-by-side in the temp dir, mirroring
             // what the pipeline does when writing Cards/Fallacies/Mindmaps/{lang}/.
@@ -260,7 +270,7 @@ namespace Argumentum.AssetConverter.VisualTests
   <rect x=""10"" y=""10"" width=""380"" height=""180"" fill=""#f0f0f0""/>
 </svg>";
 
-            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg);
+            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg, "en", "Argumentum");
             var wrapperPath = Path.Combine(_tempDir, "wheel_zoom_test.html");
             await File.WriteAllTextAsync(wrapperPath, wrapperHtml);
 
@@ -316,7 +326,7 @@ namespace Argumentum.AssetConverter.VisualTests
   <rect x=""10"" y=""10"" width=""380"" height=""180"" fill=""#f0f0f0""/>
 </svg>";
 
-            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg);
+            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg, "en", "Argumentum");
             var wrapperPath = Path.Combine(_tempDir, "keyboard_zoom_test.html");
             await File.WriteAllTextAsync(wrapperPath, wrapperHtml);
 
@@ -371,7 +381,7 @@ namespace Argumentum.AssetConverter.VisualTests
   <rect x=""10"" y=""10"" width=""380"" height=""180"" fill=""#f0f0f0""/>
 </svg>";
 
-            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg);
+            var wrapperHtml = MindMapHtmlWrapper.FormatWrapper(template, "synthetic.svg", syntheticSvg, "en", "Argumentum");
             var wrapperPath = Path.Combine(_tempDir, "zoom_clamp_test.html");
             await File.WriteAllTextAsync(wrapperPath, wrapperHtml);
 

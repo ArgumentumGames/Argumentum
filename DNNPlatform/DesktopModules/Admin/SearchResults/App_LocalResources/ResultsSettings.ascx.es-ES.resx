@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>Configuración de resultados de búsqueda</value>
+  </data>
+  <data name="filtersRequired.Text" xml:space="preserve">
+    <value>Tiene que seleccionar al menos un tipo de contenido</value>
+  </data>
+  <data name="linkTargetOnSamePage.Text" xml:space="preserve">
+    <value>En la misma ventana</value>
+  </data>
+  <data name="linkTargetOpenNewPage.Text" xml:space="preserve">
+    <value>En una nueva ventana</value>
+  </data>
+  <data name="plEnableWildSearch.Help" xml:space="preserve">
+    <value>Permitir al indexador hacer búsquedas parciales de palabras (opción predeterminada). Puede desactivar esta opción si las búsquedas tardan demasiado.</value>
+  </data>
+  <data name="plEnableWildSearch.Text" xml:space="preserve">
+    <value>Búsquedas parciales</value>
+  </data>
+  <data name="plMaxDescriptionLength.Help" xml:space="preserve">
+    <value>Longitud máxima descripción</value>
+  </data>
+  <data name="plMaxDescriptionLength.Text" xml:space="preserve">
+    <value>Longitud máxima descripción</value>
+  </data>
+  <data name="plResultsScopeForFilters.Help" xml:space="preserve">
+    <value>Puede limitar los resultados de búsqueda seleccionando los tipos de contenidos que se buscarán</value>
+  </data>
+  <data name="plResultsScopeForFilters.Text" xml:space="preserve">
+    <value>Limitar ámbito según tipo de contenido</value>
+  </data>
+  <data name="plResultsScopeForPortals.Help" xml:space="preserve">
+    <value>Puede limitar los resultados de búsqueda en función de los sitios web</value>
+  </data>
+  <data name="plResultsScopeForPortals.Text" xml:space="preserve">
+    <value>Limitar ámbito según sitio web</value>
+  </data>
+  <data name="plResultsScopeForRoles.Help" xml:space="preserve">
+    <value>Puede limitar los resultados de búsqueda en función de los roles.</value>
+  </data>
+  <data name="plResultsScopeForRoles.Text" xml:space="preserve">
+    <value>Limitar ámbito según roles</value>
+  </data>
+  <data name="plShowDescription.Help" xml:space="preserve">
+    <value>Descripción breve</value>
+  </data>
+  <data name="plShowDescription.Text" xml:space="preserve">
+    <value>Descripción breve</value>
+  </data>
+  <data name="plShowFriendlyTitle.Help" xml:space="preserve">
+    <value>Mostrar el título de página en lugar del nombre interno.</value>
+  </data>
+  <data name="plShowFriendlyTitle.Text" xml:space="preserve">
+    <value>Mostrar título de pàgina</value>
+  </data>
+  <data name="plShowLastUpdated.Help" xml:space="preserve">
+    <value>Mostrar cuando se realizó la última modificación del contenido.</value>
+  </data>
+  <data name="plShowLastUpdated.Text" xml:space="preserve">
+    <value>Mostrar última actualización</value>
+  </data>
+  <data name="plShowSnippet.Help" xml:space="preserve">
+    <value>Mostrar la posición donde se encuentra el texto buscado dentro del contenido.</value>
+  </data>
+  <data name="plShowSnippet.Text" xml:space="preserve">
+    <value>Mostrar fragmento</value>
+  </data>
+  <data name="plShowSource.Help" xml:space="preserve">
+    <value>Mostrar el origen del contenico, por ejemplo páginas, documentos, etc.</value>
+  </data>
+  <data name="plShowSource.Text" xml:space="preserve">
+    <value>Mostrar origen</value>
+  </data>
+  <data name="plShowTags.Help" xml:space="preserve">
+    <value>Mostrar etiquetas</value>
+  </data>
+  <data name="plShowTags.Text" xml:space="preserve">
+    <value>Mostrar etiquetas</value>
+  </data>
+  <data name="plTitleLinkTarget.Help" xml:space="preserve">
+    <value>Indique si el enlace del resultado se abrirá en la misma ventana del navegador o en una nueva</value>
+  </data>
+  <data name="plTitleLinkTarget.Text" xml:space="preserve">
+    <value>Abrir enlaces</value>
+  </data>
+  <data name="portalsRequired.Text" xml:space="preserve">
+    <value>Tiene que seleccionar al menos un sitio web</value>
+  </data>
+</root>

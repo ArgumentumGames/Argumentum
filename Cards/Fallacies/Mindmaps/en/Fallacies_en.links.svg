@@ -13110,9 +13110,11 @@
 		<g font-size="50" transform="translate(2296,1201)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(8,175,147)" font-weight="bold">
 			<rect x="0" y="0" clip-path="url(#clipPath1147)" fill="none" width="565" rx="5" ry="5" height="67" />
 		</g>
-		<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2296,1201)">
-			<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="53" clip-path="url(#clipPath1147)" stroke="none">Faulty generalisation</text>
-		</g>
+		<a xlink:href="https://en.wikipedia.org/wiki/Faulty_generalization" target="_blank">
+			<g text-rendering="optimizeSpeed" font-size="50" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2296,1201)">
+				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="53" clip-path="url(#clipPath1147)" stroke="none">Faulty generalisation</text>
+			</g>
+		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(639,1355)" fill="rgb(8,175,147)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(8,175,147)">
 			<path fill="none" d="M1236 197 C1224 197 1235 115 1215 115" clip-path="url(#clipPath1148)" />
 			<path fill="none" d="M1236 197 C1224 197 1235 264 1215 264" clip-path="url(#clipPath1148)" />

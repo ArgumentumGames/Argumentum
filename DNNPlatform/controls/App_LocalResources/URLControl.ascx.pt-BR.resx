@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add.Text">
+    <value xml:space="preserve">Adicionar uma nova url</value>
+  </data>
+  <data name="Cancel.Text">
+    <value xml:space="preserve">Selecione um arquivo existente</value>
+  </data>
+  <data name="Delete.Text">
+    <value xml:space="preserve">Elimine a url seleccionada na lista&lt;br/&gt;</value>
+  </data>
+  <data name="File.Text">
+    <value xml:space="preserve">Nome de Arquivo:&lt;br/&gt;</value>
+  </data>
+  <data name="FileType.Text">
+    <value xml:space="preserve">Arquivo (um arquivo de su sitio)</value>
+  </data>
+  <data name="Folder.Text">
+    <value xml:space="preserve">Ubicação do arquivo:&lt;br/&gt;</value>
+  </data>
+  <data name="Image.Text">
+    <value xml:space="preserve">Imagen:&lt;br/&gt;</value>
+  </data>
+  <data name="ImageType.Text">
+    <value xml:space="preserve">Imagen de sistema</value>
+  </data>
+  <data name="Log.Text">
+    <value xml:space="preserve">Registrar o usuário, a data e a hora de cada clic não enlace?&lt;br/&gt;</value>
+  </data>
+  <data name="NewWindow.Text">
+    <value xml:space="preserve">Abrir o enlace em uma nova ventana do navegador?&lt;br/&gt;</value>
+  </data>
+  <data name="NoneType.Text">
+    <value xml:space="preserve">Nenhum</value>
+  </data>
+  <data name="NoPermission.Text">
+    <value xml:space="preserve">Não tem permissões para ver os Arquivos do portal</value>
+  </data>
+  <data name="NoUser.Text">
+    <value xml:space="preserve">O nome do usuário não coincide com nenhum usuario deste sitio web.</value>
+  </data>
+  <data name="NoWritePermission.Text">
+    <value xml:space="preserve">Não tem permissões para subir Arquivos em este sitio</value>
+  </data>
+  <data name="Root.Text">
+    <value xml:space="preserve">Raíz</value>
+  </data>
+  <data name="Save.Text">
+    <value xml:space="preserve">Cargar o arquivo selecionado&lt;br/&gt;</value>
+  </data>
+  <data name="Select.Text">
+    <value xml:space="preserve">Selecione uma URL existente</value>
+  </data>
+  <data name="Tab.Text">
+    <value xml:space="preserve">Página:</value>
+  </data>
+  <data name="TabType.Text">
+    <value xml:space="preserve">Página (una página de su sitio)</value>
+  </data>
+  <data name="Track.Text">
+    <value xml:space="preserve">Registrar o número de veces que foice clic em este enlace?&lt;br/&gt;</value>
+  </data>
+  <data name="Type.Text">
+    <value xml:space="preserve">Tipo de enlace:</value>
+  </data>
+  <data name="Upload.Text">
+    <value xml:space="preserve">Cargar novo Arquivo</value>
+  </data>
+  <data name="UploadError.Text">
+    <value xml:space="preserve">O tipo de Arquivo {1} é incorreto em este contexto. Os tipos de Arquivo válidos incluyen: {0}</value>
+  </data>
+  <data name="URL.Text">
+    <value xml:space="preserve">Ubicação: (entre a direção do enlace)&lt;br/&gt;</value>
+  </data>
+  <data name="URLType.Text">
+    <value xml:space="preserve">URL (um enlace para um recurso externo)</value>
+  </data>
+  <data name="User.Text">
+    <value xml:space="preserve">Entre o nome do usuário de um membro de su sitio:&lt;br/&gt;</value>
+  </data>
+  <data name="UserType.Text">
+    <value xml:space="preserve">Usuario (um membro de su sitio)</value>
+  </data>
+</root>

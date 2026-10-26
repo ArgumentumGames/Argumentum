@@ -2692,6 +2692,634 @@ public class DatasetUpdaterRootConfig
 				MaxGroupItemNb = 12,
 				WriteOneTargetFileByField = false,
 				MaxChildren = 8
+			},
+			// T2 trial re-run (issue #457, review c.6098996342): ONE app33 entity x 7 langs —
+			// pt unlocked by #1855 (305a0ccb), game glossary locked in the prompt (derived from
+			// the cards CSV by tools/1859-app33-glossary-regen.py, guarded by
+			// PromptDnnApp33GlossaryConsistencyTests). Enabled=false committed; the run flips it
+			// as a recipe edit (never committed). $10 cap structurally satisfied: 2 rows x 7
+			// langs, one chunk, MaxOutputTokens 4096. TargetPath = scratch sandbox (P5): the
+			// committed pivot is never the write target.
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "T2 trial app33 — one entity (11392) x 7 langs (glossary re-run)",
+				SourceDataset = KnownDataSets.DnnApp33Content,
+				FieldsToInclude = new List<string>()
+				{
+					"key",
+					"app",
+					"content_type",
+					"guid",
+					"attribute",
+					"fr",
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				PrimaryField = "key",
+				TargetPath = @".\Target\Datasets\app33-content-trial-11392.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptDnnApp33TranslateMultiUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptDnnApp33TranslateMultiAssistant.txt"
+					}
+				},
+				// FR -> 7 languages via OpenAI gpt-5.6-sol on the Responses API (reasoning capped low).
+				Model = "gpt-5.6-sol",
+				OpenAIKeyPath = @".keys\openai-key.txt",
+				UseResponsesApi = true,
+				ReasoningEffort = "low",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 2,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 2,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			// T2 VOLUME (issue #457, volume opened #458 c.6107217348 + 12/10 c.6114818851):
+			// the app33 prose worklists — content 45 / link 20 / video 6 rows, derived from the
+			// 2026-10-09 export with every exclusion auditable (7 demo entities per manifest
+			// markers, trial entity grafted from the reviewed filled pivot at assembly,
+			// non-prose attribute families: file refs, fa-icons, Link/Window/VideoLink).
+			// Same engine settings as the proven trial (glossary-locked prompt, gpt-5.6-sol,
+			// Responses API, effort low, function calling). Enabled=false committed; the run
+			// flips the three tasks as a recipe edit (never committed) and declares the
+			// day's prices at the same time (#1864 review condition). TargetPath = build-output
+			// sandbox — the committed worklist is the READ source, never the write target;
+			// outputs go to ai-01 review BEFORE any préprod injection.
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "T2 volume app33 — content (45 rows x 7 langs)",
+				SourceDataset = KnownDataSets.DnnApp33ContentVolume,
+				FieldsToInclude = new List<string>()
+				{
+					"key",
+					"app",
+					"content_type",
+					"guid",
+					"attribute",
+					"fr",
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				PrimaryField = "key",
+				TargetPath = @".\Target\Datasets\app33-volume-content.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptDnnApp33TranslateMultiUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptDnnApp33TranslateMultiAssistant.txt"
+					}
+				},
+				Model = "gpt-5.6-sol",
+				OpenAIKeyPath = @".keys\openai-key.txt",
+				UseResponsesApi = true,
+				ReasoningEffort = "low",
+								// 16384, not the trial's 4096: the volume's two longest Text rows (5.8k/4.5k
+				// source chars — Sendinblue form, L'argumentation) truncate mid-tool-call-sequence
+				// at 4096 output tokens (measured 12/10: 2/45 rows came back 2-3 langs short).
+				MaxOutputTokens = 16384,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 2,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 2,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "T2 volume app33 — link (20 rows x 7 langs)",
+				SourceDataset = KnownDataSets.DnnApp33LinkVolume,
+				FieldsToInclude = new List<string>()
+				{
+					"key",
+					"app",
+					"content_type",
+					"guid",
+					"attribute",
+					"fr",
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				PrimaryField = "key",
+				TargetPath = @".\Target\Datasets\app33-volume-link.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptDnnApp33TranslateMultiUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptDnnApp33TranslateMultiAssistant.txt"
+					}
+				},
+				Model = "gpt-5.6-sol",
+				OpenAIKeyPath = @".keys\openai-key.txt",
+				UseResponsesApi = true,
+				ReasoningEffort = "low",
+								// 16384, not the trial's 4096: the volume's two longest Text rows (5.8k/4.5k
+				// source chars — Sendinblue form, L'argumentation) truncate mid-tool-call-sequence
+				// at 4096 output tokens (measured 12/10: 2/45 rows came back 2-3 langs short).
+				MaxOutputTokens = 16384,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 2,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 2,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "T2 volume app33 — video (6 rows x 7 langs)",
+				SourceDataset = KnownDataSets.DnnApp33VideoVolume,
+				FieldsToInclude = new List<string>()
+				{
+					"key",
+					"app",
+					"content_type",
+					"guid",
+					"attribute",
+					"fr",
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				PrimaryField = "key",
+				TargetPath = @".\Target\Datasets\app33-volume-video.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptDnnApp33TranslateMultiUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptDnnApp33TranslateMultiAssistant.txt"
+					}
+				},
+				Model = "gpt-5.6-sol",
+				OpenAIKeyPath = @".keys\openai-key.txt",
+				UseResponsesApi = true,
+				ReasoningEffort = "low",
+								// 16384, not the trial's 4096: the volume's two longest Text rows (5.8k/4.5k
+				// source chars — Sendinblue form, L'argumentation) truncate mid-tool-call-sequence
+				// at 4096 output tokens (measured 12/10: 2/45 rows came back 2-3 langs short).
+				MaxOutputTokens = 16384,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 2,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 2,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			// Owner's Rules 06 lot (issue #1502 c.6098939191, GO c.6098942133): differential
+			// translation of the 2 changed bullets (1a several-cards winner rule, 2a "À 5
+			// joueurs et plus" condition) into the 7 corpus languages, then graft into
+			// Rules_06/RulesPP_06 of both Rules CSVs (the two "+" markers are mechanical,
+			// no LLM). Pivot rows carry <lang>_current context; targets empty by construction.
+			// Enabled=false committed; the run flips it as a recipe edit (never committed).
+			// Guard: Rules06OwnerLotContractTests pins the 3 changes in 8 columns x 2 files.
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Rules 06 owner lot — 2 bullets x 7 langs (differential)",
+				SourceDataset = KnownDataSets.Rules06LotPhrases,
+				FieldsToInclude = new List<string>()
+				{
+					"key",
+					"fr",
+					"en_current", "en",
+					"ru_current", "ru",
+					"pt_current", "pt",
+					"es_current", "es",
+					"ar_current", "ar",
+					"fa_current", "fa",
+					"zh_current", "zh"
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"en",
+					"ru",
+					"pt",
+					"es",
+					"ar",
+					"fa",
+					"zh"
+				},
+				PrimaryField = "key",
+				TargetPath = @".\Target\Datasets\rules06-lot-phrases.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptRules06LotTranslateMultiUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptRules06LotTranslateMultiAssistant.txt"
+					}
+				},
+				// Differential bullet pass via OpenAI gpt-5.6-sol on the Responses API (reasoning capped low).
+				Model = "gpt-5.6-sol",
+				OpenAIKeyPath = @".keys\openai-key.txt",
+				UseResponsesApi = true,
+				ReasoningEffort = "low",
+				MaxOutputTokens = 4096,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 2,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = -1,
+				SelectEmptyTargets = true,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 4,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			// Grain ㉓a (#458 c.6296494826, user mandate 20/10 "Claude API credits"): per-corpus
+			// Haiku-correction tasks on the Anthropic OpenAI-compatible endpoint. Disabled by
+			// default — arming one is a recipe edit at run time (never committed), same pattern
+			// as the Rules 06 lot above. During the ~10-day credit window the mandate replaces
+			// the "gpt-5.6-sol only" rule: Haiku 5.5 first, then Sonnet/Opus/Fable by rejection
+			// rate (>50% rejections on a pass = next tier). UseResponsesApi=false because the
+			// compat address serves Chat Completions, not /v1/responses (SUPPOSED — the
+			// one-call sonde tranches when the key arrives). Prices = published Haiku 5.5
+			// per-MTok (mandate facts, support article 17154008) so the end-of-run summary
+			// reports measured spend (mandate deliverable d). Correction scope adds the EN
+			// columns to the cascade multi-lang set: the mandate covers the 8 languages, and
+			// function calling lets the model pick which cells to touch anyway.
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Fallacies Haiku correction claude-haiku-5-5",
+				SourceDataset = KnownDataSets.FallaciesTaxonomy,
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					"text_fr","desc_fr","example_fr",
+					"text_en","desc_en","example_en",
+					"text_ru","desc_ru","example_ru",
+					"text_pt","desc_pt","example_pt",
+					"text_es","desc_es","example_es",
+					"text_ar","desc_ar","example_ar",
+					"text_fa","desc_fa","example_fa",
+					"text_zh","desc_zh","example_zh",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"text_en","desc_en","example_en",
+					"text_ru","desc_ru","example_ru",
+					"text_pt","desc_pt","example_pt",
+					"text_es","desc_es","example_es",
+					"text_ar","desc_ar","example_ar",
+					"text_fa","desc_fa","example_fa",
+					"text_zh","desc_zh","example_zh",
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Fallacies - Taxonomy.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptFallaciesCascadeDriftUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptFallaciesCascadeDriftAssistant.txt"
+					}
+				},
+				// Anthropic compat endpoint, per task (Prompt.cs ChatClient honors BaseUrl).
+				BaseUrl = "https://api.anthropic.com/v1/",
+				Model = "claude-haiku-5-5",
+				OpenAIKeyPath = @".keys\anthropic-key.txt",
+				UseResponsesApi = false,
+				InputTokenPricePerMillion = 0.10,
+				OutputTokenPricePerMillion = 0.50,
+				// Sonde finding (20/10, #458 grain 23b): without a forced tool choice the
+				// compat endpoint lets Haiku answer as raw JSON content — 0 tool calls,
+				// payload truncated at the output cap, nothing applied. Forcing the
+				// UpdateRecord tool choice makes the parallel calls land (5 calls, 5 cells
+				// written on the 8-row Rules chunk). 8192 = cascade value, leaves room for
+				// multi-row tool payloads.
+				FunctionName = "UpdateRecord",
+				MaxOutputTokens = 8192,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.PKHierarchicalChar,
+				PKHierarchicalChar = '.',
+				PKHierarchyLevel = 2,
+				ChunkSize = 4,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 20
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Virtues Haiku correction claude-haiku-5-5",
+				SourceDataset = KnownDataSets.VirtuesTaxonomy,
+				FieldsToInclude = new List<string>()
+				{
+					"pk",
+					"title_fr","description_fr","remark_fr",
+					"title_en","description_en","remark_en",
+					"title_ru","description_ru","remark_ru",
+					"title_pt","description_pt","remark_pt",
+					"title_es","description_es","remark_es",
+					"title_ar","description_ar","remark_ar",
+					"title_fa","description_fa","remark_fa",
+					"title_zh","description_zh","remark_zh",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"title_en","description_en","remark_en",
+					"title_ru","description_ru","remark_ru",
+					"title_pt","description_pt","remark_pt",
+					"title_es","description_es","remark_es",
+					"title_ar","description_ar","remark_ar",
+					"title_fa","description_fa","remark_fa",
+					"title_zh","description_zh","remark_zh",
+				},
+				PrimaryField = "pk",
+				TargetPath = @".\Target\Datasets\Argumentum Virtues - Taxonomy.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptVirtuesCascadeDriftUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptVirtuesCascadeDriftAssistant.txt"
+					}
+				},
+				BaseUrl = "https://api.anthropic.com/v1/",
+				Model = "claude-haiku-5-5",
+				OpenAIKeyPath = @".keys\anthropic-key.txt",
+				UseResponsesApi = false,
+				InputTokenPricePerMillion = 0.10,
+				OutputTokenPricePerMillion = 0.50,
+				// Sonde finding (20/10, #458 grain 23b): without a forced tool choice the
+				// compat endpoint lets Haiku answer as raw JSON content — 0 tool calls,
+				// payload truncated at the output cap, nothing applied. Forcing the
+				// UpdateRecord tool choice makes the parallel calls land (5 calls, 5 cells
+				// written on the 8-row Rules chunk). 8192 = cascade value, leaves room for
+				// multi-row tool payloads.
+				FunctionName = "UpdateRecord",
+				MaxOutputTokens = 8192,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 6,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Scenarii Haiku correction claude-haiku-5-5",
+				SourceDataset = KnownDataSets.Scenarii,
+				FieldsToInclude = new List<string>()
+				{
+					"path",
+					"titre","contexte","enjeu","suggestion",
+					"title","context","issue","suggestion_en",
+					"title_ru","context_ru","issue_ru","suggestion_ru",
+					"title_pt","context_pt","issue_pt","suggestion_pt",
+					"title_es","context_es","issue_es","suggestion_es",
+					"title_ar","context_ar","issue_ar","suggestion_ar",
+					"title_fa","context_fa","issue_fa","suggestion_fa",
+					"title_zh","context_zh","issue_zh","suggestion_zh",
+				},
+				// Scenarii EN columns are bare (title/context/issue — no _en suffix;
+				// suggestion keeps one) — same asymmetry the cascade tasks carry.
+				FieldsToUpdate = new List<string>()
+				{
+					"title","context","issue","suggestion_en",
+					"title_ru","context_ru","issue_ru","suggestion_ru",
+					"title_pt","context_pt","issue_pt","suggestion_pt",
+					"title_es","context_es","issue_es","suggestion_es",
+					"title_ar","context_ar","issue_ar","suggestion_ar",
+					"title_fa","context_fa","issue_fa","suggestion_fa",
+					"title_zh","context_zh","issue_zh","suggestion_zh",
+				},
+				PrimaryField = "path",
+				TargetPath = @".\Target\Datasets\Argumentum Scenarii - Cards.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptScenariiCascadeDriftUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptScenariiCascadeDriftAssistant.txt"
+					}
+				},
+				BaseUrl = "https://api.anthropic.com/v1/",
+				Model = "claude-haiku-5-5",
+				OpenAIKeyPath = @".keys\anthropic-key.txt",
+				UseResponsesApi = false,
+				InputTokenPricePerMillion = 0.10,
+				OutputTokenPricePerMillion = 0.50,
+				// Sonde finding (20/10, #458 grain 23b): without a forced tool choice the
+				// compat endpoint lets Haiku answer as raw JSON content — 0 tool calls,
+				// payload truncated at the output cap, nothing applied. Forcing the
+				// UpdateRecord tool choice makes the parallel calls land (5 calls, 5 cells
+				// written on the 8-row Rules chunk). 8192 = cascade value, leaves room for
+				// multi-row tool payloads.
+				FunctionName = "UpdateRecord",
+				MaxOutputTokens = 8192,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 12,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
+			},
+			new DatasetUpdaterConfig()
+			{
+				Enabled = false,
+				Name = "Rules Haiku correction claude-haiku-5-5",
+				SourceDataset = KnownDataSets.Rules,
+				FieldsToInclude = new List<string>()
+				{
+					"pk",
+					"Text",
+					"Text_en",
+					"Text_ru","Text_pt","Text_es",
+					"Text_ar","Text_fa","Text_zh",
+				},
+				FieldsToUpdate = new List<string>()
+				{
+					"Text_en",
+					"Text_ru","Text_pt","Text_es",
+					"Text_ar","Text_fa","Text_zh",
+				},
+				PrimaryField = "pk",
+				TargetPath = @".\Target\Datasets\Argumentum Rules - Cards.csv",
+				SystemPromptPath = PromptsRootPath + "PromptGeneralSystem.txt",
+				DialogPrompts = new List<PromptExample>()
+				{
+					new PromptExample()
+					{
+						UserPromptPath = PromptsRootPath + "PromptRulesCascadeDriftUser.txt",
+						AssistantAnswerPath = PromptsRootPath + "PromptRulesCascadeDriftAssistant.txt"
+					}
+				},
+				BaseUrl = "https://api.anthropic.com/v1/",
+				Model = "claude-haiku-5-5",
+				OpenAIKeyPath = @".keys\anthropic-key.txt",
+				UseResponsesApi = false,
+				InputTokenPricePerMillion = 0.10,
+				OutputTokenPricePerMillion = 0.50,
+				// Sonde finding (20/10, #458 grain 23b): without a forced tool choice the
+				// compat endpoint lets Haiku answer as raw JSON content — 0 tool calls,
+				// payload truncated at the output cap, nothing applied. Forcing the
+				// UpdateRecord tool choice makes the parallel calls land (5 calls, 5 cells
+				// written on the 8-row Rules chunk). 8192 = cascade value, leaves room for
+				// multi-row tool payloads.
+				FunctionName = "UpdateRecord",
+				MaxOutputTokens = 8192,
+				MaxTokensPerMinute = 70000,
+				DivisionMode = DivisionMode.SequentialChunks,
+				ChunkSize = 8,
+				UseFunctionCalling = true,
+				NbMessageCalls = 1,
+				SkipChunkNb = 0,
+				TakeChunkNb = 1,
+				SelectEmptyTargets = false,
+				RandomizeChunks = false,
+				MaxDegreeOfParallelismWebService = 1,
+				CompareMode = false,
+				AutoCompare = false,
+				MaxGroupItemNb = 12,
+				WriteOneTargetFileByField = false,
+				MaxChildren = 8
 			}
 		};
 }

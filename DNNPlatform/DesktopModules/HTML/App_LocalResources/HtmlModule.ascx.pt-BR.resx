@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddContent.Action">
+    <value xml:space="preserve">Editar texto</value>
+  </data>
+  <data name="AddContent.Text">
+    <value xml:space="preserve">Pulse aquí para introducir su conteúdo</value>
+  </data>
+  <data name="AddContentFromActionMenu.Text">
+    <value xml:space="preserve">Tem que estar em modo edição para entrar conteúdo. Luego pode utilizar o menú de accions do módulo para gestionar o conteúdo.</value>
+  </data>
+  <data name="AddContentFromToolBar.Text">
+    <value xml:space="preserve">Selecione "Editar conteúdo" não menú de ação Editar (icone de lápiz).</value>
+  </data>
+  <data name="Bold.ToolTip">
+    <value xml:space="preserve">Negrita</value>
+  </data>
+  <data name="Cancel.ToolTip">
+    <value xml:space="preserve">Cancelar</value>
+  </data>
+  <data name="CreateLink.ToolTip">
+    <value xml:space="preserve">criar enlace</value>
+  </data>
+  <data name="Edit.ToolTip">
+    <value xml:space="preserve">Editar</value>
+  </data>
+  <data name="Indent.ToolTip">
+    <value xml:space="preserve">Sangría</value>
+  </data>
+  <data name="Italic.ToolTip">
+    <value xml:space="preserve">Cursiva</value>
+  </data>
+  <data name="JustifyCenter.ToolTip">
+    <value xml:space="preserve">Justificado ao centro</value>
+  </data>
+  <data name="JustifyLeft.ToolTip">
+    <value xml:space="preserve">Justificado a izquierda</value>
+  </data>
+  <data name="JustifyRight.ToolTip">
+    <value xml:space="preserve">Justificado a derecha</value>
+  </data>
+  <data name="ModuleHelp.Text">
+    <value xml:space="preserve">&lt;p&gt;O módulo Text/HTML hace texto plano, texto enriquecido e HTML. Están disponívels 5 vistas diferentes de edição: &lt;/p&gt;
+&lt;OL&gt;
+&lt;li&gt;&lt;STRONG&gt;Caja de Texto Básico / Texto&lt;/STRONG&gt;: Interpretação de texto básico e etiquetas HTML. O texto introducido em uma nova linea é maquetado como um salto de linea. O estilo de texto é Normal como foi establecido em su hoja de estilo. 
+&lt;li&gt;&lt;STRONG&gt;Caja de Texto Básico / HTML&lt;/STRONG&gt;: Muestra o texto básico em formato HTML.
+&lt;li&gt;&lt;STRONG&gt;Caja de Texto Básico / Raw&lt;/STRONG&gt;: Muestra o texto básico em formato HTML. O texto introducido em uma nova linea não é interpretado como salto de linea.
+&lt;li&gt;&lt;STRONG&gt;Editor de Texto Enriquecido / HTML&lt;/STRONG&gt;: Permite pegar HTML desde outras fuentes.
+&lt;li&gt;&lt;STRONG&gt;Editor de Texto Enriquecido / Diseño&lt;/STRONG&gt;: Um procesador de texto o editor WYSIWYG (What You See is What You Get) com funcionalidades como hiperenlaces, enlaces de email, Administrador de Arquivos, galería de imágenes, puntos de interrupção, corretor ortográfico, e mucho más.</value>
+  </data>
+  <data name="MyWork.Action">
+    <value xml:space="preserve">Mi trabalho</value>
+  </data>
+  <data name="OrderedList.ToolTip">
+    <value xml:space="preserve">Lista ordenada</value>
+  </data>
+  <data name="Outdent.ToolTip">
+    <value xml:space="preserve">Anular sangría</value>
+  </data>
+  <data name="Save.ToolTip">
+    <value xml:space="preserve">Guardar</value>
+  </data>
+  <data name="Underline.ToolTip">
+    <value xml:space="preserve">Subrayar</value>
+  </data>
+  <data name="UnorderedList.ToolTip">
+    <value xml:space="preserve">Lista não ordenada</value>
+  </data>
+  <data name="Workflow.Action">
+    <value xml:space="preserve">fluxo de trabalho</value>
+  </data>
+</root>

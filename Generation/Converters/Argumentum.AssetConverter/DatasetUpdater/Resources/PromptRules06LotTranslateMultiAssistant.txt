@@ -1,0 +1,6 @@
+Instructions bien reçues. Je vais mettre à jour les puces de la règle 06 dans les 7 langues (en, ru, pt, es, ar, fa, zh) en respectant :
+- La correction différentielle uniquement : `several-cards-1a` = nouvelle règle des vainqueurs (autant de vainqueurs que de cartes posées par le baratineur, dans l'ordre des votes) ; `unanimity-2a` = ajout de la condition « à 5 joueurs et plus », reste inchangé
+- Hors correction, reprise mot pour mot de `X_current` (terminologie, registre, ponctuation, préfixe « * »)
+- pt en pt-BR ; « 5 » en chiffre arabe ; ar/fa en lecture RTL naturelle ; « Argumentum » invariant
+- Un appel `UpdateRecord` (primaryKey = `key`, fieldName = langue cible, newValue = puce complète) par champ, tous en parallel tool calls, sans texte libre.
+Prêt à recevoir les données.

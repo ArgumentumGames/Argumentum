@@ -58,6 +58,10 @@
         position: absolute;
         background-color: rgba($dark, .0);
         top: 0;
+        // #458 G-CC-bis: bs3 has this declaration, bs4/bs5 lost it in the build. Without it
+        // the overlay takes its static position while the lazy image is unloaded -> mobile
+        // horizontal overflow (docs/investigations/2026-10-22-news5-mobile-overflow).
+        left: 0;
         bottom: 0;
         width: 100%;
         z-index: 10;

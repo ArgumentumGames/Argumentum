@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutMe.Text" xml:space="preserve">
+    <value>Acerca de mi</value>
+  </data>
+  <data name="ControlTitle_viewprofile.Text" xml:space="preserve">
+    <value>Ver perfil</value>
+  </data>
+  <data name="Edit.Text" xml:space="preserve">
+    <value>Editar perfil</value>
+  </data>
+  <data name="Email.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmptyAboutMe.Text" xml:space="preserve">
+    <value>No hay información sobre la biografia de este usuario.</value>
+  </data>
+  <data name="EmptyGetInTouch.Text" xml:space="preserve">
+    <value>No hay información de contacto para este usuario.</value>
+  </data>
+  <data name="EmptyLocation.Text" xml:space="preserve">
+    <value>No hay información de localización para este usuario.</value>
+  </data>
+  <data name="GetInTouch.Text" xml:space="preserve">
+    <value>Opciones de contacto</value>
+  </data>
+  <data name="Location.Text" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="MyAccount.Text" xml:space="preserve">
+    <value>Mi cuenta</value>
+  </data>
+  <data name="NoProperties.Text" xml:space="preserve">
+    <value>Este usuario ha seleccionado ocultar su perfil.</value>
+  </data>
+</root>

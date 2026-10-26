@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cmdUpdate.Text" xml:space="preserve">
+    <value>Actualizar código</value>
+  </data>
+  <data name="ControlTitle_viewsource.Text" xml:space="preserve">
+    <value>Visualización del código fuente del control</value>
+  </data>
+  <data name="NoFileTypeSelected.Text" xml:space="preserve">
+    <value>Debe seleccionar un tipo de archivo a editar antes de pulsar en el botón Actualizar.</value>
+  </data>
+  <data name="plFile.Help" xml:space="preserve">
+    <value>Seleccione el archivo cuyo código desea visualizar.</value>
+  </data>
+  <data name="plFile.Text" xml:space="preserve">
+    <value>Seleccionar archivo:</value>
+  </data>
+  <data name="plSource.Help" xml:space="preserve">
+    <value>Puede ver el código fuente de control en el siguiente cuadro de texto. Si está ejecutando en un equipo local entonces también puede editar y modificar el código.</value>
+  </data>
+  <data name="plSource.Text" xml:space="preserve">
+    <value>Código fuente del control:</value>
+  </data>
+  <data name="SourceFile.Text" xml:space="preserve">
+    <value>Archivo de código fuente - {0}</value>
+  </data>
+</root>

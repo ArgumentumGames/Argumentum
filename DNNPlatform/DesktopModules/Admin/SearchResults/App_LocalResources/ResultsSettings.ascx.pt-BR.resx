@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle_settings.Text">
+    <value xml:space="preserve">Configuração de resultados de busca</value>
+  </data>
+  <data name="filtersRequired.Text">
+    <value xml:space="preserve">Tem que selecionar ao menos um tipo de conteúdo</value>
+  </data>
+  <data name="linkTargetOnSamePage.Text">
+    <value xml:space="preserve">Na mesma ventana</value>
+  </data>
+  <data name="linkTargetOpenNewPage.Text">
+    <value xml:space="preserve">Em uma nova ventana</value>
+  </data>
+  <data name="plEnableWildSearch.Help">
+    <value xml:space="preserve">Permitir ao indexador hacer buscas parciales de palabras (opção predeterminada). Pode desactivar esta opção se as buscas tardan demasiado.</value>
+  </data>
+  <data name="plEnableWildSearch.Text">
+    <value xml:space="preserve">buscas parciales</value>
+  </data>
+  <data name="plMaxDescriptionLength.Help" lastModified="2020-05-08 10:26:10">
+    <value xml:space="preserve">longitude máxima descripção</value>
+  </data>
+  <data name="plMaxDescriptionLength.Text" lastModified="2020-05-08 10:26:10">
+    <value xml:space="preserve">longitude máxima descripção</value>
+  </data>
+  <data name="plResultsScopeForFilters.Help">
+    <value xml:space="preserve">Pode limitar os resultados de busca seleccionando os tipos de conteúdos que se buscarán</value>
+  </data>
+  <data name="plResultsScopeForFilters.Text">
+    <value xml:space="preserve">Limitar ámbito según tipo de conteúdo</value>
+  </data>
+  <data name="plResultsScopeForPortals.Help">
+    <value xml:space="preserve">Pode limitar os resultados de busca em função dos portais web</value>
+  </data>
+  <data name="plResultsScopeForPortals.Text">
+    <value xml:space="preserve">Limitar ámbito según sitio web</value>
+  </data>
+  <data name="plResultsScopeForRoles.Help" lastModified="2020-05-09 10:12:24">
+    <value xml:space="preserve">Pode limitar os resultados de busca em função dos roles.</value>
+  </data>
+  <data name="plResultsScopeForRoles.Text" lastModified="2020-05-09 10:12:24">
+    <value xml:space="preserve">Limitar ámbito según roles</value>
+  </data>
+  <data name="plShowDescription.Help" lastModified="2020-05-08 10:26:10">
+    <value xml:space="preserve">Descripção breve</value>
+  </data>
+  <data name="plShowDescription.Text" lastModified="2020-05-08 10:26:10">
+    <value xml:space="preserve">Descripção breve</value>
+  </data>
+  <data name="plShowFriendlyTitle.Help" lastModified="2020-05-08 10:26:10">
+    <value xml:space="preserve">Mostrar o título de página em lugar do nome interno.</value>
+  </data>
+  <data name="plShowFriendlyTitle.Text" lastModified="2020-05-08 10:26:10">
+    <value xml:space="preserve">Mostrar título de pàgina</value>
+  </data>
+  <data name="plShowLastUpdated.Help" lastModified="2020-05-08 10:26:10">
+    <value xml:space="preserve">Mostrar quando se realizó a última modificação do conteúdo.</value>
+  </data>
+  <data name="plShowLastUpdated.Text" lastModified="2020-05-08 10:26:10">
+    <value xml:space="preserve">Mostrar última actualização</value>
+  </data>
+  <data name="plShowSnippet.Help" lastModified="2020-05-08 12:26:53">
+    <value xml:space="preserve">Mostrar a posição donde se encontra o texto buscado dentro do conteúdo.</value>
+  </data>
+  <data name="plShowSnippet.Text" lastModified="2020-05-08 14:29:22">
+    <value xml:space="preserve">Mostrar fragmento</value>
+  </data>
+  <data name="plShowSource.Help" lastModified="2020-05-08 14:29:22">
+    <value xml:space="preserve">Mostrar o origen do contenico, por ejemplo páginas, documentos, etc.</value>
+  </data>
+  <data name="plShowSource.Text" lastModified="2020-05-08 14:29:22">
+    <value xml:space="preserve">Mostrar origen</value>
+  </data>
+  <data name="plShowTags.Help" lastModified="2020-05-08 14:29:22">
+    <value xml:space="preserve">Mostrar etiquetas</value>
+  </data>
+  <data name="plShowTags.Text" lastModified="2020-05-08 14:29:22">
+    <value xml:space="preserve">Mostrar etiquetas</value>
+  </data>
+  <data name="plTitleLinkTarget.Help">
+    <value xml:space="preserve">Entre se o enlace do resultado se abrirá na mesma ventana do navegador o em uma nova</value>
+  </data>
+  <data name="plTitleLinkTarget.Text">
+    <value xml:space="preserve">Abrir enlaces</value>
+  </data>
+  <data name="portalsRequired.Text">
+    <value xml:space="preserve">Tem que selecionar ao menos um sitio web</value>
+  </data>
+</root>

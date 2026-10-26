@@ -3,8 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
+using ImageMagick;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -64,8 +63,12 @@ namespace Argumentum.AssetConverter.VisualTests
         private const float DefaultBottomSatThreshold  = 0.85f;
         private const float DefaultFooterCollisionThreshold = 0.10f;
 
-        private const float WhiteBandThreshold = 0.98f;   // pixels with R>250 AND G>250 AND B>250
-        private const float WhitePixelMax = 250f / 255f;   // normalized threshold for "white"
+        private const float WhiteBandThreshold = 0.98f;   // rows where >98% of pixels are "white"
+
+        // "White" was defined in 8-bit space by the original ImageSharp Rgb24 detectors
+        // (R>250 AND G>250 AND B>250). Magick.NET-Q16 exposes 16-bit channels (0-65535),
+        // so the bar is scaled once here: 250/255 → 250*257 = 64250.
+        private const ushort WhiteThreshold16 = 250 * 257;
 
         // Footer collision detector zones (#29 overflow recalibration)
         // The footer occupies the bottom ~10% (position:absolute; bottom:1.5em).
@@ -530,9 +533,9 @@ namespace Argumentum.AssetConverter.VisualTests
         {
             try
             {
-                using var image = Image.Load<Rgb24>(imagePath);
-                int height = image.Height;
-                int width = image.Width;
+                var loaded = LoadPixels(imagePath);
+                if (loaded == null) return (false, 0f, 0);
+                var (px, width, height, channels) = loaded.Value;
 
                 // Scan rows in the middle 60% (20%-80% of height)
                 int startRow = (int)(height * 0.20);
@@ -544,10 +547,10 @@ namespace Argumentum.AssetConverter.VisualTests
                 for (int y = startRow; y < endRow; y++)
                 {
                     int whiteCount = 0;
+                    int rowOffset = y * width * channels;
                     for (int x = 0; x < width; x++)
                     {
-                        var pixel = image[x, y];
-                        if (pixel.R > 250 && pixel.G > 250 && pixel.B > 250)
+                        if (IsWhite(px, rowOffset + x * channels))
                             whiteCount++;
                     }
 
@@ -577,9 +580,9 @@ namespace Argumentum.AssetConverter.VisualTests
         {
             try
             {
-                using var image = Image.Load<Rgb24>(imagePath);
-                int height = image.Height;
-                int width = image.Width;
+                var loaded = LoadPixels(imagePath);
+                if (loaded == null) return (false, 0f);
+                var (px, width, height, channels) = loaded.Value;
 
                 // Body area: rows 20%-80%
                 int startRow = (int)(height * 0.20);
@@ -590,11 +593,11 @@ namespace Argumentum.AssetConverter.VisualTests
 
                 for (int y = startRow; y < endRow; y++)
                 {
+                    int rowOffset = y * width * channels;
                     for (int x = 0; x < width; x++)
                     {
                         totalPixels++;
-                        var pixel = image[x, y];
-                        if (pixel.R > 250 && pixel.G > 250 && pixel.B > 250)
+                        if (IsWhite(px, rowOffset + x * channels))
                             whitePixels++;
                     }
                 }
@@ -617,9 +620,9 @@ namespace Argumentum.AssetConverter.VisualTests
         {
             try
             {
-                using var image = Image.Load<Rgb24>(imagePath);
-                int height = image.Height;
-                int width = image.Width;
+                var loaded = LoadPixels(imagePath);
+                if (loaded == null) return (false, 0f);
+                var (px, width, height, channels) = loaded.Value;
 
                 // Bottom 10%
                 int startRow = (int)(height * 0.90);
@@ -630,11 +633,11 @@ namespace Argumentum.AssetConverter.VisualTests
 
                 for (int y = startRow; y < endRow; y++)
                 {
+                    int rowOffset = y * width * channels;
                     for (int x = 0; x < width; x++)
                     {
                         totalPixels++;
-                        var pixel = image[x, y];
-                        if (!(pixel.R > 250 && pixel.G > 250 && pixel.B > 250))
+                        if (!IsWhite(px, rowOffset + x * channels))
                             nonWhitePixels++;
                     }
                 }
@@ -667,9 +670,9 @@ namespace Argumentum.AssetConverter.VisualTests
         {
             try
             {
-                using var image = Image.Load<Rgb24>(imagePath);
-                int height = image.Height;
-                int width = image.Width;
+                var loaded = LoadPixels(imagePath);
+                if (loaded == null) return (false, 0f, 0);
+                var (px, width, height, channels) = loaded.Value;
 
                 // Buffer zone: between body end and footer start
                 int startRow = (int)(height * FooterCollisionBufferStart);
@@ -680,11 +683,11 @@ namespace Argumentum.AssetConverter.VisualTests
 
                 for (int y = startRow; y < endRow; y++)
                 {
+                    int rowOffset = y * width * channels;
                     for (int x = 0; x < width; x++)
                     {
                         totalPixels++;
-                        var pixel = image[x, y];
-                        if (!(pixel.R > 250 && pixel.G > 250 && pixel.B > 250))
+                        if (!IsWhite(px, rowOffset + x * channels))
                             nonWhitePixels++;
                     }
                 }
@@ -697,6 +700,37 @@ namespace Argumentum.AssetConverter.VisualTests
                 return (false, 0f, 0);
             }
         }
+
+        /// <summary>
+        /// Loads a card image into a flat ushort[] (Magick.NET-Q16, row-major,
+        /// `channels` samples per pixel). Replaces the previous Image.Load&lt;Rgb24&gt;:
+        /// images with fewer than 3 channels (grayscale) are promoted to truecolor so
+        /// samples 0..2 are always R,G,B. Returns null when the file cannot be decoded —
+        /// callers then report "not flagged", matching the previous swallow-all try/catch.
+        /// </summary>
+        private static (ushort[] Pixels, int Width, int Height, int Channels)? LoadPixels(string imagePath)
+        {
+            try
+            {
+                using var image = new MagickImage(imagePath);
+                if (image.ChannelCount < 3)
+                    image.ColorType = ColorType.TrueColor;
+                var samples = image.GetPixels().ToArray();
+                return samples == null
+                    ? null
+                    : (samples, (int)image.Width, (int)image.Height, (int)image.ChannelCount);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>White = all three channels above the 8-bit "250" bar scaled to Q16.</summary>
+        private static bool IsWhite(ushort[] pixels, int offset)
+            => pixels[offset] > WhiteThreshold16
+               && pixels[offset + 1] > WhiteThreshold16
+               && pixels[offset + 2] > WhiteThreshold16;
 
         private class CardCheckResult
         {

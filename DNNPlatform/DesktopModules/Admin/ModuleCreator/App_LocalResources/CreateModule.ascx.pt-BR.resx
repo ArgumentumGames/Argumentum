@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add.Title">
+    <value xml:space="preserve">Creação de módulos</value>
+  </data>
+  <data name="AlreadyExists.ErrorMessage">
+    <value xml:space="preserve">Já existe um módulo com o nome especificado.</value>
+  </data>
+  <data name="C#.Text">
+    <value xml:space="preserve">C#</value>
+  </data>
+  <data name="cmdCreate.Text">
+    <value xml:space="preserve">criar módulo</value>
+  </data>
+  <data name="InputValidation.ErrorMessage">
+    <value xml:space="preserve">Tem que entrar o nome do propietario, o nome do módulo e selecionar uma planilha de módulo.</value>
+  </data>
+  <data name="plControl.Help">
+    <value xml:space="preserve">Introduzca um nome único para o controle do módulo.</value>
+  </data>
+  <data name="plControl.Text">
+    <value xml:space="preserve">Nome do controle:</value>
+  </data>
+  <data name="plDescription.Help">
+    <value xml:space="preserve">Introduzca uma descripção (opcional) para o módulo.</value>
+  </data>
+  <data name="plDescription.Text">
+    <value xml:space="preserve">Descripção:</value>
+  </data>
+  <data name="plLanguage.Help">
+    <value xml:space="preserve">Selecione o lenguaje que se utilizará para desarrollar o módulo.</value>
+  </data>
+  <data name="plLanguage.Text">
+    <value xml:space="preserve">Lenguaje:</value>
+  </data>
+  <data name="plModule.Help">
+    <value xml:space="preserve">Introduzca um nome único para o módulo.</value>
+  </data>
+  <data name="plModule.Text">
+    <value xml:space="preserve">Nome do módulo:</value>
+  </data>
+  <data name="plOwner.Help">
+    <value xml:space="preserve">Le sugerimos que utilice um espaço de nomes único para sus módulos para evitar possívels colisões com outros desarrolladores. Entre o nome de su organização o empresa, esta informação se utilizará como prefijo do módulo.</value>
+  </data>
+  <data name="plOwner.Text">
+    <value xml:space="preserve">Propietario:</value>
+  </data>
+  <data name="plTemplate.Help">
+    <value xml:space="preserve">Selecione a planilha de desarrollo deseada. As planilhas para creação de módulos se encontran em a pasta /DesktopModules/Admin/ModuleCreator/Templates.</value>
+  </data>
+  <data name="plTemplate.Text">
+    <value xml:space="preserve">planilha:</value>
+  </data>
+  <data name="SuperUser.ErrorMessage">
+    <value xml:space="preserve">Tem que ser um superusuario para poder criar um novo módulo.</value>
+  </data>
+  <data name="TemplateProblem.ErrorMessage">
+    <value xml:space="preserve">foi producido um error ao leer os Arquivos da planilha seleccionada</value>
+  </data>
+  <data name="VB.Text">
+    <value xml:space="preserve">Visual Basic</value>
+  </data>
+</root>

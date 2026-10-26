@@ -29,10 +29,21 @@ namespace Argumentum.AssetConverter.Tests.Ontology
     /// titre anglais, <c>skos:prefLabel</c> comme seul ancrage des concepts portés.</para>
     ///
     /// <para><b>Bornes.</b> Même doctrine que le census des sophismes : planchers d'anti-vacuité
-    /// sur les deux populations, plafonds sur l'écart posés à la valeur RÉCONCILIÉE (la
-    /// régénération #1681 a passé le fichier à l'égalité) — l'écart est donc un invariant
-    /// d'égalité : tout renommage anglais non suivi d'une régénération rougit nommément. Que faire
-    /// si c'est rouge : régénérer, ou recaler le plafond avec la date — jamais effacer la ligne.</para>
+    /// sur les deux populations, et sur l'écart un invariant d'ÉGALITÉ à la valeur réconciliée par
+    /// la régénération #1681 — tout renommage anglais non suivi d'une régénération rougit
+    /// nommément. Que faire si c'est rouge : régénérer, ou recaler avec la date — jamais effacer
+    /// la ligne.</para>
+    ///
+    /// <para><b>Retard d'identité déclaré — grain 10 (#458, 2026-10-07).</b> Deux titres anglais
+    /// retouchés par le grain 10 (<c>pk 128</c> « Acceptable » → « Solid », <c>pk 176</c>
+    /// « the opponent's » → « the parties' ») changent l'IRI que <see cref="VirtueOwlDocumentConfig.GetId"/>
+    /// produit, et <c>docs/ontology/argumentum_virtues.owl</c> porte encore les noms d'hier :
+    /// 2 absentes, 2 orphelines — la paire EXACTE est épinglée dans <see cref="IdentityLag"/>.
+    /// <b>Burn-down</b> : régénérer (<c>--generate-owl</c>) puis SUPPRIMER la table. L'assertion est
+    /// une égalité d'ensembles : une 3e divergence non listée rougit, et la régénération rougit à
+    /// son tour tant que la table est là. Le CSV corrigé est voulu et mesuré (dossier
+    /// <c>docs/translation/458-corrections-virtues-g10-2026-10-07.md</c>) ; le retard est celui des
+    /// <b>cartes mentales et de l'OWL</b>, pas du corpus.</para>
     ///
     /// <para><b>Pas de table annoncée ici.</b> Le membre « inclusion d'une table annoncée » du
     /// census des sophismes n'a pas d'équivalent : aucune identité Vertus n'est annoncée à un
@@ -51,9 +62,17 @@ namespace Argumentum.AssetConverter.Tests.Ontology
         private const int ProducedFloor = 200;
         private const int DeclaredFloor = 200;
 
-        // Plafonds : la valeur RÉCONCILIÉE par la régénération #1681 — l'égalité est l'invariant.
-        private const int AbsentCeiling = 0;
-        private const int OrphanCeiling = 0;
+        /// <summary>
+        /// Retard d'identité déclaré (grain 10, #458, 2026-10-07) : la paire « nom d'hier → nom
+        /// d'aujourd'hui » des deux concepts dont le titre anglais a été corrigé, et que l'ontologie
+        /// committée n'a pas encore suivis. Égalité EXACTE exigée dans les deux sens — la table est
+        /// un burn-down : à supprimer dès que <c>--generate-owl</c> aura régénéré le fichier.
+        /// </summary>
+        private static readonly (string Old, string New)[] IdentityLag =
+        {
+            ("acceptableInformalLogic", "solidInformalLogic"),
+            ("takingTheOpponentsIdeologicalBiasesIntoAccount", "takingThePartiesIdeologicalBiasesIntoAccount"),
+        };
 
         private static readonly Lazy<OwlAdapter> CommittedOntology = new(() =>
             OwlAdapter.FromFile(Path.Combine(TestRepoRoot.Find(), "docs", "ontology", "argumentum_virtues.owl")));
@@ -157,16 +176,25 @@ namespace Argumentum.AssetConverter.Tests.Ontology
             _out.WriteLine("ABSENTES  : " + string.Join(", ", absent));
             _out.WriteLine("ORPHELINES: " + string.Join(", ", orphans));
 
-            absent.Should().HaveCountLessThanOrEqualTo(AbsentCeiling,
-                $"une IRI que la taxonomie des Vertus produit et que le fichier ne porte pas est un concept " +
-                $"que la publication #133 servirait sous une identité qui n'existe plus. Plafond 0 depuis la " +
-                $"réconciliation #1681. Régénérer (--generate-owl), ou recaler ce plafond avec la date — " +
+            // Égalité EXACTE contre le retard déclaré, dans les deux sens : ce qui n'est pas dans la
+            // table rougit (elle n'absorbe aucune 3e divergence), et une régénération rougit aussi
+            // (l'écart tombe à 0 alors que la table est encore là) — le burn-down se referme en
+            // supprimant la table, jamais en la laissant dériver.
+            var lagNew = IdentityLag.Select(p => p.New).OrderBy(x => x, StringComparer.Ordinal).ToList();
+            var lagOld = IdentityLag.Select(p => p.Old).OrderBy(x => x, StringComparer.Ordinal).ToList();
+
+            absent.Should().Equal(lagNew,
+                "une IRI que la taxonomie des Vertus produit et que le fichier ne porte pas est un concept " +
+                "que la publication #133 servirait sous une identité qui n'existe plus. Depuis la " +
+                "réconciliation #1681 l'écart est nul, sauf la paire datée du grain 10 (2026-10-07) " +
+                "listée dans IdentityLag : régénérer (--generate-owl) puis SUPPRIMER cette table — " +
                 $"jamais effacer la ligne. Absentes aujourd'hui ({absent.Count}) : {string.Join(", ", absent)}");
 
-            orphans.Should().HaveCountLessThanOrEqualTo(OrphanCeiling,
-                $"un concept que le fichier porte et qu'aucune ligne ne produit est une identité que la " +
-                $"publication #133 figerait sans corpus derrière. Plafond 0 depuis la réconciliation #1681. " +
-                $"Régénérer (--generate-owl), ou recaler ce plafond avec la date — jamais effacer la ligne. " +
+            orphans.Should().Equal(lagOld,
+                "un concept que le fichier porte et qu'aucune ligne ne produit est une identité que la " +
+                "publication #133 figerait sans corpus derrière. Depuis la réconciliation #1681 l'écart " +
+                "est nul, sauf les noms d'hier de la paire datée du grain 10 (IdentityLag) : régénérer " +
+                "puis SUPPRIMER cette table. " +
                 $"Orphelines aujourd'hui ({orphans.Count}) : {string.Join(", ", orphans)}");
         }
 

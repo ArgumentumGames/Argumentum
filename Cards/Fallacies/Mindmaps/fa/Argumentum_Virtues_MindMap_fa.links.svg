@@ -330,10 +330,10 @@
 				<path d="M0 0 L0 43 L550 43 L550 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath109">
-				<path d="M0 0 L0 143 L579 143 L579 0 Z" />
+				<path d="M0 0 L0 143 L592 143 L592 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath110">
-				<path d="M0 0 L0 43 L479 43 L479 0 Z" />
+				<path d="M0 0 L0 43 L492 43 L492 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath111">
 				<path d="M0 0 L0 189 L886 189 L886 0 Z" />
@@ -354,10 +354,10 @@
 				<path d="M0 0 L0 43 L454 43 L454 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath117">
-				<path d="M0 0 L0 189 L713 189 L713 0 Z" />
+				<path d="M0 0 L0 189 L730 189 L730 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath118">
-				<path d="M0 0 L0 56 L208 56 L208 0 Z" />
+				<path d="M0 0 L0 56 L225 56 L225 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath119">
 				<path d="M0 0 L0 143 L485 143 L485 0 Z" />
@@ -1179,72 +1179,75 @@
 				<path d="M0 0 L0 43 L212 43 L212 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath392">
-				<path d="M0 0 L0 43 L320 43 L320 0 Z" />
+				<path d="M0 0 L0 143 L579 143 L579 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath393">
-				<path d="M0 0 L0 137 L239 137 L239 0 Z" />
+				<path d="M0 0 L0 43 L320 43 L320 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath394">
-				<path d="M0 0 L0 37 L139 37 L139 0 Z" />
+				<path d="M0 0 L0 137 L239 137 L239 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath395">
-				<path d="M0 0 L0 281 L823 281 L823 0 Z" />
+				<path d="M0 0 L0 37 L139 37 L139 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath396">
-				<path d="M0 0 L0 43 L288 43 L288 0 Z" />
+				<path d="M0 0 L0 281 L823 281 L823 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath397">
-				<path d="M0 0 L0 143 L386 143 L386 0 Z" />
+				<path d="M0 0 L0 43 L288 43 L288 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath398">
-				<path d="M0 0 L0 143 L515 143 L515 0 Z" />
+				<path d="M0 0 L0 143 L386 143 L386 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath399">
-				<path d="M0 0 L0 137 L268 137 L268 0 Z" />
+				<path d="M0 0 L0 143 L515 143 L515 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath400">
-				<path d="M0 0 L0 37 L168 37 L168 0 Z" />
+				<path d="M0 0 L0 137 L268 137 L268 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath401">
-				<path d="M0 0 L0 143 L262 143 L262 0 Z" />
+				<path d="M0 0 L0 37 L168 37 L168 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath402">
-				<path d="M0 0 L0 43 L162 43 L162 0 Z" />
+				<path d="M0 0 L0 143 L262 143 L262 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath403">
-				<path d="M0 0 L0 432 L954 432 L954 0 Z" />
+				<path d="M0 0 L0 43 L162 43 L162 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath404">
-				<path d="M0 0 L0 156 L519 156 L519 0 Z" />
+				<path d="M0 0 L0 432 L954 432 L954 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath405">
-				<path d="M0 0 L0 56 L419 56 L419 0 Z" />
+				<path d="M0 0 L0 156 L519 156 L519 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath406">
-				<path d="M0 0 L0 281 L640 281 L640 0 Z" />
+				<path d="M0 0 L0 56 L419 56 L419 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath407">
-				<path d="M0 0 L0 56 L257 56 L257 0 Z" />
+				<path d="M0 0 L0 281 L640 281 L640 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath408">
-				<path d="M0 0 L0 143 L363 143 L363 0 Z" />
+				<path d="M0 0 L0 56 L257 56 L257 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath409">
-				<path d="M0 0 L0 43 L263 43 L263 0 Z" />
+				<path d="M0 0 L0 143 L363 143 L363 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath410">
-				<path d="M0 0 L0 143 L276 143 L276 0 Z" />
+				<path d="M0 0 L0 43 L263 43 L263 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath411">
-				<path d="M0 0 L0 189 L578 189 L578 0 Z" />
+				<path d="M0 0 L0 143 L276 143 L276 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath412">
-				<path d="M0 0 L0 56 L230 56 L230 0 Z" />
+				<path d="M0 0 L0 189 L578 189 L578 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath413">
-				<path d="M0 0 L0 143 L328 143 L328 0 Z" />
+				<path d="M0 0 L0 56 L230 56 L230 0 Z" />
 			</clipPath>
 			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath414">
+				<path d="M0 0 L0 143 L328 143 L328 0 Z" />
+			</clipPath>
+			<clipPath clipPathUnits="userSpaceOnUse" id="clipPath415">
 				<path d="M0 0 L0 43 L228 43 L228 0 Z" />
 			</clipPath>
 			<font horiz-adv-x="75.0" id="font1">
@@ -1284,7 +1287,6 @@
 				<glyph unicode="ث" horiz-adv-x="65.0" d="M64.9375 14.3125 L23.96875 14.3125 Q21 14.3125 19.046875 14.359375 Q17.09375 14.40625 16.109375 14.5 Q14.265625 14.703125 11.96875 15.53125 Q7.90625 16.890625 5.375 21.09375 Q2.78125 25.296875 2.78125 30.46875 Q2.78125 32.515625 3.0546875 34.6640625 Q3.328125 36.8125 4.15625 39.265625 Q5.125 42.1875 6.46875 44.5078125 Q7.8125 46.828125 9.234375 48.921875 L11.96875 47.171875 Q10.890625 45.21875 10.1796875 43.609375 Q9.46875 42 9.078125 40.875 Q8.34375 38.578125 8.34375 36.421875 Q8.34375 33.640625 10.109375 31.390625 Q11.96875 29.15625 14.796875 28.515625 Q16.5 28.078125 19.234375 27.8359375 Q21.96875 27.59375 25.046875 27.59375 L60.359375 27.59375 Q58.9375 31.453125 58.109375 32.859375 Q57.03125 34.765625 54.78125 37.59375 L59.1875 48.921875 Q62.84375 43.703125 63.96875 39.359375 Q64.9375 35.453125 64.9375 28.125 L64.9375 14.3125 ZM37.890625 72 L33.015625 61.84375 L23.828125 66.734375 L28.8125 76.6875 L37.890625 72 ZM47.375 60.4375 L42 50.46875 L35.0625 54.375 L31.15625 46.65625 L22.078125 51.640625 L27.15625 61.109375 L34.375 57.5 L38.484375 65.40625 L47.375 60.4375 Z" />
 				<glyph unicode="ؤ" horiz-adv-x="45.0" d="M45.125 17.671875 Q45.125 9.28125 37.9921875 1.078125 Q30.859375 -7.125 23.921875 -7.125 Q19.875 -7.125 15.0625 -4.5390625 Q10.25 -1.953125 0.296875 5.671875 L2.34375 8.5 Q7.625 4.984375 10.984375 3.8125 Q13.765625 2.828125 17.28125 2.828125 Q22.015625 2.828125 26.65625 5.46875 Q32.125 8.59375 37.984375 15.53125 Q35.9375 15.234375 34.578125 15.234375 Q29.734375 15.234375 26.8828125 18.3828125 Q24.03125 21.53125 24.03125 26.953125 Q24.03125 34.28125 27.390625 41.0625 Q31.0625 48.4375 35.75 48.4375 Q39.65625 48.4375 42.390625 43.1171875 Q45.125 37.796875 45.125 30.28125 L45.125 17.671875 ZM39.265625 27.59375 Q37.890625 35.453125 33.6875 35.453125 Q32.171875 35.453125 31.2734375 34.2578125 Q30.375 33.0625 30.375 31.640625 Q30.375 29.890625 32.3046875 28.7421875 Q34.234375 27.59375 37.40625 27.59375 L39.265625 27.59375 ZM27.0625 58.203125 Q26.53125 56.78125 25.796875 56.046875 Q25.265625 55.515625 24.140625 55.171875 L13.59375 51.953125 Q14.5625 53.703125 15.296875 54.3671875 Q16.03125 55.03125 17.9375 55.5625 Q16.5625 56.4375 15.953125 57.1953125 Q15.34375 57.953125 15.34375 58.6875 Q15.34375 59.328125 15.734375 60.1328125 Q16.125 60.9375 16.765625 61.71875 Q19.9375 65.96875 23.0625 65.96875 Q23.984375 65.96875 24.546875 65.359375 Q25.109375 64.75 25.109375 63.765625 Q25.109375 62.984375 24.890625 62.421875 Q24.671875 61.859375 23.984375 60.734375 Q21.546875 61.96875 20.671875 61.96875 Q19.796875 61.96875 18.90625 61.515625 Q18.328125 61.234375 17.84375 60.734375 Q17.84375 60.109375 20.1875 58.7890625 Q22.53125 57.46875 23.546875 57.46875 Q24.1875 57.46875 27.0625 58.203125 Z" />
 				<glyph unicode="ط" horiz-adv-x="52.0" d="M52.34375 14.3125 L-3.421875 14.3125 L-3.421875 27.59375 L3.078125 27.59375 Q4.25 27.59375 9.671875 31.640625 Q11.46875 32.953125 14.890625 35.75 Q14.890625 41.75 14.453125 45.8984375 Q14.015625 50.046875 13.03125 54.546875 Q12.796875 55.609375 10.40625 65.140625 L7.5625 66.890625 Q8.6875 72.015625 9.421875 74.2421875 Q10.15625 76.46875 12.25 81.25 L14.5 80.375 Q14.5 80.078125 14.3125 79.109375 Q14.3125 77.390625 19.140625 75.046875 Q20.75 74.265625 23.96875 73.046875 Q23.484375 69.234375 22.40625 65.921875 Q21.875 64.265625 20.453125 60.75 L18.703125 61.328125 Q20.21875 54.390625 20.7265625 51.09375 Q21.234375 47.796875 21.234375 45.21875 L21.234375 44.671875 Q21.234375 43.265625 21.1640625 42.4609375 Q21.09375 41.65625 20.75 39.9375 Q23.296875 41.796875 25.875 43.65625 Q29.828125 46.4375 32.953125 48.140625 Q37.0625 50.390625 39.203125 50.390625 Q44.96875 50.390625 48.4375 47.40625 Q52.34375 44.046875 52.34375 37.703125 L52.34375 14.3125 ZM45.5625 32.5625 Q45.5625 34.28125 41.9453125 35.765625 Q38.328125 37.25 35.59375 37.25 Q32.375 37.25 28.34375 35.1796875 Q24.3125 33.109375 16.65625 27.59375 L29.4375 27.59375 Q45.5625 27.59375 45.5625 32.5625 Z" />
-				<glyph unicode="ِ" horiz-adv-x="0.0" d="M20.125 4.109375 Q20.125 1.765625 17.578125 -0.390625 Q13.1875 -2.09375 3.421875 -6 Q3.421875 -3.90625 5.5625 -1.953125 Q9.625 -0.296875 20.125 4.109375 Z" />
 				<glyph unicode="ژ" horiz-adv-x="43.0" d="M43.265625 13.1875 Q43.265625 10.203125 39.84375 5.296875 Q36.421875 0.390625 31.84375 -3.21875 Q26.765625 -7.234375 23.140625 -7.234375 Q18.84375 -7.234375 13.921875 -4.78125 Q9.625 -2.6875 0.484375 3.609375 L2.546875 6.640625 Q6.9375 3.71875 9.625 2.6875 Q12.3125 1.65625 15.4375 1.65625 Q18.796875 1.65625 22.1640625 3.5625 Q25.53125 5.46875 31.34375 10.640625 Q39.453125 17.875 39.453125 21.78125 Q39.453125 23.734375 37.890625 26.90625 Q36.140625 30.515625 33.59375 32.90625 L36.328125 46.09375 Q39.65625 42.671875 41.4609375 38.234375 Q43.265625 33.796875 43.265625 28.125 L43.265625 13.1875 ZM34.890625 77 L30.015625 66.84375 L20.828125 71.734375 L25.8125 81.6875 L34.890625 77 ZM44.375 65.4375 L39 55.46875 L32.0625 59.375 L28.15625 51.65625 L19.078125 56.640625 L24.15625 66.109375 L31.375 62.5 L35.484375 70.40625 L44.375 65.4375 Z" />
 				<glyph unicode="ئ" horiz-adv-x="64.0" d="M57.46875 38.09375 Q57.46875 35.40625 56.9296875 33.6484375 Q56.390625 31.890625 54.640625 29 Q53.328125 32.46875 52.421875 33.5234375 Q51.515625 34.578125 49.8125 34.578125 Q47.171875 34.578125 42.5546875 31.5703125 Q37.9375 28.5625 37.9375 26.515625 Q37.9375 25.4375 39.796875 25 Q41.109375 24.703125 43.890625 24.703125 Q44.625 24.703125 45.3359375 24.703125 Q46.046875 24.703125 46.78125 24.75 Q52.09375 24.75 53.859375 23.6875 Q55.375 22.75 55.375 20.0625 Q55.375 14.796875 53.421875 9.96875 Q50.984375 3.859375 46.34375 1.265625 Q40.53125 -2 34.2578125 -4 Q27.984375 -6 22.5625 -6 Q7.375 -6 7.375 7.625 Q7.375 14.5 9.078125 19.484375 Q10.984375 25.046875 17.140625 34.578125 L19.390625 33.109375 Q15.765625 27 13.9609375 22.2421875 Q12.15625 17.484375 12.15625 13.921875 Q12.15625 4.6875 22.5625 4.6875 Q26.46875 4.6875 29.984375 5.3984375 Q33.5 6.109375 37.109375 7.375 Q39.453125 8.203125 42.484375 9.515625 Q47.3125 11.671875 47.609375 11.8125 Q49.8125 12.984375 49.8125 13.921875 Q49.8125 14.40625 47.4375 14.53125 Q45.0625 14.65625 44.09375 14.65625 Q36.578125 14.65625 34.03125 16.796875 Q31.984375 18.5625 31.984375 23.296875 Q31.984375 25.53125 33.421875 28.953125 Q34.859375 32.375 37.203125 35.75 Q40.765625 40.875 44.3359375 43.5078125 Q47.90625 46.140625 51.3125 46.140625 Q54.15625 46.140625 55.8125 43.9453125 Q57.46875 41.75 57.46875 38.09375 ZM22.515625 46.875 Q22.078125 45.3125 21.34375 44.578125 Q20.796875 44.046875 19.671875 43.703125 L9.125 40.484375 Q10.109375 42.234375 10.84375 42.8984375 Q11.578125 43.5625 13.375 44.234375 Q12.015625 45.125 11.40625 45.875 Q10.796875 46.625 10.796875 47.359375 Q10.796875 48 11.1875 48.8046875 Q11.578125 49.609375 12.203125 50.390625 Q15.375 54.640625 18.5 54.640625 Q19.4375 54.640625 20 54.03125 Q20.5625 53.421875 20.5625 52.4375 Q20.5625 51.65625 20.34375 51.09375 Q20.125 50.53125 19.4375 49.421875 Q17 50.640625 16.109375 50.640625 Q15.234375 50.640625 14.359375 50.203125 Q13.765625 49.90625 13.28125 49.421875 Q13.28125 48.78125 15.625 47.4609375 Q17.96875 46.140625 19 46.140625 Q19.625 46.140625 22.515625 46.875 Z" />
 				<glyph unicode="آ" horiz-adv-x="24.0" d="M18.0625 28.515625 Q18.0625 24.171875 17.0390625 20.5859375 Q16.015625 17 13.09375 10.9375 L10.15625 12.109375 Q11.328125 18.359375 11.328125 22.265625 Q11.328125 25.25 10.84375 31.0078125 Q10.359375 36.765625 9.625 42.40625 Q8.890625 48.046875 7.234375 55.859375 Q6.640625 58.59375 6.640625 59.625 Q6.640625 61.140625 8.15625 64.7734375 Q9.671875 68.40625 12.40625 73.578125 L15.328125 56.296875 Q16.9375 46.4375 17.578125 39.203125 Q18.0625 33.640625 18.0625 28.515625 ZM22.4375 82.203125 Q20.578125 78.875 17.8984375 77.4375 Q15.21875 76 11.546875 76 Q9.75 76 7.0625 76.578125 Q5.9375 76.828125 5.15625 76.9453125 Q4.375 77.0625 3.734375 77.0625 Q3.203125 77.0625 2.8359375 76.9921875 Q2.46875 76.921875 2.1015625 76.7734375 Q1.734375 76.625 1.2734375 76.359375 Q0.8125 76.09375 0.078125 75.75 L-0.703125 76.34375 Q0.265625 78.734375 1.5390625 79.90625 Q2.8125 81.078125 4.859375 81.078125 Q5.640625 81.078125 6.59375 80.953125 Q7.546875 80.828125 8.671875 80.578125 Q9.9375 80.34375 11.0859375 80.1953125 Q12.234375 80.046875 13.3125 80.046875 Q15.703125 80.046875 17.828125 80.828125 Q19.953125 81.609375 21.5625 82.875 L22.4375 82.203125 Z" />
@@ -1325,7 +1327,6 @@
 				<glyph unicode="ث" horiz-adv-x="71.0" d="M71.34375 14.3125 L24.75 14.3125 Q15.375 14.3125 9.8125 17.578125 Q2.828125 21.6875 2.828125 30.421875 Q2.828125 34.96875 4.890625 39.703125 Q5.609375 41.40625 8.40625 46.1875 L9.859375 45.265625 Q8.796875 43.015625 7.765625 40.765625 Q6.34375 37.3125 6.34375 34.578125 Q6.34375 28.8125 12.40625 25.640625 Q17.828125 22.796875 26.125 22.796875 L67.484375 22.796875 L67.484375 24.125 Q67.484375 29.59375 66.1640625 33.03125 Q64.84375 36.46875 61.671875 38.921875 L65.4375 46.875 Q67.578125 44.1875 68.015625 43.5 Q71.34375 38.03125 71.34375 27.59375 L71.34375 14.3125 ZM38.546875 67.640625 L34.796875 60.5 L26.984375 64.703125 L30.59375 71.84375 L38.546875 67.640625 ZM48.171875 58.9375 L44.359375 51.90625 L36.453125 56.109375 L40.109375 63.09375 L48.171875 58.9375 ZM36.9375 54.546875 L33.234375 47.46875 L25.3125 51.578125 L28.9375 58.65625 L36.9375 54.546875 Z" />
 				<glyph unicode="چ" horiz-adv-x="56.0" d="M23.640625 33.984375 Q22.65625 33.984375 20.8046875 34.1328125 Q18.953125 34.28125 18.015625 34.28125 Q14.890625 34.28125 10.984375 33.6875 Q8.453125 33.296875 4.046875 32.421875 Q6 37.9375 7.71875 39.59375 Q11.375 43.21875 20.015625 43.21875 Q23.25 43.21875 33.203125 41.84375 Q37.84375 41.21875 41.21875 41.21875 Q42.625 41.21875 45.359375 41.5546875 Q48.09375 41.890625 49.46875 41.890625 L47.65625 33.640625 Q37.359375 31.890625 30.125 29.640625 Q19.390625 26.3125 13.375 21.53125 Q5.90625 15.578125 5.90625 7.46875 Q5.90625 -3.03125 16.84375 -8.296875 Q26.375 -12.890625 42.28125 -12.890625 L51.265625 -12.890625 L51.5625 -13.421875 L40.53125 -21.1875 L37.703125 -21.1875 Q27.15625 -21.1875 20.171875 -19.234375 Q11.8125 -16.890625 7.515625 -11.71875 Q2.640625 -5.8125 2.640625 3.90625 Q2.640625 12.109375 6.5 18.65625 Q9.421875 23.640625 15.046875 28.078125 Q16.75 29.4375 23.640625 33.984375 ZM41.640625 17.734375 L38.015625 10.65625 L30.015625 14.75 L33.71875 21.84375 L41.640625 17.734375 ZM39.96875 4.59375 L36.359375 -2.53125 L28.40625 1.671875 L32.15625 8.796875 L39.96875 4.59375 ZM30.5 13.1875 L26.84375 6.203125 L18.78125 10.359375 L22.59375 17.390625 L30.5 13.1875 Z" />
 				<glyph unicode="پ" horiz-adv-x="71.0" d="M71.34375 14.3125 L24.75 14.3125 Q15.375 14.3125 9.8125 17.578125 Q2.828125 21.6875 2.828125 30.421875 Q2.828125 34.96875 4.890625 39.703125 Q5.609375 41.40625 8.40625 46.1875 L9.859375 45.265625 Q8.796875 43.015625 7.765625 40.765625 Q6.34375 37.3125 6.34375 34.578125 Q6.34375 28.8125 12.40625 25.640625 Q17.828125 22.796875 26.125 22.796875 L67.484375 22.796875 L67.484375 24.125 Q67.484375 29.59375 66.1640625 33.03125 Q64.84375 36.46875 61.671875 38.921875 L65.4375 46.875 Q67.578125 44.1875 68.015625 43.5 Q71.34375 38.03125 71.34375 27.59375 L71.34375 14.3125 ZM49.640625 2.734375 L46.015625 -4.34375 L38.015625 -0.25 L41.71875 6.84375 L49.640625 2.734375 ZM47.96875 -10.40625 L44.359375 -17.53125 L36.40625 -13.328125 L40.15625 -6.203125 L47.96875 -10.40625 ZM38.5 -1.8125 L34.84375 -8.796875 L26.78125 -4.640625 L30.59375 2.390625 L38.5 -1.8125 Z" />
-				<glyph unicode="ِ" horiz-adv-x="0.0" d="M20.125 8.015625 Q20.125 5.671875 17.578125 3.515625 Q13.1875 1.8125 3.421875 -2.09375 Q3.421875 0 5.5625 1.953125 Q9.625 3.609375 20.125 8.015625 Z" />
 				<glyph unicode="r" horiz-adv-x="33.0" d="M6.5 0 L6.5 51.859375 L14.40625 51.859375 L14.40625 44 Q17.4375 49.515625 20 51.2734375 Q22.5625 53.03125 25.640625 53.03125 Q30.078125 53.03125 34.671875 50.203125 L31.640625 42.046875 Q28.421875 43.953125 25.203125 43.953125 Q22.3125 43.953125 20.015625 42.21875 Q17.71875 40.484375 16.75 37.40625 Q15.28125 32.71875 15.28125 27.15625 L15.28125 0 L6.5 0 Z" />
 				<glyph unicode="a" horiz-adv-x="56.0" d="M40.4375 6.390625 Q35.546875 2.25 31.03125 0.5390625 Q26.515625 -1.171875 21.34375 -1.171875 Q12.796875 -1.171875 8.203125 3 Q3.609375 7.171875 3.609375 13.671875 Q3.609375 17.484375 5.34375 20.6328125 Q7.078125 23.78125 9.890625 25.6875 Q12.703125 27.59375 16.21875 28.5625 Q18.796875 29.25 24.03125 29.890625 Q34.671875 31.15625 39.703125 32.90625 Q39.75 34.71875 39.75 35.203125 Q39.75 40.578125 37.25 42.78125 Q33.890625 45.75 27.25 45.75 Q21.046875 45.75 18.09375 43.578125 Q15.140625 41.40625 13.71875 35.890625 L5.125 37.0625 Q6.296875 42.578125 8.984375 45.96875 Q11.671875 49.359375 16.75 51.1953125 Q21.828125 53.03125 28.515625 53.03125 Q35.15625 53.03125 39.3046875 51.46875 Q43.453125 49.90625 45.40625 47.5390625 Q47.359375 45.171875 48.140625 41.546875 Q48.578125 39.3125 48.578125 33.453125 L48.578125 21.734375 Q48.578125 9.46875 49.140625 6.2265625 Q49.703125 2.984375 51.375 0 L42.1875 0 Q40.828125 2.734375 40.4375 6.390625 ZM39.703125 26.03125 Q34.90625 24.078125 25.34375 22.703125 Q19.921875 21.921875 17.6796875 20.9453125 Q15.4375 19.96875 14.2109375 18.09375 Q12.984375 16.21875 12.984375 13.921875 Q12.984375 10.40625 15.6484375 8.0625 Q18.3125 5.71875 23.4375 5.71875 Q28.515625 5.71875 32.46875 7.9375 Q36.421875 10.15625 38.28125 14.015625 Q39.703125 17 39.703125 22.796875 L39.703125 26.03125 Z" />
 				<glyph unicode="s" horiz-adv-x="50.0" d="M3.078125 15.484375 L11.765625 16.84375 Q12.5 11.625 15.84375 8.84375 Q19.1875 6.0625 25.203125 6.0625 Q31.25 6.0625 34.1796875 8.5234375 Q37.109375 10.984375 37.109375 14.3125 Q37.109375 17.28125 34.515625 19 Q32.71875 20.171875 25.53125 21.96875 Q15.875 24.421875 12.140625 26.203125 Q8.40625 27.984375 6.4765625 31.1328125 Q4.546875 34.28125 4.546875 38.09375 Q4.546875 41.546875 6.1328125 44.5078125 Q7.71875 47.46875 10.453125 49.421875 Q12.5 50.921875 16.0390625 51.9765625 Q19.578125 53.03125 23.640625 53.03125 Q29.734375 53.03125 34.3515625 51.2734375 Q38.96875 49.515625 41.1640625 46.5078125 Q43.359375 43.5 44.1875 38.484375 L35.59375 37.3125 Q35.015625 41.3125 32.203125 43.5546875 Q29.390625 45.796875 24.265625 45.796875 Q18.21875 45.796875 15.625 43.796875 Q13.03125 41.796875 13.03125 39.109375 Q13.03125 37.40625 14.109375 36.03125 Q15.1875 34.625 17.484375 33.6875 Q18.796875 33.203125 25.25 31.453125 Q34.578125 28.953125 38.2578125 27.3671875 Q41.9375 25.78125 44.0390625 22.7578125 Q46.140625 19.734375 46.140625 15.234375 Q46.140625 10.84375 43.578125 6.9609375 Q41.015625 3.078125 36.1796875 0.953125 Q31.34375 -1.171875 25.25 -1.171875 Q15.140625 -1.171875 9.84375 3.03125 Q4.546875 7.234375 3.078125 15.484375 Z" />
@@ -1801,7 +1802,7 @@
 		</g>
 		<a xlink:href="https://fa.wikipedia.org/wiki/بار_اثبات" target="_blank">
 			<g font-size="30" transform="translate(3084,4276)" fill="rgb(118,9,5)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(118,9,5)" font-weight="bold">
-				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath92)" stroke="none">سطح کافیِ دلیل</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath92)" stroke="none">سطح کافی دلیل</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(3084,4230)" fill="rgb(220,15,10)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(220,15,10)" font-weight="bold">
@@ -1896,12 +1897,12 @@
 				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath108)" stroke="none">درنظرگرفتن سوگیری‌های ایدئولوژیک طرف مقابل</text>
 			</g>
 		</a>
-		<g font-size="30" transform="translate(71,3213)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath110)" x2="479" y1="42" />
+		<g font-size="30" transform="translate(58,3213)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath110)" x2="492" y1="42" />
 		</g>
 		<a xlink:href="https://fa.wikipedia.org/wiki/سوگیری_شناختی" target="_blank">
-			<g font-size="30" transform="translate(71,3213)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath110)" stroke="none">درنظرگرفتن سوگیری‌های ایدئولوژیک خود</text>
+			<g font-size="30" transform="translate(58,3213)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath110)" stroke="none">بازشناسی سوگیری‌های ایدئولوژیک شخصی</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(166,3071)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -1933,32 +1934,32 @@
 				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath116)" stroke="none">بازشناسی سوگیری‌های فرهنگی شخصی</text>
 			</g>
 		</a>
-		<g font-size="11" stroke-linecap="butt" transform="translate(339,2979)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
+		<g font-size="11" stroke-linecap="butt" transform="translate(322,2979)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
 			<path fill="none" d="M455 94 C443 94 454 92 434 92" clip-path="url(#clipPath117)" />
 			<path fill="none" d="M455 94 C443 94 454 138 434 138" clip-path="url(#clipPath117)" />
 		</g>
-		<g stroke-linecap="butt" font-size="40" transform="translate(794,3045)" fill="rgb(255,224,130)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,224,130)" font-weight="bold">
-			<rect x="0" y="0" clip-path="url(#clipPath118)" width="207" rx="5" ry="5" height="55" stroke="none" />
-			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath118)" fill="none" width="207" rx="5" ry="5" height="55" stroke="rgb(255,195,7)" />
+		<g stroke-linecap="butt" font-size="40" transform="translate(777,3045)" fill="rgb(255,224,130)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,224,130)" font-weight="bold">
+			<rect x="0" y="0" clip-path="url(#clipPath118)" width="224" rx="5" ry="5" height="55" stroke="none" />
+			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath118)" fill="none" width="224" rx="5" ry="5" height="55" stroke="rgb(255,195,7)" />
 		</g>
 		<a xlink:href="https://www.lecercledespsy.com/quest-ce-que-la-pensee-universelle/" target="_blank">
-			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(794,3045)">
-				<text text-rendering="geometricPrecision" x="9" xml:space="preserve" y="43" clip-path="url(#clipPath118)" stroke="none">جهان‌گرایی</text>
+			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(777,3045)">
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="43" clip-path="url(#clipPath118)" stroke="none">جهان‌شمولی</text>
 			</g>
 		</a>
-		<g font-size="30" transform="translate(389,3075)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
+		<g font-size="30" transform="translate(372,3075)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath120)" x2="385" y1="42" />
 		</g>
 		<a xlink:href="https://fa.wikipedia.org/wiki/سوگیری_شناختی" target="_blank">
-			<g font-size="30" transform="translate(389,3075)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
+			<g font-size="30" transform="translate(372,3075)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
 				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath120)" stroke="none">فهم سوگیری‌های شخصی دیگران</text>
 			</g>
 		</a>
-		<g font-size="30" transform="translate(405,3029)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
+		<g font-size="30" transform="translate(388,3029)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath122)" x2="369" y1="42" />
 		</g>
 		<a xlink:href="https://fa.wikipedia.org/wiki/سوگیری_شناختی" target="_blank">
-			<g font-size="30" transform="translate(405,3029)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
+			<g font-size="30" transform="translate(388,3029)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
 				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath122)" stroke="none">بازشناسی سوگیری‌های شخصی</text>
 			</g>
 		</a>
@@ -1987,7 +1988,7 @@
 		</g>
 		<a xlink:href="https://fa.wikipedia.org/wiki/SMART_(اهداف)" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(746,2970)">
-				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="43" clip-path="url(#clipPath126)" stroke="none">هدفِ غیرمسامحه‌آمیز</text>
+				<text text-rendering="geometricPrecision" x="8" xml:space="preserve" y="43" clip-path="url(#clipPath126)" stroke="none">هدف غیرمسامحه‌آمیز</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(152,2922)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,195,7)">
@@ -2038,7 +2039,7 @@
 		</g>
 		<a xlink:href="https://fa.wikipedia.org/wiki/برهان" target="_blank">
 			<g font-size="30" transform="translate(549,2865)" fill="rgb(140,105,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(140,105,0)" font-weight="bold">
-				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath136)" stroke="none">سطح مناسبِ اثبات</text>
+				<text text-rendering="geometricPrecision" x="6" xml:space="preserve" y="33" clip-path="url(#clipPath136)" stroke="none">سطح مناسب اثبات</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(644,2819)" fill="rgb(255,195,7)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(255,195,7)" font-weight="bold">
@@ -2478,7 +2479,7 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Syllogistic_logic" target="_blank">
 			<g font-size="23" transform="translate(3822,3867)" fill="rgb(75,108,0)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(75,108,0)">
-				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath207)" stroke="none">قیاس فِرِسیسون</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="26" clip-path="url(#clipPath207)" stroke="none">قیاس فرسیسون</text>
 			</g>
 		</a>
 		<g fill="rgb(141,200,1)" text-rendering="optimizeSpeed" font-size="23" font-family="'Dialog'" transform="translate(3822,3830)" stroke="rgb(141,200,1)">
@@ -3265,7 +3266,7 @@
 		</g>
 		<a xlink:href="https://fa.wikipedia.org/wiki/آرایه‌های_ادبی" target="_blank">
 			<g font-size="30" transform="translate(3402,1359)" fill="rgb(191,0,168)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(191,0,168)">
-				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath345)" stroke="none">آرایه‌های پشتیبانِ روشنی</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath345)" stroke="none">آرایه‌های پشتیبان روشنی</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2799,1167)" fill="rgb(255,102,235)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(255,102,235)">
@@ -3549,22 +3550,22 @@
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(3309,515)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M369 92 C381 92 370 87 390 87" clip-path="url(#clipPath109)" />
+			<path fill="none" d="M369 92 C381 92 370 87 390 87" clip-path="url(#clipPath392)" />
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3359,565)" stroke="rgb(134,5,171)">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath392)" x2="320" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath393)" x2="320" y1="42" />
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Fact-checking" target="_blank">
 			<g font-size="30" transform="translate(3359,565)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath392)" stroke="none">واقعیت‌های راستی‌آزمایی‌شده</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath393)" stroke="none">واقعیت‌های راستی‌آزمایی‌شده</text>
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(3699,566)" stroke="rgb(134,5,171)">
-			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath394)" x2="139" y1="36" />
+			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath395)" x2="139" y1="36" />
 		</g>
 		<a xlink:href="" target="_blank">
 			<g font-size="25" transform="translate(3699,566)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text text-rendering="geometricPrecision" x="26" xml:space="preserve" y="28" clip-path="url(#clipPath394)" stroke="none">شواهد تجربی</text>
+				<text text-rendering="geometricPrecision" x="26" xml:space="preserve" y="28" clip-path="url(#clipPath395)" stroke="none">شواهد تجربی</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(3127,519)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3576,17 +3577,17 @@
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(3077,285)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M337 161 C349 161 338 92 358 92" clip-path="url(#clipPath395)" />
-			<path fill="none" d="M337 161 C349 161 338 138 358 138" clip-path="url(#clipPath395)" />
-			<path fill="none" d="M337 161 C349 161 338 184 358 184" clip-path="url(#clipPath395)" />
-			<path fill="none" d="M337 161 C349 161 338 230 358 230" clip-path="url(#clipPath395)" />
+			<path fill="none" d="M337 161 C349 161 338 92 358 92" clip-path="url(#clipPath396)" />
+			<path fill="none" d="M337 161 C349 161 338 138 358 138" clip-path="url(#clipPath396)" />
+			<path fill="none" d="M337 161 C349 161 338 184 358 184" clip-path="url(#clipPath396)" />
+			<path fill="none" d="M337 161 C349 161 338 230 358 230" clip-path="url(#clipPath396)" />
 		</g>
 		<g font-size="30" transform="translate(3127,404)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath396)" x2="288" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath397)" x2="288" y1="42" />
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Reliability#In_journalism" target="_blank">
 			<g font-size="30" transform="translate(3127,404)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath396)" stroke="none">منبع به‌خوبی ارزیابی‌شده</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath397)" stroke="none">منبع به‌خوبی ارزیابی‌شده</text>
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3435,473)" stroke="rgb(134,5,171)">
@@ -3594,11 +3595,11 @@
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Testimony" target="_blank">
 			<g font-size="30" transform="translate(3435,473)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath64)" stroke="none">گواهیِ غیرمناقشه‌برانگیز</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath64)" stroke="none">گواهی غیرمناقشه‌برانگیز</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(3385,377)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M276 92 C288 92 277 87 297 87" clip-path="url(#clipPath398)" />
+			<path fill="none" d="M276 92 C288 92 277 87 297 87" clip-path="url(#clipPath399)" />
 		</g>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3435,427)" stroke="rgb(134,5,171)">
 			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath164)" x2="227" y1="42" />
@@ -3609,19 +3610,19 @@
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="25" font-family="'Dialog'" transform="translate(3682,428)" stroke="rgb(134,5,171)">
-			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath400)" x2="168" y1="36" />
+			<line y2="36" fill="none" x1="0" clip-path="url(#clipPath401)" x2="168" y1="36" />
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Authority" target="_blank">
 			<g font-size="25" transform="translate(3682,428)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath400)" stroke="none">کارشناس حوزه</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="28" clip-path="url(#clipPath401)" stroke="none">کارشناس حوزه</text>
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3435,381)" stroke="rgb(134,5,171)">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath402)" x2="162" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath403)" x2="162" y1="42" />
 		</g>
 		<a xlink:href="https://fa.wikipedia.org/wiki/داوری_همتا" target="_blank">
 			<g font-size="30" transform="translate(3435,381)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)">
-				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath402)" stroke="none">انتشار علمی</text>
+				<text text-rendering="geometricPrecision" x="38" xml:space="preserve" y="33" clip-path="url(#clipPath403)" stroke="none">انتشار علمی</text>
 			</g>
 		</a>
 		<g fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-size="30" font-family="'Dialog'" transform="translate(3435,335)" stroke="rgb(134,5,171)">
@@ -3633,9 +3634,9 @@
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="11" transform="translate(2472,-50)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)" stroke-width="5">
-			<path fill="none" d="M343 215 C355 215 344 94 364 94" clip-path="url(#clipPath403)" />
-			<path fill="none" d="M343 215 C355 215 344 232 364 232" clip-path="url(#clipPath403)" />
-			<path fill="none" d="M343 215 C355 215 344 354 364 354" clip-path="url(#clipPath403)" />
+			<path fill="none" d="M343 215 C355 215 344 94 364 94" clip-path="url(#clipPath404)" />
+			<path fill="none" d="M343 215 C355 215 344 232 364 232" clip-path="url(#clipPath404)" />
+			<path fill="none" d="M343 215 C355 215 344 354 364 354" clip-path="url(#clipPath404)" />
 		</g>
 		<g stroke-linecap="butt" font-size="50" transform="translate(2522,131)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold" stroke-width="5">
 			<rect x="0" y="0" clip-path="url(#clipPath44)" width="293" rx="5" ry="5" height="67" stroke="none" />
@@ -3649,29 +3650,29 @@
 			</g>
 		</a>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2836,276)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold" stroke-width="5">
-			<rect x="0" y="0" clip-path="url(#clipPath405)" width="418" rx="5" ry="5" height="55" stroke="none" />
+			<rect x="0" y="0" clip-path="url(#clipPath406)" width="418" rx="5" ry="5" height="55" stroke="none" />
 		</g>
 		<g font-size="40" transform="translate(2836,276)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
-			<rect x="0" y="0" clip-path="url(#clipPath405)" fill="none" width="418" rx="5" ry="5" height="55" />
+			<rect x="0" y="0" clip-path="url(#clipPath406)" fill="none" width="418" rx="5" ry="5" height="55" />
 		</g>
 		<a xlink:href="https://en.wikipedia.org/wiki/Objectivity" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2836,276)">
-				<text text-rendering="geometricPrecision" x="40" xml:space="preserve" y="43" clip-path="url(#clipPath405)" stroke="none">استدلال‌ورزی بدون سوگیری</text>
+				<text text-rendering="geometricPrecision" x="40" xml:space="preserve" y="43" clip-path="url(#clipPath406)" stroke="none">استدلال‌ورزی بدون سوگیری</text>
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2786,42)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M306 140 C318 140 307 92 327 92" clip-path="url(#clipPath406)" />
-			<path fill="none" d="M306 140 C318 140 307 138 327 138" clip-path="url(#clipPath406)" />
-			<path fill="none" d="M306 140 C318 140 307 184 327 184" clip-path="url(#clipPath406)" />
-			<path fill="none" d="M306 140 C318 140 307 230 327 230" clip-path="url(#clipPath406)" />
+			<path fill="none" d="M306 140 C318 140 307 92 327 92" clip-path="url(#clipPath407)" />
+			<path fill="none" d="M306 140 C318 140 307 138 327 138" clip-path="url(#clipPath407)" />
+			<path fill="none" d="M306 140 C318 140 307 184 327 184" clip-path="url(#clipPath407)" />
+			<path fill="none" d="M306 140 C318 140 307 230 327 230" clip-path="url(#clipPath407)" />
 		</g>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2836,154)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold">
-			<rect x="0" y="0" clip-path="url(#clipPath407)" width="256" rx="5" ry="5" height="55" stroke="none" />
-			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath407)" fill="none" width="256" rx="5" ry="5" height="55" stroke="rgb(134,5,171)" />
+			<rect x="0" y="0" clip-path="url(#clipPath408)" width="256" rx="5" ry="5" height="55" stroke="none" />
+			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath408)" fill="none" width="256" rx="5" ry="5" height="55" stroke="rgb(134,5,171)" />
 		</g>
 		<a xlink:href="https://fa.wikipedia.org/wiki/برهان" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2836,154)">
-				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath407)" stroke="none">شواهد ملموس</text>
+				<text text-rendering="geometricPrecision" x="56" xml:space="preserve" y="43" clip-path="url(#clipPath408)" stroke="none">شواهد ملموس</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(3113,230)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3683,11 +3684,11 @@
 			</g>
 		</a>
 		<g font-size="30" transform="translate(3113,184)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath409)" x2="263" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath410)" x2="263" y1="42" />
 		</g>
 		<a xlink:href="https://fa.wikipedia.org/wiki/پایایی" target="_blank">
 			<g font-size="30" transform="translate(3113,184)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath409)" stroke="none">پشتیبانی با نقل‌قول‌ها</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath410)" stroke="none">پشتیبانی با نقل‌قول‌ها</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(3113,138)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
@@ -3707,24 +3708,24 @@
 			</g>
 		</a>
 		<g font-size="11" stroke-linecap="butt" transform="translate(2786,-50)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Tahoma'" stroke="rgb(134,5,171)">
-			<path fill="none" d="M279 94 C291 94 280 92 300 92" clip-path="url(#clipPath411)" />
-			<path fill="none" d="M279 94 C291 94 280 138 300 138" clip-path="url(#clipPath411)" />
+			<path fill="none" d="M279 94 C291 94 280 92 300 92" clip-path="url(#clipPath412)" />
+			<path fill="none" d="M279 94 C291 94 280 138 300 138" clip-path="url(#clipPath412)" />
 		</g>
 		<g stroke-linecap="butt" font-size="40" transform="translate(2836,16)" fill="rgb(215,92,250)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(215,92,250)" font-weight="bold">
-			<rect x="0" y="0" clip-path="url(#clipPath412)" width="229" rx="5" ry="5" height="55" stroke="none" />
-			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath412)" fill="none" width="229" rx="5" ry="5" height="55" stroke="rgb(134,5,171)" />
+			<rect x="0" y="0" clip-path="url(#clipPath413)" width="229" rx="5" ry="5" height="55" stroke="none" />
+			<rect stroke-linecap="square" x="0" y="0" clip-path="url(#clipPath413)" fill="none" width="229" rx="5" ry="5" height="55" stroke="rgb(134,5,171)" />
 		</g>
 		<a xlink:href="https://fa.wikipedia.org/wiki/استدلال" target="_blank">
 			<g text-rendering="optimizeSpeed" font-size="40" shape-rendering="crispEdges" font-family="'Dialog'" font-weight="bold" transform="translate(2836,16)">
-				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath412)" stroke="none">استدلال واقعی</text>
+				<text text-rendering="geometricPrecision" x="41" xml:space="preserve" y="43" clip-path="url(#clipPath413)" stroke="none">استدلال واقعی</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(3086,46)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">
-			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath414)" x2="228" y1="42" />
+			<line y2="42" fill="none" x1="0" clip-path="url(#clipPath415)" x2="228" y1="42" />
 		</g>
 		<a xlink:href="https://fa.wikipedia.org/wiki/استدلال_استقرایی" target="_blank">
 			<g font-size="30" transform="translate(3086,46)" fill="rgb(71,3,90)" text-rendering="optimizeSpeed" font-family="'Dialog'" shape-rendering="crispEdges" stroke="rgb(71,3,90)" font-weight="bold">
-				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath414)" stroke="none">استدلال استقرایی</text>
+				<text text-rendering="geometricPrecision" x="54" xml:space="preserve" y="33" clip-path="url(#clipPath415)" stroke="none">استدلال استقرایی</text>
 			</g>
 		</a>
 		<g font-size="30" transform="translate(3086,0)" fill="rgb(134,5,171)" text-rendering="optimizeSpeed" font-family="'Dialog'" stroke="rgb(134,5,171)" font-weight="bold">

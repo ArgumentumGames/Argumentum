@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Advanced.Text" xml:space="preserve">
+    <value>Расширенный</value>
+  </data>
+  <data name="Date.Text" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="lblAdvancedDates.Help" xml:space="preserve">
+    <value>Ограничивает количество выдаваемых результатов поиска указанным периодом времени.</value>
+  </data>
+  <data name="lblAdvancedDates.Text" xml:space="preserve">
+    <value>Последние изменения:</value>
+  </data>
+  <data name="lblAdvancedScope.Help" xml:space="preserve">
+    <value>Ограничить результаты поиска указанным источником.</value>
+  </data>
+  <data name="lblAdvancedScope.Text" xml:space="preserve">
+    <value>Фильтр:</value>
+  </data>
+  <data name="lblAdvancedTags.Help" xml:space="preserve">
+    <value>Ограничить результаты поиска указанными тегами.</value>
+  </data>
+  <data name="lblAdvancedTags.Text" xml:space="preserve">
+    <value>Фильровать по тегам:</value>
+  </data>
+  <data name="NoResults.Text" xml:space="preserve">
+    <value>К сожалению, по Вашему запросу ничего не найдено.</value>
+  </data>
+  <data name="optionAll.Text" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="optionDay.Text" xml:space="preserve">
+    <value>1 день</value>
+  </data>
+  <data name="optionMonth.Text" xml:space="preserve">
+    <value>30 дней</value>
+  </data>
+  <data name="optionQuarter.Text" xml:space="preserve">
+    <value>90 дней</value>
+  </data>
+  <data name="optionWeek.Text" xml:space="preserve">
+    <value>7 дней</value>
+  </data>
+  <data name="optionYear.Text" xml:space="preserve">
+    <value>1 год</value>
+  </data>
+  <data name="Relevance.Text" xml:space="preserve">
+    <value>По релевантности</value>
+  </data>
+  <data name="ResultPerPage.Text" xml:space="preserve">
+    <value>Результатов на страницу:</value>
+  </data>
+  <data name="Source.Text" xml:space="preserve">
+    <value>Исходный файл:</value>
+  </data>
+  <data name="Tags.Text" xml:space="preserve">
+    <value>Метки:</value>
+  </data>
+  <data name="btnClear.Text" xml:space="preserve">
+    <value>Простой</value>
+  </data>
+  <data name="btnSearch.Text" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="lblAdvancedExactSearch.Help" xml:space="preserve">
+    <value>Результаты поиска должны содержать слово целиком.</value>
+  </data>
+  <data name="lblAdvancedExactSearch.Text" xml:space="preserve">
+    <value>Полное соответствие:</value>
+  </data>
+  <data name="linkAdvancedTip.Text" xml:space="preserve">
+    <value>Справка</value>
+  </data>
+  <data name="AdvancedSearchHint.Text" xml:space="preserve">
+    <value>&lt;table class="dnnSearchResult-hint-tbl dnnTableDisplay"&gt;&lt;tr&gt; &lt;th style="width: 150px"&gt;&lt;span&gt;Тип&lt;/span&gt; &lt;/th&gt; &lt;th style="width: 250px"&gt;&lt;span&gt;Пример&lt;/span&gt; &lt;/th&gt; &lt;th&gt;&lt;span&gt;Примечания&lt;/span&gt; &lt;/th&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Мягкий поиск&lt;/td&gt; &lt;td&gt;чайник&lt;b&gt;~&lt;/b&gt;&lt;/td&gt; &lt;td&gt;Выбирает материалы со словами, близкими к слову &lt;i&gt;чайник&lt;/i&gt;, например &lt;i&gt;чайный&lt;/i&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Символы подстановки&lt;/td&gt; &lt;td&gt;кот*&lt;/td&gt; &lt;td&gt;Выбирает материалы со словами, начинающимися с &lt;i&gt;кот&lt;/i&gt;, например &lt;i&gt;который&lt;/i&gt; и само слово &lt;i&gt;кот&lt;/i&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Одно слово&lt;/td&gt; &lt;td&gt;апельсин&lt;/td&gt; &lt;td&gt;Выбирает все материалы со словами &lt;i&gt;апельсин&lt;/i&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Точная фраза&lt;/td&gt; &lt;td&gt;"высшее образование"&lt;/td&gt; &lt;td&gt;Выбирает все материалы, содержащие фразу &lt;i&gt;высшее образование&lt;/i&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;ИЛИ&lt;/td&gt; &lt;td&gt;красное яблоко&lt;/td&gt; &lt;td&gt;Выбирает все материалы, содержащие слова &lt;i&gt;красное&lt;/i&gt; или &lt;i&gt;яблоко&lt;/i&gt;, или оба слова. &lt;B&gt;OR записывается в верхнем регистре&lt;/B&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;&lt;/td&gt; &lt;td&gt;красное &lt;b&gt;OR&lt;/b&gt; яблоко&lt;/td&gt; &lt;td&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;И&lt;/td&gt; &lt;td&gt;+красное +яблоко&lt;/td&gt; &lt;td&gt;Выбирает все материалы, содержащие оба слова: &lt;i&gt;красное&lt;/i&gt; и &lt;i&gt;яблоко&lt;/i&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;&lt;/td&gt; &lt;td&gt;красное &lt;b&gt;AND&lt;/b&gt; яблоко&lt;/td&gt; &lt;td&gt;&lt;/td&gt; &lt;/tr&gt; &lt;tr&gt; &lt;td&gt;Комбинация И и ИЛИ&lt;/td&gt; &lt;td&gt;(заочное &lt;b&gt;OR&lt;/b&gt; сокращенное) &lt;b&gt;AND&lt;/b&gt; обучение&lt;/td&gt; &lt;td&gt;Выбирает все материалы, содержащие слово &lt;i&gt;обучение&lt;/i&gt; и содержащие, кроме этого, слова &lt;i&gt;заочное&lt;/i&gt; и/или &lt;i&gt;сокращенное&lt;/i&gt;. &lt;b&gt;AND и OR записываются в верхнем регистре&lt;/b&gt;&lt;/td&gt; &lt;/tr&gt; &lt;/table&gt;</value>
+  </data>
+  <data name="LastModified.Text" xml:space="preserve">
+    <value>Обновлено:</value>
+  </data>
+  <data name="AddTag.Text" xml:space="preserve">
+    <value>Добавить метку</value>
+  </data>
+  <data name="AllFeaturesSelected.Text" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="Author.Text" xml:space="preserve">
+    <value>Автор:</value>
+  </data>
+  <data name="Comments.Text" xml:space="preserve">
+    <value>Комментарии:</value>
+  </data>
+  <data name="Likes.Text" xml:space="preserve">
+    <value>Нравится:</value>
+  </data>
+  <data name="Views.Text" xml:space="preserve">
+    <value>Просмотров:</value>
+  </data>
+  <data name="CurrentPageIndex.Text" xml:space="preserve">
+    <value>Страница:</value>
+  </data>
+  <data name="ResultsCount.Text" xml:space="preserve">
+    <value>{0} результатов</value>
+  </data>
+  <data name="DefaultText.Text" xml:space="preserve">
+    <value>Введите поисковую фразу</value>
+  </data>
+</root>

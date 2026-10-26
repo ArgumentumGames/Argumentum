@@ -38,16 +38,16 @@
 
           <div class="d-flex align-items-center order-lg-first">
             <%
-            if(LocaleController.Instance.GetLocales(0).Count() > 1) {
+            if(LocaleController.Instance.GetLocales(PortalSettings.Current.PortalId).Count() > 1) {
             %>
-              <ToSic:languagenavigation runat="server" Languages="de-DE:DE,en-US:EN,fr-FR:FR,it-IT:IT" />
+              <ToSic:languagenavigation runat="server" Languages="fr-FR:FR,en-US:EN,es-ES:ES,pt-BR:PT,ru-RU:RU" />
             <%
             }
             %> 
             <%
             if (Request.IsAuthenticated) {
             %>
-              <a href="?ctl=logoff" Title="Logoff" class="to-shine-login" target="_self">
+              <a href="?ctl=logoff" Title="<%= LocalizeString("Logoff.Tooltip") %>" class="to-shine-login" target="_self">
                 <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                   viewBox="0 0 12.2 14.5" style="enable-background:new 0 0 12.2 14.5;" xml:space="preserve">
                 <g>
@@ -60,7 +60,7 @@
             <%
             } else {
             %>        
-              <a href="?ctl=login" Title="Login" class="to-shine-login" target="_self">
+              <a href="?ctl=login" Title="<%= LocalizeString("Login.Tooltip") %>" class="to-shine-login" target="_self">
                 <svg version="1.1" id="Lock" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                   viewBox="0 0 12.2 14" style="enable-background:new 0 0 12.2 14;" xml:space="preserve">
                   <g>
@@ -162,7 +162,7 @@
 
 <!-- include files -->
 <dnn:DnnCssInclude runat="server" FilePath="dist/dnn-default.min.css" Priority="99" PathNameAlias="SkinPath" HtmlAttributesAsString="rel:'stylesheet preload', as:'style'" />
-<dnn:DnnCssInclude runat="server" FilePath="dist/theme.min.css" Priority="100" PathNameAlias="SkinPath" HtmlAttributesAsString="rel:'stylesheet preload', as:'style'" />
+<dnn:DnnCssInclude ID="ThemeCss" runat="server" FilePath="dist/theme.min.css" Priority="100" PathNameAlias="SkinPath" HtmlAttributesAsString="rel:'stylesheet preload', as:'style'" />
 <dnn:DnnJsInclude runat="server" FilePath="dist/lib/bootstrap.bundle.min.js" ForceProvider="DnnFormBottomProvider" Priority="100" PathNameAlias="SkinPath" HtmlAttributesAsString="defer, async" />
 <dnn:DnnJsInclude runat="server" FilePath="dist/theme.min.js" ForceProvider="DnnFormBottomProvider" Priority="130" PathNameAlias="SkinPath" HtmlAttributesAsString="defer, async" />
 
@@ -171,6 +171,14 @@
 
   protected bool IsHome = false;
 
+  // RTL cultures (ar-SA, fa-IR) get the mirrored stylesheet; DNN already emits dir="rtl" on <html> for them.
+  // NB: Thread.CurrentCulture is the request-resolved culture (same source as the <html lang> attribute).
+  // PortalSettings.CultureCode was measured to return the portal default (fr-FR) for /en — wrong source.
+  protected bool IsRtl
+  {
+    get { return System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.IsRightToLeft; }
+  }
+
   protected override void OnLoad(EventArgs e)
   {
     base.OnLoad(e);
@@ -178,6 +186,10 @@
 
     var portal = DotNetNuke.Entities.Portals.PortalSettings.Current;
     IsHome = portal.HomeTabId == portal.ActiveTab.TabID;
+
+    // RTL switch — NB: assigned here, not via <% if %> in markup: code-render blocks do not gate
+    // server controls (measured: both DnnCssInclude branches rendered on every page).
+    ThemeCss.FilePath = IsRtl ? "dist/theme.rtl.min.css" : "dist/theme.min.css";
 
     // Set various FavIcon and Icon headers according to best practices
     // The next line is disabled by default, because it requires RazorBlade to be installed.
@@ -191,7 +203,63 @@
 
   protected string LocalizeString(string key)
   {
-      return Localization.GetString(key, ResourceFilePath);
+      return CultureString(key) ?? Localization.GetString(key, ResourceFilePath);
+  }
+
+  // #1946: the culture file is named EXPLICITLY, never through the culture-name overload.
+  // Measured on preprod 2026-10-24: /en resolves CurrentUICulture.Name to "en-US", yet
+  // Localization.GetString(key, "…/2shine.resx", "en-US") reads the invariant base file and never
+  // 2shine.en-US.resx — DNN normalizes a culture that is not a registered portal language
+  // (en-US has no PortalLocalization row on portal 1; the 7 other cultures do) to the invariant
+  // culture. Markers planted in 2shine.en-US.resx never reached /en; the same markers planted in
+  // the base file did. Every lookup below therefore names the culture file, and a key missing from
+  // it yields nothing instead of falling back to the base file — the base file carries the English
+  // strings, so that fallback is exactly how the French page ended up serving English meta.
+  private const string ResxRoot = "~/Portals/_default/Skins/2shineBS5/App_LocalResources/2shine";
+  private static string CultureResourceFile
+  {
+    get
+    {
+      var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name;
+      return string.IsNullOrEmpty(culture) ? ResxRoot + ".resx" : ResxRoot + "." + culture + ".resx";
+    }
+  }
+  private static string CultureString(string key)
+  {
+    try
+    {
+      var s = Localization.GetString(key, CultureResourceFile);
+      return (string.IsNullOrWhiteSpace(s) || s == key) ? null : s;
+    }
+    catch { return null; }
+  }
+
+  // #1946: localize the already-served meta description/keywords from the skin resx
+  // (keys Meta.Description / Meta.Keywords). Replaces only values the page already serves —
+  // a page without a description keeps none. fr-FR carries no Meta.* keys on purpose (its pages
+  // serve native meta from Tabs.138 / PortalLocalization), so CultureString returns nothing there.
+  protected override void OnPreRender(EventArgs e)
+  {
+    base.OnPreRender(e);
+    LocalizeMetaTag("description", "Meta.Description");
+    LocalizeMetaTag("keywords", "Meta.Keywords");
+  }
+  private void LocalizeMetaTag(string metaName, string resxKey)
+  {
+    try
+    {
+      var head = Page.FindControl("Head") as HtmlHead;
+      if (head == null) { return; }
+      foreach (System.Web.UI.Control c in head.Controls)
+      {
+        var meta = c as HtmlMeta;
+        if (meta == null || !string.Equals(meta.Name, metaName, StringComparison.OrdinalIgnoreCase)) { continue; }
+        if (string.IsNullOrWhiteSpace(meta.Content)) { continue; }
+        var s = CultureString(resxKey);
+        if (!string.IsNullOrWhiteSpace(s) && s != resxKey) { meta.Content = s; }
+      }
+    }
+    catch { /* SEO only: never break the page on it */ }
   }
 
   protected string ResourceFilePath

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddNew.Text">
+    <value xml:space="preserve">Adicionar Arquivo de script</value>
+  </data>
+  <data name="cmdSave.Text">
+    <value xml:space="preserve">Guardar script</value>
+  </data>
+  <data name="cmdSaveClose.Text">
+    <value xml:space="preserve">Guardar script e volver</value>
+  </data>
+  <data name="ControlTitle_edit.Text">
+    <value xml:space="preserve">Edição de script</value>
+  </data>
+  <data name="currentScriptLabel.Help">
+    <value xml:space="preserve">Ative esta opção para selecionar o script atual para mostrar na vista predeterminada.</value>
+  </data>
+  <data name="currentScriptLabel.Text">
+    <value xml:space="preserve">Activo:</value>
+  </data>
+  <data name="plSource.Text">
+    <value xml:space="preserve">Conteúdo script:</value>
+  </data>
+  <data name="scriptListLabel.Help">
+    <value xml:space="preserve">Selecione o script que quiere utilizar para esta instância do módulo Razor Host</value>
+  </data>
+  <data name="scriptListLabel.Text">
+    <value xml:space="preserve">Script: </value>
+  </data>
+  <data name="scriptsLabel.Help">
+    <value xml:space="preserve">Selecione o script que quiera editar da lista.</value>
+  </data>
+  <data name="scriptsLabel.Text">
+    <value xml:space="preserve">Selecione o script:</value>
+  </data>
+  <data name="SourceFile.Text">
+    <value xml:space="preserve">Arquivo script - {0}</value>
+  </data>
+</root>

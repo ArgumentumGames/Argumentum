@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="cmdLogin.Text">
+    <value xml:space="preserve">Iniciar</value>
+  </data>
+  <data name="cmdPassword.Text">
+    <value xml:space="preserve">Reiniciar contrasenha</value>
+  </data>
+  <data name="cmdRegister.Text">
+    <value xml:space="preserve">Registrar</value>
+  </data>
+  <data name="Email.Text">
+    <value xml:space="preserve">Email:</value>
+  </data>
+  <data name="InvalidVerificationCode.Text">
+    <value xml:space="preserve">Código de verificação incorreto</value>
+  </data>
+  <data name="Remember.Text">
+    <value xml:space="preserve">Lembrar login</value>
+  </data>
+  <data name="Title.Text">
+    <value xml:space="preserve">Estándar</value>
+  </data>
+  <data name="UserAlreadyVerified.Text">
+    <value xml:space="preserve">Este usuario já está validadeo</value>
+  </data>
+  <data name="UserDoesNotExist.Text">
+    <value xml:space="preserve">Este usuario não existe</value>
+  </data>
+</root>

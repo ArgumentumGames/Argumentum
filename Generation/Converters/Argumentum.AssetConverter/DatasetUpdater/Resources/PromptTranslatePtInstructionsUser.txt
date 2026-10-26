@@ -1,7 +1,7 @@
 **Instructions de Mise à Jour :**
 
 Dans le prochain message utilisateur, tu trouveras au format json un ensemble d'entrées de la taxonomie des arguments fallacieux comportant chacune plusieurs champs utiles à ta tâche.
-Ta tâche consiste à assurer la traduction ou la correction de la traduction en portugais par la mise à jour des champs "text_pt" "desc_pt" et "example_pt". En prenant modèle sur le format des valeurs existantes quand elles sont fournis, tu dois identifier les entrées pour lesquels certains de ces champs sont vides, et proposer des ajouts, uniquement pour ces entrées là, à partir des valeurs en français et en anglais existantes. 
+Ta tâche consiste à assurer la traduction ou la correction de la traduction en portugais brésilien (pt-BR) par la mise à jour des champs "text_pt" "desc_pt" et "example_pt". En prenant modèle sur le format des valeurs existantes quand elles sont fournis, tu dois identifier les entrées pour lesquels certains de ces champs sont vides, et proposer des ajouts, uniquement pour ces entrées là, à partir des valeurs en français et en anglais existantes. 
 
 1. **Utilisation du Function calling" :** Pour chaque mise à jour, utilise un appel à l'une des fonctions disponibles indiquées dans ton prompt système, ne répond pas en texte libre. Cela garantit que les modifications seront correctement appliquées champs par champs au document original. Utilise autant d'appels de fonction que tu souhaites effectuer de modifications.
 
