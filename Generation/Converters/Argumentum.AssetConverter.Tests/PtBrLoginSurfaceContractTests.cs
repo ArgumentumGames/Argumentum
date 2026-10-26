@@ -93,7 +93,7 @@ namespace Argumentum.AssetConverter.Tests
 			yield return new object[] { AdminAuthLogin, "PasswordMismatch.Text", "As senhas informadas não coincidem." };
 			yield return new object[] { AdminAuthLogin, "PasswordMissing.Text", "Você deve fornecer sua senha atual para alterar a senha." };
 			yield return new object[] { AdminAuthLogin, "PasswordNotDifferent.Text", "A nova senha é igual à senha anterior. Informe uma senha diferente." };
-			yield return new object[] { AdminAuthLogin, "PasswordSent.Text", "A senha foi enviada para<br/>seu endereço de e-mail." };
+			yield return new object[] { AdminAuthLogin, "PasswordSent.Text", "A senha foi enviada para<br>seu endereço de e-mail." };
 			yield return new object[] { AdminAuthLogin, "PasswordUpdate.Text", "Atualize sua senha antes de continuar." };
 			yield return new object[] { AdminAuthLogin, "plToken.Help", "O token exclusivo que identifica o usuário." };
 			yield return new object[] { AdminAuthLogin, "plToken.Text", "Token do usuário:" };

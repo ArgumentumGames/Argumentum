@@ -94,7 +94,7 @@
     <value xml:space="preserve">A nova senha é igual à senha anterior. Informe uma senha diferente.</value>
   </data>
   <data name="PasswordSent.Text">
-    <value xml:space="preserve">A senha foi enviada para&lt;br/&gt;seu endereço de e-mail.</value>
+    <value xml:space="preserve">A senha foi enviada para&lt;br&gt;seu endereço de e-mail.</value>
   </data>
   <data name="PasswordUpdate.Text">
     <value xml:space="preserve">Atualize sua senha antes de continuar.</value>
