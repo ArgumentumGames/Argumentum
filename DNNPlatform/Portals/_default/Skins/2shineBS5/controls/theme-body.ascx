@@ -362,7 +362,9 @@
 
       // bare tab view = the request path IS the current culture's composed URL (query removed,
       // case and one optional trailing slash aside). On a detail view (/actus/details/<slug>) the
-      // paths differ: request-path canonical only. TrimEnd preserves the root "/".
+      // paths differ: request-path canonical only. NB: TrimEnd strips a root "/" too ("/".TrimEnd('/')
+      // == "") - equality at the root holds because both sides are full URLs (authority + path),
+      // never a lone path.
       var normalizedRequestPath = requestPath.TrimEnd('/');
       var normalizedCurrentUrl = currentUrl == null ? null : currentUrl.TrimEnd('/');
       var bareView = normalizedCurrentUrl != null
