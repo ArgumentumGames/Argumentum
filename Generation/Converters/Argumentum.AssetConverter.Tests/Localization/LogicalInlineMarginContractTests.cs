@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 using FluentAssertions;
@@ -102,10 +103,86 @@ namespace Argumentum.AssetConverter.Tests.Localization
 		}
 
 		/// <summary>
+		/// Splits a CSS value on <i>top-level</i> whitespace only: whitespace inside parentheses or
+		/// brackets (and inside quoted strings) does not start a new value. <c>calc(1px + 2px)</c> is
+		/// therefore <b>one</b> value, not three — the arity a shorthand is judged on is the arity the
+		/// browser applies (CSS Values 3: a function token is a single component value).
+		/// <para>A plain <c>Split</c> on whitespace reads <c>margin: 0 calc(1px + 2px + 3px + 4px)</c>
+		/// as eight fragments, which falls outside the two-to-four window and let that bypass the
+		/// guard (raised in review on #1994).</para>
+		/// </summary>
+		internal static IReadOnlyList<string> TopLevelValueParts(string value)
+		{
+			var parts = new List<string>();
+			var current = new StringBuilder();
+			var depth = 0;
+			var quote = '\0';
+
+			for (var i = 0; i < value.Length; i++)
+			{
+				var c = value[i];
+
+				if (quote != '\0')
+				{
+					current.Append(c);
+					if (c == '\\' && i + 1 < value.Length)
+					{
+						current.Append(value[++i]);
+					}
+					else if (c == quote)
+					{
+						quote = '\0';
+					}
+					continue;
+				}
+
+				switch (c)
+				{
+					case '"':
+					case '\'':
+						quote = c;
+						current.Append(c);
+						break;
+					case '(':
+					case '[':
+						depth++;
+						current.Append(c);
+						break;
+					case ')':
+					case ']':
+						if (depth > 0) depth--;
+						current.Append(c);
+						break;
+					case '\\':
+						current.Append(c);
+						if (i + 1 < value.Length) current.Append(value[++i]);
+						break;
+					default:
+						if (depth == 0 && char.IsWhiteSpace(c))
+						{
+							if (current.Length > 0)
+							{
+								parts.Add(current.ToString());
+								current.Clear();
+							}
+						}
+						else
+						{
+							current.Append(c);
+						}
+						break;
+				}
+			}
+
+			if (current.Length > 0) parts.Add(current.ToString());
+			return parts;
+		}
+
+		/// <summary>
 		/// Declarations in <paramref name="selector"/>'s rules that pin a margin to a <i>physical</i>
-		/// side (<c>margin-left</c>, <c>margin-right</c>, or a shorthand with two to four values:
-		/// the second value is always the physical horizontal margin, and a fourth overrides the
-		/// physical left). Logical properties — <c>margin-inline-start</c>,
+		/// side (<c>margin-left</c>, <c>margin-right</c>, or a shorthand with two to four
+		/// <i>top-level</i> values: the second value is always the physical horizontal margin, and a
+		/// fourth overrides the physical left). Logical properties — <c>margin-inline-start</c>,
 		/// <c>margin-inline-end</c> — are deliberately not reported: they follow the writing
 		/// direction, which is the whole point of the fix.
 		/// </summary>
@@ -121,7 +198,7 @@ namespace Argumentum.AssetConverter.Tests.Localization
 				var value = parts[1].Trim();
 
 				var physical = prop is "margin-left" or "margin-right"
-					|| (prop == "margin" && value.Split((char[])null!, StringSplitOptions.RemoveEmptyEntries).Length is >= 2 and <= 4);
+					|| (prop == "margin" && TopLevelValueParts(value).Count is >= 2 and <= 4);
 
 				if (physical) found.Add($"{prop}: {value}");
 			}
@@ -326,12 +403,16 @@ namespace Argumentum.AssetConverter.Tests.Localization
 		/// <summary>
 		/// Every shorthand with two to four values pins a physical horizontal side. The second
 		/// value is right and left; a third overrides bottom, a fourth overrides left. Treating only
-		/// the four-value form as physical would let <c>margin: 0 0.3em</c> bypass the RTL guard.
+		/// the four-value form as physical would let <c>margin: 0 0.3em</c> bypass the RTL guard —
+		/// and counting values by splitting on every space would let
+		/// <c>margin: 0 calc(1px + 2px + 3px + 4px)</c> through the same hole.
 		/// </summary>
 		[Theory]
 		[InlineData("0 0.3em")]
 		[InlineData("0 0.3em 1em")]
 		[InlineData("0 0.3em 1em 0")]
+		[InlineData("0 calc(1px + 2px + 3px + 4px)")]
+		[InlineData("0 min(1px, calc(2px + 3px)) 1em")]
 		public void The_guard_reports_every_shorthand_that_pins_a_horizontal_side(string margin)
 		{
 			PhysicalHorizontalMarginsIn($".roles img {{ margin: {margin}; }}", RolesIconSelector)
@@ -340,6 +421,36 @@ namespace Argumentum.AssetConverter.Tests.Localization
 
 			PhysicalHorizontalMarginsIn(".roles img { margin: 0; }", RolesIconSelector)
 				.Should().BeEmpty("a single-value shorthand applies to all four sides and pins no side");
+		}
+
+		/// <summary>
+		/// The inverse control for the tokenizer: the very string that bypassed the previous guard must
+		/// still read as eight fragments under a naive split, so the case above is proven to exercise
+		/// the fix rather than merely to pass.
+		/// </summary>
+		[Fact]
+		public void The_shorthand_tokenizer_keeps_css_functions_whole()
+		{
+			const string twoValueFunction = "0 calc(1px + 2px + 3px + 4px)";
+
+			twoValueFunction.Split((char[])null!, StringSplitOptions.RemoveEmptyEntries)
+				.Should().HaveCount(8, "a naive whitespace split reads this two-value shorthand as eight "
+					+ "fragments — that is the bypass the tokenizer closes");
+
+			TopLevelValueParts(twoValueFunction)
+				.Should().Equal(new[] { "0", "calc(1px + 2px + 3px + 4px)" },
+					"a function token is one component value, so this shorthand has two");
+
+			TopLevelValueParts("0 min(1px, calc(2px + 3px)) 1em")
+				.Should().Equal(new[] { "0", "min(1px, calc(2px + 3px))", "1em" },
+					"nesting must not end the first value early");
+
+			TopLevelValueParts("  0   0.3em  ")
+				.Should().Equal(new[] { "0", "0.3em" },
+					"runs of whitespace and edge padding do not create empty values");
+
+			TopLevelValueParts("calc(1px + 2px)")
+				.Should().ContainSingle("a single function value applies to all four sides and pins no side");
 		}
 	}
 }
