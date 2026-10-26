@@ -179,12 +179,13 @@ namespace Argumentum.AssetConverter.Tests.Localization
 		}
 
 		/// <summary>
-		/// Declarations in <paramref name="selector"/>'s rules that pin a margin to a <i>physical</i>
-		/// side (<c>margin-left</c>, <c>margin-right</c>, or a shorthand with two to four
-		/// <i>top-level</i> values: the second value is always the physical horizontal margin, and a
-		/// fourth overrides the physical left). Logical properties — <c>margin-inline-start</c>,
-		/// <c>margin-inline-end</c> — are deliberately not reported: they follow the writing
-		/// direction, which is the whole point of the fix.
+		/// Declarations in <paramref name="selector"/>'s rules that pin an <i>asymmetric</i> margin
+		/// to a physical side: <c>margin-left</c>, <c>margin-right</c>, or a four-value shorthand
+		/// whose second (right) and fourth (left) <i>top-level</i> values differ. Two- and three-value
+		/// shorthands, and symmetric four-value shorthands, give both horizontal sides the same margin
+		/// and therefore do not create the directional defect. Logical properties —
+		/// <c>margin-inline-start</c>, <c>margin-inline-end</c> — are deliberately not reported: they
+		/// follow the writing direction, which is the whole point of the fix.
 		/// </summary>
 		internal static IReadOnlyList<string> PhysicalHorizontalMarginsIn(string css, string selector)
 		{
@@ -197,8 +198,13 @@ namespace Argumentum.AssetConverter.Tests.Localization
 				var prop = parts[0].Trim().ToLowerInvariant();
 				var value = parts[1].Trim();
 
-				var physical = prop is "margin-left" or "margin-right"
-					|| (prop == "margin" && TopLevelValueParts(value).Count is >= 2 and <= 4);
+				var physical = prop is "margin-left" or "margin-right";
+				if (prop == "margin")
+				{
+					var values = TopLevelValueParts(value);
+					physical = values.Count == 4
+						&& !string.Equals(values[1], values[3], StringComparison.Ordinal);
+				}
 
 				if (physical) found.Add($"{prop}: {value}");
 			}
@@ -401,26 +407,36 @@ namespace Argumentum.AssetConverter.Tests.Localization
 		}
 
 		/// <summary>
-		/// Every shorthand with two to four values pins a physical horizontal side. The second
-		/// value is right and left; a third overrides bottom, a fourth overrides left. Treating only
-		/// the four-value form as physical would let <c>margin: 0 0.3em</c> bypass the RTL guard —
-		/// and counting values by splitting on every space would let
-		/// <c>margin: 0 calc(1px + 2px + 3px + 4px)</c> through the same hole.
+		/// Only an asymmetric four-value shorthand pins opposite horizontal sides differently. The
+		/// second value is right and the fourth is left; when they are equal, mirroring cannot move
+		/// the gap to the wrong side. Two- and three-value forms likewise expand to equal left/right
+		/// margins. The comparison is deliberately lexical: equivalent CSS expressions need not be
+		/// evaluated for this guard, while a conservative report remains preferable to a false negative.
 		/// </summary>
 		[Theory]
-		[InlineData("0 0.3em")]
-		[InlineData("0 0.3em 1em")]
 		[InlineData("0 0.3em 1em 0")]
-		[InlineData("0 calc(1px + 2px + 3px + 4px)")]
-		[InlineData("0 min(1px, calc(2px + 3px)) 1em")]
-		public void The_guard_reports_every_shorthand_that_pins_a_horizontal_side(string margin)
+		[InlineData("0 calc(1px + 2px + 3px + 4px) 1em 0")]
+		[InlineData("0 min(1px, calc(2px + 3px)) 1em 0")]
+		public void The_guard_reports_an_asymmetric_four_value_shorthand(string margin)
 		{
 			PhysicalHorizontalMarginsIn($".roles img {{ margin: {margin}; }}", RolesIconSelector)
 				.Should().ContainSingle().Which.Should().Be($"margin: {margin}",
-					"the second shorthand value is the physical right/left margin; a fourth overrides left");
+					"different second and fourth shorthand values pin right and left asymmetrically");
+		}
 
-			PhysicalHorizontalMarginsIn(".roles img { margin: 0; }", RolesIconSelector)
-				.Should().BeEmpty("a single-value shorthand applies to all four sides and pins no side");
+		[Theory]
+		[InlineData("0")]
+		[InlineData("0 0.3em")]
+		[InlineData("0 0.3em 1em")]
+		[InlineData("0 0.3em 1em 0.3em")]
+		[InlineData("0 calc(1px + 2px + 3px + 4px)")]
+		[InlineData("0 min(1px, calc(2px + 3px)) 1em")]
+		[InlineData("0 calc(1px + 2px) 1em calc(1px + 2px)")]
+		public void The_guard_is_silent_when_the_shorthand_has_equal_horizontal_margins(string margin)
+		{
+			PhysicalHorizontalMarginsIn($".roles img {{ margin: {margin}; }}", RolesIconSelector)
+				.Should().BeEmpty("a one-to-three-value or symmetric four-value shorthand gives left and "
+					+ "right the same margin, so mirroring does not create the directional defect");
 		}
 
 		/// <summary>
