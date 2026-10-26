@@ -22,6 +22,11 @@ namespace Argumentum.AssetConverter.Tests
 		private const string AuthServicesLogin =
 			"DesktopModules/AuthenticationServices/DNN/App_LocalResources/Login.ascx";
 
+		// D4 file 2 — the authentication control (associate/create/password lifecycle),
+		// macaronic es-PT end to end before the 26/10 retranslation.
+		private const string AdminAuthLogin =
+			"DesktopModules/Admin/Authentication/App_LocalResources/Login.ascx";
+
 		public static IEnumerable<object[]> File1Cells()
 		{
 			yield return new object[] { AuthServicesLogin, "cmdLogin.Text", "Entrar" };
@@ -54,6 +59,81 @@ namespace Argumentum.AssetConverter.Tests
 			// never match. The list is the defect signature measured on 26/10.
 			var text = File.ReadAllText(Path.Combine(DnnRoot, AuthServicesLogin + ".pt-BR.resx"));
 			foreach (var hispanism in new[] { "Iniciar", "contrasenha", "Estándar", "usuario", "validadeo" })
+			{
+				Assert.DoesNotContain(hispanism, text);
+			}
+		}
+
+		public static IEnumerable<object[]> File2Cells()
+		{
+			yield return new object[] { AdminAuthLogin, "AssociateHelp.Text", "Você pode associar seus dados de login a uma conta de usuário existente informando seu nome de usuário e senha." };
+			yield return new object[] { AdminAuthLogin, "AssociateTitle.Text", "Associar a uma conta existente" };
+			yield return new object[] { AdminAuthLogin, "AssociationFailed.Text", "Erro ao associar a identidade ao usuário. Lembre-se de que nomes de usuário e senhas diferenciam maiúsculas de minúsculas." };
+			yield return new object[] { AdminAuthLogin, "AuthenticatedHelp.Text", "Você foi autenticado com sucesso. No entanto, esta identidade não é membro deste site. Você pode associar esta identidade a uma conta de usuário existente (informando o nome de usuário e a senha) ou registrar-se como novo membro." };
+			yield return new object[] { AdminAuthLogin, "AuthenticatedTitle.Text", "Autenticado" };
+			yield return new object[] { AdminAuthLogin, "cmdAssociate.Text", "Associar a uma conta de usuário" };
+			yield return new object[] { AdminAuthLogin, "cmdCreate.Text", "Criar uma nova conta" };
+			yield return new object[] { AdminAuthLogin, "cmdForgotPassword.Text", "Esqueceu sua senha?" };
+			yield return new object[] { AdminAuthLogin, "cmdPassword.Text", "Recuperar senha" };
+			yield return new object[] { AdminAuthLogin, "cmdProceed.Text", "Continuar mesmo assim (alterar a senha depois)" };
+			yield return new object[] { AdminAuthLogin, "cmdRegister.Text", "Registrar" };
+			yield return new object[] { AdminAuthLogin, "ControlTitle_.Text", "Login do usuário" };
+			yield return new object[] { AdminAuthLogin, "ControlTitle_login.Text", "Login do usuário" };
+			yield return new object[] { AdminAuthLogin, "ControlTitle_signin.Text", "Login do usuário" };
+			yield return new object[] { AdminAuthLogin, "CreateTitle.Text", "Criar uma nova conta" };
+			yield return new object[] { AdminAuthLogin, "EnterCode.Text", "Informe seu código de verificação" };
+			yield return new object[] { AdminAuthLogin, "FailedToRemoveAccount.Text", "Não foi possível remover a conta. Entre em contato com o administrador do site e informe que você deseja ser removido." };
+			yield return new object[] { AdminAuthLogin, "IPAddressBanned.Text", "Você não pode fazer login neste site a partir deste endereço IP." };
+			yield return new object[] { AdminAuthLogin, "InvalidCode.Text", "Código de verificação incorreto" };
+			yield return new object[] { AdminAuthLogin, "LoginFailed.Text", "Falha no login. Lembre-se de que as senhas diferenciam maiúsculas de minúsculas." };
+			yield return new object[] { AdminAuthLogin, "MustConsent.Text", "Você deve aceitar nossos termos para continuar" };
+			yield return new object[] { AdminAuthLogin, "PasswordExpired.Text", "Sua senha expirou em {0}. Atualize sua senha antes de continuar." };
+			yield return new object[] { AdminAuthLogin, "PasswordExpiring.Text", "Sua senha expirará em {0}. Atualize sua senha antes de continuar." };
+			yield return new object[] { AdminAuthLogin, "PasswordInvalid.Text", "Você deve informar uma senha válida. Entre em contato com o administrador do site se não souber os requisitos de senha." };
+			yield return new object[] { AdminAuthLogin, "PasswordMismatch.Text", "As senhas informadas não coincidem." };
+			yield return new object[] { AdminAuthLogin, "PasswordMissing.Text", "Você deve fornecer sua senha atual para alterar a senha." };
+			yield return new object[] { AdminAuthLogin, "PasswordNotDifferent.Text", "A nova senha é igual à senha anterior. Informe uma senha diferente." };
+			yield return new object[] { AdminAuthLogin, "PasswordSent.Text", "A senha foi enviada para<br/>seu endereço de e-mail." };
+			yield return new object[] { AdminAuthLogin, "PasswordUpdate.Text", "Atualize sua senha antes de continuar." };
+			yield return new object[] { AdminAuthLogin, "plToken.Help", "O token exclusivo que identifica o usuário." };
+			yield return new object[] { AdminAuthLogin, "plToken.Text", "Token do usuário:" };
+			yield return new object[] { AdminAuthLogin, "plType.Help", "O tipo de autenticação" };
+			yield return new object[] { AdminAuthLogin, "plType.Text", "Tipo:" };
+			yield return new object[] { AdminAuthLogin, "ProfileUpdate.Text", "Atualize seu perfil antes de continuar." };
+			yield return new object[] { AdminAuthLogin, "RegisterTitle.Text", "Registrar uma nova conta" };
+			yield return new object[] { AdminAuthLogin, "Remember.Text", "Lembrar login" };
+			yield return new object[] { AdminAuthLogin, "UserLockedOut.Text", "Esta conta foi bloqueada após muitas tentativas de login malsucedidas. Aguarde {0} minutos antes de tentar novamente. Se você esqueceu sua senha, use a opção \"Recuperar senha\" antes de entrar em contato com o administrador do site." };
+			yield return new object[] { AdminAuthLogin, "UserLockedOut_ContactAdmin.Text", "Esta conta foi bloqueada após muitas tentativas de login malsucedidas. Entre em contato com o administrador do site." };
+			yield return new object[] { AdminAuthLogin, "UsernameError.Text", "O nome do usuário não existe" };
+			yield return new object[] { AdminAuthLogin, "UserNotAuthorized.Text", "No momento, você não está autorizado a fazer login neste site." };
+		}
+
+		[Theory]
+		[MemberData(nameof(File2Cells))]
+		public void AdminAuthLoginPtBrHasItsReviewedValues(string stem, string key, string expected)
+		{
+			var file = Path.Combine(DnnRoot, stem + ".pt-BR.resx");
+			Assert.True(File.Exists(file), $"missing culture file: {file}");
+			var data = XDocument.Load(file).Root!.Elements("data")
+				.Where(e => (string?)e.Attribute("name") == key).ToArray();
+			Assert.True(data.Length == 1, $"pt-BR:{key} must occur exactly once in {stem}");
+			Assert.Equal(expected, (string?)data[0].Element("value"));
+		}
+
+		[Fact]
+		public void AdminAuthLoginPtBrCarriesNoDeclaredHispanisms()
+		{
+			// The 26/10 defect signature of the macaronic file, bounded to this file only:
+			// Spanish tokens and macaronic constructs measured before the retranslation.
+			// « associar », « registrar-se », « aceitar », « utilize » are the pt-BR words
+			// and never match their Spanish look-alikes below (case-sensitive).
+			var text = File.ReadAllText(Path.Combine(DnnRoot, AdminAuthLogin + ".pt-BR.resx"));
+			foreach (var hispanism in new[]
+			{
+				"asociar", "Asociar", "sesión", "contrasenha", "Olvidó", "Iniciar", "mayúsculas",
+				"produci", "Póngase", "ponerse", "Actualice", "identificarse", "registrarse",
+				"utilice", "desconoce", "aceptar", "foi sido", "sensívels", "caducó", "caducará",
+			})
 			{
 				Assert.DoesNotContain(hispanism, text);
 			}
