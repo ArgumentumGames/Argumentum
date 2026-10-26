@@ -145,3 +145,69 @@ $h = (Invoke-WebRequest 'http://dnn.argumentum.myia.io/en/Actus?cb=1' -UseBasicP
 Puis, par route : `canonical` == l'`alternate` de la culture courante, `x-default` == l'`alternate`
 `fr-FR`, et `canonical` sans `?`. Si ces trois invariants tombent, c'est la skin qui a régressé —
 la garde de contrat le dira avant la page.
+
+---
+
+## 9. REPRISE 26/10 02:xx — deux défauts de la review ai-01 (c.6405462862), corrigés et prouvés servis
+
+La PR n'avait pas été mergée : ai-01 a mesuré sur la **prod** que les articles vivent sur le même
+onglet (`/actus/details/<slug>`, 5 liens réels), donc un `canonical` bâti sur onglet+culture
+déclarerait chaque article **doublon de la liste** (désindexation) ; et #1991 a mesuré que
+`NavigateURL(…, culture)` rend des URL **neutres** sous `ContentLocalizationEnabled=False`, où les
+8 alternates s'effondreraient sur une seule. Choix de lane : **l'hybride** recommandé par web2
+(c.czsOw) —
+
+1. **`canonical` = chemin de LA REQUÊTE, query retirée** (`Request.RawUrl`, pas `Request.Url`) :
+   correct sur toute vue, liste comme détail — l'article se déclare lui-même, jamais la liste.
+2. **`alternate`/`x-default` sur la VUE NUE d'onglet uniquement** (chemin de requête == URL composée
+   de la culture courante, insensible à la casse) : un slug n'a pas de traduction, une alternate sur
+   une vue détail ne pourrait pointer que vers la liste.
+3. **URLs par culture composées des rangées `PortalAlias` culturelles** (préfixes
+   `dnn.argumentum.myia.io/{ar,en,es,fa,pt,ru,zh}` et racine `fr-FR`, mesurées en base) : **aucune**
+   lecture du drapeau, **un seul** appel `NavigateURL` — ancré sur la langue par défaut (jamais
+   préfixée, donc neutre dans les deux états).
+
+### Deux pièges d'instrument rencontrés pendant la preuve (mesurés, pas déduits)
+
+- **`Request.Url` porte le chemin réécrit INTERNE** : la requête `/actus` sert
+  `Request.Url = https://dnn.argumentum.myia.io/Default.aspx` — un canonical bâti dessus nomme une
+  URL que le client n'a jamais demandée. `Request.RawUrl` porte l'URL amie demandée ; le canonical
+  recompose autorité + `RawUrl` sans query (repli `Request.Url` si `RawUrl` vide).
+- **Un ascx qui ne compile pas avale tout sans trace visible** : un espace de noms erroné
+  (`DotNetNuke.Entities.PortalSettings`, sans `.Portals`) produit **0 balise** avec page 200 —
+  l'erreur réelle vit dans `Logs/*.log.resources` (CS0234), pas dans la page. La « preuve servie »
+  n'a de valeur qu'après avoir lu ce qu'elle émet, pas seulement son 200.
+
+### Preuve servie — les DEUX états du drapeau, protocole réversible #1991
+
+Copie temporaire dans l'arbre servi + recycle (mtime `web.config`, sha invariant), mesures, puis
+restauration octet (sha == sauvegarde), recycle, re-mesure. `[INFO]` posté avant le geste.
+
+| Route | `True` : canonical / alternates | `False` : canonical / alternates |
+| --- | --- | --- |
+| `/` | `https://…/` / **9** (8 + x-default) | identique |
+| `/actus` | `https://…/actus` / **9** | identique |
+| `/en/Actus` | `https://…/en/Actus` (casse demandée) / **9** | identique |
+| `/actus/details/argumentum-est-vendu-sur-argumentum-games` | **URL de l'article** / **0** | identique |
+| `/en/Actus/details/<même slug>` | **URL de l'article** / **0** | identique |
+
+- **16/16 hrefs émis → 200** dans les deux états (8 cultures × accueil + actus) — ferme les 🟡 de
+  NanoClaw (hôte/schéma, cultures non affichées au sélecteur) : chaque URL composée résout, sur
+  l'hôte servi.
+- Sous `False`, **aucun effondrement** : les alternates restent préfixées par culture (composition
+  alias, pas `NavigateURL`) — l'effondrement mesuré par #1991 ne se reproduit pas.
+- Après restauration du fichier : **0 alternate / 0 canonical** re-mesuré, arbre git propre,
+  non-régression **16/16** routes, `Error Showing Content` = 0 partout.
+
+### Garde étendue
+
+`SkinHreflangContractTests` passe de 8 à **15 faits** : les trois prédicats nouveaux (canonical =
+chemin de requête via `RawUrl` ; alternates gated vue nue ; composition depuis les rangées d'alias
+culturelles, drapeau banni) ont chacun leur contrôle inverse — dont deux qui rejouent les défauts
+réels : canonical onglet (pré-reprise) et `NavigateURL` par culture (effondrement #1991). Suite
+complète : **voir le corps de la PR pour le compte courant** (chaque relecture le re-mesure).
+
+### Ce qui reste vrai du §7
+
+La fonction reste **mesurée mais non déployée** : elle arrive par merge puis fast-forward du
+webroot. La prod reste gelée jusqu'au go-live (#972).

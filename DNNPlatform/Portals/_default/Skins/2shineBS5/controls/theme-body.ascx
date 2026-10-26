@@ -258,11 +258,26 @@
   // two surfaces, two populations, and pinning the alternates to the menu would under-declare the
   // site by three cultures.
   //
-  // URLs come from Globals.NavigateURL(tab, …language…), not from the [URL] token: measured on the
-  // served page, the token returns the *current request's* URL with its query string, and DNN's
-  // friendly-URL provider absorbs that query into the path on a non-default culture
-  // (/en/Actus?cb=… became /en/Actus/cb/…). A canonical carrying a parameterised path names a URL
-  // that does not exist; building from tab+culture makes the canonical bare by construction.
+  // canonical = THE REQUEST'S OWN PATH, query removed (GetLeftPart, which strips the query instead
+  // of letting the friendly-URL provider absorb it into the path — the [URL] token trap measured
+  // 2026-10-25). A canonical built from tab+culture names the LIST on a parameterised view:
+  // articles render on the same tab at /actus/details/<slug> (measured on the prod links, review
+  // on #1989), so a tab-canonical would declare every article a duplicate of the list and get the
+  // articles deindexed. The request path is correct on every view, list and detail alike.
+  //
+  // alternates/x-default: BARE TAB VIEW ONLY. A slug has no translation, so an alternate on a
+  // detail view could only point back at the list — dishonest to crawlers. The bare-view test
+  // compares the request path with the current culture's composed URL, case-insensitively (DNN
+  // serves /Actus and /actus alike).
+  //
+  // Per-culture URLs are COMPOSED FROM THE CULTURAL ALIAS ROWS (PortalAlias.CultureCode), never
+  // from NavigateURL(…culture…): #1991 measured that with portal content localization DISABLED,
+  // NavigateURL returns NEUTRAL URLs, so the 8 alternates would collapse onto one — and the
+  // go-live state of that flag is still open. The alias rows serve the 8 cultures in BOTH states
+  // (measured, #1991), so they are the flag-independent anchor. The ONE NavigateURL call uses the
+  // DEFAULT culture: the default culture never needs a /<culture> prefix, so its URL is the
+  // neutral tab path under either state of the flag; every culture's URL is then
+  // scheme://<its alias host+path><neutral tab path>.
   private bool _alternatesEmitted;
   private void EmitLanguageAlternates()
   {
@@ -278,37 +293,83 @@
       if (head == null) { return; }
       _alternatesEmitted = true;
 
-      var tabId = portal.ActiveTab.TabID;
-      var current = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+      // canonical: the request's own path, query removed — unconditional, so detail views keep a
+      // correct canonical even where the alternates below are withheld.
+      // Request.Url carries the INTERNAL rewritten path on this portal (measured 2026-10-26:
+      // /actus served Request.Url = /Default.aspx) — the URL the client asked for lives in
+      // Request.RawUrl. Compose authority + RawUrl minus query; fall back to Request.Url's path
+      // if RawUrl is empty.
+      var raw = Request.RawUrl ?? "";
+      var queryAt = raw.IndexOf('?');
+      if (queryAt >= 0) { raw = raw.Substring(0, queryAt); }
+      var requestPath = raw.Length > 0
+        ? Request.Url.GetLeftPart(UriPartial.Authority) + raw
+        : Request.Url.GetLeftPart(UriPartial.Path);
       var marker = new System.Text.StringBuilder();
+      marker.Append("<link rel=\"canonical\" href=\"").Append(requestPath).Append("\" />\n");
+
+      var defaultLanguage = portal.DefaultLanguage;
+
+      // cultural alias rows only: the root/primary/dev aliases carry no CultureCode and never
+      // define a culture-specific URL (measured on portal 1: 8 culture rows + root fr-FR).
+      var aliases = DotNetNuke.Entities.Portals.PortalAliasController.Instance
+        .GetPortalAliasesByPortalId(portal.PortalId);
+      var aliasByCulture = new System.Collections.Generic.Dictionary<string, DotNetNuke.Entities.Portals.PortalAliasInfo>(
+        StringComparer.OrdinalIgnoreCase);
+      foreach (var alias in aliases)
+      {
+        if (string.IsNullOrWhiteSpace(alias.CultureCode)) { continue; }
+        aliasByCulture[alias.CultureCode] = alias;
+      }
+
+      // the neutral tab path, anchored on the default culture's URL (see comment above); on any
+      // missing anchor the canonical is still emitted — never a wrong alternate set
+      if (defaultLanguage == null) { head.Controls.Add(new LiteralControl(marker.ToString())); return; }
+      DotNetNuke.Entities.Portals.PortalAliasInfo defaultAlias;
+      if (!aliasByCulture.TryGetValue(defaultLanguage, out defaultAlias))
+      {
+        head.Controls.Add(new LiteralControl(marker.ToString())); return;
+      }
+      var neutralUrl = DotNetNuke.Common.Globals.NavigateURL(
+        portal.ActiveTab.TabID, portal.ActiveTab.IsSuperTab, portal, "", defaultLanguage, new string[0]);
+      if (string.IsNullOrWhiteSpace(neutralUrl)) { head.Controls.Add(new LiteralControl(marker.ToString())); return; }
+      var tabPath = neutralUrl.StartsWith("http", StringComparison.OrdinalIgnoreCase)
+        ? new Uri(neutralUrl).AbsolutePath
+        : neutralUrl;
+
+      var scheme = Request.Url.Scheme;
+      var current = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+      var alternates = new System.Text.StringBuilder();
       string currentUrl = null, defaultUrl = null;
       var emitted = 0;
 
       foreach (var culture in locales.Keys.OrderBy(k => k, StringComparer.OrdinalIgnoreCase))
       {
-        var url = DotNetNuke.Common.Globals.NavigateURL(
-          tabId, portal.ActiveTab.IsSuperTab, portal, "", culture, new string[0]);
-        if (string.IsNullOrWhiteSpace(url)) { continue; }
+        DotNetNuke.Entities.Portals.PortalAliasInfo alias;
+        if (!aliasByCulture.TryGetValue(culture, out alias)) { continue; }   // no alias row: never invent a URL
 
-        marker.Append("<link rel=\"alternate\" hreflang=\"").Append(culture)
-              .Append("\" href=\"").Append(url).Append("\" />\n");
+        var url = scheme + "://" + alias.HTTPAlias + tabPath;
+        alternates.Append("<link rel=\"alternate\" hreflang=\"").Append(culture)
+                  .Append("\" href=\"").Append(url).Append("\" />\n");
         emitted++;
 
         if (string.Equals(culture, current, StringComparison.OrdinalIgnoreCase)) { currentUrl = url; }
-        if (string.Equals(culture, portal.DefaultLanguage, StringComparison.OrdinalIgnoreCase)) { defaultUrl = url; }
+        if (string.Equals(culture, defaultLanguage, StringComparison.OrdinalIgnoreCase)) { defaultUrl = url; }
       }
 
-      if (emitted < 2) { return; }
+      // bare tab view = the request path IS the current culture's composed URL (query removed,
+      // case aside). On a detail view (/actus/details/<slug>) the paths differ: canonical only.
+      var bareView = currentUrl != null
+        && string.Equals(requestPath, currentUrl, StringComparison.OrdinalIgnoreCase);
 
-      // canonical: self-referencing. If the requesting culture is somehow not among the portal's
-      // locales, fall back to the bare request path rather than inventing a culture.
-      var canonical = currentUrl ?? Request.Url.GetLeftPart(UriPartial.Path);
-      marker.Append("<link rel=\"canonical\" href=\"").Append(canonical).Append("\" />\n");
-
-      // x-default: the portal's default language (decision 2 of #458).
-      if (defaultUrl != null)
+      if (bareView && emitted >= 2)
       {
-        marker.Append("<link rel=\"alternate\" hreflang=\"x-default\" href=\"").Append(defaultUrl).Append("\" />\n");
+        marker.Append(alternates.ToString());
+        // x-default: the portal's default language (decision 2 of #458).
+        if (defaultUrl != null)
+        {
+          marker.Append("<link rel=\"alternate\" hreflang=\"x-default\" href=\"").Append(defaultUrl).Append("\" />\n");
+        }
       }
 
       head.Controls.Add(new LiteralControl(marker.ToString()));

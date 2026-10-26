@@ -80,6 +80,42 @@ namespace Argumentum.AssetConverter.Tests
 			block.Contains("portal.DefaultLanguage", StringComparison.Ordinal);
 
 		/// <summary>
+		/// The canonical names the REQUEST'S OWN PATH, not the tab+culture URL: articles render on
+		/// the same tab at /actus/details/&lt;slug&gt; (measured on the prod links), so a
+		/// tab-canonical would declare every article a duplicate of the list — the review defect on
+		/// #1989. The path comes from <c>Request.RawUrl</c> (query stripped): measured on the
+		/// preprod, <c>Request.Url</c> carries the INTERNAL rewritten path (/actus served
+		/// /Default.aspx), while RawUrl carries the friendly URL the client asked for.
+		/// </summary>
+		private static bool CanonicalNamesTheRequestPath(string block) =>
+			block.Contains("Request.RawUrl", StringComparison.Ordinal)
+			&& block.Contains("Request.Url.GetLeftPart(UriPartial.Path)", StringComparison.Ordinal)
+			&& block.Contains(".Append(requestPath)", StringComparison.Ordinal);
+
+		/// <summary>
+		/// Alternates are gated to the BARE TAB VIEW: the request path must equal the current
+		/// culture's composed URL before any alternate is emitted. A slug has no translation, so an
+		/// alternate on a detail view could only point back at the list.
+		/// </summary>
+		private static bool AlternatesAreGatedToTheBareTabView(string block) =>
+			block.Contains("string.Equals(requestPath, currentUrl, StringComparison.OrdinalIgnoreCase)", StringComparison.Ordinal);
+
+		/// <summary>
+		/// Per-culture URLs are composed from the portal's CULTURAL ALIAS ROWS — never from
+		/// per-culture NavigateURL calls, which #1991 measured return NEUTRAL URLs with content
+		/// localization disabled (the 8 alternates would collapse onto one), and never by reading
+		/// the localization setting: the alias rows serve the 8 cultures in BOTH states, so they
+		/// are the flag-independent anchor. The single NavigateURL call is anchored on the default
+		/// culture, whose URL never carries a /&lt;culture&gt; prefix.
+		/// </summary>
+		private static bool AlternatesAreComposedFromCulturalAliasRows(string block) =>
+			block.Contains("GetPortalAliasesByPortalId", StringComparison.Ordinal)
+			&& block.Contains("alias.CultureCode", StringComparison.Ordinal)
+			&& block.Contains("alias.HTTPAlias", StringComparison.Ordinal)
+			&& block.Contains("defaultLanguage, new string[0]", StringComparison.Ordinal)
+			&& !block.Contains("ContentLocalizationEnabled", StringComparison.Ordinal);
+
+		/// <summary>
 		/// The canonical target is a value computed at request time. A literal would name one fixed
 		/// page for every page of the site — the classic way a canonical does more harm than its
 		/// absence. Asserted exactly where it is decidable: the C# string literal that carries
@@ -124,6 +160,16 @@ namespace Argumentum.AssetConverter.Tests
 				"x-default must target portal.DefaultLanguage, never a literal culture");
 			Assert.True(CanonicalHrefIsComputed(block),
 				"the canonical target must be computed per request, never a literal URL");
+			Assert.True(CanonicalNamesTheRequestPath(block),
+				"the canonical must name the request's own path — a tab+culture canonical declares every "
+				+ "article a duplicate of the list (measured: articles render at /actus/details/<slug>)");
+			Assert.True(AlternatesAreGatedToTheBareTabView(block),
+				"alternates must be gated to the bare tab view — a slug has no translation, so an alternate "
+				+ "on a detail view can only point back at the list");
+			Assert.True(AlternatesAreComposedFromCulturalAliasRows(block),
+				"per-culture URLs must be composed from the cultural alias rows, never from per-culture "
+				+ "NavigateURL calls (neutral URLs with localization disabled, #1991) and never by reading "
+				+ "the localization setting");
 		}
 
 		[Fact]
@@ -180,6 +226,78 @@ namespace Argumentum.AssetConverter.Tests
 				"rel=\\\"canonical\\\" href=\\\"\"", "rel=\\\"canonical\\\" href=\\\"https://dnn.argumentum.myia.io/\\\"");
 			Assert.False(CanonicalHrefIsComputed(mutated),
 				"the computed-canonical check passed on a literal URL — it is vacuous");
+		}
+
+		// --- inverse controls for the #1989 rework (canonical on detail views, bare-view gate, alias composition) ---
+
+		[Fact]
+		public void WithTheOldTabCanonicalTheRequestPathCheckFails()
+		{
+			// the exact shape that shipped before the rework: canonical from the current culture's
+			// composed URL instead of the request path — names the LIST on /actus/details/<slug>
+			var mutated = Mutate(EmitterBlock(),
+				".Append(requestPath)", ".Append(currentUrl)");
+			Assert.False(CanonicalNamesTheRequestPath(mutated),
+				"the request-path canonical check passed on a tab-canonical — it is vacuous");
+		}
+
+		[Fact]
+		public void WithoutTheQueryStrippingTheRequestPathCheckFails()
+		{
+			var mutated = Mutate(EmitterBlock(),
+				"Request.Url.GetLeftPart(UriPartial.Path)", "Request.Url.GetLeftPart(UriPartial.Query)");
+			Assert.False(CanonicalNamesTheRequestPath(mutated),
+				"the request-path canonical check passed on a query-bearing canonical — it is vacuous");
+		}
+
+		[Fact]
+		public void BuiltOnTheRewrittenInternalUrlTheRequestPathCheckFails()
+		{
+			// Request.Url carries the INTERNAL rewritten path on this portal (measured 2026-10-26:
+			// /actus served /Default.aspx) — a canonical built on it names a URL the client never
+			// asked for. RawUrl is the friendly URL the client requested.
+			var mutated = Mutate(EmitterBlock(), "Request.RawUrl", "Request.FilePath");
+			Assert.False(CanonicalNamesTheRequestPath(mutated),
+				"the request-path canonical check passed on an internally-rewritten canonical — it is vacuous");
+		}
+
+		[Fact]
+		public void WithoutTheBareViewGateTheGateCheckFails()
+		{
+			var mutated = Mutate(EmitterBlock(),
+				"string.Equals(requestPath, currentUrl, StringComparison.OrdinalIgnoreCase)", "true");
+			Assert.False(AlternatesAreGatedToTheBareTabView(mutated),
+				"the bare-view gate check passed with the gate removed — it is vacuous");
+		}
+
+		[Fact]
+		public void WithPerCultureNavigateUrlsTheAliasCompositionCheckFails()
+		{
+			// the pre-rework shape: NavigateURL called per culture — neutral URLs with localization
+			// disabled (#1991), the 8 alternates collapsing onto one
+			var mutated = Mutate(EmitterBlock(),
+				"defaultLanguage, new string[0]", "culture, new string[0]");
+			Assert.False(AlternatesAreComposedFromCulturalAliasRows(mutated),
+				"the alias-composition check passed on per-culture NavigateURL calls — it is vacuous");
+		}
+
+		[Fact]
+		public void WithoutTheAliasRowsTheAliasCompositionCheckFails()
+		{
+			var mutated = Mutate(EmitterBlock(), "GetPortalAliasesByPortalId", "GetPortalAlias");
+			Assert.False(AlternatesAreComposedFromCulturalAliasRows(mutated),
+				"the alias-composition check passed without the cultural alias rows — it is vacuous");
+		}
+
+		[Fact]
+		public void ReadingTheLocalizationFlagTheAliasCompositionCheckFails()
+		{
+			// the emitter must work in BOTH states of the localization setting: reading it would
+			// pick a winner before the go-live decision is made
+			var mutated = Mutate(EmitterBlock(),
+				"GetPortalAliasesByPortalId(", "ContentLocalizationEnabled ? GetPortalAliasesByPortalId(");
+			Assert.False(AlternatesAreComposedFromCulturalAliasRows(mutated),
+				"the flag-independence check passed on a flag-reading emitter — it is vacuous");
 		}
 	}
 }
