@@ -2209,8 +2209,8 @@ DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardFileNamePrefix,60,App-Resources
 DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA9410D-274B-4A4E-B47C-7D5D00692348,RuleMemoCardDownload,String,label,Télécharger la carte mémo,Download memo card,Скачать карточку-памятку,Baixar cartão-memo,Descargar tarjeta memo,نزّل بطاقة التذكير,دانلود کارت یادآوری,下载备忘卡
 0CE0C537-DE53-4CFA-9B2F-59190AD9A0EA|FullName,60,Contributor,0CE0C537-DE53-4CFA-9B2F-59190AD9A0EA,FullName,String,credit,Argumenteam,,,,,,,
 0CE0C537-DE53-4CFA-9B2F-59190AD9A0EA|Email,60,Contributor,0CE0C537-DE53-4CFA-9B2F-59190AD9A0EA,Email,String,credit,contact@argumentum.games,,,,,,,
-0167188C-C8A7-4CDB-BE0F-FC3926979996|Title,60,Game Rule,0167188C-C8A7-4CDB-BE0F-FC3926979996,Title,String,editorial,Le moulin à baratin,The Smooth-Talk Mill,"Мели, Емеля",O moinho de embromação,El molino de la palabrería,,,花言巧语磨坊
-0167188C-C8A7-4CDB-BE0F-FC3926979996|Summary,60,Game Rule,0167188C-C8A7-4CDB-BE0F-FC3926979996,Summary,String,editorial,"<p>&Agrave; chaque manche, &agrave; partir d&rsquo;un sc&eacute;nario tir&eacute; au sort, l&rsquo;un des joueurs trouve, en un temps limit&eacute;, le plus grand nombre d&rsquo;arguments fallacieux illustrant les cartes pioch&eacute;es successivement.</p>","<p>With each round, from a randomly drawn scenario, one of the players finds in a limited time the greatest number of fallacious arguments illustrating the cards drawn in sequence.</p>","<p>В каждом раунде один из игроков, исходя из случайно вытянутого сценария, за ограниченное время находит наибольшее количество софизмов, иллюстрирующих последовательно вытягиваемые карты.</p>","<p>Em cada rodada, a partir de um cenário sorteado, um dos jogadores encontra, num tempo limitado, o maior número possível de argumentos falaciosos que ilustrem as cartas compradas sucessivamente.</p>","<p>En cada ronda, sobre un escenario elegido al azar, uno de los jugadores encuentra en un tiempo limitado el mayor número de argumentos falaces que ilustren las cartas robadas en secuencia.</p>",,,<p>每一轮中，根据随机抽取的情景，一名玩家需要在限定时间内提出尽可能多的谬误论证，以体现依次抽到的卡牌。</p>
+0167188C-C8A7-4CDB-BE0F-FC3926979996|Title,60,Game Rule,0167188C-C8A7-4CDB-BE0F-FC3926979996,Title,String,editorial,Le moulin à baratin,The Smooth-Talk Mill,"Мели, Емеля",O moinho de embromação,El molino de la palabrería,طاحونة الثرثرة,آسیابِ چرب‌زبانی,花言巧语磨坊
+0167188C-C8A7-4CDB-BE0F-FC3926979996|Summary,60,Game Rule,0167188C-C8A7-4CDB-BE0F-FC3926979996,Summary,String,editorial,"<p>&Agrave; chaque manche, &agrave; partir d&rsquo;un sc&eacute;nario tir&eacute; au sort, l&rsquo;un des joueurs trouve, en un temps limit&eacute;, le plus grand nombre d&rsquo;arguments fallacieux illustrant les cartes pioch&eacute;es successivement.</p>","<p>With each round, from a randomly drawn scenario, one of the players finds in a limited time the greatest number of fallacious arguments illustrating the cards drawn in sequence.</p>","<p>В каждом раунде один из игроков, исходя из случайно вытянутого сценария, за ограниченное время находит наибольшее количество софизмов, иллюстрирующих последовательно вытягиваемые карты.</p>","<p>Em cada rodada, a partir de um cenário sorteado, um dos jogadores encontra, num tempo limitado, o maior número possível de argumentos falaciosos que ilustrem as cartas compradas sucessivamente.</p>","<p>En cada ronda, sobre un escenario elegido al azar, uno de los jugadores encuentra en un tiempo limitado el mayor número de argumentos falaces que ilustren las cartas robadas en secuencia.</p>",<p>في كل جولة، وعلى سيناريو يُسحب عشوائيًا، يجد أحد اللاعبين خلال وقت محدود أكبر عدد ممكن من الحجج المغلوطة التي تجسّد البطاقات المسحوبة تباعًا.</p>,<p>در هر دور، بر اساس سناریویی که به‌تصادف کشیده شده است، یکی از بازیکنان در زمانی محدود بیشترین تعداد استدلالِ مغالطه‌آمیزی را پیدا می‌کند که مصداقِ کارت‌های پی‌درپی کشیده‌شده باشند.</p>,<p>每一轮中，根据随机抽取的情景，一名玩家需要在限定时间内提出尽可能多的谬误论证，以体现依次抽到的卡牌。</p>
 0167188C-C8A7-4CDB-BE0F-FC3926979996|Material,60,Game Rule,0167188C-C8A7-4CDB-BE0F-FC3926979996,Material,String,editorial,"<ul>
 <li>1 paquet de cartes d&rsquo;argument fallacieux, organis&eacute;es en 7 classes de couleurs, chacune r&eacute;partie en 3 ordres puis en 3 familles.</li>
 <li>1 paquet de cartes de sc&eacute;nario, organis&eacute;es en 7 th&egrave;mes identifiables au dos des cartes.</li>
@@ -2238,7 +2238,17 @@ DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA94
 <li>1 mazo de cartas de escenario organizadas en 7 temas identificables en su reverso</li>
 <li>Cartas recordatorio</li>
 <li>Reglas del juego</li>
-</ul>",,,"<ul>
+</ul>","<ul>
+<li>رزمة واحدة من بطاقات الحجج المغلوطة منظَّمة في 7 فئات لونية، تنقسم كلٌّ منها إلى 3 رتب ثم إلى 3 عائلات.</li>
+<li>رزمة واحدة من بطاقات السيناريو منظَّمة في 7 موضوعات يمكن التعرّف عليها من ظهرها</li>
+<li>بطاقات تذكير</li>
+<li>قواعد اللعبة</li>
+</ul>","<ul>
+<li>۱ بسته کارتِ استدلالِ مغالطه‌آمیز که در ۷ دستهٔ رنگی سازمان‌دهی شده‌اند، هر دسته نیز به ۳ مرتبه و سپس به ۳ خانواده تقسیم می‌شود.</li>
+<li>۱ بسته کارتِ سناریو که در ۷ مضمون قابل شناسایی از پشت کارت‌ها سازمان‌دهی شده‌اند</li>
+<li>کارت‌های یادآور</li>
+<li>قوانین بازی</li>
+</ul>","<ul>
 <li>1套论证谬误卡牌，按7种颜色类别编排，每个类别分为3个目，每个目再分为3个科。</li>
 <li>1套情景卡，按7个主题分类，可从背面识别</li>
 <li>备忘卡</li>
@@ -2254,7 +2264,11 @@ DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA94
 <p>Embaralhem as cartas de argumento falacioso, bem como as cartas de cenário. Formem 2 pilhas de compra de cartas de cenário e 1 pilha de compra de argumentos falaciosos, depois coloquem-nas no centro da mesa.</p>
 <p>O primeiro leitor é o jogador que mais recentemente cedeu a um argumento por desgaste.</p>","<p>Según el número de jugadores y el nivel de dificultad deseado, se constituye la pila de robo de cartas de argumento falaz añadiendo los niveles indicados en la parte inferior derecha de las cartas por orden creciente. Se elige el número máximo de rondas de 3 minutos por jugador que se van a jugar.</p>
 <p>Las cartas de argumento falaz se barajan, igual que las cartas de escenario. Se constituyen 2 pilas de robo de cartas de escenario y 1 pila de robo de argumento falaz, colocados en el centro de la mesa.</p>
-<p>El primer lector es quien haya cedido por última vez ante un argumento por desgaste.</p>",,,"<p>根据玩家人数和想要的难度，将卡牌右下角标注的等级按从低到高的顺序加入“论证谬误”牌堆中，组成抽牌堆。然后确定每位玩家最多要进行多少个3分钟的回合。</p>
+<p>El primer lector es quien haya cedido por última vez ante un argumento por desgaste.</p>","<p>بحسب عدد اللاعبين ومستوى الصعوبة المطلوب، تُكوَّن كومة سحب بطاقات الحجج المغلوطة بإضافة المستويات المشار إليها في أسفل يمين البطاقات وفق ترتيب تصاعدي. ويُحدَّد الحدّ الأقصى لعدد الجولات ذات الـ 3 دقائق لكل لاعب والتي ستُلعب.</p>
+<p>تُخلط بطاقات الحجج المغلوطة، وكذلك بطاقات السيناريو. ثم تُنشأ كومتان لسحب بطاقات السيناريو وكومة واحدة لسحب بطاقات الحجج المغلوطة، وتوضع جميعها في وسط الطاولة.</p>
+<p>الساحب الأول هو آخر من تنازل عن حجةٍ تحت الإلحاح.</p>","<p>بسته به تعداد بازیکنان و سطح دشواریِ موردنظر، دستهٔ کارت‌های استدلالِ مغالطه‌آمیز را با افزودن سطح‌های مشخص‌شده در پایینِ سمت راستِ کارت‌ها به‌ترتیب صعودی، تشکیل می‌دهیم. حداکثر تعداد دورهای ۳ دقیقه‌ای برای هر بازیکن که قرار است بازی شوند، انتخاب می‌شود.</p>
+<p>کارت‌های استدلالِ مغالطه‌آمیز و همچنین کارت‌های سناریو خوب بر زده می‌شوند. سپس ۲ دستهٔ کارت سناریو و ۱ دستهٔ کارت استدلالِ مغالطه‌آمیز تشکیل می‌دهیم و آن‌ها را در وسط میز قرار می‌دهیم.</p>
+<p>نخستین کارت‌کش کسی است که آخرین بار یک استدلال را از سرِ فرسودگی پذیرفته است.</p>","<p>根据玩家人数和想要的难度，将卡牌右下角标注的等级按从低到高的顺序加入“论证谬误”牌堆中，组成抽牌堆。然后确定每位玩家最多要进行多少个3分钟的回合。</p>
 <p>将“论证谬误”卡和情景卡分别洗牌。将情景卡分成两叠，并将“论证谬误”卡组成一叠，然后把这三叠牌放在桌子中央。</p>
 <p>最近一次因不堪纠缠而在争论中让步的玩家担任首位抽牌者。</p>"
 0167188C-C8A7-4CDB-BE0F-FC3926979996|Content,60,Game Rule,0167188C-C8A7-4CDB-BE0F-FC3926979996,Content,String,editorial,"<h2>D&eacute;roul&eacute; de la manche</h2>
@@ -2295,7 +2309,25 @@ DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA94
 <h3>3.       Fin de la ronda</h3>
 <p>La ronda termina cuando se agota el tiempo. El embaucador obtiene como puntos el número de cartas ganadas durante la ronda. Pasa a ser el lector de la siguiente ronda.</p>
 <h2>Fin de partida</h2>
-<p>El primer jugador que llegue a 20 puntos gana la partida.</p>",,,"<h2>回合流程</h2>
+<p>El primer jugador que llegue a 20 puntos gana la partida.</p>","<h2>سير الجولة</h2>
+<h3>1.       الساحب</h3>
+<p>يسحب الساحب بطاقة سيناريو من بين الرزمتين المتاحتين ويقرأها بصوت عالٍ، باستثناء الجملة الأخيرة المكتوبة بالخط المائل في أسفل البطاقة.</p>
+<h3>2.       سباق السرعة</h3>
+<p>جار الساحب على اليسار هو المغالِط. يُضبط مؤقّت على 3 دقائق.</p>
+<p>يبدأ بسحب بطاقات الحجج المغلوطة. ولكل بطاقة، عليه أن يقدّم حجةً تُجسّد البطاقة لتنفيذ السيناريو. فإذا نجح في ذلك، فاز بالبطاقة؛ وإلا فبوسعه أيضًا أن يمرّ، بحدّ أقصى 3 جكرات في كل جولة، ثم يسحب البطاقة التالية.</p>
+<h3>3.       نهاية الجولة</h3>
+<p>تنتهي الجولة عند انقضاء الوقت المحدد، ويحصل المغالِط على عدد البطاقات التي كسبها في هذه الجولة كنقاط. ثم يصبح هو الساحب في الجولة التالية.</p>
+<h2>نهاية اللعبة</h2>
+<p>يفوز بالمباراة أول لاعب يصل إلى 20 نقطة.</p>","<h2>روند دور</h2>
+<h3>1.       کارت‌کش</h3>
+<p>کارت‌کش از میان دو دستهٔ موجود، یک کارت سناریو برمی‌دارد و آن را با صدای بلند می‌خواند، به‌جز آخرین جملهٔ ایتالیک در پایین کارت.</p>
+<h3>2.       مسابقهٔ سرعت</h3>
+<p>بازیکنِ سمتِ چپِ کارت‌کش، چرب‌زبان است. یک زمان‌سنج ۳ دقیقه‌ای آماده می‌شود.</p>
+<p>او شروع به کشیدن کارت‌های استدلالِ مغالطه‌آمیز می‌کند. برای هر کارت، باید استدلالی ارائه کند که آن کارت را برای اجرای سناریو به‌خوبی نشان دهد. اگر موفق شود، آن کارت را می‌برد؛ در غیر این صورت، می‌تواند در هر دور حداکثر ۳ بار از جوکر استفاده کند، نوبت آن کارت را رد کند و کارت بعدی را بردارد.</p>
+<h3>3.       پایان دور</h3>
+<p>دور با پایان زمانِ تعیین‌شده متوقف می‌شود، و چرب‌زبان به تعداد کارت‌هایی که در آن دور برده است امتیاز می‌گیرد. او در دور بعدی کارت‌کش می‌شود.</p>
+<h2>پایان بازی</h2>
+<p>اولین بازیکنی که به ۲۰ امتیاز برسد، بازی را می‌برد.</p>","<h2>回合流程</h2>
 <h3>1.       抽牌者</h3>
 <p>抽牌者从两叠可用的牌堆中抽取一张情景卡，并大声读出，除去卡片底部斜体字的最后一句。</p>
 <h3>2.       速度比拼</h3>
@@ -2315,13 +2347,17 @@ DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA94
 <li>A cada carta tirada, depois do argumento do embromador, os outros jogadores podem propor, cada um, outra ilustração da carta. Para cada nova proposta, o grupo vota para determinar se é melhor do que as anteriores. O autor da melhor proposta aceita ganha a carta.</li>
 </ul>","<ul>
 <li>Cada vez que se roba una carta, después del argumento del embaucador, cada uno de los demás jugadores puede proponer otra ilustración de la carta. Por cada nueva propuesta, la asamblea vota si la considera mejor que las anteriores, y el autor de la mejor propuesta elegida gana la carta.</li>
-</ul>",,,"<ul>
+</ul>","<ul>
+<li>عند كل بطاقة تُسحب، وبعد حجة المغالِط، يمكن لكلٍّ من اللاعبين الآخرين أن يقترح تجسيدًا آخر للبطاقة. ومع كل اقتراح جديد، تصوّت المجموعة لتحديد ما إذا كان أفضل من الاقتراحات السابقة، ويفوز بالبطاقة صاحب أفضل اقتراح تم اعتماده.</li>
+</ul>","<ul>
+<li>هر بار که کارتی کشیده می‌شود، پس از استدلالِ چرب‌زبان، سایر بازیکنان می‌توانند هر کدام یک تصویرسازی دیگر برای کارت پیشنهاد کنند. برای هر پیشنهاد جدید، مجمع رأی می‌دهد که آیا از پیشنهادهای قبلی بهتر است یا نه، و نویسندهٔ بهترین پیشنهادِ پذیرفته‌شده کارت را می‌برد.</li>
+</ul>","<ul>
 <li>每次抽到一张牌后，在诡辩者提出论证之后，其余玩家都可以各自提出另一个体现这张牌内容的论证。每出现一个新提案，大家就投票判断它是否比之前的提案更好；最终采纳的最佳提案作者赢得这张牌。</li>
 </ul>"
 0167188C-C8A7-4CDB-BE0F-FC3926979996|Memo,60,Game Rule,0167188C-C8A7-4CDB-BE0F-FC3926979996,Memo,String,editorial,,,,,,,,
 0167188C-C8A7-4CDB-BE0F-FC3926979996|UrlKey,60,Game Rule,0167188C-C8A7-4CDB-BE0F-FC3926979996,UrlKey,String,editorial,le-moulin-a-baratin,,,,,,,
-36AF82F9-4DA4-4CA8-81A7-231FB936DF5D|Title,60,Game Rule,36AF82F9-4DA4-4CA8-81A7-231FB936DF5D,Title,String,editorial,Le Bingo mixologie argumentative,Argumentative mixology bingo,Бинго аргументативной миксологии,O Bingo de mixologia argumentativa,El bingo de la mixología argumentativa,,,论证调配宾果
-36AF82F9-4DA4-4CA8-81A7-231FB936DF5D|Summary,60,Game Rule,36AF82F9-4DA4-4CA8-81A7-231FB936DF5D,Summary,String,editorial,"<p>Munis d&rsquo;une grille de bingo constitu&eacute;e de cartes d&rsquo;arguments fallacieux tir&eacute;es au sort, les joueurs t&acirc;chent de rep&eacute;rer celles qui sont illustr&eacute;es pendant le d&eacute;bat. &Agrave; la fin du d&eacute;bat, le joueur qui a rep&eacute;r&eacute; le plus grand nombre d&rsquo;arguments fallacieux, apr&egrave;s validation par une majorit&eacute; des autres joueurs, remporte la partie.</p>","<p>Equipped with a bingo grid made up of randomly drawn fallacy cards, players try to spot those illustrated during the debate. At the end of the debate, the player who has spotted the greatest number of fallacious arguments, after validation by a majority of the other players, wins the game.</p>","<p>Получив таблицу бинго из случайно вытянутых карт с софизмами, игроки стараются заметить те из них, которые иллюстрируются во время дебатов. В конце дебатов победителем становится игрок, заметивший наибольшее количество софизмов после их подтверждения большинством остальных игроков.</p>","<p>Munidos de uma cartela de bingo constituída por cartas de argumentos falaciosos sorteadas ao acaso, os jogadores tentam identificar as que são ilustradas durante o debate. No final do debate, o jogador que tiver identificado o maior número de argumentos falaciosos, após validação por uma maioria dos outros jogadores, ganha a partida.</p>","<p>Munidos de una cuadrícula de bingo formada por las cartas de falacias argumentativas sorteadas, los jugadores tratarán de identificar las que se ejemplifiquen durante el debate. Al término del debate, el jugador que haya identificado el mayor número de falacias argumentativas, tras la validación por parte de la mayoría de los demás jugadores, gana la partida.</p>",,,<p>玩家手持一张由随机抽取的谬误论证卡牌组成的宾果表，在辩论过程中设法找出对应于自己图示卡牌的内容。 辩论结束时，经其他玩家多数确认后，找出最多谬误论证的玩家获胜。</p>
+36AF82F9-4DA4-4CA8-81A7-231FB936DF5D|Title,60,Game Rule,36AF82F9-4DA4-4CA8-81A7-231FB936DF5D,Title,String,editorial,Le Bingo mixologie argumentative,Argumentative mixology bingo,Бинго аргументативной миксологии,O Bingo de mixologia argumentativa,El bingo de la mixología argumentativa,بينغو الخلط البلاغي الحِجاجي,بینگوی میکسولوژی استدلالی,论证调配宾果
+36AF82F9-4DA4-4CA8-81A7-231FB936DF5D|Summary,60,Game Rule,36AF82F9-4DA4-4CA8-81A7-231FB936DF5D,Summary,String,editorial,"<p>Munis d&rsquo;une grille de bingo constitu&eacute;e de cartes d&rsquo;arguments fallacieux tir&eacute;es au sort, les joueurs t&acirc;chent de rep&eacute;rer celles qui sont illustr&eacute;es pendant le d&eacute;bat. &Agrave; la fin du d&eacute;bat, le joueur qui a rep&eacute;r&eacute; le plus grand nombre d&rsquo;arguments fallacieux, apr&egrave;s validation par une majorit&eacute; des autres joueurs, remporte la partie.</p>","<p>Equipped with a bingo grid made up of randomly drawn fallacy cards, players try to spot those illustrated during the debate. At the end of the debate, the player who has spotted the greatest number of fallacious arguments, after validation by a majority of the other players, wins the game.</p>","<p>Получив таблицу бинго из случайно вытянутых карт с софизмами, игроки стараются заметить те из них, которые иллюстрируются во время дебатов. В конце дебатов победителем становится игрок, заметивший наибольшее количество софизмов после их подтверждения большинством остальных игроков.</p>","<p>Munidos de uma cartela de bingo constituída por cartas de argumentos falaciosos sorteadas ao acaso, os jogadores tentam identificar as que são ilustradas durante o debate. No final do debate, o jogador que tiver identificado o maior número de argumentos falaciosos, após validação por uma maioria dos outros jogadores, ganha a partida.</p>","<p>Munidos de una cuadrícula de bingo formada por las cartas de falacias argumentativas sorteadas, los jugadores tratarán de identificar las que se ejemplifiquen durante el debate. Al término del debate, el jugador que haya identificado el mayor número de falacias argumentativas, tras la validación por parte de la mayoría de los demás jugadores, gana la partida.</p>",<p>مسلحين بشبكة بينغو تتكوّن من بطاقات الحجج المغلوطة المسحوبة عشوائيًا، سيحاول اللاعبون رصد الحجج المغلوطة التي تتجلّى أثناء المناظرة. في ختام المناظرة، يفوز اللاعب الذي يكون قد رصد أكبر عدد من الحجج المغلوطة، بعد اعتماد ذلك من أغلبية اللاعبين الآخرين.</p>,<p>بازیکنان با در دست داشتن یک جدول بینگو که از کارت‌های استدلالِ مغالطه‌آمیزِ به‌تصادف کشیده‌شده تشکیل شده است، تلاش می‌کنند تشخیص دهند کدام‌یک از کارت‌هایشان در طول مناظره مصداق پیدا می‌کند. در پایان مناظره، بازیکنی که بیشترین تعداد استدلالِ مغالطه‌آمیز را شناسایی کرده باشد، پس از تأییدِ اکثریتِ سایر بازیکنان، برندهٔ بازی می‌شود.</p>,<p>玩家手持一张由随机抽取的谬误论证卡牌组成的宾果表，在辩论过程中设法找出对应于自己图示卡牌的内容。 辩论结束时，经其他玩家多数确认后，找出最多谬误论证的玩家获胜。</p>
 36AF82F9-4DA4-4CA8-81A7-231FB936DF5D|Material,60,Game Rule,36AF82F9-4DA4-4CA8-81A7-231FB936DF5D,Material,String,editorial,"<ul>
 <li>1 d&eacute;bat ou 1 discours auquel les joueurs vont assister ensemble et qui pourra faire l&rsquo;objet d&rsquo;un revisionnage.</li>
 <li>De quoi prendre des notes et un moyen de noter le temps &eacute;coul&eacute; depuis le d&eacute;but du d&eacute;bat.</li>
@@ -2342,12 +2378,20 @@ DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA94
 <li>1 debate o 1 discurso al que los jugadores asistirán juntos y que podrá revisarse más tarde.</li>
 <li>Material para tomar notas y un medio para anotar el tiempo transcurrido desde el inicio del debate.</li>
 <li>1 o varios mazos de cartas de falacias argumentativas</li>
-</ul>",,,"<ul>
+</ul>","<ul>
+<li>مناظرة واحدة أو خطاب واحد سيحضره اللاعبون معًا ويمكن إعادة مشاهدته.</li>
+<li>ما يلزم لتدوين الملاحظات، ووسيلة لتسجيل الزمن المنقضي منذ بداية المناظرة.</li>
+<li>مجموعة واحدة أو أكثر من بطاقات الحجج المغلوطة</li>
+</ul>","<ul>
+<li>۱ مناظره یا ۱ سخنرانی که بازیکنان قرار است همگی با هم تماشا کنند و امکان بازبینی دوبارهٔ آن هم وجود داشته باشد.</li>
+<li>وسیله‌ای برای یادداشت‌برداری، و ابزاری برای ثبت زمانِ سپری‌شده از آغاز مناظره.</li>
+<li>۱ یا چند دسته از کارت‌های استدلالِ مغالطه‌آمیز</li>
+</ul>","<ul>
 <li>1场辩论或1场演讲，所有玩家将一起观看，并且可以回放复看。</li>
 <li>记录用的东西，以及一种记录自辩论开始以来所经过时间的方法。</li>
 <li>1套或多套谬误论证卡牌</li>
 </ul>"
-36AF82F9-4DA4-4CA8-81A7-231FB936DF5D|Installation,60,Game Rule,36AF82F9-4DA4-4CA8-81A7-231FB936DF5D,Installation,String,editorial,"<p>On r&eacute;partit au hasard l&rsquo;ensemble des cartes d&rsquo;arguments fallacieux disponibles entre tous les joueurs, &agrave; hauteur de 10 cartes par personne. Chaque joueur prend connaissance de ses cartes, les dispose en essayant de les garder au mieux en t&ecirc;te, puis s&rsquo;installe pour assister au d&eacute;bat.</p>","<p>Randomly distribute all available fallacy cards among the players, at a rate of 10 cards per person. Each player reads their cards, lays them out while trying to keep them as well in mind as possible, then settles in to attend the debate.</p>","<p>Мы случайным образом распределяем все имеющиеся карты с софизмами между всеми игроками, по 10 карт на человека. Каждый игрок знакомится со своими картами и раскладывает их, стараясь как можно лучше запомнить, а затем занимает место, чтобы следить за дебатами.</p>","<p>Todas as cartas de argumentos falaciosos disponíveis são distribuídas aleatoriamente entre os jogadores, sendo 10 cartas para cada pessoa. Cada jogador examina suas cartas, as organiza tentando memorizá-las da melhor forma possível e se acomoda para assistir ao debate.</p>","<p>Se reparte al azar el conjunto de cartas de falacias argumentativas disponibles entre todos los jugadores, a razón de 10 cartas por persona. Cada jugador toma conocimiento de sus cartas, las coloca procurando tenerlas lo mejor posible en mente y se dispone a asistir al debate.</p>",,,<p>将现有的所有谬误论证卡牌随机分给所有玩家，每人10张。 每位玩家查看自己的卡牌，将其摆好并尽量记住，然后坐好准备观看辩论。</p>
+36AF82F9-4DA4-4CA8-81A7-231FB936DF5D|Installation,60,Game Rule,36AF82F9-4DA4-4CA8-81A7-231FB936DF5D,Installation,String,editorial,"<p>On r&eacute;partit au hasard l&rsquo;ensemble des cartes d&rsquo;arguments fallacieux disponibles entre tous les joueurs, &agrave; hauteur de 10 cartes par personne. Chaque joueur prend connaissance de ses cartes, les dispose en essayant de les garder au mieux en t&ecirc;te, puis s&rsquo;installe pour assister au d&eacute;bat.</p>","<p>Randomly distribute all available fallacy cards among the players, at a rate of 10 cards per person. Each player reads their cards, lays them out while trying to keep them as well in mind as possible, then settles in to attend the debate.</p>","<p>Мы случайным образом распределяем все имеющиеся карты с софизмами между всеми игроками, по 10 карт на человека. Каждый игрок знакомится со своими картами и раскладывает их, стараясь как можно лучше запомнить, а затем занимает место, чтобы следить за дебатами.</p>","<p>Todas as cartas de argumentos falaciosos disponíveis são distribuídas aleatoriamente entre os jogadores, sendo 10 cartas para cada pessoa. Cada jogador examina suas cartas, as organiza tentando memorizá-las da melhor forma possível e se acomoda para assistir ao debate.</p>","<p>Se reparte al azar el conjunto de cartas de falacias argumentativas disponibles entre todos los jugadores, a razón de 10 cartas por persona. Cada jugador toma conocimiento de sus cartas, las coloca procurando tenerlas lo mejor posible en mente y se dispone a asistir al debate.</p>",<p>تُقسَّم عشوائيًا جميع بطاقات الحجج المغلوطة المتاحة بين اللاعبين جميعًا، بمعدل 10 بطاقات لكل شخص. يطلع كل لاعب على بطاقاته، ويرتّبها محاولًا إبقاءها قدر الإمكان في ذاكرته، ثم يستقر لمتابعة المناظرة.</p>,<p>تمام کارت‌های استدلالِ مغالطه‌آمیزِ موجود به‌طور تصادفی میان همهٔ بازیکنان تقسیم می‌شود، به‌طوری‌که به هر نفر ۱۰ کارت برسد. هر بازیکن کارت‌های خود را می‌خواند، آن‌ها را طوری می‌چیند که تا حد ممکن در ذهنش بمانند، و برای تماشای مناظره مستقر می‌شود.</p>,<p>将现有的所有谬误论证卡牌随机分给所有玩家，每人10张。 每位玩家查看自己的卡牌，将其摆好并尽量记住，然后坐好准备观看辩论。</p>
 36AF82F9-4DA4-4CA8-81A7-231FB936DF5D|Content,60,Game Rule,36AF82F9-4DA4-4CA8-81A7-231FB936DF5D,Content,String,editorial,"<h3>Pendant le d&eacute;bat</h3><p>Chaque joueur &eacute;coute les arguments formul&eacute;s. S&rsquo;il rep&egrave;re un argument qui correspond &agrave; l&rsquo;une des cartes de sa grille de bingo, il note le temps &eacute;coul&eacute;, le d&eacute;but d&rsquo;une citation permettant de retrouver le bon passage, ainsi que le nom de la carte. Il ajoute au besoin un peu de contexte afin de pouvoir restituer plus tard son analyse &agrave; l&rsquo;oral.</p><h3>Validations post-d&eacute;bat</h3><p>Les joueurs qui revendiquent le plus grand nombre de cartes utilis&eacute;es sont s&eacute;lectionn&eacute;s pour validation.</p>
 <p>&Agrave; partir de leurs notes et de l&rsquo;enregistrement, on &eacute;tablit la s&eacute;quence des moments o&ugrave; chacune de leurs cartes a &eacute;t&eacute; utilis&eacute;e. Pour chaque carte, on repasse le moment concern&eacute; et le joueur explique pourquoi l&rsquo;argumentation correspond &agrave; sa carte. L&rsquo;assembl&eacute;e vote &agrave; main lev&eacute;e pour valider ou non son analyse.</p><h3>Conditions de victoire</h3><p>Le score final de chaque joueur correspond au nombre de ses cartes valid&eacute;es par l&rsquo;assembl&eacute;e. Si, &agrave; l&rsquo;issue d&rsquo;un premier d&eacute;compte, d&rsquo;autres joueurs non s&eacute;lectionn&eacute;s ont d&eacute;sormais plus de cartes que le meilleur score valid&eacute;, on proc&egrave;de &agrave; leur validation, et ainsi de suite jusqu&rsquo;&agrave; ce que le meilleur score valid&eacute; ne soit plus contestable.</p>
 <p>Les joueurs ayant obtenu le meilleur score sont d&eacute;clar&eacute;s vainqueurs.</p>","<h2>During the debate</h2>
@@ -2378,7 +2422,21 @@ DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA94
 <p>A partir de sus notas y de la grabación, se establece la secuencia de los momentos en que se utilizó cada una de sus cartas. Para cada una de las cartas, se vuelve a escuchar el momento en cuestión y el jugador explica por qué la argumentación corresponde a su carta. La asamblea vota a mano alzada para validar o no su análisis.</p>
 <h2>Condiciones de victoria</h2>
 <p>La puntuación final de los jugadores es el número de sus cartas validadas por la asamblea Si, tras un primer recuento, otros jugadores no seleccionados pasan a tener más cartas que la mejor puntuación validada, se procede a su validación, y así sucesivamente hasta que la mejor puntuación validada ya no pueda ser cuestionada.</p>
-<p>Los jugadores que hayan obtenido la mejor puntuación son declarados vencedores.</p>",,,"<h2>辩论过程中</h2>
+<p>Los jugadores que hayan obtenido la mejor puntuación son declarados vencedores.</p>","<h2>أثناء المناظرة</h2>
+<p>ينصت كل لاعب إلى الحجج المطروحة. فإذا رصد حجةً تندرج ضمن إحدى بطاقات شبكة البينغو الخاصة به، دوَّن الزمن المنقضي، وبدايةَ اقتباس تُمكّنه من العثور على المقطع الصحيح، واسم بطاقته، مع إضافة شيء من السياق عند الحاجة ليتمكن لاحقًا من عرض تحليله شفهيًا.</p>
+<h2>التحقق بعد المناظرة</h2>
+<p>يُختار اللاعبون الذين يدّعون أكبر عدد من البطاقات المستخدمة للتحقق.</p>
+<p>ويُعتمد على ملاحظاتهم وعلى التسجيل لترتيب تسلسل اللحظات التي استُخدمت فيها كل بطاقة من بطاقاتهم. وبالنسبة إلى كل بطاقة، يُعاد عرض اللحظة المعنية، ويشرح اللاعب لماذا تندرج الحجة ضمن بطاقته. تصوّت الجمعية برفع الأيدي لاعتماد تحليله أو عدم اعتماده.</p>
+<h2>شروط الفوز</h2>
+<p>النتيجة النهائية لكل لاعب هي عدد بطاقاته التي اعتمدتها الجمعية إذا تبيّن، عند نهاية أول إحصاء، أن لاعبين آخرين غير مختارين أصبح لديهم عدد بطاقات يفوق أفضل نتيجة معتمدة، تُستكمل عملية التحقق منهم، وهكذا دواليك حتى تصبح أفضل نتيجة معتمدة غير قابلة للطعن.</p>
+<p>يُعلَن اللاعبون الذين حققوا أفضل نتيجة فائزين.</p>","<h2>حین مناظره</h2>
+<p>هر بازیکن به استدلال‌های مطرح‌شده گوش می‌دهد. اگر استدلالی را تشخیص دهد که با یکی از کارت‌های جدول بینگوی او مطابقت دارد، زمانِ سپری‌شده، آغازِ نقل‌قولی را که امکان پیدا کردنِ بخش درست را می‌دهد، و نامِ کارتِ خود را یادداشت می‌کند؛ در صورت نیاز، کمی زمینه نیز اضافه می‌کند تا بعداً بتواند تحلیلش را به‌صورت شفاهی بازگو کند.</p>
+<h2>تأییدهای پس از مناظره</h2>
+<p>بازیکنانی که ادعا می‌کنند بیشترین تعداد کارتِ به‌کاررفته را دارند، برای تأیید انتخاب می‌شوند.</p>
+<p>بر پایهٔ یادداشت‌های آن‌ها و ضبط، توالیِ لحظه‌هایی که هر یک از کارت‌هایشان به‌کار رفته است تعیین می‌شود. برای هر کارت، لحظهٔ موردنظر دوباره پخش می‌شود و بازیکن توضیح می‌دهد که چرا آن استدلال با کارت او مطابقت دارد. جمع حاضر با بالا بردن دست رأی می‌دهد که تحلیل او تأیید شود یا نه.</p>
+<h2>شرایط پیروزی</h2>
+<p>امتیاز نهایی هر بازیکن برابر است با تعداد کارت‌هایی که از سوی جمع تأیید شده‌اند. اگر پس از نخستین شمارش، بازیکنانِ دیگری که انتخاب نشده‌اند اکنون بیش از بالاترین امتیازِ تأییدشده کارت داشته باشند، تأیید آن‌ها نیز انجام می‌شود، و همین‌طور ادامه می‌یابد تا زمانی که بالاترین امتیازِ تأییدشده دیگر قابلِ اعتراض نباشد.</p>
+<p>بازیکنانی که بالاترین امتیاز را کسب کرده‌اند، برنده اعلام می‌شوند.</p>","<h2>辩论过程中</h2>
 <p>每位玩家聆听发言内容。如果他识别出某个论证属于自己宾果表中的某张卡牌，就记录下经过的时间、能帮助找到对应片段的引语开头，以及该卡牌的名称；必要时再补充一点上下文，以便之后能够口头复述自己的分析。</p>
 <h2>辩论后确认</h2>
 <p>主张使用卡牌数量最多的玩家会被选出进行确认。</p>
@@ -2388,8 +2446,8 @@ DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA94
 <p>获得最高得分的玩家被宣布为胜者。</p>"
 36AF82F9-4DA4-4CA8-81A7-231FB936DF5D|Variants,60,Game Rule,36AF82F9-4DA4-4CA8-81A7-231FB936DF5D,Variants,String,editorial,,,,,,,,
 36AF82F9-4DA4-4CA8-81A7-231FB936DF5D|UrlKey,60,Game Rule,36AF82F9-4DA4-4CA8-81A7-231FB936DF5D,UrlKey,String,editorial,le-bingo-mixologie-argumentative,,,,,,,
-430DEE14-DCC8-490D-AA45-6721D04EFF89|Title,60,Game Rule,430DEE14-DCC8-490D-AA45-6721D04EFF89,Title,String,editorial,La parlote coinchée,The Coinched Chat,Косноязычное красноречие,A conversa à sueca,La charla trabada,,,卡壳胡侃
-430DEE14-DCC8-490D-AA45-6721D04EFF89|Summary,60,Game Rule,430DEE14-DCC8-490D-AA45-6721D04EFF89,Summary,String,editorial,"<p>Au cours d&rsquo;une succession de manches, 2 &eacute;quipes de 2 joueurs se font face. Les joueurs re&ccedil;oivent des mains de cartes d&rsquo;arguments fallacieux, qu&rsquo;ils utilisent &agrave; tour de r&ocirc;le sur un sc&eacute;nario tir&eacute; au sort. Le niveau de sp&eacute;cificit&eacute; des cartes d&eacute;termine leur force. Deux couleurs, dites d&rsquo;atout, peuvent &ecirc;tre jou&eacute;es &agrave; tout moment et l&rsquo;emportent sur les autres couleurs. En plus de reconna&icirc;tre les arguments fallacieux, les joueurs s&rsquo;entra&icirc;nent &agrave; &eacute;valuer le niveau de sp&eacute;cificit&eacute; des cartes et &agrave; coop&eacute;rer.</p>","<p>Over a succession of rounds, 2 teams of 2 players face each other. Players receive hands of fallacious argument cards, which they use in turn on a randomly drawn scenario. The level of specificity of the cards determines their strength. Two colors, called trump colors, may be played at any time and prevail over the other colors. In addition to recognizing fallacious arguments, players practice assessing the level of specificity of the cards and cooperating.</p>","<p>В течение нескольких раундов две команды по два игрока играют друг против друга. Наугад вытягивается карта сценария. Игроки получают на руки карты с софизмами и по очереди разыгрывают их применительно к этому сценарию. Сила карты определяется уровнем её специфичности. Карты двух козырных цветов можно разыгрывать в любой момент, и они старше карт остальных цветов. Такая игра учит не только распознаванию софизмов, но и оценке уровня специфичности карт, а также способствует работе в группе.</p>","<p>Ao longo de uma sucessão de rodadas, 2 equipes de 2 jogadores se enfrentam. Os jogadores recebem mãos de cartas de argumento falacioso, que usam, um de cada vez, em um cenário sorteado. O nível de especificidade das cartas determina a sua força. Duas cores, ditas de trunfo, podem ser jogadas a qualquer momento e prevalecem sobre as outras cores. Além de reconhecerem os argumentos falaciosos, os jogadores treinam a avaliação do nível de especificidade das cartas e a cooperação.</p>","<p>En una sucesión de rondas que enfrentan a 2 equipos de 2 jugadores colocados uno frente al otro, se les repartirán manos de cartas de argumentos falaces para utilizar en una sucesión de turnos sobre un escenario sorteado al azar. El nivel de especificidad de las cartas constituye su fuerza y 2 colores, llamados de triunfo, pueden jugarse en cualquier momento y vencen a los demás colores. Además de reconocer los argumentos falaces, los jugadores se entrenan para evaluar el nivel de especificidad de las cartas y para cooperar.</p>",,,<p>在一系列回合中，两支由2名玩家组成、面对面的队伍彼此对抗。他们会拿到一手谬误论证牌，并轮流将这些牌用于一个随机抽取的场景。卡牌的具体程度决定其强度，而两种称为王牌的颜色可以在任何时候打出，并且会压过其他颜色。除了识别谬误论证外，玩家还要练习评估卡牌的具体程度，并学会合作。</p>
+430DEE14-DCC8-490D-AA45-6721D04EFF89|Title,60,Game Rule,430DEE14-DCC8-490D-AA45-6721D04EFF89,Title,String,editorial,La parlote coinchée,The Coinched Chat,Косноязычное красноречие,A conversa à sueca,La charla trabada,الثرثرة المتعثرة,زبان‌بازیِ گره‌خورده,卡壳胡侃
+430DEE14-DCC8-490D-AA45-6721D04EFF89|Summary,60,Game Rule,430DEE14-DCC8-490D-AA45-6721D04EFF89,Summary,String,editorial,"<p>Au cours d&rsquo;une succession de manches, 2 &eacute;quipes de 2 joueurs se font face. Les joueurs re&ccedil;oivent des mains de cartes d&rsquo;arguments fallacieux, qu&rsquo;ils utilisent &agrave; tour de r&ocirc;le sur un sc&eacute;nario tir&eacute; au sort. Le niveau de sp&eacute;cificit&eacute; des cartes d&eacute;termine leur force. Deux couleurs, dites d&rsquo;atout, peuvent &ecirc;tre jou&eacute;es &agrave; tout moment et l&rsquo;emportent sur les autres couleurs. En plus de reconna&icirc;tre les arguments fallacieux, les joueurs s&rsquo;entra&icirc;nent &agrave; &eacute;valuer le niveau de sp&eacute;cificit&eacute; des cartes et &agrave; coop&eacute;rer.</p>","<p>Over a succession of rounds, 2 teams of 2 players face each other. Players receive hands of fallacious argument cards, which they use in turn on a randomly drawn scenario. The level of specificity of the cards determines their strength. Two colors, called trump colors, may be played at any time and prevail over the other colors. In addition to recognizing fallacious arguments, players practice assessing the level of specificity of the cards and cooperating.</p>","<p>В течение нескольких раундов две команды по два игрока играют друг против друга. Наугад вытягивается карта сценария. Игроки получают на руки карты с софизмами и по очереди разыгрывают их применительно к этому сценарию. Сила карты определяется уровнем её специфичности. Карты двух козырных цветов можно разыгрывать в любой момент, и они старше карт остальных цветов. Такая игра учит не только распознаванию софизмов, но и оценке уровня специфичности карт, а также способствует работе в группе.</p>","<p>Ao longo de uma sucessão de rodadas, 2 equipes de 2 jogadores se enfrentam. Os jogadores recebem mãos de cartas de argumento falacioso, que usam, um de cada vez, em um cenário sorteado. O nível de especificidade das cartas determina a sua força. Duas cores, ditas de trunfo, podem ser jogadas a qualquer momento e prevalecem sobre as outras cores. Além de reconhecerem os argumentos falaciosos, os jogadores treinam a avaliação do nível de especificidade das cartas e a cooperação.</p>","<p>En una sucesión de rondas que enfrentan a 2 equipos de 2 jugadores colocados uno frente al otro, se les repartirán manos de cartas de argumentos falaces para utilizar en una sucesión de turnos sobre un escenario sorteado al azar. El nivel de especificidad de las cartas constituye su fuerza y 2 colores, llamados de triunfo, pueden jugarse en cualquier momento y vencen a los demás colores. Además de reconocer los argumentos falaces, los jugadores se entrenan para evaluar el nivel de especificidad de las cartas y para cooperar.</p>",<p>في سلسلة من الجولات تتواجه فيها فريقان من لاعبين اثنين متقابلين، يتلقّى اللاعبون أيديًا من بطاقات الحجج المغالِطة لاستخدامها بالتناوب على سيناريو يُسحب عشوائيًا. ويشكّل مستوى خصوصية البطاقات مصدرَ قوتها، كما يمكن لعب لونين يُعدّان لونَي حكم في أي وقت، وهما يتفوّقان على الألوان الأخرى. وإلى جانب التعرّف على الحجج المغالِطة، يتدرّب اللاعبون على تقييم مستوى خصوصية البطاقات، وعلى التعاون.</p>,<p>در رشته‌ای از دورها، دو تیمِ ۲ نفره روبه‌روی هم قرار می‌گیرند. بازیکنان دست‌هایی از کارت‌های استدلالِ مغالطی دریافت می‌کنند و آن‌ها را به‌نوبت برای سناریویی که به قید قرعه انتخاب شده است به کار می‌برند. میزانِ اختصاصی‌بودنِ کارت‌ها، قدرت آن‌ها را تعیین می‌کند و ۲ رنگِ موسوم به برگِ برنده را می‌توان در هر لحظه بازی کرد و این دو رنگ بر سایر رنگ‌ها غلبه می‌کنند. افزون بر شناساییِ استدلال‌های مغالطی، بازیکنان تمرین می‌کنند که سطحِ اختصاصی‌بودنِ کارت‌ها را ارزیابی کنند و همکاری کنند.</p>,<p>在一系列回合中，两支由2名玩家组成、面对面的队伍彼此对抗。他们会拿到一手谬误论证牌，并轮流将这些牌用于一个随机抽取的场景。卡牌的具体程度决定其强度，而两种称为王牌的颜色可以在任何时候打出，并且会压过其他颜色。除了识别谬误论证外，玩家还要练习评估卡牌的具体程度，并学会合作。</p>
 430DEE14-DCC8-490D-AA45-6721D04EFF89|Material,60,Game Rule,430DEE14-DCC8-490D-AA45-6721D04EFF89,Material,String,editorial,"<ul>
 <li>1 paquet de cartes d&rsquo;arguments fallacieux, organis&eacute; en 7 classes de couleurs, chacune r&eacute;partie en 3 ordres puis en 3 familles. Une s&eacute;lection de 28 cartes</li>
 <li>1 paquet de cartes de sc&eacute;nario, organis&eacute;es en 7 th&egrave;mes identifiables au dos des cartes</li>
@@ -2417,7 +2475,17 @@ DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA94
 <li>1 mazo de cartas de escenario organizadas en 7 temas identificables por su reverso</li>
 <li>Cartas recordatorio</li>
 <li>Reglas del juego</li>
-</ul>",,,"<ul>
+</ul>","<ul>
+<li>رزمة واحدة من بطاقات الحُجج المغالِطة منظَّمة في 7 فئات لونية، كلٌّ منها مقسّم إلى 3 رُتب ثم إلى 3 عائلات. اختيار من 28 بطاقة</li>
+<li>رزمة واحدة من بطاقات السيناريو منظَّمة في 7 موضوعات يمكن التعرّف عليها من ظهرها</li>
+<li>بطاقات تذكير</li>
+<li>قواعد اللعبة</li>
+</ul>","<ul>
+<li>۱ دسته کارتِ استدلالِ مغالطی، سازمان‌یافته در ۷ ردهٔ رنگی، که هرکدام به ۳ مرتبه و سپس ۳ خانواده تقسیم می‌شوند. گزیده‌ای از ۲۸ کارت</li>
+<li>۱ دسته کارتِ سناریو، سازمان‌یافته در ۷ مضمون که از پشت قابل شناسایی‌اند</li>
+<li>کارت‌های یادآور</li>
+<li>قوانین بازی</li>
+</ul>","<ul>
 <li>1副谬误论证卡牌，按7个颜色类别组织，每个类别再分为3个阶层，再分为3个家族。共选用28张牌</li>
 <li>1副场景卡牌，按7个主题组织，背面可识别</li>
 <li>备忘卡</li>
@@ -2433,7 +2501,11 @@ DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA94
 <p>Embaralhem separadamente as cartas de argumento falacioso e as cartas de cenário. Formem 2 pilhas de compra de cartas de cenário e coloquem-nas no meio da mesa.</p>
 <p>O primeiro leitor é o jogador que mentiu mais recentemente.</p>","<p>Se seleccionan 28 cartas de argumentos falaces para la partida, es decir, 4 por color.</p>
 <p>Las cartas de argumentos falaces se barajan, al igual que las cartas de escenario. Se forman 2 pilas de robo de cartas de escenario y se colocan en el centro de la mesa.</p>
-<p>El primer lector es el que haya mentido más recientemente.</p>",,,"<p>本局选择 28 张谬误论证卡参与游戏，即每种颜色 4 张。</p>
+<p>El primer lector es el que haya mentido más recientemente.</p>","<p>نختار 28 بطاقةً من بطاقات الحجج المغالِطة للّعبة، أي 4 بطاقات لكل لون.</p>
+<p>تُخلط بطاقات الحجج المغالِطة وبطاقات السيناريو، كلٌّ على حدة. ثم نُكوِّن رُزمتين لسحب بطاقات السيناريو توضعان في وسط الطاولة.</p>
+<p>الساحب الأول هو اللاعب الذي كذب آخر مرة.</p>","<p>برای این بازی، ۲۸ کارتِ استدلالِ مغالطه‌آمیز انتخاب می‌شود؛ یعنی ۴ کارت از هر رنگ.</p>
+<p>کارت‌های استدلالِ مغالطه‌آمیز بُر زده می‌شوند؛ کارت‌های سناریو نیز جداگانه بُر زده می‌شوند. سپس ۲ دستهٔ کارت‌کشیِ سناریو تشکیل دهید و آن‌ها را در وسط میز قرار دهید.</p>
+<p>اولین کارت‌کش کسی است که آخرین بار دروغ گفته است.</p>","<p>本局选择 28 张谬误论证卡参与游戏，即每种颜色 4 张。</p>
 <p>将谬误论证卡和情景卡分别洗匀，并在桌子中央摆出 2 堆情景卡牌堆。</p>
 <p>第一位抽牌者是最近说过谎的人。</p>"
 430DEE14-DCC8-490D-AA45-6721D04EFF89|Content,60,Game Rule,430DEE14-DCC8-490D-AA45-6721D04EFF89,Content,String,editorial,"<h2>D&eacute;but de la manche</h2>
@@ -2543,7 +2615,39 @@ DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA94
 <p>Si el equipo que ganó la subasta de triunfo cumple su contrato con una puntuación superior, obtiene en puntos el importe de su puja más los puntos realmente ganados. Si gana el otro equipo, este obtiene 160 puntos más el importe de la puja que no se haya cumplido.</p>
 <p>Si la subasta ha sido contrada, las puntuaciones se duplican.</p>
 <h2>Fin de la partida y recuento</h2>
-<p>Gana el primer equipo que supera los 1000 puntos.</p>",,,"<h2>回合开始</h2>
+<p>Gana el primer equipo que supera los 1000 puntos.</p>","<h2>بداية الجولة</h2>
+<h3>1.       الساحب</h3>
+<p>يسحب الساحب بطاقة سيناريو من بين رزمتي السحب المتاحتين ويقرأها بصوت عالٍ، باستثناء الجملة الأخيرة المكتوبة بالخط المائل في أسفل البطاقة. ثم يخلط بطاقات الحجج المغلوطة الـ28 ويوزّعها على اللاعبين الأربعة.</p>
+<h3>2.       مزايدة الحكم</h3>
+<p>بدءًا من اللاعب الجالس على يسار الساحب، يختار اللاعبون ما إذا كانوا سيزايدون أم لا لتحديد لونَي الحكم في هذه الجولة. تتيح بطاقات الحكم التفوق على أنواع أخرى من البطاقات، كما تكون قيمتها أكبر عند احتساب نقاط الجولة. تبدأ مزايدة الحكم عند 80، وتزداد المزايدات بمقدار 10 في كل مرة.</p>
+<p>في أي وقت، يمكن لأحد عضوي الفريق أن يقول «je coinche» فيُنهي المزايدة مع مضاعفة رهان الجولة. عندما لا يعود أحد يزايد، يُحدَّد لونا الحكم للجولة ويمكن أن تبدأ مرحلة اللعب.</p>
+<h3>3.       أدوار اللعب</h3>
+<p>على مدى 7 أدوار متتالية، يواجه كل لاعب السيناريو ببطاقة واحدة من بطاقات الحجج المغلوطة. وبدءًا من اللاعب الجالس على يسار الساحب، يجب على كل لاعب أن يقدّم بطاقة وأن يعرض حجةً توضيحية تستجيب لتوجيه السيناريو.</p>
+<p>إذا لم تُلعب أي بطاقة حكم، فإن البطاقة ذات أعلى مستوى من العمق تفوز باللَّفّة. إذا لُعبت بطاقات حكم، فإن بطاقة الحكم ذات أدنى مستوى من العمق تفوز باللَّفّة. ويتقاسم اللاعبون المنتمون إلى الفريق نفسه اللَّفات التي يربحونها.</p>
+<p>ولكي يفوز لاعبٌ بلَفّة، يجب أن يشرح حجةً تتوافق مع البطاقة. إذا لم يقدّم أي لاعب حجةً، فالبطاقة الأفضل هي التي تفوز.</p>
+<h3>4.       احتساب نتيجة الجولة</h3>
+<p>تنتهي الجولة عندما تُلعب جميع اللَّفات.</p>
+<p>ثم تُحتسب نقاط الفريقين. بالنسبة إلى البطاقات التي ليست من ألوان الحكم، تساوي كل بطاقة نقطتين مضروبتين في مستوى عمقها. بالنسبة إلى البطاقات من ألوان الحكم، تساوي كل بطاقة 12 - (نقطتين مضروبتين في مستوى عمقها).</p>
+<p>إذا كان الفريق الذي فاز بمزايدة الحكم قد أوفى بعقده وحقق نتيجة أعلى، فإنه يحرز من النقاط مقدار مزايدته إضافةً إلى النقاط التي ربحها فعليًا. إذا كان الفريق الآخر هو الفائز، فإنه يحرز 160 نقطة بالإضافة إلى مقدار المزايدة التي لم يتم الوفاء بها.</p>
+<p>إذا كانت المزايدات قد قوبلت بقول «coinche»، فتُضاعَف النتائج.</p>
+<h2>نهاية اللعبة واحتساب النتيجة</h2>
+<p>الفريق الفائز هو أول فريق يتجاوز 1000 نقطة.</p>","<h2>آغاز دور</h2>
+<h3>1.       کارت‌کش</h3>
+<p>کارت‌کش یک کارتِ سناریو از میان دو دستهٔ کارتِ موجود می‌کشد و آن را با صدای بلند می‌خواند، به‌جز آخرین جملهٔ ایتالیک در پایین کارت. سپس ۲۸ کارتِ استدلالِ مغالطه‌آمیز را بر می‌زند و بین ۴ بازیکن توزیع می‌کند.</p>
+<h3>2.       مزایدهٔ اَتو</h3>
+<p>با شروع از همسایهٔ سمت چپِ کارت‌کش، بازیکنان می‌توانند برای تعیین ۲ رنگِ اَتوِ این دور، مزایده را ادامه دهند یا نه. کارت‌های اَتو می‌توانند بر انواع دیگر کارت‌ها غلبه کنند و همچنین در شمارش امتیازِ دور، ارزش بیشتری دارند. حداقل پیشنهاد برای مزایدهٔ اَتو ۸۰ است و پیشنهادها هر بار ۱۰ تا ۱۰ بالا می‌رود.</p>
+<p>در هر لحظه، یکی از دو عضوِ یک تیم می‌تواند بگوید «je coinche» و با دو برابر کردنِ مبلغِ دور، مزایده را پایان دهد. وقتی دیگر کسی پیشنهاد را بالاتر نبرد، دو رنگِ اَتو برای این دور تعیین می‌شوند و مرحلهٔ بازی می‌تواند آغاز شود.</p>
+<h3>3.       نوبت‌های بازی</h3>
+<p>در طول ۷ نوبتِ پیاپی، هر بازیکن ۱ کارتِ استدلالِ مغالطه‌آمیز را در برابر سناریو قرار می‌دهد. با شروع از همسایهٔ سمت چپِ کارت‌کش، هر بازیکن باید یک کارت پیشنهاد کند و یک استدلالِ مثالی بازی کند که به دستورِ سناریو پاسخ می‌دهد.</p>
+<p>اگر هیچ کارتِ حکم بازی نشود، کارتی که بالاترین سطحِ عمق را دارد برندهٔ دست می‌شود. اگر کارت‌های حکم بازی شوند، کارتِ حکم با پایین‌ترین سطحِ عمق برندهٔ دست می‌شود. بازیکنانِ یک تیم، دست‌هایی را که می‌برند با هم شریک می‌شوند.</p>
+<p>برای بردنِ یک دست، بازیکن باید استدلالی را که با کارت هماهنگ است توضیح دهد. اگر هیچ بازیکنی استدلالی ارائه نکند، بهترین کارت برنده می‌شود.</p>
+<h3>4.       شمارش امتیاز دور</h3>
+<p>دور وقتی تمام می‌شود که همهٔ دست‌ها بازی شده باشند.</p>
+<p>سپس امتیازهای دو تیم شمرده می‌شود. برای کارت‌هایی که از رنگ‌های حکم نیستند، هر کارت به اندازهٔ ۲ برابرِ سطحِ عمقِ خودش امتیاز دارد. برای کارت‌های رنگِ حکم، هر کارت برابر است با ۱۲ - (۲ برابرِ سطحِ عمقِ خودش).</p>
+<p>اگر تیمی که مزایدهٔ حکم را برده است قراردادش را با کسب امتیاز بالاتر انجام دهد، به اندازهٔ مبلغِ مزایده‌اش به‌علاوهٔ امتیازهایی که واقعاً به‌دست آورده، امتیاز می‌گیرد. اگر تیم دیگر برنده شود، همان تیم ۱۶۰ امتیاز به‌علاوهٔ مبلغِ مزایده‌ای را که به آن عمل نشده است، به دست می‌آورد.</p>
+<p>اگر مزایده‌ها کوئنچ شده باشند، امتیازها دو برابر می‌شوند.</p>
+<h2>پایان بازی و شمارش امتیاز</h2>
+<p>تیمی که برنده می‌شود، نخستین تیمی است که از ۱۰۰۰ امتیاز عبور کند.</p>","<h2>回合开始</h2>
 <h3>1.       抽牌者</h3>
 <p>抽牌者从可用的两叠场景牌中抽取一张场景牌，并大声读出，但不读卡牌底部斜体的最后一句话。 然后他将 28 张谬误论证卡洗匀，并发给 4 名玩家。</p>
 <h3>2.       王牌叫价</h3>
@@ -2562,8 +2666,8 @@ DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA94
 <p>率先超过 1000 分的队伍获胜。</p>"
 430DEE14-DCC8-490D-AA45-6721D04EFF89|Variants,60,Game Rule,430DEE14-DCC8-490D-AA45-6721D04EFF89,Variants,String,editorial,,,,,,,,
 430DEE14-DCC8-490D-AA45-6721D04EFF89|UrlKey,60,Game Rule,430DEE14-DCC8-490D-AA45-6721D04EFF89,UrlKey,String,editorial,la-parlote-coinchee,,,,,,,
-64E365CA-D01D-4C07-8108-4A0782561D9E|Title,60,Game Rule,64E365CA-D01D-4C07-8108-4A0782561D9E,Title,String,editorial,Le dernier beau parleur,The Last Smooth Talker,Последний Софист,O último boa-lábia,El último gran orador,,,最后的能言善辩者
-64E365CA-D01D-4C07-8108-4A0782561D9E|Summary,60,Game Rule,64E365CA-D01D-4C07-8108-4A0782561D9E,Summary,String,editorial,"<p>&Agrave; chaque manche, les joueurs proposent tour &agrave; tour des arguments autour de sc&eacute;narios tir&eacute;s au sort. Ils essaient de se d&eacute;barrasser de leurs cartes en rep&eacute;rant les arguments fallacieux utilis&eacute;s par les autres joueurs. En plus de reconna&icirc;tre les arguments fallacieux, les joueurs s&rsquo;entra&icirc;nent &agrave; &eacute;viter d&rsquo;en commettre.</p>","<p>The players will in turn offer arguments around randomly drawn scenarios each round and try to get rid of their cards by identifying the fallacious arguments used by other players. In addition to recognizing the fallacious arguments, players train to avoid committing them.</p>","<p>Игроки по очереди будут предлагать аргументы по случайно выбранным сценариям в каждом раунде, и попытаются избавиться от своих карт, выявляя софизмы, используемые другими игроками. В дополнение к нахождению софизмов, игроки тренируются, чтобы избежать их использования, когда приводят свои аргументы.</p>","<p>Em cada rodada, os jogadores propõem, alternadamente, argumentos em torno de cenários sorteados. Tentam se livrar de suas cartas identificando os argumentos falaciosos usados pelos outros jogadores. Além de reconhecerem argumentos falaciosos, os jogadores treinam para evitar cometê-los.</p>","<p>Los jugadores, por turnos, irán proponiendo argumentos en torno a los escenarios extraídos al azar en cada ronda e intentarán deshacerse de sus cartas detectando los argumentos falaces utilizados por los demás jugadores. Además de reconocer los argumentos falaces, los jugadores se entrenan para evitar cometerlos.</p>",,,<p>玩家将轮流围绕每一局抽到的情景提出论点，并通过识别其他玩家使用的谬误论证，设法摆脱手中的卡牌。除了识别谬误论证外，玩家还会训练自己避免犯下这类谬误。</p>
+64E365CA-D01D-4C07-8108-4A0782561D9E|Title,60,Game Rule,64E365CA-D01D-4C07-8108-4A0782561D9E,Title,String,editorial,Le dernier beau parleur,The Last Smooth Talker,Последний Софист,O último boa-lábia,El último gran orador,آخر متكلم بارع,آخرین چرب‌زبان,最后的能言善辩者
+64E365CA-D01D-4C07-8108-4A0782561D9E|Summary,60,Game Rule,64E365CA-D01D-4C07-8108-4A0782561D9E,Summary,String,editorial,"<p>&Agrave; chaque manche, les joueurs proposent tour &agrave; tour des arguments autour de sc&eacute;narios tir&eacute;s au sort. Ils essaient de se d&eacute;barrasser de leurs cartes en rep&eacute;rant les arguments fallacieux utilis&eacute;s par les autres joueurs. En plus de reconna&icirc;tre les arguments fallacieux, les joueurs s&rsquo;entra&icirc;nent &agrave; &eacute;viter d&rsquo;en commettre.</p>","<p>The players will in turn offer arguments around randomly drawn scenarios each round and try to get rid of their cards by identifying the fallacious arguments used by other players. In addition to recognizing the fallacious arguments, players train to avoid committing them.</p>","<p>Игроки по очереди будут предлагать аргументы по случайно выбранным сценариям в каждом раунде, и попытаются избавиться от своих карт, выявляя софизмы, используемые другими игроками. В дополнение к нахождению софизмов, игроки тренируются, чтобы избежать их использования, когда приводят свои аргументы.</p>","<p>Em cada rodada, os jogadores propõem, alternadamente, argumentos em torno de cenários sorteados. Tentam se livrar de suas cartas identificando os argumentos falaciosos usados pelos outros jogadores. Além de reconhecerem argumentos falaciosos, os jogadores treinam para evitar cometê-los.</p>","<p>Los jugadores, por turnos, irán proponiendo argumentos en torno a los escenarios extraídos al azar en cada ronda e intentarán deshacerse de sus cartas detectando los argumentos falaces utilizados por los demás jugadores. Además de reconocer los argumentos falaces, los jugadores se entrenan para evitar cometerlos.</p>",<p>يتناوب اللاعبون على طرح حجج حول سيناريوهات تُسحب عشوائيًا في كل جولة، ويحاولون التخلّص من بطاقاتهم عبر رصد الحجج المغالِطة التي يستخدمها اللاعبون الآخرون. وإلى جانب التعرّف على الحجج المغالِطة، يتدرّب اللاعبون على تجنّب الوقوع فيها.</p>,<p>بازیکنان به نوبت، پیرامون سناریوهایی که در هر دور به قید قرعه کشیده می‌شوند استدلال مطرح می‌کنند و تلاش می‌کنند با شناسایی استدلال‌های مغالطه‌آمیزی که دیگر بازیکنان به کار می‌برند، از شرِ کارت‌های خود خلاص شوند. افزون بر تشخیص استدلال‌های مغالطه‌آمیز، بازیکنان تمرین می‌کنند که خود نیز مرتکب آن‌ها نشوند.</p>,<p>玩家将轮流围绕每一局抽到的情景提出论点，并通过识别其他玩家使用的谬误论证，设法摆脱手中的卡牌。除了识别谬误论证外，玩家还会训练自己避免犯下这类谬误。</p>
 64E365CA-D01D-4C07-8108-4A0782561D9E|Material,60,Game Rule,64E365CA-D01D-4C07-8108-4A0782561D9E,Material,String,editorial,"<ul>
 <li>1 paquet de cartes d&rsquo;argument fallacieux organis&eacute;es en 7 classes de couleurs, chacune r&eacute;partie en 3 ordres puis en 3 familles.</li>
 <li>1 paquet de cartes de sc&eacute;nario organis&eacute;es en 7 th&egrave;mes identifiables au dos.</li>
@@ -2591,7 +2695,17 @@ DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA94
 <li>1 mazo de cartas de escenario organizadas en 7 temas identificables en el reverso</li>
 <li>Cartas recordatorio</li>
 <li>Reglas del juego</li>
-</ul>",,,"<ul>
+</ul>","<ul>
+<li>رزمة واحدة من بطاقات الحجج المغالِطة منظَّمة في 7 فئات لونية، وكل فئة مقسَّمة إلى 3 رتب ثم إلى 3 عائلات.</li>
+<li>رزمة واحدة من بطاقات السيناريو منظَّمة في 7 موضوعات يمكن تمييزها من ظهرها</li>
+<li>بطاقات تذكير</li>
+<li>قواعد اللعب</li>
+</ul>","<ul>
+<li>۱ دسته کارتِ استدلالِ مغالطه‌آمیز که در ۷ کلاس رنگی سازمان‌دهی شده‌اند، و هر کدام خود به ۳ مرتبه و سپس به ۳ خانواده تقسیم می‌شوند.</li>
+<li>۱ دسته کارتِ سناریو که در ۷ تم قابل‌تشخیص از روی پشت کارت‌ها سازمان‌دهی شده‌اند</li>
+<li>کارت‌های یادآور</li>
+<li>قوانین بازی</li>
+</ul>","<ul>
 <li>1副谬误论证卡，分为7种颜色类别，每种又分为3个序列，再分为3个家族。</li>
 <li>1副情景卡，分为7个主题，背面可识别</li>
 <li>备忘卡</li>
@@ -2607,7 +2721,11 @@ DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA94
 <p>Embaralhe as cartas de argumento falacioso e, em seguida, as cartas de cenário. Forme 2 montes de cartas de cenário e coloque-os no centro da mesa. Distribua a cada jogador 5 cartas de argumento falacioso, que mantém na mão. As cartas restantes constituem o monte.</p>
 <p>O primeiro leitor é quem mais recentemente se deixou influenciar por um apelo à emoção.</p>","<p>Según el número de jugadores y el nivel de dificultad deseado, se constituye la pila de robo de cartas de argumento falaz añadiendo los niveles indicados en la parte inferior derecha de las cartas en orden creciente. Se elige el número máximo de rondas de unos minutos que se jugarán.</p>
 <p>Se barajan las cartas de argumento falaz y, a continuación, las cartas de escenario. Se forman 2 pilas de robo de cartas de escenario y se colocan en el centro de la mesa. Se reparten a cada jugador 5 cartas de argumento falaz que guarda para sí. El resto de las cartas constituye la pila de robo.</p>
-<p>El primer lector es quien se ha dejado influir más recientemente por una apelación a la emoción.</p>",,,"<p>根据玩家人数和期望的难度，按卡牌右下角标注的等级由低到高，将相应等级的谬误论证牌加入牌堆。确定将要进行的最多几局，每局持续几分钟。</p>
+<p>El primer lector es quien se ha dejado influir más recientemente por una apelación a la emoción.</p>","<p>بحسب عدد اللاعبين ومستوى الصعوبة المطلوب، تُشكَّل رزمة بطاقات الحجج المغالِطة بإضافة المستويات المشار إليها أسفل يمين البطاقات بترتيب تصاعدي. ثم يُختار الحدّ الأقصى لعدد الجولات، على أن تستغرق كل جولة بضع دقائق.</p>
+<p>تُخلط بطاقات الحجج المغالِطة، ثم بطاقات السيناريو. ثم تُنشأ رُزمتان من بطاقات السيناريو وتوضعان في وسط الطاولة. ويُوزَّع على كل لاعب 5 بطاقات من بطاقات الحجج المغالِطة يحتفظ بها لنفسه. أمّا بقية البطاقات فتشكّل رزمة السحب.</p>
+<p>الساحب الأول هو آخر مَن تأثر بالاحتكام إلى العاطفة.</p>","<p>بسته به تعداد بازیکنان و سطح دشواریِ مورد نظر، دستهٔ کارت‌های کشیدنیِ استدلالِ مغالطه‌آمیز را با افزودن سطح‌های مشخص‌شده در پایینِ سمت راستِ کارت‌ها، به ترتیبِ صعودی، تشکیل می‌دهیم. حداکثر تعداد دورهای چنددقیقه‌ای را که قرار است بازی شوند انتخاب می‌کنیم.</p>
+<p>ابتدا کارت‌های استدلالِ مغالطه‌آمیز و سپس کارت‌های سناریو را بُر می‌زنیم. سپس ۲ دستهٔ کارتِ کشیدنیِ سناریو تشکیل می‌دهیم و آن‌ها را در وسطِ میز قرار می‌دهیم. به هر بازیکن ۵ کارتِ استدلالِ مغالطه‌آمیز می‌دهیم که آن‌ها را نزد خود نگه می‌دارد. باقیِ کارت‌ها دستهٔ کارت‌های کشیدنی را تشکیل می‌دهند.</p>
+<p>نخستین کارت‌کش، کسی است که آخرین بار تحت تأثیرِ توسل به احساسات قرار گرفته است.</p>","<p>根据玩家人数和期望的难度，按卡牌右下角标注的等级由低到高，将相应等级的谬误论证牌加入牌堆。确定将要进行的最多几局，每局持续几分钟。</p>
 <p>将谬误论证牌和情景卡分别洗匀。将2叠情景卡牌堆放在桌子中央。给每位玩家发5张谬误论证牌，玩家将其保密留在手中。其余卡牌作为抽牌堆。</p>
 <p>第一个抽牌者，是最近受到情绪诉求影响的人。</p>"
 64E365CA-D01D-4C07-8108-4A0782561D9E|Content,60,Game Rule,64E365CA-D01D-4C07-8108-4A0782561D9E,Content,String,editorial,"<h2>D&eacute;roul&eacute; de la manche</h2>
@@ -2648,7 +2766,23 @@ DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA94
 <h3>3.       Fin de la ronda</h3>
 <p>La ronda termina cuando solo queda una persona en juego. El jugador situado a la izquierda del lector se convierte en el nuevo lector y saca el escenario de la siguiente ronda.</p>
 <h2>Fin de la partida y recuento</h2>
-<p>Si un jugador consigue deshacerse de todas sus cartas, gana la partida. Si no, la partida termina al cabo del número de rondas previsto inicialmente. El ganador es quien tenga menos cartas en la mano.</p>",,,"<h2>回合流程</h2>
+<p>Si un jugador consigue deshacerse de todas sus cartas, gana la partida. Si no, la partida termina al cabo del número de rondas previsto inicialmente. El ganador es quien tenga menos cartas en la mano.</p>","<h2>سير الجولة</h2>
+<h3>1.       الساحب</h3>
+<p>يسحب الساحب بطاقة سيناريو من بين مجموعتي السحب المتاحتين ويقرأها بصوت عالٍ، باستثناء الجملة الأخيرة المكتوبة بالخط المائل في أسفل البطاقة.</p>
+<h3>2.       جولة الحجج</h3>
+<p>ابتداءً من الجار الأيسر للساحب، يجب على كل لاعب أن يقترح حجة تستجيب لأمر السيناريو. إذا لاحظ لاعب إحدى بطاقاته ضمن الحجج المقدَّمة، فإنه يعطي بطاقته لمن استخدمها ويخرجها من الجولة. إذا لم يعد لاعب يجد حجة جديدة بعد 10 ثوانٍ، فإنه يسحب بطاقة جديدة ويُستبعَد من الجولة.</p>
+<h3>3.       نهاية الجولة</h3>
+<p>تتوقف الجولة عندما لا يبقى في اللعب سوى شخص واحد. يصبح الجار الأيسر للساحب هو الساحب الجديد، ويسحب سيناريو الجولة التالية.</p>
+<h2>نهاية اللعبة والاحتساب</h2>
+<p>إذا تمكن لاعب من التخلّص من جميع بطاقاته، فإنه يفوز باللعبة. وإلا، تنتهي اللعبة بعد عدد الجولات المحدد مسبقًا. الفائز هو من يملك في يده أقل عدد من البطاقات.</p>","<h2>روند دور</h2>
+<h3>1.       کارت‌کش</h3>
+<p>کارت‌کش از میان دو دستهٔ موجود، یک کارتِ سناریو می‌کشد و آن را با صدای بلند می‌خواند، به‌جز آخرین جملهٔ ایتالیکِ پایینِ کارت.</p>
+<h3>2.       دورِ استدلال‌ها</h3>
+<p>با شروع از همسایهٔ سمتِ چپِ کارت‌کش، هر بازیکن باید استدلالی ارائه دهد که به دستورِ سناریو پاسخ بدهد. اگر بازیکنی یکی از کارت‌های خودش را در استدلال‌های گفته‌شده تشخیص دهد، کارتِ خود را به کسی می‌دهد که از آن استفاده کرده و آن را از این دور کنار می‌گذارد. اگر بازیکنی پس از ۱۰ ثانیه دیگر هیچ استدلالِ تازه‌ای پیدا نکند، یک کارتِ جدید می‌کشد و از این دور کنار گذاشته می‌شود.</p>
+<h3>3.       پایان دور</h3>
+<p>دور زمانی تمام می‌شود که فقط یک نفر در بازی باقی بماند. همسایهٔ سمتِ چپِ کارت‌کش، کارت‌کشِ جدید می‌شود و سناریوی دورِ بعد را می‌کشد.</p>
+<h2>پایانِ بازی و امتیازشماری</h2>
+<p>اگر بازیکنی موفق شود از همهٔ کارت‌هایش خلاص شود، برندهٔ بازی است. در غیر این صورت، بازی پس از تعدادِ دورهایی که از پیش تعیین شده بود به پایان می‌رسد. برنده کسی است که در دستش کمترین تعدادِ کارت را داشته باشد.</p>","<h2>回合流程</h2>
 <h3>1.       抽牌者</h3>
 <p>抽牌者从两个可用牌堆中抽一张情景牌，并大声朗读，唯独牌面底部斜体的最后一句除外。</p>
 <h3>2.       论点轮</h3>
@@ -2659,13 +2793,15 @@ DEA9410D-274B-4A4E-B47C-7D5D00692348|RuleMemoCardDownload,60,App-Resources,DEA94
 <p>如果某位玩家成功摆脱所有手牌，他就赢得比赛。 否则，比赛会在预先设定的回合数结束后终止。胜者是手牌最少的玩家。</p>"
 64E365CA-D01D-4C07-8108-4A0782561D9E|Variants,60,Game Rule,64E365CA-D01D-4C07-8108-4A0782561D9E,Variants,String,editorial,,,,,,,,
 64E365CA-D01D-4C07-8108-4A0782561D9E|UrlKey,60,Game Rule,64E365CA-D01D-4C07-8108-4A0782561D9E,UrlKey,String,editorial,le-dernier-beau-parleur,,,,,,,
-AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78|Title,60,Game Rule,AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78,Title,String,editorial,L'école des menteurs,The school of liars,Школа лжецов,A escola dos mentirosos,La escuela de los mentirosos,,,说谎者学校
+AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78|Title,60,Game Rule,AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78,Title,String,editorial,L'école des menteurs,The school of liars,Школа лжецов,A escola dos mentirosos,La escuela de los mentirosos,مدرسة الكاذبين,مدرسهٔ دروغ‌پردازان,说谎者学校
 AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78|Summary,60,Game Rule,AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78,Summary,String,editorial,"<p>&Agrave; tour de r&ocirc;le, les joueurs essaient de faire deviner une carte d&rsquo;argument fallacieux &agrave; une majorit&eacute; des autres joueurs, au cours d&rsquo;une sayn&egrave;te improvis&eacute;e &agrave; partir d&rsquo;un sc&eacute;nario tir&eacute; au hasard. Tout en s&rsquo;amusant, ils apprennent ainsi &agrave; reconna&icirc;tre, &agrave; d&eacute;coder et donc &agrave; d&eacute;construire les arguments fallacieux.</p>
 <p>Argumentum s&rsquo;appuie sur une classification de ces arguments fallacieux, rang&eacute;s en ordres et en familles indiqu&eacute;s en haut de chaque carte. Par exemple, la flatterie est une sous-cat&eacute;gorie de l&rsquo;appel aux &eacute;motions. Les cartes m&eacute;mo r&eacute;sument cette classification.</p>","<p>Taking turns, players try to get a majority of the other players to guess a fallacy card during an improvised skit based on a randomly drawn scenario. While having fun, they learn to recognize, decode and therefore deconstruct fallacious arguments.</p>
 <p>Argumentum is based on a classification of these fallacious arguments, arranged into orders and families shown at the top of each card. For example, flattery is a subcategory of appeal to emotions. The memo cards summarize this classification.</p>","<p>Игроки по очереди разыгрывают импровизированную сценку по случайно вытянутому сценарию, стараясь сделать так, чтобы большинство остальных игроков угадало карту с софизмом. Развлекаясь, игроки учатся распознавать, декодировать и, следовательно, деконструировать софизмы.</p>
 <p>Игра Argumentum основана на классификации софизмов по порядкам и семействам, указанным в верхней части каждой карты. Например, «Лесть» — это подкатегория апелляции к эмоциям. Карты Мемо кратко излагают эту классификацию.</p>","<p>Um de cada vez, os jogadores tentam fazer com que uma maioria dos outros jogadores adivinhe uma carta de argumento falacioso, durante uma esquete improvisada a partir de um cenário tirado ao acaso. Ao mesmo tempo que se divertem, aprendem assim a reconhecer, decodificar e, portanto, desconstruir os argumentos falaciosos.</p>
 <p>Argumentum se baseia numa classificação destes argumentos falaciosos, organizados em ordens e famílias indicadas no topo de cada carta. Por exemplo, a lisonja é uma subcategoria do apelo às emoções. As cartas de ajuda resumem esta classificação.</p>","<p>Los jugadores, por turnos, intentan hacer adivinar una carta de argumento falaz a la mayoría de los demás jugadores, durante una pequeña escena de improvisación a partir de un escenario elegido al azar. Mientras se divierten, los jugadores aprenden así a reconocer, descifrar y, por tanto, desmontar los argumentos falaces.</p>
-<p>Argumentum se apoya en una clasificación de estos argumentos falaces, ordenados en órdenes y familias, que se indican en la parte superior de la carta. Por ejemplo, la adulación es una subcategoría de la apelación a las emociones. Las cartas recordatorio resumen esta clasificación.</p>",,,"<p>玩家将轮流在一段即兴小剧中，利用随机抽取的情景，设法让多数其他玩家猜出一张谬误论证牌。这样一边玩，一边学习如何识别、解读，从而拆解谬误论证。</p>
+<p>Argumentum se apoya en una clasificación de estos argumentos falaces, ordenados en órdenes y familias, que se indican en la parte superior de la carta. Por ejemplo, la adulación es una subcategoría de la apelación a las emociones. Las cartas recordatorio resumen esta clasificación.</p>","<p>يتناوب اللاعبون على محاولة جعل أغلبية اللاعبين الآخرين تخمّن بطاقةً من بطاقات الحجج المغلوطة، وذلك خلال مشهد تمثيلي مرتجل انطلاقًا من سيناريو يُسحب عشوائيًا. وبذلك، يتعلم اللاعبون في الوقت نفسه، وبطريقة ممتعة، كيف يتعرّفون على الحجج المغلوطة ويفكون شيفرتها، ومن ثم يفككونها.</p>
+<p>يرتكز Argumentum على تصنيف لهذه الحجج المغلوطة، مرتبة في رتب وعائلات، ويُشار إليها في أعلى البطاقة. فمثلًا، يُعدّ التملق فئةً فرعية من النداء إلى العواطف. وتلخّص بطاقات التذكير هذا التصنيف.</p>","<p>بازیکنان به نوبت تلاش می‌کنند در خلال یک صحنه‌پردازیِ بداهه، و بر پایهٔ یک سناریوی تصادفی، یک کارتِ استدلالِ مغالطی را به اکثریتِ بازیکنانِ دیگر حدس‌زدنی کنند. بدین‌ترتیب، بازیکنان ضمن سرگرم شدن، یاد می‌گیرند این استدلال‌های مغالطی را تشخیص دهند، رمزگشایی کنند و در نتیجه از هم بگشایند.</p>
+<p>Argumentum بر طبقه‌بندیِ این استدلال‌های مغالطی تکیه دارد که بر حسب مرتبه‌ها و خانواده‌ها مرتب شده‌اند و در بالای کارت مشخص شده‌اند. برای نمونه، چاپلوسی زیرمجموعهٔ توسل به احساسات است. کارت‌های یادآور این طبقه‌بندی را به‌اختصار خلاصه می‌کنند.</p>","<p>玩家将轮流在一段即兴小剧中，利用随机抽取的情景，设法让多数其他玩家猜出一张谬误论证牌。这样一边玩，一边学习如何识别、解读，从而拆解谬误论证。</p>
 <p>Argumentum 依据对这些谬误论证的分类体系，将它们按阶层和家族归类，并标注在卡牌顶部。例如，“奉承”是“诉诸情绪”的一个子类别。提示卡对这一分类作了摘要。</p>"
 AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78|Material,60,Game Rule,AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78,Material,String,editorial,"<ul>
 <li>1 paquet de cartes d&rsquo;arguments fallacieux, organis&eacute;es en 7 classes de couleurs, chacune r&eacute;partie en 3 ordres puis en 3 familles.</li>
@@ -2692,7 +2828,17 @@ AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78|Material,60,Game Rule,AE1EDEFA-6F1B-4593-82
 <li>1 mazo de cartas de escenario organizadas en 7 temas identificables en el dorso</li>
 <li>Cartas recordatorio</li>
 <li>Reglas del juego</li>
-</ul>",,,"<ul>
+</ul>","<ul>
+<li>رزمة واحدة من بطاقات الحجج المغلوطة منظَّمة في 7 فئات لونية، موزعة كل منها إلى 3 رتب ثم إلى 3 عائلات.</li>
+<li>رزمة واحدة من بطاقات السيناريو منظَّمة في 7 موضوعات يمكن تمييزها من ظهرها</li>
+<li>بطاقات تذكير</li>
+<li>قواعد اللعبة</li>
+</ul>","<ul>
+<li>۱ دسته کارتِ استدلال‌های مغالطی که در ۷ ردهٔ رنگی سازمان‌دهی شده‌اند، و هر رده به ۳ مرتبه و سپس به ۳ خانواده تقسیم می‌شود.</li>
+<li>۱ دسته کارتِ سناریو که در ۷ مضمونِ قابل‌شناسایی از پشت سازمان‌دهی شده‌اند</li>
+<li>کارت‌های یادآور</li>
+<li>قوانین بازی</li>
+</ul>","<ul>
 <li>1副谬误论证牌，按7种颜色类别组织，每种再分为3个阶层，再分为3个家族。</li>
 <li>1副情景卡牌，按7个主题组织，背面可识别</li>
 <li>提示卡</li>
@@ -2714,7 +2860,13 @@ AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78|Installation,60,Game Rule,AE1EDEFA-6F1B-459
 <p>Cada jogador pega um pequeno objeto diferente dos demais (moeda, feijão…) para a votação. O primeiro leitor é o jogador que primeiro se lembrar de um argumento enganador.</p>","<p>Según el número de jugadores y el nivel de dificultad deseado, se forma el mazo de cartas de argumentos falaces añadiendo los niveles indicados en la parte inferior derecha de las cartas por orden creciente. Se necesitan al menos 7 x el número de jugadores.</p>
 <p>Se decide la duración de la partida. Esta consta de una sucesión de rondas de unos 7 minutos. Al término del tiempo asignado, se termina la ronda en curso y el jugador con más puntos gana la partida. Se barajan las cartas de argumentos falaces, así como las cartas de escenario.</p>
 <p>Se forman 2 mazos de cartas de escenario colocados en el centro de la mesa. Se reparten a cada jugador 5 cartas de argumentos falaces que conserva para sí. El resto de las cartas constituye la reserva.</p>
-<p>Cada jugador se equipa con un pequeño objeto único (moneda, alubia...) para la votación. El primer lector es quien recuerde primero un argumento engañoso.</p>",,,"<p>根据玩家人数和所需难度，通过按递增顺序加入卡牌右下角标示的等级，来组成谬误论证牌的抽牌堆。所需数量至少为玩家人数的 7 倍。</p>
+<p>Cada jugador se equipa con un pequeño objeto único (moneda, alubia...) para la votación. El primer lector es quien recuerde primero un argumento engañoso.</p>","<p>بحسب عدد اللاعبين ومستوى الصعوبة المرغوب فيه، تُشكَّل رزمة سحب بطاقات الحجج المغلوطة بإضافة المستويات المشار إليها في أسفل يمين البطاقات تصاعديًا. ويلزم لذلك حدًّا أدنى قدره 7 × عدد اللاعبين.</p>
+<p>يُختار زمن اللعب. ويتألف هذا الزمن من تعاقب جولات مدتها نحو 7 دقائق. وعند انتهاء الوقت المخصص، تُستكمل الجولة الجارية، ويحرز اللاعب الذي جمع أكبر عدد من النقاط الفوزَ في اللعبة. وتُخلط بطاقات الحجج المغلوطة، وكذلك بطاقات السيناريو.</p>
+<p>تُشكَّل رُزمتان من بطاقات السيناريو وتوضعان في وسط الطاولة. ويُوزَّع على كل لاعب 5 بطاقات من بطاقات الحجج المغلوطة يحتفظ بها لنفسه. أما بقية البطاقات فتشكّل المخزون.</p>
+<p>يأخذ كل لاعب معه شيئًا صغيرًا مميزًا وفريدًا (عملة معدنية، حبة فاصوليا...) للتصويت. والساحب الأول هو اللاعب الذي يتذكر أولًا حجةً خادعة.</p>","<p>بسته به تعداد بازیکنان و سطح دشواریِ موردنظر، دستهٔ کارت‌های استدلالِ مغالطه‌آمیز را با افزودنِ سطح‌هایی که در پایینِ سمت راستِ کارت‌ها مشخص شده‌اند، به ترتیبِ صعودی تشکیل می‌دهیم. حداقل به ۷ برابرِ تعدادِ بازیکنان کارت نیاز است.</p>
+<p>مدتِ بازی را انتخاب می‌کنیم. بازی شامل رشته‌ای از دورهای حدوداً ۷ دقیقه‌ای است. با پایانِ زمانِ تعیین‌شده، دورِ در جریان را به پایان می‌رسانیم و بازیکنی که بیشترین امتیاز را دارد برندهٔ بازی می‌شود. کارت‌های استدلالِ مغالطه‌آمیز و همچنین کارت‌های سناریو را بُر می‌زنیم.</p>
+<p>۲ دستهٔ کارتِ سناریو تشکیل می‌دهیم و آن‌ها را در وسطِ میز قرار می‌دهیم. به هر بازیکن ۵ کارتِ استدلالِ مغالطه‌آمیز می‌دهیم که نزدِ خود نگه می‌دارد. بقیهٔ کارت‌ها ذخیره را تشکیل می‌دهند.</p>
+<p>هر بازیکن یک شیء کوچک و منحصربه‌فرد برای رأی‌گیری همراه دارد (سکه، لوبیا، …). نخستین کارت‌کش کسی است که زودتر از همه یک استدلالِ فریبنده را به یاد بیاورد.</p>","<p>根据玩家人数和所需难度，通过按递增顺序加入卡牌右下角标示的等级，来组成谬误论证牌的抽牌堆。所需数量至少为玩家人数的 7 倍。</p>
 <p>先决定对局时长。整局由一连串约 7 分钟的回合组成。规定时间结束后，先完成正在进行的这一回合，得分最高的玩家获胜。谬误论证牌和情景牌都要洗匀。</p>
 <p>组成 2 个情景牌抽牌堆，并放在桌子中央。每位玩家发 5 张谬误论证牌，自己保留。其余牌作为备用牌堆。</p>
 <p>每位玩家准备一个独一无二的小物件（硬币、豆子等）用于投票。首位抽牌者是第一个回想起某个误导性论证的人。</p>"
@@ -2838,7 +2990,57 @@ AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78|Content,60,Game Rule,AE1EDEFA-6F1B-4593-823
 <li>Los jurados que hayan encontrado la carta del embaucador roban una carta más (✅👇🎭➜✅+1🎴)</li>
 <li>Las cartas jugadas se devuelven a la reserva.</li>
 <li>El vecino de la izquierda del vencedor se convierte en el lector de la siguiente ronda.</li>
-</ul>",,,"<h2>本轮流程</h2>
+</ul>","<h2>سير الجولة</h2>
+<h3>1.       الساحب</h3>
+<p>يسحب الساحب بطاقة سيناريو من بين مجموعتي السحب المتاحتين ويقرأها بصوت عالٍ، باستثناء الجملة الأخيرة المكتوبة بالخط المائل في أسفل البطاقة.</p>
+<h3>2.       المغالِط</h3>
+<p>يتولى المغالِط قيادة المحاججة حول السيناريو، لتجسيد إحدى بطاقات الحُجج المغلوطة لديه. وهدفه أن يجعل أغلبية اللاعبين الآخرين تخمّن هذه البطاقة.</p>
+<p>يُسنَد دور المغالِط إلى أول لاعب يضع، مقلوبًا ومخفيًا، بطاقة الحجة المغلوطة التي يعتزم لعبها. وإلا، فإن اللاعب الذي يجلس إلى يسار الساحب يُعيَّن مغالِطًا ويضع بطاقته.</p>
+<h3>3.       المشهد التمثيلي</h3>
+<p>يفتتح الساحب النقاش بالطريقة التي يشاء. ويمكنه أن يستند إلى العبارة الافتتاحية المقترحة المكتوبة بالخط المائل في أسفل بطاقة السيناريو. ثم يُتاح للمغالِط والساحب حدٌّ أقصى قدره دقيقة واحدة لارتجال حوار، يسعى خلاله المغالِط إلى استخدام نوع الحجة المشار إليه في البطاقة التي اختارها.</p>
+<p>المغالِط يَعرِض حججه، ويردّ عليه الساحب من دون أن يسعى إلى السيطرة على المشهد. ويجوز للمغالِط أن يختصر المشهد متى شاء.</p>
+<h3>4.       هيئة المحلّفين</h3>
+<p>جميع اللاعبين باستثناء المغالِط، بما في ذلك الساحب، يشكّلون هيئة المحلّفين. في نهاية المشهد، يختار كل محلف من بين بطاقاته الخاصة البطاقة التي تقترب أكثر ما يكون من المحاججة التي سمعها، ويضعها مقلوبةً مع بطاقة المغالِط. وعند 3 أو 4 لاعبين، يختار المحلفون بطاقتين.</p>
+<p>يجمع المغالِط البطاقات، ويخلطها ثم يكشفها في وسط الطاولة. يطّلع المحلفون على البطاقات المكشوفة، ويمكن لأحد المحلفين أن يتلوها بصوت عالٍ. ويرفع كل واحد من المحلفين إصبعه للدلالة على أنه مستعد للتصويت.</p>
+<p>عندما تكون هيئة المحلّفين مستعدة، ومن دون تشاور، يعيّن كل عضو فيها في الوقت نفسه البطاقة التي يظن أنها كانت هي البطاقة التي لعبها المغالِط، وذلك بوضع غرضه الصغير المميز عليها (أو، عند عدم توافره، بوضع إصبعه عليها).</p>
+<h3>5.       احتساب النقاط</h3>
+<p>الفائز بالجولة هو صاحب البطاقة التي نالت أكبر عدد من الأصوات، سواء كان المغالِط أو أحد أعضاء هيئة المحلّفين (🥇👇👇…➜🏆). وعندئذٍ يحتفظ ببطاقته التي تساوي نقطة واحدة، ويضعها أمامه مكشوفة.</p>
+<p>في حال التعادل (🥈👇👇≟🥈👇👇)، يفوز المغالِط (✅🎭➜🎭🏆)، وإذا لم يكن المغالِط من بين المتعادلين (❌🎭)، فإن المحلفين الحاصلين على أكبر عدد من الأصوات الذين أصابوا واختاروا بطاقة المغالِط يُعلَنون جميعًا فائزين (✅👇🎭➜👇🏆). وإذا لم يعثر أيٌّ من المحلفين المعنيين عليها، يفوز المغالِط (❌👇🎭➜🎭🏆).</p>
+<h3>6.       السحوبات</h3>
+<p>بعد تحديد الفائز، يسحب اللاعبون من الرصيد عددًا معينًا من البطاقات:</p>
+<ul>
+<li>الفائز بالجولة لا يسحب بطاقة جديدة. (✅🏆➜❌0🎴)</li>
+<li>جميع اللاعبين الآخرين يسحبون بطاقة واحدة (❌🏆➜✅1🎴)، أو بطاقتين عند 3 أو 4 لاعبين</li>
+<li>أعضاء هيئة المحلّفين الذين حصلوا على أصوات يسحبون بطاقة إضافية (✅🧲👇➜✅+1🎴)</li>
+<li>المحلفون الذين وجدوا بطاقة المغالِط يسحبون بطاقة إضافية (✅👇🎭➜✅+1🎴)</li>
+<li>تُعاد البطاقات التي استُخدمت إلى الرصيد.</li>
+<li>يصبح الجار الأيسر للفائز هو الساحب في الجولة التالية.</li>
+</ul>","<h2>روند دور</h2>
+<h3>1.       کارت‌کش</h3>
+<p>کارت‌کش یک کارت سناریو را از میان دو دسته‌ی موجود برمی‌دارد و آن را با صدای بلند می‌خواند، به‌استثنای جمله‌ی پایانیِ مورب در پایین کارت.</p>
+<h3>2.       چرب‌زبان</h3>
+<p>چرب‌زبان مسئول پیش بردن استدلالِ سناریو خواهد بود تا یکی از کارت‌های استدلالِ مغالطه‌آمیز خود را به نمایش بگذارد. هدف او این است که اکثریتِ بازیکنان دیگر این کارت را حدس بزنند.</p>
+<p>نقشِ چرب‌زبان به نخستین بازیکنی داده می‌شود که کارتِ استدلالِ مغالطه‌آمیزی را که قصد بازی کردنش را دارد، به‌صورتِ رو به پایین می‌گذارد. در غیر این صورت، بازیکنِ سمت چپِ کارت‌کش به‌عنوان چرب‌زبان تعیین می‌شود و کارت خود را می‌گذارد.</p>
+<h3>3.       نمایش کوتاه</h3>
+<p>کارت‌کش بحث را هرطور که بخواهد آغاز می‌کند. او می‌تواند پیشنهادِ نخستین دیالوگ را که به‌صورت مورب در پایینِ کارت سناریو آمده است، به کار بگیرد. سپس چرب‌زبان و کارت‌کش حداکثر یک دقیقه فرصت دارند تا گفت‌وگویی بداهه اجرا کنند؛ در این مدت، چرب‌زبان تلاش می‌کند از نوع استدلالی که کارتِ انتخابی‌اش مشخص کرده استفاده کند.</p>
+<p>چرب‌زبان استدلال‌هایش را مطرح می‌کند و کارت‌کش بدون آن‌که بخواهد صحنه را در اختیار بگیرد به او پاسخ می‌دهد. چرب‌زبان می‌تواند هر زمان که بخواهد نمایش کوتاه را زودتر تمام کند.</p>
+<h3>4.       هیئت داوران</h3>
+<p>همه‌ی بازیکنان به‌جز چرب‌زبان، اما از جمله کارت‌کش، هیئت داوران را تشکیل می‌دهند. در پایانِ نمایش کوتاه، هر داور از میان کارت‌های خودش کارتی را برمی‌گزیند که بیشترین نزدیکی را به استدلال شنیده‌شده دارد و آن را همراه با کارتِ چرب‌زبان به‌صورت رو به پایین می‌گذارد. در بازیِ ۳ یا ۴ نفره، داوران ۲ کارت برمی‌گزینند.</p>
+<p>چرب‌زبان کارت‌ها را جمع می‌کند، آن‌ها را مخلوط می‌کند و در وسط میز رو می‌کند. داوران کارت‌های رو شده را بررسی می‌کنند؛ یک داور می‌تواند آن‌ها را با صدای بلند بخواند. هر یک از داوران برای اعلام آمادگیِ خود برای رأی‌دادن، انگشتش را بالا می‌برد.</p>
+<p>وقتی هیئت داوران آماده شد، بدون هیچ مشورتی، هر یک از اعضا هم‌زمان کارتی را که فکر می‌کند توسط چرب‌زبان بازی شده است با گذاشتنِ شیء کوچکِ منحصربه‌فردِ خود روی آن مشخص می‌کند (یا در صورت نبودِ آن، با گذاشتنِ انگشت).</p>
+<h3>5.       شمارش امتیاز</h3>
+<p>برنده‌ی دور کسی است که کارتش بیشترین تعداد رأی را به‌دست آورده باشد، چه چرب‌زبان باشد چه یکی از اعضای هیئت داوران (🥇👇👇…➜🏆). سپس کارت خود را که ۱ امتیاز دارد نگه می‌دارد و آن را به‌صورت رو به بالا جلوی خود می‌گذارد.</p>
+<p>در صورت تساوی (🥈👇👇≟🥈👇👇)، چرب‌زبان برنده می‌شود (✅🎭➜🎭🏆)، و اگر چرب‌زبان در میان افرادِ مساوی نباشد (❌🎭)، داورانِ پررأی که کارتِ چرب‌زبان را درست تشخیص داده‌اند همگی برنده اعلام می‌شوند (✅👇🎭➜👇🏆). اگر هیچ‌یک از داورانِ مربوطه آن را درست تشخیص نداده باشند، چرب‌زبان برنده می‌شود (❌👇🎭➜🎭🏆).</p>
+<h3>6.       برداشت کارت‌ها</h3>
+<p>پس از تعیین برنده، بازیکنان از ذخیره تعداد مشخصی کارت برمی‌دارند:</p>
+<ul>
+<li>برنده‌ی دور کارت جدیدی برنمی‌دارد. (✅🏆➜❌0🎴)</li>
+<li>همه‌ی بازیکنان دیگر یک کارت برمی‌دارند (❌🏆➜✅1🎴)، یا در بازیِ ۳ یا ۴ نفره ۲ کارت</li>
+<li>اعضای هیئت داورانی که رأی گرفته‌اند یک کارتِ اضافه برمی‌دارند (✅🧲👇➜✅+1🎴)</li>
+<li>داورانی که کارتِ چرب‌زبان را درست تشخیص داده‌اند یک کارتِ اضافه برمی‌دارند (✅👇🎭➜✅+1🎴)</li>
+<li>کارت‌های بازی‌شده به ذخیره بازگردانده می‌شوند.</li>
+<li>همسایه‌ی سمت چپِ برنده، کارت‌کشِ دور بعدی می‌شود.</li>
+</ul>","<h2>本轮流程</h2>
 <h3>1.       抽牌者</h3>
 <p>抽牌者从两个可用牌堆中抽取一张情景牌，并大声朗读，除了牌面底部斜体字的最后一句。</p>
 <h3>2.       诡辩者</h3>
@@ -2899,7 +3101,21 @@ AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78|Variants,60,Game Rule,AE1EDEFA-6F1B-4593-82
 <li>Si gana el lector, también se lleva la carta del embaucador.</li>
 <li>El embaucador puede jugar varias cartas. Se declaran tantos vencedores como cartas haya jugado el embaucador, por orden del número de votos; el embaucador puede llevarse todas o parte de sus cartas.</li>
 <li>El vencedor de la partida deberá encarnar al embaucador de un último escenario en el que tendrá que poner en juego todas las cartas que haya ganado durante la partida.</li>
-</ul>",,,"<ul>
+</ul>","<ul>
+<li>عند وجود 5 لاعبين أو أكثر، إذا حدّدت هيئة المحلّفين بأكملها بطاقة المغالِط، فإنه لا يفوز بالجولة، ويسحب كل لاعب بطاقة من الرصيد باستثناء المغالِط.</li>
+<li>خلال المشهد، يمكن لأي عضو من هيئة المحلّفين أن يستخدم بطاقة من يده للتدخل في دور الساحب. فإذا جسّد تدخّله بطاقته على نحو جيّد، يسحب بطاقة أخرى ويُعيَّن الساحب التالي، وإلا خسر بطاقته واستمرّت اللعبة من حيث توقفت.</li>
+<li>يحقّ للساحب أن يعيّن مباشرةً المغالِط الخاص بالجولة.</li>
+<li>إذا فاز الساحب، فإنه يفوز أيضًا ببطاقة المغالِط.</li>
+<li>يجوز للمغالِط أن يضع عدة بطاقات. ويُعلَن فائزون بعدد البطاقات التي وضعها المغالِط، حسب ترتيب عدد الأصوات، وقد يفوز المغالِط بكل بطاقاته أو ببعضها.</li>
+<li>يجب على الفائز باللعبة أن يتقمّص دور المغالِط في سيناريو أخير، حيث يتعيّن عليه أن يضع في اللعب جميع البطاقات التي ربحها خلال اللعبة.</li>
+</ul>","<ul>
+<li>با ۵ بازیکن یا بیشتر، اگر کارتِ چرب‌زبان به‌وسیله‌ی همه‌ی هیئت داوران تشخیص داده شود، او دور را نمی‌برد و همه به‌جز چرب‌زبان یک کارت از ذخیره برمی‌دارند.</li>
+<li>در طولِ نمایش کوتاه، هر عضو هیئت داوران می‌تواند از یک کارتِ دست خود استفاده کند و در نقشِ کارت‌کش مداخله کند. اگر مداخله‌اش کارتِ خودش را خوب نشان دهد، یک کارت دیگر می‌کشد و به‌عنوان کارت‌کشِ بعدی تعیین می‌شود؛ در غیر این صورت، کارت خود را از دست می‌دهد و بازی از سر گرفته می‌شود.</li>
+<li>کارت‌کش حق دارد مستقیماً چرب‌زبانِ دور را تعیین کند.</li>
+<li>اگر کارت‌کش برنده شود، کارتِ چرب‌زبان را هم می‌برد.</li>
+<li>چرب‌زبان می‌تواند چند کارت بگذارد. به تعداد کارت‌هایی که چرب‌زبان گذاشته است، به‌ترتیب تعداد رأی، برنده اعلام می‌شود و چرب‌زبان می‌تواند همه یا بخشی از کارت‌هایش را ببرد.</li>
+<li>برنده‌ی بازی باید در نقشِ چرب‌زبانِ یک سناریوی نهایی ظاهر شود که در آن باید همه‌ی کارت‌هایی را که طی بازی به‌دست آورده، به میدان بیاورد.</li>
+</ul>","<ul>
 <li>在有 5 名或更多玩家时，如果全体评审都指认出诡辩者的牌，则他不能赢得本轮，除诡辩者外每位玩家都从牌库抽 1 张牌。</li>
 <li>在短剧进行过程中，评审团中的任何成员都可以打出自己手牌中的一张牌，以抽牌者的身份插话。如果他的插话确实很好地体现了该牌内容，他就再抽 1 张牌，并成为下一位抽牌者；否则，他失去这张牌，游戏继续进行。</li>
 <li>抽牌者有权直接指定本轮的诡辩者。</li>
