@@ -105,5 +105,47 @@ namespace Argumentum.AssetConverter.Tests
 				.Single(e => (string?)e.Attribute("name") == "Email.Text");
 			Assert.Equal("Adresse de courriel :", (string?)data.Element("value"));
 		}
+
+		/// <summary>
+		/// #458 — the pt-BR skin files were byte-copies of es-ES (« Iniciar » / « Salir »).
+		/// The arbitrated pt-BR chrome labels are « Entrar » / « Sair » (ai-01, 26/10).
+		/// </summary>
+		public static IEnumerable<object[]> PtBrSkinLoginCells()
+		{
+			yield return new object[] { "admin/Skins/App_LocalResources/Login.ascx", "Login.Text", "Entrar" };
+			yield return new object[] { "admin/Skins/App_LocalResources/Login.ascx", "Logout.Text", "Sair" };
+			yield return new object[] { "admin/Skins/App_LocalResources/UserAndLogin.ascx", "Login.Text", "Entrar" };
+			yield return new object[] { "admin/Skins/App_LocalResources/UserAndLogin.ascx", "Logout.Text", "Sair" };
+		}
+
+		[Theory]
+		[MemberData(nameof(PtBrSkinLoginCells))]
+		public void PtBrSkinLoginLabelsUseEntrarSair(string stem, string key, string expected)
+		{
+			var file = Path.Combine(DnnRoot, stem + ".pt-BR.resx");
+			Assert.True(File.Exists(file), $"missing culture file: {file}");
+			var data = XDocument.Load(file).Root!.Elements("data")
+				.Where(e => (string?)e.Attribute("name") == key).ToArray();
+			Assert.True(data.Length == 1, $"pt-BR:{key} must occur exactly once in {stem}");
+			Assert.Equal(expected, (string?)data[0].Element("value"));
+		}
+
+		[Fact]
+		public void PtBrSkinFilesCarryNoSpanishLoginLabels()
+		{
+			// Pins the defect signature, not just the new values: both carriers must
+			// be free of the es-ES strings they were copied from. Bounded to these two
+			// skin files — « Iniciar » is legitimate pt elsewhere (Start, installer).
+			foreach (var stem in new[]
+			{
+				"admin/Skins/App_LocalResources/Login.ascx",
+				"admin/Skins/App_LocalResources/UserAndLogin.ascx",
+			})
+			{
+				var text = File.ReadAllText(Path.Combine(DnnRoot, stem + ".pt-BR.resx"));
+				Assert.DoesNotContain("Iniciar", text);
+				Assert.DoesNotContain("Salir", text);
+			}
+		}
 	}
 }
