@@ -37,10 +37,10 @@
     <value xml:space="preserve">1 mensagem</value>
   </data>
   <data name="Profile.Text">
-    <value xml:space="preserve">Mi perfil</value>
+    <value xml:space="preserve">Meu perfil</value>
   </data>
   <data name="ProfilePicture.Text">
-    <value xml:space="preserve">Mi imagen</value>
+    <value xml:space="preserve">Minha foto de perfil</value>
   </data>
   <data name="Register.Text">
     <value xml:space="preserve">Registrar</value>
