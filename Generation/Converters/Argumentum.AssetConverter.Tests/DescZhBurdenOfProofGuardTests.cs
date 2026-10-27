@@ -57,7 +57,8 @@ namespace Argumentum.AssetConverter.Tests
             var row = RowByPk("989");
 
             // Ancrage d'identité : la garde doit parler de LA carte arbitrée, pas d'une autre.
-            row.GetValueOrDefault("text_fr")?.Trim().Should().Be("Renverser la charge de la preuve",
+            // Parenthèses obligatoires : « ?.Trim().Should() » sauterait l'assertion si la colonne manquait.
+            (row.GetValueOrDefault("text_fr")?.Trim()).Should().Be("Renverser la charge de la preuve",
                 "la garde doit rester ancrée sur la carte arbitrée par c.5964429559");
 
             var descZh = row.GetValueOrDefault("desc_zh") ?? string.Empty;
