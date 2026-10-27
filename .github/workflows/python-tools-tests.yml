@@ -1,4 +1,4 @@
-# Tests Python offline std-lib : garde d'arbre #1460 + suite DNN i18n #457 (charpente #1460).
+# Tests Python offline std-lib : garde d'arbre #1460 + suite DNN i18n #457 + gardes export EAV #458 (charpente #1460).
 #
 # POURQUOI UN WORKFLOW DISTINCT DE build.yml
 #   build.yml est le pipeline dotnet principal : il fait tourner 1129 tests .NET a
@@ -17,7 +17,7 @@
 #   d'execution sera documentee. C'est la distinction posee en tete de
 #   docs/quality/1460-charpente-suite-regression.md.
 #
-#   CABLES A CE JOUR (2), avec la condition qui les autorise ici :
+#   CABLES A CE JOUR (3), avec la condition qui les autorise ici :
 #     1. tools/test_1460-structure-charpente-pilot.py -- std-lib, 7 cas, arbres
 #        synthetiques ; aucun Target/ requis (le cas 7 est un grounding sur le depot
 #        reel, volontairement NON asserte).
@@ -27,6 +27,13 @@
 #        **aucun appel d'API paye** (translate_game_rules.py, le traducteur, n'est PAS
 #        execute par ce test). 5 etapes, dont le self-test du pipeline site-content
 #        (2 round-trips + 19 controles).
+#     3. tools/test_458-eav-export-guards.py -- std-lib, offline, 20 cas. Charge
+#        tools/458-eav-content-export.py SANS se connecter a la base (aucun
+#        web.config lu) et eprouve ses gardes sur des rangees synthetiques : RawData
+#        (soumissions visiteurs, app 50) refuse a la config, dans le SQL et par
+#        rangee ; champs app 50 re-derives des vues committees du formulaire ;
+#        app 48 bornee a l'entite mesuree E10181 ; temoins. Lit seulement des
+#        fichiers committes (vues + registre).
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
 #   - push sur master     : AUCUN declencheur declare. ⚠️ Ce n'est PAS obtenu par
@@ -90,3 +97,16 @@ jobs:
         # les fixtures sont committeés, donc la CI est ici un cas NOMINAL.
         # translate_game_rules.py (le traducteur qui appelle l'API) n'est PAS execute.
         run: python tools/dnn_i18n/test_roundtrip.py
+
+  eav-export-guards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run the EAV export guard contract (#458 item 7)
+        # 20 cas, std-lib, offline : aucune connexion, aucun web.config. Le module est
+        # charge pour ses fonctions de garde ; fetch_rows (la seule a lire la base)
+        # n'est jamais appele - finish_rows, son post-traitement, l'est.
+        run: python tools/test_458-eav-export-guards.py
