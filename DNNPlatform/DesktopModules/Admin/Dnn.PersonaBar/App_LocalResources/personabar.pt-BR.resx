@@ -85,7 +85,7 @@
     <value xml:space="preserve">Painel</value>
   </data>
   <data name="nav_DocCenter.Text">
-    <value xml:space="preserve">Documentos</value>
+    <value xml:space="preserve">Central de documentação</value>
   </data>
   <data name="nav_Edit.Text">
     <value xml:space="preserve">Editar</value>
@@ -106,13 +106,13 @@
     <value xml:space="preserve">Gerenciar</value>
   </data>
   <data name="nav_Settings.Text">
-    <value xml:space="preserve">Configuração</value>
+    <value xml:space="preserve">Configurações</value>
   </data>
   <data name="nav_Site.Text">
     <value xml:space="preserve">Ver o site</value>
   </data>
   <data name="nav_SiteAssets.Text">
-    <value xml:space="preserve">Recursos do portal</value>
+    <value xml:space="preserve">Recursos do site</value>
   </data>
   <data name="nav_Tasks.Text">
     <value xml:space="preserve">Tarefas</value>
@@ -145,7 +145,7 @@
     <value xml:space="preserve">Excluir</value>
   </data>
   <data name="permissiongrid.Display Name.Text">
-    <value xml:space="preserve">Nome:</value>
+    <value xml:space="preserve">Nome de exibição:</value>
   </data>
   <data name="permissiongrid.Edit Content.Text">
     <value xml:space="preserve">Editar conteúdo</value>
