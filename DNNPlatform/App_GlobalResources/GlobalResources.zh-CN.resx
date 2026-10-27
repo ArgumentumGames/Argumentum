@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MESSAGE_PORTAL_TERMS.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;div style=&quot;padding: 0px 15px 0px 20px&quot;&gt;&lt;p align=&quot;left&quot;&gt;&lt;em&gt;本页为法文原文的译文；如译文与法文版本有任何不一致之处，以法文版本为准。&lt;/em&gt;&lt;/p&gt;
+	&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;法律声明：&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;&lt;strong&gt;网站标识&lt;br&gt;&lt;/strong&gt;以下信息系依据2004年6月21日关于&lt;br&gt;&lt;b&gt;数字经济信任&lt;/b&gt;&lt;br&gt;的第2004-575号法律第6条提供（&lt;a target=&quot;_blank&quot; href=&quot;https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000801164&quot;&gt;查阅现行法律文本&lt;/a&gt;） &lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;&lt;b&gt;“Argumentum”网站由以下主体发布：&lt;/b&gt;&lt;/p&gt;
+&lt;div style=&quot;text-align:center;border:1px solid black;&quot;&gt;&lt;em&gt;ARGUMENTUM SAS, 5 B RUE MARTEL, 75010 PARIS 10&lt;/em&gt;&lt;br&gt;
+		SIREN: 922020276&lt;br&gt;&lt;/div&gt;
+&lt;p align=&quot;center&quot;&gt;&lt;strong&gt;以下简称“网站发布者”&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;
+（“Argumentum”网站的所有者和运营者）&lt;br&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;&lt;b&gt;“Argumentum”网站由以下主体托管：&lt;/b&gt;&lt;/p&gt;
+&lt;div style=&quot;text-align:center;border:1px solid black;&quot;&gt;&lt;em&gt;MY INTELLIGENCE AGENCY, 5 B RUE MARTEL, 75010 PARIS 10&lt;br&gt;&lt;/em&gt;&lt;/div&gt;
+&lt;p align=&quot;center&quot;&gt;&lt;b&gt;以下简称“托管服务商”&lt;/b&gt;&lt;/p&gt;
+	&lt;p align=&quot;center&quot;&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;接受与使用相关的条款&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;网站发布者拥有并运营本网站。使用本网站即表示您接受本文件所载及所引述的全部条款、条件和通知（“使用条款”）。本一般使用条款仅适用于本网站及本网站的服务，不适用于任何第三方网站。 &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;如您不接受本使用条款，请勿使用本网站。我们保留自行决定更新或修改使用条款的权利。因此，请定期查阅使用条款，以了解其是否已被修改。如您在修改内容发布后继续使用本网站，我们将视为您接受对使用条款的修改。 &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;所有权&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;您承认并同意，本网站提供的全部内容和资料，包括但不限于卡牌、程序和软件、数据库、文字、照片、影片、声音、音乐、版式设计和标志，均受著作权、数据库保护权、注册商标、服务商标、专利、商业秘密或其他所有权权利及法律的保护。所提供的内容和资料或由网站发布者独家拥有和控制，或经许可使用。本使用条款适用于本网站提供的全部内容和资料。 &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;此外，当您使用经第三方许可的内容和资料时，您可能受该第三方许可协议的约束。当您接收来自第三方的信息时，该第三方的身份将通过标志或其他标识向您说明。 &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;有限许可的授予&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;本网站提供的内容和资料可能包含其他所有权声明，或描述属于第三方的产品、服务、流程或技术。除下文明确规定的有限使用权外，本文件的任何部分均不得被视为向用户授予第三方所持有的著作权、商标、专利或任何其他知识产权的许可： &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;在非独占且不可转让的许可范围内，您可以打印本网站资料或内容的一份副本，或将其下载至单台个人计算机，供您个人非商业用途使用，但您须完整保留所有著作权及所有权声明。您可以出于合法目的及个人用途使用本网站，但在任何情况下均不得用于营利或商业目的。如您希望获取资料以撰写有关本网站的文章，可应您的要求提供新闻资料包，且仅该新闻资料包中所含照片可予发表。 &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;您承诺绝不出售、许可、出租、分发、传输、复制、翻印、公开展示、公开表演、发表、改编、编辑、修改、反编译、反汇编该等内容或资料，绝不对程序逻辑进行逆向工程，亦绝不基于该等内容或资料创作衍生作品。您承诺绝不将本网站提供的内容或资料用于任何商业目的。未经网站发布者书面授权，禁止系统性地从本网站获取数据或其他内容，以直接或间接地创建或建立汇集、汇编、数据库或目录。此外，禁止将内容或资料用于本使用条款未明确授权的任何目的。您对内容、资料及其衍生物不享有任何所有权，网站发布者是该等权利的唯一持有者。 &lt;/p&gt;
+&lt;p&gt;&lt;b&gt;违反本使用条款任何一项条款，本许可即自动终止，网站发布者无需事先通知。&lt;/b&gt;&lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;本网站的使用&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;您不得将本网站或其服务用于非法目的，例如发布、分发或传播非法资料或信息，尤其是： &lt;/p&gt;
+&lt;ul align=&quot;left&quot; type=&quot;disc&quot;&gt;
+&lt;li&gt;
+&lt;p align=&quot;left&quot;&gt;属于第三方的任何专有数据，尤其是注册商标及受著作权保护的数据（您持有许可的除外）； &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align=&quot;left&quot; type=&quot;disc&quot;&gt;
+&lt;li&gt;
+&lt;p align=&quot;left&quot;&gt;任何错误、诽谤、淫秽、种族主义或煽动仇恨的内容； &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align=&quot;left&quot; type=&quot;disc&quot;&gt;
+&lt;li&gt;
+&lt;p align=&quot;left&quot;&gt;任何旨在骚扰第三方或侵害其隐私的内容； &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align=&quot;left&quot; type=&quot;disc&quot;&gt;
+&lt;li&gt;
+&lt;p align=&quot;left&quot;&gt;任何以种族、民族或国籍差异为由煽动犯罪、自杀、歧视、仇恨或暴力的内容； &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align=&quot;left&quot; type=&quot;disc&quot;&gt;
+&lt;li&gt;
+&lt;p align=&quot;left&quot;&gt;任何可能损害未成年用户或侵犯人格尊严的内容； &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align=&quot;left&quot; type=&quot;disc&quot;&gt;
+&lt;li&gt;
+&lt;p align=&quot;left&quot;&gt;任何美化纳粹主义或否认大屠杀的内容。 &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p align=&quot;justify&quot;&gt;此外，您不得利用本网站收集本网站其他用户的个人信息，尤其是其互联网地址。 &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;不作保证声明&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;所有内容均为Argumentum网站所专有。本网站可能包含技术性不准确之处或排印错误。网站发布者保留在不事先通知的情况下修改或删除本网站上出现的任何信息或内容的权利。网站发布者及其内容提供商，以及为本网络应用程序运行提供互联网服务的公司，均不对其内容提供任何保证。用户自行承担使用的全部风险。网站发布者、其供应商或其服务提供商对本网站所含信息资料的使用不承担任何责任。 &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;本网站提供的内容和资料不附带任何明示或默示的保证。网站发布者或托管服务商、其母公司或关联公司或其各自员工提供的任何意见或信息均不构成保证。网站发布者、托管服务商及其母公司或关联公司均不保证本网站内容和资料的精确性、可靠性和准确性；亦不保证本网站在任何地点、任何时间均可访问；亦不保证内容、信息和软件以及可通过本网站访问的任何资料中不含病毒或其他有害成分。 &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;br&gt;&lt;strong&gt;责任限制&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;&lt;br&gt;对于因使用或无法使用本网站或通过本网站可访问的内容和资料而造成的任何直接或间接损害，包括但不限于&lt;st1:personname productid=&quot;LA PERTE DE&quot; w:st=&quot;on&quot;&gt;丧失&lt;/st1:personname&gt;利润、客户或数据，网站发布者、托管服务商、其母公司或关联公司、合作伙伴、子公司或许可方在任何情况下均不承担责任。即使网站发布者或托管服务商已被告知发生此类损害的可能性，本限制在侵权和合同领域均同样适用。 &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;赔偿&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;应网站发布者的要求，对于因您使用本网站或在使用本网站过程中的过错而引起的针对网站发布者、其母公司或关联公司、合作伙伴、子公司或许可方及其员工、承包商、代理人和管理人员的责任追究，以及相关索赔和费用（包括律师费），您承诺予以赔偿。在可能的范围内，对于您应当提供赔偿的任何事项，您同意配合网站发布者进行抗辩。 &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;第三方网站&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;通过引用品牌名称、注册商标、制造商、供应商或其他方式提及第三方的产品、服务、流程、超链接或其他信息，均不构成亦不暗示网站发布者、其母公司或关联公司、合作伙伴、子公司或许可方对其予以认可、担保或推荐。此外，本网站可能尤其通过自动搜索方式将您引向其他互联网网站，但该等网站不受网站发布者控制。您承认，网站发布者对第三方网站的准确性、著作权遵守情况、合法性、得体性或任何其他方面概不负责。 &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;&lt;b&gt;任何从第三方网站链接至本网站的超链接，尤其是指向首页以外页面的链接，均须事先征得网站发布者的同意。可通过本网站提供的联系表单发送信函申请该等同意。&lt;/b&gt; &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;隐私政策&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;网站发布者奉行保护其用户隐私的原则。本网站每个页面的页脚处均设有指向网站发布者所制定隐私政策（隐私声明）的链接。请予以查阅。 &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;用户向网站发布者授予有限许可&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;通过向本网站发布、提交或以任何其他方式传输信息、内容或资料，包括但不限于反馈（信息反馈）、数据、答复、问题、评论、建议、方案、想法等， &lt;/p&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;
+&lt;p align=&quot;justify&quot;&gt;除法律另有规定外，您授权网站发布者、其母公司和关联公司、合作伙伴、子公司及被许可方，以任何形式、在任何地点、出于任何商业或非商业目的，使用、复制、展示、表演、改编、修改、分发、委托分发和推广该等信息、内容或资料，不附加任何限制，亦不要求任何补偿；并且 
+&lt;/p&gt;&lt;/li&gt;&lt;li&gt;
+&lt;p align=&quot;justify&quot;&gt;您保证并声明，您拥有或以其他方式控制与该内容相关的全部权利，且网站发布者对您内容的公开传播和使用不会影响或侵犯任何第三方的权利。 &lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;用户对审查和披露的同意&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;网站发布者没有义务审查存放于其网站上或传输至其网站的信息。但是，任何使用本网站的人均同意网站发布者定期审查本网站的内容，以便：（1）遵守法律、法规或主管机关的要求；（2）使本网站正常运行，或保护其自身及其用户；或（3）出于其自行决定的任何其他理由。如网站发布者自行认定存放于本网站上或传输至本网站的任何信息不可接受或违反本使用条款，网站发布者保留修改、拒绝或删除该信息的权利。 &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;除法律另有规定外，如本网站数据的用户向本网站提供信息，包括但不限于数据、答复、问题、评论、建议、方案、想法等，该等信息将被视为非保密信息，网站发布者不承诺防止其被披露。 &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;侵权投诉程序&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;如您认为您的作品遭到复制，且以构成侵权的方式可在本网站上访问，您可通过本网站提供的联系表单通知网站发布者。 &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;适用法律和管辖法院&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;本使用条款受法国法律管辖并依其解释。规范您使用本网站上第三方资料的许可协议可能包含要求由外国法院解决与该等协议相关争议的条款。 &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;可分割性与完整性&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;除本文件另有说明外，本协议构成您与网站发布者之间就本网站订立的完整合同，并取代您与网站发布者、其母公司或关联公司或许可方之间此前或同时就本网站进行的所有沟通和提议（无论口头、书面或电子形式）。如本使用条款的任何部分被认定为无效或不可执行，该部分应依照现行法律予以解释，以尽可能体现各方的原始意图，本条款的其余部分继续有效。 &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;&lt;strong&gt;终止&lt;/strong&gt;&lt;br&gt;&lt;br&gt;网站发布者保留自行决定终止您访问本网站全部或部分内容的权利，无论是否事先通知。 &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;出口&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;您承诺，除符合现行出口相关法律、法规和规则外，绝不将向您提供的内容或资料的任何部分，或直接通过该等内容或资料获得的任何产品，出口至任何目的地。 &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;著作权及注册商标声明&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;Argumentum。保留所有权利。 &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;严禁复制本网站的任何资料或本网站上的任何其他内容，本文件明确允许的除外。使用本网站提供的所有文件和相关图形以及任何其他资料，均须遵守上述使用条款。 &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;注册商标&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;Argumentum名称、其标志以及与之相关的所有产品和服务名称、图案商标和标语，均为网站发布者的注册商标、服务商标或注册商业商标，未经其事先书面同意，不得用于商业目的。本网站上的所有其他产品和服务商标均为其各自所有者的注册商标。 &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;其他著作权声明&lt;/strong&gt; &lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;其他著作权声明涉及用于创建本互联网服务的第三方数据。 &lt;/p&gt;
+&lt;p align=&quot;left&quot;&gt;&lt;strong&gt;联系方式&lt;/strong&gt;&lt;/p&gt;
+&lt;p align=&quot;justify&quot;&gt;如需进一步了解本使用条款所涉法律问题，或有关本服务的疑问或问题，请通过本网站向您提供的联系表单来函。 &lt;/p&gt;&lt;/div&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="MESSAGE_PORTAL_PRIVACY.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;div style=&quot;padding: 0px 15px 0px 20px&quot;&gt;&lt;p align=&quot;left&quot;&gt;&lt;em&gt;本页为法文原文的译文；如译文与法文版本有任何不一致之处，以法文版本为准。&lt;/em&gt;&lt;/p&gt;&lt;h1 align=&quot;center&quot;&gt;
+网站隐私声明：&lt;/h1&gt;
+	&lt;h1 align=&quot;center&quot;&gt;
+[Portal:PortalName]&lt;/h1&gt;&lt;p align=&quot;left&quot;&gt;
+	&lt;a name=&quot;AAAA&quot;&gt;&lt;b&gt;最后更新日期&lt;/b&gt;&lt;/a&gt;：30/01/2005&lt;/p&gt;
+	&lt;p align=&quot;justify&quot;&gt;
+	在[Portal:PortalName]网站（以下简称“本网站”）上，我们致力于保护您的个人数据。本隐私声明仅适用于本网站，不适用于其他网站（无论是否在线），亦不适用于其他产品或服务。访问本网站即表示您同意记录您的信息，并同意本隐私声明中所述的使用条款。 &lt;/p&gt;
+	&lt;h5 style=&quot;padding-top: 2px&quot; align=&quot;left&quot;&gt;
+	本页内容&lt;/h5&gt;
+	&lt;div align=&quot;left&quot;&gt;
+		&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;margin-top: 7px; margin-bottom: 12px&quot;&gt;&lt;tr valign=&quot;top&quot;&gt;&lt;td class=&quot;onThisPage&quot;&gt;
+		&lt;ul&gt;
+			&lt;li&gt;
+			&lt;p align=&quot;left&quot;&gt;&lt;a href=&quot;#EKAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;收集您的个人信息&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;
+			&lt;p align=&quot;left&quot;&gt;&lt;a href=&quot;#EJAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;使用您的个人数据&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align=&quot;left&quot;&gt;&lt;a href=&quot;#EIAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;控制您的个人信息&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align=&quot;left&quot;&gt;&lt;a href=&quot;#EHAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;访问您的个人数据&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align=&quot;left&quot;&gt;&lt;a href=&quot;#EGAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;您的个人信息的安全&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align=&quot;left&quot;&gt;&lt;a href=&quot;#EFAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;保护儿童的个人信息&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align=&quot;left&quot;&gt;&lt;a href=&quot;#EEAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;Cookie&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align=&quot;left&quot;&gt;&lt;a href=&quot;#EEAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;本隐私声明的执行&lt;/font&gt;&lt;/li&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align=&quot;left&quot;&gt;&lt;a href=&quot;#EBAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;本隐私声明的修改&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align=&quot;left&quot;&gt;&lt;a href=&quot;#EAAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;联系方式&lt;/font&gt;&lt;/ul&gt;
+			&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+	&lt;a name=&quot;EKAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;left&quot;&gt;收集您的个人信息&lt;/h2&gt;&lt;p align=&quot;justify&quot;&gt;当我们需要可识别您个人身份的数据（个人信息）或需要与您联系时，我们将要求您提供信息。一般而言，在我们向您提供您所请求的服务或进行您所请求的交易时，需要此类信息，例如：获取本网站产品和服务的信息、报名参加竞赛、订阅电子邮件新闻简报、访问限制访问的优先网站，或在本网站上购买和注册产品。我们收集的个人信息可能包括您的姓名、职务、公司或组织名称、工作电子邮件地址、工作电话号码、工作或家庭邮政地址、有关您的职务或公司的信息，以及您的信用卡信息。  &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;本网站还可能收集有关您访问的信息，包括您用于访问互联网的互联网接入服务提供商名称和IP地址、访问本网站的日期和时间、您在本网站上访问的页面，以及您进入本网站之前所在网站的URL。此类信息用于趋势分析以及本网站的管理和改进。&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;为避免您的电子邮件地址或其他个人信息被他人获取和滥用，我们建议您在讨论组、聊天或其他公共论坛中谨慎使用现有电子邮件地址或其他个人信息。&lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
+		&lt;p align=&quot;left&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;返回页首&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EJAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;left&quot;&gt;使用您的个人数据&lt;/h2&gt;&lt;p align=&quot;justify&quot;&gt;在本网站上收集的个人信息用于本网站的运行，并使我们能够向您提供您所请求或授权的服务，或完成您所请求或授权的交易。  &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;在上述使用范围内，本网站可使用个人信息，以便向您提供更有效的客户服务，改进本网站及本网站的任何其他产品或服务，并通过免去您多次输入相同信息或根据您的偏好或兴趣调整本网站，使您的浏览更加便捷。为了在您与本网站的互动中为您提供一致的环境，所收集的信息可能会与本网站其他服务所收集的信息结合使用。&lt;/p&gt;
+	&lt;p align=&quot;justify&quot;&gt;
+	我们可能使用您的个人信息，向您发送有关您所使用的产品或服务的重要信息。&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;我们将网站访问数据与匿名人口统计数据相结合以开展研究；所获得的信息量用于向您提供您所期望的内容。在本网站的某些限制访问区域，经您同意，我们将把网站访问数据与您的个人数据相结合，以便向您提供个性化内容。未经您授权，我们将无法向您提供个性化服务，也不能将您的个人数据与网站访问数据相结合。&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt; 当您订阅新闻简报或表示希望接收广告电子邮件时，本网站可能使用个性化链接或其他类似技术，以追踪您在电子邮件中点击的链接。我们可能将此类信息与您的个人信息相关联，以便向您发送更具针对性的消息或信息。&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;本网站的某些服务为个人提供公开展示某些个人信息的可能性，例如我们的某一合作伙伴希望在其所提供的服务范围内发布其联系信息。参与此类服务始终是自愿的。 &lt;/p&gt;
+	&lt;p align=&quot;justify&quot;&gt;本网站有时会委托其他公司代为提供某些服务，例如网站托管、奖品的包装、发运和交付、回答客户就产品和服务提出的问题，或发送有关我们的产品、特别优惠或其他新服务的信息。我们仅向这些公司传送其提供服务所必需的个人信息。这些公司须对此类信息予以保密，且在任何情况下均不得将其用于其他目的。 &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;我们仅在法律要求时，或我们本着诚信原则认为有必要遵守法令或法律程序、保护和捍卫我们的权利或财产，以及在紧急情况下为保护我们员工和本网站用户的人身安全而采取行动时，才会披露您的个人信息。 &lt;/p&gt;
+	&lt;p align=&quot;justify&quot;&gt;在本网站上收集的个人信息可能由其子公司、合作伙伴或代理人在法国或其所在的任何其他国家存储和使用。使用本网站即表示您同意将您的个人信息如此传输至您所在国家以外。&lt;/p&gt;
+	&lt;p align=&quot;justify&quot;&gt;我们尊重并遵守&lt;a href=&quot;http://www.cnil.fr/index.php?id=301&quot; target=&quot;_new&quot;&gt;&lt;b&gt;1978年1月6日法律&lt;/b&gt;&lt;/a&gt;（链接至CNIL网站）。 &lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
+		&lt;p align=&quot;left&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;返回页首&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EIAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;left&quot;&gt;控制您的个人信息&lt;/h2&gt;&lt;p align=&quot;justify&quot;&gt;除本声明另有说明外，未经您授权，您在本网站上提供的个人信息不会传送至其子公司和合作伙伴以外。如下一节所述，您可以访问您的个人信息，并选择您希望被联系的方式。&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;本隐私声明以及您在本网站上所作的选择，不一定适用于您在其他独立产品或服务中向我们提供的个人信息。&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;我们可能会定期向您发送电子邮件，告知您与您所请求的产品或服务相关的技术服务或安全问题，或确认收到产品或服务请求。在本网站提供的某些服务中，与客户的联系是服务的基本组成部分。由于此类邮件是您所选择服务不可分割的一部分，您将无法取消订阅。&lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
+		&lt;p align=&quot;left&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;返回页首&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EHAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;left&quot;&gt;访问您的个人数据&lt;/h2&gt;
+	&lt;p align=&quot;left&quot;&gt;
+	您在本网站上完成身份验证后，可以更正您的个人数据和联系信息。&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;我们提供的某些服务可能会收集无法通过您的个人设置访问的信息。但在此情况下，您可以按照本声明底部所述方式与我们联系，或通过该服务所述的其他沟通渠道，访问您的个人数据。 &lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
+		&lt;p align=&quot;left&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;返回页首&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EGAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;left&quot;&gt;您的个人信息的安全&lt;/h2&gt;&lt;p align=&quot;justify&quot;&gt;我们严格保证保护您的个人信息。我们采用多种安全技术和程序来保护您的个人数据，防止其在未经授权的情况下被查阅、使用或披露。例如，我们将您提供的数据存储在访问受限且位于受监控设施内的服务器上。此外，当我们通过互联网传输敏感的机密信息（例如信用卡号码）时，此类信息将通过SSL（Secure Socket Layer，安全套接层）协议等加密系统或任何其他可对此类信息进行加密的技术予以保护。 &lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
+		&lt;p align=&quot;left&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;返回页首&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EFAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;left&quot;&gt;保护儿童的个人信息&lt;/h2&gt;&lt;p align=&quot;left&quot;&gt;本网站不会有意收集儿童的个人信息。&lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
+		&lt;p align=&quot;left&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;返回页首&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EEAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;left&quot;&gt;Cookie &lt;/h2&gt;
+	&lt;p align=&quot;justify&quot;&gt;本网站使用Cookie来确保注册过程的完整性并实现本网站的个性化。Cookie是由网页服务器放置在您硬盘上的小型文本文件。它不能用于运行程序或使您的计算机感染病毒。Cookie专门发送给您，且仅能由向您发送该Cookie的域名所属的网页服务器读取。 &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;Cookie的主要实用功能之一是为您节省时间。例如，如果您对某一网页进行个性化设置或浏览某一网站，Cookie将帮助该网站在您后续访问时找到您的特定信息。这尤其可以简化向您提供感兴趣内容的过程以及在网站上的浏览。当您再次访问该网站时，您之前提供的信息将被再次使用，以便您更轻松地使用您已个性化设置的网站功能。&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;我们还可能使用透明像素（亦称透明GIF）来协助设置Cookie。我们将此技术用作汇编本网站使用情况统计数据的工具。此类统计数据包括点击本网站网页、网络日志页面或新闻简报中关键元素（例如链接或图形）的访问者人数。我们可能与合作伙伴公司共享汇编的统计数据，但我们不允许其他公司在我们的网站上放置.gif图像或Cookie，但为我们客户的临时特殊利益之情形除外（例如集成基于第三方Cookie或透明.gif的网站服务）。&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;您可以接受或拒绝Cookie。大多数网页浏览器会自动接受Cookie，但如您愿意，您可以修改浏览器设置，拒绝Cookie访问您的计算机。如果您选择拒绝Cookie，您可能无法完全使用本网站或您所访问的其他网站的互动功能。 &lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
+		&lt;p align=&quot;left&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;返回页首&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EDAA&quot;&gt;&lt;/a&gt;&lt;a name=&quot;ECAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;left&quot;&gt;本隐私声明的执行&lt;/h2&gt;&lt;p align=&quot;left&quot;&gt;如您对本声明有任何疑问，请通过我们为您提供的表格与我们联系，您在完成身份验证后即可访问该表格。&lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
+		&lt;p align=&quot;left&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;返回页首&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EBAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;left&quot;&gt;本隐私声明的修改&lt;/h2&gt;&lt;p align=&quot;justify&quot;&gt;我们会不时更新本隐私声明。在此情况下，我们还将更正本隐私声明顶部的“&lt;a href=&quot;#AAAA&quot;&gt;&lt;b&gt;最后更新&lt;/b&gt;&lt;/a&gt;”日期。如本声明发生重大修改，我们将通过在本网站首页发布醒目通知或直接向您发送通知的方式告知您。我们鼓励您定期查阅本隐私声明，以了解我们如何帮助保护我们所收集的个人信息。继续使用本服务即构成您对本隐私声明及其更新的同意。 &lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
+		&lt;p align=&quot;left&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;返回页首&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EAAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;left&quot;&gt;联系方式&lt;/h2&gt;
+	&lt;p align=&quot;justify&quot;&gt;我们欢迎您就本隐私声明提出意见。如您认为本网站未遵守本隐私声明，请通过电子方式或按照&lt;a href=&quot;/terms&quot;&gt;&lt;b&gt;使用条款&lt;/b&gt;&lt;/a&gt;中所载地址通过邮寄方式与我们联系，我们将采取一切合理措施，迅速查明问题并予以纠正。&lt;/p&gt;
+	&lt;p align=&quot;left&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;返回页首&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+</root>

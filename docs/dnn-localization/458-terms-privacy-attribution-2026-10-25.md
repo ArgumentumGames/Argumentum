@@ -68,6 +68,13 @@ réelles ; traduire depuis en donne la version générique. Ce choix n'est pas i
 - Vérification post-geste attendue : `/zh/terms` ≠ sha `7992E63C335B` et 8/8 blocs
   distincts.
 
+> **Erratum 27/10 (exécution du grain, po-2024)** — « sans BOM » ci-dessus ne décrit pas la
+> convention du dépôt : mesuré par bytes le 27/10, `App_GlobalResources/*.resx` = **38 avec
+> BOM / 2 sans**, et les resx zh-CN/ar-SA/fa-IR déjà livrés (#1995) = **12 avec / 3 sans**,
+> servis sans défaut dans les deux cas. Les trois fichiers du grain suivent la majorité
+> (UTF-8 **avec** BOM, LF) ; le BOM n'est pas un critère d'acceptation. Texte d'origine
+> laissé en place : cette page est une mesure datée.
+
 ## 4. Pièges d'instrument rencontrés
 
 - **Suffixe `.Text`** : la clé resx est `MESSAGE_PORTAL_TERMS.Text` ; sonder le nom nu
