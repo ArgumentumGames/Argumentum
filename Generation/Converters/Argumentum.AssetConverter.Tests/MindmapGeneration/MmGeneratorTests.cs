@@ -91,7 +91,9 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 xmlDoc.Root!.Name.LocalName.Should().Be("map");
 
                 // Validate root node (TitleFunc uses TitleExpression = "{item.TextFr}")
-                xmlDoc.Root.Element("node")?.Attribute("TEXT")?.Value.Should().Be("Sophismes");
+                // Parenthesised: "?.Value.Should()" would skip the assertion when the node or attribute is missing.
+                (xmlDoc.Root.Element("node")?.Attribute("TEXT")?.Value).Should().Be("Sophismes",
+                    "the root node of the generated mindmap carries the root fallacy title");
 
                 foreach (var fallacy in fallacies)
                 {
