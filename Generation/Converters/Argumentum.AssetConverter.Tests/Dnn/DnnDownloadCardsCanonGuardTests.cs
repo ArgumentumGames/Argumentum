@@ -67,6 +67,19 @@ namespace Argumentum.AssetConverter.Tests
 			["fa"] = new[] { "کارت", "های", "نسخه" }, ["zh"] = Array.Empty<string>(),
 		};
 
+		// guillemets du nom « Print and Play », selon la norme de chaque langue (pool #458, typographie P&P) : fr « » avec
+		// insécables intérieures (U+00A0, convention de DnnLegalMentionsResxGuardTests), en / pt-BR / zh “ ”, ru / es / ar / fa « » sans espace
+		private static readonly Dictionary<string, (string Open, string Close)> PrintAndPlayQuotes = new Dictionary<string, (string, string)>
+		{
+			["fr"] = ("«\u00a0", "\u00a0»"), ["en"] = ("“", "”"), ["ru"] = ("«", "»"), ["pt"] = ("“", "”"),
+			["es"] = ("«", "»"), ["ar"] = ("«", "»"), ["fa"] = ("«", "»"), ["zh"] = ("“", "”"),
+		};
+
+		private static readonly string[] QuoteMarks = { "\"", "«", "»", "“", "”", "„", "‹", "›" };
+
+		private static Regex QuotedName(string lang) =>
+			new Regex(Regex.Escape(PrintAndPlayQuotes[lang].Open) + "(.+?)" + Regex.Escape(PrintAndPlayQuotes[lang].Close));
+
 		// séparateurs du cadre : blanc, tiret long, apostrophe, ZWNJ et hamza suscrite de l'ezafe persan (ـهٔ)
 		private static readonly Regex FrameToken = new Regex("[^\\s—’‌ٔ]+");
 
@@ -253,6 +266,37 @@ namespace Argumentum.AssetConverter.Tests
 					.Should().BeEmpty($"{card} [{lang}] : rien d'autre que paquet, « Print and Play » et variante (« {title} »)");
 			}
 			titles.Should().OnlyHaveUniqueItems($"[{lang}] quatre titres distincts");
+		}
+
+		[Fact]
+		public void PrintAndPlay_Fr_Quote_Witness()
+		{
+			// témoin : en fr, seules les insécables intérieures passent ; espaces pleines et absence d'espace sont refusées
+			QuotedName("fr").IsMatch("Version «\u00a0Print and Play\u00a0»").Should().BeTrue("témoin fr : insécables intérieures acceptées");
+			QuotedName("fr").IsMatch("Version « Print and Play »").Should().BeFalse("témoin fr : espaces pleines refusées");
+			QuotedName("fr").IsMatch("Version «Print and Play»").Should().BeFalse("témoin fr : guillemets sans espace refusés");
+		}
+
+		// le registre est la source : le titre P&P y porte les guillemets de sa langue, le canon les hérite tels quels
+		[Theory]
+		[MemberData(nameof(LanguageCases))]
+		public void PrintAndPlay_Name_Takes_The_Language_Quotes(string lang)
+		{
+			var title = Registry("Title")[lang];
+			title.Should().NotContain("\"", $"[{lang}] titre P&P du registre : guillemets typographiques, jamais droits");
+			var names = QuotedName(lang).Matches(title);
+			names.Count.Should().Be(1, $"[{lang}] le titre P&P du registre cite le nom entre les guillemets de sa langue (« {title} »)");
+			var inner = names[0].Groups[1].Value;
+			inner.Should().Be(inner.Trim(), $"[{lang}] aucun blanc de plus à l'intérieur des guillemets (« {title} »)");
+			inner.Should().NotContainAny(QuoteMarks, $"[{lang}] un seul jeu de guillemets autour du nom");
+			title.Replace(names[0].Value, " ").Should().NotContainAny(QuoteMarks, $"[{lang}] aucun autre guillemet dans le titre P&P (« {title} »)");
+
+			foreach (var row in Canon())
+			{
+				row[lang].Should().NotContain("\"", $"{row["key"]} [{lang}] : guillemets typographiques, jamais droits");
+				if (row["field"] == "Title")
+					row[lang].Should().Contain(names[0].Value, $"{row["key"]} [{lang}] : nom « Print and Play » du registre, mêmes guillemets");
+			}
 		}
 
 		[Fact]
