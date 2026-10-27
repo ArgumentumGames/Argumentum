@@ -93,7 +93,7 @@ namespace Argumentum.AssetConverter.Tests.DatasetUpdater
 		/// Parses lines of the form <c>- piocheur (FR) = Reader (EN) = ... = 抽牌者 (ZH)</c>
 		/// into lang -> term maps. Non-glossary lines are skipped.
 		/// </summary>
-		private static List<Dictionary<string, string>> ParseGlossary()
+		internal static List<Dictionary<string, string>> ParseGlossary()
 		{
 			var path = Path.Combine(RepoRoot(), PromptRelativePath);
 			File.Exists(path).Should().BeTrue("the CascadeDrift Rules prompt must exist at '{0}'", path);
