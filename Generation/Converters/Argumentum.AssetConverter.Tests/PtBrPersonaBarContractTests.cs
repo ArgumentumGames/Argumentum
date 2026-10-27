@@ -8,8 +8,10 @@ namespace Argumentum.AssetConverter.Tests
 {
 	/// <summary>
 	/// #458 D4 file 4/4 — the Persona Bar (DNN admin toolbar) pt-BR resource file was seeded
-	/// from es-ES and was macaronic: 40 of its 65 cells were retranslated on 27/10. This
-	/// contract pins every value of the file and asserts the declared hispanisms are gone.
+	/// from es-ES and was macaronic: 40 of its 65 cells were retranslated on 27/10, then the
+	/// 4 kept cells that the Opus review marked FIX (nav_DocCenter, nav_Settings, nav_SiteAssets,
+	/// permissiongrid.Display Name) in a follow-up. This contract pins every value of the file
+	/// and asserts the declared hispanisms are gone.
 	/// Kept in its own class so it never collides with <see cref="PtBrLoginSurfaceContractTests"/>.
 	/// </summary>
 	public class PtBrPersonaBarContractTests
@@ -43,16 +45,16 @@ namespace Argumentum.AssetConverter.Tests
 			yield return new object[] { "nav_Analytics.Text", "Análises" };
 			yield return new object[] { "nav_Content.Text", "Conteúdo" };
 			yield return new object[] { "nav_Dashboard.Text", "Painel" };
-			yield return new object[] { "nav_DocCenter.Text", "Documentos" };
+			yield return new object[] { "nav_DocCenter.Text", "Central de documentação" };
 			yield return new object[] { "nav_Edit.Text", "Editar" };
 			yield return new object[] { "nav_GlobalAssets.Text", "Recursos globais" };
 			yield return new object[] { "nav_Help.Text", "Ajuda" };
 			yield return new object[] { "nav_Home.Text", "Início" };
 			yield return new object[] { "nav_Logout.Text", "Sair" };
 			yield return new object[] { "nav_Manage.Text", "Gerenciar" };
-			yield return new object[] { "nav_Settings.Text", "Configuração" };
+			yield return new object[] { "nav_Settings.Text", "Configurações" };
 			yield return new object[] { "nav_Site.Text", "Ver o site" };
-			yield return new object[] { "nav_SiteAssets.Text", "Recursos do portal" };
+			yield return new object[] { "nav_SiteAssets.Text", "Recursos do site" };
 			yield return new object[] { "nav_Tasks.Text", "Tarefas" };
 			yield return new object[] { "nav_Tools.Text", "Ferramentas" };
 			yield return new object[] { "NormalUpdate.Text", "[ Nova atualização ]" };
@@ -63,7 +65,7 @@ namespace Argumentum.AssetConverter.Tests
 			yield return new object[] { "permissiongrid.AllRoles.Text", "< Todas as funções >" };
 			yield return new object[] { "permissiongrid.Copy.Text", "Copiar" };
 			yield return new object[] { "permissiongrid.Delete.Text", "Excluir" };
-			yield return new object[] { "permissiongrid.Display Name.Text", "Nome:" };
+			yield return new object[] { "permissiongrid.Display Name.Text", "Nome de exibição:" };
 			yield return new object[] { "permissiongrid.Edit Content.Text", "Editar conteúdo" };
 			yield return new object[] { "permissiongrid.Edit Tab.Text", "Controle total" };
 			yield return new object[] { "permissiongrid.Edit.Text", "Controle total" };
