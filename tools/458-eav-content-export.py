@@ -107,8 +107,22 @@ WHITELIST = [
     (44, "Person", "editorial"),
     (47, "Link", "editorial"),
     (47, "App-Resources", "label"),
+    # Newsletter (home page, accordion item 10172): the served Sendinblue form is
+    # app 48 E10181 `Html` - 13314 chars, dim 0 only, reached through
+    # ContentGroupReference E10179 -> E10180 -> E10181 and rendered by
+    # SnippetInject3/_SnippetInject.cshtml as `@Html.Raw(Content.Html)`
+    # (docs/dnn-localization/458-newsletter-store-chain-2026-10-26.md). Only
+    # `Html` is exported (FIELD_ALLOW); the form skeleton inside it (action,
+    # hidden fields, input names) is frozen by the translation grain, not here.
+    (48, "HtmlFragment", "editorial"),
     (49, "Slider", "editorial"),
     (49, "Slide", "editorial"),
+    # Contact form (home page, accordion item 10182): MobiusForms5 reads every
+    # visible string from `Resources.*`, i.e. app 50 App-Resources (E9169, all
+    # values dim 0 only). Only the fields the contact form's views read are
+    # exported (FIELD_ALLOW). The same app stores visitor submissions as
+    # `RawData` entities - personal data, see FORBIDDEN_TYPES.
+    (50, "App-Resources", "label"),
     (52, "News", "editorial"),
     (52, "Category", "editorial"),
     (52, "App-Resources", "label"),
@@ -143,11 +157,81 @@ ALLOWED_TYPES = set(KIND_BY_TYPE)
 # and stay out by the same rule that excludes the *Settings types. Types absent
 # from this dict are exported field for field, as before.
 FIELD_ALLOW = {
+    (48, "HtmlFragment"): {"Html"},
+    # Derived from the consumer, not from the database: every `Resources.<Field>`
+    # read by MobiusForms5/live/_Contact Form.cshtml and the files it pulls in
+    # (Html.Partial / CreateInstance, comments ignored), plus "Label" + <id> for
+    # each FieldBuilder call. The Mail* / Owner* / Customer* mail templates of the
+    # same entity are not read by the form and stay out.
+    # tools/test_458-eav-export-guards.py re-derives this set from the views.
+    (50, "App-Resources"): {
+        "ButtonSend", "GdprLabel", "LabelMessage", "LabelRequired",
+        "LabelSenderMail", "LabelSenderName", "LabelSubject", "LabelValidEmail",
+        "LabelValidFile", "MessageContainsRecaptcha", "MessageCustomerMailSend",
+        "MessageDefaultMailChimpKey", "MessageEnableMailchimp",
+        "MessageFormIncomplete", "MessageMailFromError", "MessageMailOwnerError",
+        "MessageNewsletterSuccess", "MessageNewsletterUnexpectedError",
+        "MessageRecaptchaMissing", "MessageRecaptchaWarning", "MessageSendError",
+        "MessageSendOk", "MessageSending", "TermsLabel",
+    },
     (52, "ViewConfiguration"): {"Title"},
 }
 
+# Per-type entity allowlist (EntityId), applied after the SQL read like
+# FIELD_ALLOW. HtmlFragment holds arbitrary HTML, so a field bound is not enough:
+# any other fragment of app 48 (draft, unserved, demo) would be published with
+# it. Bounded to the measured carrier E10181 (store-chain doc, link 6); the
+# WITNESSES entry proves at export that this id is the Sendinblue form, so a
+# wrong id fails loud instead of exporting nothing. EntityId, not EntityGuid:
+# the GUID is not in the measurement docs - it lands in the registry key with
+# the row, and a later change can pin it there. App 50 is not entity-bounded:
+# after FIELD_ALLOW it carries labels only, and which of its App-Resources
+# entities is served is settled at injection time, not at export.
+ENTITY_ALLOW = {
+    (48, "HtmlFragment"): {10181},
+}
+
+# Visitor submissions of MobiusForms5 (app 50) are stored as `RawData` entities:
+# personal data, never exported, whatever the whitelist says. Enforced three
+# times: at import (no whitelist entry may name it), in the SQL (excluded by
+# name), and on every row read (assert_export_safe). Compared case-folded: the
+# base collation is French_CI_AS, so SQL would match `rawdata` as `RawData`.
+FORBIDDEN_TYPES = frozenset({"RawData"})
+
 # Defense in depth: whatever happens, never emit a row for a private/store table.
-FORBIDDEN_TOKENS = ("ORDER", "CLIENT", "USERDATA", "NBrightBuy", "AspNetUsers")
+FORBIDDEN_TOKENS = (
+    "ORDER", "CLIENT", "USERDATA", "NBrightBuy", "AspNetUsers", "RawData",
+)
+
+# Positive controls. A whitelist entry that matches nothing exports nothing and
+# stays silent - the earlier `(52, "Content")` entry did exactly that. Each
+# witness is the start of a value served on the home page (measured 2026-10-27:
+# the Sendinblue block is 13314 chars, the length of E10181 `Html`; the contact
+# button renders `@Resources.ButtonSend` as "Envoyer"); export and selftest fail
+# if one is missing. (app, content_type, field, fr prefix)
+WITNESSES = [
+    (48, "HtmlFragment", "Html", "<!-- Begin Sendinblue Form -->"),
+    (50, "App-Resources", "ButtonSend", "Envoyer"),
+]
+
+
+def assert_whitelist_safe(whitelist=None, field_allow=None, entity_allow=None) -> None:
+    """Fail at import if the configuration itself names a forbidden type."""
+    whitelist = WHITELIST if whitelist is None else whitelist
+    field_allow = FIELD_ALLOW if field_allow is None else field_allow
+    entity_allow = ENTITY_ALLOW if entity_allow is None else entity_allow
+    folded = {t.casefold() for t in FORBIDDEN_TYPES}
+    named = sorted({ct for _app, ct, _kind in whitelist if ct.casefold() in folded})
+    if named:
+        raise SystemExit(f"type interdit dans la liste blanche: {', '.join(named)}")
+    allowed = {(app, ct) for app, ct, _kind in whitelist}
+    for name, table in (("FIELD_ALLOW", field_allow), ("ENTITY_ALLOW", entity_allow)):
+        orphans = sorted(set(table) - allowed)
+        if orphans:
+            raise SystemExit(f"{name} hors liste blanche: {orphans}")
+
+
+assert_whitelist_safe()
 
 COLUMNS = [
     "key", "app_id", "content_type", "entity_guid", "field", "field_type",
@@ -271,7 +355,34 @@ def where_clause() -> str:
     for app, names in sorted(grouped.items()):
         quoted = ", ".join("'" + n.replace("'", "''") + "'" for n in names)
         parts.append(f"(ct.AppId = {app} AND ct.Name IN ({quoted}))")
-    return " OR ".join(parts)
+    forbidden = ", ".join(
+        "'" + n.replace("'", "''") + "'" for n in sorted(FORBIDDEN_TYPES)
+    )
+    return f"({' OR '.join(parts)}) AND ct.Name NOT IN ({forbidden})"
+
+
+def apply_field_allow(rows: list[dict]) -> list[dict]:
+    """Keep, for the types listed in FIELD_ALLOW, only their allowed fields."""
+    return [
+        row
+        for row in rows
+        if (int(row["app_id"]), row["content_type"]) not in FIELD_ALLOW
+        or row["field"] in FIELD_ALLOW[(int(row["app_id"]), row["content_type"])]
+    ]
+
+
+def entity_allowed(row: dict) -> bool:
+    """False for a row of an ENTITY_ALLOW type whose EntityId is absent or not listed."""
+    ctype = (int(row["app_id"]), row["content_type"])
+    if ctype not in ENTITY_ALLOW:
+        return True
+    eid = str(row.get("entity_id") or "")
+    return eid.isdigit() and int(eid) in ENTITY_ALLOW[ctype]
+
+
+def apply_entity_allow(rows: list[dict]) -> list[dict]:
+    """Keep, for the types listed in ENTITY_ALLOW, only their allowed entities."""
+    return [row for row in rows if entity_allowed(row)]
 
 
 def fetch_rows(connection_string: str) -> list[dict]:
@@ -289,6 +400,7 @@ def fetch_rows(connection_string: str) -> list[dict]:
 SET NOCOUNT ON;
 SELECT ct.AppId AS app_id,
        ct.Name AS content_type,
+       e.EntityId AS entity_id,
        CONVERT(nvarchar(64), e.EntityGuid) AS entity_guid,
        a.StaticName AS field,
        a.Type AS field_type,
@@ -312,38 +424,69 @@ JOIN TsDynDataAttribute a ON a.AttributeId = p.AttributeId
 WHERE {where_clause()}
 ORDER BY ct.AppId, ct.Name, CONVERT(nvarchar(64), e.EntityGuid), a.SortOrder;
 """
-    rows = run_query(connection_string, sql)
+    return finish_rows(run_query(connection_string, sql))
+
+
+def finish_rows(rows: list[dict]) -> list[dict]:
+    """Derive kind and key, then apply the post-read bounds (no base access)."""
     for row in rows:
         row["value_kind"] = KIND_BY_TYPE.get(
             (int(row["app_id"]), row["content_type"]), ""
         )
         row["key"] = f'{row["entity_guid"]}|{row["field"]}'
     # Applied here, not in the SQL, so that export and verify see the same rows.
-    rows = [
-        row
-        for row in rows
-        if (int(row["app_id"]), row["content_type"]) not in FIELD_ALLOW
-        or row["field"] in FIELD_ALLOW[(int(row["app_id"]), row["content_type"])]
-    ]
-    return rows
+    return apply_field_allow(apply_entity_allow(rows))
 
 
 # ---------------------------------------------------------------------------
 # Guardrails
 # ---------------------------------------------------------------------------
+def assert_no_forbidden(rows: list[dict]) -> None:
+    """No forbidden type, no forbidden token - for DB rows and registry rows alike."""
+    folded = {t.casefold() for t in FORBIDDEN_TYPES}
+    for row in rows:
+        if row["content_type"].casefold() in folded:
+            raise SystemExit(
+                f"type interdit dans l'export: {(int(row['app_id']), row['content_type'])}"
+            )
+    blob = json.dumps(rows, ensure_ascii=False)
+    for token in FORBIDDEN_TOKENS:
+        if token in blob:
+            raise SystemExit(f"jeton interdit dans l'export: {token}")
+
+
 def assert_export_safe(rows: list[dict]) -> None:
+    # First, so a forbidden type is refused for its own reason, not as "hors liste".
+    assert_no_forbidden(rows)
     seen: dict[str, str] = {}
     for row in rows:
         ctype = (int(row["app_id"]), row["content_type"])
         if ctype not in ALLOWED_TYPES:
             raise SystemExit(f"type hors liste blanche: {ctype}")
+        # DB rows always carry entity_id (selected by the SQL): an absent id on
+        # an ENTITY_ALLOW type is a refusal, never a pass.
+        if not entity_allowed(row):
+            raise SystemExit(
+                f"entité hors liste: {ctype} EntityId={row.get('entity_id')!r}"
+            )
         if row["key"] in seen:
             raise SystemExit(f"clé dupliquée (EntityGuid non unique): {row['key']}")
         seen[row["key"]] = row["content_type"]
-    blob = json.dumps(rows, ensure_ascii=False)
-    for token in FORBIDDEN_TOKENS:
-        if token in blob:
-            raise SystemExit(f"jeton interdit dans l'export: {token}")
+
+
+def assert_witnesses(rows: list[dict]) -> None:
+    """Every WITNESSES carrier must come back from the base, or nothing is written."""
+    for app, ctype, field, prefix in WITNESSES:
+        if not any(
+            int(row["app_id"]) == app
+            and row["content_type"] == ctype
+            and row["field"] == field
+            and (row.get("fr") or "").startswith(prefix)
+            for row in rows
+        ):
+            raise SystemExit(
+                f"témoin absent: ({app}, {ctype}).{field} commençant par {prefix!r}"
+            )
 
 
 # ---------------------------------------------------------------------------
@@ -522,6 +665,7 @@ def cmd_selftest(args: argparse.Namespace) -> int:
     conn = read_connection_string(pathlib.Path(args.config))
     db_rows = fetch_rows(conn)
     assert_export_safe(db_rows)
+    assert_witnesses(db_rows)
     with tempfile.TemporaryDirectory(prefix="eav-selftest-") as tmp:
         clean = pathlib.Path(tmp) / "clean.csv"
         write_csv(db_rows, clean)
@@ -623,6 +767,7 @@ def cmd_export(args: argparse.Namespace) -> int:
     conn = read_connection_string(pathlib.Path(args.config))
     rows = fetch_rows(conn)
     assert_export_safe(rows)
+    assert_witnesses(rows)
     out_path = pathlib.Path(args.out)
     write_csv(rows, out_path)
     filled = sum(1 for row in rows if row.get("fr"))
