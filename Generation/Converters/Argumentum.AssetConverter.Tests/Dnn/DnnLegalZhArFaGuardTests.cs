@@ -182,5 +182,113 @@ namespace Argumentum.AssetConverter.Tests
 					text.Should().NotContainAny(new[] { "ی", "ک" }, "ar-SA : ي/ك arabes, jamais ی/ک persans");
 			}
 		}
+
+		// Imbrication HTML (pool #458 E3). La séquence de balises ci-dessus est comparée au fr :
+		// un défaut présent dans le fr ET dans la traduction y reste vert. Cette garde-ci lit
+		// chaque valeur seule, le fr-FR compris.
+		private static readonly Regex TagParts = new Regex("<(/?)([A-Za-z0-9]+)[^>]*?(/?)>");
+		private static readonly HashSet<string> VoidTags = new HashSet<string>
+			{ "area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr" };
+		private static readonly HashSet<string> OptionalEnd = new HashSet<string> { "p", "li" };
+		// ouvrantes qui ferment un p ouvert (spécification HTML), plus li/tr/td
+		private static readonly HashSet<string> BlockTags = new HashSet<string>
+		{
+			"address", "article", "aside", "blockquote", "details", "dialog", "div", "dl", "dd", "dt", "fieldset",
+			"figcaption", "figure", "footer", "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hgroup", "hr",
+			"main", "menu", "nav", "ol", "p", "pre", "section", "table", "ul", "li", "tr", "td",
+		};
+
+		/// <summary>
+		/// Défauts d'imbrication : fermante orpheline, fermante qui passe par-dessus un élément
+		/// encore ouvert, élément jamais fermé. p et li ont une fin optionnelle en HTML : un p se
+		/// ferme à l'ouverture d'un bloc, un li à l'ouverture d'un li frère, les deux à la fin de
+		/// leur parent — ce ne sont pas des défauts.
+		/// </summary>
+		private static List<string> NestingDefects(string html)
+		{
+			var stack = new List<string>();
+			var defects = new List<string>();
+			foreach (Match m in TagParts.Matches(html))
+			{
+				var name = m.Groups[2].Value.ToLowerInvariant();
+				var opening = m.Groups[1].Value.Length == 0;
+				// avant le saut des vides : hr est vide ET ferme le p
+				if (opening && BlockTags.Contains(name) && stack.Count > 0 && stack[^1] == "p") stack.RemoveAt(stack.Count - 1);
+				if (VoidTags.Contains(name) || m.Groups[3].Value == "/") continue;
+				if (opening)
+				{
+					if (name == "li")
+					{
+						for (var i = stack.Count - 1; i >= 0 && stack[i] != "ul" && stack[i] != "ol"; i--)
+						{
+							if (stack[i] != "li") continue;
+							if (stack.Skip(i + 1).All(OptionalEnd.Contains)) stack.RemoveRange(i, stack.Count - i);
+							break;
+						}
+					}
+					stack.Add(name);
+					continue;
+				}
+				var open = stack.LastIndexOf(name);
+				if (open < 0)
+				{
+					defects.Add($"</{name}> orpheline @{m.Index}");
+					continue;
+				}
+				var above = stack.Skip(open + 1).Where(t => !OptionalEnd.Contains(t)).ToList();
+				if (above.Count > 0) defects.Add($"</{name}> @{m.Index} ferme par-dessus <{string.Join("><", above)}>");
+				stack.RemoveRange(open, stack.Count - open);
+			}
+			var left = stack.Where(t => !OptionalEnd.Contains(t)).ToList();
+			if (left.Count > 0) defects.Add($"non fermé en fin de valeur : <{string.Join("><", left)}>");
+			return defects;
+		}
+
+		public static IEnumerable<object[]> NestingCases() =>
+			from resx in new[] { FrResx }.Concat(FrenchWordInNote.Keys.Select(LocaleResx))
+			from key in Keys
+			select new object[] { resx, key };
+
+		[Theory]
+		[MemberData(nameof(NestingCases))]
+		public void Html_Is_Well_Nested(string resx, string key)
+		{
+			var value = ResxValue(resx, key);
+			TagParts.Matches(value).Count.Should().BeGreaterThan(100, "auto-contrôle : une valeur sans balises rendrait un vert vide");
+			NestingDefects(value).Should().BeEmpty($"{resx} {key} : HTML bien imbriqué");
+		}
+
+		/// <summary>Contrôle inverse : les quatre formes corrigées par E3 sont vues, et la fin optionnelle de p/li est tolérée.</summary>
+		[Fact]
+		public void NestingDefects_Sees_The_E3_Shapes()
+		{
+			var stray = NestingDefects("<div><p>x</p></div></span>");
+			stray.Should().HaveCount(1);
+			stray[0].Should().Contain("</span> orpheline");
+
+			var liOverA = NestingDefects("<ul><li><a href=\"#t\"><font>x</font></li></a></ul>");
+			liOverA.Should().HaveCount(2, "</li> passe par-dessus <a>, puis </a> n'a plus d'ouvrante");
+			liOverA[0].Should().Contain("</li>").And.Contain("<a>");
+
+			var ulOverA = NestingDefects("<ul><li><a href=\"#t\"><font>x</font></ul>");
+			ulOverA.Should().HaveCount(1);
+			ulOverA[0].Should().Contain("</ul>").And.Contain("<a>");
+
+			var unclosed = NestingDefects("<div><p><a href=\"#top\">x</a></p>");
+			unclosed.Should().HaveCount(1);
+			unclosed[0].Should().Contain("<div>");
+
+			NestingDefects("<div><p>a<p>b<ul><li>c<li>d</ul><br/><img src=\"i\"></div>")
+				.Should().BeEmpty("p et li sans fermante, br et img vides : HTML valide");
+
+			// blockquote ferme le p, wbr est vide : le </p> final n'a plus d'ouvrante
+			var blockClosesP = NestingDefects("<p>a<blockquote>b</blockquote><wbr></p>");
+			blockClosesP.Should().HaveCount(1);
+			blockClosesP[0].Should().Contain("</p> orpheline");
+
+			var hrClosesP = NestingDefects("<p>a<hr></p>");
+			hrClosesP.Should().HaveCount(1, "hr est vide et ferme le p");
+			hrClosesP[0].Should().Contain("</p> orpheline");
+		}
 	}
 }

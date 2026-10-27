@@ -778,9 +778,9 @@ Déclaration de confidentialité sur le site :&lt;/h1&gt;
 			&lt;p align="left"&gt;&lt;a href="#EGAA"&gt;&lt;font size="2"&gt;Sécurité de vos informations personnelles&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
 			&lt;p align="left"&gt;&lt;a href="#EFAA"&gt;&lt;font size="2"&gt;Protection des informations personnelles des enfants&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
 			&lt;p align="left"&gt;&lt;a href="#EEAA"&gt;&lt;font size="2"&gt;Cookies&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
-			&lt;p align="left"&gt;&lt;a href="#EEAA"&gt;&lt;font size="2"&gt;Application de cette déclaration de confidentialité&lt;/font&gt;&lt;/li&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align="left"&gt;&lt;a href="#EEAA"&gt;&lt;font size="2"&gt;Application de cette déclaration de confidentialité&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;
 			&lt;p align="left"&gt;&lt;a href="#EBAA"&gt;&lt;font size="2"&gt;Modifications de cette déclaration de confidentialité&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
-			&lt;p align="left"&gt;&lt;a href="#EAAA"&gt;&lt;font size="2"&gt;Contacts&lt;/font&gt;&lt;/ul&gt;
+			&lt;p align="left"&gt;&lt;a href="#EAAA"&gt;&lt;font size="2"&gt;Contacts&lt;/font&gt;&lt;/a&gt;&lt;/ul&gt;
 			&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
 	&lt;a name="EKAA"&gt;&lt;/a&gt;&lt;h2 align="left"&gt;Collecte de vos 
 	informations personnelles&lt;/h2&gt;&lt;p align="justify"&gt;Nous vous demanderons des informations lorsque nous aurons besoin de données permettant de vous identifier 
@@ -972,7 +972,7 @@ Déclaration de confidentialité sur le site :&lt;/h1&gt;
 	contactez-nous par voie électronique ou par courrier postal à l'adresse 
 	se trouvant sur les &lt;a href="/terms"&gt;&lt;b&gt;conditions d'utilisation&lt;/b&gt;&lt;/a&gt;, et nous userons de tous moyens raisonnables pour rapidement 
 	déterminer le problème et y remédier.&lt;/p&gt;
-	&lt;p align="left"&gt;&lt;a class="topOfPage" href="#top"&gt;Haut de page&lt;/a&gt;&lt;/p&gt;</value>
+	&lt;p align="left"&gt;&lt;a class="topOfPage" href="#top"&gt;Haut de page&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</value>
   </data>
   <data name="MESSAGE_PORTAL_TERMS.Text" xml:space="preserve">
     <value xml:space="preserve">&lt;div style=&quot;padding: 0px 15px 0px 20px&quot;&gt;
@@ -1143,7 +1143,7 @@ son consentement écrit préalable. Toutes les autres marques de produits et de 
 &lt;p align=&quot;justify&quot;&gt;Les autres avis de copyright concernent les données provenant de tiers utilisées pour créer ce service Internet. &lt;/p&gt;
 &lt;p align=&quot;left&quot;&gt;&lt;strong&gt;CONTACT &lt;/strong&gt;&lt;/p&gt;
 &lt;p align=&quot;justify&quot;&gt;Pour obtenir davantage d’informations relatives aux questions juridiques contenues dans ces conditions d’utilisation, ou à des questions ou problèmes concernant ce service, veuillez 
-écrire en utilisant le formulaire de contact mis à votre disposition sur ce site. &lt;/p&gt;&lt;/div&gt;&lt;/span&gt;</value>
+écrire en utilisant le formulaire de contact mis à votre disposition sur ce site. &lt;/p&gt;&lt;/div&gt;</value>
   </data>
   <data name="MESSAGE_RETRIEVEPASSWORD_INSTRUCTIONS.Text" xml:space="preserve">
     <value xml:space="preserve">Pour recevoir votre mot de passe, vous devez fournir votre nom d'utilisateur et répondre à votre Question secrète.</value>
