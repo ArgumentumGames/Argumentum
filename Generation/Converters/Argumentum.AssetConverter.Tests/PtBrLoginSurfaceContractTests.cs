@@ -27,6 +27,10 @@ namespace Argumentum.AssetConverter.Tests
 		private const string AdminAuthLogin =
 			"DesktopModules/Admin/Authentication/App_LocalResources/Login.ascx";
 
+		// D4 file 3 — the UserAndLogin skin object (header user menu). Registered by
+		// nvQuickTheme but not placed by any committed skin: latent surface, fixed anyway.
+		private const string UserAndLogin = "admin/Skins/App_LocalResources/UserAndLogin.ascx";
+
 		public static IEnumerable<object[]> File1Cells()
 		{
 			yield return new object[] { AuthServicesLogin, "cmdLogin.Text", "Entrar" };
@@ -133,6 +137,49 @@ namespace Argumentum.AssetConverter.Tests
 				"asociar", "Asociar", "sesión", "contrasenha", "Olvidó", "Iniciar", "mayúsculas",
 				"produci", "Póngase", "ponerse", "Actualice", "identificarse", "registrarse",
 				"utilice", "desconoce", "aceptar", "foi sido", "sensívels", "caducó", "caducará",
+			})
+			{
+				Assert.DoesNotContain(hispanism, text);
+			}
+		}
+
+		public static IEnumerable<object[]> File3Cells()
+		{
+			yield return new object[] { UserAndLogin, "Account.Text", "Editar conta" };
+			yield return new object[] { UserAndLogin, "EditProfile.Text", "Editar perfil" };
+			yield return new object[] { UserAndLogin, "Login.Text", "Entrar" };
+			yield return new object[] { UserAndLogin, "Logout.Text", "Sair" };
+			yield return new object[] { UserAndLogin, "MessageCount.Text", "{0} mensagens" };
+			yield return new object[] { UserAndLogin, "Messages.Text", "Mensagens" };
+			yield return new object[] { UserAndLogin, "Notifications.Text", "Notificações" };
+			yield return new object[] { UserAndLogin, "OneMessage.Text", "1 mensagem" };
+			yield return new object[] { UserAndLogin, "Profile.Text", "Meu perfil" };
+			yield return new object[] { UserAndLogin, "ProfilePicture.Text", "Minha foto de perfil" };
+			yield return new object[] { UserAndLogin, "Register.Text", "Registrar" };
+		}
+
+		[Theory]
+		[MemberData(nameof(File3Cells))]
+		public void UserAndLoginPtBrHasItsReviewedValues(string stem, string key, string expected)
+		{
+			var file = Path.Combine(DnnRoot, stem + ".pt-BR.resx");
+			Assert.True(File.Exists(file), $"missing culture file: {file}");
+			var data = XDocument.Load(file).Root!.Elements("data")
+				.Where(e => (string?)e.Attribute("name") == key).ToArray();
+			Assert.True(data.Length == 1, $"pt-BR:{key} must occur exactly once in {stem}");
+			Assert.Equal(expected, (string?)data[0].Element("value"));
+		}
+
+		[Fact]
+		public void UserAndLoginPtBrCarriesNoDeclaredHispanisms()
+		{
+			// Bounded to this file: the es-ES seed values that survived in pt-BR on 26/10,
+			// plus the es-ES words of its sibling cells. Case-sensitive — « Mensagens »,
+			// « Notificações », « Sair » are the pt-BR words and never match.
+			var text = File.ReadAllText(Path.Combine(DnnRoot, UserAndLogin + ".pt-BR.resx"));
+			foreach (var hispanism in new[]
+			{
+				"Mi perfil", "Mi imagen", "imagen", "Iniciar", "Salir", "cuenta", "mensaje", "Notificaciones",
 			})
 			{
 				Assert.DoesNotContain(hispanism, text);
