@@ -23,11 +23,16 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
     /// coût exact du défaut #1204 était un devis émis sur un chiffre faux.
     ///
     /// ⚠ <b>#1536 (25/09/2026) — la baseline TarotCards_P&amp;P_A4 est passée de 105 à 106 pages.</b>
-    /// Le défaut : la planche 0 (6 Rules sans dos) n'émettait PAS de page de dos ⇒ séquence
+    /// Le défaut : la planche 0 (6 Rules <i>sans dos à l'époque</i>) n'émettait PAS de page de dos ⇒ séquence
     /// F₀·B₁F₁·B₂F₂… = 105 pages, IMPAIRE, avec le verso des règles portant les dos du lot 1. La
     /// correction émet une page de dos BLANCHE pour une planche sans dos (document à dos) ⇒
     /// B₀F₀·B₁F₁… = 106 pages, paire, recto-verso rétabli. C'est le second cas où un nombre de ce
     /// fichier bouge sans être une dérive du CSV : l'organe a mesuré le défaut, pas contourné.
+    /// ⚠ <b>Depuis #2045, le CardSet <c>RulesPrintAndPlay</c> déclare le dos du deck</b> : plus aucun
+    /// document livré ne produit de planche sans dos, donc la planche blanche n'existe plus à
+    /// l'impression. Le compte reste 106 (la page existait, elle est simplement encrée) et le cas
+    /// « lot sans dos » n'est plus éprouvé que par la forme synthétique de
+    /// <c>PrintAndPlayRectoVersoParityContractTests</c>.
     ///
     /// ⚠ <b>#1288 (05/09/2026) — la baseline TarotCards est passée de 381 à 379 pages.</b> Décision
     /// owner : PK 96 sort du deck (vrai doublon de PK 108) ⇒ Fallacies 176 → <b>175</b> cartes,
@@ -79,7 +84,7 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             var failures = PdfCardCountIntegrity.CheckPageCounts(new[]
             {
                 ("Argumentum_TarotCards_Print&Play_A4", "fr", 106, 104,
-                 "format PrintAndPlay, 318 instance(s) (témoin)"),
+                 "format PrintAndPlay, 317 instance(s) (témoin)"),
             });
             failures.Should().ContainSingle()
                 .Which.Should().Contain("LOWER BOUND violated").And.Contain("104").And.Contain("106");
@@ -230,7 +235,7 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             var plan = DeriveByName("Argumentum_TarotCards_Print&Play_A4_fr.pdf");
             _output.WriteLine(plan.Breakdown);
             plan.ExpectedPages.Should().Be(106,
-                "#1536 : 318 instances (RulesPP 6 + Fallacies 176 + Virtues 131 + MemoPP 1×5) sur grille 3×2 = 53 planches ; "
+                "#1536 : 317 instances (RulesPP 6 + Fallacies 175 + Virtues 131 + MemoPP 1×5) sur grille 3×2 = 53 planches ; "
                 + "le document A des dos → CHAQUE planche émet sa page de dos ⇒ 53 dos + 53 faces = 106, pair. "
                 + "Depuis la décision (i) du pool #458, la planche 0 (RulesPP) est ENCRÉE du dos du deck au lieu d'être blanche : "
                 + "elle était déjà émise, le compte ne bouge pas. "
