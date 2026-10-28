@@ -977,101 +977,318 @@ SOFTWARE.&lt;/p&gt;</value>
     <value>Administrar</value>
   </data>
   <data name="MESSAGE_PORTAL_PRIVACY.Text" xml:space="preserve">
-    <value>&lt;div align="left"&gt;
-        &lt;p&gt;[Portal:PortalName] se compromete a proteger su privacidad y a desarrollar tecnologías que le proporcionen la experiencia en línea más potente y segura. La presente Declaración de Privacidad se aplica al sitio web [Portal:PortalName] y rige la recogida y el uso de datos. Al utilizar el sitio web [Portal:PortalName], usted acepta las prácticas de tratamiento de datos descritas en esta declaración.&lt;/p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;Recogida de su información personal&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;[Portal:PortalName] recoge información personal que permite identificarle, como su dirección de correo electrónico, nombre, domicilio o número de teléfono. [Portal:PortalName] también recoge información demográfica anónima, no exclusiva de usted, como su código postal, edad, sexo, preferencias, intereses y favoritos.&lt;/p&gt;
-        &lt;p&gt;También hay información sobre el hardware y el software de su ordenador que [Portal:PortalName] recoge automáticamente. Esta información puede incluir: su dirección IP, tipo de navegador, nombres de dominio, horarios de acceso y direcciones de los sitios web de procedencia. [Portal:PortalName] utiliza esta información para la operación del servicio, para mantener la calidad del servicio y para proporcionar estadísticas generales sobre el uso del sitio web [Portal:PortalName].&lt;/p&gt;
-        &lt;p&gt;Tenga presente que, si usted divulga directamente información personal o datos personales sensibles por medio de los foros públicos de [Portal:PortalName], dicha información podrá ser recopilada y utilizada por terceros. Nota: [Portal:PortalName] no lee ninguna de sus comunicaciones privadas en línea.&lt;/p&gt;
-        &lt;p&gt;[Portal:PortalName] le recomienda consultar las declaraciones de privacidad de los sitios web a los que decida navegar desde [Portal:PortalName], para que pueda comprender cómo recogen, utilizan y comparten su información esos sitios. [Portal:PortalName] no es responsable de las declaraciones de privacidad ni de ningún otro contenido de sitios web ajenos a [Portal:PortalName] y a la familia de sitios web de [Portal:PortalName].&lt;/p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;Uso de su información personal&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;[Portal:PortalName] recoge y utiliza su información personal para operar el sitio web [Portal:PortalName] y prestar los servicios que usted ha solicitado. [Portal:PortalName] también utiliza su información personal para informarle de otros productos o servicios disponibles en [Portal:PortalName] y en sus afiliadas. [Portal:PortalName] también puede contactarle mediante encuestas para conocer su opinión sobre los servicios actuales o sobre posibles nuevos servicios.&lt;/p&gt;
-        &lt;p&gt;[Portal:PortalName] no vende, alquila ni cede sus listas de clientes a terceros. [Portal:PortalName] puede, de vez en cuando, contactarle en nombre de socios comerciales externos sobre una oferta específica que pueda resultarle de interés. En tales casos, su información personal exclusiva (correo electrónico, nombre, dirección, número de teléfono) no se transfiere al tercero. Además, [Portal:PortalName] puede compartir datos con socios de confianza para ayudarnos a realizar análisis estadísticos, enviarle correspondencia electrónica o postal, prestar asistencia al cliente u organizar entregas. Todos estos terceros tienen prohibido utilizar su información personal, salvo para prestar dichos servicios a [Portal:PortalName], y están obligados a mantener la confidencialidad de su información.&lt;/p&gt;
-        &lt;p&gt;[Portal:PortalName] no utiliza ni divulga información personal sensible, como raza, religión o afiliación política, sin su consentimiento expreso.&lt;/p&gt;
-        &lt;p&gt;[Portal:PortalName] realiza un seguimiento de los sitios web y páginas que nuestros clientes visitan dentro de [Portal:PortalName], con el fin de determinar qué servicios de [Portal:PortalName] son los más populares. Estos datos se utilizan para proporcionar contenido y publicidad personalizados dentro de [Portal:PortalName] a los clientes cuyo comportamiento indica interés por un área temática determinada.&lt;/p&gt;
-        &lt;p&gt;Los sitios web de [Portal:PortalName] divulgarán su información personal, sin notificación previa, únicamente si están obligados a ello por ley o si tienen la convicción de que dicha acción es necesaria para: (a) cumplir los preceptos legales o atender procesos legales dirigidos a [Portal:PortalName] o al sitio web; (b) proteger y defender los derechos o bienes de [Portal:PortalName]; y (c) actuar en circunstancias urgentes para proteger la seguridad personal de los usuarios de [Portal:PortalName] o del público.&lt;/p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;Uso de cookies&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;El sitio web [Portal:PortalName] utiliza «cookies» para ayudarle a personalizar su experiencia en línea. Una cookie es un archivo de texto que el servidor de una página web coloca en su disco duro. Las cookies no pueden utilizarse para ejecutar programas ni para transmitir virus a su ordenador. Las cookies se asignan exclusivamente a usted y solo un servidor web del dominio que las emitió puede leerlas.&lt;/p&gt;
-        &lt;p&gt;Uno de los principales objetivos de las cookies es ofrecer una función de conveniencia que le ahorre tiempo. El propósito de una cookie es informar al servidor web de que usted ha regresado a una página específica. Por ejemplo, si usted personaliza las páginas de [Portal:PortalName], o se registra en el sitio web o en los servicios de [Portal:PortalName], una cookie ayuda a [Portal:PortalName] a recuperar su información específica en visitas posteriores. Esto simplifica el proceso de registro de su información personal, como direcciones de facturación, direcciones de envío, etc. Cuando usted regresa al mismo sitio web de [Portal:PortalName], la información facilitada previamente puede ser recuperada, y usted puede utilizar con facilidad las funciones de [Portal:PortalName] que personalizó.&lt;/p&gt;
-        &lt;p&gt;Usted tiene la posibilidad de aceptar o rechazar cookies. La mayoría de los navegadores aceptan cookies automáticamente, pero generalmente usted puede modificar la configuración de su navegador para rechazarlas, si lo prefiere. Si usted decide rechazar cookies, es posible que no pueda disfrutar plenamente de las funciones interactivas de los servicios de [Portal:PortalName] o de los sitios web que visite.&lt;/p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;Seguridad de su información personal&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;[Portal:PortalName] protege su información personal frente al acceso, uso o divulgación no autorizados. [Portal:PortalName] mantiene la información personal que usted facilita en servidores, en un entorno controlado y seguro, protegido frente al acceso, uso o divulgación no autorizados. Cuando información personal (como un número de tarjeta de crédito) se transmite a otros sitios web, queda protegida mediante cifrado, como el protocolo Secure Socket Layer (SSL).&lt;/p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;Cambios en esta declaración&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;[Portal:PortalName] actualizará ocasionalmente esta Declaración de Privacidad para reflejar los comentarios de la empresa y de los clientes. [Portal:PortalName] le recomienda que revise periódicamente esta Declaración para mantenerse informado sobre cómo [Portal:PortalName] protege su información.&lt;/p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;Información de contacto&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;[Portal:PortalName] agradece sus comentarios sobre esta Declaración de Privacidad. Si usted considera que [Portal:PortalName] no ha cumplido esta Declaración, póngase en contacto con [Portal:PortalName] en la dirección &lt;a href="mailto:[Portal:Email]"&gt;[Portal:Email]&lt;/a&gt;. Desplegaremos esfuerzos comercialmente razonables para determinar y corregir rápidamente el problema.&lt;/p&gt;
-    &lt;/div&gt;</value>
+    <value xml:space="preserve">&lt;div style="padding: 0px 15px 0px 20px"&gt;&lt;p align="left"&gt;&lt;em&gt;La versión francesa de esta página es la versión de referencia.&lt;/em&gt;&lt;/p&gt;&lt;h1 align="center"&gt;
+Declaración de privacidad del sitio:&lt;/h1&gt;
+	&lt;h1 align="center"&gt;
+[Portal:PortalName]&lt;/h1&gt;&lt;p align="left"&gt;
+	&lt;a name="AAAA"&gt;&lt;b&gt;Fecha de última actualización&lt;/b&gt;&lt;/a&gt;: 30/01/2005&lt;/p&gt;
+	&lt;p align="justify"&gt;
+	En el sitio [Portal:PortalName] (en adelante, el &amp;quot;Sitio&amp;quot;), nos 
+	comprometemos a proteger sus datos personales. Esta declaración de 
+	privacidad se aplica únicamente a este sitio; no puede aplicarse a otros sitios, 
+	en línea o no, ni a otros productos o servicios. Al acceder al Sitio, 
+	usted acepta el registro de su información y las condiciones 
+	de uso descritas en esta declaración de privacidad. &lt;/p&gt;
+	&lt;h5 style="padding-top: 2px" align="left"&gt;
+	En esta página&lt;/h5&gt;
+	&lt;div align="left"&gt;
+		&lt;table cellpadding="0" cellspacing="0" border="0" style="margin-top: 7px; margin-bottom: 12px"&gt;&lt;tr valign="top"&gt;&lt;td class="onThisPage"&gt;
+		&lt;ul&gt;
+			&lt;li&gt;
+			&lt;p align="left"&gt;&lt;a href="#EKAA"&gt;&lt;font size="2"&gt;Recopilación de su información personal&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;
+			&lt;p align="left"&gt;&lt;a href="#EJAA"&gt;&lt;font size="2"&gt;Uso de sus datos personales&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align="left"&gt;&lt;a href="#EIAA"&gt;&lt;font size="2"&gt;Control de su información personal&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align="left"&gt;&lt;a href="#EHAA"&gt;&lt;font size="2"&gt;Acceso a sus datos personales&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align="left"&gt;&lt;a href="#EGAA"&gt;&lt;font size="2"&gt;Seguridad de su información personal&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align="left"&gt;&lt;a href="#EFAA"&gt;&lt;font size="2"&gt;Protección de la información personal de los menores&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align="left"&gt;&lt;a href="#EEAA"&gt;&lt;font size="2"&gt;Cookies&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align="left"&gt;&lt;a href="#EEAA"&gt;&lt;font size="2"&gt;Aplicación de esta declaración de privacidad&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;
+			&lt;p align="left"&gt;&lt;a href="#EBAA"&gt;&lt;font size="2"&gt;Modificaciones de esta declaración de privacidad&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align="left"&gt;&lt;a href="#EAAA"&gt;&lt;font size="2"&gt;Contacto&lt;/font&gt;&lt;/a&gt;&lt;/ul&gt;
+			&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
+	&lt;a name="EKAA"&gt;&lt;/a&gt;&lt;h2 align="left"&gt;Recopilación de su 
+	información personal&lt;/h2&gt;&lt;p align="justify"&gt;Solicitaremos información cuando necesitemos datos que permitan identificarlo 
+	personalmente (información personal) o con el fin de ponernos en 
+	contacto con usted. Por lo general, dicha información es necesaria cuando 
+	prestamos un servicio o realizamos una transacción que usted ha 
+	solicitado, por ejemplo, para obtener información sobre productos y servicios 
+	de este Sitio, la inscripción en un concurso, la suscripción a boletines 
+	informativos por correo electrónico, el acceso a un sitio prioritario de 
+	acceso restringido o la compra y el registro de productos en este Sitio. La 
+	información personal que recopilamos puede incluir su nombre, 
+	su cargo, el nombre de su empresa u organización, su 
+	dirección de correo electrónico profesional, su número de teléfono 
+	profesional, su dirección postal profesional o particular, 
+	información sobre su cargo o sobre su empresa, e información 
+	sobre su tarjeta de crédito.  &lt;/p&gt;&lt;p align="justify"&gt;El Sitio también puede 
+	recopilar información sobre su visita, como el nombre de su 
+	proveedor de acceso a Internet y la dirección IP utilizados para acceder a 
+	Internet, la fecha y la hora de acceso al sitio, las páginas a las que 
+	accede en el Sitio y la URL del sitio desde el que ha llegado a nuestro 
+	sitio. Esta información se destina al análisis de tendencias y a 
+	la administración y mejora del Sitio.&lt;/p&gt;&lt;p align="justify"&gt;Con el fin 
+	de evitar que su dirección de correo electrónico u otra información 
+	personal sea obtenida y utilizada indebidamente por terceros, recomendamos actuar con prudencia en cuanto a 
+	el uso de una dirección de correo electrónico existente o de otra información 
+	personal en grupos de discusión, chats u otros 
+	foros públicos.&lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="left"&gt;&lt;a class="topOfPage" href="#top"&gt;Volver al principio 
+		de la página&lt;/a&gt;&lt;/div&gt;&lt;a name="EJAA"&gt;&lt;/a&gt;&lt;h2 align="left"&gt;Uso de sus datos 
+	personales&lt;/h2&gt;&lt;p align="justify"&gt;La información personal recopilada en este Sitio 
+	se utiliza para el funcionamiento del Sitio y para permitirnos 
+	prestar el servicio o llevar a cabo la transacción que usted ha solicitado 
+	o autorizado.  &lt;/p&gt;&lt;p align="justify"&gt;En el marco de dichos usos, este 
+	Sitio puede utilizar información personal con el fin de ofrecer 
+	un servicio de atención al cliente más eficaz, mejorar el Sitio y cualquier otro 
+	producto o servicio de este Sitio y facilitar su navegación 
+	evitando que tenga que introducir varias veces la misma información o adaptando el 
+	sitio a sus preferencias o intereses. Con el fin de ofrecerle un 
+	entorno coherente en sus interacciones con nuestro Sitio, la 
+	información recopilada puede utilizarse en combinación con la 
+	recopilada por otros servicios de nuestro Sitio.&lt;/p&gt;
+	&lt;p align="justify"&gt;
+	Podemos utilizar su información personal para hacerle llegar 
+	información importante sobre el producto o el servicio que utiliza.&lt;/p&gt;&lt;p align="justify"&gt;Combinamos los datos de visitas al sitio con datos 
+	demográficos anónimos con fines de investigación; los volúmenes 
+	de información obtenidos se utilizan para ofrecerle el contenido 
+	que usted espera. En determinadas zonas de acceso restringido de nuestro Sitio, con su consentimiento, 
+	combinaremos los datos de visita al sitio con sus datos personales 
+	para ofrecerle contenidos personalizados. Sin su autorización, 
+	no podremos ofrecerle un servicio personalizado y 
+	no podremos combinar sus datos personales con los de las visitas al 
+	sitio.&lt;/p&gt;&lt;p align="justify"&gt; Cuando usted se suscribe a un boletín 
+	informativo o declara que desea recibir mensajes 
+	electrónicos publicitarios, nuestro Sitio puede utilizar enlaces personalizados u 
+	otras tecnologías similares para hacer un seguimiento de los enlaces en los que usted 
+	hace clic en los mensajes electrónicos. Podemos asociar dicha 
+	información a su información personal con el fin de enviarle 
+	mensajes o información aún más específicos.&lt;/p&gt;&lt;p align="justify"&gt;Algunos servicios de nuestro Sitio ofrecen a los particulares la posibilidad 
+	de mostrar públicamente determinada información personal, por ejemplo 
+	para uno de nuestros socios que desee publicar 
+	sus datos de contacto en el marco de los servicios que ofrece. La 
+	participación en dichos servicios es siempre voluntaria. &lt;/p&gt;
+	&lt;p align="justify"&gt;Nuestro Sitio 
+	recurre en ocasiones a otras empresas para prestar determinados servicios en su 
+	nombre. Puede tratarse, por ejemplo, del alojamiento de sitios web, del 
+	embalaje, el envío y la entrega de premios, de respuestas a 
+	preguntas formuladas por un cliente sobre los productos y servicios o también del 
+	envío de información sobre nuestros productos, nuestras ofertas especiales u otros 
+	nuevos servicios. Solo transmitiremos a dichas empresas la 
+	información personal necesaria para su servicio. Dichas empresas están 
+	obligadas a respetar la confidencialidad de esta información y no pueden en 
+	ningún caso utilizarla con otra finalidad. &lt;/p&gt;&lt;p align="justify"&gt;Solo 
+	comunicaremos su información personal si así lo exige la ley o 
+	si consideramos de buena fe que es necesario para cumplir 
+	disposiciones legales o un procedimiento judicial, proteger y defender nuestros 
+	derechos o nuestras propiedades y actuar en casos de urgencia para proteger la 
+	seguridad personal de nuestros empleados y de los usuarios del sitio. &lt;/p&gt;
+	&lt;p align="justify"&gt;La información personal recopilada en el Sitio 
+	puede almacenarse y utilizarse en Francia o en cualquier otro país en el que 
+	estén presentes sus filiales, sus socios o sus agentes. Al utilizar el Sitio, 
+	usted consiente dichas transferencias de su información personal 
+	fuera de su país.&lt;/p&gt;
+	&lt;p align="justify"&gt;Respetamos y cumplimos la
+	&lt;a href="http://www.cnil.fr/index.php?id=301" target="_new"&gt;&lt;b&gt;Ley de 6 de enero de 1978&lt;/b&gt;&lt;/a&gt; 
+	(enlace al sitio de la CNIL). &lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="left"&gt;&lt;a class="topOfPage" href="#top"&gt;Volver al principio 
+		de la página&lt;/a&gt;&lt;/div&gt;&lt;a name="EIAA"&gt;&lt;/a&gt;&lt;h2 align="left"&gt;Control de su información 
+	personal&lt;/h2&gt;&lt;p align="justify"&gt;Salvo indicación en contrario en esta 
+	declaración, la información personal que usted facilite en el Sitio 
+	no se transmitirá fuera de sus filiales y socios sin 
+	su autorización. Tal como se describe en la sección siguiente, usted puede 
+	acceder a su información personal y elegir cómo desea ser 
+	contactado.&lt;/p&gt;&lt;p align="justify"&gt;Esta declaración de privacidad y las opciones que usted 
+	elija en el Sitio no se aplican necesariamente a la información 
+	personal que nos haya facilitado en el contexto de otros productos 
+	o servicios distintos.&lt;/p&gt;&lt;p align="justify"&gt;Podemos enviarle 
+	periódicamente mensajes de correo electrónico para informarle de problemas 
+	de servicio técnico o de seguridad relacionados con un producto o servicio que usted 
+	haya solicitado, o para acusar recibo de una solicitud de producto o servicio. 
+	En algunos servicios ofrecidos en nuestro Sitio, el contacto con el cliente 
+	es un elemento esencial del servicio. Usted no podrá cancelar su 
+	suscripción a dichos envíos, ya que forman parte integrante del servicio 
+	que ha elegido.&lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="left"&gt;&lt;a class="topOfPage" href="#top"&gt;Volver al principio 
+		de la página&lt;/a&gt;&lt;/div&gt;&lt;a name="EHAA"&gt;&lt;/a&gt;&lt;h2 align="left"&gt;Acceso a sus datos personales&lt;/h2&gt;
+	&lt;p align="left"&gt;
+	Puede rectificar sus datos personales y sus datos de 
+	contacto en este Sitio tras haberse identificado.&lt;/p&gt;&lt;p align="justify"&gt;Algunos servicios 
+	que ofrecemos pueden recabar información no accesible a 
+	través de su configuración personal. No obstante, en tal caso, usted puede 
+	acceder a sus datos personales poniéndose en contacto con nosotros como se 
+	explica al final de esta declaración, o a través de otros medios de 
+	comunicación descritos por el servicio. &lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="left"&gt;&lt;a class="topOfPage" href="#top"&gt;Volver al principio 
+		de la página&lt;/a&gt;&lt;/div&gt;&lt;a name="EGAA"&gt;&lt;/a&gt;&lt;h2 align="left"&gt;Seguridad de su información 
+	personal&lt;/h2&gt;&lt;p align="justify"&gt;Garantizamos rigurosamente la protección de 
+	su información personal. Recurrimos a diversas tecnologías y 
+	procedimientos de seguridad con el fin de garantizar la protección de sus datos 
+	personales y evitar que sean consultados, utilizados o 
+	divulgados sin autorización. Por ejemplo, almacenamos los datos que 
+	usted nos facilita en servidores de acceso restringido 
+	situados en instalaciones vigiladas. Además, cuando 
+	transmitimos información confidencial sensible a través de Internet (un 
+	número de tarjeta de crédito, por ejemplo), dicha información se protege 
+	mediante un sistema de cifrado como el protocolo SSL (Secure Socket 
+	Layer) o cualquier otra técnica que permita el cifrado de dicha 
+	información. &lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="left"&gt;&lt;a class="topOfPage" href="#top"&gt;Volver al principio 
+		de la página&lt;/a&gt;&lt;/div&gt;&lt;a name="EFAA"&gt;&lt;/a&gt;&lt;h2 align="left"&gt;Protección de la información 
+	personal de los menores&lt;/h2&gt;&lt;p align="left"&gt;Nuestro Sitio no 
+	recopila deliberadamente información personal de menores.&lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="left"&gt;&lt;a class="topOfPage" href="#top"&gt;Volver al principio 
+		de la página&lt;/a&gt;&lt;/div&gt;&lt;a name="EEAA"&gt;&lt;/a&gt;&lt;h2 align="left"&gt;Cookies &lt;/h2&gt;
+	&lt;p align="justify"&gt;Las cookies se 
+	utilizan en este Sitio para garantizar la integridad del proceso de registro y 
+	para personalizar el Sitio. Una cookie es un pequeño archivo de texto que un servidor de páginas web coloca en 
+	su disco duro. No puede utilizarse 
+	para ejecutar programas ni para infectar su ordenador con 
+	virus. Las cookies se dirigen exclusivamente a usted y solo pueden ser leídas 
+	por los servidores web pertenecientes al dominio que ha emitido la 
+	cookie. &lt;/p&gt;&lt;p align="justify"&gt;Una de las principales funciones prácticas de las cookies es 
+	hacerle ahorrar tiempo. Por ejemplo, si usted personaliza una página web 
+	o navega por un sitio, la cookie ayudará al sitio a encontrar su 
+	información específica en visitas posteriores. Ello permite, 
+	en particular, simplificar el proceso de entrega de los contenidos que 
+	sean de su interés y la navegación por el sitio. Cuando vuelve al sitio, la información que facilitó anteriormente se reutiliza 
+	para que pueda utilizar con mayor facilidad las funciones del sitio que 
+	ha personalizado.&lt;/p&gt;&lt;p align="justify"&gt;También podemos utilizar píxeles 
+	invisibles, también conocidos como GIF invisibles, para contribuir a 
+	la implantación de la cookie. Utilizamos esta tecnología como herramienta de 
+	elaboración de estadísticas relativas al uso de nuestro Sitio. Dichas 
+	estadísticas incluyen el número de visitantes que han hecho clic en los elementos 
+	clave (por ejemplo, enlaces o gráficos) de una página web, de una página de 
+	diario web o de un boletín informativo de nuestro Sitio. Podemos compartir estadísticas 
+	agregadas con empresas asociadas, pero no autorizamos a 
+	otras empresas a colocar imágenes .gif o cookies en nuestros sitios, 
+	salvo en caso de un interés particular temporal para nuestros clientes (por 
+	ejemplo, mediante la integración de un servicio de un sitio basado en cookies 
+	de terceros o en .gif transparentes).&lt;/p&gt;&lt;p align="justify"&gt;Usted puede aceptar o rechazar las 
+	cookies. La mayoría de los navegadores web aceptan las cookies 
+	automáticamente, pero puede modificar la configuración de su 
+	navegador para denegar su acceso a su ordenador si así lo 
+	desea. Si decide rechazar las cookies, es posible que no 
+	pueda utilizar plenamente las funciones interactivas de este sitio o 
+	de otros sitios web que visite. &lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="left"&gt;&lt;a class="topOfPage" href="#top"&gt;Volver al principio 
+		de la página&lt;/a&gt;&lt;/div&gt;&lt;a name="EDAA"&gt;&lt;/a&gt;&lt;a name="ECAA"&gt;&lt;/a&gt;&lt;h2 align="left"&gt;Aplicación de esta declaración 
+	de privacidad&lt;/h2&gt;&lt;p align="left"&gt;Si tiene preguntas sobre 
+	esta declaración, póngase en contacto con nosotros a través del formulario que 
+	ponemos a su disposición, al que tiene acceso tras haberse 
+	identificado.&lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="left"&gt;&lt;a class="topOfPage" href="#top"&gt;Volver al principio 
+		de la página&lt;/a&gt;&lt;/div&gt;&lt;a name="EBAA"&gt;&lt;/a&gt;&lt;h2 align="left"&gt;Modificaciones de esta 
+	declaración de privacidad&lt;/h2&gt;&lt;p align="justify"&gt;Actualizamos ocasionalmente 
+	esta declaración de privacidad. En tal caso, corregimos también 
+	la fecha de «&lt;a href="#AAAA"&gt;&lt;b&gt;última actualización&lt;/b&gt;&lt;/a&gt;» en la parte superior de la 
+	declaración de privacidad. En caso de modificaciones sustanciales de 
+	esta declaración, se lo comunicaremos mediante un aviso visible 
+	en la página de inicio del sitio o enviándole directamente una notificación. 
+	Recomendamos consultar periódicamente esta declaración de 
+	privacidad para mantenerse informado de cómo contribuimos a 
+	proteger la información personal que recopilamos. El uso 
+	continuado de este servicio constituye su aceptación de esta declaración de 
+	privacidad y de sus actualizaciones. &lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="left"&gt;&lt;a class="topOfPage" href="#top"&gt;Volver al principio 
+		de la página&lt;/a&gt;&lt;/div&gt;&lt;a name="EAAA"&gt;&lt;/a&gt;&lt;h2 align="left"&gt;Contacto&lt;/h2&gt;
+	&lt;p align="justify"&gt;Sus comentarios sobre esta declaración de 
+	privacidad son bienvenidos. Si considera que nuestro Sitio no ha respetado esta declaración de privacidad, 
+	póngase en contacto con nosotros por vía electrónica o por correo postal en la dirección 
+	que figura en las &lt;a href="/terms"&gt;&lt;b&gt;condiciones de uso&lt;/b&gt;&lt;/a&gt;, y emplearemos todos los medios razonables para 
+	determinar rápidamente el problema y ponerle remedio.&lt;/p&gt;
+	&lt;p align="left"&gt;&lt;a class="topOfPage" href="#top"&gt;Volver al principio de la página&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</value>
   </data>
   <data name="MESSAGE_PORTAL_TERMS.Text" xml:space="preserve">
-    <value>&lt;div align="left"&gt;
-&lt;p align="left"&gt;&lt;strong&gt;AVISO LEGAL:&lt;/strong&gt;&lt;/p&gt;
+    <value xml:space="preserve">&lt;div style="padding: 0px 15px 0px 20px"&gt;&lt;p align="left"&gt;&lt;em&gt;La versión francesa de esta página es la versión de referencia.&lt;/em&gt;&lt;/p&gt;
+	&lt;p align="left"&gt;&lt;strong&gt;AVISO LEGAL:&lt;/strong&gt;&lt;/p&gt;
 &lt;p align="center"&gt;&lt;strong&gt;IDENTIFICACIÓN DEL SITIO&lt;br&gt;
-&lt;/strong&gt;La siguiente información se facilita en virtud del artículo 6
-de la Ley francesa n.º 2004-575, de 21 de junio de 2004,
-de&lt;br&gt;
+&lt;/strong&gt;La siguiente información se facilita en virtud del Artículo 6 de la LEY n.º 2004-575 de 21 de junio de 2004 para la&lt;br&gt;
 &lt;b&gt;Confianza en la Economía Digital&lt;/b&gt;&lt;br&gt;
-(&lt;a target="_blank" href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000801164"&gt;Acceder
-al texto de la ley vigente&lt;/a&gt;) &lt;/p&gt;
+(&lt;a target="_blank" href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000801164"&gt;Acceder al texto de la ley vigente&lt;/a&gt;) &lt;/p&gt;
 &lt;p align="center"&gt;&lt;b&gt;El sitio web «Argumentum» está editado por:&lt;/b&gt;&lt;/p&gt;
 &lt;div style="text-align:center;border:1px solid black;"&gt;&lt;em&gt;ARGUMENTUM SAS, 5 B RUE MARTEL, 75010 PARIS 10&lt;/em&gt;&lt;br&gt;
-SIREN: 922020276&lt;br&gt;&lt;/div&gt;
+		SIREN: 922020276&lt;br&gt;&lt;/div&gt;
 &lt;p align="center"&gt;&lt;strong&gt;en adelante denominado «Editor del Sitio»&lt;/strong&gt;&lt;/p&gt;
 &lt;p align="center"&gt;
-(Propietario y operador del sitio web «Argumentum»)&lt;br&gt;&lt;/p&gt;
+(Propietario y explotador del sitio «Argumentum»)&lt;br&gt;&lt;/p&gt;
 &lt;p align="center"&gt;&lt;b&gt;El sitio web «Argumentum» está alojado por:&lt;/b&gt;&lt;/p&gt;
 &lt;div style="text-align:center;border:1px solid black;"&gt;&lt;em&gt;MY INTELLIGENCE AGENCY, 5 B RUE MARTEL, 75010 PARIS 10&lt;br&gt;&lt;/em&gt;&lt;/div&gt;
 &lt;p align="center"&gt;&lt;b&gt;en adelante denominado «Proveedor de Alojamiento»&lt;/b&gt;&lt;/p&gt;
 	&lt;p align="center"&gt;&amp;nbsp;&lt;/p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;ACUERDO ENTRE EL USUARIO Y [Portal:PortalName]&lt;/span&gt;&lt;p&gt;
-        &lt;p&gt;El sitio web [Portal:PortalName] está compuesto por diversas páginas web gestionadas por [Portal:PortalName].&lt;/p&gt;
-        &lt;p&gt;El sitio web [Portal:PortalName] se le ofrece con la condición de que acepte sin modificación los términos, condiciones y avisos aquí contenidos. Su uso del sitio web [Portal:PortalName] constituye su aceptación de todos dichos términos, condiciones y avisos.&lt;p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;MODIFICACIÓN DE ESTOS TÉRMINOS DE USO&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;[Portal:PortalName] se reserva el derecho de modificar los términos, condiciones y avisos bajo los cuales se ofrece el sitio web [Portal:PortalName], incluidas, sin carácter limitativo, las tarifas asociadas al uso del sitio web [Portal:PortalName].&lt;/p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;ENLACES A SITIOS DE TERCEROS&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;El sitio web [Portal:PortalName] puede contener enlaces a otros sitios web («Sitios Vinculados»). Los Sitios Vinculados no están bajo el control de [Portal:PortalName] y [Portal:PortalName] no es responsable del contenido de ningún Sitio Vinculado, incluida sin limitación cualquier enlace contenido en un Sitio Vinculado, o de cualquier cambio o actualización de un Sitio Vinculado. [Portal:PortalName] no es responsable de la retransmisión web ni de ninguna otra forma de transmisión recibida de ningún Sitio Vinculado. [Portal:PortalName] proporciona estos enlaces únicamente por comodidad, y la inclusión de cualquier enlace no implica el respaldo por parte de [Portal:PortalName] del sitio ni asociación alguna con sus operadores.&lt;/p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;NINGÚN USO ILÍCITO O PROHIBIDO&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;Como condición de su uso del sitio web [Portal:PortalName], usted garantiza a [Portal:PortalName] que no utilizará el sitio web [Portal:PortalName] para ningún propósito que sea ilícito o esté prohibido por estos términos, condiciones y avisos. Usted no podrá utilizar el sitio web [Portal:PortalName] de ningún modo que pueda dañar, deshabilitar, sobrecargar o deteriorar el sitio web [Portal:PortalName], ni interferir con el uso y disfrute del sitio web [Portal:PortalName] por parte de cualquier otra parte. Usted no podrá obtener ni intentar obtener materiales o información por medios no puestos intencionalmente a su disposición o previstos por los sitios web [Portal:PortalName].&lt;/p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;USO DE LOS SERVICIOS DE COMUNICACIÓN&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;El sitio web [Portal:PortalName] puede contener servicios de tablones de anuncios, zonas de chat, grupos de noticias, foros, comunidades, páginas web personales, calendarios y/u otras instalaciones de mensajería o comunicación diseñadas para permitirle comunicarse con el público en general o con un grupo (en conjunto, «Servicios de Comunicación»). Usted acepta utilizar los Servicios de Comunicación únicamente para publicar, enviar y recibir mensajes y material que sean apropiados y estén relacionados con el Servicio de Comunicación de que se trate. A título de ejemplo, y sin carácter limitativo, usted acepta que, al usar un Servicio de Comunicación, usted no:&lt;/p&gt;
-&lt;ul&gt;
-            &lt;li&gt;Difamar, abusar, acosar, acechar, amenazar o vulnerar de otro modo los derechos legales (como los derechos de privacidad e imagen) de terceros.&lt;/li&gt;
-            &lt;li&gt;Publicar, exponer, cargar, distribuir o difundir cualquier tema, nombre, material o información inapropiado, blasfemo, difamatorio, infractor, obsceno, indecente o ilícito.&lt;/li&gt;
-            &lt;li&gt;Cargar archivos que contengan software u otro material protegido por leyes de propiedad intelectual (o por derechos de privacidad o de imagen), salvo que usted sea titular o controle los derechos correspondientes o haya recibido todos los consentimientos necesarios.&lt;/li&gt;
-            &lt;li&gt;Cargar archivos que contengan virus, archivos corruptos o cualquier otro software o programa similar que pueda dañar el funcionamiento del ordenador de terceros.&lt;/li&gt;
-            &lt;li&gt;Anunciar u ofrecer la venta o compra de bienes o servicios para cualquier fin comercial, salvo que el Servicio de Comunicación de que se trate permita específicamente dichos mensajes.&lt;/li&gt;
-            &lt;li&gt;Realizar o reenviar encuestas, concursos, esquemas piramidales o cartas en cadena.&lt;/li&gt;
-            &lt;li&gt;Descargar cualquier archivo publicado por otro usuario de un Servicio de Comunicación que usted sepa, o razonablemente deba saber, que no puede distribuirse legalmente de dicha manera.&lt;/li&gt;
-            &lt;li&gt;Falsificar o suprimir atribuciones de autoría, avisos legales u otros avisos apropiados, o designaciones o etiquetas de propiedad sobre el origen o la fuente de software u otro material contenido en un archivo cargado.&lt;/li&gt;
-            &lt;li&gt;Restringir o inhibir a cualquier otro usuario del uso y disfrute de los Servicios de Comunicación.&lt;/li&gt;
-            &lt;li&gt;Vulnerar cualquier código de conducta u otras directrices que puedan resultar aplicables a cualquier Servicio de Comunicación en particular.&lt;/li&gt;
-            &lt;li&gt;Recabar o recopilar por otros medios información sobre terceros, incluidas direcciones de correo electrónico, sin su consentimiento.&lt;/li&gt;
-            &lt;li&gt;Vulnerar cualquier ley o reglamento aplicable.&lt;/li&gt;
-&lt;/ul&gt;
-        &lt;p&gt;[Portal:PortalName] no tiene obligación de supervisar los Servicios de Comunicación. No obstante, [Portal:PortalName] se reserva el derecho de revisar los materiales publicados en un Servicio de Comunicación y de retirar cualquier material a su sola discreción. [Portal:PortalName] se reserva el derecho de dar por terminado su acceso a cualquiera o a todos los Servicios de Comunicación en cualquier momento, sin previo aviso y por cualquier motivo.&lt;/p&gt;
-        &lt;p&gt;[Portal:PortalName] se reserva el derecho de revelar en todo momento cualquier información necesaria para cumplir cualquier ley, reglamento, proceso legal o requerimiento gubernamental aplicable, o de editar, rechazar o retirar cualquier información o material, total o parcialmente, a sola discreción de [Portal:PortalName].&lt;/p&gt;
-        &lt;p&gt;Extreme siempre la precaución al facilitar cualquier información de identificación personal sobre usted o sus hijos en cualquier Servicio de Comunicación. [Portal:PortalName] no controla ni respalda el contenido, los mensajes o la información hallados en cualquier Servicio de Comunicación y, por tanto, [Portal:PortalName] rechaza expresamente toda responsabilidad con respecto a los Servicios de Comunicación y a cualesquier acciones derivadas de su participación en cualquier Servicio de Comunicación. Los gestores y anfitriones no son portavoces autorizados de [Portal:PortalName], y sus opiniones no reflejan necesariamente las de [Portal:PortalName].&lt;/p&gt;
-        &lt;p&gt;Los materiales cargados en un Servicio de Comunicación pueden estar sujetos a limitaciones publicadas sobre uso, reproducción y/o difusión. Usted es responsable de respetar dichas limitaciones si descarga los materiales.&lt;/p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;MATERIALES FACILITADOS A [Portal:PortalName] O PUBLICADOS EN CUALQUIER SITIO
-            WEB DE [Portal:PortalName]&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;[Portal:PortalName] no reivindica la propiedad de los materiales que usted facilite a [Portal:PortalName] (incluidos comentarios y sugerencias) o que publique, cargue, introduzca o envíe a cualquier sitio web [Portal:PortalName] o a sus servicios asociados (en conjunto, las «Contribuciones»). No obstante, al publicar, cargar, introducir, facilitar o enviar su Contribución, usted concede a [Portal:PortalName], a sus empresas afiliadas y a los sublicenciatarios necesarios permiso para utilizar su Contribución en relación con la explotación de sus negocios en Internet, incluidos sin carácter limitativo los derechos de: copiar, distribuir, transmitir, mostrar públicamente, ejecutar públicamente, reproducir, editar, traducir y reformatear su Contribución; y de publicar su nombre en relación con su Contribución.&lt;/p&gt;
-        &lt;p&gt;No se abonará compensación alguna por el uso de su Contribución, según lo previsto aquí. [Portal:PortalName] no está obligada a publicar o utilizar ninguna Contribución que usted facilite y podrá retirar cualquier Contribución en cualquier momento, a sola discreción de [Portal:PortalName].&lt;/p&gt;
-        &lt;p&gt;Al publicar, cargar, introducir, facilitar o enviar su Contribución, usted garantiza y declara que es titular o controla de otro modo todos los derechos sobre su Contribución conforme a lo descrito en esta sección, incluidos sin carácter limitativo todos los derechos necesarios para facilitarla, publicarla, cargarla, introducirla o enviarla.&lt;/p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;EXENCIÓN DE RESPONSABILIDAD&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;LA INFORMACIÓN, EL SOFTWARE, LOS PRODUCTOS Y LOS SERVICIOS INCLUIDOS O DISPONIBLES A TRAVÉS DEL SITIO WEB [Portal:PortalName] PUEDEN CONTENER INEXACTITUDES O ERRORES TIPOGRÁFICOS. PERIÓDICAMENTE SE AÑADEN CAMBIOS A LA INFORMACIÓN AQUÍ CONTENIDA. [Portal:PortalName] Y/O SUS PROVEEDORES PUEDEN INTRODUCIR MEJORAS Y/O CAMBIOS EN EL SITIO WEB [Portal:PortalName] EN CUALQUIER MOMENTO. LOS CONSEJOS RECIBIDOS A TRAVÉS DEL SITIO WEB [Portal:PortalName] NO DEBEN UTILIZARSE PARA DECISIONES PERSONALES, MÉDICAS, JURÍDICAS O FINANCIERAS, Y USTED DEBE CONSULTAR A UN PROFESIONAL ADECUADO PARA CONSEJOS ESPECÍFICOS AJUSTADOS A SU SITUACIÓN.&lt;/p&gt;
-        &lt;p&gt;[Portal:PortalName] Y/O SUS PROVEEDORES NO FORMULAN DECLARACIÓN ALGUNA SOBRE LA IDONEIDAD, FIABILIDAD, DISPONIBILIDAD, PUNTUALIDAD Y EXACTITUD DE LA INFORMACIÓN, EL SOFTWARE, LOS PRODUCTOS, LOS SERVICIOS Y LOS GRÁFICOS RELACIONADOS CONTENIDOS EN EL SITIO WEB [Portal:PortalName] PARA NINGÚN FIN. EN LA MÁXIMA MEDIDA PERMITIDA POR LA LEY APLICABLE, DICHAS INFORMACIÓN, SOFTWARE, PRODUCTOS, SERVICIOS Y GRÁFICOS RELACIONADOS SE PROPORCIONAN «TAL CUAL», SIN GARANTÍA NI CONDICIÓN DE NINGÚN TIPO. [Portal:PortalName] Y/O SUS PROVEEDORES RECHAZAN POR EL PRESENTE TODAS LAS GARANTÍAS Y CONDICIONES RESPECTO DE DICHA INFORMACIÓN, SOFTWARE, PRODUCTOS, SERVICIOS Y GRÁFICOS RELACIONADOS, INCLUIDAS TODAS LAS GARANTÍAS O CONDICIONES IMPLÍCITAS DE COMERCIABILIDAD, IDONEIDAD PARA UN FIN DETERMINADO, TITULARIDAD Y NO INFRACCIÓN.&lt;/p&gt;
-        &lt;p&gt;EN LA MÁXIMA MEDIDA PERMITIDA POR LA LEY APLICABLE, EN NINGÚN CASO [Portal:PortalName] Y/O SUS PROVEEDORES RESPONDERÁN POR NINGÚN DAÑO DIRECTO, INDIRECTO, PUNITIVO, INCIDENTAL, ESPECIAL O CONSECUENTE, NI POR NINGÚN OTRO DAÑO, INCLUIDOS SIN LIMITACIÓN LOS DAÑOS POR PÉRDIDA DE USO, DE DATOS O DE BENEFICIOS, QUE DERIVEN DE O SE RELACIONEN DE CUALQUIER MANERA CON EL USO O RENDIMIENTO DEL SITIO WEB [Portal:PortalName], CON EL RETRASO O LA IMPOSIBILIDAD DE UTILIZAR EL SITIO WEB [Portal:PortalName] O SERVICIOS RELACIONADOS, CON LA PRESTACIÓN O FALLO DE PRESTACIÓN DE SERVICIOS, O POR CUALQUIER INFORMACIÓN, SOFTWARE, PRODUCTOS, SERVICIOS O GRÁFICOS RELACIONADOS OBTENIDOS A TRAVÉS DEL SITIO WEB [Portal:PortalName], O QUE SURJAN DE CUALQUIER OTRO MODO DEL USO DEL SITIO WEB [Portal:PortalName], YA SEA EN VIRTUD DE CONTRATO, EXTRACONTRACTUAL, NEGLIGENCIA, RESPONSABILIDAD ESTRICTA O DE OTRO MODO, INCLUSO SI [Portal:PortalName] O CUALQUIERA DE SUS PROVEEDORES HUBIERA SIDO ADVERTIDA DE LA POSIBILIDAD DE TALES DAÑOS. DADO QUE ALGUNOS ESTADOS/JURISDICCIONES NO PERMITEN LA EXCLUSIÓN O LIMITACIÓN DE RESPONSABILIDAD POR DAÑOS CONSECUENTES O INCIDENTALES, LA LIMITACIÓN ANTERIOR PODRÍA NO SERLE APLICABLE. SI USTED ESTUVIERA INSATISFECHO CON CUALQUIER PARTE DEL SITIO WEB [Portal:PortalName] O CON CUALQUIERA DE ESTOS TÉRMINOS DE USO, SU ÚNICO Y EXCLUSIVO REMEDIO SERÁ DEJAR DE UTILIZAR EL SITIO WEB [Portal:PortalName].&lt;/p&gt;
-        &lt;p&gt;CONTACTO DEL SERVICIO : [Portal:Email]&lt;/p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;TERMINACIÓN/RESTRICCIÓN DE ACCESO&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;[Portal:PortalName] se reserva el derecho, a su sola discreción, de dar por terminado su acceso al sitio web [Portal:PortalName] y a los servicios relacionados, o a cualquier parte de ellos, en cualquier momento, sin previo aviso. DISPOSICIONES GENERALES En la máxima medida permitida por la ley, el presente acuerdo se rige por las leyes del Estado de Washington, EE. UU., y usted consiente por el presente en someterse a la jurisdicción y competencia exclusivas de los tribunales del Condado de San Mateo, California, EE. UU., para toda controversia derivada del uso del sitio web [Portal:PortalName] o relacionada con él. El uso del sitio web [Portal:PortalName] no está autorizado en ninguna jurisdicción que no dé efecto a todas las disposiciones de estos términos y condiciones, incluida sin limitación este párrafo. Usted acepta que no existe ninguna relación de negocio en común, sociedad, empleo o agencia entre usted y [Portal:PortalName] como consecuencia de este acuerdo o del uso del sitio web [Portal:PortalName]. El cumplimiento de este acuerdo por parte de [Portal:PortalName] está sujeto a las leyes y procesos legales vigentes, y nada de lo contenido en este acuerdo menoscaba el derecho de [Portal:PortalName] a cumplir requerimientos gubernamentales, judiciales y de las autoridades relacionados con su uso del sitio web [Portal:PortalName] o con la información facilitada a o recabada por [Portal:PortalName] sobre dicho uso. Si cualquier parte de este acuerdo se determinara inválida o inaplicable conforme a la ley aplicable, incluidas sin carácter limitativo las exclusiones de garantía y limitaciones de responsabilidad anteriores, la disposición inválida o inaplicable se considerará sustituida por una disposición válida y aplicable que más se aproxime a la intención de la disposición original, y el resto del acuerdo continuará en vigor. Salvo especificación en contrario aquí contenida, el presente acuerdo constituye el acuerdo íntegro entre el usuario y [Portal:PortalName] con respecto al sitio web [Portal:PortalName] y deja sin efecto todas las comunicaciones y propuestas previas o contemporáneas, ya sean electrónicas, orales o escritas, entre el usuario y [Portal:PortalName] con respecto al sitio web [Portal:PortalName]. Una versión impresa de este acuerdo y de cualquier aviso dado en forma electrónica será admisible en procedimientos judiciales o administrativos basados en el presente acuerdo o relacionados con él, en la misma medida y con sujeción a las mismas condiciones que otros documentos y registros mercantiles generados y conservados originalmente en forma impresa. Es deseo expreso de las partes que el presente acuerdo y todos los documentos relacionados se redacten en inglés.&lt;/p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;AVISOS SOBRE DERECHOS DE AUTOR Y MARCAS:&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;Todo el contenido del sitio web [Portal:PortalName] es: [Portal:FooterText] y/o sus proveedores. Todos los derechos reservados.&lt;/p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;MARCAS COMERCIALES&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;Los nombres de empresas y productos reales aquí mencionados pueden ser marcas comerciales de sus respectivos titulares.&lt;/p&gt;
-        &lt;p&gt;Las empresas, organizaciones, productos, personas y eventos de ejemplo aquí descritos son ficticios. No se pretende ni debe inferirse asociación alguna con ninguna empresa, organización, producto, persona o evento reales.&lt;/p&gt;
-        &lt;p&gt;Los derechos no concedidos expresamente aquí quedan reservados.&lt;/p&gt;
-        &lt;p&gt;&lt;span class="SubHead"&gt;AVISOS Y PROCEDIMIENTO PARA PRESENTAR RECLAMACIONES POR INFRACCIÓN DE DERECHOS DE AUTOR&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;Conforme al Título 17, Código de los Estados Unidos, Sección 512(c)(2), las notificaciones de presunta infracción de derechos de autor conforme a la legislación de derechos de autor de los Estados Unidos deben enviarse al Agente Designado del Proveedor de Servicios. TODAS LAS CONSULTAS NO RELACIONADAS CON EL SIGUIENTE PROCEDIMIENTO NO RECIBIRÁN RESPUESTA. Véase Aviso y procedimiento para presentar reclamaciones por infracción de derechos de autor.&lt;/p&gt;
-    &lt;/div&gt;</value>
+&lt;p align="left"&gt;&lt;strong&gt;ACEPTACIÓN DE LAS CONDICIONES INHERENTES AL USO &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;El Editor del Sitio es titular de este sitio y lo explota. Su uso implica que usted acepta la totalidad de los términos, condiciones y notificaciones contenidos y citados en este documento (las «condiciones de uso»). Estas condiciones generales de uso solo se aplican al sitio y a los servicios de este Sitio, y a ningún sitio de terceros. &lt;/p&gt;
+&lt;p align="justify"&gt;Si no acepta estas condiciones de uso, rogamos no utilice este sitio. Nos reservamos el derecho, a nuestra discreción, de actualizar o modificar las condiciones de uso. Por consiguiente, rogamos las consulte periódicamente para saber si han sido modificadas. Consideraremos que usted acepta una modificación de las condiciones de uso si continúa utilizando el sitio tras la publicación de dicha modificación. &lt;/p&gt;
+&lt;p align="left"&gt;&lt;strong&gt;DERECHOS DE PROPIEDAD &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;Usted reconoce y acepta que la totalidad del contenido y de los elementos disponibles en este sitio —en particular, aunque sin carácter limitativo, las cartas, los programas y el software, las bases de datos, el texto, las fotografías, las películas, los sonidos, la música, la presentación y los logotipos— están protegidos por derechos de autor, derechos de protección de bases de datos, marcas registradas, marcas de servicio, patentes, secretos industriales u otros derechos y leyes de propiedad. El contenido y los elementos disponibles son, o bien de titularidad y control exclusivos del Editor del Sitio, o bien utilizados bajo licencia. Estas condiciones de uso se aplican a todo el contenido y a todos los elementos disponibles en el sitio. &lt;/p&gt;
+&lt;p align="justify"&gt;Además, cuando utilice contenido y elementos bajo licencia de un tercero, es posible que quede vinculado por los contratos de licencia de este último. Cuando reciba información procedente de un tercero, la identidad de este se indica mediante un logotipo u otra indicación. &lt;/p&gt;
+&lt;p align="left"&gt;&lt;strong&gt;CONCESIÓN DE LICENCIA LIMITADA &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;El contenido y los elementos disponibles en este sitio pueden contener otros avisos de propiedad o describir productos, servicios, procesos o tecnologías pertenecientes&amp;nbsp; a terceros. Ninguna parte del presente documento deberá considerarse constitutiva de una licencia concedida al usuario sobre derechos de autor, marcas, patentes o cualquier otro derecho de propiedad intelectual de titularidad de un tercero, con excepción del derecho de uso limitado expresamente definido a continuación: &lt;/p&gt;
+&lt;p align="justify"&gt;En el marco de una licencia no exclusiva e intransferible, usted está autorizado a imprimir o descargar un ejemplar de los elementos o del contenido de este sitio en un único ordenador individual para su uso personal y no comercial, siempre que mantenga intactos todos los avisos de derechos de autor y de propiedad. Puede utilizar el sitio con fines lícitos y para su uso personal, pero en ningún caso con ánimo de lucro o con fines comerciales. Si desea información para redactar un artículo sobre el sitio, se pondrá a su disposición, previa solicitud, un dossier de prensa; únicamente podrán publicarse las fotografías contenidas en dicho dossier de prensa. &lt;/p&gt;
+&lt;p align="justify"&gt;Usted se compromete a no vender, sublicenciar, alquilar, distribuir, transmitir, copiar, reproducir, exhibir públicamente, ejecutar públicamente, publicar, adaptar, editar, modificar, descompilar ni desensamblar en ningún caso dicho contenido o dichos elementos, así como a no reconstruir nunca la lógica del programa ni crear obras derivadas a partir de dicho contenido o de dichos elementos. Usted se compromete a no utilizar nunca el contenido ni los elementos disponibles en el sitio con fines comerciales de ningún tipo. Queda prohibida la extracción sistemática de datos o de otro material de este sitio para crear o establecer, directa o indirectamente, una colección, una compilación, una base de datos o un directorio sin la autorización por escrito del Editor del Sitio. Asimismo, queda prohibido el uso del contenido o de los elementos para cualquier fin no autorizado expresamente en estas condiciones de uso. Usted no goza de ningún derecho de propiedad sobre el contenido, los elementos y sus derivados, siendo el Editor del Sitio el único titular de tales derechos. &lt;/p&gt;
+&lt;p&gt;&lt;b&gt;El incumplimiento de cualquiera de las cláusulas de estas condiciones de uso pondrá fin a esta licencia de forma automática y sin preaviso por parte del Editor del Sitio.&lt;/b&gt;&lt;/p&gt;
+&lt;p align="left"&gt;&lt;strong&gt;USO DE ESTE SITIO&lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;Usted no está autorizado a utilizar el sitio ni sus servicios con fines ilícitos, tales como la publicación, distribución o difusión de cualquier elemento o información ilícitos, y en particular: &lt;/p&gt;
+&lt;ul align="left" type="disc"&gt;
+&lt;li&gt;
+&lt;p align="left"&gt;cualesquiera datos privativos pertenecientes a un tercero, en particular las marcas registradas y los datos protegidos por derechos de autor (distintos de aquellos sobre los que usted posea una licencia); &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align="left" type="disc"&gt;
+&lt;li&gt;
+&lt;p align="left"&gt;cualquier contenido erróneo, difamatorio, obsceno, racista o que incite al odio; &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align="left" type="disc"&gt;
+&lt;li&gt;
+&lt;p align="left"&gt;cualquier contenido destinado a acosar a un tercero o a menoscabar su vida privada; &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align="left" type="disc"&gt;
+&lt;li&gt;
+&lt;p align="left"&gt;cualquier contenido que incite al delito, al suicidio, a la discriminación, al odio o a la violencia por motivos de diferencia racial, étnica o de nacionalidad; &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align="left" type="disc"&gt;
+&lt;li&gt;
+&lt;p align="left"&gt;cualquier contenido que pueda perjudicar a usuarios menores de edad o atentar contra la dignidad humana; &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align="left" type="disc"&gt;
+&lt;li&gt;
+&lt;p align="left"&gt;cualquier contenido que haga apología del nazismo o niegue el Holocausto. &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p align="justify"&gt;Asimismo, usted no deberá utilizar el sitio con el fin de recabar información personal, en particular direcciones de Internet, relativa a otros usuarios del sitio. &lt;/p&gt;
+&lt;p align="left"&gt;&lt;strong&gt;EXCLUSIÓN DE GARANTÍA &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;Todo el contenido es propio del sitio Argumentum. Este sitio puede contener inexactitudes técnicas o errores tipográficos. El Editor del Sitio se reserva el derecho de modificar o suprimir cualquier información o contenido que aparezca en este sitio sin previo aviso. Ni el Editor del Sitio, ni sus proveedores de contenido, ni la empresa prestadora de los servicios de Internet que permiten el funcionamiento de esta aplicación web ofrecen garantía alguna en cuanto a su contenido. El usuario asume todos los riesgos derivados del uso. No incumbe responsabilidad alguna al Editor del Sitio, a sus proveedores ni a sus prestadores de servicios en cuanto al uso de la información contenida en este sitio. &lt;/p&gt;
+&lt;p align="justify"&gt;EL CONTENIDO Y LOS ELEMENTOS PROPORCIONADOS EN ESTE SITIO SE FACILITAN SIN GARANTÍA ALGUNA, IMPLÍCITA O EXPLÍCITA. NINGÚN AVISO NI NINGUNA INFORMACIÓN PROPORCIONADOS POR EL EDITOR DEL SITIO O EL PROVEEDOR DE ALOJAMIENTO, SUS SOCIEDADES MATRICES O FILIALES O SUS RESPECTIVOS EMPLEADOS PODRÁN CONSTITUIR GARANTÍA ALGUNA. NI EL EDITOR DEL SITIO, NI EL PROVEEDOR DE ALOJAMIENTO, NI SUS SOCIEDADES MATRICES O FILIALES GARANTIZAN LA PRECISIÓN, LA FIABILIDAD Y LA EXACTITUD DEL CONTENIDO Y DE LOS ELEMENTOS DEL SITIO; NI LA DISPONIBILIDAD DEL SITIO EN TODO LUGAR Y EN TODO MOMENTO; NI LA AUSENCIA DE VIRUS U OTROS ELEMENTOS DAÑINOS EN EL CONTENIDO, LA INFORMACIÓN Y EL SOFTWARE, NI EN CUALQUIER ELEMENTO ACCESIBLE DESDE EL SITIO. &lt;/p&gt;
+&lt;p align="left"&gt;&lt;br&gt;&lt;strong&gt;LIMITACIÓN DE RESPONSABILIDAD &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;&lt;br&gt;EL EDITOR DEL SITIO, EL PROVEEDOR DE ALOJAMIENTO, SUS SOCIEDADES MATRICES O AFILIADAS, SOCIOS, FILIALES O LICENCIANTES NO SERÁN EN NINGÚN CASO RESPONSABLES DE DAÑOS DIRECTOS O INDIRECTOS —INCLUIDOS, AUNQUE SIN CARÁCTER LIMITATIVO, &lt;st1:personname productid="LA PERTE DE" w:st="on"&gt;LA PÉRDIDA DE&lt;/st1:personname&gt; BENEFICIOS, DE CLIENTELA O DE DATOS— DERIVADOS DEL USO O DE LA IMPOSIBILIDAD DE USO DEL SITIO O DEL CONTENIDO Y DE LOS ELEMENTOS A LOS QUE ESTE PERMITE ACCEDER. ESTA LIMITACIÓN SE APLICA TANTO EN MATERIA EXTRACONTRACTUAL COMO CONTRACTUAL, AUN CUANDO EL EDITOR DEL SITIO O EL PROVEEDOR DE ALOJAMIENTO HAYAN SIDO INFORMADOS DE LA POSIBILIDAD DE DICHO DAÑO. &lt;/p&gt;
+&lt;p align="left"&gt;&lt;strong&gt;INDEMNIZACIÓN&lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;A petición del Editor del Sitio, usted se compromete a indemnizar al Editor del Sitio, a sus sociedades matrices o afiliadas, socios, filiales o licenciantes, así como a sus empleados, contratistas, agentes y directivos, en caso de que se exija su responsabilidad, así como por las reclamaciones y gastos (incluidos los honorarios de abogados) derivados de su uso del sitio o de sus errores en dicho uso. En la medida de lo posible, usted acepta cooperar con el Editor del Sitio en su defensa en cualquier asunto en el que usted debiera ofrecer una indemnización. &lt;/p&gt;
+&lt;p align="left"&gt;&lt;strong&gt;SITIOS DE TERCEROS &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;Ninguna referencia a productos, servicios, procesos, hipervínculos de terceros u otra información mediante la mención de un nombre comercial, una marca registrada, un fabricante, un proveedor u otro constituye ni implica aprobación, aval o recomendación por parte del Editor del Sitio, de sus sociedades matrices o afiliadas, socios, filiales o licenciantes. Además, el sitio puede ponerlo en contacto con otros sitios web, en particular mediante búsquedas automáticas, pero dichos sitios no están bajo el control del Editor del Sitio. Usted reconoce que el Editor del Sitio no es responsable de la exactitud, del respeto de los derechos de autor, de la legalidad, de la decencia ni de ningún otro aspecto de los sitios de terceros. &lt;/p&gt;
+&lt;p align="justify"&gt;&lt;b&gt;Todo hipervínculo procedente de un sitio de terceros que conduzca a este sitio requiere la autorización previa del Editor del Sitio, en particular los enlaces a una página distinta de la página de inicio. La solicitud de dicha autorización puede efectuarse mediante el envío de un mensaje a través del formulario de contacto disponible en este sitio.
+&lt;/b&gt; &lt;/p&gt;
+&lt;p align="left"&gt;&lt;strong&gt;POLÍTICA DE PRIVACIDAD &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;El Editor del Sitio tiene como principio proteger la privacidad de sus usuarios. En el pie de cada página del sitio dispone usted de un enlace a la política de privacidad (Declaración de privacidad) establecida por el Editor del Sitio. Rogamos la consulte. &lt;/p&gt;
+&lt;p align="left"&gt;&lt;strong&gt;CONCESIÓN POR EL USUARIO DE UNA LICENCIA LIMITADA AL EDITOR DEL SITIO&lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;Al publicar, enviar o transmitir de cualquier otro modo información, contenido o elementos a este sitio, incluidos, aunque sin carácter limitativo, comentarios de valoración, datos, respuestas, preguntas, observaciones, sugerencias, proyectos, ideas, etc., &lt;/p&gt;
+&lt;ol type="1"&gt;
+&lt;li&gt;
+&lt;p align="justify"&gt;salvo en los casos previstos por la ley, usted autoriza al Editor del Sitio, a sus sociedades matrices y afiliadas, socios, filiales y licenciatarios, a utilizar, reproducir, mostrar, ejecutar, adaptar, modificar, distribuir, hacer distribuir y promocionar la información, el contenido o los elementos en cualquier forma, en cualquier lugar y con cualquier fin, comercial o no, sin imponer restricción alguna ni esperar compensación, y 
+&lt;/p&gt;&lt;/li&gt;&lt;li&gt;
+&lt;p align="justify"&gt;usted garantiza y declara que posee, o controla de otro modo, todos los derechos relativos al contenido y que la difusión pública y el uso de su contenido por parte del Editor del Sitio no afectarán ni vulnerarán los derechos de ningún tercero. &lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
+&lt;p align="left"&gt;&lt;strong&gt;CONSENTIMIENTO DEL USUARIO RELATIVO A LA VERIFICACIÓN Y LA DIVULGACIÓN &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;El Editor del Sitio no tiene obligación de verificar la información alojada en su sitio o transmitida a este. No obstante, toda persona que utilice el sitio acepta que el Editor del Sitio verifique periódicamente su contenido, (1) para cumplir una ley, un reglamento o una solicitud de las autoridades; (2) para garantizar el correcto funcionamiento del sitio o para protegerse y proteger a sus usuarios; o (3) por cualquier otro motivo, a su entera discreción. El Editor del Sitio se reserva el derecho de modificar, rechazar o suprimir cualquier información alojada en el sitio o transmitida a este si el Editor del Sitio considera, a su entera discreción, que dicha información es inaceptable o infringe las presentes condiciones de uso. &lt;/p&gt;
+&lt;p align="justify"&gt;Salvo en los casos previstos por la ley, si un usuario de los datos de este sitio proporciona a este Sitio información, incluidos, aunque sin carácter limitativo, datos, respuestas, preguntas, observaciones, sugerencias, proyectos, ideas, etc., dicha información se considerará no confidencial y el Editor del Sitio no se compromete a protegerla frente a su divulgación. &lt;/p&gt;
+&lt;p align="left"&gt;&lt;strong&gt;PROCEDIMIENTO DE RECLAMACIÓN POR FALSIFICACIÓN&lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;Si considera que su obra ha sido copiada y que es accesible en este sitio de un modo que constituye una falsificación, puede informar de ello al Editor del Sitio a través del formulario de contacto puesto a disposición en este sitio. &lt;/p&gt;
+&lt;p align="left"&gt;&lt;strong&gt;LEY APLICABLE Y TRIBUNAL COMPETENTE &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;Estas condiciones de uso se regirán e interpretarán conforme a las leyes francesas. Los contratos de licencia que rigen su uso de elementos de terceros en el sitio pueden contener disposiciones que exijan la intervención de tribunales extranjeros para la resolución de litigios relacionados con dichos contratos. &lt;/p&gt;
+&lt;p align="left"&gt;&lt;strong&gt;DIVISIBILIDAD E INTEGRIDAD&lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;Salvo indicación en contrario en el presente documento, este acuerdo constituye la totalidad del contrato celebrado entre usted y el Editor del Sitio en relación con el sitio, y anula y sustituye todas las comunicaciones y propuestas anteriores o simultáneas (ya sean orales, escritas o electrónicas) relativas a este sitio entre usted y el Editor del Sitio, sus sociedades matrices o afiliadas o licenciantes. Si alguna parte de estas condiciones de uso se considerase inválida o inaplicable, deberá interpretarse conforme a la ley vigente de modo que refleje en la mayor medida posible las intenciones iniciales de las partes, y el resto de las presentes condiciones permanecerá en vigor. &lt;/p&gt;
+&lt;p align="justify"&gt;&lt;strong&gt;RESOLUCIÓN &lt;/strong&gt;&lt;br&gt;&lt;br&gt;El Editor del Sitio se reserva el derecho, a su entera discreción, de poner fin a su acceso a la totalidad o a una parte de este sitio, con o sin preaviso. &lt;/p&gt;
+&lt;p align="left"&gt;&lt;strong&gt;EXPORTACIÓN &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;Usted se compromete a no exportar nunca, a ningún destino, ninguna parte del contenido o de los elementos que se pongan a su disposición, ni ningún producto obtenido directamente a partir de dicho contenido o de dichos elementos, salvo que ello sea conforme con las leyes, reglamentos y normas vigentes en materia de exportación. &lt;/p&gt;
+&lt;p align="left"&gt;&lt;strong&gt;AVISO DE DERECHOS DE AUTOR Y DE MARCAS REGISTRADAS &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="left"&gt;Argumentum. Todos los derechos reservados. &lt;/p&gt;
+&lt;p align="justify"&gt;Queda estrictamente prohibida la reproducción de cualquier elemento del presente sitio o de cualquier otro contenido que se encuentre en el sitio distinto de los expresamente contemplados en el presente documento. El uso de todos los documentos y gráficos asociados, así como de cualquier otro elemento proporcionado en este sitio, está sujeto a las condiciones de uso que figuran más arriba. &lt;/p&gt;
+&lt;p align="left"&gt;&lt;strong&gt;Marcas registradas&lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;El nombre Argumentum, su logotipo, así como todos los nombres de productos y servicios, diseños, marcas y eslóganes relacionados, son marcas registradas, marcas de servicio o marcas comerciales registradas del Editor del Sitio, y no podrán utilizarse con fines comerciales sin su consentimiento previo por escrito. Todas las demás marcas de productos y servicios de este sitio son marcas registradas de sus respectivos propietarios. &lt;/p&gt;
+&lt;p align="left"&gt;&lt;strong&gt;Otros avisos de derechos de autor &lt;/strong&gt; &lt;/p&gt;
+&lt;p align="justify"&gt;Los demás avisos de derechos de autor se refieren a los datos procedentes de terceros utilizados para crear este servicio de Internet. &lt;/p&gt;
+&lt;p align="left"&gt;&lt;strong&gt;CONTACTO &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;Para obtener más información sobre las cuestiones jurídicas contenidas en estas condiciones de uso, o sobre preguntas o problemas relativos a este servicio, rogamos escriba utilizando el formulario de contacto puesto a su disposición en este sitio. &lt;/p&gt;&lt;/div&gt;</value>
   </data>
   <data name="MESSAGE_RETRIEVEPASSWORD_INSTRUCTIONS.Text" xml:space="preserve">
     <value>Para recuperar su contraseña, tendrá que proporcionar su nombre de usuario y la respuesta a la Pregunta de contraseña.</value>

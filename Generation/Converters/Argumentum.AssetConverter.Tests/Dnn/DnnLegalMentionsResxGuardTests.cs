@@ -50,7 +50,15 @@ namespace Argumentum.AssetConverter.Tests.Dnn
     /// dictionnaire externe — 27 autres candidats lus en contexte = homographes exclus :
     /// OU conjonction ×12, MAIS, SUR, EXPLICITE adj., APPLIQUE verbe, MARQUES/MARCHANDE/
     /// USAGE/TIERCES/CADRE/TENUS noms, DE/DES/DU/LA/LES/NE mots-outils).
-    /// Identité byte et gabarit DNN intouchés.
+    /// Identité byte intouchée (état du grain LCEN #1876/#1883, avant E2).
+    ///
+    /// GRAIN E2 (pool #458 c.6456588555, décision (a)) : les valeurs TERMS ET PRIVACY du neutre,
+    /// es-ES, pt-BR et ru-RU sont REMPLACÉES depuis le fr-FR (gabarit DNN retiré) — les 6
+    /// épingles du gabarit qui vivaient ici (ancre AGREEMENT/ACUERDO/ACORDO, guillemets
+    /// droits « Linked Sites » et ses traductions) partent avec lui, sans contre-épingle ;
+    /// la garde dérivée du fr est <see cref="DnnLegalEnEsPtRuGuardTests"/>. Les épingles
+    /// de glossaire LCEN ci-dessous (publisher / editado por / guillemets / nº) restent :
+    /// la terminologie arbitrée a été imposée au traducteur.
     /// </summary>
     public class DnnLegalMentionsResxGuardTests
     {
@@ -143,16 +151,6 @@ namespace Argumentum.AssetConverter.Tests.Dnn
         }
 
         [Fact]
-        public void NeutralResx_DnnAgreementTemplate_SurvivesTheDifferentialInsert()
-        {
-            var value = ReadTermsValue(NeutralResx);
-
-            value.Should().Contain("AGREEMENT BETWEEN USER AND [Portal:PortalName]",
-                "l'insertion est différentielle : le gabarit de conditions d'usage DNN existant " +
-                "doit survivre tel quel derrière le bloc de mentions légales");
-        }
-
-        [Fact]
         public void FrenchResx_TermsValue_CarriesTheSameIdentityStrings()
         {
             var value = ReadTermsValue(FrenchResx);
@@ -188,9 +186,6 @@ namespace Argumentum.AssetConverter.Tests.Dnn
                 "intérieure (grain typographie 15/10)");
             value.Should().Contain("«Proveedor de Alojamiento»",
                 "la désignation de l'hébergeur es-ES, guillemets espagnols");
-            value.Should().Contain("ACUERDO ENTRE EL USUARIO Y [Portal:PortalName]",
-                "le gabarit DNN derrière le bloc LCEN est désormais traduit (grain juridique " +
-                "pt/es, miroir #1908) — l'ancre en est le sous-titre localisé");
         }
 
         [Fact]
@@ -222,9 +217,6 @@ namespace Argumentum.AssetConverter.Tests.Dnn
                 "le numéro de la loi en abrégé brésilien « nº » (grain typographie 15/10)");
             value.Should().NotContain("n.º",
                 "« n.º » est la graphie pt-PT ; le site cible est pt-BR (#1095)");
-            value.Should().Contain("ACORDO ENTRE O USUÁRIO E [Portal:PortalName]",
-                "le gabarit DNN derrière le bloc LCEN est désormais traduit (grain juridique " +
-                "pt/es, miroir #1908) — l'ancre en est le sous-titre localisé");
         }
 
         /// <summary>
@@ -433,42 +425,31 @@ namespace Argumentum.AssetConverter.Tests.Dnn
         }
 
         [Fact]
-        public void NeutralResx_UsesEnglishCurlyQuotes_DnnTemplateKeepsStraightOnes()
+        public void NeutralResx_UsesEnglishCurlyQuotes()
         {
             var value = ReadTermsValue(NeutralResx);
 
             value.Should().Contain("“Argumentum”",
                 "les citations du nom du site en anglais prennent les guillemets typographiques “ ”");
             value.Should().Contain("“Host”", "la désignation de l'hébergeur, guillemets typographiques");
-            value.Should().Contain("\"Linked Sites\"",
-                "CONTRÔLE DE PÉRIMÈTRE : le gabarit DNN derrière AGREEMENT garde ses guillemets DROITS — " +
-                "l'insertion est différentielle, la typographie du grain ne touche que le bloc légal");
         }
 
         [Fact]
-        public void SpanishResx_UsesSpanishGuillemets_DnnTemplateKeepsStraightOnes()
+        public void SpanishResx_UsesSpanishGuillemets()
         {
             var value = ReadTermsValue(SpanishResx);
 
             value.Should().Contain("«Argumentum»",
                 "espagnol : guillemets « » SANS espace intérieure (usage RAE, contrairement au français)");
-            value.Should().Contain("«Sitios Vinculados»",
-                "CONTRÔLE DE PÉRIMÈTRE (post-traduction) : le gabarit DNN traduit porte les " +
-                "guillemets espagnols, pas des guillemets droits — le gabarit EN « Linked Sites » " +
-                "a disparu avec le grain juridique pt/es");
         }
 
         [Fact]
-        public void PortugueseResx_UsesCurlyQuotes_DnnTemplateKeepsStraightOnes()
+        public void PortugueseResx_UsesCurlyQuotes()
         {
             var value = ReadTermsValue(PortugueseResx);
 
             value.Should().Contain("“Argumentum”",
                 "portugais brésilien : guillemets typographiques “ ” (usage brésilien courant)");
-            value.Should().Contain("“Sites Vinculados”",
-                "CONTRÔLE DE PÉRIMÈTRE (post-traduction) : le gabarit DNN traduit porte les " +
-                "guillemets typographiques pt-BR, pas des guillemets droits — le gabarit EN " +
-                "« Linked Sites » a disparu avec le grain juridique pt/es");
         }
 
         /// <summary>
