@@ -32,6 +32,7 @@ Allow-list (validated by `--audit-head`: 0 unlisted blob > 2 MiB at HEAD):
     Generation/Sketch/                                              design source — preserve/LFS per #628
     Generation/CardPen/images/                                      vendored CardPen images
     Generation/Converters/Argumentum.AssetConverter/Data/Mindmap/   mindmap input data SVGs (incl. one 26.7 MB)
+    Generation/Converters/Argumentum.AssetConverter/Data/Dnn2sxc/   generated 2sxc entity exports, committed-of-record (#136 part 1)
     docs/ontology/                                                  generated OWL
     DNNPlatform/                                                    vendored DNN platform export (bulk platform updates)
 Adding an entry is a deliberate, reviewable act: extend ALLOWED below with a
@@ -71,6 +72,7 @@ ALLOWED = [
     "Generation/Sketch/",                                             # design source — preserve/LFS (#628)
     "Generation/CardPen/images/",                                     # vendored CardPen images
     "Generation/Converters/Argumentum.AssetConverter/Data/Mindmap/",  # mindmap input data
+    "Generation/Converters/Argumentum.AssetConverter/Data/Dnn2sxc/",  # generated 2sxc entity exports, committed-of-record (#136 part 1: 3.1 MB = 4 cultures x 1408 rows, deterministic regen; family grows with PRs 2-4)
     "docs/ontology/",                                                 # generated OWL
     "DNNPlatform/",                                                   # vendored DNN platform export
 ]
