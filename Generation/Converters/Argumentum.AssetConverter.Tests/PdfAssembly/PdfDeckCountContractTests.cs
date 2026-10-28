@@ -29,8 +29,8 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
     /// B₀F₀·B₁F₁… = 106 pages, paire, recto-verso rétabli. C'est le second cas où un nombre de ce
     /// fichier bouge sans être une dérive du CSV : l'organe a mesuré le défaut, pas contourné.
     /// ⚠ <b>Depuis #2045, le CardSet <c>RulesPrintAndPlay</c> déclare le dos du deck</b> : plus aucun
-    /// document livré ne produit de planche sans dos, donc la planche blanche n'existe plus à
-    /// l'impression. Le compte reste 106 (la page existait, elle est simplement encrée) et le cas
+    /// document Print&amp;Play livré ne produit de planche sans dos, donc la planche blanche n'existe
+    /// plus à l'impression. Le compte reste 106 (la page existait, elle est simplement encrée) et le cas
     /// « lot sans dos » n'est plus éprouvé que par la forme synthétique de
     /// <c>PrintAndPlayRectoVersoParityContractTests</c>.
     ///

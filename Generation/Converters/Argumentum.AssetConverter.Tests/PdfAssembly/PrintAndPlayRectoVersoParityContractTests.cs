@@ -23,8 +23,8 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
 	/// imprimante duplex imprime le verso du lot k derrière le recto du lot k.</para>
 	/// <para><b>⚠ Le deck du témoin est SYNTHÉTIQUE, et il l'est devenu.</b> À l'époque de #1536,
 	/// <c>TarotLikeDeck</c> décrivait le Tarot P&amp;P réel. Depuis #2045 le CardSet
-	/// <c>RulesPrintAndPlay</c> déclare le dos du deck : <b>aucun document livré n'a plus de lot
-	/// sans dos</b>, donc plus aucune planche blanche à l'impression. La forme reste éprouvée ici
+	/// <c>RulesPrintAndPlay</c> déclare le dos du deck : <b>aucun document Print&amp;Play livré n'a
+	/// plus de lot sans dos</b>, donc plus aucune planche blanche à l'impression. La forme reste éprouvée ici
 	/// parce que c'est le cas limite que <c>EmittedPageSequence</c> doit continuer de traiter
 	/// correctement — un futur CardSet sans dos la réintroduirait sans prévenir.</para>
 	/// <para><b>Le Poker P&amp;P ne bouge pas</b> (témoin de la revue) : chacun de ses lots porte un
