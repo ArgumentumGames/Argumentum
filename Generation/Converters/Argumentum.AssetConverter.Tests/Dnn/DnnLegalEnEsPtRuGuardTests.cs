@@ -323,11 +323,14 @@ namespace Argumentum.AssetConverter.Tests
 		/// le gabarit DNN est retiré : elle est reprise ici parce qu'elle ne dépend pas du gabarit et
 		/// que le nouveau texte porte le jeton (« No site [Portal:PortalName] », mesuré).
 		/// </summary>
+		// Le deux-points est admis entre « site » et le jeton : l'artefact livré porte lui-même
+		// « do site: [Portal:PortalName] » (contre-revue web2) — l'exclure ouvrait une échappatoire
+		// symétrique sur ce jeton précis.
 		private static readonly Regex PtFeminineBeforeToken =
-			new Regex(@"(?<![A-Za-zÀ-ÿ])(a|da|na)\s+(?:site\s+)?\[Portal:PortalName\]", RegexOptions.IgnoreCase);
+			new Regex(@"(?<![A-Za-zÀ-ÿ])(a|da|na)\s+(?:site\s*:?\s*)?\[Portal:PortalName\]", RegexOptions.IgnoreCase);
 
 		private static readonly Regex PtMasculineBeforeToken =
-			new Regex(@"(?<![A-Za-zÀ-ÿ])(o|do|no)\s+(?:site\s+)?\[Portal:PortalName\]", RegexOptions.IgnoreCase);
+			new Regex(@"(?<![A-Za-zÀ-ÿ])(o|do|no)\s+(?:site\s*:?\s*)?\[Portal:PortalName\]", RegexOptions.IgnoreCase);
 
 		[Theory]
 		[InlineData("MESSAGE_PORTAL_TERMS.Text")]
