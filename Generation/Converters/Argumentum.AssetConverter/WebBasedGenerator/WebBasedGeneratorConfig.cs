@@ -233,7 +233,30 @@ namespace Argumentum.AssetConverter
 						SkipDataUpdate = false,
 						Dpi = 300
 					},
-					// BackCardSetInfo removed: Rules cards are face-only (no separate back)
+					// Decision (i), pool #458 (28/10/2026): the two Tarot Print&Play documents opened on a
+					// deliberately blank back page for the Rules chunk (#1536 emits a back page per chunk
+					// to preserve duplex pairing), because this CardSet declared no back at all.
+					// Measured before the gesture, not assumed (pixel MAE against the source PNGs, render
+					// at 300 dpi): the Rules have NO back anywhere. The printed Tarot emits them face-only
+					// - pages 1..15 of a 379-page document - and the deck's only back is the Fallacies one
+					// (Fallacies/card_001.png, MAE 0.8 against pages 30 and 32, same sha256). So there is no
+					// "Rules back" to copy: giving the Print&Play Rules a back means giving them THE DECK's
+					// back, declared explicitly here.
+					// #138 removed this back because the old code handed the Rules an arbitrary one. That
+					// arbitrary path is ResolveCardBack's fallback, and it is only reachable with SEVERAL
+					// backs in the per-card-set dictionary (ImageFileGenerator builds that dictionary inside
+					// the CardSet loop). The Fallacies back template yields exactly one back image, so the
+					// Count == 1 branch returns it unconditionally for every face - deterministic, no
+					// substring match, no fallback. RulesPrintAndPlayBackContractTests pins both halves.
+					// Page counts do not move: the blank back page already exists, it simply gets inked.
+					// Scoped to Print&Play on purpose - the printed Tarot stays 379 pages, Rules face-only.
+					BackCardSetInfo = new CardSetInfo()
+					{
+						DataSet = KnownDataSets.None,
+						JsonFilePathRelease = "https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/Cards/Fallacies/Argumentum_Fallacies_Back_fr.json",
+						JsonFilePathDebug = @"..\..\..\..\..\..\Cards\Fallacies\Argumentum_Fallacies_Back_fr.json",
+						Dpi = 300
+					},
 				},
 				new CardSetConfig(){
 					Name =KnownCardSets.FallaciesPrintAndPlay,

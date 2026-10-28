@@ -230,8 +230,10 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             var plan = DeriveByName("Argumentum_TarotCards_Print&Play_A4_fr.pdf");
             _output.WriteLine(plan.Breakdown);
             plan.ExpectedPages.Should().Be(106,
-                "#1536 : 318 instances (RulesPP 6 sans dos + Fallacies 176 + Virtues 131 + MemoPP 1×5) sur grille 3×2 = 53 planches ; "
-                + "le document A des dos → CHAQUE planche émet sa page de dos, blanche pour la planche 0 (6 Rules sans dos) ⇒ 53 dos + 53 faces = 106, pair. "
+                "#1536 : 318 instances (RulesPP 6 + Fallacies 176 + Virtues 131 + MemoPP 1×5) sur grille 3×2 = 53 planches ; "
+                + "le document A des dos → CHAQUE planche émet sa page de dos ⇒ 53 dos + 53 faces = 106, pair. "
+                + "Depuis la décision (i) du pool #458, la planche 0 (RulesPP) est ENCRÉE du dos du deck au lieu d'être blanche : "
+                + "elle était déjà émise, le compte ne bouge pas. "
                 + "La baseline mesurée 105 (#1176) portait le défaut #1536 (page 1 = faces seules, pairs décalés d'une page)");
         }
 
@@ -273,7 +275,20 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             var rules = plan.CardSets.Single(c => c.CardSetName == KnownCardSets.RulesPrintAndPlay);
             rules.SourceRows.Should().Be(6,
                 "« Argumentum Rules - Cards Print and Play.csv » = 6 règles — PAS les 15 du Rules standard : deux DataSets distincts, deux comptes distincts");
-            rules.HasBack.Should().BeFalse("aucun template de dos configuré (BackCardSetInfo laissé vide : le prédicat production — chemin de template vide ⇒ payload dos null — est le même ici qu'à la récolte)");
+            rules.HasBack.Should().BeTrue(
+                "décision (i) du pool #458 (28/10/2026) : le CardSet Rules-Print&Play porte désormais un dos. " +
+                "Mesure préalable, pas supposition — les Rules n'ont de dos nulle part : le Tarot imprimé les émet " +
+                "faces seules (15 pages sur 379) et le seul dos du deck est celui des sophismes, identifié au pixel " +
+                "(MAE 0,8 contre les pages 30 et 32, même sha256). Leur donner « le dos qu'elles ont dans le Tarot » " +
+                "n'a donc qu'une lecture : leur donner LE dos du deck, déclaré explicitement dans la config. " +
+                "Prédicat inchangé : chemin de template vide ⇒ payload dos null (CardSetInfo.cs:57-60) — " +
+                "c'est la présence d'un GABARIT qui fait le dos, jamais l'objet BackCardSetInfo, qui n'est jamais null");
+
+            // Le dos ne déplace AUCUNE page : EmittedPageSequence émet une page de dos par planche, blanche
+            // quand la planche n'en porte aucun (#1536). Le nombre de pages ne dépend donc que du nombre
+            // d'instances et de la grille — la planche 0 passe de « blanche » à « encrée », elle n'apparaît
+            // pas. C'est ce qui autorise la décision (i) sans toucher au contrôle de pagination du voisin
+            // (TarotCards_PrintAndPlay_A4_Derives_106_Pages) ni au nombre de pages du Tarot Light.
         }
 
         [Fact]
