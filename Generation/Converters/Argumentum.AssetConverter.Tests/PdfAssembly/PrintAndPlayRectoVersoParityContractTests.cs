@@ -16,32 +16,41 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
 	/// <remarks>
 	/// <para><b>Cause</b> : <c>PrintAndPlayDocument.Compose</c> n'émettait la page de dos d'un lot
 	/// que si au moins une carte du lot en avait une. Le premier lot du Tarot P&amp;P (les 6 cartes
-	/// Rules, sans dos) n'émettait donc aucun dos — et une imprimante recto-verso, qui associe les
-	/// pages (1,2), (3,4)…, décalait alors chaque paire d'une page.</para>
+	/// Rules, sans dos à l'époque) n'émettait donc aucun dos — et une imprimante recto-verso, qui
+	/// associe les pages (1,2), (3,4)…, décalait alors chaque paire d'une page.</para>
 	/// <para><b>Correction</b> : un document à dos émet TOUJOURS une page de dos par lot — blanche
 	/// quand le lot n'en a pas. La séquence repasse à Back·Front·Back·Front…, paire, et chaque
 	/// imprimante duplex imprime le verso du lot k derrière le recto du lot k.</para>
+	/// <para><b>⚠ Le deck du témoin est SYNTHÉTIQUE, et il l'est devenu.</b> À l'époque de #1536,
+	/// <c>TarotLikeDeck</c> décrivait le Tarot P&amp;P réel. Depuis #2045 le CardSet
+	/// <c>RulesPrintAndPlay</c> déclare le dos du deck : <b>aucun document Print&amp;Play livré n'a
+	/// plus de lot sans dos</b>, donc plus aucune planche blanche à l'impression. La forme reste éprouvée ici
+	/// parce que c'est le cas limite que <c>EmittedPageSequence</c> doit continuer de traiter
+	/// correctement — un futur CardSet sans dos la réintroduirait sans prévenir.</para>
 	/// <para><b>Le Poker P&amp;P ne bouge pas</b> (témoin de la revue) : chacun de ses lots porte un
 	/// dos, la règle ancienne et la nouvelle émettent la même séquence — 38 pages avant comme après.</para>
 	/// </remarks>
 	public class PrintAndPlayRectoVersoParityContractTests
 	{
-		private static readonly bool[] TarotLikeDeck = // 318 instances : Rules(6, sans dos) + 312 avec dos
-			Enumerable.Repeat(false, 6).Concat(Enumerable.Repeat(true, 312)).ToArray();
+		// 317 instances = le compte réel du Tarot P&P (6 Rules + 175 Fallacies + 131 Virtues + 5 MemoPP,
+		// #1288). Le premier lot est forcé SANS dos : forme synthétique depuis #2045, voir les remarks.
+		private static readonly bool[] TarotLikeDeck =
+			Enumerable.Repeat(false, 6).Concat(Enumerable.Repeat(true, 311)).ToArray();
 
 		private static readonly bool[] PokerDeck = Enumerable.Repeat(true, 167).ToArray();
 
-		// ─────────────── les deux invariants, sur les decks réels ───────────────
+		// ─────────── les deux invariants, sur le deck synthétique et sur le deck réel ───────────
 
 		[Fact]
 		public void TarotLike_Deck_With_A_Backless_First_Chunk_Alternates_And_Is_Even()
 		{
-			// Grille 3×2 = 6 cartes/planche : le premier lot (6 Rules sans dos) tombait sur sa
-			// propre planche et n'émettait pas de dos — séquence F·B·F·B… impaire.
+			// Grille 3×2 = 6 cartes/planche : un premier lot de 6 cartes sans dos tombe sur sa
+			// propre planche et n'émettait pas de dos — séquence F·B·F·B… impaire. Forme
+			// synthétique (voir remarks) : ce n'est plus la composition du Tarot P&P depuis #2045.
 			var sequence = PrintAndPlayDocument.EmittedPageSequence(TarotLikeDeck, noBack: false, nbCardsPerPage: 6);
 
 			sequence.Count.Should().Be(106,
-				"53 planches × 2 pages : la planche 0 (6 Rules sans dos) émet désormais une page de dos BLANCHE (#1536)");
+				"ceil(317/6) = 53 planches × 2 pages : le lot sans dos émet désormais une page de dos BLANCHE (#1536)");
 
 			for (var i = 0; i < sequence.Count; i += 2)
 			{
@@ -85,9 +94,9 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
 
 			// Et la même garde, sur le deck corrigé, doit être verte : le contrôle inverse.
 			var fixedSequence = PrintAndPlayDocument.EmittedPageSequence(TarotLikeDeck, noBack: false, nbCardsPerPage: 6);
-			fixedSequence.Count.Should().Be(106, "la correction ajoute une page de dos blanche à la planche 0");
+			fixedSequence.Count.Should().Be(106, "la correction ajoute une page de dos blanche au lot sans dos");
 			fixedSequence[0].Should().Be(PrintAndPlayDocument.PageKind.Back,
-				"page 0 = dos (blanc) des 6 Rules, page 1 = leurs faces — la première feuille est déjà correctement appariée");
+				"page 0 = dos (blanc) du premier lot, page 1 = ses faces — la première feuille est déjà correctement appariée");
 		}
 
 		[Fact]
