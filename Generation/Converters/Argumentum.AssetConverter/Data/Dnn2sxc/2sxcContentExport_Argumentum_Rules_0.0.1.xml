@@ -46,7 +46,7 @@
     <Name>Rules_01</Name>
     <Description># Argumentum
 ## The school of liars</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -55,7 +55,7 @@
     <Name>Rules_01</Name>
     <Description># Argumentum
 ## L’école des menteurs</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -64,7 +64,7 @@
     <Name>Rules_01</Name>
     <Description># Argumentum
 ## Школа лжецов</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -73,7 +73,7 @@
     <Name>Rules_01</Name>
     <Description># Argumentum
 ## A escola dos mentirosos</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -82,7 +82,7 @@
     <Name>Rules_01</Name>
     <Description># Argumentum
 ## La escuela de los mentirosos</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -91,7 +91,7 @@
     <Name>Rules_01</Name>
     <Description># Argumentum
 ## مدرسة الكاذبين</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -100,7 +100,7 @@
     <Name>Rules_01</Name>
     <Description># Argumentum
 ## مدرسهٔ دروغ‌پردازان</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -109,7 +109,7 @@
     <Name>Rules_01</Name>
     <Description># Argumentum
 ## 说谎者学校</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -130,7 +130,7 @@
 Taking turns, players try to get a majority of the other players to guess a fallacy card during an improvised skit based on a randomly drawn scenario. While having fun, they learn to recognize, decode and therefore deconstruct fallacious arguments.
 
 Argumentum is based on a classification of these fallacious arguments, arranged into orders and families shown at the top of each card. For example, flattery is a subcategory of appeal to emotions. The memo cards summarize this classification.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -151,7 +151,7 @@ Argumentum is based on a classification of these fallacious arguments, arranged 
 À tour de rôle, les joueurs essaient de faire deviner une carte d’argument fallacieux à une majorité des autres joueurs, au cours d’une saynète improvisée à partir d’un scénario tiré au hasard. Tout en s’amusant, ils apprennent ainsi à reconnaître, à décoder et donc à déconstruire les arguments fallacieux.
 
 Argumentum s’appuie sur une classification de ces arguments fallacieux, rangés en ordres et en familles indiqués en haut de chaque carte. Par exemple, la flatterie est une sous-catégorie de l’appel aux émotions. Les cartes mémo résument cette classification.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -172,7 +172,7 @@ Argumentum s’appuie sur une classification de ces arguments fallacieux, rangé
 Игроки по очереди разыгрывают импровизированную сценку по случайно вытянутому сценарию, стараясь сделать так, чтобы большинство остальных игроков угадало карту с софизмом. Развлекаясь, игроки учатся распознавать, декодировать и, следовательно, деконструировать софизмы.
 
 Игра Argumentum основана на классификации софизмов по порядкам и семействам, указанным в верхней части каждой карты. Например, «Лесть» — это подкатегория апелляции к эмоциям. Карты Мемо кратко излагают эту классификацию.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -193,7 +193,7 @@ Argumentum s’appuie sur une classification de ces arguments fallacieux, rangé
 Um de cada vez, os jogadores tentam fazer com que uma maioria dos outros jogadores adivinhe uma carta de argumento falacioso, durante uma esquete improvisada a partir de um cenário tirado ao acaso. Ao mesmo tempo que se divertem, aprendem assim a reconhecer, decodificar e, portanto, desconstruir os argumentos falaciosos.
 
 Argumentum se baseia numa classificação destes argumentos falaciosos, organizados em ordens e famílias indicadas no topo de cada carta. Por exemplo, a lisonja é uma subcategoria do apelo às emoções. As cartas de ajuda resumem esta classificação.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -214,7 +214,7 @@ Argumentum se baseia numa classificação destes argumentos falaciosos, organiza
 Los jugadores, por turnos, intentan hacer adivinar una carta de argumento falaz a la mayoría de los demás jugadores, durante una pequeña escena de improvisación a partir de un escenario elegido al azar. Mientras se divierten, los jugadores aprenden así a reconocer, descifrar y, por tanto, desmontar los argumentos falaces.
 
 Argumentum se apoya en una clasificación de estos argumentos falaces, ordenados en órdenes y familias, que se indican en la parte superior de la carta. Por ejemplo, la adulación es una subcategoría de la apelación a las emociones. Las cartas recordatorio resumen esta clasificación.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -235,7 +235,7 @@ Argumentum se apoya en una clasificación de estos argumentos falaces, ordenados
 يتناوب اللاعبون على محاولة جعل أغلبية اللاعبين الآخرين تخمّن بطاقةً من بطاقات الحجج المغلوطة، وذلك خلال مشهد تمثيلي مرتجل انطلاقًا من سيناريو يُسحب عشوائيًا. وبذلك، يتعلم اللاعبون في الوقت نفسه، وبطريقة ممتعة، كيف يتعرّفون على الحجج المغلوطة ويفكون شيفرتها، ومن ثم يفككونها.
 
 يرتكز Argumentum على تصنيف لهذه الحجج المغلوطة، مرتبة في رتب وعائلات، ويُشار إليها في أعلى البطاقة. فمثلًا، يُعدّ التملق فئةً فرعية من النداء إلى العواطف. وتلخّص بطاقات التذكير هذا التصنيف.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -256,7 +256,7 @@ Argumentum se apoya en una clasificación de estos argumentos falaces, ordenados
 بازیکنان به نوبت تلاش می‌کنند در خلال یک صحنه‌پردازیِ بداهه، و بر پایهٔ یک سناریوی تصادفی، یک کارتِ استدلالِ مغالطی را به اکثریتِ بازیکنانِ دیگر حدس‌زدنی کنند. بدین‌ترتیب، بازیکنان ضمن سرگرم شدن، یاد می‌گیرند این استدلال‌های مغالطی را تشخیص دهند، رمزگشایی کنند و در نتیجه از هم بگشایند.
 
 Argumentum بر طبقه‌بندیِ این استدلال‌های مغالطی تکیه دارد که بر حسب مرتبه‌ها و خانواده‌ها مرتب شده‌اند و در بالای کارت مشخص شده‌اند. برای نمونه، چاپلوسی زیرمجموعهٔ توسل به احساسات است. کارت‌های یادآور این طبقه‌بندی را به‌اختصار خلاصه می‌کنند.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -277,7 +277,7 @@ Argumentum بر طبقه‌بندیِ این استدلال‌های مغالط�
 玩家将轮流在一段即兴小剧中，利用随机抽取的情景，设法让多数其他玩家猜出一张谬误论证牌。这样一边玩，一边学习如何识别、解读，从而拆解谬误论证。
 
 Argumentum 依据对这些谬误论证的分类体系，将它们按阶层和家族归类，并标注在卡牌顶部。例如，“奉承”是“诉诸情绪”的一个子类别。提示卡对这一分类作了摘要。</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -293,7 +293,7 @@ Choose the length of the game. It consists of a succession of rounds lasting abo
 Make 2 draw piles of scenario cards and place them in the middle of the table. Deal each player 5 fallacy cards, which they keep to themselves. The remaining cards form the reserve.
 
 Each player takes a small unique object (coin, bean, etc.) for voting. The first drawer is the player who first remembers a deceptive argument.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -309,7 +309,7 @@ Vous choisissez la durée de la partie. Celle-ci comprend une succession de manc
 Constituez 2 pioches de cartes scénario et placez-les au milieu de la table. Distribuez à chaque joueur 5 cartes d’arguments fallacieux, qu’il garde pour lui. Le reste des cartes constitue la réserve.
 
 Chaque joueur se munit d’un petit objet unique (pièce de monnaie, haricot…) pour le vote. Le premier piocheur est le joueur qui se souvient en premier d’un argument trompeur.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -333,7 +333,7 @@ Chaque joueur se munit d’un petit objet unique (pièce de monnaie, haricot…)
 
 У каждого игрока есть свой уникальный небольшой предмет (монета, фасолина и т. п.) для голосования. Первым Берущим карту становится игрок, который первым вспомнит какой-либо обманчивый аргумент.
 </Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -349,7 +349,7 @@ Escolham a duração da partida. Esta é composta por uma sucessão de rodadas d
 Formem 2 pilhas de compra de cartas de cenário e coloquem-nas no centro da mesa. Distribuam a cada jogador 5 cartas de argumentos falaciosos, que ele mantém em segredo. As cartas restantes constituem a reserva.
 
 Cada jogador pega um pequeno objeto diferente dos demais (moeda, feijão…) para a votação. O primeiro comprador é o jogador que primeiro se lembrar de um argumento enganador.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -365,7 +365,7 @@ Se decide la duración de la partida. Esta consta de una sucesión de rondas de 
 Se forman 2 mazos de cartas de escenario colocados en el centro de la mesa. Se reparten a cada jugador 5 cartas de argumentos falaces que conserva para sí. El resto de las cartas constituye la reserva.
 
 Cada jugador se equipa con un pequeño objeto único (moneda, alubia...) para la votación. El primer robador es quien recuerde primero un argumento engañoso.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -381,7 +381,7 @@ Cada jugador se equipa con un pequeño objeto único (moneda, alubia...) para la
 تُشكَّل رُزمتان من بطاقات السيناريو وتوضعان في وسط الطاولة. ويُوزَّع على كل لاعب 5 بطاقات من بطاقات الحجج المغلوطة يحتفظ بها لنفسه. أما بقية البطاقات فتشكّل المخزون.
 
 يأخذ كل لاعب معه شيئًا صغيرًا مميزًا وفريدًا (عملة معدنية، حبة فاصوليا...) للتصويت. والساحب الأول هو اللاعب الذي يتذكر أولًا حجةً خادعة.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -397,7 +397,7 @@ Cada jugador se equipa con un pequeño objeto único (moneda, alubia...) para la
 ۲ دستهٔ کارتِ سناریو تشکیل می‌دهیم و آن‌ها را در وسطِ میز قرار می‌دهیم. به هر بازیکن ۵ کارتِ استدلالِ مغالطه‌آمیز می‌دهیم که نزدِ خود نگه می‌دارد. بقیهٔ کارت‌ها ذخیره را تشکیل می‌دهند.
 
 هر بازیکن یک شیء کوچک و منحصربه‌فرد برای رأی‌گیری همراه دارد (سکه، لوبیا، …). نخستین کارت‌کش کسی است که زودتر از همه یک استدلالِ فریبنده را به یاد بیاورد.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -413,7 +413,7 @@ Cada jugador se equipa con un pequeño objeto único (moneda, alubia...) para la
 组成 2 个情景牌抽牌堆，并放在桌子中央。每位玩家发 5 张谬误论证牌，自己保留。其余牌作为备用牌堆。
 
 每位玩家准备一个独一无二的小物件（硬币、豆子等）用于投票。首位抽牌者是第一个回想起某个误导性论证的人。</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -437,7 +437,7 @@ The role of smooth talker is assigned to the first player who places, face down,
 The drawer opens the debate however they wish. They may use the suggested opening line in italics at the bottom of the scenario card. The smooth talker and the drawer then have up to one minute to improvise a discussion during which the smooth talker tries to use the type of argument indicated by the card they chose.
 
 The smooth talker presents their arguments and the drawer responds without trying to dominate the scene. The smooth talker may shorten the skit whenever they wish.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -461,7 +461,7 @@ Le rôle de baratineur est attribué au premier joueur qui pose, face cachée, l
 Le piocheur amorce le débat comme il le souhaite. Il peut reprendre la suggestion de première réplique en italique au bas de la carte scénario. Le baratineur et le piocheur disposent alors d’une minute maximum pour improviser une discussion durant laquelle le baratineur tâche d’utiliser le type d’argument indiqué par la carte qu’il a choisie.
 
 Le baratineur expose ses arguments et le piocheur lui donne la réplique sans chercher à dominer la scène. Le baratineur peut écourter la saynète quand il le souhaite.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -485,7 +485,7 @@ Le baratineur expose ses arguments et le piocheur lui donne la réplique sans ch
 
 
 Софист демонстрирует свои аргументы, и берущий карту отвечает ему, не стремясь доминировать на сцене. Софист может остановить сценку, когда пожелает.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -509,7 +509,7 @@ O papel de embromador é atribuído ao primeiro jogador que coloca, virada para 
 O comprador inicia o debate como quiser. Pode usar a sugestão de primeira fala em itálico no rodapé da carta de cenário. O embromador e o comprador dispõem então de um minuto, no máximo, para improvisar uma discussão durante a qual o embromador tenta usar o tipo de argumento indicado pela carta que escolheu.
 
 O embromador expõe os seus argumentos e o comprador responde a ele sem tentar dominar a cena. O embromador pode encurtar a esquete quando quiser.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -533,7 +533,7 @@ El papel de embaucador se asigna al primer jugador que coloca, boca abajo, la ca
 El robador inicia el debate como quiera. Puede retomar la sugerencia de primera réplica en cursiva al final de la carta de escenario. El embaucador y el robador disponen entonces de un máximo de un minuto para improvisar una conversación durante la cual el embaucador tratará de utilizar el tipo de argumento indicado por la carta que ha elegido. 
 
 El embaucador expone sus argumentos y el robador le responde sin intentar monopolizar la escena. El embaucador puede optar por acortar la escena cuando quiera.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -557,7 +557,7 @@ El embaucador expone sus argumentos y el robador le responde sin intentar monopo
 يفتتح الساحب النقاش بالطريقة التي يشاء. ويمكنه أن يستند إلى العبارة الافتتاحية المقترحة المكتوبة بالخط المائل في أسفل بطاقة السيناريو. ثم يُتاح للمغالِط والساحب حدٌّ أقصى قدره دقيقة واحدة لارتجال حوار، يسعى خلاله المغالِط إلى استخدام نوع الحجة المشار إليه في البطاقة التي اختارها. 
 
 المغالِط يَعرِض حججه، ويردّ عليه الساحب من دون أن يسعى إلى السيطرة على المشهد. ويجوز للمغالِط أن يختصر المشهد متى شاء.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -581,7 +581,7 @@ El embaucador expone sus argumentos y el robador le responde sin intentar monopo
 کارت‌کش بحث را هرطور که بخواهد آغاز می‌کند. او می‌تواند پیشنهادِ نخستین دیالوگ را که به‌صورت مورب در پایینِ کارت سناریو آمده است، به کار بگیرد. سپس چرب‌زبان و کارت‌کش حداکثر یک دقیقه فرصت دارند تا گفت‌وگویی بداهه اجرا کنند؛ در این مدت، چرب‌زبان تلاش می‌کند از نوع استدلالی که کارتِ انتخابی‌اش مشخص کرده استفاده کند. 
 
 چرب‌زبان استدلال‌هایش را مطرح می‌کند و کارت‌کش بدون آن‌که بخواهد صحنه را در اختیار بگیرد به او پاسخ می‌دهد. چرب‌زبان می‌تواند هر زمان که بخواهد نمایش کوتاه را زودتر تمام کند.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -605,7 +605,7 @@ El embaucador expone sus argumentos y el robador le responde sin intentar monopo
 抽牌者按自己想要的方式引出辩论。也可以采用情景牌底部斜体字中的第一句台词建议。随后，诡辩者和抽牌者最多有一分钟时间即兴对话，在此期间诡辩者要尽量使用其所选牌面所示的论证类型。 
 
 诡辩者陈述自己的论点，抽牌者则与之接话，但不刻意争夺舞台主导权。诡辩者可以在任何时候选择提前结束短剧。</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -626,7 +626,7 @@ The winner of the round is the player whose card received the greatest number of
 They then keep their card, which is worth 1 point, and place it face up in front of them.
 
 In the event of a tie (🥈👇👇≟🥈👇👇), the smooth talker wins (✅🎭➜🎭🏆). Otherwise (❌🎭), all tied jurors who received the most votes and identified the smooth talker's card are declared winners (✅👇🎭➜👇🏆). If none of the jurors concerned identified it, the smooth talker wins (❌👇🎭➜🎭🏆).</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -647,7 +647,7 @@ Le vainqueur de la manche est celui dont la carte a obtenu le plus grand nombre 
 Il garde alors sa carte, qui vaut 1 point, et la pose face visible devant lui.
 
 En cas d’égalité (🥈👇👇≟🥈👇👇), le baratineur l’emporte (✅🎭➜🎭🏆). À défaut (❌🎭), les jurés plébiscités qui ont trouvé la carte du baratineur sont tous déclarés vainqueurs (✅👇🎭➜👇🏆). Si aucun des jurés concernés ne l’a trouvée, le baratineur l’emporte (❌👇🎭➜🎭🏆).</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -668,7 +668,7 @@ En cas d’égalité (🥈👇👇≟🥈👇👇), le baratineur l’emporte (�
 Он оставляет себе свою карту, которая стоит 1 очко, и кладёт её перед собой лицом вверх.
 
 В случае ничьей (🥈👇👇≟🥈👇👇) побеждает софист (✅🎭➜🎭🏆). Если софист не входит в число разделивших первое место (❌🎭), победителями объявляются все члены жюри, получившие наибольшее количество голосов и угадавшие карту софиста (✅👇🎭➜👇🏆). Если никто из них её не угадал, побеждает софист (❌👇🎭➜🎭🏆).</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -689,7 +689,7 @@ O vencedor da rodada é aquele cuja carta obteve o maior número de votos, quer 
 Fica então com a sua carta, que vale 1 ponto, e a coloca virada para cima à sua frente.
 
 Em caso de empate (🥈👇👇≟🥈👇👇), ganha o embromador (✅🎭➜🎭🏆). Se o embromador não estiver entre os empatados (❌🎭), os jurados mais votados que tenham encontrado a carta do embromador são todos declarados vencedores (✅👇🎭➜👇🏆). Se nenhum dos jurados envolvidos a tiver encontrado, ganha o embromador (❌👇🎭➜🎭🏆).</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -710,7 +710,7 @@ El vencedor de la ronda es aquel cuya carta haya obtenido el mayor número de vo
 Entonces se queda con su carta, que vale 1 punto, y la coloca boca arriba delante de él.
 
 En caso de empate (🥈👇👇≟🥈👇👇), gana el embaucador (✅🎭➜🎭🏆), y en su defecto (❌🎭), los jurados más votados que hayan encontrado la carta del embaucador son declarados vencedores todos ellos (✅👇🎭➜👇🏆). Si ninguno de los jurados implicados la ha encontrado, es el embaucador quien gana (❌👇🎭➜🎭🏆).</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -731,7 +731,7 @@ En caso de empate (🥈👇👇≟🥈👇👇), gana el embaucador (✅🎭➜�
 وعندئذٍ يحتفظ ببطاقته التي تساوي نقطة واحدة، ويضعها أمامه مكشوفة.
 
 في حال التعادل (🥈👇👇≟🥈👇👇)، يفوز المغالِط (✅🎭➜🎭🏆)، وإذا لم يكن المغالِط من بين المتعادلين (❌🎭)، فإن المحلفين الحاصلين على أكبر عدد من الأصوات الذين أصابوا واختاروا بطاقة المغالِط يُعلَنون جميعًا فائزين (✅👇🎭➜👇🏆). وإذا لم يعثر أيٌّ من المحلفين المعنيين عليها، يفوز المغالِط (❌👇🎭➜🎭🏆).</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -752,7 +752,7 @@ En caso de empate (🥈👇👇≟🥈👇👇), gana el embaucador (✅🎭➜�
 سپس کارت خود را که ۱ امتیاز دارد نگه می‌دارد و آن را به‌صورت رو به بالا جلوی خود می‌گذارد.
 
 در صورت تساوی (🥈👇👇≟🥈👇👇)، چرب‌زبان برنده می‌شود (✅🎭➜🎭🏆)، و اگر چرب‌زبان در میان افرادِ مساوی نباشد (❌🎭)، داورانِ پررأی که کارتِ چرب‌زبان را درست تشخیص داده‌اند همگی برنده اعلام می‌شوند (✅👇🎭➜👇🏆). اگر هیچ‌یک از داورانِ مربوطه آن را درست تشخیص نداده باشند، چرب‌زبان برنده می‌شود (❌👇🎭➜🎭🏆).</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -773,7 +773,7 @@ En caso de empate (🥈👇👇≟🥈👇👇), gana el embaucador (✅🎭➜�
 然后他保留这张牌，计 1 分，并将其正面朝上放在自己面前。
 
 若出现平票（🥈👇👇≟🥈👇👇），则诡辩者获胜（✅🎭➜🎭🏆）；若非如此（❌🎭），所有猜中诡辩者牌面的中选评审都被宣布为获胜者（✅👇🎭➜👇🏆）。如果相关评审中没有人猜中，则由诡辩者获胜（❌👇🎭➜🎭🏆）。</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -799,7 +799,7 @@ Once the winner has been designated, players draw a certain number of cards from
 * If the drawer wins, they also win the smooth talker's card.
 * The smooth talker may place several cards. As many winners are declared as the smooth talker placed cards, in order of the number of votes; the smooth talker may thus win all or some of their cards.
 * The winner of the game must embody the smooth talker in a final scenario in which they must bring into play all the cards they won during the game.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -825,7 +825,7 @@ Une fois le vainqueur désigné, les joueurs piochent dans la réserve un certai
 * Si le piocheur gagne, il gagne également la carte du baratineur.
 * Le baratineur peut poser plusieurs cartes. Autant de vainqueurs que le baratineur a posé de cartes sont déclarés, dans l’ordre du nombre de votes ; il peut ainsi remporter tout ou partie de ses cartes.
 * Le vainqueur de la partie doit incarner le baratineur dans un ultime scénario où il doit mettre en jeu toutes les cartes qu’il a gagnées au cours de la partie.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -854,7 +854,7 @@ Une fois le vainqueur désigné, les joueurs piochent dans la réserve un certai
 
 
 </Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -880,7 +880,7 @@ Uma vez declarado o vencedor, os jogadores compram da reserva um certo número d
 * Se o comprador ganhar, ganha também a carta do embromador.
 * O embromador pode jogar várias cartas. São declarados tantos vencedores quantas as cartas que o embromador tenha jogado, pela ordem do número de votos; o embromador pode assim ganhar todas ou parte das suas cartas.
 * O vencedor da partida deve assumir o papel de embromador num cenário final em que tem de pôr em jogo todas as cartas que ganhou ao longo da partida.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -906,7 +906,7 @@ Una vez designado el vencedor, los jugadores roban de la reserva un cierto núme
 * Si gana el robador, también se lleva la carta del embaucador.
 * El embaucador puede jugar varias cartas. Se declaran tantos vencedores como cartas haya jugado el embaucador, por orden del número de votos; el embaucador puede llevarse todas o parte de sus cartas.
 * El vencedor de la partida deberá encarnar al embaucador de un último escenario en el que tendrá que poner en juego todas las cartas que haya ganado durante la partida.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -932,7 +932,7 @@ Una vez designado el vencedor, los jugadores roban de la reserva un cierto núme
 * إذا فاز الساحب، فإنه يفوز أيضًا ببطاقة المغالِط.
 * يجوز للمغالِط أن يضع عدة بطاقات. ويُعلَن فائزون بعدد البطاقات التي وضعها المغالِط، حسب ترتيب عدد الأصوات، وقد يفوز المغالِط بكل بطاقاته أو ببعضها.
 * يجب على الفائز باللعبة أن يتقمّص دور المغالِط في سيناريو أخير، حيث يتعيّن عليه أن يضع في اللعب جميع البطاقات التي ربحها خلال اللعبة.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -958,7 +958,7 @@ Una vez designado el vencedor, los jugadores roban de la reserva un cierto núme
 * اگر کارت‌کش برنده شود، کارتِ چرب‌زبان را هم می‌برد.
 * چرب‌زبان می‌تواند چند کارت بگذارد. به تعداد کارت‌هایی که چرب‌زبان گذاشته است، به‌ترتیب تعداد رأی، برنده اعلام می‌شود و چرب‌زبان می‌تواند همه یا بخشی از کارت‌هایش را ببرد.
 * برنده‌ی بازی باید در نقشِ چرب‌زبانِ یک سناریوی نهایی ظاهر شود که در آن باید همه‌ی کارت‌هایی را که طی بازی به‌دست آورده، به میدان بیاورد.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -984,7 +984,7 @@ Una vez designado el vencedor, los jugadores roban de la reserva un cierto núme
 * 如果抽牌者获胜，他也会赢得诡辩者的牌。
 * 诡辩者可以打出多张牌。诡辩者打出几张牌，就按票数顺序宣布几名获胜者，诡辩者可以赢走自己全部或部分牌。
 * 本局最终胜者必须扮演终极情景中的诡辩者，在该情景中他必须打出自己整局游戏中赢得的所有牌。</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1010,7 +1010,7 @@ At the end of the debate, the player who has spotted the greatest number of fall
 
 Randomly distribute all available fallacy cards among the players, at a rate of 10 cards per person.
 Each player reads their cards, lays them out while trying to keep them as well in mind as possible, then settles in to attend the debate.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1036,7 +1036,7 @@ Munis d’une grille de bingo constituée de cartes d’arguments fallacieux tir
 
 On répartit au hasard l’ensemble des cartes d’arguments fallacieux disponibles entre tous les joueurs, à hauteur de 10 cartes par personne.
 Chaque joueur prend connaissance de ses cartes, les dispose en essayant de les garder au mieux en tête, puis s’installe pour assister au débat.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1063,7 +1063,7 @@ Chaque joueur prend connaissance de ses cartes, les dispose en essayant de les g
 
 Мы случайным образом распределяем все имеющиеся карты с софизмами между всеми игроками, по 10 карт на человека.
 Каждый игрок знакомится со своими картами и раскладывает их, стараясь как можно лучше запомнить, а затем занимает место, чтобы следить за дебатами. </Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1089,7 +1089,7 @@ No final do debate, o jogador que tiver identificado o maior número de argument
 
 Todas as cartas de argumentos falaciosos disponíveis são distribuídas aleatoriamente entre os jogadores, sendo 10 cartas para cada pessoa.
 Cada jogador examina suas cartas, as organiza tentando memorizá-las da melhor forma possível e se acomoda para assistir ao debate.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1116,7 +1116,7 @@ Al término del debate, el jugador que haya identificado el mayor número de fal
 
 Se reparte al azar el conjunto de cartas de falacias argumentativas disponibles entre todos los jugadores, a razón de 10 cartas por persona.
 Cada jugador toma conocimiento de sus cartas, las coloca procurando tenerlas lo mejor posible en mente y se dispone a asistir al debate.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1143,7 +1143,7 @@ Cada jugador toma conocimiento de sus cartas, las coloca procurando tenerlas lo 
 
 تُقسَّم عشوائيًا جميع بطاقات الحجج المغلوطة المتاحة بين اللاعبين جميعًا، بمعدل 10 بطاقات لكل شخص.
 يطلع كل لاعب على بطاقاته، ويرتّبها محاولًا إبقاءها قدر الإمكان في ذاكرته، ثم يستقر لمتابعة المناظرة.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1170,7 +1170,7 @@ Cada jugador toma conocimiento de sus cartas, las coloca procurando tenerlas lo 
 
 تمام کارت‌های استدلالِ مغالطه‌آمیزِ موجود به‌طور تصادفی میان همهٔ بازیکنان تقسیم می‌شود، به‌طوری‌که به هر نفر ۱۰ کارت برسد.
 هر بازیکن کارت‌های خود را می‌خواند، آن‌ها را طوری می‌چیند که تا حد ممکن در ذهنش بمانند، و برای تماشای مناظره مستقر می‌شود.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1197,7 +1197,7 @@ Cada jugador toma conocimiento de sus cartas, las coloca procurando tenerlas lo 
 
 将现有的所有谬误论证卡牌随机分给所有玩家，每人10张。
 每位玩家查看自己的卡牌，将其摆好并尽量记住，然后坐好准备观看辩论。</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1222,7 +1222,7 @@ Each player's final score is the number of their cards validated by the assembly
 If, after a first count, other non-selected players now have more cards than the best validated score, proceed with their validation, and so on until the best validated score can no longer be challenged.
 
 Players with the best score are declared winners.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1247,7 +1247,7 @@ Le score final de chaque joueur correspond au nombre de ses cartes validées par
 Si, à l’issue d’un premier décompte, d’autres joueurs non sélectionnés ont désormais plus de cartes que le meilleur score validé, on procède à leur validation, et ainsi de suite jusqu’à ce que le meilleur score validé ne soit plus contestable.
 
 Les joueurs ayant obtenu le meilleur score sont déclarés vainqueurs.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1270,7 +1270,7 @@ Les joueurs ayant obtenu le meilleur score sont déclarés vainqueurs.</Descript
 Итоговый счёт каждого игрока равен числу его карт, подтверждённых собранием. Если после первого подсчёта у других, не отобранных игроков теперь больше карт, чем лучший подтверждённый результат, проводится и их проверка, и так далее, пока лучший подтверждённый результат не станет бесспорным.
 
 Игроки с лучшим результатом объявляются победителями. </Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1295,7 +1295,7 @@ A pontuação final de cada jogador corresponde ao número das suas cartas valid
 Se, no final de uma primeira contagem, outros jogadores não selecionados tiverem agora mais cartas do que a melhor pontuação validada, esses jogadores passam pela validação, e assim sucessivamente até que a melhor pontuação validada deixe de poder ser contestada.
 
 Os jogadores que obtiverem a melhor pontuação são declarados vencedores.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1320,7 +1320,7 @@ La puntuación final de los jugadores es el número de sus cartas validadas por 
 Si, tras un primer recuento, otros jugadores no seleccionados pasan a tener más cartas que la mejor puntuación validada, se procede a su validación, y así sucesivamente hasta que la mejor puntuación validada ya no pueda ser cuestionada.
 
 Los jugadores que hayan obtenido la mejor puntuación son declarados vencedores.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1345,7 +1345,7 @@ Los jugadores que hayan obtenido la mejor puntuación son declarados vencedores.
 إذا تبيّن، عند نهاية أول إحصاء، أن لاعبين آخرين غير مختارين أصبح لديهم عدد بطاقات يفوق أفضل نتيجة معتمدة، تُستكمل عملية التحقق منهم، وهكذا دواليك حتى تصبح أفضل نتيجة معتمدة غير قابلة للطعن.
 
 يُعلَن اللاعبون الذين حققوا أفضل نتيجة فائزين.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1370,7 +1370,7 @@ Los jugadores que hayan obtenido la mejor puntuación son declarados vencedores.
 اگر پس از نخستین شمارش، بازیکنانِ دیگری که انتخاب نشده‌اند اکنون بیش از بالاترین امتیازِ تأییدشده کارت داشته باشند، تأیید آن‌ها نیز انجام می‌شود، و همین‌طور ادامه می‌یابد تا زمانی که بالاترین امتیازِ تأییدشده دیگر قابلِ اعتراض نباشد.
 
 بازیکنانی که بالاترین امتیاز را کسب کرده‌اند، برنده اعلام می‌شوند.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1395,7 +1395,7 @@ Los jugadores que hayan obtenido la mejor puntuación son declarados vencedores.
 如果在第一轮统计后，其他未被选中的玩家如今拥有的卡牌数量超过了最高已确认得分，就对他们进行确认，如此类推，直到最高已确认得分不再存在争议。
 
 获得最高得分的玩家被宣布为胜者。</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1424,7 +1424,7 @@ Depending on the number of players and the desired difficulty level, build the d
 Shuffle the fallacious argument cards, then the scenario cards. Create 2 draw piles of scenario cards and place them in the middle of the table. Deal 5 fallacious argument cards to each player, which they keep to themselves. The remaining cards form the draw pile.
 
 The first drawer is the player who was most recently influenced by an appeal to emotion.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1453,7 +1453,7 @@ Selon le nombre de joueurs et le niveau de difficulté souhaité, constituez la 
 Mélangez les cartes d’argument fallacieux, puis les cartes de scénario. Constituez 2 pioches de cartes de scénario et placez-les au milieu de la table. Distribuez à chaque joueur 5 cartes d’argument fallacieux, qu’il garde pour lui. Le reste des cartes constitue la pioche.
 
 Le premier piocheur est celui qui s’est fait influencer le plus récemment par un appel à l’émotion.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1483,7 +1483,7 @@ Le premier piocheur est celui qui s’est fait influencer le plus récemment par
 Перетасуйте карты с софизмами, затем карты со сценариями. Сформируйте 2 колоды карт сценариев и положите их в центр стола. Каждый игрок получает по 5 карт с софизмами и держит их при себе. Остальные карты - колода.
 
 Первый Берущий карту — тот, на кого в последний раз повлияли с помощью апелляции к эмоциям.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1512,7 +1512,7 @@ De acordo com o número de jogadores e o nível de dificuldade desejado, forme a
 Embaralhe as cartas de argumento falacioso e, em seguida, as cartas de cenário. Forme 2 montes de cartas de cenário e coloque-os no centro da mesa. Distribua a cada jogador 5 cartas de argumento falacioso, que mantém na mão. As cartas restantes constituem o monte.
 
 O primeiro comprador é quem mais recentemente se deixou influenciar por um apelo à emoção.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1541,7 +1541,7 @@ Según el número de jugadores y el nivel de dificultad deseado, se constituye l
 Se barajan las cartas de argumento falaz y, a continuación, las cartas de escenario. Se forman 2 pilas de robo de cartas de escenario y se colocan en el centro de la mesa. Se reparten a cada jugador 5 cartas de argumento falaz que guarda para sí. El resto de las cartas constituye la pila de robo.
 
 El primer robador es quien se ha dejado influir más recientemente por una apelación a la emoción.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1570,7 +1570,7 @@ El primer robador es quien se ha dejado influir más recientemente por una apela
 تُخلط بطاقات الحجج المغالِطة، ثم بطاقات السيناريو. ثم تُنشأ رُزمتان من بطاقات السيناريو وتوضعان في وسط الطاولة. ويُوزَّع على كل لاعب 5 بطاقات من بطاقات الحجج المغالِطة يحتفظ بها لنفسه. أمّا بقية البطاقات فتشكّل رزمة السحب.
 
 الساحب الأول هو آخر مَن تأثر بالاحتكام إلى العاطفة.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1599,7 +1599,7 @@ El primer robador es quien se ha dejado influir más recientemente por una apela
 ابتدا کارت‌های استدلالِ مغالطه‌آمیز و سپس کارت‌های سناریو را بُر می‌زنیم. سپس ۲ دستهٔ کارتِ کشیدنیِ سناریو تشکیل می‌دهیم و آن‌ها را در وسطِ میز قرار می‌دهیم. به هر بازیکن ۵ کارتِ استدلالِ مغالطه‌آمیز می‌دهیم که آن‌ها را نزد خود نگه می‌دارد. باقیِ کارت‌ها دستهٔ کارت‌های کشیدنی را تشکیل می‌دهند. 
 
 نخستین کارت‌کش، کسی است که آخرین بار تحت تأثیرِ توسل به احساسات قرار گرفته است.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1628,7 +1628,7 @@ El primer robador es quien se ha dejado influir más recientemente por una apela
 将谬误论证牌和情景卡分别洗匀。将2叠情景卡牌堆放在桌子中央。给每位玩家发5张谬误论证牌，玩家将其保密留在手中。其余卡牌作为抽牌堆。
 
 第一个抽牌者，是最近受到情绪诉求影响的人。</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1655,7 +1655,7 @@ The round ends when only one person remains in play. The player to the drawer's 
 
 If a player manages to get rid of all their cards, they win the game.
 Otherwise, the game stops at the end of the number of rounds initially planned. The winner is the player with the fewest cards in hand.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1683,7 +1683,7 @@ La manche s’arrête quand il ne reste plus qu’une personne en jeu. Le voisin
 Si un joueur parvient à se débarrasser de toutes ses cartes, il gagne la partie.
 
 Sinon, la partie s’arrête au bout du nombre de manches initialement prévu. Le vainqueur est celui qui a le moins de cartes en main.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1712,7 +1712,7 @@ Sinon, la partie s’arrête au bout du nombre de manches initialement prévu. L
 
 Если игроку удается избавиться от всех своих карт, он выигрывает игру.
 В противном случае игра останавливается, когда сыграно запланированное число раундов. Победитель — тот, у кого на руках меньше всего карт.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1740,7 +1740,7 @@ A rodada termina quando resta apenas uma pessoa em jogo. O vizinho à esquerda d
 Se um jogador conseguir se livrar de todas as suas cartas, ganha a partida.
 
 Caso contrário, a partida termina após o número de rodadas inicialmente previsto. O vencedor é quem tiver menos cartas na mão.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1769,7 +1769,7 @@ La ronda termina cuando solo queda una persona en juego. El jugador situado a la
 
 Si un jugador consigue deshacerse de todas sus cartas, gana la partida. 
 Si no, la partida termina al cabo del número de rondas previsto inicialmente. El ganador es quien tenga menos cartas en la mano.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1798,7 +1798,7 @@ Si no, la partida termina al cabo del número de rondas previsto inicialmente. E
 
 إذا تمكن لاعب من التخلّص من جميع بطاقاته، فإنه يفوز باللعبة. 
 وإلا، تنتهي اللعبة بعد عدد الجولات المحدد مسبقًا. الفائز هو من يملك في يده أقل عدد من البطاقات.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1827,7 +1827,7 @@ Si no, la partida termina al cabo del número de rondas previsto inicialmente. E
 
 اگر بازیکنی موفق شود از همهٔ کارت‌هایش خلاص شود، برندهٔ بازی است. 
 در غیر این صورت، بازی پس از تعدادِ دورهایی که از پیش تعیین شده بود به پایان می‌رسد. برنده کسی است که در دستش کمترین تعدادِ کارت را داشته باشد.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1856,7 +1856,7 @@ Si no, la partida termina al cabo del número de rondas previsto inicialmente. E
 
 如果某位玩家成功摆脱所有手牌，他就赢得比赛。 
 否则，比赛会在预先设定的回合数结束后终止。胜者是手牌最少的玩家。</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1885,7 +1885,7 @@ Depending on the number of players and the desired difficulty level, build the f
 Shuffle the fallacious argument cards, as well as the scenario cards. Form 2 scenario card decks and 1 fallacious argument deck, then place them in the middle of the table.
 
 The first drawer is the player who most recently conceded an argument through sheer weariness.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1914,7 +1914,7 @@ Selon le nombre de joueurs et le niveau de difficulté souhaité, constituez la 
 Mélangez les cartes d’argument fallacieux, ainsi que les cartes de scénario. Formez 2 pioches de cartes de scénario et 1 pioche d’argument fallacieux, puis placez-les au milieu de la table.
 
 Le premier piocheur est le joueur qui a le plus récemment concédé un argument à l’usure.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1945,7 +1945,7 @@ Le premier piocheur est le joueur qui a le plus récemment concédé un argument
 Выберите максимальное количество трёхминутных раундов на одного игрока. Перетасуйте карты с софизмами и карты сценариев. На середину стола мы кладем 2 стопки карт сценариев для добора и 1 стопку карт с софизмами для добора.
 
 Первый Берущий карту — игрок, который последним уступил в споре, не выдержав напора. </Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -1974,7 +1974,7 @@ De acordo com o número de jogadores e o nível de dificuldade desejado, formem 
 Embaralhem as cartas de argumento falacioso, bem como as cartas de cenário. Formem 2 pilhas de compra de cartas de cenário e 1 pilha de compra de argumentos falaciosos, depois coloquem-nas no centro da mesa.
 
 O primeiro comprador é o jogador que mais recentemente cedeu a um argumento por desgaste.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2003,7 +2003,7 @@ Según el número de jugadores y el nivel de dificultad deseado, se constituye l
 Las cartas de argumento falaz se barajan, igual que las cartas de escenario. Se constituyen 2 pilas de robo de cartas de escenario y 1 pila de robo de argumento falaz, colocados en el centro de la mesa. 
 
 El primer robador es quien haya cedido por última vez ante un argumento por desgaste.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2032,7 +2032,7 @@ El primer robador es quien haya cedido por última vez ante un argumento por des
 تُخلط بطاقات الحجج المغلوطة، وكذلك بطاقات السيناريو. ثم تُنشأ كومتان لسحب بطاقات السيناريو وكومة واحدة لسحب بطاقات الحجج المغلوطة، وتوضع جميعها في وسط الطاولة.
 
 الساحب الأول هو آخر من تنازل عن حجةٍ تحت الإلحاح.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2061,7 +2061,7 @@ El primer robador es quien haya cedido por última vez ante un argumento por des
 کارت‌های استدلالِ مغالطه‌آمیز و همچنین کارت‌های سناریو خوب بر زده می‌شوند. سپس ۲ دستهٔ کارت سناریو و ۱ دستهٔ کارت استدلالِ مغالطه‌آمیز تشکیل می‌دهیم و آن‌ها را در وسط میز قرار می‌دهیم.
 
 نخستین کارت‌کش کسی است که آخرین بار یک استدلال را از سرِ فرسودگی پذیرفته است.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2090,7 +2090,7 @@ El primer robador es quien haya cedido por última vez ante un argumento por des
 将“论证谬误”卡和情景卡分别洗牌。将情景卡分成两叠，并将“论证谬误”卡组成一叠，然后把这三叠牌放在桌子中央。 
 
 最近一次因不堪纠缠而在争论中让步的玩家担任首位抽牌者。</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2121,7 +2121,7 @@ The first player to reach 20 points wins the game.
 ## Variants
 
 * For each card drawn, after the smooth talker's argument, the other players may each propose another illustration of the card. For each new proposal, the group votes to determine whether it is better than the previous ones. The author of the best accepted proposal wins the card.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2152,7 +2152,7 @@ Le premier joueur à atteindre 20 points remporte la partie.
 ## Variantes
 
 * À chaque carte piochée, après l’argument du baratineur, les autres joueurs peuvent chacun proposer une autre illustration de la carte. Pour chaque nouvelle proposition, l’assemblée vote pour déterminer si elle est meilleure que les précédentes. L’auteur de la meilleure proposition retenue remporte la carte.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2185,7 +2185,7 @@ Le premier joueur à atteindre 20 points remporte la partie.
 
 * После каждой вытащенной карты с софизмом, после аргумента Софиста, каждый из остальных игроков может предложить другую иллюстрацию карты. По каждой новой предложенной иллюстрации все участники голосуют, чтобы определить, лучше ли она предыдущих. Автор лучшей принятой иллюстрации забирает карту. 
 </Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2216,7 +2216,7 @@ O primeiro jogador a atingir 20 pontos ganha a partida.
 ## Variantes
 
 * A cada carta tirada, depois do argumento do embromador, os outros jogadores podem propor, cada um, outra ilustração da carta. Para cada nova proposta, o grupo vota para determinar se é melhor do que as anteriores. O autor da melhor proposta aceita ganha a carta.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2251,7 +2251,7 @@ El primer jugador que llegue a 20 puntos gana la partida.
 
 * Cada vez que se roba una carta, después del argumento del embaucador, cada uno de los demás jugadores puede proponer otra ilustración de la carta. Por cada nueva propuesta, la asamblea vota si la considera mejor que las anteriores, y el autor de la mejor propuesta elegida gana la carta. 
 </Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2286,7 +2286,7 @@ El primer jugador que llegue a 20 puntos gana la partida.
 
 * عند كل بطاقة تُسحب، وبعد حجة المغالِط، يمكن لكلٍّ من اللاعبين الآخرين أن يقترح تجسيدًا آخر للبطاقة. ومع كل اقتراح جديد، تصوّت المجموعة لتحديد ما إذا كان أفضل من الاقتراحات السابقة، ويفوز بالبطاقة صاحب أفضل اقتراح تم اعتماده. 
 </Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2321,7 +2321,7 @@ El primer jugador que llegue a 20 puntos gana la partida.
 
 * هر بار که کارتی کشیده می‌شود، پس از استدلالِ چرب‌زبان، سایر بازیکنان می‌توانند هر کدام یک تصویرسازی دیگر برای کارت پیشنهاد کنند. برای هر پیشنهاد جدید، مجمع رأی می‌دهد که آیا از پیشنهادهای قبلی بهتر است یا نه، و نویسندهٔ بهترین پیشنهادِ پذیرفته‌شده کارت را می‌برد. 
 </Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2356,7 +2356,7 @@ El primer jugador que llegue a 20 puntos gana la partida.
 
 * 每次抽到一张牌后，在诡辩者提出论证之后，其余玩家都可以各自提出另一个体现这张牌内容的论证。每出现一个新提案，大家就投票判断它是否比之前的提案更好；最终采纳的最佳提案作者赢得这张牌。 
 </Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2385,7 +2385,7 @@ Select 28 fallacious argument cards for the game, 4 per color.
 Shuffle the fallacious argument cards and the scenario cards separately. Form 2 scenario card draw piles and place them in the middle of the table.
 
 The first drawer is the player who lied most recently.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2414,7 +2414,7 @@ Sélectionnez 28 cartes d’arguments fallacieux pour la partie, soit 4 par coul
 Mélangez séparément les cartes d’arguments fallacieux et les cartes de scénario. Constituez 2 pioches de cartes de scénario et placez-les au milieu de la table.
 
 Le premier piocheur est le joueur qui a menti en dernier.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2445,7 +2445,7 @@ Le premier piocheur est le joueur qui a menti en dernier.</Description>
 Карты с софизмами и карты сценариев перемешиваем отдельно. Составляем 2 стопки карт сценариев и размещаем их в центре стола.
 
 Первым Берущим карту становится тот, кто последним солгал.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2474,7 +2474,7 @@ Selecionem 28 cartas de argumento falacioso para a partida, ou seja, 4 por cor.
 Embaralhem separadamente as cartas de argumento falacioso e as cartas de cenário. Formem 2 pilhas de compra de cartas de cenário e coloquem-nas no meio da mesa.
 
 O primeiro comprador é o jogador que mentiu mais recentemente.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2503,7 +2503,7 @@ Se seleccionan 28 cartas de argumentos falaces para la partida, es decir, 4 por 
 Las cartas de argumentos falaces se barajan, al igual que las cartas de escenario. Se forman 2 pilas de robo de cartas de escenario y se colocan en el centro de la mesa. 
 
 El primer robador es el que haya mentido más recientemente.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2532,7 +2532,7 @@ El primer robador es el que haya mentido más recientemente.</Description>
 تُخلط بطاقات الحجج المغالِطة وبطاقات السيناريو، كلٌّ على حدة. ثم نُكوِّن رُزمتين لسحب بطاقات السيناريو توضعان في وسط الطاولة.
 
 الساحب الأول هو اللاعب الذي كذب آخر مرة.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2561,7 +2561,7 @@ El primer robador es el que haya mentido más recientemente.</Description>
 کارت‌های استدلالِ مغالطه‌آمیز بُر زده می‌شوند؛ کارت‌های سناریو نیز جداگانه بُر زده می‌شوند. سپس ۲ دستهٔ کارت‌کشیِ سناریو تشکیل دهید و آن‌ها را در وسط میز قرار دهید.
 
 اولین کارت‌کش کسی است که آخرین بار دروغ گفته است.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2590,7 +2590,7 @@ El primer robador es el que haya mentido más recientemente.</Description>
 将谬误论证卡和情景卡分别洗匀，并在桌子中央摆出 2 堆情景卡牌堆。
 
 第一位抽牌者是最近说过谎的人。</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2614,7 +2614,7 @@ Trump bidding starts at 80, then bids increase by 10.
 At any time, one of the two members of a team may say “I coinche” to end the bidding and double the stakes of the round.
 
 When no one raises any further, the two trump colors are designated for the round and the play phase can begin.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2638,7 +2638,7 @@ La mise aux enchères des atouts commence à 80, puis les enchères montent de 1
 À tout moment, l’un des deux membres d’une équipe peut dire « je coinche » pour mettre fin aux enchères et doubler l’enjeu de la manche.
 
 Quand plus personne ne surenchérit, les deux couleurs d’atout sont désignées pour la manche et la phase de jeu peut commencer.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2656,7 +2656,7 @@ Quand plus personne ne surenchérit, les deux couleurs d’atout sont désignée
 
 Начиная с игрока слева от берущего карту, игроки решают, повышать ставку или нет, чтобы определить две козырные масти раунда. Козырные карты позволяют побить карты других типов и приносят больше баллов при подсчете. Базовая ставка - 80, увеличивается за один раз на 10 единиц. В любой момент один из двух игроков команды может сказать: «Контра!» и прекратить аукцион и удвоить ставку раунда. Когда игроки перестали повышать ставки, назначаются две козырных масти на раунд, и игра может начаться. 
 </Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2680,7 +2680,7 @@ O leilão dos trunfos começa em 80, e os lances aumentam de 10 em 10.
 A qualquer momento, um dos dois integrantes de uma equipe pode dizer “coinche” para encerrar os lances e dobrar o valor em jogo na rodada.
 
 Quando ninguém mais dá um lance maior, os dois naipes de trunfo ficam designados para a rodada e a fase de jogo pode começar.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2702,7 +2702,7 @@ La puja inicial de triunfo es de 80 y las pujas suben de 10 en 10.
 En cualquier momento, uno de los dos miembros de un equipo puede decir «je coinche» y poner fin a las pujas, duplicando al mismo tiempo la apuesta de la ronda.
 Cuando nadie puja más, se designan los dos colores de triunfo para la ronda y puede comenzar la fase de juego.
 </Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2724,7 +2724,7 @@ Cuando nadie puja más, se designan los dos colores de triunfo para la ronda y p
 في أي وقت، يمكن لأحد عضوي الفريق أن يقول «je coinche» فيُنهي المزايدة مع مضاعفة رهان الجولة.
 عندما لا يعود أحد يزايد، يُحدَّد لونا الحكم للجولة ويمكن أن تبدأ مرحلة اللعب.
 </Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2746,7 +2746,7 @@ Cuando nadie puja más, se designan los dos colores de triunfo para la ronda y p
 در هر لحظه، یکی از دو عضوِ یک تیم می‌تواند بگوید «je coinche» و با دو برابر کردنِ مبلغِ دور، مزایده را پایان دهد.
 وقتی دیگر کسی پیشنهاد را بالاتر نبرد، دو رنگِ اَتو برای این دور تعیین می‌شوند و مرحلهٔ بازی می‌تواند آغاز شود.
 </Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2768,7 +2768,7 @@ Cuando nadie puja más, se designan los dos colores de triunfo para la ronda y p
 在任何时候，同一队伍的两名成员之一都可以说 “je coinche”，从而结束叫价，同时将本回合的赌注翻倍。
 当不再有人加价时，本回合的两种王牌颜色即被确定，游戏阶段可以开始。
 </Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2810,7 +2810,7 @@ If the bidding was coinched, the scores are doubled.
 ## End of the game and scoring
 
 The winning team is the first to exceed 1000 points.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2852,7 +2852,7 @@ Si les enchères ont été coinchées, les scores sont doublés.
 ## Fin de partie et décompte
 
 L’équipe qui l’emporte est la première à dépasser 1000 points.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2894,7 +2894,7 @@ L’équipe qui l’emporte est la première à dépasser 1000 points.</Descript
 ## Конец партии и подсчёт очков
 
 Побеждает команда, которая первой превысит 1000 очков.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2936,7 +2936,7 @@ Se o lance tiver sido dobrado, as pontuações são duplicadas.
 ## Fim da partida e contagem
 
 Ganha a equipe que for a primeira a ultrapassar 1000 pontos.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -2976,7 +2976,7 @@ Si la subasta ha sido contrada, las puntuaciones se duplican.
 ## Fin de la partida y recuento
 
 Gana el primer equipo que supera los 1000 puntos.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -3016,7 +3016,7 @@ Gana el primer equipo que supera los 1000 puntos.</Description>
 ## نهاية اللعبة واحتساب النتيجة
 
 الفريق الفائز هو أول فريق يتجاوز 1000 نقطة.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -3056,7 +3056,7 @@ Gana el primer equipo que supera los 1000 puntos.</Description>
 ## پایان بازی و شمارش امتیاز
 
 تیمی که برنده می‌شود، نخستین تیمی است که از ۱۰۰۰ امتیاز عبور کند.</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
   <Entity Type="Rule">
@@ -3096,7 +3096,7 @@ Gana el primer equipo que supera los 1000 puntos.</Description>
 ## 游戏结束与总计分
 
 率先超过 1000 分的队伍获胜。</Description>
-    <Example>{}</Example>
+    <Example />
     <Parent>679086c4-5b4d-8cf3-70cc-498bfd75b436</Parent>
   </Entity>
 </SexyContentData>
