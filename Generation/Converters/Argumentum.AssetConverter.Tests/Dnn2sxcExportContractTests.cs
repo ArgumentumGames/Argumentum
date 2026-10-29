@@ -11,19 +11,21 @@ using Xunit.Abstractions;
 namespace Argumentum.AssetConverter.Tests
 {
 	/// <summary>
-	/// #136 partie 1 — contrat de l'export Dnn2sxc régénéré. Le mode n'avait pas tourné depuis
-	/// 2023 et l'export committé de l'époque est un XML <b>invalide</b> (mesuré : la sérialisation
+	/// #136 partie 1 — contrat de l'export Dnn2sxc FALLACIES. Le mode n'avait pas tourné depuis
+	/// 2023 et l'export committé de l'époque était un XML <b>invalide</b> (mesuré : la sérialisation
 	/// s'arrête ligne 15357 sur <c>&lt;/SexyContentData&gt;</c> suivie des octets résiduels du
-	/// fichier précédent plus long — le défaut <c>File.OpenWrite</c> ne tronque pas,
-	/// <c>Dnn2sxcConfig.cs</c>). Chaque fait ici rejoue <see cref="Dnn2sxcConfig.Apply"/> sur le
-	/// corpus courant, dans un fichier temporaire — l'export du dépôt n'est pas touché.
+	/// fichier précédent plus long — le défaut <c>File.OpenWrite</c> ne tronque pas). Chaque fait
+	/// ici rejoue l'export sur le corpus courant, dans un fichier temporaire — l'export du dépôt
+	/// n'est écrit par aucun test.
 	/// </summary>
 	/// <remarks>
 	/// <para><b>Ce que cette suite prouve</b> : l'export est un XML valide même en écrasant un
 	/// fichier précédent plus long (la corruption de 2023 rejouée en contrôle inverse) ; les 4
 	/// cultures du scope #136 (fr/en/ru/pt) couvrent chaque rangée du CSV ; la hiérarchie se
 	/// referme (tout <c>Parent</c> pointe un Guid présent) ; deux exécutions produisent un export
-	/// byte-identique ; sans fixture 2021, la racine est bootstrappée au lieu de faire NRE.</para>
+	/// byte-identique ; sans fixture 2021, la racine est bootstrappée au lieu de faire NRE ; la
+	/// régénération reste byte-identique à l'export <b>committé</b> (la garde du moteur partagé :
+	/// toute dérive du port de <c>Apply</c> vers <c>Dnn2sxcTaxonomyExporter</c> rougit ici).</para>
 	/// <para><b>Ce qu'elle ne prouve pas</b> : que 2sxc v21 accepte l'import sur le portail —
 	/// c'est la partie 2 de #136, derrière le recyclage préprod.</para>
 	/// </remarks>
@@ -45,7 +47,11 @@ namespace Argumentum.AssetConverter.Tests
 			"Generation", "Converters", "Argumentum.AssetConverter", "Data", "Dnn2sxc",
 			"2sxc Fallacy  Data 20210212131131.xml");
 
-		private static string MasterCulture => new Dnn2sxcConfig().Cultures[0].Culture;
+		private static string CommittedExportPath => Path.Combine(Repo,
+			"Generation", "Converters", "Argumentum.AssetConverter", "Data", "Dnn2sxc",
+			"2sxcContentExport_Argumentum_Fallacies_0.0.1.xml");
+
+		private static string MasterCulture => new Dnn2sxcConfig().Fallacies.Cultures[0].Culture;
 
 		/// <summary>Valeur textuelle d'un enfant, vide si absent (le XML sérialise les null en éléments vides).</summary>
 		private static string Val(XElement entity, string childName)
@@ -53,14 +59,22 @@ namespace Argumentum.AssetConverter.Tests
 			return entity.Element(childName)?.Value ?? string.Empty;
 		}
 
-		/// <summary>Config pointant le CSV + le fixture du dépôt, export vers un fichier temporaire.</summary>
+		/// <summary>Config Fallacies seule (Virtues désactivée), export vers un fichier temporaire.</summary>
 		private static Dnn2sxcConfig NewConfig(string exportPath, string? importPath = null)
 		{
 			return new Dnn2sxcConfig
 			{
-				CsvPathFallacies = CsvPath,
-				Xml2sxcImportPathFallacies = importPath ?? ImportFixturePath,
-				Xml2sxcExportPathFallacies = exportPath,
+				Virtues = new Dnn2sxcTaxonomyExportConfig(), // désactivée : CsvPath vide
+				Fallacies = new Dnn2sxcTaxonomyExportConfig
+				{
+					EntityTypeName = "Fallacy",
+					RootName = "Fallacies",
+					ContextKey = "fallacy",
+					CsvPath = CsvPath,
+					ImportPath = importPath ?? ImportFixturePath,
+					ExportPath = exportPath,
+					Cultures = new Dnn2sxcConfig().Fallacies.Cultures,
+				},
 			};
 		}
 
@@ -176,6 +190,27 @@ namespace Argumentum.AssetConverter.Tests
 			{
 				File.Delete(first);
 				File.Delete(second);
+			}
+		}
+
+		[Fact]
+		public void Regeneration_Matches_The_Committed_Export_Byte_For_Byte()
+		{
+			// La garde du port moteur (PR 2) : le corps d'Apply a déménagé vers
+			// Dnn2sxcTaxonomyExporter sans changement de comportement voulu — la preuve est que la
+			// régénération reproduit exactement l'artefact committé (produit par l'ancien corps).
+			var exportPath = TempExportPath();
+			try
+			{
+				NewConfig(exportPath).Apply();
+
+				File.ReadAllBytes(exportPath).Should().Equal(File.ReadAllBytes(CommittedExportPath),
+					"le port du moteur vers Dnn2sxcTaxonomyExporter doit être un déplacement fidèle — "
+					+ "toute différence ici est une dérive de comportement, pas un détail");
+			}
+			finally
+			{
+				File.Delete(exportPath);
 			}
 		}
 
