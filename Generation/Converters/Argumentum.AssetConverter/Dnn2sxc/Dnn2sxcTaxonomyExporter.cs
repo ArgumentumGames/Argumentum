@@ -28,8 +28,10 @@ namespace Argumentum.AssetConverter.Dnn2sxc
         public string ContextKey { get; set; }
 
         /// <summary>
-        /// XML d'import d'époque (2021), optionnel : préserve les Guid existants et le contenu
-        /// authored des traductions. Vide ou absent ⇒ bootstrap de racine depuis la rangée CSV "0".
+        /// XML d'import d'époque (2021), optionnel : préserve les Guid existants, la hiérarchie et
+        /// le contenu des champs <b>dont le CSV est muet</b> (repli). Le CSV fait foi partout où
+        /// il porte une valeur — traductions comprises, comme pour la culture maîtresse.
+        /// Vide ou absent ⇒ bootstrap de racine depuis la rangée CSV "0".
         /// </summary>
         public string ImportPath { get; set; }
 
@@ -93,7 +95,9 @@ namespace Argumentum.AssetConverter.Dnn2sxc
             //Load existing 2sxc data
 
             // Traductions créées par le bootstrap (pas par le fixture) : la boucle CSV les met à
-            // jour complètement — celles du fixture ne sont jamais écrasées (contenu authored).
+            // jour complètement, champ vide compris. Les traductions héritées du fixture suivent la
+            // même règle (« le CSV fait foi ») mais gardent leur valeur sur un champ dont le CSV est
+            // muet — c'est la seule différence entre les deux familles.
             var syntheticTranslations = new HashSet<Entity>();
 
             Entity root = null;
@@ -241,20 +245,16 @@ namespace Argumentum.AssetConverter.Dnn2sxc
                     }
                     else
                     {
-                        // Comble les champs vides sans écraser le contenu porté par le fixture
-                        // (convention mesurée : les fr-FR du fixture 2021 ont un Name traduit).
-                        if (string.IsNullOrEmpty(translated.Name))
-                        {
-                            translated.Name = Evaluate(config.ContextKey, culture.TitleExpression, row.Entity);
-                        }
-                        if (string.IsNullOrEmpty(translated.Description))
-                        {
-                            translated.Description = Evaluate(config.ContextKey, culture.DescriptionExpression, row.Entity);
-                        }
-                        if (string.IsNullOrEmpty(translated.Example))
-                        {
-                            translated.Example = Evaluate(config.ContextKey, culture.ExampleExpression, row.Entity);
-                        }
+                        // Le CSV fait foi partout où il porte une valeur — traductions comprises : la
+                        // culture maîtresse est déjà réécrite rangée par rangée, et une traduction
+                        // figée sur le fixture 2021 servait un texte que le corpus ne portait plus
+                        // (mesuré : PK 2 « Argument bâclé », description 2021 ≠ desc_fr du CSV).
+                        // Le fixture ne subsiste qu'en REPLI pour les champs dont le CSV est muet —
+                        // sans ce repli, une traduction qu'il porte seul serait effacée. Un repli
+                        // n'est jamais le marqueur de vide 2sxc (« [] ») : il s'afficherait tel quel.
+                        translated.Name = PreferCsv(Evaluate(config.ContextKey, culture.TitleExpression, row.Entity), translated.Name);
+                        translated.Description = PreferCsv(Evaluate(config.ContextKey, culture.DescriptionExpression, row.Entity), translated.Description);
+                        translated.Example = PreferCsv(Evaluate(config.ContextKey, culture.ExampleExpression, row.Entity), translated.Example);
                     }
                 }
 
@@ -273,6 +273,26 @@ namespace Argumentum.AssetConverter.Dnn2sxc
         private static string Evaluate(string contextKey, string expression, object entity)
         {
             return expression.Interpolate(new Dictionary<string, object>() { { contextKey, entity } });
+        }
+
+        /// <summary>
+        /// Marqueur de valeur vide du dialecte 2sxc : le fixture 2021 sérialise un champ texte sans
+        /// valeur en <c>[]</c> (liste vide). Ce n'est pas du contenu — exporté tel quel il s'affiche
+        /// littéralement sur le site (mesuré : deux <c>Example</c> fr-FR du fixture).
+        /// </summary>
+        private const string EmptyMarker = "[]";
+
+        /// <summary>
+        /// Le CSV fait foi dès qu'il porte une valeur ; sinon la valeur en place (fixture) est
+        /// conservée, sauf si c'est le marqueur de vide — qui vaut absence, donc chaîne vide.
+        /// </summary>
+        private static string PreferCsv(string fromCsv, string current)
+        {
+            if (!string.IsNullOrEmpty(fromCsv))
+            {
+                return fromCsv;
+            }
+            return current == EmptyMarker ? string.Empty : current;
         }
 
         /// <summary>

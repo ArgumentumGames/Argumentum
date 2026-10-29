@@ -21,8 +21,8 @@
     <Guid>6b62b0ad-9f21-4caf-a886-62d525a4c06b</Guid>
     <Language>fr-FR</Language>
     <Name>Argument fallacieux</Name>
-    <Description>&lt;p&gt;Votre discours vise &amp;agrave; tromper votre auditoire.&lt;/p&gt;</Description>
-    <Example>[]</Example>
+    <Description>Votre discours vise à tromper votre auditoire.</Description>
+    <Example>Tout ce qui rare est cher. Un cheval bon marché est rare. Donc un cheval bon marché est cher.</Example>
     <Parent />
     <Family />
     <Subfamily />
@@ -55,8 +55,8 @@
     <Guid>a98b9317-3541-45dc-9b75-0cd48e440c8b</Guid>
     <Language>fr-FR</Language>
     <Name>Insuffisance</Name>
-    <Description>&lt;p&gt;Les arguments que vous utilisez ne suffisent pas &amp;agrave; d&amp;eacute;montrer votre propos.&lt;/p&gt;</Description>
-    <Example>[]</Example>
+    <Description>Les arguments que vous utilisez ne suffisent pas à démontrer votre propos.</Description>
+    <Example />
     <Parent>6b62b0ad-9f21-4caf-a886-62d525a4c06b</Parent>
     <Family />
     <Subfamily />
@@ -89,8 +89,8 @@
     <Guid>68cec9b8-b301-4f7b-877f-108be7bbf339</Guid>
     <Language>fr-FR</Language>
     <Name>Argument bâclé</Name>
-    <Description>&lt;p&gt;Votre raisonnement manque de rigueur, il s'appuie sur des impressions ou des faits anecdotiques.&lt;/p&gt;</Description>
-    <Example>&lt;p&gt;Hier, j'ai march&amp;eacute; dans une crotte de chien en saluant un passant dans la rue. En ville, mieux vaut &amp;eacute;viter de s'adresser &amp;agrave; des inconnus.&lt;/p&gt;</Example>
+    <Description>Vous construisez un argument à partir d’impressions ou d’anecdotes, sans preuve solide.</Description>
+    <Example>Hier, j’ai marché dans une crotte de chien après avoir salué un passant dans la rue. En ville, il vaut donc mieux éviter de parler à des inconnus.</Example>
     <Parent>a98b9317-3541-45dc-9b75-0cd48e440c8b</Parent>
     <Family />
     <Subfamily />
