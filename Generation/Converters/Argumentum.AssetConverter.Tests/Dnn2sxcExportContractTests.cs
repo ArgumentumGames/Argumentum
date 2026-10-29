@@ -244,6 +244,133 @@ namespace Argumentum.AssetConverter.Tests
 		}
 
 		[Fact]
+		public void Csv_Is_Authoritative_On_A_Translation_The_2021_Fixture_Also_Carries()
+		{
+			// Constat ai-01 sur #136 : la description fr-FR de PK 2 « Argument bâclé » venait du
+			// fixture 2021, pas du CSV. Le fixture ne porte que 3 entités par langue (racine + 2) —
+			// c'est exactement là que le défaut vivait : les autres traductions naissaient du CSV.
+			// ⚠️ La garde byte-à-byte ne suffit pas seule ici : sa référence EST le fichier committé,
+			// qu'une régénération réécrit — elle adopte silencieusement un export revenu au fixture.
+			// Ce fait-ci nomme l'intention et rougit si le CSV cesse d'être prioritaire.
+			var exportPath = TempExportPath();
+			try
+			{
+				NewConfig(exportPath).Apply();
+
+				var row = Fallacy.Load(CsvPath).Single(f => f.TextFr == "Argument bâclé");
+				var entities = ExportEntities(XDocument.Load(exportPath));
+
+				var master = entities.Single(e => Val(e, "Language") == MasterCulture
+					&& Val(e, "Name") == row.TextEn);
+				var translation = entities.Single(e => Val(e, "Guid") == Val(master, "Guid")
+					&& Val(e, "Language") == "fr-FR");
+
+				_output.WriteLine($"CSV    : {row.DescFr}");
+				_output.WriteLine($"EXPORT : {Val(translation, "Description")}");
+
+				Val(translation, "Name").Should().Be(row.TextFr);
+				Val(translation, "Description").Should().Be(row.DescFr,
+					"desc_fr fait foi — la description authored du fixture 2021 ne doit plus être servie");
+				Val(translation, "Example").Should().Be(row.ExampleFr,
+					"example_fr fait foi de même (le fixture portait « [] », le marqueur de vide 2sxc)");
+			}
+			finally
+			{
+				File.Delete(exportPath);
+			}
+		}
+
+		[Fact]
+		public void Every_Non_Empty_Csv_Value_Reaches_Its_Translation()
+		{
+			// Contrat GÉNÉRAL, sans table de correspondance : les titres ne sont PAS injectifs dans
+			// ce corpus (mesuré : 89 doublons text_en, 85 text_fr), donc on compare des MULTISETS de
+			// triplets (Name, Description, Example) — la répartition par Guid n'est pas ce qui est
+			// asserté, le contenu l'est. Le nom de propriété est DÉRIVÉ de l'expression de config
+			// (« {fallacy.DescFr} » → DescFr) : une culture ajoutée ou re-câblée est couverte sans
+			// toucher à ce test, et rien de la logique d'interpolation n'est recopié ici.
+			var exportPath = TempExportPath();
+			try
+			{
+				NewConfig(exportPath).Apply();
+
+				var rows = Fallacy.Load(CsvPath).ToList();
+				var entities = ExportEntities(XDocument.Load(exportPath));
+
+				foreach (var culture in new Dnn2sxcConfig().Fallacies.Cultures)
+				{
+					var expected = rows
+						.Select(f => Triplet(
+							CsvValue(f, culture.TitleExpression),
+							CsvValue(f, culture.DescriptionExpression),
+							CsvValue(f, culture.ExampleExpression)))
+						.OrderBy(t => t, StringComparer.Ordinal)
+						.ToList();
+
+					var actual = entities
+						.Where(e => Val(e, "Language") == culture.Culture)
+						.Select(e => Triplet(Val(e, "Name"), Val(e, "Description"), Val(e, "Example")))
+						.OrderBy(t => t, StringComparer.Ordinal)
+						.ToList();
+
+					_output.WriteLine($"{culture.Culture}: CSV={expected.Count} export={actual.Count}");
+
+					actual.Should().Equal(expected,
+						$"chaque valeur portée par le CSV doit atteindre la traduction {culture.Culture} "
+						+ "(le fixture 2021 n'est qu'un repli sur un champ muet)");
+				}
+			}
+			finally
+			{
+				File.Delete(exportPath);
+			}
+		}
+
+		private static string Triplet(string name, string description, string example)
+		{
+			return $"{name}\u0001{description}\u0001{example}";
+		}
+
+		/// <summary>Nom de propriété lu dans l'expression de config (« {fallacy.DescFr} » → « DescFr »).</summary>
+		private static string CsvValue(Fallacy fallacy, string expression)
+		{
+			var dot = expression.IndexOf('.');
+			var close = expression.IndexOf('}');
+			expression.Should().Contain("{fallacy.", "expression de culture attendue sous la forme {fallacy.Xxx}");
+			dot.Should().BeGreaterThan(0);
+			var property = expression.Substring(dot + 1, close - dot - 1);
+			var info = typeof(Fallacy).GetProperty(property);
+			info.Should().NotBeNull($"l'expression de config nomme la propriété {property} de l'entité Fallacy");
+			return info!.GetValue(fallacy) as string ?? string.Empty;
+		}
+
+		[Fact]
+		public void Text_Fields_Never_Carry_The_2sxc_Empty_Marker()
+		{
+			// Le fixture 2021 sérialise un champ texte sans valeur en « [] » (liste vide du
+			// dialecte 2sxc). Exporté tel quel, le marqueur s'affiche littéralement sur le site —
+			// mesuré sur deux Example fr-FR avant le correctif #136 (a) ; il en reste un tant que
+			// le repli du fixture le prend pour du contenu.
+			var exportPath = TempExportPath();
+			try
+			{
+				NewConfig(exportPath).Apply();
+
+				var marked = ExportEntities(XDocument.Load(exportPath))
+					.SelectMany(e => new[] { "Name", "Description", "Example" }
+						.Where(f => Val(e, f) == "[]")
+						.Select(f => $"{f}@{Val(e, "Language")}:{Val(e, "Name")}"))
+					.ToList();
+
+				marked.Should().BeEmpty("« [] » est le marqueur de vide 2sxc, pas un contenu");
+			}
+			finally
+			{
+				File.Delete(exportPath);
+			}
+		}
+
+		[Fact]
 		public void Translated_Entities_Carry_A_Name()
 		{
 			// La config morte d'origine : TitleFuncFr n'était jamais appelée — les traductions
