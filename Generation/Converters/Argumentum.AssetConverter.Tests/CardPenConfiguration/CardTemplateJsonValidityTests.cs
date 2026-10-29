@@ -57,11 +57,39 @@ namespace Argumentum.AssetConverter.Tests.CardPenConfiguration
 		{
 			var root = TestRepoRoot.Find();
 			return Directory.EnumerateFiles(Path.Combine(root, "Cards"), "*.json", SearchOption.AllDirectories)
-				.Select(p => p.Replace(Path.DirectorySeparatorChar, '/'))
-				.Where(p => !p.Contains("/Archive/", StringComparison.OrdinalIgnoreCase))
-				.Where(LooksLikeGabarit)
 				.Select(p => Path.GetRelativePath(root, p).Replace(Path.DirectorySeparatorChar, '/'))
+				.Where(IsInScope)
+				.Where(p => LooksLikeGabarit(Path.Combine(root, p)))
 				.OrderBy(p => p, StringComparer.Ordinal);
+		}
+
+		/// <summary>
+		/// Un gabarit vit sous <c>Cards/</c>, hors des arbres gelés <c>Archive/</c> et hors de tout
+		/// répertoire dont un segment commence par « . ». Le brouillon d'un agent n'est pas du contenu
+		/// du dépôt.
+		///
+		/// <para><b>Mesuré le 29/10</b> : quatre fichiers <c>Cards/.tmp/payload_*.json</c> laissés par
+		/// une session antérieure portaient une clé <c>csize</c> et ajoutaient <b>huit</b> cas à cette
+		/// théorie. Conséquence mesurée, et c'est le vrai défaut : le <b>compteur de la suite</b>
+		/// dépendait de ce qu'un agent avait laissé traîner (2 204 dans le clone de travail contre
+		/// 2 196 dans un worktree neuf au même commit — deux sièges avaient cherché une cause
+		/// « machine » à un écart qui est un écart de <b>répertoire courant</b>), et ces brouillons
+		/// étaient certifiés comme des gabarits livrés.</para>
+		/// </summary>
+		internal static bool IsInScope(string rootRelativePath)
+		{
+			var normalised = rootRelativePath.Replace(Path.DirectorySeparatorChar, '/');
+			if (normalised.Contains("/Archive/", StringComparison.OrdinalIgnoreCase))
+			{
+				return false;
+			}
+
+			return !normalised
+				.Split('/')
+				.Any(segment => segment.Length > 0
+					&& segment[0] == '.'
+					&& segment != "."
+					&& segment != "..");
 		}
 
 		/// <summary>
@@ -82,6 +110,58 @@ namespace Argumentum.AssetConverter.Tests.CardPenConfiguration
 		}
 
 		public static IEnumerable<object[]> Templates() => TemplatePaths().Select(p => new object[] { p });
+
+		/// <summary>
+		/// Le prédicat de portée, éprouvé sur des chemins <b>synthétiques</b> : un cas ne dépend alors
+		/// ni de l'arbre de la machine ni de ce qu'un agent y a laissé. Les deux derniers cas sont les
+		/// positions réelles mesurées le 29/10.
+		/// </summary>
+		[Theory]
+		[InlineData("Cards/Fallacies/Argumentum_Fallacies_Face_fr.json", true)]
+		[InlineData("Cards/Rules/Argumentum_Rules_fr.json", true)]
+		[InlineData("Cards/Archive/2019/Argumentum_Fallacies_Face_fr.json", false)]
+		[InlineData("Cards/.tmp/payload_fr.json", false)]
+		[InlineData("Cards/.tmp/deep/payload_ar_after.json", false)]
+		public void Scope_Excludes_Frozen_Trees_And_Dot_Directories(string path, bool expected)
+		{
+			IsInScope(path).Should().Be(expected,
+				"« {0} » {1} dans la portée : les arbres Archive/ sont gelés et un répertoire caché " +
+				"n'est pas du contenu du dépôt",
+				path, expected ? "est" : "n'est pas");
+		}
+
+		/// <summary>
+		/// Contrôle inverse, de bout en bout : un fichier qui <b>ressemble</b> à un gabarit et vit dans
+		/// un répertoire caché n'entre pas dans la portée — alors même que le sélecteur de contenu
+		/// (<see cref="LooksLikeGabarit"/>) le reconnaîtrait. C'est donc bien l'exclusion qui le
+		/// retire, pas son absence : un fichier absent passerait ce fait sans rien prouver.
+		/// </summary>
+		[Fact]
+		public void A_Scratch_File_That_Looks_Like_A_Gabarit_Stays_Out_Of_The_Scope()
+		{
+			var root = TestRepoRoot.Find();
+			var scratchDir = Path.Combine(root, "Cards", ".tmp");
+			var scratchFile = Path.Combine(scratchDir, $"guard-{Guid.NewGuid():N}.json");
+
+			Directory.CreateDirectory(scratchDir);
+			File.WriteAllText(scratchFile, "{ \"csize\": 1 }");
+			try
+			{
+				LooksLikeGabarit(scratchFile).Should().BeTrue(
+					"le fichier doit être reconnu par le sélecteur de contenu, sinon ce fait serait vert parce qu'il est vide de sens");
+
+				TemplatePaths().Should().NotContain(
+					p => p.EndsWith(Path.GetFileName(scratchFile), StringComparison.Ordinal),
+					"un brouillon sous un répertoire caché n'est pas un gabarit livré");
+			}
+			finally
+			{
+				if (File.Exists(scratchFile))
+				{
+					File.Delete(scratchFile);
+				}
+			}
+		}
 
 		[Fact]
 		public void TemplateScope_IsDerivedAndNonEmpty()
