@@ -259,6 +259,14 @@ namespace Argumentum.AssetConverter.Dnn2sxc
         /// un en-tête markdown DANS le texte, à rendre côté site), texte → Description, Example
         /// vide (pas de 3ᵉ champ). Chemins synthétiques « 1 »…« 15 » (l'ordre du CSV).
         /// </summary>
+        /// <remarks>
+        /// ⚠️ <b>Example = <c>""</c>, jamais <c>"{}"</c></b> (mesuré 29/10) :
+        /// <see cref="UtilityExtensions.Interpolate"/> découpe sur <c>{(.+?)}</c> — un « {} » vide ne
+        /// correspond pas au motif et <b>traverse littéralement</b> l'export. Écrit <c>@"{}"</c> ici,
+        /// il produisait <c>&lt;Example&gt;{}&lt;/Example&gt;</c> sur les 120 entités (15 × 8), soit un
+        /// gabarit affiché comme du contenu — même famille que le marqueur de vide 2sxc « [] ». La
+        /// garde commune (<c>Dnn2sxcCommonExportContractTests</c>) refuse désormais les deux.
+        /// </remarks>
         public Dnn2sxcTaxonomyExportConfig Rules { get; set; } = new Dnn2sxcTaxonomyExportConfig
         {
             EntityTypeName = "Rule",
@@ -274,56 +282,56 @@ namespace Argumentum.AssetConverter.Dnn2sxc
                     Culture = "en-US",
                     TitleExpression = @"{rule.Pk}",
                     DescriptionExpression = @"{rule.Text_en}",
-                    ExampleExpression = @"{}",
+                    ExampleExpression = "",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "fr-FR",
                     TitleExpression = @"{rule.Pk}",
                     DescriptionExpression = @"{rule.Text}",
-                    ExampleExpression = @"{}",
+                    ExampleExpression = "",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "ru-RU",
                     TitleExpression = @"{rule.Pk}",
                     DescriptionExpression = @"{rule.Text_ru}",
-                    ExampleExpression = @"{}",
+                    ExampleExpression = "",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "pt-BR",
                     TitleExpression = @"{rule.Pk}",
                     DescriptionExpression = @"{rule.Text_pt}",
-                    ExampleExpression = @"{}",
+                    ExampleExpression = "",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "es-ES",
                     TitleExpression = @"{rule.Pk}",
                     DescriptionExpression = @"{rule.Text_es}",
-                    ExampleExpression = @"{}",
+                    ExampleExpression = "",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "ar-SA",
                     TitleExpression = @"{rule.Pk}",
                     DescriptionExpression = @"{rule.Text_ar}",
-                    ExampleExpression = @"{}",
+                    ExampleExpression = "",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "fa-IR",
                     TitleExpression = @"{rule.Pk}",
                     DescriptionExpression = @"{rule.Text_fa}",
-                    ExampleExpression = @"{}",
+                    ExampleExpression = "",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "zh-CN",
                     TitleExpression = @"{rule.Pk}",
                     DescriptionExpression = @"{rule.Text_zh}",
-                    ExampleExpression = @"{}",
+                    ExampleExpression = "",
                 },
             },
         };
