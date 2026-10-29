@@ -19,6 +19,13 @@ namespace Argumentum.AssetConverter.Tests
 	/// Toutes les attentes sont DÉRIVÉES du fr-FR au moment du test (séquence de
 	/// balises, jetons portail, épingles d'identité, multiset de chiffres) : la
 	/// couverture de cette garde est la fidélité mécanique au fr, pas un golden.
+	/// <para>
+	/// E4 (pool #458, débloqué par le merge #2044) : ar-SA et fa-IR se lisent de droite
+	/// à gauche — les attributs physiques du fr sont MIRROITÉS pour elles (align left →
+	/// right, padding racine échangé), zh-CN reste gauche-à-droite. Le miroir est dérivé
+	/// balise par balise du fr ; aucun dir= n'est introduit (la direction de la page
+	/// appartient à DNN, pas au contenu injecté).
+	/// </para>
 	/// </summary>
 	public class DnnLegalZhArFaGuardTests
 	{
@@ -29,6 +36,20 @@ namespace Argumentum.AssetConverter.Tests
 
 		// La note d'en-tête est insérée juste après le <div> d'ouverture du fr : 4 balises.
 		private static readonly string[] NoteTags = { "<p align=\"left\">", "<em>", "</em>", "</p>" };
+
+		// E4 (pool #458, après merge #2044) : ar-SA et fa-IR se lisent de droite à gauche — les
+		// attributs PHYSIQUES du fr sont mirroités, exactement deux surfaces : align="left"
+		// devient align="right" (la note comprise) et le padding asymétrique de la racine
+		// échange ses côtés. Le miroir est DÉRIVÉ du fr, balise par balise — pas une épingle.
+		// zh-CN est horizontal gauche-à-droite : rien ne bouge pour lui.
+		private static bool IsRtl(string locale) => locale == "ar-SA" || locale == "fa-IR";
+
+		private static string MirrorTag(string tag) => tag
+			.Replace("align=\"left\"", "align=\"right\"")
+			.Replace("padding: 0px 15px 0px 20px", "padding: 0px 20px 0px 15px");
+
+		private static string[] NoteTagsFor(string locale) =>
+			IsRtl(locale) ? new[] { "<p align=\"right\">", "<em>", "</em>", "</p>" } : NoteTags;
 
 		private static readonly Dictionary<string, string> FrenchWordInNote = new Dictionary<string, string>
 		{
@@ -92,13 +113,17 @@ namespace Argumentum.AssetConverter.Tests
 		[MemberData(nameof(Cases))]
 		public void TagSequence_Is_Fr_Plus_HeaderNote(string locale, string key)
 		{
-			var fr = Tag.Matches(ResxValue(FrResx, key)).Select(m => m.Value).ToList();
+			var frTags = Tag.Matches(ResxValue(FrResx, key)).Select(m => m.Value).ToList();
+			// attendu : le fr, mirroité pour les langues RTL (E4), plus la note
+			var expected = frTags.Select(IsRtl(locale) ? (Func<string, string>)MirrorTag : t => t).ToList();
+			var noteTags = NoteTagsFor(locale);
 			var loc = Tag.Matches(ResxValue(LocaleResx(locale), key)).Select(m => m.Value).ToList();
 
-			fr.Should().NotBeEmpty();
-			loc.Should().HaveCount(fr.Count + NoteTags.Length, $"{locale} {key} : balises du fr + la note d'en-tête");
-			loc.Skip(1).Take(NoteTags.Length).Should().Equal(NoteTags, "la note suit immédiatement le <div> d'ouverture");
-			loc.Take(1).Concat(loc.Skip(1 + NoteTags.Length)).Should().Equal(fr, $"{locale} {key} : HTML du fr intact, balise pour balise");
+			expected.Should().NotBeEmpty();
+			loc.Should().HaveCount(expected.Count + noteTags.Length, $"{locale} {key} : balises du fr + la note d'en-tête");
+			loc.Skip(1).Take(noteTags.Length).Should().Equal(noteTags, "la note suit immédiatement le <div> d'ouverture");
+			loc.Take(1).Concat(loc.Skip(1 + noteTags.Length)).Should().Equal(expected,
+				$"{locale} {key} : HTML du fr intact, balise pour balise (mirroité RTL si ar/fa)");
 		}
 
 		[Theory]
@@ -106,9 +131,42 @@ namespace Argumentum.AssetConverter.Tests
 		public void HeaderNote_Says_French_Is_Authoritative(string locale, string key)
 		{
 			var value = ResxValue(LocaleResx(locale), key);
-			var note = Regex.Match(value, "^<div[^>]*><p align=\"left\"><em>([^<]+)</em></p>");
+			var note = Regex.Match(value, "^<div[^>]*><p align=\"" + (IsRtl(locale) ? "right" : "left") + "\"><em>([^<]+)</em></p>");
 			note.Success.Should().BeTrue($"{locale} {key} : la note ouvre la page");
 			note.Groups[1].Value.Should().Contain(FrenchWordInNote[locale], "la note nomme le français comme version de référence");
+		}
+
+		/// <summary>E4 : le miroir RTL est COMPLET et EXACTEMENT deux surfaces. ar/fa ne
+		/// portent plus aucun align="left" et leur align="right" compte ce que le fr porte
+		/// de align="left" ; le padding racine est échangé ; aucun dir= n'est introduit
+		/// (la direction de la PAGE appartient à DNN, pas au contenu). zh-CN ne bouge pas.</summary>
+		[Theory]
+		[InlineData("ar-SA", "MESSAGE_PORTAL_TERMS.Text")]
+		[InlineData("ar-SA", "MESSAGE_PORTAL_PRIVACY.Text")]
+		[InlineData("fa-IR", "MESSAGE_PORTAL_TERMS.Text")]
+		[InlineData("fa-IR", "MESSAGE_PORTAL_PRIVACY.Text")]
+		public void Rtl_Mirror_Is_Complete_And_Zh_Untouched(string locale, string key)
+		{
+			var fr = ResxValue(FrResx, key);
+			var loc = ResxValue(LocaleResx(locale), key);
+			var frLeft = Regex.Matches(fr, "align=\"left\"").Count;
+
+			frLeft.Should().BeGreaterThan(10, "auto-contrôle : le fr doit porter des align=\"left\" à mirroiter");
+			Regex.Matches(loc, "align=\"left\"").Count.Should().Be(0,
+				$"{locale} {key} : E4 — aucun align physique gauche ne survit");
+			Regex.Matches(loc, "align=\"right\"").Count.Should().Be(frLeft + 1,
+				$"{locale} {key} : autant de align=\"right\" que le fr a de align=\"left\", plus la note d'en-tête");
+			loc.Should().Contain("padding: 0px 20px 0px 15px",
+				$"{locale} {key} : le padding racine échange ses côtés (fr : 15 droite / 20 gauche)");
+			loc.Should().NotContain("padding: 0px 15px 0px 20px");
+			Regex.IsMatch(loc, @"dir\s*=").Should().BeFalse(
+				"la direction de la page appartient à DNN — le contenu n'introduit pas de dir=");
+
+			// zh-CN (horizontal) ne subit PAS le miroir : le témoin négatif
+			var zh = ResxValue(LocaleResx("zh-CN"), key);
+			Regex.Matches(zh, "align=\"right\"").Count.Should().Be(0, "zh-CN : aucun miroir — lecture gauche-à-droite");
+			Regex.Matches(zh, "align=\"left\"").Count.Should().Be(frLeft + 1,
+				"zh-CN : les align=\"left\" du fr sont conservés, plus la note (pas de miroir)");
 		}
 
 		[Theory]
