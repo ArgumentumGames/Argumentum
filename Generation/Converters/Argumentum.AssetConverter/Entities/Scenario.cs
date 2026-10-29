@@ -52,6 +52,24 @@ namespace Argumentum.AssetConverter.Entities
         public string context_es { get; set; }
         public string issue_es { get; set; }
         public string suggestion_es { get; set; }
+        // ar/fa/zh (#136 b) : seuls les champs PROJETÉS par l'export Dnn2sxc (titre → Name,
+        // contexte → Description, enjeu → Example) plus catégorie/sous-catégorie, dont les rangées
+        // de groupe synthétiques sont bâties. Les autres colonnes existent au CSV mais sont mortes.
+        public string category_ar { get; set; }
+        public string subcategory_ar { get; set; }
+        public string title_ar { get; set; }
+        public string context_ar { get; set; }
+        public string issue_ar { get; set; }
+        public string category_fa { get; set; }
+        public string subcategory_fa { get; set; }
+        public string title_fa { get; set; }
+        public string context_fa { get; set; }
+        public string issue_fa { get; set; }
+        public string category_zh { get; set; }
+        public string subcategory_zh { get; set; }
+        public string title_zh { get; set; }
+        public string context_zh { get; set; }
+        public string issue_zh { get; set; }
         public string edition_fevrier_2022 { get; set; }
         public string print_and_play_fevrier_2022 { get; set; }
         public string print_and_play { get; set; }
@@ -105,6 +123,25 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.context_es).Name("context_es");
             Map(m => m.issue_es).Name("issue_es");
             Map(m => m.suggestion_es).Name("suggestion_es");
+            // ar/fa/zh (#136 b) : Optionnel — l'entité est partagée avec des consommateurs qui
+            // chargent des CSV étroits (fixtures de test) ; une colonne absente ne doit pas lever
+            // HeaderValidationException. Le corpus réel les porte, et l'export Dnn2sxc a sa propre
+            // garde (tout nom vide dans une des 8 cultures rougit).
+            Map(m => m.category_ar).Name("category_ar").Optional();
+            Map(m => m.subcategory_ar).Name("subcategory_ar").Optional();
+            Map(m => m.title_ar).Name("title_ar").Optional();
+            Map(m => m.context_ar).Name("context_ar").Optional();
+            Map(m => m.issue_ar).Name("issue_ar").Optional();
+            Map(m => m.category_fa).Name("category_fa").Optional();
+            Map(m => m.subcategory_fa).Name("subcategory_fa").Optional();
+            Map(m => m.title_fa).Name("title_fa").Optional();
+            Map(m => m.context_fa).Name("context_fa").Optional();
+            Map(m => m.issue_fa).Name("issue_fa").Optional();
+            Map(m => m.category_zh).Name("category_zh").Optional();
+            Map(m => m.subcategory_zh).Name("subcategory_zh").Optional();
+            Map(m => m.title_zh).Name("title_zh").Optional();
+            Map(m => m.context_zh).Name("context_zh").Optional();
+            Map(m => m.issue_zh).Name("issue_zh").Optional();
             Map(m => m.edition_fevrier_2022).Name("édition février 2022");
             Map(m => m.print_and_play_fevrier_2022).Name("print_&_play_fevrier_2022");
             Map(m => m.print_and_play).Name("print_and_play").Optional();

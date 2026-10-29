@@ -20,17 +20,26 @@ namespace Argumentum.AssetConverter.Dnn2sxc
         public string title_ru { get; set; }
         public string title_pt { get; set; }
         public string title_es { get; set; }
+        public string title_ar { get; set; }
+        public string title_fa { get; set; }
+        public string title_zh { get; set; }
 
         public string contexte { get; set; }
         public string context { get; set; }
         public string context_ru { get; set; }
         public string context_pt { get; set; }
         public string context_es { get; set; }
+        public string context_ar { get; set; }
+        public string context_fa { get; set; }
+        public string context_zh { get; set; }
 
         public string enjeu { get; set; }
         public string issue { get; set; }
         public string issue_ru { get; set; }
         public string issue_pt { get; set; }
         public string issue_es { get; set; }
+        public string issue_ar { get; set; }
+        public string issue_fa { get; set; }
+        public string issue_zh { get; set; }
     }
 }

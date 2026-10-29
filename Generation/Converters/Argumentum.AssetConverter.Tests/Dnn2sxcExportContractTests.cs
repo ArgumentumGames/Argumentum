@@ -124,7 +124,9 @@ namespace Argumentum.AssetConverter.Tests
 					.GroupBy(e => Val(e, "Language"))
 					.ToDictionary(g => g.Key, g => g.ToList());
 
-				var newCultures = new[] { "ru-RU", "pt-BR" }; // absents du fixture 2021 ⇒ purement CSV-déterminés
+				// #136 (b) : es/ar/fa/zh rejoignent ru/pt — toutes absentes du fixture 2021, donc
+				// purement CSV-déterminées (contrairement à fr-FR, héritée du fixture).
+				var newCultures = new[] { "ru-RU", "pt-BR", "es-ES", "ar-SA", "fa-IR", "zh-CN" };
 
 				_output.WriteLine($"CSV: {csvRowCount} rangées ; cultures: {string.Join(", ", byCulture.Select(p => $"{p.Key}={p.Value.Count}"))}");
 

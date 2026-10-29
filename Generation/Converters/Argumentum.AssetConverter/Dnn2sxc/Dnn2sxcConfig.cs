@@ -13,9 +13,9 @@ namespace Argumentum.AssetConverter.Dnn2sxc
     /// <remarks>
     /// <para><b>Cultures</b> : la <b>première</b> entrée de <c>Cultures</c> est la culture
     /// <i>maîtresse</i> — celle qui porte la hiérarchie (l'arbre est construit sur ses entités, les
-    /// autres cultures attachent leurs traductions par Guid partagé). Fallacies couvre le scope #136
-    /// (fr/en/ru/pt) ; Virtues porte en plus l'es (l'entité a les 5 colonnes) — l'extension aux 8
-    /// langues du corpus = une entrée de config.</para>
+    /// autres cultures attachent leurs traductions par Guid partagé). Depuis #136 (b) les QUATRE
+    /// taxonomies couvrent les 8 langues du corpus : Fallacies les avait déjà dans son entité,
+    /// Virtues et Scenarii ont reçu les colonnes ar/fa/zh à cette occasion.</para>
     /// <para><b>Projection Virtues</b> : le dialecte XML n'a que Name/Description/Example comme
     /// champs textuels (<see cref="Entity"/>) — Title → Name, Description → Description,
     /// Remark → Example.</para>
@@ -27,7 +27,7 @@ namespace Argumentum.AssetConverter.Dnn2sxc
     public class Dnn2sxcConfig
     {
 
-        /// <summary>Fallacies — 1408 rangées, fixture 2021 (Guid historiques préservés), 4 cultures.</summary>
+        /// <summary>Fallacies — 1408 rangées, fixture 2021 (Guid historiques préservés), 8 cultures.</summary>
         public Dnn2sxcTaxonomyExportConfig Fallacies { get; set; } = new Dnn2sxcTaxonomyExportConfig
         {
             EntityTypeName = "Fallacy",
@@ -68,12 +68,42 @@ namespace Argumentum.AssetConverter.Dnn2sxc
                     DescriptionExpression = @"{fallacy.DescPt}",
                     ExampleExpression = @"{fallacy.ExamplePt}",
                 },
+                // #136 (b) — les 8 langues du corpus. Fallacy expose déjà ces colonnes : aucune
+                // entité ni ClassMap à étendre, quatre entrées de config suffisent.
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "es-ES",
+                    TitleExpression = @"{fallacy.TextEs}",
+                    DescriptionExpression = @"{fallacy.DescEs}",
+                    ExampleExpression = @"{fallacy.ExampleEs}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "ar-SA",
+                    TitleExpression = @"{fallacy.TextAr}",
+                    DescriptionExpression = @"{fallacy.DescAr}",
+                    ExampleExpression = @"{fallacy.ExampleAr}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "fa-IR",
+                    TitleExpression = @"{fallacy.TextFa}",
+                    DescriptionExpression = @"{fallacy.DescFa}",
+                    ExampleExpression = @"{fallacy.ExampleFa}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "zh-CN",
+                    TitleExpression = @"{fallacy.TextZh}",
+                    DescriptionExpression = @"{fallacy.DescZh}",
+                    ExampleExpression = @"{fallacy.ExampleZh}",
+                },
             },
         };
 
         /// <summary>
         /// Virtues — 223 rangées (re-mesuré 15/09), <b>sans fixture 2021</b> : la racine est
-        /// bootstrappée depuis la rangée CSV "0" (« Valid argument »). 5 cultures (fr/en/ru/pt/es).
+        /// bootstrappée depuis la rangée CSV "0" (« Valid argument »). 8 cultures (fr/en/ru/pt/es/ar/fa/zh).
         /// </summary>
         public Dnn2sxcTaxonomyExportConfig Virtues { get; set; } = new Dnn2sxcTaxonomyExportConfig
         {
@@ -120,14 +150,36 @@ namespace Argumentum.AssetConverter.Dnn2sxc
                     DescriptionExpression = @"{virtue.DescriptionEs}",
                     ExampleExpression = @"{virtue.RemarkEs}",
                 },
+                // #136 (b) — ar/fa/zh exigent l'extension d'ArgumentVirtue + ClassMap (les colonnes
+                // existaient au CSV, pas dans l'entité).
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "ar-SA",
+                    TitleExpression = @"{virtue.TitleAr}",
+                    DescriptionExpression = @"{virtue.DescriptionAr}",
+                    ExampleExpression = @"{virtue.RemarkAr}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "fa-IR",
+                    TitleExpression = @"{virtue.TitleFa}",
+                    DescriptionExpression = @"{virtue.DescriptionFa}",
+                    ExampleExpression = @"{virtue.RemarkFa}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "zh-CN",
+                    TitleExpression = @"{virtue.TitleZh}",
+                    DescriptionExpression = @"{virtue.DescriptionZh}",
+                    ExampleExpression = @"{virtue.RemarkZh}",
+                },
             },
         };
 
         /// <summary>
         /// Scenarii — 167 scénarii, chemins de profondeur 3 SANS rangées intermédiaires : les
         /// 7 catégories et 21 sous-catégories sont synthétisées (voir
-        /// <see cref="Dnn2sxcSyntheticGroupRow"/>). 5 cultures (fr/en/ru/pt/es — l'entité
-        /// <c>Scenario</c> n'expose pas d'ar/fa/zh). Projection : titre → Name, contexte →
+        /// <see cref="Dnn2sxcSyntheticGroupRow"/>). 8 cultures (fr/en/ru/pt/es/ar/fa/zh). Projection : titre → Name, contexte →
         /// Description, enjeu → Example.
         /// </summary>
         public Dnn2sxcTaxonomyExportConfig Scenarii { get; set; } = new Dnn2sxcTaxonomyExportConfig
@@ -174,6 +226,28 @@ namespace Argumentum.AssetConverter.Dnn2sxc
                     TitleExpression = @"{scenario.title_es}",
                     DescriptionExpression = @"{scenario.context_es}",
                     ExampleExpression = @"{scenario.issue_es}",
+                },
+                // #136 (b) — ar/fa/zh : extension de Scenario + ClassMap et des rangées de groupe.
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "ar-SA",
+                    TitleExpression = @"{scenario.title_ar}",
+                    DescriptionExpression = @"{scenario.context_ar}",
+                    ExampleExpression = @"{scenario.issue_ar}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "fa-IR",
+                    TitleExpression = @"{scenario.title_fa}",
+                    DescriptionExpression = @"{scenario.context_fa}",
+                    ExampleExpression = @"{scenario.issue_fa}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "zh-CN",
+                    TitleExpression = @"{scenario.title_zh}",
+                    DescriptionExpression = @"{scenario.context_zh}",
+                    ExampleExpression = @"{scenario.issue_zh}",
                 },
             },
         };
@@ -296,27 +370,34 @@ namespace Argumentum.AssetConverter.Dnn2sxc
             foreach (var group in scenarii.GroupBy(s => s.path.Split('.')[0]))
             {
                 var first = group.First();
-                rows.Add((group.Key, GroupRow(first.categorie, first.category, first.category_ru, first.category_pt, first.category_es)));
+                rows.Add((group.Key, GroupRow(first, subcategory: false)));
             }
             foreach (var group in scenarii.GroupBy(s => s.path.Substring(0, s.path.LastIndexOf('.'))))
             {
                 var first = group.First();
-                rows.Add((group.Key, GroupRow(first.sous_categorie, first.subcategory, first.subcategory_ru, first.subcategory_pt, first.subcategory_es)));
+                rows.Add((group.Key, GroupRow(first, subcategory: true)));
             }
             rows.AddRange(scenarii.Select(s => (s.path, (object)s)));
             return rows;
         }
 
-        private static Dnn2sxcSyntheticGroupRow GroupRow(
-            string titre, string title, string titleRu, string titlePt, string titleEs)
+        /// <summary>
+        /// Rangée de groupe : un groupe ne porte QUE des titres (ni contexte ni enjeu). Une seule
+        /// table de sélection pour les 8 langues — <paramref name="subcategory"/> choisit la colonne
+        /// plutôt que de dupliquer seize paramètres.
+        /// </summary>
+        private static Dnn2sxcSyntheticGroupRow GroupRow(Scenario source, bool subcategory)
         {
             return new Dnn2sxcSyntheticGroupRow
             {
-                titre = titre,
-                title = title,
-                title_ru = titleRu,
-                title_pt = titlePt,
-                title_es = titleEs,
+                titre = subcategory ? source.sous_categorie : source.categorie,
+                title = subcategory ? source.subcategory : source.category,
+                title_ru = subcategory ? source.subcategory_ru : source.category_ru,
+                title_pt = subcategory ? source.subcategory_pt : source.category_pt,
+                title_es = subcategory ? source.subcategory_es : source.category_es,
+                title_ar = subcategory ? source.subcategory_ar : source.category_ar,
+                title_fa = subcategory ? source.subcategory_fa : source.category_fa,
+                title_zh = subcategory ? source.subcategory_zh : source.category_zh,
             };
         }
     }

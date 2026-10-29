@@ -114,12 +114,12 @@ namespace Argumentum.AssetConverter.Tests
 					.GroupBy(e => Val(e, "Language"))
 					.ToDictionary(g => g.Key, g => g.ToList());
 
-				var scopeCultures = new[] { "en-US", "fr-FR", "ru-RU", "pt-BR", "es-ES" };
+				var scopeCultures = new[] { "en-US", "fr-FR", "ru-RU", "pt-BR", "es-ES", "ar-SA", "fa-IR", "zh-CN" };
 
 				_output.WriteLine($"CSV: {leaves} feuilles, {categories} catégories, {subcategories} sous-catégories ; cultures: {string.Join(", ", byCulture.Select(p => $"{p.Key}={p.Value.Count}"))}");
 
 				byCulture.Keys.Should().BeEquivalentTo(scopeCultures,
-					"aucune culture ne préexiste (pas de fixture) : exactement les 5 du scope Scenarii");
+					"aucune culture ne préexiste (pas de fixture) : exactement les 8 du corpus");
 				foreach (var culture in scopeCultures)
 				{
 					byCulture[culture].Count.Should().Be(expectedPerCulture,

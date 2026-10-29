@@ -57,6 +57,21 @@ public class ArgumentVirtue : CsvBase<ArgumentVirtue, ArgumentVirtueClassMap>, I
 	public string DescriptionEs { get; set; }
 	public string RemarkEs { get; set; }
 	public string LinkEs { get; set; }
+
+	// ar/fa/zh (#136 b) : seuls les champs PROJETÉS par l'export Dnn2sxc sont déclarés ici
+	// (titre → Name, description → Description, remarque → Example). Les colonnes famille/lien
+	// existent au CSV mais aucun consommateur ne les lit — les déclarer serait du champ mort.
+	public string TitleAr { get; set; }
+	public string DescriptionAr { get; set; }
+	public string RemarkAr { get; set; }
+
+	public string TitleFa { get; set; }
+	public string DescriptionFa { get; set; }
+	public string RemarkFa { get; set; }
+
+	public string TitleZh { get; set; }
+	public string DescriptionZh { get; set; }
+	public string RemarkZh { get; set; }
 }
 
 public sealed class ArgumentVirtueClassMap : ClassMap<ArgumentVirtue>
@@ -111,5 +126,17 @@ public sealed class ArgumentVirtueClassMap : ClassMap<ArgumentVirtue>
 		Map(m => m.DescriptionEs).Name("description_es").Optional();
 		Map(m => m.RemarkEs).Name("remark_es").Optional();
 		Map(m => m.LinkEs).Name("link_es").Optional();
+
+		Map(m => m.TitleAr).Name("title_ar").Optional();
+		Map(m => m.DescriptionAr).Name("description_ar").Optional();
+		Map(m => m.RemarkAr).Name("remark_ar").Optional();
+
+		Map(m => m.TitleFa).Name("title_fa").Optional();
+		Map(m => m.DescriptionFa).Name("description_fa").Optional();
+		Map(m => m.RemarkFa).Name("remark_fa").Optional();
+
+		Map(m => m.TitleZh).Name("title_zh").Optional();
+		Map(m => m.DescriptionZh).Name("description_zh").Optional();
+		Map(m => m.RemarkZh).Name("remark_zh").Optional();
 	}
 }
