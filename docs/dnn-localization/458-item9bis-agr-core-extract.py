@@ -27,8 +27,8 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 
-_HERE = os.path.dirname(os.path.abspath(__file__))
-_REPO = os.path.abspath(os.path.join(_HERE, "..", "..", ".."))
+_HERE = os.path.dirname(os.path.abspath(__file__))          # <repo>/docs/dnn-localization
+_REPO = os.path.abspath(os.path.join(_HERE, "..", ".."))    # -> <repo>
 _WEBNROOT = os.path.join(_REPO, "DNNPlatform")
 ROOT = os.environ.get("ARGUMENTUM_AGR_ROOT") or os.path.join(_WEBNROOT, "App_GlobalResources")
 FILES = ["SharedResources", "List_Country", "GlobalResources", "Exceptions", "WebControls", "FileUpload"]

@@ -7,7 +7,7 @@
 
 ## 1. Le dénominateur est **1 227 clés par langue**, pas 1 261
 
-Mesuré sur les fichiers eux-mêmes (script `scripts/agr-core-extract.py`), jeu **identique** pour `ar-SA`, `fa-IR`, `zh-CN` :
+Mesuré sur les fichiers eux-mêmes (script `458-item9bis-agr-core-extract.py`), jeu **identique** pour `ar-SA`, `fa-IR`, `zh-CN` :
 
 | Fichier | clés neutres | dont non vides | **à produire / langue** | état ar/fa/zh aujourd'hui |
 |---|---:|---:|---:|---|
@@ -50,8 +50,8 @@ Exemples (clé `AC.Text` / `AD.Text`) : « Île de l'Ascension » · « о-в В
 ## 5. Reproduction
 
 ```bash
-python -I docs/dnn-localization/scripts/agr-core-extract.py --report   # comptes
-python -I docs/dnn-localization/scripts/agr-core-extract.py --write <chemin.json>   # liste de travail
+python -I docs/dnn-localization/458-item9bis-agr-core-extract.py --report          # comptes
+python -I docs/dnn-localization/458-item9bis-agr-core-extract.py --write <chemin.json>   # liste de travail
 ```
 
 Le script est en **lecture seule** sur `DNNPlatform/` ; il n'écrit que le fichier de liste de travail demandé.
