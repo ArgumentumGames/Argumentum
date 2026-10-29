@@ -92,6 +92,10 @@ namespace Argumentum.AssetConverter.Dnn2sxc
 
             //Load existing 2sxc data
 
+            // Traductions créées par le bootstrap (pas par le fixture) : la boucle CSV les met à
+            // jour complètement — celles du fixture ne sont jamais écrasées (contenu authored).
+            var syntheticTranslations = new HashSet<Entity>();
+
             Entity root = null;
             int familyCounter = 0;
             foreach (var existingEntity in sexyContentData.Entity.Where(e => e.Type == entityTypeName))
@@ -145,6 +149,25 @@ namespace Argumentum.AssetConverter.Dnn2sxc
                 entitiesByPath["0"] = (root, new List<Entity>());
                 entitiesByGuid[root.Guid] = (root, "0");
                 sexyContentData.Entity.Add(root);
+
+                // La racine existe dans TOUTES les cultures, comme toute entité — sinon une
+                // taxonomie sans rangée CSV "0" (Scenarii) exporte sa racine uniquement en
+                // culture maîtresse et chaque culture traduite manque une entité (mesuré : 196
+                // vs 195). Si le CSV porte une rangée "0", la boucle ci-dessous la met à jour
+                // (traductions synthétiques : mise à jour complète, contrairement au fixture).
+                foreach (var culture in translationCultures)
+                {
+                    var translatedRoot = new Entity
+                    {
+                        Guid = root.Guid,
+                        Language = culture.Culture,
+                        Name = config.RootName,
+                        Type = entityTypeName,
+                    };
+                    translationsByCulture[culture.Culture][root] = translatedRoot;
+                    syntheticTranslations.Add(translatedRoot);
+                    sexyContentData.Entity.Add(translatedRoot);
+                }
             }
 
             //Add/update with csv taxonomy
@@ -204,6 +227,14 @@ namespace Argumentum.AssetConverter.Dnn2sxc
                         translated.Guid = node.main.Guid;
                         translated.Parent = node.main.Parent;
                         translated.Type = entityTypeName;
+                        translated.Name = Evaluate(config.ContextKey, culture.TitleExpression, row.Entity);
+                        translated.Description = Evaluate(config.ContextKey, culture.DescriptionExpression, row.Entity);
+                        translated.Example = Evaluate(config.ContextKey, culture.ExampleExpression, row.Entity);
+                    }
+                    else if (syntheticTranslations.Contains(translated))
+                    {
+                        // Traduction synthétique du bootstrap : le CSV fait foi — mise à jour
+                        // complète (la racine de Virtues reçoit ainsi « Argument valable »).
                         translated.Name = Evaluate(config.ContextKey, culture.TitleExpression, row.Entity);
                         translated.Description = Evaluate(config.ContextKey, culture.DescriptionExpression, row.Entity);
                         translated.Example = Evaluate(config.ContextKey, culture.ExampleExpression, row.Entity);

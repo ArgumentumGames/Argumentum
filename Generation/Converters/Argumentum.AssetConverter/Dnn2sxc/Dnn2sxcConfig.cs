@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Argumentum.AssetConverter.Entities;
 
 namespace Argumentum.AssetConverter.Dnn2sxc
@@ -122,6 +123,61 @@ namespace Argumentum.AssetConverter.Dnn2sxc
             },
         };
 
+        /// <summary>
+        /// Scenarii — 167 scénarii, chemins de profondeur 3 SANS rangées intermédiaires : les
+        /// 7 catégories et 21 sous-catégories sont synthétisées (voir
+        /// <see cref="Dnn2sxcSyntheticGroupRow"/>). 5 cultures (fr/en/ru/pt/es — l'entité
+        /// <c>Scenario</c> n'expose pas d'ar/fa/zh). Projection : titre → Name, contexte →
+        /// Description, enjeu → Example.
+        /// </summary>
+        public Dnn2sxcTaxonomyExportConfig Scenarii { get; set; } = new Dnn2sxcTaxonomyExportConfig
+        {
+            EntityTypeName = "Scenario",
+            RootName = "Scenarii",
+            ContextKey = "scenario",
+            CsvPath = @"..\..\..\..\..\..\Cards\Scenarii\Argumentum Scenarii - Cards.csv",
+            ImportPath = "", // pas de fixture d'époque — bootstrap de racine (PR 3)
+            ExportPath = @"..\..\..\Data\Dnn2sxc\2sxcContentExport_Argumentum_Scenarii_0.0.1.xml",
+            Cultures =
+            {
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "en-US",
+                    TitleExpression = @"{scenario.title}",
+                    DescriptionExpression = @"{HttpUtility.HtmlEncode(scenario.context)}",
+                    ExampleExpression = @"{HttpUtility.HtmlEncode(scenario.issue)}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "fr-FR",
+                    TitleExpression = @"{scenario.titre}",
+                    DescriptionExpression = @"{HttpUtility.HtmlEncode(scenario.contexte)}",
+                    ExampleExpression = @"{HttpUtility.HtmlEncode(scenario.enjeu)}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "ru-RU",
+                    TitleExpression = @"{scenario.title_ru}",
+                    DescriptionExpression = @"{HttpUtility.HtmlEncode(scenario.context_ru)}",
+                    ExampleExpression = @"{HttpUtility.HtmlEncode(scenario.issue_ru)}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "pt-BR",
+                    TitleExpression = @"{scenario.title_pt}",
+                    DescriptionExpression = @"{HttpUtility.HtmlEncode(scenario.context_pt)}",
+                    ExampleExpression = @"{HttpUtility.HtmlEncode(scenario.issue_pt)}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "es-ES",
+                    TitleExpression = @"{scenario.title_es}",
+                    DescriptionExpression = @"{HttpUtility.HtmlEncode(scenario.context_es)}",
+                    ExampleExpression = @"{HttpUtility.HtmlEncode(scenario.issue_es)}",
+                },
+            },
+        };
+
         public void Apply()
         {
             // Chaque taxonomie ne tourne que si elle est configurée (CsvPath non vide) — le
@@ -137,6 +193,47 @@ namespace Argumentum.AssetConverter.Dnn2sxc
                 Dnn2sxcTaxonomyExporter.Export(Virtues,
                     ArgumentVirtue.Load(Virtues.CsvPath).Select(v => (v.Path, (object)v)));
             }
+            if (!string.IsNullOrEmpty(Scenarii?.CsvPath))
+            {
+                Dnn2sxcTaxonomyExporter.Export(Scenarii, BuildScenariiRows(Scenarii.CsvPath));
+            }
+        }
+
+        /// <summary>
+        /// Rangées Scenarii pour le moteur : les nœuds intermédiaires d'abord (7 catégories puis
+        /// 21 sous-catégories, synthétisés depuis la première rangée de chaque groupe), puis les
+        /// 167 feuilles — le moteur résout chaque parent au fil de l'eau, l'ordre parents-avant-
+        /// enfants est donc porteur.
+        /// </summary>
+        private static IEnumerable<(string Path, object Entity)> BuildScenariiRows(string csvPath)
+        {
+            var scenarii = Scenario.Load(csvPath);
+            var rows = new List<(string Path, object Entity)>();
+            foreach (var group in scenarii.GroupBy(s => s.path.Split('.')[0]))
+            {
+                var first = group.First();
+                rows.Add((group.Key, GroupRow(first.categorie, first.category, first.category_ru, first.category_pt, first.category_es)));
+            }
+            foreach (var group in scenarii.GroupBy(s => s.path.Substring(0, s.path.LastIndexOf('.'))))
+            {
+                var first = group.First();
+                rows.Add((group.Key, GroupRow(first.sous_categorie, first.subcategory, first.subcategory_ru, first.subcategory_pt, first.subcategory_es)));
+            }
+            rows.AddRange(scenarii.Select(s => (s.path, (object)s)));
+            return rows;
+        }
+
+        private static Dnn2sxcSyntheticGroupRow GroupRow(
+            string titre, string title, string titleRu, string titlePt, string titleEs)
+        {
+            return new Dnn2sxcSyntheticGroupRow
+            {
+                titre = titre,
+                title = title,
+                title_ru = titleRu,
+                title_pt = titlePt,
+                title_es = titleEs,
+            };
         }
     }
 }
