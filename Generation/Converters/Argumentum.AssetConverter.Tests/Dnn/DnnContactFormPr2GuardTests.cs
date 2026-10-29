@@ -88,15 +88,14 @@ namespace Argumentum.AssetConverter.Tests
         public static IEnumerable<object[]> LanguageCases() => Languages.Select(l => new object[] { l });
 
         [Fact]
-        public void Fr_Is_Complete_And_En_Ru_Pt_Remain_Empty_On_This_Branch()
+        public void Fr_Is_Complete()
         {
+            // La moitié « en/ru/pt restent vides sur la branche PR2 » est retirée au merge de PR1 (#2052) :
+            // c'était un état de branche, pas un invariant. La complétude en/ru/pt est gardée par
+            // DnnContactFormGuardTests.Every_Label_Is_Translated.
             var rows = App50Rows();
             foreach (var field in Fields)
-            {
                 rows[field]["fr"].Trim().Should().NotBeNullOrEmpty($"{field} : fr rempli");
-                foreach (var lang in new[] { "en", "ru", "pt" })
-                    rows[field][lang].Should().BeEmpty($"{field} [{lang}] : vide sur la branche PR2 (PR1 porte ces langues)");
-            }
         }
 
         [Theory]
