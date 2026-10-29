@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Argumentum.AssetConverter.Entities;
 
@@ -44,29 +44,29 @@ namespace Argumentum.AssetConverter.Dnn2sxc
                 {
                     Culture = "en-US",
                     TitleExpression = @"{fallacy.TextEn}",
-                    DescriptionExpression = @"{HttpUtility.HtmlEncode(fallacy.DescEn)}",
-                    ExampleExpression = @"{HttpUtility.HtmlEncode(fallacy.ExampleEn)}",
+                    DescriptionExpression = @"{fallacy.DescEn}",
+                    ExampleExpression = @"{fallacy.ExampleEn}",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "fr-FR",
                     TitleExpression = @"{fallacy.TextFr}",
-                    DescriptionExpression = @"{HttpUtility.HtmlEncode(fallacy.DescFr)}",
-                    ExampleExpression = @"{HttpUtility.HtmlEncode(fallacy.ExampleFr)}",
+                    DescriptionExpression = @"{fallacy.DescFr}",
+                    ExampleExpression = @"{fallacy.ExampleFr}",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "ru-RU",
                     TitleExpression = @"{fallacy.TextRu}",
-                    DescriptionExpression = @"{HttpUtility.HtmlEncode(fallacy.DescRu)}",
-                    ExampleExpression = @"{HttpUtility.HtmlEncode(fallacy.Exampleru)}",
+                    DescriptionExpression = @"{fallacy.DescRu}",
+                    ExampleExpression = @"{fallacy.Exampleru}",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "pt-BR",
                     TitleExpression = @"{fallacy.TextPt}",
-                    DescriptionExpression = @"{HttpUtility.HtmlEncode(fallacy.DescPt)}",
-                    ExampleExpression = @"{HttpUtility.HtmlEncode(fallacy.ExamplePt)}",
+                    DescriptionExpression = @"{fallacy.DescPt}",
+                    ExampleExpression = @"{fallacy.ExamplePt}",
                 },
             },
         };
@@ -89,36 +89,36 @@ namespace Argumentum.AssetConverter.Dnn2sxc
                 {
                     Culture = "en-US",
                     TitleExpression = @"{virtue.TitleEn}",
-                    DescriptionExpression = @"{HttpUtility.HtmlEncode(virtue.DescriptionEn)}",
-                    ExampleExpression = @"{HttpUtility.HtmlEncode(virtue.RemarkEn)}",
+                    DescriptionExpression = @"{virtue.DescriptionEn}",
+                    ExampleExpression = @"{virtue.RemarkEn}",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "fr-FR",
                     TitleExpression = @"{virtue.TitleFr}",
-                    DescriptionExpression = @"{HttpUtility.HtmlEncode(virtue.DescriptionFr)}",
-                    ExampleExpression = @"{HttpUtility.HtmlEncode(virtue.RemarkFr)}",
+                    DescriptionExpression = @"{virtue.DescriptionFr}",
+                    ExampleExpression = @"{virtue.RemarkFr}",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "ru-RU",
                     TitleExpression = @"{virtue.TitleRu}",
-                    DescriptionExpression = @"{HttpUtility.HtmlEncode(virtue.DescriptionRu)}",
-                    ExampleExpression = @"{HttpUtility.HtmlEncode(virtue.RemarkRu)}",
+                    DescriptionExpression = @"{virtue.DescriptionRu}",
+                    ExampleExpression = @"{virtue.RemarkRu}",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "pt-BR",
                     TitleExpression = @"{virtue.TitlePt}",
-                    DescriptionExpression = @"{HttpUtility.HtmlEncode(virtue.DescriptionPt)}",
-                    ExampleExpression = @"{HttpUtility.HtmlEncode(virtue.RemarkPt)}",
+                    DescriptionExpression = @"{virtue.DescriptionPt}",
+                    ExampleExpression = @"{virtue.RemarkPt}",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "es-ES",
                     TitleExpression = @"{virtue.TitleEs}",
-                    DescriptionExpression = @"{HttpUtility.HtmlEncode(virtue.DescriptionEs)}",
-                    ExampleExpression = @"{HttpUtility.HtmlEncode(virtue.RemarkEs)}",
+                    DescriptionExpression = @"{virtue.DescriptionEs}",
+                    ExampleExpression = @"{virtue.RemarkEs}",
                 },
             },
         };
@@ -144,36 +144,112 @@ namespace Argumentum.AssetConverter.Dnn2sxc
                 {
                     Culture = "en-US",
                     TitleExpression = @"{scenario.title}",
-                    DescriptionExpression = @"{HttpUtility.HtmlEncode(scenario.context)}",
-                    ExampleExpression = @"{HttpUtility.HtmlEncode(scenario.issue)}",
+                    DescriptionExpression = @"{scenario.context}",
+                    ExampleExpression = @"{scenario.issue}",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "fr-FR",
                     TitleExpression = @"{scenario.titre}",
-                    DescriptionExpression = @"{HttpUtility.HtmlEncode(scenario.contexte)}",
-                    ExampleExpression = @"{HttpUtility.HtmlEncode(scenario.enjeu)}",
+                    DescriptionExpression = @"{scenario.contexte}",
+                    ExampleExpression = @"{scenario.enjeu}",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "ru-RU",
                     TitleExpression = @"{scenario.title_ru}",
-                    DescriptionExpression = @"{HttpUtility.HtmlEncode(scenario.context_ru)}",
-                    ExampleExpression = @"{HttpUtility.HtmlEncode(scenario.issue_ru)}",
+                    DescriptionExpression = @"{scenario.context_ru}",
+                    ExampleExpression = @"{scenario.issue_ru}",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "pt-BR",
                     TitleExpression = @"{scenario.title_pt}",
-                    DescriptionExpression = @"{HttpUtility.HtmlEncode(scenario.context_pt)}",
-                    ExampleExpression = @"{HttpUtility.HtmlEncode(scenario.issue_pt)}",
+                    DescriptionExpression = @"{scenario.context_pt}",
+                    ExampleExpression = @"{scenario.issue_pt}",
                 },
                 new Dnn2sxcCultureConfig
                 {
                     Culture = "es-ES",
                     TitleExpression = @"{scenario.title_es}",
-                    DescriptionExpression = @"{HttpUtility.HtmlEncode(scenario.context_es)}",
-                    ExampleExpression = @"{HttpUtility.HtmlEncode(scenario.issue_es)}",
+                    DescriptionExpression = @"{scenario.context_es}",
+                    ExampleExpression = @"{scenario.issue_es}",
+                },
+            },
+        };
+
+        /// <summary>
+        /// Rules — 15 rangées PLATES (aucune hiérarchie : pas de colonne path), texte intégral en
+        /// markdown par langue. C'est la seule taxonomie couvrant les 8 langues du corpus (fr/en/
+        /// ru/pt/es/ar/fa/zh). Projection : Pk → Name (stable et unique — le titre d'affichage est
+        /// un en-tête markdown DANS le texte, à rendre côté site), texte → Description, Example
+        /// vide (pas de 3ᵉ champ). Chemins synthétiques « 1 »…« 15 » (l'ordre du CSV).
+        /// </summary>
+        public Dnn2sxcTaxonomyExportConfig Rules { get; set; } = new Dnn2sxcTaxonomyExportConfig
+        {
+            EntityTypeName = "Rule",
+            RootName = "Rules",
+            ContextKey = "rule",
+            CsvPath = @"..\..\..\..\..\..\Cards\Rules\Argumentum Rules - Cards.csv",
+            ImportPath = "", // pas de fixture d'époque — bootstrap de racine (PR 4)
+            ExportPath = @"..\..\..\Data\Dnn2sxc\2sxcContentExport_Argumentum_Rules_0.0.1.xml",
+            Cultures =
+            {
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "en-US",
+                    TitleExpression = @"{rule.Pk}",
+                    DescriptionExpression = @"{rule.Text_en}",
+                    ExampleExpression = @"{}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "fr-FR",
+                    TitleExpression = @"{rule.Pk}",
+                    DescriptionExpression = @"{rule.Text}",
+                    ExampleExpression = @"{}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "ru-RU",
+                    TitleExpression = @"{rule.Pk}",
+                    DescriptionExpression = @"{rule.Text_ru}",
+                    ExampleExpression = @"{}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "pt-BR",
+                    TitleExpression = @"{rule.Pk}",
+                    DescriptionExpression = @"{rule.Text_pt}",
+                    ExampleExpression = @"{}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "es-ES",
+                    TitleExpression = @"{rule.Pk}",
+                    DescriptionExpression = @"{rule.Text_es}",
+                    ExampleExpression = @"{}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "ar-SA",
+                    TitleExpression = @"{rule.Pk}",
+                    DescriptionExpression = @"{rule.Text_ar}",
+                    ExampleExpression = @"{}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "fa-IR",
+                    TitleExpression = @"{rule.Pk}",
+                    DescriptionExpression = @"{rule.Text_fa}",
+                    ExampleExpression = @"{}",
+                },
+                new Dnn2sxcCultureConfig
+                {
+                    Culture = "zh-CN",
+                    TitleExpression = @"{rule.Pk}",
+                    DescriptionExpression = @"{rule.Text_zh}",
+                    ExampleExpression = @"{}",
                 },
             },
         };
@@ -196,6 +272,14 @@ namespace Argumentum.AssetConverter.Dnn2sxc
             if (!string.IsNullOrEmpty(Scenarii?.CsvPath))
             {
                 Dnn2sxcTaxonomyExporter.Export(Scenarii, BuildScenariiRows(Scenarii.CsvPath));
+            }
+            if (!string.IsNullOrEmpty(Rules?.CsvPath))
+            {
+                // Plate : pas de colonne path — l'ordre du CSV devient le chemin (« 1 »…« 15 »),
+                // chaque rangée enfant directe de la racine.
+                var index = 0;
+                Dnn2sxcTaxonomyExporter.Export(Rules,
+                    Rule.Load(Rules.CsvPath).Select(r => ((++index).ToString(System.Globalization.CultureInfo.InvariantCulture), (object)r)));
             }
         }
 

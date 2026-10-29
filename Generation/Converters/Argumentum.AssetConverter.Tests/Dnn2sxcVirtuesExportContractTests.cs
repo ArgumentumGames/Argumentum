@@ -51,6 +51,7 @@ namespace Argumentum.AssetConverter.Tests
 			{
 				Fallacies = new Dnn2sxcTaxonomyExportConfig(), // désactivée : CsvPath vide
 				Scenarii = new Dnn2sxcTaxonomyExportConfig(),  // désactivée : CsvPath vide
+				Rules = new Dnn2sxcTaxonomyExportConfig(),     // désactivée : CsvPath vide (PR 4)
 				Virtues = new Dnn2sxcTaxonomyExportConfig
 				{
 					EntityTypeName = "Virtue",
