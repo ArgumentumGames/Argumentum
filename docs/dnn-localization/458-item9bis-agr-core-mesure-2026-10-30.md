@@ -21,6 +21,26 @@ Mesuré sur les fichiers eux-mêmes (script `458-item9bis-agr-core-extract.py`),
 
 Le dispatch du pool (#458 c.6509704094 §4) annonce 1 261 clés, décomposées en `Shared 621 · Countries 256 · Global 186 · Exceptions 136 · WebControls 54 · FileUpload 8`. Les écarts sont **systématiques** : +14, +8, +4, +4, +4. Les chiffres du §2 du même commentaire (617 / 182) sont, eux, exacts — c'est le §4 qui dérive. **L'origine de l'écart n'est pas établie ici** (comptage sur DLL ? entrées hors `<data>` ?) ; ce document livre ce que les fichiers portent.
 
+## 1 bis. Rapprochement avec le **1 241** déjà publié
+
+Le dépôt porte déjà un compte de cette famille : **1 241** clés (`feedback-dnn-globalresources-binding-instrument`, mesuré le 2026-10-10, contre-revue #1852). Il se réconcilie exactement avec la mesure ci-dessus :
+
+```text
+617 (Shared) + 256 (List_Country) + 182 (Global) + 132 (Exceptions) + 50 (WebControls) + 4 (FileUpload) = 1 241
+```
+
+C'est la somme des **entrées `<data>` neutres**, vides comprises. Le travail réel s'en déduit :
+
+| Étape | Compte |
+|---|---:|
+| Entrées neutres (compte du dépôt, 10/10) | 1 241 |
+| − valeurs neutres vides hors coquille (`Shared` 7 + `Global` 2) | −9 |
+| = matière traduisible par langue | 1 232 |
+| − clés déjà livrées par le Tier 1 (`Shared` 3 + `Global` 2) | −5 |
+| = **à produire par langue** | **1 227** |
+
+⇒ Les trois nombres sont vrais mais mesurent trois objets : **1 241** = entrées du fichier neutre, **1 232** = matière traduisible, **1 227** = reste à faire. Le **1 261** du dispatch ne se déduit d'aucun des trois (+20).
+
 ## 2. `Countries.resx` n'existe pas ; le fichier réel est `List_Country.resx`
 
 Aucun `Countries*.resx` n'existe dans le dépôt (`find -iname` rend vide). Ne pas créer un fichier sous ce nom : le nom est la clé de résolution du fournisseur de ressources.
