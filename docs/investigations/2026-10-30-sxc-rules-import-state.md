@@ -102,7 +102,8 @@ Le contrat de l'API a été lu **dans les DLL du site** (`ToSic.Eav.WebApi.dll`,
 - **(a) « le pipeline ne porte pas l'identité Forms » est CONTRADIT** : le journal DNN
   (`dbo.EventLog`, schéma v10 : `LogCreateDate`, `LogUserName`, `LogTypeKey`, `LogProperties`)
   enregistre les exceptions 2sxc de cette **même famille d'URL** avec
-  `LogUserName = import-test@argumentum.games` ⇒ l'identité DNN **est** établie sur ces URL.
+  `LogUserName` = le compte admin de test dédié (UserID 120) ⇒ l'identité DNN **est** établie
+  sur ces URL.
   De plus, la connexion est journalisée **`LOGIN_SUPERUSER`**, et **aucun échec** de connexion.
   ⚠️ Le contre-indice invoqué auparavant (« événement ASP.NET 1309, `Is authenticated: True` ») **ne se
   retrouve pas** dans `dbo.EventLog` sur les 3 dernières heures — il n'est pas corroboré par cet
@@ -127,15 +128,26 @@ cette voie est hors de portée — il faut une autre voie (import direct en base
 
 1. **Le discriminant ci-dessus** (session owner sur `admin/zone/GetSystemInfo`) — une donnée,
    et l'item ② bascule soit vers « autre voie d'import », soit vers « simple configuration à
-   corriger ». ⚠️ Le compte owner n'a pas de mot de passe utilisable côté lane (le fichier
-   `preprod-admin-20261029.txt` contient une valeur **rejetée**, 20 o) : cette donnée ne peut pas
-   être produite seule par la lane.
+   corriger ». ⚠️ Le compte owner n'a pas de mot de passe utilisable côté lane (la valeur déposée
+   par l'owner a été **refusée**) : cette donnée ne peut pas être produite seule par la lane.
+   ⚠️ Avant d'escalader à l'owner : hypothèse falsifiable prioritaire (ai-01, 30/10) —
+   `ValidateAntiForgeryToken` et `DnnModuleAuthorize` sont des **filtres d'autorisation** ; un
+   jeton anti-forgery absent ou un contexte de module absent rend exactement cette signature 401
+   (« Authorization has been denied », sans `WWW-Authenticate`, sans trace EventLog). Test :
+   en-têtes HTTP `TabId` + `ModuleId` (couple réel de `TabModules` portant l'app 60) +
+   `RequestVerificationToken` (input caché d'une page rendue dans la même session, avec son
+   cookie), contrôle inverse sans l'en-tête. Si la réponse change, la question owner meurt.
 2. ~~**Audit par attribut** de `Game Rule` (8 langues) — seul oracle de couverture.~~
    **Exécuté le même jour (§5) : couverture prononcée COMPLETE** pour tout ce qui est traduisible ;
    l'écart « 52 valeurs de base vs 28 par langue » est intégralement expliqué par la mesure.
 3. **Décider du périmètre** : l'import du type `Rule` (16 entités × 8 langues, texte par ligne
    CSV) crée-t-il un 14ᵉ content-type dans l'app 60, que **rien dans le site ne rend aujourd'hui** ?
-   C'est une **décision de contenu**, pas une tâche technique.
+   **Décision rendue le 30/10 (ai-01)** : **non** — pas de content-type `Rule` dans l'app 60
+   (`Game Rule` est déjà complet en 8 langues, §5, et rien ne le rend). L'import des Rules reste
+   un **test de mécanique dans une app de test** (login → dialogue données → import →
+   `verify` 16×8). La cible réelle de l'app 60 est **Fallacies** (1 013 entités servies contre
+   11 264 exportées), puis Virtues et Scenarii seulement si un gabarit du site les consomme
+   (Scenario = 0 entité aujourd'hui : mesure à faire avant d'importer).
 
 ## 5. Audit par attribut de `Game Rule` — couverture prononcée (exécuté 30/10, lecture seule)
 
@@ -173,7 +185,7 @@ chiffre exact** : **aucune traduction ne manque** dans `Game Rule`.
 ## 6. Aucune écriture
 
 Aucun import, aucune injection EAV, aucune modification de contenu, aucun changement de rôle.
-Une seule connexion authentifiée (compte de test dédié), aucun échec. Le compte
-`import-test@argumentum.games` (UserID 120) reste à purger en fin d'usage
-(`purge-import-admin.ps1` + `rollback-import-admin.sql`, scratchpad) ; son secret hors dépôt
-(`G:\Mon Drive\MyIA\Argumentum\Admin\po2023-import-admin-20261030.txt`) **n'est pas supprimé**.
+Une seule connexion authentifiée (compte de test dédié), aucun échec. Le compte admin de test
+dédié (UserID 120) reste à purger en fin d'usage
+(`purge-import-admin.ps1` + `rollback-import-admin.sql`, scratchpad) ; son secret, hors dépôt,
+**n'est pas supprimé**.
