@@ -318,6 +318,11 @@ Generation/**/.claude/
 DNNPlatform/Portals/*/Downloads/*.zip
 DNNPlatform/Portals/*/Downloads/*.zip.REMOVED.git-id
 
+# 2sxc runtime temp folder (files created/deleted by the site at run time ;
+# one such temp file was committed by accident with the platform import
+# 16e8c6de7 and the runtime keeps deleting it, dirtying the served webroot)
+DNNPlatform/Portals/*/NBSTemp/
+
 # DNN extension packages (re-downloadable installers)
 DNNPlatform/App_Data/ExtensionPackages/*.resources
 

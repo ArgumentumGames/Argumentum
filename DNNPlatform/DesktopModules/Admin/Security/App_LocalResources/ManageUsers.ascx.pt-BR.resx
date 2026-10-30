@@ -13,156 +13,156 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccountSettings.Text">
-    <value xml:space="preserve">Configuração de conta</value>
+    <value xml:space="preserve">Configurações da conta</value>
   </data>
   <data name="AddContent.Action">
-    <value xml:space="preserve">Adicionar novo usuario</value>
+    <value xml:space="preserve">Adicionar novo usuário</value>
   </data>
   <data name="AddUser.Text">
-    <value xml:space="preserve">Adicionar novo usuario</value>
+    <value xml:space="preserve">Adicionar novo usuário</value>
   </data>
   <data name="AddUser.Title">
-    <value xml:space="preserve">Adicionar novo usuario</value>
+    <value xml:space="preserve">Adicionar novo usuário</value>
   </data>
   <data name="CannotAddUser.Text">
-    <value xml:space="preserve">Su configuração requiere a os usuarios que escriban uma pregunta e respuesta para o recordatorio de contrasenha. Esta configuração é incompatível com que o administrador pueda adicionar usuarios, pelo que esta opção foi sido deshabilitada para este sitio.</value>
+    <value xml:space="preserve">Este site está configurado para exigir que os usuários informem uma pergunta e uma resposta para receber lembretes de senha. Esta configuração é incompatível com a adição de usuários por administradores e, por isso, foi desativada neste site.</value>
   </data>
   <data name="cmdLogin.Text">
-    <value xml:space="preserve">Proceder ao inicio de sesión</value>
+    <value xml:space="preserve">Prosseguir para o login</value>
   </data>
   <data name="cmdPassword.Text">
-    <value xml:space="preserve">Gestionar contrasenha</value>
+    <value xml:space="preserve">Gerenciar senha</value>
   </data>
   <data name="cmdProfile.Text">
-    <value xml:space="preserve">Gestionar perfil</value>
+    <value xml:space="preserve">Gerenciar perfil</value>
   </data>
   <data name="cmdRegister.Text">
     <value xml:space="preserve">Registrar</value>
   </data>
   <data name="cmdRoles.Text">
-    <value xml:space="preserve">Gestionar roles para este usuario</value>
+    <value xml:space="preserve">Gerenciar funções deste usuário</value>
   </data>
   <data name="cmdServices.Text">
-    <value xml:space="preserve">Gestionar servicios</value>
+    <value xml:space="preserve">Gerenciar serviços</value>
   </data>
   <data name="cmdUpdatePassword.Text">
-    <value xml:space="preserve">Atualizar contrasenha</value>
+    <value xml:space="preserve">Atualizar senha</value>
   </data>
   <data name="cmdUser.Text">
-    <value xml:space="preserve">Gestionar conta</value>
+    <value xml:space="preserve">Gerenciar conta</value>
   </data>
   <data name="ControlTitle_edit.Text">
-    <value xml:space="preserve">Editar contas do usuário</value>
+    <value xml:space="preserve">Editar contas de usuário</value>
   </data>
   <data name="ControlTitle_profile.Text">
-    <value xml:space="preserve">Gestionar perfil</value>
+    <value xml:space="preserve">Gerenciar perfil</value>
   </data>
   <data name="ControlTitle_register.Text">
     <value xml:space="preserve">Registrar</value>
   </data>
   <data name="EmailError.Text">
-    <value xml:space="preserve">Este sitio web requiere uma direção email única para cada usuario. A direção email que foi introducido já está em uso.</value>
+    <value xml:space="preserve">Este site exige um endereço de e-mail único. O endereço de e-mail informado já está em uso.</value>
   </data>
   <data name="ExceededRegisterQuota.Text">
-    <value xml:space="preserve">Não pode registrar uma conta em este momento. Contacte com o administrador do portal para ver quando o registro estará disponível novamente.</value>
+    <value xml:space="preserve">Não é possível registrar-se neste momento neste site. Entre em contato com o administrador do site para saber quando o registro será reaberto.</value>
   </data>
   <data name="ExceededUserQuota.Text">
-    <value xml:space="preserve">ao adicionar este usuario se excedería a cuota de usuarios para este sitio. Contacte com su provedor de alojamiento para consultas relacionadas com o incremento da cuota de usuarios.</value>
+    <value xml:space="preserve">Adicionar este usuário excederá a cota de usuários deste site. Entre em contato com o seu provedor de hospedagem para consultas relacionadas ao aumento da cota de usuários.</value>
   </data>
   <data name="InvalidUser.Text">
-    <value xml:space="preserve">Esta conta não pertenece a um usuario deste sitio web.</value>
+    <value xml:space="preserve">Esta conta não é de um usuário deste site.</value>
   </data>
   <data name="ManageProfile.Action">
-    <value xml:space="preserve">Gestionar propriedadees do perfil</value>
+    <value xml:space="preserve">Gerenciar propriedades do perfil</value>
   </data>
   <data name="MembershipDetails.Text">
-    <value xml:space="preserve">Informação de conta</value>
+    <value xml:space="preserve">Informações da conta</value>
   </data>
   <data name="MembershipTitle.Text">
-    <value xml:space="preserve">Informação de usuarios</value>
+    <value xml:space="preserve">Informações de associação</value>
   </data>
   <data name="ModuleHelp.Text">
-    <value xml:space="preserve">&lt;h1&gt;Acerca do módulo de Contas do usuário&lt;/h1&gt;&lt;p&gt;O módulo de Contas do usuário permite que os usuarios se registren, actualicen sus datos, des-registrarse e administren os servicios de membresía.&lt;/p&gt;</value>
+    <value xml:space="preserve">&lt;h1&gt;Sobre o módulo de gerenciamento de usuários&lt;/h1&gt;&lt;p&gt;Os administradores podem gerenciar os usuários registrados. Este módulo permite adicionar novos usuários, modificar usuários existentes, excluir usuários e gerenciar as funções de segurança dos usuários.&lt;/p&gt;</value>
   </data>
   <data name="NewPassword.Text">
-    <value xml:space="preserve">Deve introducir uma nova contrasenha.</value>
+    <value xml:space="preserve">Você deve informar uma nova senha.</value>
   </data>
   <data name="NotAuthorized.Text">
-    <value xml:space="preserve">Não está autorizado a editar informação deste usuario</value>
+    <value xml:space="preserve">Você não tem autorização para editar este usuário.</value>
   </data>
   <data name="NoUser.Text">
-    <value xml:space="preserve">A conta não existe</value>
+    <value xml:space="preserve">Esta conta não existe.</value>
   </data>
   <data name="Password.Action">
-    <value xml:space="preserve">Gestionar contrasenha do usuário</value>
+    <value xml:space="preserve">Gerenciar a senha do usuário</value>
   </data>
   <data name="PasswordQAChanged.Text">
-    <value xml:space="preserve">Pregunta/respuesta secretas actualizadas corretamente.</value>
+    <value xml:space="preserve">Pergunta e resposta de senha atualizadas com sucesso.</value>
   </data>
   <data name="plCaptcha.Help">
-    <value xml:space="preserve">Escriba o código de seguridade</value>
+    <value xml:space="preserve">Informe o código de segurança.</value>
   </data>
   <data name="plCaptcha.Text">
-    <value xml:space="preserve">Código de seguridade:</value>
+    <value xml:space="preserve">Código de segurança:</value>
   </data>
   <data name="plNewConfirm.Help">
-    <value xml:space="preserve">Introduzca de novo a contrasenha para asegurarse de que não foi cometido um error ao escribirla</value>
+    <value xml:space="preserve">Informe novamente a nova senha para confirmar.</value>
   </data>
   <data name="plNewConfirm.Text">
-    <value xml:space="preserve">Confirmar nova contrasenha:</value>
+    <value xml:space="preserve">Confirmar nova senha:</value>
   </data>
   <data name="plNewPassword.Help">
-    <value xml:space="preserve">Introduzca a nova contrasenha</value>
+    <value xml:space="preserve">Informe a nova senha.</value>
   </data>
   <data name="plNewPassword.Text">
-    <value xml:space="preserve">Nova contrasenha:</value>
+    <value xml:space="preserve">Nova senha:</value>
   </data>
   <data name="Profile.Action">
-    <value xml:space="preserve">Gestionar perfil do usuário</value>
+    <value xml:space="preserve">Gerenciar o perfil do usuário</value>
   </data>
   <data name="Register.Text">
-    <value xml:space="preserve">Registro do usuário</value>
+    <value xml:space="preserve">Registro de usuário</value>
   </data>
   <data name="Register.Title">
-    <value xml:space="preserve">Registro do usuário</value>
+    <value xml:space="preserve">Registro de usuário</value>
   </data>
   <data name="RegisterWarning.Text">
-    <value xml:space="preserve"> - &lt;em&gt;(&lt;strong&gt;Atenção:&lt;/strong&gt; O registro pode tardar algunos segundos. Después de clicar o botão de registro espere hasta que reciba a respuesta do sistema.)&lt;/em&gt;</value>
+    <value xml:space="preserve"> - &lt;em&gt;(&lt;strong&gt;Atenção:&lt;/strong&gt; O registro pode levar alguns segundos. Depois de clicar no botão Registrar, aguarde a resposta do sistema.)&lt;/em&gt;</value>
   </data>
   <data name="ResetPassword.Text">
-    <value xml:space="preserve">Reiniciar contrasenha</value>
+    <value xml:space="preserve">Redefinir senha</value>
   </data>
   <data name="Roles.Action">
-    <value xml:space="preserve">Gestionar roles para este usuario</value>
+    <value xml:space="preserve">Gerenciar funções deste usuário</value>
   </data>
   <data name="SuperUser.Text">
-    <value xml:space="preserve">Esta conta pertenece a um Superusuario. Ud. não tem permissões para editar contas de Superusuario</value>
+    <value xml:space="preserve">Esta conta pertence a um superusuário. Você não tem permissão para editar contas de superusuário.</value>
   </data>
   <data name="UserAuthorized.Text">
-    <value xml:space="preserve">Usuario autorizado corretamente</value>
+    <value xml:space="preserve">Usuário autorizado com sucesso.</value>
   </data>
   <data name="UserDemotedFromSuperuser.Text">
-    <value xml:space="preserve">O usuário foi actualizado como usuario normal.</value>
+    <value xml:space="preserve">O usuário foi atualizado para um usuário comum.</value>
   </data>
   <data name="UserLockedOut.Text">
-    <value xml:space="preserve">Esta conta se encontra bloqueada debido a demasiados intentos fallidos de conexión.</value>
+    <value xml:space="preserve">Esta conta está bloqueada após muitas tentativas de login malsucedidas.</value>
   </data>
   <data name="UserPasswordUpdateChanged.Text">
-    <value xml:space="preserve">O usuário deve atualizar su contrasenha em o seguinte inicio de sesión</value>
+    <value xml:space="preserve">O usuário deve atualizar a senha no próximo login.</value>
   </data>
   <data name="UserPromotedToSuperuser.Text">
-    <value xml:space="preserve">O usuário foi actualizado como superusuario.</value>
+    <value xml:space="preserve">O usuário foi atualizado para superusuário.</value>
   </data>
   <data name="UserSubscribed.Text">
-    <value xml:space="preserve">foi suscrito corretamente ao rol {0}.</value>
+    <value xml:space="preserve">Você foi inscrito com sucesso na função {0}.</value>
   </data>
   <data name="UserTitle.Text">
-    <value xml:space="preserve">Editar usuario - {0} (Id: {1})</value>
+    <value xml:space="preserve">Editar usuário - {0} (Id: {1})</value>
   </data>
   <data name="UserUnAuthorized.Text">
-    <value xml:space="preserve">Usuario corretamente desautorizado</value>
+    <value xml:space="preserve">Usuário desautorizado com sucesso.</value>
   </data>
   <data name="UserUnSubscribed.Text">
-    <value xml:space="preserve">Foi cancelado su suscripção ao rol {0}.</value>
+    <value xml:space="preserve">Você cancelou com sucesso a inscrição na função {0}.</value>
   </data>
 </root>

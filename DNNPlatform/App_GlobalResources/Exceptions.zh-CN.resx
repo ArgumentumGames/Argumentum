@@ -1,0 +1,516 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="https://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddFileExtensionNotAllowed.Text" xml:space="preserve">
+    <value>不允许扩展名“{0}”。该文件未被添加。</value>
+  </data>
+<data name="AddFilenameNotAllowed.Text" xml:space="preserve">
+    <value>不允许文件名“{0}”。该文件未被添加。</value>
+  </data>
+<data name="AddFileInvalidContent.Text" xml:space="preserve">
+    <value>“{0}”的内容无效。该文件未被添加。</value>
+  </data>
+<data name="AddFileNoSpaceAvailable.Text" xml:space="preserve">
+    <value>站点没有可用空间来存储指定的文件。该文件未被添加。</value>
+  </data>
+<data name="AddFilePermissionsNotMet.Text" xml:space="preserve">
+    <value>权限不满足。该文件未被添加。</value>
+  </data>
+<data name="AddFileUnderlyingSystemError.Text" xml:space="preserve">
+    <value>底层系统引发了异常。该文件未被添加。</value>
+  </data>
+<data name="AddFolderAlreadyExists.Text" xml:space="preserve">
+    <value>所提供的文件夹路径已存在。该文件夹未被添加。</value>
+  </data>
+<data name="AddFolderParentCannotBeFound.Text" xml:space="preserve">
+    <value>找不到父文件夹。</value>
+  </data>
+<data name="AddFolderUnderlyingSystemError.Text" xml:space="preserve">
+    <value>底层系统引发了异常。该文件夹未被添加。</value>
+  </data>
+<data name="ArgumentCannotBeNullOrEmpty.Text" xml:space="preserve">
+    <value>参数“{0}”不能为 null 或空。</value>
+  </data>
+<data name="CopyFileNoSpaceAvailable.Text" xml:space="preserve">
+    <value>站点没有可用空间来存储指定的文件。该文件未被复制。</value>
+  </data>
+<data name="CopyFilePermissionsNotMet.Text" xml:space="preserve">
+    <value>权限不满足。该文件未被复制。</value>
+  </data>
+<data name="CopyFileUnderlyingSystemError.Text" xml:space="preserve">
+    <value>底层系统引发了异常。该文件未被复制。</value>
+  </data>
+<data name="DeleteFileUnderlyingSystemError.Text" xml:space="preserve">
+    <value>底层系统引发了异常。该文件未被删除。</value>
+  </data>
+<data name="DeleteFolderUnderlyingSystemError.Text" xml:space="preserve">
+    <value>底层系统引发了异常。该文件夹未被删除。</value>
+  </data>
+<data name="InvalidZipFile.Text" xml:space="preserve">
+    <value>指定的文件不是 zip 压缩文件。</value>
+  </data>
+<data name="MoveFolderCannotComplete.Text" xml:space="preserve">
+    <value>无法完成该操作。</value>
+  </data>
+<data name="MoveFolderUnderlyingSystemError.Text" xml:space="preserve">
+    <value>底层系统引发了异常。无法完成移动操作。可能需要手动同步文件夹。</value>
+  </data>
+<data name="NoNetworkAvailableError.Text" xml:space="preserve">
+    <value>需要网络连接，但当前没有可用的网络。</value>
+  </data>
+<data name="PropertyCannotBeNegative.Text" xml:space="preserve">
+    <value>对象“{0}”中的属性“{1}”不能为负数。</value>
+  </data>
+<data name="PropertyCannotBeNull.Text" xml:space="preserve">
+    <value>对象“{0}”中的属性“{1}”不能为 null。</value>
+  </data>
+<data name="PropertyCannotBeNullOrEmpty.Text" xml:space="preserve">
+    <value>对象“{0}”中的属性“{1}”不能为 null 或空。</value>
+  </data>
+<data name="RenameFileAlreadyExists.Text" xml:space="preserve">
+    <value>此文件夹中已存在同名文件。该文件未被重命名。</value>
+  </data>
+<data name="RenameFileUnderlyingSystemError.Text" xml:space="preserve">
+    <value>底层系统引发了异常。该文件未被重命名。</value>
+  </data>
+<data name="RenameFolderAlreadyExists.Text" xml:space="preserve">
+    <value>目标文件夹已存在。该文件夹未被重命名。</value>
+  </data>
+<data name="RenameFolderUnderlyingSystemError.Text" xml:space="preserve">
+    <value>底层系统引发了异常。该文件夹未被重命名。</value>
+  </data>
+<data name="UnderlyingSystemError.Text" xml:space="preserve">
+    <value>底层系统引发了异常。</value>
+  </data>
+<data name="ValueCannotBeNegative.Text" xml:space="preserve">
+    <value>参数“{0}”不能为负数。</value>
+  </data>
+<data name="ValueMustBeOfType.Text" xml:space="preserve">
+    <value>参数“{0}”的类型必须为“{1}”。</value>
+  </data>
+<data name="WriteFileToResponsePermissionsNotMet.Text" xml:space="preserve">
+    <value>权限不满足。该文件无法下载。</value>
+  </data>
+<data name="UserRelationshipForSameUsersError.Text" xml:space="preserve">
+    <value>发起用户和目标用户不能具有相同的 UserID“{0}”。</value>
+  </data>
+<data name="UserRelationshipForDifferentPortalError.Text" xml:space="preserve">
+    <value>发起用户的网站 ID“{0}”与目标用户的网站 ID“{1}”不同。</value>
+  </data>
+<data name="UserRelationshipBlockedError.Text" xml:space="preserve">
+    <value>目标用户“{0}”已阻止来自目标用户“{2}”的关系“{1}”。</value>
+  </data>
+<data name="UserRelationshipExistsError.Text" xml:space="preserve">
+    <value>发起用户“{0}”、目标用户“{1}”、关系 ID“{2}”的关系已存在。</value>
+  </data>
+<data name="UserRelationshipDoesNotExistError.Text" xml:space="preserve">
+    <value>关系 ID“{0}”不存在。</value>
+  </data>
+<data name="MsgSubjectOrBodyRequiredError.Text" xml:space="preserve">
+    <value>主题和正文不能同时为 null 或空。</value>
+  </data>
+<data name="MsgBodyRequiredError.Text" xml:space="preserve">
+    <value>正文不能为 null 或空。</value>
+  </data>
+<data name="MsgRolesOrUsersRequiredError.Text" xml:space="preserve">
+    <value>角色和用户不能同时为空列表。</value>
+  </data>
+<data name="MsgSubjectTooBigError.Text" xml:space="preserve">
+    <value>提供的主题过大。最大 {0}，实际 {1}。</value>
+  </data>
+<data name="MsgToListTooBigError.Text" xml:space="preserve">
+    <value>提供的收件人列表过大。最大 {0}，实际 {1}。</value>
+  </data>
+<data name="MsgEmptyToListFoundError.Text" xml:space="preserve">
+    <value>在分析用户和角色列表时发现空的收件人列表。</value>
+  </data>
+<data name="MsgSenderRequiredError.Text" xml:space="preserve">
+    <value>发件人为 null 或 Sender.UserID 为负数。</value>
+  </data>
+<data name="PrivateMessageDisabledError.Text" xml:space="preserve">
+    <value>当前的消息设置不允许向其他用户/组发送消息。</value>
+  </data>
+<data name="MsgOnlyHostOrAdminOrUserInGroupCanSendToRoleError.Text" xml:space="preserve">
+    <value>只有超级用户、管理员和组成员可以向该角色发送消息。</value>
+  </data>
+<data name="MsgThrottlingIntervalNotMet.Text" xml:space="preserve">
+    <value>此时无法发送消息，因为管理员要求同一用户两次发送消息之间至少间隔 {0} 分钟。</value>
+  </data>
+<data name="MsgAttachmentsNotAllowed.Text" xml:space="preserve">
+    <value>不允许使用附件。</value>
+  </data>
+<data name="MsgMessageOrRecipientNotFound.Text" xml:space="preserve">
+    <value>消息不存在，或该消息的收件人不存在。</value>
+  </data>
+<data name="MsgRecipientLimitExceeded.Text" xml:space="preserve">
+    <value>已达到最大收件人数限制。要发送该消息，请从收件人列表中移除部分收件人。</value>
+  </data>
+<data name="MsgMessageRequiredError.Text" xml:space="preserve">
+    <value>提供的消息对象不能为 null。</value>
+  </data>
+<data name="TabNotInPortal.Text" xml:space="preserve">
+    <value>指定的页面不在此站点中。</value>
+  </data>
+<data name="TabModuleNotExist.Text" xml:space="preserve">
+    <value>指定的模块实例不存在。</value>
+  </data>
+<data name="ControllerNotFound.Text" xml:space="preserve">
+    <value>无法为 {0} 定位控制器。已搜索的命名空间：{1}。</value>
+  </data>
+<data name="AmbiguousController.Text" xml:space="preserve">
+    <value>在命名空间 {1} 中找到多个与名为“{0}”的控制器匹配的类型。</value>
+  </data>
+<data name="MaxLengthExceeded.Text" xml:space="preserve">
+    <value>已超过字段 {0} 的最大长度。</value>
+  </data>
+<data name="InvalidPublishPeriod.Text" xml:space="preserve">
+    <value>结束日期必须晚于开始日期。</value>
+  </data>
+<data name="ProfileService_UpdateVanityUrl.Error" xml:space="preserve">
+    <value>更新个人资料 URL 时出错。如果您继续看到此消息，请与管理员联系。</value>
+  </data>
+<data name="StartDateMustNotBeInThePast.Text" xml:space="preserve">
+    <value>开始日期不能早于今天。</value>
+  </data>
+<data name="StartDateRequired.Text" xml:space="preserve">
+    <value>开始日期为必填项。</value>
+  </data>
+<data name="FileLockedRunningWorkflowError.Text" xml:space="preserve">
+    <value>文件已锁定。该文件当前属于某个工作流，因此无法更新。</value>
+  </data>
+<data name="InstallPackageError.Text" xml:space="preserve">
+    <value>包 {0} 安装失败，原因：“{1}”。</value>
+  </data>
+<data name="FileLockedOutOfPublishPeriodError.Text" xml:space="preserve">
+    <value>文件已锁定。该文件不在有效的发布起止日期内，因此无法更新。</value>
+  </data>
+<data name="CannotMoveFolderAlreadyExists.Text" xml:space="preserve">
+    <value>无法移动文件夹“{0}”。文件夹“{1}”下已存在同名文件夹。</value>
+  </data>
+<data name="CannotMoveFolderBetweenFolderType.Text" xml:space="preserve">
+    <value>无法移动名为“{0}”的文件夹。不允许在这两种文件夹类型之间执行移动文件夹操作。</value>
+  </data>
+<data name="ErrorCreatingBusinessControllerClass.Text" xml:space="preserve">
+    <value>在选项卡({3})和门户({4})中为模块({1}) id=({2}) 创建 BusinessControllerClass“{0}”时出错</value>
+  </data>
+<data name="InvalidAnalyzerClass.Text" xml:space="preserve">
+    <value>无法创建类“{0}”，因为它无效或不是分析器，将使用默认分析器。</value>
+  </data>
+<data name="LuceneControllerIsDisposed.Text" xml:space="preserve">
+    <value>LuceneController 已释放，无法再使用。</value>
+  </data>
+<data name="ModuleDefIdMustBeGreaterThanZero.Text" xml:space="preserve">
+    <value>当 SearchTypeId 属于模块时，ModuleDefId 必须大于零。</value>
+  </data>
+<data name="ModuleDefIdWhenSearchTypeForModule.Text" xml:space="preserve">
+    <value>仅当 SearchTypeId 属于模块时才需要 ModuleDefId。</value>
+  </data>
+<data name="ModuleIdMustBeGreaterThanZero.Text" xml:space="preserve">
+    <value>当 SearchTypeId 属于模块时，ModuleId 必须大于零。</value>
+  </data>
+<data name="ModuleIdMustHaveSearchTypeIdForModule.Text" xml:space="preserve">
+    <value>基于 ModuleId 的搜索必须仅对模块使用 SearchTypeId。</value>
+  </data>
+<data name="ModuleIdWhenSearchTypeForModule.Text" xml:space="preserve">
+    <value>仅当 SearchTypeId 属于模块时才需要 ModuleId。</value>
+  </data>
+<data name="SearchAnalyzerMinWordLength.Text" xml:space="preserve">
+    <value>搜索分析器：最小字词长度 ({0}) 大于最大字词长度 ({1}) 的值。</value>
+  </data>
+<data name="SearchIndexingDirectoryNoValid.Text" xml:space="preserve">
+    <value>搜索索引目录为空或不存在。</value>
+  </data>
+<data name="UnableToCreateLuceneWriter.Text" xml:space="preserve">
+    <value>无法创建 Lucene 写入器（锁文件正在使用）。请在 IIS 中回收 AppPool 以释放锁。</value>
+  </data>
+<data name="PublishPagePermissionsNotMet" xml:space="preserve">
+    <value>权限不满足。该页面未被发布。</value>
+  </data>
+<data name="TabHasNotAnUnpublishedVersion.Text" xml:space="preserve">
+    <value>选项卡 {0} 没有未发布的版本。</value>
+  </data>
+<data name="TabVersionAlreadyPublished.Text" xml:space="preserve">
+    <value>对于选项卡 {0}，版本 {1} 已经发布。</value>
+  </data>
+<data name="TabVersionCannotBeDeleted_UnpublishedVersion.Text" xml:space="preserve">
+    <value>对于选项卡 {0}，无法删除版本 {1}，因为它是未发布的版本。</value>
+  </data>
+<data name="TabVersionCannotBeDiscarded_OnlyOneVersion.Text" xml:space="preserve">
+    <value>选项卡 {0} 只创建了一个版本。无法丢弃。</value>
+  </data>
+<data name="TabVersionCannotBeRolledBack_UnpublishedVersionExists.Text" xml:space="preserve">
+    <value>对于选项卡 {0}，无法回滚到版本 {1}，因为存在未发布的版本。</value>
+  </data>
+<data name="TabVersionCannotBeCreated_UnpublishedVersionAlreadyExistsConcurrencyProblem.Text" xml:space="preserve">
+    <value>对于选项卡 {0}，由于已存在另一个未发布的版本，无法创建新的未发布版本。可能是其他用户对该页面执行了操作并更改了其状态。请刷新页面以查看当前状态。</value>
+  </data>
+<data name="TabVersionCannotBeCreated_UnpublishedVersionAlreadyExists.Text" xml:space="preserve">
+    <value>对于选项卡 {0}，由于已存在另一个未发布的版本，无法创建新的未发布版本。</value>
+  </data>
+<data name="TabVersioningNotEnabled.Text" xml:space="preserve">
+    <value>未启用选项卡版本控制。</value>
+  </data>
+<data name="WorkflowInUsageException.Text" xml:space="preserve">
+    <value>无法删除正在使用的工作流。</value>
+  </data>
+<data name="WorkflowNameAlreadyExistsException.Text" xml:space="preserve">
+    <value>已存在同名工作流。</value>
+  </data>
+<data name="SystemWorkflowDeletionException.Text" xml:space="preserve">
+    <value>无法删除系统工作流。</value>
+  </data>
+<data name="WorkflowDoesNotExistException.Text" xml:space="preserve">
+    <value>工作流不存在。</value>
+  </data>
+<data name="WorkflowStateNameAlreadyExistsException.Text" xml:space="preserve">
+    <value>已存在同名工作流状态。</value>
+  </data>
+<data name="WorkflowConcurrencyException.Text" xml:space="preserve">
+    <value>工作流的当前状态与输入参数中指定的当前状态不一致。</value>
+  </data>
+<data name="UserCannotReviewWorkflowState.Text" xml:space="preserve">
+    <value>用户无法审阅该工作流状态。</value>
+  </data>
+<data name="WorkflowAlreadyStarted.Text" xml:space="preserve">
+    <value>无法为此内容项启动工作流。它已经有一个已启动的工作流。</value>
+  </data>
+<data name="WorkflowAuthorNotFound.Text" xml:space="preserve">
+    <value>找不到作者。将不发送通知。</value>
+  </data>
+<data name="WorkflowCannotDiscard.Text" xml:space="preserve">
+    <value>无法丢弃最后一个工作流状态。</value>
+  </data>
+<data name="WorkflowStateInUsageException.Text" xml:space="preserve">
+    <value>无法删除正在使用的状态。</value>
+  </data>
+<data name="WorkflowNewStateCannotBeAddedToSystemWorkflows.Text" xml:space="preserve">
+    <value>无法向系统工作流添加新状态。</value>
+  </data>
+<data name="WorkflowStateCannotBeMoved.Text" xml:space="preserve">
+    <value>无法移动工作流状态。</value>
+  </data>
+<data name="WorkflowSystemWorkflowStateCannotBeDeleted.Text" xml:space="preserve">
+    <value>无法删除系统工作流状态。</value>
+  </data>
+<data name="WorkflowSystemWorkflowStateCannotComplete.Text" xml:space="preserve">
+    <value>无法完成系统工作流状态。</value>
+  </data>
+<data name="ModuleDoesNotBelongToPage.Text" xml:space="preserve">
+    <value>此模块不属于该页面。请转到主页面以更改该模块。</value>
+  </data>
+<data name="TabVersionCannotBeRolledBack_LastVersion.Text" xml:space="preserve">
+    <value>对于选项卡 {0}，无法回滚到版本 {1}，因为它是最后一个版本。</value>
+  </data>
+<data name="FolderFileNameHasInvalidcharacters.Text" xml:space="preserve">
+    <value>名称包含无效字符。请指定不包含 {0} 的名称。</value>
+  </data>
+<data name="FolderFileNameIsReserved.Text" xml:space="preserve">
+    <value>该名称为保留名称。请尝试其他名称。</value>
+  </data>
+<data name="UserHasNoPermissionToEditFile.Text" xml:space="preserve">
+    <value>该用户没有编辑此文件的正确权限。</value>
+  </data>
+<data name="FolderAlreadyExists.Text" xml:space="preserve">
+    <value>无法创建文件夹 ({0})，此位置已存在该文件夹。</value>
+  </data>
+<data name="UserHasNoPermissionToEditFolder.Text" xml:space="preserve">
+    <value>该用户没有编辑此文件夹的正确权限。</value>
+  </data>
+<data name="UserHasNoPermissionToAdd.Text" xml:space="preserve">
+    <value>该用户没有在此位置添加文件夹的正确权限。</value>
+  </data>
+<data name="InvalidMappedPath.Text" xml:space="preserve">
+    <value>映射路径无效。</value>
+  </data>
+<data name="FileNameInvalid.Text" xml:space="preserve">
+    <value>指定的名称 ({0}) 无效。</value>
+  </data>
+<data name="FolderDoesNotExists.Text" xml:space="preserve">
+    <value>该文件夹不存在。</value>
+  </data>
+<data name="UserHasNoPermissionToBrowseFolder.Text" xml:space="preserve">
+    <value>该用户没有浏览此文件夹的正确权限。</value>
+  </data>
+<data name="SitemapProviderError.Text" xml:space="preserve">
+    <value>URL 站点地图提供程序“{0}”失败，错误：{1}。</value>
+  </data>
+<data name="SitemapUrlGenerationError.Text" xml:space="preserve">
+    <value>为页面“{0} - {1}”生成 URL 站点地图时引发异常：{2}。</value>
+  </data>
+<data name="DynamicContentEntityInUse.Text" xml:space="preserve">
+    <value>Id 为 {1} 的 {0} 正在使用中，因此无法删除。</value>
+  </data>
+<data name="PropertyCannotBeEmpty.Text" xml:space="preserve">
+    <value>对象“{0}”中的属性“{1}”不能为空（count = 0）。</value>
+  </data>
+<data name="ErrorMessageCannotBeNullOrEmpty.Text" xml:space="preserve">
+    <value>ErrorKey 和 ErrorMessage 都不能为 null 或空。</value>
+  </data>
+<data name="JsonContentTypeInvalid.Text" xml:space="preserve">
+    <value>json 文档中指定的 contentTypeId - {0} - 不存在。</value>
+  </data>
+<data name="JsonInvalidField.Text" xml:space="preserve">
+    <value>内容类型未指定字段 - {0}。</value>
+  </data>
+<data name="JsonMissingContent.Text" xml:space="preserve">
+    <value>json 文档中没有内容节点。</value>
+  </data>
+<data name="CreateValidatorException.Text" xml:space="preserve">
+    <value>无法实例化 Validator - {0}。</value>
+  </data>
+<data name="InvalidValidatorException.Text" xml:space="preserve">
+    <value>无法创建 ValidatorType - - {0}。</value>
+  </data>
+<data name="UpdateUserMembershipFailed.Text" xml:space="preserve">
+    <value>Asp.net 成员资格更新用户失败。可能的原因：您在成员资格配置中启用了 requiresUniqueEmail，但存在其他用户与当前用户使用相同的电子邮件地址。</value>
+  </data>
+<data name="SystemDataTypesSecurityException.Text" xml:space="preserve">
+    <value>系统数据类型只能由超级用户创建、修改或删除。</value>
+  </data>
+<data name="SystemContentTypesSecurityException.Text" xml:space="preserve">
+    <value>系统内容类型只能由超级用户创建、修改或删除。</value>
+  </data>
+<data name="EntityIsNotValid.Text" xml:space="preserve">
+    <value>类型为“{0}”的实体无效。</value>
+  </data>
+<data name="FieldDefinitionInvalidDeadLoop.Text" xml:space="preserve">
+    <value>无法创建名为 {0} 的字段，因为这会形成死循环定义。</value>
+  </data>
+<data name="ContentTypeFieldDefinitionDoesNotExist.Text" xml:space="preserve">
+    <value>该字段定义所属的内容类型无效。</value>
+  </data>
+<data name="ContentTypeDoesNotExist.Text" xml:space="preserve">
+    <value>指定的内容类型无效。</value>
+  </data>
+<data name="UserDoesNotExist.Text" xml:space="preserve">
+    <value>您尝试关注的用户已不存在。</value>
+  </data>
+<data name="AlreadyFollowingUser.Text" xml:space="preserve">
+    <value>您已经关注了此用户。</value>
+  </data>
+<data name="IPAddressIncorrect.Text" xml:space="preserve">
+    <value>IP 地址格式不正确</value>
+  </data>
+<data name="SubnetMaskIncorrect.Text" xml:space="preserve">
+    <value>子网掩码格式不正确</value>
+  </data>
+<data name="AddFolderNotAllowed.Text" xml:space="preserve">
+    <value>不允许文件夹路径“{0}”。该文件夹未被添加。</value>
+  </data>
+</root>
