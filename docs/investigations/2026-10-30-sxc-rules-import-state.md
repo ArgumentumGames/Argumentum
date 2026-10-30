@@ -130,12 +130,47 @@ cette voie est hors de portée — il faut une autre voie (import direct en base
    corriger ». ⚠️ Le compte owner n'a pas de mot de passe utilisable côté lane (le fichier
    `preprod-admin-20261029.txt` contient une valeur **rejetée**, 20 o) : cette donnée ne peut pas
    être produite seule par la lane.
-2. **Audit par attribut** de `Game Rule` (8 langues) — seul oracle de couverture.
+2. ~~**Audit par attribut** de `Game Rule` (8 langues) — seul oracle de couverture.~~
+   **Exécuté le même jour (§5) : couverture prononcée COMPLETE** pour tout ce qui est traduisible ;
+   l'écart « 52 valeurs de base vs 28 par langue » est intégralement expliqué par la mesure.
 3. **Décider du périmètre** : l'import du type `Rule` (16 entités × 8 langues, texte par ligne
    CSV) crée-t-il un 14ᵉ content-type dans l'app 60, que **rien dans le site ne rend aujourd'hui** ?
    C'est une **décision de contenu**, pas une tâche technique.
 
-## 5. Aucune écriture
+## 5. Audit par attribut de `Game Rule` — couverture prononcée (exécuté 30/10, lecture seule)
+
+Matrice attribut × langue mesurée sur les 5 entités (11378, 11380, 11387, 11388, 11389), dims
+6→13 = fr-FR…zh-CN toutes actives sous la racine 5 « Culture Root » (contrôle refait sur
+`TsDynDataDimension.Name`). **Rappel : le français vit dans la valeur de base** (ligne sans
+dimension).
+
+| Attribut | Nature | Couverture mesurée |
+|---|---|---|
+| `Title`, `Summary`, `Material`, `Installation`, `Content` | traduisibles | **5/5 entités × (base + 7 langues), 0 valeur vide, 0 contamination** — complet |
+| `Variants` | traduisible | 2/5 entités traduites (11378, 11388) ; les 3 autres ont une base **vide** = jeux sans variantes (**vide structurel cohérent**, pas une lacune) |
+| `Memo` | traduisible | 1/5 entité traduite (11378 : base + 7 langues) ; la base de 11388 est une **ligne vide résiduelle** (placeholder sans contenu — seul résidu cosmétique) |
+| `MinNbPlayers`, `MaxNbPlayers`, `Date`, `UrlKey` | non traduisibles | 5/5 base, 0 vide |
+| `Parent`, `Author`, `Licence`, `Original` | jamais remplis | **0 valeur** — déclarés au schéma, jamais alimentés |
+
+**Trois oracles croisés, tous verts :**
+
+1. **Contamination : 0.** Aucune valeur dimensionnée n'est identique (octets) à la base FR de la
+   même paire entité×attribut.
+2. **Base manquante : 0.** Aucune paire entité×attribut traduite sans sa base FR (contrôle inverse).
+3. **Profondeur zh-CN : pleine fidélité.** Les longueurs zh (~4-5× plus courtes que FR en *caractères*)
+   auraient pu masquer des traductions squelettiques ; sonde de fond sur e=11378 : le `Summary`
+   zh porte **les deux paragraphes complets** (saynète improvisée, classification ordres/familles,
+   exemple « flattery » sous-classe de « appeal to emotion ») et le `Content` zh porte **toute la
+   structure** (本轮流程 → 抽牌者 → 诡辩者 → 即兴短剧 → 评审团). C'est la densité CJK, pas une troncature.
+
+**Réconciliation arithmétique exacte** de l'écart qui intriguait (« 52 valeurs de base contre 28 par
+langue ») : base = 5 attributs cœur × 5 entités (25) + `Variants` (5) + `Memo` (2) + 4 non-traduisibles
+× 5 (20) = **52** ; par langue = 25 + 2 + 1 = **28**. La mise en garde de
+[`2026-10-30-sxc-data-surface-measured.md`](2026-10-30-sxc-data-surface-measured.md) (« écart
+attribuable aux attributs non traduisibles — l'audit seul peut prononcer ») est donc **confirmée au
+chiffre exact** : **aucune traduction ne manque** dans `Game Rule`.
+
+## 6. Aucune écriture
 
 Aucun import, aucune injection EAV, aucune modification de contenu, aucun changement de rôle.
 Une seule connexion authentifiée (compte de test dédié), aucun échec. Le compte
