@@ -1,0 +1,783 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AC.Text">
+    <value>جزایر آسنسیون</value>
+  </data>
+  <data name="AD.Text">
+    <value>آندورا</value>
+  </data>
+  <data name="AE.Text">
+    <value>امارات متحدهٔ عربی</value>
+  </data>
+  <data name="AF.Text">
+    <value>افغانستان</value>
+  </data>
+  <data name="AG.Text">
+    <value>آنتیگوا و باربودا</value>
+  </data>
+  <data name="AI.Text">
+    <value>آنگویلا</value>
+  </data>
+  <data name="AL.Text">
+    <value>آلبانی</value>
+  </data>
+  <data name="AM.Text">
+    <value>ارمنستان</value>
+  </data>
+  <data name="AN.Text">
+    <value>آنتیل هلند</value>
+  </data>
+  <data name="AO.Text">
+    <value>آنگولا</value>
+  </data>
+  <data name="AQ.Text">
+    <value>جنوبگان</value>
+  </data>
+  <data name="AR.Text">
+    <value>آرژانتین</value>
+  </data>
+  <data name="AS.Text">
+    <value>ساموآی امریکا</value>
+  </data>
+  <data name="AT.Text">
+    <value>اتریش</value>
+  </data>
+  <data name="AU.Text">
+    <value>استرالیا</value>
+  </data>
+  <data name="AW.Text">
+    <value>آروبا</value>
+  </data>
+  <data name="AX.Text">
+    <value>جزایر آلاند</value>
+  </data>
+  <data name="AZ.Text">
+    <value>جمهوری آذربایجان</value>
+  </data>
+  <data name="BA.Text">
+    <value>بوسنی و هرزگوین</value>
+  </data>
+  <data name="BB.Text">
+    <value>باربادوس</value>
+  </data>
+  <data name="BD.Text">
+    <value>بنگلادش</value>
+  </data>
+  <data name="BE.Text">
+    <value>بلژیک</value>
+  </data>
+  <data name="BF.Text">
+    <value>بورکینافاسو</value>
+  </data>
+  <data name="BG.Text">
+    <value>بلغارستان</value>
+  </data>
+  <data name="BH.Text">
+    <value>بحرین</value>
+  </data>
+  <data name="BI.Text">
+    <value>بوروندی</value>
+  </data>
+  <data name="BJ.Text">
+    <value>بنین</value>
+  </data>
+  <data name="BL.Text">
+    <value>سن بارتلمی</value>
+  </data>
+  <data name="BM.Text">
+    <value>برمودا</value>
+  </data>
+  <data name="BN.Text">
+    <value>برونئی</value>
+  </data>
+  <data name="BO.Text">
+    <value>بولیوی</value>
+  </data>
+  <data name="BR.Text">
+    <value>برزیل</value>
+  </data>
+  <data name="BS.Text">
+    <value>باهاما</value>
+  </data>
+  <data name="BT.Text">
+    <value>بوتان</value>
+  </data>
+  <data name="BV.Text">
+    <value>جزیرهٔ بووه</value>
+  </data>
+  <data name="BW.Text">
+    <value>بوتسوانا</value>
+  </data>
+  <data name="BY.Text">
+    <value>بلاروس</value>
+  </data>
+  <data name="BZ.Text">
+    <value>بلیز</value>
+  </data>
+  <data name="CA.Text">
+    <value>کانادا</value>
+  </data>
+  <data name="CC.Text">
+    <value>جزایر کوکوس</value>
+  </data>
+  <data name="CD.Text">
+    <value>کنگو - کینشاسا</value>
+  </data>
+  <data name="CF.Text">
+    <value>جمهوری افریقای مرکزی</value>
+  </data>
+  <data name="CG.Text">
+    <value>کنگو - برازویل</value>
+  </data>
+  <data name="CH.Text">
+    <value>سوئیس</value>
+  </data>
+  <data name="CI.Text">
+    <value>ساحل عاج</value>
+  </data>
+  <data name="CK.Text">
+    <value>جزایر کوک</value>
+  </data>
+  <data name="CL.Text">
+    <value>شیلی</value>
+  </data>
+  <data name="CM.Text">
+    <value>کامرون</value>
+  </data>
+  <data name="CN.Text">
+    <value>چین</value>
+  </data>
+  <data name="CO.Text">
+    <value>کلمبیا</value>
+  </data>
+  <data name="CP.Text">
+    <value>جزایر کلیپرتون</value>
+  </data>
+  <data name="CR.Text">
+    <value>کاستاریکا</value>
+  </data>
+  <data name="CS.Text">
+    <value>صربستان و مونته‌نگرو</value>
+  </data>
+  <data name="CU.Text">
+    <value>کوبا</value>
+  </data>
+  <data name="CV.Text">
+    <value>کیپ‌ورد</value>
+  </data>
+  <data name="CX.Text">
+    <value>جزیرهٔ کریسمس</value>
+  </data>
+  <data name="CY.Text">
+    <value>قبرس</value>
+  </data>
+  <data name="CZ.Text">
+    <value>چک</value>
+  </data>
+  <data name="DE.Text">
+    <value>آلمان</value>
+  </data>
+  <data name="DG.Text">
+    <value>دیه‌گو گارسیا</value>
+  </data>
+  <data name="DJ.Text">
+    <value>جیبوتی</value>
+  </data>
+  <data name="DK.Text">
+    <value>دانمارک</value>
+  </data>
+  <data name="DM.Text">
+    <value>دومینیکا</value>
+  </data>
+  <data name="DO.Text">
+    <value>جمهوری دومینیکن</value>
+  </data>
+  <data name="DZ.Text">
+    <value>الجزایر</value>
+  </data>
+  <data name="EA.Text">
+    <value>سبته و ملیله</value>
+  </data>
+  <data name="EC.Text">
+    <value>اکوادور</value>
+  </data>
+  <data name="EE.Text">
+    <value>استونی</value>
+  </data>
+  <data name="EG.Text">
+    <value>مصر</value>
+  </data>
+  <data name="EH.Text">
+    <value>صحرای غربی</value>
+  </data>
+  <data name="ER.Text">
+    <value>اریتره</value>
+  </data>
+  <data name="ES.Text">
+    <value>اسپانیا</value>
+  </data>
+  <data name="ET.Text">
+    <value>اتیوپی</value>
+  </data>
+  <data name="EU.Text">
+    <value>اتحادیهٔ اروپا</value>
+  </data>
+  <data name="FI.Text">
+    <value>فنلاند</value>
+  </data>
+  <data name="FJ.Text">
+    <value>فیجی</value>
+  </data>
+  <data name="FK.Text">
+    <value>جزایر فالکلند</value>
+  </data>
+  <data name="FM.Text">
+    <value>میکرونزی</value>
+  </data>
+  <data name="FO.Text">
+    <value>جزایر فارو</value>
+  </data>
+  <data name="FR.Text">
+    <value>فرانسه</value>
+  </data>
+  <data name="GA.Text">
+    <value>گابن</value>
+  </data>
+  <data name="GB.Text">
+    <value>بریتانیا</value>
+  </data>
+  <data name="GD.Text">
+    <value>گرنادا</value>
+  </data>
+  <data name="GE.Text">
+    <value>گرجستان</value>
+  </data>
+  <data name="GF.Text">
+    <value>گویان فرانسه</value>
+  </data>
+  <data name="GG.Text">
+    <value>گرنزی</value>
+  </data>
+  <data name="GH.Text">
+    <value>غنا</value>
+  </data>
+  <data name="GI.Text">
+    <value>جبل‌الطارق</value>
+  </data>
+  <data name="GL.Text">
+    <value>گرینلند</value>
+  </data>
+  <data name="GM.Text">
+    <value>گامبیا</value>
+  </data>
+  <data name="GN.Text">
+    <value>گینه</value>
+  </data>
+  <data name="GP.Text">
+    <value>گوادلوپ</value>
+  </data>
+  <data name="GQ.Text">
+    <value>گینهٔ استوایی</value>
+  </data>
+  <data name="GR.Text">
+    <value>یونان</value>
+  </data>
+  <data name="GS.Text">
+    <value>جورجیای جنوبی و جزایر ساندویچ جنوبی</value>
+  </data>
+  <data name="GT.Text">
+    <value>گواتمالا</value>
+  </data>
+  <data name="GU.Text">
+    <value>گوام</value>
+  </data>
+  <data name="GW.Text">
+    <value>گینهٔ بیسائو</value>
+  </data>
+  <data name="GY.Text">
+    <value>گویان</value>
+  </data>
+  <data name="HK.Text">
+    <value>هنگ‌کنگ، منطقهٔ ویژهٔ اداری چین</value>
+  </data>
+  <data name="HM.Text">
+    <value>هرد و جزایر مک‌دونالد</value>
+  </data>
+  <data name="HN.Text">
+    <value>هندوراس</value>
+  </data>
+  <data name="HR.Text">
+    <value>کرواسی</value>
+  </data>
+  <data name="HT.Text">
+    <value>هائیتی</value>
+  </data>
+  <data name="HU.Text">
+    <value>مجارستان</value>
+  </data>
+  <data name="IC.Text">
+    <value>جزایر قناری</value>
+  </data>
+  <data name="ID.Text">
+    <value>اندونزی</value>
+  </data>
+  <data name="IE.Text">
+    <value>ایرلند</value>
+  </data>
+  <data name="IL.Text">
+    <value>اسرائیل</value>
+  </data>
+  <data name="IM.Text">
+    <value>جزیرهٔ من</value>
+  </data>
+  <data name="IN.Text">
+    <value>هند</value>
+  </data>
+  <data name="IO.Text">
+    <value>قلمرو بریتانیا در اقیانوس هند</value>
+  </data>
+  <data name="IQ.Text">
+    <value>عراق</value>
+  </data>
+  <data name="IR.Text">
+    <value>ایران</value>
+  </data>
+  <data name="IS.Text">
+    <value>ایسلند</value>
+  </data>
+  <data name="IT.Text">
+    <value>ایتالیا</value>
+  </data>
+  <data name="JE.Text">
+    <value>جرزی</value>
+  </data>
+  <data name="JM.Text">
+    <value>جامائیکا</value>
+  </data>
+  <data name="JO.Text">
+    <value>اردن</value>
+  </data>
+  <data name="JP.Text">
+    <value>ژاپن</value>
+  </data>
+  <data name="KE.Text">
+    <value>کنیا</value>
+  </data>
+  <data name="KG.Text">
+    <value>قرقیزستان</value>
+  </data>
+  <data name="KH.Text">
+    <value>کامبوج</value>
+  </data>
+  <data name="KI.Text">
+    <value>کیریباتی</value>
+  </data>
+  <data name="KM.Text">
+    <value>کومور</value>
+  </data>
+  <data name="KN.Text">
+    <value>سنت کیتس و نویس</value>
+  </data>
+  <data name="KP.Text">
+    <value>کرهٔ شمالی</value>
+  </data>
+  <data name="KR.Text">
+    <value>کرهٔ جنوبی</value>
+  </data>
+  <data name="KW.Text">
+    <value>کویت</value>
+  </data>
+  <data name="KY.Text">
+    <value>جزایر کِیمن</value>
+  </data>
+  <data name="KZ.Text">
+    <value>قزاقستان</value>
+  </data>
+  <data name="LA.Text">
+    <value>لائوس</value>
+  </data>
+  <data name="LB.Text">
+    <value>لبنان</value>
+  </data>
+  <data name="LC.Text">
+    <value>سنت لوسیا</value>
+  </data>
+  <data name="LI.Text">
+    <value>لیختن‌اشتاین</value>
+  </data>
+  <data name="LK.Text">
+    <value>سری‌لانکا</value>
+  </data>
+  <data name="LR.Text">
+    <value>لیبریا</value>
+  </data>
+  <data name="LS.Text">
+    <value>لسوتو</value>
+  </data>
+  <data name="LT.Text">
+    <value>لیتوانی</value>
+  </data>
+  <data name="LU.Text">
+    <value>لوکزامبورگ</value>
+  </data>
+  <data name="LV.Text">
+    <value>لتونی</value>
+  </data>
+  <data name="LY.Text">
+    <value>لیبی</value>
+  </data>
+  <data name="MA.Text">
+    <value>مراکش</value>
+  </data>
+  <data name="MC.Text">
+    <value>موناکو</value>
+  </data>
+  <data name="MD.Text">
+    <value>مولداوی</value>
+  </data>
+  <data name="ME.Text">
+    <value>مونته‌نگرو</value>
+  </data>
+  <data name="MF.Text">
+    <value>سنت مارتین</value>
+  </data>
+  <data name="MG.Text">
+    <value>ماداگاسکار</value>
+  </data>
+  <data name="MH.Text">
+    <value>جزایر مارشال</value>
+  </data>
+  <data name="MK.Text">
+    <value>مقدونیهٔ شمالی</value>
+  </data>
+  <data name="ML.Text">
+    <value>مالی</value>
+  </data>
+  <data name="MM.Text">
+    <value>میانمار (برمه)</value>
+  </data>
+  <data name="MN.Text">
+    <value>مغولستان</value>
+  </data>
+  <data name="MO.Text">
+    <value>ماکائو، منطقهٔ ویژهٔ اداری چین</value>
+  </data>
+  <data name="MP.Text">
+    <value>جزایر ماریانای شمالی</value>
+  </data>
+  <data name="MQ.Text">
+    <value>مارتینیک</value>
+  </data>
+  <data name="MR.Text">
+    <value>موریتانی</value>
+  </data>
+  <data name="MS.Text">
+    <value>مونت‌سرات</value>
+  </data>
+  <data name="MT.Text">
+    <value>مالت</value>
+  </data>
+  <data name="MU.Text">
+    <value>موریس</value>
+  </data>
+  <data name="MV.Text">
+    <value>مالدیو</value>
+  </data>
+  <data name="MW.Text">
+    <value>مالاوی</value>
+  </data>
+  <data name="MX.Text">
+    <value>مکزیک</value>
+  </data>
+  <data name="MY.Text">
+    <value>مالزی</value>
+  </data>
+  <data name="MZ.Text">
+    <value>موزامبیک</value>
+  </data>
+  <data name="NA.Text">
+    <value>نامیبیا</value>
+  </data>
+  <data name="NC.Text">
+    <value>کالدونیای جدید</value>
+  </data>
+  <data name="NE.Text">
+    <value>نیجر</value>
+  </data>
+  <data name="NF.Text">
+    <value>جزیرهٔ نورفولک</value>
+  </data>
+  <data name="NG.Text">
+    <value>نیجریه</value>
+  </data>
+  <data name="NI.Text">
+    <value>نیکاراگوئه</value>
+  </data>
+  <data name="NL.Text">
+    <value>هلند</value>
+  </data>
+  <data name="NO.Text">
+    <value>نروژ</value>
+  </data>
+  <data name="NP.Text">
+    <value>نپال</value>
+  </data>
+  <data name="NR.Text">
+    <value>نائورو</value>
+  </data>
+  <data name="NU.Text">
+    <value>نیوئه</value>
+  </data>
+  <data name="NZ.Text">
+    <value>نیوزیلند</value>
+  </data>
+  <data name="OM.Text">
+    <value>عمان</value>
+  </data>
+  <data name="PA.Text">
+    <value>پاناما</value>
+  </data>
+  <data name="PE.Text">
+    <value>پرو</value>
+  </data>
+  <data name="PF.Text">
+    <value>پلی‌نزی فرانسه</value>
+  </data>
+  <data name="PG.Text">
+    <value>پاپوا گینهٔ نو</value>
+  </data>
+  <data name="PH.Text">
+    <value>فیلیپین</value>
+  </data>
+  <data name="PK.Text">
+    <value>پاکستان</value>
+  </data>
+  <data name="PL.Text">
+    <value>لهستان</value>
+  </data>
+  <data name="PM.Text">
+    <value>سن پیر و میکلن</value>
+  </data>
+  <data name="PN.Text">
+    <value>جزایر پیت‌کرن</value>
+  </data>
+  <data name="PR.Text">
+    <value>پورتوریکو</value>
+  </data>
+  <data name="PS.Text">
+    <value>سرزمین‌های فلسطینی</value>
+  </data>
+  <data name="PT.Text">
+    <value>پرتغال</value>
+  </data>
+  <data name="PW.Text">
+    <value>پالائو</value>
+  </data>
+  <data name="PY.Text">
+    <value>پاراگوئه</value>
+  </data>
+  <data name="QA.Text">
+    <value>قطر</value>
+  </data>
+  <data name="QO.Text">
+    <value>بخش‌های دورافتادهٔ اقیانوسیه</value>
+  </data>
+  <data name="RE.Text">
+    <value>رئونیون</value>
+  </data>
+  <data name="RO.Text">
+    <value>رومانی</value>
+  </data>
+  <data name="RS.Text">
+    <value>صربستان</value>
+  </data>
+  <data name="RU.Text">
+    <value>روسیه</value>
+  </data>
+  <data name="RW.Text">
+    <value>رواندا</value>
+  </data>
+  <data name="SA.Text">
+    <value>عربستان سعودی</value>
+  </data>
+  <data name="SB.Text">
+    <value>جزایر سلیمان</value>
+  </data>
+  <data name="SC.Text">
+    <value>سیشل</value>
+  </data>
+  <data name="SD.Text">
+    <value>سودان</value>
+  </data>
+  <data name="SE.Text">
+    <value>سوئد</value>
+  </data>
+  <data name="SG.Text">
+    <value>سنگاپور</value>
+  </data>
+  <data name="SH.Text">
+    <value>سنت هلن</value>
+  </data>
+  <data name="SI.Text">
+    <value>اسلوونی</value>
+  </data>
+  <data name="SJ.Text">
+    <value>سوالبارد و یان ماین</value>
+  </data>
+  <data name="SK.Text">
+    <value>اسلواکی</value>
+  </data>
+  <data name="SL.Text">
+    <value>سیرالئون</value>
+  </data>
+  <data name="SM.Text">
+    <value>سان‌مارینو</value>
+  </data>
+  <data name="SN.Text">
+    <value>سنگال</value>
+  </data>
+  <data name="SO.Text">
+    <value>سومالی</value>
+  </data>
+  <data name="SR.Text">
+    <value>سورینام</value>
+  </data>
+  <data name="ST.Text">
+    <value>سائوتومه و پرینسیپ</value>
+  </data>
+  <data name="SV.Text">
+    <value>السالوادور</value>
+  </data>
+  <data name="SY.Text">
+    <value>سوریه</value>
+  </data>
+  <data name="SZ.Text">
+    <value>اسواتینی</value>
+  </data>
+  <data name="TA.Text">
+    <value>تریستان دا کونا</value>
+  </data>
+  <data name="TC.Text">
+    <value>جزایر تورکس و کایکوس</value>
+  </data>
+  <data name="TD.Text">
+    <value>چاد</value>
+  </data>
+  <data name="TF.Text">
+    <value>سرزمین‌های جنوبی فرانسه</value>
+  </data>
+  <data name="TG.Text">
+    <value>توگو</value>
+  </data>
+  <data name="TH.Text">
+    <value>تایلند</value>
+  </data>
+  <data name="TJ.Text">
+    <value>تاجیکستان</value>
+  </data>
+  <data name="TK.Text">
+    <value>توکلائو</value>
+  </data>
+  <data name="TL.Text">
+    <value>تیمور-لسته</value>
+  </data>
+  <data name="TM.Text">
+    <value>ترکمنستان</value>
+  </data>
+  <data name="TN.Text">
+    <value>تونس</value>
+  </data>
+  <data name="TO.Text">
+    <value>تونگا</value>
+  </data>
+  <data name="TR.Text">
+    <value>ترکیه</value>
+  </data>
+  <data name="TT.Text">
+    <value>ترینیداد و توباگو</value>
+  </data>
+  <data name="TV.Text">
+    <value>تووالو</value>
+  </data>
+  <data name="TW.Text">
+    <value>تایوان</value>
+  </data>
+  <data name="TZ.Text">
+    <value>تانزانیا</value>
+  </data>
+  <data name="UA.Text">
+    <value>اوکراین</value>
+  </data>
+  <data name="UG.Text">
+    <value>اوگاندا</value>
+  </data>
+  <data name="UM.Text">
+    <value>جزایر دورافتادهٔ ایالات متحده</value>
+  </data>
+  <data name="US.Text">
+    <value>ایالات متحده</value>
+  </data>
+  <data name="UY.Text">
+    <value>اروگوئه</value>
+  </data>
+  <data name="UZ.Text">
+    <value>ازبکستان</value>
+  </data>
+  <data name="VA.Text">
+    <value>واتیکان</value>
+  </data>
+  <data name="VC.Text">
+    <value>سنت وینسنت و گرنادین</value>
+  </data>
+  <data name="VE.Text">
+    <value>ونزوئلا</value>
+  </data>
+  <data name="VG.Text">
+    <value>جزایر ویرجین بریتانیا</value>
+  </data>
+  <data name="VI.Text">
+    <value>جزایر ویرجین ایالات متحده</value>
+  </data>
+  <data name="VN.Text">
+    <value>ویتنام</value>
+  </data>
+  <data name="VU.Text">
+    <value>وانواتو</value>
+  </data>
+  <data name="WF.Text">
+    <value>والیس و فوتونا</value>
+  </data>
+  <data name="WS.Text">
+    <value>ساموآ</value>
+  </data>
+  <data name="YE.Text">
+    <value>یمن</value>
+  </data>
+  <data name="YT.Text">
+    <value>مایوت</value>
+  </data>
+  <data name="ZA.Text">
+    <value>افریقای جنوبی</value>
+  </data>
+  <data name="ZM.Text">
+    <value>زامبیا</value>
+  </data>
+  <data name="ZW.Text">
+    <value>زیمبابوه</value>
+  </data>
+  <data name="ZZ.Text">
+    <value>ناحیهٔ نامشخص</value>
+  </data>
+</root>

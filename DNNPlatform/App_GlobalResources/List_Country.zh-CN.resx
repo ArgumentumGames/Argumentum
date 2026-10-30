@@ -1,0 +1,783 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AC.Text">
+    <value>阿森松岛</value>
+  </data>
+  <data name="AD.Text">
+    <value>安道尔</value>
+  </data>
+  <data name="AE.Text">
+    <value>阿拉伯联合酋长国</value>
+  </data>
+  <data name="AF.Text">
+    <value>阿富汗</value>
+  </data>
+  <data name="AG.Text">
+    <value>安提瓜和巴布达</value>
+  </data>
+  <data name="AI.Text">
+    <value>安圭拉</value>
+  </data>
+  <data name="AL.Text">
+    <value>阿尔巴尼亚</value>
+  </data>
+  <data name="AM.Text">
+    <value>亚美尼亚</value>
+  </data>
+  <data name="AN.Text">
+    <value>荷属安的列斯</value>
+  </data>
+  <data name="AO.Text">
+    <value>安哥拉</value>
+  </data>
+  <data name="AQ.Text">
+    <value>南极洲</value>
+  </data>
+  <data name="AR.Text">
+    <value>阿根廷</value>
+  </data>
+  <data name="AS.Text">
+    <value>美属萨摩亚</value>
+  </data>
+  <data name="AT.Text">
+    <value>奥地利</value>
+  </data>
+  <data name="AU.Text">
+    <value>澳大利亚</value>
+  </data>
+  <data name="AW.Text">
+    <value>阿鲁巴</value>
+  </data>
+  <data name="AX.Text">
+    <value>奥兰群岛</value>
+  </data>
+  <data name="AZ.Text">
+    <value>阿塞拜疆</value>
+  </data>
+  <data name="BA.Text">
+    <value>波斯尼亚和黑塞哥维那</value>
+  </data>
+  <data name="BB.Text">
+    <value>巴巴多斯</value>
+  </data>
+  <data name="BD.Text">
+    <value>孟加拉国</value>
+  </data>
+  <data name="BE.Text">
+    <value>比利时</value>
+  </data>
+  <data name="BF.Text">
+    <value>布基纳法索</value>
+  </data>
+  <data name="BG.Text">
+    <value>保加利亚</value>
+  </data>
+  <data name="BH.Text">
+    <value>巴林</value>
+  </data>
+  <data name="BI.Text">
+    <value>布隆迪</value>
+  </data>
+  <data name="BJ.Text">
+    <value>贝宁</value>
+  </data>
+  <data name="BL.Text">
+    <value>圣巴泰勒米</value>
+  </data>
+  <data name="BM.Text">
+    <value>百慕大</value>
+  </data>
+  <data name="BN.Text">
+    <value>文莱</value>
+  </data>
+  <data name="BO.Text">
+    <value>玻利维亚</value>
+  </data>
+  <data name="BR.Text">
+    <value>巴西</value>
+  </data>
+  <data name="BS.Text">
+    <value>巴哈马</value>
+  </data>
+  <data name="BT.Text">
+    <value>不丹</value>
+  </data>
+  <data name="BV.Text">
+    <value>布韦岛</value>
+  </data>
+  <data name="BW.Text">
+    <value>博茨瓦纳</value>
+  </data>
+  <data name="BY.Text">
+    <value>白俄罗斯</value>
+  </data>
+  <data name="BZ.Text">
+    <value>伯利兹</value>
+  </data>
+  <data name="CA.Text">
+    <value>加拿大</value>
+  </data>
+  <data name="CC.Text">
+    <value>科科斯（基林）群岛</value>
+  </data>
+  <data name="CD.Text">
+    <value>刚果（金）</value>
+  </data>
+  <data name="CF.Text">
+    <value>中非共和国</value>
+  </data>
+  <data name="CG.Text">
+    <value>刚果（布）</value>
+  </data>
+  <data name="CH.Text">
+    <value>瑞士</value>
+  </data>
+  <data name="CI.Text">
+    <value>科特迪瓦</value>
+  </data>
+  <data name="CK.Text">
+    <value>库克群岛</value>
+  </data>
+  <data name="CL.Text">
+    <value>智利</value>
+  </data>
+  <data name="CM.Text">
+    <value>喀麦隆</value>
+  </data>
+  <data name="CN.Text">
+    <value>中国</value>
+  </data>
+  <data name="CO.Text">
+    <value>哥伦比亚</value>
+  </data>
+  <data name="CP.Text">
+    <value>克利珀顿岛</value>
+  </data>
+  <data name="CR.Text">
+    <value>哥斯达黎加</value>
+  </data>
+  <data name="CS.Text">
+    <value>塞尔维亚和黑山</value>
+  </data>
+  <data name="CU.Text">
+    <value>古巴</value>
+  </data>
+  <data name="CV.Text">
+    <value>佛得角</value>
+  </data>
+  <data name="CX.Text">
+    <value>圣诞岛</value>
+  </data>
+  <data name="CY.Text">
+    <value>塞浦路斯</value>
+  </data>
+  <data name="CZ.Text">
+    <value>捷克</value>
+  </data>
+  <data name="DE.Text">
+    <value>德国</value>
+  </data>
+  <data name="DG.Text">
+    <value>迪戈加西亚岛</value>
+  </data>
+  <data name="DJ.Text">
+    <value>吉布提</value>
+  </data>
+  <data name="DK.Text">
+    <value>丹麦</value>
+  </data>
+  <data name="DM.Text">
+    <value>多米尼克</value>
+  </data>
+  <data name="DO.Text">
+    <value>多米尼加共和国</value>
+  </data>
+  <data name="DZ.Text">
+    <value>阿尔及利亚</value>
+  </data>
+  <data name="EA.Text">
+    <value>休达及梅利利亚</value>
+  </data>
+  <data name="EC.Text">
+    <value>厄瓜多尔</value>
+  </data>
+  <data name="EE.Text">
+    <value>爱沙尼亚</value>
+  </data>
+  <data name="EG.Text">
+    <value>埃及</value>
+  </data>
+  <data name="EH.Text">
+    <value>西撒哈拉</value>
+  </data>
+  <data name="ER.Text">
+    <value>厄立特里亚</value>
+  </data>
+  <data name="ES.Text">
+    <value>西班牙</value>
+  </data>
+  <data name="ET.Text">
+    <value>埃塞俄比亚</value>
+  </data>
+  <data name="EU.Text">
+    <value>欧盟</value>
+  </data>
+  <data name="FI.Text">
+    <value>芬兰</value>
+  </data>
+  <data name="FJ.Text">
+    <value>斐济</value>
+  </data>
+  <data name="FK.Text">
+    <value>福克兰群岛</value>
+  </data>
+  <data name="FM.Text">
+    <value>密克罗尼西亚</value>
+  </data>
+  <data name="FO.Text">
+    <value>法罗群岛</value>
+  </data>
+  <data name="FR.Text">
+    <value>法国</value>
+  </data>
+  <data name="GA.Text">
+    <value>加蓬</value>
+  </data>
+  <data name="GB.Text">
+    <value>英国</value>
+  </data>
+  <data name="GD.Text">
+    <value>格林纳达</value>
+  </data>
+  <data name="GE.Text">
+    <value>格鲁吉亚</value>
+  </data>
+  <data name="GF.Text">
+    <value>法属圭亚那</value>
+  </data>
+  <data name="GG.Text">
+    <value>根西岛</value>
+  </data>
+  <data name="GH.Text">
+    <value>加纳</value>
+  </data>
+  <data name="GI.Text">
+    <value>直布罗陀</value>
+  </data>
+  <data name="GL.Text">
+    <value>格陵兰</value>
+  </data>
+  <data name="GM.Text">
+    <value>冈比亚</value>
+  </data>
+  <data name="GN.Text">
+    <value>几内亚</value>
+  </data>
+  <data name="GP.Text">
+    <value>瓜德罗普</value>
+  </data>
+  <data name="GQ.Text">
+    <value>赤道几内亚</value>
+  </data>
+  <data name="GR.Text">
+    <value>希腊</value>
+  </data>
+  <data name="GS.Text">
+    <value>南乔治亚和南桑威奇群岛</value>
+  </data>
+  <data name="GT.Text">
+    <value>危地马拉</value>
+  </data>
+  <data name="GU.Text">
+    <value>关岛</value>
+  </data>
+  <data name="GW.Text">
+    <value>几内亚比绍</value>
+  </data>
+  <data name="GY.Text">
+    <value>圭亚那</value>
+  </data>
+  <data name="HK.Text">
+    <value>中国香港特别行政区</value>
+  </data>
+  <data name="HM.Text">
+    <value>赫德岛和麦克唐纳群岛</value>
+  </data>
+  <data name="HN.Text">
+    <value>洪都拉斯</value>
+  </data>
+  <data name="HR.Text">
+    <value>克罗地亚</value>
+  </data>
+  <data name="HT.Text">
+    <value>海地</value>
+  </data>
+  <data name="HU.Text">
+    <value>匈牙利</value>
+  </data>
+  <data name="IC.Text">
+    <value>加纳利群岛</value>
+  </data>
+  <data name="ID.Text">
+    <value>印度尼西亚</value>
+  </data>
+  <data name="IE.Text">
+    <value>爱尔兰</value>
+  </data>
+  <data name="IL.Text">
+    <value>以色列</value>
+  </data>
+  <data name="IM.Text">
+    <value>马恩岛</value>
+  </data>
+  <data name="IN.Text">
+    <value>印度</value>
+  </data>
+  <data name="IO.Text">
+    <value>英属印度洋领地</value>
+  </data>
+  <data name="IQ.Text">
+    <value>伊拉克</value>
+  </data>
+  <data name="IR.Text">
+    <value>伊朗</value>
+  </data>
+  <data name="IS.Text">
+    <value>冰岛</value>
+  </data>
+  <data name="IT.Text">
+    <value>意大利</value>
+  </data>
+  <data name="JE.Text">
+    <value>泽西岛</value>
+  </data>
+  <data name="JM.Text">
+    <value>牙买加</value>
+  </data>
+  <data name="JO.Text">
+    <value>约旦</value>
+  </data>
+  <data name="JP.Text">
+    <value>日本</value>
+  </data>
+  <data name="KE.Text">
+    <value>肯尼亚</value>
+  </data>
+  <data name="KG.Text">
+    <value>吉尔吉斯斯坦</value>
+  </data>
+  <data name="KH.Text">
+    <value>柬埔寨</value>
+  </data>
+  <data name="KI.Text">
+    <value>基里巴斯</value>
+  </data>
+  <data name="KM.Text">
+    <value>科摩罗</value>
+  </data>
+  <data name="KN.Text">
+    <value>圣基茨和尼维斯</value>
+  </data>
+  <data name="KP.Text">
+    <value>朝鲜</value>
+  </data>
+  <data name="KR.Text">
+    <value>韩国</value>
+  </data>
+  <data name="KW.Text">
+    <value>科威特</value>
+  </data>
+  <data name="KY.Text">
+    <value>开曼群岛</value>
+  </data>
+  <data name="KZ.Text">
+    <value>哈萨克斯坦</value>
+  </data>
+  <data name="LA.Text">
+    <value>老挝</value>
+  </data>
+  <data name="LB.Text">
+    <value>黎巴嫩</value>
+  </data>
+  <data name="LC.Text">
+    <value>圣卢西亚</value>
+  </data>
+  <data name="LI.Text">
+    <value>列支敦士登</value>
+  </data>
+  <data name="LK.Text">
+    <value>斯里兰卡</value>
+  </data>
+  <data name="LR.Text">
+    <value>利比里亚</value>
+  </data>
+  <data name="LS.Text">
+    <value>莱索托</value>
+  </data>
+  <data name="LT.Text">
+    <value>立陶宛</value>
+  </data>
+  <data name="LU.Text">
+    <value>卢森堡</value>
+  </data>
+  <data name="LV.Text">
+    <value>拉脱维亚</value>
+  </data>
+  <data name="LY.Text">
+    <value>利比亚</value>
+  </data>
+  <data name="MA.Text">
+    <value>摩洛哥</value>
+  </data>
+  <data name="MC.Text">
+    <value>摩纳哥</value>
+  </data>
+  <data name="MD.Text">
+    <value>摩尔多瓦</value>
+  </data>
+  <data name="ME.Text">
+    <value>黑山</value>
+  </data>
+  <data name="MF.Text">
+    <value>法属圣马丁</value>
+  </data>
+  <data name="MG.Text">
+    <value>马达加斯加</value>
+  </data>
+  <data name="MH.Text">
+    <value>马绍尔群岛</value>
+  </data>
+  <data name="MK.Text">
+    <value>北马其顿</value>
+  </data>
+  <data name="ML.Text">
+    <value>马里</value>
+  </data>
+  <data name="MM.Text">
+    <value>缅甸</value>
+  </data>
+  <data name="MN.Text">
+    <value>蒙古</value>
+  </data>
+  <data name="MO.Text">
+    <value>中国澳门特别行政区</value>
+  </data>
+  <data name="MP.Text">
+    <value>北马里亚纳群岛</value>
+  </data>
+  <data name="MQ.Text">
+    <value>马提尼克</value>
+  </data>
+  <data name="MR.Text">
+    <value>毛里塔尼亚</value>
+  </data>
+  <data name="MS.Text">
+    <value>蒙特塞拉特</value>
+  </data>
+  <data name="MT.Text">
+    <value>马耳他</value>
+  </data>
+  <data name="MU.Text">
+    <value>毛里求斯</value>
+  </data>
+  <data name="MV.Text">
+    <value>马尔代夫</value>
+  </data>
+  <data name="MW.Text">
+    <value>马拉维</value>
+  </data>
+  <data name="MX.Text">
+    <value>墨西哥</value>
+  </data>
+  <data name="MY.Text">
+    <value>马来西亚</value>
+  </data>
+  <data name="MZ.Text">
+    <value>莫桑比克</value>
+  </data>
+  <data name="NA.Text">
+    <value>纳米比亚</value>
+  </data>
+  <data name="NC.Text">
+    <value>新喀里多尼亚</value>
+  </data>
+  <data name="NE.Text">
+    <value>尼日尔</value>
+  </data>
+  <data name="NF.Text">
+    <value>诺福克岛</value>
+  </data>
+  <data name="NG.Text">
+    <value>尼日利亚</value>
+  </data>
+  <data name="NI.Text">
+    <value>尼加拉瓜</value>
+  </data>
+  <data name="NL.Text">
+    <value>荷兰</value>
+  </data>
+  <data name="NO.Text">
+    <value>挪威</value>
+  </data>
+  <data name="NP.Text">
+    <value>尼泊尔</value>
+  </data>
+  <data name="NR.Text">
+    <value>瑙鲁</value>
+  </data>
+  <data name="NU.Text">
+    <value>纽埃</value>
+  </data>
+  <data name="NZ.Text">
+    <value>新西兰</value>
+  </data>
+  <data name="OM.Text">
+    <value>阿曼</value>
+  </data>
+  <data name="PA.Text">
+    <value>巴拿马</value>
+  </data>
+  <data name="PE.Text">
+    <value>秘鲁</value>
+  </data>
+  <data name="PF.Text">
+    <value>法属波利尼西亚</value>
+  </data>
+  <data name="PG.Text">
+    <value>巴布亚新几内亚</value>
+  </data>
+  <data name="PH.Text">
+    <value>菲律宾</value>
+  </data>
+  <data name="PK.Text">
+    <value>巴基斯坦</value>
+  </data>
+  <data name="PL.Text">
+    <value>波兰</value>
+  </data>
+  <data name="PM.Text">
+    <value>圣皮埃尔和密克隆群岛</value>
+  </data>
+  <data name="PN.Text">
+    <value>皮特凯恩群岛</value>
+  </data>
+  <data name="PR.Text">
+    <value>波多黎各</value>
+  </data>
+  <data name="PS.Text">
+    <value>巴勒斯坦领土</value>
+  </data>
+  <data name="PT.Text">
+    <value>葡萄牙</value>
+  </data>
+  <data name="PW.Text">
+    <value>帕劳</value>
+  </data>
+  <data name="PY.Text">
+    <value>巴拉圭</value>
+  </data>
+  <data name="QA.Text">
+    <value>卡塔尔</value>
+  </data>
+  <data name="QO.Text">
+    <value>大洋洲边远群岛</value>
+  </data>
+  <data name="RE.Text">
+    <value>留尼汪</value>
+  </data>
+  <data name="RO.Text">
+    <value>罗马尼亚</value>
+  </data>
+  <data name="RS.Text">
+    <value>塞尔维亚</value>
+  </data>
+  <data name="RU.Text">
+    <value>俄罗斯</value>
+  </data>
+  <data name="RW.Text">
+    <value>卢旺达</value>
+  </data>
+  <data name="SA.Text">
+    <value>沙特阿拉伯</value>
+  </data>
+  <data name="SB.Text">
+    <value>所罗门群岛</value>
+  </data>
+  <data name="SC.Text">
+    <value>塞舌尔</value>
+  </data>
+  <data name="SD.Text">
+    <value>苏丹</value>
+  </data>
+  <data name="SE.Text">
+    <value>瑞典</value>
+  </data>
+  <data name="SG.Text">
+    <value>新加坡</value>
+  </data>
+  <data name="SH.Text">
+    <value>圣赫勒拿</value>
+  </data>
+  <data name="SI.Text">
+    <value>斯洛文尼亚</value>
+  </data>
+  <data name="SJ.Text">
+    <value>斯瓦尔巴和扬马延</value>
+  </data>
+  <data name="SK.Text">
+    <value>斯洛伐克</value>
+  </data>
+  <data name="SL.Text">
+    <value>塞拉利昂</value>
+  </data>
+  <data name="SM.Text">
+    <value>圣马力诺</value>
+  </data>
+  <data name="SN.Text">
+    <value>塞内加尔</value>
+  </data>
+  <data name="SO.Text">
+    <value>索马里</value>
+  </data>
+  <data name="SR.Text">
+    <value>苏里南</value>
+  </data>
+  <data name="ST.Text">
+    <value>圣多美和普林西比</value>
+  </data>
+  <data name="SV.Text">
+    <value>萨尔瓦多</value>
+  </data>
+  <data name="SY.Text">
+    <value>叙利亚</value>
+  </data>
+  <data name="SZ.Text">
+    <value>斯威士兰</value>
+  </data>
+  <data name="TA.Text">
+    <value>特里斯坦-达库尼亚群岛</value>
+  </data>
+  <data name="TC.Text">
+    <value>特克斯和凯科斯群岛</value>
+  </data>
+  <data name="TD.Text">
+    <value>乍得</value>
+  </data>
+  <data name="TF.Text">
+    <value>法属南部领地</value>
+  </data>
+  <data name="TG.Text">
+    <value>多哥</value>
+  </data>
+  <data name="TH.Text">
+    <value>泰国</value>
+  </data>
+  <data name="TJ.Text">
+    <value>塔吉克斯坦</value>
+  </data>
+  <data name="TK.Text">
+    <value>托克劳</value>
+  </data>
+  <data name="TL.Text">
+    <value>东帝汶</value>
+  </data>
+  <data name="TM.Text">
+    <value>土库曼斯坦</value>
+  </data>
+  <data name="TN.Text">
+    <value>突尼斯</value>
+  </data>
+  <data name="TO.Text">
+    <value>汤加</value>
+  </data>
+  <data name="TR.Text">
+    <value>土耳其</value>
+  </data>
+  <data name="TT.Text">
+    <value>特立尼达和多巴哥</value>
+  </data>
+  <data name="TV.Text">
+    <value>图瓦卢</value>
+  </data>
+  <data name="TW.Text">
+    <value>台湾</value>
+  </data>
+  <data name="TZ.Text">
+    <value>坦桑尼亚</value>
+  </data>
+  <data name="UA.Text">
+    <value>乌克兰</value>
+  </data>
+  <data name="UG.Text">
+    <value>乌干达</value>
+  </data>
+  <data name="UM.Text">
+    <value>美国本土外小岛屿</value>
+  </data>
+  <data name="US.Text">
+    <value>美国</value>
+  </data>
+  <data name="UY.Text">
+    <value>乌拉圭</value>
+  </data>
+  <data name="UZ.Text">
+    <value>乌兹别克斯坦</value>
+  </data>
+  <data name="VA.Text">
+    <value>梵蒂冈</value>
+  </data>
+  <data name="VC.Text">
+    <value>圣文森特和格林纳丁斯</value>
+  </data>
+  <data name="VE.Text">
+    <value>委内瑞拉</value>
+  </data>
+  <data name="VG.Text">
+    <value>英属维尔京群岛</value>
+  </data>
+  <data name="VI.Text">
+    <value>美属维尔京群岛</value>
+  </data>
+  <data name="VN.Text">
+    <value>越南</value>
+  </data>
+  <data name="VU.Text">
+    <value>瓦努阿图</value>
+  </data>
+  <data name="WF.Text">
+    <value>瓦利斯和富图纳</value>
+  </data>
+  <data name="WS.Text">
+    <value>萨摩亚</value>
+  </data>
+  <data name="YE.Text">
+    <value>也门</value>
+  </data>
+  <data name="YT.Text">
+    <value>马约特</value>
+  </data>
+  <data name="ZA.Text">
+    <value>南非</value>
+  </data>
+  <data name="ZM.Text">
+    <value>赞比亚</value>
+  </data>
+  <data name="ZW.Text">
+    <value>津巴布韦</value>
+  </data>
+  <data name="ZZ.Text">
+    <value>未知地区</value>
+  </data>
+</root>
