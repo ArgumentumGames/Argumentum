@@ -715,28 +715,28 @@
     <value xml:space="preserve">Habilitar SSL</value>
   </data>
   <data name="plSSLEnforced.Help">
-    <value xml:space="preserve">Quando esta opção está establecida, as páginas não marcadas como Seguras não serán accesívels com SSL ( HTTPS )</value>
+    <value xml:space="preserve">Marque esta opção para que as páginas marcadas como não seguras não possam ser acessadas por HTTPS e sejam sempre redirecionadas para HTTP.</value>
   </data>
   <data name="plSSLEnforced.Text">
-    <value xml:space="preserve">Forzar SSL</value>
+    <value xml:space="preserve">Modo misto</value>
   </data>
   <data name="plSSLOffload.Help">
-    <value xml:space="preserve">Entre o nome da cabecera HTTP que se deve comprobar para saber si foi utilizado um balanceador de red para o procesamiento de SSL (SSL Offloading)</value>
+    <value xml:space="preserve">Defina o nome do cabeçalho HTTP que será verificado para saber se um balanceador de rede usou o SSL Offload.</value>
   </data>
   <data name="plSSLOffload.Text">
-    <value xml:space="preserve">Valor de cabecera SSL Offloading</value>
+    <value xml:space="preserve">Valor do cabeçalho de SSL Offload</value>
   </data>
   <data name="plSSLURL.Help">
-    <value xml:space="preserve">Opcionalmente pode especificar uma URL que será usada para as conexões seguras para este sitio. Isto somente é necessário si não tem um certificado SSL instalado para a URL estándar do portal. Por ejemplo si utiliza uma conta de alojamiento que le suministra um certificado SSL compartido.</value>
+    <value xml:space="preserve">Opcionalmente, especifique uma URL para ser usada nas conexões seguras deste site. Isso só é necessário se você não tiver um certificado SSL instalado para a URL padrão do site. Um exemplo é uma conta de hospedagem compartilhada em que o provedor oferece uma URL SSL compartilhada.</value>
   </data>
   <data name="plSSLURL.Text">
     <value xml:space="preserve">URL SSL</value>
   </data>
   <data name="plSTDURL.Help">
-    <value xml:space="preserve">Si especifica uma URL SSL necessitará indicar uma direção estándar URL para conexões não seguras.</value>
+    <value xml:space="preserve">Se uma URL SSL for especificada acima, especifique a URL padrão para as conexões não seguras.</value>
   </data>
   <data name="plSTDURL.Text">
-    <value xml:space="preserve">URL estándar</value>
+    <value xml:space="preserve">URL padrão</value>
   </data>
   <data name="plSubnet.Help">
     <value xml:space="preserve">A máscara de red se combinará com a primera IP para calcular o rango de IPs a filtrar.</value>
@@ -960,14 +960,41 @@
   <data name="SingleIP.Text">
     <value xml:space="preserve">IP única</value>
   </data>
-  <data name="SslSettingsError.Text">
-    <value xml:space="preserve">Não foi podido atualizar a configuração SSL. Vuelva a intentarlo.</value>
+    <data name="SslAdvanced.Help">
+    <value xml:space="preserve">Neste modo, seu site exibirá páginas seguras e não seguras, conforme a configuração de cada página. Observe que você tem [NumberOfNonSecureTabs] páginas não seguras neste site.</value>
+  </data>
+  <data name="SslAdvanced.Text">
+    <value xml:space="preserve">Avançado</value>
+  </data>
+  <data name="SslOff.Help">
+    <value xml:space="preserve">Use esta opção quando não houver um certificado SSL instalado no servidor.</value>
+  </data>
+  <data name="SslOff.Text">
+    <value xml:space="preserve">Desativado</value>
+  </data>
+  <data name="SslOn.Help">
+    <value xml:space="preserve">Use este modo para exibir todo o conteúdo de forma segura.</value>
+  </data>
+  <data name="SslOn.Text">
+    <value xml:space="preserve">Ativado</value>
+  </data>
+  <data name="SslSetAllPagesSecure.Completed">
+    <value xml:space="preserve">Todas as páginas do site foram definidas como seguras.</value>
+  </data>
+  <data name="SslSetAllPagesSecure.Confirm">
+    <value xml:space="preserve">Deseja definir todas as páginas deste site para que sejam acessíveis apenas por https?</value>
+  </data>
+  <data name="SslSetAllPagesSecure.Text">
+    <value xml:space="preserve">Definir todas as páginas como seguras</value>
+  </data>
+<data name="SslSettingsError.Text">
+    <value xml:space="preserve">Não foi possível atualizar a configuração SSL. Tente novamente mais tarde.</value>
   </data>
   <data name="SslSettingsRestoreWarning.Text">
-    <value xml:space="preserve">Está seguro que quer cancelar os cambios?</value>
+    <value xml:space="preserve">Tem certeza de que deseja cancelar as alterações?</value>
   </data>
   <data name="SslSettingsUpdateSuccess.Text">
-    <value xml:space="preserve">foi actualizado a configuração SSL.</value>
+    <value xml:space="preserve">A configuração SSL foi atualizada.</value>
   </data>
   <data name="Standard.Text">
     <value xml:space="preserve">Estándar</value>
