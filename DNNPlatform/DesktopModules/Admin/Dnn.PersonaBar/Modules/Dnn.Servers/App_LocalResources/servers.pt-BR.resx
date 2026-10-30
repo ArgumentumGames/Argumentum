@@ -55,10 +55,10 @@
     <value xml:space="preserve">Plataforma de software:</value>
   </data>
   <data name="EmailSentMessage.Text">
-    <value xml:space="preserve">foi enviado o email desde {0} a {1}</value>
+    <value xml:space="preserve">E-mail enviado com sucesso de {0} para {1}</value>
   </data>
   <data name="EmailTest.Text">
-    <value xml:space="preserve">Prueba de configuração SMTP</value>
+    <value xml:space="preserve">Testar configurações SMTP</value>
   </data>
   <data name="errorMessageClearingCache.Text">
     <value xml:space="preserve">foi producido um error ao limpar a cache.</value>
@@ -82,7 +82,7 @@
     <value xml:space="preserve">foi producido um error ao cargar a pestaña de rendimiento.</value>
   </data>
   <data name="errorMessageLoadingSmtpServerTab.Text">
-    <value xml:space="preserve">foi producido um error ao cargar a pestaña do servidor SMTP.</value>
+    <value xml:space="preserve">Erro ao carregar a guia do servidor SMTP</value>
   </data>
   <data name="errorMessageLoadingWebTab.Text">
     <value xml:space="preserve">foi producido um error ao cargar a pestaña web.</value>
@@ -94,10 +94,10 @@
     <value xml:space="preserve">foi producido um error ao guardar a configuração de rendimiento.</value>
   </data>
   <data name="errorMessageSendingTestEmail.Text">
-    <value xml:space="preserve">foi producido um error ao enviar o email de prueba.</value>
+    <value xml:space="preserve">Ocorreu um erro ao tentar enviar o e-mail de teste</value>
   </data>
   <data name="errorMessageUpdatingSmtpServerTab.Text">
-    <value xml:space="preserve">foi producido um error ao guardar a configuração do servidor SMTP.</value>
+    <value xml:space="preserve">Erro ao atualizar as configurações do servidor SMTP</value>
   </data>
   <data name="FileName.Text">
     <value xml:space="preserve">Nome de Arquivo</value>
@@ -368,40 +368,40 @@ Está seguro que quer incrementar o número de versão do portal?</value>
     <value xml:space="preserve">Producto:</value>
   </data>
   <data name="plSMTPAuthentication.Help">
-    <value xml:space="preserve">Escriba o método de autenticação do servidor SMTP. O valor padrão é anónimo.</value>
+    <value xml:space="preserve">Informe o método de autenticação do servidor SMTP. O padrão é Anônimo.</value>
   </data>
   <data name="plSMTPAuthentication.Text">
     <value xml:space="preserve">Autenticação SMTP:</value>
   </data>
   <data name="plSMTPEnableSSL.Help">
-    <value xml:space="preserve">Usado pelos servicios SMTP que requieren conexión segura (usualmente não é necessário)</value>
+    <value xml:space="preserve">Usado para serviços SMTP que exigem conexão segura. Em geral, essa configuração não é necessária.</value>
   </data>
   <data name="plSMTPEnableSSL.Text">
     <value xml:space="preserve">Activar SSL para SMTP:</value>
   </data>
   <data name="plSMTPMode.Help">
-    <value xml:space="preserve">O modo Sistema utiliza os valors configurados pela aplicação. O modo Sitio le permite especificar su propio servidor SMTP, puerto e método de autenticação.</value>
+    <value xml:space="preserve">O modo Host usa todas as configurações SMTP definidas no nível da aplicação. O modo Site permite que você selecione seu próprio servidor SMTP, porta e método de autenticação.</value>
   </data>
   <data name="plSMTPMode.Text">
     <value xml:space="preserve">Modo SMTP:</value>
   </data>
   <data name="plSMTPPassword.Help">
-    <value xml:space="preserve">Introduzca a contrasenha do servidor SMTP</value>
+    <value xml:space="preserve">Informe a senha do servidor SMTP. Deixe em branco para não alterá-la.</value>
   </data>
   <data name="plSMTPPassword.Text">
-    <value xml:space="preserve">Contrasenha SMTP:</value>
+    <value xml:space="preserve">Senha SMTP:</value>
   </data>
   <data name="plSMTPServer.Help">
-    <value xml:space="preserve">Introduzca a direção e puerto do servidor SMTP que se utilizará para enviar emails desde este sitio.</value>
+    <value xml:space="preserve">Informe o nome (endereço) e a porta do servidor SMTP que será usado para enviar e-mails deste site.</value>
   </data>
   <data name="plSMTPServer.Text">
-    <value xml:space="preserve">Servidor SMTP e puerto:</value>
+    <value xml:space="preserve">Servidor SMTP e porta:</value>
   </data>
   <data name="plSMTPUsername.Help">
-    <value xml:space="preserve">Introduzca o usuário de autenticação do SMTP.</value>
+    <value xml:space="preserve">Informe o nome de usuário do servidor SMTP.</value>
   </data>
   <data name="plSMTPUsername.Text">
-    <value xml:space="preserve">Usuario SMTP:</value>
+    <value xml:space="preserve">Usuário SMTP:</value>
   </data>
   <data name="plVersion.Help">
     <value xml:space="preserve">A versão de esta aplicação.</value>
@@ -482,7 +482,7 @@ Está seguro que quer incrementar o número de versão do portal?</value>
     <value xml:space="preserve">Tamaño</value>
   </data>
   <data name="SMTPAnonymous.Text">
-    <value xml:space="preserve">Anónimo</value>
+    <value xml:space="preserve">Anônimo</value>
   </data>
   <data name="SMTPBasic.Text">
     <value xml:space="preserve">Básico</value>
