@@ -18,8 +18,12 @@ namespace Argumentum.AssetConverter.Tests
 	/// et <b>3 clés absentes du neutre sont restaurées</b> : le fichier pt-BR
 	/// n'en portait que 123 là où le neutre en a 126 — <c>Actions.Header</c>,
 	/// <c>Prompt_RoleFound.Text</c> et <c>RoleUpdated.SystemRoleError</c>
-	/// n'existaient pas du tout, donc ces trois messages s'affichaient en
-	/// anglais. Une cellule vide reste une cellule absente pour l'utilisateur.
+	/// n'existaient pas du tout. <b>Deux des trois s'affichaient donc en
+	/// anglais</b> (<c>Prompt_RoleFound</c>, <c>RoleUpdated.SystemRoleError</c>) ;
+	/// la troisième, <c>Actions.Header</c>, porte une valeur <b>vide au neutre
+	/// comme en es-ES</b> — sa restauration achète la <b>parité de clés</b>, pas
+	/// un affichage. Une clé absente reste une clé absente, même quand sa valeur
+	/// est vide.
 	/// </para>
 	/// <para>
 	/// Terminologie : <b>« função » pour Role</b> — et non « rol ». Le corpus
