@@ -1,0 +1,783 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AC.Text">
+    <value>جزيرة أسينشيون</value>
+  </data>
+  <data name="AD.Text">
+    <value>أندورا</value>
+  </data>
+  <data name="AE.Text">
+    <value>الإمارات العربية المتحدة</value>
+  </data>
+  <data name="AF.Text">
+    <value>أفغانستان</value>
+  </data>
+  <data name="AG.Text">
+    <value>أنتيغوا وبربودا</value>
+  </data>
+  <data name="AI.Text">
+    <value>أنغويلا</value>
+  </data>
+  <data name="AL.Text">
+    <value>ألبانيا</value>
+  </data>
+  <data name="AM.Text">
+    <value>أرمينيا</value>
+  </data>
+  <data name="AN.Text">
+    <value>جزر الأنتيل الهولندية</value>
+  </data>
+  <data name="AO.Text">
+    <value>أنغولا</value>
+  </data>
+  <data name="AQ.Text">
+    <value>أنتاركتيكا</value>
+  </data>
+  <data name="AR.Text">
+    <value>الأرجنتين</value>
+  </data>
+  <data name="AS.Text">
+    <value>ساموا الأمريكية</value>
+  </data>
+  <data name="AT.Text">
+    <value>النمسا</value>
+  </data>
+  <data name="AU.Text">
+    <value>أستراليا</value>
+  </data>
+  <data name="AW.Text">
+    <value>أروبا</value>
+  </data>
+  <data name="AX.Text">
+    <value>جزر آلاند</value>
+  </data>
+  <data name="AZ.Text">
+    <value>أذربيجان</value>
+  </data>
+  <data name="BA.Text">
+    <value>البوسنة والهرسك</value>
+  </data>
+  <data name="BB.Text">
+    <value>بربادوس</value>
+  </data>
+  <data name="BD.Text">
+    <value>بنغلاديش</value>
+  </data>
+  <data name="BE.Text">
+    <value>بلجيكا</value>
+  </data>
+  <data name="BF.Text">
+    <value>بوركينا فاسو</value>
+  </data>
+  <data name="BG.Text">
+    <value>بلغاريا</value>
+  </data>
+  <data name="BH.Text">
+    <value>البحرين</value>
+  </data>
+  <data name="BI.Text">
+    <value>بوروندي</value>
+  </data>
+  <data name="BJ.Text">
+    <value>بنين</value>
+  </data>
+  <data name="BL.Text">
+    <value>سان بارتليمي</value>
+  </data>
+  <data name="BM.Text">
+    <value>برمودا</value>
+  </data>
+  <data name="BN.Text">
+    <value>بروناي</value>
+  </data>
+  <data name="BO.Text">
+    <value>بوليفيا</value>
+  </data>
+  <data name="BR.Text">
+    <value>البرازيل</value>
+  </data>
+  <data name="BS.Text">
+    <value>جزر البهاما</value>
+  </data>
+  <data name="BT.Text">
+    <value>بوتان</value>
+  </data>
+  <data name="BV.Text">
+    <value>جزيرة بوفيه</value>
+  </data>
+  <data name="BW.Text">
+    <value>بوتسوانا</value>
+  </data>
+  <data name="BY.Text">
+    <value>بيلاروس</value>
+  </data>
+  <data name="BZ.Text">
+    <value>بليز</value>
+  </data>
+  <data name="CA.Text">
+    <value>كندا</value>
+  </data>
+  <data name="CC.Text">
+    <value>جزر كوكوس (كيلينغ)</value>
+  </data>
+  <data name="CD.Text">
+    <value>الكونغو - كينشاسا</value>
+  </data>
+  <data name="CF.Text">
+    <value>جمهورية أفريقيا الوسطى</value>
+  </data>
+  <data name="CG.Text">
+    <value>الكونغو - برازافيل</value>
+  </data>
+  <data name="CH.Text">
+    <value>سويسرا</value>
+  </data>
+  <data name="CI.Text">
+    <value>ساحل العاج</value>
+  </data>
+  <data name="CK.Text">
+    <value>جزر كوك</value>
+  </data>
+  <data name="CL.Text">
+    <value>تشيلي</value>
+  </data>
+  <data name="CM.Text">
+    <value>الكاميرون</value>
+  </data>
+  <data name="CN.Text">
+    <value>الصين</value>
+  </data>
+  <data name="CO.Text">
+    <value>كولومبيا</value>
+  </data>
+  <data name="CP.Text">
+    <value>جزيرة كليبيرتون</value>
+  </data>
+  <data name="CR.Text">
+    <value>كوستاريكا</value>
+  </data>
+  <data name="CS.Text">
+    <value>صربيا والجبل الأسود</value>
+  </data>
+  <data name="CU.Text">
+    <value>كوبا</value>
+  </data>
+  <data name="CV.Text">
+    <value>الرأس الأخضر</value>
+  </data>
+  <data name="CX.Text">
+    <value>جزيرة كريسماس</value>
+  </data>
+  <data name="CY.Text">
+    <value>قبرص</value>
+  </data>
+  <data name="CZ.Text">
+    <value>التشيك</value>
+  </data>
+  <data name="DE.Text">
+    <value>ألمانيا</value>
+  </data>
+  <data name="DG.Text">
+    <value>دييغو غارسيا</value>
+  </data>
+  <data name="DJ.Text">
+    <value>جيبوتي</value>
+  </data>
+  <data name="DK.Text">
+    <value>الدانمرك</value>
+  </data>
+  <data name="DM.Text">
+    <value>دومينيكا</value>
+  </data>
+  <data name="DO.Text">
+    <value>جمهورية الدومينيكان</value>
+  </data>
+  <data name="DZ.Text">
+    <value>الجزائر</value>
+  </data>
+  <data name="EA.Text">
+    <value>سيوتا وميليلا</value>
+  </data>
+  <data name="EC.Text">
+    <value>الإكوادور</value>
+  </data>
+  <data name="EE.Text">
+    <value>إستونيا</value>
+  </data>
+  <data name="EG.Text">
+    <value>مصر</value>
+  </data>
+  <data name="EH.Text">
+    <value>الصحراء الغربية</value>
+  </data>
+  <data name="ER.Text">
+    <value>إريتريا</value>
+  </data>
+  <data name="ES.Text">
+    <value>إسبانيا</value>
+  </data>
+  <data name="ET.Text">
+    <value>إثيوبيا</value>
+  </data>
+  <data name="EU.Text">
+    <value>الاتحاد الأوروبي</value>
+  </data>
+  <data name="FI.Text">
+    <value>فنلندا</value>
+  </data>
+  <data name="FJ.Text">
+    <value>فيجي</value>
+  </data>
+  <data name="FK.Text">
+    <value>جزر فوكلاند</value>
+  </data>
+  <data name="FM.Text">
+    <value>ميكرونيزيا</value>
+  </data>
+  <data name="FO.Text">
+    <value>جزر فارو</value>
+  </data>
+  <data name="FR.Text">
+    <value>فرنسا</value>
+  </data>
+  <data name="GA.Text">
+    <value>الغابون</value>
+  </data>
+  <data name="GB.Text">
+    <value>المملكة المتحدة</value>
+  </data>
+  <data name="GD.Text">
+    <value>غرينادا</value>
+  </data>
+  <data name="GE.Text">
+    <value>جورجيا</value>
+  </data>
+  <data name="GF.Text">
+    <value>غويانا الفرنسية</value>
+  </data>
+  <data name="GG.Text">
+    <value>غيرنزي</value>
+  </data>
+  <data name="GH.Text">
+    <value>غانا</value>
+  </data>
+  <data name="GI.Text">
+    <value>جبل طارق</value>
+  </data>
+  <data name="GL.Text">
+    <value>غرينلاند</value>
+  </data>
+  <data name="GM.Text">
+    <value>غامبيا</value>
+  </data>
+  <data name="GN.Text">
+    <value>غينيا</value>
+  </data>
+  <data name="GP.Text">
+    <value>غوادلوب</value>
+  </data>
+  <data name="GQ.Text">
+    <value>غينيا الاستوائية</value>
+  </data>
+  <data name="GR.Text">
+    <value>اليونان</value>
+  </data>
+  <data name="GS.Text">
+    <value>جورجيا الجنوبية وجزر ساندويتش الجنوبية</value>
+  </data>
+  <data name="GT.Text">
+    <value>غواتيمالا</value>
+  </data>
+  <data name="GU.Text">
+    <value>غوام</value>
+  </data>
+  <data name="GW.Text">
+    <value>غينيا بيساو</value>
+  </data>
+  <data name="GY.Text">
+    <value>غيانا</value>
+  </data>
+  <data name="HK.Text">
+    <value>هونغ كونغ الصينية (منطقة إدارية خاصة)</value>
+  </data>
+  <data name="HM.Text">
+    <value>جزيرة هيرد وجزر ماكدونالد</value>
+  </data>
+  <data name="HN.Text">
+    <value>هندوراس</value>
+  </data>
+  <data name="HR.Text">
+    <value>كرواتيا</value>
+  </data>
+  <data name="HT.Text">
+    <value>هايتي</value>
+  </data>
+  <data name="HU.Text">
+    <value>هنغاريا</value>
+  </data>
+  <data name="IC.Text">
+    <value>جزر الكناري</value>
+  </data>
+  <data name="ID.Text">
+    <value>إندونيسيا</value>
+  </data>
+  <data name="IE.Text">
+    <value>أيرلندا</value>
+  </data>
+  <data name="IL.Text">
+    <value>إسرائيل</value>
+  </data>
+  <data name="IM.Text">
+    <value>جزيرة مان</value>
+  </data>
+  <data name="IN.Text">
+    <value>الهند</value>
+  </data>
+  <data name="IO.Text">
+    <value>الإقليم البريطاني في المحيط الهندي</value>
+  </data>
+  <data name="IQ.Text">
+    <value>العراق</value>
+  </data>
+  <data name="IR.Text">
+    <value>إيران</value>
+  </data>
+  <data name="IS.Text">
+    <value>آيسلندا</value>
+  </data>
+  <data name="IT.Text">
+    <value>إيطاليا</value>
+  </data>
+  <data name="JE.Text">
+    <value>جيرسي</value>
+  </data>
+  <data name="JM.Text">
+    <value>جامايكا</value>
+  </data>
+  <data name="JO.Text">
+    <value>الأردن</value>
+  </data>
+  <data name="JP.Text">
+    <value>اليابان</value>
+  </data>
+  <data name="KE.Text">
+    <value>كينيا</value>
+  </data>
+  <data name="KG.Text">
+    <value>قيرغيزستان</value>
+  </data>
+  <data name="KH.Text">
+    <value>كمبوديا</value>
+  </data>
+  <data name="KI.Text">
+    <value>كيريباتي</value>
+  </data>
+  <data name="KM.Text">
+    <value>جزر القمر</value>
+  </data>
+  <data name="KN.Text">
+    <value>سانت كيتس ونيفيس</value>
+  </data>
+  <data name="KP.Text">
+    <value>كوريا الشمالية</value>
+  </data>
+  <data name="KR.Text">
+    <value>كوريا الجنوبية</value>
+  </data>
+  <data name="KW.Text">
+    <value>الكويت</value>
+  </data>
+  <data name="KY.Text">
+    <value>جزر كايمان</value>
+  </data>
+  <data name="KZ.Text">
+    <value>كازاخستان</value>
+  </data>
+  <data name="LA.Text">
+    <value>لاوس</value>
+  </data>
+  <data name="LB.Text">
+    <value>لبنان</value>
+  </data>
+  <data name="LC.Text">
+    <value>سانت لوسيا</value>
+  </data>
+  <data name="LI.Text">
+    <value>ليختنشتاين</value>
+  </data>
+  <data name="LK.Text">
+    <value>سريلانكا</value>
+  </data>
+  <data name="LR.Text">
+    <value>ليبيريا</value>
+  </data>
+  <data name="LS.Text">
+    <value>ليسوتو</value>
+  </data>
+  <data name="LT.Text">
+    <value>ليتوانيا</value>
+  </data>
+  <data name="LU.Text">
+    <value>لوكسمبورغ</value>
+  </data>
+  <data name="LV.Text">
+    <value>لاتفيا</value>
+  </data>
+  <data name="LY.Text">
+    <value>ليبيا</value>
+  </data>
+  <data name="MA.Text">
+    <value>المغرب</value>
+  </data>
+  <data name="MC.Text">
+    <value>موناكو</value>
+  </data>
+  <data name="MD.Text">
+    <value>مولدوفا</value>
+  </data>
+  <data name="ME.Text">
+    <value>الجبل الأسود</value>
+  </data>
+  <data name="MF.Text">
+    <value>سان مارتن</value>
+  </data>
+  <data name="MG.Text">
+    <value>مدغشقر</value>
+  </data>
+  <data name="MH.Text">
+    <value>جزر مارشال</value>
+  </data>
+  <data name="MK.Text">
+    <value>مقدونيا الشمالية</value>
+  </data>
+  <data name="ML.Text">
+    <value>مالي</value>
+  </data>
+  <data name="MM.Text">
+    <value>ميانمار (بورما)</value>
+  </data>
+  <data name="MN.Text">
+    <value>منغوليا</value>
+  </data>
+  <data name="MO.Text">
+    <value>منطقة ماكاو الإدارية الخاصة</value>
+  </data>
+  <data name="MP.Text">
+    <value>جزر ماريانا الشمالية</value>
+  </data>
+  <data name="MQ.Text">
+    <value>جزر المارتينيك</value>
+  </data>
+  <data name="MR.Text">
+    <value>موريتانيا</value>
+  </data>
+  <data name="MS.Text">
+    <value>مونتسرات</value>
+  </data>
+  <data name="MT.Text">
+    <value>مالطا</value>
+  </data>
+  <data name="MU.Text">
+    <value>موريشيوس</value>
+  </data>
+  <data name="MV.Text">
+    <value>جزر المالديف</value>
+  </data>
+  <data name="MW.Text">
+    <value>ملاوي</value>
+  </data>
+  <data name="MX.Text">
+    <value>المكسيك</value>
+  </data>
+  <data name="MY.Text">
+    <value>ماليزيا</value>
+  </data>
+  <data name="MZ.Text">
+    <value>موزمبيق</value>
+  </data>
+  <data name="NA.Text">
+    <value>ناميبيا</value>
+  </data>
+  <data name="NC.Text">
+    <value>كاليدونيا الجديدة</value>
+  </data>
+  <data name="NE.Text">
+    <value>النيجر</value>
+  </data>
+  <data name="NF.Text">
+    <value>جزيرة نورفولك</value>
+  </data>
+  <data name="NG.Text">
+    <value>نيجيريا</value>
+  </data>
+  <data name="NI.Text">
+    <value>نيكاراغوا</value>
+  </data>
+  <data name="NL.Text">
+    <value>هولندا</value>
+  </data>
+  <data name="NO.Text">
+    <value>النرويج</value>
+  </data>
+  <data name="NP.Text">
+    <value>نيبال</value>
+  </data>
+  <data name="NR.Text">
+    <value>ناورو</value>
+  </data>
+  <data name="NU.Text">
+    <value>نيوي</value>
+  </data>
+  <data name="NZ.Text">
+    <value>نيوزيلندا</value>
+  </data>
+  <data name="OM.Text">
+    <value>عُمان</value>
+  </data>
+  <data name="PA.Text">
+    <value>بنما</value>
+  </data>
+  <data name="PE.Text">
+    <value>بيرو</value>
+  </data>
+  <data name="PF.Text">
+    <value>بولينيزيا الفرنسية</value>
+  </data>
+  <data name="PG.Text">
+    <value>بابوا غينيا الجديدة</value>
+  </data>
+  <data name="PH.Text">
+    <value>الفلبين</value>
+  </data>
+  <data name="PK.Text">
+    <value>باكستان</value>
+  </data>
+  <data name="PL.Text">
+    <value>بولندا</value>
+  </data>
+  <data name="PM.Text">
+    <value>سان بيير ومكويلون</value>
+  </data>
+  <data name="PN.Text">
+    <value>جزر بيتكيرن</value>
+  </data>
+  <data name="PR.Text">
+    <value>بورتوريكو</value>
+  </data>
+  <data name="PS.Text">
+    <value>الأراضي الفلسطينية</value>
+  </data>
+  <data name="PT.Text">
+    <value>البرتغال</value>
+  </data>
+  <data name="PW.Text">
+    <value>بالاو</value>
+  </data>
+  <data name="PY.Text">
+    <value>باراغواي</value>
+  </data>
+  <data name="QA.Text">
+    <value>قطر</value>
+  </data>
+  <data name="QO.Text">
+    <value>أوقيانوسيا النائية</value>
+  </data>
+  <data name="RE.Text">
+    <value>روينيون</value>
+  </data>
+  <data name="RO.Text">
+    <value>رومانيا</value>
+  </data>
+  <data name="RS.Text">
+    <value>صربيا</value>
+  </data>
+  <data name="RU.Text">
+    <value>روسيا</value>
+  </data>
+  <data name="RW.Text">
+    <value>رواندا</value>
+  </data>
+  <data name="SA.Text">
+    <value>المملكة العربية السعودية</value>
+  </data>
+  <data name="SB.Text">
+    <value>جزر سليمان</value>
+  </data>
+  <data name="SC.Text">
+    <value>سيشل</value>
+  </data>
+  <data name="SD.Text">
+    <value>السودان</value>
+  </data>
+  <data name="SE.Text">
+    <value>السويد</value>
+  </data>
+  <data name="SG.Text">
+    <value>سنغافورة</value>
+  </data>
+  <data name="SH.Text">
+    <value>سانت هيلينا</value>
+  </data>
+  <data name="SI.Text">
+    <value>سلوفينيا</value>
+  </data>
+  <data name="SJ.Text">
+    <value>سفالبارد وجان ماين</value>
+  </data>
+  <data name="SK.Text">
+    <value>سلوفاكيا</value>
+  </data>
+  <data name="SL.Text">
+    <value>سيراليون</value>
+  </data>
+  <data name="SM.Text">
+    <value>سان مارينو</value>
+  </data>
+  <data name="SN.Text">
+    <value>السنغال</value>
+  </data>
+  <data name="SO.Text">
+    <value>الصومال</value>
+  </data>
+  <data name="SR.Text">
+    <value>سورينام</value>
+  </data>
+  <data name="ST.Text">
+    <value>ساو تومي وبرينسيبي</value>
+  </data>
+  <data name="SV.Text">
+    <value>السلفادور</value>
+  </data>
+  <data name="SY.Text">
+    <value>سوريا</value>
+  </data>
+  <data name="SZ.Text">
+    <value>إسواتيني</value>
+  </data>
+  <data name="TA.Text">
+    <value>تريستان دا كونا</value>
+  </data>
+  <data name="TC.Text">
+    <value>جزر توركس وكايكوس</value>
+  </data>
+  <data name="TD.Text">
+    <value>تشاد</value>
+  </data>
+  <data name="TF.Text">
+    <value>الأقاليم الجنوبية الفرنسية</value>
+  </data>
+  <data name="TG.Text">
+    <value>توغو</value>
+  </data>
+  <data name="TH.Text">
+    <value>تايلاند</value>
+  </data>
+  <data name="TJ.Text">
+    <value>طاجيكستان</value>
+  </data>
+  <data name="TK.Text">
+    <value>توكيلاو</value>
+  </data>
+  <data name="TL.Text">
+    <value>تيمور - ليشتي</value>
+  </data>
+  <data name="TM.Text">
+    <value>تركمانستان</value>
+  </data>
+  <data name="TN.Text">
+    <value>تونس</value>
+  </data>
+  <data name="TO.Text">
+    <value>تونغا</value>
+  </data>
+  <data name="TR.Text">
+    <value>تركيا</value>
+  </data>
+  <data name="TT.Text">
+    <value>ترينيداد وتوباغو</value>
+  </data>
+  <data name="TV.Text">
+    <value>توفالو</value>
+  </data>
+  <data name="TW.Text">
+    <value>تايوان</value>
+  </data>
+  <data name="TZ.Text">
+    <value>تنزانيا</value>
+  </data>
+  <data name="UA.Text">
+    <value>أوكرانيا</value>
+  </data>
+  <data name="UG.Text">
+    <value>أوغندا</value>
+  </data>
+  <data name="UM.Text">
+    <value>جزر الولايات المتحدة النائية</value>
+  </data>
+  <data name="US.Text">
+    <value>الولايات المتحدة</value>
+  </data>
+  <data name="UY.Text">
+    <value>أورغواي</value>
+  </data>
+  <data name="UZ.Text">
+    <value>أوزبكستان</value>
+  </data>
+  <data name="VA.Text">
+    <value>الفاتيكان</value>
+  </data>
+  <data name="VC.Text">
+    <value>سانت فنسنت وجزر غرينادين</value>
+  </data>
+  <data name="VE.Text">
+    <value>فنزويلا</value>
+  </data>
+  <data name="VG.Text">
+    <value>جزر فيرجن البريطانية</value>
+  </data>
+  <data name="VI.Text">
+    <value>جزر فيرجن الأمريكية</value>
+  </data>
+  <data name="VN.Text">
+    <value>فيتنام</value>
+  </data>
+  <data name="VU.Text">
+    <value>فانواتو</value>
+  </data>
+  <data name="WF.Text">
+    <value>جزر والس وفوتونا</value>
+  </data>
+  <data name="WS.Text">
+    <value>ساموا</value>
+  </data>
+  <data name="YE.Text">
+    <value>اليمن</value>
+  </data>
+  <data name="YT.Text">
+    <value>مايوت</value>
+  </data>
+  <data name="ZA.Text">
+    <value>جنوب أفريقيا</value>
+  </data>
+  <data name="ZM.Text">
+    <value>زامبيا</value>
+  </data>
+  <data name="ZW.Text">
+    <value>زيمبابوي</value>
+  </data>
+  <data name="ZZ.Text">
+    <value>منطقة غير معروفة</value>
+  </data>
+</root>
