@@ -126,6 +126,12 @@ de ce qui est livré :
 | `ChromeTier1LocalizationContractTests.ScopeIsThirteenKeysAndPartialFilesContainNoExtraKeys` | épingle **exactement 3 clés** dans `SharedResources.{zh,ar,fa}.resx` | **non touchée** : ce pack ne modifie pas `SharedResources` (§1) |
 | `DnnLegalZhArFaGuardTests.Resx_Carries_Only_The_Two_Legal_Keys_Preserved` | épingle **exactement 2 clés** dans `GlobalResources.{zh,ar,fa}.resx` | assouplie **pour zh-CN seul** : les deux clés juridiques doivent toujours être présentes, mais le fichier zh-CN porte désormais le chrome Tier 2. **ar-SA et fa-IR restent épinglés à 2 clés** — ils ne sont pas touchés par ce PR |
 
+> **Note de traçabilité (lot 2, ar-SA)** : la garde d'intégrité `DnnZhCnResxIntegrityGuardTests`
+> a été **renommée** `DnnAgrCoreResxIntegrityGuardTests` et **paramétrée par culture** lors du lot
+> ar-SA (zh-CN + ar-SA, mêmes assertions) ; l'assouplissement ci-dessus a été étendu à ar-SA au
+> même moment, fa-IR restant épinglé. Le présent document décrit le lot 1 au moment de sa
+> livraison — voir `458-item9bis-ar-sa-pack.md` pour le lot 2.
+
 Toutes les autres assertions de ces deux gardes (valeur exacte des 13/2 clés, `xml:space`,
 séquence de balises, miroir RTL, multiset de chiffres) **continuent de s'appliquer et passent** —
 c'est mesuré, pas supposé : la suite complète tourne avec 0 échec.

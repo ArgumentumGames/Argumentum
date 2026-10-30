@@ -1,5 +1,110 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -7,143 +112,885 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MESSAGE_PORTAL_TERMS.Text" xml:space="preserve">
-    <value xml:space="preserve">&lt;div style=&quot;padding: 0px 20px 0px 15px&quot;&gt;&lt;p align=&quot;right&quot;&gt;&lt;em&gt;هذه الصفحة ترجمة للنص الأصلي الفرنسي؛ وفي حال وجود أي تعارض، يُعتدّ بالنص الفرنسي.&lt;/em&gt;&lt;/p&gt;
-	&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;الإشعارات القانونية:&lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;&lt;strong&gt;تعريف الموقع&lt;br&gt; &lt;/strong&gt;تُقدَّم المعلومات التالية بموجب المادة 6 من القانون رقم 2004-575 المؤرخ في 21 يونيو 2004 بشأن&lt;br&gt; &lt;b&gt;الثقة في الاقتصاد الرقمي&lt;/b&gt;&lt;br&gt; (&lt;a target=&quot;_blank&quot; href=&quot;https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000801164&quot;&gt;الاطلاع على نص القانون النافذ&lt;/a&gt;) &lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;&lt;b&gt;يتولى نشر الموقع الإلكتروني «Argumentum»:&lt;/b&gt;&lt;/p&gt;
-&lt;div style=&quot;text-align:center;border:1px solid black;&quot;&gt;&lt;em&gt;ARGUMENTUM SAS, 5 B RUE MARTEL, 75010 PARIS 10&lt;/em&gt;&lt;br&gt;
-		SIREN: 922020276&lt;br&gt;&lt;/div&gt;
-&lt;p align=&quot;center&quot;&gt;&lt;strong&gt;ويُشار إليه فيما يلي بـ«ناشر الموقع»&lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;
-(مالك الموقع «Argumentum» ومشغّله)&lt;br&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;&lt;b&gt;يتولى استضافة الموقع الإلكتروني «Argumentum»:&lt;/b&gt;&lt;/p&gt;
-&lt;div style=&quot;text-align:center;border:1px solid black;&quot;&gt;&lt;em&gt;MY INTELLIGENCE AGENCY, 5 B RUE MARTEL, 75010 PARIS 10&lt;br&gt;&lt;/em&gt;&lt;/div&gt;
-&lt;p align=&quot;center&quot;&gt;&lt;b&gt;ويُشار إليه فيما يلي بـ«المستضيف»&lt;/b&gt;&lt;/p&gt;
-	&lt;p align=&quot;center&quot;&gt;&amp;nbsp;&lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;قبول الشروط المتعلقة بالاستخدام &lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;يملك ناشر الموقع هذا الموقع ويشغّله. ويعني استخدامك له قبولك جميع البنود والشروط والإشعارات الواردة والمذكورة في هذه الوثيقة («شروط الاستخدام»). ولا تسري شروط الاستخدام العامة هذه إلا على الموقع وعلى خدمات هذا الموقع، ولا تسري على أي موقع تابع لطرف ثالث. &lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;إذا كنت لا تقبل شروط الاستخدام هذه، فيُرجى عدم استخدام هذا الموقع. ونحتفظ بالحق، وفقًا لتقديرنا، في تحديث شروط الاستخدام أو تعديلها. وبناءً على ذلك، يُرجى مراجعتها بانتظام لمعرفة ما إذا كانت قد عُدِّلت. ونعدّك قابلًا لأي تعديل على شروط الاستخدام إذا واصلت استخدام الموقع بعد نشر ذلك التعديل. &lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;حقوق الملكية &lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;تقرّ وتوافق على أن جميع المحتويات والعناصر المتاحة على هذا الموقع - ولا سيما، على سبيل المثال لا الحصر، البطاقات والبرامج والبرمجيات وقواعد البيانات والنصوص والصور والأفلام والأصوات والموسيقى والعرض والشعارات - محمية بموجب حقوق المؤلف وحقوق حماية قواعد البيانات والعلامات التجارية المسجلة وعلامات الخدمة وبراءات الاختراع والأسرار الصناعية أو غيرها من الحقوق والقوانين المتعلقة بالملكية. والمحتويات والعناصر المتاحة إما مملوكة لناشر الموقع وخاضعة لسيطرته حصرًا، وإما مستخدمة بموجب ترخيص. وتسري شروط الاستخدام هذه على جميع المحتويات وجميع العناصر المتاحة على الموقع. &lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;وفضلًا عن ذلك، عند استخدامك محتوى وعناصر مرخّصة من طرف ثالث، قد تكون ملزمًا باتفاقيات الترخيص الخاصة بذلك الطرف. وعند تلقيك معلومات صادرة عن طرف ثالث، تُبيَّن لك هويته بواسطة شعار أو بأي إشارة أخرى. &lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;منح ترخيص محدود &lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;قد تتضمن المحتويات والعناصر المتاحة على هذا الموقع إشعارات ملكية أخرى، أو قد تصف منتجات أو خدمات أو عمليات أو تقنيات مملوكة لأطراف ثالثة. ولا يجوز اعتبار أي جزء من هذه الوثيقة ترخيصًا ممنوحًا للمستخدم على أي حق من حقوق المؤلف أو علامة تجارية أو براءة اختراع أو أي حق آخر من حقوق الملكية الفكرية يملكه طرف ثالث، باستثناء حق الاستخدام المحدود المبيَّن صراحةً أدناه: &lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;في إطار ترخيص غير حصري وغير قابل للتحويل، يُصرَّح لك بطباعة نسخة واحدة من عناصر هذا الموقع أو محتواه أو تنزيلها على حاسوب شخصي واحد لاستخدامك الشخصي وغير التجاري، شريطة أن تحافظ على جميع إشعارات حقوق المؤلف والملكية دون مساس. ويجوز لك استخدام الموقع لأغراض مشروعة ولاستخدامك الشخصي، ولا يجوز بأي حال من الأحوال استخدامه بقصد الربح أو لغرض تجاري. وإذا رغبت في الحصول على معلومات لتحرير مقال عن الموقع، فإن ملفًا صحفيًا متاح بناءً على طلبك، ولا يجوز نشر سوى الصور الواردة في هذا الملف الصحفي. &lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;تتعهد بألا تقوم مطلقًا ببيع هذا المحتوى أو هذه العناصر أو التنازل عنها بموجب ترخيص أو تأجيرها أو توزيعها أو نقلها أو نسخها أو استنساخها أو عرضها علنًا أو أدائها علنًا أو نشرها أو تكييفها أو تحريرها أو تعديلها أو فك تجميعها أو تفكيكها، وبألا تقوم مطلقًا بإعادة بناء منطق البرنامج، ولا بإنشاء أي عمل مشتق من هذا المحتوى أو هذه العناصر. وتتعهد بألا تستخدم مطلقًا المحتوى أو العناصر المتاحة على الموقع لأي غرض تجاري كان. ويُحظر الاستخراج المنهجي للبيانات أو غيرها من هذا الموقع لإنشاء أو إعداد مجموعة أو تجميع أو قاعدة بيانات أو دليل، بصورة مباشرة أو غير مباشرة، دون إذن كتابي من ناشر الموقع. وعلاوة على ذلك، يُحظر استخدام المحتوى أو العناصر لأي غرض غير مصرَّح به صراحةً في شروط الاستخدام هذه. ولا تتمتع بأي حق ملكية على المحتوى والعناصر ومشتقاتها، ويُعدّ ناشر الموقع المالك الوحيد لهذه الحقوق. &lt;/p&gt;
-&lt;p&gt;&lt;b&gt;يترتب على عدم الالتزام بأي بند من بنود شروط الاستخدام هذه إنهاء هذا الترخيص تلقائيًا ودون إشعار مسبق من ناشر الموقع.&lt;/b&gt;&lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;استخدام هذا الموقع&lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;لا يُصرَّح لك باستخدام الموقع أو خدماته لأغراض غير مشروعة، مثل نشر أي عنصر أو معلومة غير مشروعة أو توزيعها أو بثها، ولا سيما: &lt;/p&gt;
-&lt;ul align=&quot;right&quot; type=&quot;disc&quot;&gt;
-&lt;li&gt;
-&lt;p align=&quot;right&quot;&gt;أي بيانات خاصة مملوكة لطرف ثالث، ولا سيما العلامات التجارية المسجلة والبيانات المحمية بحقوق المؤلف (عدا تلك التي تملك ترخيصًا بشأنها)؛ &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
-&lt;ul align=&quot;right&quot; type=&quot;disc&quot;&gt;
-&lt;li&gt;
-&lt;p align=&quot;right&quot;&gt;أي محتوى خاطئ أو تشهيري أو فاحش أو عنصري أو محرّض على الكراهية؛ &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
-&lt;ul align=&quot;right&quot; type=&quot;disc&quot;&gt;
-&lt;li&gt;
-&lt;p align=&quot;right&quot;&gt;أي محتوى يهدف إلى مضايقة طرف ثالث أو المساس بحياته الخاصة؛ &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
-&lt;ul align=&quot;right&quot; type=&quot;disc&quot;&gt;
-&lt;li&gt;
-&lt;p align=&quot;right&quot;&gt;أي محتوى يحرّض على الجريمة أو الانتحار أو التمييز أو الكراهية أو العنف، لدوافع تتعلق بالاختلاف العرقي أو الإثني أو الجنسية؛ &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
-&lt;ul align=&quot;right&quot; type=&quot;disc&quot;&gt;
-&lt;li&gt;
-&lt;p align=&quot;right&quot;&gt;أي محتوى من شأنه الإضرار بالمستخدمين القاصرين أو المساس بالكرامة الإنسانية؛ &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
-&lt;ul align=&quot;right&quot; type=&quot;disc&quot;&gt;
-&lt;li&gt;
-&lt;p align=&quot;right&quot;&gt;أي محتوى يمجّد النازية أو ينكر المحرقة. &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
-&lt;p align=&quot;justify&quot;&gt;وعلاوة على ذلك، لا يجوز لك استخدام الموقع بغرض جمع المعلومات الشخصية، ولا سيما عناوين الإنترنت، المتعلقة بمستخدمين آخرين للموقع. &lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;استبعاد الضمان &lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;جميع المحتويات خاصة بموقع Argumentum. وقد يتضمن هذا الموقع معلومات غير دقيقة من الناحية التقنية أو أخطاء مطبعية. ويحتفظ ناشر الموقع بالحق في تعديل أو حذف أي معلومة أو محتوى يظهر على هذا الموقع دون إشعار مسبق. ولا يقدّم ناشر الموقع ولا مزوّدو المحتوى التابعون له ولا الشركة المقدّمة لخدمات الإنترنت التي تتيح تشغيل تطبيق الويب هذا أي ضمان بشأن محتواها. ويتحمّل المستخدم جميع مخاطر الاستخدام. ولا تقع أي مسؤولية على ناشر الموقع أو مزوّديه أو مقدّمي الخدمات التابعين له فيما يتعلق باستخدام المعلومات الواردة في هذا الموقع. &lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;تُقدَّم المحتويات والعناصر المتاحة على هذا الموقع دون أي ضمان، ضمنيًا كان أو صريحًا. ولا يجوز أن ينشأ أي ضمان عن أي رأي أو معلومة يقدّمها ناشر الموقع أو المستضيف أو شركاتهما الأم أو التابعة أو موظفو كل منهم. ولا يضمن ناشر الموقع ولا المستضيف ولا شركاتهما الأم أو التابعة دقة محتوى الموقع وعناصره وموثوقيتها وصحتها؛ ولا إتاحة الموقع في كل مكان وفي كل وقت؛ ولا خلو المحتوى والمعلومات والبرمجيات وأي عنصر يمكن الوصول إليه من خلال الموقع من الفيروسات أو أي عنصر ضار آخر. &lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;br&gt;&lt;strong&gt;تحديد المسؤولية &lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;&lt;br&gt;لا يتحمّل ناشر الموقع أو المستضيف أو شركاتهما الأم أو التابعة أو شركاؤهما أو فروعهما أو مانحو الترخيص لهما بأي حال من الأحوال المسؤولية عن أي أضرار مباشرة أو غير مباشرة - بما في ذلك، على سبيل المثال لا الحصر، &lt;st1:personname productid=&quot;LA PERTE DE&quot; w:st=&quot;on&quot;&gt;خسارة&lt;/st1:personname&gt; الأرباح أو العملاء أو البيانات - الناجمة عن استخدام الموقع أو تعذّر استخدامه أو استخدام المحتوى والعناصر التي يتيح الوصول إليها أو تعذّر استخدامها. ويسري هذا التحديد في المسؤولية التقصيرية والتعاقدية على حد سواء، حتى لو أُبلغ ناشر الموقع أو المستضيف بإمكانية وقوع مثل هذا الضرر. &lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;التعويض&lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;تتعهد، بناءً على طلب ناشر الموقع، بتعويضه وتعويض شركاته الأم أو التابعة وشركائه وفروعه ومانحي الترخيص له، وكذلك موظفيهم ومتعاقديهم ووكلائهم ومديريهم، في حال مساءلتهم، وكذلك عن المطالبات والنفقات (بما فيها أتعاب المحاماة) الناشئة عن استخدامك للموقع أو عن أخطائك في استخدامه. وتوافق، قدر الإمكان، على التعاون مع ناشر الموقع في الدفاع عنه في إطار أي قضية يتعين عليك فيها تقديم تعويض. &lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;مواقع الأطراف الثالثة &lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;لا تشكّل أي إشارة إلى منتجات أو خدمات أو عمليات أو روابط تشعبية لأطراف ثالثة أو أي معلومات أخرى، من خلال ذكر اسم علامة تجارية أو علامة تجارية مسجلة أو جهة مصنّعة أو مورّد أو غير ذلك، موافقةً أو كفالةً أو توصيةً من ناشر الموقع أو شركاته الأم أو التابعة أو شركائه أو فروعه أو مانحي الترخيص له، ولا تعني ذلك ضمنًا. وفضلًا عن ذلك، قد يتيح لك الموقع الاتصال بمواقع إلكترونية أخرى، ولا سيما عن طريق عمليات البحث الآلية، غير أن هذه المواقع لا تخضع لسيطرة ناشر الموقع. وتقرّ بأن ناشر الموقع غير مسؤول عن دقة مواقع الأطراف الثالثة أو احترامها لحقوق المؤلف أو مشروعيتها أو لياقتها أو أي جانب آخر من جوانبها. &lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;&lt;b&gt;يستلزم أي رابط تشعبي صادر عن موقع تابع لطرف ثالث ويؤدي إلى هذا الموقع الحصول على موافقة مسبقة من ناشر الموقع، ولا سيما الروابط المؤدية إلى صفحة غير الصفحة الرئيسية. ويمكن تقديم طلب هذه الموافقة بإرسال رسالة باستخدام نموذج الاتصال المتاح على هذا الموقع. &lt;/b&gt; &lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;سياسة الخصوصية &lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;يلتزم ناشر الموقع مبدئيًا بحماية الحياة الخاصة لمستخدميه. ويتوفر لك في تذييل كل صفحة من صفحات الموقع رابط إلى سياسة الخصوصية (بيان الخصوصية) التي وضعها ناشر الموقع. يُرجى الاطلاع عليها. &lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;منح المستخدم ترخيصًا محدودًا لناشر الموقع&lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;بنشرك أو تقديمك أو إرسالك بأي طريقة أخرى معلومات أو محتوى أو عناصر إلى هذا الموقع، بما في ذلك، على سبيل المثال لا الحصر، الملاحظات (التغذية الراجعة) والبيانات والإجابات والأسئلة والتعليقات والاقتراحات والمشاريع والأفكار وغيرها، &lt;/p&gt;
-&lt;ol type=&quot;1&quot;&gt;
-&lt;li&gt;
-&lt;p align=&quot;justify&quot;&gt;فإنك، باستثناء الحالات التي ينص عليها القانون، تأذن لناشر الموقع وشركاته الأم والتابعة وشركائه وفروعه والمرخَّص لهم باستخدام المعلومات أو المحتوى أو العناصر واستنساخها وعرضها وأدائها وتكييفها وتعديلها وتوزيعها والعمل على توزيعها والترويج لها بأي شكل كان، وفي أي مكان كان، ولأي غرض كان، تجاريًا أو غير تجاري، دون فرض أي قيد ودون انتظار أي مقابل، و 
-&lt;/p&gt;&lt;/li&gt;&lt;li&gt;
-&lt;p align=&quot;justify&quot;&gt;تضمن وتقرّ بأنك تملك جميع الحقوق المتعلقة بالمحتوى أو تسيطر عليها بأي طريقة أخرى، وبأن البث العلني لمحتواك واستخدامه من قِبل ناشر الموقع لن يمسّ حقوق أي طرف ثالث ولن ينتهكها. &lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;موافقة المستخدم على التحقق والإفصاح &lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;لا يقع على عاتق ناشر الموقع أي التزام بالتحقق من المعلومات الموجودة على موقعه أو المرسلة إليه. ومع ذلك، يوافق كل شخص يستخدم الموقع على أن يتحقق ناشر الموقع دوريًا من محتواه، (1) للامتثال لأي قانون أو لائحة أو طلب صادر عن السلطات؛ (2) لتشغيل الموقع على النحو الصحيح أو لحماية نفسه وحماية مستخدميه؛ أو (3) لأي سبب آخر، وفقًا لتقديره المطلق. ويحتفظ ناشر الموقع بالحق في تعديل أي معلومة موجودة على الموقع أو مرسلة إليه أو رفضها أو حذفها إذا رأى ناشر الموقع، وفقًا لتقديره المطلق، أن هذه المعلومة غير مقبولة أو مخالفة لشروط الاستخدام هذه. &lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;باستثناء الحالات التي ينص عليها القانون، إذا قدّم أحد مستخدمي بيانات هذا الموقع إلى هذا الموقع معلومات، بما في ذلك، على سبيل المثال لا الحصر، البيانات والإجابات والأسئلة والتعليقات والاقتراحات والمشاريع والأفكار وغيرها، فإن هذه المعلومات تُعدّ غير سرية، ولا يلتزم ناشر الموقع بحمايتها من الإفصاح. &lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;إجراءات المطالبة المتعلقة بالتقليد&lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;إذا كنت تعتقد أن عملك قد نُسخ وأنه متاح على هذا الموقع بطريقة تشكّل تقليدًا، فيمكنك إبلاغ ناشر الموقع بذلك من خلال نموذج الاتصال المتاح على هذا الموقع. &lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;القانون الواجب التطبيق والمحكمة المختصة &lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;تخضع شروط الاستخدام هذه للقوانين الفرنسية وتُفسَّر وفقًا لها. وقد تتضمن اتفاقيات الترخيص التي تحكم استخدامك لعناصر تابعة لأطراف ثالثة على الموقع أحكامًا تستلزم اللجوء إلى محاكم أجنبية لتسوية النزاعات المتعلقة بهذه الاتفاقيات. &lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;قابلية الفصل والاتفاق الكامل&lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;ما لم يُنص على خلاف ذلك في هذه الوثيقة، يشكّل هذا الاتفاق كامل العقد المبرم بينك وبين ناشر الموقع فيما يتعلق بالموقع، ويلغي ويحل محل جميع المراسلات والعروض السابقة أو المتزامنة (سواء كانت شفهية أو كتابية أو إلكترونية) المتعلقة بهذا الموقع بينك وبين ناشر الموقع أو شركاته الأم أو التابعة أو مانحي الترخيص له. وإذا اعتُبر أي جزء من شروط الاستخدام هذه باطلًا أو غير قابل للتطبيق، وجب تفسيره وفقًا للقانون النافذ على نحو يحدد على أفضل وجه النوايا الأصلية للأطراف، ويظل باقي هذه الشروط ساريًا. &lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;&lt;strong&gt;الإنهاء &lt;/strong&gt;&lt;br&gt;&lt;br&gt;يحتفظ ناشر الموقع بالحق، وفقًا لتقديره المطلق، في إنهاء وصولك إلى هذا الموقع كليًا أو جزئيًا، بإشعار مسبق أو دونه. &lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;التصدير &lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;تتعهد بألا تصدّر مطلقًا إلى أي وجهة كانت أي جزء من المحتوى أو العناصر المقدّمة إليك، أو أي منتج يُحصل عليه مباشرةً من هذا المحتوى أو هذه العناصر، إلا إذا كان ذلك متوافقًا مع القوانين واللوائح والقواعد النافذة في مجال التصدير. &lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;إشعار حقوق المؤلف والعلامات التجارية المسجلة &lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;Argumentum. جميع الحقوق محفوظة. &lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;يُحظر حظرًا باتًا استنساخ أي عنصر من عناصر هذا الموقع أو أي محتوى آخر موجود على الموقع بخلاف ما هو منصوص عليه صراحةً في هذه الوثيقة. ويخضع استخدام جميع المستندات والرسومات المرتبطة بها، وكذلك أي عنصر آخر مقدَّم على هذا الموقع، لشروط الاستخدام الواردة أعلاه. &lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;العلامات التجارية المسجلة&lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;إن اسم Argumentum وشعاره، وكذلك جميع أسماء المنتجات والخدمات والرسوم والعلامات والشعارات النصية المتعلقة به، هي علامات تجارية مسجلة أو علامات خدمة أو علامات تجارية مسجلة لناشر الموقع، ولا يجوز استخدامها لأغراض تجارية دون موافقته الكتابية المسبقة. وجميع العلامات الأخرى للمنتجات والخدمات الواردة في هذا الموقع هي علامات تجارية مسجلة مملوكة لأصحابها المعنيين. &lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;إشعارات أخرى بشأن حقوق المؤلف &lt;/strong&gt; &lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;تتعلق الإشعارات الأخرى بشأن حقوق المؤلف بالبيانات الصادرة عن أطراف ثالثة والمستخدمة في إنشاء خدمة الإنترنت هذه. &lt;/p&gt;
-&lt;p align=&quot;right&quot;&gt;&lt;strong&gt;الاتصال &lt;/strong&gt;&lt;/p&gt;
-&lt;p align=&quot;justify&quot;&gt;للحصول على مزيد من المعلومات المتعلقة بالمسائل القانونية الواردة في شروط الاستخدام هذه، أو بأي أسئلة أو مشكلات تتعلق بهذه الخدمة، يُرجى المراسلة باستخدام نموذج الاتصال المتاح لك على هذا الموقع. &lt;/p&gt;&lt;/div&gt;</value>
+  <data name="SyndicateModule.Action" xml:space="preserve">
+    <value>التغذية</value>
   </data>
-  <data name="MESSAGE_PORTAL_PRIVACY.Text" xml:space="preserve">
-    <value xml:space="preserve">&lt;div style=&quot;padding: 0px 20px 0px 15px&quot;&gt;&lt;p align=&quot;right&quot;&gt;&lt;em&gt;هذه الصفحة ترجمة للنص الأصلي الفرنسي؛ وفي حال وجود أي تعارض، يُعتدّ بالنص الفرنسي.&lt;/em&gt;&lt;/p&gt;&lt;h1 align=&quot;center&quot;&gt;
+<data name="ExportModule.Action" xml:space="preserve">
+    <value>تصدير المحتوى</value>
+  </data>
+<data name="ImportModule.Action" xml:space="preserve">
+    <value>استيراد المحتوى</value>
+  </data>
+<data name="OnlineHelp.Action" xml:space="preserve">
+    <value>تعليمات عبر الإنترنت</value>
+  </data>
+<data name="ModuleHelp.Action" xml:space="preserve">
+    <value>تعليمات</value>
+  </data>
+<data name="ModuleSettings.Action" xml:space="preserve">
+    <value>الإعدادات</value>
+  </data>
+<data name="DeleteModule.Action" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+<data name="PrintModule.Action" xml:space="preserve">
+    <value>طباعة</value>
+  </data>
+<data name="ClearCache.Action" xml:space="preserve">
+    <value>تحديث</value>
+  </data>
+<data name="MoveTop.Action" xml:space="preserve">
+    <value>إلى الأعلى</value>
+  </data>
+<data name="MoveUp.Action" xml:space="preserve">
+    <value>أعلى</value>
+  </data>
+<data name="MoveDown.Action" xml:space="preserve">
+    <value>أسفل</value>
+  </data>
+<data name="MoveBottom.Action" xml:space="preserve">
+    <value>إلى الأسفل</value>
+  </data>
+<data name="MovePane.Action" xml:space="preserve">
+    <value>إلى</value>
+  </data>
+<data name="MoveRoot.Action" xml:space="preserve">
+    <value>نقل</value>
+  </data>
+<data name="//Admin.String" xml:space="preserve">
+    <value>الإدارة</value>
+  </data>
+<data name="//Host.String" xml:space="preserve">
+    <value>المضيف</value>
+  </data>
+<data name="BannerType.Banner.String" xml:space="preserve">
+    <value>لافتة</value>
+  </data>
+<data name="BannerType.MicroButton.String" xml:space="preserve">
+    <value>زر مصغّر</value>
+  </data>
+<data name="BannerType.Button.String" xml:space="preserve">
+    <value>زر</value>
+  </data>
+<data name="BannerType.Block.String" xml:space="preserve">
+    <value>كتلة</value>
+  </data>
+<data name="BannerType.Skyscraper.String" xml:space="preserve">
+    <value>لافتة عمودية</value>
+  </data>
+<data name="BannerType.Text.String" xml:space="preserve">
+    <value>نص</value>
+  </data>
+<data name="BannerType.Script.String" xml:space="preserve">
+    <value>برنامج نصي</value>
+  </data>
+<data name="View.Permission" xml:space="preserve">
+    <value>عرض الوحدة</value>
+  </data>
+<data name="Edit.Permission" xml:space="preserve">
+    <value>تحرير الوحدة</value>
+  </data>
+<data name="View Tab.Permission" xml:space="preserve">
+    <value>عرض الصفحة</value>
+  </data>
+<data name="Edit Tab.Permission" xml:space="preserve">
+    <value>تحرير الصفحة</value>
+  </data>
+<data name="View Folder.Permission" xml:space="preserve">
+    <value>فتح الملفات في المجلد</value>
+  </data>
+<data name="Write to Folder.Permission" xml:space="preserve">
+    <value>الكتابة إلى المجلد</value>
+  </data>
+<data name="Browse Folder.Permission" xml:space="preserve">
+    <value>استعراض الملفات في المجلد</value>
+  </data>
+<data name="EMAIL_SMTP_TEST_SUBJECT.Text" xml:space="preserve">
+    <value>[Host:HostTitle] اختبار إعداد SMTP من [Portal:PortalName]</value>
+  </data>
+<data name="MESSAGE_PORTAL_PRIVACY.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;div style="padding: 0px 20px 0px 15px"&gt;&lt;p align="right"&gt;&lt;em&gt;هذه الصفحة ترجمة للنص الأصلي الفرنسي؛ وفي حال وجود أي تعارض، يُعتدّ بالنص الفرنسي.&lt;/em&gt;&lt;/p&gt;&lt;h1 align="center"&gt;
 بيان الخصوصية الخاص بالموقع:&lt;/h1&gt;
-	&lt;h1 align=&quot;center&quot;&gt;
-[Portal:PortalName]&lt;/h1&gt;&lt;p align=&quot;right&quot;&gt;
-	&lt;a name=&quot;AAAA&quot;&gt;&lt;b&gt;تاريخ آخر تحديث&lt;/b&gt;&lt;/a&gt;: 30/01/2005&lt;/p&gt;
-	&lt;p align=&quot;justify&quot;&gt;
+	&lt;h1 align="center"&gt;
+[Portal:PortalName]&lt;/h1&gt;&lt;p align="right"&gt;
+	&lt;a name="AAAA"&gt;&lt;b&gt;تاريخ آخر تحديث&lt;/b&gt;&lt;/a&gt;: 30/01/2005&lt;/p&gt;
+	&lt;p align="justify"&gt;
 	نحرص على الموقع [Portal:PortalName] (المشار إليه فيما يلي بـ«الموقع») على حماية بياناتكم الشخصية. ويسري بيان الخصوصية هذا على هذا الموقع فحسب؛ ولا يجوز أن يسري على مواقع أخرى، سواء أكانت على الإنترنت أم لا، ولا على منتجات أو خدمات أخرى. وبدخولكم إلى الموقع، فإنكم توافقون على تسجيل معلوماتكم وعلى شروط الاستخدام المبيّنة في بيان الخصوصية هذا. &lt;/p&gt;
-	&lt;h5 style=&quot;padding-top: 2px&quot; align=&quot;right&quot;&gt;
+	&lt;h5 style="padding-top: 2px" align="right"&gt;
 	في هذه الصفحة&lt;/h5&gt;
-	&lt;div align=&quot;right&quot;&gt;
-		&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;margin-top: 7px; margin-bottom: 12px&quot;&gt;&lt;tr valign=&quot;top&quot;&gt;&lt;td class=&quot;onThisPage&quot;&gt;
+	&lt;div align="right"&gt;
+		&lt;table cellpadding="0" cellspacing="0" border="0" style="margin-top: 7px; margin-bottom: 12px"&gt;&lt;tr valign="top"&gt;&lt;td class="onThisPage"&gt;
 		&lt;ul&gt;
 			&lt;li&gt;
-			&lt;p align=&quot;right&quot;&gt;&lt;a href=&quot;#EKAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;جمع معلوماتكم الشخصية&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
+			&lt;p align="right"&gt;&lt;a href="#EKAA"&gt;&lt;font size="2"&gt;جمع معلوماتكم الشخصية&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;
 			&lt;li&gt;
-			&lt;p align=&quot;right&quot;&gt;&lt;a href=&quot;#EJAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;استخدام بياناتكم الشخصية&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
-			&lt;p align=&quot;right&quot;&gt;&lt;a href=&quot;#EIAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;التحكم في معلوماتكم الشخصية&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
-			&lt;p align=&quot;right&quot;&gt;&lt;a href=&quot;#EHAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;الوصول إلى بياناتكم الشخصية&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
-			&lt;p align=&quot;right&quot;&gt;&lt;a href=&quot;#EGAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;أمن معلوماتكم الشخصية&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
-			&lt;p align=&quot;right&quot;&gt;&lt;a href=&quot;#EFAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;حماية المعلومات الشخصية للأطفال&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
-			&lt;p align=&quot;right&quot;&gt;&lt;a href=&quot;#EEAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;ملفات تعريف الارتباط (الكوكيز)&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
-			&lt;p align=&quot;right&quot;&gt;&lt;a href=&quot;#EEAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;تطبيق بيان الخصوصية هذا&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;
-			&lt;p align=&quot;right&quot;&gt;&lt;a href=&quot;#EBAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;التعديلات على بيان الخصوصية هذا&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
-			&lt;p align=&quot;right&quot;&gt;&lt;a href=&quot;#EAAA&quot;&gt;&lt;font size=&quot;2&quot;&gt;التواصل&lt;/font&gt;&lt;/a&gt;&lt;/ul&gt;
+			&lt;p align="right"&gt;&lt;a href="#EJAA"&gt;&lt;font size="2"&gt;استخدام بياناتكم الشخصية&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align="right"&gt;&lt;a href="#EIAA"&gt;&lt;font size="2"&gt;التحكم في معلوماتكم الشخصية&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align="right"&gt;&lt;a href="#EHAA"&gt;&lt;font size="2"&gt;الوصول إلى بياناتكم الشخصية&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align="right"&gt;&lt;a href="#EGAA"&gt;&lt;font size="2"&gt;أمن معلوماتكم الشخصية&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align="right"&gt;&lt;a href="#EFAA"&gt;&lt;font size="2"&gt;حماية المعلومات الشخصية للأطفال&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align="right"&gt;&lt;a href="#EEAA"&gt;&lt;font size="2"&gt;ملفات تعريف الارتباط (الكوكيز)&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align="right"&gt;&lt;a href="#EEAA"&gt;&lt;font size="2"&gt;تطبيق بيان الخصوصية هذا&lt;/font&gt;&lt;/a&gt;&lt;/li&gt;&lt;li&gt;
+			&lt;p align="right"&gt;&lt;a href="#EBAA"&gt;&lt;font size="2"&gt;التعديلات على بيان الخصوصية هذا&lt;/font&gt;&lt;/a&gt;&lt;li&gt;
+			&lt;p align="right"&gt;&lt;a href="#EAAA"&gt;&lt;font size="2"&gt;التواصل&lt;/font&gt;&lt;/a&gt;&lt;/ul&gt;
 			&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;
-	&lt;a name=&quot;EKAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;right&quot;&gt;جمع معلوماتكم الشخصية&lt;/h2&gt;&lt;p align=&quot;justify&quot;&gt;سنطلب منكم معلومات عندما نحتاج إلى بيانات تتيح تحديد هويتكم الشخصية (المعلومات الشخصية) أو بغرض التواصل معكم. وبوجه عام، تكون هذه المعلومات لازمة عندما نقدّم لكم خدمة أو ننفّذ معاملة طلبتموها، كطلب معلومات عن منتجات هذا الموقع وخدماته، أو التسجيل في مسابقة، أو طلب النشرات الإخبارية عبر البريد الإلكتروني، أو الوصول إلى موقع ذي أولوية مقيّد الوصول، أو شراء المنتجات وتسجيلها على هذا الموقع. وقد تشمل المعلومات الشخصية التي نجمعها اسمكم، ووظيفتكم، واسم شركتكم أو منظمتكم، وعنوان بريدكم الإلكتروني المهني، ورقم هاتفكم المهني، وعنوانكم البريدي المهني أو الشخصي، ومعلومات عن وظيفتكم أو عن شركتكم، ومعلومات عن بطاقتكم الائتمانية.  &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;ويجوز للموقع أيضًا جمع معلومات عن زيارتكم، ومنها اسم مزوّد خدمة الإنترنت لديكم وعنوان IP المستخدمَين للدخول إلى الإنترنت، وتاريخ الدخول إلى الموقع ووقته، والصفحات التي تزورونها على الموقع، وعنوان URL للموقع الذي انتقلتم منه إلى موقعنا. وتُخصَّص هذه المعلومات لتحليل الاتجاهات ولإدارة الموقع وتحسينه.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;وتفاديًا لاستيلاء الغير على عنوان بريدكم الإلكتروني أو غيره من المعلومات الشخصية وإساءة استخدامها، نوصيكم بتوخّي الحذر عند استخدام عنوان بريد إلكتروني قائم أو غيره من المعلومات الشخصية في مجموعات النقاش أو المحادثات أو غيرها من المنتديات العامة.&lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
-		&lt;p align=&quot;right&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EJAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;right&quot;&gt;استخدام بياناتكم الشخصية&lt;/h2&gt;&lt;p align=&quot;justify&quot;&gt;تُستخدم المعلومات الشخصية المجموعة على هذا الموقع لتشغيل الموقع ولتمكيننا من تقديم الخدمة لكم أو إتمام المعاملة التي طلبتموها أو أذنتم بها.  &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;وفي إطار هذه الاستخدامات، يجوز لهذا الموقع استخدام المعلومات الشخصية بغرض تقديم خدمة عملاء أكثر فاعلية لكم، ولتحسين الموقع وأي منتج أو خدمة أخرى من منتجات هذا الموقع أو خدماته، ولتيسير تصفّحكم بإعفائكم من إدخال المعلومات ذاتها عدة مرات أو بتكييف الموقع وفق تفضيلاتكم أو اهتماماتكم. وبغية توفير بيئة متّسقة لكم في تفاعلاتكم مع موقعنا، يجوز استخدام المعلومات المجموعة مقترنةً بتلك التي تجمعها خدمات أخرى في موقعنا.&lt;/p&gt;
-	&lt;p align=&quot;justify&quot;&gt;
-	ويجوز لنا استخدام معلوماتكم الشخصية لإرسال معلومات مهمة إليكم عن المنتج أو الخدمة التي تستخدمونها.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;ونقوم بدمج بيانات زيارات الموقع مع بيانات ديموغرافية مجهولة الهوية بغرض إجراء الأبحاث؛ وتُستخدم كميات المعلومات المتحصّل عليها على نحو يتيح لنا تزويدكم بالمحتوى الذي تتوقعونه. وفي بعض المناطق المقيّدة الوصول من موقعنا، سنقوم، بموافقتكم، بدمج بيانات زيارة الموقع مع بياناتكم الشخصية لكي نقدّم لكم محتويات مخصّصة. ومن دون إذنكم، لن نتمكن من تقديم خدمة مخصّصة لكم، ولن نتمكن من دمج بياناتكم الشخصية مع بيانات زيارات الموقع.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt; وعندما تشتركون في نشرة إخبارية أو تُبدون رغبتكم في تلقّي رسائل إلكترونية إعلانية، يجوز لموقعنا استخدام روابط مخصّصة أو غيرها من التقنيات المماثلة لتتبّع الروابط التي تنقرون عليها في الرسائل الإلكترونية. ويجوز لنا ربط هذه المعلومات بمعلوماتكم الشخصية لكي نرسل إليكم رسائل أو معلومات أكثر استهدافًا.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;وتتيح بعض الخدمات على موقعنا للأفراد إمكانية عرض بعض المعلومات الشخصية علنًا، كأن يرغب أحد شركائنا في نشر معلومات الاتصال الخاصة به في إطار الخدمات التي يقدّمها. وتظل المشاركة في مثل هذه الخدمات اختيارية في جميع الأحوال. &lt;/p&gt;
-	&lt;p align=&quot;justify&quot;&gt;ويستعين موقعنا أحيانًا بشركات أخرى لتقديم بعض الخدمات نيابةً عنه. وقد يشمل ذلك على سبيل المثال استضافة المواقع الإلكترونية، وتغليف الجوائز وشحنها وتسليمها، والرد على الأسئلة التي يطرحها العميل بشأن المنتجات والخدمات، أو إرسال معلومات عن منتجاتنا أو عروضنا الخاصة أو غيرها من الخدمات الجديدة. ولن نزوّد هذه الشركات إلا بالمعلومات الشخصية اللازمة لأداء خدمتها. وتلتزم هذه الشركات باحترام سرية هذه المعلومات، ولا يجوز لها بأي حال من الأحوال استخدامها لأي غرض آخر. &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;ولن نُفصح عن معلوماتكم الشخصية إلا إذا اقتضى القانون ذلك، أو إذا اعتقدنا بحسن نية أن ذلك ضروري للامتثال للمراسيم القانونية أو لإجراء قانوني، ولحماية حقوقنا أو ممتلكاتنا والدفاع عنها، وللتصرف في حالات الطوارئ لحماية السلامة الشخصية لموظفينا ومستخدمي الموقع. &lt;/p&gt;
-	&lt;p align=&quot;justify&quot;&gt;ويجوز تخزين المعلومات الشخصية المجموعة على الموقع واستخدامها في فرنسا أو في أي بلد آخر توجد فيه فروعه أو شركاؤه أو وكلاؤه. وباستخدامكم الموقع، فإنكم توافقون على نقل معلوماتكم الشخصية على هذا النحو إلى خارج بلدكم.&lt;/p&gt;
-	&lt;p align=&quot;justify&quot;&gt;ونحن نحترم &lt;a href=&quot;http://www.cnil.fr/index.php?id=301&quot; target=&quot;_new&quot;&gt;&lt;b&gt;قانون 6 يناير 1978&lt;/b&gt;&lt;/a&gt; ونمتثل له (رابط إلى موقع CNIL). &lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
-		&lt;p align=&quot;right&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EIAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;right&quot;&gt;التحكم في معلوماتكم الشخصية&lt;/h2&gt;&lt;p align=&quot;justify&quot;&gt;ما لم يُنصّ على خلاف ذلك في هذا البيان، لن تُنقل المعلومات الشخصية التي تقدّمونها على الموقع إلى خارج فروعه وشركائه دون إذنكم. وكما هو مبيّن في القسم التالي، يمكنكم الوصول إلى معلوماتكم الشخصية واختيار الطريقة التي ترغبون في أن يُتواصل معكم بها.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;ولا يسري بيان الخصوصية هذا والخيارات التي تتخذونها على الموقع بالضرورة على المعلومات الشخصية التي قدّمتموها إلينا في سياق منتجات أو خدمات أخرى مستقلة.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;ويجوز لنا أن نرسل إليكم بانتظام رسائل بريد إلكتروني لإبلاغكم بمشكلات الخدمة الفنية أو المشكلات الأمنية المتعلقة بمنتج أو خدمة طلبتموها، أو لتأكيد استلام طلب منتج أو خدمة. وفي بعض الخدمات المقدّمة على موقعنا، يُعدّ التواصل مع العميل عنصرًا أساسيًا من عناصر الخدمة. ولن يكون بإمكانكم إلغاء اشتراككم في هذه المراسلات البريدية لأنها جزء لا يتجزأ من الخدمة التي اخترتموها.&lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
-		&lt;p align=&quot;right&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EHAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;right&quot;&gt;الوصول إلى بياناتكم الشخصية&lt;/h2&gt;
-	&lt;p align=&quot;right&quot;&gt;
-	يمكنكم تصحيح بياناتكم الشخصية ومعلومات الاتصال الخاصة بكم على هذا الموقع بعد تسجيل دخولكم.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;وقد تجمع بعض الخدمات التي نقدّمها معلومات لا يمكن الوصول إليها عن طريق إعداداتكم الشخصية. غير أنه يمكنكم في هذه الحالة الوصول إلى بياناتكم الشخصية بالتواصل معنا على النحو الموضّح في أسفل هذا البيان، أو عبر وسائل الاتصال الأخرى التي تبيّنها الخدمة. &lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
-		&lt;p align=&quot;right&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EGAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;right&quot;&gt;أمن معلوماتكم الشخصية&lt;/h2&gt;&lt;p align=&quot;justify&quot;&gt;نضمن لكم حماية معلوماتكم الشخصية بصرامة. ونستعين بتقنيات وإجراءات أمنية متنوعة لضمان حماية بياناتكم الشخصية والحيلولة دون الاطلاع عليها أو استخدامها أو الإفصاح عنها دون إذن. فعلى سبيل المثال، نخزّن البيانات التي تقدّمونها إلينا على خوادم مقيّدة الوصول وموجودة في منشآت خاضعة للمراقبة. وفضلًا عن ذلك، عندما ننقل معلومات سرية حساسة عبر الإنترنت (كرقم بطاقة ائتمانية مثلًا)، فإن هذه المعلومات تُحمى بواسطة نظام تشفير مثل بروتوكول SSL (Secure Socket Layer) أو أي تقنيات أخرى تتيح تشفير هذه المعلومات. &lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
-		&lt;p align=&quot;right&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EFAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;right&quot;&gt;حماية المعلومات الشخصية للأطفال&lt;/h2&gt;&lt;p align=&quot;right&quot;&gt;لا يجمع موقعنا عمدًا المعلومات الشخصية للأطفال.&lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
-		&lt;p align=&quot;right&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EEAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;right&quot;&gt;ملفات تعريف الارتباط (الكوكيز) &lt;/h2&gt;
-	&lt;p align=&quot;justify&quot;&gt;تُستخدم ملفات تعريف الارتباط على هذا الموقع لضمان سلامة عملية التسجيل ولتخصيص الموقع. وملف تعريف الارتباط هو ملف نصي صغير يضعه خادم صفحات الويب على القرص الصلب لديكم. ولا يمكن استخدامه لتشغيل برامج أو لإصابة حاسوبكم بالفيروسات. وتُوجَّه ملفات تعريف الارتباط إليكم حصرًا، ولا يمكن قراءتها إلا بواسطة خوادم الويب التابعة للنطاق الذي أرسل إليكم ملف تعريف الارتباط. &lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;ومن أهم الوظائف العملية لملفات تعريف الارتباط توفير وقتكم. فعلى سبيل المثال، إذا خصّصتم صفحة ويب أو تصفّحتم موقعًا ما، فإن ملف تعريف الارتباط سيساعد الموقع على العثور على معلوماتكم الخاصة خلال الزيارات اللاحقة. ويتيح ذلك، على وجه الخصوص، تبسيط عملية تقديم المحتويات التي تهمّكم وتيسير التصفح في الموقع. وعند عودتكم إلى الموقع، يُعاد استخدام المعلومات التي قدّمتموها سابقًا لتمكينكم من استخدام وظائف الموقع التي خصّصتموها بسهولة أكبر.&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;ويجوز لنا أيضًا استخدام وحدات بكسل غير مرئية، المعروفة أيضًا باسم GIF غير المرئية، للمساعدة في زرع ملف تعريف الارتباط. ونستخدم هذه التقنية أداةً لتجميع الإحصاءات المتعلقة باستخدام موقعنا. وتشمل هذه الإحصاءات عدد الزوار الذين نقروا على العناصر الرئيسية (كالروابط أو الرسوم مثلًا) في صفحة ويب أو صفحة مدوّنة أو نشرة إخبارية على موقعنا. وقد نتشارك الإحصاءات المجمّعة مع الشركات الشريكة، غير أننا لا نأذن لشركات أخرى بوضع صور .gif أو ملفات تعريف ارتباط على مواقعنا، إلا في حال وجود مصلحة خاصة مؤقتة لعملائنا (كدمج خدمة من موقع يعتمد على ملفات تعريف ارتباط تابعة لجهات خارجية أو على ملفات .gif شفافة مثلًا).&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;يمكنكم قبول ملفات تعريف الارتباط أو رفضها. وتقبل معظم متصفحات الويب ملفات تعريف الارتباط تلقائيًا، غير أنه يمكنكم تعديل إعدادات متصفحكم لمنعها من الوصول إلى حاسوبكم إن رغبتم في ذلك. وإذا اخترتم رفض ملفات تعريف الارتباط، فقد لا تتمكنون من الاستفادة الكاملة من الوظائف التفاعلية لهذا الموقع أو لغيره من المواقع الإلكترونية التي تزورونها. &lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
-		&lt;p align=&quot;right&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EDAA&quot;&gt;&lt;/a&gt;&lt;a name=&quot;ECAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;right&quot;&gt;تطبيق بيان الخصوصية هذا&lt;/h2&gt;&lt;p align=&quot;right&quot;&gt;إذا كانت لديكم أي أسئلة بشأن هذا البيان، فتواصلوا معنا عبر النموذج الذي نضعه تحت تصرّفكم والذي يمكنكم الوصول إليه بعد تسجيل دخولكم.&lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
-		&lt;p align=&quot;right&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EBAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;right&quot;&gt;التعديلات على بيان الخصوصية هذا&lt;/h2&gt;&lt;p align=&quot;justify&quot;&gt;نقوم من حين لآخر بتحديث بيان الخصوصية هذا. وفي هذه الحالة، نعدّل أيضًا تاريخ «&lt;a href=&quot;#AAAA&quot;&gt;&lt;b&gt;آخر تحديث&lt;/b&gt;&lt;/a&gt;» في أعلى بيان الخصوصية. وفي حال إجراء تعديلات جوهرية على هذا البيان، سنبلغكم بذلك بوضع إشعار ظاهر على الصفحة الرئيسية للموقع أو بإرسال إخطار إليكم مباشرةً. ونشجّعكم على مراجعة بيان الخصوصية هذا بانتظام لتبقوا على اطلاع على كيفية مساعدتنا لكم في حماية المعلومات الشخصية التي نجمعها. ويُعدّ استمراركم في استخدام هذه الخدمة موافقةً منكم على بيان الخصوصية هذا وتحديثاته. &lt;/p&gt;&lt;div style=&quot;margin-top: 3px; margin-bottom: 10px&quot;&gt;
-		&lt;p align=&quot;right&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name=&quot;EAAA&quot;&gt;&lt;/a&gt;&lt;h2 align=&quot;right&quot;&gt;التواصل&lt;/h2&gt;
-	&lt;p align=&quot;justify&quot;&gt;نرحّب بملاحظاتكم بشأن بيان الخصوصية هذا. وإذا رأيتم أن موقعنا لم يلتزم ببيان الخصوصية هذا، فتواصلوا معنا إلكترونيًا أو بالبريد على العنوان الوارد في &lt;a href=&quot;/terms&quot;&gt;&lt;b&gt;شروط الاستخدام&lt;/b&gt;&lt;/a&gt;، وسنبذل كل الوسائل المعقولة لتحديد المشكلة ومعالجتها على وجه السرعة.&lt;/p&gt;
-	&lt;p align=&quot;right&quot;&gt;&lt;a class=&quot;topOfPage&quot; href=&quot;#top&quot;&gt;أعلى الصفحة&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</value>
+	&lt;a name="EKAA"&gt;&lt;/a&gt;&lt;h2 align="right"&gt;جمع معلوماتكم الشخصية&lt;/h2&gt;&lt;p align="justify"&gt;سنطلب منكم معلومات عندما نحتاج إلى بيانات تتيح تحديد هويتكم الشخصية (المعلومات الشخصية) أو بغرض التواصل معكم. وبوجه عام، تكون هذه المعلومات لازمة عندما نقدّم لكم خدمة أو ننفّذ معاملة طلبتموها، كطلب معلومات عن منتجات هذا الموقع وخدماته، أو التسجيل في مسابقة، أو طلب النشرات الإخبارية عبر البريد الإلكتروني، أو الوصول إلى موقع ذي أولوية مقيّد الوصول، أو شراء المنتجات وتسجيلها على هذا الموقع. وقد تشمل المعلومات الشخصية التي نجمعها اسمكم، ووظيفتكم، واسم شركتكم أو منظمتكم، وعنوان بريدكم الإلكتروني المهني، ورقم هاتفكم المهني، وعنوانكم البريدي المهني أو الشخصي، ومعلومات عن وظيفتكم أو عن شركتكم، ومعلومات عن بطاقتكم الائتمانية.  &lt;/p&gt;&lt;p align="justify"&gt;ويجوز للموقع أيضًا جمع معلومات عن زيارتكم، ومنها اسم مزوّد خدمة الإنترنت لديكم وعنوان IP المستخدمَين للدخول إلى الإنترنت، وتاريخ الدخول إلى الموقع ووقته، والصفحات التي تزورونها على الموقع، وعنوان URL للموقع الذي انتقلتم منه إلى موقعنا. وتُخصَّص هذه المعلومات لتحليل الاتجاهات ولإدارة الموقع وتحسينه.&lt;/p&gt;&lt;p align="justify"&gt;وتفاديًا لاستيلاء الغير على عنوان بريدكم الإلكتروني أو غيره من المعلومات الشخصية وإساءة استخدامها، نوصيكم بتوخّي الحذر عند استخدام عنوان بريد إلكتروني قائم أو غيره من المعلومات الشخصية في مجموعات النقاش أو المحادثات أو غيرها من المنتديات العامة.&lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="right"&gt;&lt;a class="topOfPage" href="#top"&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name="EJAA"&gt;&lt;/a&gt;&lt;h2 align="right"&gt;استخدام بياناتكم الشخصية&lt;/h2&gt;&lt;p align="justify"&gt;تُستخدم المعلومات الشخصية المجموعة على هذا الموقع لتشغيل الموقع ولتمكيننا من تقديم الخدمة لكم أو إتمام المعاملة التي طلبتموها أو أذنتم بها.  &lt;/p&gt;&lt;p align="justify"&gt;وفي إطار هذه الاستخدامات، يجوز لهذا الموقع استخدام المعلومات الشخصية بغرض تقديم خدمة عملاء أكثر فاعلية لكم، ولتحسين الموقع وأي منتج أو خدمة أخرى من منتجات هذا الموقع أو خدماته، ولتيسير تصفّحكم بإعفائكم من إدخال المعلومات ذاتها عدة مرات أو بتكييف الموقع وفق تفضيلاتكم أو اهتماماتكم. وبغية توفير بيئة متّسقة لكم في تفاعلاتكم مع موقعنا، يجوز استخدام المعلومات المجموعة مقترنةً بتلك التي تجمعها خدمات أخرى في موقعنا.&lt;/p&gt;
+	&lt;p align="justify"&gt;
+	ويجوز لنا استخدام معلوماتكم الشخصية لإرسال معلومات مهمة إليكم عن المنتج أو الخدمة التي تستخدمونها.&lt;/p&gt;&lt;p align="justify"&gt;ونقوم بدمج بيانات زيارات الموقع مع بيانات ديموغرافية مجهولة الهوية بغرض إجراء الأبحاث؛ وتُستخدم كميات المعلومات المتحصّل عليها على نحو يتيح لنا تزويدكم بالمحتوى الذي تتوقعونه. وفي بعض المناطق المقيّدة الوصول من موقعنا، سنقوم، بموافقتكم، بدمج بيانات زيارة الموقع مع بياناتكم الشخصية لكي نقدّم لكم محتويات مخصّصة. ومن دون إذنكم، لن نتمكن من تقديم خدمة مخصّصة لكم، ولن نتمكن من دمج بياناتكم الشخصية مع بيانات زيارات الموقع.&lt;/p&gt;&lt;p align="justify"&gt; وعندما تشتركون في نشرة إخبارية أو تُبدون رغبتكم في تلقّي رسائل إلكترونية إعلانية، يجوز لموقعنا استخدام روابط مخصّصة أو غيرها من التقنيات المماثلة لتتبّع الروابط التي تنقرون عليها في الرسائل الإلكترونية. ويجوز لنا ربط هذه المعلومات بمعلوماتكم الشخصية لكي نرسل إليكم رسائل أو معلومات أكثر استهدافًا.&lt;/p&gt;&lt;p align="justify"&gt;وتتيح بعض الخدمات على موقعنا للأفراد إمكانية عرض بعض المعلومات الشخصية علنًا، كأن يرغب أحد شركائنا في نشر معلومات الاتصال الخاصة به في إطار الخدمات التي يقدّمها. وتظل المشاركة في مثل هذه الخدمات اختيارية في جميع الأحوال. &lt;/p&gt;
+	&lt;p align="justify"&gt;ويستعين موقعنا أحيانًا بشركات أخرى لتقديم بعض الخدمات نيابةً عنه. وقد يشمل ذلك على سبيل المثال استضافة المواقع الإلكترونية، وتغليف الجوائز وشحنها وتسليمها، والرد على الأسئلة التي يطرحها العميل بشأن المنتجات والخدمات، أو إرسال معلومات عن منتجاتنا أو عروضنا الخاصة أو غيرها من الخدمات الجديدة. ولن نزوّد هذه الشركات إلا بالمعلومات الشخصية اللازمة لأداء خدمتها. وتلتزم هذه الشركات باحترام سرية هذه المعلومات، ولا يجوز لها بأي حال من الأحوال استخدامها لأي غرض آخر. &lt;/p&gt;&lt;p align="justify"&gt;ولن نُفصح عن معلوماتكم الشخصية إلا إذا اقتضى القانون ذلك، أو إذا اعتقدنا بحسن نية أن ذلك ضروري للامتثال للمراسيم القانونية أو لإجراء قانوني، ولحماية حقوقنا أو ممتلكاتنا والدفاع عنها، وللتصرف في حالات الطوارئ لحماية السلامة الشخصية لموظفينا ومستخدمي الموقع. &lt;/p&gt;
+	&lt;p align="justify"&gt;ويجوز تخزين المعلومات الشخصية المجموعة على الموقع واستخدامها في فرنسا أو في أي بلد آخر توجد فيه فروعه أو شركاؤه أو وكلاؤه. وباستخدامكم الموقع، فإنكم توافقون على نقل معلوماتكم الشخصية على هذا النحو إلى خارج بلدكم.&lt;/p&gt;
+	&lt;p align="justify"&gt;ونحن نحترم &lt;a href="http://www.cnil.fr/index.php?id=301" target="_new"&gt;&lt;b&gt;قانون 6 يناير 1978&lt;/b&gt;&lt;/a&gt; ونمتثل له (رابط إلى موقع CNIL). &lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="right"&gt;&lt;a class="topOfPage" href="#top"&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name="EIAA"&gt;&lt;/a&gt;&lt;h2 align="right"&gt;التحكم في معلوماتكم الشخصية&lt;/h2&gt;&lt;p align="justify"&gt;ما لم يُنصّ على خلاف ذلك في هذا البيان، لن تُنقل المعلومات الشخصية التي تقدّمونها على الموقع إلى خارج فروعه وشركائه دون إذنكم. وكما هو مبيّن في القسم التالي، يمكنكم الوصول إلى معلوماتكم الشخصية واختيار الطريقة التي ترغبون في أن يُتواصل معكم بها.&lt;/p&gt;&lt;p align="justify"&gt;ولا يسري بيان الخصوصية هذا والخيارات التي تتخذونها على الموقع بالضرورة على المعلومات الشخصية التي قدّمتموها إلينا في سياق منتجات أو خدمات أخرى مستقلة.&lt;/p&gt;&lt;p align="justify"&gt;ويجوز لنا أن نرسل إليكم بانتظام رسائل بريد إلكتروني لإبلاغكم بمشكلات الخدمة الفنية أو المشكلات الأمنية المتعلقة بمنتج أو خدمة طلبتموها، أو لتأكيد استلام طلب منتج أو خدمة. وفي بعض الخدمات المقدّمة على موقعنا، يُعدّ التواصل مع العميل عنصرًا أساسيًا من عناصر الخدمة. ولن يكون بإمكانكم إلغاء اشتراككم في هذه المراسلات البريدية لأنها جزء لا يتجزأ من الخدمة التي اخترتموها.&lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="right"&gt;&lt;a class="topOfPage" href="#top"&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name="EHAA"&gt;&lt;/a&gt;&lt;h2 align="right"&gt;الوصول إلى بياناتكم الشخصية&lt;/h2&gt;
+	&lt;p align="right"&gt;
+	يمكنكم تصحيح بياناتكم الشخصية ومعلومات الاتصال الخاصة بكم على هذا الموقع بعد تسجيل دخولكم.&lt;/p&gt;&lt;p align="justify"&gt;وقد تجمع بعض الخدمات التي نقدّمها معلومات لا يمكن الوصول إليها عن طريق إعداداتكم الشخصية. غير أنه يمكنكم في هذه الحالة الوصول إلى بياناتكم الشخصية بالتواصل معنا على النحو الموضّح في أسفل هذا البيان، أو عبر وسائل الاتصال الأخرى التي تبيّنها الخدمة. &lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="right"&gt;&lt;a class="topOfPage" href="#top"&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name="EGAA"&gt;&lt;/a&gt;&lt;h2 align="right"&gt;أمن معلوماتكم الشخصية&lt;/h2&gt;&lt;p align="justify"&gt;نضمن لكم حماية معلوماتكم الشخصية بصرامة. ونستعين بتقنيات وإجراءات أمنية متنوعة لضمان حماية بياناتكم الشخصية والحيلولة دون الاطلاع عليها أو استخدامها أو الإفصاح عنها دون إذن. فعلى سبيل المثال، نخزّن البيانات التي تقدّمونها إلينا على خوادم مقيّدة الوصول وموجودة في منشآت خاضعة للمراقبة. وفضلًا عن ذلك، عندما ننقل معلومات سرية حساسة عبر الإنترنت (كرقم بطاقة ائتمانية مثلًا)، فإن هذه المعلومات تُحمى بواسطة نظام تشفير مثل بروتوكول SSL (Secure Socket Layer) أو أي تقنيات أخرى تتيح تشفير هذه المعلومات. &lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="right"&gt;&lt;a class="topOfPage" href="#top"&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name="EFAA"&gt;&lt;/a&gt;&lt;h2 align="right"&gt;حماية المعلومات الشخصية للأطفال&lt;/h2&gt;&lt;p align="right"&gt;لا يجمع موقعنا عمدًا المعلومات الشخصية للأطفال.&lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="right"&gt;&lt;a class="topOfPage" href="#top"&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name="EEAA"&gt;&lt;/a&gt;&lt;h2 align="right"&gt;ملفات تعريف الارتباط (الكوكيز) &lt;/h2&gt;
+	&lt;p align="justify"&gt;تُستخدم ملفات تعريف الارتباط على هذا الموقع لضمان سلامة عملية التسجيل ولتخصيص الموقع. وملف تعريف الارتباط هو ملف نصي صغير يضعه خادم صفحات الويب على القرص الصلب لديكم. ولا يمكن استخدامه لتشغيل برامج أو لإصابة حاسوبكم بالفيروسات. وتُوجَّه ملفات تعريف الارتباط إليكم حصرًا، ولا يمكن قراءتها إلا بواسطة خوادم الويب التابعة للنطاق الذي أرسل إليكم ملف تعريف الارتباط. &lt;/p&gt;&lt;p align="justify"&gt;ومن أهم الوظائف العملية لملفات تعريف الارتباط توفير وقتكم. فعلى سبيل المثال، إذا خصّصتم صفحة ويب أو تصفّحتم موقعًا ما، فإن ملف تعريف الارتباط سيساعد الموقع على العثور على معلوماتكم الخاصة خلال الزيارات اللاحقة. ويتيح ذلك، على وجه الخصوص، تبسيط عملية تقديم المحتويات التي تهمّكم وتيسير التصفح في الموقع. وعند عودتكم إلى الموقع، يُعاد استخدام المعلومات التي قدّمتموها سابقًا لتمكينكم من استخدام وظائف الموقع التي خصّصتموها بسهولة أكبر.&lt;/p&gt;&lt;p align="justify"&gt;ويجوز لنا أيضًا استخدام وحدات بكسل غير مرئية، المعروفة أيضًا باسم GIF غير المرئية، للمساعدة في زرع ملف تعريف الارتباط. ونستخدم هذه التقنية أداةً لتجميع الإحصاءات المتعلقة باستخدام موقعنا. وتشمل هذه الإحصاءات عدد الزوار الذين نقروا على العناصر الرئيسية (كالروابط أو الرسوم مثلًا) في صفحة ويب أو صفحة مدوّنة أو نشرة إخبارية على موقعنا. وقد نتشارك الإحصاءات المجمّعة مع الشركات الشريكة، غير أننا لا نأذن لشركات أخرى بوضع صور .gif أو ملفات تعريف ارتباط على مواقعنا، إلا في حال وجود مصلحة خاصة مؤقتة لعملائنا (كدمج خدمة من موقع يعتمد على ملفات تعريف ارتباط تابعة لجهات خارجية أو على ملفات .gif شفافة مثلًا).&lt;/p&gt;&lt;p align="justify"&gt;يمكنكم قبول ملفات تعريف الارتباط أو رفضها. وتقبل معظم متصفحات الويب ملفات تعريف الارتباط تلقائيًا، غير أنه يمكنكم تعديل إعدادات متصفحكم لمنعها من الوصول إلى حاسوبكم إن رغبتم في ذلك. وإذا اخترتم رفض ملفات تعريف الارتباط، فقد لا تتمكنون من الاستفادة الكاملة من الوظائف التفاعلية لهذا الموقع أو لغيره من المواقع الإلكترونية التي تزورونها. &lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="right"&gt;&lt;a class="topOfPage" href="#top"&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name="EDAA"&gt;&lt;/a&gt;&lt;a name="ECAA"&gt;&lt;/a&gt;&lt;h2 align="right"&gt;تطبيق بيان الخصوصية هذا&lt;/h2&gt;&lt;p align="right"&gt;إذا كانت لديكم أي أسئلة بشأن هذا البيان، فتواصلوا معنا عبر النموذج الذي نضعه تحت تصرّفكم والذي يمكنكم الوصول إليه بعد تسجيل دخولكم.&lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="right"&gt;&lt;a class="topOfPage" href="#top"&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name="EBAA"&gt;&lt;/a&gt;&lt;h2 align="right"&gt;التعديلات على بيان الخصوصية هذا&lt;/h2&gt;&lt;p align="justify"&gt;نقوم من حين لآخر بتحديث بيان الخصوصية هذا. وفي هذه الحالة، نعدّل أيضًا تاريخ «&lt;a href="#AAAA"&gt;&lt;b&gt;آخر تحديث&lt;/b&gt;&lt;/a&gt;» في أعلى بيان الخصوصية. وفي حال إجراء تعديلات جوهرية على هذا البيان، سنبلغكم بذلك بوضع إشعار ظاهر على الصفحة الرئيسية للموقع أو بإرسال إخطار إليكم مباشرةً. ونشجّعكم على مراجعة بيان الخصوصية هذا بانتظام لتبقوا على اطلاع على كيفية مساعدتنا لكم في حماية المعلومات الشخصية التي نجمعها. ويُعدّ استمراركم في استخدام هذه الخدمة موافقةً منكم على بيان الخصوصية هذا وتحديثاته. &lt;/p&gt;&lt;div style="margin-top: 3px; margin-bottom: 10px"&gt;
+		&lt;p align="right"&gt;&lt;a class="topOfPage" href="#top"&gt;أعلى الصفحة&lt;/a&gt;&lt;/div&gt;&lt;a name="EAAA"&gt;&lt;/a&gt;&lt;h2 align="right"&gt;التواصل&lt;/h2&gt;
+	&lt;p align="justify"&gt;نرحّب بملاحظاتكم بشأن بيان الخصوصية هذا. وإذا رأيتم أن موقعنا لم يلتزم ببيان الخصوصية هذا، فتواصلوا معنا إلكترونيًا أو بالبريد على العنوان الوارد في &lt;a href="/terms"&gt;&lt;b&gt;شروط الاستخدام&lt;/b&gt;&lt;/a&gt;، وسنبذل كل الوسائل المعقولة لتحديد المشكلة ومعالجتها على وجه السرعة.&lt;/p&gt;
+	&lt;p align="right"&gt;&lt;a class="topOfPage" href="#top"&gt;أعلى الصفحة&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</value>
+  </data>
+<data name="EMAIL_PORTAL_SIGNUP_SUBJECT.Text" xml:space="preserve">
+    <value>[Host:HostTitle] إنشاء موقع</value>
+  </data>
+<data name="EMAIL_PORTAL_SIGNUP_BODY.Text" xml:space="preserve">
+    <value>عزيزي [User:DisplayName],
+
+تم إنشاء موقعك الإلكتروني. يرجى قراءة المعلومات التالية بعناية والتأكد من حفظ هذه الرسالة في مكان آمن للرجوع إليها مستقبلًا.
+
+عنوان الموقع: [Portal:URL]
+اسم المستخدم: [User:UserName]
+رمز التحقق: [User:VerificationCode]
+
+نرجو أن تغتنم الفرصة لزيارة الموقع لمراجعة محتواه والاستفادة من ميزاته العديدة.
+
+شكرًا لك، نقدّر دعمك...
+
+[Host:HostTitle]
+
+</value>
+  </data>
+<data name="MESSAGE_PORTAL_TERMS.Text" xml:space="preserve">
+    <value xml:space="preserve">&lt;div style="padding: 0px 20px 0px 15px"&gt;&lt;p align="right"&gt;&lt;em&gt;هذه الصفحة ترجمة للنص الأصلي الفرنسي؛ وفي حال وجود أي تعارض، يُعتدّ بالنص الفرنسي.&lt;/em&gt;&lt;/p&gt;
+	&lt;p align="right"&gt;&lt;strong&gt;الإشعارات القانونية:&lt;/strong&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;strong&gt;تعريف الموقع&lt;br&gt; &lt;/strong&gt;تُقدَّم المعلومات التالية بموجب المادة 6 من القانون رقم 2004-575 المؤرخ في 21 يونيو 2004 بشأن&lt;br&gt; &lt;b&gt;الثقة في الاقتصاد الرقمي&lt;/b&gt;&lt;br&gt; (&lt;a target="_blank" href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000801164"&gt;الاطلاع على نص القانون النافذ&lt;/a&gt;) &lt;/p&gt;
+&lt;p align="center"&gt;&lt;b&gt;يتولى نشر الموقع الإلكتروني «Argumentum»:&lt;/b&gt;&lt;/p&gt;
+&lt;div style="text-align:center;border:1px solid black;"&gt;&lt;em&gt;ARGUMENTUM SAS, 5 B RUE MARTEL, 75010 PARIS 10&lt;/em&gt;&lt;br&gt;
+		SIREN: 922020276&lt;br&gt;&lt;/div&gt;
+&lt;p align="center"&gt;&lt;strong&gt;ويُشار إليه فيما يلي بـ«ناشر الموقع»&lt;/strong&gt;&lt;/p&gt;
+&lt;p align="center"&gt;
+(مالك الموقع «Argumentum» ومشغّله)&lt;br&gt;&lt;/p&gt;
+&lt;p align="center"&gt;&lt;b&gt;يتولى استضافة الموقع الإلكتروني «Argumentum»:&lt;/b&gt;&lt;/p&gt;
+&lt;div style="text-align:center;border:1px solid black;"&gt;&lt;em&gt;MY INTELLIGENCE AGENCY, 5 B RUE MARTEL, 75010 PARIS 10&lt;br&gt;&lt;/em&gt;&lt;/div&gt;
+&lt;p align="center"&gt;&lt;b&gt;ويُشار إليه فيما يلي بـ«المستضيف»&lt;/b&gt;&lt;/p&gt;
+	&lt;p align="center"&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;قبول الشروط المتعلقة بالاستخدام &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;يملك ناشر الموقع هذا الموقع ويشغّله. ويعني استخدامك له قبولك جميع البنود والشروط والإشعارات الواردة والمذكورة في هذه الوثيقة («شروط الاستخدام»). ولا تسري شروط الاستخدام العامة هذه إلا على الموقع وعلى خدمات هذا الموقع، ولا تسري على أي موقع تابع لطرف ثالث. &lt;/p&gt;
+&lt;p align="justify"&gt;إذا كنت لا تقبل شروط الاستخدام هذه، فيُرجى عدم استخدام هذا الموقع. ونحتفظ بالحق، وفقًا لتقديرنا، في تحديث شروط الاستخدام أو تعديلها. وبناءً على ذلك، يُرجى مراجعتها بانتظام لمعرفة ما إذا كانت قد عُدِّلت. ونعدّك قابلًا لأي تعديل على شروط الاستخدام إذا واصلت استخدام الموقع بعد نشر ذلك التعديل. &lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;حقوق الملكية &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;تقرّ وتوافق على أن جميع المحتويات والعناصر المتاحة على هذا الموقع - ولا سيما، على سبيل المثال لا الحصر، البطاقات والبرامج والبرمجيات وقواعد البيانات والنصوص والصور والأفلام والأصوات والموسيقى والعرض والشعارات - محمية بموجب حقوق المؤلف وحقوق حماية قواعد البيانات والعلامات التجارية المسجلة وعلامات الخدمة وبراءات الاختراع والأسرار الصناعية أو غيرها من الحقوق والقوانين المتعلقة بالملكية. والمحتويات والعناصر المتاحة إما مملوكة لناشر الموقع وخاضعة لسيطرته حصرًا، وإما مستخدمة بموجب ترخيص. وتسري شروط الاستخدام هذه على جميع المحتويات وجميع العناصر المتاحة على الموقع. &lt;/p&gt;
+&lt;p align="justify"&gt;وفضلًا عن ذلك، عند استخدامك محتوى وعناصر مرخّصة من طرف ثالث، قد تكون ملزمًا باتفاقيات الترخيص الخاصة بذلك الطرف. وعند تلقيك معلومات صادرة عن طرف ثالث، تُبيَّن لك هويته بواسطة شعار أو بأي إشارة أخرى. &lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;منح ترخيص محدود &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;قد تتضمن المحتويات والعناصر المتاحة على هذا الموقع إشعارات ملكية أخرى، أو قد تصف منتجات أو خدمات أو عمليات أو تقنيات مملوكة لأطراف ثالثة. ولا يجوز اعتبار أي جزء من هذه الوثيقة ترخيصًا ممنوحًا للمستخدم على أي حق من حقوق المؤلف أو علامة تجارية أو براءة اختراع أو أي حق آخر من حقوق الملكية الفكرية يملكه طرف ثالث، باستثناء حق الاستخدام المحدود المبيَّن صراحةً أدناه: &lt;/p&gt;
+&lt;p align="justify"&gt;في إطار ترخيص غير حصري وغير قابل للتحويل، يُصرَّح لك بطباعة نسخة واحدة من عناصر هذا الموقع أو محتواه أو تنزيلها على حاسوب شخصي واحد لاستخدامك الشخصي وغير التجاري، شريطة أن تحافظ على جميع إشعارات حقوق المؤلف والملكية دون مساس. ويجوز لك استخدام الموقع لأغراض مشروعة ولاستخدامك الشخصي، ولا يجوز بأي حال من الأحوال استخدامه بقصد الربح أو لغرض تجاري. وإذا رغبت في الحصول على معلومات لتحرير مقال عن الموقع، فإن ملفًا صحفيًا متاح بناءً على طلبك، ولا يجوز نشر سوى الصور الواردة في هذا الملف الصحفي. &lt;/p&gt;
+&lt;p align="justify"&gt;تتعهد بألا تقوم مطلقًا ببيع هذا المحتوى أو هذه العناصر أو التنازل عنها بموجب ترخيص أو تأجيرها أو توزيعها أو نقلها أو نسخها أو استنساخها أو عرضها علنًا أو أدائها علنًا أو نشرها أو تكييفها أو تحريرها أو تعديلها أو فك تجميعها أو تفكيكها، وبألا تقوم مطلقًا بإعادة بناء منطق البرنامج، ولا بإنشاء أي عمل مشتق من هذا المحتوى أو هذه العناصر. وتتعهد بألا تستخدم مطلقًا المحتوى أو العناصر المتاحة على الموقع لأي غرض تجاري كان. ويُحظر الاستخراج المنهجي للبيانات أو غيرها من هذا الموقع لإنشاء أو إعداد مجموعة أو تجميع أو قاعدة بيانات أو دليل، بصورة مباشرة أو غير مباشرة، دون إذن كتابي من ناشر الموقع. وعلاوة على ذلك، يُحظر استخدام المحتوى أو العناصر لأي غرض غير مصرَّح به صراحةً في شروط الاستخدام هذه. ولا تتمتع بأي حق ملكية على المحتوى والعناصر ومشتقاتها، ويُعدّ ناشر الموقع المالك الوحيد لهذه الحقوق. &lt;/p&gt;
+&lt;p&gt;&lt;b&gt;يترتب على عدم الالتزام بأي بند من بنود شروط الاستخدام هذه إنهاء هذا الترخيص تلقائيًا ودون إشعار مسبق من ناشر الموقع.&lt;/b&gt;&lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;استخدام هذا الموقع&lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;لا يُصرَّح لك باستخدام الموقع أو خدماته لأغراض غير مشروعة، مثل نشر أي عنصر أو معلومة غير مشروعة أو توزيعها أو بثها، ولا سيما: &lt;/p&gt;
+&lt;ul align="right" type="disc"&gt;
+&lt;li&gt;
+&lt;p align="right"&gt;أي بيانات خاصة مملوكة لطرف ثالث، ولا سيما العلامات التجارية المسجلة والبيانات المحمية بحقوق المؤلف (عدا تلك التي تملك ترخيصًا بشأنها)؛ &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align="right" type="disc"&gt;
+&lt;li&gt;
+&lt;p align="right"&gt;أي محتوى خاطئ أو تشهيري أو فاحش أو عنصري أو محرّض على الكراهية؛ &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align="right" type="disc"&gt;
+&lt;li&gt;
+&lt;p align="right"&gt;أي محتوى يهدف إلى مضايقة طرف ثالث أو المساس بحياته الخاصة؛ &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align="right" type="disc"&gt;
+&lt;li&gt;
+&lt;p align="right"&gt;أي محتوى يحرّض على الجريمة أو الانتحار أو التمييز أو الكراهية أو العنف، لدوافع تتعلق بالاختلاف العرقي أو الإثني أو الجنسية؛ &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align="right" type="disc"&gt;
+&lt;li&gt;
+&lt;p align="right"&gt;أي محتوى من شأنه الإضرار بالمستخدمين القاصرين أو المساس بالكرامة الإنسانية؛ &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;ul align="right" type="disc"&gt;
+&lt;li&gt;
+&lt;p align="right"&gt;أي محتوى يمجّد النازية أو ينكر المحرقة. &lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;p align="justify"&gt;وعلاوة على ذلك، لا يجوز لك استخدام الموقع بغرض جمع المعلومات الشخصية، ولا سيما عناوين الإنترنت، المتعلقة بمستخدمين آخرين للموقع. &lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;استبعاد الضمان &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;جميع المحتويات خاصة بموقع Argumentum. وقد يتضمن هذا الموقع معلومات غير دقيقة من الناحية التقنية أو أخطاء مطبعية. ويحتفظ ناشر الموقع بالحق في تعديل أو حذف أي معلومة أو محتوى يظهر على هذا الموقع دون إشعار مسبق. ولا يقدّم ناشر الموقع ولا مزوّدو المحتوى التابعون له ولا الشركة المقدّمة لخدمات الإنترنت التي تتيح تشغيل تطبيق الويب هذا أي ضمان بشأن محتواها. ويتحمّل المستخدم جميع مخاطر الاستخدام. ولا تقع أي مسؤولية على ناشر الموقع أو مزوّديه أو مقدّمي الخدمات التابعين له فيما يتعلق باستخدام المعلومات الواردة في هذا الموقع. &lt;/p&gt;
+&lt;p align="justify"&gt;تُقدَّم المحتويات والعناصر المتاحة على هذا الموقع دون أي ضمان، ضمنيًا كان أو صريحًا. ولا يجوز أن ينشأ أي ضمان عن أي رأي أو معلومة يقدّمها ناشر الموقع أو المستضيف أو شركاتهما الأم أو التابعة أو موظفو كل منهم. ولا يضمن ناشر الموقع ولا المستضيف ولا شركاتهما الأم أو التابعة دقة محتوى الموقع وعناصره وموثوقيتها وصحتها؛ ولا إتاحة الموقع في كل مكان وفي كل وقت؛ ولا خلو المحتوى والمعلومات والبرمجيات وأي عنصر يمكن الوصول إليه من خلال الموقع من الفيروسات أو أي عنصر ضار آخر. &lt;/p&gt;
+&lt;p align="right"&gt;&lt;br&gt;&lt;strong&gt;تحديد المسؤولية &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;&lt;br&gt;لا يتحمّل ناشر الموقع أو المستضيف أو شركاتهما الأم أو التابعة أو شركاؤهما أو فروعهما أو مانحو الترخيص لهما بأي حال من الأحوال المسؤولية عن أي أضرار مباشرة أو غير مباشرة - بما في ذلك، على سبيل المثال لا الحصر، &lt;st1:personname productid="LA PERTE DE" w:st="on"&gt;خسارة&lt;/st1:personname&gt; الأرباح أو العملاء أو البيانات - الناجمة عن استخدام الموقع أو تعذّر استخدامه أو استخدام المحتوى والعناصر التي يتيح الوصول إليها أو تعذّر استخدامها. ويسري هذا التحديد في المسؤولية التقصيرية والتعاقدية على حد سواء، حتى لو أُبلغ ناشر الموقع أو المستضيف بإمكانية وقوع مثل هذا الضرر. &lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;التعويض&lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;تتعهد، بناءً على طلب ناشر الموقع، بتعويضه وتعويض شركاته الأم أو التابعة وشركائه وفروعه ومانحي الترخيص له، وكذلك موظفيهم ومتعاقديهم ووكلائهم ومديريهم، في حال مساءلتهم، وكذلك عن المطالبات والنفقات (بما فيها أتعاب المحاماة) الناشئة عن استخدامك للموقع أو عن أخطائك في استخدامه. وتوافق، قدر الإمكان، على التعاون مع ناشر الموقع في الدفاع عنه في إطار أي قضية يتعين عليك فيها تقديم تعويض. &lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;مواقع الأطراف الثالثة &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;لا تشكّل أي إشارة إلى منتجات أو خدمات أو عمليات أو روابط تشعبية لأطراف ثالثة أو أي معلومات أخرى، من خلال ذكر اسم علامة تجارية أو علامة تجارية مسجلة أو جهة مصنّعة أو مورّد أو غير ذلك، موافقةً أو كفالةً أو توصيةً من ناشر الموقع أو شركاته الأم أو التابعة أو شركائه أو فروعه أو مانحي الترخيص له، ولا تعني ذلك ضمنًا. وفضلًا عن ذلك، قد يتيح لك الموقع الاتصال بمواقع إلكترونية أخرى، ولا سيما عن طريق عمليات البحث الآلية، غير أن هذه المواقع لا تخضع لسيطرة ناشر الموقع. وتقرّ بأن ناشر الموقع غير مسؤول عن دقة مواقع الأطراف الثالثة أو احترامها لحقوق المؤلف أو مشروعيتها أو لياقتها أو أي جانب آخر من جوانبها. &lt;/p&gt;
+&lt;p align="justify"&gt;&lt;b&gt;يستلزم أي رابط تشعبي صادر عن موقع تابع لطرف ثالث ويؤدي إلى هذا الموقع الحصول على موافقة مسبقة من ناشر الموقع، ولا سيما الروابط المؤدية إلى صفحة غير الصفحة الرئيسية. ويمكن تقديم طلب هذه الموافقة بإرسال رسالة باستخدام نموذج الاتصال المتاح على هذا الموقع. &lt;/b&gt; &lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;سياسة الخصوصية &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;يلتزم ناشر الموقع مبدئيًا بحماية الحياة الخاصة لمستخدميه. ويتوفر لك في تذييل كل صفحة من صفحات الموقع رابط إلى سياسة الخصوصية (بيان الخصوصية) التي وضعها ناشر الموقع. يُرجى الاطلاع عليها. &lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;منح المستخدم ترخيصًا محدودًا لناشر الموقع&lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;بنشرك أو تقديمك أو إرسالك بأي طريقة أخرى معلومات أو محتوى أو عناصر إلى هذا الموقع، بما في ذلك، على سبيل المثال لا الحصر، الملاحظات (التغذية الراجعة) والبيانات والإجابات والأسئلة والتعليقات والاقتراحات والمشاريع والأفكار وغيرها، &lt;/p&gt;
+&lt;ol type="1"&gt;
+&lt;li&gt;
+&lt;p align="justify"&gt;فإنك، باستثناء الحالات التي ينص عليها القانون، تأذن لناشر الموقع وشركاته الأم والتابعة وشركائه وفروعه والمرخَّص لهم باستخدام المعلومات أو المحتوى أو العناصر واستنساخها وعرضها وأدائها وتكييفها وتعديلها وتوزيعها والعمل على توزيعها والترويج لها بأي شكل كان، وفي أي مكان كان، ولأي غرض كان، تجاريًا أو غير تجاري، دون فرض أي قيد ودون انتظار أي مقابل، و 
+&lt;/p&gt;&lt;/li&gt;&lt;li&gt;
+&lt;p align="justify"&gt;تضمن وتقرّ بأنك تملك جميع الحقوق المتعلقة بالمحتوى أو تسيطر عليها بأي طريقة أخرى، وبأن البث العلني لمحتواك واستخدامه من قِبل ناشر الموقع لن يمسّ حقوق أي طرف ثالث ولن ينتهكها. &lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
+&lt;p align="right"&gt;&lt;strong&gt;موافقة المستخدم على التحقق والإفصاح &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;لا يقع على عاتق ناشر الموقع أي التزام بالتحقق من المعلومات الموجودة على موقعه أو المرسلة إليه. ومع ذلك، يوافق كل شخص يستخدم الموقع على أن يتحقق ناشر الموقع دوريًا من محتواه، (1) للامتثال لأي قانون أو لائحة أو طلب صادر عن السلطات؛ (2) لتشغيل الموقع على النحو الصحيح أو لحماية نفسه وحماية مستخدميه؛ أو (3) لأي سبب آخر، وفقًا لتقديره المطلق. ويحتفظ ناشر الموقع بالحق في تعديل أي معلومة موجودة على الموقع أو مرسلة إليه أو رفضها أو حذفها إذا رأى ناشر الموقع، وفقًا لتقديره المطلق، أن هذه المعلومة غير مقبولة أو مخالفة لشروط الاستخدام هذه. &lt;/p&gt;
+&lt;p align="justify"&gt;باستثناء الحالات التي ينص عليها القانون، إذا قدّم أحد مستخدمي بيانات هذا الموقع إلى هذا الموقع معلومات، بما في ذلك، على سبيل المثال لا الحصر، البيانات والإجابات والأسئلة والتعليقات والاقتراحات والمشاريع والأفكار وغيرها، فإن هذه المعلومات تُعدّ غير سرية، ولا يلتزم ناشر الموقع بحمايتها من الإفصاح. &lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;إجراءات المطالبة المتعلقة بالتقليد&lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;إذا كنت تعتقد أن عملك قد نُسخ وأنه متاح على هذا الموقع بطريقة تشكّل تقليدًا، فيمكنك إبلاغ ناشر الموقع بذلك من خلال نموذج الاتصال المتاح على هذا الموقع. &lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;القانون الواجب التطبيق والمحكمة المختصة &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;تخضع شروط الاستخدام هذه للقوانين الفرنسية وتُفسَّر وفقًا لها. وقد تتضمن اتفاقيات الترخيص التي تحكم استخدامك لعناصر تابعة لأطراف ثالثة على الموقع أحكامًا تستلزم اللجوء إلى محاكم أجنبية لتسوية النزاعات المتعلقة بهذه الاتفاقيات. &lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;قابلية الفصل والاتفاق الكامل&lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;ما لم يُنص على خلاف ذلك في هذه الوثيقة، يشكّل هذا الاتفاق كامل العقد المبرم بينك وبين ناشر الموقع فيما يتعلق بالموقع، ويلغي ويحل محل جميع المراسلات والعروض السابقة أو المتزامنة (سواء كانت شفهية أو كتابية أو إلكترونية) المتعلقة بهذا الموقع بينك وبين ناشر الموقع أو شركاته الأم أو التابعة أو مانحي الترخيص له. وإذا اعتُبر أي جزء من شروط الاستخدام هذه باطلًا أو غير قابل للتطبيق، وجب تفسيره وفقًا للقانون النافذ على نحو يحدد على أفضل وجه النوايا الأصلية للأطراف، ويظل باقي هذه الشروط ساريًا. &lt;/p&gt;
+&lt;p align="justify"&gt;&lt;strong&gt;الإنهاء &lt;/strong&gt;&lt;br&gt;&lt;br&gt;يحتفظ ناشر الموقع بالحق، وفقًا لتقديره المطلق، في إنهاء وصولك إلى هذا الموقع كليًا أو جزئيًا، بإشعار مسبق أو دونه. &lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;التصدير &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;تتعهد بألا تصدّر مطلقًا إلى أي وجهة كانت أي جزء من المحتوى أو العناصر المقدّمة إليك، أو أي منتج يُحصل عليه مباشرةً من هذا المحتوى أو هذه العناصر، إلا إذا كان ذلك متوافقًا مع القوانين واللوائح والقواعد النافذة في مجال التصدير. &lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;إشعار حقوق المؤلف والعلامات التجارية المسجلة &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="right"&gt;Argumentum. جميع الحقوق محفوظة. &lt;/p&gt;
+&lt;p align="justify"&gt;يُحظر حظرًا باتًا استنساخ أي عنصر من عناصر هذا الموقع أو أي محتوى آخر موجود على الموقع بخلاف ما هو منصوص عليه صراحةً في هذه الوثيقة. ويخضع استخدام جميع المستندات والرسومات المرتبطة بها، وكذلك أي عنصر آخر مقدَّم على هذا الموقع، لشروط الاستخدام الواردة أعلاه. &lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;العلامات التجارية المسجلة&lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;إن اسم Argumentum وشعاره، وكذلك جميع أسماء المنتجات والخدمات والرسوم والعلامات والشعارات النصية المتعلقة به، هي علامات تجارية مسجلة أو علامات خدمة أو علامات تجارية مسجلة لناشر الموقع، ولا يجوز استخدامها لأغراض تجارية دون موافقته الكتابية المسبقة. وجميع العلامات الأخرى للمنتجات والخدمات الواردة في هذا الموقع هي علامات تجارية مسجلة مملوكة لأصحابها المعنيين. &lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;إشعارات أخرى بشأن حقوق المؤلف &lt;/strong&gt; &lt;/p&gt;
+&lt;p align="justify"&gt;تتعلق الإشعارات الأخرى بشأن حقوق المؤلف بالبيانات الصادرة عن أطراف ثالثة والمستخدمة في إنشاء خدمة الإنترنت هذه. &lt;/p&gt;
+&lt;p align="right"&gt;&lt;strong&gt;الاتصال &lt;/strong&gt;&lt;/p&gt;
+&lt;p align="justify"&gt;للحصول على مزيد من المعلومات المتعلقة بالمسائل القانونية الواردة في شروط الاستخدام هذه، أو بأي أسئلة أو مشكلات تتعلق بهذه الخدمة، يُرجى المراسلة باستخدام نموذج الاتصال المتاح لك على هذا الموقع. &lt;/p&gt;&lt;/div&gt;</value>
+  </data>
+<data name="EMAIL_USER_REGISTRATION_ADMINISTRATOR_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] تسجيل مستخدم جديد</value>
+  </data>
+<data name="EMAIL_USER_REGISTRATION_ADMINISTRATOR_BODY.Text" xml:space="preserve">
+    <value>التاريخ: [Date:Current]
+الاسم المعروض: [User:DisplayName]
+البريد الإلكتروني: [User:Email]</value>
+  </data>
+<data name="EMAIL_USER_REGISTRATION_PRIVATE_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] تسجيل مستخدم جديد</value>
+  </data>
+<data name="EMAIL_USER_REGISTRATION_PRIVATE_BODY.Text" xml:space="preserve">
+    <value>عزيزي [User:DisplayName],
+
+شكرًا لتسجيلك في [Portal:PortalName]. يرجى قراءة المعلومات التالية بعناية والتأكد من حفظ هذه الرسالة في مكان آمن للرجوع إليها مستقبلًا.
+
+عنوان الموقع: [Portal:URL]
+اسم المستخدم: [User:UserName]
+
+ستتم مراجعة تفاصيل حسابك من قبل مسؤول الموقع وستتلقى إشعارًا عند تفعيل الحساب.
+
+شكرًا لك، نقدّر دعمك...
+
+[Portal:PortalName]
+
+</value>
+  </data>
+<data name="EMAIL_ROLE_ASSIGNMENT_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] تحديث حساب المستخدم</value>
+  </data>
+<data name="EMAIL_ROLE_ASSIGNMENT_BODY.Text" xml:space="preserve">
+    <value>عزيزي [User:DisplayName],
+
+تم تحديث حساب المستخدم الخاص بك في [Portal:PortalName] مؤخرًا ليشمل الوصول إلى دور الأمان التالي:
+
+الدور: [Custom:0]
+الوصف: [Custom:1]
+تاريخ السريان: [Custom:2]
+تاريخ الانتهاء: [Custom:3]
+
+شكرًا لك، نقدّر دعمك...
+[Portal:PortalName]
+
+</value>
+  </data>
+<data name="EMAIL_ROLE_UNASSIGNMENT_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] تحديث حساب المستخدم</value>
+  </data>
+<data name="EMAIL_ROLE_UNASSIGNMENT_BODY.Text" xml:space="preserve">
+    <value>عزيزي [User:DisplayName],
+
+تم تحديث حساب المستخدم الخاص بك في [Portal:PortalName] مؤخرًا لتقييد الوصول إلى دور الأمان التالي:
+
+الدور: [Custom:0]
+الوصف: [Custom:1]
+
+شكرًا لك، نقدّر دعمك...
+[Portal:PortalName]
+
+</value>
+  </data>
+<data name="MESSAGE_RETRIEVEPASSWORD_INSTRUCTIONS.Text" xml:space="preserve">
+    <value>لاستعادة كلمة المرور، ستحتاج إلى تقديم اسم المستخدم والإجابة على سؤال كلمة المرور.</value>
+  </data>
+<data name="EMAIL_PASSWORD_REMINDER_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] تذكير بكلمة المرور</value>
+  </data>
+<data name="EMAIL_PASSWORD_REMINDER_BODY.Text" xml:space="preserve">
+    <value>عزيزي [User:DisplayName],
+
+لقد طلبت رمز إعادة تعيين كلمة المرور من [Portal:PortalName].
+
+يرجى تسجيل الدخول باستخدام المعلومات التالية:
+
+عنوان الموقع: [Portal:URL]
+اسم المستخدم:   [User:Username]
+
+رابط إعادة تعيين كلمة المرور: [Portal:PASSWORDREMINDERURL]?ctl=PasswordReset&amp;resetToken=[Membership:PasswordResetToken]
+
+مع التحية،
+[Portal:PortalName]
+
+*ملاحظة: إذا لم تطلب رمز إعادة تعيين كلمة المرور، يرجى تجاهل هذه الرسالة.</value>
+  </data>
+<data name="EMAIL_USER_AUTHORIZED_SUBJECT.Text" xml:space="preserve">
+    <value>تمت الموافقة على التسجيل لـ [Portal:URL]</value>
+  </data>
+<data name="EMAIL_USER_AUTHORIZED_BODY.Text" xml:space="preserve">
+    <value>عزيزي [User:DisplayName],
+
+شكرًا لتسجيلك في [Portal:PortalName]. تمت الموافقة على تسجيلك، وحسابك نشط الآن.
+
+عنوان الموقع: [Portal:URL]
+اسم المستخدم: [User:UserName]
+
+شكرًا لك، نقدّر دعمك.
+
+[Portal:PortalName]</value>
+  </data>
+<data name="EMAIL_PROFILE_UPDATED_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] إشعار بتحديث الملف الشخصي</value>
+  </data>
+<data name="EMAIL_PROFILE_UPDATED_BODY.Text" xml:space="preserve">
+    <value>عزيزي [User:DisplayName],
+
+تم تحديث ملفك الشخصي على [Portal:PortalName] بنجاح.
+
+مع التحية،
+[Portal:PortalName]
+
+</value>
+  </data>
+<data name="EMAIL_USER_UNREGISTER_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] إلغاء تسجيل مستخدم</value>
+  </data>
+<data name="EMAIL_USER_UNREGISTER_BODY.Text" xml:space="preserve">
+    <value>التاريخ: [Date:Current]
+الاسم الأول: [Profile:FirstName]
+اسم العائلة: [Profile:LastName]
+الوحدة: [Profile:Unit]
+الشارع: [Profile:Street]
+المدينة: [Profile:City]
+المنطقة: [Profile:Region]
+البلد: [Profile:Country]
+الرمز البريدي: [Profile:PostalCode]
+الهاتف: [Profile:Telephone]
+البريد الإلكتروني: [User:Email]</value>
+  </data>
+<data name="EMAIL_USER_REGISTRATION_VERIFIED_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] تسجيل مستخدم جديد</value>
+  </data>
+<data name="EMAIL_USER_REGISTRATION_VERIFIED_BODY.Text" xml:space="preserve">
+    <value>عزيزي [User:DisplayName],
+
+يسرّنا إبلاغك بأنه تمت إضافتك كمستخدم مسجَّل في [Portal:PortalName]. يرجى قراءة المعلومات التالية بعناية والتأكد من حفظ هذه الرسالة في مكان آمن للرجوع إليها مستقبلًا.
+
+عنوان الموقع: [Portal:URL]
+اسم المستخدم: [User:UserName]
+
+يمكنك استخدام الرابط التالي لإكمال تسجيلك الموثّق:
+
+[Portal:FULLURL]/default.aspx?ctl=Login&amp;username=[Custom:0]&amp;verificationcode=[Custom:1]
+
+شكرًا لك، نقدّر دعمك...
+
+[Portal:PortalName]</value>
+  </data>
+<data name="EMAIL_USER_REGISTRATION_PUBLIC_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] تسجيل مستخدم جديد</value>
+  </data>
+<data name="EMAIL_USER_REGISTRATION_PUBLIC_BODY.Text" xml:space="preserve">
+    <value>عزيزي [User:DisplayName],
+
+يسرّنا إبلاغك بأنه تمت إضافتك كمستخدم مسجَّل في [Portal:PortalName]. يرجى قراءة المعلومات التالية بعناية والتأكد من حفظ هذه الرسالة في مكان آمن للرجوع إليها مستقبلًا.
+
+عنوان الموقع: [Portal:URL]
+اسم المستخدم: [User:UserName]
+
+إذا كنت لا تعرف كلمة المرور أو لا تتذكرها، يرجى الذهاب إلى [Portal:FULLURL]/default.aspx?ctl=PasswordReset&amp;resetToken=[Membership:PasswordResetToken] لإعادة تعيينها.
+شكرًا لك، نقدّر دعمك...
+
+[Portal:PortalName]
+
+</value>
+  </data>
+<data name="EMAIL_AFFILIATE_NOTIFICATION_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] إشعار بالشراكة</value>
+  </data>
+<data name="EMAIL_AFFILIATE_NOTIFICATION_BODY.Text" xml:space="preserve">
+    <value>عزيزي [Custom:0],
+
+تم إنشاء حسابك في برنامج الشراكة التابع لـ [Portal:PortalName].
+
+لبدء كسب المكافآت، يرجى استخدام عنوان URL التالي للربط بموقعنا:
+
+[Custom:1]
+
+شكرًا لك،
+[Portal:PortalName]
+
+</value>
+  </data>
+<data name="EMAIL_BANNER_NOTIFICATION_BODY.Text" xml:space="preserve">
+    <value>اللافتة: [Custom:0]
+الوصف: [Custom:1]
+الصورة: [Custom:2]
+CPM/التكلفة: [Custom:3]
+مرات الظهور: [Custom:4]
+تاريخ البدء: [Custom:5]
+تاريخ الانتهاء: [Custom:6]
+المشاهدات: [Custom:7]
+النقرات: [Custom:8]</value>
+  </data>
+<data name="EMAIL_BANNER_NOTIFICATION_SUBJECT.Text" xml:space="preserve">
+    <value>[Custom:0]</value>
+  </data>
+<data name="EMAIL_VENDOR_REGISTRATION_ADMINISTRATOR_BODY.Text" xml:space="preserve">
+    <value>التاريخ: [Custom:0]
+اسم المورّد: [Custom:1]
+الاسم الأول: [Custom:2]
+اسم العائلة: [Custom:3]
+الوحدة: [Custom:4]
+الشارع: [Custom:5]
+المدينة: [Custom:6]
+المنطقة: [Custom:7]
+البلد: [Custom:8]
+الرمز البريدي: [Custom:9]
+الهاتف: [Custom:10]
+الفاكس: [Custom:11]
+الجوال: [Custom:12]
+البريد الإلكتروني: [Custom:13]
+الموقع الإلكتروني: [Custom:14]</value>
+  </data>
+<data name="EMAIL_VENDOR_REGISTRATION_ADMINISTRATOR_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] طلب مورّد</value>
+  </data>
+<data name="EMAIL_VENDOR_REGISTRATION_BODY.Text" xml:space="preserve">
+    <value>عزيزي [Custom:0] [Custom:1],
+
+ تم تسجيل [Custom:2] بنجاح في [Portal:PortalName].
+
+ شكرًا لك،
+
+ [Portal:PortalName]</value>
+  </data>
+<data name="EMAIL_VENDOR_REGISTRATION_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] طلب مورّد</value>
+  </data>
+<data name="EMAIL_USER_LOCKOUT_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] تنبيه بقفل حساب المستخدم</value>
+  </data>
+<data name="EMAIL_USER_LOCKOUT_BODY.Text" xml:space="preserve">
+    <value>تمت محاولة الوصول إلى حساب مستخدم مقفل ( اسم المستخدم: [Custom:0] ) في [Date:Current]. قد ترغب في التحقق من هذه المسألة بمزيد من التفصيل...
+
+شكرًا لك،
+[Portal:PortalName]
+</value>
+  </data>
+<data name="Error.Text" xml:space="preserve">
+    <value>حدث خطأ.</value>
+  </data>
+<data name="EMAIL_BulkMailConf_Subject.Text" xml:space="preserve">
+    <value>تقرير البريد الجماعي لـ '{0}'.</value>
+  </data>
+<data name="EMAIL_BulkMailConf_Html_Body.Text" xml:space="preserve">
+    <value>&lt;h1&gt;تقرير البريد الجماعي&lt;/h1&gt;
+    بدأت العملية في: [Custom:0]&lt;br /&gt;
+    مستلمو البريد الإلكتروني: [Custom:1]&lt;br /&gt;
+    رسائل البريد الإلكتروني: [Custom:2]&lt;br /&gt;
+    اكتملت العملية: [Custom:3]&lt;br /&gt;
+    [Custom:4|عدد الأخطاء:{0}&lt;br /&gt;]
+    &lt;br /&gt;
+    تقرير الحالة: &lt;br /&gt;
+           &lt;pre&gt;[Custom:5]&lt;/pre&gt;
+    [Custom:6|&lt;hr /&gt;&lt;strong&gt;المستلمون:&lt;/strong&gt;&lt;br /&gt;{0}]</value>
+  </data>
+<data name="EMAIL_BulkMailConf_Text_Body.Text" xml:space="preserve">
+    <value>بدأت العملية في: [Custom:0]
+مستلمو البريد الإلكتروني:      [Custom:1]
+رسائل البريد الإلكتروني:        [Custom:2]
+اكتملت العملية:  [Custom:3]
+
+[Custom:4|عدد الأخطاء:     {0}
+]تقرير الحالة:
+[Custom:5]
+--------------------------------
+[Custom:6|المستلمون:
+===========
+{0}]
+    </value>
+  </data>
+<data name="NoErrorsSending.Text" xml:space="preserve">
+    <value>لم تحدث أي أخطاء أثناء الإرسال.</value>
+  </data>
+<data name="Return.Text" xml:space="preserve">
+    <value>العودة إلى الموقع</value>
+  </data>
+<data name="UnhandledError.Text" xml:space="preserve">
+    <value>حدث خطأ غير معالج.</value>
+  </data>
+<data name="TokenReplaceUnknownObject.Text" xml:space="preserve">
+    <value>خطأ في الوصول إلى [{0}:{1}]، {0} هو رمز مصدر كائن غير معروف.</value>
+  </data>
+<data name="TokenReplaceRestrictedProperty.Text" xml:space="preserve">
+    <value>خطأ في الوصول إلى [{0}:{1}]، الوصول إلى {1} مقيّد لمصدر البيانات {0}.</value>
+  </data>
+<data name="TokenReplaceUnknownProperty.Text" xml:space="preserve">
+    <value>خطأ في الوصول إلى [{0}:{1}]، {1} غير معروف لمصدر البيانات {0}.</value>
+  </data>
+<data name="Can Deploy.Permission" xml:space="preserve">
+    <value>نشر الوحدة</value>
+  </data>
+<data name="Authentication.String" xml:space="preserve">
+    <value>المصادقة</value>
+  </data>
+<data name="SkinLoadError.Text" xml:space="preserve">
+    <value>تعذر تحميل السمة: {0}، الخطأ: {1}&lt;br/&gt;</value>
+  </data>
+<data name="EMAIL_ROLE_UPDATE_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] تحديث حساب المستخدم</value>
+  </data>
+<data name="EMAIL_ROLE_UPDATE_BODY.Text" xml:space="preserve">
+    <value>عزيزي [User:DisplayName],
+
+تم تحديث حساب المستخدم الخاص بك في [Portal:PortalName] مؤخرًا لتعديل الوصول إلى دور الأمان التالي:
+
+الدور: [Custom:0]
+الوصف: [Custom:1]
+تاريخ السريان: [Custom:2]
+تاريخ الانتهاء: [Custom:3]
+
+شكرًا لك، نقدّر دعمك...
+[Portal:PortalName]
+
+</value>
+  </data>
+<data name="PurgeCacheUnsupported.Text" xml:space="preserve">
+    <value>لا يتطلب موفر التخزين المؤقت هذا ميزة PurgeCache.</value>
+  </data>
+<data name="NoLoginControl.Text" xml:space="preserve">
+    <value>لقد تمت إعادة توجيهك إلى صفحة تسجيل الدخول الافتراضية لأن صفحة تسجيل الدخول المعينة لهذا الموقع لا تحتوي على وحدة تسجيل دخول DNN Account صالحة، أو أن الأذونات لم تُضبط بشكل صحيح.</value>
+  </data>
+<data name="EMAIL_USER_UPDATED_OWN_PASSWORD_BODY.Text" xml:space="preserve">
+    <value>عزيزي [User:DisplayName],
+
+لقد قمت بتغيير كلمة المرور الخاصة بك على [Portal:PortalName].
+
+يرجى تسجيل الدخول باستخدام المعلومات التالية:
+
+عنوان الموقع: [Portal:URL]
+اسم المستخدم:   [User:Username]
+
+مع التحية،
+[Portal:PortalName]</value>
+  </data>
+<data name="EMAIL_USER_UPDATED_OWN_PASSWORD_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] تحديث كلمة المرور</value>
+  </data>
+<data name="ViewSource.Action" xml:space="preserve">
+    <value>تطوير</value>
+  </data>
+<data name="EnglishName.Text" xml:space="preserve">
+    <value>الاسم بالإنجليزية</value>
+  </data>
+<data name="NativeName.Text" xml:space="preserve">
+    <value>الاسم الأصلي</value>
+  </data>
+<data name="NeutralCulture.Text" xml:space="preserve">
+    <value>الثقافة المحايدة</value>
+  </data>
+<data name="DeLocalize.Action" xml:space="preserve">
+    <value>إلغاء التوطين</value>
+  </data>
+<data name="Localize.Action" xml:space="preserve">
+    <value>توطين</value>
+  </data>
+<data name="Translate.Action" xml:space="preserve">
+    <value>وضع علامة مترجم</value>
+  </data>
+<data name="UnTranslate.Action" xml:space="preserve">
+    <value>وضع علامة غير مترجم</value>
+  </data>
+<data name="SearchCrawler Admin.String" xml:space="preserve">
+    <value>إدارة زواحف البحث</value>
+  </data>
+<data name="Manage.Text" xml:space="preserve">
+    <value>إدارة</value>
+  </data>
+<data name="ModuleGenericActions.Action" xml:space="preserve">
+    <value>الإدارة</value>
+  </data>
+<data name="ModuleSpecificActions.Action" xml:space="preserve">
+    <value>تحرير</value>
+  </data>
+<data name="//AboutUs.String" xml:space="preserve">
+    <value>من نحن</value>
+  </data>
+<data name="//Home.String" xml:space="preserve">
+    <value>الرئيسية</value>
+  </data>
+<data name="//Host//HTMLEditorManager.String" xml:space="preserve">
+    <value>إدارة محرر HTML</value>
+  </data>
+<data name="//SearchResults.String" xml:space="preserve">
+    <value>نتائج البحث</value>
+  </data>
+<data name="//UserProfile.String" xml:space="preserve">
+    <value>ملف المستخدم</value>
+  </data>
+<data name="EMAIL_BulkMailStart_Body.Text" xml:space="preserve">
+    <value>أرسل المستخدم {1} بريدًا جماعيًا '{0}' إلى {2} من المستلمين. يرجى مراجعة تقرير الإرسال لمعرفة عمليات الإرسال الفاشلة وعلبة بريد المرسل لمعرفة المرتجعات.</value>
+  </data>
+<data name="EMAIL_BulkMailStart_Subject.Text" xml:space="preserve">
+    <value>تم إرسال البريد الجماعي '{0}'</value>
+  </data>
+<data name="//NewsPromotions.String" xml:space="preserve">
+    <value>الأخبار والعروض</value>
+  </data>
+<data name="//OurProducts.String" xml:space="preserve">
+    <value>منتجاتنا</value>
+  </data>
+<data name="//Modules.Text" xml:space="preserve">
+    <value>الوحدات</value>
+  </data>
+<data name="//Pages.Text" xml:space="preserve">
+    <value>الصفحات</value>
+  </data>
+<data name="//Tools.Text" xml:space="preserve">
+    <value>الأدوات</value>
+  </data>
+<data name="RelationshipType_Added.Text" xml:space="preserve">
+    <value>أُضيف نوع العلاقة {0}</value>
+  </data>
+<data name="RelationshipType_Deleted.Text" xml:space="preserve">
+    <value>حُذف نوع العلاقة {0} : المعرّف {1}</value>
+  </data>
+<data name="RelationshipType_Updated.Text" xml:space="preserve">
+    <value>حُدّث نوع العلاقة {0}</value>
+  </data>
+<data name="Relationship_Added.Text" xml:space="preserve">
+    <value>أُضيفت العلاقة {0}</value>
+  </data>
+<data name="Relationship_Deleted.Text" xml:space="preserve">
+    <value>حُذفت العلاقة {0} : المعرّف {1}</value>
+  </data>
+<data name="Relationship_Updated.Text" xml:space="preserve">
+    <value>حُدّثت العلاقة {0}</value>
+  </data>
+<data name="UserRelationshipPreference_Added.Text" xml:space="preserve">
+    <value>أُضيفت تفضيلات علاقة المستخدم بالمعرّف {0} للمستخدم {1} والعلاقة {2}</value>
+  </data>
+<data name="UserRelationshipPreference_Deleted.Text" xml:space="preserve">
+    <value>حُذفت تفضيلات علاقة المستخدم بالمعرّف {0} للمستخدم {1} والعلاقة {2}</value>
+  </data>
+<data name="UserRelationshipPreference_Updated.Text" xml:space="preserve">
+    <value>حُدّثت تفضيلات علاقة المستخدم بالمعرّف {0} للمستخدم {1} والعلاقة {2}</value>
+  </data>
+<data name="UserRelationship_Added.Text" xml:space="preserve">
+    <value>أُضيفت علاقة المستخدم بالمعرّف {0} للمستخدم {1} والمستخدم المرتبط {2}</value>
+  </data>
+<data name="UserRelationship_Deleted.Text" xml:space="preserve">
+    <value>حُذفت علاقة المستخدم بالمعرّف {0} للمستخدم {1} والمستخدم المرتبط {2}</value>
+  </data>
+<data name="UserRelationship_Updated.Text" xml:space="preserve">
+    <value>حُدّثت علاقة المستخدم بالمعرّف {0} للمستخدم {1} والمستخدم المرتبط {2}</value>
+  </data>
+<data name="AddFriendRequestSubject.Text" xml:space="preserve">
+    <value>{0} يريد أن يصبح صديقًا لك</value>
+  </data>
+<data name="AddFriendRequestBody.Text" xml:space="preserve">
+    <value>{0} يريد أن يصبح صديقًا لك</value>
+  </data>
+<data name="AddFollowerRequestSubject.Text" xml:space="preserve">
+    <value>{0} يتابعك الآن</value>
+  </data>
+<data name="AddFollowerRequestBody.Text" xml:space="preserve">
+    <value>أصبحت الآن متبوعًا من {0}</value>
+  </data>
+<data name="//ActivityFeed.String" xml:space="preserve">
+    <value>سجل النشاط</value>
+  </data>
+<data name="//ActivityFeed//Friends.String" xml:space="preserve">
+    <value>الأصدقاء</value>
+  </data>
+<data name="//ActivityFeed//Messages.String" xml:space="preserve">
+    <value>الرسائل</value>
+  </data>
+<data name="//ActivityFeed//MyProfile.String" xml:space="preserve">
+    <value>ملفي الشخصي</value>
+  </data>
+<data name="EMAIL_SUBJECT_FORMAT.Text" xml:space="preserve">
+    <value>رسالة جديدة من {0}</value>
+  </data>
+<data name="EMAIL_BODY_FORMAT.Text" xml:space="preserve">
+    <value>الموضوع: {0}
+
+{1}
+
+يرجى عدم الرد على هذا البريد الإلكتروني.</value>
+  </data>
+<data name="PortalLinks.Text" xml:space="preserve">
+    <value>روابط الموقع</value>
+  </data>
+<data name="LogClicks.Text" xml:space="preserve">
+    <value>تسجيل المستخدم والتاريخ والوقت لكل نقرة</value>
+  </data>
+<data name="TrackClicks.Text" xml:space="preserve">
+    <value>تتبع عدد مرات النقر على هذا الرابط</value>
+  </data>
+<data name="ApplicationUpgrades.Text" xml:space="preserve">
+    <value>ترقيات التطبيق</value>
+  </data>
+<data name="GeneralUpgrades.Text" xml:space="preserve">
+    <value>تنفيذ الترقيات العامة</value>
+  </data>
+<data name="ExecutingScript.Text" xml:space="preserve">
+    <value>تنفيذ البرنامج النصي</value>
+  </data>
+<data name="LogStart.Text" xml:space="preserve">
+    <value>البداية </value>
+  </data>
+<data name="LogEnd.Text" xml:space="preserve">
+    <value>النهاية </value>
+  </data>
+<data name="ActivatingLicense.Text" xml:space="preserve">
+    <value>تنشيط الترخيص</value>
+  </data>
+<data name="ModulePermissions.Action" xml:space="preserve">
+    <value>الأذونات</value>
+  </data>
+<data name="MoveToPane.Action" xml:space="preserve">
+    <value>إلى {0}</value>
+  </data>
+<data name="DropModuleTarget.Text" xml:space="preserve">
+    <value>أفلت الوحدة هنا</value>
+  </data>
+<data name="DragModuleHint.Text" xml:space="preserve">
+    <value>اسحب هذه الوحدة إلى موقع جديد</value>
+  </data>
+<data name="DraggingHintText.Text" xml:space="preserve">
+    <value>حرّك الفأرة فوق منطقة إفلات.</value>
+  </data>
+<data name="DropModuleHint.Text" xml:space="preserve">
+    <value>حرّر زر الفأرة لإفلات الوحدة هنا.</value>
+  </data>
+<data name="//AboutUs//StyleGuide.String" xml:space="preserve">
+    <value>دليل الأنماط</value>
+  </data>
+<data name="//ContactUs.String" xml:space="preserve">
+    <value>اتصل بنا</value>
+  </data>
+<data name="//Admin//FileManagement.String" xml:space="preserve">
+    <value>إدارة الملفات</value>
+  </data>
+<data name="CustomUrlPathCleaned.Error" xml:space="preserve">
+    <value>يحتوي عنوان URL للصفحة الذي أدخلته على محارف لا يمكن استخدامها في عنوان URL أو محارف غير قانونية. تمت إزالة هذه المحارف. انقر زر «تحديث» مرة أخرى لقبول عنوان URL المعدل.&lt;br&gt;[ملاحظة: قائمة المحارف غير القانونية هي التالية: &lt;&gt;\?:&amp;=+|%# ]</value>
+  </data>
+<data name="UrlPathNotUnique.Error" xml:space="preserve">
+    <value>عنوان URL المقدم غير متاح. إذا كنت تريد قبول البديل المقترح، يرجى النقر على حفظ.</value>
+  </data>
+<data name="EMAIL_PASSWORD_UPDATED_BODY.Text" xml:space="preserve">
+    <value>عزيزي [User:DisplayName],
+
+تم تغيير كلمة المرور الخاصة بك على [Portal:PortalName].
+
+يرجى الاتصال بمسؤول الموقع على عنوان البريد الإلكتروني التالي - [Portal:Email]
+
+مع التحية،
+[Portal:PortalName]</value>
+  </data>
+<data name="EMAIL_PASSWORD_UPDATED_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] تحديث كلمة المرور</value>
+  </data>
+<data name="//Host//FileManagement.String" xml:space="preserve">
+    <value>إدارة الملفات</value>
+  </data>
+<data name="AspNetHostingPermission.Text" xml:space="preserve">
+    <value>يتطلب هذا الامتداد ثقة كاملة (Full Trust).</value>
+  </data>
+<data name="ReflectionPermission.Text" xml:space="preserve">
+    <value>يتطلب هذا الامتداد إذن الانعكاس (Reflection).</value>
+  </data>
+<data name="WebPermission.Text" xml:space="preserve">
+    <value>يتطلب هذا الامتداد إذن الويب (Web).</value>
+  </data>
+<data name="EMAIL_SOCIAL_FRIENDREQUESTACTIONS.Text" xml:space="preserve">
+    <value>&lt;p&gt;&lt;a href="{0}"&gt;قبول&lt;/a&gt; | &lt;a href="{1}"&gt;عرض الملف الشخصي&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+<data name="EMAIL_SOCIAL_FOLLOWREQUESTACTIONS.Text" xml:space="preserve">
+    <value>&lt;p&gt;&lt;a href="{0}"&gt;متابعة بالمثل&lt;/a&gt; | &lt;a href="{1}"&gt;عرض الملف الشخصي&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+<data name="MESSAGE_USERNAME_CHANGED_INSTRUCTIONS.Text" xml:space="preserve">
+    <value>يرجى التحقق من تغيير عنوان بريدك الإلكتروني بإعادة إدخال كلمة المرور.</value>
+  </data>
+<data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_BODY.Text" xml:space="preserve">
+    <value>عزيزي [User:DisplayName],
+
+لقد طلبت رمز إعادة تعيين كلمة المرور من [Portal:PortalName]، لكن حسابك في انتظار الموافقة.
+
+يمكن إعادة تعيين كلمة المرور بعد الموافقة على الحساب.
+
+مع التحية،
+[Portal:PortalName]
+
+*ملاحظة: إذا لم تطلب رمز إعادة تعيين كلمة المرور، يرجى تجاهل هذه الرسالة.    </value>
+  </data>
+<data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] تذكير بكلمة المرور</value>
+  </data>
+<data name="503.Error" xml:space="preserve">
+    <value>{0} - 503 الخدمة غير متوفرة</value>
+  </data>
+<data name="NoSitesForThisInstallation.Error" xml:space="preserve">
+    <value>لا توجد مواقع حاليًا لهذا التثبيت.</value>
+  </data>
+<data name="SiteAccessedWhileInstallationWasInProgress.Error" xml:space="preserve">
+    <value>تمت زيارة الموقع أثناء تنفيذ عملية تثبيت/ترقية.</value>
+  </data>
+<data name="ThereIsAInstallationCurrentlyInProgress.Error" xml:space="preserve">
+    <value>هناك عملية تثبيت قيد التنفيذ حاليًا. يرجى المحاولة لاحقًا.</value>
+  </data>
+<data name="EMAIL_USER_UNAUTHORIZED_BODY.Text" xml:space="preserve">
+    <value>عزيزي [User:DisplayName],
+
+تم إلغاء التفويض عن حسابك في [Portal:PortalName].
+
+عنوان الموقع: [Portal:URL]
+اسم المستخدم: [User:UserName]
+
+إذا كانت لديك أي أسئلة، فلا تتردد في الاتصال بالمسؤول على [Portal:Email]
+
+مع التحية،
+[Portal:PortalName]</value>
+  </data>
+<data name="EMAIL_USER_UNAUTHORIZED_SUBJECT.Text" xml:space="preserve">
+    <value>تم إلغاء التفويض عن حسابك لـ [Portal:URL]</value>
+  </data>
+<data name="cc_dismiss.Text" xml:space="preserve">
+    <value>فهمت!</value>
+  </data>
+<data name="cc_link.Text" xml:space="preserve">
+    <value>اعرف المزيد</value>
+  </data>
+<data name="cc_message.Text" xml:space="preserve">
+    <value>يستخدم هذا الموقع ملفات تعريف الارتباط لضمان حصولك على أفضل تجربة على موقعنا.</value>
   </data>
 </root>

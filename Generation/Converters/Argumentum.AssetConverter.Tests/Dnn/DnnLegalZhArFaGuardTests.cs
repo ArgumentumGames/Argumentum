@@ -100,12 +100,12 @@ namespace Argumentum.AssetConverter.Tests
 		{
 			var names = Load(LocaleResx(locale)).Root!.Elements("data").Select(d => d.Attribute("name")?.Value).ToList();
 			names.Should().Contain(Keys, "les deux pages juridiques doivent etre presentes dans le resx de la culture");
-			// ar-SA et fa-IR ne portent QUE ces deux clés : leur repli DNN reste par clé
-			// et aucun autre contenu n'y est traduit (état inchangé par ce grain).
-			// zh-CN, elle, reçoit le pack Tier 2 (#458 grain 9-bis) : le fichier porte
-			// désormais le chrome traduit en plus des deux pages juridiques — la garde
-			// de ce contenu est DnnZhCnResxIntegrityGuardTests.
-			if (locale != "zh-CN")
+			// fa-IR ne porte QUE ces deux clés : son repli DNN reste par clé et aucun
+			// autre contenu n'y est traduit (état inchangé par ce grain).
+			// zh-CN puis ar-SA reçoivent le pack Tier 2 (#458 grain 9-bis) : leur
+			// fichier porte désormais le chrome traduit en plus des deux pages
+			// juridiques — la garde de ce contenu est DnnAgrCoreResxIntegrityGuardTests.
+			if (locale != "zh-CN" && locale != "ar-SA")
 				names.Should().BeEquivalentTo(Keys, "le repli DNN est par clé : le fichier ne porte que les deux pages juridiques");
 			foreach (var key in Keys)
 			{
