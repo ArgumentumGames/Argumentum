@@ -136,12 +136,19 @@ CI**, et le lot fa-IR serait arrivé sous cette garantie absente.
    trois cultures × {`FileUpload` 4, `WebControls` 50, `Exceptions` 132, `GlobalResources` 172},
    plus `SharedResources` 610 / 610 / **3** (le pack fa-IR n'existait pas encore à ce commit) ;
    **2 904** après le merge des lots 4-6 (`a2567de8`). Le chiffre **1 726** de la première
-   rédaction ne correspond à aucun de ces périmètres, ni au corpus neutre (**985** clés) : il
-   est retiré au profit des décomptes ci-dessus.
+   rédaction ne correspond à **aucun des périmètres mesurés ici** (les clés livrées aux deux
+   révisions, le corpus neutre **985** clés). ⚠️ **La recherche s'arrête là** : elle n'établit
+   pas qu'aucun découpage imaginable ne donnerait 1 726 — seulement qu'aucun des périmètres
+   **définis** par ce travail ne le produit. Le chiffre est retiré au profit des décomptes
+   ci-dessus plutôt que réexpliqué après coup.
 
    ⚠️ **Instrument** : compter les **éléments XML** (`<data>`), jamais les occurrences
-   textuelles de `<data name=` — un `grep` en rend **614** au lieu de 610 par fichier
-   (4 occurrences vivent dans des commentaires), et ce faux écart de 4 se propage à tout total.
+   textuelles de `<data name=` — un `grep` en rend **614** au lieu de 610 par fichier, et ce
+   faux écart de 4 se propage à **tout** total. Les 4 occurrences surnuméraires sont **nommées**
+   (contre-revue web2, [5718030518](https://github.com/ArgumentumGames/Argumentum/pull/2084#pullrequestreview-5718030518)) :
+   les exemples de schéma `Name1`, `Color1`, `Bitmap1`, `Icon1` que le bloc `resheader`/`xsd`
+   de tout `.resx` embarque en commentaire. Ils sont **identiques dans les quatre fichiers**,
+   d'où un biais constant et non un bruit variable.
 
 ### 5.2 Contrôle inverse — le test peut rougir
 
