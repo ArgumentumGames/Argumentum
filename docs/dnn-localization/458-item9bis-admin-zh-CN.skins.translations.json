@@ -1,0 +1,82 @@
+{
+ "files": {
+  "Copyright.ascx": {
+   "Copyright.Text": "版权所有 (c) {0} {1}"
+  },
+  "Language.ascx": {
+   "Label.Text": "选择语言： "
+  },
+  "LinkToFullSite.ascx": {
+   "lnkPortal.Text": "查看完整站点"
+  },
+  "LinkToMobileSite.ascx": {
+   "lnkPortal.Text": "查看移动站点"
+  },
+  "LinkToTabletSite.ascx": {
+   "lnkPortal.Text": "查看平板站点"
+  },
+  "Privacy.ascx": {
+   "Privacy.Text": "隐私声明"
+  },
+  "Search.ascx": {
+   "Web.Text": "网页",
+   "Web.ToolTip": "Google 网页搜索",
+   "Site.Text": "本站",
+   "Site.ToolTip": "站内搜索",
+   "Search.Text": "搜索",
+   "DropDownGlyph.AltText": "选择搜索类型",
+   "SeeMoreResults.Text": "查看更多结果",
+   "NoResult.Text": "未找到结果",
+   "Placeholder.Text": "搜索...",
+   "SearchClearQuery.Text": "清除搜索文本"
+  },
+  "Tags.ascx": {
+   "Add.Text": "添加标签",
+   "Add.ToolTip": "单击此链接以添加标签。",
+   "Cancel.Text": "取消",
+   "Cancel.ToolTip": "单击以取消编辑而不保存。",
+   "Category.ToolTip": "分类",
+   "Save.Text": "保存",
+   "Save.ToolTip": "单击以保存标签。",
+   "Tag.ToolTip": "标签"
+  },
+  "Terms.ascx": {
+   "Terms.Text": "使用条款"
+  },
+  "Toast.ascx": {
+   "SeeAllMessage.Text": "查看所有消息",
+   "SeeAllNotification.Text": "查看所有通知"
+  },
+  "TreeViewMenu.ascx": {
+   "Title.Text": "站点导航",
+   "Parent.Text": "父级",
+   "GoUp.Text": "转到父级"
+  },
+  "User.ascx": {
+   "CheckMessages.Text": "查看消息",
+   "CheckNotifications.Text": "查看通知",
+   "Messages.Text": "<span>{0}</span><strong> 条消息</strong>",
+   "NoMessages.Text": "<strong> 条消息</strong>",
+   "NoNotifications.Text": "<strong> 条通知</strong>",
+   "Notifications.Text": "<span>{0}</span><strong> 条通知</strong>",
+   "ProfileAvatar.Text": "个人资料头像",
+   "Register.Text": "注册",
+   "ToolTip.Text": "单击此处访问您的个人资料页面。",
+   "ToolTipNewMessages.Text": "您有 {0} 条新消息。单击此处访问您的个人资料页面。",
+   "VisitMyProfile.Text": "访问我的个人资料"
+  },
+  "UserAndLogin.ascx": {
+   "Account.Text": "编辑账户",
+   "EditProfile.Text": "编辑个人资料",
+   "Login.Text": "登录",
+   "Logout.Text": "退出登录",
+   "MessageCount.Text": "{0} 条消息",
+   "Messages.Text": " 条消息",
+   "Notifications.Text": " 条通知",
+   "OneMessage.Text": "1 条消息",
+   "Profile.Text": "我的个人资料",
+   "ProfilePicture.Text": "我的头像",
+   "Register.Text": "注册"
+  }
+ }
+}

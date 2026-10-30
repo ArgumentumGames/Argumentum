@@ -1,0 +1,8 @@
+{
+ "files": {
+  "ViewProfile.ascx": {
+   "ControlTitle_viewprofile.Text": "查看个人资料",
+   "NoProperties.Text": "该用户选择隐藏其个人资料。"
+  }
+ }
+}

@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ModuleSettings.Text" xml:space="preserve">
+    <value>模块设置</value>
+  </data>
+<data name="plFriendlyName.Text" xml:space="preserve">
+    <value>模块：</value>
+  </data>
+<data name="plFriendlyName.Help" xml:space="preserve">
+    <value>显示模块的名称。</value>
+  </data>
+<data name="plTitle.Text" xml:space="preserve">
+    <value>模块标题：</value>
+  </data>
+<data name="plTitle.Help" xml:space="preserve">
+    <value>输入模块的标题。若容器支持，标题将显示在此模块容器的标题栏中。</value>
+  </data>
+<data name="PageSettings.Text" xml:space="preserve">
+    <value>页面设置</value>
+  </data>
+<data name="Security.Text" xml:space="preserve">
+    <value>高级设置</value>
+  </data>
+<data name="plAllTabs.Text" xml:space="preserve">
+    <value>在所有页面上显示模块</value>
+  </data>
+<data name="plAllTabs.Help" xml:space="preserve">
+    <value>勾选此框可在站点所有页面的相同位置显示该模块。</value>
+  </data>
+<data name="plVisibility.Text" xml:space="preserve">
+    <value>折叠/展开：</value>
+  </data>
+<data name="plVisibility.Help" xml:space="preserve">
+    <value>选择此模块的默认可见状态，即模块处于折叠还是展开状态。</value>
+  </data>
+<data name="plTab.Text" xml:space="preserve">
+    <value>移动到页面：</value>
+  </data>
+<data name="plTab.Help" xml:space="preserve">
+    <value>选择此模块实例将移动到的页面。</value>
+  </data>
+<data name="plHeader.Text" xml:space="preserve">
+    <value>页眉：</value>
+  </data>
+<data name="plHeader.Help" xml:space="preserve">
+    <value>输入显示在此模块内容上方的页眉文本。</value>
+  </data>
+<data name="plFooter.Text" xml:space="preserve">
+    <value>页脚：</value>
+  </data>
+<data name="plFooter.Help" xml:space="preserve">
+    <value>输入显示在此模块内容下方的页脚文本。</value>
+  </data>
+<data name="plIcon.Text" xml:space="preserve">
+    <value>图标：</value>
+  </data>
+<data name="plIcon.Help" xml:space="preserve">
+    <value>选择显示在此模块标题栏中的图标。</value>
+  </data>
+<data name="plAlign.Text" xml:space="preserve">
+    <value>对齐方式：</value>
+  </data>
+<data name="plAlign.Help" xml:space="preserve">
+    <value>选择模块内容的默认对齐方式。</value>
+  </data>
+<data name="plColor.Text" xml:space="preserve">
+    <value>颜色：</value>
+  </data>
+<data name="plColor.Help" xml:space="preserve">
+    <value>输入此模块背景的颜色名称或十六进制值。</value>
+  </data>
+<data name="plBorder.Text" xml:space="preserve">
+    <value>边框：</value>
+  </data>
+<data name="plBorder.Help" xml:space="preserve">
+    <value>输入模块的边框宽度。</value>
+  </data>
+<data name="plModuleContainer.Text" xml:space="preserve">
+    <value>模块容器：</value>
+  </data>
+<data name="plModuleContainer.Help" xml:space="preserve">
+    <value>为模块选择一个容器。</value>
+  </data>
+<data name="plPermissions.Text" xml:space="preserve">
+    <value>权限：</value>
+  </data>
+<data name="plPermissions.Help" xml:space="preserve">
+    <value>勾选/取消勾选网格中的复选框以选择查看和编辑权限。勾选“继承查看权限”可为模块使用页面权限。</value>
+  </data>
+<data name="plCacheTime.Text" xml:space="preserve">
+    <value>缓存时间（秒）：</value>
+  </data>
+<data name="plCacheTime.Help" xml:space="preserve">
+    <value>输入此模块内容的缓存秒数。</value>
+  </data>
+<data name="plStartDate.Text" xml:space="preserve">
+    <value>开始日期：</value>
+  </data>
+<data name="plStartDate.Help" xml:space="preserve">
+    <value>选择此模块显示的开始日期。在此日期之前，只有具有管理权限的用户才能看到该模块。</value>
+  </data>
+<data name="plEndDate.Text" xml:space="preserve">
+    <value>结束日期：</value>
+  </data>
+<data name="plEndDate.Help" xml:space="preserve">
+    <value>选择此模块显示的结束日期。在此日期之后，只有具有管理权限的用户才能看到该模块。</value>
+  </data>
+<data name="plMoniker.Text" xml:space="preserve">
+    <value>模块标识：</value>
+  </data>
+<data name="plMoniker.Help" xml:space="preserve">
+    <value>此模块在页面上的唯一标识符。WEB API 调用方可使用它来设置页面和模块上下文。</value>
+  </data>
+<data name="plDefault.Text" xml:space="preserve">
+    <value>设为默认设置</value>
+  </data>
+<data name="plDefault.Help" xml:space="preserve">
+    <value>勾选此框可将此模块的页面设置用作添加新模块时的默认设置。仅限管理员。</value>
+  </data>
+<data name="plAllModules.Text" xml:space="preserve">
+    <value>应用到所有模块</value>
+  </data>
+<data name="plAllModules.Help" xml:space="preserve">
+    <value>勾选此框可将此模块的页面设置应用到所有现有模块。仅限管理员。</value>
+  </data>
+<data name="GeneralDetails.Text" xml:space="preserve">
+    <value>基本设置</value>
+  </data>
+<data name="Appearance.Text" xml:space="preserve">
+    <value>基本设置</value>
+  </data>
+<data name="OtherSettings.Text" xml:space="preserve">
+    <value>高级设置</value>
+  </data>
+<data name="InheritPermissions.Text" xml:space="preserve">
+    <value>从&lt;b&gt;页面&lt;/b&gt;继承&lt;b&gt;查看&lt;/b&gt;权限</value>
+  </data>
+<data name="ControlTitle_module.Text" xml:space="preserve">
+    <value>模块</value>
+  </data>
+<data name="plDisplayTitle.Text" xml:space="preserve">
+    <value>显示容器</value>
+  </data>
+<data name="plDisplayTitle.Help" xml:space="preserve">
+    <value>勾选此框以显示模块容器。</value>
+  </data>
+<data name="plDisplaySyndicate.Text" xml:space="preserve">
+    <value>允许联合发布</value>
+  </data>
+<data name="plDisplayPrint.Help" xml:space="preserve">
+    <value>勾选此框可在此模块上启用打印。</value>
+  </data>
+<data name="plDisplaySyndicate.Help" xml:space="preserve">
+    <value>勾选此框可在此模块上启用 RSS。</value>
+  </data>
+<data name="plDisplayPrint.Text" xml:space="preserve">
+    <value>允许打印</value>
+  </data>
+<data name="valStartDate.ErrorMessage" xml:space="preserve">
+    <value>开始日期无效。</value>
+  </data>
+<data name="valEndDate.ErrorMessage" xml:space="preserve">
+    <value>结束日期无效。</value>
+  </data>
+<data name="valCacheTime.ErrorMessage" xml:space="preserve">
+    <value>缓存时间无效。</value>
+  </data>
+<data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;模块设置&lt;/h1&gt;&lt;p&gt;管理当前页面的模块设置。您可以在此指定模块的特性，包括内容、权限和显示属性。&lt;/p&gt;</value>
+  </data>
+<data name="valBorder.ErrorMessage" xml:space="preserve">
+    <value>边框无效（必须是 0 到 9 之间的数字）。</value>
+  </data>
+<data name="valEndDate2.ErrorMessage" xml:space="preserve">
+    <value>结束日期必须晚于开始日期。</value>
+  </data>
+<data name="plNewTabs.Help" xml:space="preserve">
+    <value>勾选此框只将模块添加到新页面。仅限管理员。</value>
+  </data>
+<data name="plNewTabs.Text" xml:space="preserve">
+    <value>仅添加到新页面</value>
+  </data>
+<data name="plWebSlice.Help" xml:space="preserve">
+    <value>勾选此框可将此模块设为 IE8 网页快讯（Web Slice）。</value>
+  </data>
+<data name="plWebSlice.Text" xml:space="preserve">
+    <value>是网页快讯</value>
+  </data>
+<data name="plWebSliceExpiry.Help" xml:space="preserve">
+    <value>输入网页快讯的过期日期，留空则使用模块的结束日期。</value>
+  </data>
+<data name="plWebSliceExpiry.Text" xml:space="preserve">
+    <value>网页快讯过期时间：</value>
+  </data>
+<data name="plWebSliceTitle.Help" xml:space="preserve">
+    <value>输入网页快讯的标题，留空则使用模块标题。</value>
+  </data>
+<data name="plWebSliceTitle.Text" xml:space="preserve">
+    <value>网页快讯标题：</value>
+  </data>
+<data name="plWebSliceTTL.Help" xml:space="preserve">
+    <value>输入此网页快讯的存活时间（TTL，分钟），留空则使用模块的缓存时间（换算为分钟）。</value>
+  </data>
+<data name="plWebSliceTTL.Text" xml:space="preserve">
+    <value>网页快讯 TTL：</value>
+  </data>
+<data name="valWebSliceExpiry.ErrorMessage" xml:space="preserve">
+    <value>过期日期无效</value>
+  </data>
+<data name="valWebSliceTTL.ErrorMessage" xml:space="preserve">
+    <value>TTL 无效——值必须为整数。</value>
+  </data>
+<data name="InstalledOn.Text" xml:space="preserve">
+    <value>此模块已添加到以下页面：</value>
+  </data>
+<data name="ModuleInstalledOn.Text" xml:space="preserve">
+    <value>已添加到页面</value>
+  </data>
+<data name="InstalledOn.Help" xml:space="preserve">
+    <value>此列表显示通过“添加现有模块”功能添加此模块的页面。使用“添加现有模块”功能可将现有模块添加到其他页面。</value>
+  </data>
+<data name="MsgInstalledOnNone.Text" xml:space="preserve">
+    <value>此模块实例尚未添加到任何其他页面。</value>
+  </data>
+<data name="MsgInstalledOnAll.Text" xml:space="preserve">
+    <value>此模块实例显示在所有页面上。</value>
+  </data>
+<data name="CustomSettings.Text" xml:space="preserve">
+    <value>{0} 设置</value>
+  </data>
+<data name="ModuleExists.Text" xml:space="preserve">
+    <value>此模块已存在于目标页面上（可能在回收站中），而一个页面上只能存在一个模块实例。</value>
+  </data>
+<data name="CacheProvider.Help" xml:space="preserve">
+    <value>选择此页面使用的提供程序。</value>
+  </data>
+<data name="CacheDuration.Help" xml:space="preserve">
+    <value>输入页面的缓存时长（秒）。此值必须为整数。</value>
+  </data>
+<data name="CacheProvider.Text" xml:space="preserve">
+    <value>输出缓存提供程序</value>
+  </data>
+<data name="CacheDuration.Text" xml:space="preserve">
+    <value>缓存时长（秒）</value>
+  </data>
+<data name="CacheDurationWarning.Text" xml:space="preserve">
+    <value>此模块已建议禁用缓存（在上方“输出缓存提供程序”列表中选择“无”）。不建议在此模块上启用缓存，否则可能导致模块显示过时数据。</value>
+  </data>
+<data name="CacheInherited.Text" xml:space="preserve">
+    <value>已继承</value>
+  </data>
+<data name="plTags.Help" xml:space="preserve">
+    <value>从下拉列表中选择项以标记此模块。</value>
+  </data>
+<data name="plTags.Text" xml:space="preserve">
+    <value>标签：</value>
+  </data>
+<data name="plAdminBorder.Help" xml:space="preserve">
+    <value>勾选此框可隐藏模块顶部的消息，该消息提示模块仅对管理员可见（若未授予其他权限）。</value>
+  </data>
+<data name="plAdminBorder.Text" xml:space="preserve">
+    <value>隐藏管理员消息</value>
+  </data>
+<data name="cultureLabel.Help" xml:space="preserve">
+    <value>此模块的区域性。</value>
+  </data>
+<data name="cultureLabel.Text" xml:space="preserve">
+    <value>模块区域性：</value>
+  </data>
+<data name="defaultCultureLabel.Help" xml:space="preserve">
+    <value>单击此链接可在默认区域性中查看此模块的版本。</value>
+  </data>
+<data name="defaultCultureLabel.Text" xml:space="preserve">
+    <value>默认区域性：</value>
+  </data>
+<data name="Bind.Text" xml:space="preserve">
+    <value>绑定</value>
+  </data>
+<data name="edit.Text" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+<data name="UnBind.Text" xml:space="preserve">
+    <value>取消绑定</value>
+  </data>
+<data name="LocalizedModules.Text" xml:space="preserve">
+    <value>模块本地化</value>
+  </data>
+<data name="Translated.Text" xml:space="preserve">
+    <value>标记为已翻译</value>
+  </data>
+<data name="UnTranslated.Text" xml:space="preserve">
+    <value>标记为未翻译</value>
+  </data>
+<data name="CreateBoundCopies.Text" xml:space="preserve">
+    <value>创建绑定副本</value>
+  </data>
+<data name="Permissions.Text" xml:space="preserve">
+    <value>权限</value>
+  </data>
+<data name="CacheSettings.Text" xml:space="preserve">
+    <value>缓存设置</value>
+  </data>
+<data name="ContainerPreview.Text" xml:space="preserve">
+    <value>预览</value>
+  </data>
+<data name="ExpandAll.Text" xml:space="preserve">
+    <value>全部展开</value>
+  </data>
+<data name="PreviewNoSelectionMessage.Text" xml:space="preserve">
+    <value>选择要预览的容器。</value>
+  </data>
+<data name="lblNoRecords.Text" xml:space="preserve">
+    <value>此模块尚未添加到任何其他页面。</value>
+  </data>
+<data name="Page.Header" xml:space="preserve">
+    <value>页面</value>
+  </data>
+<data name="Site.Header" xml:space="preserve">
+    <value>站点</value>
+  </data>
+<data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>{0} 设置</value>
+  </data>
+<data name="AllowIndexLabel.Help" xml:space="preserve">
+    <value>如果模块应被搜索爬虫索引，请勾选此框。</value>
+  </data>
+<data name="AllowIndexLabel.Text" xml:space="preserve">
+    <value>允许索引</value>
+  </data>
+<data name="isShareableLabel.Help" xml:space="preserve">
+    <value>勾选此框可允许跨站点共享此模块。</value>
+  </data>
+<data name="isShareableLabel.Text" xml:space="preserve">
+    <value>可共享</value>
+  </data>
+<data name="isShareableViewOnlyLabel.Help" xml:space="preserve">
+    <value>勾选此框可将此模块限制为仅以只读方式共享。</value>
+  </data>
+<data name="isShareableViewOnlyLabel.Text" xml:space="preserve">
+    <value>仅查看</value>
+  </data>
+<data name="MonikerExists.Text" xml:space="preserve">
+    <value>新的标识值已存在；标识在门户内必须唯一。</value>
+  </data>
+</root>
