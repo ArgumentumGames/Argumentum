@@ -10,12 +10,12 @@
     <Family />
     <Subfamily />
     <SubsubFamily />
-    <Card>[]</Card>
+    <Card />
     <Author />
     <Original />
-    <Difficulty>[]</Difficulty>
+    <Difficulty />
     <Licence />
-    <Date>[]</Date>
+    <Date />
   </Entity>
   <Entity Type="Fallacy">
     <Guid>6b62b0ad-9f21-4caf-a886-62d525a4c06b</Guid>
@@ -27,12 +27,12 @@
     <Family />
     <Subfamily />
     <SubsubFamily />
-    <Card>[]</Card>
+    <Card />
     <Author />
     <Original />
-    <Difficulty>[]</Difficulty>
+    <Difficulty />
     <Licence />
-    <Date>[]</Date>
+    <Date />
   </Entity>
   <Entity Type="Fallacy">
     <Guid>a98b9317-3541-45dc-9b75-0cd48e440c8b</Guid>
@@ -44,12 +44,12 @@
     <Family />
     <Subfamily />
     <SubsubFamily />
-    <Card>[]</Card>
+    <Card />
     <Author />
     <Original />
-    <Difficulty>[]</Difficulty>
+    <Difficulty />
     <Licence />
-    <Date>[]</Date>
+    <Date />
   </Entity>
   <Entity Type="Fallacy">
     <Guid>a98b9317-3541-45dc-9b75-0cd48e440c8b</Guid>
@@ -61,12 +61,12 @@
     <Family />
     <Subfamily />
     <SubsubFamily />
-    <Card>[]</Card>
+    <Card />
     <Author />
     <Original />
-    <Difficulty>[]</Difficulty>
+    <Difficulty />
     <Licence />
-    <Date>[]</Date>
+    <Date />
   </Entity>
   <Entity Type="Fallacy">
     <Guid>68cec9b8-b301-4f7b-877f-108be7bbf339</Guid>
@@ -81,9 +81,9 @@
     <Card>False</Card>
     <Author />
     <Original />
-    <Difficulty>[]</Difficulty>
+    <Difficulty />
     <Licence />
-    <Date>[]</Date>
+    <Date />
   </Entity>
   <Entity Type="Fallacy">
     <Guid>68cec9b8-b301-4f7b-877f-108be7bbf339</Guid>
@@ -95,12 +95,12 @@
     <Family />
     <Subfamily />
     <SubsubFamily />
-    <Card>[]</Card>
+    <Card />
     <Author />
     <Original />
-    <Difficulty>[]</Difficulty>
+    <Difficulty />
     <Licence />
-    <Date>[]</Date>
+    <Date />
   </Entity>
   <Entity Type="Fallacy">
     <Guid>6b62b0ad-9f21-4caf-a886-62d525a4c06b</Guid>

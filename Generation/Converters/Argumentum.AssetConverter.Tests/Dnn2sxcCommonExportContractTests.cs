@@ -29,6 +29,65 @@ namespace Argumentum.AssetConverter.Tests
 		internal static string CommittedDir => Path.Combine(Repo,
 			"Generation", "Converters", "Argumentum.AssetConverter", "Data", "Dnn2sxc");
 
+		/// <summary>Projet du convertisseur : les chemins de sa config sont écrits pour son bin.</summary>
+		internal static string ProjectDir => Path.Combine(Repo,
+			"Generation", "Converters", "Argumentum.AssetConverter");
+
+		/// <summary>
+		/// Résout un chemin déclaré dans <see cref="Dnn2sxcConfig"/>, qui est <b>relatif au bin du
+		/// convertisseur</b>. La suite de tests a un autre répertoire courant (son propre bin), où le
+		/// même nombre de « .. » ne désigne pas le même dossier : le fixture 2021 n'était donc pas
+		/// chargé et la garde mesurait un export <b>sans lui</b> — mesuré le 29/10, 17 « [] » dans
+		/// l'artefact committé contre 0 dans celui du test. On essaie les ancêtres du projet jusqu'à
+		/// ce que le fichier existe, et on échoue bruyamment plutôt que de rendre un chemin faux.
+		/// </summary>
+		internal static string ResolveFromRepo(string declaredPath)
+		{
+			if (string.IsNullOrEmpty(declaredPath) || Path.IsPathRooted(declaredPath))
+			{
+				return declaredPath;
+			}
+
+			// Ancêtres possibles, dans l'ordre où la config les suppose :
+			//  1. les bins du convertisseur (son CWD à l'exécution du pipeline) ;
+			//  2. le dossier du projet (chemins écrits depuis là) ;
+			//  3. ses ancêtres jusqu'à la racine du volume.
+			var roots = new List<string>();
+			var binRoot = Path.Combine(ProjectDir, "bin");
+			if (Directory.Exists(binRoot))
+			{
+				foreach (var configuration in Directory.GetDirectories(binRoot))
+				{
+					roots.AddRange(Directory.GetDirectories(configuration));
+				}
+			}
+			roots.Add(ProjectDir);
+
+			var current = ProjectDir;
+			for (var depth = 0; depth < 8; depth++)
+			{
+				var parent = Path.GetDirectoryName(current!.TrimEnd(Path.DirectorySeparatorChar));
+				if (string.IsNullOrEmpty(parent))
+				{
+					break;
+				}
+				current = parent;
+				roots.Add(parent);
+			}
+
+			foreach (var root in roots)
+			{
+				var candidate = Path.GetFullPath(Path.Combine(root, declaredPath));
+				if (File.Exists(candidate))
+				{
+					return candidate;
+				}
+			}
+
+			throw new FileNotFoundException(
+				$"chemin déclaré introuvable depuis {ProjectDir} (8 ancêtres essayés) : {declaredPath}");
+		}
+
 		private static IEnumerable<PropertyInfo> AllTaxonomyProperties()
 		{
 			return typeof(Dnn2sxcConfig)
@@ -68,6 +127,10 @@ namespace Argumentum.AssetConverter.Tests
 				if (property.Name == taxonomy)
 				{
 					taxonomyConfig.ExportPath = exportPath; // n'écrit jamais l'artefact committé
+					// Sans cette résolution, le fixture 2021 et le CSV sont cherchés depuis le bin
+					// des tests : la garde mesurerait alors un export que personne ne livre.
+					taxonomyConfig.ImportPath = ResolveFromRepo(taxonomyConfig.ImportPath);
+					taxonomyConfig.CsvPath = ResolveFromRepo(taxonomyConfig.CsvPath);
 					found = true;
 				}
 				else
@@ -282,18 +345,24 @@ namespace Argumentum.AssetConverter.Tests
 			// Une traduction s'attache par Guid partagé : un Guid présent dans la culture maîtresse et
 			// absent d'une autre laisse une entité non traduite côté site, sans erreur d'import.
 			var entities = TaxonomyProbe.Entities(_exports.Export(taxonomy));
+			// Liste, pas ensemble : l'égalité d'ENSEMBLES ne voit pas un doublon de (culture, Guid),
+			// qui dupliquerait une entité à l'import (0 mesuré le 29/10 — ce fait le rend visible).
 			var byCulture = entities
 				.GroupBy(e => TaxonomyProbe.Val(e, "Language"))
-				.ToDictionary(g => g.Key, g => g.Select(e => TaxonomyProbe.Val(e, "Guid")).ToHashSet());
+				.ToDictionary(g => g.Key, g => g.Select(e => TaxonomyProbe.Val(e, "Guid")).ToList());
 
 			var master = DeclaredCultures(taxonomy)[0];
 			byCulture.Should().ContainKey(master, $"la culture maîtresse {master} est la première de la config");
+			var masterSet = byCulture[master].ToHashSet();
 
 			foreach (var pair in byCulture.OrderBy(p => p.Key, StringComparer.Ordinal))
 			{
-				var missing = byCulture[master].Except(pair.Value).ToList();
-				var extra = pair.Value.Except(byCulture[master]).ToList();
-				_output.WriteLine($"{pair.Key} : {pair.Value.Count} Guid (manquants {missing.Count}, en trop {extra.Count})");
+				pair.Value.Should().OnlyHaveUniqueItems($"{pair.Key} : un Guid ne s'exporte qu'une fois par culture");
+
+				var present = pair.Value.ToHashSet();
+				var missing = masterSet.Except(present).ToList();
+				var extra = present.Except(masterSet).ToList();
+				_output.WriteLine($"{pair.Key} : {present.Count} Guid (manquants {missing.Count}, en trop {extra.Count})");
 
 				missing.Should().BeEmpty($"{pair.Key} doit couvrir toutes les entités de {master} — {string.Join(", ", missing.Take(3))}");
 				extra.Should().BeEmpty($"{pair.Key} ne doit porter aucune entité absente de {master} — {string.Join(", ", extra.Take(3))}");
@@ -344,30 +413,85 @@ namespace Argumentum.AssetConverter.Tests
 			//          donc « {} » passer littéralement (mesuré : 120 <Example>{}</Example> dans
 			//          l'export Rules, 15 règles × 8 cultures, corrigé dans la config le 29/10).
 			// Et un double échappement HTML se rend « &#233; » au lieu de « é ».
-			var placeholders = new[] { "[]", "{}" };
+			var placeholders = PlaceholderLiterals;
 			var entities = TaxonomyProbe.Entities(_exports.Export(taxonomy));
 
 			entities.Where(e => string.IsNullOrEmpty(TaxonomyProbe.Val(e, "Name")))
 				.Should().BeEmpty("chaque entité, chaque culture, porte son Name");
 
+			// Portée = TOUS les champs texte sauf les identifiants, énumérés depuis l'export lui-même.
+			// La version initiale ne scannait que Name/Description/Example — les trois champs que la
+			// boucle CSV réécrit — et laissait donc passer les champs hérités du fixture 2021
+			// (mesuré par web2 le 29/10 : 17 « [] » dans Card/Difficulty/Date, 6 entités Fallacies).
 			var marked = entities
-				.SelectMany(e => new[] { "Name", "Description", "Example" }
-					.Select(field => new { Entity = e, Field = field, Value = TaxonomyProbe.Val(e, field) }))
+				.SelectMany(TextCells)
 				.Where(x => placeholders.Contains(x.Value))
 				.ToList();
+			// Échantillon et décompte SÉPARÉS de l'assertion : un tuple est un type valeur, si bien
+			// que « FirstOrDefault()?.Field » ne compile pas (CS0023) et qu'un défaut de tuple ne se
+			// distingue pas d'une cellule vide.
+			var sample = marked.Count == 0
+				? string.Empty
+				: $"{TaxonomyProbe.Val(marked[0].Entity, "Language")}.{marked[0].Field}=« {marked[0].Value} »";
+			var byField = string.Join(", ", marked.GroupBy(m => m.Field).Select(g => $"{g.Key}×{g.Count()}"));
+
 			marked.Should().BeEmpty(
-				"un littéral de gabarit (« [] », « {{}} ») n'est jamais du contenu — {0} occurrence(s), ex. {1}.{2}=« {3} »",
-				marked.Count,
-				marked.FirstOrDefault()?.Entity.Element("Language")?.Value,
-				marked.FirstOrDefault()?.Field,
-				marked.FirstOrDefault()?.Value);
+				"un littéral de gabarit (« [] », « {{}} ») n'est jamais du contenu — {0} occurrence(s) [{1}], ex. {2}",
+				marked.Count, byField, sample);
 
 			var encoded = entities
-				.SelectMany(e => new[] { "Name", "Description", "Example" }
-					.Select(field => TaxonomyProbe.Val(e, field)))
+				.SelectMany(TextCells)
+				.Select(cell => cell.Value)
 				.Where(value => value.Contains("&#"))
 				.ToList();
 			encoded.Should().BeEmpty("les accents sortent bruts — un « &#…; » littéral est un double échappement");
+		}
+
+		[Theory]
+		[MemberData(nameof(WiredTaxonomies))]
+		public void The_Committed_Export_Carries_No_Placeholder_Literal(string taxonomy)
+		{
+			// Le fait précédent mesure l'export GÉNÉRÉ : il reste vert quand l'artefact committé —
+			// celui qui part réellement vers 2sxc — porte encore le littéral. C'est exactement ce qui
+			// s'est produit (mesuré le 29/10 : 17 « [] » dans l'artefact committé, 0 dans le fichier
+			// du test, faute de fixture chargée). Un vert sur l'objet jetable ne dit rien du livré.
+			var path = TaxonomyProbe.CommittedExportPath(taxonomy);
+			File.Exists(path).Should().BeTrue($"l'artefact committé de {taxonomy} doit exister — {path}");
+
+			var marked = TaxonomyProbe.Entities(path)
+				.SelectMany(TextCells)
+				.Where(cell => PlaceholderLiterals.Contains(cell.Value))
+				.ToList();
+
+			var sample = marked.Count == 0
+				? string.Empty
+				: $"{TaxonomyProbe.Val(marked[0].Entity, "Language")}.{marked[0].Field}=« {marked[0].Value} »";
+			var byField = string.Join(", ", marked.GroupBy(m => m.Field).Select(g => $"{g.Key}×{g.Count()}"));
+
+			marked.Should().BeEmpty(
+				"l'artefact committé ne doit porter aucun littéral de gabarit — {0} occurrence(s) [{1}], ex. {2}",
+				marked.Count, byField, sample);
+		}
+
+		/// <summary>Marqueurs de gabarit : jamais du contenu, quel que soit le champ qui les porte.</summary>
+		private static readonly string[] PlaceholderLiterals = { "[]", "{}" };
+
+		/// <summary>
+		/// Éléments qui portent une <b>identité</b>, pas du contenu : un littéral de gabarit y serait
+		/// une incohérence de structure. Tout le reste est du texte libre, donc soumis à la règle.
+		/// </summary>
+		private static readonly string[] IdentifierElements = { "Guid", "Parent", "Language", "Type" };
+
+		/// <summary>
+		/// Une cellule texte par élément enfant non-identifiant. Les noms de champs ne sont pas
+		/// recopiés d'<c>Entity.cs</c> : ils sont lus dans le document, si bien qu'un champ ajouté au
+		/// modèle entre dans la garde sans qu'on pense à l'ajouter ici.
+		/// </summary>
+		private static IEnumerable<(XElement Entity, string Field, string Value)> TextCells(XElement entity)
+		{
+			return entity.Elements()
+				.Where(element => !IdentifierElements.Contains(element.Name.LocalName, StringComparer.Ordinal))
+				.Select(element => (entity, element.Name.LocalName, element.Value));
 		}
 
 		private static List<string> DeclaredCultures(string taxonomy)

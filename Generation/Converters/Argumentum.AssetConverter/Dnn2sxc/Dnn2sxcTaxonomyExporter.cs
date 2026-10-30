@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Xml.Serialization;
 
 namespace Argumentum.AssetConverter.Dnn2sxc
@@ -261,6 +262,12 @@ namespace Argumentum.AssetConverter.Dnn2sxc
             }
 
 
+            //Le marqueur de vide vaut absence sur TOUS les champs texte, pas seulement les trois que la
+            //boucle CSV réécrit. Card/Difficulty/Date viennent du fixture 2021 verbatim — aucune rangée
+            //CSV ne les alimente, donc PreferCsv ne les voyait jamais (mesuré 29/10 : 17 « [] » sur
+            //6 entités Fallacies, 3 champs ; un littéral s'affiche tel quel sur le site).
+            StripEmptyMarkers(sexyContentData);
+
             //Serialize to xml — File.Create TRUNCATE : l'ancien File.OpenWrite ne tronquait pas,
             //et l'export 2023 committé en porte la corruption (octets résiduels après </SexyContentData>).
             using (var stream = File.Create(config.ExportPath))
@@ -293,6 +300,41 @@ namespace Argumentum.AssetConverter.Dnn2sxc
                 return fromCsv;
             }
             return current == EmptyMarker ? string.Empty : current;
+        }
+
+        /// <summary>
+        /// Champs d'identité de l'entité : un « [] » y serait une incohérence de structure, pas un
+        /// contenu vide — on n'y touche pas. Les autres membres <c>string</c> sont du texte et suivent
+        /// la règle du marqueur, y compris ceux qu'aucune expression CSV n'alimente.
+        /// </summary>
+        private static readonly string[] IdentityMembers =
+        {
+            nameof(Entity.Guid), nameof(Entity.Language), nameof(Entity.Parent), nameof(Entity.Type)
+        };
+
+        /// <summary>
+        /// Applique <see cref="EmptyMarker"/> à <b>tous</b> les champs texte avant sérialisation.
+        /// La liste des champs est <b>dérivée</b> de <see cref="Entity"/> par réflexion : un champ
+        /// ajouté plus tard entre dans la règle sans qu'on y pense, seul un membre à déclarer comme
+        /// identité échappe (cf. <see cref="IdentityMembers"/>).
+        /// </summary>
+        private static void StripEmptyMarkers(SexyContentData data)
+        {
+            var textProperties = typeof(Entity)
+                .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Where(p => p.PropertyType == typeof(string) && !IdentityMembers.Contains(p.Name, StringComparer.Ordinal))
+                .ToList();
+
+            foreach (var entity in data.Entity)
+            {
+                foreach (var property in textProperties)
+                {
+                    if ((string)property.GetValue(entity) == EmptyMarker)
+                    {
+                        property.SetValue(entity, string.Empty);
+                    }
+                }
+            }
         }
 
         /// <summary>
