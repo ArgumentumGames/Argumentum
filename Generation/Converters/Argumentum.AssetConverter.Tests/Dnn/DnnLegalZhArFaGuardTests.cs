@@ -96,10 +96,15 @@ namespace Argumentum.AssetConverter.Tests
 		[InlineData("zh-CN")]
 		[InlineData("ar-SA")]
 		[InlineData("fa-IR")]
-		public void Resx_Carries_Only_The_Two_Legal_Keys_Preserved(string locale)
+		public void Resx_Carries_The_Two_Legal_Keys_Preserved(string locale)
 		{
 			var names = Load(LocaleResx(locale)).Root!.Elements("data").Select(d => d.Attribute("name")?.Value).ToList();
-			names.Should().BeEquivalentTo(Keys, "le repli DNN est par clé : le fichier ne porte que les deux pages juridiques");
+			names.Should().Contain(Keys, "les deux pages juridiques doivent etre presentes dans le resx de la culture");
+			// Les trois cultures reçoivent le pack Tier 2 (#458 grain 9-bis, lots
+			// zh-CN/ar-SA/fa-IR) : leur fichier porte le chrome traduit en plus des
+			// deux pages juridiques — la garde de ce contenu traduit est
+			// DnnAgrCoreResxIntegrityGuardTests. Historique : avant le lot 1, ces
+			// fichiers ne portaient QUE les deux clés juridiques.
 			foreach (var key in Keys)
 			{
 				// parenthèses obligatoires : « ?.Value.Should() » court-circuiterait l'assertion
