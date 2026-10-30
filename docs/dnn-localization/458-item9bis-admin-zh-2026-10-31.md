@@ -92,12 +92,16 @@ squelette que le lot `controls`, trois différences de fond :
 
 | Mutation | Attendu | Mesuré |
 |---|---|---|
-| `{0}` → `{9}` dans `Tabs/Import.ascx:plTabName.Help` | multiset des placeholders rouge | à mesurer avant push |
-| `文件夹：` → `Folder:` dans `Tabs/Export.ascx:plFolder.Text` | copie de l'anglais rouge | à mesurer avant push |
-| BOM **ajouté** à `Security/PasswordReset.ascx.zh-CN.resx` (neutre sans BOM) | BOM rouge | à mesurer avant push |
+| `{0}` → `{9}` dans `Tabs/Export.ascx:ExportedMessage.Text` (forme échappée `&lt;b&gt;{0}&lt;/b&gt;` du resx) | multiset des placeholders rouge | ✅ 1 échec / 110 verts, message nommant la clé, `{0}` vs `{9}` à l'index 0 |
+| `文件夹：` → `Folder:` dans `Tabs/Export.ascx:plFolder.Text` | copie de l'anglais rouge | ✅ 1 échec / 110 verts, message nommant la clé |
+| BOM **ajouté** à `Security/PasswordReset.ascx.zh-CN.resx` (neutre sans BOM), **committé** via commit temporaire local jamais poussé puis retiré | BOM rouge sur le blob | ✅ 1 échec / 110 verts, `producedBom=True` vs `neutre=False` |
 
-(Résultats consignés dans la PR après exécution — le tableau est rempli **par mesure**,
-jamais par intention.)
+⚠️ La mutation placeholder a d'abord **échoué à s'appliquer** : le resx stocke les valeurs
+**échappées** (`&lt;b&gt;{0}&lt;/b&gt;`, pas `<b>{0}</b>`) — un contrôle inverse qui mute la
+forme brute ne mute rien et « passe » à vide. Toujours vérifier `MUTATION APPLIQUEE`.
+
+Restauration par copie de sauvegarde, `sha256` revérifiés identiques (`ED8BCB57…`,
+`AE663461…`), commit temporaire défait par `reset --soft`, `git status` propre sur les resx.
 
 ## 6. Ce que cette PR ne fait pas
 

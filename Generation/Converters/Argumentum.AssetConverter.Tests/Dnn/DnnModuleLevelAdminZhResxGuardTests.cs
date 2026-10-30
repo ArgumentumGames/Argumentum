@@ -246,9 +246,10 @@ namespace Argumentum.AssetConverter.Tests
         [Fact]
         public void TheDeclaredMissingListIsLiveAndPinned()
         {
-            DeclaredMissing.Length.Should().Be(10,
+            DeclaredMissing.Length.Should().Be(3,
+                "trois fichiers portent des manquantes déclarées (Language, Search, User — tous dans Skins)");
+            DeclaredMissing.Sum(m => m.Keys.Length).Should().Be(10,
                 "10 clés déclarées non livrées : 8 (Language markup/vide) + URL.Text + NewMessages.Text");
-            DeclaredMissing.Sum(m => m.Keys.Length).Should().Be(10, "une entrée, une clé — pas de doublons");
             foreach (var (dir, stem, keys) in DeclaredMissing)
             {
                 Covered.Should().Contain(c => c.Dir == dir && c.Stem == stem,
