@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -526,20 +527,45 @@ namespace Argumentum.AssetConverter.Tests
 				"seuls les homographes parfaits sont légitimement identiques à l'es-ES");
 		}
 
-		/// <summary>Transport : le fichier est UTF-8 avec BOM et à fins de ligne LF.
-		/// Une réécriture en mode texte sous Windows traduirait tout en CRLF — le
-		/// parseur XML normalise CRLF vers LF, donc aucune valeur ne bougerait et
-		/// le défaut serait invisible.</summary>
+		/// <summary>Transport : le <b>contenu committé</b> (le blob git) est en UTF-8 avec
+		/// BOM et à fins de ligne LF. Mesurer l'arbre de travail serait <b>faux</b> : le
+		/// runner CI a <c>core.autocrlf=true</c>, qui convertit LF → CRLF au checkout, donc
+		/// un fichier sain y apparaît en CRLF. Le blob, lui, ne dépend pas de la
+		/// configuration de checkout — c'est le seul instrument qui mesure ce que le test
+		/// prétend mesurer. (Mesuré : la première version assertait sur la copie de travail
+		/// et rendait 1201 CRLF en CI pour un blob à 0.)
+		/// </summary>
 		[Fact]
-		public void File_Is_Utf8_Bom_With_Lf_Only()
+		public void Committed_Blob_Is_Utf8_Bom_With_Lf_Only()
 		{
-			var bytes = File.ReadAllBytes(Path_(PtResx));
+			var bytes = CommittedBlob(PtResx);
+			bytes.Length.Should().BeGreaterThan(1000, "le blob doit être le fichier entier, pas un fragment");
 			bytes.Take(3).Should().Equal(new byte[] { 0xEF, 0xBB, 0xBF }, "le BOM est celui du fichier d'origine");
-			var crlf = 0;
-			for (var i = 0; i < bytes.Length - 1; i++)
-				if (bytes[i] == 0x0D && bytes[i + 1] == 0x0A)
-					crlf++;
-			crlf.Should().Be(0, "le fichier d'origine est en LF seul : une réécriture ne doit pas le recâbler en CRLF");
+			bytes.Count(b => b == 0x0D).Should().Be(0,
+				"le blob committé est en LF seul : une réécriture ne doit pas le recâbler en CRLF");
+		}
+
+		/// <summary>Lit le blob de <c>HEAD:&lt;path&gt;</c> — indépendant de core.autocrlf.</summary>
+		private static byte[] CommittedBlob(string rel)
+		{
+			var psi = new ProcessStartInfo("git", $"cat-file -p \"HEAD:{rel}\"")
+			{
+				WorkingDirectory = TestRepoRoot.Find(),
+				RedirectStandardOutput = true,
+				RedirectStandardError = true,
+				UseShellExecute = false,
+				CreateNoWindow = true,
+			};
+			using var process = Process.Start(psi)
+				?? throw new InvalidOperationException("git n'a pas démarré");
+			var stderr = process.StandardError.ReadToEndAsync();
+			using var buffer = new MemoryStream();
+			process.StandardOutput.BaseStream.CopyTo(buffer);
+			process.WaitForExit(30_000);
+			if (process.ExitCode != 0)
+				throw new InvalidOperationException(
+					$"git cat-file sur '{rel}' a échoué ({process.ExitCode}) : {stderr.Result}");
+			return buffer.ToArray();
 		}
 	}
 }
