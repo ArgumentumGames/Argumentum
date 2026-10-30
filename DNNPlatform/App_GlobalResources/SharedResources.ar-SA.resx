@@ -1,5 +1,110 @@
-﻿<?xml version='1.0' encoding='utf-8'?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -7,18 +112,1841 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Password.Text" xml:space="preserve">
-    <value xml:space="preserve">كلمة المرور:</value>
+  <data name="DeleteItem.Text" xml:space="preserve">
+    <value>هل تريد بالتأكيد حذف هذا العنصر؟</value>
   </data>
-  <data name="cmdCancel.Text">
-    <value xml:space="preserve">إلغاء</value>
+<data name="DeletetUser.Text" xml:space="preserve">
+    <value>هل تريد بالتأكيد حذف هذا المستخدم؟</value>
   </data>
-  <data name="Home.Text">
-    <value xml:space="preserve">الرئيسية</value>
+<data name="UnregisterUser.Text" xml:space="preserve">
+    <value>هل تريد بالتأكيد إلغاء تسجيل هذا المستخدم؟ سيؤدي هذا إلى حذف حساب المستخدم الخاص بك.</value>
+  </data>
+<data name="RemoveItem.Text" xml:space="preserve">
+    <value>هل تريد بالتأكيد إزالة هذا العنصر؟</value>
+  </data>
+<data name="Calendar.Text" xml:space="preserve">
+    <value>التقويم</value>
+  </data>
+<data name="Yes.Text" xml:space="preserve">
+    <value>نعم</value>
+  </data>
+<data name="No.Text" xml:space="preserve">
+    <value>لا</value>
+  </data>
+<data name="Not_Specified.Text" xml:space="preserve">
+    <value>غير محدد</value>
+  </data>
+<data name="None_Specified.Text" xml:space="preserve">
+    <value>لم يُحدَّد أي منها</value>
+  </data>
+<data name="cmdCancel.Text" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+<data name="cmdDelete.Text" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+<data name="cmdDisplay.Text" xml:space="preserve">
+    <value>عرض</value>
+  </data>
+<data name="cmdGo.Text" xml:space="preserve">
+    <value>انتقال</value>
+  </data>
+<data name="cmdUpdate.Text" xml:space="preserve">
+    <value>تحديث</value>
+  </data>
+<data name="cmdUpload.Text" xml:space="preserve">
+    <value>تحميل ملف جديد</value>
+  </data>
+<data name="Select.Text" xml:space="preserve">
+    <value>تحديد</value>
+  </data>
+<data name="Upload.Text" xml:space="preserve">
+    <value>تحميل</value>
+  </data>
+<data name="Add.Text" xml:space="preserve">
+    <value>إضافة</value>
+  </data>
+<data name="All.Text" xml:space="preserve">
+    <value>الكل</value>
+  </data>
+<data name="Unauthorized.Text" xml:space="preserve">
+    <value>غير مصرح</value>
+  </data>
+<data name="Today.Text" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+<data name="Close.Text" xml:space="preserve">
+    <value>إغلاق</value>
+  </data>
+<data name="cmdReturn.Text" xml:space="preserve">
+    <value>رجوع</value>
+  </data>
+<data name="cmdStop.Text" xml:space="preserve">
+    <value>إيقاف</value>
+  </data>
+<data name="cmdDownLoad.Text" xml:space="preserve">
+    <value>تنزيل</value>
+  </data>
+<data name="Seconds.Text" xml:space="preserve">
+    <value>ثوانٍ</value>
+  </data>
+<data name="Second.Text" xml:space="preserve">
+    <value>ثانية</value>
+  </data>
+<data name="Minutes.Text" xml:space="preserve">
+    <value>دقائق</value>
+  </data>
+<data name="Minute.Text" xml:space="preserve">
+    <value>دقيقة</value>
+  </data>
+<data name="Hours.Text" xml:space="preserve">
+    <value>ساعات</value>
+  </data>
+<data name="Hour.Text" xml:space="preserve">
+    <value>ساعة</value>
+  </data>
+<data name="Days.Text" xml:space="preserve">
+    <value>أيام</value>
+  </data>
+<data name="Day.Text" xml:space="preserve">
+    <value>يوم</value>
+  </data>
+<data name="DeleteItems.Text" xml:space="preserve">
+    <value>هل تريد بالتأكيد حذف هذه العناصر؟</value>
+  </data>
+<data name="cmdEdit.Text" xml:space="preserve">
+    <value>تحرير</value>
+  </data>
+<data name="Edit.Text" xml:space="preserve">
+    <value>تحرير</value>
+  </data>
+<data name="Unknown.Text" xml:space="preserve">
+    <value>غير معروف</value>
+  </data>
+<data name="Weeks.Text" xml:space="preserve">
+    <value>أسابيع</value>
+  </data>
+<data name="Week.Text" xml:space="preserve">
+    <value>أسبوع</value>
+  </data>
+<data name="Months.Text" xml:space="preserve">
+    <value>أشهر</value>
+  </data>
+<data name="Month.Text" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+<data name="Years.Text" xml:space="preserve">
+    <value>سنوات</value>
+  </data>
+<data name="Year.Text" xml:space="preserve">
+    <value>سنة</value>
+  </data>
+<data name="New.Text" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+<data name="DeleteModule.Confirm" xml:space="preserve">
+    <value>هل تريد بالتأكيد حذف هذه الوحدة؟</value>
+  </data>
+<data name="EXCEPTION.Log" xml:space="preserve">
+    <value>استثناء: {0}</value>
+  </data>
+<data name="PURGE.Log" xml:space="preserve">
+    <value>تم تطهير سجل الموقع بنجاح</value>
+  </data>
+<data name="SkinObjects.Text" xml:space="preserve">
+    <value>[كائنات المظهر]</value>
+  </data>
+<data name="SkinObjectsDescription.Text" xml:space="preserve">
+    <value>كائنات المظهر هي عناصر تحكم مستخدم يمكن استخدامها لتوفير وظائف مخصصة لملفات المظهر الخاصة بك.</value>
+  </data>
+<data name="ReadError.Text" xml:space="preserve">
+    <value>تعذر قراءة كل البيانات: {0}/{1}</value>
+  </data>
+<data name="Help.Text" xml:space="preserve">
+    <value>تعليمات</value>
+  </data>
+<data name="PURGEUSERS.Log" xml:space="preserve">
+    <value>تم تطهير قائمة المستخدمين المتصلين بنجاح</value>
+  </data>
+<data name="ErrorOccurred.Text" xml:space="preserve">
+    <value>حدث خطأ.</value>
+  </data>
+<data name="ModuleUnavailable.Text" xml:space="preserve">
+    <value>خطأ: {0} غير متاح حاليًا.</value>
+  </data>
+<data name="PURGEDSCHEDULE.Log" xml:space="preserve">
+    <value>تم تطهير محفوظات الجدولة</value>
+  </data>
+<data name="TESTCOMPLETE.Log" xml:space="preserve">
+    <value>اكتمل الاختبار. تم الانتظار {0} مللي ثانية.</value>
+  </data>
+<data name="UserEmailExists.Text" xml:space="preserve">
+    <value>هناك مستخدم يستخدم عنوان البريد الإلكتروني هذا بالفعل. يرجى التسجيل بعنوان بريد إلكتروني مختلف أو الحصول على تذكير بكلمة المرور عبر عنوان بريدك الإلكتروني الحالي.</value>
+  </data>
+<data name="InvalidAnswer.Text" xml:space="preserve">
+    <value>الإجابة المحددة غير صالحة. يرجى تحديد إجابة صالحة للسؤال.</value>
+  </data>
+<data name="InvalidEmail.Text" xml:space="preserve">
+    <value>عنوان البريد الإلكتروني المحدد غير صالح. يرجى تحديد عنوان بريد إلكتروني صالح.</value>
+  </data>
+<data name="InvalidPassword.Text" xml:space="preserve">
+    <value>كلمة المرور المحددة غير صالحة. يرجى تحديد كلمة مرور صالحة. يجب أن تتكون كلمة المرور من [PasswordLength] حرفًا على الأقل وأن تحتوي على [NoneAlphabet] حرف واحد على الأقل غير أبجدي رقمي، ويجب ألا تطابق اسم المستخدم.</value>
+  </data>
+<data name="BannedPasswordUsed.Text" xml:space="preserve">
+    <value>كلمة المرور المطلوبة غير صالحة لأنها إما مطابقة لاسم المستخدم أو تستخدم لفظًا مدرجًا في قائمة كلمات المرور المحظورة.</value>
+  </data>
+<data name="InvalidQuestion.Text" xml:space="preserve">
+    <value>السؤال المحدد غير صالح. يرجى تحديد سؤال صالح.</value>
+  </data>
+<data name="InvalidUserName.Text" xml:space="preserve">
+    <value>اسم المستخدم المحدد غير صالح. يرجى تحديد اسم مستخدم صالح.</value>
+  </data>
+<data name="InvalidFirstName.Text" xml:space="preserve">
+    <value>الاسم الأول المحدد غير صالح.</value>
+  </data>
+<data name="InvalidLastName.Text" xml:space="preserve">
+    <value>اسم العائلة المحدد غير صالح.</value>
+  </data>
+<data name="UserRejected.Text" xml:space="preserve">
+    <value>تم رفض تسجيل هذا المستخدم. يرجى التواصل مع أحد المسؤولين للحصول على مزيد من المعلومات.</value>
+  </data>
+<data name="UserNameExists.Text" xml:space="preserve">
+    <value>يوجد مستخدم بالفعل باسم المستخدم المحدد. يرجى التسجيل مرة أخرى باستخدام اسم مستخدم مختلف.</value>
+  </data>
+<data name="RegError.Text" xml:space="preserve">
+    <value>حدث خطأ غير متوقع أثناء التسجيل. يرجى التواصل مع المسؤول للحصول على مزيد من المعلومات.</value>
+  </data>
+<data name="PaneNotFound.Error" xml:space="preserve">
+    <value>لا يمكن العثور على ContentPane الخاص بالمظهر</value>
+  </data>
+<data name="ContractExpired.Error" xml:space="preserve">
+    <value>انتهت صلاحية عقد الاستضافة الخاص بـ {0} في {1}. يرجى التواصل مع &lt;a href="mailto:{2}"&gt;{2}&lt;/a&gt; للحصول على مزيد من المعلومات.</value>
+  </data>
+<data name="TabAccess.Error" xml:space="preserve">
+    <value>ليس لديك إذن لعرض هذه الصفحة داخل الموقع.</value>
+  </data>
+<data name="ModuleAccess.Error" xml:space="preserve">
+    <value>ليس لديك إذن لعرض هذه الوحدة داخل الموقع.</value>
+  </data>
+<data name="CriticalError.Error" xml:space="preserve">
+    <value>حدث خطأ جسيم. يرجى مراجعة سجلات المسؤول للحصول على مزيد من التفاصيل.</value>
+  </data>
+<data name="ModuleLoad.Error" xml:space="preserve">
+    <value>خطأ غير معالج أثناء تحميل الوحدة.</value>
+  </data>
+<data name="ModuleAdd.Error" xml:space="preserve">
+    <value>خطأ غير معالج أثناء إضافة الوحدة إلى {0}.</value>
+  </data>
+<data name="ContainerLoad.Error" xml:space="preserve">
+    <value>تعذر تحميل الحاوية: {0}</value>
+  </data>
+<data name="BeginZip.Text" xml:space="preserve">
+    <value>بدء معالجة ملف zip.</value>
+  </data>
+<data name="CreateDir.Text" xml:space="preserve">
+    <value>جارٍ إنشاء الدليل</value>
+  </data>
+<data name="WriteFile.Text" xml:space="preserve">
+    <value>جارٍ كتابة الملف</value>
+  </data>
+<data name="FileError.Text" xml:space="preserve">
+    <value>خطأ في معالجة الملف</value>
+  </data>
+<data name="FileAccess.Error" xml:space="preserve">
+    <value>ليس لديك أذونات كافية للوصول إلى هذا الملف.</value>
+  </data>
+<data name="EndZip.Text" xml:space="preserve">
+    <value>انتهاء معالجة ملف zip</value>
+  </data>
+<data name="FileRestricted.Text" xml:space="preserve">
+    <value>{0} نوع ملف مقيَّد. تشمل أنواع الملفات الصالحة ( *.{1}). يرجى التواصل مع مزود الاستضافة لتحميل نوع ملف غير مدعوم.</value>
+  </data>
+<data name="Skins.Text" xml:space="preserve">
+    <value>المظاهر</value>
+  </data>
+<data name="Containers.Text" xml:space="preserve">
+    <value>الحاويات</value>
+  </data>
+<data name="StartProcessor.Text" xml:space="preserve">
+    <value>تهيئة المعالج لملفات المظهر أو الحاوية</value>
+  </data>
+<data name="PackageLoad.Text" xml:space="preserve">
+    <value>تم تحميل ملف سمات مستوى الحزمة</value>
+  </data>
+<data name="PackageLoad.Error" xml:space="preserve">
+    <value>خطأ في تحميل ملف سمات مستوى الحزمة: ({0})</value>
+  </data>
+<data name="DuplicateSkinObject.Error" xml:space="preserve">
+    <value>تجاهل كائن مظهر مكرر للرمز {0}</value>
+  </data>
+<data name="DuplicateSkinObject.Detail" xml:space="preserve">
+    <value>أي مظهر يشير إلى هذا الرمز سيستخدم عنصر تحكم المظهر المسجَّل أولًا {0} بدلًا من العنصر الذي تحدده النسخة المكررة ({1}). قد يُعرض المظهر بشكل غير صحيح.</value>
+  </data>
+<data name="LoadingSkinToken.Text" xml:space="preserve">
+    <value>جارٍ تحميل كائن المظهر للرمز {0}</value>
+  </data>
+<data name="BeginSkinFile.Text" xml:space="preserve">
+    <value>بدء معالجة الملف</value>
+  </data>
+<data name="EndSkinFile.Text" xml:space="preserve">
+    <value>انتهاء معالجة الملف</value>
+  </data>
+<data name="EndSkinFiles.Text" xml:space="preserve">
+    <value>انتهاء معالجة ملفات المظهر أو الحاوية</value>
+  </data>
+<data name="FileFormat.Error" xml:space="preserve">
+    <value>خطأ في تنسيق الملف</value>
+  </data>
+<data name="FileFormat.Detail" xml:space="preserve">
+    <value>{0} لا يحتوي على ContentPane.</value>
+  </data>
+<data name="SkinFileLoad.Text" xml:space="preserve">
+    <value>جارٍ تحميل ملف السمات</value>
+  </data>
+<data name="SkinFileLoad.Error" xml:space="preserve">
+    <value>خطأ في تحميل ملف السمات</value>
+  </data>
+<data name="FileWrite.Text" xml:space="preserve">
+    <value>جارٍ كتابة الملف</value>
+  </data>
+<data name="ControlDirective.Text" xml:space="preserve">
+    <value>تنسيق توجيه عنصر التحكم</value>
+  </data>
+<data name="ControlRegister.Text" xml:space="preserve">
+    <value>تنسيق توجيه التسجيل</value>
+  </data>
+<data name="Substituting.Text" xml:space="preserve">
+    <value>استبدال</value>
+  </data>
+<data name="Substituting.Detail" xml:space="preserve">
+    <value>{0}&lt;br&gt;بـ: {1}</value>
+  </data>
+<data name="ProcessToken.Text" xml:space="preserve">
+    <value>معالجة الرمز</value>
+  </data>
+<data name="SkinToken.Text" xml:space="preserve">
+    <value>الرمز هو كائن مظهر</value>
+  </data>
+<data name="PaneToken.Text" xml:space="preserve">
+    <value>الرمز هو جزء محتوى</value>
+  </data>
+<data name="TokenFound.Text" xml:space="preserve">
+    <value>تم العثور على الرمز في ملف السمات</value>
+  </data>
+<data name="TokenFormat.Text" xml:space="preserve">
+    <value>تنسيق سمة الرمز</value>
+  </data>
+<data name="TokenNotFoundInFile.Text" xml:space="preserve">
+    <value>لم يُعثر على الرمز في ملف السمات</value>
+  </data>
+<data name="ControlFormat.Text" xml:space="preserve">
+    <value>تنسيق عبارة عنصر التحكم</value>
+  </data>
+<data name="TokenNotFound.Text" xml:space="preserve">
+    <value>لم يُعثر على الرمز</value>
+  </data>
+<data name="ProcessObject.Text" xml:space="preserve">
+    <value>معالجة الكائن المضمَّن</value>
+  </data>
+<data name="SkinObject.Text" xml:space="preserve">
+    <value>الكائن المضمَّن هو كائن مظهر</value>
+  </data>
+<data name="PaneObject.Text" xml:space="preserve">
+    <value>الكائن المضمَّن هو جزء محتوى</value>
+  </data>
+<data name="ObjectNotFound.Text" xml:space="preserve">
+    <value>لم يُعثر على الكائن المضمَّن</value>
+  </data>
+<data name="cmdNext.Text" xml:space="preserve">
+    <value>التالي</value>
+  </data>
+<data name="cmdBack.Text" xml:space="preserve">
+    <value>السابق</value>
+  </data>
+<data name="cmdFinish.Text" xml:space="preserve">
+    <value>إنهاء</value>
+  </data>
+<data name="cmdBack.Help" xml:space="preserve">
+    <value>انقر للانتقال إلى الصفحة السابقة.</value>
+  </data>
+<data name="cmdNext.Help" xml:space="preserve">
+    <value>انقر للانتقال إلى الصفحة التالية.</value>
+  </data>
+<data name="Left.Text" xml:space="preserve">
+    <value>يسار</value>
+  </data>
+<data name="Right.Text" xml:space="preserve">
+    <value>يمين</value>
+  </data>
+<data name="Center.Text" xml:space="preserve">
+    <value>وسط</value>
+  </data>
+<data name="Maximized.Text" xml:space="preserve">
+    <value>مكبَّر</value>
+  </data>
+<data name="Minimized.Text" xml:space="preserve">
+    <value>مصغَّر</value>
+  </data>
+<data name="None.Text" xml:space="preserve">
+    <value>بلا</value>
+  </data>
+<data name="Pages.Text" xml:space="preserve">
+    <value>الصفحة {0} من {1}</value>
+  </data>
+<data name="cmdHelp.Text" xml:space="preserve">
+    <value>تعليمات</value>
+  </data>
+<data name="cmdHelp.Help" xml:space="preserve">
+    <value>انقر لعرض التعليمات الخاصة بهذه الصفحة.</value>
+  </data>
+<data name="DNN_Reading.Text" xml:space="preserve">
+    <value>قراءة ملف بيان التثبيت</value>
+  </data>
+<data name="DNN_Success.Text" xml:space="preserve">
+    <value>اكتمل ملف البيان بنجاح.</value>
+  </data>
+<data name="DNN_Valid.Text" xml:space="preserve">
+    <value>ملف DNN بتنسيق {0} صالح.</value>
+  </data>
+<data name="DNN_ValidSkinObject.Text" xml:space="preserve">
+    <value>ملف DNN بتنسيق ThemeObject 2.0 صالح.</value>
+  </data>
+<data name="EXCEPTION.Text" xml:space="preserve">
+    <value>استثناء</value>
+  </data>
+<data name="EXCEPTION_DesktopSrc.Text" xml:space="preserve">
+    <value>يجب أن يحتوي عنصر تحكم الوحدة على قيمة Desktopsrc، جارٍ الإلغاء</value>
+  </data>
+<data name="EXCEPTION_FileLoad.Text" xml:space="preserve">
+    <value>فشل تحميل الملف، جارٍ الإلغاء</value>
+  </data>
+<data name="EXCEPTION_FileName.Text" xml:space="preserve">
+    <value>يجب أن يحتوي الملف على قيمة للاسم، جارٍ الإلغاء</value>
+  </data>
+<data name="EXCEPTION_FileRead.Text" xml:space="preserve">
+    <value>تعذر قراءة كل البيانات: </value>
+  </data>
+<data name="EXCEPTION_FolderDesc.Text" xml:space="preserve">
+    <value>يجب أن يحتوي المجلد على وصف، جارٍ الإلغاء</value>
+  </data>
+<data name="EXCEPTION_FolderName.Text" xml:space="preserve">
+    <value>يجب أن يحتوي المجلد على قيمة للاسم، جارٍ الإلغاء</value>
+  </data>
+<data name="EXCEPTION_FolderProvider.Text" xml:space="preserve">
+    <value>يجب أن يحتوي المجلد على قيمة لنوع المزود، جارٍ الإلغاء</value>
+  </data>
+<data name="EXCEPTION_FolderVersion.Text" xml:space="preserve">
+    <value>يجب أن يحتوي المجلد على قيمة للإصدار، جارٍ الإلغاء</value>
+  </data>
+<data name="EXCEPTION_Format.Text" xml:space="preserve">
+    <value>تنسيق Dnn غير صالح، جارٍ الإلغاء</value>
+  </data>
+<data name="EXCEPTION_LoadFailed.Text" xml:space="preserve">
+    <value>فشل تحميل Dnn، جارٍ الإلغاء</value>
+  </data>
+<data name="EXCEPTION_MissingDnn.Text" xml:space="preserve">
+    <value>لم يُعثر على أي ملف .dnn ???</value>
+  </data>
+<data name="EXCEPTION_MissingResource.Text" xml:space="preserve">
+    <value>تعذر العثور على ResourceFile المحدد في ملف dnn داخل ملف zip: </value>
+  </data>
+<data name="EXCEPTION_MultipleDnn.Text" xml:space="preserve">
+    <value>تم العثور على عدة ملفات .dnn في ملف zip: </value>
+  </data>
+<data name="EXCEPTION_Src.Text" xml:space="preserve">
+    <value>يجب أن يحتوي عنصر تحكم الوحدة على قيمة src، جارٍ الإلغاء</value>
+  </data>
+<data name="EXCEPTION_Type.Text" xml:space="preserve">
+    <value>يجب أن يحتوي عنصر تحكم الوحدة على قيمة للنوع، جارٍ الإلغاء</value>
+  </data>
+<data name="FILE_Created.Text" xml:space="preserve">
+    <value>تم الإنشاء - {0}</value>
+  </data>
+<data name="FILE_Found.Text" xml:space="preserve">
+    <value>تم العثور على مسار صالح ({0}) لـ {1}.</value>
+  </data>
+<data name="FILE_Loading.Text" xml:space="preserve">
+    <value>جارٍ التحميل </value>
+  </data>
+<data name="FILE_NotFound.Text" xml:space="preserve">
+    <value>تعذر العثور على الملف المحدد في dnn داخل ملف zip: </value>
+  </data>
+<data name="FILE_ReadSuccess.Text" xml:space="preserve">
+    <value>تمت قراءة الملف {0} بنجاح</value>
+  </data>
+<data name="FILES_Created.Text" xml:space="preserve">
+    <value>تم إنشاء الملفات</value>
+  </data>
+<data name="FILES_CreatedResources.Text" xml:space="preserve">
+    <value>تم إنشاء ملفات الموارد</value>
+  </data>
+<data name="FILES_Creating.Text" xml:space="preserve">
+    <value>جارٍ إنشاء الملفات</value>
+  </data>
+<data name="FILES_Expanding.Text" xml:space="preserve">
+    <value>جارٍ فك ضغط ملف الموارد</value>
+  </data>
+<data name="FILES_Loading.Text" xml:space="preserve">
+    <value>جارٍ تحميل معلومات الملفات</value>
+  </data>
+<data name="FILES_Reading.Text" xml:space="preserve">
+    <value>جارٍ قراءة الملفات</value>
+  </data>
+<data name="FILES_ReadingEnd.Text" xml:space="preserve">
+    <value>تمت قراءة الملفات.</value>
+  </data>
+<data name="INSTALL_Start.Text" xml:space="preserve">
+    <value>بدء التثبيت</value>
+  </data>
+<data name="INSTALL_Success.Text" xml:space="preserve">
+    <value>تم التثبيت بنجاح.</value>
+  </data>
+<data name="REGISTER_Controls.Text" xml:space="preserve">
+    <value>تسجيل عناصر التحكم</value>
+  </data>
+<data name="REGISTER_Definition.Text" xml:space="preserve">
+    <value>تسجيل التعريفات</value>
+  </data>
+<data name="REGISTER_End.Text" xml:space="preserve">
+    <value>اكتمل التسجيل</value>
+  </data>
+<data name="REGISTER_Module.Text" xml:space="preserve">
+    <value>تسجيل DesktopModule</value>
+  </data>
+<data name="SQL_Begin.Text" xml:space="preserve">
+    <value>بدء تنفيذ Sql</value>
+  </data>
+<data name="SQL_BeginFile.Text" xml:space="preserve">
+    <value>بدء تنفيذ Sql: ملف {0}</value>
+  </data>
+<data name="SQL_End.Text" xml:space="preserve">
+    <value>اكتمل تنفيذ Sql</value>
+  </data>
+<data name="SQL_EndFile.Text" xml:space="preserve">
+    <value>انتهاء تنفيذ Sql: ملف {0}</value>
+  </data>
+<data name="SQL_Exceptions.Text" xml:space="preserve">
+    <value>أسفر تنفيذ SQL عن الاستثناءات التالية: {0}{1}</value>
+  </data>
+<data name="SQL_Executing.Text" xml:space="preserve">
+    <value>جارٍ التنفيذ </value>
+  </data>
+<data name="SQL_UnknownFile.Text" xml:space="preserve">
+    <value>ترميز ملف غير معروف لـ {0}، جارٍ الإلغاء</value>
+  </data>
+<data name="XML_Loaded.Text" xml:space="preserve">
+    <value>تم تحميل xml.</value>
+  </data>
+<data name="Folders.Text" xml:space="preserve">
+    <value>المجلدات:</value>
+  </data>
+<data name="Files.Text" xml:space="preserve">
+    <value>الملفات:</value>
+  </data>
+<data name="Page.Text" xml:space="preserve">
+    <value>الصفحة:</value>
+  </data>
+<data name="URL.Text" xml:space="preserve">
+    <value>الرابط:</value>
+  </data>
+<data name="Home.Text" xml:space="preserve">
+    <value>الرئيسية</value>
+  </data>
+<data name="Maximize.Text" xml:space="preserve">
+    <value>تكبير</value>
+  </data>
+<data name="Minimize.Text" xml:space="preserve">
+    <value>تصغير</value>
+  </data>
+<data name="EXCEPTION_DirectoryExists.Text" xml:space="preserve">
+    <value>الدليل موجود بالفعل</value>
+  </data>
+<data name="EXCEPTION.DuplicateLocale.Text" xml:space="preserve">
+    <value>هذه اللغة (locale) معرَّفة بالفعل</value>
+  </data>
+<data name="EXCEPTION.SaveLocale.Text" xml:space="preserve">
+    <value>فشلت عملية على الملف. يرجى التحقق من أذونات ملفات الموارد حتى يمكن تحرير الملفات.</value>
+  </data>
+<data name="LOG.LangPack.LoadFiles" xml:space="preserve">
+    <value>تحميل {0} من ملفات الموارد.</value>
+  </data>
+<data name="LOG.LangPack.Global" xml:space="preserve">
+    <value>عام</value>
+  </data>
+<data name="LOG.LangPack.Control" xml:space="preserve">
+    <value>عنصر تحكم</value>
+  </data>
+<data name="LOG.LangPack.Module" xml:space="preserve">
+    <value>وحدة</value>
+  </data>
+<data name="LOG.LangPack.Admin" xml:space="preserve">
+    <value>مسؤول</value>
+  </data>
+<data name="LOG.LangPack.ArchiveFiles" xml:space="preserve">
+    <value>إنشاء ملف أرشيف لحزمة الموارد.</value>
+  </data>
+<data name="LOG.LangPack.LoadFromFolder" xml:space="preserve">
+    <value>تحميل ملفات الموارد من المجلد: {0}</value>
+  </data>
+<data name="LOG.LangPack.LoadFileName" xml:space="preserve">
+    <value>تحميل ملف الموارد: {0}</value>
+  </data>
+<data name="LOG.LangPack.SerializeManifest" xml:space="preserve">
+    <value>تم إنشاء ملف البيان بنجاح.</value>
+  </data>
+<data name="LOG.LangPack.SavedFile" xml:space="preserve">
+    <value>تم حفظ ملف الموارد {0} في حزمة الموارد.</value>
+  </data>
+<data name="LOG.LangPack.CreateArchive" xml:space="preserve">
+    <value>إضافة الملفات إلى حزمة الموارد: {0}</value>
+  </data>
+<data name="LOG.LangPack.ERROR.SavingFile" xml:space="preserve">
+    <value>حدث خطأ أثناء حفظ ملف في حزمة الموارد: {0}</value>
+  </data>
+<data name="LOG.LangPack.ERROR.CreatingFile" xml:space="preserve">
+    <value>حدث خطأ أثناء إنشاء ملف حزمة الموارد: {0}</value>
+  </data>
+<data name="LOG.LangPack.ERROR.ManifestFile" xml:space="preserve">
+    <value>حدث خطأ أثناء إنشاء ملف البيان: {0}</value>
+  </data>
+<data name="EXCEPTION.LangPack.ManifestZip" xml:space="preserve">
+    <value>حدث خطأ أثناء قراءة بيان حزمة اللغة من ملف zip. الخطأ: {0}</value>
+  </data>
+<data name="EXCEPTION.LangPack.ManifestLoad" xml:space="preserve">
+    <value>حدث خطأ أثناء تحميل بيان حزمة اللغة. الخطأ: {0}</value>
+  </data>
+<data name="EXCEPTION.LangPack.FileMissing" xml:space="preserve">
+    <value>الملف {0} مفقود في بيان حزمة اللغة.</value>
+  </data>
+<data name="EXCEPTION.LangPack.Install" xml:space="preserve">
+    <value>حدث خطأ أثناء تحميل ملف موارد حزمة اللغة. الخطأ: {0}</value>
+  </data>
+<data name="LOG.LangPack.Job.LoadManifest" xml:space="preserve">
+    <value>تحميل ملف البيان.</value>
+  </data>
+<data name="LOG.LangPack.Job.DeserializeManifest" xml:space="preserve">
+    <value>إلغاء تسلسل ملف البيان.</value>
+  </data>
+<data name="LOG.LangPack.Job.LoadFiles" xml:space="preserve">
+    <value>فك ضغط ملفات اللغة</value>
+  </data>
+<data name="LOG.LangPack.Job.SaveFiles" xml:space="preserve">
+    <value>استيراد ملفات اللغة</value>
+  </data>
+<data name="LOG.LangPack.Job.CreateLocale" xml:space="preserve">
+    <value>إنشاء اللغة (locale) أو تحديثها</value>
+  </data>
+<data name="LOG.LangPackReader.LoadFiles" xml:space="preserve">
+    <value>فك ضغط ملف اللغة: {0}</value>
+  </data>
+<data name="LOG.LangPackReader.UnzipFiles" xml:space="preserve">
+    <value>استيراد الملف: {0}</value>
+  </data>
+<data name="LOG.LangPackReader.CreateLocale" xml:space="preserve">
+    <value>إنشاء اللغة (locale): {0}</value>
+  </data>
+<data name="Wizard.Success.SuccessTitle" xml:space="preserve">
+    <value>تهانينا:</value>
+  </data>
+<data name="Wizard.Success.SuccessDetail" xml:space="preserve">
+    <value>&lt;p&gt;تهانينا. اكتمل المعالج بنجاح.&lt;/p&gt;</value>
+  </data>
+<data name="Wizard.Success.FailureTitle" xml:space="preserve">
+    <value>فشل المعالج:</value>
+  </data>
+<data name="Wizard.Success.FailureDetail" xml:space="preserve">
+    <value>&lt;p&gt;للأسف حدث خطأ في هذا المعالج. يرجى مراجعة الرسالة أدناه والتحقق مع مزود الخدمة.&lt;/p&gt;</value>
+  </data>
+<data name="LOG.PAWriter.CreateManifest" xml:space="preserve">
+    <value>إنشاء ملف البيان. {0}</value>
+  </data>
+<data name="LOG.PAWriter.CreateArchive" xml:space="preserve">
+    <value>إضافة الملفات إلى حزمة الوحدة: {0}</value>
+  </data>
+<data name="LOG.PAWriter.SavedFile" xml:space="preserve">
+    <value>تم حفظ الملف {0} في حزمة الوحدة.</value>
+  </data>
+<data name="LOG.PAWriter.ERROR.SavingFile" xml:space="preserve">
+    <value>حدث خطأ أثناء حفظ ملف في حزمة الوحدة: {0}</value>
+  </data>
+<data name="LOG.PAWriter.CreateZipFile" xml:space="preserve">
+    <value>إنشاء حزمة الوحدة: {0}</value>
+  </data>
+<data name="ModuleExpired.Text" xml:space="preserve">
+    <value>انتهت صلاحية الوحدة - {0}</value>
+  </data>
+<data name="LOG.PALogger.Info" xml:space="preserve">
+    <value>معلومات</value>
+  </data>
+<data name="LOG.PALogger.Warning" xml:space="preserve">
+    <value>تحذير</value>
+  </data>
+<data name="LOG.PALogger.Failure" xml:space="preserve">
+    <value>فشل</value>
+  </data>
+<data name="LOG.PALogger.StartJob" xml:space="preserve">
+    <value>بدء المهمة</value>
+  </data>
+<data name="LOG.PALogger.EndJob" xml:space="preserve">
+    <value>إنهاء المهمة</value>
+  </data>
+<data name="AllUsers.Text" xml:space="preserve">
+    <value>كل المستخدمين</value>
+  </data>
+<data name="Superuser.Text" xml:space="preserve">
+    <value>المستخدم الأعلى</value>
+  </data>
+<data name="UnauthenticatedUsers.Text" xml:space="preserve">
+    <value>المستخدمون غير الموثَّقين</value>
+  </data>
+<data name="RestrictedFileType.Text" xml:space="preserve">
+    <value>الملف {0} نوع ملف مقيَّد. تشمل أنواع الملفات الصالحة ( {1} ). تواصل مع مزود الاستضافة لتحميل نوع ملف غير مدعوم.</value>
+  </data>
+<data name="SaveFileError.Text" xml:space="preserve">
+    <value>حدث خطأ أثناء محاولة حفظ الملف {0}. تواصل مع مزود الاستضافة للتأكد من تفعيل إعدادات الأمان المناسبة على الخادم.</value>
+  </data>
+<data name="DiskSpaceExceeded.Text" xml:space="preserve">
+    <value>يتجاوز الملف {0} مقدار المساحة المتاحة على القرص. تواصل مع مزود الاستضافة للاستفسار عن زيادة مساحة موقعك.</value>
+  </data>
+<data name="WordCleanButton.Text" xml:space="preserve">
+    <value>تنظيف HTML الخاص بـ MS Word</value>
+  </data>
+<data name="INSTALL_OlderVersion.Text" xml:space="preserve">
+    <value>أُلغي التثبيت - الوحدة المراد تثبيتها أقدم من الإصدار المثبَّت بالفعل في تطبيق المضيف.</value>
+  </data>
+<data name="INSTALL_Compatibility.Text" xml:space="preserve">
+    <value>أُلغي التثبيت - الوحدة المراد تثبيتها غير متوافقة مع هذا الإصدار من DNN. يلزم الترقية إلى الإصدار {0}.</value>
+  </data>
+<data name="INSTALL_Dependencies.Text" xml:space="preserve">
+    <value>أُلغي التثبيت - تتطلب الوحدة المراد تثبيتها مكونات إضافية غير متاحة في بيئتك.</value>
+  </data>
+<data name="INSTALL_Permissions.Text" xml:space="preserve">
+    <value>أُلغي التثبيت - تتطلب الحزمة المراد تثبيتها أذونات أكثر مما هو متاح حاليًا في بيئتك. يلزم إذن إضافي.</value>
+  </data>
+<data name="First.Text" xml:space="preserve">
+    <value>الأول</value>
+  </data>
+<data name="Next.Text" xml:space="preserve">
+    <value>التالي</value>
+  </data>
+<data name="Previous.Text" xml:space="preserve">
+    <value>السابق</value>
+  </data>
+<data name="Last.Text" xml:space="preserve">
+    <value>الأخير</value>
+  </data>
+<data name="Recordsperpage.Text" xml:space="preserve">
+    <value>السجلات في كل صفحة</value>
+  </data>
+<data name="Recordsperpage.Help" xml:space="preserve">
+    <value>حدد الحد الأقصى لعدد السجلات المعروضة في الصفحة.</value>
+  </data>
+<data name="LOG.LangPack.Provider" xml:space="preserve">
+    <value>مزود</value>
+  </data>
+<data name="InvalidFileName.Text" xml:space="preserve">
+    <value>اسم ملف غير صالح - لا يمكن أن يحتوي اسم الملف على  '</value>
+  </data>
+<data name="AllRoles.Text" xml:space="preserve">
+    <value>&lt; كل الأدوار &gt;</value>
+  </data>
+<data name="GlobalRoles.Text" xml:space="preserve">
+    <value>&lt; الأدوار العامة &gt;</value>
+  </data>
+<data name="Cancel.Action" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+<data name="InsertSmileyButton.Text" xml:space="preserve">
+    <value>إدراج رمز تعبيري</value>
+  </data>
+<data name="RoleGroupFilter.Text" xml:space="preserve">
+    <value>التصفية حسب المجموعة:</value>
+  </data>
+<data name="DeleteItems.Confirm" xml:space="preserve">
+    <value>هل تريد بالتأكيد حذف هذه العناصر؟</value>
+  </data>
+<data name="RemoveItems.Confirm" xml:space="preserve">
+    <value>هل تريد بالتأكيد حذف هذه العناصر؟</value>
+  </data>
+<data name="PasswordMismatch.Text" xml:space="preserve">
+    <value>كلمتا المرور غير متطابقتين.</value>
+  </data>
+<data name="OnLine.Text" xml:space="preserve">
+    <value>متصل</value>
+  </data>
+<data name="Deleted.Text" xml:space="preserve">
+    <value>محذوف</value>
+  </data>
+<data name="LOG.LangPackReader.ModuleWarning" xml:space="preserve">
+    <value>لم يتم حفظ ملف الموارد {0} لأن الوحدة {1} غير مثبَّتة.</value>
+  </data>
+<data name="AdminOnly.Text" xml:space="preserve">
+    <value>للمسؤول فقط</value>
+  </data>
+<data name="MembersOnly.Text" xml:space="preserve">
+    <value>للأعضاء فقط</value>
+  </data>
+<data name="Public.Text" xml:space="preserve">
+    <value>عام</value>
+  </data>
+<data name="Visibility.Text" xml:space="preserve">
+    <value>الظهور:</value>
+  </data>
+<data name="CreateProfileDefinitions.Error" xml:space="preserve">
+    <value>خطأ في إنشاء تعريفات الملف الشخصي.</value>
+  </data>
+<data name="CreatePortal.Error" xml:space="preserve">
+    <value>خطأ في إنشاء الموقع.</value>
+  </data>
+<data name="CreatePortalHomeFolderExists.Error" xml:space="preserve">
+    <value>مجلد المدخل {0} مستخدم بالفعل.</value>
+  </data>
+<data name="CreateAdminUser.Error" xml:space="preserve">
+    <value>خطأ في إنشاء حساب المستخدم المسؤول.</value>
+  </data>
+<data name="DeleteUploadFolder.Error" xml:space="preserve">
+    <value>خطأ في حذف مجلد التحميل السابق.</value>
+  </data>
+<data name="ChildPortal.Error" xml:space="preserve">
+    <value>خطأ في تهيئة الموقع التابع.</value>
+  </data>
+<data name="PortalTemplate.Error" xml:space="preserve">
+    <value>خطأ في تحليل قالب الموقع.</value>
+  </data>
+<data name="AdminTemplate.Error" xml:space="preserve">
+    <value>خطأ في تحليل قالب المسؤول.</value>
+  </data>
+<data name="FilePermission.Error" xml:space="preserve">
+    <value>ليس لديك أذونات لعرض الملف المطلوب.</value>
+  </data>
+<data name="ModuleLoadWarning.Error" xml:space="preserve">
+    <value>تحذير تحميل الوحدة</value>
+  </data>
+<data name="ModuleLoadWarning.Text" xml:space="preserve">
+    <value>لم يتم تحميل وحدة واحدة أو أكثر في هذه الصفحة. قد يكون ذلك مؤقتًا. يرجى تحديث الصفحة (انقر على F5 في معظم المتصفحات). إذا استمرت المشكلة، يرجى إبلاغ &lt;a href="mailto:{0}"&gt;مسؤول الموقع&lt;/a&gt;.</value>
+  </data>
+<data name="FTB_FolderCreated.Text" xml:space="preserve">
+    <value>تم إنشاء المجلد {0} بنجاح.</value>
+  </data>
+<data name="FTB_FolderCreate.Error" xml:space="preserve">
+    <value>خطأ غير معروف أثناء إنشاء المجلد.</value>
+  </data>
+<data name="FTB_FolderCreate.Permission" xml:space="preserve">
+    <value>ليس لديك إذن لإنشاء المجلدات.</value>
+  </data>
+<data name="FTB_FolderDeleted.Text" xml:space="preserve">
+    <value>تم حذف المجلد {0} بنجاح.</value>
+  </data>
+<data name="FTB_FolderDelete.Error" xml:space="preserve">
+    <value>خطأ غير معروف أثناء حذف المجلد.</value>
+  </data>
+<data name="FTB_FolderDelete.Permission" xml:space="preserve">
+    <value>ليس لديك إذن لحذف المجلدات.</value>
+  </data>
+<data name="FTB_ImageDeleted.Text" xml:space="preserve">
+    <value>تم حذف الصورة {0} بنجاح.</value>
+  </data>
+<data name="FTB_ImageDelete.Error" xml:space="preserve">
+    <value>خطأ غير معروف أثناء حذف الصورة.</value>
+  </data>
+<data name="FTB_ImageDelete.Permission" xml:space="preserve">
+    <value>ليس لديك إذن لحذف الصور.</value>
+  </data>
+<data name="FTB_ImageUploaded.Text" xml:space="preserve">
+    <value>تم تحميل الصورة {0} بنجاح.</value>
+  </data>
+<data name="FTB_ImageUpload.Error" xml:space="preserve">
+    <value>خطأ غير معروف أثناء تحميل الصورة.</value>
+  </data>
+<data name="FTB_ImageUploadNoFile.Text" xml:space="preserve">
+    <value>لم يتم تحميل أي ملف.</value>
+  </data>
+<data name="FTB_ImageUpload.Permission" xml:space="preserve">
+    <value>ليس لديك إذن لتحميل الصور.</value>
+  </data>
+<data name="LastPortal.Text" xml:space="preserve">
+    <value>لا يمكنك حذف آخر موقع في قاعدة البيانات.</value>
+  </data>
+<data name="User.Text" xml:space="preserve">
+    <value>اسم المستخدم:</value>
+  </data>
+<data name="DisplayName.Text" xml:space="preserve">
+    <value>اسم العرض:</value>
+  </data>
+<data name="PageDisabled.Header" xml:space="preserve">
+    <value>الصفحة معطَّلة</value>
+  </data>
+<data name="PageDisabled.Text" xml:space="preserve">
+    <value>تم تعطيل هذه الصفحة وهي مرئية فقط للمستخدمين الذين لديهم إذن التحرير على الصفحة.</value>
+  </data>
+<data name="InvalidPasswordAnswer.Text" xml:space="preserve">
+    <value>يجب تقديم إجابة كلمة المرور.</value>
+  </data>
+<data name="InvalidPasswordQuestion.Text" xml:space="preserve">
+    <value>يجب تقديم سؤال كلمة المرور.</value>
+  </data>
+<data name="PasswordChanged.Text" xml:space="preserve">
+    <value>تم تغيير كلمة المرور.</value>
+  </data>
+<data name="PasswordInvalid.Text" xml:space="preserve">
+    <value>يجب إدخال كلمة مرور صالحة. يرجى التحقق مع مسؤول الموقع إذا كنت لا تعرف متطلبات كلمة المرور.</value>
+  </data>
+<data name="PasswordMailError.Text" xml:space="preserve">
+    <value>تمت إعادة تعيين كلمة المرور، ولكن حدث خطأ أثناء إرسال رسالة التذكير بالبريد الإلكتروني.</value>
+  </data>
+<data name="PasswordMissing.Text" xml:space="preserve">
+    <value>يجب تقديم كلمة المرور الحالية من أجل تغيير كلمة المرور.</value>
+  </data>
+<data name="PasswordNotDifferent.Text" xml:space="preserve">
+    <value>كلمة المرور الجديدة مطابقة لكلمة المرور القديمة. يرجى إدخال كلمة مرور مختلفة.</value>
+  </data>
+<data name="PasswordResetFailed.Text" xml:space="preserve">
+    <value>لم يتم قبول كلمة المرور الجديدة لأسباب أمنية. يرجى إدخال كلمة مرور لم تستخدمها من قبل وهي طويلة ومعقدة بما يكفي لتلبية متطلبات تعقيد كلمة المرور في الموقع.</value>
+  </data>
+<data name="PasswordInadequate.Text" xml:space="preserve">
+    <value>لم يتم قبول كلمة المرور الجديدة لأسباب أمنية. يرجى إدخال كلمة مرور طويلة ومعقدة بما يكفي لتلبية متطلبات تعقيد كلمة المرور في الموقع.</value>
+  </data>
+<data name="PasswordBanned.Text" xml:space="preserve">
+    <value>لم يتم قبول كلمة المرور الجديدة لأنها محظورة أو لأنها مطابقة لاسم المستخدم الخاص بك.</value>
+  </data>
+<data name="PasswordResetFailed_UserUndefined.Text" xml:space="preserve">
+    <value>لم يتم قبول كلمة المرور الجديدة لأسباب أمنية. يرجى اختيار كلمة مرور لا تطابق كلمة مرور استُخدمت سابقًا والتأكد من صحة اسم المستخدم.</value>
+  </data>
+<data name="PasswordResetFailed_ResetLinkExpired.Text" xml:space="preserve">
+    <value>لم يتم قبول كلمة المرور الجديدة لأسباب أمنية. انتهت صلاحية رابط إعادة تعيين كلمة المرور ولم يعد صالحًا.</value>
+  </data>
+<data name="PasswordResetFailed_PasswordInHistory.Text" xml:space="preserve">
+    <value>لم يتم قبول كلمة المرور الجديدة لأسباب أمنية. يرجى اختيار كلمة مرور لم تُستخدم من قبل.</value>
+  </data>
+<data name="PasswordResetFailed_WrongAnswer.Text" xml:space="preserve">
+    <value>لم يتم قبول كلمة المرور الجديدة لأسباب أمنية. يرجى التأكد من إدخال اسم المستخدم والإجابة الصحيحين.</value>
+  </data>
+<data name="PrivateMembership.Text" xml:space="preserve">
+    <value>&lt;strong&gt;*ملاحظة:&lt;/strong&gt; العضوية في هذا الموقع خاصة. بعد إرسال معلومات حسابك، سيُخطَر مسؤول الموقع وستخضع طلباتك لإجراء فرز. إذا تم اعتماد طلبك، ستتلقى إشعارًا بتمكنك من الوصول إلى الموقع.</value>
+  </data>
+<data name="PublicMembership.Text" xml:space="preserve">
+    <value>&lt;strong&gt;*ملاحظة:&lt;/strong&gt; العضوية في هذا الموقع عامة. بعد إرسال معلومات حسابك، سيُمنح لك وصول فوري إلى الموقع.</value>
+  </data>
+<data name="Register.Text" xml:space="preserve">
+    <value>تسجيل المستخدم</value>
+  </data>
+<data name="Required.Text" xml:space="preserve">
+    <value> جميع الحقول المعلَّمة بنجمة حمراء مطلوبة.</value>
+  </data>
+<data name="VerifiedMembership.Text" xml:space="preserve">
+    <value>&lt;strong&gt;*ملاحظة:&lt;/strong&gt; العضوية في هذا الموقع موثَّقة. بعد إرسال معلومات حسابك، ستتلقى بريدًا إلكترونيًا يحتوي على رابط يمكنك استخدامه لتوثيق حسابك.</value>
+  </data>
+<data name="Captcha.Help" xml:space="preserve">
+    <value>أدخل رمز الأمان.</value>
+  </data>
+<data name="Captcha.Text" xml:space="preserve">
+    <value>رمز الأمان</value>
+  </data>
+<data name="Password.Text" xml:space="preserve">
+    <value>كلمة المرور:</value>
+  </data>
+<data name="Username.Text" xml:space="preserve">
+    <value>اسم المستخدم:</value>
+  </data>
+<data name="CaptchaText.Text" xml:space="preserve">
+    <value>أدخل الرمز الموضح أعلاه في الحقل أدناه.</value>
+  </data>
+<data name="InvalidCaptcha.Text" xml:space="preserve">
+    <value>رمز أمان غير صحيح</value>
+  </data>
+<data name="CaptchaAlt.Text" xml:space="preserve">
+    <value>صورة CAPTCHA</value>
+  </data>
+<data name="PrivateConfirmationMessage.Text" xml:space="preserve">
+    <value>&lt;strong&gt;تم إرسال بريد إلكتروني يتضمن بياناتك إلى مسؤول الموقع للتحقق. سيتم إشعارك بالبريد الإلكتروني عند اعتماد تسجيلك. في هذه الأثناء يمكنك متابعة تصفح هذا الموقع.&lt;/strong&gt;  </value>
+  </data>
+<data name="DNN_ReadingComponent.Text" xml:space="preserve">
+    <value>قراءة بيان المكوّن</value>
+  </data>
+<data name="DNN_ReadingPackage.Text" xml:space="preserve">
+    <value>قراءة بيان الحزمة</value>
+  </data>
+<data name="AUTHENTICATION_LoginSrcMissing.Text" xml:space="preserve">
+    <value>الحقل المطلوب LoginControlSrc مفقود من البيان</value>
+  </data>
+<data name="AUTHENTICATION_ReadSuccess.Text" xml:space="preserve">
+    <value>تم تحليل بيان المصادقة بنجاح</value>
+  </data>
+<data name="AUTHENTICATION_SettingsSrcMissing.Text" xml:space="preserve">
+    <value>الحقل المطلوب SettingsControlSrc مفقود من البيان</value>
+  </data>
+<data name="AUTHENTICATION_TypeMissing.Text" xml:space="preserve">
+    <value>الحقل المطلوب Type مفقود من البيان</value>
+  </data>
+<data name="UNINSTALL_Start.Text" xml:space="preserve">
+    <value>بدء إلغاء تثبيت الحزمة</value>
+  </data>
+<data name="UNINSTALL_Success.Text" xml:space="preserve">
+    <value>تم إلغاء تثبيت الحزمة بنجاح</value>
+  </data>
+<data name="AUTHENTICATION_Registered.Text" xml:space="preserve">
+    <value>تم تسجيل المصادقة بنجاح - {0}</value>
+  </data>
+<data name="FILE_Deleted.Text" xml:space="preserve">
+    <value>تم الحذف - {0}</value>
+  </data>
+<data name="UNINSTALL_StartComp.Text" xml:space="preserve">
+    <value>بدء إلغاء تثبيت المكوّن</value>
+  </data>
+<data name="UNINSTALL_SuccessComp.Text" xml:space="preserve">
+    <value>تم إلغاء تثبيت المكوّن بنجاح</value>
+  </data>
+<data name="COMPONENT_RollingBack.Text" xml:space="preserve">
+    <value>جارٍ التراجع عن تثبيت المكوّن</value>
+  </data>
+<data name="AUTHENTICATION_UnRegistered.Text" xml:space="preserve">
+    <value>تم إلغاء تسجيل المصادقة بنجاح - {0}</value>
+  </data>
+<data name="COMPONENT_Installed.Text" xml:space="preserve">
+    <value>تم تثبيت المكوّن بنجاح</value>
+  </data>
+<data name="COMPONENT_RolledBack.Text" xml:space="preserve">
+    <value>تم التراجع عن المكوّن بنجاح</value>
+  </data>
+<data name="INSTALL_Committed.Text" xml:space="preserve">
+    <value>تم اعتماد التثبيت</value>
+  </data>
+<data name="COMPONENT_UnInstalled.Text" xml:space="preserve">
+    <value>تم إلغاء تثبيت المكوّن بنجاح</value>
+  </data>
+<data name="ASSEMBLY_Registered.Text" xml:space="preserve">
+    <value>التجميع مسجَّل بالفعل</value>
+  </data>
+<data name="ASSEMBLY_UnRegistered.Text" xml:space="preserve">
+    <value>تم إلغاء تسجيل التجميع</value>
+  </data>
+<data name="INSTALL_Failed.Text" xml:space="preserve">
+    <value>فشل التثبيت</value>
+  </data>
+<data name="FILE_CreateBackup.Text" xml:space="preserve">
+    <value>إنشاء نسخة احتياطية من الإصدار السابق - {0}</value>
+  </data>
+<data name="FILE_RestoreBackup.Text" xml:space="preserve">
+    <value>تمت استعادة النسخة الاحتياطية من الإصدار السابق - {0}</value>
+  </data>
+<data name="ASSEMBLY_Added.Text" xml:space="preserve">
+    <value>تم تسجيل التجميع</value>
+  </data>
+<data name="ASSEMBLY_AddedBindingRedirect.Text" xml:space="preserve">
+    <value>تمت إضافة إعادة توجيه الربط للتجميع</value>
+  </data>
+<data name="ASSEMBLY_RemovedBindingRedirect.Text" xml:space="preserve">
+    <value>تمت إزالة إعادة توجيه الربط من التجميع</value>
+  </data>
+<data name="ASSEMBLY_Updated.Text" xml:space="preserve">
+    <value>تم تحديث التجميع</value>
+  </data>
+<data name="FOLDER_DeletedBackup.Text" xml:space="preserve">
+    <value>تم حذف مجلد التثبيت المؤقت</value>
+  </data>
+<data name="ASSEMBLY_InUse.Text" xml:space="preserve">
+    <value>التجميع قيد الاستخدام من حزمة أخرى</value>
+  </data>
+<data name="EXCEPTION_NameMissing.Text" xml:space="preserve">
+    <value>العنصر name مطلوب</value>
+  </data>
+<data name="EXCEPTION_TypeMissing.Text" xml:space="preserve">
+    <value>العنصر type مطلوب</value>
+  </data>
+<data name="EXCEPTION_VersionMissing.Text" xml:space="preserve">
+    <value>العنصر version مطلوب</value>
+  </data>
+<data name="INSTALL_Aborted.Text" xml:space="preserve">
+    <value>أُلغي تثبيت الحزمة</value>
+  </data>
+<data name="INSTALL_Package.Text" xml:space="preserve">
+    <value>حزمة تابعة غير مثبَّتة</value>
+  </data>
+<data name="INSTALL_Version.Text" xml:space="preserve">
+    <value>يوجد إصدار أحدث من هذه الحزمة مثبَّت بالفعل</value>
+  </data>
+<data name="INSTALL_Namespace.Text" xml:space="preserve">
+    <value>مكوّن تابع غير مثبَّت</value>
+  </data>
+<data name="XMLMERGE_Upgrade.Text" xml:space="preserve">
+    <value>تمت الترقية بواسطة {1} الإصدار {2} - التاريخ: {3}</value>
+  </data>
+<data name="CONFIG_Committed.Text" xml:space="preserve">
+    <value>تم اعتماد تغييرات ملف التهيئة</value>
+  </data>
+<data name="CONFIG_RolledBack.Text" xml:space="preserve">
+    <value>تم التراجع عن تغييرات ملف التهيئة</value>
+  </data>
+<data name="CONFIG_Updated.Text" xml:space="preserve">
+    <value>تم تحديث ملف التهيئة</value>
+  </data>
+<data name="SQL_Committed.Text" xml:space="preserve">
+    <value>تم اعتماد تغييرات البرنامج النصي SQL</value>
+  </data>
+<data name="SQL_RolledBack.Text" xml:space="preserve">
+    <value>تم التراجع عن تغييرات البرنامج النصي SQL</value>
+  </data>
+<data name="SQL_BeginUnInstall.Text" xml:space="preserve">
+    <value>بدء إلغاء تثبيت Sql</value>
+  </data>
+<data name="SQL_EndUnInstall.Text" xml:space="preserve">
+    <value>انتهاء إلغاء تثبيت Sql</value>
+  </data>
+<data name="FOLDER_Created.Text" xml:space="preserve">
+    <value>تم إنشاء المجلد - {0}</value>
+  </data>
+<data name="SECURITY_Installer.Text" xml:space="preserve">
+    <value>ليس لديك صلاحية لتثبيت هذا المكوّن.</value>
+  </data>
+<data name="SECURITY_NotRegistered.Text" xml:space="preserve">
+    <value>نوع هذه الحزمة غير مسجَّل.</value>
+  </data>
+<data name="EXCEPTION_InstallerCreate.Text" xml:space="preserve">
+    <value>خطأ في إنشاء مثبِّت المكوّن.</value>
+  </data>
+<data name="TokenReplaceUnknownProperty.Text" xml:space="preserve">
+    <value>خاصية غير معروفة</value>
+  </data>
+<data name="UserDeleteError.Text" xml:space="preserve">
+    <value>خطأ في حذف المستخدم</value>
+  </data>
+<data name="SKIN_BeginProcessing.Text" xml:space="preserve">
+    <value>بدء معالجة ملفات المظهر.</value>
+  </data>
+<data name="SKIN_EndProcessing.Text" xml:space="preserve">
+    <value>انتهاء معالجة ملفات المظهر.</value>
+  </data>
+<data name="MODULE_ControlKeyMissing.Text" xml:space="preserve">
+    <value>مفتاح عنصر تحكم الوحدة مفقود</value>
+  </data>
+<data name="MODULE_ControlTypeMissing.Text" xml:space="preserve">
+    <value>نوع عنصر تحكم الوحدة مفقود</value>
+  </data>
+<data name="MODULE_FriendlyNameMissing.Text" xml:space="preserve">
+    <value>الاسم المألوف للوحدة مفقود</value>
+  </data>
+<data name="MODULE_ReadSuccess.Text" xml:space="preserve">
+    <value>تمت قراءة بيان الوحدة بنجاح</value>
+  </data>
+<data name="MODULE_Registered.Text" xml:space="preserve">
+    <value>تم تسجيل الوحدة بنجاح - {0}</value>
+  </data>
+<data name="MODULE_UnRegistered.Text" xml:space="preserve">
+    <value>تم إلغاء تسجيل الوحدة بنجاح - {0}</value>
+  </data>
+<data name="MODULE_AdminPagemoduleAdded.Text" xml:space="preserve">
+    <value>تمت إضافة الوحدة إلى صفحة المسؤول {0} على المدخل {1}.</value>
+  </data>
+<data name="MODULE_AdminPagemoduleRemoved.Text" xml:space="preserve">
+    <value>تمت إزالة الوحدة من صفحة المسؤول {0} على المدخل {1}.</value>
+  </data>
+<data name="MODULE_AdminPageRemoved.Text" xml:space="preserve">
+    <value>تمت إزالة صفحة المسؤول {0} من المدخل {1}.</value>
+  </data>
+<data name="MODULE_AdminPageAdded.Text" xml:space="preserve">
+    <value>تمت إضافة صفحة المسؤول {0} إلى المدخل {1}.</value>
+  </data>
+<data name="MODULE_HostAdded.Text" xml:space="preserve">
+    <value>تمت إضافة الوحدة إلى صفحة المضيف {0}.</value>
+  </data>
+<data name="MODULE_HostPageAdded.Text" xml:space="preserve">
+    <value>تمت إضافة صفحة المضيف {0}.</value>
+  </data>
+<data name="MODULE_HostPagemoduleAdded.Text" xml:space="preserve">
+    <value>تمت إضافة الوحدة إلى صفحة المضيف {0}.</value>
+  </data>
+<data name="MODULE_HostPageRemoved.Text" xml:space="preserve">
+    <value>تمت إزالة صفحة المضيف {0}.</value>
+  </data>
+<data name="MODULE_HostPagemoduleRemoved.Text" xml:space="preserve">
+    <value>تمت إزالة الوحدة من صفحة المضيف {0}.</value>
+  </data>
+<data name="PACKAGE_NoLicense.Text" xml:space="preserve">
+    <value>لا يتضمن ملف التثبيت حاليًا ترخيص هذه الحزمة، يرجى التحقق مع المورّد للحصول على تفاصيل الترخيص الكاملة.</value>
+  </data>
+<data name="PACKAGE_NoReleaseNotes.Text" xml:space="preserve">
+    <value>لا تحتوي هذه الحزمة على ملاحظات إصدار</value>
+  </data>
+<data name="FOLDER_Deleted.Text" xml:space="preserve">
+    <value>تم حذف المجلد - {0}</value>
+  </data>
+<data name="UNINSTALL_Failure.Text" xml:space="preserve">
+    <value>فشل إلغاء تثبيت المكوّن</value>
+  </data>
+<data name="WRITER_CreateArchive.Text" xml:space="preserve">
+    <value>إنشاء أرشيف zip - {0}</value>
+  </data>
+<data name="WRITER_SavedFile.Text" xml:space="preserve">
+    <value>تم حفظ الملف في الأرشيف - {0}</value>
+  </data>
+<data name="WRITER_SaveFileError.Text" xml:space="preserve">
+    <value>خطأ في حفظ الملف في الأرشيف - {0}</value>
+  </data>
+<data name="SKIN_Registered.Text" xml:space="preserve">
+    <value>تم تسجيل حزمة المظهر بنجاح - {0}</value>
+  </data>
+<data name="SKIN_UnRegistered.Text" xml:space="preserve">
+    <value>تم إلغاء تسجيل حزمة المظهر بنجاح - {0}</value>
+  </data>
+<data name="WRITER_AddFileToManifest.Text" xml:space="preserve">
+    <value>تمت إضافة الملف إلى البيان - {0}</value>
+  </data>
+<data name="WRITER_CreatedManifest.Text" xml:space="preserve">
+    <value>تم إنشاء البيان</value>
+  </data>
+<data name="WRITER_CreatedPackage.Text" xml:space="preserve">
+    <value>تم إنشاء الحزمة</value>
+  </data>
+<data name="WRITER_CreatingManifest.Text" xml:space="preserve">
+    <value>جارٍ إنشاء البيان</value>
+  </data>
+<data name="WRITER_CreatingPackage.Text" xml:space="preserve">
+    <value>جارٍ إنشاء الحزمة</value>
+  </data>
+<data name="PACKAGE_UnRecognizable.Text" xml:space="preserve">
+    <value>بيان حزمة غير قابل للتعرّف عليه</value>
+  </data>
+<data name="LANGUAGE_Registered.Text" xml:space="preserve">
+    <value>تم تسجيل حزمة اللغة بنجاح - {0}</value>
+  </data>
+<data name="LANGUAGE_UnRegistered.Text" xml:space="preserve">
+    <value>تم إلغاء تسجيل حزمة اللغة بنجاح - {0}</value>
+  </data>
+<data name="DisplayEnglish.Text" xml:space="preserve">
+    <value>عرض الاسم بالإنجليزية</value>
+  </data>
+<data name="DisplayNative.Text" xml:space="preserve">
+    <value>عرض الاسم باللغة الأصلية</value>
+  </data>
+<data name="CLEANUP_ProcessComplete.Text" xml:space="preserve">
+    <value>اكتملت معالجة ملف التنظيف - {0}</value>
+  </data>
+<data name="CLEANUP_ProcessError.Text" xml:space="preserve">
+    <value>خطأ غير جسيم أثناء تنظيف الملفات: {0}</value>
+  </data>
+<data name="CLEANUP_Processing.Text" xml:space="preserve">
+    <value>جارٍ معالجة ملف التنظيف - {0}</value>
+  </data>
+<data name="LANGUAGE_PortalsEnabled.Text" xml:space="preserve">
+    <value>اللغة مفعَّلة لجميع المواقع - {0}</value>
+  </data>
+<data name="PermissionTypeGrant.Text" xml:space="preserve">
+    <value>تم منح الإذن</value>
+  </data>
+<data name="PermissionTypeDeny.Text" xml:space="preserve">
+    <value>تم رفض الإذن</value>
+  </data>
+<data name="PermissionTypeNull.Text" xml:space="preserve">
+    <value>غير محدد</value>
+  </data>
+<data name="FailedRecipient.Text" xml:space="preserve">
+    <value>لم يتم تسليم الرسالة إلى العناوين التالية - {0}</value>
+  </data>
+<data name="SMTPConfigurationProblem.Text" xml:space="preserve">
+    <value>هناك مشكلة في تهيئة خادم SMTP الخاص بك. لم يتم إرسال البريد.</value>
+  </data>
+<data name="SmtpInvalidPort.Text" xml:space="preserve">
+    <value>المنفذ المحدد غير صالح. يجب أن يكون المنفذ أكبر من 0 وأقل من 65536. لم يتم إرسال البريد.</value>
+  </data>
+<data name="FILE_NotAllowed.Text" xml:space="preserve">
+    <value>امتداد الملف غير مسموح - {0}</value>
+  </data>
+<data name="InsufficientFolderPermission.Text" xml:space="preserve">
+    <value>ليس لديك أذونات كافية للكتابة في المجلد {0}. يرجى التواصل مع مزود الاستضافة للتأكد من تفعيل إعدادات الأمان المناسبة على الخادم.</value>
+  </data>
+<data name="UNINSTALL_WarningsComp.Text" xml:space="preserve">
+    <value>تم إلغاء تثبيت المكوّن مع تحذيرات</value>
+  </data>
+<data name="UNINSTALL_Warnings.Text" xml:space="preserve">
+    <value>تم إلغاء التثبيت مع تحذيرات</value>
+  </data>
+<data name="FileInUse.Text" xml:space="preserve">
+    <value>يبدو أن الملف - {0} - قيد الاستخدام ولا يمكن حذفه في الوقت الحالي. يرجى الانتظار بضع دقائق والمحاولة مرة أخرى.</value>
+  </data>
+<data name="GreenSuccess.Text" xml:space="preserve">
+    <value>نجاح</value>
+  </data>
+<data name="RedError.Text" xml:space="preserve">
+    <value>خطأ</value>
+  </data>
+<data name="YellowWarning.Text" xml:space="preserve">
+    <value>تحذير</value>
+  </data>
+<data name="SelectedRole.Text" xml:space="preserve">
+    <value>الدور المحدد</value>
+  </data>
+<data name="jQuery.NotInstalled.Text" xml:space="preserve">
+    <value>jQuery غير مثبَّت.</value>
+  </data>
+<data name="jQuery.UnknownVersion.Text" xml:space="preserve">
+    <value>تعذر تحديد إصدار jQuery.</value>
+  </data>
+<data name="SendMail.Error" xml:space="preserve">
+    <value>حدث خطأ أثناء إرسال رسائل التأكيد - {0}  ومع ذلك تم إنشاء حساب المستخدم الخاص بك بنجاح.</value>
+  </data>
+<data name="TokenReplaceUnknownObject.Text" xml:space="preserve">
+    <value>خطأ في الوصول إلى [{0}:{1}]، {0} مصدر بيانات غير معروف.</value>
+  </data>
+<data name="SKIN_Installed.Text" xml:space="preserve">
+    <value>المظهر مثبَّت بالفعل باسم حزمة مختلف.</value>
+  </data>
+<data name="ModuleEffective.Text" xml:space="preserve">
+    <value>الوحدة سارية - {0}</value>
+  </data>
+<data name="ModuleVisibleAdministrator.Text" xml:space="preserve">
+    <value>مرئية للمسؤولين فقط.</value>
+  </data>
+<data name="PortalRoot.Text" xml:space="preserve">
+    <value>جذر الموقع</value>
+  </data>
+<data name="False.Text" xml:space="preserve">
+    <value>False</value>
+  </data>
+<data name="True.Text" xml:space="preserve">
+    <value>True</value>
+  </data>
+<data name="EXCEPTION_InvalidEmailAddress.Text" xml:space="preserve">
+    <value>عنوان البريد الإلكتروني ({0}) ليس بالتنسيق الصالح.</value>
+  </data>
+<data name="EXCEPTION_ModuleCacheMissing.Text" xml:space="preserve">
+    <value>لم يتم تهيئة ModuleCachingProvider بشكل صحيح. يرجى التحقق من وجود تهيئة المزود moduleCaching في web.config ومن تحديد مزود افتراضي.</value>
+  </data>
+<data name="Localization_NotLocalized.Text" xml:space="preserve">
+    <value>غير محلي</value>
+  </data>
+<data name="Localization_NotTranslated.Text" xml:space="preserve">
+    <value>غير مترجم</value>
+  </data>
+<data name="Localization_OutOfDate.Text" xml:space="preserve">
+    <value>قديم</value>
+  </data>
+<data name="Localization_Translated.Text" xml:space="preserve">
+    <value>مترجم</value>
+  </data>
+<data name="DeLocalizeModule.Confirm" xml:space="preserve">
+    <value>هل تريد بالتأكيد إلغاء توطين هذه الوحدة؟</value>
+  </data>
+<data name="LocalizeModule.Confirm" xml:space="preserve">
+    <value>هل تريد بالتأكيد توطين هذه الوحدة؟</value>
+  </data>
+<data name="TranslateModule.Confirm" xml:space="preserve">
+    <value>هل تريد بالتأكيد وضع علامة «مترجم» على هذه الوحدة؟</value>
+  </data>
+<data name="UnTranslateModule.Confirm" xml:space="preserve">
+    <value>هل تريد بالتأكيد وضع علامة «غير مترجم» على هذه الوحدة؟</value>
+  </data>
+<data name="System_Default.Text" xml:space="preserve">
+    <value>الافتراضي للنظام</value>
+  </data>
+<data name="LanguageNotSelected.Text" xml:space="preserve">
+    <value>لم تحدد لغة مفضلة. لذلك ستكون لغتك المفضلة هي اللغة الافتراضية للموقع.</value>
+  </data>
+<data name="DefaultFolderMappings.Error" xml:space="preserve">
+    <value>خطأ في إنشاء أنواع المجلدات الافتراضية</value>
+  </data>
+<data name="jQuery.UI.UnknownVersion.Text" xml:space="preserve">
+    <value>تعذر تحديد إصدار jQuery UI.</value>
+  </data>
+<data name="jQueryUI.NotInstalled.Text" xml:space="preserve">
+    <value>jQuery UI غير مثبَّت.</value>
+  </data>
+<data name="Confirm.Text" xml:space="preserve">
+    <value>تأكيد</value>
+  </data>
+<data name="RequiredFields.Text" xml:space="preserve">
+    <value>تشير إلى الحقول المطلوبة</value>
+  </data>
+<data name="CollapseAll.Text" xml:space="preserve">
+    <value>طي الكل</value>
+  </data>
+<data name="ExpandAll.Text" xml:space="preserve">
+    <value>توسيع الكل</value>
+  </data>
+<data name="Ok.Text" xml:space="preserve">
+    <value>موافق</value>
+  </data>
+<data name="MODULE_InvalidVersion.Text" xml:space="preserve">
+    <value>الإصدار {0} غير صالح - لم تتم إضافته إلى قائمة UpgradeVersions.</value>
+  </data>
+<data name="EVENTMESSAGE_CommandMissing.Text" xml:space="preserve">
+    <value>أمر المعالج مفقود من البيان.</value>
+  </data>
+<data name="EVENTMESSAGE_TypeMissing.Text" xml:space="preserve">
+    <value>نوع المعالج مفقود من البيان.</value>
+  </data>
+<data name="ModuleHelp.Text" xml:space="preserve">
+    <value>تعليمات الوحدة</value>
+  </data>
+<data name="ResourceNotFound.Text" xml:space="preserve">
+    <value>المورد غير موجود</value>
+  </data>
+<data name="FriendsGroups.Text" xml:space="preserve">
+    <value>الأصدقاء والمجموعات</value>
+  </data>
+<data name="ModuleNotIntended.Text" xml:space="preserve">
+    <value>هذه الوحدة مخصصة للاستخدام فقط في صفحة معرَّفة كصفحة الملف الشخصي للموقع.</value>
+  </data>
+<data name="Delete.Text" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+<data name="UnverifiedUser.Text" xml:space="preserve">
+    <value>أنت تستخدم حسابًا غير موثَّق. يرجى توثيق حسابك بالنقر على الرابط الوارد في بريد التوثيق الذي أُرسل إليك. انقر &lt;a href="#" class="send-verification-mail"&gt;هنا&lt;/a&gt; لإعادة إرسال بريد التوثيق.</value>
+  </data>
+<data name="DayAgo.Text" xml:space="preserve">
+    <value>قبل {0} يوم</value>
+  </data>
+<data name="DaysAgo.Text" xml:space="preserve">
+    <value>قبل {0} أيام</value>
+  </data>
+<data name="HourAgo.Text" xml:space="preserve">
+    <value>قبل {0} ساعة</value>
+  </data>
+<data name="HoursAgo.Text" xml:space="preserve">
+    <value>قبل {0} ساعات</value>
+  </data>
+<data name="MinuteAgo.Text" xml:space="preserve">
+    <value>قبل {0} دقيقة</value>
+  </data>
+<data name="MinutesAgo.Text" xml:space="preserve">
+    <value>قبل {0} دقائق</value>
+  </data>
+<data name="MonthAgo.Text" xml:space="preserve">
+    <value>قبل {0} شهر</value>
+  </data>
+<data name="MonthsAgo.Text" xml:space="preserve">
+    <value>قبل {0} أشهر</value>
+  </data>
+<data name="SecondsAgo.Text" xml:space="preserve">
+    <value> قبل {0} ثوانٍ</value>
+  </data>
+<data name="WeekAgo.Text" xml:space="preserve">
+    <value>قبل {0} أسبوع</value>
+  </data>
+<data name="WeeksAgo.Text" xml:space="preserve">
+    <value>قبل {0} أسابيع</value>
+  </data>
+<data name="DuplicateDisplayName.Text" xml:space="preserve">
+    <value>اسم العرض مستخدم بالفعل.</value>
+  </data>
+<data name="InvalidDisplayName.Text" xml:space="preserve">
+    <value>اسم العرض غير صالح.</value>
+  </data>
+<data name="OAuthConfigBase_APIKey.Help" xml:space="preserve">
+    <value>أدخل قيمة APP ID أو مفتاح API أو مفتاح المستهلك الذي هيّأته لمزود المصادقة هذا.</value>
+  </data>
+<data name="OAuthConfigBase_APIKey.Text" xml:space="preserve">
+    <value>APP ID</value>
+  </data>
+<data name="OAuthConfigBase_APISecret.Help" xml:space="preserve">
+    <value>أدخل قيمة APP Secret أو سر المستهلك الذي هيّأته لمزود المصادقة هذا.</value>
+  </data>
+<data name="OAuthConfigBase_APISecret.Text" xml:space="preserve">
+    <value>سرّ التطبيق</value>
+  </data>
+<data name="OAuthConfigBase_Enabled.Help" xml:space="preserve">
+    <value>حدد هذا المربع لتفعيل مزود المصادقة هذا للموقع.</value>
+  </data>
+<data name="OAuthConfigBase_Enabled.Text" xml:space="preserve">
+    <value>مفعَّل</value>
+  </data>
+<data name="OAuthConfigBase_LoginURL.Help" xml:space="preserve">
+    <value>أدخل عنوان URL لصفحة تسجيل الدخول الخاصة بموقعك.</value>
+  </data>
+<data name="OAuthConfigBase_LoginURL.Text" xml:space="preserve">
+    <value>عنوان URL لتسجيل الدخول:</value>
+  </data>
+<data name="OAuthConfigBase_RegisterURL.Help" xml:space="preserve">
+    <value>أدخل عنوان URL لصفحة التسجيل الخاصة بموقعك.</value>
+  </data>
+<data name="OAuthConfigBase_RegisterURL.Text" xml:space="preserve">
+    <value>عنوان URL للتسجيل:</value>
+  </data>
+<data name="Follow.Text" xml:space="preserve">
+    <value>متابعة</value>
+  </data>
+<data name="Accept.Text" xml:space="preserve">
+    <value>قبول</value>
+  </data>
+<data name="AcceptFriend.Text" xml:space="preserve">
+    <value>قبول طلب الصداقة</value>
+  </data>
+<data name="DismissNotification.Text" xml:space="preserve">
+    <value>تجاهل هذا الإشعار</value>
+  </data>
+<data name="FollowBack.Text" xml:space="preserve">
+    <value>متابعة بالمقابل</value>
+  </data>
+<data name="Ignore.Text" xml:space="preserve">
+    <value>تجاهل</value>
+  </data>
+<data name="IgnoreFriend.Text" xml:space="preserve">
+    <value>تجاهل طلب الصداقة</value>
+  </data>
+<data name="Dismiss.Text" xml:space="preserve">
+    <value>تجاهل</value>
+  </data>
+<data name="UserFolderTitle.Text" xml:space="preserve">
+    <value>ملفاتي</value>
+  </data>
+<data name="COMPONENT_Skipped.Text" xml:space="preserve">
+    <value>تم تخطي المكوّن</value>
+  </data>
+<data name="DeleteSharedModule.Confirm" xml:space="preserve">
+    <value>هذه الوحدة مشتركة مع مواقع أخرى في مجموعة المواقع. سيؤدي حذف هذه النسخة إلى إزالة جميع النسخ المشتركة في المواقع الأخرى.&amp;nbsp;&amp;nbsp;لمعرفة المواقع التي تشترك في الوحدة، تحقق من الإعدادات &gt; إعدادات الوحدة &gt; تمت الإضافة إلى الصفحة.&amp;nbsp;&amp;nbsp;هل تريد بالتأكيد المتابعة وحذف هذه الوحدة وجميع النسخ المشتركة؟</value>
+  </data>
+<data name="CopyPermissionsToChildren.Text" xml:space="preserve">
+    <value>سيتم استبدال الأذونات لجميع العناصر التابعة لهذه الصفحة.&lt;br /&gt;&lt;br /&gt;هل تريد بالتأكيد المتابعة؟</value>
+  </data>
+<data name="MyFolderName.Text" xml:space="preserve">
+    <value>مجلدي</value>
+  </data>
+<data name="Basic.Text" xml:space="preserve">
+    <value>الإعدادات الأساسية للملف الشخصي</value>
+  </data>
+<data name="Contact.Text" xml:space="preserve">
+    <value>معلومات الاتصال</value>
+  </data>
+<data name="Location.Text" xml:space="preserve">
+    <value>معلومات الموقع الجغرافي</value>
+  </data>
+<data name="ProfileUrlCleaned.Text" xml:space="preserve">
+    <value>عنوان URL المرسَل يحتوي على أحرف غير مسموحة تمت إزالتها. انقر على تحديث لقبول عنوان URL المعدَّل.</value>
+  </data>
+<data name="CleanWarningTitle.Text" xml:space="preserve">
+    <value>تم تنظيف عنوان URL</value>
+  </data>
+<data name="DuplicateUrlWarningTitle.Text" xml:space="preserve">
+    <value>عنوان URL مكرر</value>
+  </data>
+<data name="ProfileUrlNotUnique.Text" xml:space="preserve">
+    <value>عنوان URL المطلوب غير متاح. انقر على تحديث لقبول البديل المقترح.</value>
+  </data>
+<data name="DraftCompleted.Action" xml:space="preserve">
+    <value>اكتملت المسودة</value>
+  </data>
+<data name="DraftCompleted.Comment" xml:space="preserve">
+    <value>تم إكمال حالة المسودة. المحتوى جاهز للنشر.</value>
+  </data>
+<data name="StateCompleted.Action" xml:space="preserve">
+    <value>اكتملت الحالة</value>
+  </data>
+<data name="StateCompleted.Comment" xml:space="preserve">
+    <value>تمت الموافقة على الحالة «[STATE]».</value>
+  </data>
+<data name="StateDiscarded.Action" xml:space="preserve">
+    <value>تم التخلي عن الحالة</value>
+  </data>
+<data name="StateDiscarded.Comment" xml:space="preserve">
+    <value>تم التخلي عن الحالة «[STATE]».</value>
+  </data>
+<data name="StateInitiated.Action" xml:space="preserve">
+    <value>بدأت الحالة</value>
+  </data>
+<data name="StateInitiated.Comment" xml:space="preserve">
+    <value>سير العمل في الحالة «[STATE]».</value>
+  </data>
+<data name="WorkflowApproved.Action" xml:space="preserve">
+    <value>اكتمل سير العمل</value>
+  </data>
+<data name="WorkflowApproved.Comment" xml:space="preserve">
+    <value>اكتمل سير العمل «[WORKFLOW]». تمت الموافقة على المحتوى.</value>
+  </data>
+<data name="WorkflowError.Action" xml:space="preserve">
+    <value>خطأ في سير العمل</value>
+  </data>
+<data name="WorkflowError.Comment" xml:space="preserve">
+    <value>أطلق سير العمل «[WORKFLOW]» خطأً.</value>
+  </data>
+<data name="WorkflowStarted.Action" xml:space="preserve">
+    <value>بدأ سير العمل</value>
+  </data>
+<data name="WorkflowStarted.Comment" xml:space="preserve">
+    <value>بدأ سير العمل «[WORKFLOW]».</value>
+  </data>
+<data name="URLPROVIDER_NameMissing.Text" xml:space="preserve">
+    <value>اسم UrlProvider مفقود</value>
+  </data>
+<data name="URLPROVIDER_Registered.Text" xml:space="preserve">
+    <value>تم تسجيل UrlProvider</value>
+  </data>
+<data name="URLPROVIDER_TypeMissing.Text" xml:space="preserve">
+    <value>نوع UrlProvider مفقود</value>
+  </data>
+<data name="URLPROVIDER_UnRegistered.Text" xml:space="preserve">
+    <value>تم إلغاء تسجيل UrlProvider</value>
+  </data>
+<data name="URLPROVIDER_ReadSuccess.Text" xml:space="preserve">
+    <value>تمت قراءة بيان UrlProvider بنجاح</value>
+  </data>
+<data name="DefaultWorkflowDescription.Text" xml:space="preserve">
+    <value>يتيح للمؤلف إدارة المحتوى ثم مراجعته من قبل مستخدمين آخرين قبل نشره.</value>
+  </data>
+<data name="DefaultWorkflowName.Text" xml:space="preserve">
+    <value>اعتماد المحتوى</value>
+  </data>
+<data name="DefaultWorkflowState1.OnCompleteMessageBody" xml:space="preserve">
+    <value>[DATE]: الملف [FILE] جاهز للمراجعة من قبل [USER].</value>
+  </data>
+<data name="DefaultWorkflowState1.OnCompleteMessageSubject" xml:space="preserve">
+    <value>ملف جاهز للمراجعة</value>
+  </data>
+<data name="DefaultWorkflowState1.StateName" xml:space="preserve">
+    <value>مسودة</value>
+  </data>
+<data name="DefaultWorkflowState2.OnCompleteMessageBody" xml:space="preserve">
+    <value>[DATE]: تمت الموافقة على الملف [FILE] من قبل [USER].</value>
+  </data>
+<data name="DefaultWorkflowState2.OnCompleteMessageSubject" xml:space="preserve">
+    <value>تمت الموافقة على الملف</value>
+  </data>
+<data name="DefaultWorkflowState2.OnDiscardMessageBody" xml:space="preserve">
+    <value>[DATE]: تم التخلي عن الملف [FILE] من قبل [USER].</value>
+  </data>
+<data name="DefaultWorkflowState2.OnDiscardMessageSubject" xml:space="preserve">
+    <value>تم التخلي عن الملف</value>
+  </data>
+<data name="DefaultWorkflowState2.StateName" xml:space="preserve">
+    <value>جاهز للمراجعة</value>
+  </data>
+<data name="DefaultWorkflowState3.StateName" xml:space="preserve">
+    <value>منشور</value>
+  </data>
+<data name="Save.Text" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+<data name="Cancel.Text" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+<data name="CommentProvided.Action" xml:space="preserve">
+    <value>تم تقديم تعليق</value>
+  </data>
+<data name="CommentProvided.Comment" xml:space="preserve">
+    <value>تعليق على الحالة «[STATE]»: [COMMENT]</value>
+  </data>
+<data name="WorkflowDiscarded.Action" xml:space="preserve">
+    <value>تم التخلي عن سير العمل</value>
+  </data>
+<data name="WorkflowDiscarded.Comment" xml:space="preserve">
+    <value>تم التخلي عن سير العمل «[WORKFLOW]» في الحالة «[STATE]».</value>
+  </data>
+<data name="DropDownList.SearchInputPlaceHolder" xml:space="preserve">
+    <value>بحث...</value>
+  </data>
+<data name="DropDownList.SearchButtonTooltip" xml:space="preserve">
+    <value>بحث</value>
+  </data>
+<data name="DropDownList.ClearButtonTooltip" xml:space="preserve">
+    <value>مسح</value>
+  </data>
+<data name="DropDownList.SortAscendingButtonTitle" xml:space="preserve">
+    <value>A-Z</value>
+  </data>
+<data name="DropDownList.SortAscendingButtonTooltip" xml:space="preserve">
+    <value>الترتيب تصاعديًا</value>
+  </data>
+<data name="DropDownList.SortDescendingButtonTooltip" xml:space="preserve">
+    <value>الترتيب تنازليًا</value>
+  </data>
+<data name="DropDownList.UnsortedOrderButtonTooltip" xml:space="preserve">
+    <value>إزالة الترتيب</value>
+  </data>
+<data name="DropDownList.Results" xml:space="preserve">
+    <value>النتائج</value>
+  </data>
+<data name="DropDownList.SelectedItemExpandTooltip" xml:space="preserve">
+    <value>انقر للتوسيع</value>
+  </data>
+<data name="DropDownList.SelectedItemCollapseTooltip" xml:space="preserve">
+    <value>انقر للطي</value>
+  </data>
+<data name="DropDownList.LoadingResultText" xml:space="preserve">
+    <value>...جارٍ تحميل النتائج</value>
+  </data>
+<data name="DropDownList.SelectWebPageDefaultText" xml:space="preserve">
+    <value>اختر صفحة ويب</value>
+  </data>
+<data name="DropDownList.SelectUserDefaultText" xml:space="preserve">
+    <value>اختر مستخدمًا</value>
+  </data>
+<data name="DropDownList.SelectFolderDefaultText" xml:space="preserve">
+    <value>اختر مجلدًا</value>
+  </data>
+<data name="SEARCH_NoLink.Text" xml:space="preserve">
+    <value>[لا يوجد رابط متاح]</value>
+  </data>
+<data name="VerificationSuccess.Text" xml:space="preserve">
+    <value>تم توثيق حسابك بنجاح.</value>
+  </data>
+<data name="RootFolder.Name" xml:space="preserve">
+    <value>جذر الموقع</value>
+  </data>
+<data name="HostRootFolder.Name" xml:space="preserve">
+    <value>جذر المضيف</value>
+  </data>
+<data name="LIBRARY_ReadSuccess.Text" xml:space="preserve">
+    <value>تم تحليل بيان المكتبة بنجاح</value>
+  </data>
+<data name="LIBRARY_Registered.Text" xml:space="preserve">
+    <value>تم تسجيل المكتبة بنجاح - {0}</value>
+  </data>
+<data name="LIBRARY_UnRegistered.Text" xml:space="preserve">
+    <value>تم إلغاء تسجيل المكتبة بنجاح - {0}</value>
+  </data>
+<data name="Daily.Text" xml:space="preserve">
+    <value>يوميًا</value>
+  </data>
+<data name="Hourly.Text" xml:space="preserve">
+    <value>كل ساعة</value>
+  </data>
+<data name="Monthly.Text" xml:space="preserve">
+    <value>شهريًا</value>
+  </data>
+<data name="Weekly.Text" xml:space="preserve">
+    <value>أسبوعيًا</value>
+  </data>
+<data name="ScriptCollision.Text" xml:space="preserve">
+    <value>تم تقديم طلبات لإصدارين مختلفين أو أكثر من مكتبات JavaScript لهذه الصفحة. تم تسجيل التفاصيل في سجل الأحداث.</value>
+  </data>
+<data name="ViewJournal.Text" xml:space="preserve">
+    <value>عرض</value>
+  </data>
+<data name="SizeB.Text" xml:space="preserve">
+    <value>B</value>
+  </data>
+<data name="SizeGb.Text" xml:space="preserve">
+    <value>GB</value>
+  </data>
+<data name="SizeKb.Text" xml:space="preserve">
+    <value>KB</value>
+  </data>
+<data name="SizeMb.Text" xml:space="preserve">
+    <value>MB</value>
+  </data>
+<data name="Friends.Text" xml:space="preserve">
+    <value>الأصدقاء</value>
+  </data>
+<data name="Followers.Text" xml:space="preserve">
+    <value>المتابعون</value>
+  </data>
+<data name="FriendsAndGroups.Text" xml:space="preserve">
+    <value>الأصدقاء والمجموعات</value>
+  </data>
+<data name="PermissionRoleHeader.Text" xml:space="preserve">
+    <value>الدور</value>
+  </data>
+<data name="InvalidRoleId.Text" xml:space="preserve">
+    <value>الدور المحدد غير صالح. يرجى تحديد دور صالح.</value>
+  </data>
+<data name="PermissionActionsHeader.Text" xml:space="preserve">
+    <value>الإجراءات</value>
+  </data>
+<data name="RoleNotFound.Text" xml:space="preserve">
+    <value>لم يُعثر على الدور المحدد. يرجى تحديث الصفحة والمحاولة مرة أخرى.</value>
+  </data>
+<data name="RoleSelect.Text" xml:space="preserve">
+    <value>تحديد الدور:</value>
+  </data>
+<data name="CreatingConfiguredFolderMapping.Error" xml:space="preserve">
+    <value>خطأ عند إنشاء تعيين مجلد من ملف التهيئة.</value>
+  </data>
+<data name="PermissionUserHeader.Text" xml:space="preserve">
+    <value>المستخدم</value>
+  </data>
+<data name="ChooseFile.Text" xml:space="preserve">
+    <value>اختيار ملف</value>
+  </data>
+<data name="Review.Text" xml:space="preserve">
+    <value>مراجعة</value>
+  </data>
+<data name="FileUpload.UnzipFilePromptTitle.Text" xml:space="preserve">
+    <value>معلومات فك الضغط</value>
+  </data>
+<data name="FileUpload.UnzipFileFailedPromptBody.Text" xml:space="preserve">
+    <value>&lt;div class="invalidFiles"&gt;&lt;p&gt;لم يتم استخراج [COUNT] من [TOTAL] ملف لأن أنواعها غير مدعومة:&lt;/p&gt;[FILELIST]&lt;/div&gt;</value>
+  </data>
+<data name="FileUpload.UnzipFileSuccessPromptBody.Text" xml:space="preserve">
+    <value>&lt;div class="validFiles"&gt;&lt;p&gt;تم استخراج [TOTAL] من [TOTAL] ملف بنجاح.&lt;/p&gt;&lt;/div&gt;</value>
+  </data>
+<data name="AuthorizeUser.Text" xml:space="preserve">
+    <value>اعتماد</value>
+  </data>
+<data name="AuthorizeUserDescription.Text" xml:space="preserve">
+    <value>اعتماد تسجيل المستخدم.</value>
+  </data>
+<data name="RejectUser.Text" xml:space="preserve">
+    <value>رفض</value>
+  </data>
+<data name="RejectUserDescription.Text" xml:space="preserve">
+    <value>رفض تسجيل المستخدم. يؤدي إلى إزالة المستخدم.</value>
+  </data>
+<data name="DefaultWorkflowMigrationPrefix.Text" xml:space="preserve">
+    <value>المجلدات:</value>
+  </data>
+<data name="DefaultDirectPublishWorkflowDescription.Text" xml:space="preserve">
+    <value>يتيح للمؤلف نشر المحتوى مباشرة على الموقع.</value>
+  </data>
+<data name="DefaultDirectPublishWorkflowName.Text" xml:space="preserve">
+    <value>النشر المباشر</value>
+  </data>
+<data name="DefaultSaveDraftWorkflowDescription.Text" xml:space="preserve">
+    <value>يتيح للمؤلف حفظ نسخة مسودة قبل نشر المحتوى.</value>
+  </data>
+<data name="DefaultSaveDraftWorkflowName.Text" xml:space="preserve">
+    <value>حفظ المسودة</value>
+  </data>
+<data name="QuickSettings.Text" xml:space="preserve">
+    <value>إعدادات سريعة</value>
+  </data>
+<data name="ContentType.Text" xml:space="preserve">
+    <value>نوع المحتوى</value>
+  </data>
+<data name="DataType.Text" xml:space="preserve">
+    <value>نوع البيانات</value>
+  </data>
+<data name="NoRecords.Text" xml:space="preserve">
+    <value>لا توجد سجلات للعرض</value>
+  </data>
+<data name="Search.Text" xml:space="preserve">
+    <value>بحث</value>
+  </data>
+<data name="PotentialDangerousFile.Text" xml:space="preserve">
+    <value>تمت إضافة ملف قد يكون خطيرًا إلى موقعك</value>
+  </data>
+<data name="RestrictFileMail_Body.Text" xml:space="preserve">
+    <value>&lt;p&gt;عزيزي مضيف الموقع،&lt;/p&gt;&lt;p&gt;اكتشف مراقب الأمان إضافة ملف واحد أو أكثر &lt;b&gt;قد يكون خطيرًا&lt;/b&gt; إلى موقعك. لمعاينة جميع الملفات المضافة، تحقق من سجلات أحداث الموقع.
+إذا كنت تتوقع هذه الإضافة، فتجاهل هذه الرسالة؛ وإلا يُنصح باتخاذ إجراء فوري.&lt;/p&gt;
+&lt;p&gt;الملفات المضافة:&lt;br/&gt;&lt;b&gt;[Path]&lt;/b&gt;&lt;/p&gt;&lt;p&gt;شكرًا،&lt;/p&gt;&lt;p&gt;[AppName] [AppVersion]&lt;/p&gt;</value>
+  </data>
+<data name="RestrictFileMail_Subject.Text" xml:space="preserve">
+    <value>إضافة ملف قد يكون خطيرًا إلى موقعك</value>
+  </data>
+<data name="ModuleShared.Text" xml:space="preserve">
+    <value>وحدة مشتركة</value>
+  </data>
+<data name="OAuthConfigBase_HostConfig.Help" xml:space="preserve">
+    <value>حدد هذا المربع لتخزين هذه التهيئة على مستوى المضيف حتى تشترك جميع المداخل في معلومات التهيئة لمزود المصادقة هذا.</value>
+  </data>
+<data name="OAuthConfigBase_HostConfig.Text" xml:space="preserve">
+    <value>استخدام تهيئة المضيف؟ </value>
+  </data>
+<data name="VerificationMailSendSuccessful.Text" xml:space="preserve">
+    <value>تم إرسال بريد التوثيق بنجاح.</value>
+  </data>
+<data name="EXCEPTION_GlobDotDotNotSupportedInCleanup.Text" xml:space="preserve">
+    <value>".." ميزة glob غير مدعومة في مكوّن التنظيف، تم تخطي هذا التنظيف.</value>
+  </data>
+<data name="SQL_Manifest_BadFile.Text" xml:space="preserve">
+    <value>هناك خطأ في البيان مع الملف {0}</value>
+  </data>
+<data name="SQL_Manifest_Error.Text" xml:space="preserve">
+    <value>هناك خطأ في البيان مع البرامج النصية</value>
+  </data>
+<data name="ErrorDecryptingSetting.Text" xml:space="preserve">
+    <value>تعذر فك تشفير المعامل {0}</value>
   </data>
 </root>
