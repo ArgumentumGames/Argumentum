@@ -146,7 +146,20 @@ sur `feat/458-sharedresources-ar`, et la PR cible cette branche.
 ## 7. Tests
 
 - Suite filtrée gardes DNN : **94 / 0 / 0**.
-- Suite complète : cf. rapport du tick.
+- **Suite complète**, mesurée sur un **arbre détaché stable** au commit `cf6d09b8` :
+  **2 352 réussis / 0 échec / 6 ignorés**, total **2 358**, 5 min 32 s, code de sortie **0**.
+  Les 6 ignorés sont **env-gatés et sans rapport** avec ce lot : `GSheetSync.RulesPullTests.DryRun_Rules_GDrive_Baseline`,
+  `GSheetSync.RulesPullTests.Pull_Rules_GDrive_Baseline`, `GSheetSync.FallaciesPullTests.Compare_Fallacies_GDrive_vs_Local`,
+  `GSheetSync.FormulaAuditTests.Audit_All_Spreadsheets_Formulas` (identifiants Google),
+  `Dnn.DnnBindingRedirectContractTests.PinnedAssembly_RedirectsAgreeWithShippedDll` (DLLs DNN livrées),
+  `MindmapGeneration.SvgConversionIntegrationTests.TryAutomateSvgConversion_…` (FreeMind, poste de bureau).
+- ⚠️ **La mesure a été refaite, et la première était inexploitable** : la première exécution s'est
+  déroulée dans l'arbre webroot, **sur lequel le retour à `master` est tombé pendant l'exécution**
+  (17:18:45, entre le début 17:15:29 et la fin 17:21:11). Le résultat était vert, mais **il n'était
+  pas certifiable** : l'arbre avait changé sous le processus. La reprise sur un worktree détaché
+  donne le même **total (2 358)** — seul `PinnedAssembly_RedirectsAgreeWithShippedDll` bascule
+  (ignoré côté webroot, réussi côté build frais), ce qui est cohérent avec un test env-gaté sur
+  l'état du `bin/` local. **Un vert obtenu sur un arbre instable n'est pas une mesure.**
 - Contrôle inverse de §5.2 : appliqué, mesuré, restauré.
 
 ## 8. Ce que cette PR ne fait pas
