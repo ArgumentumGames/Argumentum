@@ -4,6 +4,10 @@
 **Fichier livré :** `DNNPlatform/App_GlobalResources/SharedResources.ar-SA.resx` — **3 clés → 610**
 **Branche :** `feat/458-sharedresources-ar`, empilée sur `feat/458-sharedresources-zh` (voir §6)
 
+**Errata 2026-10-30** (relecture NanoClaw) : deux affirmations corrigées — le **BOM UTF-8** est
+**ré-émis à l'écriture**, pas « préservé » (§3) ; la part de valeurs portant de l'arabe est
+**602/602**, pas 610/610 (§4) — les 8 verbatim déclarés ne portent pas d'arabe par nature.
+
 ---
 
 ## 1. Ce qui est livré
@@ -42,8 +46,14 @@ l'autre fait lire 4 clés perdues.
 
 Inchangée depuis les lots 1-4 : on part du fichier **neutre**, on ne remplace que le
 contenu des `<value>` des clés traduites. En-tête, schéma `xsd`, `resheader`, ordre des
-clés, BOM UTF-8 et fins de ligne LF sont préservés. Une clé non traduite est **absente**
+clés et fins de ligne LF sont préservés. Une clé non traduite est **absente**
 du fichier produit ⇒ DNN retombe sur l'anglais, clé par clé.
+
+Le **BOM UTF-8**, lui, est **ré-émis à l'écriture**, pas préservé : le constructeur lit le
+neutre en `utf-8-sig` (le BOM est consommé à la lecture, `458-item9bis-langpack-build.py:133`)
+et écrit en `utf-8-sig` (le BOM est ré-ajouté, `:181`). Il est donc présent dans la sortie
+**par convention du script** — la formulation exacte est « ajouté à l'écriture », pas
+« préservé ».
 
 Le dictionnaire `docs/dnn-localization/458-item9bis-ar-SA.translations.json` gagne une
 section `files.SharedResources` (610 entrées) et reste **la** source de vérité du pack.
@@ -67,7 +77,7 @@ Parsing XML du fichier produit (`verify-ar.py`), **pas** le rapport du script :
 | Identité des jetons DNN (`[Custom:…]`, `[Portal:…]`) | **0 écart** |
 | BOM / fins de ligne | présent / **LF seul**, 0 CRLF |
 | Valeurs Tier 1 déjà arbitrées | **identiques** |
-| Valeurs (hors verbatim déclaré) portant de l'arabe | **610/610** |
+| Valeurs (hors verbatim déclaré) portant de l'arabe | **602/602** — les 8 verbatim déclarés ci-dessous ne portent pas d'arabe, par nature |
 
 ### Verbatim par nature — 8 valeurs, déclarées
 

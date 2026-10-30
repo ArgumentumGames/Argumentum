@@ -33,8 +33,9 @@ fichier culturel absente du dictionnaire est préservée).
 ## 2. Méthode — identique au lot 1
 
 Voir [`458-item9bis-zh-cn-pack.md`](458-item9bis-zh-cn-pack.md) §2-3. Résumé : on part du neutre,
-on ne remplace que le contenu des `<value>` ; en-tête, `resheader`, ordre des clés, **BOM UTF-8**,
-fins de ligne **LF** préservés ; une clé non traduite est **absente** ⇒ DNN retombe sur l'anglais
+on ne remplace que le contenu des `<value>` ; en-tête, `resheader`, ordre des clés et fins de
+ligne **LF** préservés, **BOM UTF-8 ré-émis à l'écriture** (voir lot 1 §2) ; une clé non traduite
+est **absente** ⇒ DNN retombe sur l'anglais
 clé par clé. Le constructeur est le **même script** (`458-item9bis-langpack-build.py`), appelé avec
 `--lang ar-SA`. Dictionnaire source : `458-item9bis-ar-SA.translations.json` (358 entrées).
 

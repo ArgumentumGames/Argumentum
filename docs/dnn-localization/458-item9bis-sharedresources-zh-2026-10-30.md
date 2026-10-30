@@ -9,6 +9,9 @@
 > Les cultures **ar-SA** et **fa-IR** ne sont **pas** dans cette PR : la consigne est de les
 > traiter **séquentiellement**, jamais empilées.
 
+**Errata 2026-10-30** (relecture NanoClaw) : le **BOM UTF-8** est **ré-émis à l'écriture**, pas
+« préservé » — le constructeur lit le neutre en `utf-8-sig` et écrit en `utf-8-sig` (§3).
+
 ---
 
 ## 1. Ce que cette PR livre
@@ -56,7 +59,13 @@ croire à 4 clés perdues.
 
 Inchangée depuis les lots 1-3, et c'est le point qui compte : on part du fichier **neutre**, on
 ne remplace que le contenu des `<value>` des clés traduites ; en-tête, schéma `xsd`, `resheader`,
-**ordre des clés**, **BOM UTF-8** et fins de ligne **LF** sont préservés.
+**ordre des clés** et fins de ligne **LF** sont préservés.
+
+Le **BOM UTF-8**, lui, est **ré-émis à l'écriture**, pas préservé : le constructeur lit le
+neutre en `utf-8-sig` (le BOM est consommé à la lecture, `458-item9bis-langpack-build.py:133`)
+et écrit en `utf-8-sig` (le BOM est ré-ajouté, `:181`). Il est donc présent dans la sortie
+**par convention du script** — la formulation exacte est « ajouté à l'écriture », pas
+« préservé ».
 
 ```bash
 python -I docs/dnn-localization/458-item9bis-langpack-build.py \
