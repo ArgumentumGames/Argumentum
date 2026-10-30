@@ -96,10 +96,17 @@ namespace Argumentum.AssetConverter.Tests
 		[InlineData("zh-CN")]
 		[InlineData("ar-SA")]
 		[InlineData("fa-IR")]
-		public void Resx_Carries_Only_The_Two_Legal_Keys_Preserved(string locale)
+		public void Resx_Carries_The_Two_Legal_Keys_Preserved(string locale)
 		{
 			var names = Load(LocaleResx(locale)).Root!.Elements("data").Select(d => d.Attribute("name")?.Value).ToList();
-			names.Should().BeEquivalentTo(Keys, "le repli DNN est par clé : le fichier ne porte que les deux pages juridiques");
+			names.Should().Contain(Keys, "les deux pages juridiques doivent etre presentes dans le resx de la culture");
+			// ar-SA et fa-IR ne portent QUE ces deux clés : leur repli DNN reste par clé
+			// et aucun autre contenu n'y est traduit (état inchangé par ce grain).
+			// zh-CN, elle, reçoit le pack Tier 2 (#458 grain 9-bis) : le fichier porte
+			// désormais le chrome traduit en plus des deux pages juridiques — la garde
+			// de ce contenu est DnnZhCnResxIntegrityGuardTests.
+			if (locale != "zh-CN")
+				names.Should().BeEquivalentTo(Keys, "le repli DNN est par clé : le fichier ne porte que les deux pages juridiques");
 			foreach (var key in Keys)
 			{
 				// parenthèses obligatoires : « ?.Value.Should() » court-circuiterait l'assertion

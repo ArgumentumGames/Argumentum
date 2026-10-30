@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="https://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Cancel.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+<data name="ComboBox.EmptyMessage" xml:space="preserve">
+    <value>列表中没有任何项。</value>
+  </data>
+<data name="FieldSuffix.Text" xml:space="preserve">
+    <value>：</value>
+  </data>
+<data name="File.Text" xml:space="preserve">
+    <value>文件</value>
+  </data>
+<data name="Folder.Text" xml:space="preserve">
+    <value>文件夹</value>
+  </data>
+<data name="MyFolder.Text" xml:space="preserve">
+    <value>我的文件夹</value>
+  </data>
+<data name="NoPermission.Text" xml:space="preserve">
+    <value>您没有权限查看文件系统上的任何文件。</value>
+  </data>
+<data name="Ok.Text" xml:space="preserve">
+    <value>确定</value>
+  </data>
+<data name="PortalRoot.Text" xml:space="preserve">
+    <value>站点根目录</value>
+  </data>
+<data name="Save.Text" xml:space="preserve">
+    <value>保存文件</value>
+  </data>
+<data name="Upload.Text" xml:space="preserve">
+    <value>上传文件</value>
+  </data>
+<data name="UploadError.Text" xml:space="preserve">
+    <value>文件类型 {1} 在此上下文中无效。有效的文件类型包括：{0}</value>
+  </data>
+<data name="PasswordStrengthFair.Text" xml:space="preserve">
+    <value>一般</value>
+  </data>
+<data name="PasswordStrengthMinLength.Text" xml:space="preserve">
+    <value>个字符以上</value>
+  </data>
+<data name="PasswordStrengthStrong.Text" xml:space="preserve">
+    <value>强</value>
+  </data>
+<data name="PasswordStrengthWeak.Text" xml:space="preserve">
+    <value>弱</value>
+  </data>
+<data name="CriteriaValidationExpression.Text" xml:space="preserve">
+    <value>验证表达式：{0}</value>
+  </data>
+<data name="CriteriaAtLeastNSpecialChars.Text" xml:space="preserve">
+    <value>至少 {0} 个非字母数字字符</value>
+  </data>
+<data name="CriteriaAtLeastNChars.Text" xml:space="preserve">
+    <value>至少 {0} 个字符</value>
+  </data>
+<data name="PasswordRulesHeadText.Text" xml:space="preserve">
+    <value>密码策略：</value>
+  </data>
+<data name="PasswordRulesBodyText.Text" xml:space="preserve">
+    <value>至少包含 {0} 个字符、1 个大写字母、1 个数字以及 {1}。</value>
+  </data>
+<data name="ConfirmPasswordUnmatched.Text" xml:space="preserve">
+    <value>密码不匹配</value>
+  </data>
+<data name="FileUpload.Title.Text" xml:space="preserve">
+    <value>上传文件</value>
+  </data>
+<data name="FileUpload.DecompressLabel.Text" xml:space="preserve">
+    <value>解压缩 Zip 文件</value>
+  </data>
+<data name="FileUpload.UploadToFolderLabel.Text" xml:space="preserve">
+    <value>上传到：</value>
+  </data>
+<data name="FileUpload.DragAndDropAreaTitle.Text" xml:space="preserve">
+    <value>将文件拖到此处，或单击浏览</value>
+  </data>
+<data name="FileUpload.UploadFileMethod.Text" xml:space="preserve">
+    <value>上传文件</value>
+  </data>
+<data name="FileUpload.UploadFromWebMethod.Text" xml:space="preserve">
+    <value>从 URL</value>
+  </data>
+<data name="FileUpload.CloseButton.Text" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+<data name="FileUpload.UploadFromWebButton.Text" xml:space="preserve">
+    <value>上传</value>
+  </data>
+<data name="FileUpload.DecompressingFile.Text" xml:space="preserve">
+    <value>正在解压缩文件</value>
+  </data>
+<data name="FileUpload.FileIsTooLarge.Error" xml:space="preserve">
+    <value>文件大小超过 {0}。</value>
+  </data>
+<data name="FileUpload.FileUploadCancelled.Error" xml:space="preserve">
+    <value>上传已取消</value>
+  </data>
+<data name="FileUpload.FileUploadFailed.Error" xml:space="preserve">
+    <value>上传失败</value>
+  </data>
+<data name="FileUpload.FileUploaded.Text" xml:space="preserve">
+    <value>文件已上传</value>
+  </data>
+<data name="FileUpload.EmptyFileUpload.Error" xml:space="preserve">
+    <value>您的浏览器不支持上传空文件。</value>
+  </data>
+<data name="FileUpload.FileAlreadyExists.Error" xml:space="preserve">
+    <value>您要上传的文件在此文件夹中已存在。</value>
+  </data>
+<data name="FileUpload.UploadStopped.Text" xml:space="preserve">
+    <value>文件上传已停止</value>
+  </data>
+<data name="FileUpload.UrlTooltip.Text" xml:space="preserve">
+    <value>请输入资源 URL，例如 https://SomeWebSite.com/Images/About.png</value>
+  </data>
+<data name="FileUpload.KeepButton.Text" xml:space="preserve">
+    <value>保留</value>
+  </data>
+<data name="FileUpload.ReplaceButton.Text" xml:space="preserve">
+    <value>替换</value>
+  </data>
+<data name="AllItemsCheckedString.Text" xml:space="preserve">
+    <value>已选中所有项</value>
+  </data>
+<data name="CheckAllString.Text" xml:space="preserve">
+    <value>全选</value>
+  </data>
+<data name="ItemsCheckedString.Text" xml:space="preserve">
+    <value>项已选中</value>
+  </data>
+<data name="NoMatches.Text" xml:space="preserve">
+    <value>无匹配项</value>
+  </data>
+<data name="ShowMoreFormatString.Text" xml:space="preserve">
+    <value>第 &lt;b&gt;1&lt;/b&gt;-&lt;b&gt;{0}&lt;/b&gt; 项，共 &lt;b&gt;{1}&lt;/b&gt; 项</value>
+  </data>
+<data name="FileUpload.TooManyFiles.Error" xml:space="preserve">
+    <value>一次最多只能上传 {0} 个文件。</value>
+  </data>
+<data name="FileUpload.InvalidFileExtensions.Error" xml:space="preserve">
+    <value>部分所选文件的扩展名无效，已从上传中排除。您只能上传具有以下扩展名的文件：{0}。</value>
+  </data>
+<data name="FileUpload.ErrorDialogTitle.Text" xml:space="preserve">
+    <value>错误</value>
+  </data>
+<data name="ConfirmPasswordMatched.Text" xml:space="preserve">
+    <value>密码匹配</value>
+  </data>
+</root>
