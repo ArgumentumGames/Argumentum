@@ -31,7 +31,8 @@ namespace Argumentum.AssetConverter.Tests
 	/// réécrits ni replacés par l'anglais.</item>
 	/// </list>
 	/// Cultures couvertes : zh-CN (lot 1, PR #2067), ar-SA (lot 2, PR #2068)
-	/// puis fa-IR (lot 3).
+	/// puis fa-IR (lot 3). Packs complets <c>SharedResources</c> : zh-CN (lot 4)
+	/// puis ar-SA (lot 5) — même neutre, donc même dénominateur de 610.
 	/// </summary>
 	public class DnnAgrCoreResxIntegrityGuardTests
 	{
@@ -52,10 +53,29 @@ namespace Argumentum.AssetConverter.Tests
 			("ar-SA", "WebControls", 50),
 			("ar-SA", "Exceptions", 132),
 			("ar-SA", "GlobalResources", 172),
+			// #458 grain 9-bis lot 5 — same denominator as zh-CN (lot 4): 617 neutral
+			// keys, 7 of them empty at the neutral, so 610 translatable.
+			("ar-SA", "SharedResources", 610),
 			("fa-IR", "FileUpload", 4),
 			("fa-IR", "WebControls", 50),
 			("fa-IR", "Exceptions", 132),
 			("fa-IR", "GlobalResources", 172),
+		};
+
+		/// <summary>
+		/// Jetons d'un pack <c>SharedResources</c> complet — l'ensemble est le MÊME pour
+		/// toute culture, puisque le neutre est le même fichier. Déclaré une seule fois :
+		/// recopié par culture, il dériverait en silence au lot suivant. Ce sont les huit
+		/// littéraux booléens <c>True</c>/<c>False</c> (parsés PAR NOM dans les listes —
+		/// les traduire changerait le comportement, pas la langue), la marque produit
+		/// « APP ID », le glyphe de tri « A-Z » et les quatre unités B/KB/MB/GB.
+		/// </summary>
+		private static readonly string[] SharedResourcesPackTokens =
+		{
+			"True.Text", "False.Text",
+			"OAuthConfigBase_APIKey.Text",
+			"DropDownList.SortAscendingButtonTitle",
+			"SizeB.Text", "SizeKb.Text", "SizeMb.Text", "SizeGb.Text",
 		};
 
 		/// <summary>
@@ -64,24 +84,18 @@ namespace Argumentum.AssetConverter.Tests
 		/// n'est qu'un jeton (« [Custom:0] »). ar-SA et fa-IR : la même, plus le
 		/// suffixe de champ « : » — l'arabe comme le persan emploient le
 		/// deux-points latin, ils n'ont pas de variante locale (zh-CN dispose du
-		/// « ： » plein-chasse, pas eux).
+		/// « ： » plein-chasse, pas eux). Les packs <c>SharedResources</c> complets
+		/// (lots 4 et 5) y ajoutent <see cref="SharedResourcesPackTokens"/>.
 		/// Toute AUTRE copie anglaise est un défaut.
 		/// </summary>
 		private static readonly Dictionary<string, string[]> VerbatimByDesign = new Dictionary<string, string[]>
 		{
-			// SharedResources (full pack, lot 4) legitimately keeps seven tokens untranslated:
-			// the .NET boolean literals True/False (parsed by name in drop-downs — translating
-			// them would change behaviour, not language), the OAuth « APP ID » product name,
-			// the « A-Z » sort glyph and the four size units B/KB/MB/GB.
-			["zh-CN"] = new[]
-			{
-				"EMAIL_BANNER_NOTIFICATION_SUBJECT.Text",
-				"True.Text", "False.Text",
-				"OAuthConfigBase_APIKey.Text",
-				"DropDownList.SortAscendingButtonTitle",
-				"SizeB.Text", "SizeKb.Text", "SizeMb.Text", "SizeGb.Text",
-			},
-			["ar-SA"] = new[] { "EMAIL_BANNER_NOTIFICATION_SUBJECT.Text", "FieldSuffix.Text" },
+			["zh-CN"] = new[] { "EMAIL_BANNER_NOTIFICATION_SUBJECT.Text" }
+				.Concat(SharedResourcesPackTokens).ToArray(),
+			// ar-SA : même noyau (lot 5) que zh-CN (lot 4), plus « FieldSuffix.Text » et
+			// le sujet de courriel de bannière déjà arbitrés au lot 2.
+			["ar-SA"] = new[] { "EMAIL_BANNER_NOTIFICATION_SUBJECT.Text", "FieldSuffix.Text" }
+				.Concat(SharedResourcesPackTokens).ToArray(),
 			["fa-IR"] = new[] { "EMAIL_BANNER_NOTIFICATION_SUBJECT.Text", "FieldSuffix.Text" },
 		};
 
