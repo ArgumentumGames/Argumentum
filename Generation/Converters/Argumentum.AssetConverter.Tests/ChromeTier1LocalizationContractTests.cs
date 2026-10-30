@@ -92,6 +92,12 @@ namespace Argumentum.AssetConverter.Tests
 		/// For those, the three reviewed keys must still be present (the coverage theory
 		/// above already pins their exact values); the exact-key equality cannot apply
 		/// without banning every added key.
+		/// <para>
+		/// The exemption is NOT unbounded: the keys added beyond Tier 1 are bounded by
+		/// <c>DnnAgrCoreResxIntegrityGuardTests.TheMissingKeysAreExactlyTheDeclaredOnes</c>
+		/// — what is delivered is a subset of the neutral, and what is missing is exactly
+		/// the declared set. That is where the bound now lives.
+		/// </para>
 		/// </summary>
 		private static readonly (string Stem, string Culture)[] CompletedPacks =
 		{

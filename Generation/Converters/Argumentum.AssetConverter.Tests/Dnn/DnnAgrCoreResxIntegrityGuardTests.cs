@@ -26,6 +26,11 @@ namespace Argumentum.AssetConverter.Tests
 	/// seule la partie affichable est traduite ;</item>
 	/// <item>aucune valeur n'est une copie de l'anglais par accident (une copie
 	/// volontaire passe par la liste blanche ci-dessous) ;</item>
+	/// <item>l'ENSEMBLE des clés manquantes est DÉCLARÉ, clé par clé, par
+	/// fichier : le compte exact ne dit rien de son appartenance (contre-revue
+	/// web2 sur #2079) ;</item>
+	/// <item>une clé dont le NEUTRE est vide n'est JAMAIS livrée : il n'y a rien
+	/// à traduire, toute valeur y serait inventée ;</item>
 	/// <item>les textes juridiques MESSAGE_PORTAL_TERMS / MESSAGE_PORTAL_PRIVACY
 	/// gardent leur valeur déjà arbitrée (grain juridique) — ils ne sont ni
 	/// réécrits ni replacés par l'anglais.</item>
@@ -99,6 +104,63 @@ namespace Argumentum.AssetConverter.Tests
 			["fa-IR"] = new[] { "EMAIL_BANNER_NOTIFICATION_SUBJECT.Text", "FieldSuffix.Text" },
 		};
 
+		/// <summary>
+		/// Clés autorisées à MANQUER dans un pack complet, par fichier — et par
+		/// fichier seulement : le neutre est le même pour toutes les cultures, donc
+		/// l'ensemble manquant autorisé est une propriété du FICHIER, pas de la
+		/// culture. Une culture qui s'en écarte est rouge.
+		/// <para>
+		/// Cette déclaration ferme le trou que la contre-revue web2 a mesuré sur
+		/// #2079 : le compte exact (610) ne dit rien de l'APPARTENANCE de
+		/// l'ensemble manquant. Un échange tenant le compte — retirer une vraie clé
+		/// et livrer une clé à neutre VIDE avec un texte inventé — passait les deux
+		/// gardes, parce que la valeur neutre de <c>File.Text</c> est vide : ni
+		/// « copie de l'anglais » ni « valeur vide » ne pouvait la prendre.
+		/// </para>
+		/// </summary>
+		private static readonly Dictionary<string, string[]> AllowedMissingByStem =
+			new Dictionary<string, string[]>
+			{
+				// Ces trois fichiers sont livrés intégralement : rien ne peut manquer.
+				["FileUpload"] = Array.Empty<string>(),
+				["WebControls"] = Array.Empty<string>(),
+				["Exceptions"] = Array.Empty<string>(),
+
+				// GlobalResources : deux gabarits à neutre VIDE (le produit ne les
+				// remplit jamais) et huit blocs volontairement NON traduits — code
+				// HTML de pages d'erreur, listes de mots-clés, corps de courriel
+				// HTML et licence MIT. Les huit ont un neutre NON vide : sans
+				// déclaration, ils rendraient la règle « toute clé neutre non vide
+				// est livrée » fausse.
+				["GlobalResources"] = new[]
+				{
+					"MESSAGE_LOGIN_INSTRUCTIONS.Text",
+					"MESSAGE_REGISTRATION_INSTRUCTIONS.Text",
+					"403_3.Error",
+					"404.Error",
+					"500.Error",
+					"DefaultStopwordGroup.Text",
+					"DefaultSynonymGroup.Text",
+					"EMAIL_MESSAGING_DISPATCH_BODY.Text",
+					"EMAIL_MESSAGING_DISPATCH_ITEM.Text",
+					"License.Text",
+				},
+
+				// SharedResources : les sept clés à neutre VIDE du fichier neutre
+				// (617 − 7 = 610 traduisibles). Le constructeur refuse de les
+				// traduire ; la garde refuse qu'un autre chemin les livre.
+				["SharedResources"] = new[]
+				{
+					"DefaultWorkflowState1.OnDiscardMessageBody",
+					"DefaultWorkflowState1.OnDiscardMessageSubject",
+					"DefaultWorkflowState3.OnCompleteMessageBody",
+					"DefaultWorkflowState3.OnCompleteMessageSubject",
+					"DefaultWorkflowState3.OnDiscardMessageBody",
+					"DefaultWorkflowState3.OnDiscardMessageSubject",
+					"File.Text",
+				},
+			};
+
 		private static readonly Regex Placeholder = new(@"\{\d+\}", RegexOptions.Compiled);
 
 		/// <summary>
@@ -158,6 +220,26 @@ namespace Argumentum.AssetConverter.Tests
 
 				value.Should().NotBeNullOrWhiteSpace($"{stem}.{culture}:{key} — valeur vide");
 
+				// §4 de la contre-revue web2 — la garantie STRUCTURELLE ne dépend
+				// pas de la liste blanche : elle vaut pour TOUTE clé livrée. Les
+				// `continue` ci-dessous ne court-circuitent plus que la comparaison
+				// à l'anglais, qui est la seule règle qu'ils doivent court-circuiter.
+				Placeholder.Matches(value).Select(m => m.Value).OrderBy(x => x, StringComparer.Ordinal)
+					.Should().Equal(Placeholder.Matches(source).Select(m => m.Value).OrderBy(x => x, StringComparer.Ordinal),
+						$"{stem}.{culture}:{key} — multiset des placeholders modifié");
+
+				Token.Matches(value).Select(m => m.Value).OrderBy(x => x, StringComparer.Ordinal)
+					.Should().Equal(Token.Matches(source).Select(m => m.Value).OrderBy(x => x, StringComparer.Ordinal),
+						$"{stem}.{culture}:{key} — identité des jetons DNN modifiée");
+
+				// §3 de la même contre-revue — une clé dont le NEUTRE est vide ne
+				// doit JAMAIS être livrée : il n'y a rien à traduire. Le
+				// constructeur refuse de l'inventer ; la garde refuse qu'un autre
+				// chemin la livre.
+				source.Should().NotBeNullOrWhiteSpace(
+					$"{stem}.{culture}:{key} — le neutre de cette clé est VIDE : elle ne doit pas être "
+					+ $"livrée (toute valeur ici serait inventée)");
+
 				if (verbatim.Contains(key, StringComparer.Ordinal))
 					continue;
 
@@ -167,15 +249,34 @@ namespace Argumentum.AssetConverter.Tests
 				value.Should().NotBe(source,
 					$"{stem}.{culture}:{key} — copie de l'anglais par accident (une copie VOLONTAIRE "
 					+ $"se déclare dans VerbatimByDesign[{culture}])");
-
-				Placeholder.Matches(value).Select(m => m.Value).OrderBy(x => x, StringComparer.Ordinal)
-					.Should().Equal(Placeholder.Matches(source).Select(m => m.Value).OrderBy(x => x, StringComparer.Ordinal),
-						$"{stem}.{culture}:{key} — multiset des placeholders modifié");
-
-				Token.Matches(value).Select(m => m.Value).OrderBy(x => x, StringComparer.Ordinal)
-					.Should().Equal(Token.Matches(source).Select(m => m.Value).OrderBy(x => x, StringComparer.Ordinal),
-						$"{stem}.{culture}:{key} — identité des jetons DNN modifiée");
 			}
+		}
+
+		/// <summary>
+		/// §3 de la contre-revue web2 — l'APPARTENANCE de l'ensemble manquant est
+		/// déclarée, clé par clé. Le compte exact ne la disait pas : un échange
+		/// tenant le compte (retirer une vraie clé, livrer une clé à neutre vide
+		/// avec un texte inventé) passait les deux gardes. Ce test est ce qui rend
+		/// <c>CompletedPacks</c> sûr à étendre au lot suivant.
+		/// </summary>
+		[Theory]
+		[MemberData(nameof(CoveredFiles))]
+		public void TheMissingKeysAreExactlyTheDeclaredOnes(string culture, string stem, int _)
+		{
+			var neutral = Values(stem, string.Empty);
+			var localized = Values(stem, culture);
+
+			var missing = neutral.Keys.Except(localized.Keys, StringComparer.Ordinal)
+				.OrderBy(x => x, StringComparer.Ordinal).ToArray();
+			var declared = AllowedMissingByStem[stem].OrderBy(x => x, StringComparer.Ordinal).ToArray();
+
+			missing.Should().Equal(declared,
+				$"{stem}.{culture}.resx : l'ensemble des clés manquantes a changé. Une clé absente "
+				+ $"non déclarée est une couverture perdue ; une clé déclarée présente est un "
+				+ $"remplissage non autorisé (invention).");
+
+			localized.Keys.Except(neutral.Keys, StringComparer.Ordinal).Should().BeEmpty(
+				$"{stem}.{culture}.resx : clé livrée absente du neutre");
 		}
 
 		[Theory]
