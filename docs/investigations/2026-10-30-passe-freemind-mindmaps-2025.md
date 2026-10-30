@@ -1,10 +1,10 @@
 # Passe FreeMind #2025 — mesure de la régénération des cartes mentales (30/10/2026)
 
 > Période : 30/10/2026, ~14:07 → 14:59. Lane worker (po-2023).
-> La passe elle-même n'écrit que dans l'arbre de build d'un worktree détaché (arbre gelé
-> `341ef2a3`) ; le **transfert** vers l'arbre committé est une décision de livraison, prise
-> **après** mesure d'identité sémantique (voir § « Ce que la re-dérivation change
-> réellement ») — elle ne porte que le FR. Le gel CSV #2025 est respecté : rien sous
+> La passe écrit **uniquement** dans l'arbre de build d'un worktree détaché (arbre gelé
+> `341ef2a3`) — mesuré, pas supposé : voir § « Ce que la re-dérivation change réellement ».
+> Le **transfert** vers l'arbre committé est un geste **explicite**, fait après mesure
+> d'identité sémantique — il ne porte que le FR. Le gel CSV #2025 est respecté : rien sous
 > `Cards/**` n'a été touché côté corpus.
 
 ## Procédure exécutée
@@ -84,9 +84,24 @@ pour décider d'un critère de mort.
 
 ## ⚠️ Ce que la re-dérivation change *réellement* — et ce qu'elle ne change pas
 
-Le vehicle de la passe recopie les artefacts dans l'arbre `Cards/` : la livraison
-est donc **automatique**, pas une décision de fin de course. Reste la question
-qui décide de tout : **ces fichiers changent-ils quelque chose ?**
+⚠️ **Correction d'une affirmation antérieure (mesurée le 30/10 à 15:30).** J'ai écrit
+d'abord que « le véhicule recopie automatiquement dans `Cards/` ». **C'est faux**, et
+la note de siège sur la dérivation-seule le disait déjà : *les sorties d'une passe
+mindmap vont sous `Target/`, jamais dans `Cards/`*. Trois mesures concordantes :
+
+| Instrument | Résultat |
+|---|---|
+| Code — `GetDocumentDirectory` → `GetBaseTargetDirectory` | `Target/<lang>/Documents/`, jamais `Cards/` |
+| Script de passe (`.tmp/mindmap-pass-lang.ps1`) | **aucun** `Copy-Item`/`robocopy` vers `Cards/` |
+| Journal de la passe | **0** occurrence de « Cards » sur 219 lignes |
+
+⇒ Le transfert vers `Cards/` est un **geste explicite**, pas un effet de la passe.
+Signature qui le confirme : les fichiers `Cards/` portent la **même mtime à la
+nanoseconde** que leurs jumeaux de `Target/` (14:26:07.562676200 pour `fr`,
+14:40:58.988040000 pour `en`…) — c'est ce qu'un `Copy-Item` produit, pas une
+écriture indépendante.
+
+Reste la question qui décide de tout : **ces fichiers changent-ils quelque chose ?**
 
 L'export FreeMind **renumérote les `clipPath`** d'un export à l'autre (mêmes
 tracés, autres identifiants) — un diff de 99 Mo qui ne veut rien dire. L'instrument
@@ -102,6 +117,12 @@ Mesuré sur les `.content.svg` (le fichier que le wrapper inline) :
 
 L'écart FR vaut **deux libellés** : les mindmaps n'avaient pas suivi les corrections
 du corpus (« l’**î**lot », « **A**cadémisme »).
+
+⚠️ **Formulation à ne pas confondre** (relevé par la session sœur) : ces deux libellés
+étaient **déjà corrects dans le CSV de master** avant la passe, et la PR ne modifie
+**aucun** CSV. La passe les **rattrape**, elle ne les **crée** pas — un message de
+commit qui dit « corrigés dans la source » se lit à tort comme « corrigés par cette
+passe ». Rien n'est perdu à la prochaine re-dérivation.
 
 ⇒ **Conséquence de livraison** : les 7 langues non-FR ne sont **pas** commitées (bruit
 de sérialisation sans valeur) ; la PR ne porte que les **11 fichiers FR**. Une
@@ -148,7 +169,8 @@ mesuré la suite de tests complète du worktree : **2 331 réussis / 0 échec / 
 ## Suite
 
 - **Livraison** vers `Cards/**` : faite **pour le FR seulement** (11 fichiers), en PR
-  dédiée — les 7 autres langues ne changent rien (§ identité sémantique).
+  dédiée — les 7 autres langues ne changent rien (§ identité sémantique). Le transfert
+  a été un **geste explicite** (`Copy-Item` depuis `Target/`), pas un effet de la passe.
 - Les artefacts non-FR de la passe restent dans l'arbre du worktree véhicule, **non
   committés** (préservation, pas suppression).
 - **Prochaine tire** (ordre c.6522990068) : SharedResources ×3 (ar/fa/zh), 8 clés GR,
