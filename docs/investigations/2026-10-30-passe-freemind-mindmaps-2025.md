@@ -1,9 +1,11 @@
 # Passe FreeMind #2025 — mesure de la régénération des cartes mentales (30/10/2026)
 
 > Période : 30/10/2026, ~14:07 → 14:59. Lane worker (po-2023).
-> Aucun artefact committé par cette passe : elle écrit **uniquement dans l'arbre de build**
-> d'un worktree détaché (arbre gelé `341ef2a3`). Rien sous `Cards/**` n'a été touché
-> (gel CSV #2025 respecté). La **livraison** vers `Cards/**` reste une décision d'ai-01.
+> La passe elle-même n'écrit que dans l'arbre de build d'un worktree détaché (arbre gelé
+> `341ef2a3`) ; le **transfert** vers l'arbre committé est une décision de livraison, prise
+> **après** mesure d'identité sémantique (voir § « Ce que la re-dérivation change
+> réellement ») — elle ne porte que le FR. Le gel CSV #2025 est respecté : rien sous
+> `Cards/**` n'a été touché côté corpus.
 
 ## Procédure exécutée
 
@@ -80,11 +82,37 @@ faux discriminant.
 nombre réel. Le compte vrai est dans le champ voisin (`files`). **Lire `files`**, pas `exports`,
 pour décider d'un critère de mort.
 
+## ⚠️ Ce que la re-dérivation change *réellement* — et ce qu'elle ne change pas
+
+Le vehicle de la passe recopie les artefacts dans l'arbre `Cards/` : la livraison
+est donc **automatique**, pas une décision de fin de course. Reste la question
+qui décide de tout : **ces fichiers changent-ils quelque chose ?**
+
+L'export FreeMind **renumérote les `clipPath`** d'un export à l'autre (mêmes
+tracés, autres identifiants) — un diff de 99 Mo qui ne veut rien dire. L'instrument
+qui tranche est donc **le multiset des tracés et le multiset des libellés**
+(insensible à la numérotation), et non le diff de lignes.
+
+Mesuré sur les `.content.svg` (le fichier que le wrapper inline) :
+
+| Langue | Tracés | Libellés | Verdict |
+|---|---|---|---|
+| en, ru, pt, es, ar, fa, zh | identiques | identiques | **sémantiquement identiques** |
+| **fr** | 7 242 | 1 419 | **écart réel** |
+
+L'écart FR vaut **deux libellés** : les mindmaps n'avaient pas suivi les corrections
+du corpus (« l’**î**lot », « **A**cadémisme »).
+
+⇒ **Conséquence de livraison** : les 7 langues non-FR ne sont **pas** commitées (bruit
+de sérialisation sans valeur) ; la PR ne porte que les **11 fichiers FR**. Une
+re-dérivation qui « change 52 fichiers » peut ne valoir qu'**un couple de
+libellés** — et le dire demande un instrument, pas un diff.
+
 ## Suite
 
-- **Livraison** vers `Cards/**` : **non faite**, décision d'ai-01 (gel #2025 ; et la surface
-  à livrer est celle de la surface *committée* — 34 — pas les 48 de l'arbre de build).
-- Les artefacts de la passe restent dans l'arbre de build du worktree détaché (à conserver
-  jusqu'à la livraison).
+- **Livraison** vers `Cards/**` : faite **pour le FR seulement** (11 fichiers), en PR
+  dédiée — les 7 autres langues ne changent rien (§ identité sémantique).
+- Les artefacts non-FR de la passe restent dans l'arbre du worktree véhicule, **non
+  committés** (préservation, pas suppression).
 - **Prochaine tire** (ordre c.6522990068) : SharedResources ×3 (ar/fa/zh), 8 clés GR,
   caractérisation du flap 401, test d'import en **application de test** (jamais l'app 60).
