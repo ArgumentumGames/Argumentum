@@ -42,6 +42,12 @@ namespace Argumentum.AssetConverter.Tests
 			("zh-CN", "WebControls", 50),
 			("zh-CN", "Exceptions", 132),
 			("zh-CN", "GlobalResources", 172),
+			// #458 grain 9-bis lot 4 — the neutral carries 617 keys, 7 of them with an
+			// EMPTY value (File.Text and six DefaultWorkflowState*.OnDiscard*/OnCompleteMessage*
+			// that the product never fills). The pack therefore delivers 610: a key with an
+			// empty neutral has nothing to translate and is refused by the builder rather
+			// than filled with invention.
+			("zh-CN", "SharedResources", 610),
 			("ar-SA", "FileUpload", 4),
 			("ar-SA", "WebControls", 50),
 			("ar-SA", "Exceptions", 132),
@@ -63,7 +69,18 @@ namespace Argumentum.AssetConverter.Tests
 		/// </summary>
 		private static readonly Dictionary<string, string[]> VerbatimByDesign = new Dictionary<string, string[]>
 		{
-			["zh-CN"] = new[] { "EMAIL_BANNER_NOTIFICATION_SUBJECT.Text" },
+			// SharedResources (full pack, lot 4) legitimately keeps seven tokens untranslated:
+			// the .NET boolean literals True/False (parsed by name in drop-downs — translating
+			// them would change behaviour, not language), the OAuth « APP ID » product name,
+			// the « A-Z » sort glyph and the four size units B/KB/MB/GB.
+			["zh-CN"] = new[]
+			{
+				"EMAIL_BANNER_NOTIFICATION_SUBJECT.Text",
+				"True.Text", "False.Text",
+				"OAuthConfigBase_APIKey.Text",
+				"DropDownList.SortAscendingButtonTitle",
+				"SizeB.Text", "SizeKb.Text", "SizeMb.Text", "SizeGb.Text",
+			},
 			["ar-SA"] = new[] { "EMAIL_BANNER_NOTIFICATION_SUBJECT.Text", "FieldSuffix.Text" },
 			["fa-IR"] = new[] { "EMAIL_BANNER_NOTIFICATION_SUBJECT.Text", "FieldSuffix.Text" },
 		};

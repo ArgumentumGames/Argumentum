@@ -9,9 +9,17 @@ namespace Argumentum.AssetConverter.Tests
 {
 	/// <summary>
 	/// #458 Tier 1 — the 13 measured chrome keys must exist in the three missing culture
-	/// files (zh-CN, ar-SA, fa-IR), with their reviewed values, and nowhere else. DNN falls
-	/// back per key, so these are deliberately partial files, not complete language packs.
+	/// files (zh-CN, ar-SA, fa-IR), with their reviewed values. DNN falls back per key, so
+	/// the module-level files are deliberately partial, not complete language packs.
 	/// The shared French login label also pins the arbitrated lowercase « courriel ».
+	/// <para>
+	/// The « and nowhere else » clause held while every file was partial. It no longer can:
+	/// `App_GlobalResources/SharedResources.zh-CN.resx` is now a <b>full pack</b> (#458 grain
+	/// 9-bis lot 4, 610 keys). The Tier-1 values are still pinned here — that is the point of
+	/// this file — and sanity of the added keys is owned by
+	/// <see cref="DnnAgrCoreResxIntegrityGuardTests"/>. Keeping an exact-key assertion on a
+	/// completed file would fail on every added key and say nothing about its quality.
+	/// </para>
 	/// </summary>
 	public class ChromeTier1LocalizationContractTests
 	{
@@ -78,6 +86,17 @@ namespace Argumentum.AssetConverter.Tests
 			Assert.NotEqual("", expected);
 		}
 
+		/// <summary>
+		/// Stems whose culture file has graduated from a partial Tier-1 file to a full pack.
+		/// For those, the three reviewed keys must still be present (the coverage theory
+		/// above already pins their exact values); the exact-key equality cannot apply
+		/// without banning every added key.
+		/// </summary>
+		private static readonly (string Stem, string Culture)[] CompletedPacks =
+		{
+			("App_GlobalResources/SharedResources", "zh-CN"),
+		};
+
 		[Fact]
 		public void ScopeIsThirteenKeysAndPartialFilesContainNoExtraKeys()
 		{
@@ -91,6 +110,13 @@ namespace Argumentum.AssetConverter.Tests
 					var file = Path.Combine(DnnRoot, group.Key + "." + culture + ".resx");
 					var actualKeys = XDocument.Load(file).Root!.Elements("data")
 						.Select(e => (string?)e.Attribute("name")).OrderBy(x => x, StringComparer.Ordinal).ToArray();
+					if (CompletedPacks.Contains((group.Key, culture)))
+					{
+						Assert.All(expectedKeys, k => Assert.Contains(k, actualKeys));
+						Assert.True(actualKeys.Length > expectedKeys.Length,
+							$"{group.Key}.{culture} is declared complete but carries only the Tier-1 keys");
+						continue;
+					}
 					Assert.Equal(expectedKeys, actualKeys);
 				}
 			}
