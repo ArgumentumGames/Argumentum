@@ -55,6 +55,10 @@ lecture d'octets) :
 | Contrôle | Résultat |
 |---|---|
 | Fichiers produits / clés | **11 / 133** |
+
+> ℹ️ Le contrôle BOM/fins de ligne de la **garde C#** mesure le **blob committé** (`git cat-file`), pas
+> l'arbre de travail — voir §4. Le vérificateur Python ci-dessus lit l'arbre : sur cette machine de
+> travail (LF au checkout), les deux instruments rendent le même verdict.
 | Jeu de clés == neutre (par fichier) | **11/11** — 0 manquante, 0 inventée |
 | Valeurs vides | **0** |
 | Multiset des placeholders `{0}`/`{1}` | **0 écart** (5 clés en portent : `ModuleAuditControl` ×2, `TextEditor` ×2, `URLControl` ×1) |
@@ -83,6 +87,25 @@ consigné avant que le pack n'existe.
 Le BOM est asserté **par dérivation** (produit == neutre), pas par une liste de 11 booléens : une
 liste recopiée serait fausse au premier fichier qui change.
 
+### Transport : mesuré sur le blob committé, pas sur l'arbre de travail
+
+⚠️ La première version de `BomMirrorsTheNeutralAndLineEndingsAreLf` lisait
+`File.ReadAllBytes` sur l'arbre de travail — **rouge 7 fois en CI** (`build (Debug)` + `build
+(Release)`) alors que la suite locale était 46/46 : le runner CI a `core.autocrlf=true`, qui
+convertit LF → CRLF au checkout, donc un fichier sain y apparaît en CRLF. L'instrument mesurait
+la **configuration de checkout**, pas le dépôt. La règle était déjà consignée par la lane
+(#2078 : « BOM/EOL vérifiés sur blob git, jamais sur arbre de travail ») — la garde la réapplique :
+l'assertion lit `git cat-file -p HEAD:<chemin>`, pour le neutre **et** le produit.
+
+**Contrôles inverses, deux moitiés** (le vert seul ne prouve rien) :
+
+| Mutation | Attendu | Mesuré |
+|---|---|---|
+| 140 CR injectés dans l'**arbre de travail** (`SkinControl.ascx.zh-CN.resx`), blob intact | vert — la garde ne lit plus l'arbre | ✅ 46/46 |
+| Les mêmes 140 CR **committés** (commit temporaire local, jamais poussé, retiré ensuite) | rouge sur ce seul fichier | ✅ 1 échec / 45 verts, message nommant le fichier |
+
+Restauration par copie de sauvegarde, `sha256` revérifié identique, `git status` propre.
+
 ### Contrôles inverses — trois mutations, trois règles distinctes
 
 | Mutation | Attendu | Mesuré |
@@ -104,7 +127,7 @@ indépendant rejoué : **OK**.
 | Périmètre | Résultat |
 |---|---|
 | `DnnModuleLevelControlsZhResxGuardTests` | **46 / 46** (2 faits + 11 × 4 théories) |
-| Suite complète | **2453** — **2447 réussis, 0 échec**, 6 ignorés (base 2407 + 46) |
+| Suite complète (re-mesuré après le fix transport) | **2450** — **2444 réussis, 0 échec**, 6 ignorés |
 
 ## 6. Ce que cette PR ne fait pas
 

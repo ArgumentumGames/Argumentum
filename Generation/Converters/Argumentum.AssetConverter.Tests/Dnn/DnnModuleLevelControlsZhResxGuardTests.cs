@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -156,13 +157,24 @@ namespace Argumentum.AssetConverter.Tests
 		/// les deux : <c>Address.ascx.resx</c> n'a pas de BOM, <c>URLControl.ascx.resx</c>
 		/// en a un. L'attente est DÉRIVÉE du neutre, jamais écrite en dur : une
 		/// liste de 11 booléens recopiés serait fausse au premier fichier qui change.
+		/// <para>
+		/// ⚠️ Transport mesuré sur le <b>blob committé</b> (<c>git cat-file</c>), jamais
+		/// sur l'arbre de travail : le runner CI a <c>core.autocrlf=true</c>, qui
+		/// convertit LF → CRLF au checkout, donc un fichier sain y apparaît en CRLF.
+		/// La première version lisait <c>File.ReadAllBytes</c> et rendait 7 rouges en
+		/// CI pour des blobs à 0 CR — l'instrument mesurait la configuration de
+		/// checkout, pas le dépôt (précédent #2078, <c>Committed_Blob_Is_Utf8_Bom_With_Lf_Only</c>).
+		/// </para>
 		/// </summary>
 		[Theory]
 		[MemberData(nameof(CoveredFiles))]
 		public void BomMirrorsTheNeutralAndLineEndingsAreLf(string stem, int _)
 		{
-			var neutral = File.ReadAllBytes(PathOf(stem, string.Empty));
-			var produced = File.ReadAllBytes(PathOf(stem, "zh-CN"));
+			var neutral = CommittedBlob($"{RelDir}/{stem}.resx");
+			var produced = CommittedBlob($"{RelDir}/{stem}.zh-CN.resx");
+
+			neutral.Length.Should().BeGreaterThan(100, "le blob doit être le fichier entier, pas un fragment");
+			produced.Length.Should().BeGreaterThan(100, "le blob doit être le fichier entier, pas un fragment");
 
 			var neutralBom = neutral.Length >= 3 && neutral[0] == 0xEF && neutral[1] == 0xBB && neutral[2] == 0xBF;
 			var producedBom = produced.Length >= 3 && produced[0] == 0xEF && produced[1] == 0xBB && produced[2] == 0xBF;
@@ -171,6 +183,29 @@ namespace Argumentum.AssetConverter.Tests
 				$"{stem}.zh-CN.resx : le BOM doit suivre celui du neutre (neutre={neutralBom})");
 			produced.Should().NotContain((byte)'\r',
 				$"{stem}.zh-CN.resx : les fins de ligne du dépôt sont LF — un CR est du bruit de diff");
+		}
+
+		/// <summary>Lit le blob de <c>HEAD:&lt;path&gt;</c> — indépendant de core.autocrlf.</summary>
+		private static byte[] CommittedBlob(string rel)
+		{
+			var psi = new ProcessStartInfo("git", $"cat-file -p \"HEAD:{rel}\"")
+			{
+				WorkingDirectory = TestRepoRoot.Find(),
+				RedirectStandardOutput = true,
+				RedirectStandardError = true,
+				UseShellExecute = false,
+				CreateNoWindow = true,
+			};
+			using var process = Process.Start(psi)
+				?? throw new InvalidOperationException("git n'a pas démarré");
+			var stderr = process.StandardError.ReadToEndAsync();
+			using var buffer = new MemoryStream();
+			process.StandardOutput.BaseStream.CopyTo(buffer);
+			process.WaitForExit(30_000);
+			if (process.ExitCode != 0)
+				throw new InvalidOperationException(
+					$"git cat-file sur '{rel}' a échoué ({process.ExitCode}) : {stderr.Result}");
+			return buffer.ToArray();
 		}
 
 		[Fact]
