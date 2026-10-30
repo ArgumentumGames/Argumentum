@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+	<xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="ResMimeType">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="Version">
+		<value>1.0.0.0</value>
+	</resheader>
+	<resheader name="Reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=1.0.3300.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="Writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=1.0.3300.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="ControlTitle_help.Text">
+		<value>模块帮助</value>
+	</data>
+<data name="lblHelp.Text">
+		<value>此模块未提供帮助。</value>
+	</data>
+<data name="cmdHelp.Text">
+		<value>查看在线帮助</value>
+	</data>
+<data name="lblInfo.Text">
+		<value>&lt;h1&gt;模块信息&lt;/h1&gt;&lt;p&gt;显示关联模块实例的技术详细信息。&lt;br /&gt;&lt;br /&gt;&lt;b&gt;组织：&lt;/b&gt; [ORGANIZATION]&lt;br /&gt;&lt;b&gt;所有者：&lt;/b&gt; [OWNER]&lt;br /&gt;&lt;b&gt;电子邮件：&lt;/b&gt; [EMAIL]&lt;br /&gt;&lt;b&gt;URL：&lt;/b&gt; [URL]&lt;br /&gt;&lt;br /&gt;&lt;b&gt;模块：&lt;/b&gt; [MODULE]&lt;br /&gt;&lt;b&gt;版本：&lt;/b&gt; [VERSION]&lt;br /&gt;&lt;b&gt;定义：&lt;/b&gt; [DEFINITION]&lt;br /&gt;&lt;b&gt;控件：&lt;/b&gt; [CONTROL]&lt;br /&gt;&lt;b&gt;来源：&lt;/b&gt; [SRC]&lt;/p&gt;</value>
+	</data>
+</root>

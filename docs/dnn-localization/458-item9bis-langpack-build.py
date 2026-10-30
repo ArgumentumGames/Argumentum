@@ -80,6 +80,12 @@ def main():
     ap.add_argument("--translations", required=True)
     ap.add_argument("--root")
     ap.add_argument("--dry-run", action="store_true")
+    # Convention de BOM du fichier PRODUIT. `sig` (defaut, comportement
+    # historique) : App_GlobalResources porte le BOM partout. `mirror` : le
+    # fichier produit prend l'etat de BOM de SON neutre — indispensable au
+    # module-level, ou le dossier melange les deux (controls/App_LocalResources :
+    # Address.ascx.resx sans BOM, URLControl.ascx.resx avec). `plain` : jamais.
+    ap.add_argument("--bom", choices=("sig", "plain", "mirror"), default="sig")
     a = ap.parse_args()
 
     root = neutral_root(a.root)
@@ -178,7 +184,16 @@ def main():
                 # en portent un) ; sans lui la reecriture fait disparaitre la
                 # premiere ligne du fichier. newline="" : les fins de ligne LF
                 # du depot sont preservees (CRLF = bruit de diff).
-                with open(target, "w", encoding="utf-8-sig", newline="") as f:
+                # `--bom mirror` : le BOM suit le neutre du fichier traite, pour
+                # les dossiers heterogenes (module-level).
+                neutral_bytes = open(neutral_path, "rb").read(3)
+                neutral_has_bom = neutral_bytes == b"\xef\xbb\xbf"
+                enc = {
+                    "sig": "utf-8-sig",
+                    "plain": "utf-8",
+                    "mirror": "utf-8-sig" if neutral_has_bom else "utf-8",
+                }[a.bom]
+                with open(target, "w", encoding=enc, newline="") as f:
                     f.write(produced)
 
     for base, n, pres, size, target in report:
