@@ -36,8 +36,8 @@ namespace Argumentum.AssetConverter.Tests
 	/// réécrits ni replacés par l'anglais.</item>
 	/// </list>
 	/// Cultures couvertes : zh-CN (lot 1, PR #2067), ar-SA (lot 2, PR #2068)
-	/// puis fa-IR (lot 3). Packs complets <c>SharedResources</c> : zh-CN (lot 4)
-	/// puis ar-SA (lot 5) — même neutre, donc même dénominateur de 610.
+	/// puis fa-IR (lot 3). Packs complets <c>SharedResources</c> : zh-CN (lot 4),
+	/// ar-SA (lot 5) puis fa-IR (lot 6) — même neutre, donc même dénominateur de 610.
 	/// </summary>
 	public class DnnAgrCoreResxIntegrityGuardTests
 	{
@@ -65,6 +65,9 @@ namespace Argumentum.AssetConverter.Tests
 			("fa-IR", "WebControls", 50),
 			("fa-IR", "Exceptions", 132),
 			("fa-IR", "GlobalResources", 172),
+			// #458 grain 9-bis lot 6 — troisième pack complet SharedResources :
+			// même neutre que les lots 4 et 5, donc même dénominateur (610).
+			("fa-IR", "SharedResources", 610),
 		};
 
 		/// <summary>
@@ -101,7 +104,8 @@ namespace Argumentum.AssetConverter.Tests
 			// le sujet de courriel de bannière déjà arbitrés au lot 2.
 			["ar-SA"] = new[] { "EMAIL_BANNER_NOTIFICATION_SUBJECT.Text", "FieldSuffix.Text" }
 				.Concat(SharedResourcesPackTokens).ToArray(),
-			["fa-IR"] = new[] { "EMAIL_BANNER_NOTIFICATION_SUBJECT.Text", "FieldSuffix.Text" },
+			["fa-IR"] = new[] { "EMAIL_BANNER_NOTIFICATION_SUBJECT.Text", "FieldSuffix.Text" }
+				.Concat(SharedResourcesPackTokens).ToArray(),
 		};
 
 		/// <summary>
