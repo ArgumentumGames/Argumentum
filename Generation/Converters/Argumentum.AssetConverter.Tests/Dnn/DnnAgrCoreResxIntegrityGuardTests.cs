@@ -30,8 +30,8 @@ namespace Argumentum.AssetConverter.Tests
 	/// gardent leur valeur déjà arbitrée (grain juridique) — ils ne sont ni
 	/// réécrits ni replacés par l'anglais.</item>
 	/// </list>
-	/// Cultures couvertes : zh-CN (lot 1, PR #2067) puis ar-SA (lot 2). fa-IR
-	/// n'est pas encore couvert : son pack n'est pas livré.
+	/// Cultures couvertes : zh-CN (lot 1, PR #2067), ar-SA (lot 2, PR #2068)
+	/// puis fa-IR (lot 3).
 	/// </summary>
 	public class DnnAgrCoreResxIntegrityGuardTests
 	{
@@ -46,20 +46,26 @@ namespace Argumentum.AssetConverter.Tests
 			("ar-SA", "WebControls", 50),
 			("ar-SA", "Exceptions", 132),
 			("ar-SA", "GlobalResources", 172),
+			("fa-IR", "FileUpload", 4),
+			("fa-IR", "WebControls", 50),
+			("fa-IR", "Exceptions", 132),
+			("fa-IR", "GlobalResources", 172),
 		};
 
 		/// <summary>
 		/// Clés dont la valeur est légitimement identique à l'anglais : jeton pur,
 		/// marque, ponctuation. zh-CN : le sujet d'un courriel de bannière, qui
-		/// n'est qu'un jeton (« [Custom:0] »). ar-SA : la même, plus le suffixe de
-		/// champ « : » — l'arabe emploie le deux-points latin, il n'a pas de
-		/// variante locale (zh-CN dispose du « ： » plein-chasse, pas l'arabe).
+		/// n'est qu'un jeton (« [Custom:0] »). ar-SA et fa-IR : la même, plus le
+		/// suffixe de champ « : » — l'arabe comme le persan emploient le
+		/// deux-points latin, ils n'ont pas de variante locale (zh-CN dispose du
+		/// « ： » plein-chasse, pas eux).
 		/// Toute AUTRE copie anglaise est un défaut.
 		/// </summary>
 		private static readonly Dictionary<string, string[]> VerbatimByDesign = new Dictionary<string, string[]>
 		{
 			["zh-CN"] = new[] { "EMAIL_BANNER_NOTIFICATION_SUBJECT.Text" },
 			["ar-SA"] = new[] { "EMAIL_BANNER_NOTIFICATION_SUBJECT.Text", "FieldSuffix.Text" },
+			["fa-IR"] = new[] { "EMAIL_BANNER_NOTIFICATION_SUBJECT.Text", "FieldSuffix.Text" },
 		};
 
 		private static readonly Regex Placeholder = new(@"\{\d+\}", RegexOptions.Compiled);
@@ -144,6 +150,7 @@ namespace Argumentum.AssetConverter.Tests
 		[Theory]
 		[InlineData("zh-CN")]
 		[InlineData("ar-SA")]
+		[InlineData("fa-IR")]
 		public void LegalTextsKeepTheirAlreadyArbitratedValues(string culture)
 		{
 			var localized = Values("GlobalResources", culture);
