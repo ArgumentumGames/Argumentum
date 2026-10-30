@@ -4,6 +4,11 @@
 > #2079 : le compte exact ne disait rien de l'**appartenance** de l'ensemble manquant.
 > §5 détaille le trou, la fermeture et son **contrôle inverse**.
 
+**Errata 2026-10-30** (relecture NanoClaw) : deux affirmations corrigées — le **BOM UTF-8** est
+**ré-émis à l'écriture**, pas « préservé » (§3) ; le chiffre **1 726** du §5.1.3 ne correspond à
+aucun périmètre reproductible et est remplacé par le décompte mesuré (**2 297** clés livrées à la
+clôture de la garde, **2 904** après merge).
+
 ## 1. Ce qui est livré
 
 `DNNPlatform/App_GlobalResources/SharedResources.fa-IR.resx` passe de **3 clés** (fichier
@@ -28,7 +33,13 @@ dénominateur que les lots 4 (zh-CN) et 5 (ar-SA) : le neutre est le même fichi
 
 Inchangée depuis les lots 1-5 : on part du fichier **neutre**, on ne remplace que le
 contenu des `<value>` des clés traduites. En-tête, schéma `xsd`, `resheader`, ordre des
-clés, BOM UTF-8 et fins de ligne LF sont préservés.
+clés et fins de ligne LF sont préservés.
+
+Le **BOM UTF-8**, lui, est **ré-émis à l'écriture**, pas préservé : le constructeur lit le
+neutre en `utf-8-sig` (le BOM est consommé à la lecture, `458-item9bis-langpack-build.py:133`)
+et écrit en `utf-8-sig` (le BOM est ré-ajouté, `:181`). Il est donc présent dans la sortie
+**par convention du script** — la formulation exacte est « ajouté à l'écriture », pas
+« préservé ».
 
 **Ordre des clés mesuré** : le pack livré lit **1 952 lignes**, le neutre en compte
 **1 973** — écart **21 = 7 blocs × 3 lignes**, exactement les 7 clés retirées. L'ordre
@@ -118,7 +129,19 @@ CI**, et le lot fa-IR serait arrivé sous cette garantie absente.
    court-circuitaient aussi les contrôles de placeholders et de jetons. Ces deux contrôles
    passent désormais **avant** les `continue` — la garantie structurelle vaut pour **toute**
    clé livrée, plus seulement pour celles qui échappent à la liste blanche. Mesuré :
-   **0 écart sur 1 726 clés livrées**, y compris les 9 concernées.
+   **0 écart sur les clés livrées**, y compris les 9 concernées.
+
+   **Périmètre re-mesuré le 2026-10-30** (parsing XML des `.resx` committés) : **2 297 clés
+   livrées** à la clôture de la garde (`6b21c5f2`) — zh-CN 968, ar-SA 968, fa-IR 361 : les
+   trois cultures × {`FileUpload` 4, `WebControls` 50, `Exceptions` 132, `GlobalResources` 172},
+   plus `SharedResources` 610 / 610 / **3** (le pack fa-IR n'existait pas encore à ce commit) ;
+   **2 904** après le merge des lots 4-6 (`a2567de8`). Le chiffre **1 726** de la première
+   rédaction ne correspond à aucun de ces périmètres, ni au corpus neutre (**985** clés) : il
+   est retiré au profit des décomptes ci-dessus.
+
+   ⚠️ **Instrument** : compter les **éléments XML** (`<data>`), jamais les occurrences
+   textuelles de `<data name=` — un `grep` en rend **614** au lieu de 610 par fichier
+   (4 occurrences vivent dans des commentaires), et ce faux écart de 4 se propage à tout total.
 
 ### 5.2 Contrôle inverse — le test peut rougir
 

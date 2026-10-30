@@ -39,8 +39,10 @@ Les `.resx` DNN sont réécrits à la main très facilement et très mal. Ici :
 
 1. on part du fichier **neutre** (`SharedResources.resx`…), on ne remplace que le contenu des
    `<value>` des clés traduites ;
-2. l'en-tête boilerplate, le schéma `xsd`, les `resheader`, l'**ordre** des clés, le **BOM UTF-8**
-   et les fins de ligne **LF** sont préservés octet pour octet ;
+2. l'en-tête boilerplate, le schéma `xsd`, les `resheader`, l'**ordre** des clés et les fins de
+   ligne **LF** sont préservés ; le **BOM UTF-8** est **ré-émis à l'écriture** (`utf-8-sig` en
+   lecture *et* en écriture, `458-item9bis-langpack-build.py:133` et `:181`) — il est présent
+   dans la sortie **par convention du script**, pas reporté octet pour octet ;
 3. une clé **non traduite est absente** du fichier produit ⇒ DNN retombe sur le neutre anglais,
    **clé par clé**. C'est le même contrat que le pack Tier 1 ar/fa/zh déjà en ligne ;
 4. les clés **déjà présentes** dans le fichier culturel sont **préservées** — c'est le cas des
