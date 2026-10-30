@@ -108,6 +108,43 @@ de sérialisation sans valeur) ; la PR ne porte que les **11 fichiers FR**. Une
 re-dérivation qui « change 52 fichiers » peut ne valoir qu'**un couple de
 libellés** — et le dire demande un instrument, pas un diff.
 
+### 4. Une seconde famille d'échec d'export — la dérive de menu de l'automatisation
+
+**RAPPORTÉ** (mesuré par une session sœur, non re-mesuré ici) : l'automatisation
+`SendKeys` **dérive de menu** sur ~12 exports de la passe — le dialogue sous-sectionné
+produit un **`.odt` au lieu d'un `.svg`**, puis le run **timeout**. C'est une famille
+**distincte** du flake `ru` ci-dessus :
+
+| Symptôme | Cause | Signature |
+|---|---|---|
+| `cards_<lang>` **absent** | export non produit | invite interactive ⇒ **timeout** |
+| `.odt` **produit** à la place du `.svg` | dérive de menu `SendKeys` | `.odt` dans l'arbre ⇒ **timeout** |
+
+⇒ Un timeout d'export a **au moins deux causes distinctes** : lire le **type du
+fichier produit** avant de conclure « export manquant ».
+
+## Coordination — deux commits, un seul périmètre
+
+La même passe a été reprise par une **session sœur** dans le worktree véhicule, qui a
+produit un commit de **52 fichiers** (les 8 langues) sur le même parent. Comparaison
+de ce commit à master, avec le même instrument sémantique :
+
+```text
+en ru pt es ar fa zh  →  paths_equal=True  labels_equal=True  pathdiff=0  labeldiff=0
+```
+
+⇒ les 7 langues non-FR sont **sémantiquement identiques à master** ; le diff n'est
+que de la re-sérialisation (renumérotation des `clipPath`). Les fichiers FR sont
+**identiques arbre-pour-arbre** entre les deux commits.
+
+**Livré : le FR seulement.** Ce que la mesure ne dit pas — « 52 fichiers modifiés » —
+ne vaut pas 52 fichiers ; cela vaut **deux libellés**.
+
+La session sœur a également purgé les **35 fichiers `cards_<lang>` sur-produits** pour
+les 7 langues non-FR (la config ne déclare la variante *cards* que pour `fr`) et
+mesuré la suite de tests complète du worktree : **2 331 réussis / 0 échec / 6 ignorés**
+(2 337).
+
 ## Suite
 
 - **Livraison** vers `Cards/**` : faite **pour le FR seulement** (11 fichiers), en PR
