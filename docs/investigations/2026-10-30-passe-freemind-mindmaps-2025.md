@@ -96,10 +96,12 @@ mindmap vont sous `Target/`, jamais dans `Cards/`*. Trois mesures concordantes :
 | Journal de la passe | **0** occurrence de « Cards » sur 219 lignes |
 
 ⇒ Le transfert vers `Cards/` est un **geste explicite**, pas un effet de la passe.
-Signature qui le confirme : les fichiers `Cards/` portent la **même mtime à la
+**Acteur nommé** (déclaré par la session sœur `argumentum-5f`) : c'est **elle** qui a
+copié `Target/<lang>/Documents/` → `Cards/Fallacies/Mindmaps/` par `Copy-Item` après
+chaque passe. C'est exactement ce qui explique la mtime identique — `Copy-Item`
+**préserve `LastWriteTime`**. Les fichiers `Cards/` portent la **même mtime à la
 nanoseconde** que leurs jumeaux de `Target/` (14:26:07.562676200 pour `fr`,
-14:40:58.988040000 pour `en`…) — c'est ce qu'un `Copy-Item` produit, pas une
-écriture indépendante.
+14:40:58.988040000 pour `en`…) : c'est cette signature qui a permis de trancher.
 
 Reste la question qui décide de tout : **ces fichiers changent-ils quelque chose ?**
 
@@ -123,6 +125,12 @@ du corpus (« l’**î**lot », « **A**cadémisme »).
 **aucun** CSV. La passe les **rattrape**, elle ne les **crée** pas — un message de
 commit qui dit « corrigés dans la source » se lit à tort comme « corrigés par cette
 passe ». Rien n'est perdu à la prochaine re-dérivation.
+
+⚠️ Et **l'avertissement vaut dans l'autre sens** (relevé par la session sœur) :
+« la passe a rattrapé 2 libellés » ne doit pas se lire « le corpus était en retard de
+2 libellés sur les cartes ». La mesure établit seulement que **les mindmaps ne
+suivaient pas le CSV courant** ; elle **ne dit rien** sur l'antériorité de l'un ou de
+l'autre.
 
 ⇒ **Conséquence de livraison** : les 7 langues non-FR ne sont **pas** commitées (bruit
 de sérialisation sans valeur) ; la PR ne porte que les **11 fichiers FR**. Une
