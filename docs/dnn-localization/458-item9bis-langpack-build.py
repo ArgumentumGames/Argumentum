@@ -98,7 +98,12 @@ def main():
         if not os.path.isfile(neutral_path):
             sys.exit(f"CONTROLE POSITIF : neutre absent ({neutral_path}) — arret, rien n'est conclu.")
         neutral = read_resx(neutral_path)
-        if len(neutral) < 2:
+        # Aveuglement de l'instrument = 0 cle parsee. Un resx a 1 cle existe
+        # bel et bien au module-level (admin/Portal/Privacy.ascx : 1 cle) :
+        # le seuil historique `< 2` (ecrit pour l'AGR, ou tout fichier fait
+        # des centaines de cles) confondait « fichier minuscule » et
+        # « instrument qui ne voit rien ».
+        if len(neutral) < 1:
             sys.exit(f"CONTROLE POSITIF : {base}.resx rend {len(neutral)} cle(s) — l'instrument ne voit rien, arret.")
         neutral_shell = all(not v.strip() for v in neutral.values())
 
