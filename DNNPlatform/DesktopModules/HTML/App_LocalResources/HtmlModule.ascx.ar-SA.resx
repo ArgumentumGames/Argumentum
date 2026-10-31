@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddContent.Action" xml:space="preserve">
+    <value>تحرير المحتوى</value>
+  </data>
+<data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;p&gt;تعرض وحدة النص/HTML نصًا عاديًا أو نصًا منسقًا أو HTML. تتوفر خمسة أنماط تحرير مختلفة: &lt;/p&gt;
+    &lt;ol&gt;
+        &lt;li&gt;&lt;strong&gt;مربع النص الأساسي / نص&lt;/strong&gt;: يعرض نصًا أساسيًا وعلامات HTML. يُعرض النص المُدخل في سطر جديد كفاصل سطر. نمط النص هو النمط العادي، كما هو معين في ورقة الأنماط الخاصة بك.&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;مربع النص الأساسي / HTML&lt;/strong&gt;: يعرض نصًا أساسيًا بتنسيق HTML.&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;مربع النص الأساسي / خام&lt;/strong&gt;: يعرض نصًا أساسيًا بتنسيق HTML. لا يُعرض النص المُدخل في سطر جديد كفاصل سطر.&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;محرر النص المنسق / HTML&lt;/strong&gt;: يتيح لك لصق HTML من مصادر أخرى.&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;محرر النص المنسق / تصميم&lt;/strong&gt;: معالج نصوص كامل أو محرر WYSIWYG (ما تراه هو ما تحصل عليه) بوظائف مثل الارتباطات التشعبية وارتباطات البريد الإلكتروني ومعرض صور إدارة الملفات والنقاط والتدقيق الإملائي وغيرها.&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;p&gt;بالإضافة إلى ذلك، تدعم الوحدة إدارة الإصدارات وسير العمل. في إصدار Community يتوفر نمطان لسير العمل - النشر المباشر وتجهيز المحتوى.&lt;/p&gt;</value>
+  </data>
+<data name="AddContent.Text" xml:space="preserve">
+    <value>انقر هنا لإدخال المحتوى الخاص بك</value>
+  </data>
+<data name="AddContentFromToolBar.Text" xml:space="preserve">
+    <value>حدد "تحرير المحتوى" من قائمة إجراءات التحرير (أيقونة القلم).</value>
+  </data>
+<data name="AddContentFromActionMenu.Text" xml:space="preserve">
+    <value>يجب أن تكون في وضع التحرير لإدخال المحتوى، وبعدها يمكنك استخدام قائمة إجراءات الوحدة أو أزرار إجراءات الوحدة لإدارة المحتوى</value>
+  </data>
+<data name="Workflow.Action" xml:space="preserve">
+    <value>سير العمل</value>
+  </data>
+<data name="MyWork.Action" xml:space="preserve">
+    <value>عملي</value>
+  </data>
+<data name="Bold.ToolTip" xml:space="preserve">
+    <value>غامق</value>
+  </data>
+<data name="Indent.ToolTip" xml:space="preserve">
+    <value>زيادة المسافة البادئة</value>
+  </data>
+<data name="Italic.ToolTip" xml:space="preserve">
+    <value>مائل</value>
+  </data>
+<data name="Outdent.ToolTip" xml:space="preserve">
+    <value>إنقاص المسافة البادئة</value>
+  </data>
+<data name="Underline.ToolTip" xml:space="preserve">
+    <value>تسطير</value>
+  </data>
+<data name="Cancel.ToolTip" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+<data name="CreateLink.ToolTip" xml:space="preserve">
+    <value>إنشاء ارتباط</value>
+  </data>
+<data name="Edit.ToolTip" xml:space="preserve">
+    <value>تحرير</value>
+  </data>
+<data name="JustifyCenter.ToolTip" xml:space="preserve">
+    <value>توسيط</value>
+  </data>
+<data name="JustifyLeft.ToolTip" xml:space="preserve">
+    <value>محاذاة إلى اليسار</value>
+  </data>
+<data name="JustifyRight.ToolTip" xml:space="preserve">
+    <value>محاذاة إلى اليمين</value>
+  </data>
+<data name="OrderedList.ToolTip" xml:space="preserve">
+    <value>قائمة مرقمة</value>
+  </data>
+<data name="Save.ToolTip" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+<data name="UnorderedList.ToolTip" xml:space="preserve">
+    <value>قائمة نقطية</value>
+  </data>
+</root>
