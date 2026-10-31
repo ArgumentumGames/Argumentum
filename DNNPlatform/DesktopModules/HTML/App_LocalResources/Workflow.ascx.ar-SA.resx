@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="plWorkflow1.Text" xml:space="preserve">
+    <value>سير العمل</value>
+  </data>
+<data name="plWorkflow1.Help" xml:space="preserve">
+    <value>حدد سير عمل لإدارته</value>
+  </data>
+<data name="plWorkflow2.Text" xml:space="preserve">
+    <value>سير العمل</value>
+  </data>
+<data name="plWorkflow2.Help" xml:space="preserve">
+    <value>أدخل اسمًا لسير العمل</value>
+  </data>
+<data name="plDescription.Text" xml:space="preserve">
+    <value>الوصف</value>
+  </data>
+<data name="plDescription.Help" xml:space="preserve">
+    <value>أدخل وصفًا لسير العمل</value>
+  </data>
+<data name="plHistory.Text" xml:space="preserve">
+    <value>السجل</value>
+  </data>
+<data name="plHistory.Help" xml:space="preserve">
+    <value>حدد الحد الأقصى لعدد الإصدارات التي سيُحتفظ بها</value>
+  </data>
+<data name="plDeleted.Text" xml:space="preserve">
+    <value>محذوف</value>
+  </data>
+<data name="plDeleted.Help" xml:space="preserve">
+    <value>حدد ما إذا كان سير العمل هذا نشطًا أم لا</value>
+  </data>
+<data name="cmdAddWorkflow.Text" xml:space="preserve">
+    <value>إضافة سير عمل جديد</value>
+  </data>
+<data name="WorkflowExists.Text" xml:space="preserve">
+    <value>سير عمل بالاسم المحدد موجود بالفعل لهذا الموقع</value>
+  </data>
+<data name="dshStates.Text" xml:space="preserve">
+    <value>الحالات</value>
+  </data>
+<data name="State.Header" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+<data name="Active.Header" xml:space="preserve">
+    <value>نشط</value>
+  </data>
+<data name="cmdAddState.Text" xml:space="preserve">
+    <value>إضافة حالة جديدة</value>
+  </data>
+<data name="dshPermissions.Text" xml:space="preserve">
+    <value>تكوين الحالة</value>
+  </data>
+<data name="plState.Text" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+<data name="plState.Help" xml:space="preserve">
+    <value>أدخل اسمًا للحالة</value>
+  </data>
+<data name="plPermissions.Text" xml:space="preserve">
+    <value>المراجعون</value>
+  </data>
+<data name="plPermissions.Help" xml:space="preserve">
+    <value>حدد من يمكنه مراجعة المحتوى للحالة</value>
+  </data>
+<data name="plNotify.Text" xml:space="preserve">
+    <value>إشعار</value>
+  </data>
+<data name="plNotify.Help" xml:space="preserve">
+    <value>حدد ما إذا كان يجب أن يتلقى المؤلف والمراجعون إشعارات بريد إلكتروني متعلقة بالحالة</value>
+  </data>
+<data name="plActive.Text" xml:space="preserve">
+    <value>نشط</value>
+  </data>
+<data name="plActive.Help" xml:space="preserve">
+    <value>حدد ما إذا كانت الحالة نشطة</value>
+  </data>
+<data name="dshVersions.Text" xml:space="preserve">
+    <value>سجل الإصدارات</value>
+  </data>
+<data name="plMaximumVersionHistory.Text" xml:space="preserve">
+    <value>السجل</value>
+  </data>
+<data name="plMaximumVersionHistory.Help" xml:space="preserve">
+    <value>حدد الحد الأقصى لعدد إصدارات المحتوى التي سيُحتفظ بها في سجل الوحدة (أدخل صفرًا للاحتفاظ بجميع الإصدارات)</value>
+  </data>
+<data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;P&gt;تعرض وحدة النص/HTML نصًا عاديًا أو نصًا منسقًا أو HTML. تتوفر خمسة أنماط تحرير مختلفة: &lt;/P&gt;
+&lt;OL&gt;
+&lt;LI&gt;&lt;STRONG&gt;مربع النص الأساسي / نص&lt;/STRONG&gt;: يعرض نصًا أساسيًا وعلامات HTML. يُعرض النص المُدخل في سطر جديد كفاصل سطر. نمط النص هو النمط العادي، كما هو معين في ورقة الأنماط الخاصة بك. 
+&lt;LI&gt;&lt;STRONG&gt;مربع النص الأساسي / HTML&lt;/STRONG&gt;: يعرض نصًا أساسيًا بتنسيق HTML.
+&lt;LI&gt;&lt;STRONG&gt;مربع النص الأساسي / خام&lt;/STRONG&gt;: يعرض نصًا أساسيًا بتنسيق HTML. لا يُعرض النص المُدخل في سطر جديد كفاصل سطر.
+&lt;LI&gt;&lt;STRONG&gt;محرر النص المنسق / HTML&lt;/STRONG&gt;: يتيح لك لصق HTML من مصادر أخرى.
+&lt;LI&gt;&lt;STRONG&gt;محرر النص المنسق / تصميم&lt;/STRONG&gt;: معالج نصوص كامل أو محرر WYSIWYG (ما تراه هو ما تحصل عليه) بوظائف مثل الارتباطات التشعبية وارتباطات البريد الإلكتروني ومعرض صور إدارة الملفات والنقاط والتدقيق الإملائي وغيرها.</value>
+  </data>
+<data name="ControlTitle_workflow.Text" xml:space="preserve">
+    <value>إدارة عمليات سير العمل</value>
+  </data>
+<data name="WorkFlowStateHelp.Text" xml:space="preserve">
+    <value>في هذا القسم يمكنك إدارة حالات سير العمل. لاحظ أنه بمجرد استخدام سير عمل ما، لا يمكنك حذف أي من حالات سير العمل المرتبطة به. أيضًا لا يمكن حذف أول حالة وآخر حالة من حالات سير العمل.</value>
+  </data>
+</root>

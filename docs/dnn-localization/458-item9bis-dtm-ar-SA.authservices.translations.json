@@ -1,0 +1,11 @@
+{
+ "files": {
+  "Settings.ascx": {
+   "AuthenticationConfig_Enabled.Help": "حدد خانة الاختيار هذه لتمكين مصادقة DNN القياسية.",
+   "AuthenticationConfig_Enabled.Text": "ممكّن:",
+   "AuthenticationConfig_UseCaptcha.Help": "حدد خانة الاختيار هذه لتمكين رمز التحقق لتسجيل الدخول إلى DNN.",
+   "AuthenticationConfig_UseCaptcha.Text": "استخدام رمز التحقق:",
+   "Title.Text": "إعدادات مصادقة DNN"
+  }
+ }
+}

@@ -1,0 +1,65 @@
+{
+ "files": {
+  "AddScript.ascx": {
+   "VBHTML.Text": "ملف VBHtml (VB)",
+   "fileTypeLabel.Help": "حدد نوع ملف البرنامج النصي Razor الذي تريد إنشاءه (CSHtml للغة C# أو VBHtml للغة VB.Net)",
+   "CSHTML.Text": "ملف CSHtml (C#)",
+   "fileTypeLabel.Text": "نوع الملف:",
+   "fileNameLabel.Help": "أدخل اسم ملف لملف البرنامج النصي. سيُسبَق اسم الملف بعلامة الشرطة السفلية \"_\".",
+   "fileNameLabel.Text": "اسم الملف:",
+   "createNewScript.Text": "لإنشاء ملف برنامج نصي Razor جديد، حدد نوع الملف وأدخل اسم ملف. سيُنشأ الملف في مجلد Scripts.",
+   "NewScript.Text": "<h2>برنامج نصي Razor جديد</h2>",
+   "cmdAdd.Text": "إضافة برنامج نصي جديد"
+  },
+  "CreateModule.ascx": {
+   "ControlTitle_createmodule.Text": "إنشاء وحدة",
+   "SourceFile.Text": "البرنامج النصي المصدر - {0}",
+   "plSource.Text": "مصدر البرنامج النصي:",
+   "scriptsLabel.Help": "حدد البرنامج النصي الذي تريد استخدامه من القائمة.",
+   "scriptsLabel.Text": "تحديد البرنامج النصي:",
+   "plAddPage.Help": "حدد خانة الاختيار هذه لإنشاء صفحة اختبار لوحدتك الجديدة.",
+   "plAddPage.Text": "إضافة صفحة اختبار؟",
+   "plDescription.Help": "أدخل وصفًا للوحدة.",
+   "plDescription.Text": "الوصف:",
+   "plFolder.Help": "أدخل اسم المجلد للوحدة الجديدة. سيكون هذا المجلد تابعًا للمسار \"DesktopModules/RazorModules\"",
+   "plFolder.Text": "المجلد:",
+   "plName.Help": "أدخل اسمًا مألوفًا للوحدة.",
+   "plName.Text": "اسم الوحدة:",
+   "cmdCreate.Text": "إنشاء وحدة",
+   "SourceControl.Text": "عنصر تحكم الوحدة - {0}",
+   "valFolder.Text": "المجلد مطلوب.<br/>",
+   "valName.Text": "الاسم مطلوب.<br/>",
+   "FolderExists.Text": "المجلد الذي حددته موجود بالفعل. يرجى تحديد اسم آخر.",
+   "ManifestCreationError.Text": "حدث خطأ غير متوقع أثناء إنشاء البيان. يرجى مراجعة عارض الأحداث لمزيد من المعلومات.",
+   "ModuleControlCreationError.Text": "حدث خطأ غير متوقع أثناء إنشاء عنصر تحكم الوحدة. يرجى مراجعة عارض الأحداث لمزيد من المعلومات.",
+   "ScriptCopyError.Text": "حدث خطأ غير متوقع أثناء نسخ البرنامج النصي إلى المجلد الهدف. يرجى مراجعة عارض الأحداث لمزيد من المعلومات.",
+   "ImportControl.ErrorMessage": "حدث خطأ أثناء استيراد عنصر تحكم الوحدة، يرجى مراجعة سجل الأحداث لمزيد من التفاصيل",
+   "TabExists.Text": "اسم الصفحة موجود بالفعل لاسم هذه الوحدة. تم إنشاء الوحدة لكن لم يتم توليد صفحة الاختبار."
+  },
+  "EditScript.ascx": {
+   "ControlTitle_edit.Text": "تحرير البرنامج النصي",
+   "scriptListLabel.Help": "حدد البرنامج النصي لاستخدامه لهذا المثيل من وحدة Razor Host.",
+   "scriptListLabel.Text": "البرنامج النصي:",
+   "SourceFile.Text": "الملف المصدر - {0}",
+   "plSource.Text": "مصدر البرنامج النصي:",
+   "scriptsLabel.Help": "حدد البرنامج النصي الذي تريد تحريره من القائمة.",
+   "scriptsLabel.Text": "تحديد البرنامج النصي:",
+   "AddNew.Text": "إضافة ملف برنامج نصي جديد",
+   "currentScriptLabel.Help": "حدد خانة الاختيار هذه لجعل البرنامج النصي الحالي هو البرنامج النصي النشط الذي يُعرض في وضع العرض.",
+   "currentScriptLabel.Text": "نشط:",
+   "cmdSave.Text": "حفظ البرنامج النصي",
+   "cmdSaveClose.Text": "حفظ البرنامج النصي والعودة"
+  },
+  "RazorHost.ascx": {
+   "CreateModule.Action": "إنشاء وحدة",
+   "EditContent.Action": "تحرير البرنامج النصي",
+   "scriptListLabel.Help": "حدد البرنامج النصي لاستخدامه لهذا المثيل من وحدة Razor Host.",
+   "scriptListLabel.Text": "البرنامج النصي:"
+  },
+  "Settings.ascx": {
+   "ControlTitle_settings.Text": "إعدادات وحدة Razor Host",
+   "scriptListLabel.Help": "حدد البرنامج النصي لاستخدامه لهذا المثيل من وحدة Razor Host.",
+   "scriptListLabel.Text": "البرنامج النصي:"
+  }
+ }
+}

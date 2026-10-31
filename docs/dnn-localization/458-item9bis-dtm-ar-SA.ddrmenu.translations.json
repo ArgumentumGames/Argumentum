@@ -1,0 +1,13 @@
+{
+ "files": {
+  "MenuSettings.ascx": {
+   "AddContent.Action": "إضافة محتوى",
+   "ModuleHelp.Text": "يتوفر مستند DDRMenu على <a href=\"http://www.dnnsoftware.com/wiki/\">ويكي DNN</a>.",
+   "ControlTitle_settings.Text": "إعدادات القائمة"
+  },
+  "MenuView.ascx": {
+   "AddContent.Action": "إضافة محتوى",
+   "ModuleHelp.Text": "يتوفر مستند DDRMenu على <a href=\"http://www.dnnsoftware.com/wiki/\">ويكي DNN</a>."
+  }
+ }
+}
