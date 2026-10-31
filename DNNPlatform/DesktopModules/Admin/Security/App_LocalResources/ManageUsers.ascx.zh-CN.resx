@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="https://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Roles.Action" xml:space="preserve">
+    <value>管理此用户的角色</value>
+  </data>
+<data name="ControlTitle_edit.Text" xml:space="preserve">
+    <value>编辑用户账户</value>
+  </data>
+<data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;关于用户管理模块&lt;/h1&gt;&lt;p&gt;管理员可以管理其注册用户。此模块允许你添加新用户、修改现有用户、删除用户，以及管理用户的安全角色。&lt;/p&gt;
+</value>
+  </data>
+<data name="UserLockedOut.Text" xml:space="preserve">
+    <value>此账户当前已被锁定，原因是登录失败次数过多。</value>
+  </data>
+<data name="InvalidUser.Text" xml:space="preserve">
+    <value>此账户不是当前站点的用户。</value>
+  </data>
+<data name="SuperUser.Text" xml:space="preserve">
+    <value>此账户是超级用户账户。你没有编辑超级用户账户的权限。</value>
+  </data>
+<data name="NoUser.Text" xml:space="preserve">
+    <value>此账户不存在。</value>
+  </data>
+<data name="plNewPassword.Text" xml:space="preserve">
+    <value>新密码：</value>
+  </data>
+<data name="plNewPassword.Help" xml:space="preserve">
+    <value>输入新密码。</value>
+  </data>
+<data name="plNewConfirm.Text" xml:space="preserve">
+    <value>确认新密码：</value>
+  </data>
+<data name="plNewConfirm.Help" xml:space="preserve">
+    <value>再次输入新密码以确认。</value>
+  </data>
+<data name="ResetPassword.Text" xml:space="preserve">
+    <value>重置密码</value>
+  </data>
+<data name="cmdUpdatePassword.Text" xml:space="preserve">
+    <value>更新密码</value>
+  </data>
+<data name="NewPassword.Text" xml:space="preserve">
+    <value>必须输入新密码。</value>
+  </data>
+<data name="UserTitle.Text" xml:space="preserve">
+    <value>编辑用户 - {0}（Id: {1}）</value>
+  </data>
+<data name="MembershipTitle.Text" xml:space="preserve">
+    <value>成员资格信息</value>
+  </data>
+<data name="AddContent.Action" xml:space="preserve">
+    <value>添加新用户</value>
+  </data>
+<data name="Profile.Action" xml:space="preserve">
+    <value>管理用户的资料</value>
+  </data>
+<data name="Password.Action" xml:space="preserve">
+    <value>管理用户的密码</value>
+  </data>
+<data name="cmdUser.Text" xml:space="preserve">
+    <value>管理账户</value>
+  </data>
+<data name="cmdRoles.Text" xml:space="preserve">
+    <value>管理此用户的角色</value>
+  </data>
+<data name="cmdPassword.Text" xml:space="preserve">
+    <value>管理密码</value>
+  </data>
+<data name="cmdProfile.Text" xml:space="preserve">
+    <value>管理资料</value>
+  </data>
+<data name="AddUser.Text" xml:space="preserve">
+    <value>添加新用户</value>
+  </data>
+<data name="UserUnAuthorized.Text" xml:space="preserve">
+    <value>已成功取消用户授权。</value>
+  </data>
+<data name="UserAuthorized.Text" xml:space="preserve">
+    <value>已成功授权用户。</value>
+  </data>
+<data name="PasswordQAChanged.Text" xml:space="preserve">
+    <value>密码问题和答案已成功更新。</value>
+  </data>
+<data name="ControlTitle_profile.Text" xml:space="preserve">
+    <value>管理资料</value>
+  </data>
+<data name="NotAuthorized.Text" xml:space="preserve">
+    <value>你没有编辑此用户的权限。</value>
+  </data>
+<data name="ControlTitle_register.Text" xml:space="preserve">
+    <value>注册</value>
+  </data>
+<data name="cmdServices.Text" xml:space="preserve">
+    <value>管理服务</value>
+  </data>
+<data name="ManageProfile.Action" xml:space="preserve">
+    <value>管理资料属性</value>
+  </data>
+<data name="cmdRegister.Text" xml:space="preserve">
+    <value>注册</value>
+  </data>
+<data name="ExceededRegisterQuota.Text" xml:space="preserve">
+    <value>你现在无法在此站点注册。请联系站点管理员了解注册何时重新开放。</value>
+  </data>
+<data name="ExceededUserQuota.Text" xml:space="preserve">
+    <value>添加此用户将超出此站点的用户配额。有关增加用户配额的询问，请联系你的主机提供商。</value>
+  </data>
+<data name="UserSubscribed.Text" xml:space="preserve">
+    <value>你已成功订阅 {0} 角色。</value>
+  </data>
+<data name="UserUnSubscribed.Text" xml:space="preserve">
+    <value>你已成功退订 {0} 角色。</value>
+  </data>
+<data name="EmailError.Text" xml:space="preserve">
+    <value>本网站要求电子邮件地址唯一。你输入的电子邮件地址已被使用。</value>
+  </data>
+<data name="CannotAddUser.Text" xml:space="preserve">
+    <value>本站点配置为要求用户输入问题和答案以接收密码提醒。此配置与管理员添加用户不兼容，因此已在本站点禁用。</value>
+  </data>
+<data name="cmdLogin.Text" xml:space="preserve">
+    <value>前往登录</value>
+  </data>
+<data name="plCaptcha.Help" xml:space="preserve">
+    <value>输入安全代码。</value>
+  </data>
+<data name="plCaptcha.Text" xml:space="preserve">
+    <value>安全代码：</value>
+  </data>
+<data name="UserPasswordUpdateChanged.Text" xml:space="preserve">
+    <value>用户下次登录时必须更新密码。</value>
+  </data>
+<data name="RegisterWarning.Text" xml:space="preserve">
+    <value> - &lt;em&gt;（&lt;strong&gt;注意：&lt;/strong&gt; 注册可能需要几秒钟。点击「注册」按钮后，请等待系统响应。）&lt;/em&gt;</value>
+  </data>
+<data name="AddUser.Title" xml:space="preserve">
+    <value>添加新用户</value>
+  </data>
+<data name="Register.Text" xml:space="preserve">
+    <value>用户注册</value>
+  </data>
+<data name="Register.Title" xml:space="preserve">
+    <value>用户注册</value>
+  </data>
+<data name="AccountSettings.Text" xml:space="preserve">
+    <value>账户设置</value>
+  </data>
+<data name="MembershipDetails.Text" xml:space="preserve">
+    <value>账户信息</value>
+  </data>
+<data name="UserPromotedToSuperuser.Text" xml:space="preserve">
+    <value>用户已更新为超级用户。</value>
+  </data>
+<data name="UserDemotedFromSuperuser.Text" xml:space="preserve">
+    <value>用户已更新为普通用户。</value>
+  </data>
+</root>
