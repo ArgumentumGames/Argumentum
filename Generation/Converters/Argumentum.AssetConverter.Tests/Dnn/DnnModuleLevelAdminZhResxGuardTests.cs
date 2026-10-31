@@ -12,10 +12,13 @@ namespace Argumentum.AssetConverter.Tests
     /// une copie des règles.
     /// <para>
     /// Le contrôle d'écriture (lot du 31/10) est la seule règle propre à la
-    /// culture : le contrôle « ≠ anglais » du socle n'attrape que les copies
-    /// INTÉGRALES — une valeur à moitié traduite passe inaperçue. Aucune
-    /// exemption n'est nécessaire ici : les 328 valeurs du pack portent toutes
-    /// de l'écriture chinoise (mesuré, 0 valeur latine hors périmètre déclaré).
+    /// culture : il voit les valeurs qui diffèrent de l'anglais tout en n'étant
+    /// pas chinoises (espacement, ponctuation, marque latine) — celles-là
+    /// traversent le contrôle « ≠ anglais » du socle. Une valeur à moitié
+    /// traduite, elle, porte déjà un caractère chinois : ce contrôle ne la voit
+    /// pas. Aucune exemption n'est nécessaire ici : les 328 valeurs du pack
+    /// portent toutes de l'écriture chinoise (mesuré, 0 valeur latine hors
+    /// périmètre déclaré).
     /// </para>
     /// </summary>
     public class DnnModuleLevelAdminZhResxGuardTests : DnnModuleLevelAdminResxGuardBase
@@ -41,7 +44,7 @@ namespace Argumentum.AssetConverter.Tests
 
                 ChineseScript.IsMatch(value).Should().BeTrue(
                     $"{RelOf(dir, stem, Culture)}:{key} — la valeur ne porte aucun caractère chinois ; "
-                    + $"valeur = « {value} » (une valeur à moitié traduite passe le contrôle « ≠ anglais » du socle)");
+                    + $"valeur = « {value} »");
             }
         }
     }

@@ -6,11 +6,13 @@
 
 ---
 
-## 1. Le trou que ce lot ferme
+## 1. Le trou que ce lot ferme — et celui qu'il ne ferme pas
 
-Les trois gardes zh héritaient du contrôle « valeur ≠ anglais » de leur socle. Ce contrôle n'attrape que les copies **intégrales** : une valeur dont la moitié est chinoise et l'autre moitié anglaise lui est **identique-ment invisible** — elle diffère de l'anglais, donc elle passe, et la carte affiche du texte à moitié traduit.
+Les trois gardes zh héritaient du contrôle « valeur ≠ anglais » de leur socle. Ce contrôle compare au neutre anglais : tout ce qui **diffère** de l'anglais passe. Une valeur peut donc différer de l'anglais **sans porter un seul caractère chinois** — espacement, ponctuation, marque latine, texte anglais reformulé — et traverser le contrôle. C'est ce trou-là que le lot ferme.
 
-Le contrôle ajouté exige la présence d'**au moins un caractère chinois** dans chaque valeur livrée. Motif : `[㐀-䶿一-鿿豈-﫿]` — bloc Ext-A, bloc unifié et formes de compatibilité. Les trois sont nécessaires ; un motif limité à U+4E00–U+9FFF laisserait passer les formes de compatibilité présentes dans le corpus.
+Le contrôle ajouté exige la présence d'**au moins un caractère chinois** dans chaque valeur livrée. Motif : `[㐀-䶿一-鿿豈-﫿]` — bloc Ext-A, bloc unifié et formes de compatibilité. **Ce contrôle ne ferme pas la traduction partielle, et ne le prétend pas.** Une valeur à moitié chinoise et à moitié anglaise porte déjà un caractère chinois : elle passe, exactement comme avant. La phrase d'échec le dit sans ambiguïté — « la valeur ne porte aucun caractère chinois » — et non « traduction partielle ».
+
+⚠️ **Les deux plages hors bloc unifié ne sont pas nécessaires : elles sont une marge** (mesure du 31/10, `python -I` + `ElementTree`, tous les `*.zh-CN.resx` de `DNNPlatform/`) : sur **3 018** valeurs, **2 997** portent de l'écriture chinoise et **toutes** relèvent du bloc unifié — **0** en Ext-A (U+3400–U+4DBF), **0** en formes de compatibilité (U+F900–U+FAFF). Un motif limité à U+4E00–U+9FFF couvrirait donc l'intégralité du corpus actuel ; les deux plages restent comme garde-fou pour une livraison future, pas comme réponse à un besoin mesuré.
 
 Aucun `.resx` n'est modifié : les 1 101 valeurs zh du périmètre portent déjà l'écriture chinoise — la règle est là pour que la prochaine livraison ne puisse pas les dégrader en silence.
 
@@ -57,7 +59,7 @@ Chaque mutation porte sur **une** valeur réelle, est appliquée avec vérificat
 |---|---|---|---|
 | C1 | `controls/Address.ascx` : `plState.Text` `州：` → `Draft English value ` | nouvelle règle rouge, socle vert | ✅ **1 échec / 57 verts** — *« …Address.ascx.zh-CN.resx:plState.Text — la valeur ne porte aucun caractère chinois »* |
 | C2 | `admin/Modules/ModuleSettings.ascx` : `ModuleSettings.Text` `模块设置` → idem | idem | ✅ **1 échec / 137 verts** — même message, clé nommée |
-| C3 | `DesktopModules/Admin/Security/EditRoles.ascx` : `BasicSettings.Text` `基本设置` → idem | idem | ✅ **1 échec / 103 verts** — *« …EditRoles.ascx.zh-CN.resx:BasicSettings.Text — traduction partielle ou valeur laissée en anglais »* |
+| C3 | `DesktopModules/Admin/Security/EditRoles.ascx` : `BasicSettings.Text` `基本设置` → idem | idem | ✅ **1 échec / 103 verts** — *« …EditRoles.ascx.zh-CN.resx:BasicSettings.Text — la valeur ne porte aucun caractère chinois ; valeur = « Draft English value  » »* (message re-mesuré le 31/10 après correction ; il nommait auparavant « traduction partielle », ce que la règle ne détecte pas) |
 | C4 | `MemberServices.ascx` : `TrialFee.Text` → `Draft English value {0} {1} {2}` (**clé exemptée**) | vert : l'exemption est ce qui autorise | ✅ **0 échec / 104 verts** |
 | C5 | **+1 exemption** (`Users.ascx:Filter.Text`) dans `ScriptExempt` | le fait d'épinglage rougit | ✅ **1 échec / 103 verts** — *« Expected ScriptExempt to contain 7 item(s) … but found 8 »* |
 

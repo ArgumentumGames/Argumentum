@@ -13,11 +13,11 @@ namespace Argumentum.AssetConverter.Tests
 	/// ensuite) les partage au lieu de les recopier.
 	/// <para>
 	/// Le contrôle d'écriture (lot du 31/10) est la seule règle propre à la
-	/// culture : le contrôle « ≠ anglais » du socle n'attrape que les copies
-	/// INTÉGRALES — une valeur à moitié traduite (libellé chinois, reste du
-	/// texte laissé en anglais) passe inaperçue. La présence de l'écriture
-	/// chinoise dans chaque valeur la rattrape (motif prouvé par le contrôle
-	/// inverse latin-non-anglais des lots ar/fa).
+	/// culture : il voit les valeurs qui diffèrent de l'anglais tout en n'étant
+	/// pas chinoises (espacement, ponctuation, marque latine, anglais
+	/// reformulé) — celles-là traversent le contrôle « ≠ anglais » du socle.
+	/// Une valeur à moitié traduite porte déjà un caractère chinois : ce
+	/// contrôle ne la voit pas, et ne prétend pas la voir.
 	/// </para>
 	/// <para>
 	/// Détail du lot, contrôles indépendants et contrôles inverses :
@@ -30,8 +30,11 @@ namespace Argumentum.AssetConverter.Tests
 
 		/// <summary>
 		/// Bloc CJK unifié : Ext-A (U+3400–U+4DBF), unifié (U+4E00–U+9FFF) et
-		/// formes de compatibilité (U+F900–U+FAFF). Les trois sont nécessaires :
-		/// le pack livré porte des caractères hors du seul bloc U+4E00–U+9FFF.
+		/// formes de compatibilité (U+F900–U+FAFF). Mesuré sur les 3 018 valeurs
+		/// <c>*.zh-CN.resx</c> du dépôt : les 2 997 valeurs qui portent de l'écriture
+		/// chinoise relèvent toutes du bloc unifié — 0 en Ext-A, 0 en compatibilité.
+		/// Les deux plages hors bloc unifié sont une marge défensive, pas une
+		/// nécessité mesurée.
 		/// </summary>
 		private static readonly Regex ChineseScript =
 			new(@"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]", RegexOptions.Compiled);
@@ -47,7 +50,7 @@ namespace Argumentum.AssetConverter.Tests
 
 				ChineseScript.IsMatch(value).Should().BeTrue(
 					$"{RelDir}/{stem}.{Culture}.resx:{key} — la valeur ne porte aucun caractère chinois ; "
-					+ $"valeur = « {value} » (une valeur à moitié traduite passe le contrôle « ≠ anglais » du socle)");
+					+ $"valeur = « {value} »");
 			}
 		}
 

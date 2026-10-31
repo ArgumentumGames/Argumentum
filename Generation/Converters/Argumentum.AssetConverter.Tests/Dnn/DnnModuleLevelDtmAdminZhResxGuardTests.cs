@@ -105,12 +105,21 @@ namespace Argumentum.AssetConverter.Tests
 
         /// <summary>
         /// Bloc CJK : Ext-A (U+3400–U+4DBF), unifié (U+4E00–U+9FFF) et formes de
-        /// compatibilité (U+F900–U+FAFF) ; les trois sont présents dans le pack.
+        /// compatibilité (U+F900–U+FAFF). Mesuré sur les 3 018 valeurs
+        /// <c>*.zh-CN.resx</c> du dépôt : 2 997 portent de l'écriture chinoise et
+        /// **toutes** relèvent du bloc unifié — aucune d'Ext-A, aucune des formes de
+        /// compatibilité (0/2 997). Les deux plages hors bloc unifié sont donc une
+        /// marge défensive, pas une nécessité mesurée.
         /// <para>
-        /// Le contrôle « ≠ anglais » ci-dessus n'attrape que les copies INTÉGRALES
-        /// d'une valeur : une valeur à moitié traduite (moitié chinoise, moitié
-        /// anglaise) lui échappe. Exiger l'écriture chinoise dans chaque valeur
-        /// ferme ce trou.
+        /// Ce que ce contrôle ajoute au « ≠ anglais » du socle : une valeur peut
+        /// différer de l'anglais sans porter un seul caractère chinois (espacement,
+        /// ponctuation, marque latine, texte anglais reformulé) et traverser le
+        /// contrôle du socle. Exiger au moins un caractère chinois ferme ce trou-là.
+        /// </para>
+        /// <para>
+        /// Ce qu'il ne ferme PAS : une valeur à moitié traduite (moitié chinoise,
+        /// moitié anglaise) porte déjà un caractère chinois, donc elle passe. Ce
+        /// contrôle ne la voit pas et ne prétend pas la voir.
         /// </para>
         /// </summary>
         private static readonly Regex ChineseScript =
@@ -273,9 +282,10 @@ namespace Argumentum.AssetConverter.Tests
 
         /// <summary>
         /// Contrôle d'écriture : chaque valeur livrée non dispensée porte au moins
-        /// un caractère chinois. C'est le seul contrôle capable de voir une
-        /// traduction PARTIELLE — un libellé chinois suivi du texte anglais laissé
-        /// en place satisfait le contrôle « ≠ anglais ».
+        /// un caractère chinois. Il voit les valeurs qui diffèrent de l'anglais tout
+        /// en n'étant pas chinoises (espacement, ponctuation, marque latine, anglais
+        /// reformulé) ; il ne voit PAS une valeur à moitié traduite, qui porte déjà
+        /// un caractère chinois.
         /// </summary>
         [Theory]
         [MemberData(nameof(CoveredFiles))]
@@ -288,7 +298,7 @@ namespace Argumentum.AssetConverter.Tests
 
                 ChineseScript.IsMatch(value).Should().BeTrue(
                     $"{RelOf(dir, stem, "zh-CN")}:{key} — la valeur ne porte aucun caractère chinois ; "
-                    + $"valeur = « {value} » (traduction partielle ou valeur laissée en anglais)");
+                    + $"valeur = « {value} »");
             }
         }
 
