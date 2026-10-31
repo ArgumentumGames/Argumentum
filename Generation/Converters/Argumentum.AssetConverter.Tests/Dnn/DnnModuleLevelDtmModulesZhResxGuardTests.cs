@@ -38,6 +38,12 @@ namespace Argumentum.AssetConverter.Tests
     /// <c>[Journal…]</c> ou des références <c>{resx:…}</c> — aucun fragment
     /// anglais à traduire, le repli neutre rend la même chose).
     /// </para>
+    /// <para>
+    /// Depuis #2098 : contrôle d'écriture chinoise
+    /// (<see cref="EveryNonExemptValueCarriesChineseScript"/>) — chaque valeur
+    /// livrée porte au moins un caractère CJK, dispenses épinglées à 0
+    /// (<see cref="ScriptExempt"/>, census : 668/668).
+    /// </para>
     /// </summary>
     public class DnnModuleLevelDtmModulesZhResxGuardTests
     {
@@ -106,6 +112,37 @@ namespace Argumentum.AssetConverter.Tests
         private static readonly (string Dir, string Stem, string Key)[] VerbatimByDesign =
         {
         };
+
+        /// <summary>
+        /// Bloc CJK : Ext-A (U+3400–U+4DBF), unifié (U+4E00–U+9FFF) et formes de
+        /// compatibilité (U+F900–U+FAFF). Les deux plages hors bloc unifié sont
+        /// une marge défensive, pas une nécessité : sur les 3 018 valeurs
+        /// <c>*.zh-CN.resx</c> du dépôt, les 2 997 portant de l'écriture chinoise
+        /// relèvent TOUTES du bloc unifié (mesure #2098).
+        /// <para>
+        /// Ce que ce contrôle ajoute au « ≠ anglais » ci-dessous : une valeur peut
+        /// différer de l'anglais sans porter un seul caractère chinois (espacement,
+        /// ponctuation, marque latine, texte anglais reformulé) et traverser ce
+        /// contrôle. Exiger au moins un caractère chinois ferme ce trou-là.
+        /// </para>
+        /// <para>
+        /// Ce qu'il ne ferme PAS : une valeur à moitié traduite (moitié chinoise,
+        /// moitié anglaise) porte déjà un caractère chinois, donc elle passe. Ce
+        /// contrôle ne la voit pas et ne prétend pas la voir (limite constatée
+        /// sur #2098, énoncée dès l'origine).
+        /// </para>
+        /// </summary>
+        private static readonly Regex ChineseScript =
+            new(@"[㐀-䶿一-鿿豈-﫿]", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Valeurs dispensées du contrôle d'écriture. Census du lot (#2098 pour
+        /// la méthode, re-mesuré sur les 27 fichiers) : les 668 valeurs livrées
+        /// portent TOUTES l'écriture chinoise — la liste est donc VIDE et
+        /// épinglée à 0 : la première dispense sera une décision, jamais un
+        /// constat.
+        /// </summary>
+        private static readonly (string Dir, string Stem, string Key)[] ScriptExempt = VerbatimByDesign;
 
         private static readonly Regex Placeholder = new(@"\{\d+\}", RegexOptions.Compiled);
 
@@ -246,6 +283,42 @@ namespace Argumentum.AssetConverter.Tests
             VerbatimByDesign.Should().BeEmpty(
                 "ce lot ne porte aucune copie de l'anglais par conception : chaque ajout doit être "
                 + "décidé, pas constaté — et une traduction recopiée est un lot non traduit");
+        }
+
+        /// <summary>
+        /// Contrôle d'écriture : chaque valeur livrée non dispensée porte au moins
+        /// un caractère chinois. Il voit les valeurs qui diffèrent de l'anglais tout
+        /// en n'étant pas chinoises (espacement, ponctuation, marque latine, anglais
+        /// reformulé) ; il ne voit PAS une valeur à moitié traduite, qui porte déjà
+        /// un caractère chinois — voir <see cref="ChineseScript"/>.
+        /// </summary>
+        [Theory]
+        [MemberData(nameof(CoveredFiles))]
+        public void EveryNonExemptValueCarriesChineseScript(string dir, string stem, int _)
+        {
+            foreach (var (key, value) in Values(dir, stem, "zh-CN"))
+            {
+                if (ScriptExempt.Contains((dir, stem, key)))
+                    continue;
+
+                ChineseScript.IsMatch(value).Should().BeTrue(
+                    $"{RelOf(dir, stem, "zh-CN")}:{key} — la valeur ne porte aucun caractère chinois ; "
+                    + $"valeur = « {value} »");
+            }
+        }
+
+        /// <summary>
+        /// La liste des dispenses d'écriture est VIVANTE et ÉPINGLÉE : le census du
+        /// lot (668 valeurs, 0 sans écriture chinoise) n'en justifie AUCUNE, et la
+        /// première dispense devra viser un fichier du lot et une clé vivant au
+        /// neutre.
+        /// </summary>
+        [Fact]
+        public void TheScriptExemptListCannotGrowSilently()
+        {
+            ScriptExempt.Should().BeEmpty(
+                "census du lot : les 668 valeurs zh portent toutes l'écriture chinoise — une dispense "
+                + "nouvelle est une décision à consigner, jamais un constat pour faire passer un rouge");
         }
 
         /// <summary>
