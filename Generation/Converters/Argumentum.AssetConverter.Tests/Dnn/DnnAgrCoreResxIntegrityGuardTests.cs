@@ -202,32 +202,57 @@ namespace Argumentum.AssetConverter.Tests
 		/// ignorerait silencieusement toute dérogation.
 		/// </summary>
 		private static string[] AllowedMissing(string stem, string culture) =>
-			Resolve(AllowedMissingByFileAndCulture, AllowedMissingDefaultByStem, stem, culture);
+			Resolve(AllowedMissingByFileAndCulture, AllowedMissingDefaultByStem, stem, culture).Set;
 
 		/// <summary>
-		/// Résolution PURE, sur les dictionnaires passés — c'est la seule façon de
-		/// prouver la précédence sans muter un état statique partagé (les tests
-		/// d'une même collection s'exécutent en parallèle). Le test
-		/// <c>OverrideWinsOverTheFileDefault</c> s'en sert avec des dictionnaires
-		/// locaux ; la production l'appelle avec les deux déclarations ci-dessus.
+		/// Résolution PURE, sur les dictionnaires passés. La pureté n'est pas une
+		/// question de parallélisme (les tests d'une même classe partagent la même
+		/// collection xUnit et s'exécutent SÉQUENTIELLEMENT) : c'est la seule façon
+		/// de prouver la précédence sur des dictionnaires LOCAUX, sans toucher aux
+		/// déclarations de production. Le test <c>OverrideWinsOverTheFileDefault</c>
+		/// s'en sert avec des dictionnaires jetables ; la production l'appelle avec
+		/// les deux déclarations ci-dessus.
+		/// <para>
+		/// Elle renvoie aussi le PÉRIMÈTRE appliqué (<see cref="Resolve"/>.Scope) :
+		/// le message d'échec du consommateur nomme le chemin pris SANS le
+		/// recalculer à côté — un scope dérivé d'une seconde branche divergerait
+		/// le jour où la résolution en gagne une troisième.
+		/// </para>
 		/// </summary>
-		private static string[] Resolve(
+		private static (string[] Set, string Scope) Resolve(
 			IReadOnlyDictionary<(string Stem, string Culture), string[]> overrides,
 			IReadOnlyDictionary<string, string[]> defaultsByStem,
 			string stem,
 			string culture)
 		{
 			if (overrides.TryGetValue((stem, culture), out var declared))
-				return declared;
+				return (declared, $"dérogation déclarée pour le couple ({stem}, {culture})");
 
 			if (defaultsByStem.TryGetValue(stem, out var byStem))
-				return byStem;
+				return (byStem, $"défaut du fichier « {stem} » (aucune dérogation pour {culture})");
 
 			throw new InvalidOperationException(
 				$"Aucun ensemble manquant déclaré pour « {stem} » (couple {stem}.{culture}) : "
 				+ "ajouter le défaut du fichier dans AllowedMissingDefaultByStem, ou une dérogation "
 				+ "par couple dans AllowedMissingByFileAndCulture.");
 		}
+
+		/// <summary>
+		/// Une dérogation est MORTE si son ensemble est ÉQUIVALENT au défaut de son
+		/// fichier — mêmes clés, l'ordre près : le consommateur trie les deux côtés
+		/// avant de comparer, donc une telle dérogation ne change AUCUN test tout en
+		/// donnant l'illusion qu'un cas particulier est traité. Pure, pour être
+		/// prouvée sur dictionnaires locaux (<c>AnOverrideCopyingItsDefaultIsDead</c>)
+		/// — le dictionnaire réel étant vide, sa logique de refus n'a sinon aucun
+		/// sujet vivant en CI.
+		/// </summary>
+		private static bool OverrideIsDead(
+			IReadOnlyDictionary<string, string[]> defaultsByStem,
+			(string Stem, string Culture) key,
+			string[] declared) =>
+			defaultsByStem.TryGetValue(key.Stem, out var byStem)
+			&& declared.OrderBy(x => x, StringComparer.Ordinal)
+				.SequenceEqual(byStem.OrderBy(x => x, StringComparer.Ordinal));
 
 		private static readonly Regex Placeholder = new(@"\{\d+\}", RegexOptions.Compiled);
 
@@ -340,11 +365,11 @@ namespace Argumentum.AssetConverter.Tests
 			// Le périmètre de la déclaration appliquée est nommé dans le message :
 			// « défaut du fichier » et « dérogation du couple » n'ont pas la même
 			// portée, et un message qui ne le dit pas fait chercher au mauvais endroit.
-			var hasOverride = AllowedMissingByFileAndCulture.ContainsKey((stem, culture));
-			var scope = hasOverride
-				? $"dérogation déclarée pour le couple ({stem}, {culture})"
-				: $"défaut du fichier « {stem} » (aucune dérogation pour {culture})";
-			var declared = AllowedMissing(stem, culture).OrderBy(x => x, StringComparer.Ordinal).ToArray();
+			// Il vient DE LA RÉSOLUTION elle-même (Resolve.Scope) — pas d'une seconde
+			// branche recalculée à côté, qui divergerait si Resolve gagnait un chemin.
+			var resolved = Resolve(AllowedMissingByFileAndCulture, AllowedMissingDefaultByStem, stem, culture);
+			var scope = resolved.Scope;
+			var declared = resolved.Set.OrderBy(x => x, StringComparer.Ordinal).ToArray();
 
 			missing.Should().Equal(declared,
 				$"{stem}.{culture}.resx : l'ensemble des clés manquantes a changé, mesuré contre la "
@@ -376,7 +401,9 @@ namespace Argumentum.AssetConverter.Tests
 
 			foreach (var (culture, stem, _) in Covered)
 			{
-				// Aucun throw : prouve que la résolution aboutit pour les douze couples.
+				// Aucun throw : prouve que la résolution aboutit pour chaque couple
+				// couvert (5 fichiers × 3 cultures = 15 aujourd'hui — se recompter,
+				// pas se recopier).
 				AllowedMissing(stem, culture).Should().NotBeNull(
 					$"la résolution de l'ensemble manquant doit aboutir pour {stem}.{culture}");
 			}
@@ -388,6 +415,13 @@ namespace Argumentum.AssetConverter.Tests
 		/// dans une dérogation ne change aucun test — elle donne seulement l'illusion
 		/// qu'un cas particulier est traité, et masque le jour où les deux devraient
 		/// diverger.
+		/// <para>
+		/// L'équivalence est mesurée par <see cref="OverrideIsDead"/> — à l'ORDRE
+		/// près, comme le consommateur qui trie : une dérogation portant les mêmes
+		/// clés dans un autre ordre ne change aucun test non plus, et une jointure
+		/// de chaînes la déclarerait vivante à tort (en inventant de surcroît une
+		/// sémantique de séquence que personne d'autre n'utilise).
+		/// </para>
 		/// </summary>
 		[Fact]
 		public void EveryOverrideIsLive()
@@ -401,13 +435,34 @@ namespace Argumentum.AssetConverter.Tests
 				AllowedMissingDefaultByStem.Should().ContainKey(key.Stem,
 					$"la dérogation ({key.Stem}, {key.Culture}) vise un fichier qui n'a aucun défaut déclaré");
 
-				var baseline = string.Join("\u0001", AllowedMissingDefaultByStem[key.Stem]);
-				var overridden = string.Join("\u0001", declared);
-
-				overridden.Should().NotBe(baseline,
-					$"la dérogation ({key.Stem}, {key.Culture}) est identique au défaut de son fichier : "
-					+ "soit elle est inutile (la retirer), soit les deux ont divergé et l'un des deux est faux");
+				OverrideIsDead(AllowedMissingDefaultByStem, key, declared).Should().BeFalse(
+					$"la dérogation ({key.Stem}, {key.Culture}) est équivalente au défaut de son fichier "
+					+ "(mêmes clés, l'ordre près) : elle ne change aucun test — soit elle est inutile "
+					+ "(la retirer), soit les deux ont divergé et l'un des deux est faux");
 			}
+		}
+
+		/// <summary>
+		/// Contrôle inverse de <see cref="EveryOverrideIsLive"/> sur dictionnaires
+		/// LOCAUX : le dictionnaire réel étant vide, la logique de refus n'a aucun
+		/// sujet vivant en CI — sans ce test, une régression du prédicat (comparaison
+		/// ordonnée, jointure de chaînes) resterait verte. Mêmes clés dans un autre
+		/// ORDRE = morte ; clés différentes = vivante ; couple sans défaut = vivante
+		/// (l'absence de défaut est attrapée par la garde de couverture, pas ici).
+		/// </summary>
+		[Fact]
+		public void AnOverrideCopyingItsDefaultIsDead()
+		{
+			var defaults = new Dictionary<string, string[]> { ["S"] = new[] { "a", "b" } };
+
+			OverrideIsDead(defaults, ("S", "fr"), new[] { "b", "a" }).Should().BeTrue(
+				"mêmes clés dans un autre ordre : le consommateur trie, la dérogation ne change aucun test");
+			OverrideIsDead(defaults, ("S", "fr"), new[] { "a", "b" }).Should().BeTrue(
+				"copie exacte du défaut : déclaration morte");
+			OverrideIsDead(defaults, ("S", "fr"), new[] { "a", "c" }).Should().BeFalse(
+				"clés différentes : la dérogation change les tests, elle est vivante");
+			OverrideIsDead(defaults, ("T", "fr"), new[] { "a" }).Should().BeFalse(
+				"un couple sans défaut déclaré ne peut pas être jugé équivalent ici");
 		}
 
 		/// <summary>
@@ -426,9 +481,9 @@ namespace Argumentum.AssetConverter.Tests
 				[("S", "fr")] = new[] { "b" },
 			};
 
-			Resolve(overrides, defaults, "S", "fr").Should().Equal(new[] { "b" },
+			Resolve(overrides, defaults, "S", "fr").Set.Should().Equal(new[] { "b" },
 				"la dérogation du couple doit gagner sur le défaut du fichier");
-			Resolve(overrides, defaults, "S", "en").Should().Equal(new[] { "a" },
+			Resolve(overrides, defaults, "S", "en").Set.Should().Equal(new[] { "a" },
 				"un couple sans dérogation prend le défaut de son fichier");
 
 			Action unknown = () => Resolve(overrides, defaults, "T", "fr");
@@ -437,7 +492,7 @@ namespace Argumentum.AssetConverter.Tests
 
 			// Contrôle inverse de la précédence : sans dérogation, « fr » suivrait le
 			// défaut. Si l'assertion ci-dessus passait par accident, celle-ci tomberait.
-			Resolve(new Dictionary<(string, string), string[]>(), defaults, "S", "fr")
+			Resolve(new Dictionary<(string, string), string[]>(), defaults, "S", "fr").Set
 				.Should().Equal(new[] { "a" });
 		}
 
