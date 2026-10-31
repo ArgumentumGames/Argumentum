@@ -1,0 +1,82 @@
+{
+  "files": {
+    "Copyright.ascx": {
+      "Copyright.Text": "حق نشر (c) {0} {1}"
+    },
+    "Language.ascx": {
+      "Label.Text": "انتخاب زبان: "
+    },
+    "LinkToFullSite.ascx": {
+      "lnkPortal.Text": "مشاهدهٔ نسخهٔ کامل سایت"
+    },
+    "LinkToMobileSite.ascx": {
+      "lnkPortal.Text": "مشاهدهٔ نسخهٔ موبایل سایت"
+    },
+    "LinkToTabletSite.ascx": {
+      "lnkPortal.Text": "مشاهدهٔ نسخهٔ تبلت سایت"
+    },
+    "Privacy.ascx": {
+      "Privacy.Text": "بیانیهٔ حریم خصوصی"
+    },
+    "Search.ascx": {
+      "DropDownGlyph.AltText": "نوع جستجو را انتخاب کنید",
+      "NoResult.Text": "نتیجه‌ای یافت نشد",
+      "Placeholder.Text": "جستجو...",
+      "Search.Text": "جستجو",
+      "SearchClearQuery.Text": "پاک کردن متن جستجو",
+      "SeeMoreResults.Text": "مشاهدهٔ نتایج بیشتر",
+      "Site.Text": "سایت",
+      "Site.ToolTip": "جستجوی سایت",
+      "Web.Text": "وب",
+      "Web.ToolTip": "جستجوی وب گوگل"
+    },
+    "Tags.ascx": {
+      "Add.Text": "افزودن برچسب",
+      "Add.ToolTip": "برای افزودن برچسب روی این پیوند کلیک کنید.",
+      "Cancel.Text": "انصراف",
+      "Cancel.ToolTip": "برای انصراف از ویرایش بدون ذخیره کلیک کنید.",
+      "Category.ToolTip": "دسته‌ها",
+      "Save.Text": "ذخیره",
+      "Save.ToolTip": "برای ذخیرهٔ برچسب‌ها کلیک کنید.",
+      "Tag.ToolTip": "برچسب‌ها"
+    },
+    "Terms.ascx": {
+      "Terms.Text": "شرایط استفاده"
+    },
+    "Toast.ascx": {
+      "SeeAllMessage.Text": "مشاهدهٔ همهٔ پیام‌ها",
+      "SeeAllNotification.Text": "مشاهدهٔ همهٔ اعلان‌ها"
+    },
+    "TreeViewMenu.ascx": {
+      "GoUp.Text": "رفتن به والد",
+      "Parent.Text": "والد",
+      "Title.Text": "ناوبری سایت"
+    },
+    "User.ascx": {
+      "CheckMessages.Text": "بررسی پیام‌ها",
+      "CheckNotifications.Text": "بررسی اعلان‌ها",
+      "Messages.Text": "<span>{0}</span><strong> پیام</strong>",
+      "NoMessages.Text": "<strong> پیام</strong>",
+      "NoNotifications.Text": "<strong> اعلان</strong>",
+      "Notifications.Text": "<span>{0}</span><strong> اعلان</strong>",
+      "ProfileAvatar.Text": "تصویر نمایه",
+      "Register.Text": "ثبت‌نام",
+      "ToolTip.Text": "برای دیدن صفحهٔ نمایهٔ خود اینجا کلیک کنید.",
+      "ToolTipNewMessages.Text": "{0} پیام جدید دارید. برای دیدن صفحهٔ نمایهٔ خود اینجا کلیک کنید.",
+      "VisitMyProfile.Text": "دیدن نمایهٔ من"
+    },
+    "UserAndLogin.ascx": {
+      "Account.Text": "ویرایش حساب",
+      "EditProfile.Text": "ویرایش نمایه",
+      "Login.Text": "ورود",
+      "Logout.Text": "خروج",
+      "MessageCount.Text": "{0} پیام",
+      "Messages.Text": " پیام",
+      "Notifications.Text": " اعلان",
+      "OneMessage.Text": "1 پیام",
+      "Profile.Text": "نمایهٔ من",
+      "ProfilePicture.Text": "تصویر نمایهٔ من",
+      "Register.Text": "ثبت‌نام"
+    }
+  }
+}
