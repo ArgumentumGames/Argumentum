@@ -1,0 +1,10 @@
+{
+  "files": {
+    "Privacy.ascx": {
+      "ControlTitle_privacy.Text": "بيان الخصوصية"
+    },
+    "Terms.ascx": {
+      "ControlTitle_terms.Text": "شروط الاستخدام"
+    }
+  }
+}

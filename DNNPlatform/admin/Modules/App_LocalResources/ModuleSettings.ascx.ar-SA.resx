@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ModuleSettings.Text" xml:space="preserve">
+    <value>إعدادات الوحدة</value>
+  </data>
+<data name="plFriendlyName.Text" xml:space="preserve">
+    <value>الوحدة:</value>
+  </data>
+<data name="plFriendlyName.Help" xml:space="preserve">
+    <value>يعرض اسم الوحدة.</value>
+  </data>
+<data name="plTitle.Text" xml:space="preserve">
+    <value>عنوان الوحدة:</value>
+  </data>
+<data name="plTitle.Help" xml:space="preserve">
+    <value>أدخل عنوانًا للوحدة. سيظهر العنوان في شريط عنوان الحاوية لهذه الوحدة، إن كان مدعومًا من الحاوية.</value>
+  </data>
+<data name="PageSettings.Text" xml:space="preserve">
+    <value>إعدادات الصفحة</value>
+  </data>
+<data name="Security.Text" xml:space="preserve">
+    <value>الإعدادات المتقدمة</value>
+  </data>
+<data name="plAllTabs.Text" xml:space="preserve">
+    <value>عرض الوحدة على جميع الصفحات</value>
+  </data>
+<data name="plAllTabs.Help" xml:space="preserve">
+    <value>أشر الخانة لعرض الوحدة في الموضع نفسه على جميع صفحات الموقع.</value>
+  </data>
+<data name="plVisibility.Text" xml:space="preserve">
+    <value>طي/توسيع:</value>
+  </data>
+<data name="plVisibility.Help" xml:space="preserve">
+    <value>اختر الرؤية الافتراضية لهذه الوحدة، أي ما إذا كانت الوحدة مطوية أم موسعة.</value>
+  </data>
+<data name="plTab.Text" xml:space="preserve">
+    <value>النقل إلى الصفحة:</value>
+  </data>
+<data name="plTab.Help" xml:space="preserve">
+    <value>اختر الصفحة التي ستُنقل إليها نسخة الوحدة هذه.</value>
+  </data>
+<data name="plHeader.Text" xml:space="preserve">
+    <value>الرأس:</value>
+  </data>
+<data name="plHeader.Help" xml:space="preserve">
+    <value>أدخل نص رأس يظهر أعلى محتوى هذه الوحدة.</value>
+  </data>
+<data name="plFooter.Text" xml:space="preserve">
+    <value>التذييل:</value>
+  </data>
+<data name="plFooter.Help" xml:space="preserve">
+    <value>أدخل نص تذييل يظهر أسفل محتوى هذه الوحدة.</value>
+  </data>
+<data name="plIcon.Text" xml:space="preserve">
+    <value>الأيقونة:</value>
+  </data>
+<data name="plIcon.Help" xml:space="preserve">
+    <value>اختر أيقونة تُعرض في شريط عنوان هذه الوحدة.</value>
+  </data>
+<data name="plAlign.Text" xml:space="preserve">
+    <value>المحاذاة:</value>
+  </data>
+<data name="plAlign.Help" xml:space="preserve">
+    <value>اختر المحاذاة الافتراضية لمحتوى الوحدة.</value>
+  </data>
+<data name="plColor.Text" xml:space="preserve">
+    <value>اللون:</value>
+  </data>
+<data name="plColor.Help" xml:space="preserve">
+    <value>أدخل اسم لون أو قيمة سداسية عشرية لخلفية هذه الوحدة.</value>
+  </data>
+<data name="plBorder.Text" xml:space="preserve">
+    <value>الحد:</value>
+  </data>
+<data name="plBorder.Help" xml:space="preserve">
+    <value>أدخل عرض حد الوحدة.</value>
+  </data>
+<data name="plModuleContainer.Text" xml:space="preserve">
+    <value>حاوية الوحدة:</value>
+  </data>
+<data name="plModuleContainer.Help" xml:space="preserve">
+    <value>اختر حاوية للوحدة.</value>
+  </data>
+<data name="plPermissions.Text" xml:space="preserve">
+    <value>الأذونات:</value>
+  </data>
+<data name="plPermissions.Help" xml:space="preserve">
+    <value>حدد أذونات العرض والتحرير بتأشير أو إلغاء تأشير الخانات في الشبكة. أشر خانة «وراثة أذونات العرض» لاستخدام إذن الصفحة للوحدة.</value>
+  </data>
+<data name="plCacheTime.Text" xml:space="preserve">
+    <value>وقت التخزين المؤقت (ثوانٍ):</value>
+  </data>
+<data name="plCacheTime.Help" xml:space="preserve">
+    <value>أدخل عدد الثواني التي يُخزَّن فيها محتوى هذه الوحدة مؤقتًا.</value>
+  </data>
+<data name="plStartDate.Text" xml:space="preserve">
+    <value>تاريخ البدء:</value>
+  </data>
+<data name="plStartDate.Help" xml:space="preserve">
+    <value>اختر تاريخ بدء عرض هذه الوحدة. لن تكون الوحدة مرئية قبل هذا التاريخ إلا للمستخدمين الذين يملكون إذن الإدارة.</value>
+  </data>
+<data name="plEndDate.Text" xml:space="preserve">
+    <value>تاريخ الانتهاء:</value>
+  </data>
+<data name="plEndDate.Help" xml:space="preserve">
+    <value>اختر تاريخ انتهاء عرض هذه الوحدة. لن تكون الوحدة مرئية بعد هذا التاريخ إلا للمستخدمين الذين يملكون إذن الإدارة.</value>
+  </data>
+<data name="plMoniker.Text" xml:space="preserve">
+    <value>معرّف الوحدة:</value>
+  </data>
+<data name="plMoniker.Help" xml:space="preserve">
+    <value>معرّف فريد لهذه الوحدة على الصفحة. يمكن لمستدعي WEB API استخدامه لتحديد سياق الصفحة والوحدة.</value>
+  </data>
+<data name="plDefault.Text" xml:space="preserve">
+    <value>تعيين كإعدادات افتراضية</value>
+  </data>
+<data name="plDefault.Help" xml:space="preserve">
+    <value>أشر هذه الخانة لاستخدام إعدادات الصفحة لهذه الوحدة كإعدادات افتراضية عند إضافة وحدات جديدة. للمسؤولين فقط.</value>
+  </data>
+<data name="plAllModules.Text" xml:space="preserve">
+    <value>التطبيق على جميع الوحدات</value>
+  </data>
+<data name="plAllModules.Help" xml:space="preserve">
+    <value>أشر هذه الخانة لتطبيق إعدادات الصفحة لهذه الوحدة على جميع الوحدات الموجودة. للمسؤولين فقط.</value>
+  </data>
+<data name="GeneralDetails.Text" xml:space="preserve">
+    <value>الإعدادات الأساسية</value>
+  </data>
+<data name="Appearance.Text" xml:space="preserve">
+    <value>الإعدادات الأساسية</value>
+  </data>
+<data name="OtherSettings.Text" xml:space="preserve">
+    <value>الإعدادات المتقدمة</value>
+  </data>
+<data name="InheritPermissions.Text" xml:space="preserve">
+    <value>وراثة أذونات &lt;b&gt;العرض&lt;/b&gt; من &lt;b&gt;الصفحة&lt;/b&gt;</value>
+  </data>
+<data name="ControlTitle_module.Text" xml:space="preserve">
+    <value>الوحدة</value>
+  </data>
+<data name="plDisplayTitle.Text" xml:space="preserve">
+    <value>عرض الحاوية</value>
+  </data>
+<data name="plDisplayTitle.Help" xml:space="preserve">
+    <value>أشر هذه الخانة لعرض حاوية الوحدة.</value>
+  </data>
+<data name="plDisplaySyndicate.Text" xml:space="preserve">
+    <value>السماح بالتلقيم (RSS)</value>
+  </data>
+<data name="plDisplayPrint.Help" xml:space="preserve">
+    <value>أشر هذه الخانة لتمكين الطباعة على هذه الوحدة.</value>
+  </data>
+<data name="plDisplaySyndicate.Help" xml:space="preserve">
+    <value>أشر هذه الخانة لتمكين RSS على هذه الوحدة.</value>
+  </data>
+<data name="plDisplayPrint.Text" xml:space="preserve">
+    <value>السماح بالطباعة</value>
+  </data>
+<data name="valStartDate.ErrorMessage" xml:space="preserve">
+    <value>تاريخ بدء غير صالح.</value>
+  </data>
+<data name="valEndDate.ErrorMessage" xml:space="preserve">
+    <value>تاريخ انتهاء غير صالح.</value>
+  </data>
+<data name="valCacheTime.ErrorMessage" xml:space="preserve">
+    <value>وقت تخزين مؤقت غير صالح.</value>
+  </data>
+<data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;إعدادات الوحدة&lt;/h1&gt;&lt;p&gt;إدارة إعدادات الوحدة للصفحة الحالية. يتيح لك ذلك تحديد خصائص الوحدة بما في ذلك المحتوى والأذونات وخصائص العرض.&lt;/p&gt;</value>
+  </data>
+<data name="valBorder.ErrorMessage" xml:space="preserve">
+    <value>حد غير صالح (يجب أن يكون عددًا بين 0 و9).</value>
+  </data>
+<data name="valEndDate2.ErrorMessage" xml:space="preserve">
+    <value>يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء.</value>
+  </data>
+<data name="plNewTabs.Help" xml:space="preserve">
+    <value>أشر هذه الخانة لإضافة الوحدة إلى الصفحات الجديدة فقط. للمسؤولين فقط.</value>
+  </data>
+<data name="plNewTabs.Text" xml:space="preserve">
+    <value>الإضافة إلى الصفحات الجديدة فقط</value>
+  </data>
+<data name="plWebSlice.Help" xml:space="preserve">
+    <value>أشر هذه الخانة لجعل هذه الوحدة Web Slice في IE8.</value>
+  </data>
+<data name="plWebSlice.Text" xml:space="preserve">
+    <value>هو Web Slice</value>
+  </data>
+<data name="plWebSliceExpiry.Help" xml:space="preserve">
+    <value>أدخل تاريخ انتهاء صلاحية Web Slice أو اتركه فارغًا لاستخدام تاريخ انتهاء الوحدة.</value>
+  </data>
+<data name="plWebSliceExpiry.Text" xml:space="preserve">
+    <value>تنتهي صلاحية Web Slice في:</value>
+  </data>
+<data name="plWebSliceTitle.Help" xml:space="preserve">
+    <value>أدخل عنوانًا لـ Web Slice أو اتركه فارغًا لاستخدام عنوان الوحدة.</value>
+  </data>
+<data name="plWebSliceTitle.Text" xml:space="preserve">
+    <value>عنوان Web Slice:</value>
+  </data>
+<data name="plWebSliceTTL.Help" xml:space="preserve">
+    <value>أدخل مدة البقاء (TTL) لهذا Web Slice بالدقائق أو اتركه فارغًا لاستخدام وقت التخزين المؤقت للوحدة (محوّلًا إلى دقائق).</value>
+  </data>
+<data name="plWebSliceTTL.Text" xml:space="preserve">
+    <value>مدة بقاء Web Slice:</value>
+  </data>
+<data name="valWebSliceExpiry.ErrorMessage" xml:space="preserve">
+    <value>تاريخ انتهاء غير صالح</value>
+  </data>
+<data name="valWebSliceTTL.ErrorMessage" xml:space="preserve">
+    <value>مدة بقاء غير صالحة — يجب أن تكون القيمة عددًا صحيحًا.</value>
+  </data>
+<data name="InstalledOn.Text" xml:space="preserve">
+    <value>أُضيفت هذه الوحدة إلى الصفحات التالية:</value>
+  </data>
+<data name="ModuleInstalledOn.Text" xml:space="preserve">
+    <value>الصفحات المُضافة إليها</value>
+  </data>
+<data name="InstalledOn.Help" xml:space="preserve">
+    <value>تعرض هذه القائمة الصفحات التي أُضيفت إليها هذه الوحدة باستخدام ميزة «إضافة وحدة موجودة». يمكن إضافة وحدة موجودة إلى صفحات أخرى باستخدام الميزة نفسها.</value>
+  </data>
+<data name="MsgInstalledOnNone.Text" xml:space="preserve">
+    <value>لم تُضف نسخة الوحدة هذه إلى أي صفحات إضافية.</value>
+  </data>
+<data name="MsgInstalledOnAll.Text" xml:space="preserve">
+    <value>تُعرض نسخة الوحدة هذه على جميع الصفحات.</value>
+  </data>
+<data name="CustomSettings.Text" xml:space="preserve">
+    <value>إعدادات {0}</value>
+  </data>
+<data name="ModuleExists.Text" xml:space="preserve">
+    <value>هذه الوحدة موجودة مسبقًا في الصفحة الهدف (قد تكون في سلة المحذوفات) ولا يمكن أن توجد أكثر من نسخة واحدة من وحدة في صفحة واحدة.</value>
+  </data>
+<data name="CacheProvider.Help" xml:space="preserve">
+    <value>اختر المزوّد المستخدم لهذه الصفحة.</value>
+  </data>
+<data name="CacheDuration.Help" xml:space="preserve">
+    <value>أدخل المدة (بالثواني) لالتخزين المؤقت للصفحة. يجب أن يكون هذا عددًا صحيحًا.</value>
+  </data>
+<data name="CacheProvider.Text" xml:space="preserve">
+    <value>مزوّد التخزين المؤقت للإخراج</value>
+  </data>
+<data name="CacheDuration.Text" xml:space="preserve">
+    <value>مدة التخزين المؤقت (ثوانٍ)</value>
+  </data>
+<data name="CacheDurationWarning.Text" xml:space="preserve">
+    <value>أشارت هذه الوحدة إلى توصية بتعطيل التخزين المؤقت (اختر NONE من قائمة مزوّد التخزين المؤقت للإخراج أعلاه). لا يُنصح بتمكين التخزين المؤقت على هذه الوحدة وقد يؤدي إلى عرض بيانات قديمة.</value>
+  </data>
+<data name="CacheInherited.Text" xml:space="preserve">
+    <value>موروث</value>
+  </data>
+<data name="plTags.Help" xml:space="preserve">
+    <value>اختر عناصر من القائمة المنسدلة لوسم هذه الوحدة.</value>
+  </data>
+<data name="plTags.Text" xml:space="preserve">
+    <value>الوسوم:</value>
+  </data>
+<data name="plAdminBorder.Help" xml:space="preserve">
+    <value>أشر هذه الخانة لإخفاء الرسالة أعلى الوحدة التي تفيد بأنها مرئية للمسؤولين فقط (إن لم تُمنح أذونات إضافية).</value>
+  </data>
+<data name="plAdminBorder.Text" xml:space="preserve">
+    <value>إخفاء رسالة المسؤول</value>
+  </data>
+<data name="cultureLabel.Help" xml:space="preserve">
+    <value>ثقافة هذه الوحدة.</value>
+  </data>
+<data name="cultureLabel.Text" xml:space="preserve">
+    <value>ثقافة الوحدة:</value>
+  </data>
+<data name="defaultCultureLabel.Help" xml:space="preserve">
+    <value>انقر هذا الرابط لعرض نسخة هذه الوحدة بالثقافة الافتراضية.</value>
+  </data>
+<data name="defaultCultureLabel.Text" xml:space="preserve">
+    <value>الثقافة الافتراضية:</value>
+  </data>
+<data name="Bind.Text" xml:space="preserve">
+    <value>ربط</value>
+  </data>
+<data name="edit.Text" xml:space="preserve">
+    <value>تحرير</value>
+  </data>
+<data name="UnBind.Text" xml:space="preserve">
+    <value>فصل الربط</value>
+  </data>
+<data name="LocalizedModules.Text" xml:space="preserve">
+    <value>توطين الوحدة</value>
+  </data>
+<data name="Translated.Text" xml:space="preserve">
+    <value>وضع علامة «مترجم»</value>
+  </data>
+<data name="UnTranslated.Text" xml:space="preserve">
+    <value>وضع علامة «غير مترجم»</value>
+  </data>
+<data name="CreateBoundCopies.Text" xml:space="preserve">
+    <value>إنشاء نسخ مرتبطة</value>
+  </data>
+<data name="Permissions.Text" xml:space="preserve">
+    <value>الأذونات</value>
+  </data>
+<data name="CacheSettings.Text" xml:space="preserve">
+    <value>إعدادات التخزين المؤقت</value>
+  </data>
+<data name="ContainerPreview.Text" xml:space="preserve">
+    <value>معاينة</value>
+  </data>
+<data name="ExpandAll.Text" xml:space="preserve">
+    <value>توسيع الكل</value>
+  </data>
+<data name="PreviewNoSelectionMessage.Text" xml:space="preserve">
+    <value>اختر حاوية للمعاينة.</value>
+  </data>
+<data name="lblNoRecords.Text" xml:space="preserve">
+    <value>لم تُضف هذه الوحدة إلى أي صفحات أخرى.</value>
+  </data>
+<data name="Page.Header" xml:space="preserve">
+    <value>الصفحة</value>
+  </data>
+<data name="Site.Header" xml:space="preserve">
+    <value>الموقع</value>
+  </data>
+<data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>إعدادات {0}</value>
+  </data>
+<data name="AllowIndexLabel.Help" xml:space="preserve">
+    <value>أشر هذه الخانة إذا كان يجب أن تفهرس زواحف البحث هذه الوحدة.</value>
+  </data>
+<data name="AllowIndexLabel.Text" xml:space="preserve">
+    <value>السماح بالفهرسة</value>
+  </data>
+<data name="isShareableLabel.Help" xml:space="preserve">
+    <value>أشر هذه الخانة للسماح بمشاركة الوحدة عبر المواقع.</value>
+  </data>
+<data name="isShareableLabel.Text" xml:space="preserve">
+    <value>قابل للمشاركة</value>
+  </data>
+<data name="isShareableViewOnlyLabel.Help" xml:space="preserve">
+    <value>أشر هذه الخانة لحصر مشاركة الوحدة في العرض فقط.</value>
+  </data>
+<data name="isShareableViewOnlyLabel.Text" xml:space="preserve">
+    <value>عرض فقط</value>
+  </data>
+<data name="MonikerExists.Text" xml:space="preserve">
+    <value>قيمة المعرّف الجديدة موجودة مسبقًا؛ يجب أن تكون فريدة في الموقع.</value>
+  </data>
+</root>

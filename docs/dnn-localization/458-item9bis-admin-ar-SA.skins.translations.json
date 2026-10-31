@@ -1,0 +1,82 @@
+{
+  "files": {
+    "Copyright.ascx": {
+      "Copyright.Text": "حقوق النشر (c) {0} {1}"
+    },
+    "Language.ascx": {
+      "Label.Text": "اختر اللغة: "
+    },
+    "LinkToFullSite.ascx": {
+      "lnkPortal.Text": "عرض الموقع الكامل"
+    },
+    "LinkToMobileSite.ascx": {
+      "lnkPortal.Text": "عرض موقع الجوال"
+    },
+    "LinkToTabletSite.ascx": {
+      "lnkPortal.Text": "عرض موقع الجهاز اللوحي"
+    },
+    "Privacy.ascx": {
+      "Privacy.Text": "بيان الخصوصية"
+    },
+    "Search.ascx": {
+      "DropDownGlyph.AltText": "اختر نوع البحث",
+      "NoResult.Text": "لا نتائج",
+      "Placeholder.Text": "بحث...",
+      "Search.Text": "بحث",
+      "SearchClearQuery.Text": "مسح نص البحث",
+      "SeeMoreResults.Text": "عرض نتائج إضافية",
+      "Site.Text": "الموقع",
+      "Site.ToolTip": "بحث الموقع",
+      "Web.Text": "الويب",
+      "Web.ToolTip": "بحث Google على الويب"
+    },
+    "Tags.ascx": {
+      "Add.Text": "إضافة وسوم",
+      "Add.ToolTip": "انقر هذا الرابط لإضافة وسم.",
+      "Cancel.Text": "إلغاء",
+      "Cancel.ToolTip": "انقر لإلغاء التحرير دون حفظ.",
+      "Category.ToolTip": "الفئات",
+      "Save.Text": "حفظ",
+      "Save.ToolTip": "انقر لحفظ الوسوم.",
+      "Tag.ToolTip": "الوسوم"
+    },
+    "Terms.ascx": {
+      "Terms.Text": "شروط الاستخدام"
+    },
+    "Toast.ascx": {
+      "SeeAllMessage.Text": "عرض كل الرسائل",
+      "SeeAllNotification.Text": "عرض كل الإشعارات"
+    },
+    "TreeViewMenu.ascx": {
+      "GoUp.Text": "الانتقال إلى الأصل",
+      "Parent.Text": "الأصل",
+      "Title.Text": "تنقل الموقع"
+    },
+    "User.ascx": {
+      "CheckMessages.Text": "فحص الرسائل",
+      "CheckNotifications.Text": "فحص الإشعارات",
+      "Messages.Text": "<span>{0}</span><strong> رسائل</strong>",
+      "NoMessages.Text": "<strong> رسائل</strong>",
+      "NoNotifications.Text": "<strong> إشعارات</strong>",
+      "Notifications.Text": "<span>{0}</span><strong> إشعارات</strong>",
+      "ProfileAvatar.Text": "صورة الملف الشخصي",
+      "Register.Text": "تسجيل",
+      "ToolTip.Text": "انقر هنا لزيارة صفحة ملفك الشخصي.",
+      "ToolTipNewMessages.Text": "لديك {0} رسالة جديدة. انقر هنا لزيارة صفحة ملفك الشخصي.",
+      "VisitMyProfile.Text": "زيارة ملفي الشخصي"
+    },
+    "UserAndLogin.ascx": {
+      "Account.Text": "تحرير الحساب",
+      "EditProfile.Text": "تحرير الملف الشخصي",
+      "Login.Text": "تسجيل الدخول",
+      "Logout.Text": "تسجيل الخروج",
+      "MessageCount.Text": "{0} رسالة",
+      "Messages.Text": " رسائل",
+      "Notifications.Text": " إشعارات",
+      "OneMessage.Text": "رسالة واحدة",
+      "Profile.Text": "ملفي الشخصي",
+      "ProfilePicture.Text": "صورة ملفي الشخصي",
+      "Register.Text": "تسجيل"
+    }
+  }
+}

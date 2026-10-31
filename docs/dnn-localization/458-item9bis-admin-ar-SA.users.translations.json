@@ -1,0 +1,8 @@
+{
+  "files": {
+    "ViewProfile.ascx": {
+      "ControlTitle_viewprofile.Text": "عرض الملف الشخصي",
+      "NoProperties.Text": "اختار هذا المستخدم إخفاء ملفه الشخصي."
+    }
+  }
+}
