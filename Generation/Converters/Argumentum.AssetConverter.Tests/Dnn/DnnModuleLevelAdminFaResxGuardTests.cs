@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using FluentAssertions;
 using Xunit;
@@ -9,11 +11,12 @@ namespace Argumentum.AssetConverter.Tests
     /// 328 clés que zh-CN (PR #2088) et ar-SA (PR #2093), sous-classe du socle
     /// abstrait (motif <c>controls</c>, décision du 31/10). La seule règle
     /// propre au persan est la couverture d'écriture : le contrôle « ≠ anglais »
-    /// du socle n'attrape que les copies INTÉGRALES — une valeur à moitié
-    /// traduite (le libellé traduit, le reste du texte laissé en anglais) passe
-    /// inaperçue. La présence de l'écriture persane dans chaque valeur la
-    /// rattrape (motif prouvé par le contrôle inverse latin-non-anglais du lot
-    /// controls fa-IR, PR #2096).
+    /// du socle compare au neutre, donc une valeur qui diffère de l'anglais
+    /// **sans porter un seul caractère persan** (espacement, ponctuation, marque
+    /// latine, anglais reformulé) le traverse — c'est ce trou-là que la règle
+    /// ferme. Elle ne ferme PAS la traduction partielle : une valeur à moitié
+    /// traduite porte déjà un caractère persan, donc elle passe, et la règle ne
+    /// prétend pas la voir.
     /// <para>
     /// ⚠️ L'alphabet persan vit dans le bloc arabe U+0600–U+06FF (lettres
     /// partagées + پ چ ژ گ ی ک) : aucune seconde plage n'est nécessaire, et la
@@ -46,5 +49,35 @@ namespace Argumentum.AssetConverter.Tests
             VerbatimByDesign.Should().BeEmpty(
                 "le lot admin fa-IR ne comporte aucune copie de l'anglais par conception, parité avec zh-CN et ar-SA");
         }
+
+        /// <summary>
+        /// Valeurs du lot pour une culture : les clés livrées, moins les verbatim
+        /// déclarés (les valeurs légitimement latines, qui n'ont rien à porter).
+        /// </summary>
+        private List<string> LotValues(string culture) =>
+            Covered.SelectMany(c => Values(c.Dir, c.Stem, culture)
+                    .Where(v => !VerbatimByDesign.Contains((c.Dir, c.Stem, v.Key)))
+                    .Select(v => v.Value))
+                .ToList();
+
+        /// <summary>
+        /// Fait de LOT : ce pack est du persan, pas une copie de l'arabe. Le contrôle
+        /// d'écriture ci-dessus borne au bloc U+0600–U+06FF, commun aux deux langues —
+        /// il accepterait une traduction arabe à 100 %. Deux mesures de lot l'en
+        /// empêchent : un plancher de lettres propres au persan, et l'absence totale
+        /// de ي / ك / ى.
+        /// </summary>
+        [Fact]
+        public void TheLotIsPersianNotAnArabicCopy() =>
+            PersianScriptMarkers.AssertLotIsPersian(LotValues(Culture), "admin/fa-IR");
+
+        /// <summary>
+        /// Contrôle inverse, rejoué à chaque exécution : le même instrument appliqué au
+        /// lot <c>ar-SA</c> des mêmes fichiers doit échouer aux DEUX critères. Sans lui,
+        /// un plancher trop bas resterait vert sur une copie arabe.
+        /// </summary>
+        [Fact]
+        public void TheInstrumentRejectsTheArabicLot() =>
+            PersianScriptMarkers.AssertInstrumentRejectsTheArabicLot(LotValues("ar-SA"), "admin/ar-SA");
     }
 }
