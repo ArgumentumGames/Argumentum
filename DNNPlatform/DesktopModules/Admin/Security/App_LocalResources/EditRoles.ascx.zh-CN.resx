@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="https://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BasicSettings.Text" xml:space="preserve">
+    <value>基本设置</value>
+  </data>
+<data name="BasicSettingsDescription.Text" xml:space="preserve">
+    <value>在此部分，你可以设置此角色的基本选项。</value>
+  </data>
+<data name="RoleName.Text" xml:space="preserve">
+    <value>角色名称：</value>
+  </data>
+<data name="RoleName.Help" xml:space="preserve">
+    <value>输入角色的名称。</value>
+  </data>
+<data name="Description.Text" xml:space="preserve">
+    <value>描述：</value>
+  </data>
+<data name="Description.Help" xml:space="preserve">
+    <value>输入角色的描述。</value>
+  </data>
+<data name="PublicRole.Text" xml:space="preserve">
+    <value>公开角色：</value>
+  </data>
+<data name="PublicRole.Help" xml:space="preserve">
+    <value>如果用户可以通过其用户账户的「管理服务」页面订阅此角色，请勾选此框。</value>
+  </data>
+<data name="AutoAssignment.Text" xml:space="preserve">
+    <value>自动分配：</value>
+  </data>
+<data name="AutoAssignment.Help" xml:space="preserve">
+    <value>如果用户被自动分配到此角色，请勾选此框</value>
+  </data>
+<data name="AdvancedSettings.Text" xml:space="preserve">
+    <value>高级设置</value>
+  </data>
+<data name="AdvancedSettingsHelp.Text" xml:space="preserve">
+    <value>在此部分，你可以设置此角色的更多高级选项。</value>
+  </data>
+<data name="ServiceFee.Text" xml:space="preserve">
+    <value>服务费</value>
+  </data>
+<data name="ServiceFee.Help" xml:space="preserve">
+    <value>输入此角色用户需支付的费用。</value>
+  </data>
+<data name="BillingPeriod.Text" xml:space="preserve">
+    <value>计费周期（每）</value>
+  </data>
+<data name="BillingPeriod.Help" xml:space="preserve">
+    <value>这两个字段配合使用以输入计费周期，例如 2 周 or 1 个月</value>
+  </data>
+<data name="TrialFee.Text" xml:space="preserve">
+    <value>试用费</value>
+  </data>
+<data name="TrialFee.Help" xml:space="preserve">
+    <value>输入此角色用户需支付的试用费。</value>
+  </data>
+<data name="TrialPeriod.Text" xml:space="preserve">
+    <value>试用周期（每）</value>
+  </data>
+<data name="TrialPeriod.Help" xml:space="preserve">
+    <value>这两个字段配合使用以输入试用周期，例如 2 周 or 1 个月</value>
+  </data>
+<data name="cmdManage.Text" xml:space="preserve">
+    <value>管理此角色中的用户</value>
+  </data>
+<data name="valRoleName.Text" xml:space="preserve">
+    <value>&lt;br&gt;必须输入有效的名称。</value>
+  </data>
+<data name="valServiceFee1.Text" xml:space="preserve">
+    <value>&lt;br&gt;输入的服务费值无效。</value>
+  </data>
+<data name="valServiceFee2.Text" xml:space="preserve">
+    <value>&lt;br&gt;服务费必须大于或等于零。</value>
+  </data>
+<data name="valBillingPeriod1.Text" xml:space="preserve">
+    <value>&lt;br&gt;输入的计费周期值无效。</value>
+  </data>
+<data name="valBillingPeriod2.Text" xml:space="preserve">
+    <value>&lt;br&gt;计费周期必须大于零。</value>
+  </data>
+<data name="valTrialFee1.Text" xml:space="preserve">
+    <value>&lt;br&gt;输入的试用费值无效。</value>
+  </data>
+<data name="valTrialFee2.Text" xml:space="preserve">
+    <value>&lt;br&gt;试用费必须大于或等于零。</value>
+  </data>
+<data name="valTrialPeriod1.Text" xml:space="preserve">
+    <value>&lt;br&gt;输入的试用周期值无效。</value>
+  </data>
+<data name="valTrialPeriod2.Text" xml:space="preserve">
+    <value>&lt;br&gt;试用周期必须大于零。</value>
+  </data>
+<data name="ControlTitle_edit.Text" xml:space="preserve">
+    <value>编辑安全角色</value>
+  </data>
+<data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;关于编辑安全角色&lt;/h1&gt;&lt;p&gt;管理员可以管理为其站点定义的安全角色。此模块允许你添加新安全角色、修改现有安全角色、删除安全角色，以及管理分配到安全角色的用户。&lt;/p&gt;</value>
+  </data>
+<data name="plRoleGroups.Text" xml:space="preserve">
+    <value>角色组：</value>
+  </data>
+<data name="plRoleGroups.Help" xml:space="preserve">
+    <value>选择此角色所属的角色组。</value>
+  </data>
+<data name="plRSVPCode.Text" xml:space="preserve">
+    <value>RSVP 代码：</value>
+  </data>
+<data name="plRSVPCode.Help" xml:space="preserve">
+    <value>为此角色输入一个 RSVP 代码。用户在其用户账户的「管理服务」页面输入此代码即可轻松订阅此角色。</value>
+  </data>
+<data name="plRSVPLink.Text" xml:space="preserve">
+    <value>RSVP 链接：</value>
+  </data>
+<data name="plRSVPLink.Help" xml:space="preserve">
+    <value>为此角色保存 RSVP 代码后，将显示一个允许用户订阅此角色的链接。</value>
+  </data>
+<data name="plIcon.Text" xml:space="preserve">
+    <value>图标：</value>
+  </data>
+<data name="plIcon.Help" xml:space="preserve">
+    <value>为此角色选择一个图标。</value>
+  </data>
+<data name="DuplicateRole.Text" xml:space="preserve">
+    <value>已存在同名角色。未添加该角色。</value>
+  </data>
+<data name="ProcessorWarning.Text" xml:space="preserve">
+    <value>&lt;b&gt;警告：&lt;/b&gt; 必须先在「管理 &gt; 站点设置」页面配置支付处理器设置，才能启用基于费用的角色/服务。</value>
+  </data>
+<data name="IncompatibleFee.Text" xml:space="preserve">
+    <value>如果要为此角色输入费用，必须选择计费频率。</value>
+  </data>
+<data name="valRoleName2.Text" xml:space="preserve">
+    <value>&lt;br&gt;名称无效 — 角色名不能包含以下字符：&amp; $ + , / ? ~ # &lt; &gt; ¿ ¡ « » !  . :  * ' [ ]</value>
+  </data>
+<data name="securityModeListLabel.Help" xml:space="preserve">
+    <value>选择此角色/组的安全模式。</value>
+  </data>
+<data name="securityModeListLabel.Text" xml:space="preserve">
+    <value>安全模式：</value>
+  </data>
+<data name="statusListLabel.Help" xml:space="preserve">
+    <value>选择此角色/组的状态。</value>
+  </data>
+<data name="statusListLabel.Text" xml:space="preserve">
+    <value>状态：</value>
+  </data>
+<data name="SystemRoleWarning.Text" xml:space="preserve">
+    <value>此角色是系统角色，只允许最少的编辑。</value>
+  </data>
+<data name="AssignToExistUsers.Help" xml:space="preserve">
+    <value>将此角色分配给所有现有用户。</value>
+  </data>
+<data name="AssignToExistUsers.Text" xml:space="preserve">
+    <value>分配给现有用户：</value>
+  </data>
+</root>

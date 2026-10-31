@@ -1,0 +1,27 @@
+{
+ "files": {
+  "Settings.ascx": {
+   "ControlTitle_settings.Text": "查看资料设置",
+   "IncludeButton.Help": "勾选此框以包含「编辑资料」按钮。",
+   "IncludeButton.Text": "包含编辑按钮：",
+   "LoadDefault.Confirm": "这将覆盖现有模板。确定要继续吗？",
+   "LoadDefault.Text": "加载默认",
+   "plTemplate.Help": "输入用户资料显示模板。",
+   "plTemplate.Text": "资料模板："
+  },
+  "ViewProfile.ascx": {
+   "AboutMe.Text": "关于我",
+   "EmptyAboutMe.Text": "此用户没有个人简介信息。",
+   "EmptyLocation.Text": "此用户没有位置信息。",
+   "EmptyGetInTouch.Text": "此用户没有联系信息。",
+   "ControlTitle_viewprofile.Text": "查看资料",
+   "Edit.Text": "编辑资料",
+   "Email.Text": "电子邮件",
+   "GetInTouch.Text": "联系方式",
+   "Location.Text": "位置",
+   "MyAccount.Text": "我的账户",
+   "NoProperties.Text": "此用户选择隐藏其资料。"
+  },
+  "SharedResources": {}
+ }
+}

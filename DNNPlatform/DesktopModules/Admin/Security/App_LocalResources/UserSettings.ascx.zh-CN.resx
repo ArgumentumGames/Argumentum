@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="https://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle_usersettings.Text" xml:space="preserve">
+    <value>用户设置</value>
+  </data>
+<data name="ProviderSettings.Text" xml:space="preserve">
+    <value>成员资格提供程序设置</value>
+  </data>
+<data name="UserAccounts.Text" xml:space="preserve">
+    <value>用户账户设置</value>
+  </data>
+<data name="Column_Address.Text" xml:space="preserve">
+    <value>显示地址列：</value>
+  </data>
+<data name="Column_Address.Help" xml:space="preserve">
+    <value>显示「地址」列。</value>
+  </data>
+<data name="Column_Authorized.Text" xml:space="preserve">
+    <value>显示授权列：</value>
+  </data>
+<data name="Column_Authorized.Help" xml:space="preserve">
+    <value>显示「授权」列。</value>
+  </data>
+<data name="Column_CreatedDate.Text" xml:space="preserve">
+    <value>显示创建日期列：</value>
+  </data>
+<data name="Column_CreatedDate.Help" xml:space="preserve">
+    <value>显示「创建日期」列。</value>
+  </data>
+<data name="Column_DisplayName.Text" xml:space="preserve">
+    <value>显示名称列：</value>
+  </data>
+<data name="Column_DisplayName.Help" xml:space="preserve">
+    <value>显示「名称」列。</value>
+  </data>
+<data name="Column_Email.Text" xml:space="preserve">
+    <value>显示电子邮件列：</value>
+  </data>
+<data name="Column_Email.Help" xml:space="preserve">
+    <value>显示「电子邮件」列。</value>
+  </data>
+<data name="Column_FirstName.Text" xml:space="preserve">
+    <value>显示名字列：</value>
+  </data>
+<data name="Column_FirstName.Help" xml:space="preserve">
+    <value>显示「名字」列。</value>
+  </data>
+<data name="Column_LastLogin.Text" xml:space="preserve">
+    <value>显示最后登录列：</value>
+  </data>
+<data name="Column_LastLogin.Help" xml:space="preserve">
+    <value>显示「最后登录」列。</value>
+  </data>
+<data name="Column_LastName.Text" xml:space="preserve">
+    <value>显示姓氏列：</value>
+  </data>
+<data name="Column_LastName.Help" xml:space="preserve">
+    <value>显示「姓氏」列。</value>
+  </data>
+<data name="Column_Telephone.Text" xml:space="preserve">
+    <value>显示电话列：</value>
+  </data>
+<data name="Column_Telephone.Help" xml:space="preserve">
+    <value>显示「电话」列。</value>
+  </data>
+<data name="Records_PerPage.Text" xml:space="preserve">
+    <value>每页用户数：</value>
+  </data>
+<data name="Records_PerPage.Help" xml:space="preserve">
+    <value>输入每页显示的用户数。</value>
+  </data>
+<data name="ProviderSettingsHelp.Text" xml:space="preserve">
+    <value>在此部分你可以查看成员资格提供程序的设置。某些提供程序可能允许你编辑设置。基于 ASP.NET MemberRole 的默认提供程序要求编辑 web.config，因此无法在此更新设置。</value>
+  </data>
+<data name="PasswordSettings.Text" xml:space="preserve">
+    <value>密码时效设置</value>
+  </data>
+<data name="PasswordSettingsHelp.Text" xml:space="preserve">
+    <value>你可以在此部分设置密码时效选项。</value>
+  </data>
+<data name="Display_Mode.Text" xml:space="preserve">
+    <value>默认显示模式：</value>
+  </data>
+<data name="Display_Mode.Help" xml:space="preserve">
+    <value>选择用户表格的默认显示模式。</value>
+  </data>
+<data name="Security_UsersControl.Text" xml:space="preserve">
+    <value>「管理角色」中的用户显示模式：</value>
+  </data>
+<data name="Security_UsersControl.Help" xml:space="preserve">
+    <value>选择在「管理角色」模块控件中使用的用户控件。</value>
+  </data>
+<data name="FirstLetter.Text" xml:space="preserve">
+    <value>首字母</value>
+  </data>
+<data name="Combo.Text" xml:space="preserve">
+    <value>组合框</value>
+  </data>
+<data name="TextBox.Text" xml:space="preserve">
+    <value>文本框</value>
+  </data>
+<data name="Display_SuppressPager.Help" xml:space="preserve">
+    <value>如果只有一页记录，勾选此框可在用户账户表格中隐藏分页</value>
+  </data>
+<data name="Display_SuppressPager.Text" xml:space="preserve">
+    <value>禁用结果分页：</value>
+  </data>
+<data name="Profile_ManageServices.Help" xml:space="preserve">
+    <value>勾选此框可在用户资料中显示「管理服务」部分。</value>
+  </data>
+<data name="Profile_ManageServices.Text" xml:space="preserve">
+    <value>显示管理服务：</value>
+  </data>
+<data name="MembersOnly.Text" xml:space="preserve">
+    <value>仅成员</value>
+  </data>
+<data name="Security_DisplayNameFormat.Help" xml:space="preserve">
+    <value>可选择为用户显示名称指定格式。格式可以包含用于动态替换的令牌，例如 [FIRSTNAME] [LASTNAME]。如果指定了显示名称格式，显示名称将不再能通过用户界面编辑。</value>
+  </data>
+<data name="Security_DisplayNameFormat.Text" xml:space="preserve">
+    <value>显示名称格式：</value>
+  </data>
+<data name="InvalidRegex.Text" xml:space="preserve">
+    <value>{0} 的值不是有效的正则表达式。</value>
+  </data>
+<data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>用户账户设置</value>
+  </data>
+<data name="CannotChangeSettings.Text" xml:space="preserve">
+    <value>此站点是站点组的成员，这些设置由主站点控制。</value>
+  </data>
+</root>
