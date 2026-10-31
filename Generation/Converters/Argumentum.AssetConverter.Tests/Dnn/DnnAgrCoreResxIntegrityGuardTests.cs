@@ -26,9 +26,10 @@ namespace Argumentum.AssetConverter.Tests
 	/// seule la partie affichable est traduite ;</item>
 	/// <item>aucune valeur n'est une copie de l'anglais par accident (une copie
 	/// volontaire passe par la liste blanche ci-dessous) ;</item>
-	/// <item>l'ENSEMBLE des clés manquantes est DÉCLARÉ, clé par clé, par
-	/// fichier : le compte exact ne dit rien de son appartenance (contre-revue
-	/// web2 sur #2079) ;</item>
+	/// <item>l'ENSEMBLE des clés manquantes est DÉCLARÉ, clé par clé, et résolu
+	/// par COUPLE (fichier, culture) — défaut du fichier, dérogation du couple si
+	/// elle est déclarée : le compte exact ne dit rien de son appartenance
+	/// (contre-revue web2 sur #2079, puis sur #2084) ;</item>
 	/// <item>une clé dont le NEUTRE est vide n'est JAMAIS livrée : il n'y a rien
 	/// à traduire, toute valeur y serait inventée ;</item>
 	/// <item>les textes juridiques MESSAGE_PORTAL_TERMS / MESSAGE_PORTAL_PRIVACY
@@ -109,10 +110,9 @@ namespace Argumentum.AssetConverter.Tests
 		};
 
 		/// <summary>
-		/// Clés autorisées à MANQUER dans un pack complet, par fichier — et par
-		/// fichier seulement : le neutre est le même pour toutes les cultures, donc
-		/// l'ensemble manquant autorisé est une propriété du FICHIER, pas de la
-		/// culture. Une culture qui s'en écarte est rouge.
+		/// Clés autorisées à MANQUER, **défaut par fichier** : le neutre est le même
+		/// pour toutes les cultures, donc l'ensemble manquant est d'abord une
+		/// propriété du FICHIER, et le déclarer cinq fois le ferait dériver.
 		/// <para>
 		/// Cette déclaration ferme le trou que la contre-revue web2 a mesuré sur
 		/// #2079 : le compte exact (610) ne dit rien de l'APPARTENANCE de
@@ -121,8 +121,16 @@ namespace Argumentum.AssetConverter.Tests
 		/// gardes, parce que la valeur neutre de <c>File.Text</c> est vide : ni
 		/// « copie de l'anglais » ni « valeur vide » ne pouvait la prendre.
 		/// </para>
+		/// <para>
+		/// ⚠️ Un DÉFAUT de fichier n'est pas une vérité par culture. Une culture qui
+		/// doit s'en écarter ne modifie pas ce dictionnaire : elle **déclare** son
+		/// ensemble dans <see cref="AllowedMissingByFileAndCulture"/>, couple par
+		/// couple. La résolution se fait par <see cref="AllowedMissing"/> — jamais
+		/// par indexation directe sur le fichier, sinon une dérogation déclarée
+		/// resterait sans effet.
+		/// </para>
 		/// </summary>
-		private static readonly Dictionary<string, string[]> AllowedMissingByStem =
+		private static readonly Dictionary<string, string[]> AllowedMissingDefaultByStem =
 			new Dictionary<string, string[]>
 			{
 				// Ces trois fichiers sont livrés intégralement : rien ne peut manquer.
@@ -164,6 +172,87 @@ namespace Argumentum.AssetConverter.Tests
 					"File.Text",
 				},
 			};
+
+		/// <summary>
+		/// Dérogations au défaut de fichier, **par couple (fichier, culture)**.
+		/// <para>
+		/// Vide aujourd'hui, et ce n'est pas un oubli : les trois cultures couvertes
+		/// livrent exactement le même ensemble manquant sur les cinq fichiers, parce
+		/// que la cause est dans le NEUTRE (sept clés à valeur vide, dix blocs
+		/// volontairement non traduits) et que le neutre est commun. Le dictionnaire
+		/// existe pour que le premier lot où les cultures divergent n'ait pas à
+		/// choisir entre un rouge faux et un élargissement silencieux du défaut :
+		/// il déclare. C'est le point de fragilité que la contre-revue web2 a relevé
+		/// sur #2084 — « à passer en (stem, culture) avant que les lots ne divergent ».
+		/// </para>
+		/// <para>
+		/// Une entrée ici doit DIFFÉRER du défaut de son fichier et viser un couple
+		/// couvert : les deux sont assertés (<c>EveryOverrideIsLive</c>), sans quoi
+		/// une dérogation morte resterait en place en donnant l'illusion d'un cas
+		/// particulier traité.
+		/// </para>
+		/// </summary>
+		private static readonly Dictionary<(string Stem, string Culture), string[]> AllowedMissingByFileAndCulture =
+			new Dictionary<(string, string), string[]>();
+
+		/// <summary>
+		/// Résolution de l'ensemble manquant autorisé pour UN couple : la dérogation
+		/// déclarée si elle existe, sinon le défaut du fichier. Aucun autre chemin
+		/// n'est admis — une lecture directe de <see cref="AllowedMissingDefaultByStem"/>
+		/// ignorerait silencieusement toute dérogation.
+		/// </summary>
+		private static string[] AllowedMissing(string stem, string culture) =>
+			Resolve(AllowedMissingByFileAndCulture, AllowedMissingDefaultByStem, stem, culture).Set;
+
+		/// <summary>
+		/// Résolution PURE, sur les dictionnaires passés. La pureté n'est pas une
+		/// question de parallélisme (les tests d'une même classe partagent la même
+		/// collection xUnit et s'exécutent SÉQUENTIELLEMENT) : c'est la seule façon
+		/// de prouver la précédence sur des dictionnaires LOCAUX, sans toucher aux
+		/// déclarations de production. Le test <c>OverrideWinsOverTheFileDefault</c>
+		/// s'en sert avec des dictionnaires jetables ; la production l'appelle avec
+		/// les deux déclarations ci-dessus.
+		/// <para>
+		/// Elle renvoie aussi le PÉRIMÈTRE appliqué (<see cref="Resolve"/>.Scope) :
+		/// le message d'échec du consommateur nomme le chemin pris SANS le
+		/// recalculer à côté — un scope dérivé d'une seconde branche divergerait
+		/// le jour où la résolution en gagne une troisième.
+		/// </para>
+		/// </summary>
+		private static (string[] Set, string Scope) Resolve(
+			IReadOnlyDictionary<(string Stem, string Culture), string[]> overrides,
+			IReadOnlyDictionary<string, string[]> defaultsByStem,
+			string stem,
+			string culture)
+		{
+			if (overrides.TryGetValue((stem, culture), out var declared))
+				return (declared, $"dérogation déclarée pour le couple ({stem}, {culture})");
+
+			if (defaultsByStem.TryGetValue(stem, out var byStem))
+				return (byStem, $"défaut du fichier « {stem} » (aucune dérogation pour {culture})");
+
+			throw new InvalidOperationException(
+				$"Aucun ensemble manquant déclaré pour « {stem} » (couple {stem}.{culture}) : "
+				+ "ajouter le défaut du fichier dans AllowedMissingDefaultByStem, ou une dérogation "
+				+ "par couple dans AllowedMissingByFileAndCulture.");
+		}
+
+		/// <summary>
+		/// Une dérogation est MORTE si son ensemble est ÉQUIVALENT au défaut de son
+		/// fichier — mêmes clés, l'ordre près : le consommateur trie les deux côtés
+		/// avant de comparer, donc une telle dérogation ne change AUCUN test tout en
+		/// donnant l'illusion qu'un cas particulier est traité. Pure, pour être
+		/// prouvée sur dictionnaires locaux (<c>AnOverrideCopyingItsDefaultIsDead</c>)
+		/// — le dictionnaire réel étant vide, sa logique de refus n'a sinon aucun
+		/// sujet vivant en CI.
+		/// </summary>
+		private static bool OverrideIsDead(
+			IReadOnlyDictionary<string, string[]> defaultsByStem,
+			(string Stem, string Culture) key,
+			string[] declared) =>
+			defaultsByStem.TryGetValue(key.Stem, out var byStem)
+			&& declared.OrderBy(x => x, StringComparer.Ordinal)
+				.SequenceEqual(byStem.OrderBy(x => x, StringComparer.Ordinal));
 
 		private static readonly Regex Placeholder = new(@"\{\d+\}", RegexOptions.Compiled);
 
@@ -272,15 +361,139 @@ namespace Argumentum.AssetConverter.Tests
 
 			var missing = neutral.Keys.Except(localized.Keys, StringComparer.Ordinal)
 				.OrderBy(x => x, StringComparer.Ordinal).ToArray();
-			var declared = AllowedMissingByStem[stem].OrderBy(x => x, StringComparer.Ordinal).ToArray();
+
+			// Le périmètre de la déclaration appliquée est nommé dans le message :
+			// « défaut du fichier » et « dérogation du couple » n'ont pas la même
+			// portée, et un message qui ne le dit pas fait chercher au mauvais endroit.
+			// Il vient DE LA RÉSOLUTION elle-même (Resolve.Scope) — pas d'une seconde
+			// branche recalculée à côté, qui divergerait si Resolve gagnait un chemin.
+			var resolved = Resolve(AllowedMissingByFileAndCulture, AllowedMissingDefaultByStem, stem, culture);
+			var scope = resolved.Scope;
+			var declared = resolved.Set.OrderBy(x => x, StringComparer.Ordinal).ToArray();
 
 			missing.Should().Equal(declared,
-				$"{stem}.{culture}.resx : l'ensemble des clés manquantes a changé. Une clé absente "
-				+ $"non déclarée est une couverture perdue ; une clé déclarée présente est un "
-				+ $"remplissage non autorisé (invention).");
+				$"{stem}.{culture}.resx : l'ensemble des clés manquantes a changé, mesuré contre la "
+				+ $"{scope}. Une clé absente non déclarée est une couverture perdue ; une clé "
+				+ $"déclarée présente est un remplissage non autorisé (invention).");
 
 			localized.Keys.Except(neutral.Keys, StringComparer.Ordinal).Should().BeEmpty(
 				$"{stem}.{culture}.resx : clé livrée absente du neutre");
+		}
+
+		/// <summary>
+		/// La déclaration des ensembles manquants doit couvrir EXACTEMENT les fichiers
+		/// sous garde : un fichier couvert sans défaut rendrait la résolution
+		/// auto-rouge par exception (message cryptique au milieu de vingt tests),
+		/// et un défaut sans fichier couvert est une déclaration morte que personne
+		/// ne relira.
+		/// </summary>
+		[Fact]
+		public void TheMissingSetDeclarationCoversExactlyTheGuardedFiles()
+		{
+			var guardedStems = Covered.Select(c => c.Stem).Distinct(StringComparer.Ordinal)
+				.OrderBy(x => x, StringComparer.Ordinal).ToArray();
+			var declaredStems = AllowedMissingDefaultByStem.Keys
+				.OrderBy(x => x, StringComparer.Ordinal).ToArray();
+
+			declaredStems.Should().Equal(guardedStems,
+				"les défauts d'ensemble manquant doivent couvrir exactement les fichiers sous garde "
+				+ "(ajouter le fichier ET son défaut, ou retirer les deux)");
+
+			foreach (var (culture, stem, _) in Covered)
+			{
+				// Aucun throw : prouve que la résolution aboutit pour chaque couple
+				// couvert (5 fichiers × 3 cultures = 15 aujourd'hui — se recompter,
+				// pas se recopier).
+				AllowedMissing(stem, culture).Should().NotBeNull(
+					$"la résolution de l'ensemble manquant doit aboutir pour {stem}.{culture}");
+			}
+		}
+
+		/// <summary>
+		/// Une dérogation doit être VIVANTE : elle vise un couple réellement sous
+		/// garde, et son contenu diffère du défaut de son fichier. Recopier le défaut
+		/// dans une dérogation ne change aucun test — elle donne seulement l'illusion
+		/// qu'un cas particulier est traité, et masque le jour où les deux devraient
+		/// diverger.
+		/// <para>
+		/// L'équivalence est mesurée par <see cref="OverrideIsDead"/> — à l'ORDRE
+		/// près, comme le consommateur qui trie : une dérogation portant les mêmes
+		/// clés dans un autre ordre ne change aucun test non plus, et une jointure
+		/// de chaînes la déclarerait vivante à tort (en inventant de surcroît une
+		/// sémantique de séquence que personne d'autre n'utilise).
+		/// </para>
+		/// </summary>
+		[Fact]
+		public void EveryOverrideIsLive()
+		{
+			foreach (var (key, declared) in AllowedMissingByFileAndCulture)
+			{
+				Covered.Should().Contain(c => c.Culture == key.Culture && c.Stem == key.Stem,
+					$"la dérogation ({key.Stem}, {key.Culture}) vise un couple qui n'est pas sous garde : "
+					+ "elle ne s'appliquera jamais");
+
+				AllowedMissingDefaultByStem.Should().ContainKey(key.Stem,
+					$"la dérogation ({key.Stem}, {key.Culture}) vise un fichier qui n'a aucun défaut déclaré");
+
+				OverrideIsDead(AllowedMissingDefaultByStem, key, declared).Should().BeFalse(
+					$"la dérogation ({key.Stem}, {key.Culture}) est équivalente au défaut de son fichier "
+					+ "(mêmes clés, l'ordre près) : elle ne change aucun test — soit elle est inutile "
+					+ "(la retirer), soit les deux ont divergé et l'un des deux est faux");
+			}
+		}
+
+		/// <summary>
+		/// Contrôle inverse de <see cref="EveryOverrideIsLive"/> sur dictionnaires
+		/// LOCAUX : le dictionnaire réel étant vide, la logique de refus n'a aucun
+		/// sujet vivant en CI — sans ce test, une régression du prédicat (comparaison
+		/// ordonnée, jointure de chaînes) resterait verte. Mêmes clés dans un autre
+		/// ORDRE = morte ; clés différentes = vivante ; couple sans défaut = vivante
+		/// (l'absence de défaut est attrapée par la garde de couverture, pas ici).
+		/// </summary>
+		[Fact]
+		public void AnOverrideCopyingItsDefaultIsDead()
+		{
+			var defaults = new Dictionary<string, string[]> { ["S"] = new[] { "a", "b" } };
+
+			OverrideIsDead(defaults, ("S", "fr"), new[] { "b", "a" }).Should().BeTrue(
+				"mêmes clés dans un autre ordre : le consommateur trie, la dérogation ne change aucun test");
+			OverrideIsDead(defaults, ("S", "fr"), new[] { "a", "b" }).Should().BeTrue(
+				"copie exacte du défaut : déclaration morte");
+			OverrideIsDead(defaults, ("S", "fr"), new[] { "a", "c" }).Should().BeFalse(
+				"clés différentes : la dérogation change les tests, elle est vivante");
+			OverrideIsDead(defaults, ("T", "fr"), new[] { "a" }).Should().BeFalse(
+				"un couple sans défaut déclaré ne peut pas être jugé équivalent ici");
+		}
+
+		/// <summary>
+		/// Précédence prouvée sur des dictionnaires LOCAUX : la dérogation gagne sur
+		/// le défaut, et un couple sans aucune déclaration échoue explicitement plutôt
+		/// que de retomber silencieusement sur autre chose. Sans ce test, une erreur
+		/// d'ordre dans <see cref="Resolve"/> rendrait TOUS les tests verts — chaque
+		/// couple couvert ayant, aujourd'hui, un défaut valide.
+		/// </summary>
+		[Fact]
+		public void OverrideWinsOverTheFileDefault()
+		{
+			var defaults = new Dictionary<string, string[]> { ["S"] = new[] { "a" } };
+			var overrides = new Dictionary<(string, string), string[]>
+			{
+				[("S", "fr")] = new[] { "b" },
+			};
+
+			Resolve(overrides, defaults, "S", "fr").Set.Should().Equal(new[] { "b" },
+				"la dérogation du couple doit gagner sur le défaut du fichier");
+			Resolve(overrides, defaults, "S", "en").Set.Should().Equal(new[] { "a" },
+				"un couple sans dérogation prend le défaut de son fichier");
+
+			Action unknown = () => Resolve(overrides, defaults, "T", "fr");
+			unknown.Should().Throw<InvalidOperationException>()
+				.Which.Message.Should().Contain("Aucun ensemble manquant déclaré");
+
+			// Contrôle inverse de la précédence : sans dérogation, « fr » suivrait le
+			// défaut. Si l'assertion ci-dessus passait par accident, celle-ci tomberait.
+			Resolve(new Dictionary<(string, string), string[]>(), defaults, "S", "fr").Set
+				.Should().Equal(new[] { "a" });
 		}
 
 		[Theory]
