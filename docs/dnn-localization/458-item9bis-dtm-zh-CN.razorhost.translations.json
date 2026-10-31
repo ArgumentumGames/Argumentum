@@ -1,0 +1,65 @@
+{
+ "files": {
+  "AddScript.ascx": {
+   "VBHTML.Text": "VBHtml 文件（VB）",
+   "fileTypeLabel.Help": "选择要创建的 Razor 脚本文件类型（CSHtml 对应 C#，VBHtml 对应 VB.Net）",
+   "CSHTML.Text": "CSHtml 文件（C#）",
+   "fileTypeLabel.Text": "文件类型：",
+   "fileNameLabel.Help": "为脚本文件输入文件名。文件名将以下划线“_”为前缀。",
+   "fileNameLabel.Text": "文件名：",
+   "createNewScript.Text": "要创建新的 Razor 脚本文件，请选择文件类型并输入文件名。文件将在 Scripts 文件夹中创建。",
+   "NewScript.Text": "<h2>新建 Razor 脚本</h2>",
+   "cmdAdd.Text": "添加新脚本"
+  },
+  "CreateModule.ascx": {
+   "ControlTitle_createmodule.Text": "创建模块",
+   "SourceFile.Text": "源脚本 - {0}",
+   "plSource.Text": "脚本来源：",
+   "scriptsLabel.Help": "从列表中选择你要使用的脚本。",
+   "scriptsLabel.Text": "选择脚本：",
+   "plAddPage.Help": "勾选此框以为新模块创建测试页面。",
+   "plAddPage.Text": "添加测试页面？",
+   "plDescription.Help": "为模块输入描述。",
+   "plDescription.Text": "描述：",
+   "plFolder.Help": "为新模块输入文件夹名称。该文件夹将是“DesktopModules/RazorModules”的子文件夹。",
+   "plFolder.Text": "文件夹：",
+   "plName.Help": "为模块输入友好名称。",
+   "plName.Text": "模块名称：",
+   "cmdCreate.Text": "创建模块",
+   "SourceControl.Text": "模块控件 - {0}",
+   "valFolder.Text": "文件夹为必填项。<br/>",
+   "valName.Text": "名称为必填项。<br/>",
+   "FolderExists.Text": "所选文件夹已存在。请选择其他名称。",
+   "ManifestCreationError.Text": "创建清单时发生意外错误。请查看事件查看器了解更多信息。",
+   "ModuleControlCreationError.Text": "创建模块控件时发生意外错误。请查看事件查看器了解更多信息。",
+   "ScriptCopyError.Text": "将脚本复制到目标文件夹时发生意外错误。请查看事件查看器了解更多信息。",
+   "ImportControl.ErrorMessage": "导入模块控件时出错，详情见事件日志",
+   "TabExists.Text": "该页面名称已存在于本模块名下。模块已创建，但未生成测试页面。"
+  },
+  "EditScript.ascx": {
+   "ControlTitle_edit.Text": "编辑脚本",
+   "scriptListLabel.Help": "选择此 Razor Host 模块实例要使用的脚本。",
+   "scriptListLabel.Text": "脚本：",
+   "SourceFile.Text": "源文件 - {0}",
+   "plSource.Text": "脚本来源：",
+   "scriptsLabel.Help": "从列表中选择你要编辑的脚本。",
+   "scriptsLabel.Text": "选择脚本：",
+   "AddNew.Text": "添加新脚本文件",
+   "currentScriptLabel.Help": "勾选此框以将当前脚本设为视图模式下渲染的活动脚本。",
+   "currentScriptLabel.Text": "处于活动状态：",
+   "cmdSave.Text": "保存脚本",
+   "cmdSaveClose.Text": "保存脚本并返回"
+  },
+  "RazorHost.ascx": {
+   "CreateModule.Action": "创建模块",
+   "EditContent.Action": "编辑脚本",
+   "scriptListLabel.Help": "选择此 Razor Host 模块实例要使用的脚本。",
+   "scriptListLabel.Text": "脚本："
+  },
+  "Settings.ascx": {
+   "ControlTitle_settings.Text": "Razor Host 模块设置",
+   "scriptListLabel.Help": "选择此 Razor Host 模块实例要使用的脚本。",
+   "scriptListLabel.Text": "脚本："
+  }
+ }
+}

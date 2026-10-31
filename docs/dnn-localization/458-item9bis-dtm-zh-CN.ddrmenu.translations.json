@@ -1,0 +1,13 @@
+{
+ "files": {
+  "MenuSettings.ascx": {
+   "AddContent.Action": "添加内容",
+   "ModuleHelp.Text": "DDRMenu 文档见 <a href=\"http://www.dnnsoftware.com/wiki/\">DNN 维基</a>。",
+   "ControlTitle_settings.Text": "菜单设置"
+  },
+  "MenuView.ascx": {
+   "AddContent.Action": "添加内容",
+   "ModuleHelp.Text": "DDRMenu 文档见 <a href=\"http://www.dnnsoftware.com/wiki/\">DNN 维基</a>。"
+  }
+ }
+}
