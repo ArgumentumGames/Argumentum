@@ -273,6 +273,15 @@
   <data name="No.Text">
     <value xml:space="preserve">Não</value>
   </data>
+  <data name="Notes.Header">
+    <value xml:space="preserve">Notas</value>
+  </data>
+  <data name="plNotes.Help">
+    <value xml:space="preserve">Notas opcionais sobre esta regra.</value>
+  </data>
+  <data name="plNotes.Text">
+    <value xml:space="preserve">Notas</value>
+  </data>
   <data name="Security_UserNameMinLength.ErrorMessage">
     <value xml:space="preserve">O comprimento mínimo do nome de usuário deve ser um número inteiro maior que 0 e menor ou igual a 100.</value>
   </data>
@@ -328,10 +337,10 @@
     <value xml:space="preserve">A página com o ID {0} está eliminada.</value>
   </data>
   <data name="DeleteError.Text">
-    <value xml:space="preserve">Não foi podido eliminar o filtro. Vuelva a intentarlo.</value>
+    <value xml:space="preserve">Não foi possível eliminar o filtro de IP. Tente novamente mais tarde.</value>
   </data>
   <data name="DeleteSuccess.Text">
-    <value xml:space="preserve">foi eliminado o filtro.</value>
+    <value xml:space="preserve">O filtro de IP foi eliminado.</value>
   </data>
   <data name="DenyIP.Text">
     <value xml:space="preserve">Bloquear</value>
@@ -364,7 +373,7 @@
     <value xml:space="preserve">NOME Arquivo</value>
   </data>
   <data name="FilterType.Header">
-    <value xml:space="preserve">TIPO FILTRO</value>
+    <value xml:space="preserve">TIPO DE FILTRO</value>
   </data>
   <data name="FirstName.Header">
     <value xml:space="preserve">Nome</value>
@@ -385,28 +394,28 @@
     <value xml:space="preserve">Configuração do sistema</value>
   </data>
   <data name="IpAddress.Header">
-    <value xml:space="preserve">DIREção IP</value>
+    <value xml:space="preserve">ENDEREÇO IP</value>
   </data>
   <data name="IPFilter.Header">
     <value xml:space="preserve">Filtro IP</value>
   </data>
   <data name="IpFilterDeletedWarning.Text">
-    <value xml:space="preserve">Está seguro que quer eliminar este filtro?</value>
+    <value xml:space="preserve">Tem certeza de que deseja eliminar este filtro de IP?</value>
   </data>
   <data name="IPFiltersDisabled.Text">
-    <value xml:space="preserve">O filtro de autenticação por IP está desactivado. Para activarlo, marque a opção Activar verificação de IP em a configuração de Seguridade.</value>
+    <value xml:space="preserve">O filtro de IP de login está desativado no momento. Ative a verificação de endereço IP em Contas de membros para habilitá-lo.</value>
   </data>
   <data name="IpFilterUpdateError.Text">
-    <value xml:space="preserve">Não foi podido atualizar o fitro. Vuelva a intentarlo.</value>
+    <value xml:space="preserve">Não foi possível atualizar o filtro de IP. Tente novamente mais tarde.</value>
   </data>
   <data name="IpFilterUpdateSuccess.Text">
-    <value xml:space="preserve">foi actualizado o filtro.</value>
+    <value xml:space="preserve">O filtro de IP foi atualizado.</value>
   </data>
   <data name="IPRange.Text">
     <value xml:space="preserve">Rango IP</value>
   </data>
   <data name="IPValidation.ErrorMessage">
-    <value xml:space="preserve">Introduzca um valor válido de IP/máscara.</value>
+    <value xml:space="preserve">Use um endereço/máscara IP válido.</value>
   </data>
   <data name="LastActivityDate.Header">
     <value xml:space="preserve">Data última actividade</value>
@@ -514,7 +523,7 @@
     <value xml:space="preserve">Sin especificar</value>
   </data>
   <data name="Notes.Text">
-    <value xml:space="preserve">ATENção</value>
+    <value xml:space="preserve">NOTAS</value>
   </data>
   <data name="NotValid.Text" lastModified="2018-03-24 05:21:59">
     <value xml:space="preserve">{0} {1} não és válido.</value>
@@ -652,10 +661,10 @@
     <value xml:space="preserve">Extensões de Arquivos permitidas:</value>
   </data>
   <data name="plFirstIP.Help">
-    <value xml:space="preserve">Este valor pode ser um valor único de filtro de IP o uma máscara de red para calcular um rango de IPs.</value>
+    <value xml:space="preserve">Este valor será um único endereço IP a filtrar ou será usado com a máscara de sub-rede para calcular um intervalo de endereços IP.</value>
   </data>
   <data name="plFirstIP.Text">
-    <value xml:space="preserve">Primera IP</value>
+    <value xml:space="preserve">Primeiro IP</value>
   </data>
   <data name="plForceLogOutAfterPasswordChanged.Help" lastModified="2020-05-08 23:22:16">
     <value xml:space="preserve">Força o encerramento da sessão do usuário em outros navegadores após a senha ser alterada.</value>
@@ -700,16 +709,16 @@
     <value xml:space="preserve">Tempo de validade do link de redefinição (em minutos)</value>
   </data>
   <data name="plRuleSpecifity.Help">
-    <value xml:space="preserve">Mostra se a regla se aplica a uma única IP o a um rango de direcções IP.</value>
+    <value xml:space="preserve">Determina se a regra se aplica a um único endereço IP ou a um intervalo de endereços IP.</value>
   </data>
   <data name="plRuleSpecifity.Text">
-    <value xml:space="preserve">Ámbito da regla</value>
+    <value xml:space="preserve">Especificidade da regra</value>
   </data>
   <data name="plRuleType.Help">
-    <value xml:space="preserve">Mostra se a regla permite o bloquea o Acesso</value>
+    <value xml:space="preserve">Determina se esta regra permite ou nega o acesso.</value>
   </data>
   <data name="plRuleType.Text">
-    <value xml:space="preserve">Tipo de regla</value>
+    <value xml:space="preserve">Tipo de regra</value>
   </data>
   <data name="plSearchTerm.Text">
     <value xml:space="preserve">Término de busca</value>
@@ -751,7 +760,7 @@
     <value xml:space="preserve">URL padrão</value>
   </data>
   <data name="plSubnet.Help">
-    <value xml:space="preserve">A máscara de red se combinará com a primera IP para calcular o rango de IPs a filtrar.</value>
+    <value xml:space="preserve">A máscara de sub-rede será combinada com o primeiro endereço IP para calcular um intervalo de endereços IP para a filtragem.</value>
   </data>
   <data name="plSubnet.Text">
     <value xml:space="preserve">Máscara</value>
@@ -1033,7 +1042,7 @@
     <value xml:space="preserve">ID PÁGINA</value>
   </data>
   <data name="TabIpFilters.Text">
-    <value xml:space="preserve">FILTROS IP DE IDENTIFICAÇÃO</value>
+    <value xml:space="preserve">FILTROS IP DE LOGIN</value>
   </data>
   <data name="TabLoginSettings.Text">
     <value xml:space="preserve">Identificação</value>

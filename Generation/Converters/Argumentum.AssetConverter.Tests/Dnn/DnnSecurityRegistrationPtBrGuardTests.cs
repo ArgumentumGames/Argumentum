@@ -371,8 +371,11 @@ namespace Argumentum.AssetConverter.Tests
 		public void Legacy_Keys_Survive_The_Rewrite()
 		{
 			var pt = Load(PtResx);
-			// compte EXACT = garde du volet COURANT (355 a la base + 4 creations de cet onglet)
-			pt.Should().HaveCount(359, "355 cles a la base (#2094) + 4 cles creees par l'onglet Registration");
+			// plancher (pas compte exact) : le compte EXACT vit dans la garde du volet COURANT —
+			// sinon chaque onglet suivant de la decoupe casse la garde du precedent (regle #2102).
+			// IP filters ajoute ses 3 cles -> 362 dans la garde IP filters.
+			pt.Should().HaveCountGreaterThanOrEqualTo(359,
+				"anti-effondrement : 355 (base #2094) + 4 cles creees par Registration. Les onglets suivants de la decoupe ajoutent les leurs (IP filters -> 362) : le compte EXACT vit dans la garde de chaque onglet, pas ici");
 			foreach (var key in new[] { "AsyncTimeout.ErrorMessage", "SslOn.Text", "TabMemberSettings.Text", "plForceLogOutAfterPasswordChanged.Text" })
 				pt.Should().ContainKey(key, "les cles des onglets precedents survivent a la reecriture");
 		}
