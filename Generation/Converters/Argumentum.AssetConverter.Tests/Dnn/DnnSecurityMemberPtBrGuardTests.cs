@@ -356,7 +356,11 @@ namespace Argumentum.AssetConverter.Tests
 		public void Legacy_Keys_Survive_The_Rewrite()
 		{
 			var pt = Cells(PtResx);
-			pt.Should().HaveCount(355, "354 (base #2085) + RedirectionMovedToSiteSettings.Text");
+			// plancher (pas compte exact) : le compte EXACT vit dans la garde du volet COURANT —
+			// sinon chaque onglet suivant de la decoupe casse la garde du precedent (regle #2094).
+			// Registration ajoute ses 4 cles -> 359 dans la garde Registration.
+			pt.Should().HaveCountGreaterThanOrEqualTo(355,
+				"anti-effondrement : 354 (base #2085) + RedirectionMovedToSiteSettings.Text. Les onglets suivants de la decoupe ajoutent les leurs (Registration -> 359) : le compte EXACT vit dans la garde de chaque onglet, pas ici");
 			pt.Should().ContainKey("Não.Text").And.ContainKey("Redirect_AfterLogin.Text",
 				"les cles heritees ne doivent pas etre emportees par une reecriture");
 		}
