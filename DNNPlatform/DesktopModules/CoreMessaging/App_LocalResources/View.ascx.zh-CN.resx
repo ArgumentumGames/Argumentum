@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Actions.Text" xml:space="preserve">
+    <value>操作</value>
+  </data>
+<data name="All.Text" xml:space="preserve">
+    <value>全部</value>
+  </data>
+<data name="ArrangeConversation.Text" xml:space="preserve">
+    <value>对话</value>
+  </data>
+<data name="ArrangeDate.Text" xml:space="preserve">
+    <value>日期</value>
+  </data>
+<data name="ArrangeFrom.Text" xml:space="preserve">
+    <value>发件人</value>
+  </data>
+<data name="ArrangeMessages.Text" xml:space="preserve">
+    <value>整理</value>
+  </data>
+<data name="Attach.Text" xml:space="preserve">
+    <value>附件</value>
+  </data>
+<data name="Attachments.Text" xml:space="preserve">
+    <value>附件</value>
+  </data>
+<data name="Browse.Text" xml:space="preserve">
+    <value>从站点浏览</value>
+  </data>
+<data name="Cancel.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+<data name="ComposeNewMessage.Text" xml:space="preserve">
+    <value>撰写新消息</value>
+  </data>
+<data name="DismissThis.Text" xml:space="preserve">
+    <value>关闭此项</value>
+  </data>
+<data name="DismissAllNotifications.Text" xml:space="preserve">
+    <value>清除所有通知</value>
+  </data>
+<data name="DismissAllConfirm.Text" xml:space="preserve">
+    <value>确定要清除全部 {0} 条通知吗？</value>
+  </data>
+<data name="EditModule.Text" xml:space="preserve">
+    <value>编辑模块</value>
+  </data>
+<data name="FileSize.Header" xml:space="preserve">
+    <value>文件大小：</value>
+  </data>
+<data name="Filter.Text" xml:space="preserve">
+    <value>筛选</value>
+  </data>
+<data name="FilterCategory.Text" xml:space="preserve">
+    <value>类别</value>
+  </data>
+<data name="FilterFriends.Text" xml:space="preserve">
+    <value>好友</value>
+  </data>
+<data name="FilterFrom.Text" xml:space="preserve">
+    <value>发件人</value>
+  </data>
+<data name="FilterGroups.Text" xml:space="preserve">
+    <value>群组</value>
+  </data>
+<data name="FilterUnread.Text" xml:space="preserve">
+    <value>未读</value>
+  </data>
+<data name="FilterViewAll.Text" xml:space="preserve">
+    <value>查看全部</value>
+  </data>
+<data name="LastModified.Header" xml:space="preserve">
+    <value>最后修改</value>
+  </data>
+<data name="LoadMore.Text" xml:space="preserve">
+    <value>加载更多</value>
+  </data>
+<data name="MarkArchive.Text" xml:space="preserve">
+    <value>归档</value>
+  </data>
+<data name="MarkRead.Text" xml:space="preserve">
+    <value>标记为已读</value>
+  </data>
+<data name="MarkUnread.Text" xml:space="preserve">
+    <value>标记为未读</value>
+  </data>
+<data name="Message.Text" xml:space="preserve">
+    <value>你的消息：</value>
+  </data>
+<data name="MessageSent.Text" xml:space="preserve">
+    <value>你的消息已成功发送。</value>
+  </data>
+<data name="MessageSentTitle.Text" xml:space="preserve">
+    <value>消息已发送</value>
+  </data>
+<data name="Name.Header" xml:space="preserve">
+    <value>名称</value>
+  </data>
+<data name="None.Text" xml:space="preserve">
+    <value>无</value>
+  </data>
+<data name="NoResults.Text" xml:space="preserve">
+    <value>无结果</value>
+  </data>
+<data name="Read.Text" xml:space="preserve">
+    <value>已读</value>
+  </data>
+<data name="ReadStatusToggle.Text" xml:space="preserve">
+    <value>标记为已读或未读</value>
+  </data>
+<data name="Remove.Text" xml:space="preserve">
+    <value>移除附件</value>
+  </data>
+<data name="Reply.Text" xml:space="preserve">
+    <value>回复</value>
+  </data>
+<data name="Searching.Text" xml:space="preserve">
+    <value>搜索中…</value>
+  </data>
+<data name="Select.Text" xml:space="preserve">
+    <value>选择</value>
+  </data>
+<data name="Send.Text" xml:space="preserve">
+    <value>发送</value>
+  </data>
+<data name="Subject.Text" xml:space="preserve">
+    <value>主题：</value>
+  </data>
+<data name="Throttling.Text" xml:space="preserve">
+    <value>请稍候再发送新消息。</value>
+  </data>
+<data name="Title.Text" xml:space="preserve">
+    <value>撰写消息</value>
+  </data>
+<data name="To.Text" xml:space="preserve">
+    <value>发送至：</value>
+  </data>
+<data name="Type.Header" xml:space="preserve">
+    <value>类型</value>
+  </data>
+<data name="Unread.Text" xml:space="preserve">
+    <value>未读</value>
+  </data>
+<data name="UserFileManagerTitle.Text" xml:space="preserve">
+    <value>浏览要使用的文件</value>
+  </data>
+<data name="ApplyActionToMessages.Text" xml:space="preserve">
+    <value>对你的消息应用操作</value>
+  </data>
+<data name="Archived.Text" xml:space="preserve">
+    <value>已归档</value>
+  </data>
+<data name="ArchivedMessages.Text" xml:space="preserve">
+    <value>已归档消息</value>
+  </data>
+<data name="ArchiveMessages.Text" xml:space="preserve">
+    <value>归档消息</value>
+  </data>
+<data name="BackToMessages.Text" xml:space="preserve">
+    <value>返回消息</value>
+  </data>
+<data name="ConversationArchived.Text" xml:space="preserve">
+    <value>该对话已归档。</value>
+  </data>
+<data name="ConversationSetAsRead.Text" xml:space="preserve">
+    <value>该对话已标记为已读。</value>
+  </data>
+<data name="ConversationSetAsUnread.Text" xml:space="preserve">
+    <value>该对话已标记为未读。</value>
+  </data>
+<data name="ConversationUnarchived.Text" xml:space="preserve">
+    <value>该对话已取消归档。</value>
+  </data>
+<data name="Conversations.Text" xml:space="preserve">
+    <value>对话</value>
+  </data>
+<data name="Loading.Text" xml:space="preserve">
+    <value>加载中…</value>
+  </data>
+<data name="LoadingContent.Text" xml:space="preserve">
+    <value>正在加载内容…</value>
+  </data>
+<data name="MarkUnarchive.Text" xml:space="preserve">
+    <value>取消归档</value>
+  </data>
+<data name="Messages.Text" xml:space="preserve">
+    <value>消息</value>
+  </data>
+<data name="NewUnreadMessages.Text" xml:space="preserve">
+    <value> 条新未读消息</value>
+  </data>
+<data name="SelectMessages.Text" xml:space="preserve">
+    <value>选择消息</value>
+  </data>
+<data name="Sent.Text" xml:space="preserve">
+    <value>已发送</value>
+  </data>
+<data name="SentMessages.Text" xml:space="preserve">
+    <value>已发送消息</value>
+  </data>
+<data name="ShowPreviousReplies.Text" xml:space="preserve">
+    <value>显示之前的回复</value>
+  </data>
+<data name="PermissionsNotProperlySet.Text" xml:space="preserve">
+    <value>模块权限设置不当。该模块不应对未认证用户可见。请更正。</value>
+  </data>
+<data name="ContentNotAvailable.Text" xml:space="preserve">
+    <value>本模块的内容不能对未认证用户显示。请登录以查看其内容。</value>
+  </data>
+<data name="Notifications.Text" xml:space="preserve">
+    <value>通知</value>
+  </data>
+<data name="Of.Text" xml:space="preserve">
+    <value>，共 </value>
+  </data>
+<data name="TotalNotifications.Text" xml:space="preserve">
+    <value> 通知总数</value>
+  </data>
+<data name="From.Text" xml:space="preserve">
+    <value>发件人</value>
+  </data>
+<data name="SentTo.Text" xml:space="preserve">
+    <value>发送至</value>
+  </data>
+<data name="NotificationConfirmNo.Text" xml:space="preserve">
+    <value>否</value>
+  </data>
+<data name="NotificationConfirmTitle.Text" xml:space="preserve">
+    <value>确认</value>
+  </data>
+<data name="NotificationConfirmYes.Text" xml:space="preserve">
+    <value>是</value>
+  </data>
+<data name="ActionNotPerformed.Text" xml:space="preserve">
+    <value>执行操作时发生错误。请稍后重试。</value>
+  </data>
+<data name="ActionPerformed.Text" xml:space="preserve">
+    <value>操作已成功执行。</value>
+  </data>
+<data name="ReplyHasNoRecipients.Text" xml:space="preserve">
+    <value>该消息已无有效收件人，回复功能已被停用。</value>
+  </data>
+<data name="ServerError.Text" xml:space="preserve">
+    <value>处理请求时发生错误。请稍后重试。</value>
+  </data>
+<data name="ServerErrorWithDescription.Text" xml:space="preserve">
+    <value>处理请求时发生错误：</value>
+  </data>
+<data name="CreateMessageError.Text" xml:space="preserve">
+    <value>创建消息时发生错误。请稍后重试。</value>
+  </data>
+<data name="CreateMessageErrorWithDescription.Text" xml:space="preserve">
+    <value>创建消息时发生错误：</value>
+  </data>
+<data name="AutoSuggestError.Text" xml:space="preserve">
+    <value>获取建议时发生错误：</value>
+  </data>
+<data name="Upload.Text" xml:space="preserve">
+    <value>从本机上传</value>
+  </data>
+<data name="Subscriptions.Text" xml:space="preserve">
+    <value>订阅</value>
+  </data>
+<data name="Action.Text" xml:space="preserve">
+    <value>操作</value>
+  </data>
+<data name="Activity.Text" xml:space="preserve">
+    <value>活动</value>
+  </data>
+<data name="ManageSubscriptions.Text" xml:space="preserve">
+    <value>管理订阅</value>
+  </data>
+<data name="Frequency.Text" xml:space="preserve">
+    <value>频率</value>
+  </data>
+<data name="lblMessageFreq.Help" xml:space="preserve">
+    <value>选择接收新消息提醒邮件的频率。</value>
+  </data>
+<data name="lblMessageFreq.Text" xml:space="preserve">
+    <value>消息摘要频率：</value>
+  </data>
+<data name="lblNotificationFreq.Help" xml:space="preserve">
+    <value>选择接收站点通知提醒邮件的频率。</value>
+  </data>
+<data name="lblNotificationFreq.Text" xml:space="preserve">
+    <value>通知摘要频率：</value>
+  </data>
+<data name="EmailDeliverySchedule.Text" xml:space="preserve">
+    <value>邮件送达计划</value>
+  </data>
+<data name="PrefSaved.Text" xml:space="preserve">
+    <value>你的偏好已更新。</value>
+  </data>
+<data name="SearchFilter.Text" xml:space="preserve">
+    <value>搜索筛选</value>
+  </data>
+<data name="SubscriptionType.Text" xml:space="preserve">
+    <value>订阅类型</value>
+  </data>
+<data name="Unsubscribe.Text" xml:space="preserve">
+    <value>取消订阅</value>
+  </data>
+<data name="SubscribedDescription.Text" xml:space="preserve">
+    <value>项目</value>
+  </data>
+<data name="Unsubscribed.Text" xml:space="preserve">
+    <value>你已成功取消订阅。</value>
+  </data>
+<data name="lblSubscriptions.Help" xml:space="preserve">
+    <value>查看并管理你的订阅。</value>
+  </data>
+<data name="lblSubscriptions.Text" xml:space="preserve">
+    <value>订阅：</value>
+  </data>
+<data name="DNNCorp_Answers_Question.Text" xml:space="preserve">
+    <value>问答订阅</value>
+  </data>
+<data name="DNNCorp_Blogs.Text" xml:space="preserve">
+    <value>博客订阅</value>
+  </data>
+<data name="DNNCorp_Challenges_Challenge.Text" xml:space="preserve">
+    <value>挑战订阅</value>
+  </data>
+<data name="DNNCorp_Discussions_Topic.Text" xml:space="preserve">
+    <value>讨论订阅</value>
+  </data>
+<data name="DNNCorp_File.Text" xml:space="preserve">
+    <value>文件订阅</value>
+  </data>
+<data name="DNNCorp_Folder.Text" xml:space="preserve">
+    <value>文件夹订阅</value>
+  </data>
+<data name="DNNCorp_Groups_CreatedApprovedGroup.Text" xml:space="preserve">
+    <value>群组订阅</value>
+  </data>
+<data name="DNNCorp_Ideas.Text" xml:space="preserve">
+    <value>创意订阅</value>
+  </data>
+<data name="DNNCorp_SocialEvents_Event.Text" xml:space="preserve">
+    <value>活动订阅</value>
+  </data>
+<data name="DNNCorp_Wiki_Page.Text" xml:space="preserve">
+    <value>维基订阅</value>
+  </data>
+</root>

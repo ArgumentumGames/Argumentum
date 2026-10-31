@@ -1,0 +1,11 @@
+{
+ "files": {
+  "Settings.ascx": {
+   "AuthenticationConfig_Enabled.Help": "勾选此框以启用标准 DNN 身份验证。",
+   "AuthenticationConfig_Enabled.Text": "启用：",
+   "AuthenticationConfig_UseCaptcha.Help": "勾选此框以为 DNN 登录启用验证码。",
+   "AuthenticationConfig_UseCaptcha.Text": "使用验证码：",
+   "Title.Text": "DNN 身份验证设置"
+  }
+ }
+}

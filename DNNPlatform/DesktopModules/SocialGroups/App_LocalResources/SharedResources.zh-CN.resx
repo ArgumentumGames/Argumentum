@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accessibility.Text" xml:space="preserve">
+    <value>辅助功能</value>
+  </data>
+<data name="Cancel.Text" xml:space="preserve">
+    <value>取消</value>
+  </data>
+<data name="CreateGroup.Text" xml:space="preserve">
+    <value>创建群组</value>
+  </data>
+<data name="CreateGroupButton.Text" xml:space="preserve">
+    <value>创建群组</value>
+  </data>
+<data name="Description.Text" xml:space="preserve">
+    <value>描述</value>
+  </data>
+<data name="documents.Text" xml:space="preserve">
+    <value>份文档</value>
+  </data>
+<data name="GroupName.Required" xml:space="preserve">
+    <value>群组名称为必填项。</value>
+  </data>
+<data name="GroupName.Text" xml:space="preserve">
+    <value>群组名称</value>
+  </data>
+<data name="GroupPicture.Help" xml:space="preserve">
+    <value>从你的电脑中选择图片，最大文件大小为 2.5MB</value>
+  </data>
+<data name="GroupPicture.Text" xml:space="preserve">
+    <value>群组图片</value>
+  </data>
+<data name="GroupViewTemplate.Text" xml:space="preserve">
+    <value>&lt;div class="GroupViewTop"&gt;
+    &lt;div class="dgdAvatar dnnLeft"&gt;&lt;img src="[groupitem:PhotoURL]" alt="[groupitem:GroupName]" /&gt;&lt;/div&gt;
+    &lt;div class="GroupViewHeader"&gt;
+        &lt;h1&gt;[groupitem:GroupName]&lt;/h1&gt;
+        &lt;p&gt;[groupitem:GroupDescription]&lt;/p&gt;
+    &lt;/div&gt;
+&lt;div class="dnnRight dnnClear"&gt;
+[IsOwner]
+[GROUPEDITBUTTON] 
+[/IsOwner]
+[IsMember]
+[IsNotOwner]
+ &lt;a href="#" id="LeaveGroup-[groupitem:RoleId]"&gt;{resx:LeaveGroup}&lt;/a&gt;
+[/IsNotOwner]
+[/IsMember]
+[IsNotMember]
+[AllowJoin]
+ &lt;a href="#" id="JoinGroup-[groupitem:RoleId]" groupid="[groupitem:RoleId]" groupViewTabId ="[GroupViewTabId]"&gt;{resx:JoinGroup}&lt;/a&gt;
+[/AllowJoin]
+[/IsNotMember]
+[IsPendingMember]
+ &lt;i&gt;成员资格待处理&lt;/i&gt;
+[/IsPendingMember]
+&lt;/div&gt;
+&lt;/div&gt;</value>
+  </data>
+<data name="Join.Text" xml:space="preserve">
+    <value>加入</value>
+  </data>
+<data name="members.Text" xml:space="preserve">
+    <value>位成员</value>
+  </data>
+<data name="photos.Text" xml:space="preserve">
+    <value>张照片</value>
+  </data>
+<data name="posts.Text" xml:space="preserve">
+    <value>条帖子</value>
+  </data>
+<data name="Private.Help" xml:space="preserve">
+    <value>（仅成员可见）</value>
+  </data>
+<data name="Private.Text" xml:space="preserve">
+    <value>私密</value>
+  </data>
+<data name="Public.Help" xml:space="preserve">
+    <value>（所有人可见并可加入）</value>
+  </data>
+<data name="Public.Text" xml:space="preserve">
+    <value>公开</value>
+  </data>
+<data name="Remove.Text" xml:space="preserve">
+    <value>移除</value>
+  </data>
+<data name="RequiredFields.Text" xml:space="preserve">
+    <value>表示必填字段</value>
+  </data>
+<data name="GroupNameDuplicate.Text" xml:space="preserve">
+    <value>你输入的名称已被使用。</value>
+  </data>
+<data name="GroupPendingNotification.Body" xml:space="preserve">
+    <value>&lt;b&gt;群组名称：&lt;/b&gt; &lt;a href="[groupitem:URL]" target="_blank"&gt;[groupitem:GroupName]&lt;/a&gt;&lt;br /&gt;&lt;b&gt;描述：&lt;/b&gt; [groupitem:Description]&lt;br /&gt;&lt;b&gt;群组类型：&lt;/b&gt; [groupitem:GroupType]&lt;br /&gt;&lt;b&gt;群组创建者：&lt;/b&gt; [groupitem:GroupCreatorName]&lt;br /&gt;</value>
+  </data>
+<data name="GroupPendingNotification.Subject" xml:space="preserve">
+    <value>[groupitem:GroupName] 群组正在等待批准。</value>
+  </data>
+<data name="GroupApprovedNotification.Body" xml:space="preserve">
+    <value>恭喜！你的群组已获批准！点击下面的链接访问你的群组。&lt;br /&gt;&lt;br /&gt;&lt;a href="[groupitem:URL]"&gt;[groupitem:GroupName]&lt;/a&gt;&lt;br /&gt;&lt;br /&gt;</value>
+  </data>
+<data name="GroupApprovedNotification.Subject" xml:space="preserve">
+    <value>[groupitem:GroupName] 群组已获批准。</value>
+  </data>
+<data name="GroupCreatedNotification.Body" xml:space="preserve">
+    <value>&lt;b&gt;群组名称：&lt;/b&gt; &lt;a href="[groupitem:URL]"&gt;[groupitem:GroupName]&lt;/a&gt;&lt;br /&gt;&lt;b&gt;描述：&lt;/b&gt; [groupitem:Description]&lt;br /&gt;&lt;b&gt;群组类型：&lt;/b&gt; [groupitem:GroupType]&lt;br /&gt;&lt;b&gt;群组创建者：&lt;/b&gt; [groupitem:GroupCreatorName]&lt;br /&gt;
+</value>
+  </data>
+<data name="GroupCreatedNotification.Subject" xml:space="preserve">
+    <value>[groupitem:GroupName] 群组已创建。</value>
+  </data>
+<data name="GroupRejectedNotification.Body" xml:space="preserve">
+    <value>你请求创建 &lt;b&gt;[groupitem:GroupName]&lt;/b&gt; 群组。很遗憾，我们目前无法批准你的群组请求。</value>
+  </data>
+<data name="GroupRejectedNotification.Subject" xml:space="preserve">
+    <value>你的新群组请求已被拒绝。</value>
+  </data>
+<data name="CreateNewGroup.Text" xml:space="preserve">
+    <value>创建新群组</value>
+  </data>
+<data name="GroupIdNotFound.Text" xml:space="preserve">
+    <value>我们无法找到你请求的群组。</value>
+  </data>
+<data name="NoGroupsFound.Text" xml:space="preserve">
+    <value>未找到群组。</value>
+  </data>
+<data name="Sample_RoleDescription.Text" xml:space="preserve">
+    <value>这是示例群组的描述。该群组实际并不存在。你看到此内容，是因为你正在首次设置模块，或者你是管理员且在未带群组 ID 的情况下导航到了此页面。</value>
+  </data>
+<data name="Sample_RoleName.Text" xml:space="preserve">
+    <value>示例社交群组</value>
+  </data>
+<data name="SetupHeader.Text" xml:space="preserve">
+    <value>设置社交群组</value>
+  </data>
+<data name="SetupIntro.Text" xml:space="preserve">
+    <value>社交群组模块允许用户浏览、查看和创建群组。  配置此模块的最佳方式是创建一个群组列表页面和一个群组详情查看页面。  你可以自行进入模块设置进行配置，也可以点击下面的自动配置按钮。  &lt;br /&gt;&lt;br /&gt;&lt;b&gt;如果不熟悉此模块，我们建议使用自动配置选项。&lt;/b&gt;</value>
+  </data>
+<data name="RejectGroup.Text" xml:space="preserve">
+    <value>拒绝此群组</value>
+  </data>
+<data name="MembersMustBeApproved.Text" xml:space="preserve">
+    <value>&lt;b&gt;审核新成员：&lt;/b&gt;用户必须申请加入此群组并经群组管理员批准。</value>
+  </data>
+<data name="GroupMemberApprovedNotification.Body" xml:space="preserve">
+    <value>你加入 &lt;a href="[groupitem:URL]"&gt;[groupitem:GroupName]&lt;/a&gt; 的请求已获批准。</value>
+  </data>
+<data name="GroupMemberApprovedNotification.Subject" xml:space="preserve">
+    <value>欢迎加入 [groupitem:GroupName]！</value>
+  </data>
+<data name="GroupMemberPendingNotification.Body" xml:space="preserve">
+    <value>&lt;a href="[ProfileUrl]" target="_blank"&gt;[DisplayName]&lt;/a&gt; 请求加入 [groupitem:GroupName]。</value>
+  </data>
+<data name="GroupMemberPendingNotification.Subject" xml:space="preserve">
+    <value>[DisplayName] 想加入 [groupitem:GroupName]</value>
+  </data>
+<data name="GroupMemberRejectedNotification.Body" xml:space="preserve">
+    <value>很遗憾，你加入 &lt;a href="[groupitem:URL]"&gt;[groupitem:GroupName]&lt;/a&gt; 的请求已被拒绝。</value>
+  </data>
+<data name="GroupMemberRejectedNotification.Subject" xml:space="preserve">
+    <value>关于你加入 [groupitem:GroupName] 请求的答复</value>
+  </data>
+<data name="LeaveGroup.Text" xml:space="preserve">
+    <value>退出群组</value>
+  </data>
+<data name="Pending.Text" xml:space="preserve">
+    <value>成员资格待处理</value>
+  </data>
+<data name="RejectMember.Text" xml:space="preserve">
+    <value>拒绝</value>
+  </data>
+<data name="EditGroup.Text" xml:space="preserve">
+    <value>编辑群组</value>
+  </data>
+<data name="GroupEditUrl.Text" xml:space="preserve">
+    <value>&lt;a href="{0}"&gt;编辑群组&lt;/a&gt;</value>
+  </data>
+<data name="JoinGroup.Text" xml:space="preserve">
+    <value>加入群组</value>
+  </data>
+<data name="AutoConfigure.Text" xml:space="preserve">
+    <value>自动配置</value>
+  </data>
+<data name="SearchButton.Text" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+<data name="GroupSearch.Required" xml:space="preserve">
+    <value>需要搜索词。</value>
+  </data>
+<data name="GroupName.Invalid" xml:space="preserve">
+    <value>名称无效——角色名不能包含以下字符：&amp; $ + , / ? ~ # &lt; &gt; ( ) ¿ ¡ « » !  . :  * ' [ ]</value>
+  </data>
+</root>
