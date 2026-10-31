@@ -103,6 +103,32 @@ namespace Argumentum.AssetConverter.Tests
             ("Admin/Security", "Users.ascx", "Filter.Text"),
         };
 
+        /// <summary>
+        /// Bloc CJK : Ext-A (U+3400–U+4DBF), unifié (U+4E00–U+9FFF) et formes de
+        /// compatibilité (U+F900–U+FAFF) ; les trois sont présents dans le pack.
+        /// <para>
+        /// Le contrôle « ≠ anglais » ci-dessus n'attrape que les copies INTÉGRALES
+        /// d'une valeur : une valeur à moitié traduite (moitié chinoise, moitié
+        /// anglaise) lui échappe. Exiger l'écriture chinoise dans chaque valeur
+        /// ferme ce trou.
+        /// </para>
+        /// </summary>
+        private static readonly Regex ChineseScript =
+            new(@"[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]", RegexOptions.Compiled);
+
+        /// <summary>
+        /// Valeurs dispensées du contrôle d'écriture : les verbatim déclarés
+        /// (marques, Skype ID, A–Z) PLUS <c>MemberServices.ascx:TrialFee.Text</c>,
+        /// qui n'est qu'un gabarit de mise en forme <c>{0}（{1} {2}）</c> — ses
+        /// parenthèses pleine chasse sont hors des trois blocs CJK et sa prose
+        /// vient des arguments. Liste ÉPINGLÉE à 7 : une exemption nouvelle est
+        /// une décision, jamais un constat.
+        /// </summary>
+        private static readonly (string Dir, string Stem, string Key)[] ScriptExempt =
+            VerbatimByDesign
+                .Append(("Admin/Security", "MemberServices.ascx", "TrialFee.Text"))
+                .ToArray();
+
         private static readonly Regex Placeholder = new(@"\{\d+\}", RegexOptions.Compiled);
 
         /// <summary>
@@ -242,6 +268,52 @@ namespace Argumentum.AssetConverter.Tests
                     $"le verbatim déclaré ({dir}/{stem}) porte sur un fichier du lot");
                 Values(dir, stem, string.Empty).Should().ContainKey(key,
                     $"{dir}/{stem}:{key} : un verbatim déclaré doit exister au neutre — sinon la déclaration est morte");
+            }
+        }
+
+        /// <summary>
+        /// Contrôle d'écriture : chaque valeur livrée non dispensée porte au moins
+        /// un caractère chinois. C'est le seul contrôle capable de voir une
+        /// traduction PARTIELLE — un libellé chinois suivi du texte anglais laissé
+        /// en place satisfait le contrôle « ≠ anglais ».
+        /// </summary>
+        [Theory]
+        [MemberData(nameof(CoveredFiles))]
+        public void EveryNonExemptValueCarriesChineseScript(string dir, string stem, int _)
+        {
+            foreach (var (key, value) in Values(dir, stem, "zh-CN"))
+            {
+                if (ScriptExempt.Contains((dir, stem, key)))
+                    continue;
+
+                ChineseScript.IsMatch(value).Should().BeTrue(
+                    $"{RelOf(dir, stem, "zh-CN")}:{key} — la valeur ne porte aucun caractère chinois ; "
+                    + $"valeur = « {value} » (traduction partielle ou valeur laissée en anglais)");
+            }
+        }
+
+        /// <summary>
+        /// La liste des dispenses d'écriture est VIVANTE et ÉPINGLÉE : elle vaut
+        /// exactement les 6 verbatim déclarés plus le gabarit de frais d'essai, et
+        /// chaque dispense supplémentaire vise un fichier du lot et une clé qui
+        /// existe au neutre.
+        /// </summary>
+        [Fact]
+        public void TheScriptExemptListCannotGrowSilently()
+        {
+            ScriptExempt.Should().HaveCount(7,
+                "sept dispenses d'écriture : six verbatim déclarés + le gabarit TrialFee.Text");
+
+            ScriptExempt.Skip(6).Should().Equal(
+                new[] { ("Admin/Security", "MemberServices.ascx", "TrialFee.Text") },
+                "la seule dispense hors verbatim est le gabarit de mise en forme TrialFee.Text");
+
+            foreach (var (dir, stem, key) in ScriptExempt)
+            {
+                Covered.Should().Contain(c => c.Dir == dir && c.Stem == stem,
+                    $"la dispense ({dir}/{stem}) porte sur un fichier du lot");
+                Values(dir, stem, string.Empty).Should().ContainKey(key,
+                    $"{dir}/{stem}:{key} : une dispense doit exister au neutre — sinon la déclaration est morte");
             }
         }
 
