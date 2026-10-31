@@ -343,7 +343,8 @@ namespace Argumentum.AssetConverter.Tests
 			var pt = Cells(PtResx);
 			legacy.Where(k => !pt.ContainsKey(k)).Should().BeEmpty(
 				"ces cles heritees existaient avant la reecriture : leur disparition serait une perte");
-			pt.Should().HaveCount(354, "345 + 9 cles creees par cette PR");
+			pt.Should().HaveCountGreaterThanOrEqualTo(354,
+				"anti-effondrement : 345 + 9 cles creees par l'onglet SSL. Les onglets suivants de la decoupe ajoutent les leurs (Member Accounts -> 355) : le compte EXACT vit dans la garde de chaque onglet, pas ici");
 		}
 
 		[Fact]

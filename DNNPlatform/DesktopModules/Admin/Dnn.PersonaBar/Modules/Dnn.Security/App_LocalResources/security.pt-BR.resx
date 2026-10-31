@@ -16,7 +16,7 @@
     <value xml:space="preserve">Acções</value>
   </data>
   <data name="AdminMembershipResetLinkValidity.ErrorMessage">
-    <value xml:space="preserve">O tempo de validez dos enlaces de reinicio tem que ser um número entre 0 e 10000.</value>
+    <value xml:space="preserve">O tempo de validade do link de redefinição do administrador deve ser um número inteiro maior que 0 e menor que 10000.</value>
   </data>
   <data name="Alert.Text">
     <value xml:space="preserve">ALERTA</value>
@@ -25,7 +25,7 @@
     <value xml:space="preserve">Permitir</value>
   </data>
   <data name="AsyncTimeout.ErrorMessage">
-    <value xml:space="preserve">O tempo de espera de petições tem que ser um número entre 09 e 10000.</value>
+    <value xml:space="preserve">O tempo antes do tempo limite deve ser um número inteiro maior ou igual a 90 e menor que 10000.</value>
   </data>
   <data name="AuditChecks.Text">
     <value xml:space="preserve">Auditoría</value>
@@ -37,7 +37,7 @@
     <value xml:space="preserve">Autorizado</value>
   </data>
   <data name="AutoAccountUnlockDuration.ErrorMessage">
-    <value xml:space="preserve">A duração de autodesbloquear contas tem que ser um número entre 0 e 1000.</value>
+    <value xml:space="preserve">A duração do desbloqueio automático da conta deve ser um número inteiro maior ou igual a 0 e menor que 1000.</value>
   </data>
   <data name="BasicLoginSettingsError">
     <value xml:space="preserve">Não foi podido guardar a configuração de identificação. Vuelva a intentarlo.</value>
@@ -433,22 +433,22 @@
     <value xml:space="preserve">O tamaño máximo de Arquivos para cargar tem que estar entre 12 e {0}</value>
   </data>
   <data name="MemberSettingsError.Text">
-    <value xml:space="preserve">Não se pode atualizar a configuração de usuarios. Vuelva a intentarlo.</value>
+    <value xml:space="preserve">Não foi possível atualizar a configuração de membros. Tente novamente mais tarde.</value>
   </data>
   <data name="MemberSettingsRestoreWarning.Text">
-    <value xml:space="preserve">Está seguro que quer cancelar os cambios?</value>
+    <value xml:space="preserve">Tem certeza de que deseja cancelar as alterações?</value>
   </data>
   <data name="MemberSettingsUpdateSuccess.Text">
-    <value xml:space="preserve">foi actualizado a configuração de usuarios.</value>
+    <value xml:space="preserve">A configuração de membros foi atualizada.</value>
   </data>
   <data name="MembershipDaysBeforePasswordReuse.ErrorMessage" lastModified="2018-03-24 04:21:41">
-    <value xml:space="preserve">O número de días antes a reutilização de contrañas tem que ser um números entre 0 e 10000.</value>
+    <value xml:space="preserve">O número de dias antes da reutilização da senha deve ser um número inteiro maior ou igual a 0 e menor que 10000.</value>
   </data>
   <data name="MembershipNumberPasswords.ErrorMessage">
-    <value xml:space="preserve">O número de contrasenhas a guardar tem que ser um número entre 0 e 10000.</value>
+    <value xml:space="preserve">O número de senhas a armazenar deve ser um número inteiro maior ou igual a 0 e menor que 10000.</value>
   </data>
   <data name="MembershipResetLinkValidity.ErrorMessage">
-    <value xml:space="preserve">O tempo de validez dos enlaces de reinicio tem que ser um número entre 0 e 10000.</value>
+    <value xml:space="preserve">O tempo de validade do link de redefinição deve ser um número inteiro maior que 0 e menor que 10000.</value>
   </data>
   <data name="MinNonAlphanumericCharactersTitle.Help">
     <value xml:space="preserve">Número mínimo de caracteres não alfanuméricos obrigatórios na contrasenha.</value>
@@ -526,22 +526,22 @@
     <value xml:space="preserve">Período de intentos de identificação (minutos):</value>
   </data>
   <data name="PasswordConfig_PasswordExpiry.Help">
-    <value xml:space="preserve">Mostra cada quando tempo os usuarios tienem que mudar a contrasenha (0 mostra que a contrasenha não caduca nunca).</value>
+    <value xml:space="preserve">Informe o número de dias antes que o usuário precise alterar a senha. Informe 0 (zero) se a senha nunca deve expirar.</value>
   </data>
   <data name="PasswordConfig_PasswordExpiry.Text">
-    <value xml:space="preserve">Expiração de contrasenha (em días):</value>
+    <value xml:space="preserve">Expiração da senha (em dias):</value>
   </data>
   <data name="PasswordConfig_PasswordExpiryReminder.Help">
-    <value xml:space="preserve">Mostra o número de días antes de que caduque a contrasenha, em que os usuarios recibirán o recordatorio para mudar su contrasenha.</value>
+    <value xml:space="preserve">Informe o número de dias de antecedência com que os usuários receberão o aviso de que sua senha está prestes a expirar.</value>
   </data>
   <data name="PasswordConfig_PasswordExpiryReminder.Text">
-    <value xml:space="preserve">Recordatorio de expiração de contrasenha (em días):</value>
+    <value xml:space="preserve">Aviso de expiração da senha (em dias):</value>
   </data>
   <data name="PasswordExpiry.ErrorMessage">
-    <value xml:space="preserve">O tempo de expiração tem que ser um número entre 0 e 10000.</value>
+    <value xml:space="preserve">A expiração da senha deve ser um número inteiro maior ou igual a 0 e menor que 10000.</value>
   </data>
   <data name="PasswordExpiryReminder.ErrorMessage">
-    <value xml:space="preserve">O tempo de recordatorio tem que ser um número entre 0 e 10000.</value>
+    <value xml:space="preserve">O aviso de expiração da senha deve ser um número inteiro maior ou igual a 0 e menor que 10000.</value>
   </data>
   <data name="PasswordFormat.Help">
     <value xml:space="preserve">Formato da contrasenha.</value>
@@ -574,10 +574,10 @@
     <value xml:space="preserve">Administrador principal</value>
   </data>
   <data name="plAdminResetLinkValidity.Help">
-    <value xml:space="preserve">Tempo de validez dos enlaces de reinicio do administrador (em minutos).</value>
+    <value xml:space="preserve">Tempo, em minutos, de validade dos links de redefinição de senha enviados pelo administrador do site.</value>
   </data>
   <data name="plAdminResetLinkValidity.Text">
-    <value xml:space="preserve">Tempo de vida do enlace de reinicio de administrador (minutos)</value>
+    <value xml:space="preserve">Tempo de validade do link de redefinição do administrador (em minutos)</value>
   </data>
   <data name="plAsyncTimeout.Help">
     <value xml:space="preserve">Entre o tempo máximo, em segundos, que se mantendrá activa uma llamada asíncrona antes de cerrar a petição. O valor tem que estar entre 90-9999 segundos.</value>
@@ -598,28 +598,28 @@
     <value xml:space="preserve">Modo depuração</value>
   </data>
   <data name="plDefaultEndUserExtensionWhitelist.Help" lastModified="2020-05-09 09:37:41">
-    <value xml:space="preserve">Lista de extensões de Arquivos permitidas para subir ao sitio web. Os Administradores do portal podem sobreescribir esta opção mas não podrán adicionar outros tipos não incluidos na lista principal. Nota: esta lista se filtrará com a lista superior ao guardar.</value>
+    <value xml:space="preserve">Lista padrão de extensões de arquivos que usuários finais podem enviar. Administradores podem substituir essa lista, mas nunca podem permitir mais tipos de arquivo do que os definidos na lista principal acima. Observe que esta lista será filtrada pela lista acima ao salvar.</value>
   </data>
   <data name="plDefaultEndUserExtensionWhitelist.Text" lastModified="2020-05-09 09:37:41">
-    <value xml:space="preserve">Lista permitida de extensões para usuarios</value>
+    <value xml:space="preserve">Lista padrão de extensões permitidas para usuários finais</value>
   </data>
   <data name="plEnableBannedList.Help">
-    <value xml:space="preserve">Mostra si se comprobarán as contrasenhas a partir da lista de términos prohibidos.</value>
+    <value xml:space="preserve">Marque esta opção para verificar as senhas em uma lista de itens proibidos.</value>
   </data>
   <data name="plEnableBannedList.Text">
-    <value xml:space="preserve">Activar a lista de contrasenhas prohibidas</value>
+    <value xml:space="preserve">Ativar lista de senhas proibidas</value>
   </data>
   <data name="plEnableIPChecking.Help">
-    <value xml:space="preserve">Activa esta opção para validar a direção IP desde a que se inicia a sesión.</value>
+    <value xml:space="preserve">Define se o endereço IP é verificado no momento do login</value>
   </data>
   <data name="plEnableIPChecking.Text">
-    <value xml:space="preserve">Activar a validação de direção IP</value>
+    <value xml:space="preserve">Ativar verificação de endereço IP</value>
   </data>
   <data name="plEnablePasswordHistory.Help">
-    <value xml:space="preserve">Mostra si se guardará e utilizará uma lista de contrasenhas usadas anteriormente para evitar a repetição de contrasenhas.</value>
+    <value xml:space="preserve">Define se uma lista de senhas usadas recentemente é mantida e verificada para impedir a reutilização.</value>
   </data>
   <data name="plEnablePasswordHistory.Text">
-    <value xml:space="preserve">Activar historial de contrasenhas</value>
+    <value xml:space="preserve">Ativar histórico de senhas</value>
   </data>
   <data name="plEnableRegisterNotification.Help">
     <value xml:space="preserve">Entre se o administrador deve recibir emails de notificação quando se registren novos usuarios.</value>
@@ -628,10 +628,10 @@
     <value xml:space="preserve">Recibir notificações de registro de usuarios:</value>
   </data>
   <data name="plEnableStrengthMeter.Help">
-    <value xml:space="preserve">Ative esta opção para mostrar o medidor de seguridade de contrasenhas na pantalla de registro</value>
+    <value xml:space="preserve">Define se o medidor de força da senha é exibido na tela de registro</value>
   </data>
   <data name="plEnableStrengthMeter.Text">
-    <value xml:space="preserve">Activar a validação de seguridade de contrasenha</value>
+    <value xml:space="preserve">Ativar verificação de força da senha</value>
   </data>
   <data name="plFileExtensions.Help" lastModified="2020-05-09 11:38:41">
     <value xml:space="preserve">Escriba as extensões de Arquivos permitidas (separadas por comas) para os Arquivos que suban os administradores do portal.</value>
@@ -646,10 +646,10 @@
     <value xml:space="preserve">Primera IP</value>
   </data>
   <data name="plForceLogOutAfterPasswordChanged.Help" lastModified="2020-05-08 23:22:16">
-    <value xml:space="preserve">Forzar o cierre de sesión em outros navegadores después de mudar a contrasenha de um usuario.</value>
+    <value xml:space="preserve">Força o encerramento da sessão do usuário em outros navegadores após a senha ser alterada.</value>
   </data>
   <data name="plForceLogOutAfterPasswordChanged.Text" lastModified="2020-05-08 23:22:16">
-    <value xml:space="preserve">Forzar cierre de sesión ao mudar contrasenha</value>
+    <value xml:space="preserve">Forçar encerramento da sessão após alterar a senha</value>
   </data>
   <data name="plHideLoginControl.Help">
     <value xml:space="preserve">Marque esta opção para ocultar o enlace a página de identificação.</value>
@@ -664,16 +664,16 @@
     <value xml:space="preserve">Tamaño máximo de carga</value>
   </data>
   <data name="plNumberPasswords.Help">
-    <value xml:space="preserve">Mostra o número de contrasenhas anteriores que se guardarán para a validação de reuso</value>
+    <value xml:space="preserve">Informe o número de senhas a armazenar para a verificação de reutilização</value>
   </data>
   <data name="plNumberPasswords.Text">
-    <value xml:space="preserve">Número de contrasenhas a guardar</value>
+    <value xml:space="preserve">Número de senhas a armazenar</value>
   </data>
   <data name="plPasswordDays.Help" lastModified="2018-03-24 07:23:31">
-    <value xml:space="preserve">Entre os días que tienem que pasar antes de poder reutilizar uma contrasenha.</value>
+    <value xml:space="preserve">Informe o tempo, em dias, que deve passar antes que uma senha possa ser reutilizada</value>
   </data>
   <data name="plPasswordDays.Text" lastModified="2018-03-24 07:23:31">
-    <value xml:space="preserve">Número de días antes de reutilizar contrasenhas</value>
+    <value xml:space="preserve">Número de dias antes de reutilizar uma senha</value>
   </data>
   <data name="plRememberMe.Help">
     <value xml:space="preserve">Configura a casilla de verificação Recordar nos controles de Acesso. Se activa esta opção os usuarios podrán criar cookies persistentes para recordar a identificação</value>
@@ -682,10 +682,10 @@
     <value xml:space="preserve">Habilitar recordar em controles de Acesso</value>
   </data>
   <data name="plResetLinkValidity.Help">
-    <value xml:space="preserve">Mostra o tempo (em minutos) durante o cual será válido o enlace para reiniciar a contrasenha.</value>
+    <value xml:space="preserve">Os links de redefinição de senha são válidos apenas durante esse tempo (em minutos).</value>
   </data>
   <data name="plResetLinkValidity.Text">
-    <value xml:space="preserve">Tempo de validez do enlace de reinicio (minutos)</value>
+    <value xml:space="preserve">Tempo de validade do link de redefinição (em minutos)</value>
   </data>
   <data name="plRuleSpecifity.Help">
     <value xml:space="preserve">Mostra se a regla se aplica a uma única IP o a um rango de direcções IP.</value>
@@ -779,7 +779,10 @@
   </data>
   <data name="Redirect_AfterRegistration.Text">
     <value xml:space="preserve">Redireccionar después do registro</value>
+  </data>  <data name="RedirectionMovedToSiteSettings.Text">
+    <value xml:space="preserve">O redirecionamento foi movido para as Configurações do site</value>
   </data>
+
   <data name="Registration_ExcludeTerms.Help">
     <value xml:space="preserve">Pode introducir uma lista separada por comas de términos que os usuarios não podrán selecionar como nome do usuário o nome para mostrar.</value>
   </data>
@@ -1024,10 +1027,10 @@
     <value xml:space="preserve">Identificação</value>
   </data>
   <data name="TabMemberAccounts.Text">
-    <value xml:space="preserve">Contas</value>
+    <value xml:space="preserve">Contas de membros</value>
   </data>
   <data name="TabMemberSettings.Text">
-    <value xml:space="preserve">GESTIÓN DE MIEMBROS</value>
+    <value xml:space="preserve">GESTÃO DE MEMBROS</value>
   </data>
   <data name="TabMore.Text">
     <value xml:space="preserve">Más</value>
