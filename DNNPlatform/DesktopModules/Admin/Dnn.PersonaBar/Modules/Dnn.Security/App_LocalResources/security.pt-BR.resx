@@ -385,7 +385,7 @@
     <value xml:space="preserve">Esta é uma configuração global. As alterações nesta configuração afetarão todos os seus sites.</value>
   </data>
   <data name="GlobalSettingsTab.Text">
-    <value xml:space="preserve">Este um parámetro global. Os cambios afectarán a todos os portais da instalação.</value>
+    <value xml:space="preserve">Este é um parâmetro global. As alterações afetarão todos os portais da instalação.</value>
   </data>
   <data name="HighRiskFiles.Text">
     <value xml:space="preserve">Arquivos riesgo alto</value>
@@ -499,7 +499,7 @@
     <value xml:space="preserve">Configuração módulos</value>
   </data>
   <data name="nav_Security.Text">
-    <value xml:space="preserve">Seguridade</value>
+    <value xml:space="preserve">Segurança</value>
   </data>
   <data name="Não.Text">
     <value xml:space="preserve">Não</value>
@@ -1033,7 +1033,7 @@
     <value xml:space="preserve">A conta SQL Server é 'sysadmin'.</value>
   </data>
   <data name="TabAuditChecks.Text">
-    <value xml:space="preserve">AUDITORÍA</value>
+    <value xml:space="preserve">AUDITORIA</value>
   </data>
   <data name="TabBasicLoginSettings.Text">
     <value xml:space="preserve">CONFIGURAÇÃO BÁSICA DE IDENTIFICAÇÃO</value>
@@ -1054,22 +1054,22 @@
     <value xml:space="preserve">GESTÃO DE MEMBROS</value>
   </data>
   <data name="TabMore.Text">
-    <value xml:space="preserve">Más</value>
+    <value xml:space="preserve">Mais</value>
   </data>
   <data name="TabMoreSecuritySettings.Text">
-    <value xml:space="preserve">MÁS OPÇÕES DE SEGURIDADE</value>
+    <value xml:space="preserve">MAIS OPÇÕES DE SEGURANÇA</value>
   </data>
   <data name="TabRegistrationSettings.Text">
     <value xml:space="preserve">CONFIGURAÇÃO DE REGISTRO</value>
   </data>
   <data name="TabScannerCheck.Text">
-    <value xml:space="preserve">VERIFICAÇÃO DE ESCÁNER</value>
+    <value xml:space="preserve">VERIFICAÇÃO DE SCANNER</value>
   </data>
   <data name="TabSecurityAnalyzer.Text">
-    <value xml:space="preserve">Análisis de seguridade</value>
+    <value xml:space="preserve">Análise de segurança</value>
   </data>
   <data name="TabSecurityBulletins.Text">
-    <value xml:space="preserve">Boletines de seguridade</value>
+    <value xml:space="preserve">Boletins de segurança</value>
   </data>
   <data name="TabSettings.Text">
     <value xml:space="preserve">Configuração de páginas</value>
