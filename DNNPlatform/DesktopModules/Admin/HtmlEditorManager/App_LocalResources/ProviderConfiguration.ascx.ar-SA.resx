@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AutoResizeHeight.Help" xml:space="preserve">
+    <value>تشير قيمة الخاصية AutoResizeHeight إلى ما إذا كان RadEditor سيغيّر ارتفاعه تلقائيًا ليطابق ارتفاع المحتوى.
+
+هذه الخاصية شبيهة بخاصية Overflow لعنصر DIV، وهي غير مدعومة في عناصر IFRAME.
+
+عندما تُضبط الخاصية AutoResizeHeight على true، تتغير مساحة محتوى المحرر لتطابق ارتفاع المحتوى ولن تظهر أشرطة تمرير.</value>
+  </data>
+  <data name="AutoResizeHeight.Text" xml:space="preserve">
+    <value>تغيير الارتفاع تلقائيًا:</value>
+  </data>
+  <data name="BorderWidth.Help" xml:space="preserve">
+    <value>يحدد عرض الحدود بالبكسل حول عنصر التحكم</value>
+  </data>
+  <data name="BorderWidth.Text" xml:space="preserve">
+    <value>عرض الحدود:</value>
+  </data>
+  <data name="btnEditToolsFile.Text" xml:space="preserve">
+    <value>تكوين أشرطة أدوات المحرر</value>
+  </data>
+  <data name="btnEnable.Text" xml:space="preserve">
+    <value>تغيير</value>
+  </data>
+  <data name="btnUpdateConfig.Text" xml:space="preserve">
+    <value>تحديث التكوين</value>
+  </data>
+  <data name="Client Script Settings.Title" xml:space="preserve">
+    <value>إعدادات البرامج النصية للعميل</value>
+  </data>
+  <data name="cmdCopy.Text" xml:space="preserve">
+    <value>نسخ</value>
+  </data>
+  <data name="cmdCreate.Text" xml:space="preserve">
+    <value>إنشاء</value>
+  </data>
+  <data name="Common Settings.Title" xml:space="preserve">
+    <value>إعدادات عامة</value>
+  </data>
+  <data name="ContentAreaMode.Help" xml:space="preserve">
+    <value>اختر بين التحرير في مستند منفصل داخل إطار Iframe (الافتراضي)، أو مباشرة داخل عنصر Div في الصفحة الحالية.</value>
+  </data>
+  <data name="ContentAreaMode.Text" xml:space="preserve">
+    <value>وضع منطقة المحتوى</value>
+  </data>
+  <data name="ContentFilters.Help" xml:space="preserve">
+    <value>مرشحات RadEditor لـ ASP.NET AJAX هي مقتطفات برمجية صغيرة تُستدعى بتسلسل لمعالجة محتوى المحرر عند تبديل الوضع (html / تصميم / معاينة) أو عند إرسال الصفحة. وصف كل مرشح هنا: &lt;a href="http://www.telerik.com/help/aspnet-ajax/contentfilters.html" target="_blank"&gt;مساعدة Telerik على الإنترنت&lt;/a&gt;</value>
+  </data>
+  <data name="ContentFilters.Text" xml:space="preserve">
+    <value>مرشحات المحتوى:</value>
+  </data>
+  <data name="ControlTitle_.Text" xml:space="preserve">
+    <value>إدارة محرر HTML</value>
+  </data>
+  <data name="ControlTitle_.Text1" xml:space="preserve">
+    <value>مدير محرر HTML</value>
+  </data>
+  <data name="CssFile.Help" xml:space="preserve">
+    <value>ملف css الذي يستخدمه المحرر في وضع wysiwyg. يجب أن يكون هذا الملف في دليل السمة أو في دليل الموقع. المسار المحدد هنا نسبي إلى العنصر الأب (مثلًا /editor.css ملف في جذر سمّتك)</value>
+  </data>
+  <data name="CssFile.Text" xml:space="preserve">
+    <value>ملف CSS:</value>
+  </data>
+  <data name="Developer Settings.Title" xml:space="preserve">
+    <value>إعدادات المطور</value>
+  </data>
+  <data name="Document Manager Settings.Title" xml:space="preserve">
+    <value>إعدادات مدير المستندات</value>
+  </data>
+  <data name="DocumentsFilters.Help" xml:space="preserve">
+    <value>قائمة مفصولة بفواصل منقوطة بالامتدادات الممكنة لمدير المستندات.  يجب أن تكون الامتدادات أيضًا في قائمة الامتدادات المسموح بها في إعدادات المضيف.  استخدم التنسيق التالي: *.extensionname</value>
+  </data>
+  <data name="DocumentsFilters.Text" xml:space="preserve">
+    <value>المرشحات:</value>
+  </data>
+  <data name="DocumentsPath.Help" xml:space="preserve">
+    <value>المجلد الذي يبدأ به مدير المستندات عند تحميل مربع الحوار</value>
+  </data>
+  <data name="DocumentsPath.Text" xml:space="preserve">
+    <value>المسار:</value>
+  </data>
+  <data name="EditConfigTab.Text" xml:space="preserve">
+    <value>تكوين المحرر</value>
+  </data>
+  <data name="EditModes.Help" xml:space="preserve">
+    <value>يوفر RadEditor ثلاثة أوضاع تحرير مختلفة: تصميم وHtml ومعاينة:
+
+&lt;ul&gt;&lt;li&gt;تصميم: في وضع التصميم يمكنك تحرير المحتوى وتنسيقه باستخدام أزرار شريط أدوات RadEditor والقوائم المنسدلة ومربعات الحوار. &lt;/li&gt;&lt;li&gt;Html: يوفر وضع HTML وصولًا مباشرًا إلى تعليمات HTML للمحتوى. ويستخدم المتقدمون هذا الوضع في أغلب الأحيان.&lt;/li&gt;&lt;li&gt;معاينة: يعرض كيف سيبدو المحتوى قبل تحديث الصفحة.&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="EditModes.Text" xml:space="preserve">
+    <value>أوضاع التحرير:</value>
+  </data>
+  <data name="EnableResize.Help" xml:space="preserve">
+    <value>يحدد أو يعين القيمة التي تشير إلى ما إذا كان بإمكان المستخدمين تغيير حجم عنصر تحكم RadEditor على العميل.</value>
+  </data>
+  <data name="EnableResize.Text" xml:space="preserve">
+    <value>تمكين تغيير الحجم:</value>
+  </data>
+  <data name="FileBrowserContentProviderTypeName.Help" xml:space="preserve">
+    <value>موفر المحتوى هو فئة تتولى كيفية التعامل مع الملفات والمجلدات في مربعات حوار مدير الملفات. استبدل هذا الإعداد إذا كان لديك موفر محتوى آخر. </value>
+  </data>
+  <data name="FileBrowserContentProviderTypeName.Text" xml:space="preserve">
+    <value>موفر مستعرض الملفات:</value>
+  </data>
+  <data name="Flash Manager Settings.Title" xml:space="preserve">
+    <value>إعدادات مدير الفلاش</value>
+  </data>
+  <data name="FlashFilters.Help" xml:space="preserve">
+    <value>قائمة مفصولة بفواصل منقوطة بالامتدادات الممكنة لمدير الفلاش.  يجب أن تكون الامتدادات أيضًا في قائمة الامتدادات المسموح بها في إعدادات المضيف.  استخدم التنسيق التالي: *.extensionname</value>
+  </data>
+  <data name="FlashFilters.Text" xml:space="preserve">
+    <value>المرشحات:</value>
+  </data>
+  <data name="FlashPath.Help" xml:space="preserve">
+    <value>المجلد الذي يبدأ به مدير الفلاش عند تحميل مربع الحوار</value>
+  </data>
+  <data name="FlashPath.Text" xml:space="preserve">
+    <value>المسار:</value>
+  </data>
+  <data name="Height.Help" xml:space="preserve">
+    <value>الارتفاع الكلي لعنصر تحكم المحرر</value>
+  </data>
+  <data name="Height.Text" xml:space="preserve">
+    <value>الارتفاع:</value>
+  </data>
+  <data name="HTMLEditorPageDescription.Text" xml:space="preserve">
+    <value>يوفر خيارات تكوين لموفر محرر HTML.</value>
+  </data>
+  <data name="HTMLEditorPageName.Text" xml:space="preserve">
+    <value>مدير محرر HTML</value>
+  </data>
+  <data name="Image Manager Settings.Title" xml:space="preserve">
+    <value>إعدادات مدير الصور</value>
+  </data>
+  <data name="ImagesFilters.Help" xml:space="preserve">
+    <value>قائمة مفصولة بفواصل منقوطة بالامتدادات الممكنة لمدير الصور.  يجب أن تكون الامتدادات أيضًا في قائمة الامتدادات المسموح بها في إعدادات المضيف.  استخدم التنسيق التالي: *.extensionname</value>
+  </data>
+  <data name="ImagesFilters.Text" xml:space="preserve">
+    <value>المرشحات:</value>
+  </data>
+  <data name="ImagesPath.Help" xml:space="preserve">
+    <value>المجلد الذي يبدأ به مدير الصور عند تحميل مربع الحوار</value>
+  </data>
+  <data name="ImagesPath.Text" xml:space="preserve">
+    <value>المسار:</value>
+  </data>
+  <data name="Language.Help" xml:space="preserve">
+    <value>إذا تم التعيين، سيتجاوز هذا لغة سياق الموقع. تُستخدم اللغة الحالية افتراضيًا، لذا ينبغي في معظم الحالات تركه فارغًا</value>
+  </data>
+  <data name="Language.Text" xml:space="preserve">
+    <value>اللغة:</value>
+  </data>
+  <data name="lblChangeProvider.Help" xml:space="preserve">
+    <value>اختيار موفر مختلف من القائمة المنسدلة ثم النقر على تغيير سيغيّر موفر محرر HTML المعيّن للتثبيت بأكمله.</value>
+  </data>
+  <data name="lblChangeProvider.Text" xml:space="preserve">
+    <value>تغيير الموفر</value>
+  </data>
+  <data name="lblCurrentProvider.Help" xml:space="preserve">
+    <value>هذا هو موفر محرر HTML المعيّن حاليًا لهذا التثبيت. </value>
+  </data>
+  <data name="lblCurrentProvider.Text" xml:space="preserve">
+    <value>الموفر الحالي</value>
+  </data>
+  <data name="lblEditorConfig.Text" xml:space="preserve">
+    <value>تكوين المحرر</value>
+  </data>
+  <data name="lblEditorType.Text" xml:space="preserve">
+    <value>الموفر الحالي في تثبيت DNN هذا هو &lt;b&gt;{0}&lt;/b&gt;</value>
+  </data>
+  <data name="lblMode.Help" xml:space="preserve">
+    <value>الدور الذي تريد ربط تكوين المحرر هذا به.</value>
+  </data>
+  <data name="lblMode.Text" xml:space="preserve">
+    <value>الربط بدور</value>
+  </data>
+  <data name="lblNotAuthorized.Text" xml:space="preserve">
+    <value>غير مصرح لك باستخدام هذه الوحدة.</value>
+  </data>
+  <data name="lblNote.Text" xml:space="preserve">
+    <value>الغرض من هذه الوحدة هو تسجيل موفر Rad Editor وتكوينه. وهي تساعد مستخدمي المضيف على تعيين موفر HTML في web.config والحفاظ على تكوينه.</value>
+  </data>
+  <data name="lblOnlyHost.Text" xml:space="preserve">
+    <value>يُسمح لمستخدمي المضيف فقط باستخدام هذه الوحدة.</value>
+  </data>
+  <data name="lblPortal.Help" xml:space="preserve">
+    <value>إذا تم التحديد، سيُربط الموقع الحالي بتكوين المحرر هذا. </value>
+  </data>
+  <data name="lblPortal.Text" xml:space="preserve">
+    <value>الربط بالموقع</value>
+  </data>
+  <data name="lblSelectedProvider.Text" xml:space="preserve">
+    <value>الموفر الحالي</value>
+  </data>
+  <data name="lblTabs.Help" xml:space="preserve">
+    <value>اختيار صفحة من عرض الشجرة سيربط تكوين المحرر هذا بالصفحة المحددة.</value>
+  </data>
+  <data name="lblTabs.Text" xml:space="preserve">
+    <value>الربط بعلامة تبويب</value>
+  </data>
+  <data name="LinksType.Help" xml:space="preserve">
+    <value>«استخدام اسم الصفحة»: يُبنى رابط صفحة الموقع هكذا: default.aspx?TabName=Home;&lt;br /&gt;«استخدام معرّف الصفحة»: يُبنى رابط صفحة الموقع هكذا: default.aspx?TabId=100;&lt;br /&gt;«عادي»: يُبنى رابط صفحة الموقع كرابط عادي.</value>
+  </data>
+  <data name="LinksType.Text" xml:space="preserve">
+    <value>نوع روابط الصفحات:</value>
+  </data>
+  <data name="LinksType_Normal.Text" xml:space="preserve">
+    <value>عادي</value>
+  </data>
+  <data name="LinksType_UseTabId.Text" xml:space="preserve">
+    <value>استخدام معرّف الصفحة في URL</value>
+  </data>
+  <data name="LinksType_UseTabName.Text" xml:space="preserve">
+    <value>استخدام اسم الصفحة في URL</value>
+  </data>
+  <data name="LinksUseRelativeUrls.Help" xml:space="preserve">
+    <value>إذا ضُبط على false، تُنشأ الروابط مطلقة</value>
+  </data>
+  <data name="LinksUseRelativeUrls.Text" xml:space="preserve">
+    <value>تمكين روابط URL النسبية:</value>
+  </data>
+  <data name="MaxDocumentSize.Help" xml:space="preserve">
+    <value>الحد الأقصى لحجم تحميل المستند بالبايت</value>
+  </data>
+  <data name="MaxDocumentSize.Text" xml:space="preserve">
+    <value>أقصى حجم للملف:</value>
+  </data>
+  <data name="MaxFlashSize.Help" xml:space="preserve">
+    <value>الحد الأقصى لحجم تحميل الفلاش بالبايت</value>
+  </data>
+  <data name="MaxFlashSize.Text" xml:space="preserve">
+    <value>أقصى حجم للملف:</value>
+  </data>
+  <data name="MaxImageSize.Help" xml:space="preserve">
+    <value>الحد الأقصى لحجم تحميل الصورة بالبايت</value>
+  </data>
+  <data name="MaxImageSize.Text" xml:space="preserve">
+    <value>أقصى حجم للملف:</value>
+  </data>
+  <data name="MaxMediaSize.Help" xml:space="preserve">
+    <value>الحد الأقصى لحجم تحميل الفيلم بالبايت</value>
+  </data>
+  <data name="MaxMediaSize.Text" xml:space="preserve">
+    <value>أقصى حجم للملف:</value>
+  </data>
+  <data name="MaxSilverlightSize.Help" xml:space="preserve">
+    <value>الحد الأقصى لحجم تحميل Silverlight بالبايت</value>
+  </data>
+  <data name="MaxSilverlightSize.Text" xml:space="preserve">
+    <value>أقصى حجم للملف:</value>
+  </data>
+  <data name="MaxTemplateSize.Help" xml:space="preserve">
+    <value>الحد الأقصى لحجم تحميل القالب بالبايت</value>
+  </data>
+  <data name="MaxTemplateSize.Text" xml:space="preserve">
+    <value>أقصى حجم للملف:</value>
+  </data>
+  <data name="Media Manager Settings.Title" xml:space="preserve">
+    <value>إعدادات مدير الوسائط</value>
+  </data>
+  <data name="MediaFilters.Help" xml:space="preserve">
+    <value>قائمة مفصولة بفواصل منقوطة بالامتدادات الممكنة لمدير الوسائط.  يجب أن تكون الامتدادات أيضًا في قائمة الامتدادات المسموح بها في إعدادات المضيف.  استخدم التنسيق التالي: *.extensionname</value>
+  </data>
+  <data name="MediaFilters.Text" xml:space="preserve">
+    <value>المرشحات:</value>
+  </data>
+  <data name="MediaPath.Help" xml:space="preserve">
+    <value>المجلد الذي يبدأ به مدير الوسائط عند تحميل مربع الحوار</value>
+  </data>
+  <data name="MediaPath.Text" xml:space="preserve">
+    <value>المسار:</value>
+  </data>
+  <data name="NewLineBr.Help" xml:space="preserve">
+    <value>تحدد الخاصية NewLineBr ما إذا كان المحرر سيُدرج سطرًا جديدًا (وسم &lt;BR&gt;) أو فقرة جديدة (وسم &lt;P&gt;) عند الضغط على مفتاح Enter. القيمة الافتراضية هي true (وسم &lt;BR&gt;) لتقريب السلوك من معالجات النصوص المكتبية. في هذه الحالة يمكنك إدراج وسوم الفقرات بالضغط على Ctrl+M أو زر الفقرة الجديدة.
+
+إذا ضبطت الخاصية NewLineBr على false، فسيُدرج وسم فقرة عند كل إرجاع حرف (الضغط على Enter). وهنا سيؤدي الضغط على Shift+Enter إلى إدراج وسم &lt;BR&gt;.
+
+العمل مع القوائم النقطية والمرقمة في Telerik RadEditor
+القوائم أنواع من الفقرات وتقبل الخصائص نفسها التي تقبلها وسوم الفقرات. وهذا يعني أنك كلما أدرجت قائمة في HTML فإنك تُدرج فقرة جديدة. منذ الإصدار Telerik RadEditor v5.05 تم تحسين آلية NewLineBr. غير أن هذا يجعل من المستحيل مثلًا بدء قائمة نقطية أو مرقمة بسطر فارغ. &lt;a href="http://www.telerik.com/help/aspnet-ajax/usingthenewlinebrproperty.html" target="_blank"&gt;اقرأ المساعدة على الإنترنت لمزيد من المعلومات&lt;/a&gt;</value>
+  </data>
+  <data name="NewLineBr.Text" xml:space="preserve">
+    <value>عرض الأسطر الجديدة كفواصل:</value>
+  </data>
+  <data name="NotCurrentProvider.Text" xml:space="preserve">
+    <value>موفر RadEditorProvider ليس موفر محرر html الافتراضي الآن، ولن تُطبق أي تغييرات على موفر المحرر الحالي. إذا أردت أن يصبح التكوين ساريًا، فيرجى تحديث الموفر الافتراضي إلى 'DotNetNuke.RadEditorProvider' في القائمة المنسدلة اليسرى.</value>
+  </data>
+  <data name="OnClientCommandExecuting.Help" xml:space="preserve">
+    <value>عيّن اسم دالة تُستدعى عندما يُطلق المحرر الحدث OnExecute على العميل (يُطلق قبل تنفيذ أمر مباشرة). يمكن وضع الدالة في ملف js المحدد في الإعداد ScriptToLoad. هذا الحدث مفيد إذا أردت مثلًا إضافة دعم الرموز التعبيرية. (اقرأ &lt;a href="http://radeditor.codeplex.com/Thread/View.aspx?ThreadId=231612" target="_blank"&gt;منشور المنتدى هذا&lt;/a&gt; لمزيد من المعلومات)</value>
+  </data>
+  <data name="OnClientCommandExecuting.Text" xml:space="preserve">
+    <value>تنفيذ الأمر:</value>
+  </data>
+  <data name="OnClientPasteHtml.Help" xml:space="preserve">
+    <value>عيّن اسم دالة تُستدعى عندما يُطلق المحرر الحدث OnPaste (في كل مرة يُلصق فيها شيء ما في تعليمات html الخاصة بمنطقة تحرير html في المحرر). يمكن وضع الدالة في ملف js المحدد في الإعداد ScriptToLoad.
+
+&lt;a href="http://radeditor.codeplex.com/wikipage?title=OnClientPasteExample" target="_blank"&gt;اطلع على هذا المثال للحصول على مثال مفصل&lt;/a&gt;</value>
+  </data>
+  <data name="OnClientPasteHtml.Text" xml:space="preserve">
+    <value>لصق HTML:</value>
+  </data>
+  <data name="PortalRoot.Text" xml:space="preserve">
+    <value>[PortalRoot]</value>
+  </data>
+  <data name="ScriptToLoad.Help" xml:space="preserve">
+    <value>إذا تم التعيين، سيحمّل الموفر ملف javascript المحدد هنا. يجب أن يكون هذا مسارًا نسبيًا إلى دليل السمة الحالي.
+
+&lt;a href="http://radeditor.codeplex.com/wikipage?title=OnClientPasteExample" target="_blank"&gt;اطلع على هذا المثال للحصول على مثال مفصل&lt;/a&gt;</value>
+  </data>
+  <data name="ScriptToLoad.Text" xml:space="preserve">
+    <value>البرنامج النصي للتحميل:</value>
+  </data>
+  <data name="ShowPortalLinks.Help" xml:space="preserve">
+    <value>إذا ضُبط على true، ستظهر قائمة منسدلة في شريط الأدوات تعرض شجرة بصفحات الموقع. وعند تفعيل هذه الميزة يمكنك تحديد كتلة نصية واختيار صفحة من تلك الشجرة ليَربط المحرر النص بصفحة معينة.
+
+يجب تعيين أداة CustomLinks في تكوين شريط الأدوات لديك لكي يعمل هذا!</value>
+  </data>
+  <data name="ShowPortalLinks.Text" xml:space="preserve">
+    <value>إظهار روابط الموقع:</value>
+  </data>
+  <data name="Silverlight Manager Settings.Title" xml:space="preserve">
+    <value>إعدادات مدير Silverlight</value>
+  </data>
+  <data name="SilverlightFilters.Help" xml:space="preserve">
+    <value>قائمة مفصولة بفواصل منقوطة بالامتدادات الممكنة لمدير Silverlight.  يجب أن تكون الامتدادات أيضًا في قائمة الامتدادات المسموح بها في إعدادات المضيف.  استخدم التنسيق التالي: *.extensionname</value>
+  </data>
+  <data name="SilverlightFilters.Text" xml:space="preserve">
+    <value>المرشحات:</value>
+  </data>
+  <data name="SilverlightPath.Help" xml:space="preserve">
+    <value>المجلد الذي يبدأ به مدير Silverlight عند تحميل مربع الحوار</value>
+  </data>
+  <data name="SilverlightPath.Text" xml:space="preserve">
+    <value>المسار:</value>
+  </data>
+  <data name="Skin.Help" xml:space="preserve">
+    <value>السمة التي يستخدمها عنصر تحكم المحرر</value>
+  </data>
+  <data name="Skin.Text" xml:space="preserve">
+    <value>السمة:</value>
+  </data>
+  <data name="SpellAllowAddCustom.Help" xml:space="preserve">
+    <value>خيارات التدقيق الإملائي نادرًا ما تكون موثقة، للأسف. بشكل عام ينبغي ترك هذه الحقول فارغة ما لم تكن تعرف ما تفعله. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;اعرف المزيد عن خيارات التدقيق الإملائي على موقع Telerik&lt;/a&gt;</value>
+  </data>
+  <data name="SpellAllowAddCustom.Text" xml:space="preserve">
+    <value>السماح بالتهجئة المخصصة:</value>
+  </data>
+  <data name="SpellCheckProvider.Help" xml:space="preserve">
+    <value>خيارات التدقيق الإملائي نادرًا ما تكون موثقة، للأسف. بشكل عام ينبغي ترك هذه الحقول فارغة ما لم تكن تعرف ما تفعله. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;اعرف المزيد عن خيارات التدقيق الإملائي على موقع Telerik&lt;/a&gt;</value>
+  </data>
+  <data name="SpellCheckProvider.Text" xml:space="preserve">
+    <value>اسم موفر التدقيق الإملائي:</value>
+  </data>
+  <data name="SpellCustomDictionarySourceTypeName.Help" xml:space="preserve">
+    <value>خيارات التدقيق الإملائي نادرًا ما تكون موثقة، للأسف. بشكل عام ينبغي ترك هذه الحقول فارغة ما لم تكن تعرف ما تفعله. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;اعرف المزيد عن خيارات التدقيق الإملائي على موقع Telerik&lt;/a&gt;</value>
+  </data>
+  <data name="SpellCustomDictionarySourceTypeName.Text" xml:space="preserve">
+    <value>اسم قاموس التهجئة المخصص:</value>
+  </data>
+  <data name="SpellCustomDictionarySuffix.Help" xml:space="preserve">
+    <value>خيارات التدقيق الإملائي نادرًا ما تكون موثقة، للأسف. بشكل عام ينبغي ترك هذه الحقول فارغة ما لم تكن تعرف ما تفعله. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;اعرف المزيد عن خيارات التدقيق الإملائي على موقع Telerik&lt;/a&gt;</value>
+  </data>
+  <data name="SpellCustomDictionarySuffix.Text" xml:space="preserve">
+    <value>لاحقة قاموس التهجئة المخصص:</value>
+  </data>
+  <data name="SpellDictionaryLanguage.Help" xml:space="preserve">
+    <value>خيارات التدقيق الإملائي نادرًا ما تكون موثقة، للأسف. بشكل عام ينبغي ترك هذه الحقول فارغة ما لم تكن تعرف ما تفعله. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;اعرف المزيد عن خيارات التدقيق الإملائي على موقع Telerik&lt;/a&gt;</value>
+  </data>
+  <data name="SpellDictionaryLanguage.Text" xml:space="preserve">
+    <value>لغة قاموس التهجئة:</value>
+  </data>
+  <data name="SpellDictionaryPath.Help" xml:space="preserve">
+    <value>خيارات التدقيق الإملائي نادرًا ما تكون موثقة، للأسف. بشكل عام ينبغي ترك هذه الحقول فارغة ما لم تكن تعرف ما تفعله. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;اعرف المزيد عن خيارات التدقيق الإملائي على موقع Telerik&lt;/a&gt;</value>
+  </data>
+  <data name="SpellDictionaryPath.Text" xml:space="preserve">
+    <value>مسار قاموس التهجئة:</value>
+  </data>
+  <data name="SpellEditDistance.Help" xml:space="preserve">
+    <value>خيارات التدقيق الإملائي نادرًا ما تكون موثقة، للأسف. بشكل عام ينبغي ترك هذه الحقول فارغة ما لم تكن تعرف ما تفعله. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;اعرف المزيد عن خيارات التدقيق الإملائي على موقع Telerik&lt;/a&gt;</value>
+  </data>
+  <data name="SpellEditDistance.Text" xml:space="preserve">
+    <value>مسافة تحرير التهجئة:</value>
+  </data>
+  <data name="SpellFragmentIgnoreOptions.Help" xml:space="preserve">
+    <value>خيارات التدقيق الإملائي نادرًا ما تكون موثقة، للأسف. بشكل عام ينبغي ترك هذه الحقول فارغة ما لم تكن تعرف ما تفعله. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;اعرف المزيد عن خيارات التدقيق الإملائي على موقع Telerik&lt;/a&gt;</value>
+  </data>
+  <data name="SpellFragmentIgnoreOptions.Text" xml:space="preserve">
+    <value>خيارات تجاهل أجزاء التهجئة:</value>
+  </data>
+  <data name="SpellWordIgnoreOptions.Help" xml:space="preserve">
+    <value>خيارات التدقيق الإملائي نادرًا ما تكون موثقة، للأسف. بشكل عام ينبغي ترك هذه الحقول فارغة ما لم تكن تعرف ما تفعله. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;اعرف المزيد عن خيارات التدقيق الإملائي على موقع Telerik&lt;/a&gt;</value>
+  </data>
+  <data name="SpellWordIgnoreOptions.Text" xml:space="preserve">
+    <value>خيارات تجاهل كلمات التهجئة:</value>
+  </data>
+  <data name="StripFormattingOptions.Help" xml:space="preserve">
+    <value>يمكن للمطورين فرض تنسيق المحتوى باستخدام الخاصية StripFormattingOptions. ونتيجة لذلك، سيُطبق إزالة التنسيق على كل محتوى يحاول المستخدمون لصقه. ويمكن للإعداد EditorStripFormattingOptions أن يأخذ أيًا من القيم التالية أو مزيجًا منها:
+&lt;ul&gt;
+&lt;li&gt;None: يلصق محتوى الحافظة كما هو. &lt;/li&gt;
+&lt;li&gt;NoneSupressCleanMessage: لا يزيل شيئًا عند اللصق ولا يطرح أسئلة. &lt;/li&gt;
+&lt;li&gt;MSWord: يزيل الوسوم الخاصة بـ Word عند اللصق مع الحفاظ على الخطوط وأحجام النص. &lt;/li&gt;
+&lt;li&gt;MSWordNoFonts: يزيل الوسوم الخاصة بـ Word عند اللصق مع الحفاظ على أحجام النص فقط. &lt;/li&gt;
+&lt;li&gt;MSWordRemoveAll: يزيل الوسوم الخاصة بـ Word عند اللصق مع إزالة الخطوط وأحجام النص معًا. &lt;/li&gt;
+&lt;li&gt;Css: يزيل أنماط CSS عند اللصق. &lt;/li&gt;
+&lt;li&gt;Font: يزيل وسوم Font عند اللصق. &lt;/li&gt;
+&lt;li&gt;Span: يزيل وسوم Span عند اللصق. &lt;/li&gt;
+&lt;li&gt;All: يزيل كل تنسيق HTML ويلصق نصًا عاديًا. &lt;/li&gt;
+&lt;li&gt;AllExceptNewLines: يمسح كل الوسوم عدا "br" والأسطر الجديدة (\n) عند اللصق.&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="StripFormattingOptions.Text" xml:space="preserve">
+    <value>خيارات إزالة التنسيق:</value>
+  </data>
+  <data name="Template Manager Settings.Title" xml:space="preserve">
+    <value>إعدادات مدير القوالب</value>
+  </data>
+  <data name="TemplateFilters.Help" xml:space="preserve">
+    <value>قائمة مفصولة بفواصل منقوطة بالامتدادات الممكنة لمدير القوالب.  يجب أن تكون الامتدادات أيضًا في قائمة الامتدادات المسموح بها في إعدادات المضيف.  استخدم التنسيق التالي: *.extensionname</value>
+  </data>
+  <data name="TemplateFilters.Text" xml:space="preserve">
+    <value>المرشحات:</value>
+  </data>
+  <data name="TemplatePath.Help" xml:space="preserve">
+    <value>المجلد الذي يبدأ به مدير القوالب عند تحميل مربع الحوار</value>
+  </data>
+  <data name="TemplatePath.Text" xml:space="preserve">
+    <value>المسار:</value>
+  </data>
+  <data name="Toolbar Settings.Title" xml:space="preserve">
+    <value>إعدادات شريط الأدوات</value>
+  </data>
+  <data name="ToolbarConfigTab.Text" xml:space="preserve">
+    <value>تكوين شريط الأدوات</value>
+  </data>
+  <data name="ToolbarMode.Help" xml:space="preserve">
+    <value>يقدم RadEditor لـ ASP.NET AJAX خاصية باسم ToolbarMode تحدد سلوك شريط الأدوات. وفيما يلي الخيارات المختلفة لضبط ToolbarMode:&lt;ul&gt;&lt;li&gt;Default - يكون شريط الأدوات ثابتًا وموضوعًا فوق منطقة المحتوى
+&lt;/li&gt;&lt;li&gt;PageTop - في هذا الوضع، عندما يحصل محرر معين على التركيز يظهر شريط أدواته مثبتًا في أعلى الصفحة
+&lt;/li&gt;&lt;li&gt;ShowOnFocus - هنا يظهر شريط الأدوات فوق المحرر مباشرة عند حصوله على التركيز.
+&lt;/li&gt;&lt;li&gt;Floating - ينبثق شريط الأدوات في نافذة ويتيح للمستخدم تحريكه فوق الصفحة
+&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="ToolbarMode.Text" xml:space="preserve">
+    <value>الوضع:</value>
+  </data>
+  <data name="ToolsWidth.Help" xml:space="preserve">
+    <value>يحدد عرض شريط أدوات المحرر، ولا ينبغي استخدامه إلا عندما يكون وضع شريط الأدوات غير Default!</value>
+  </data>
+  <data name="ToolsWidth.Text" xml:space="preserve">
+    <value>العرض:</value>
+  </data>
+  <data name="UserFolder.Text" xml:space="preserve">
+    <value>[UserFolder]</value>
+  </data>
+  <data name="Width.Help" xml:space="preserve">
+    <value>العرض الكلي لعنصر تحكم المحرر. </value>
+  </data>
+  <data name="Width.Text" xml:space="preserve">
+    <value>العرض:</value>
+  </data>
+  <data name="CannotManageHTMLEditorProviders.Text" xml:space="preserve">
+    <value>لا يمكنك إدارة موفري محرر HTML</value>
+  </data>
+</root>
