@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>控制台设置</value>
+  </data>
+  <data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;p&gt;控制台模块以图标和链接的形式显示子页面，或以分类的形式显示，以辅助导航。控制台模块有 4 种不同的显示模式：
+&lt;ul&gt;&lt;li&gt;小图标，详细信息以工具提示显示（小图标，简单视图）&lt;/li&gt;
+&lt;li&gt;大图标，详细信息以工具提示显示（大图标，简单视图）&lt;/li&gt;
+&lt;li&gt;小图标列表，带详细信息（小图标，详细视图）&lt;/li&gt;
+&lt;li&gt;大图标列表，带详细信息（大图标，详细视图）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/p&gt;
+&lt;h3&gt;控制台模块所依赖的页面设置：&lt;/h3&gt;
+&lt;table cellpadding="4" border="1" style="border:solid 1px #dcdcdc;border-collapse:collapse;"&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;页面名称&lt;/td&gt;&lt;td&gt;页面名称显示为链接标题。&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;页面说明&lt;/td&gt;&lt;td&gt;页面说明显示为工具提示或详细信息。&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;已禁用&lt;/td&gt;&lt;td&gt;如果页面勾选了「已禁用」，则显示分类标题。被禁用页面的子页面将显示在该标题之下。&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;图标文件&lt;/td&gt;&lt;td&gt;此图标用于小图标视图。&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;大图标文件&lt;/td&gt;&lt;td&gt;此图标用于大图标视图。&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;i&gt;提示：「包含在菜单中」设置会将页面从菜单中隐藏，但不会从控制台中隐藏。&lt;/i&gt;
+&lt;br /&gt;&lt;br /&gt;
+&lt;h3&gt;控制台模块设置&lt;/h3&gt;
+&lt;table cellpadding="4" border="1" style="border:solid 1px #dcdcdc;border-collapse:collapse;"&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;显示以下项的子项&lt;/td&gt;&lt;td&gt;选择一个页面将显示该页面的所有子页面。将此字段留空则显示当前页面的所有子页面。&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;默认图标大小&lt;/td&gt;&lt;td&gt;确定图标大小。&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;允许调整图标大小&lt;/td&gt;&lt;td&gt;允许用户调整图标大小。&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;默认视图&lt;/td&gt;&lt;td&gt;确定默认视图。简单视图以工具提示显示图标和页面说明。详细视图显示带各项说明的列表。&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;允许切换视图&lt;/td&gt;&lt;td&gt;允许用户在详细视图和简单视图之间切换。&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;显示工具提示&lt;/td&gt;&lt;td&gt;在简单视图中将鼠标悬停在图标上时，显示带详细说明的工具提示。&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td nowrap="nowrap"&gt;宽度&lt;/td&gt;&lt;td&gt;将此字段留空可让图标横向扩展，或输入像素值以缩小控制台宽度。例如，将此值设为 400 可显示两列图标。&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;i&gt;提示：取消勾选「允许调整图标大小」和「允许切换视图」，可防止用户更改页面布局。&lt;/i&gt;</value>
+  </data>
+  <data name="AllowResize.Help" xml:space="preserve">
+    <value>选中此框可允许用户调整图标大小。</value>
+  </data>
+  <data name="AllowResize.Text" xml:space="preserve">
+    <value>允许调整图标大小</value>
+  </data>
+  <data name="AllowViewChange.Help" xml:space="preserve">
+    <value>选中此框可允许用户在详细视图和简单视图之间切换。</value>
+  </data>
+  <data name="AllowViewChange.Text" xml:space="preserve">
+    <value>允许切换视图</value>
+  </data>
+  <data name="DefaultSize.Help" xml:space="preserve">
+    <value>确定图标大小。</value>
+  </data>
+  <data name="DefaultSize.Text" xml:space="preserve">
+    <value>默认图标大小</value>
+  </data>
+  <data name="DefaultView.Help" xml:space="preserve">
+    <value>确定默认视图。简单视图以工具提示显示图标和页面说明。详细视图显示带各项说明的列表。</value>
+  </data>
+  <data name="DefaultView.Text" xml:space="preserve">
+    <value>默认视图</value>
+  </data>
+  <data name="ParentTab.Help" xml:space="preserve">
+    <value>选择一个页面将显示该页面的所有子页面。将此字段留空则显示当前页面的所有子页面。</value>
+  </data>
+  <data name="ParentTab.Text" xml:space="preserve">
+    <value>显示以下项的子项</value>
+  </data>
+  <data name="Hide.Text" xml:space="preserve">
+    <value>简单视图</value>
+  </data>
+  <data name="IconFile.Text" xml:space="preserve">
+    <value>小图标（16 像素）</value>
+  </data>
+  <data name="IconFileLarge.Text" xml:space="preserve">
+    <value>大图标（32 像素）</value>
+  </data>
+  <data name="Show.Text" xml:space="preserve">
+    <value>详细视图</value>
+  </data>
+  <data name="ShowTooltip.Help" xml:space="preserve">
+    <value>选中此框可在简单视图中将鼠标悬停在图标上时显示详细说明。</value>
+  </data>
+  <data name="ShowTooltip.Text" xml:space="preserve">
+    <value>显示工具提示</value>
+  </data>
+  <data name="ConsoleWidth.Help" xml:space="preserve">
+    <value>留空可让图标横向扩展，或输入像素值以缩小控制台宽度。例如，将此值设为 400 可显示两列图标。</value>
+  </data>
+  <data name="ConsoleWidth.Text" xml:space="preserve">
+    <value>宽度</value>
+  </data>
+  <data name="IncludeParent.Help" xml:space="preserve">
+    <value>选中此框可包含父页面。</value>
+  </data>
+  <data name="IncludeParent.Text" xml:space="preserve">
+    <value>包含父页面</value>
+  </data>
+  <data name="Group.Text" xml:space="preserve">
+    <value>群组</value>
+  </data>
+  <data name="Normal.Text" xml:space="preserve">
+    <value>常规</value>
+  </data>
+  <data name="Profile.Text" xml:space="preserve">
+    <value>个人资料</value>
+  </data>
+  <data name="Mode.Help" xml:space="preserve">
+    <value>选择模块的模式。</value>
+  </data>
+  <data name="Mode.Text" xml:space="preserve">
+    <value>模式</value>
+  </data>
+  <data name="tabsLabel.Help" xml:space="preserve">
+    <value>你可以管理各个页面的可见性。</value>
+  </data>
+  <data name="tabsLabel.Text" xml:space="preserve">
+    <value>页面可见性设置：</value>
+  </data>
+  <data name="Friends.Text" xml:space="preserve">
+    <value>好友</value>
+  </data>
+  <data name="User.Text" xml:space="preserve">
+    <value>用户</value>
+  </data>
+  <data name="IconNone.Text" xml:space="preserve">
+    <value>无图标</value>
+  </data>
+  <data name="Members.Text" xml:space="preserve">
+    <value>成员</value>
+  </data>
+  <data name="Owner.Text" xml:space="preserve">
+    <value>所有者</value>
+  </data>
+  <data name="OrderTabsByHierarchy.Help" xml:space="preserve">
+    <value>选中此框可重新排列页面列表，将父页面及其子页面显示在列表末尾。这样父页面和子页面可显示在控制台的同一区域。或者取消勾选此框，按字母顺序显示所有页面。</value>
+  </data>
+  <data name="OrderTabsByHierarchy.Text" xml:space="preserve">
+    <value>按层级排列项目</value>
+  </data>
+  <data name="IncludeHiddenPages.Help" xml:space="preserve">
+    <value>选中此框可包含在菜单中隐藏的页面。</value>
+  </data>
+  <data name="IncludeHiddenPages.Text" xml:space="preserve">
+    <value>包含隐藏页面</value>
+  </data>
+</root>

@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="https://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>搜索结果设置</value>
+  </data>
+  <data name="filtersRequired.Text" xml:space="preserve">
+    <value>至少应选择一种内容类型。</value>
+  </data>
+  <data name="linkTargetOnSamePage.Text" xml:space="preserve">
+    <value>同一页面</value>
+  </data>
+  <data name="linkTargetOpenNewPage.Text" xml:space="preserve">
+    <value>打开新页面</value>
+  </data>
+  <data name="plEnableWildSearch.Help" xml:space="preserve">
+    <value>选中此框可按部分单词执行搜索，例如输入「org」会找到「organization」或「organize」。如果检索结果耗时较长，应取消勾选此设置。</value>
+  </data>
+  <data name="plEnableWildSearch.Text" xml:space="preserve">
+    <value>默认启用通配符搜索</value>
+  </data>
+  <data name="plMaxDescriptionLength.Help" xml:space="preserve">
+    <value>说明的最大长度</value>
+  </data>
+  <data name="plMaxDescriptionLength.Text" xml:space="preserve">
+    <value>说明的最大长度</value>
+  </data>
+  <data name="plResultsScopeForFilters.Help" xml:space="preserve">
+    <value>通过选择内容类型来限制搜索结果。</value>
+  </data>
+  <data name="plResultsScopeForFilters.Text" xml:space="preserve">
+    <value>内容类型的搜索范围</value>
+  </data>
+  <data name="plResultsScopeForPortals.Help" xml:space="preserve">
+    <value>通过选择站点来限制搜索结果。</value>
+  </data>
+  <data name="plResultsScopeForPortals.Text" xml:space="preserve">
+    <value>站点的搜索范围</value>
+  </data>
+  <data name="plResultsScopeForRoles.Help" xml:space="preserve">
+    <value>通过选择角色来限制搜索结果。</value>
+  </data>
+  <data name="plResultsScopeForRoles.Text" xml:space="preserve">
+    <value>角色的搜索范围</value>
+  </data>
+  <data name="plShowDescription.Help" xml:space="preserve">
+    <value>显示说明</value>
+  </data>
+  <data name="plShowDescription.Text" xml:space="preserve">
+    <value>显示说明</value>
+  </data>
+  <data name="plShowFriendlyTitle.Help" xml:space="preserve">
+    <value>显示页面的标题而不是其内部名称。</value>
+  </data>
+  <data name="plShowFriendlyTitle.Text" xml:space="preserve">
+    <value>显示友好标题</value>
+  </data>
+  <data name="plShowLastUpdated.Help" xml:space="preserve">
+    <value>显示内容的最后更新时间，例如 5 天前</value>
+  </data>
+  <data name="plShowLastUpdated.Text" xml:space="preserve">
+    <value>显示最后更新时间</value>
+  </data>
+  <data name="plShowSnippet.Help" xml:space="preserve">
+    <value>显示检索文本在内容中出现的位置。</value>
+  </data>
+  <data name="plShowSnippet.Text" xml:space="preserve">
+    <value>显示摘要片段</value>
+  </data>
+  <data name="plShowSource.Help" xml:space="preserve">
+    <value>显示内容来源，例如页面、文档等。</value>
+  </data>
+  <data name="plShowSource.Text" xml:space="preserve">
+    <value>显示来源</value>
+  </data>
+  <data name="plShowTags.Help" xml:space="preserve">
+    <value>显示标记</value>
+  </data>
+  <data name="plShowTags.Text" xml:space="preserve">
+    <value>显示标记</value>
+  </data>
+  <data name="plTitleLinkTarget.Help" xml:space="preserve">
+    <value>选择在同一页面还是新窗口中打开链接。</value>
+  </data>
+  <data name="plTitleLinkTarget.Text" xml:space="preserve">
+    <value>标题链接目标</value>
+  </data>
+  <data name="portalsRequired.Text" xml:space="preserve">
+    <value>至少应选择一个站点。</value>
+  </data>
+</root>

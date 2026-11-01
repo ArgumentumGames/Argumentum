@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="TelerikInstalledAndUsedInfo.Text" xml:space="preserve">
+    <value>你的安装正在以下程序集中使用 Telerik：</value>
+  </data>
+  <data name="TelerikInstalledAndUsedWarning.Text" xml:space="preserve">
+    <value>看起来你有依赖于 Telerik 的扩展。我们无法为你移除上面检测并列出的依赖项。但是，请确保你确实已按照&lt;a href="https://docs.dnncommunity.org/content/getting-started/setup/telerik-removal/index.html" target="_blank"&gt;此处&lt;/a&gt;的指引正确修补了 Telerik，并移除了 DNN 平台分发的全部 Telerik 组件。请注意，除非这些依赖项自带 Telerik 副本，否则你将无法升级到 DNN 10。</value>
+  </data>
+  <data name="TelerikInstalledButNotUsedInfo.Text" xml:space="preserve">
+    <value>由于你的安装似乎并未使用这些组件中的任何一个，你现在应当移除它们，以提高应用程序的安全性。</value>
+  </data>
+  <data name="TelerikInstalledHeading.Text" xml:space="preserve">
+    <value>安全警报</value>
+  </data>
+  <data name="TelerikInstalledDetected.Text" xml:space="preserve">
+    <value>我们检测到以前分发的 Telerik 开发人员组件。检测到的 Telerik 版本为：</value>
+  </data>
+  <data name="TelerikInstalledBulletin.Text" xml:space="preserve">
+    <value>2021 年 8 月发布了一份安全公告，建议由于存在高危安全漏洞而立即移除此组件。你可以在 &lt;a href="https://dnncommunity.org/security" target="_blank"&gt;DNN 安全中心&lt;/a&gt;了解更多信息。</value>
+  </data>
+  <data name="TelerikNotInstalledHeading.Text" xml:space="preserve">
+    <value>已为未来升级做好准备</value>
+  </data>
+  <data name="TelerikNotInstalledInfo.Text" xml:space="preserve">
+    <value>我们已确认你移除了 Telerik，这使你的站点可以升级到 DNN 10.0.0。</value>
+  </data>
+  <data name="TelerikUninstallInfo.Text" xml:space="preserve">
+    <value>请注意，在下面选择「是」将自动为你完成&lt;a href="https://docs.dnncommunity.org/content/getting-started/setup/telerik-removal/index.html" target="_blank"&gt;这些步骤&lt;/a&gt;。</value>
+  </data>
+  <data name="TelerikUninstallNo.Text" xml:space="preserve">
+    <value>不，让我的站点保持不安全</value>
+  </data>
+  <data name="TelerikUninstallYes.Text" xml:space="preserve">
+    <value>是，立即提升安全性并移除 Telerik</value>
+  </data>
+  <data name="TelerikInvalidAntiForgeryToken.Text" xml:space="preserve">
+    <value>Telerik 防伪造令牌无效。</value>
+  </data>
+  <data name="SuperUserRequiredHeading.Text" xml:space="preserve">
+    <value>需要超级用户</value>
+  </data>
+  <data name="SuperUserRequiredInfo.Text" xml:space="preserve">
+    <value>此操作需要超级用户访问级别。</value>
+  </data>
+  <data name="BackupConfirmation.Text" xml:space="preserve">
+    <value>我确认已备份我的网站文件和数据库。</value>
+  </data>
+  <data name="UninstallReportHeading.Text" xml:space="preserve">
+    <value>Telerik 卸载报告</value>
+  </data>
+  <data name="RemoveTelerik.Text" xml:space="preserve">
+    <value>立即移除 Telerik</value>
+  </data>
+  <data name="UninstallReportNotesColumn.Text" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="UninstallReportResultColumn.Text" xml:space="preserve">
+    <value>结果</value>
+  </data>
+  <data name="UninstallReportStepColumn.Text" xml:space="preserve">
+    <value>步骤</value>
+  </data>
+  <data name="UninstallStepCleanupExtensionFilesFormat.Text" xml:space="preserve">
+    <value>删除文件“{0}”</value>
+  </data>
+  <data name="UninstallStepUpdateDataTypeListFormat.Text" xml:space="preserve">
+    <value>更新数据类型列表中“{0}”的提供程序</value>
+  </data>
+  <data name="UninstallStepUpdateWebConfigFormat.Text" xml:space="preserve">
+    <value>Web.config：从 {0} 中移除 Telerik</value>
+  </data>
+  <data name="UninstallStepCleanupDependencyRecords.Text" xml:space="preserve">
+    <value>清理包“{0}”的依赖记录</value>
+  </data>
+  <data name="UninstallStepClearCache.Text" xml:space="preserve">
+    <value>清除缓存</value>
+  </data>
+  <data name="UninstallStepCountOfFilesDeleted.Text" xml:space="preserve">
+    <value>已删除 {0} 个文件。</value>
+  </data>
+  <data name="UninstallStepCountOfMatchesFound.Text" xml:space="preserve">
+    <value>找到 {0} 个匹配项。</value>
+  </data>
+  <data name="UninstallStepCountOfRecordsAffected.Text" xml:space="preserve">
+    <value>影响了 {0} 条记录。</value>
+  </data>
+  <data name="UninstallStepInstallPackage.Text" xml:space="preserve">
+    <value>安装包“{0}”</value>
+  </data>
+  <data name="UninstallStepInternalError.Text" xml:space="preserve">
+    <value>内部错误。</value>
+  </data>
+  <data name="UninstallStepModuleNotFoundInPage.Text" xml:space="preserve">
+    <value>在页面“{1}”中找不到模块“{0}”。</value>
+  </data>
+  <data name="UninstallStepNoMatchesFound.Text" xml:space="preserve">
+    <value>未找到匹配项。</value>
+  </data>
+  <data name="UninstallStepPackageAlreadyInstalled.Text" xml:space="preserve">
+    <value>包“{0}”已安装。</value>
+  </data>
+  <data name="UninstallStepPackageAlreadyUninstalled.Text" xml:space="preserve">
+    <value>包“{0}”已卸载。</value>
+  </data>
+  <data name="UninstallStepPackageNotFound.Text" xml:space="preserve">
+    <value>找不到包文件“{0}”。</value>
+  </data>
+  <data name="UninstallStepPageNotFoundInPortal.Text" xml:space="preserve">
+    <value>在门户“{1}”中找不到页面“{0}”。</value>
+  </data>
+  <data name="UninstallStepRemoveBindingRedirects.Text" xml:space="preserve">
+    <value>移除 Telerik 程序集绑定重定向</value>
+  </data>
+  <data name="UninstallStepRemoveExtension.Text" xml:space="preserve">
+    <value>移除扩展“{0}”</value>
+  </data>
+  <data name="UninstallStepRemoveRewriteRules.Text" xml:space="preserve">
+    <value>移除 Telerik URL 重写规则</value>
+  </data>
+  <data name="UninstallStepRemoveSystemAttribute.Text" xml:space="preserve">
+    <value>从包“{0}”中移除 System 属性</value>
+  </data>
+  <data name="UninstallStepReplacePageModule.Text" xml:space="preserve">
+    <value>将“{0}”替换为“{1}”</value>
+  </data>
+  <data name="UninstallStepReplacePortalPageModule.Text" xml:space="preserve">
+    <value>在门户 ID“{2}”中将“{0}”替换为“{1}”</value>
+  </data>
+  <data name="UninstallStepRequiredPropertiesNotSet.Text" xml:space="preserve">
+    <value>以下必填属性未设置：{0}</value>
+  </data>
+  <data name="UninstallStepSectionNotFound.Text" xml:space="preserve">
+    <value>找不到 {0} 节。</value>
+  </data>
+  <data name="UninstallStepUninstallExtension.Text" xml:space="preserve">
+    <value>卸载“{0}”扩展</value>
+  </data>
+</root>
