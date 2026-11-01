@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="https://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlTitle_usersettings.Text" xml:space="preserve">
+    <value>إعدادات المستخدم</value>
+  </data>
+<data name="ProviderSettings.Text" xml:space="preserve">
+    <value>إعدادات موفّر العضوية</value>
+  </data>
+<data name="UserAccounts.Text" xml:space="preserve">
+    <value>إعدادات حسابات المستخدمين</value>
+  </data>
+<data name="Column_Address.Text" xml:space="preserve">
+    <value>إظهار عمود العنوان:</value>
+  </data>
+<data name="Column_Address.Help" xml:space="preserve">
+    <value>إظهار عمود العنوان.</value>
+  </data>
+<data name="Column_Authorized.Text" xml:space="preserve">
+    <value>إظهار عمود التصريح:</value>
+  </data>
+<data name="Column_Authorized.Help" xml:space="preserve">
+    <value>إظهار عمود التصريح.</value>
+  </data>
+<data name="Column_CreatedDate.Text" xml:space="preserve">
+    <value>إظهار عمود تاريخ الإنشاء:</value>
+  </data>
+<data name="Column_CreatedDate.Help" xml:space="preserve">
+    <value>إظهار عمود تاريخ الإنشاء.</value>
+  </data>
+<data name="Column_DisplayName.Text" xml:space="preserve">
+    <value>إظهار عمود الاسم:</value>
+  </data>
+<data name="Column_DisplayName.Help" xml:space="preserve">
+    <value>إظهار عمود الاسم.</value>
+  </data>
+<data name="Column_Email.Text" xml:space="preserve">
+    <value>إظهار عمود البريد الإلكتروني:</value>
+  </data>
+<data name="Column_Email.Help" xml:space="preserve">
+    <value>إظهار عمود البريد الإلكتروني.</value>
+  </data>
+<data name="Column_FirstName.Text" xml:space="preserve">
+    <value>إظهار عمود الاسم الأول:</value>
+  </data>
+<data name="Column_FirstName.Help" xml:space="preserve">
+    <value>إظهار عمود الاسم الأول.</value>
+  </data>
+<data name="Column_LastLogin.Text" xml:space="preserve">
+    <value>إظهار عمود آخر تسجيل دخول:</value>
+  </data>
+<data name="Column_LastLogin.Help" xml:space="preserve">
+    <value>إظهار عمود آخر تسجيل دخول.</value>
+  </data>
+<data name="Column_LastName.Text" xml:space="preserve">
+    <value>إظهار عمود اسم العائلة:</value>
+  </data>
+<data name="Column_LastName.Help" xml:space="preserve">
+    <value>إظهار عمود اسم العائلة.</value>
+  </data>
+<data name="Column_Telephone.Text" xml:space="preserve">
+    <value>إظهار عمود الهاتف:</value>
+  </data>
+<data name="Column_Telephone.Help" xml:space="preserve">
+    <value>إظهار عمود الهاتف.</value>
+  </data>
+<data name="Records_PerPage.Text" xml:space="preserve">
+    <value>عدد المستخدمين في الصفحة:</value>
+  </data>
+<data name="Records_PerPage.Help" xml:space="preserve">
+    <value>أدخل عدد المستخدمين المراد عرضهم في الصفحة.</value>
+  </data>
+<data name="ProviderSettingsHelp.Text" xml:space="preserve">
+    <value>في هذا القسم يمكنك مراجعة إعدادات موفّر العضوية. قد تتيح بعض الموفّرين تحرير الإعدادات. الموفّر الافتراضي المستند إلى ASP.NET MemberRole يتطلب تحرير web.config، لذلك لا يمكن تحديث الإعدادات هنا.</value>
+  </data>
+<data name="PasswordSettings.Text" xml:space="preserve">
+    <value>إعدادات تقادم كلمة المرور</value>
+  </data>
+<data name="PasswordSettingsHelp.Text" xml:space="preserve">
+    <value>يمكنك إعداد إعدادات تقادم كلمة المرور في هذا القسم.</value>
+  </data>
+<data name="Display_Mode.Text" xml:space="preserve">
+    <value>نمط العرض الافتراضي:</value>
+  </data>
+<data name="Display_Mode.Help" xml:space="preserve">
+    <value>اختر نمط العرض الافتراضي لشبكة المستخدمين.</value>
+  </data>
+<data name="Security_UsersControl.Text" xml:space="preserve">
+    <value>نمط عرض المستخدمين في إدارة الأدوار:</value>
+  </data>
+<data name="Security_UsersControl.Help" xml:space="preserve">
+    <value>اختر عنصر تحكم المستخدمين المراد استخدامه في عنصر تحكم وحدة إدارة الأدوار.</value>
+  </data>
+<data name="FirstLetter.Text" xml:space="preserve">
+    <value>الحرف الأول</value>
+  </data>
+<data name="Combo.Text" xml:space="preserve">
+    <value>مربع منسدل</value>
+  </data>
+<data name="TextBox.Text" xml:space="preserve">
+    <value>مربع نص</value>
+  </data>
+<data name="Display_SuppressPager.Help" xml:space="preserve">
+    <value>حدد هذا المربع لإخفاء الصفحات في شبكة حسابات المستخدمين إذا كانت السجلات تتسع لصفحة واحدة فقط</value>
+  </data>
+<data name="Display_SuppressPager.Text" xml:space="preserve">
+    <value>تعطيل ترقيم النتائج:</value>
+  </data>
+<data name="Profile_ManageServices.Help" xml:space="preserve">
+    <value>حدد هذا المربع لعرض قسم إدارة الخدمات في ملف المستخدم الشخصي.</value>
+  </data>
+<data name="Profile_ManageServices.Text" xml:space="preserve">
+    <value>عرض إدارة الخدمات:</value>
+  </data>
+<data name="MembersOnly.Text" xml:space="preserve">
+    <value>الأعضاء فقط</value>
+  </data>
+<data name="Security_DisplayNameFormat.Help" xml:space="preserve">
+    <value>يمكنك اختياريًا تحديد صيغة لاسم عرض المستخدمين. يمكن أن تتضمن الصيغة رموزًا للاستبدال الديناميكي مثل [FIRSTNAME] [LASTNAME]. إذا حُددت صيغة لاسم العرض، فلن يبقى اسم العرض قابلًا للتحرير من خلال واجهة المستخدم.</value>
+  </data>
+<data name="Security_DisplayNameFormat.Text" xml:space="preserve">
+    <value>صيغة اسم العرض:</value>
+  </data>
+<data name="InvalidRegex.Text" xml:space="preserve">
+    <value>قيمة {0} ليست تعبيرًا نمطيًا صالحًا.</value>
+  </data>
+<data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>إعدادات حساب المستخدم</value>
+  </data>
+<data name="CannotChangeSettings.Text" xml:space="preserve">
+    <value>هذا الموقع عضو في مجموعة مواقع، وتُدار هذه الإعدادات من الموقع الرئيسي.</value>
+  </data>
+</root>

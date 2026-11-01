@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="https://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="EditProperty.Text" xml:space="preserve">
+    <value>تحرير تعريف خاصية الملف الشخصي</value>
+  </data>
+<data name="AddContent.Action" xml:space="preserve">
+    <value>إضافة خاصية ملف شخصي جديدة</value>
+  </data>
+<data name="ProfilePropertyDefinition_DataType.Text" xml:space="preserve">
+    <value>نوع البيانات:</value>
+  </data>
+<data name="ProfilePropertyDefinition_DataType.Help" xml:space="preserve">
+    <value>اختر نوع البيانات لهذا الحقل.</value>
+  </data>
+<data name="ProfilePropertyDefinition_DefaultValue.Text" xml:space="preserve">
+    <value>القيمة الافتراضية:</value>
+  </data>
+<data name="ProfilePropertyDefinition_DefaultValue.Help" xml:space="preserve">
+    <value>يمكنك اختياريًا تقديم قيمة افتراضية لهذه الخاصية.</value>
+  </data>
+<data name="ProfilePropertyDefinition_PropertyCategory.Text" xml:space="preserve">
+    <value>فئة الخاصية:</value>
+  </data>
+<data name="ProfilePropertyDefinition_PropertyCategory.Help" xml:space="preserve">
+    <value>أدخل فئة هذه الخاصية. سيتيح ذلك تجميع الخصائص المرتبطة عند عرضها للمستخدم.</value>
+  </data>
+<data name="ProfilePropertyDefinition_PropertyName.Text" xml:space="preserve">
+    <value>اسم الخاصية:</value>
+  </data>
+<data name="ProfilePropertyDefinition_PropertyName.Help" xml:space="preserve">
+    <value>أدخل اسمًا للخاصية.</value>
+  </data>
+<data name="ProfilePropertyDefinition_ValidationExpression.Text" xml:space="preserve">
+    <value>تعبير التحقق:</value>
+  </data>
+<data name="ProfilePropertyDefinition_ValidationExpression.Help" xml:space="preserve">
+    <value>يمكنك تقديم تعبير نمطي للتحقق من البيانات المُدخلة لهذه الخاصية.</value>
+  </data>
+<data name="ProfilePropertyDefinition_ViewOrder.Text" xml:space="preserve">
+    <value>ترتيب العرض:</value>
+  </data>
+<data name="ProfilePropertyDefinition_ViewOrder.Help" xml:space="preserve">
+    <value>أدخل رقمًا لتحديد ترتيب العرض لهذه الخاصية، أو اتركه فارغًا للإضافة.</value>
+  </data>
+<data name="ProfilePropertyDefinition_Visible.Text" xml:space="preserve">
+    <value>مرئي:</value>
+  </data>
+<data name="ProfilePropertyDefinition_Visible.Help" xml:space="preserve">
+    <value>حدد هذا المربع إذا كان بإمكان المستخدم عرض هذه الخاصية وتحريرها، أو اتركه غير محدد إذا كانت مرئية للمسؤولين فقط.</value>
+  </data>
+<data name="ProfilePropertyDefinition_Required.Text" xml:space="preserve">
+    <value>مطلوب:</value>
+  </data>
+<data name="ProfilePropertyDefinition_Required.Help" xml:space="preserve">
+    <value>حدد ما إذا كانت هذه الخاصية مطلوبة.</value>
+  </data>
+<data name="ProfilePropertyDefinition_Length.Text" xml:space="preserve">
+    <value>الطول:</value>
+  </data>
+<data name="ProfilePropertyDefinition_Length.Help" xml:space="preserve">
+    <value>أدخل الحد الأقصى لطول هذه الخاصية. ينطبق ذلك على أنواع بيانات محددة فقط.</value>
+  </data>
+<data name="DuplicateName.Text" xml:space="preserve">
+    <value>هذه الخاصية موجودة بالفعل. يجب أن تكون أسماء الخصائص فريدة. يُرجى اختيار اسم مختلف لهذه الخاصية.</value>
+  </data>
+<data name="ProfilePropertyDefinition_PropertyCategory.Required" xml:space="preserve">
+    <value>الفئة مطلوبة.</value>
+  </data>
+<data name="ProfilePropertyDefinition_PropertyName.Required" xml:space="preserve">
+    <value>اسم الخاصية مطلوب.</value>
+  </data>
+<data name="plCategoryName.Help" xml:space="preserve">
+    <value>أدخل نص اسم الفئة باللغة المحددة.</value>
+  </data>
+<data name="plCategoryName.Text" xml:space="preserve">
+    <value>اسم الفئة:</value>
+  </data>
+<data name="plLocales.Help" xml:space="preserve">
+    <value>اختر اللغة.</value>
+  </data>
+<data name="plLocales.Text" xml:space="preserve">
+    <value>اختيار اللغة:</value>
+  </data>
+<data name="plPropertyHelp.Help" xml:space="preserve">
+    <value>أدخل تعليمات هذه الخاصية باللغة المحددة.</value>
+  </data>
+<data name="plPropertyHelp.Text" xml:space="preserve">
+    <value>تعليمات الخاصية:</value>
+  </data>
+<data name="plPropertyName.Help" xml:space="preserve">
+    <value>أدخل نص اسم الخاصية باللغة المحددة.</value>
+  </data>
+<data name="plPropertyName.Text" xml:space="preserve">
+    <value>اسم الخاصية:</value>
+  </data>
+<data name="cmdCreate.Text" xml:space="preserve">
+    <value>إنشاء خاصية جديدة</value>
+  </data>
+<data name="cmdUpdate.Text" xml:space="preserve">
+    <value>تحديث الخاصية</value>
+  </data>
+<data name="Introduction.Help" xml:space="preserve">
+    <value>الخطوة الأولى في تحرير تعريف خاصية الملف الشخصي هي تحديث تفاصيل الخاصية. أجرِ أي تغييرات تحتاجها في الحقول الموجودة في هذه الصفحة، وانقر على التالي لحفظ التغييرات والانتقال إلى الخطوة التالية.</value>
+  </data>
+<data name="Introduction.Title" xml:space="preserve">
+    <value>تحرير تفاصيل الخاصية</value>
+  </data>
+<data name="List.Help" xml:space="preserve">
+    <value>تم تحديث تفاصيل الخاصية. هذه الخاصية من نوع قائمة. الخطوة التالية هي تعريف عناصر القائمة.</value>
+  </data>
+<data name="List.Title" xml:space="preserve">
+    <value>إدارة عناصر القائمة</value>
+  </data>
+<data name="Introduction_Add.Help" xml:space="preserve">
+    <value>الخطوة الأولى في إعداد تعريف خاصية الملف الشخصي هي تعريف تفاصيل الخاصية. أدخل التفاصيل في هذه الصفحة وانقر على "التالي" لإنشاء تعريف الخاصية.   &lt;b&gt;ملاحظة:&lt;/b&gt; جميع الحقول المعلَّمة بنجمة حمراء مطلوبة.</value>
+  </data>
+<data name="Introduction_Add.Title" xml:space="preserve">
+    <value>إضافة تفاصيل خاصية جديدة</value>
+  </data>
+<data name="Localization.Help" xml:space="preserve">
+    <value>الخطوة التالية هي إدارة توطين هذه الخاصية. اختر اللغة التي تريد تحديثها، وأضف نصًا جديدًا أو عدّل النص الحالي ثم انقر على تحديث.</value>
+  </data>
+<data name="Localization.Title" xml:space="preserve">
+    <value>إدارة التوطين</value>
+  </data>
+<data name="cmdCancel.Text" xml:space="preserve">
+    <value>العودة إلى قائمة خصائص الملف الشخصي</value>
+  </data>
+<data name="ProfilePropertyDefinition_PropertyName.Validation" xml:space="preserve">
+    <value>لا يمكن أن يحتوي اسم الخاصية على مسافات.</value>
+  </data>
+<data name="plPropertyRequired.Help" xml:space="preserve">
+    <value>أدخل رسالة الخطأ التي تُعرض لهذا الحقل عندما تكون الخاصية مطلوبة وغير موجودة.</value>
+  </data>
+<data name="plPropertyRequired.Text" xml:space="preserve">
+    <value>رسالة خطأ الحقل المطلوب:</value>
+  </data>
+<data name="plPropertyValidation.Help" xml:space="preserve">
+    <value>أدخل رسالة الخطأ التي تُعرض لهذا الحقل عندما تفشل الخاصية في التحقق بالتعبير النمطي.</value>
+  </data>
+<data name="plPropertyValidation.Text" xml:space="preserve">
+    <value>رسالة خطأ التحقق:</value>
+  </data>
+<data name="RequiredTextBox.Text" xml:space="preserve">
+    <value>إذا استخدمت حقل مربع نص، فيجب أن يكون الطول المطلوب أكبر من 0.</value>
+  </data>
+<data name="AddProperty.Text" xml:space="preserve">
+    <value>إضافة تعريف خاصية للملف الشخصي</value>
+  </data>
+<data name="ProfilePropertyDefinition_DefaultVisibility.Help" xml:space="preserve">
+    <value>يمكنك تعيين الرؤية الافتراضية لخاصية الملف الشخصي. هذه هي القيمة الأولية للرؤية وتُطبَّق إذا لم يعدّلها المستخدم عند تحرير ملفه الشخصي.</value>
+  </data>
+<data name="ProfilePropertyDefinition_DefaultVisibility.Text" xml:space="preserve">
+    <value>الرؤية الافتراضية:</value>
+  </data>
+<data name="ProfilePropertyDefinition_ReadOnly.Help" xml:space="preserve">
+    <value>يمكن للمسؤول تحرير خصائص الملف الشخصي للقراءة فقط، أما للمستخدم فهي للقراءة فقط.</value>
+  </data>
+<data name="ProfilePropertyDefinition_ReadOnly.Text" xml:space="preserve">
+    <value>للقراءة فقط:</value>
+  </data>
+<data name="Cancel.Text" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+<data name="Return.Text" xml:space="preserve">
+    <value>تحديث</value>
+  </data>
+<data name="valPropertyName.ErrorMessage" xml:space="preserve">
+    <value>يجب إدخال اسم لهذه الخاصية.</value>
+  </data>
+</root>

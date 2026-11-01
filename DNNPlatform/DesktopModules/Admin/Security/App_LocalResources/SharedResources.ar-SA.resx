@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="https://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Username.Text" xml:space="preserve">
+    <value>اسم المستخدم:</value>
+  </data>
+<data name="Username.Help" xml:space="preserve">
+    <value>أدخل اسم مستخدم. يجب ألا يقل عن الحد الأدنى للطول المكوَّن، ويجب أن يكون قيمة أبجدية رقمية،
+    ويجب ألا يبدأ أو ينتهي بمسافة، وألا يحتوي على أي من هذه الأحرف !"#$%&amp;'()*+,/:;&lt;=&gt;?@[\]^`{|}</value>
+  </data>
+<data name="FirstName.Text" xml:space="preserve">
+    <value>الاسم الأول:</value>
+  </data>
+<data name="FirstName.Help" xml:space="preserve">
+    <value>أدخل الاسم الأول.</value>
+  </data>
+<data name="LastName.Text" xml:space="preserve">
+    <value>اسم العائلة:</value>
+  </data>
+<data name="LastName.Help" xml:space="preserve">
+    <value>أدخل اسم العائلة.</value>
+  </data>
+<data name="Email.Text" xml:space="preserve">
+    <value>عنوان البريد الإلكتروني:</value>
+  </data>
+<data name="Email.Help" xml:space="preserve">
+    <value>أدخل عنوان بريد إلكتروني صالح.</value>
+  </data>
+<data name="DisplayName.Text" xml:space="preserve">
+    <value>اسم العرض:</value>
+  </data>
+<data name="DisplayName.Help" xml:space="preserve">
+    <value>أدخل اسم عرض.</value>
+  </data>
+<data name="Username.Required" xml:space="preserve">
+    <value>اسم المستخدم مطلوب.</value>
+  </data>
+<data name="FirstName.Required" xml:space="preserve">
+    <value>الاسم الأول مطلوب.</value>
+  </data>
+<data name="LastName.Required" xml:space="preserve">
+    <value>اسم العائلة مطلوب.</value>
+  </data>
+<data name="Email.Required" xml:space="preserve">
+    <value>البريد الإلكتروني مطلوب.</value>
+  </data>
+<data name="Email.RegExError" xml:space="preserve">
+    <value>يجب إدخال عنوان بريد إلكتروني صالح.</value>
+  </data>
+<data name="DisplayName.Required" xml:space="preserve">
+    <value>اسم العرض مطلوب.</value>
+  </data>
+<data name="FirstName.RegExError" xml:space="preserve">
+    <value>الاسم الأول غير صالح.</value>
+  </data>
+<data name="LastName.RegExError" xml:space="preserve">
+    <value>اسم العائلة غير صالح.</value>
+  </data>
+<data name="Username.RegExError" xml:space="preserve">
+    <value>اسم المستخدم الذي أدخلته غير صالح.</value>
+  </data>
+<data name="PasswordAnswer.Help" xml:space="preserve">
+    <value>أدخل إجابة على سؤال كلمة المرور.</value>
+  </data>
+<data name="PasswordAnswer.Text" xml:space="preserve">
+    <value>إجابة كلمة المرور:</value>
+  </data>
+<data name="PasswordConfirm.Help" xml:space="preserve">
+    <value>أعد إدخال كلمة المرور للتأكيد.</value>
+  </data>
+<data name="PasswordConfirm.Text" xml:space="preserve">
+    <value>تأكيد كلمة المرور:</value>
+  </data>
+<data name="PasswordQuestion.Help" xml:space="preserve">
+    <value>أدخل سؤال كلمة المرور الذي سيُستخدم عند استرداد كلمة المرور.</value>
+  </data>
+<data name="PasswordQuestion.Text" xml:space="preserve">
+    <value>سؤال كلمة المرور:</value>
+  </data>
+<data name="City.Help" xml:space="preserve">
+    <value>أدخل مدينة أو موقعًا.</value>
+  </data>
+<data name="City.Text" xml:space="preserve">
+    <value>المدينة:</value>
+  </data>
+<data name="Password.Required" xml:space="preserve">
+    <value>يجب تقديم كلمة مرور.</value>
+  </data>
+<data name="PasswordConfirm.Required" xml:space="preserve">
+    <value>يجب تقديم تأكيد لكلمة المرور.</value>
+  </data>
+<data name="InvalidAnswer.Text" xml:space="preserve">
+    <value>إجابة غير صالحة</value>
+  </data>
+<data name="InvalidAnswer_Detail.Text" xml:space="preserve">
+    <value>الإجابة المقدَّمة غير صالحة.</value>
+  </data>
+<data name="InvalidPassword.Text" xml:space="preserve">
+    <value>كلمة مرور غير صالحة</value>
+  </data>
+<data name="InvalidPassword_Detail.Text" xml:space="preserve">
+    <value>لم تستوفِ كلمة المرور الحد الأدنى لمتطلبات التعقيد الخاصة بالموقع.</value>
+  </data>
+<data name="InvalidQuestion.Text" xml:space="preserve">
+    <value>سؤال غير صالح</value>
+  </data>
+<data name="InvalidQuestion_Detail.Text" xml:space="preserve">
+    <value>السؤال المقدَّم غير صالح.</value>
+  </data>
+<data name="PasswordMismatch.Text" xml:space="preserve">
+    <value>كلمة المرور الجديدة وكلمة مرور التأكيد غير متطابقتين. لم يتم تغيير كلمة المرور.</value>
+  </data>
+<data name="PasswordMismatch_Detail.Text" xml:space="preserve">
+    <value>كلمة المرور وتأكيدها غير متطابقين.</value>
+  </data>
+<data name="DisplayName.RegExError" xml:space="preserve">
+    <value>اسم العرض غير صالح.</value>
+  </data>
+<data name="Password.Help" xml:space="preserve">
+    <value>أدخل كلمة المرور.</value>
+  </data>
+<data name="VanityUrl.Help" xml:space="preserve">
+    <value>يمكنك اختياريًا اختيار عنوان URL مخصص لملفك الشخصي.</value>
+  </data>
+<data name="VanityUrl.Text" xml:space="preserve">
+    <value>عنوان URL للملف الشخصي:</value>
+  </data>
+<data name="PasswordReset.Text" xml:space="preserve">
+    <value>تمت إعادة تعيين كلمة المرور.</value>
+  </data>
+</root>
