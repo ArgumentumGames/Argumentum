@@ -1,0 +1,579 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AutoResizeHeight.Help" xml:space="preserve">
+    <value>AutoResizeHeight 属性指示 RadEditor 是否会自动调整高度以匹配内容高度。
+
+此属性类似于 DIV 元素的 Overflow 属性，而 IFRAME 元素不支持该属性。
+
+当 AutoResizeHeight 属性设为 true 时，编辑器内容区域会随内容高度自动调整，不会出现滚动条。</value>
+  </data>
+  <data name="AutoResizeHeight.Text" xml:space="preserve">
+    <value>自动调整高度：</value>
+  </data>
+  <data name="BorderWidth.Help" xml:space="preserve">
+    <value>设置控件周围边框的像素宽度</value>
+  </data>
+  <data name="BorderWidth.Text" xml:space="preserve">
+    <value>边框宽度：</value>
+  </data>
+  <data name="btnEditToolsFile.Text" xml:space="preserve">
+    <value>配置编辑器工具栏</value>
+  </data>
+  <data name="btnEnable.Text" xml:space="preserve">
+    <value>更改</value>
+  </data>
+  <data name="btnUpdateConfig.Text" xml:space="preserve">
+    <value>更新配置</value>
+  </data>
+  <data name="Client Script Settings.Title" xml:space="preserve">
+    <value>客户端脚本设置</value>
+  </data>
+  <data name="cmdCopy.Text" xml:space="preserve">
+    <value>复制</value>
+  </data>
+  <data name="cmdCreate.Text" xml:space="preserve">
+    <value>创建</value>
+  </data>
+  <data name="Common Settings.Title" xml:space="preserve">
+    <value>常规设置</value>
+  </data>
+  <data name="ContentAreaMode.Help" xml:space="preserve">
+    <value>选择在 Iframe 中的独立文档内编辑（默认），或在当前页面的 Div 中就地编辑。</value>
+  </data>
+  <data name="ContentAreaMode.Text" xml:space="preserve">
+    <value>内容区域模式</value>
+  </data>
+  <data name="ContentFilters.Help" xml:space="preserve">
+    <value>RadEditor for ASP.NET AJAX 中的内容筛选器是一小段代码，在切换模式（html / 设计 / 预览）或提交页面时按顺序调用，用于处理编辑器内容。各个筛选器详见：&lt;a href="http://www.telerik.com/help/aspnet-ajax/contentfilters.html" target="_blank"&gt;Telerik 在线帮助&lt;/a&gt;</value>
+  </data>
+  <data name="ContentFilters.Text" xml:space="preserve">
+    <value>内容筛选器：</value>
+  </data>
+  <data name="ControlTitle_.Text" xml:space="preserve">
+    <value>HTML 编辑器管理</value>
+  </data>
+  <data name="ControlTitle_.Text1" xml:space="preserve">
+    <value>HTML 编辑器管理器</value>
+  </data>
+  <data name="CssFile.Help" xml:space="preserve">
+    <value>所见即所得模式下编辑器使用的 CSS 文件。该文件必须位于主题目录或网站目录中。此处设置的路径相对于其父级（例如 /editor.css 表示主题根目录下的文件）</value>
+  </data>
+  <data name="CssFile.Text" xml:space="preserve">
+    <value>CSS 文件：</value>
+  </data>
+  <data name="Developer Settings.Title" xml:space="preserve">
+    <value>开发人员设置</value>
+  </data>
+  <data name="Document Manager Settings.Title" xml:space="preserve">
+    <value>文档管理器设置</value>
+  </data>
+  <data name="DocumentsFilters.Help" xml:space="preserve">
+    <value>文档管理器中允许使用的扩展名列表，以分号分隔。这些扩展名也必须列入主机设置中允许的扩展名清单。请使用以下格式：*.扩展名</value>
+  </data>
+  <data name="DocumentsFilters.Text" xml:space="preserve">
+    <value>筛选器：</value>
+  </data>
+  <data name="DocumentsPath.Help" xml:space="preserve">
+    <value>加载对话框时文档管理器的起始文件夹</value>
+  </data>
+  <data name="DocumentsPath.Text" xml:space="preserve">
+    <value>路径：</value>
+  </data>
+  <data name="EditConfigTab.Text" xml:space="preserve">
+    <value>编辑器配置</value>
+  </data>
+  <data name="EditModes.Help" xml:space="preserve">
+    <value>RadEditor 提供三种编辑模式：设计、HTML 和预览：
+
+&lt;ul&gt;&lt;li&gt;设计：在设计模式下，可通过 RadEditor 工具栏按钮、下拉列表和对话框编辑并设置内容格式。&lt;/li&gt;&lt;li&gt;HTML：HTML 模式可直接访问内容的 HTML 代码，高级用户最常使用此模式。&lt;/li&gt;&lt;li&gt;预览：在更新页面之前显示内容的呈现效果。&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="EditModes.Text" xml:space="preserve">
+    <value>编辑模式：</value>
+  </data>
+  <data name="EnableResize.Help" xml:space="preserve">
+    <value>获取或设置一个值，指示用户能否在客户端调整 RadEditor 控件的大小。</value>
+  </data>
+  <data name="EnableResize.Text" xml:space="preserve">
+    <value>启用调整大小：</value>
+  </data>
+  <data name="FileBrowserContentProviderTypeName.Help" xml:space="preserve">
+    <value>内容提供程序是一个类，负责处理文件管理器对话框中文件和文件夹的操作方式。如果你使用了其他内容提供程序，请覆盖此设置。</value>
+  </data>
+  <data name="FileBrowserContentProviderTypeName.Text" xml:space="preserve">
+    <value>文件浏览器提供程序：</value>
+  </data>
+  <data name="Flash Manager Settings.Title" xml:space="preserve">
+    <value>Flash 管理器设置</value>
+  </data>
+  <data name="FlashFilters.Help" xml:space="preserve">
+    <value>Flash 管理器中允许使用的扩展名列表，以分号分隔。这些扩展名也必须列入主机设置中允许的扩展名清单。请使用以下格式：*.扩展名</value>
+  </data>
+  <data name="FlashFilters.Text" xml:space="preserve">
+    <value>筛选器：</value>
+  </data>
+  <data name="FlashPath.Help" xml:space="preserve">
+    <value>加载对话框时 Flash 管理器的起始文件夹</value>
+  </data>
+  <data name="FlashPath.Text" xml:space="preserve">
+    <value>路径：</value>
+  </data>
+  <data name="Height.Help" xml:space="preserve">
+    <value>编辑器控件的总高度</value>
+  </data>
+  <data name="Height.Text" xml:space="preserve">
+    <value>高度：</value>
+  </data>
+  <data name="HTMLEditorPageDescription.Text" xml:space="preserve">
+    <value>提供 HTML 编辑器提供程序的配置选项。</value>
+  </data>
+  <data name="HTMLEditorPageName.Text" xml:space="preserve">
+    <value>HTML 编辑器管理器</value>
+  </data>
+  <data name="Image Manager Settings.Title" xml:space="preserve">
+    <value>图像管理器设置</value>
+  </data>
+  <data name="ImagesFilters.Help" xml:space="preserve">
+    <value>图像管理器中允许使用的扩展名列表，以分号分隔。这些扩展名也必须列入主机设置中允许的扩展名清单。请使用以下格式：*.扩展名</value>
+  </data>
+  <data name="ImagesFilters.Text" xml:space="preserve">
+    <value>筛选器：</value>
+  </data>
+  <data name="ImagesPath.Help" xml:space="preserve">
+    <value>加载对话框时图像管理器的起始文件夹</value>
+  </data>
+  <data name="ImagesPath.Text" xml:space="preserve">
+    <value>路径：</value>
+  </data>
+  <data name="Language.Help" xml:space="preserve">
+    <value>如果设置，将覆盖网站上下文的语言。默认使用当前区域设置，因此大多数情况下请留空</value>
+  </data>
+  <data name="Language.Text" xml:space="preserve">
+    <value>语言：</value>
+  </data>
+  <data name="lblChangeProvider.Help" xml:space="preserve">
+    <value>从下拉列表中选择其他提供程序，然后点击「更改」，即可更改整个安装所用的 HTML 编辑器提供程序。</value>
+  </data>
+  <data name="lblChangeProvider.Text" xml:space="preserve">
+    <value>更改提供程序</value>
+  </data>
+  <data name="lblCurrentProvider.Help" xml:space="preserve">
+    <value>这是此安装当前设置的 HTML 编辑器提供程序。</value>
+  </data>
+  <data name="lblCurrentProvider.Text" xml:space="preserve">
+    <value>当前提供程序</value>
+  </data>
+  <data name="lblEditorConfig.Text" xml:space="preserve">
+    <value>编辑器配置</value>
+  </data>
+  <data name="lblEditorType.Text" xml:space="preserve">
+    <value>此 DNN 安装的当前提供程序是 &lt;b&gt;{0}&lt;/b&gt;</value>
+  </data>
+  <data name="lblMode.Help" xml:space="preserve">
+    <value>你希望将此编辑器配置关联到的角色。</value>
+  </data>
+  <data name="lblMode.Text" xml:space="preserve">
+    <value>绑定到角色</value>
+  </data>
+  <data name="lblNotAuthorized.Text" xml:space="preserve">
+    <value>你无权使用此模块。</value>
+  </data>
+  <data name="lblNote.Text" xml:space="preserve">
+    <value>此模块用于注册和配置 Rad 编辑器提供程序，可帮助主机用户在 web.config 中设置 HTML 提供程序并维护其配置。</value>
+  </data>
+  <data name="lblOnlyHost.Text" xml:space="preserve">
+    <value>只有主机用户可以使用此模块。</value>
+  </data>
+  <data name="lblPortal.Help" xml:space="preserve">
+    <value>如果选中，当前网站将与此编辑器配置关联。</value>
+  </data>
+  <data name="lblPortal.Text" xml:space="preserve">
+    <value>绑定到网站</value>
+  </data>
+  <data name="lblSelectedProvider.Text" xml:space="preserve">
+    <value>当前提供程序</value>
+  </data>
+  <data name="lblTabs.Help" xml:space="preserve">
+    <value>在树视图中选择页面，可将此编辑器配置与所选页面关联。</value>
+  </data>
+  <data name="lblTabs.Text" xml:space="preserve">
+    <value>绑定到选项卡</value>
+  </data>
+  <data name="LinksType.Help" xml:space="preserve">
+    <value>「使用页面名称」：指向网站页面的链接形如 default.aspx?TabName=Home；&lt;br /&gt;「使用页面 ID」：指向网站页面的链接形如 default.aspx?TabId=100；&lt;br /&gt;「常规」：指向网站页面的链接按普通链接生成。</value>
+  </data>
+  <data name="LinksType.Text" xml:space="preserve">
+    <value>页面链接类型：</value>
+  </data>
+  <data name="LinksType_Normal.Text" xml:space="preserve">
+    <value>常规</value>
+  </data>
+  <data name="LinksType_UseTabId.Text" xml:space="preserve">
+    <value>在 URL 中使用页面 ID</value>
+  </data>
+  <data name="LinksType_UseTabName.Text" xml:space="preserve">
+    <value>在 URL 中使用页面名称</value>
+  </data>
+  <data name="LinksUseRelativeUrls.Help" xml:space="preserve">
+    <value>如果设为 false，则创建绝对链接</value>
+  </data>
+  <data name="LinksUseRelativeUrls.Text" xml:space="preserve">
+    <value>启用相对 URL 链接：</value>
+  </data>
+  <data name="MaxDocumentSize.Help" xml:space="preserve">
+    <value>文档上载的最大字节数</value>
+  </data>
+  <data name="MaxDocumentSize.Text" xml:space="preserve">
+    <value>最大文件大小：</value>
+  </data>
+  <data name="MaxFlashSize.Help" xml:space="preserve">
+    <value>Flash 上载的最大字节数</value>
+  </data>
+  <data name="MaxFlashSize.Text" xml:space="preserve">
+    <value>最大文件大小：</value>
+  </data>
+  <data name="MaxImageSize.Help" xml:space="preserve">
+    <value>图像上载的最大字节数</value>
+  </data>
+  <data name="MaxImageSize.Text" xml:space="preserve">
+    <value>最大文件大小：</value>
+  </data>
+  <data name="MaxMediaSize.Help" xml:space="preserve">
+    <value>影片上载的最大字节数</value>
+  </data>
+  <data name="MaxMediaSize.Text" xml:space="preserve">
+    <value>最大文件大小：</value>
+  </data>
+  <data name="MaxSilverlightSize.Help" xml:space="preserve">
+    <value>Silverlight 上载的最大字节数</value>
+  </data>
+  <data name="MaxSilverlightSize.Text" xml:space="preserve">
+    <value>最大文件大小：</value>
+  </data>
+  <data name="MaxTemplateSize.Help" xml:space="preserve">
+    <value>模板上载的最大字节数</value>
+  </data>
+  <data name="MaxTemplateSize.Text" xml:space="preserve">
+    <value>最大文件大小：</value>
+  </data>
+  <data name="Media Manager Settings.Title" xml:space="preserve">
+    <value>媒体管理器设置</value>
+  </data>
+  <data name="MediaFilters.Help" xml:space="preserve">
+    <value>媒体管理器中允许使用的扩展名列表，以分号分隔。这些扩展名也必须列入主机设置中允许的扩展名清单。请使用以下格式：*.扩展名</value>
+  </data>
+  <data name="MediaFilters.Text" xml:space="preserve">
+    <value>筛选器：</value>
+  </data>
+  <data name="MediaPath.Help" xml:space="preserve">
+    <value>加载对话框时媒体管理器的起始文件夹</value>
+  </data>
+  <data name="MediaPath.Text" xml:space="preserve">
+    <value>路径：</value>
+  </data>
+  <data name="NewLineBr.Help" xml:space="preserve">
+    <value>NewLineBr 属性指定按 Enter 键时编辑器插入新行（&lt;BR&gt; 标记）还是新段落（&lt;P&gt; 标记）。默认值为 true（&lt;BR&gt; 标记），以尽量贴近桌面文字处理软件的行为。在这种情况下，可按下 Ctrl+M 或使用「新段落」按钮插入段落标记。
+
+如果将 NewLineBr 属性设为 false，则每次回车（按 Enter）都会插入段落标记；此时按 Shift+Enter 会插入 &lt;BR&gt; 标记。
+
+在 Telerik RadEditor 中使用项目符号列表或编号列表
+列表属于段落类型，接受与段落标记相同的属性。这意味着在 HTML 中插入列表时，即插入了一个新段落。自 Telerik RadEditor v5.05 起，NewLineBr 机制已得到改进。但这使得某些操作无法实现，例如以空行开始项目符号列表或编号列表。&lt;a href="http://www.telerik.com/help/aspnet-ajax/usingthenewlinebrproperty.html" target="_blank"&gt;更多信息请阅读在线帮助&lt;/a&gt;</value>
+  </data>
+  <data name="NewLineBr.Text" xml:space="preserve">
+    <value>将换行呈现为分行：</value>
+  </data>
+  <data name="NotCurrentProvider.Text" xml:space="preserve">
+    <value>RadEditorProvider 目前不是默认的 HTML 编辑器提供程序，任何更改都不会应用到当前编辑器提供程序。若要使配置生效，请在左侧下拉列表中将默认提供程序更新为「DotNetNuke.RadEditorProvider」。</value>
+  </data>
+  <data name="OnClientCommandExecuting.Help" xml:space="preserve">
+    <value>设置一个函数名，当编辑器在客户端触发 OnExecute 事件（在执行命令之前触发）时调用。该函数可放在 ScriptToLoad 设置定义的 js 文件中。例如，若想添加表情符号支持，此事件非常有用（更多信息请参阅&lt;a href="http://radeditor.codeplex.com/Thread/View.aspx?ThreadId=231612" target="_blank"&gt;此论坛帖子&lt;/a&gt;）</value>
+  </data>
+  <data name="OnClientCommandExecuting.Text" xml:space="preserve">
+    <value>执行命令时：</value>
+  </data>
+  <data name="OnClientPasteHtml.Help" xml:space="preserve">
+    <value>设置一个函数名，当编辑器触发 OnPaste 事件（每次有内容粘贴到编辑器 HTML 编辑区的 HTML 代码中时）时调用。该函数可放在 ScriptToLoad 设置定义的 js 文件中。
+
+&lt;a href="http://radeditor.codeplex.com/wikipage?title=OnClientPasteExample" target="_blank"&gt;有关详细示例，请参阅此处&lt;/a&gt;</value>
+  </data>
+  <data name="OnClientPasteHtml.Text" xml:space="preserve">
+    <value>粘贴 HTML：</value>
+  </data>
+  <data name="PortalRoot.Text" xml:space="preserve">
+    <value>[PortalRoot]</value>
+  </data>
+  <data name="ScriptToLoad.Help" xml:space="preserve">
+    <value>如果设置，提供程序将加载此处指定的 JavaScript 文件。该路径必须相对于当前主题目录。
+
+&lt;a href="http://radeditor.codeplex.com/wikipage?title=OnClientPasteExample" target="_blank"&gt;有关详细示例，请参阅此处&lt;/a&gt;</value>
+  </data>
+  <data name="ScriptToLoad.Text" xml:space="preserve">
+    <value>要加载的脚本：</value>
+  </data>
+  <data name="ShowPortalLinks.Help" xml:space="preserve">
+    <value>如果设为 true，工具栏中将出现一个下拉列表，呈现网站页面树。启用此功能后，可选中一段文本并从该树中选择页面，使编辑器将文本链接到指定页面。
+
+必须在工具栏配置中设置 CustomLinks 工具才能使其生效！</value>
+  </data>
+  <data name="ShowPortalLinks.Text" xml:space="preserve">
+    <value>显示网站链接：</value>
+  </data>
+  <data name="Silverlight Manager Settings.Title" xml:space="preserve">
+    <value>Silverlight 管理器设置</value>
+  </data>
+  <data name="SilverlightFilters.Help" xml:space="preserve">
+    <value>Silverlight 管理器中允许使用的扩展名列表，以分号分隔。这些扩展名也必须列入主机设置中允许的扩展名清单。请使用以下格式：*.扩展名</value>
+  </data>
+  <data name="SilverlightFilters.Text" xml:space="preserve">
+    <value>筛选器：</value>
+  </data>
+  <data name="SilverlightPath.Help" xml:space="preserve">
+    <value>加载对话框时 Silverlight 管理器的起始文件夹</value>
+  </data>
+  <data name="SilverlightPath.Text" xml:space="preserve">
+    <value>路径：</value>
+  </data>
+  <data name="Skin.Help" xml:space="preserve">
+    <value>编辑器控件使用的主题</value>
+  </data>
+  <data name="Skin.Text" xml:space="preserve">
+    <value>主题：</value>
+  </data>
+  <data name="SpellAllowAddCustom.Help" xml:space="preserve">
+    <value>遗憾的是，拼写检查选项很少有文档说明。一般而言，除非你清楚自己在做什么，否则请将这些字段留空。&lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;在 Telerik 网站上了解有关拼写检查选项的更多信息&lt;/a&gt;</value>
+  </data>
+  <data name="SpellAllowAddCustom.Text" xml:space="preserve">
+    <value>允许自定义拼写：</value>
+  </data>
+  <data name="SpellCheckProvider.Help" xml:space="preserve">
+    <value>遗憾的是，拼写检查选项很少有文档说明。一般而言，除非你清楚自己在做什么，否则请将这些字段留空。&lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;在 Telerik 网站上了解有关拼写检查选项的更多信息&lt;/a&gt;</value>
+  </data>
+  <data name="SpellCheckProvider.Text" xml:space="preserve">
+    <value>拼写检查提供程序名称：</value>
+  </data>
+  <data name="SpellCustomDictionarySourceTypeName.Help" xml:space="preserve">
+    <value>遗憾的是，拼写检查选项很少有文档说明。一般而言，除非你清楚自己在做什么，否则请将这些字段留空。&lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;在 Telerik 网站上了解有关拼写检查选项的更多信息&lt;/a&gt;</value>
+  </data>
+  <data name="SpellCustomDictionarySourceTypeName.Text" xml:space="preserve">
+    <value>自定义拼写词典名称：</value>
+  </data>
+  <data name="SpellCustomDictionarySuffix.Help" xml:space="preserve">
+    <value>遗憾的是，拼写检查选项很少有文档说明。一般而言，除非你清楚自己在做什么，否则请将这些字段留空。&lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;在 Telerik 网站上了解有关拼写检查选项的更多信息&lt;/a&gt;</value>
+  </data>
+  <data name="SpellCustomDictionarySuffix.Text" xml:space="preserve">
+    <value>自定义拼写词典后缀：</value>
+  </data>
+  <data name="SpellDictionaryLanguage.Help" xml:space="preserve">
+    <value>遗憾的是，拼写检查选项很少有文档说明。一般而言，除非你清楚自己在做什么，否则请将这些字段留空。&lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;在 Telerik 网站上了解有关拼写检查选项的更多信息&lt;/a&gt;</value>
+  </data>
+  <data name="SpellDictionaryLanguage.Text" xml:space="preserve">
+    <value>拼写词典语言：</value>
+  </data>
+  <data name="SpellDictionaryPath.Help" xml:space="preserve">
+    <value>遗憾的是，拼写检查选项很少有文档说明。一般而言，除非你清楚自己在做什么，否则请将这些字段留空。&lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;在 Telerik 网站上了解有关拼写检查选项的更多信息&lt;/a&gt;</value>
+  </data>
+  <data name="SpellDictionaryPath.Text" xml:space="preserve">
+    <value>拼写词典路径：</value>
+  </data>
+  <data name="SpellEditDistance.Help" xml:space="preserve">
+    <value>遗憾的是，拼写检查选项很少有文档说明。一般而言，除非你清楚自己在做什么，否则请将这些字段留空。&lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;在 Telerik 网站上了解有关拼写检查选项的更多信息&lt;/a&gt;</value>
+  </data>
+  <data name="SpellEditDistance.Text" xml:space="preserve">
+    <value>拼写编辑距离：</value>
+  </data>
+  <data name="SpellFragmentIgnoreOptions.Help" xml:space="preserve">
+    <value>遗憾的是，拼写检查选项很少有文档说明。一般而言，除非你清楚自己在做什么，否则请将这些字段留空。&lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;在 Telerik 网站上了解有关拼写检查选项的更多信息&lt;/a&gt;</value>
+  </data>
+  <data name="SpellFragmentIgnoreOptions.Text" xml:space="preserve">
+    <value>拼写片段忽略选项：</value>
+  </data>
+  <data name="SpellWordIgnoreOptions.Help" xml:space="preserve">
+    <value>遗憾的是，拼写检查选项很少有文档说明。一般而言，除非你清楚自己在做什么，否则请将这些字段留空。&lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;在 Telerik 网站上了解有关拼写检查选项的更多信息&lt;/a&gt;</value>
+  </data>
+  <data name="SpellWordIgnoreOptions.Text" xml:space="preserve">
+    <value>拼写单词忽略选项：</value>
+  </data>
+  <data name="StripFormattingOptions.Help" xml:space="preserve">
+    <value>开发人员可通过 StripFormattingOptions 属性强制设置内容格式。其结果是，对用户尝试粘贴的所有内容都会应用格式清除。EditorStripFormattingOptions 设置可取值之一或以下值的组合：
+&lt;ul&gt;
+&lt;li&gt;None：按原样粘贴剪贴板内容。&lt;/li&gt;
+&lt;li&gt;NoneSupressCleanMessage：粘贴时不清除任何内容，也不询问。&lt;/li&gt;
+&lt;li&gt;MSWord：粘贴时清除 Word 专用标记，保留字体和文字大小。&lt;/li&gt;
+&lt;li&gt;MSWordNoFonts：粘贴时清除 Word 专用标记，仅保留文字大小。&lt;/li&gt;
+&lt;li&gt;MSWordRemoveAll：粘贴时清除 Word 专用标记，同时移除字体和文字大小。&lt;/li&gt;
+&lt;li&gt;Css：粘贴时清除 CSS 样式。&lt;/li&gt;
+&lt;li&gt;Font：粘贴时清除 Font 标记。&lt;/li&gt;
+&lt;li&gt;Span：粘贴时清除 Span 标记。&lt;/li&gt;
+&lt;li&gt;All：清除所有 HTML 格式并粘贴纯文本。&lt;/li&gt;
+&lt;li&gt;AllExceptNewLines：粘贴时清除除 br 和换行（
+）之外的所有标记。&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="StripFormattingOptions.Text" xml:space="preserve">
+    <value>清除格式选项：</value>
+  </data>
+  <data name="Template Manager Settings.Title" xml:space="preserve">
+    <value>模板管理器设置</value>
+  </data>
+  <data name="TemplateFilters.Help" xml:space="preserve">
+    <value>模板管理器中允许使用的扩展名列表，以分号分隔。这些扩展名也必须列入主机设置中允许的扩展名清单。请使用以下格式：*.扩展名</value>
+  </data>
+  <data name="TemplateFilters.Text" xml:space="preserve">
+    <value>筛选器：</value>
+  </data>
+  <data name="TemplatePath.Help" xml:space="preserve">
+    <value>加载对话框时模板管理器的起始文件夹</value>
+  </data>
+  <data name="TemplatePath.Text" xml:space="preserve">
+    <value>路径：</value>
+  </data>
+  <data name="Toolbar Settings.Title" xml:space="preserve">
+    <value>工具栏设置</value>
+  </data>
+  <data name="ToolbarConfigTab.Text" xml:space="preserve">
+    <value>工具栏配置</value>
+  </data>
+  <data name="ToolbarMode.Help" xml:space="preserve">
+    <value>RadEditor for ASP.NET AJAX 引入了名为 ToolbarMode 的属性，用于指定工具栏的行为。设置 ToolbarMode 的选项如下：&lt;ul&gt;&lt;li&gt;Default — 工具栏为静态，定位在内容区域上方
+&lt;/li&gt;&lt;li&gt;PageTop — 在此模式下，某个编辑器获得焦点时，其工具栏会停靠在页面顶部
+&lt;/li&gt;&lt;li&gt;ShowOnFocus — 编辑器获得焦点时，工具栏会显示在其正上方。
+&lt;/li&gt;&lt;li&gt;Floating — 工具栏会弹出为窗口，并允许用户在页面上移动它
+&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="ToolbarMode.Text" xml:space="preserve">
+    <value>模式：</value>
+  </data>
+  <data name="ToolsWidth.Help" xml:space="preserve">
+    <value>设置编辑器工具栏的宽度，仅当工具栏模式设为 Default 以外的值时使用！</value>
+  </data>
+  <data name="ToolsWidth.Text" xml:space="preserve">
+    <value>宽度：</value>
+  </data>
+  <data name="UserFolder.Text" xml:space="preserve">
+    <value>[UserFolder]</value>
+  </data>
+  <data name="Width.Help" xml:space="preserve">
+    <value>编辑器控件的总宽度。</value>
+  </data>
+  <data name="Width.Text" xml:space="preserve">
+    <value>宽度：</value>
+  </data>
+  <data name="CannotManageHTMLEditorProviders.Text" xml:space="preserve">
+    <value>你无法管理 HTML 编辑器提供程序</value>
+  </data>
+</root>
