@@ -19,9 +19,9 @@ namespace Argumentum.AssetConverter.Tests
     /// Périmètre MESURÉ au 01/11 : 37 fichiers / 689 clés, répartis sur
     /// <c>Admin/</c> (19), <c>AuthenticationServices/</c> (8), <c>Connectors/</c> (3),
     /// <c>ResourceManager/</c> (4), <c>SiteExportImport/</c> (1),
-    /// <c>TelerikRemoval/</c> (1) et <c>ToSic.Sxc/</c> (1). Douze de ces fichiers
-    /// n'avaient aucune sœur de culture (ni fr-FR, ni ru-RU, ni pt-BR) : c'est du
-    /// jamais-localisé, pas un trou zh.
+    /// <c>TelerikRemoval/</c> (1) et <c>ToSic.Sxc/</c> (1). Sept de ces fichiers
+    /// n'avaient aucune sœur de culture (ni fr-FR, ni ru-RU, ni pt-BR, ni es-ES) :
+    /// c'est du jamais-localisé, pas un trou zh.
     /// </para>
     /// <para>
     /// ⚠️ L'étiquette du pool annonçait « 9 fichiers / 381 clés ». Re-mesuré sur
