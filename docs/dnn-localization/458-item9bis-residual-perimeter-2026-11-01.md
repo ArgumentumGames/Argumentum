@@ -36,13 +36,48 @@ n'avance sur l'autre.
 | Neutres portant déjà une sœur `zh-CN` | **37** | **689** | **OUI — c'est le lot 4a** |
 | `Admin/Dnn.PersonaBar/Modules/*` | 25 | 3 304 | non (exclu comme en zh) |
 | `NBright/*` | 30 | 1 659 | non (exclu comme en zh) |
-| Reste (gabarits ModuleCreator ×6, `InvalidConfiguration.ascx`) | 7 | 12 | non (gabarits techniques) |
+| Reste (gabarits ModuleCreator ×6, `InvalidConfiguration.ascx`) | 7 | 12 | **partiellement** — voir ci-dessous |
 | **Total** | **99** | **5 664** | |
 
 Le lot 4a est donc **un lot ordinaire de 37 fichiers / 689 clés** — exactement
 les 37 fichiers que #2106 a livrés en `zh-CN`. La traduisibilité est prouvée par
 la culture sœur ; il n'y a rien à arbitrer fichier par fichier. *(Inchangé
 depuis la v2 : cette partie n'a jamais été fausse.)*
+
+### Les 7 du bucket « Reste » — cinqieme erreur d'instrument, et la plus coûteuse
+
+Les versions précédentes classaient ces 7 fichiers « gabarits techniques, hors
+périmètre » **sans l'avoir mesuré**. La mesure, faite, dit autre chose :
+
+| Fichier(s) | Sœur de culture | Verdict |
+| --- | --- | --- |
+| 6 gabarits `ModuleCreator/Templates/**/{template,Settings.ascx}.resx` | **`ru-RU`** dans chaque dossier | **traduisibles** — 2 clés chacun, soit 12 |
+| `HtmlEditorManager/Controls/…/InvalidConfiguration.ascx.resx` | `fr-FR`, `pt-BR`, `ru-RU` | **rien à traduire** : **0** bloc `<data>` réel |
+
+Les six gabarits portent `plField.Text` (« Field: ») et `plField.Help`
+(« Field level help.»), et leur sœur russe les traduit réellement
+(« Поле: » / « Подсказка относительно поля. »). L'intention de localiser existe
+donc au dépôt ; elle n'a simplement jamais été étendue à `ar-SA` ni `fa-IR`.
+**Ils sont dans le périmètre** (12 clés), et non dehors.
+
+`InvalidConfiguration` : le neutre **et** sa sœur `fr-FR` comptent tous deux
+**4 occurrences de la sous-chaîne `<data`** — et ce sont les **quatre exemples du commentaire
+de schéma ResX**, pas des clés. Zéro clé réelle des deux côtés : une sœur de
+culture y serait une copie octet pour octet du neutre. C'est l'occurrence ③
+(sous-chaîne vs élément) qui, ici, aurait fait croire à 4 clés à traduire.
+
+⭐ **La cinquième erreur** : le relevé « aucune sœur » avait été produit par
+
+```bash
+git ls-tree --name-only origin/master -- "<dossier>"      # SANS -r
+```
+
+qui rend **l'entrée d'arbre** du dossier, pas ses fichiers — donc **jamais**
+aucune sœur, quel que soit le contenu. Un zéro de cette forme se lit « rien
+n'est traduit ici », et il a failli transformer 12 clés traduisibles en
+« hors périmètre » sur la foi d'un instrument qui ne pouvait pas voir un « 1 ».
+Le chiffre n'a pas changé (ces 7 fichiers restent dans les 99 / 5 664) ; c'est
+le **verdict** qui était faux.
 
 ## Réconciliation avec la mesure d'ai-01 — exacte, et reproductible
 
