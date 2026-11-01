@@ -1,0 +1,13 @@
+{
+ "files": {
+  "MenuSettings.ascx": {
+   "AddContent.Action": "افزودن محتوا",
+   "ControlTitle_settings.Text": "تنظیمات منو",
+   "ModuleHelp.Text": "مستندات DDRMenu در <a href=\"http://www.dnnsoftware.com/wiki/\">ویکی DNN</a> در دسترس است."
+  },
+  "MenuView.ascx": {
+   "AddContent.Action": "افزودن محتوا",
+   "ModuleHelp.Text": "مستندات DDRMenu در <a href=\"http://www.dnnsoftware.com/wiki/\">ویکی DNN</a> در دسترس است."
+  }
+ }
+}

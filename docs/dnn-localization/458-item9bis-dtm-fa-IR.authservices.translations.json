@@ -1,0 +1,11 @@
+{
+ "files": {
+  "Settings.ascx": {
+   "AuthenticationConfig_Enabled.Help": "این کادر را برای فعال‌کردن احراز هویت استاندارد DNN علامت بزنید.",
+   "AuthenticationConfig_Enabled.Text": "فعال:",
+   "AuthenticationConfig_UseCaptcha.Help": "این کادر را برای فعال‌کردن کپچا در ورود DNN علامت بزنید.",
+   "AuthenticationConfig_UseCaptcha.Text": "استفاده از کپچا:",
+   "Title.Text": "تنظیمات احراز هویت DNN"
+  }
+ }
+}

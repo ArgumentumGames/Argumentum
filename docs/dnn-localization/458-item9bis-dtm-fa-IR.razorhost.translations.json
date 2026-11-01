@@ -1,0 +1,65 @@
+{
+ "files": {
+  "AddScript.ascx": {
+   "CSHTML.Text": "فایل CSHtml (سی‌شارپ)",
+   "NewScript.Text": "<h2>اسکریپت Razor تازه</h2>",
+   "VBHTML.Text": "فایل VBHtml (ویژوال بیسیک)",
+   "cmdAdd.Text": "افزودن اسکریپت تازه",
+   "createNewScript.Text": "برای ساخت فایل اسکریپت Razor تازه، نوع فایل را انتخاب کنید و نامی وارد کنید.  فایل در پوشه Scripts ساخته می‌شود.",
+   "fileNameLabel.Help": "نامی برای فایل اسکریپت وارد کنید.  پیش از نام فایل یک زیرخط \"_\" گذاشته می‌شود.",
+   "fileNameLabel.Text": "نام فایل:",
+   "fileTypeLabel.Help": "نوع فایل اسکریپت Razor را که می‌خواهید بسازید انتخاب کنید (CSHtml برای سی‌شارپ یا VBHtml برای وی‌بی‌دات‌نت)",
+   "fileTypeLabel.Text": "نوع فایل:"
+  },
+  "CreateModule.ascx": {
+   "ControlTitle_createmodule.Text": "ساخت ماژول",
+   "FolderExists.Text": "پوشه‌ای که انتخاب کرده‌اید از پیش وجود دارد.  لطفاً نام دیگری انتخاب کنید.",
+   "ImportControl.ErrorMessage": "هنگام درون‌ریزی کنترل ماژول خطایی رخ داد؛ برای جزئیات بیشتر گزارش رویداد را ببینید",
+   "ManifestCreationError.Text": "هنگام ساخت مانیفست خطای پیش‌بینی‌نشده‌ای رخ داد.  برای اطلاعات بیشتر Event Viewer را ببینید.",
+   "ModuleControlCreationError.Text": "هنگام ساخت کنترل ماژول خطای پیش‌بینی‌نشده‌ای رخ داد.  برای اطلاعات بیشتر Event Viewer را ببینید.",
+   "ScriptCopyError.Text": "هنگام رونوشت اسکریپت به پوشه مقصد خطای پیش‌بینی‌نشده‌ای رخ داد.  برای اطلاعات بیشتر Event Viewer را ببینید.",
+   "SourceControl.Text": "کنترل ماژول - {0}",
+   "SourceFile.Text": "اسکریپت منبع - {0}",
+   "TabExists.Text": "نام صفحه برای این نام ماژول از پیش وجود دارد.  ماژول ساخته شد اما صفحه آزمایشی ایجاد نشد.",
+   "cmdCreate.Text": "ساخت ماژول",
+   "plAddPage.Help": "این کادر را برای ساخت صفحه آزمایشی برای ماژول تازه خود علامت بزنید.",
+   "plAddPage.Text": "افزودن صفحه آزمایشی؟",
+   "plDescription.Help": "توضیحی برای ماژول وارد کنید.",
+   "plDescription.Text": "توضیح:",
+   "plFolder.Help": "نام پوشه ماژول تازه را وارد کنید.  این پوشه فرزند \"DesktopModules/RazorModules\" خواهد بود",
+   "plFolder.Text": "پوشه:",
+   "plName.Help": "نامی خوانا برای ماژول وارد کنید.",
+   "plName.Text": "نام ماژول:",
+   "plSource.Text": "منبع اسکریپت:",
+   "scriptsLabel.Help": "اسکریپتی را که می‌خواهید به کار ببرید از فهرست انتخاب کنید.",
+   "scriptsLabel.Text": "انتخاب اسکریپت:",
+   "valFolder.Text": "پوشه لازم است.<br/>",
+   "valName.Text": "نام لازم است.<br/>"
+  },
+  "EditScript.ascx": {
+   "AddNew.Text": "افزودن فایل اسکریپت تازه",
+   "ControlTitle_edit.Text": "ویرایش اسکریپت",
+   "SourceFile.Text": "فایل منبع - {0}",
+   "cmdSave.Text": "ذخیره اسکریپت",
+   "cmdSaveClose.Text": "ذخیره اسکریپت و بازگشت",
+   "currentScriptLabel.Help": "این کادر را علامت بزنید تا اسکریپت کنونی همان اسکریپت فعالی باشد که در حالت نمایش رندر می‌شود.",
+   "currentScriptLabel.Text": "فعال است:",
+   "plSource.Text": "منبع اسکریپت:",
+   "scriptListLabel.Help": "اسکریپتی را که این نمونه از ماژول Razor Host به کار می‌برد انتخاب کنید.",
+   "scriptListLabel.Text": "اسکریپت:",
+   "scriptsLabel.Help": "اسکریپتی را که می‌خواهید ویرایش کنید از فهرست انتخاب کنید.",
+   "scriptsLabel.Text": "انتخاب اسکریپت:"
+  },
+  "RazorHost.ascx": {
+   "CreateModule.Action": "ساخت ماژول",
+   "EditContent.Action": "ویرایش اسکریپت",
+   "scriptListLabel.Help": "اسکریپتی را که این نمونه از ماژول Razor Host به کار می‌برد انتخاب کنید.",
+   "scriptListLabel.Text": "اسکریپت:"
+  },
+  "Settings.ascx": {
+   "ControlTitle_settings.Text": "تنظیمات ماژول Razor Host",
+   "scriptListLabel.Help": "اسکریپتی را که این نمونه از ماژول Razor Host به کار می‌برد انتخاب کنید.",
+   "scriptListLabel.Text": "اسکریپت:"
+  }
+ }
+}

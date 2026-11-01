@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="alternateItemTemplateLabel.Help" xml:space="preserve">
+    <value>قالب جایگزین برای نمایش جزئیات هر عضو جایگزین (زوج) به کار می‌رود.  </value>
+  </data>
+<data name="alternateItemTemplateLabel.Text" xml:space="preserve">
+    <value>قالب جایگزین</value>
+  </data>
+<data name="itemTemplateLabel.Help" xml:space="preserve">
+    <value>قالب مورد برای نمایش جزئیات هر عضو جایگزین (فرد) به کار می‌رود.</value>
+  </data>
+<data name="itemTemplateLabel.Text" xml:space="preserve">
+    <value>قالب مورد:</value>
+  </data>
+<data name="Templates.Text" xml:space="preserve">
+    <value>قالب‌ها</value>
+  </data>
+<data name="popUpTemplateLabel.Help" xml:space="preserve">
+    <value>قالب پنجره برای نمایش جزئیات یک عضو در پنجره بازشو به کار می‌رود.</value>
+  </data>
+<data name="popUpTemplateLabel.Text" xml:space="preserve">
+    <value>قالب پنجره:</value>
+  </data>
+<data name="filterBySelectorLabel.Help" xml:space="preserve">
+    <value>به‌طور اختیاری فهرست اعضای نمایش‌داده‌شده را با انتخاب نوع فیلتر و سپس یک نقش، رابطه یا ویژگی نمایه پالایش کنید.</value>
+  </data>
+<data name="filterBySelectorLabel.Text" xml:space="preserve">
+    <value>فیلتر بر اساس:</value>
+  </data>
+<data name="Filters.Text" xml:space="preserve">
+    <value>فیلترها و مرتب‌سازی</value>
+  </data>
+<data name="None.Text" xml:space="preserve">
+    <value>بدون فیلتر</value>
+  </data>
+<data name="ProfileProperty.Text" xml:space="preserve">
+    <value>ویژگی نمایه</value>
+  </data>
+<data name="Relationship.Text" xml:space="preserve">
+    <value>رابطه</value>
+  </data>
+<data name="Group.Text" xml:space="preserve">
+    <value>گروه</value>
+  </data>
+<data name="Search.Text" xml:space="preserve">
+    <value>تنظیمات جستجو</value>
+  </data>
+<data name="searchField1Label.Help" xml:space="preserve">
+    <value>فیلد اول را برای نمایش در جستجوی پیشرفته انتخاب کنید.</value>
+  </data>
+<data name="searchField1Label.Text" xml:space="preserve">
+    <value>فیلد جستجو 1:</value>
+  </data>
+<data name="searchField2Label.Help" xml:space="preserve">
+    <value>فیلد دوم را برای نمایش در جستجوی پیشرفته انتخاب کنید.</value>
+  </data>
+<data name="searchField2Label.Text" xml:space="preserve">
+    <value>فیلد جستجو 2:</value>
+  </data>
+<data name="searchField3Label.Help" xml:space="preserve">
+    <value>فیلد سوم را برای نمایش در جستجوی پیشرفته انتخاب کنید.</value>
+  </data>
+<data name="searchField3Label.Text" xml:space="preserve">
+    <value>فیلد جستجو 3:</value>
+  </data>
+<data name="searchField4Label.Help" xml:space="preserve">
+    <value>فیلد چهارم را برای نمایش در جستجوی پیشرفته انتخاب کنید.</value>
+  </data>
+<data name="searchField4Label.Text" xml:space="preserve">
+    <value>فیلد جستجو 4:</value>
+  </data>
+<data name="displaySearchLabel.Help" xml:space="preserve">
+    <value>«ساده» را انتخاب کنید تا فقط جستجوی ساده نمایش یابد؛ «جستجوی ساده و پیشرفته» را برای نمایش هر دو؛ یا «هیچ» را برای حذف جستجو.</value>
+  </data>
+<data name="displaySearchLabel.Text" xml:space="preserve">
+    <value>نمایش جستجو:</value>
+  </data>
+<data name="User.Text" xml:space="preserve">
+    <value>کاربر</value>
+  </data>
+<data name="enablePopUpLabel.Help" xml:space="preserve">
+    <value>این کادر را برای فعال‌کردن قالب پنجره علامت بزنید.</value>
+  </data>
+<data name="enablePopUpLabel.Text" xml:space="preserve">
+    <value>فعال‌کردن پنجره:</value>
+  </data>
+<data name="sortFieldListLabel.Help" xml:space="preserve">
+    <value>فیلدی را برای مرتب‌سازی رکوردهای عضو انتخاب کنید.</value>
+  </data>
+<data name="sortFieldListLabel.Text" xml:space="preserve">
+    <value>فیلد مرتب‌سازی:</value>
+  </data>
+<data name="sortOrderListLabel.Help" xml:space="preserve">
+    <value>جهت مرتب‌سازی رکوردهای عضو را انتخاب کنید.</value>
+  </data>
+<data name="sortOrderListLabel.Text" xml:space="preserve">
+    <value>ترتیب مرتب‌سازی:</value>
+  </data>
+<data name="Ascending.Text" xml:space="preserve">
+    <value>صعودی</value>
+  </data>
+<data name="Descending.Text" xml:space="preserve">
+    <value>نزولی</value>
+  </data>
+<data name="DisplayName.Text" xml:space="preserve">
+    <value>نام نمایشی</value>
+  </data>
+<data name="Email.Text" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+<data name="Username.Text" xml:space="preserve">
+    <value>نام کاربری</value>
+  </data>
+<data name="ControlTitle_settings.Text" xml:space="preserve">
+    <value>تنظیمات فهرست اعضا</value>
+  </data>
+<data name="DateCreated.Text" xml:space="preserve">
+    <value>تاریخ ایجاد</value>
+  </data>
+<data name="UserId.Text" xml:space="preserve">
+    <value>شناسه کاربر</value>
+  </data>
+<data name="Paging.Text" xml:space="preserve">
+    <value>گزینه‌های صفحه‌بندی</value>
+  </data>
+<data name="disablePagerLabel.Help" xml:space="preserve">
+    <value>این کادر را برای غیرفعال‌کردن دکمه «بارگذاری بیشتر» علامت بزنید.  فقط صفحه اول نتایج نمایش داده می‌شود.</value>
+  </data>
+<data name="disablePagerLabel.Text" xml:space="preserve">
+    <value>غیرفعال‌کردن صفحه‌بندی:</value>
+  </data>
+<data name="pageSize.Error" xml:space="preserve">
+    <value>اندازه صفحه باید بین 1 و 100 باشد.</value>
+  </data>
+<data name="pageSizeLabel.Help" xml:space="preserve">
+    <value>اندازه هر صفحه را با وارد کردن عددی بین 1 و 100 تعیین کنید.</value>
+  </data>
+<data name="pageSizeLabel.Text" xml:space="preserve">
+    <value>اندازه صفحه:</value>
+  </data>
+<data name="DisplaySearch_Both.Text" xml:space="preserve">
+    <value>جستجوی ساده و پیشرفته</value>
+  </data>
+<data name="DisplaySearch_None.Text" xml:space="preserve">
+    <value>هیچ</value>
+  </data>
+<data name="DisplaySearch_Simple.Text" xml:space="preserve">
+    <value>جستجوی ساده</value>
+  </data>
+<data name="ExcludeHostUsersLabel.Help" xml:space="preserve">
+    <value>این کادر را برای حذف کاربران میزبان از نتایج جستجو علامت بزنید.</value>
+  </data>
+<data name="ExcludeHostUsersLabel.Text" xml:space="preserve">
+    <value>حذف کاربران میزبان:</value>
+  </data>
+<data name="Prefix.Text" xml:space="preserve">
+    <value>پیشوند</value>
+  </data>
+<data name="FirstName.Text" xml:space="preserve">
+    <value>نام</value>
+  </data>
+<data name="LastName.Text" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+<data name="MiddleName.Text" xml:space="preserve">
+    <value>نام میانی</value>
+  </data>
+<data name="Suffix.Text" xml:space="preserve">
+    <value>پسوند</value>
+  </data>
+<data name="Unit.Text" xml:space="preserve">
+    <value>واحد</value>
+  </data>
+<data name="Street.Text" xml:space="preserve">
+    <value>خیابان</value>
+  </data>
+<data name="City.Text" xml:space="preserve">
+    <value>شهر</value>
+  </data>
+<data name="Region.Text" xml:space="preserve">
+    <value>استان</value>
+  </data>
+<data name="Country.Text" xml:space="preserve">
+    <value>کشور</value>
+  </data>
+<data name="PostalCode.Text" xml:space="preserve">
+    <value>کد پستی</value>
+  </data>
+<data name="Telephone.Text" xml:space="preserve">
+    <value>تلفن</value>
+  </data>
+<data name="Cell.Text" xml:space="preserve">
+    <value>تلفن همراه</value>
+  </data>
+<data name="Fax.Text" xml:space="preserve">
+    <value>دورنگار</value>
+  </data>
+<data name="IM.Text" xml:space="preserve">
+    <value>پیام‌رسان</value>
+  </data>
+<data name="Website.Text" xml:space="preserve">
+    <value>وبگاه</value>
+  </data>
+<data name="Biography.Text" xml:space="preserve">
+    <value>شرح‌حال</value>
+  </data>
+<data name="TimeZone.Text" xml:space="preserve">
+    <value>منطقه زمانی</value>
+  </data>
+<data name="PreferredLocale.Text" xml:space="preserve">
+    <value>زبان ترجیحی</value>
+  </data>
+</root>
