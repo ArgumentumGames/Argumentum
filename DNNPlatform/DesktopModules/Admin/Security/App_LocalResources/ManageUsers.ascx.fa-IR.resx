@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="https://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="https://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Roles.Action" xml:space="preserve">
+    <value>مدیریت نقش‌های این کاربر</value>
+  </data>
+<data name="ControlTitle_edit.Text" xml:space="preserve">
+    <value>ویرایش حساب‌های کاربری</value>
+  </data>
+<data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;h1&gt;درباره ماژول مدیریت کاربران&lt;/h1&gt;&lt;p&gt;مدیران می‌توانند کاربران ثبت‌نام‌شده خود را مدیریت کنند. این ماژول به شما امکان می‌دهد کاربران جدید اضافه کنید، کاربران موجود را تغییر دهید، کاربران را حذف کنید و نقش‌های امنیتی کاربران را مدیریت کنید.&lt;/p&gt;
+</value>
+  </data>
+<data name="UserLockedOut.Text" xml:space="preserve">
+    <value>این حساب پس از تلاش‌های ناموفق بیش از حد برای ورود، در حال حاضر قفل شده است.</value>
+  </data>
+<data name="InvalidUser.Text" xml:space="preserve">
+    <value>این حساب متعلق به کاربری از سایت فعلی نیست.</value>
+  </data>
+<data name="SuperUser.Text" xml:space="preserve">
+    <value>این حساب متعلق به یک کاربر ارشد است. شما حقوق ویرایش حساب کاربر ارشد را ندارید.</value>
+  </data>
+<data name="NoUser.Text" xml:space="preserve">
+    <value>این حساب وجود ندارد.</value>
+  </data>
+<data name="plNewPassword.Text" xml:space="preserve">
+    <value>رمز عبور جدید:</value>
+  </data>
+<data name="plNewPassword.Help" xml:space="preserve">
+    <value>رمز عبور جدید را وارد کنید.</value>
+  </data>
+<data name="plNewConfirm.Text" xml:space="preserve">
+    <value>تأیید رمز عبور جدید:</value>
+  </data>
+<data name="plNewConfirm.Help" xml:space="preserve">
+    <value>رمز عبور جدید را برای تأیید دوباره وارد کنید.</value>
+  </data>
+<data name="ResetPassword.Text" xml:space="preserve">
+    <value>بازنشانی رمز عبور</value>
+  </data>
+<data name="cmdUpdatePassword.Text" xml:space="preserve">
+    <value>به‌روزرسانی رمز عبور</value>
+  </data>
+<data name="NewPassword.Text" xml:space="preserve">
+    <value>باید یک رمز عبور جدید وارد کنید.</value>
+  </data>
+<data name="UserTitle.Text" xml:space="preserve">
+    <value>ویرایش کاربر - {0} (شناسه: {1})</value>
+  </data>
+<data name="MembershipTitle.Text" xml:space="preserve">
+    <value>اطلاعات عضویت</value>
+  </data>
+<data name="AddContent.Action" xml:space="preserve">
+    <value>افزودن کاربر جدید</value>
+  </data>
+<data name="Profile.Action" xml:space="preserve">
+    <value>مدیریت نمایه کاربر</value>
+  </data>
+<data name="Password.Action" xml:space="preserve">
+    <value>مدیریت رمز عبور کاربر</value>
+  </data>
+<data name="cmdUser.Text" xml:space="preserve">
+    <value>مدیریت حساب</value>
+  </data>
+<data name="cmdRoles.Text" xml:space="preserve">
+    <value>مدیریت نقش‌های این کاربر</value>
+  </data>
+<data name="cmdPassword.Text" xml:space="preserve">
+    <value>مدیریت رمز عبور</value>
+  </data>
+<data name="cmdProfile.Text" xml:space="preserve">
+    <value>مدیریت نمایه</value>
+  </data>
+<data name="AddUser.Text" xml:space="preserve">
+    <value>افزودن کاربر جدید</value>
+  </data>
+<data name="UserUnAuthorized.Text" xml:space="preserve">
+    <value>مجاز بودن کاربر با موفقیت لغو شد.</value>
+  </data>
+<data name="UserAuthorized.Text" xml:space="preserve">
+    <value>کاربر با موفقیت مجاز شد.</value>
+  </data>
+<data name="PasswordQAChanged.Text" xml:space="preserve">
+    <value>سؤال و پاسخ رمز عبور با موفقیت به‌روزرسانی شد.</value>
+  </data>
+<data name="ControlTitle_profile.Text" xml:space="preserve">
+    <value>مدیریت نمایه</value>
+  </data>
+<data name="NotAuthorized.Text" xml:space="preserve">
+    <value>شما مجاز به ویرایش این کاربر نیستید.</value>
+  </data>
+<data name="ControlTitle_register.Text" xml:space="preserve">
+    <value>ثبت‌نام</value>
+  </data>
+<data name="cmdServices.Text" xml:space="preserve">
+    <value>مدیریت خدمات</value>
+  </data>
+<data name="ManageProfile.Action" xml:space="preserve">
+    <value>مدیریت ویژگی‌های نمایه</value>
+  </data>
+<data name="cmdRegister.Text" xml:space="preserve">
+    <value>ثبت‌نام</value>
+  </data>
+<data name="ExceededRegisterQuota.Text" xml:space="preserve">
+    <value>در حال حاضر نمی‌توانید در این سایت ثبت‌نام کنید. لطفاً برای اطلاع از زمان بازگشایی ثبت‌نام با مدیر سایت تماس بگیرید.</value>
+  </data>
+<data name="ExceededUserQuota.Text" xml:space="preserve">
+    <value>افزودن این کاربر سهمیه کاربران سایت را فراتر می‌برد. برای پرسش درباره افزایش سهمیه کاربران با ارائه‌دهنده میزبانی خود تماس بگیرید.</value>
+  </data>
+<data name="UserSubscribed.Text" xml:space="preserve">
+    <value>با موفقیت در نقش {0} عضو شدید.</value>
+  </data>
+<data name="UserUnSubscribed.Text" xml:space="preserve">
+    <value>عضویت شما در نقش {0} با موفقیت لغو شد.</value>
+  </data>
+<data name="EmailError.Text" xml:space="preserve">
+    <value>این سایت به نشانی ایمیل یکتا نیاز دارد. نشانی ایمیلی که وارد کرده‌اید از قبل استفاده شده است.</value>
+  </data>
+<data name="CannotAddUser.Text" xml:space="preserve">
+    <value>این سایت طوری پیکربندی شده که کاربران باید برای دریافت یادآور رمز عبور، سؤال و پاسخ وارد کنند. این پیکربندی با افزودن کاربر توسط مدیران ناسازگار است و برای این سایت غیرفعال شده است.</value>
+  </data>
+<data name="cmdLogin.Text" xml:space="preserve">
+    <value>ادامه به ورود</value>
+  </data>
+<data name="plCaptcha.Help" xml:space="preserve">
+    <value>کد امنیتی را وارد کنید.</value>
+  </data>
+<data name="plCaptcha.Text" xml:space="preserve">
+    <value>کد امنیتی:</value>
+  </data>
+<data name="UserPasswordUpdateChanged.Text" xml:space="preserve">
+    <value>کاربر باید در ورود بعدی رمز عبور خود را به‌روزرسانی کند.</value>
+  </data>
+<data name="RegisterWarning.Text" xml:space="preserve">
+    <value> - &lt;em&gt;(&lt;strong&gt;یادآوری:&lt;/strong&gt; - ثبت‌نام ممکن است چند ثانیه طول بکشد. پس از کلیک روی دکمه ثبت‌نام، لطفاً تا پاسخ‌گویی سیستم صبر کنید.)&lt;/em&gt;</value>
+  </data>
+<data name="AddUser.Title" xml:space="preserve">
+    <value>افزودن کاربر جدید</value>
+  </data>
+<data name="Register.Text" xml:space="preserve">
+    <value>ثبت‌نام کاربر</value>
+  </data>
+<data name="Register.Title" xml:space="preserve">
+    <value>ثبت‌نام کاربر</value>
+  </data>
+<data name="AccountSettings.Text" xml:space="preserve">
+    <value>تنظیمات حساب</value>
+  </data>
+<data name="MembershipDetails.Text" xml:space="preserve">
+    <value>اطلاعات حساب</value>
+  </data>
+<data name="UserPromotedToSuperuser.Text" xml:space="preserve">
+    <value>کاربر به کاربر ارشد تبدیل شد.</value>
+  </data>
+<data name="UserDemotedFromSuperuser.Text" xml:space="preserve">
+    <value>کاربر به کاربر عادی تبدیل شد.</value>
+  </data>
+</root>
