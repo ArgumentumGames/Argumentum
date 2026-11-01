@@ -46,16 +46,16 @@
     <value xml:space="preserve">As configurações de login foram atualizadas.</value>
   </data>
   <data name="BulletinDescription.Text">
-    <value xml:space="preserve">DESCRIPção</value>
+    <value xml:space="preserve">DESCRIÇÃO</value>
   </data>
   <data name="BulletinLink.Text">
-    <value xml:space="preserve">ENLACES</value>
+    <value xml:space="preserve">LINK</value>
   </data>
   <data name="Bulletins.Text">
-    <value xml:space="preserve">BOLETINES</value>
+    <value xml:space="preserve">BOLETINS</value>
   </data>
   <data name="BulletinsDoNotExist.Text">
-    <value xml:space="preserve">Não foi encontrado nenhum boletín de seguridade para a versão de DNN Platform {0}.</value>
+    <value xml:space="preserve">Não foi encontrado nenhum boletim de segurança para a versão de DNN Platform {0}.</value>
   </data>
   <data name="BulletinsExist.Text">
     <value xml:space="preserve">foin encontrado {0} boletines de seguridade para a versão de DNN Platform {1}: </value>
