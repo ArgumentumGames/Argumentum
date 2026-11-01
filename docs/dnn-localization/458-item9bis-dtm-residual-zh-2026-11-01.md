@@ -142,13 +142,26 @@ de #2105.
 | Garde seule | **188 / 188** |
 | Suite complète locale | **3 622 = 3 617 / 0 / 5** mesuré (2 min 28 s) |
 
-Le **total** tombe exactement sur l'attendu : master `d60b9471` 3 434 + 188 = 3 622.
-La **répartition**, elle, n'est pas celle que j'avais supposée : j'annonçais
-3 616 / 0 / 6 d'après le compte historique de six ignorés, la mesure donne
-3 617 / 0 / 5 — un test que je croyais ignoré s'exécute. L'écart porte sur un
-test, pas sur le lot (les 188 sont tous des faits et théories sans condition), et
-il **n'est pas instruit ici** : le consigner vaut mieux que le taire, l'expliquer
-sans mesure serait pire.
+Le **total** tombe exactement sur la base annoncée : `d60b9471` **3 434 = 3 428 / 0 / 6**
+(rapporté par ai-01) + 188 = 3 622. En revanche la **répartition** mesurée ici
+(3 617 / 0 / 5) diffère d'un test : ai-01 compte **6** ignorés, cette machine **5**.
+
+Écart **instruit, et il ne vient pas du lot** — deux constats :
+
+1. La suite porte des `Skip` **conditionnels à la machine**, pas au code :
+   `ScenariiVoixEN71ContractTests` s'ignore quand `python` n'est pas exécutable,
+   `DnnBinUntrackGuardTests` quand l'index git n'est pas évaluable. Ici
+   `python --version` rend **Python 3.13.3**, donc ce test **s'exécute** (et passe) ;
+   sur une machine sans interpréteur il s'ignore. Cela déplace exactement un test
+   d'« ignoré » vers « réussi », sans qu'une ligne du dépôt change.
+2. Les 188 tests du lot sont tous des faits et théories **sans condition** : le lot
+   ne peut pas fabriquer ni retirer un ignoré.
+
+⚠️ La conséquence pratique vaut au-delà de ce lot : **un compte d'ignorés se compare
+entre mesures de la même machine**, jamais entre deux hôtes. Un `total` identique
+avec une répartition différente n'est pas une anomalie, c'est la signature d'un
+`Skip` conditionnel — et le lire comme une régression enverrait chercher un défaut
+qui n'existe pas.
 
 ## 7. Non-objectifs
 
