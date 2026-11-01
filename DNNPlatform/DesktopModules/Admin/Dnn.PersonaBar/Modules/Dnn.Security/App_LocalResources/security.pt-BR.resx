@@ -382,7 +382,7 @@
     <value xml:space="preserve">A conta SQL Server pode ejecutar xp_dirtree que permite ver a estrutura de pastas do servidor SQL Server.</value>
   </data>
   <data name="GlobalSetting.Text">
-    <value xml:space="preserve">Este um parámetro global. Os cambios afectarán a todos os portais da instalação.</value>
+    <value xml:space="preserve">Esta é uma configuração global. As alterações nesta configuração afetarão todos os seus sites.</value>
   </data>
   <data name="GlobalSettingsTab.Text">
     <value xml:space="preserve">Este um parámetro global. Os cambios afectarán a todos os portais da instalação.</value>
@@ -451,7 +451,7 @@
     <value xml:space="preserve">Máximo de tentativas de senha inválida</value>
   </data>
   <data name="maxUploadSize.Error">
-    <value xml:space="preserve">O tamaño máximo de Arquivos para cargar tem que estar entre 12 e {0}</value>
+    <value xml:space="preserve">O tamanho máximo de upload deve estar entre 12 e {0}</value>
   </data>
   <data name="MemberSettingsError.Text">
     <value xml:space="preserve">Não foi possível atualizar a configuração de membros. Tente novamente mais tarde.</value>
@@ -529,13 +529,13 @@
     <value xml:space="preserve">{0} {1} não és válido.</value>
   </data>
   <data name="OtherSettingsError.Text">
-    <value xml:space="preserve">Não foi podido atualizar a configuração. Vuelva a intentarlo.</value>
+    <value xml:space="preserve">Não foi possível atualizar as configurações. Tente novamente mais tarde.</value>
   </data>
   <data name="OtherSettingsRestoreWarning.Text">
-    <value xml:space="preserve">Está seguro que quer cancelar os cambios?</value>
+    <value xml:space="preserve">Tem certeza de que deseja cancelar suas alterações?</value>
   </data>
   <data name="OtherSettingsUpdateSuccess.Text">
-    <value xml:space="preserve">A configuração foi actualizado.</value>
+    <value xml:space="preserve">As configurações foram atualizadas.</value>
   </data>
   <data name="Pass.Text">
     <value xml:space="preserve">CORRETO</value>
@@ -601,22 +601,22 @@
     <value xml:space="preserve">Tempo de validade do link de redefinição do administrador (em minutos)</value>
   </data>
   <data name="plAsyncTimeout.Help">
-    <value xml:space="preserve">Entre o tempo máximo, em segundos, que se mantendrá activa uma llamada asíncrona antes de cerrar a petição. O valor tem que estar entre 90-9999 segundos.</value>
+    <value xml:space="preserve">Defina um valor que indique o tempo, em segundos, antes que os postbacks assíncronos expirem se nenhuma resposta for recebida; o valor deve estar entre 90 e 9999 segundos.</value>
   </data>
   <data name="plAsyncTimeout.Text">
-    <value xml:space="preserve">Tempo de validez de petição asíncrona</value>
+    <value xml:space="preserve">Tempo até o tempo limite (segundos)</value>
   </data>
   <data name="plAutoAccountUnlock.Help">
-    <value xml:space="preserve">Después de que uma conta foiya bloqueado debido a intentos de inicio de sesión incorretos, ésta pode desbloquearse después de que haya pasado um cierto periodo de tempo. Escriba o número de minutos que há que esperar para que a conta se desbloquee automáticamente. Escriba "0" para desactivar a característica de autodesbloqueo</value>
+    <value xml:space="preserve">Depois que uma conta é bloqueada devido a tentativas de login malsucedidas, ela pode ser desbloqueada automaticamente após uma autenticação bem-sucedida, decorrido um certo período de tempo. Informe o número de minutos a esperar até que a conta possa ser desbloqueada automaticamente. Informe "0" para desativar o recurso de desbloqueio automático.</value>
   </data>
   <data name="plAutoAccountUnlock.Text">
-    <value xml:space="preserve">Autodesbloquear contas después de (minutos)</value>
+    <value xml:space="preserve">Desbloquear contas automaticamente após (minutos)</value>
   </data>
   <data name="plDebugMode.Help">
-    <value xml:space="preserve">Si está activo, a instalação se ejecuta em modo de depuração. De esta manera algunas partes da aplicação registrarán os errores de forma más extensa. Tenga em conta que isto pode comportar uma degradação do rendimiento do sistema.</value>
+    <value xml:space="preserve">Marque esta opção para executar a instalação em "modo de depuração". Isso faz com que várias partes do aplicativo gravem logs de erro mais detalhados etc. Observação: isso pode degradar o desempenho.</value>
   </data>
   <data name="plDebugMode.Text">
-    <value xml:space="preserve">Modo depuração</value>
+    <value xml:space="preserve">Modo de depuração</value>
   </data>
   <data name="plDefaultEndUserExtensionWhitelist.Help" lastModified="2020-05-09 09:37:41">
     <value xml:space="preserve">Lista padrão de extensões de arquivos que usuários finais podem enviar. Administradores podem substituir essa lista, mas nunca podem permitir mais tipos de arquivo do que os definidos na lista principal acima. Observe que esta lista será filtrada pela lista acima ao salvar.</value>
@@ -654,11 +654,11 @@
   <data name="plEnableStrengthMeter.Text">
     <value xml:space="preserve">Ativar verificação de força da senha</value>
   </data>
-  <data name="plFileExtensions.Help" lastModified="2020-05-09 11:38:41">
-    <value xml:space="preserve">Escriba as extensões de Arquivos permitidas (separadas por comas) para os Arquivos que suban os administradores do portal.</value>
+  <data name="plFileExtensions.Help">
+    <value xml:space="preserve">Informe as extensões (separadas por vírgulas) dos arquivos que podem ser enviados ao site pelos administradores do site.</value>
   </data>
   <data name="plFileExtensions.Text">
-    <value xml:space="preserve">Extensões de Arquivos permitidas:</value>
+    <value xml:space="preserve">Extensões de arquivos permitidas:</value>
   </data>
   <data name="plFirstIP.Help">
     <value xml:space="preserve">Este valor será um único endereço IP a filtrar ou será usado com a máscara de sub-rede para calcular um intervalo de endereços IP.</value>
@@ -679,10 +679,10 @@
     <value xml:space="preserve">Ocultar o controle de login</value>
   </data>
   <data name="plMaxUploadSize.Help">
-    <value xml:space="preserve">Mostra o tamaño máximo dos Arquivos que se podem cargar não portal. O valor mínimo de 12 MB.</value>
+    <value xml:space="preserve">Tamanho máximo dos arquivos que podem ser enviados ao site. O mínimo é 12 MB.</value>
   </data>
   <data name="plMaxUploadSize.Text">
-    <value xml:space="preserve">Tamaño máximo de carga</value>
+    <value xml:space="preserve">Tamanho máximo de upload (MB)</value>
   </data>
   <data name="plNumberPasswords.Help">
     <value xml:space="preserve">Informe o número de senhas a armazenar para a verificação de reutilização</value>
@@ -697,10 +697,10 @@
     <value xml:space="preserve">Número de dias antes de reutilizar uma senha</value>
   </data>
   <data name="plRememberMe.Help">
-    <value xml:space="preserve">Configura a casilla de verificação Recordar nos controles de Acesso. Se activa esta opção os usuarios podrán criar cookies persistentes para recordar a identificação</value>
+    <value xml:space="preserve">Marque esta opção para exibir a caixa de seleção Lembrar login no controle de login, que permite aos usuários permanecerem conectados entre várias visitas.</value>
   </data>
   <data name="plRememberMe.Text">
-    <value xml:space="preserve">Habilitar recordar em controles de Acesso</value>
+    <value xml:space="preserve">Habilitar Lembrar-me no controle de login</value>
   </data>
   <data name="plResetLinkValidity.Help">
     <value xml:space="preserve">Os links de redefinição de senha são válidos apenas durante esse tempo (em minutos).</value>
@@ -724,10 +724,10 @@
     <value xml:space="preserve">Término de busca</value>
   </data>
   <data name="plShowCriticalErrors.Help">
-    <value xml:space="preserve">Mostra se os errores que se envíen como parámetros nas URLs se tienem que mostrar em línea em a página.</value>
+    <value xml:space="preserve">Esta configuração determina se as mensagens de erro enviadas pelo parâmetro de querystring de erro devem ser exibidas na própria página.</value>
   </data>
   <data name="plShowCriticalErrors.Text">
-    <value xml:space="preserve">Mostrar errores críticos em pantalla</value>
+    <value xml:space="preserve">Mostrar erros críticos na tela</value>
   </data>
   <data name="plSSLEnabled.Help">
     <value xml:space="preserve">Entre si foi instalador um certificado SSL para este sitio</value>
