@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -456,26 +455,6 @@ namespace Argumentum.AssetConverter.Tests
         }
 
         /// <summary>Lit le blob de <c>HEAD:&lt;path&gt;</c> — indépendant de core.autocrlf.</summary>
-        private static byte[] CommittedBlob(string rel)
-        {
-            var psi = new ProcessStartInfo("git", $"cat-file -p \"HEAD:{rel}\"")
-            {
-                WorkingDirectory = TestRepoRoot.Find(),
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true,
-            };
-            using var process = Process.Start(psi)
-                ?? throw new InvalidOperationException("git n'a pas démarré");
-            var stderr = process.StandardError.ReadToEndAsync();
-            using var buffer = new MemoryStream();
-            process.StandardOutput.BaseStream.CopyTo(buffer);
-            process.WaitForExit(30_000);
-            if (process.ExitCode != 0)
-                throw new InvalidOperationException(
-                    $"git cat-file sur '{rel}' a échoué ({process.ExitCode}) : {stderr.Result}");
-            return buffer.ToArray();
-        }
+        private static byte[] CommittedBlob(string rel) => DnnResxGuardSocle.CommittedBlob(rel);
     }
 }
