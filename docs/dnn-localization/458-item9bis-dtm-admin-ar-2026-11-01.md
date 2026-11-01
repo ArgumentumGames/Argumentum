@@ -79,7 +79,11 @@ copier-coller.
 | Couverture (union des 2 fichiers de traduction contre le neutre) | **640/640**, 0 erreur de contenu |
 | Vérificateur indépendant (relit les 20 `.ar-SA.resx`, ne relit aucune traduction) | **20/20 fichiers, 640 clés, 0 écart** |
 | Garde `DnnModuleLevelDtmAdminArResxGuardTests` | **126/126** |
-| Banc de mutations | **4/4 rouges** sur la règle visée, restauration au sha exact |
+| Suite complète | **3 560 = 3 555 / 0 / 5** — compte exact (master `d60b9471` 3 434 + 126) |
+| Banc de mutations (vérificateur Python **et** garde C#) | **4/4 rouges** sur la règle visée dans les deux, restauration au sha exact |
+
+Le nombre d'ignorés (5 ici, 6 sur ai-01) est **local à la machine** : les `Skip`
+sont conditionnels (`python` exécutable, index git). Le total, lui, est exact.
 
 Transport : BOM **dérivé du neutre fichier par fichier** (`--bom mirror`), **LF
 partout**, écriture par le constructeur du dépôt
