@@ -212,31 +212,7 @@ namespace Argumentum.AssetConverter.Tests
 
 		/// <summary>Lit le blob de <c>HEAD:&lt;path&gt;</c> — indépendant de
 		/// core.autocrlf (instrument #2078 / d4e6b345).</summary>
-		private static byte[] CommittedBlob(string rel)
-		{
-			var psi = new System.Diagnostics.ProcessStartInfo("git", $"cat-file -p \"HEAD:{rel}\"")
-			{
-				WorkingDirectory = TestRepoRoot.Find(),
-				RedirectStandardOutput = true,
-				RedirectStandardError = true,
-				UseShellExecute = false,
-				CreateNoWindow = true,
-			};
-			using var process = System.Diagnostics.Process.Start(psi)
-				?? throw new InvalidOperationException("git n'a pas démarré");
-			var stderr = process.StandardError.ReadToEndAsync();
-			using var buffer = new MemoryStream();
-			process.StandardOutput.BaseStream.CopyTo(buffer);
-			process.WaitForExit(10_000);
-			var err = stderr.Result;
-			if (process.ExitCode != 0)
-			{
-				throw new InvalidOperationException(
-					$"git cat-file a échoué ({process.ExitCode}) sur {rel} : {err}");
-			}
-
-			return buffer.ToArray();
-		}
+		private static byte[] CommittedBlob(string rel) => DnnResxGuardSocle.CommittedBlob(rel);
 
 		private static bool IsArabicBlock(char c) =>
 			(c >= '؀' && c <= 'ۿ') || (c >= 'ݐ' && c <= 'ݿ') ||

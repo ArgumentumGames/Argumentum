@@ -326,26 +326,6 @@ namespace Argumentum.AssetConverter.Tests
 			bytes.Count(b => b == 0x0D).Should().Be(0, "le blob committe est en LF seul");
 		}
 
-		private static byte[] CommittedBlob(string rel)
-		{
-			var psi = new ProcessStartInfo("git", $"cat-file -p \"HEAD:{rel}\"")
-			{
-				WorkingDirectory = TestRepoRoot.Find(),
-				RedirectStandardOutput = true,
-				RedirectStandardError = true,
-				UseShellExecute = false,
-				CreateNoWindow = true,
-			};
-			using var process = Process.Start(psi)
-				?? throw new InvalidOperationException("git n'a pas demarre");
-			var stderr = process.StandardError.ReadToEndAsync();
-			using var buffer = new MemoryStream();
-			process.StandardOutput.BaseStream.CopyTo(buffer);
-			process.WaitForExit(30_000);
-			if (process.ExitCode != 0)
-				throw new InvalidOperationException(
-					$"git cat-file sur '{rel}' a echoue ({process.ExitCode}) : {stderr.Result}");
-			return buffer.ToArray();
-		}
+		private static byte[] CommittedBlob(string rel) => DnnResxGuardSocle.CommittedBlob(rel);
 	}
 }
