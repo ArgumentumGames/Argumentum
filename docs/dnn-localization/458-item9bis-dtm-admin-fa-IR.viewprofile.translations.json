@@ -1,0 +1,27 @@
+{
+ "files": {
+  "Settings.ascx": {
+   "ControlTitle_settings.Text": "تنظیمات نمایش نمایه",
+   "IncludeButton.Help": "این گزینه را برای درج دکمه ویرایش نمایه علامت بزنید.",
+   "IncludeButton.Text": "درج دکمه ویرایش:",
+   "LoadDefault.Confirm": "این کار قالب کنونی را جایگزین می‌کند. آیا مطمئنید که می‌خواهید ادامه دهید؟",
+   "LoadDefault.Text": "بارگذاری پیش‌فرض",
+   "plTemplate.Help": "قالب نمایش نمایه کاربر را وارد کنید.",
+   "plTemplate.Text": "قالب نمایه:"
+  },
+  "ViewProfile.ascx": {
+   "AboutMe.Text": "درباره من",
+   "EmptyAboutMe.Text": "این کاربر اطلاعات زندگینامه‌ای ندارد.",
+   "EmptyLocation.Text": "این کاربر اطلاعات مکانی ندارد.",
+   "EmptyGetInTouch.Text": "این کاربر اطلاعات تماسی ندارد.",
+   "ControlTitle_viewprofile.Text": "نمایش نمایه",
+   "Edit.Text": "ویرایش نمایه",
+   "Email.Text": "ایمیل",
+   "GetInTouch.Text": "راه‌های تماس",
+   "Location.Text": "موقعیت",
+   "MyAccount.Text": "حساب من",
+   "NoProperties.Text": "این کاربر انتخاب کرده که نمایه‌اش پنهان بماند."
+  },
+  "SharedResources": {}
+ }
+}
