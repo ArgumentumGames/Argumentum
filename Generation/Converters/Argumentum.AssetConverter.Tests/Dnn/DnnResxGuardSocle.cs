@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace Argumentum.AssetConverter.Tests
 {
@@ -65,9 +66,15 @@ namespace Argumentum.AssetConverter.Tests
 
             using (process)
             {
+                // Les DEUX tubes sont drainés en asynchrone, et cette forme n'est pas
+                // cosmétique : un drain synchrone (`CopyTo`, ce que faisaient les trois
+                // dernières copies) se bloque si l'enfant n'écrit plus sans fermer son
+                // tube — et le délai placé APRÈS lui ne couvrirait alors rien du tout,
+                // précisément dans le cas qu'il prétend couvrir (« dépôt verrouillé,
+                // lecteur réseau lent »). Un `CopyTo` avant `WaitForExit` protège du
+                // blocage d'écriture de l'enfant, pas de son blocage tout court.
+                var stdout = DrainAsync(process.StandardOutput.BaseStream);
                 var stderr = process.StandardError.ReadToEndAsync();
-                using var buffer = new MemoryStream();
-                process.StandardOutput.BaseStream.CopyTo(buffer);
 
                 if (!process.WaitForExit(GitTimeoutMs))
                 {
@@ -80,6 +87,29 @@ namespace Argumentum.AssetConverter.Tests
                         + "par un autre index.lock ou un lecteur réseau lent");
                 }
 
+                bool drained;
+                try
+                {
+                    drained = Task.WaitAll(new Task[] { stdout, stderr }, GitTimeoutMs);
+                }
+                catch (AggregateException ex)
+                {
+                    throw new InvalidOperationException(
+                        $"git cat-file sur '{rel}' : lecture des tubes interrompue "
+                        + $"({ex.GetBaseException().Message})", ex);
+                }
+
+                if (!drained)
+                {
+                    // Sorti, mais les tubes restent ouverts : un descendant garde
+                    // l'héritage du descripteur. Sans cette borne, on attendrait ici
+                    // indéfiniment un EOF qui ne vient pas.
+                    try { process.Kill(entireProcessTree: true); } catch { /* déjà terminé */ }
+                    throw new InvalidOperationException(
+                        $"git cat-file -p HEAD:{rel} : processus sorti, mais ses tubes n'ont pas été "
+                        + $"fermés en {GitTimeoutMs / 1000} s (un descendant en garde-t-il l'héritage ?)");
+                }
+
                 if (process.ExitCode != 0)
                 {
                     throw new InvalidOperationException(
@@ -88,8 +118,16 @@ namespace Argumentum.AssetConverter.Tests
                         + "committer AVANT de mesurer BOM et fins de ligne");
                 }
 
-                return buffer.ToArray();
+                return stdout.Result;
             }
+        }
+
+        /// <summary>Vide un tube jusqu'à EOF, sans bloquer l'appelant.</summary>
+        private static async Task<byte[]> DrainAsync(Stream stream)
+        {
+            using var buffer = new MemoryStream();
+            await stream.CopyToAsync(buffer).ConfigureAwait(false);
+            return buffer.ToArray();
         }
     }
 }
