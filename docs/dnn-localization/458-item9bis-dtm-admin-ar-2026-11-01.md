@@ -25,9 +25,10 @@ fichiers (19 clés neutres).
 
 ## Ce que le lot livre
 
-- **21 fichiers `*.ar-SA.resx`** : 19 porteurs de traduction + 1 coquille
-  (`ViewProfile/SharedResources`, **0 clé**, 5 699 o — **taille identique** à la
-  coquille zh-CN) + `Settings.ascx`/`ViewProfile.ascx`.
+- **20 fichiers `*.ar-SA.resx`** (mesuré : 17 `Security` + 3 `ViewProfile`) :
+  19 porteurs de traduction (dont `Settings.ascx` et `ViewProfile.ascx`) +
+  1 coquille (`ViewProfile/SharedResources`, **0 clé**, 5 699 o — **taille
+  identique** à la coquille zh-CN).
 - 2 JSON de traduction : `458-item9bis-dtm-admin-ar-SA.{security,viewprofile}.translations.json`.
 - `DnnModuleLevelDtmAdminArResxGuardTests` — miroir de la jumelle zh, **126 tests**.
 
