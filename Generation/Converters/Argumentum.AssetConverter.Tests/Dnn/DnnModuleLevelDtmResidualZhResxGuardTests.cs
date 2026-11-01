@@ -176,7 +176,7 @@ namespace Argumentum.AssetConverter.Tests
                 "somme des clés neutres des 37 fichiers : « 381 » était l'étiquette du pool, re-mesurée ici");
             Covered.Select(c => (c.Dir, c.Stem)).Should().OnlyHaveUniqueItems(
                 "quatre stems portent le même nom dans des répertoires différents "
-                "(Login.ascx ×4 en AuthenticationServices, Settings.ascx ×3, View.ascx ×3) : le couple identifie");
+                + "(Login.ascx ×4 en AuthenticationServices, Settings.ascx ×3, View.ascx ×3) : le couple identifie");
         }
 
         [Theory]
@@ -297,9 +297,11 @@ namespace Argumentum.AssetConverter.Tests
         {
             var path = Path.Combine(
                 TestRepoRoot.Find(),
-                DeclaredEmptyNeutral.Replace('/', Path.DirectorySeparatorChar));
+                ("DNNPlatform/DesktopModules/" + DeclaredEmptyNeutral + ".resx")
+                    .Replace('/', Path.DirectorySeparatorChar));
             File.Exists(path).Should().BeTrue(
-                $"le neutre déclaré vide doit exister dans le checkout ({DeclaredEmptyNeutral})");
+                $"le neutre déclaré vide doit exister dans le checkout ({DeclaredEmptyNeutral}) — "
+                + $"chemin résolu : « {path} », racine : « {TestRepoRoot.Find()} »");
             XDocument.Load(path).Root!.Elements("data").Should().BeEmpty(
                 "ce fichier neutre ne porte aucune clé : un .zh-CN.resx vide n'aurait aucun sens. "
                 + "S'il gagne des clés, il rejoint le lot et la dispense disparaît");
