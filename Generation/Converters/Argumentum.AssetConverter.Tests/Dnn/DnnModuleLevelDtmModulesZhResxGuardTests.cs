@@ -193,6 +193,10 @@ namespace Argumentum.AssetConverter.Tests
                 "678 clés neutres moins les 10 déclarées non livrées — dénominateur #2072, pas un littéral");
             Covered.Select(c => (c.Dir, c.Stem)).Should().OnlyHaveUniqueItems(
                 "quatre stems collident entre répertoires (Settings ×5, View ×4, SharedResources ×4, Edit ×2) : le couple identifie");
+            Covered.Select(c => c.Dir).Distinct().Should().HaveCount(8,
+                "le lot couvre HUIT répertoires de DesktopModules ({AuthenticationServices/DNN, CoreMessaging, DDRMenu, "
+                + "HTML, Journal, MemberDirectory, RazorModules/RazorHost, SocialGroups}) — ce compte vivait en prose "
+                + "seule, si bien qu'une entrée vers un 9ᵉ répertoire passait tous les tests (note de revue #2105)");
         }
 
         [Theory]
@@ -346,26 +350,6 @@ namespace Argumentum.AssetConverter.Tests
         }
 
         /// <summary>Lit le blob de <c>HEAD:&lt;path&gt;</c> — indépendant de core.autocrlf.</summary>
-        private static byte[] CommittedBlob(string rel)
-        {
-            var psi = new ProcessStartInfo("git", $"cat-file -p \"HEAD:{rel}\"")
-            {
-                WorkingDirectory = TestRepoRoot.Find(),
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true,
-            };
-            using var process = Process.Start(psi)
-                ?? throw new InvalidOperationException("git n'a pas démarré");
-            var stderr = process.StandardError.ReadToEndAsync();
-            using var buffer = new MemoryStream();
-            process.StandardOutput.BaseStream.CopyTo(buffer);
-            process.WaitForExit(30_000);
-            if (process.ExitCode != 0)
-                throw new InvalidOperationException(
-                    $"git cat-file sur '{rel}' a échoué ({process.ExitCode}) : {stderr.Result}");
-            return buffer.ToArray();
-        }
+        private static byte[] CommittedBlob(string rel) => DnnResxGuardSocle.CommittedBlob(rel);
     }
 }
