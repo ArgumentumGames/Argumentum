@@ -246,8 +246,16 @@ namespace Argumentum.AssetConverter.Tests
 
         /// <summary>
         /// Le BOM du fichier produit suit celui de SON neutre — le module-level est
-        /// hétérogène : dans ce lot, <c>ResourceManager/ResourceManager</c> n'a PAS
-        /// de BOM quand les 36 autres en ont un. Attente DÉRIVÉE du neutre.
+        /// hétérogène : dans ce lot, <b>30 fichiers portent le BOM et 7 n'en portent
+        /// pas</b>, ces 7 étant exactement ceux dont le neutre n'en a pas
+        /// (<c>Authentication.ascx</c>, <c>Logoff.ascx</c>,
+        /// <c>ContentEditorManager/SharedResources</c>, <c>AuthenticationEditor.ascx</c>,
+        /// <c>DataConsent.ascx</c>, <c>ResourceManager</c>, <c>TelerikRemoval/View.ascx</c>).
+        /// ⚠️ Cette énumération est un CONSTAT daté, pas la règle : l'attente se
+        /// DÉRIVE du neutre fichier par fichier (37/37 sans écart) et une liste
+        /// recopiée ici ferait « réparer » un BOM correct au passage suivant. Une
+        /// version antérieure de ce commentaire annonçait « les 36 autres en ont un »
+        /// — faux, trouvé par deux instruments indépendants.
         /// <para>
         /// ⚠️ Transport mesuré sur le <b>blob committé</b> (<c>git cat-file</c>), jamais
         /// sur l'arbre de travail : le runner CI a <c>core.autocrlf=true</c>, qui

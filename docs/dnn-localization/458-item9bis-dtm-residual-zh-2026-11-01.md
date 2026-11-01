@@ -56,7 +56,18 @@ deviendrait une traduction perdue.
    écriture. Le piège payé sur #2101 (casser un `<br />` en substituant la valeur
    parsée) ne peut pas se reproduire.
 3. **BOM dérivé du neutre** — le module-level est hétérogène : dans ce lot,
-   `ResourceManager/ResourceManager` n'a **pas** de BOM, les 36 autres en ont un.
+   **30 fichiers portent le BOM, 7 n'en portent pas**, et ces 7 sont exactement
+   ceux dont le neutre n'en a pas (`Admin/Authentication/Authentication.ascx`,
+   `Admin/Authentication/Logoff.ascx`,
+   `Admin/Dnn.EditBar/Resources/ContentEditorManager/SharedResources`,
+   `Admin/EditExtension/AuthenticationEditor.ascx`,
+   `Admin/Security/DataConsent.ascx`, `ResourceManager/ResourceManager`,
+   `TelerikRemoval/View.ascx`). Ce n'est pas une liste à recopier : **la règle est
+   la dérivation**, l'attente de la garde se calcule par fichier depuis son neutre
+   et passe 37/37. ⚠️ Une version antérieure de cette ligne annonçait « les 36
+   autres en ont un » — c'était faux (30/7), trouvé par deux instruments
+   indépendants, et corrigé ici : une phrase fausse dans une note de référence
+   fait « réparer » un BOM correct au passage suivant.
 4. **LF toujours**, y compris quand le neutre est commité en **CRLF**
    (`ToSic.Sxc/App_LocalResources/View.ascx.resx` : 102 CR dans le blob). Les fins
    de ligne du dépôt sont LF ; un CR est du bruit de diff, et le constructeur
