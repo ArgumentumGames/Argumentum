@@ -1,0 +1,27 @@
+{
+ "files": {
+  "Settings.ascx": {
+   "ControlTitle_settings.Text": "إعدادات عرض الملف الشخصي",
+   "IncludeButton.Help": "حدد هذا المربع لتضمين زر تحرير الملف الشخصي.",
+   "IncludeButton.Text": "تضمين زر التحرير:",
+   "LoadDefault.Confirm": "سيؤدي هذا إلى استبدال القالب الحالي. هل أنت متأكد من رغبتك في المتابعة؟",
+   "LoadDefault.Text": "تحميل الافتراضي",
+   "plTemplate.Help": "أدخل قالب عرض ملف المستخدم الشخصي.",
+   "plTemplate.Text": "قالب الملف الشخصي:"
+  },
+  "ViewProfile.ascx": {
+   "AboutMe.Text": "نبذة عني",
+   "EmptyAboutMe.Text": "لا توجد معلومات سيرة ذاتية لهذا المستخدم.",
+   "EmptyLocation.Text": "لا توجد معلومات موقع لهذا المستخدم.",
+   "EmptyGetInTouch.Text": "لا توجد معلومات اتصال من هذا المستخدم.",
+   "ControlTitle_viewprofile.Text": "عرض الملف الشخصي",
+   "Edit.Text": "تحرير الملف الشخصي",
+   "Email.Text": "البريد الإلكتروني",
+   "GetInTouch.Text": "طرق التواصل",
+   "Location.Text": "الموقع",
+   "MyAccount.Text": "حسابي",
+   "NoProperties.Text": "اختار هذا المستخدم إخفاء ملفه الشخصي."
+  },
+  "SharedResources": {}
+ }
+}
