@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="plWorkflow1.Text" xml:space="preserve">
+    <value>گردش‌کار</value>
+  </data>
+<data name="plWorkflow1.Help" xml:space="preserve">
+    <value>گردش‌کاری را برای مدیریت انتخاب کنید</value>
+  </data>
+<data name="plWorkflow2.Text" xml:space="preserve">
+    <value>گردش‌کار</value>
+  </data>
+<data name="plWorkflow2.Help" xml:space="preserve">
+    <value>نامی برای گردش‌کار وارد کنید</value>
+  </data>
+<data name="plDescription.Text" xml:space="preserve">
+    <value>توضیح</value>
+  </data>
+<data name="plDescription.Help" xml:space="preserve">
+    <value>توضیحی برای گردش‌کار وارد کنید</value>
+  </data>
+<data name="plHistory.Text" xml:space="preserve">
+    <value>تاریخچه</value>
+  </data>
+<data name="plHistory.Help" xml:space="preserve">
+    <value>بیشترین شمار نسخه‌هایی را که نگه داشته می‌شود مشخص کنید</value>
+  </data>
+<data name="plDeleted.Text" xml:space="preserve">
+    <value>حذف‌شده</value>
+  </data>
+<data name="plDeleted.Help" xml:space="preserve">
+    <value>مشخص کنید آیا این گردش‌کار فعال است یا نه</value>
+  </data>
+<data name="cmdAddWorkflow.Text" xml:space="preserve">
+    <value>افزودن گردش‌کار جدید</value>
+  </data>
+<data name="WorkflowExists.Text" xml:space="preserve">
+    <value>گردش‌کاری با این نام برای این سایت از پیش وجود دارد</value>
+  </data>
+<data name="dshStates.Text" xml:space="preserve">
+    <value>وضعیت‌ها</value>
+  </data>
+<data name="State.Header" xml:space="preserve">
+    <value>وضعیت</value>
+  </data>
+<data name="Active.Header" xml:space="preserve">
+    <value>فعال</value>
+  </data>
+<data name="cmdAddState.Text" xml:space="preserve">
+    <value>افزودن وضعیت جدید</value>
+  </data>
+<data name="dshPermissions.Text" xml:space="preserve">
+    <value>پیکربندی وضعیت</value>
+  </data>
+<data name="plState.Text" xml:space="preserve">
+    <value>وضعیت</value>
+  </data>
+<data name="plState.Help" xml:space="preserve">
+    <value>نامی برای وضعیت وارد کنید</value>
+  </data>
+<data name="plPermissions.Text" xml:space="preserve">
+    <value>بازبین‌ها</value>
+  </data>
+<data name="plPermissions.Help" xml:space="preserve">
+    <value>مشخص کنید چه کسانی می‌توانند محتوای این وضعیت را بازبینی کنند</value>
+  </data>
+<data name="plNotify.Text" xml:space="preserve">
+    <value>اطلاع‌رسانی</value>
+  </data>
+<data name="plNotify.Help" xml:space="preserve">
+    <value>مشخص کنید آیا نویسنده و بازبین‌ها باید ایمیل‌های مربوط به این وضعیت را دریافت کنند</value>
+  </data>
+<data name="plActive.Text" xml:space="preserve">
+    <value>فعال</value>
+  </data>
+<data name="plActive.Help" xml:space="preserve">
+    <value>مشخص کنید آیا وضعیت فعال است</value>
+  </data>
+<data name="dshVersions.Text" xml:space="preserve">
+    <value>تاریخچه نسخه‌ها</value>
+  </data>
+<data name="plMaximumVersionHistory.Text" xml:space="preserve">
+    <value>تاریخچه</value>
+  </data>
+<data name="plMaximumVersionHistory.Help" xml:space="preserve">
+    <value>بیشترین شمار نسخه‌های محتوایی را که در تاریخچه برای یک ماژول نگه داشته می‌شود مشخص کنید ( برای نگه‌داشتن همه نسخه‌ها صفر وارد کنید )</value>
+  </data>
+<data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;P&gt;ماژول متن/HTML متن ساده، متن غنی یا HTML را نمایش می‌دهد. پنج نمای ویرایش در دسترس است: &lt;/P&gt;
+&lt;OL&gt;
+&lt;LI&gt;&lt;STRONG&gt;کادر متن ساده / متن&lt;/STRONG&gt;: متن ساده و برچسب‌های HTML را نمایش می‌دهد.  متنی که در خط جدید وارد شود به‌صورت شکست خط نمایش می‌یابد. سبک متن همان سبک Normal است که در برگه سبک شما تعیین شده است. 
+&lt;LI&gt;&lt;STRONG&gt;کادر متن ساده / HTML&lt;/STRONG&gt;: متن ساده را در قالب HTML نمایش می‌دهد.
+&lt;LI&gt;&lt;STRONG&gt;کادر متن ساده / خام&lt;/STRONG&gt;: متن ساده را در قالب HTML نمایش می‌دهد. متنی که در خط جدید وارد شود به‌صورت شکست خط نمایش نمی‌یابد.
+&lt;LI&gt;&lt;STRONG&gt;ویرایشگر متن غنی / HTML&lt;/STRONG&gt;: امکان چسباندن HTML از منابع دیگر را می‌دهد.
+&lt;LI&gt;&lt;STRONG&gt;ویرایشگر متن غنی / طراحی&lt;/STRONG&gt;: واژه‌پرداز کامل یا ویرایشگر WYSIWYG (آنچه می‌بینید همان است که می‌گیرید) با کارکردهایی مانند ابرپیوندها، پیوندهای ایمیل، گالری تصویر مدیریت فایل، نقطه‌های فهرست، غلط‌یابی املایی و بیشتر.</value>
+  </data>
+<data name="ControlTitle_workflow.Text" xml:space="preserve">
+    <value>مدیریت گردش‌کارها</value>
+  </data>
+<data name="WorkFlowStateHelp.Text" xml:space="preserve">
+    <value>در این بخش می‌توانید وضعیت‌های گردش‌کار را مدیریت کنید.  توجه داشته باشید که پس از به‌کارگیری یک گردش‌کار نمی‌توانید هیچ‌یک از وضعیت‌های مرتبط با آن را حذف کنید.  همچنین وضعیت نخست و آخر یک گردش‌کار قابل حذف نیستند.</value>
+  </data>
+</root>

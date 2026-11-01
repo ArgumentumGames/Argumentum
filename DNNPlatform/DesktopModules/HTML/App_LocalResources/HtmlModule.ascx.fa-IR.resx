@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddContent.Action" xml:space="preserve">
+    <value>ویرایش محتوا</value>
+  </data>
+<data name="ModuleHelp.Text" xml:space="preserve">
+    <value>&lt;p&gt;ماژول متن/HTML متن ساده، متن غنی یا HTML را نمایش می‌دهد. پنج نمای ویرایش در دسترس است: &lt;/p&gt;
+    &lt;ol&gt;
+        &lt;li&gt;&lt;strong&gt;کادر متن ساده / متن&lt;/strong&gt;: متن ساده و برچسب‌های HTML را نمایش می‌دهد.  متنی که در خط جدید وارد شود به‌صورت شکست خط نمایش می‌یابد. سبک متن همان سبک Normal است که در برگه سبک شما تعیین شده است.&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;کادر متن ساده / HTML&lt;/strong&gt;: متن ساده را در قالب HTML نمایش می‌دهد.&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;کادر متن ساده / خام&lt;/strong&gt;: متن ساده را در قالب HTML نمایش می‌دهد. متنی که در خط جدید وارد شود به‌صورت شکست خط نمایش نمی‌یابد.&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;ویرایشگر متن غنی / HTML&lt;/strong&gt;: امکان چسباندن HTML از منابع دیگر را می‌دهد.&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;ویرایشگر متن غنی / طراحی&lt;/strong&gt;: واژه‌پرداز کامل یا ویرایشگر WYSIWYG (آنچه می‌بینید همان است که می‌گیرید) با کارکردهایی مانند ابرپیوندها، پیوندهای ایمیل، گالری تصویر مدیریت فایل، نقطه‌های فهرست، غلط‌یابی املایی و بیشتر.&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;p&gt;افزون بر این، ماژول از مدیریت نسخه و گردش‌کار نیز پشتیبانی می‌کند.  در نسخه Community دو حالت گردش‌کار در دسترس است — انتشار مستقیم و آماده‌سازی محتوا.&lt;/p&gt;</value>
+  </data>
+<data name="AddContent.Text" xml:space="preserve">
+    <value>برای وارد کردن محتوای خود اینجا کلیک کنید</value>
+  </data>
+<data name="AddContentFromToolBar.Text" xml:space="preserve">
+    <value>«ویرایش محتوا» را از منوی اقدام ویرایش (نماد مداد) انتخاب کنید.</value>
+  </data>
+<data name="AddContentFromActionMenu.Text" xml:space="preserve">
+    <value>برای وارد کردن محتوا باید در حالت ویرایش باشید؛ سپس می‌توانید از منوی اقدام ماژول یا دکمه‌های اقدام ماژول برای مدیریت محتوا استفاده کنید</value>
+  </data>
+<data name="Workflow.Action" xml:space="preserve">
+    <value>گردش‌کار</value>
+  </data>
+<data name="MyWork.Action" xml:space="preserve">
+    <value>کارهای من</value>
+  </data>
+<data name="Bold.ToolTip" xml:space="preserve">
+    <value>توپر</value>
+  </data>
+<data name="Indent.ToolTip" xml:space="preserve">
+    <value>تودرتویی</value>
+  </data>
+<data name="Italic.ToolTip" xml:space="preserve">
+    <value>کج</value>
+  </data>
+<data name="Outdent.ToolTip" xml:space="preserve">
+    <value>کاهش تودرتویی</value>
+  </data>
+<data name="Underline.ToolTip" xml:space="preserve">
+    <value>زیرخط</value>
+  </data>
+<data name="Cancel.ToolTip" xml:space="preserve">
+    <value>انصراف</value>
+  </data>
+<data name="CreateLink.ToolTip" xml:space="preserve">
+    <value>ایجاد پیوند</value>
+  </data>
+<data name="Edit.ToolTip" xml:space="preserve">
+    <value>ویرایش</value>
+  </data>
+<data name="JustifyCenter.ToolTip" xml:space="preserve">
+    <value>تراز وسط</value>
+  </data>
+<data name="JustifyLeft.ToolTip" xml:space="preserve">
+    <value>تراز چپ</value>
+  </data>
+<data name="JustifyRight.ToolTip" xml:space="preserve">
+    <value>تراز راست</value>
+  </data>
+<data name="OrderedList.ToolTip" xml:space="preserve">
+    <value>فهرست شماره‌دار</value>
+  </data>
+<data name="Save.ToolTip" xml:space="preserve">
+    <value>ذخیره</value>
+  </data>
+<data name="UnorderedList.ToolTip" xml:space="preserve">
+    <value>فهرست گلوله‌ای</value>
+  </data>
+</root>
