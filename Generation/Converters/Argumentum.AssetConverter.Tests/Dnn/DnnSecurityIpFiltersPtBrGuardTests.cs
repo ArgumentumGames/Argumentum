@@ -322,8 +322,11 @@ namespace Argumentum.AssetConverter.Tests
 		public void Legacy_Keys_Survive_The_Rewrite()
 		{
 			var pt = Load(PtResx);
-			// compte EXACT = garde du volet COURANT (359 a la base + 3 creations de cet onglet)
-			pt.Should().HaveCount(362, "359 cles a la base (#2102) + 3 cles creees par l'onglet IP filters");
+			// plancher (pas compte exact) : le compte EXACT vit dans la garde du volet COURANT —
+			// sinon chaque onglet suivant de la decoupe casse la garde du precedent (regle #2102,
+			// deja appliquee a Registration 359). Login n'ajoute aucune cle -> 362 reste vrai.
+			pt.Should().HaveCountGreaterThanOrEqualTo(362,
+				"362 cles apres cet onglet (359 en base + 3 creees). Les volets suivants ajoutent les leurs : le compte EXACT vit dans leur garde");
 			foreach (var key in new[] { "Security_UserNameMinLength.Text", "RegistrationSettingsError.Text", "TabMemberSettings.Text" })
 				pt.Should().ContainKey(key, "les cles des onglets precedents survivent a la reecriture");
 		}

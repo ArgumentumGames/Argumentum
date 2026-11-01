@@ -40,10 +40,10 @@
     <value xml:space="preserve">A duração do desbloqueio automático da conta deve ser um número inteiro maior ou igual a 0 e menor que 1000.</value>
   </data>
   <data name="BasicLoginSettingsError">
-    <value xml:space="preserve">Não foi podido guardar a configuração de identificação. Vuelva a intentarlo.</value>
+    <value xml:space="preserve">Não foi possível atualizar as configurações de login. Tente novamente mais tarde.</value>
   </data>
   <data name="BasicLoginSettingsUpdateSuccess">
-    <value xml:space="preserve">foi actualizado a configuração.</value>
+    <value xml:space="preserve">As configurações de login foram atualizadas.</value>
   </data>
   <data name="BulletinDescription.Text">
     <value xml:space="preserve">DESCRIPção</value>
@@ -325,10 +325,10 @@
     <value xml:space="preserve">VALOR</value>
   </data>
   <data name="DefaultAuthProvider.Help">
-    <value xml:space="preserve">Pode selecionar o provedor de autenticação predeterminado para a identificação de usuarios. somente pode selecionar os provedores que soporten autenticação de formularios.</value>
+    <value xml:space="preserve">Você pode selecionar um provedor de autenticação padrão para o login dos usuários. Somente podem ser selecionados provedores que ofereçam suporte à autenticação por formulários.</value>
   </data>
   <data name="DefaultAuthProvider.Text">
-    <value xml:space="preserve">Provedor de autenticação predeterminado</value>
+    <value xml:space="preserve">Provedor de autenticação padrão</value>
   </data>
   <data name="Delete.Text">
     <value xml:space="preserve">Eliminar filtro</value>
@@ -439,7 +439,7 @@
     <value xml:space="preserve">DATA ÚLTIMA MODIFICAÇÃO</value>
   </data>
   <data name="LoginSettingsRestoreWarning.Text">
-    <value xml:space="preserve">Está seguro que quer cancelar os cambios?</value>
+    <value xml:space="preserve">Tem certeza de que deseja cancelar suas alterações?</value>
   </data>
   <data name="LowRiskFiles.Text">
     <value xml:space="preserve">Arquivos riesgo bajo</value>
@@ -589,7 +589,7 @@
     <value xml:space="preserve">Expressão regular de força de senha</value>
   </data>
   <data name="plAdministrator.Help">
-    <value xml:space="preserve">O usuário administrador do portal que recibirá notificações das actividades dos miembros.</value>
+    <value xml:space="preserve">O administrador principal do portal que receberá notificações por e-mail das atividades dos membros.</value>
   </data>
   <data name="plAdministrator.Text">
     <value xml:space="preserve">Administrador principal</value>
@@ -673,10 +673,10 @@
     <value xml:space="preserve">Forçar encerramento da sessão após alterar a senha</value>
   </data>
   <data name="plHideLoginControl.Help">
-    <value xml:space="preserve">Marque esta opção para ocultar o enlace a página de identificação.</value>
+    <value xml:space="preserve">Marque esta opção para ocultar o link de login na página.</value>
   </data>
   <data name="plHideLoginControl.Text">
-    <value xml:space="preserve">Ocultar controle de identificação</value>
+    <value xml:space="preserve">Ocultar o controle de login</value>
   </data>
   <data name="plMaxUploadSize.Help">
     <value xml:space="preserve">Mostra o tamaño máximo dos Arquivos que se podem cargar não portal. O valor mínimo de 12 MB.</value>
@@ -916,16 +916,16 @@
     <value xml:space="preserve">O término de busca é obrigatório</value>
   </data>
   <data name="Security_CaptchaChangePassword.Help">
-    <value xml:space="preserve">Entre se quiser utilizar um controle CAPTCHA para o cambio de contrasenha</value>
+    <value xml:space="preserve">Marque esta opção para usar CAPTCHA na alteração de senhas.</value>
   </data>
   <data name="Security_CaptchaChangePassword.Text">
-    <value xml:space="preserve">Utilizar CAPTCHA para mudar contrasenha</value>
+    <value xml:space="preserve">Usar CAPTCHA para alterar a senha</value>
   </data>
   <data name="Security_CaptchaLogin.Help">
-    <value xml:space="preserve">Mostra si se va a utilizar um controle CAPTCHA para poder asociar usuarios por ejemplo OpenId, LiveId, Cardspace.</value>
+    <value xml:space="preserve">Marque esta opção para usar CAPTCHA na associação de logins. Por exemplo: OpenID, LiveID, CardSpace.</value>
   </data>
   <data name="Security_CaptchaLogin.Text">
-    <value xml:space="preserve">Utilizar CAPTCHA para asociar usuarios</value>
+    <value xml:space="preserve">Usar CAPTCHA para associar logins</value>
   </data>
   <data name="Security_CaptchaRegister.Help">
     <value xml:space="preserve">Indica se este site deve usar CAPTCHA no registro.</value>
@@ -934,10 +934,10 @@
     <value xml:space="preserve">Usar CAPTCHA no registro</value>
   </data>
   <data name="Security_CaptchaRetrivePassword.Help">
-    <value xml:space="preserve">Mostra si se va a utilizar um controle CAPTCHA para recuperar a contrasenha</value>
+    <value xml:space="preserve">Marque esta opção para usar CAPTCHA na recuperação de senhas.</value>
   </data>
   <data name="Security_CaptchaRetrivePassword.Text">
-    <value xml:space="preserve">Utilizar CAPTCHA para recuperar contrasenhas</value>
+    <value xml:space="preserve">Usar CAPTCHA para recuperar a senha</value>
   </data>
   <data name="Security_DisplayNameFormat.Help">
     <value xml:space="preserve">Opcionalmente, especifique um formato para os nomes de exibição. O formato pode incluir tokens para substituição dinâmica, como [FIRSTNAME] [LASTNAME]. Se um formato for especificado, o nome de exibição não poderá mais ser editado pela interface do usuário.</value>
@@ -958,10 +958,10 @@
     <value xml:space="preserve">Exigir perfil válido no registro</value>
   </data>
   <data name="Security_RequireValidProfileAtLogin.Help">
-    <value xml:space="preserve">Ative esta opção se os usuarios tienem que completar todos os campos obrigatórios durante o inicio de sesión.</value>
+    <value xml:space="preserve">Marque esta opção para exigir que os usuários atualizem seu perfil antes do login quando os campos obrigatórios de um perfil válido tiverem sido alterados.</value>
   </data>
   <data name="Security_RequireValidProfileAtLogin.Text">
-    <value xml:space="preserve">Requerir perfil válido para iniciar sesión</value>
+    <value xml:space="preserve">Exigir perfil válido para o login</value>
   </data>
   <data name="Security_UserNameValidation.Help" lastModified="2018-03-24 09:25:25">
     <value xml:space="preserve">Adicione sua própria expressão de validação, usada para verificar a validade do nome de usuário informado. Se você alterar o padrão, atualize a mensagem exibida ao usuário ao digitar um nome de usuário inválido, usando o editor de localização em Configurações - Configurações do site - Idiomas.</value>
