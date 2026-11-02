@@ -1330,7 +1330,7 @@
     <value xml:space="preserve">Su nova contrasenha não foi aceptado por razones de seguridade. Verifique que introduzce corretamente su nome do usuário e a respuesta de seguridade.</value>
   </data>
   <data name="PermissionActionsHeader.Text">
-    <value xml:space="preserve">Acções</value>
+    <value xml:space="preserve">Ações</value>
   </data>
   <data name="PermissionRoleHeader.Text">
     <value xml:space="preserve">Rol</value>
@@ -1551,19 +1551,19 @@
     <value xml:space="preserve">Cargando Arquivo de atributos</value>
   </data>
   <data name="SkinObject.Text">
-    <value xml:space="preserve">O objecto incrustado é um objeto de skin</value>
+    <value xml:space="preserve">O objeto incrustado é um objeto de skin</value>
   </data>
   <data name="SkinObjects.Text">
-    <value xml:space="preserve">[Objectos skin]</value>
+    <value xml:space="preserve">[Objetos skin]</value>
   </data>
   <data name="SkinObjectsDescription.Text">
-    <value xml:space="preserve">Os objectos de tema son Controles do usuário que podem ser usados para proveer de funcionalidade a sus Arquivos de Tema.</value>
+    <value xml:space="preserve">Os objetos de tema son Controles do usuário que podem ser usados para proveer de funcionalidade a sus Arquivos de Tema.</value>
   </data>
   <data name="Skins.Text">
     <value xml:space="preserve">Temas</value>
   </data>
   <data name="SkinToken.Text">
-    <value xml:space="preserve">O token é um objecto de Tema</value>
+    <value xml:space="preserve">O token é um objeto de Tema</value>
   </data>
   <data name="SMTPConfigurationProblem.Text">
     <value xml:space="preserve">Há um problema com a configuração do servidor SMTP. O correo não foi enviado.</value>
