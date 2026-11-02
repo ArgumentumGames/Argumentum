@@ -8,7 +8,7 @@
 
 1. **`fitro` était l'unique occurrence du dépôt entier** (grep insensible à la casse sur `DNNPlatform/` : 1 ligne, cette cellule).
 2. Le même fichier épelle **`filtro` correctement 12 fois en minuscule** (avant le fix) — `Añadir nuevo filtro`, `Editar filtro`, `Actualizar filtro`, `FILTROS IP DE IDENTIFICACIÓN`…
-3. La clé sœur **`IpFilterDeleteError.Text`** porte la construction parallèle exacte avec l'orthographe correcte : `No se ha podido eliminar el **filtro**. Vuelva a intentarlo.`
+3. La clé voisine **`DeleteError.Text`** porte la construction parallèle exacte avec l'orthographe correcte : `No se ha podido eliminar el **filtro**. Vuelva a intentarlo.` *(erratum 02/11 : nommée `IpFilterDeleteError.Text` à la livraison — le nom de clé était faux, pas la valeur, c.6570152779.)*
 
 La clé est **vivante au neutre** (`Security.resx` : `Could not update the IP filter. Please try later.`) — la traduction espagnole était juste, seul le mot était défectueux.
 
