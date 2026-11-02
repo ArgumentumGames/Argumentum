@@ -553,7 +553,7 @@
     <value>El filtro de autenticación por IP está desactivado. Para activarlo, marque la opción Activar verificación de IP en la configuración de Seguridad.</value>
   </data>
   <data name="IpFilterUpdateError.Text" xml:space="preserve">
-    <value>No se ha podido actualizar el fitro. Vuelva a intentarlo.</value>
+    <value>No se ha podido actualizar el filtro. Vuelva a intentarlo.</value>
   </data>
   <data name="IpFilterUpdateSuccess.Text" xml:space="preserve">
     <value>Se ha actualizado el filtro.</value>
