@@ -12,8 +12,8 @@ namespace Argumentum.AssetConverter.Tests
 	/// <c>IpFilterUpdateError.Text</c> dans <c>security.es-ES.resx</c>, corrigé en <c>filtro</c>.
 	/// Mesure au moment du fix : c'était l'<b>unique</b> occurrence de <c>fitro</c> du dépôt
 	/// entier (grep insensible à la casse sur <c>DNNPlatform/</c>), alors que le même fichier
-	/// épelait <c>filtro</c> correctement 12 fois en minuscule — dont la clé sœur
-	/// <c>IpFilterDeleteError.Text</c>, construction parallèle exacte
+	/// épelait <c>filtro</c> correctement 12 fois en minuscule — dont la clé voisine
+	/// <c>DeleteError.Text</c>, construction parallèle exacte
 	/// (« No se ha podido eliminar el <b>filtro</b>. Vuelva a intentarlo. »).
 	///
 	/// <para>La garde ne protège pas que la cellule : le deuxième balaie <b>toutes</b> les
@@ -48,7 +48,7 @@ namespace Argumentum.AssetConverter.Tests
 			cell.Should().Be(CorrectedSpanish,
 				"la cellule corrigée ne doit plus bouger : le fix du 02/11 remplace le typo `fitro` " +
 				"par `filtro`, épelle que le même fichier emploie correctement 12 fois en minuscule, " +
-				"avec la construction parallèle d'IpFilterDeleteError.Text comme témoin");
+				"avec la construction parallèle de DeleteError.Text comme témoin");
 		}
 
 		[Fact]
