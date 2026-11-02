@@ -28,10 +28,10 @@
     <value xml:space="preserve">O tempo antes do tempo limite deve ser um número inteiro maior ou igual a 90 e menor que 10000.</value>
   </data>
   <data name="AuditChecks.Text">
-    <value xml:space="preserve">Auditoría</value>
+    <value xml:space="preserve">Verificações de auditoria</value>
   </data>
   <data name="AuditExplanation.Text">
-    <value xml:space="preserve">Atenção: o sistema realizará automáticamente validações de mejores prácticas.</value>
+    <value xml:space="preserve">Observação: o sistema executa automaticamente verificações de práticas recomendadas de segurança.</value>
   </data>
   <data name="Authorized.Header">
     <value xml:space="preserve">Autorizado</value>
@@ -67,157 +67,175 @@
     <value xml:space="preserve">Não pode eliminar esta regla por que causaría o bloqueio da IP atual.</value>
   </data>
   <data name="Check.Text" lastModified="2018-03-24 01:17:31">
-    <value xml:space="preserve">[ Comprobar ]</value>
+    <value xml:space="preserve">[ Verificar ]</value>
   </data>
   <data name="CheckAllowableFileExtensionsFailure.Text" lastModified="2018-03-24 11:27:13">
-    <value xml:space="preserve">foin encontrado as extensões asp, aspx o php nas extensões permitidas. Isto pode permitir cargar Arquivos com código ejecutable. Pode borrar estas extensões em Configuração - Más - Más opções de seguridade - Extensões permitidas.</value>
+    <value xml:space="preserve">Arquivos aspx, asp ou php foram encontrados na configuração de extensões permitidas. Isso permitirá que hackers carreguem código. Remova essas extensões em Configurações &gt; Mais &gt; Mais configurações de segurança &gt; Extensões de Arquivo Permitidas</value>
   </data>
   <data name="CheckAllowableFileExtensionsName.Text">
-    <value xml:space="preserve">Comprueba si se permite a carga de Arquivos com extensões peligrosas.</value>
+    <value xml:space="preserve">Verificar se há extensões nocivas permitidas no carregador de arquivos</value>
   </data>
   <data name="CheckAllowableFileExtensionsReason.Text" lastModified="2018-03-24 12:27:34">
-    <value xml:space="preserve">foin encontrado as extensões asp, aspx o php nas extensões permitidas. Isto pode permitir cargar Arquivos com código ejecutable. Pode borrar estas extensões em Configuração - Más - Más opções de seguridade - Extensões permitidas.</value>
+    <value xml:space="preserve">Arquivos aspx, asp ou php foram encontrados na configuração de extensões permitidas. Isso permitirá que hackers carreguem código. Remova essas extensões em Configurações &gt; Mais &gt; Mais configurações de segurança &gt; Extensões de Arquivo Permitidas</value>
   </data>
   <data name="CheckAllowableFileExtensionsSuccess.Text">
-    <value xml:space="preserve">As extensões permitidas son corretas.</value>
+    <value xml:space="preserve">As extensões de arquivos permitidas estão configuradas corretamente.</value>
   </data>
   <data name="CheckBiographyFailure.Text" lastModified="2020-05-09 01:24:15">
-    <value xml:space="preserve">O campo permite texto enriquecido. Os spammers podem adicionar enlaces a webs em su campo de biografía. O tipo do campo se pode mudar em CONFIGURAÇÃO -&gt; Configuração do portal -&gt; Comportamiento do portal -&gt; Perfil do usuário.</value>
+    <value xml:space="preserve">O campo é rich text. Spammers podem inserir links para seus sites no campo de biografia. O tipo do campo pode ser alterado em Configurações -&gt; Configurações do Site -&gt; Comportamento do Site -&gt; Perfis de Usuário</value>
   </data>
   <data name="CheckBiographyName.Text">
     <value xml:space="preserve">Valida se o perfil público permite texto enriquecido.</value>
   </data>
   <data name="CheckBiographyReason.Text">
-    <value xml:space="preserve">O campo de biografía é um vector frecuente para os spammers por que podem adicionar enlaces o html. A partir de DNN 7.2.0 este campo foi cambiado a um campo de texto que elimina este riesgo.</value>
+    <value xml:space="preserve">O campo de biografia é um alvo comum de spammers, pois podem adicionar links/HTML a ele. No DNN 7.2.0 ele foi alterado para uma caixa de texto de várias linhas, o que elimina esse risco.</value>
   </data>
   <data name="CheckBiographySuccess.Text" lastModified="2020-05-09 03:25:03">
-    <value xml:space="preserve">O campo não está activado o está definido como um campo de texto.</value>
+    <value xml:space="preserve">O campo não está habilitado ou é uma caixa de texto de várias linhas</value>
   </data>
   <data name="CheckDebugFailure.Text">
-    <value xml:space="preserve">debug está activado. Devería modificar o arquivo web.config e establecer este valor a 'false'.</value>
+    <value xml:space="preserve">debug está definido como true. Considere editar o web.config e definir esse valor como false (ou use o gerenciador de configuração).</value>
   </data>
   <data name="CheckDebugName.Text">
     <value xml:space="preserve">Validar estado de debug</value>
   </data>
   <data name="CheckDebugReason.Text">
-    <value xml:space="preserve">Se o atributo 'debug' está activado, há um impacto não rendimiento e se podem mostrar detalles nos eventos de seguridade útiles para os hackers.</value>
+    <value xml:space="preserve">Se o atributo debug estiver definido como true, há impacto no desempenho e podem ser revelados detalhes de exceções de segurança úteis para hackers</value>
   </data>
   <data name="CheckDebugSuccess.Text">
-    <value xml:space="preserve">O modo debug está desactivado.</value>
+    <value xml:space="preserve">Não está em modo debug. Essa configuração depende do valor de debug no arquivo web.config.</value>
   </data>
   <data name="CheckDefaultPageFailure.Text">
-    <value xml:space="preserve">Os Arquivos "default.aspx" foin modificado. Le recomendamos que verifique estos Arquivos por que podem haber sido modificados por um hacker para adicionar código maliciosos. Compare os Arquivos com uma versão estándar do producto. Verifique que realiza a comprobação com os Arquivos da mesma versão de DNN. Si há problemas, le recomendamos restaurar os Arquivos a partir dos da versão original.</value>
+    <value xml:space="preserve">As páginas padrão foram modificadas. Recomendamos avaliar esses arquivos com atenção: podem ter sido modificados por um hacker e conter código malicioso. O ideal é compará-los com os arquivos de uma instalação padrão do produto. Verifique se a versão do DNN do site atual corresponde à do site padrão antes de comparar. Remova o código malicioso ou restaure esses arquivos a partir da instalação padrão.</value>
   </data>
   <data name="CheckDefaultPageName.Text">
-    <value xml:space="preserve">Verificar si default.aspx o default.aspx.cs han sido modificados</value>
+    <value xml:space="preserve">Verificar se os arquivos default.aspx ou default.aspx.cs foram modificados</value>
   </data>
   <data name="CheckDefaultPageReason.Text">
-    <value xml:space="preserve">DNN utiliza os Arquivos default.aspx e default.aspx.cs para cargar todo o sistema em cada petição que realizan os usuarios. Si estos Arquivos están comprometidos pode producirse um riesgo muy elevado.</value>
+    <value xml:space="preserve">O DNN usa o default.aspx para carregar tudo; portanto, todas as solicitações carregam esse arquivo quando o usuário navega no site. Se alguém modificar esse arquivo, pode haver um risco enorme.</value>
   </data>
   <data name="CheckDefaultPageSuccess.Text">
-    <value xml:space="preserve">Os Arquivos default.aspx e default.aspx.cs não foin modificado.</value>
+    <value xml:space="preserve">As páginas default.aspx e default.aspx.cs não foram modificadas.</value>
   </data>
   <data name="CheckDiskAccessFailure.Text">
-    <value xml:space="preserve">Os hackers podem acceder a pastas fuera da web</value>
+    <value xml:space="preserve">Hackers podem acessar unidades/pastas fora do site</value>
   </data>
   <data name="CheckDiskAccessName.Text">
-    <value xml:space="preserve">Verifica o Acesso a pastas fuera da web</value>
+    <value xml:space="preserve">Verifica permissões de acesso a unidades/pastas extras fora da pasta do site</value>
   </data>
   <data name="CheckDiskAccessReason.Text">
-    <value xml:space="preserve">As credenciales do usuário da web tienen Acesso a outras pastas fuera da pasta raíz da web. Um hacker podría potencialmente leer o escribir nestas pastas.</value>
+    <value xml:space="preserve">O usuário sob o qual o site é executado tem acesso a unidades e pastas fora do local do site. Um hacker poderia acessar esses arquivos para ler, gravar ou ambos.</value>
   </data>
   <data name="CheckDiskAccessSuccess.Text">
-    <value xml:space="preserve">Os hackers não podem acceder a pastas fuera da web</value>
+    <value xml:space="preserve">Hackers não podem acessar unidades/pastas fora do site</value>
   </data>
   <data name="CheckFileExists.Error">
-    <value xml:space="preserve">A conta SQL Server pode executar o comando xp_filexist, que se pode utilizar para detectar si determinado Arquivos existen não servidor.</value>
+    <value xml:space="preserve">A conta atual do SQL Server pode executar xp_fileexist, que pode detectar se arquivos existem no servidor.</value>
   </data>
   <data name="CheckHiddenSystemFilesFailure.Text">
-    <value xml:space="preserve">foin encontrado Arquivos ocultos o de sistema em a pasta da web.</value>
+    <value xml:space="preserve">Há arquivos marcados como arquivo de sistema ou ocultos na pasta do site.</value>
   </data>
   <data name="CheckHiddenSystemFilesName.Text">
     <value xml:space="preserve">Verificar Arquivos ocultos</value>
   </data>
   <data name="CheckHiddenSystemFilesReason.Text">
-    <value xml:space="preserve">Os hackers podem cargar Arquivos ocultos o de sistema a web para que não se detecten não explorador de Arquivos.</value>
+    <value xml:space="preserve">Hackers podem carregar rootkits no site e marcá-los como arquivo de sistema ou ocultos no sistema de arquivos; assim, você não os vê no explorador de arquivos.</value>
   </data>
   <data name="CheckHiddenSystemFilesSuccess.Text">
-    <value xml:space="preserve">Não foin encontrado Arquivos ocultos o de sistema em a pasta da web.</value>
+    <value xml:space="preserve">Não há arquivos marcados como arquivo de sistema ou ocultos na pasta do site.</value>
   </data>
   <data name="CheckModuleHeaderAndFooterFailure.Text">
-    <value xml:space="preserve">foin encontrado módulos que tienen textos de cabecera o pie. Verifique que estos textos son legítimos.</value>
+    <value xml:space="preserve">Há módulos no sistema com configurações de cabeçalho e rodapé; revise-os para garantir que não haja código de phishing.</value>
   </data>
   <data name="CheckModuleHeaderAndFooterName.Text">
-    <value xml:space="preserve">Verificar configuração de cabeceras e pies de módulos</value>
+    <value xml:space="preserve">Verificar se módulos têm configurações de Cabeçalho ou Rodapé</value>
   </data>
   <data name="CheckModuleHeaderAndFooterReason.Text">
-    <value xml:space="preserve">Os hackers podem utilizar as cabeceras o pies para inyectar código malicioso em as páginas.</value>
+    <value xml:space="preserve">Hackers podem usar as configurações de cabeçalho ou rodapé dos módulos para injetar conteúdo em ataques de phishing.</value>
   </data>
   <data name="CheckModuleHeaderAndFooterSuccess.Text">
-    <value xml:space="preserve">Não foin encontrado módulos com cabeceras o pies configurados.</value>
+    <value xml:space="preserve">Não foram encontrados módulos com valores de cabeçalho ou rodapé configurados.</value>
   </data>
   <data name="CheckPasswordFormatFailure.Text" lastModified="2018-03-24 10:26:25">
-    <value xml:space="preserve">A opção "passwordFormat" não está establecida como "Hashed" em web.config. Considere mudar esta opção a "Hashed". Para más informação consulte &lt;a href="http://www.dnnsoftware.com/wiki/hashed-passwords" target="_blank"&gt;aquí&lt;/a&gt;.</value>
+    <value xml:space="preserve">A configuração passwordFormat não está definida como "Hashed" no web.config. Considere editar o web.config e defini-la como "Hashed" (ou use o gerenciador de configuração). Mais informações podem ser encontradas &lt;a href="http://www.dnnsoftware.com/wiki/hashed-passwords" target="_blank"&gt;aqui&lt;/a&gt;.</value>
   </data>
   <data name="CheckPasswordFormatName.Text">
-    <value xml:space="preserve">Verificar configuração do formato de contrasenhas</value>
+    <value xml:space="preserve">Verificar a configuração do formato de senha</value>
   </data>
   <data name="CheckPasswordFormatReason.Text">
-    <value xml:space="preserve">Se o valor é "Clear" o "Encrypted", os hackers podem recuperar as contrasenhas dos usuarios da base de datos.</value>
+    <value xml:space="preserve">Se o valor for Clear ou Encrypted, um hacker pode recuperar as senhas dos usuários do banco de dados.</value>
   </data>
   <data name="CheckPasswordFormatSuccess.Text">
-    <value xml:space="preserve">"passwordFormat" está establecido em "Hashed" em web.config.</value>
+    <value xml:space="preserve">passwordFormat está definida como "Hashed" no web.config</value>
   </data>
   <data name="CheckPurpose.Header">
     <value xml:space="preserve">Motivo da validação</value>
   </data>
   <data name="CheckRarelyUsedSuperuserFailure.Text">
-    <value xml:space="preserve">foi encontrado uno o más superusuários sin actividade o que não foin indentificado em seis meses. Considere eliminar estos usuarios como uma buena práctica.</value>
+    <value xml:space="preserve">Foi encontrada 1 ou mais contas de superusuário sem login ou atividade há seis meses. Considere excluí-las como boa prática.</value>
   </data>
   <data name="CheckRarelyUsedSuperuserName.Text">
-    <value xml:space="preserve">Verificar superusuários que não se utilizan</value>
+    <value xml:space="preserve">Verificar se há contas de superusuário pouco usadas</value>
   </data>
   <data name="CheckRarelyUsedSuperuserReason.Text">
-    <value xml:space="preserve">Os superusuários son as contas más potentes de DNN. Como buena práctica deve limitarse su uso.</value>
+    <value xml:space="preserve">As contas de superusuário são as mais poderosas do DNN. Como boa prática, devem ser limitadas.</value>
   </data>
   <data name="CheckRarelyUsedSuperuserSuccess.Text">
-    <value xml:space="preserve">Todos os usuarios son usuarios habituales do sistema.</value>
+    <value xml:space="preserve">Todos os superusuários são usuários habituais do sistema.</value>
   </data>
   <data name="CheckSiteRegistrationFailure.Text">
-    <value xml:space="preserve">Uno o más portais utilizan registro público.</value>
+    <value xml:space="preserve">Um ou mais sites usam registro público</value>
   </data>
   <data name="CheckSiteRegistrationName.Text">
-    <value xml:space="preserve">Verificar se algún sitio utiliza registro público</value>
+    <value xml:space="preserve">Verificar se site(s) usam registro público</value>
   </data>
   <data name="CheckSiteRegistrationReason.Text">
-    <value xml:space="preserve">Os portais que permiten o registro público son o principal objectivo dos spammers.</value>
+    <value xml:space="preserve">Sites com registro público habilitado são alvo principal de spammers.</value>
   </data>
   <data name="CheckSiteRegistrationSuccess.Text">
-    <value xml:space="preserve">Todos os portais utilizan registro não público.</value>
+    <value xml:space="preserve">Todos os sites usam registro não público</value>
   </data>
   <data name="CheckSqlRiskFailure.Text">
-    <value xml:space="preserve">A conexión atual de SQL pode ejecutar comandos peligrosos em su servidor SQL.</value>
+    <value xml:space="preserve">A conexão SQL atual pode executar comandos perigosos no seu SQL Server.</value>
   </data>
   <data name="CheckSqlRiskName.Text">
     <value xml:space="preserve">Verificar permissões da conta SQL</value>
   </data>
   <data name="CheckSqlRiskReason.Text">
-    <value xml:space="preserve">Se a conta SQL Server não se configura corretamente, há riesgo de que os hackers puedan ejecutar scripts não servidor.</value>
+    <value xml:space="preserve">Se a conta do SQL Server não estiver configurada corretamente, pode restar um risco: hackers podem explorar o servidor executando scripts específicos.</value>
   </data>
   <data name="CheckSqlRiskSuccess.Text">
-    <value xml:space="preserve">Configuração da conta SQL Server correta.</value>
+    <value xml:space="preserve">A conta do SQL Server está configurada corretamente.</value>
   </data>
   <data name="CheckSuperuserOldPasswordFailure.Text">
-    <value xml:space="preserve">ao menos um superusuario tem uma contrasenha que não foi cambiado nos últimos 6 meses.</value>
+    <value xml:space="preserve">Pelo menos uma conta de superusuário tem uma senha que não é alterada há mais de 6 meses.</value>
   </data>
   <data name="CheckSuperuserOldPasswordName.Text">
-    <value xml:space="preserve">Verificar se os superusuários actulizan a contrasenha regularmente.</value>
+    <value xml:space="preserve">Verificar se os superusuários não alteram a senha regularmente</value>
   </data>
   <data name="CheckSuperuserOldPasswordReason.Text">
-    <value xml:space="preserve">Os superusuários son as contas más potentes em DNN. uma buena práctica é actulizar regularmente a contrasenha deste tipo de contas.</value>
+    <value xml:space="preserve">As contas de superusuário são as mais poderosas do DNN. Como boa prática, as senhas dessas contas devem ser alteradas regularmente.</value>
   </data>
   <data name="CheckSuperuserOldPasswordSuccess.Text">
-    <value xml:space="preserve">Todos os superusuários han actualizado su contrasenha nos últimos 6 meses.</value>
+    <value xml:space="preserve">Nenhum superusuário tem senha com mais de 6 meses.</value>
+  </data>
+  <data name="CheckTelerikPresenceFailure.Text">
+    <value xml:space="preserve">O componente Telerik foi encontrado no site.</value>
+  </data>
+  <data name="CheckTelerikPresenceInstalledAndUsed.Text">
+    <value xml:space="preserve">Dependências do Telerik foram descobertas em assemblies que NÃO serão tratadas pela desinstalação conforme as instruções da versão 9.8.0. A lista abaixo inclui todas:</value>
+  </data>
+  <data name="CheckTelerikPresenceInstalledButNotUsed.Text">
+    <value xml:space="preserve">O Telerik foi encontrado neste site, mas nenhuma dependência do Telerik foi descoberta. Você pode razoavelmente considerar seguro desinstalar o Telerik conforme as instruções da versão 9.8.0.</value>
+  </data>
+  <data name="CheckTelerikPresenceName.Text">
+    <value xml:space="preserve">Verificar se o Telerik está instalado.</value>
+  </data>
+  <data name="CheckTelerikPresenceReason.Text">
+    <value xml:space="preserve">No DNN 10.x, a remoção do Telerik será forçada e não será mais opcional.</value>
+  </data>
+  <data name="CheckTelerikPresenceSuccess.Text">
+    <value xml:space="preserve">O componente Telerik não está instalado.</value>
   </data>
   <data name="CheckTelerikVulnerabilityFailure.Text" lastModified="2018-03-24 02:19:44">
     <value xml:space="preserve">A vulnerabilidade do componente Telerik não foi corregido. Vá para http://www.dnnsoftware.com/community-blog/cid/155449/critical-security-update--september2017 para ver a informação detallada e baixar a actualização.</value>
@@ -232,40 +250,52 @@
     <value xml:space="preserve">Componente Telerik já actualizado.</value>
   </data>
   <data name="CheckTracing.Text">
-    <value xml:space="preserve">Tracing está activado. Devería modificar o arquivo web.config e establecer este valor a 'false'.</value>
+    <value xml:space="preserve">Tracing está definido como true. Considere editar o web.config e definir esse valor como false (ou use o gerenciador de configuração).</value>
   </data>
   <data name="CheckTracingFailure.Text">
-    <value xml:space="preserve">Tracing está activao. Isto permite a hackers potenciales ver a actividade de sitio web.</value>
+    <value xml:space="preserve">Tracing está habilitado; isso permite que potenciais hackers vejam a atividade do site.</value>
   </data>
   <data name="CheckTracingName.Text">
-    <value xml:space="preserve">Verifica se o 'tracing' asp.net está activado.</value>
+    <value xml:space="preserve">Verificar se o tracing do ASP.NET está habilitado</value>
   </data>
   <data name="CheckTracingReason.Text">
-    <value xml:space="preserve">Se o atributo 'tracing' está activado, os hackers potenciales podem ver a actividade do portal web.</value>
+    <value xml:space="preserve">Se o atributo tracing estiver definido como true, potenciais hackers podem ver a atividade do site</value>
   </data>
   <data name="CheckTracingSuccess.Text">
-    <value xml:space="preserve">Tracing não está activado.</value>
+    <value xml:space="preserve">Tracing não está habilitado</value>
   </data>
   <data name="CheckUnexpectedExtensionsFailure.Text">
-    <value xml:space="preserve">foin encontrado Arquivos com extensión 'asp' o 'php'. Estos Arquivos podem ser legítimos mas a veces isto mostra que o sitio web foi sido hackeado e estos Arquivos son herramientas. Revise atentamente estos Arquivos para verificar si son legítimos.</value>
+    <value xml:space="preserve">Foi encontrada uma extensão asp ou php; elas podem ser inofensivas, mas às vezes indicam que o site foi comprometido e que esses arquivos são ferramentas. Recomendamos avaliar esses arquivos com atenção.</value>
   </data>
   <data name="CheckUnexpectedExtensionsName.Text">
-    <value xml:space="preserve">Validar si há Arquivos asp o php.</value>
+    <value xml:space="preserve">Verificar se há arquivos asp/php</value>
   </data>
   <data name="CheckUnexpectedExtensionsReason.Text">
-    <value xml:space="preserve">DNN é uma aplicação web ASP.NET. Em condições normales outras extensões de aplicação como .asp o .php não se deverían encontrar presentes.</value>
+    <value xml:space="preserve">O DNN é um aplicativo web ASP.NET. Em condições normais, outras extensões de aplicativos de servidor, como asp e php, não devem estar em uso.</value>
   </data>
   <data name="CheckUnexpectedExtensionsSuccess.Text">
-    <value xml:space="preserve">Não foin encontrado Arquivos com extensões peligrosas.</value>
+    <value xml:space="preserve">Nenhuma extensão inesperada encontrada</value>
+  </data>
+  <data name="CheckUserProfilePageFailure.Text">
+    <value xml:space="preserve">A página Perfil de Usuário é pública.</value>
+  </data>
+  <data name="CheckUserProfilePageName.Text">
+    <value xml:space="preserve">Verificar o acesso à página Perfil de Usuário</value>
+  </data>
+  <data name="CheckUserProfilePageReason.Text">
+    <value xml:space="preserve">A página Perfil de Usuário pode estar visível para todos os usuários de forma não intencional.</value>
+  </data>
+  <data name="CheckUserProfilePageSuccess.Text">
+    <value xml:space="preserve">A página Perfil de Usuário não é pública.</value>
   </data>
   <data name="CheckViewstatemacFailure.Text">
-    <value xml:space="preserve">viewstatemac não está activado.</value>
+    <value xml:space="preserve">A validação viewstatemac não está habilitada</value>
   </data>
   <data name="CheckViewstatemacName.Text">
     <value xml:space="preserve">Verificar se o Viewstate está protegido.</value>
   </data>
   <data name="CheckViewstatemacReason.Text" lastModified="2020-05-09 05:26:09">
-    <value xml:space="preserve">Um Viewstate MAC é uma versão encriptada da variable oculta donde se guarda o estado da página quando ésta se envia ao navegador. Si esta propriedade está activada, o campo encriptado se verifica para comprobar que o estado não foiya modificado não cliente.</value>
+    <value xml:space="preserve">Um MAC de view state é uma versão criptografada da variável oculta na qual o estado de exibição da página é persistido quando ela é enviada ao navegador. Quando essa propriedade está definida como true, o view state criptografado é verificado para confirmar que não foi adulterado no cliente.</value>
   </data>
   <data name="CheckViewstatemacSuccess.Text">
     <value xml:space="preserve">O Viewstate está protegido com o uso de MAC.</value>
@@ -370,7 +400,7 @@
     <value xml:space="preserve">Arquivo</value>
   </data>
   <data name="FileName.Text">
-    <value xml:space="preserve">NOME Arquivo</value>
+    <value xml:space="preserve">NOME DO ARQUIVO</value>
   </data>
   <data name="FilterType.Header">
     <value xml:space="preserve">TIPO DE FILTRO</value>
@@ -484,13 +514,13 @@
     <value xml:space="preserve">Comprimento mínimo da senha</value>
   </data>
   <data name="ModifiedFiles.Text">
-    <value xml:space="preserve">Arquivos modificados recientemente</value>
+    <value xml:space="preserve">Arquivos modificados recentemente</value>
   </data>
   <data name="ModifiedFilesLoadWarning.Text">
-    <value xml:space="preserve">Esta opção mostrará todos os Arquivos do sistema que foin modificado recientemente. Esta ação pode tardar bastante se o sitio tem muchos Arquivos.</value>
+    <value xml:space="preserve">A ferramenta enumerará todos os arquivos do sistema para mostrar os arquivos alterados recentemente. Pode demorar em um site com muitos arquivos.</value>
   </data>
   <data name="ModifiedSettings.Text">
-    <value xml:space="preserve">Configurações modificadas recientemente</value>
+    <value xml:space="preserve">Configurações modificadas recentemente</value>
   </data>
   <data name="ModuleId.Text">
     <value xml:space="preserve">ID MÓDULO</value>
@@ -901,7 +931,7 @@
     <value xml:space="preserve">Atualizar filtro</value>
   </data>
   <data name="ScannerChecks.Text">
-    <value xml:space="preserve">Buscar em sistema de Arquivos e base de datos</value>
+    <value xml:space="preserve">Pesquisar sistema de arquivos e banco de dados</value>
   </data>
   <data name="SearchDatabaseResult.Text">
     <value xml:space="preserve">Base de datos: foin encontrado {0} ocurrencias</value>
@@ -973,10 +1003,10 @@
     <value xml:space="preserve">VERIFICAÇÃO DE SEGURIDADE</value>
   </data>
   <data name="SettingName.Text">
-    <value xml:space="preserve">NOME PARÁMETRO</value>
+    <value xml:space="preserve">NOME DA CONFIGURAÇÃO</value>
   </data>
   <data name="SettingValue.Text">
-    <value xml:space="preserve">VALOR PARÁMETRO</value>
+    <value xml:space="preserve">VALOR DA CONFIGURAÇÃO</value>
   </data>
   <data name="Severity.Header">
     <value xml:space="preserve">Gravedad</value>
