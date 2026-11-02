@@ -26,7 +26,15 @@ restante est **entièrement expliquée** : la préprod sert la couche du **26/10
 | préprod = blob | 0 | **16** ← les `_ext` |
 | préprod divergent | 17 | **17** (16 de base + OWL) |
 | préprod 404 | **19** | **3** |
-| prod ≠ préprod | 17 | **16** |
+| prod ≠ préprod | 16 | **16** |
+
+† **Erratum (02/11, après relecture — [c.6576531867](https://github.com/ArgumentumGames/Argumentum/pull/2124#issuecomment-6576531867))** : la première version portait
+**17** dans la case « prod ≠ préprod » du 14/09. C'est une contamination de ligne : 17 est le total
+« préprod divergente **du blob** » (16 wrappers + l'OWL), or l'OWL est **identique entre les deux hôtes**
+à cette date comme aujourd'hui — il ne compte donc pas dans la comparaison croisée. Le compte croisé du
+14/09 est **16** (les 16 wrappers de base ; les 16 `_ext` étaient 404 sur la préprod, donc non
+comparables octet à octet). Les deux colonnes valent 16 : le retard de copie remplace des routes qui
+n'étaient pas servies, il n'ajoute pas de différence.
 
 Le total préprod « divergent » ne bouge pas (17) : ce sont **les mêmes 17 routes**, mais leur cause change
 de nature. Au 14/09 c'était une couche de **six commits de retard** (`de763aa9`, 28/08). Aujourd'hui c'est
