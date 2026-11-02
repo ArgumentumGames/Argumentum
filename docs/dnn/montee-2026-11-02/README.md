@@ -8,8 +8,15 @@ Il ne contient **aucun secret** — ni chaîne de connexion, ni `machineKey`, ni
 
 | Composant | Avant | Après | Mesure |
 |---|---|---|---|
-| DNN Platform | 9.x | **10.4.1.0** | `DotNetNuke.dll` = 10.4.1.0 ; table `Version` = **10.4.1** (VersionId 1048) |
-| 2sxc (`ToSic.Sxc.Dnn`) | 15.2.0 | **22.1.0.0** | `ToSic.Sxc.Dnn.dll` = 22.1.0.0 ; `Install() = True`, `IsValid = True`, `HasWarnings = False` |
+| DNN Platform | **10.3.2.0** † | **10.4.1.0** | Avant : `DotNetNuke.dll` de la copie webroot d'avant montée, FileVersion **10.3.2.0** (Product `10.3.2+Branch.master.Sha.4b0214b8…`, 2 949 632 o) ; après : `DotNetNuke.dll` = 10.4.1.0 ; table `Version` = **10.4.1** (VersionId 1048) |
+| 2sxc (`ToSic.Sxc.Dnn`) | **21.07.00** † | **22.1.0.0** | Avant : `ToSic.Sxc.Dnn.dll` de la même copie, **21.07.00** (39 936 o) ; après : 22.1.0.0 ; `Install() = True`, `IsValid = True`, `HasWarnings = False` |
+
+† **Erratum (02/11, après relecture ai-01 [c.6576531353](https://github.com/ArgumentumGames/Argumentum/pull/2123#issuecomment-6576531353))** : la première version de ce tableau portait
+« 9.x / 15.2.0 » — les versions de la **production** (9.11.1.19 / 15.02, mesurées par web2 le même jour),
+pas celles de la préprod. Les valeurs ci-dessus sont **mesurées sur la copie webroot d'avant montée**
+(`.tmp\upgrade-dnn1041\webroot-pre-montee\bin\`, copie du 14/10 15:08), qui est le seul objet dont ce
+document prétend décrire la transition. Le repli accepté d'avance « 10.3.3 + 21.07 » du plan commité
+confirme l'ordre de grandeur : la préprod était déjà sur la génération 10.3 / 21.07.
 | Assistant de montée | — | **`Upgrade Complete`** | 11:32:18 → 11:32:44 (26 s) |
 
 Paquet 2sxc utilisé : `ToSic.Sxc.Dnn.22.01.00_Install.zip`, 11 513 076 o,
@@ -40,7 +47,7 @@ seulement nommés pour que le point de retour reste retrouvable.
 ## 4. Défaut A — l'assistant ne réécrit pas les `bindingRedirect`
 
 Déposer les binaires **avant** la montée laisse ASP.NET démarrer avec l'ancienne configuration : les
-`bindingRedirect` de `web.config` nomment encore les versions 9.x, d'où
+`bindingRedirect` de `web.config` nomment encore les versions de la génération précédente (10.3.2 / 21.07), d'où
 `FileLoadException 0x80131040` (`AngleSharp.Css` 1.0.0.0 demandé / 1.1.2.0 livré, `Serilog` 4.2.0.0
 demandé sans aucun redirect).
 
