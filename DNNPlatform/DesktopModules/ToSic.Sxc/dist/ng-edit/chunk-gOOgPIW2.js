@@ -1,0 +1,3 @@
+function n(o){let e=document.createElement(`textarea`);e.value=o,e.setAttribute(`readonly`,``),e.style.position=`absolute`,e.style.left=`-9999px`,document.body.appendChild(e);let t=document.getSelection().rangeCount>0?document.getSelection().getRangeAt(0):!1;e.select(),document.execCommand(`copy`),document.body.removeChild(e),t&&(document.getSelection().removeAllRanges(),document.getSelection().addRange(t))}export{n as t};
+//# debugId=f8cdf46e-c613-5b27-9054-d46b856cd2b8
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/chunk-gOOgPIW2.js.map

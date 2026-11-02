@@ -1,0 +1,3 @@
+var i=(()=>{class e{static{this.route=`recycle-bin`}static{this.featureId=`EntityUndelete`}static routeDefinition(t){return{name:`Recycle Bin`,icon:`delete`,svgIcon:!1,path:`${t}-${e.route}`,tippy:`Recycle Bin to undelete data`,featureRequired:e.featureId}}}return e})();export{i as t};
+//# debugId=75db9882-42d1-548a-b0cd-f8bdcfb83d27
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/chunk-EXOE8_7b.js.map

@@ -9,13 +9,15 @@
     <meta name="language" content="en" />
     <title id="title" runat="server">DNNConnect.CKEditorProvider.FileBrowser</title>
     <asp:Placeholder id="favicon" runat="server"></asp:Placeholder>
-    <asp:PlaceHolder runat="server" ID="ClientDependencyHeadCss" />
+      <dnncrm:DnnResources runat="server" Provider="DnnPageHeaderProvider" />
+      <asp:PlaceHolder runat="server" ID="ClientDependencyHeadCss" />
     <asp:PlaceHolder runat="server" ID="ClientDependencyHeadJs" />
   </head>
   <body>
     <form id="fBrowser" method="post" runat="server">
+      <dnncrm:DnnResources runat="server" Provider="DnnBodyProvider" />
       <asp:PlaceHolder ID="BodySCRIPTS" runat="server" />
-      <asp:ScriptManager ID="scriptManager1" runat="server"></asp:ScriptManager>
+      <asp:ScriptManager runat="server" />
       <div id="BrowserContainer">
       <h1><asp:Label id="lblModus" runat="server"></asp:Label></h1>
       <hr />
@@ -116,7 +118,7 @@
             <asp:TextBox ID="txtCropImageName" runat="server" Width="500"></asp:TextBox>
            </div>
            <div class="PanelSubDivs" style="padding-bottom:5px;">
-              <input type="submit" name="CropNow" value='<%= DotNetNuke.Services.Localization.Localization.GetString("cmdCropNow.Text", this.ResXFile, this.LanguageCode) %>' id="CropNow" CssClass="DefaultButton" />
+              <input type="submit" name="CropNow" value='<%: DotNetNuke.Services.Localization.Localization.GetString("cmdCropNow.Text", this.ResXFile, this.LanguageCode) %>' id="CropNow" CssClass="DefaultButton" />
               <asp:Button ID="cmdCropNow" Text="Create New Image" runat="server" Style="display:none" />&nbsp;
               <asp:Button ID="cmdCropCancel" Text="Cancel Crop" runat="server" />
           </div>
@@ -165,13 +167,13 @@
               <div>
                   <div id="fileupload">
                       <div class="fileupload-buttonbar">
-                          <div id="dropzone" class="fade ui-widget-header"><%= DotNetNuke.Services.Localization.Localization.GetString("DropHere.Text", this.ResXFile, this.LanguageCode) %></div>
+                          <div id="dropzone" class="fade ui-widget-header"><%: DotNetNuke.Services.Localization.Localization.GetString("DropHere.Text", this.ResXFile, this.LanguageCode) %></div>
                           <div class="fileupload-buttons">
                               <span class="fileinput-button">
-                                  <asp:Label id="AddFiles" runat="server" Text="Add file(s)..." />
+                                  <asp:Label id="AddFiles" runat="server" Text="Add file(s)…" />
                                   <input type="file" name="files[]" multiple>
                               </span>
-                              <button type="submit" class="start"><%= DotNetNuke.Services.Localization.Localization.GetString("StartUploads.Text", this.ResXFile, this.LanguageCode) %></button>
+                              <button type="submit" class="start"><%: DotNetNuke.Services.Localization.Localization.GetString("StartUploads.Text", this.ResXFile, this.LanguageCode) %></button>
                               <span class="fileupload-process"></span>
                           </div>
                           <div class="fileupload-progress fade" style="display:none">
@@ -200,7 +202,7 @@
                 <button class="start" disabled style="display:none">Start</button>
             {% } %}
                       {% if (!i) { %}
-                                      <button class="cancel"><%= DotNetNuke.Services.Localization.Localization.GetString("cmdCreateCancel.Text", this.ResXFile, this.LanguageCode) %></button>
+                                      <button class="cancel"><%: DotNetNuke.Services.Localization.Localization.GetString("cmdCreateCancel.Text", this.ResXFile, this.LanguageCode) %></button>
                                   {% } %}
                               </td>
                           </tr>
@@ -303,29 +305,27 @@
             <br />
             <asp:HiddenField runat="server" ID="ListViewState"/>
             <div id="FilesBox">
-              <asp:Repeater ID="FilesList" runat="server">
+              <asp:Repeater ID="FilesList" runat="server" ItemType="DNNConnect.CKEditorProvider.Browser.Browser.BrowserFile">
                 <HeaderTemplate>
                   <ul class="FilesDetailView">
                 </HeaderTemplate>
                 <ItemTemplate>
                   <li class="FilesListRow" id="ListRow" runat="server" 
-                      title='<%# DataBinder.Eval(Container.DataItem, "PictureURL").ToString().Substring(DataBinder.Eval(Container.DataItem, "PictureURL").ToString().LastIndexOf("/", StringComparison.Ordinal) + 1)%>'>
-                    <asp:LinkButton runat="server" ID="FileListItem" CssClass="FilesListItem" 
-                       CommandArgument='<%# DataBinder.Eval(Container.DataItem, "FileId").ToString()%>'>
-                      <asp:Image runat="server" ID="FileThumb" CssClass="FilePreview" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "PictureURL").ToString()%>'
-                          AlternateText='<%# DataBinder.Eval(Container.DataItem, "FileName").ToString()%>' ToolTip='<%# DataBinder.Eval(Container.DataItem, "FileName").ToString()%>' />
-                      <span class="ItemInfo"><%# DataBinder.Eval(Container.DataItem, "Info").ToString()%></span>
+                      title='<%#: Item.PictureUrl.Substring(Item.PictureUrl.LastIndexOf("/", StringComparison.Ordinal) + 1)%>'>
+                    <asp:LinkButton runat="server" ID="FileListItem" CssClass="FilesListItem" CommandArgument="<%#: Item.FileId %>">
+                      <asp:Image runat="server" ID="FileThumb" CssClass="FilePreview" ImageUrl="<%#: Item.PictureUrl %>"
+                          AlternateText="<%#: Item.FileName %>" ToolTip="<%#: Item.FileName %>" />
+                      <span class="ItemInfo"><%#: Item.Info %></span>
                     </asp:LinkButton>
                   </li>
                 </ItemTemplate>
                 <AlternatingItemTemplate>
                   <li class="FilesListRowAlt" id="ListRow" runat="server" 
-                      title='<%# DataBinder.Eval(Container.DataItem, "PictureURL").ToString().Substring(DataBinder.Eval(Container.DataItem, "PictureURL").ToString().LastIndexOf("/", StringComparison.Ordinal) + 1)%>'>
-                                        <asp:LinkButton runat="server" ID="FileListItem" CssClass="FilesListItem" 
-                       CommandArgument='<%# DataBinder.Eval(Container.DataItem, "FileId").ToString()%>'>
-                      <asp:Image runat="server" ID="FileThumb" CssClass="FilePreview" ImageUrl='<%# DataBinder.Eval(Container.DataItem, "PictureURL").ToString()%>'
-                          AlternateText='<%# DataBinder.Eval(Container.DataItem, "FileName").ToString()%>' ToolTip='<%# DataBinder.Eval(Container.DataItem, "FileName").ToString()%>' />
-                      <span class="ItemInfo"><%# DataBinder.Eval(Container.DataItem, "Info").ToString()%></span>
+                      title='<%#: Item.PictureUrl.Substring(Item.PictureUrl.LastIndexOf("/", StringComparison.Ordinal) + 1)%>'>
+                    <asp:LinkButton runat="server" ID="FileListItem" CssClass="FilesListItem" CommandArgument="<%#: Item.FileId %>">
+                      <asp:Image runat="server" ID="FileThumb" CssClass="FilePreview" ImageUrl="<%#: Item.PictureUrl %>"
+                          AlternateText="<%#: Item.FileName %>" ToolTip="<%#: Item.FileName %>" />
+                      <span class="ItemInfo"><%#: Item.Info %></span>
                     </asp:LinkButton>
                   </li>
                 </AlternatingItemTemplate>
@@ -376,36 +376,38 @@
       </div>
       </asp:Panel>
       <!-- / Loading screen -->
+
+      <dnncrm:DnnResources runat="server" Provider="DnnFormBottomProvider" />
       <asp:PlaceHolder runat="server" ID="ClientResourcesFormBottom" />
     </form>
     <script type="text/javascript">
         $(function() {
-            $(document).on('change', '#<%= this.OverrideFile.ClientID %>', function () {                                 
+            $(document).on('change', '#<%: this.OverrideFile.ClientID %>', function () {                                 
                 setupFileUpload(this.checked);                
             });
 
             function setupFileUpload(overrideFile) {
                 var overrideFile = overrideFile;
-                var maxFileSize = <%= this.MaxUploadSize %>;
-                var fileUploaderURL = "FileUploader.ashx?mode=<%= HttpContext.Current.Request.QueryString["mode"] %>&portalid=<%= HttpContext.Current.Request.QueryString["PortalID"] %>&tabid=<%= HttpContext.Current.Request.QueryString["tabid"] %>&mid=<%= HttpContext.Current.Request.QueryString["mid"] %>&ckId=<%= HttpContext.Current.Request.QueryString["CKEditor"] %>";
+                var maxFileSize = <%: this.MaxUploadSize %>;
+                var fileUploaderURL = "FileUploader.ashx?mode=<%: Request.QueryString["mode"] %>&portalid=<%: Request.QueryString["PortalID"] %>&tabid=<%: Request.QueryString["tabid"] %>&mid=<%: Request.QueryString["mid"] %>&ckId=<%: Request.QueryString["CKEditor"] %>";
 
                 $('#fileupload').fileupload({
                     url: fileUploaderURL,
-                    acceptFileTypes: new RegExp('(\.|\/)(' + '<%= this.AcceptFileTypes %>' + ')', 'i'),
+                    acceptFileTypes: new RegExp('(\.|\/)(' + '<%: this.AcceptFileTypes %>' + ')', 'i'),
                     maxFileSize: maxFileSize,
                     done: function () {
                         __doPostBack('cmdUploadNow', '');
                     },
                     formData: {
-                        storageFolderID: '<%= CurrentFolderId %>',
-                        portalID: '<%= HttpContext.Current.Request.QueryString["PortalID"] %>',
+                        storageFolderID: '<%: CurrentFolderId %>',
+                        portalID: '<%: Request.QueryString["PortalID"] %>',
                         overrideFiles: overrideFile
                     },
                     dropZone: $('#dropzone')
                 });
             }
 
-            setupFileUpload($('#<%= this.OverrideFile.ClientID %>').is(':checked'));
+            setupFileUpload($('#<%: this.OverrideFile.ClientID %>').is(':checked'));
 
             $(document).bind('dragover', function (e) {
                 var dropZone = $('#dropzone'),
@@ -438,12 +440,6 @@
     </script>
   
     <asp:PlaceHolder runat="server" id="ClientResourceIncludes" />
-
-    <dnncrm:ClientResourceLoader runat="server" id="ClientResourceLoader">
-      <Paths>
-        <dnncrm:ClientResourcePath Name="SharedScripts" Path="~/Resources/Shared/Scripts/" />
-      </Paths>
-    </dnncrm:ClientResourceLoader>
   </body>
 </html>
 

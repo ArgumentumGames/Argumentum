@@ -1,0 +1,3 @@
+var l=class{static boolEquals(t,e){return t===e}static stringEquals(t,e){return t===e}static valueEquals(t,e){return t===e}static objectsEqual(t,e){if(t==null||e==null)return t===e;let r=t,s=e,n=Object.keys(r),a=Object.keys(s);return n.length!==a.length?!1:n.every(u=>s.hasOwnProperty(u)?r[u]===s[u]:!1)}static arraysEqual(t,e){return t==null||e==null?t===e:t.length!==e.length?!1:t.every((s,n)=>t[n]===e[n])}static distinct(t,e,r){return r.indexOf(t)===e}};export{l as t};
+//# debugId=11320e7f-e980-570b-9a55-e5214ac46a76
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/chunk-BOzCNAeJ.js.map

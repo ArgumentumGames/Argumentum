@@ -1,0 +1,3 @@
+import{Bi as C}from"./chunk-DtJSyZhi.js";import"./chunk-C4dVjHVF.js";import"./chunk-D18RyqxO.js";import{L}from"./main-NXRXUN76.js";import"./chunk-Bo0R4CmS.js";import{t as b}from"./chunk-Cq0cgRJm.js";var d=[{path:``,component:b,data:{dialog:{name:`METADATA_DIALOG`,initContext:!0,panelSize:`large`,panelClass:null,getComponent(){return C(this,null,function*(){let{MetadataComponent:n}=yield import(`./metadata-BliBUpNL.js`);return n})}}},children:L}];export{d as metadataRoutes};
+//# debugId=1cd8bef2-879c-50d1-b96d-8d33992ff624
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/metadata.routing-CddX0P3Z.js.map

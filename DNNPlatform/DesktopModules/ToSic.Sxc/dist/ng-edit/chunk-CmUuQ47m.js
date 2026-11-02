@@ -1,0 +1,3 @@
+import{lt as Ng,ot as N}from"./chunk-DtJSyZhi.js";import{r as Y}from"./chunk-B9PE1Af2.js";var p=(()=>{class t extends Y{getHttpApiUrl(e,i){let r=this.apiUrl(e);return this.http.get(r,i??void 0)}static{this.ɵfac=(()=>{let e;return function(r){return(e||(e=Ng(t)))(r||t)}})()}static{this.ɵprov=N({token:t,factory:t.ɵfac})}}return t})();export{p as t};
+//# debugId=405575ed-9e9b-5650-86e7-f8ded1ba38d0
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/chunk-CmUuQ47m.js.map

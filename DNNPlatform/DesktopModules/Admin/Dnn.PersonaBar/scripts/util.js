@@ -1,29 +1,28 @@
 'use strict';
-define(['jquery'], function ($) {
-    var initializedModules = {};
+define(['jquery', 'purify.min'], function ($, DOMPurify) {
+    const initializedModules = {};
     return {
         init: function (config) {
-            var loadTempl;
-            var setDialogClass;
-
-            loadTempl = function (folder, template, wrapper, params, self, cb) {
-                var callbackInit, moduleFolder, scriptFolder, templateSuffix, cssSuffix, initMethod, moduleJs, loadMethod;
-
+            const loadTempl = function (folder, template, wrapper, params, self, cb) {
                 if (!initializedModules[template]) {
-                    templateSuffix = '.html';
-                    cssSuffix = '.css';
-                    initMethod = 'init';
-                    moduleFolder = folder ? 'modules/' + folder + '/' : '';
-                    scriptFolder = moduleFolder ? moduleFolder + 'scripts/' : 'scripts/';
-                    var requiredArray = ['../../' + scriptFolder + template, 'text!../../' + moduleFolder + template + templateSuffix];
-                    requiredArray.push('css!../../' + moduleFolder + 'css/' + template + cssSuffix);
+                    const cacheBust = `cdv=${config.buildNumber}`;
+                    const templateSuffix = `.html?${cacheBust}`;
+                    const cssSuffix = `.css?${cacheBust}`;
+                    const initMethod = 'init';
+                    const moduleFolder = folder ? `modules/${folder}/` : '';
+                    const scriptFolder = moduleFolder ? `${moduleFolder}scripts/` : 'scripts/';
+                    const requiredArray = [
+                        `../../${scriptFolder}${template}`,
+                        `text!../../${moduleFolder}${template}${templateSuffix}`,
+                        `css!../../${moduleFolder}css/${template}${cssSuffix}`
+                    ];
 
                     window.require(requiredArray, function (module, html) {
                         if (module === undefined) return;
 
                         wrapper.html(html);
 
-                        // Create objects or Initicialize objects and store
+                        // Create objects or Initialize objects and store
                         if (module.type === 'Class') {
                             initializedModules[template] = new module(wrapper, self, params, cb);
                         } else {
@@ -32,10 +31,10 @@ define(['jquery'], function ($) {
                         }
                     });
                 } else {
-                    moduleJs = initializedModules[template];
+                    const moduleJs = initializedModules[template];
                     if (typeof moduleJs.load !== 'function') return;
 
-                    loadMethod = 'load';
+                    const loadMethod = 'load';
 
                     if (moduleJs.type === 'Class') {
                         moduleJs.load(moduleJs, params, cb);
@@ -45,7 +44,7 @@ define(['jquery'], function ($) {
                 }
             };
 
-            setDialogClass = function (dialog) {
+            const setDialogClass = function (dialog) {
                 if (dialog.parent().find('.socialpanel:visible .dnn-persona-bar-page').hasClass('full-width')) {
                     dialog.addClass('full-width-mode');
                 }
@@ -60,12 +59,12 @@ define(['jquery'], function ($) {
                 },
 
                 loadTemplate: function (folder, template, wrapper, params, cb) {
-                    var self = this;
+                    const self = this;
                     loadTempl(folder, template, wrapper, params, self, cb, false);
                 },
 
                 loadResx: function (cb) {
-                    var self = this;
+                    const self = this;
 
                     self.sf.moduleRoot = 'personaBar';
                     self.sf.controller = 'localization';
@@ -99,9 +98,9 @@ define(['jquery'], function ($) {
                 },
 
                 asyncParallel: function (deferreds, callback) {
-                    var i = deferreds.length;
+                    let i = deferreds.length;
                     if (i === 0) callback();
-                    var call = function () {
+                    const call = function () {
                         i--;
                         if (i === 0) {
                             callback();
@@ -114,8 +113,8 @@ define(['jquery'], function ($) {
                 },
 
                 asyncWaterfall: function (deferreds, callback) {
-                    var call = function () {
-                        var deferred = deferreds.shift();
+                    const call = function () {
+                        const deferred = deferreds.shift();
                         if (!deferred) {
                             callback();
                             return;
@@ -127,15 +126,15 @@ define(['jquery'], function ($) {
 
                 confirm: function (text, confirmBtn, cancelBtn, confirmHandler, cancelHandler) {
                     setDialogClass($('#confirmation-dialog'));
-                    $('#confirmation-dialog > p').html(text);
-                    $('#confirmation-dialog a#confirmbtn').html(confirmBtn).unbind('click').bind('click', function () {
+                    $('#confirmation-dialog > p').html(DOMPurify.sanitize(text));
+                    $('#confirmation-dialog a#confirmbtn').html(DOMPurify.sanitize(confirmBtn)).unbind('click').bind('click', function () {
                         if (typeof confirmHandler === 'function') confirmHandler.apply();
                         $('#confirmation-dialog').fadeOut(200, 'linear', function () { $('#mask').hide(); });
                     });
 					
 					if (cancelBtn != '') {
 						$('#confirmation-dialog a#cancelbtn').show();
-						$('#confirmation-dialog a#cancelbtn').html(cancelBtn).unbind('click').bind('click', function () {
+						$('#confirmation-dialog a#cancelbtn').html(DOMPurify.sanitize(cancelBtn)).unbind('click').bind('click', function () {
 							if (typeof cancelHandler === 'function') cancelHandler.apply();
 							$('#confirmation-dialog').fadeOut(200, 'linear', function () { $('#mask').hide(); });
 						});
@@ -174,7 +173,7 @@ define(['jquery'], function ($) {
                     clearTimeout(self.fadeTimeout);
 
                     setDialogClass(notificationDialog);
-                    notificationMessage.removeClass().html(text);
+                    notificationMessage.removeClass().html(DOMPurify.sanitize(text));
                     if (size) {
                         notificationDialog.addClass(size);
                     }
@@ -190,7 +189,7 @@ define(['jquery'], function ($) {
                     else {
                         notificationDialog.removeClass('errorMessage');
                     }
-                    closeNotification.html(closeButtonText)
+                    closeNotification.html(DOMPurify.sanitize(closeButtonText))
                     closeNotification.on('click', function () {
                         notificationDialog.fadeOut(200, 'linear');
                         if (notificationMessageContainer.data('jsp')) {

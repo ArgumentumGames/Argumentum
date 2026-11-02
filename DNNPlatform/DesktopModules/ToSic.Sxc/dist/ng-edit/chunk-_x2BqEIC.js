@@ -1,0 +1,3 @@
+import{Kn as ii,Vn as he,xt as Ry}from"./chunk-DtJSyZhi.js";import{n as S}from"./chunk-DfW69E_w.js";var C=(()=>{class e{constructor(i){this.globalConfigService=i}onClick(i){(navigator.platform.match(`Mac`)?i.metaKey:i.ctrlKey)&&i.shiftKey&&i.altKey&&(this.globalConfigService.toggleDebugEnabled(),window.getSelection().removeAllRanges())}static{this.ɵfac=function(t){return new(t||e)(he(S))}}static{this.ɵdir=ii({type:e,selectors:[[``,`appToggleDebug`,``]],hostBindings:function(t,l){t&1&&Ry(`click`,function(g){return l.onClick(g)})}})}}return e})();export{C as t};
+//# debugId=7f472727-835d-5921-a273-32378b36ef0c
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/chunk-_x2BqEIC.js.map

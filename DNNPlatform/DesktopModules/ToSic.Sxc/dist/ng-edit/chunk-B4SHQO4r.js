@@ -1,0 +1,3 @@
+import{ot as N,tn as _}from"./chunk-DtJSyZhi.js";import{t as Qt}from"./chunk-T2ghyHO0.js";import{t as n}from"./chunk-gOOgPIW2.js";var f=(()=>{class o{constructor(t){this.snackBar=t}copyToClipboard(t){n(t),this.snackBar.open(`Copied to clipboard`,null,{duration:2e3})}static{this.ɵfac=function(n){return new(n||o)(_(Qt))}}static{this.ɵprov=N({token:o,factory:o.ɵfac,providedIn:`root`})}}return o})();export{f as t};
+//# debugId=18e4c107-8798-50f8-8935-7308e578c692
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/chunk-B4SHQO4r.js.map

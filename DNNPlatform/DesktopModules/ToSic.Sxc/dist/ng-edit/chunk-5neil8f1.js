@@ -1,0 +1,3 @@
+import{Vn as he,ii as ur,n as $N}from"./chunk-DtJSyZhi.js";var n=(()=>{class t{constructor(i){this.sanitizer=i}transform(i){return this.sanitizer.bypassSecurityTrustHtml(i)}static{this.ɵfac=function(a){return new(a||t)(he($N,16))}}static{this.ɵpipe=ur({name:`safeHtml`,type:t,pure:!0})}}return t})();export{n as t};
+//# debugId=d4fe9ffc-cd5f-502c-b05f-54a058d2847f
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/chunk-5neil8f1.js.map

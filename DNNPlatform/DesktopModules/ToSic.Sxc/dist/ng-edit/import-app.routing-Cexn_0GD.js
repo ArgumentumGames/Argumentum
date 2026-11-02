@@ -1,0 +1,3 @@
+import{Bi as C}from"./chunk-DtJSyZhi.js";import"./chunk-C4dVjHVF.js";import"./chunk-D18RyqxO.js";import"./main-NXRXUN76.js";import"./chunk-Bo0R4CmS.js";import{t as b}from"./chunk-Cq0cgRJm.js";var a=[{path:``,component:b,data:{dialog:{name:`IMPORT_APP_DIALOG`,initContext:!0,panelSize:`medium`,panelClass:null,getComponent(){return C(this,null,function*(){let{ImportAppComponent:n}=yield import(`./import-app-CVdC8usA.js`);return n})}}}}];export{a as importRoutes};
+//# debugId=3be1066a-0666-517f-9b17-77917ee23b85
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/import-app.routing-Cexn_0GD.js.map

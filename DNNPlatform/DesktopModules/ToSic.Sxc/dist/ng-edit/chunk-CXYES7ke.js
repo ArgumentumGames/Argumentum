@@ -1,0 +1,3 @@
+import{Kn as ii,xt as Ry}from"./chunk-DtJSyZhi.js";import{P as er}from"./chunk-C4dVjHVF.js";var g=(()=>{class i{constructor(){this.log=er({ClickStopPropagationDirective:i}),this.log.a(`constructor`)}onClick(t){this.log.a(`onClick`,{event:t}),t.stopPropagation()}static{this.ɵfac=function(o){return new(o||i)}}static{this.ɵdir=ii({type:i,selectors:[[``,`appClickStopPropagation`,``]],hostBindings:function(o,s){o&1&&Ry(`click`,function(e){return s.onClick(e)})}})}}return i})();export{g as t};
+//# debugId=51336c28-7734-5f02-be04-0251b90f629b
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/chunk-CXYES7ke.js.map

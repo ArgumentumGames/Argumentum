@@ -1,0 +1,3 @@
+import{E as V,m as Me}from"./chunk-C4dVjHVF.js";function i(e,t){for(var r=-1,u=e==null?0:e.length;++r<u&&t(e[r],r,e)!==!1;);return e}var a=i;var f=Object.create;var d=(function(){function e(){}return function(t){if(!V(t))return{};if(f)return f(t);e.prototype=t;var r=new e;return e.prototype=void 0,r}})();var g=Me(Object.getPrototypeOf,Object);export{d as n,g as r,a as t};
+//# debugId=067d81b7-1bfd-5fc0-a0a1-0a7d2991ba40
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/chunk-BOM2WxoL2.js.map

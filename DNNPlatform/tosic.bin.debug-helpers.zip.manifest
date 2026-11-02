@@ -10,11 +10,23 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Eav.Apps.Persistence.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Eav.Apps.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Eav.Context.pdb</name>
     </file>
     <file>
       <path>bin/</path>
       <name>ToSic.Eav.Data.Build.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Eav.Data.Build.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -26,7 +38,19 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Eav.Data.Stack.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Eav.Data.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Eav.DataSource.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Eav.DataSource.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -34,7 +58,15 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Eav.DataSources.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Eav.ImportExport.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Eav.ImportExport.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -46,7 +78,15 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Eav.LookUp.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Eav.Persistence.Efc.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Eav.Persistence.Efc.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -54,7 +94,15 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Eav.Persistence.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Eav.Repository.Efc.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Eav.Repository.Efc.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -62,7 +110,15 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Eav.WebApi.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Eav.Work.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Eav.Work.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -70,7 +126,15 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Sxc.Adam.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Sxc.Apps.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Apps.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -78,7 +142,15 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Sxc.Blocks.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Sxc.Cms.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Cms.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -86,7 +158,15 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Sxc.Code.Generate.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Sxc.Code.HotBuild.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Code.HotBuild.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -94,7 +174,15 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Sxc.Code.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Sxc.Core.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Core.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -102,11 +190,23 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Sxc.Custom.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Sxc.Data.pdb</name>
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Sxc.Data.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Sxc.Dnn.Core.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Dnn.Core.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -118,11 +218,15 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Sxc.Dnn.Razor.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Sxc.Dnn.WebApi.pdb</name>
     </file>
     <file>
       <path>bin/</path>
-      <name>ToSic.Sxc.Dnn.xml</name>
+      <name>ToSic.Sxc.Dnn.WebApi.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -130,7 +234,15 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Sxc.Edit.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Sxc.Engines.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Engines.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -138,7 +250,15 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Sxc.Images.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Sxc.LightSpeed.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.LightSpeed.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -146,7 +266,15 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Sxc.Render.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Sxc.Services.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.Services.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -154,7 +282,15 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Sxc.Web.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Sxc.WebApi.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sxc.WebApi.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -162,7 +298,15 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Sys.Caching.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Sys.Code.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sys.Code.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -170,7 +314,15 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Sys.Core.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Sys.Features.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sys.Features.xml</name>
     </file>
     <file>
       <path>bin/</path>
@@ -178,11 +330,23 @@
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Sys.OData.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Sys.Security.pdb</name>
     </file>
     <file>
       <path>bin/</path>
+      <name>ToSic.Sys.Security.xml</name>
+    </file>
+    <file>
+      <path>bin/</path>
       <name>ToSic.Sys.Utils.pdb</name>
+    </file>
+    <file>
+      <path>bin/</path>
+      <name>ToSic.Sys.Utils.xml</name>
     </file>
   </files>
 </dotnetnuke>
