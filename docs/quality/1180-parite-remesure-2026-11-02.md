@@ -151,3 +151,21 @@ git -C $repo cat-file blob "origin/master:$rel" > $tmp2   # en flux binaire dans
 
 Le script de cette campagne (`.tmp\rang2\parity\parity-1180.ps1`, 45 s, 36 candidats) n'est pas committé :
 `.tmp\` est ignoré. Sa sortie complète est `parity-1180.tsv`.
+
+## §8 — Addendum : le retard a été résorbé le jour même (02/11, ~17:00)
+
+Sur instruction d'ai-01 (pool #458 c.6576550705, point 3), les **16 wrappers de base** ont été
+rafraîchis sur la **préprod seule** depuis les blobs de `origin/master` (webroot `DNNPlatform\`,
+casse préservée : `fallacies_<lang>.html` / `Virtues_<lang>.html`). Les 16 `_ext`, déjà conformes,
+n'ont pas été touchés.
+
+| | avant rafraîchissement | **après** |
+|---|---|---|
+| préprod = blob | 16 | **32 / 32** |
+| préprod divergent | 17 | **1** (l'OWL, inchangé) |
+| prod ≠ préprod (croisé) | 16 | **0** — 33 identiques |
+
+Geste : dry-run d'abord (garde « source = blob de master » 16/16), backup des 16 fichiers remplacés
+avec sha256 + manifeste (`.tmp\mindmaps-preprod-refresh-20261102\backup\`), copie, vérification sur
+disque 16/16, puis re-mesure HTTP complète (92 s, cache-buster). Les §1–§7 ci-dessus décrivent
+l'état **avant** ce geste et demeurent comme constat daté.
