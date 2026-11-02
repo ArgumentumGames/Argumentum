@@ -22,7 +22,7 @@
     <value xml:space="preserve">Definição</value>
   </data>
   <data name="AddModuleControl_HelpURL.HelpText">
-    <value xml:space="preserve">Pode proporcionar uma URL de ayuda para este controle (aparecerá não menú de acções do módulo).</value>
+    <value xml:space="preserve">Pode proporcionar uma URL de ayuda para este controle (aparecerá não menú de ações do módulo).</value>
   </data>
   <data name="AddModuleControl_HelpURL.Label">
     <value xml:space="preserve">URL de ayuda:</value>
@@ -499,10 +499,10 @@
     <value xml:space="preserve">Versão da libreria</value>
   </data>
   <data name="EditJavascriptLibrary_ObjectName.HelpText">
-    <value xml:space="preserve">Nome do objecto JavaScript para acceder a os métodos da libreria.</value>
+    <value xml:space="preserve">Nome do objeto JavaScript para acceder a os métodos da libreria.</value>
   </data>
   <data name="EditJavascriptLibrary_ObjectName.Label">
-    <value xml:space="preserve">Nome de objecto</value>
+    <value xml:space="preserve">Nome de objeto</value>
   </data>
   <data name="EditJavascriptLibrary_PreferredLocation.HelpText">
     <value xml:space="preserve">Posição preferida para incluir o script. Há tres posibilidades: na cabecera da página, a principio do "body" da página o ao final do "body" da página.</value>

@@ -13,7 +13,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Actions.Text">
-    <value xml:space="preserve">Acções</value>
+    <value xml:space="preserve">Ações</value>
   </data>
   <data name="Activity.Text">
     <value xml:space="preserve">Actividade</value>

@@ -379,7 +379,7 @@ Utilice o Explorador de Windows para ver as pastas de su sitio web ( {0} ). Vá 
     <value>O usuário de base de datos não tem suficientes permissões para a instalação (dbo)</value>
   </data>
   <data name="IsAbleToPerformDatabaseActionsCheck.Text" xml:space="preserve">
-    <value>Verificando se o usuário tem suficientes permissões para realizar as acções necessárias</value>
+    <value>Verificando se o usuário tem suficientes permissões para realizar as ações necessárias</value>
   </data>
   <data name="IsSqlServerDbo.Text" xml:space="preserve">
     <value>O usuário de base de datos não tem permissões de dbo</value>

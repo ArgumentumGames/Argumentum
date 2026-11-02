@@ -43,7 +43,7 @@
     <value xml:space="preserve">Estilizar campos de formulario:</value>
   </data>
   <data name="plReplaceTokens.Help">
-    <value xml:space="preserve">Activar &lt;strong&gt;Reemplazo mejorado&lt;/strong&gt; para reemplazar tokens como "[object:property|format]" para os objectos Tab, Module, PortalSettings o User com os valores de entorno adecuados.&lt;br /&gt;
+    <value xml:space="preserve">Activar &lt;strong&gt;Reemplazo mejorado&lt;/strong&gt; para reemplazar tokens como "[object:property|format]" para os objetos Tab, Module, PortalSettings o User com os valores de entorno adecuados.&lt;br /&gt;
         Nota: a edição integrada (inline) e a cache de módulo serán desactivados, si se usa reemplazo de tokens.</value>
   </data>
   <data name="plReplaceTokens.Text">

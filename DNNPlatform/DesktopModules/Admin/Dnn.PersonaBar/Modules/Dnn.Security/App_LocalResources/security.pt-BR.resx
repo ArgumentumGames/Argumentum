@@ -13,7 +13,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Actions.Header">
-    <value xml:space="preserve">Acções</value>
+    <value xml:space="preserve">Ações</value>
   </data>
   <data name="AdminMembershipResetLinkValidity.ErrorMessage">
     <value xml:space="preserve">O tempo de validade do link de redefinição do administrador deve ser um número inteiro maior que 0 e menor que 10000.</value>
