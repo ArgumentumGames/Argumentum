@@ -91,7 +91,7 @@
       <div class="container py-2">
         <a class="to-shine-page-breadcrumb-link to-shine-page-breadcrumb-home" aria-current="page" href="<%= DotNetNuke.Common.Globals.NavigateURL(PortalSettings.HomeTabId) %>"><%= LocalizeString("Home.Text") %></a>
         <span>&nbsp;&rsaquo;&nbsp;</span><span class="to-shine-page-breadcrumb-trigger display-inline display-md-none"><a aria-current="page">...</a></span>
-        <dnn:BREADCRUMB runat="server" aria-current="page" Separator="<span>&nbsp;&rsaquo;&nbsp;</span>" CssClass="to-shine-page-breadcrumb-link" RootLevel="0" />
+        <dnn:BREADCRUMB ID="SkinBreadcrumb" runat="server" aria-current="page" Separator="<span>&nbsp;&rsaquo;&nbsp;</span>" CssClass="to-shine-page-breadcrumb-link" RootLevel="0" />
       </div>		
     </div>
   <%
@@ -244,6 +244,7 @@
     LocalizeMetaTag("description", "Meta.Description");
     LocalizeMetaTag("keywords", "Meta.Keywords");
     EmitLanguageAlternates();
+    LocalizeBreadcrumb();
   }
 
   // #458 hreflang: this DNN emits no <link rel="alternate" hreflang> and no canonical at all —
@@ -391,6 +392,56 @@
     }
     catch { /* SEO only: never break the page on it */ }
   }
+  // #458: the breadcrumb's node label is DNN's page name — Tabs.TabName, i.e. the internal FRENCH
+  // name — served as-is in every culture (measured 2026-11-03 on preprod: 4/32 nodes matched their
+  // menu label, and those 4 were the French control). The menu already serves a translated label
+  // from the skin resx (Menu.Tab<id>.Text, #1946). Both now read the SAME key through the SAME
+  // loader, so one store feeds the two: no page duplication, no second vocabulary to drift.
+  // Only the label text is rewritten, inside the markup the DNN control already built; element
+  // structure, order, classes and schema.org attributes are untouched. A missing key (fr-FR carries
+  // none on purpose) leaves the served label byte-for-byte identical — that is the French control.
+  // The control's own name resolver is left alone: it reads <TabPath>.String from GlobalResources,
+  // which has no en-US file here, so English would have to live in the base file shared by all
+  // cultures — the en-US -> invariant normalization measured in #1962 makes that a leak.
+  private void LocalizeBreadcrumb()
+  {
+    try
+    {
+      var crumb = FindControl("SkinBreadcrumb") as DotNetNuke.UI.Skins.Controls.BreadCrumb;
+      if (crumb == null || crumb.UseTitle) { return; }
+
+      var literal = crumb.FindControl("lblBreadCrumb") as System.Web.UI.WebControls.Literal;
+      if (literal == null || string.IsNullOrEmpty(literal.Text)) { return; }
+
+      var crumbs = PortalSettings.ActiveTab.BreadCrumbs;
+      var first = int.Parse(crumb.RootLevel, System.Globalization.CultureInfo.InvariantCulture);
+      var nodes = crumbs.Count - first;
+      if (nodes <= 0 || nodes > crumbs.Count) { return; }
+
+      var matches = System.Text.RegularExpressions.Regex.Matches(
+        literal.Text,
+        "<span itemprop=\"name\">(.*?)</span>",
+        System.Text.RegularExpressions.RegexOptions.Singleline);
+      // A negative RootLevel makes the control prepend a root node, and its getter normalizes that
+      // to "0" — so the rendered count is the only signal. Anything but an exact match is left alone.
+      if (matches.Count != nodes) { return; }
+
+      // Rewrite from the last node backwards: every edit then sits above the indices still to use.
+      var sb = new System.Text.StringBuilder(literal.Text);
+      for (var i = matches.Count - 1; i >= 0; i--)
+      {
+        var tab = (DotNetNuke.Entities.Tabs.TabInfo)crumbs[first + i];
+        var label = CultureString("Menu.Tab" + tab.TabID + ".Text");
+        if (string.IsNullOrWhiteSpace(label)) { continue; }
+        var name = matches[i].Groups[1];
+        sb.Remove(name.Index, name.Length);
+        sb.Insert(name.Index, System.Web.HttpUtility.HtmlEncode(label));
+      }
+      literal.Text = sb.ToString();
+    }
+    catch { /* chrome only: never break the page on it */ }
+  }
+
   private void LocalizeMetaTag(string metaName, string resxKey)
   {
     try
