@@ -56,6 +56,11 @@ namespace Argumentum.AssetConverter.Tests
 		// marqueur naïf ferait un faux rouge) : Indique, proporcione,
 		// Guardar, gestionar, reiniciar, enlace, clicando, web, momento,
 		// está, puede(s), breve, poder, verificar, elegir.
+		// ⚠️ Le 03/11, la resynchronisation es-ES d'AdminResetHelp (#458) a
+		// retiré la SEULE cellule es portant « automáticamente » et « creara »
+		// : les deux marqueurs correspondants sont sortis de la grille —
+		// l'auto-contrôle (Marker_Grid_Is_Non_Vacuous_On_Es) serait devenu
+		// aveugle, ce qui est exactement ce qu'il est là pour attraper.
 		// ------------------------------------------------------------------
 		private static readonly Regex[] SpanishMarkers =
 		{
@@ -68,10 +73,8 @@ namespace Argumentum.AssetConverter.Tests
 			new(@"\brecibirá\b", RegexOptions.IgnoreCase),
 			new(@"\brecibido\b", RegexOptions.IgnoreCase),
 			new(@"\bcambi\w*", RegexOptions.IgnoreCase),
-			new(@"\bautomáticamente\b", RegexOptions.IgnoreCase),
 			new(@"\bconozca\b", RegexOptions.IgnoreCase),
 			new(@"\bUd\b"),
-			new(@"\bcreará\b", RegexOptions.IgnoreCase),
 			new(@"\brequire\b", RegexOptions.IgnoreCase),
 			new(@"\bdisponible\b", RegexOptions.IgnoreCase),
 			new(@"\bbotón\b", RegexOptions.IgnoreCase),
