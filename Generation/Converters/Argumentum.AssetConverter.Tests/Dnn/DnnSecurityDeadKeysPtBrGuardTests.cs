@@ -31,7 +31,15 @@ namespace Argumentum.AssetConverter.Tests
 	/// changement de comportement potentiel pour un DNN qui lirait encore ces cles (regle du
 	/// depot : jamais de suppression sans preuve de preservation). Cette garde rend les deux
 	/// gestes silencieux impossibles : le compte exact (13) rougit si une cle disparait OU si
-	/// une 14e nait, et chaque valeur est epinglee — « traduire » une cle morte devient rouge.</para>
+	/// une 15e nait, et chaque valeur est epinglee — « traduire » une cle morte devient rouge.</para>
+	///
+	/// <para>⚠️ <b>Le compte est passe de 13 a 14 le 03/11/2026 (#2127)</b>, et ce n'est pas un
+	/// geste de la lane : la montee DNN 10.4.1 a retire <c>TabLoginSettings.Text</c> du neutre
+	/// (mesure sur le blob : <c>Security.resx</c> 363 → 467 cles, UNE SEULE retiree, celle-la).
+	/// Le pack pt-BR, fige, la livre toujours ; elle est donc morte par la meme definition que
+	/// les treize autres — presente au pt-BR, absente du neutre et de l'es-ES. Son temoin de
+	/// provenance est <c>TabBasicLoginSettings.Text</c>, qui portait deja l'onglet AVANT la
+	/// montee (aucun renommage a suivre).</para>
 	///
 	/// <para><b>Instrument</b> : l'inventaire se mesure en C# par <c>XDocument</c>, pas par
 	/// regex — le neutre porte trois <c>&lt;value /&gt;</c> auto-fermes
@@ -68,7 +76,7 @@ namespace Argumentum.AssetConverter.Tests
 			return Convert.ToHexString(sha.ComputeHash(Encoding.UTF8.GetBytes(cell))).ToLowerInvariant();
 		}
 
-		/// <summary>Les 13 cles mortes, nommees — l'inventaire mesure doit lui EGALER.</summary>
+		/// <summary>Les 14 cles mortes, nommees — l'inventaire mesure doit lui EGALER.</summary>
 		private static readonly string[] DeadKeys =
 		{
 			"CheckTelerikVulnerabilityFailure.Text", "CheckTelerikVulnerabilityName.Text",
@@ -77,7 +85,7 @@ namespace Argumentum.AssetConverter.Tests
 			"Redirect_AfterLogin.Text", "Redirect_AfterLogout.Help",
 			"Redirect_AfterLogout.Text", "Redirect_AfterRegistration.Help",
 			"Redirect_AfterRegistration.Text", "plSSLEnabled.Help",
-			"plSSLEnabled.Text",
+			"plSSLEnabled.Text", "TabLoginSettings.Text",
 		};
 
 		/// <summary>Ce qui les a remplacees au neutre — temoins de la provenance.</summary>
@@ -85,6 +93,7 @@ namespace Argumentum.AssetConverter.Tests
 		{
 			"No.Text", "RedirectionMovedToSiteSettings.Text",
 			"plSSLEnforced.Text", "plSSLEnforced.Help",
+			"TabBasicLoginSettings.Text",
 		};
 
 		/// <summary>Empreinte de chaque valeur morte : personne ne « traduit » une cle sans source.</summary>
@@ -103,10 +112,11 @@ namespace Argumentum.AssetConverter.Tests
 			("Redirect_AfterRegistration.Text", "811cad9cd428dc945a309ad86c171a03c892ab9f2257fac9a9de89ee49f51be4"),
 			("plSSLEnabled.Help", "4280f5c07b08859905423ac3c89d38fb64874968429e0185b30339adfa4a4679"),
 			("plSSLEnabled.Text", "52279a0f002e635f7405a7406f6b7910ec0635d5a5992410e7ef8bd3b5e530d7"),
+			("TabLoginSettings.Text", "5eb0c10d8e89a05791237b42353712126e24d4de659e954ab2776ba293e86abb"),
 		};
 
 		[Fact]
-		public void Dead_Keys_Inventory_Is_Exactly_The_Named_Thirteen()
+		public void Dead_Keys_Inventory_Is_Exactly_The_Named_Fourteen()
 		{
 			var pt = Load(PtResx);
 			var neu = Load(NeutralResx);
@@ -114,11 +124,11 @@ namespace Argumentum.AssetConverter.Tests
 				.OrderBy(k => k, StringComparer.Ordinal).ToList();
 			var expected = DeadKeys.OrderBy(k => k, StringComparer.Ordinal).ToList();
 			measured.Should().Equal(expected,
-				"l'inventaire des cles mortes doit rester EXACTEMENT les 13 nommees : une cle disparue " +
+				"l'inventaire des cles mortes doit rester EXACTEMENT les 14 nommees : une cle disparue " +
 				"(suppression silencieuse) ou une 14e nee (copie silencieuse) rougit ce test — les deux " +
 				"gestes sont deliberes ou ne sont pas");
-			DeadKeys.Should().HaveCount(13);
-			DeadKeys.Distinct().Should().HaveCount(13);
+			DeadKeys.Should().HaveCount(14);
+			DeadKeys.Distinct().Should().HaveCount(14);
 		}
 
 		[Fact]
@@ -134,7 +144,7 @@ namespace Argumentum.AssetConverter.Tests
 		public void Dead_Keys_Values_Are_Pinned()
 		{
 			var pt = Load(PtResx);
-			Pins.Should().HaveCount(13);
+			Pins.Should().HaveCount(14);
 			var offenders = Pins
 				.Where(p => !pt.ContainsKey(p.Key) || Sha256Hex(pt[p.Key]) != p.Sha256)
 				.Select(p => p.Key)

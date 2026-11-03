@@ -605,6 +605,9 @@
   <data name="RoleGroupUpdated.Message">
     <value xml:space="preserve">Grupo de funções atualizado com sucesso.</value>
   </data>
+  <data name="RoleId.Text">
+    <value xml:space="preserve">ID da função</value>
+  </data>
   <data name="RoleName.Header">
     <value xml:space="preserve">Nome da função</value>
   </data>
