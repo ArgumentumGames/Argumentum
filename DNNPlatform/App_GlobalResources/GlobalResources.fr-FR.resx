@@ -1415,5 +1415,101 @@ son consentement écrit préalable. Toutes les autres marques de produits et de 
   <data name="cc_message.Text">
     <value xml:space="preserve">Ce site utilise des cookies pour vous garantir la meilleure expérience sur notre site.</value>
   </data>
+  <data name="Administrators.Role">
+    <value xml:space="preserve">Administrateurs</value>
+  </data>
+  <data name="Administrators.RoleDescription">
+    <value xml:space="preserve">Les administrateurs peuvent accéder à tout le contenu de ce site, le modifier et contrôler tous les paramètres du site. Ils peuvent gérer l'accès des utilisateurs au site ainsi que les autres administrateurs. Ce type d'utilisateur ne peut pas effectuer de modifications au niveau système ni exécuter les tâches d'administration privilégiées réservées aux super-utilisateurs.</value>
+  </data>
+  <data name="All Users.Role">
+    <value xml:space="preserve">Tout le monde</value>
+  </data>
+  <data name="All Users.RoleDescription">
+    <value xml:space="preserve">Il s'agit d'un rôle géré par la plateforme (vous ne pouvez donc ni y ajouter ni en retirer des utilisateurs). Ce rôle représente TOUT visiteur du site web, quel que soit son état de connexion ou de compte.</value>
+  </data>
+  <data name="CompleteStateBody.Text">
+    <value xml:space="preserve">La page « {0} » est à l'état « {1} » et attend une révision et une approbation.</value>
+  </data>
+  <data name="CompleteStateSubject.Text">
+    <value xml:space="preserve">Approbation de page</value>
+  </data>
+  <data name="CompleteWorkflowBody.Text">
+    <value xml:space="preserve">La page « {0} » a été publiée et est désormais en ligne.</value>
+  </data>
+  <data name="CompleteWorkflowSubject.Text">
+    <value xml:space="preserve">Page publiée</value>
+  </data>
+  <data name="Content Editors.Role">
+    <value xml:space="preserve">Éditeurs de contenu</value>
+  </data>
+  <data name="Content Editors.RoleDescription">
+    <value xml:space="preserve">Les éditeurs de contenu sont autorisés à ajouter et modifier du contenu sur ce site. Les fonctionnalités exactes dépendent de ce que prennent en charge les modules utilisés sur ce site.</value>
+  </data>
+  <data name="Content Managers.Role">
+    <value xml:space="preserve">Gestionnaires de contenu</value>
+  </data>
+  <data name="Content Managers.RoleDescription">
+    <value xml:space="preserve">Les gestionnaires de contenu décident de ce qui est affiché sur le site web. Ils peuvent modifier ce que les éditeurs de contenu ont produit et décider si ce contenu est publié ou non. Les fonctionnalités exactes dépendent de ce que prennent en charge les modules utilisés sur ce site.</value>
+  </data>
+  <data name="DiscardStateBody.Text">
+    <value xml:space="preserve">Les modifications de la page « {0} » ont été rejetées ; la page est désormais à l'état « {1} ».</value>
+  </data>
+  <data name="DiscardStateSubject.Text">
+    <value xml:space="preserve">Page rejetée</value>
+  </data>
+  <data name="DiscardWorkflowBody.Text">
+    <value xml:space="preserve">Les modifications de la page « {0} » ont été abandonnées.</value>
+  </data>
+  <data name="DiscardWorkflowSubject.Text">
+    <value xml:space="preserve">Page abandonnée</value>
+  </data>
+  <data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_SUBJECT.Text">
+    <value xml:space="preserve">[Portal:PortalName] Réinitialisation de mot de passe demandée pour un utilisateur non approuvé [User:Username]</value>
+  </data>
+  <data name="Registered Users.Role">
+    <value xml:space="preserve">Utilisateurs enregistrés</value>
+  </data>
+  <data name="Registered Users.RoleDescription">
+    <value xml:space="preserve">Tous les utilisateurs qui possèdent un compte sur ce site et qui, si la vérification a été activée, ont été vérifiés.</value>
+  </data>
+  <data name="StartWorkflowBody.Text">
+    <value xml:space="preserve">La page « {0} » est à l'état « {1} » et attend d'être soumise.</value>
+  </data>
+  <data name="StartWorkflowSubject.Text">
+    <value xml:space="preserve">Page soumise</value>
+  </data>
+  <data name="Subscribers.Role">
+    <value xml:space="preserve">Abonnés</value>
+  </data>
+  <data name="Subscribers.RoleDescription">
+    <value xml:space="preserve">Les abonnés acceptent d'être contactés par e-mail depuis ce site web. Les utilisateurs peuvent se retirer de ce rôle afin de garder la maîtrise de ce choix.</value>
+  </data>
+  <data name="Superuser.Role">
+    <value xml:space="preserve">Super-utilisateurs</value>
+  </data>
+  <data name="Superuser.RoleDescription">
+    <value xml:space="preserve">Les super-utilisateurs (parfois appelés utilisateurs hôtes) disposent d'un accès « hôte » au site : ils peuvent accéder à tout contenu de n'importe lequel des sites de cette installation et le modifier, y compris ajouter ou retirer des administrateurs et d'autres super-utilisateurs. Ils peuvent également effectuer des tâches au niveau système, comme vider le cache, redémarrer l'application, gérer les fichiers de configuration et configurer les paramètres globaux.</value>
+  </data>
+  <data name="Unauthenticated Users.Role">
+    <value xml:space="preserve">Utilisateurs non authentifiés</value>
+  </data>
+  <data name="Unauthenticated Users.RoleDescription">
+    <value xml:space="preserve">Il s'agit d'un rôle géré par la plateforme (vous ne pouvez pas affecter d'utilisateurs à ce rôle). Il désigne les utilisateurs qui ne sont pas connectés.</value>
+  </data>
+  <data name="Unverified Users.Role">
+    <value xml:space="preserve">Utilisateurs non vérifiés</value>
+  </data>
+  <data name="Unverified Users.RoleDescription">
+    <value xml:space="preserve">Si ce site utilise la vérification de compte, tout utilisateur qui s'inscrit fait d'abord partie de ce rôle et non des « utilisateurs enregistrés ». Dès qu'il a été vérifié (selon le paramètre, en cliquant sur un lien reçu par e-mail ou par un administrateur), l'utilisateur ne fait plus partie de ce rôle et devient un « utilisateur enregistré » ordinaire.</value>
+  </data>
+  <data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_BODY.Text" xml:space="preserve">
+    <value>
+L'utilisateur suivant a demandé un jeton de réinitialisation de mot de passe sur [Portal:PortalName], mais son compte est en attente d'approbation.
+Nom d'utilisateur : [User:UserName]
+Nom d'affichage : [User:DisplayName]
+
+Après avoir examiné cet utilisateur, si le compte est autorisé, renvoyez-lui un e-mail de réinitialisation de mot de passe.
+    </value>
+  </data>
   <!---->
 </root>
