@@ -4,49 +4,5 @@
       <path>bin/runtimes/win-x64/native/</path>
       <name>imageflow.dll.pending</name>
     </file>
-    <file>
-      <path>bin/Imageflow/</path>
-      <name>Microsoft.Extensions.Configuration.Abstractions.dll</name>
-    </file>
-    <file>
-      <path>bin/Imageflow/</path>
-      <name>Microsoft.Extensions.DependencyInjection.Abstractions.dll</name>
-    </file>
-    <file>
-      <path>bin/Imageflow/</path>
-      <name>Microsoft.Extensions.DependencyInjection.dll</name>
-    </file>
-    <file>
-      <path>bin/Imageflow/</path>
-      <name>Microsoft.Extensions.FileProviders.Abstractions.dll</name>
-    </file>
-    <file>
-      <path>bin/Imageflow/</path>
-      <name>Microsoft.Extensions.Hosting.Abstractions.dll</name>
-    </file>
-    <file>
-      <path>bin/Imageflow/</path>
-      <name>Microsoft.Extensions.Logging.Abstractions.dll</name>
-    </file>
-    <file>
-      <path>bin/Imageflow/</path>
-      <name>Microsoft.Extensions.Primitives.dll</name>
-    </file>
-    <file>
-      <path>bin/Imageflow/</path>
-      <name>Microsoft.IO.RecyclableMemoryStream.dll</name>
-    </file>
-    <file>
-      <path>bin/</path>
-      <name>Imageflow.Net.dll</name>
-    </file>
-    <file>
-      <path>bin/</path>
-      <name>Imazen.Common.dll</name>
-    </file>
-    <file>
-      <path>bin/</path>
-      <name>Imazen.HybridCache.dll</name>
-    </file>
   </files>
 </dotnetnuke>

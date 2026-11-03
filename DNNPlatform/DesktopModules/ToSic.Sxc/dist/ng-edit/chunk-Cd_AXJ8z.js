@@ -1,0 +1,3 @@
+import{Ni as z,V as Jb}from"./chunk-DtJSyZhi.js";var c=(()=>{class t{constructor(){this.subscriptions=new z}ngOnDestroy(){this.subscriptions.unsubscribe()}static{this.ɵfac=function(e){return new(e||t)}}static{this.ɵcmp=Jb({type:t,selectors:[[`app-base`]],decls:0,vars:0,template:function(e,i){},encapsulation:2})}}return t})();export{c as t};
+//# debugId=80f1e52d-063f-5359-b38b-8ba4bb55fc50
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/chunk-Cd_AXJ8z.js.map

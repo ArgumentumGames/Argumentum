@@ -1,0 +1,3 @@
+import{Bi as C}from"./chunk-DtJSyZhi.js";import"./chunk-C4dVjHVF.js";import"./chunk-D18RyqxO.js";import"./main-NXRXUN76.js";import"./chunk-Bo0R4CmS.js";import{t as b}from"./chunk-Cq0cgRJm.js";var m=[{path:``,component:b,data:{dialog:{name:`EXPORT_CONTENT_TYPE_DIALOG`,initContext:!0,panelSize:`medium`,panelClass:null,getComponent(){return C(this,null,function*(){let{ContentExportComponent:e}=yield import(`./content-export-Br1P5M0F.js`);return e})}}}}];export{m as ContentExportRoutes};
+//# debugId=8fef184c-5c2d-507b-a568-5e2759ab078f
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/content-export.routing-DTK0RCc0.js.map

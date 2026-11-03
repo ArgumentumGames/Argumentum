@@ -1,0 +1,3 @@
+function a(r){return new Promise((o,n)=>{let e=new FileReader;e.readAsDataURL(r),e.onload=()=>{o(e.result.split(`,`)[1])},e.onerror=t=>{n(t)}})}function s(r){return new Promise((o,n)=>{let e=new FileReader;e.readAsText(r),e.onload=()=>{o(e.result)},e.onerror=t=>{n(t)}})}export{s as n,a as t};
+//# debugId=20368c15-4c73-5c50-b9dd-a07a7fad600e
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/chunk-BOhCr1jr2.js.map

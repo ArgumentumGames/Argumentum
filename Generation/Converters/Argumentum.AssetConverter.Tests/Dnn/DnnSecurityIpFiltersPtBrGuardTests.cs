@@ -29,7 +29,11 @@ namespace Argumentum.AssetConverter.Tests
 	/// <para><b>Errata web2 appliques</b> : grille calibree sur l'es-ES du FICHIER restreint aux cles
 	/// du neutre (<b>359</b> cles partagees ; <b>4</b> cles du neutre sont absentes de l'es-ES :
 	/// <c>TabLoginSettings.Text</c>, <c>ScannerExplanation.Text</c>, <c>ModifiedSettingsExplaination.Text</c>,
-	/// <c>ModifiedFilesExplaination.Text</c>), assertion bornee a l'onglet. <b>Six</b> candidats sont
+	/// <c>ModifiedFilesExplaination.Text</c>), assertion bornee a l'onglet.
+	/// ⚠️ Ce compte est passe a <b>3</b> le 03/11/2026 (#2127) : la montee DNN 10.4.1 a retire
+	/// <c>TabLoginSettings.Text</c> du NEUTRE, donc il n'y a plus « une cle du neutre absente de
+	/// l'es » a compter pour elle — elle n'est plus au neutre. Les trois autres sont inchangees,
+	/// et le role de ce temoin (grille non vide, calibree sur es∩neutre) est intact. <b>Six</b> candidats sont
 	/// ECARTES par mesure, pas par gout : <c>única</c> (5 cellules pt-BR legitimes), <c>rango</c> (5),
 	/// <c>combinará</c> (forme identique en pt), <c>actualizado</c> (88 cellules pt-BR du corpus),
 	/// <c>seguro</c> (65), et les homographes <c>permitir</c>/<c>bloquear</c>/<c>máscara</c>. Deux
@@ -183,8 +187,8 @@ namespace Argumentum.AssetConverter.Tests
 			var neu = Load(NeutralResx);
 			var live = es.Where(kv => neu.ContainsKey(kv.Key)).ToList();
 			live.Should().HaveCountGreaterThan(300, "es∩neutre : le fichier porte 359 cles partagees");
-			neu.Keys.Where(k => !es.ContainsKey(k)).Should().HaveCount(4,
-				"mesure : 4 cles du neutre sont absentes de l'es-ES (TabLoginSettings.Text, ScannerExplanation.Text, ModifiedSettingsExplaination.Text, ModifiedFilesExplaination.Text)");
+			neu.Keys.Where(k => !es.ContainsKey(k)).Should().HaveCount(3,
+				"mesure : 3 cles du neutre sont absentes de l'es-ES (ScannerExplanation.Text, ModifiedSettingsExplaination.Text, ModifiedFilesExplaination.Text) — TabLoginSettings.Text n'en fait plus partie, la montee 10.4.1 l'a retiree du NEUTRE (03/11/2026, #2127)");
 			var hits = live.Sum(kv => SpanishMarkers.Count(m => kv.Value.ToLowerInvariant().Contains(m)));
 			hits.Should().BeGreaterThan(45, "mesure : 53 occurrences des 13 marqueurs sur l'es-ES∩neutre — un ecran qui n'en voit aucun n'etablit rien");
 			SpanishMarkers.Should().HaveCount(13).And.OnlyHaveUniqueItems();

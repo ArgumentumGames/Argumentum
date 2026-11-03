@@ -1,0 +1,3 @@
+import{Ti as xt,Yr as st,zt as W}from"./chunk-DtJSyZhi.js";import{b as Qe}from"./chunk-C4dVjHVF.js";function l(e,t){return c(e,st(t,{equal:Qe,debugName:e}))}function d(e,t){return c(e,xt(t,{equal:Qe,debugName:e}))}function c(e,t){if(!t)return t;let r=t;return r.debugName=e,r[W]&&(r[W].debugName=e),t}function a(e,t){let r=t;return xt(()=>{let i=e(r);return r=i,i},{equal:Qe})}function b(e){return e?e[W]?.version??null:null}export{l as i,b as n,d as r,a as t};
+//# debugId=43af8590-00e6-5eb1-bd63-1993dfa3b0db
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/chunk-kNQ1WOz-.js.map

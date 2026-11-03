@@ -1,16 +1,4 @@
-﻿<div>
-		Everything in 2sxc is <em>free open source</em> 😉 <br>
-	<p>
-		2sxc itself is released under the MIT license. 
-		It also uses many other open source components with different open-source licenses, from AGPL to X11. 
-		If you want to know more, read our <a href="http://2sxc.org/License" target="_blank">license page</a>.
-	</p>
-
-	<p>
-		Be sexy - give back to the community or <a href="https://www.kiva.org/invitedby/ijungleboy" target="_blank">to those less fortunate</a>.
-		Contribute your work, support others - share the 💖. 
-	</p>
-	<p>
-		And if you really benefit from 2sxc, please become a <a href="https://patrons.2sxc.org/" target="_blank">patron 🦹</a> - it's a great way to support the project and get some extra benefits.
-	</p>
-</div>
+<p>ToSic.Imageflow.Dnn extension for <a href="https://dnncommunity.org/" target="_blank">DNN</a></p>
+<p>2sic <a href="https://www.2sic.com/" target="_blank">https://www.2sic.com/</a></p>
+<p>Imazen <a href="https://www.imageflow.io/" target="_blank">Imageflow</a></p>
+<p><a href="https://github.com/imazen/imageflow/blob/main/LICENSE" target="_blank">AGPL-3.0 License</a></p>

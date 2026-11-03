@@ -1,0 +1,3 @@
+import{Kn as ii,xt as Ry}from"./chunk-DtJSyZhi.js";var c=(()=>{class o{onMousedown(t){t.stopPropagation()}static{this.ɵfac=function(i){return new(i||o)}}static{this.ɵdir=ii({type:o,selectors:[[``,`appMousedownStopPropagation`,``]],hostBindings:function(i,r){i&1&&Ry(`mousedown`,function(s){return r.onMousedown(s)})}})}}return o})();export{c as t};
+//# debugId=6e281b4b-9d5b-5874-b6aa-4b5e6a40814d
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/chunk-DXhMXrP5.js.map

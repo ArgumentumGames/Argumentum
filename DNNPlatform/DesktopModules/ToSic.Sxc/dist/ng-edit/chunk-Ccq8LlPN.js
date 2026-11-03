@@ -1,0 +1,3 @@
+import{Bi as C}from"./chunk-DtJSyZhi.js";import{L}from"./main-NXRXUN76.js";import{t as b}from"./chunk-Cq0cgRJm.js";var l=[{path:``,component:b,data:{dialog:{name:`SET_PERMISSIONS_DIALOG`,initContext:!0,panelSize:`large`,panelClass:null,getComponent(){return C(this,null,function*(){let{PermissionsComponent:i}=yield import(`./permissions-BjWzjPbi.js`);return i})}}},children:L}];export{l as t};
+//# debugId=ea4b79b1-abd9-5b84-95bc-0138b424b869
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/chunk-Ccq8LlPN.js.map

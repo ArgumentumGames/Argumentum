@@ -1,0 +1,3 @@
+import{f as Au}from"./chunk-DtJSyZhi.js";var s=n=>n;function d(n,e){let f=e.decode??s,i=e.normalizeKey??s;Au(()=>{let o=e.items();if(!o?.length)return;let c=n.urlSegments.at(-1);if(!c)return;let r=i(f(c)),t=o.find(a=>i(e.itemKey(a))===r);e.onMatch?.(t,{segment:c,key:r});let m=t?e.control():null;!t||!m||m.setValue(e.itemKey(t),{emitEvent:!1})})}export{d as t};
+//# debugId=cb8ae2b5-7706-5fce-b981-dbac1587bd88
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/chunk-Bl739FkD.js.map

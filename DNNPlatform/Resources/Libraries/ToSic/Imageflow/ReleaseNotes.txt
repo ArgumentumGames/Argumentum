@@ -1,14 +1,12 @@
-﻿<p>
-    <b>2sxc v21.07.00</b>
-    <br><br>
-    Note: 2sxc v20 cleans up a lot of old APIs, so it's called a <a href="https://go.2sxc.org/mot">MoT release</a> (Moment of Truth).
-    <br><br>
-    If you have old code, things may break and you will be guided to fix the issues.
-    <br><br>
-    Please read the release notes carefully, do backups, and test-upgrade on a copy before upgrading a live environment.
-    See the <a href="https://go.2sxc.org/v20">release blog</a> for more details.
-<p>
-<br>
-<p>
-    Also read the <a href="https://github.com/2sic/2sxc/releases" target="_blank">release notes on Github</a><br/>
-</p>
+<h2>Imageflow Extension for DNN</h2>
+<p><strong>Version:</strong> 01.13.00</p>
+
+<h3>Changelog</h3>
+<ul>
+  <li>Fix #6 Read the file into memory and return a MemoryStream to avoid file locks.</li>
+</ul>
+
+<h3>Notes</h3>
+<ul>
+  <li>During installation, the extension will automatically unregister the older <code>ImageResizer</code> HTTP module in <code>web.config</code>.</li>
+</ul>

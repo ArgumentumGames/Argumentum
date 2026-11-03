@@ -156,6 +156,48 @@ namespace Argumentum.AssetConverter.Tests
 					"EMAIL_MESSAGING_DISPATCH_BODY.Text",
 					"EMAIL_MESSAGING_DISPATCH_ITEM.Text",
 					"License.Text",
+
+					// ── Ajouts du NEUTRE par la montée DNN 10.4.1 (02/11/2026, #2123) ──
+					// Mesuré le 03/11 sur l'arbre de préprod après restauration des
+					// deux blocs juridiques : le neutre porte 211 clés, les packs
+					// ar-SA/fa-IR/zh-CN en livrent 172, l'ensemble manquant vaut
+					// EXACTEMENT 40 = ces 30 clés + les 10 blocs non traduits ci-dessus.
+					// Identique sur les trois cultures, donc bien un défaut de FICHIER :
+					// c'est le neutre qui a gagné ces clés, pas un pack qui en a perdu.
+					// Elles ne sont pas traduites (grain de traduction distinct de
+					// #2127) ; les déclarer ici est ce qui empêche un futur lot de
+					// croire à une couverture perdue, et une clé RETIRÉE de cette liste
+					// sans traduction livrée rend le test rouge (appartenance exacte).
+					"EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_BODY.Text",
+					"EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_SUBJECT.Text",
+					"StartWorkflowSubject.Text",
+					"StartWorkflowBody.Text",
+					"CompleteStateSubject.Text",
+					"CompleteStateBody.Text",
+					"DiscardStateSubject.Text",
+					"DiscardStateBody.Text",
+					"CompleteWorkflowSubject.Text",
+					"CompleteWorkflowBody.Text",
+					"DiscardWorkflowSubject.Text",
+					"DiscardWorkflowBody.Text",
+					"Administrators.Role",
+					"All Users.Role",
+					"Superuser.Role",
+					"Unauthenticated Users.Role",
+					"Registered Users.Role",
+					"Unverified Users.Role",
+					"Subscribers.Role",
+					"Content Editors.Role",
+					"Content Managers.Role",
+					"Administrators.RoleDescription",
+					"All Users.RoleDescription",
+					"Content Editors.RoleDescription",
+					"Content Managers.RoleDescription",
+					"Subscribers.RoleDescription",
+					"Superuser.RoleDescription",
+					"Unauthenticated Users.RoleDescription",
+					"Unverified Users.RoleDescription",
+					"Registered Users.RoleDescription",
 				},
 
 				// SharedResources : les sept clés à neutre VIDE du fichier neutre
@@ -194,6 +236,62 @@ namespace Argumentum.AssetConverter.Tests
 		/// </summary>
 		private static readonly Dictionary<(string Stem, string Culture), string[]> AllowedMissingByFileAndCulture =
 			new Dictionary<(string, string), string[]>();
+
+		/// <summary>
+		/// Clés que le pack LIVRE alors que le neutre ne les porte PLUS, **déclarées
+		/// par fichier**. Sans cette déclaration, une clé orpheline est indistinguable
+		/// d'une clé INVENTÉE : les deux sont « livrée, absente du neutre ».
+		/// <para>
+		/// Mesuré le 03/11/2026 (#2127) : la montée DNN 10.4.1 a retiré
+		/// <c>ActivatingLicense.Text</c> du neutre <c>GlobalResources</c> ; les trois
+		/// packs ar-SA/fa-IR/zh-CN la livrent encore, à l'identique (1 clé hors-neutre
+		/// par culture, mesurée). C'est un défaut de FICHIER — le neutre est commun aux
+		/// trois cultures.
+		/// </para>
+		/// <para>
+		/// La déclaration n'est PAS un blanc-seing : l'ensemble livré-hors-neutre est
+		/// asserté ÉGAL à celui-ci (<c>TheMissingKeysAreExactlyTheDeclaredOnes</c>), donc
+		/// une clé inventée, ou une seconde clé retirée du neutre, reste rouge. Retirer
+		/// une entrée ici sans que le pack cesse de livrer la clé rend le test rouge.
+		/// </para>
+		/// </summary>
+		private static readonly Dictionary<string, string[]> RemovedFromNeutralByStem =
+			new Dictionary<string, string[]>
+			{
+				// DNN 10.4.1 (montée du 02/11/2026) : clé de licence disparue du neutre.
+				["GlobalResources"] = new[] { "ActivatingLicense.Text" },
+			};
+
+		/// <summary>
+		/// Clés déclarées orphelines pour un fichier ; liste vide si rien n'est déclaré —
+		/// jamais <c>null</c>, pour que les consommateurs n'aient pas à distinguer
+		/// « non déclaré » de « déclaré vide ».
+		/// </summary>
+		private static string[] RemovedFromNeutral(string stem) =>
+			RemovedFromNeutralByStem.TryGetValue(stem, out var declared) ? declared : Array.Empty<string>();
+
+		/// <summary>
+		/// Clés dont le NEUTRE a été RÉÉCRIT par une montée DNN alors que la traduction
+		/// livrée n'a pas encore été rafraîchie. Le décalage est DÉCLARÉ ici avec ses
+		/// compteurs MESURÉS, jamais toléré en silence : sans cette table, la garde
+		/// d'identité des jetons serait soit rouge à vie (et contournée), soit
+		/// désactivée (et aveugle). Les deux compteurs sont assertés — si la traduction
+		/// est refaite, ou si le neutre bouge encore, le test rougit et force à
+		/// retirer ou mettre à jour la déclaration.
+		/// <para>
+		/// Mesuré le 03/11/2026 (#2127) : DNN 10.4.1 a réécrit la valeur anglaise de
+		/// <c>EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_BODY.Text</c> en ajoutant une
+		/// PHRASE entière (304 → 398 caractères) qui nomme une troisième fois le
+		/// portail — 2 → 3 <c>[Portal:PortalName]</c>, soit 4 jetons DNN au neutre
+		/// contre 3 dans les trois packs. Retraduire cette phrase exige une validation
+		/// native (ar/fa/zh) : c'est un grain de traduction #458, pas un re-épinglage.
+		/// </para>
+		/// </summary>
+		private static readonly Dictionary<(string Stem, string Key), (int Delivered, int Neutral)> NeutralRewrittenPendingRetranslation =
+			new Dictionary<(string, string), (int, int)>
+			{
+				[("GlobalResources", "EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_BODY.Text")] = (3, 4),
+			};
 
 		/// <summary>
 		/// Résolution de l'ensemble manquant autorisé pour UN couple : la dérogation
@@ -305,9 +403,23 @@ namespace Argumentum.AssetConverter.Tests
 			var neutral = Values(stem, string.Empty);
 			var localized = Values(stem, culture);
 			var verbatim = VerbatimByDesign[culture];
+			var removed = RemovedFromNeutral(stem);
 
 			foreach (var (key, value) in localized)
 			{
+				if (removed.Contains(key, StringComparer.Ordinal))
+				{
+					// Clé ORPHELINE DÉCLARÉE : le neutre ne la porte plus (retirée par une
+					// montée DNN). Le pack la livre encore ; DNN ignore une clé sans
+					// contrepartie neutre, il n'y a donc plus de source à laquelle la
+					// comparer. On n'exige que sa non-vacuité — et l'APPARTENANCE exacte
+					// de cet ensemble est assertée dans TheMissingKeysAreExactlyTheDeclaredOnes,
+					// sans quoi cette branche deviendrait le blanc-seing des clés inventées.
+					value.Should().NotBeNullOrWhiteSpace(
+						$"{stem}.{culture}:{key} — clé orpheline déclarée mais VIDE");
+					continue;
+				}
+
 				neutral.Should().ContainKey(key, $"{stem}.{culture} : clé « {key} » absente du neutre");
 				var source = neutral[key];
 
@@ -320,6 +432,20 @@ namespace Argumentum.AssetConverter.Tests
 				Placeholder.Matches(value).Select(m => m.Value).OrderBy(x => x, StringComparer.Ordinal)
 					.Should().Equal(Placeholder.Matches(source).Select(m => m.Value).OrderBy(x => x, StringComparer.Ordinal),
 						$"{stem}.{culture}:{key} — multiset des placeholders modifié");
+
+				if (NeutralRewrittenPendingRetranslation.TryGetValue((stem, key), out var declaredDrift))
+				{
+					// Le neutre a été réécrit par une montée : la traduction est en retard
+					// d'une phrase. La déclaration porte les DEUX compteurs mesurés ;
+					// on les asserte tels quels, donc une nouvelle dérive du neutre — ou
+					// une retraduction qui arrive — rougit et force à mettre à jour la table.
+					Token.Matches(value).Count().Should().Be(declaredDrift.Delivered,
+						$"{stem}.{culture}:{key} — le pack a changé de nombre de jetons ; mettre à jour "
+						+ "NeutralRewrittenPendingRetranslation (ou retirer la déclaration si la traduction est refaite)");
+					Token.Matches(source).Count().Should().Be(declaredDrift.Neutral,
+						$"{stem}:{key} — le neutre a encore bougé ; remesurer le décalage déclaré");
+					continue;
+				}
 
 				Token.Matches(value).Select(m => m.Value).OrderBy(x => x, StringComparer.Ordinal)
 					.Should().Equal(Token.Matches(source).Select(m => m.Value).OrderBy(x => x, StringComparer.Ordinal),
@@ -376,8 +502,18 @@ namespace Argumentum.AssetConverter.Tests
 				+ $"{scope}. Une clé absente non déclarée est une couverture perdue ; une clé "
 				+ $"déclarée présente est un remplissage non autorisé (invention).");
 
-			localized.Keys.Except(neutral.Keys, StringComparer.Ordinal).Should().BeEmpty(
-				$"{stem}.{culture}.resx : clé livrée absente du neutre");
+			// Clés livrées HORS NEUTRE : orphelines DÉCLARÉES (le neutre les a perdues
+			// lors d'une montée) — l'ensemble doit être EXACTEMENT celui déclaré, donc
+			// une clé inventée reste rouge, et retirer une déclaration sans que le pack
+			// cesse de livrer la clé rougit aussi. C'est ce qui rend inoffensive la
+			// branche « orpheline » de EveryDeliveredKeyIsSaneAgainstTheNeutral.
+			var removed = RemovedFromNeutral(stem).OrderBy(x => x, StringComparer.Ordinal).ToArray();
+			localized.Keys.Except(neutral.Keys, StringComparer.Ordinal)
+				.OrderBy(x => x, StringComparer.Ordinal)
+				.Should().Equal(removed,
+					$"{stem}.{culture}.resx : l'ensemble des clés livrées ABSENTES du neutre a changé — "
+					+ "une clé orpheline doit être déclarée dans RemovedFromNeutralByStem (le neutre l'a "
+					+ "perdue lors d'une montée) et une déclaration morte doit être retirée");
 		}
 
 		/// <summary>

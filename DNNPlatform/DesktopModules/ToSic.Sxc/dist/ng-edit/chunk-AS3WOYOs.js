@@ -1,0 +1,3 @@
+import{Kn as ii,Ni as z}from"./chunk-DtJSyZhi.js";var n=(()=>{class i{constructor(){this.subscriptions=new z}ngOnDestroy(){this.subscriptions.unsubscribe()}static{this.ɵfac=function(s){return new(s||i)}}static{this.ɵdir=ii({type:i})}}return i})();export{n as t};
+//# debugId=7ff341aa-1525-5bc4-b233-699e6078b91f
+//# sourceMappingURL=https://sources.2sxc.org/22.01.00/dist/ng-edit/chunk-AS3WOYOs.js.map

@@ -26,6 +26,17 @@ namespace Argumentum.AssetConverter.Tests
 	/// est vide.
 	/// </para>
 	/// <para>
+	/// ⚠️ Les comptes ci-dessus (123 / 126) sont le CONSTAT de la livraison du lot.
+	/// Depuis la montée DNN 10.4.1 (02/11/2026, #2123), le <b>neutre en porte 127</b> :
+	/// il a gagné <c>RoleId.Text</c> (« Role ID »), que le pack figé ne portait pas —
+	/// les trois tests de ce fichier qui indexaient le neutre levaient alors
+	/// <c>KeyNotFoundException</c>. La clé a été <b>traduite</b> et non déclarée
+	/// manquante : le fichier porte déjà « ID de função » (<c>Prompt_RoleIdIsRequired</c>)
+	/// et « Nome da função » (<c>RoleName.Text</c>), dont « ID da função » suit le
+	/// vocabulaire ; l'invariant « pt = neutre, clé pour clé » reste donc EXACT, et
+	/// <c>RoleId.Text</c> rejoint les épingles.
+	/// </para>
+	/// <para>
 	/// Terminologie : <b>« função » pour Role</b> — et non « rol ». Le corpus
 	/// porte 133 « rol », mais ces occurrences vivent dans des phrases
 	/// espagnoles (« Entre um rol válido », « Actualize a página e inténtelo ») :
@@ -106,7 +117,7 @@ namespace Argumentum.AssetConverter.Tests
 			var pt = Cells(PtResx).Keys.OrderBy(k => k, StringComparer.Ordinal).ToArray();
 			var ne = Cells(NeutralResx).Keys.OrderBy(k => k, StringComparer.Ordinal).ToArray();
 			pt.Should().Equal(ne, "le fichier pt-BR doit porter exactement les clés du neutre (aucune ajoutée, aucune retirée)");
-			pt.Should().HaveCount(126);
+			pt.Should().HaveCount(127);
 		}
 
 		/// <summary>Le fichier ne portait que 123 clés : trois messages du
@@ -135,7 +146,7 @@ namespace Argumentum.AssetConverter.Tests
 			blind.Should().BeEmpty("chaque marqueur doit être vu par l'es-ES (sinon son 0 sur le pt-BR est aveugle)");
 		}
 
-		/// <summary>Invariant de FICHIER ENTIER : les 126 cellules sont en
+		/// <summary>Invariant de FICHIER ENTIER : les 127 cellules sont en
 		/// portugais, donc aucun marqueur espagnol ne subsiste nulle part.</summary>
 		[Fact]
 		public void Every_Cell_Carries_No_Spanish_Marker()
@@ -146,7 +157,7 @@ namespace Argumentum.AssetConverter.Tests
 				if (marker.IsMatch(value))
 					offenders.Add($"{key} [{marker}] :: {value}");
 			offenders.Should().BeEmpty(
-				"les 126 cellules pt-BR de « Funções » sont en portugais — tout marqueur restant est une réinjection : {0}",
+				"les 127 cellules pt-BR de « Funções » sont en portugais — tout marqueur restant est une réinjection : {0}",
 				string.Join(" | ", offenders));
 		}
 
@@ -279,6 +290,7 @@ namespace Argumentum.AssetConverter.Tests
 			["RoleAdded.Message"] = "Função criada com sucesso.",
 			["RoleGroupUpdated.Error"] = "Falha ao atualizar o grupo de funções. Tente novamente mais tarde.",
 			["RoleGroupUpdated.Message"] = "Grupo de funções atualizado com sucesso.",
+			["RoleId.Text"] = "ID da função",
 			["RoleName.Header"] = "Nome da função",
 			["RoleName.Help"] = "Informe o nome da função.",
 			["RoleName.Required"] = "Este é um campo obrigatório.",
@@ -317,7 +329,7 @@ namespace Argumentum.AssetConverter.Tests
 		[Fact]
 		public void Pins_Exact_Values()
 		{
-			Pins.Should().HaveCount(126, "les 126 clés sont épinglées : la garde marque-taux et l'épingle couvrent le même périmètre");
+			Pins.Should().HaveCount(127, "les 127 clés sont épinglées : la garde marque-taux et l'épingle couvrent le même périmètre");
 			foreach (var (key, expected) in Pins)
 				ResxValue(PtResx, key).Should().Be(expected, "pin du sweep pt-BR — clé {0}.", key);
 		}

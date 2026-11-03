@@ -76,11 +76,20 @@ namespace Argumentum.AssetConverter.Tests
 			return Convert.ToHexString(sha.ComputeHash(Encoding.UTF8.GetBytes(cell))).ToLowerInvariant();
 		}
 
-		/// <summary>Les 12 cles de la barre d'onglets — derivees des composants Body et App.</summary>
+		/// <summary>Les 11 cles de la barre d'onglets — derivees des composants Body et App.
+		/// <para>
+		/// ⚠️ <c>TabLoginSettings.Text</c> en a ete RETIREE le 03/11/2026 (#2127) : la montee
+		/// DNN 10.4.1 l'a supprimee du neutre — mesure sur le blob : <c>Security.resx</c> passe
+		/// de 363 a 467 cles, avec UNE SEULE retiree, celle-la. <c>TabBasicLoginSettings.Text</c>
+		/// etait deja presente AVANT la montee et porte l'onglet : il n'y a pas de renommage a
+		/// suivre, seulement une cle qui disparait. Le pack pt-BR la livre encore, donc elle
+		/// rejoint l'inventaire des cles mortes de <c>DnnSecurityDeadKeysPtBrGuardTests</c> —
+		/// elle n'est plus une cle de la barre.
+		/// </para></summary>
 		private static readonly string[] TabKeys =
 		{
 			"GlobalSettingsTab.Text", "nav_Security.Text", "TabAuditChecks.Text",
-			"TabBasicLoginSettings.Text", "TabLoginSettings.Text", "TabMore.Text",
+			"TabBasicLoginSettings.Text", "TabMore.Text",
 			"TabMoreSecuritySettings.Text", "TabRegistrationSettings.Text", "TabScannerCheck.Text",
 			"TabSecurityAnalyzer.Text", "TabSecurityBulletins.Text", "TabSuperuserActivity.Text",
 		};
@@ -139,8 +148,8 @@ namespace Argumentum.AssetConverter.Tests
 			var pt = Load(PtResx);
 			TabKeys.Where(k => !pt.ContainsKey(k)).Should().BeEmpty(
 				"#458 : les 12 cles de la barre d'onglets sont livrees (aucune creation dans ce volet)");
-			TabKeys.Should().HaveCount(12);
-			TabKeys.Distinct().Should().HaveCount(12);
+			TabKeys.Should().HaveCount(11);
+			TabKeys.Distinct().Should().HaveCount(11);
 		}
 
 		[Fact]
