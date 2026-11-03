@@ -191,9 +191,29 @@ namespace Argumentum.AssetConverter.Tests
         [MemberData(nameof(CoveredFiles))]
         public void TheDeliveredKeySetIsExactlyTheNeutralOne(string dir, string stem, int _)
         {
-            Values(dir, stem, "ar-SA").Keys.Should().BeEquivalentTo(Values(dir, stem, string.Empty).Keys,
-                $"{RelOf(dir, stem, "ar-SA")} : ce lot ne déclare AUCUNE clé manquante — le pack couvre "
-                + "tout le neutre, sinon une traduction est perdue");
+            // ── Clés AJOUTÉES au neutre par la montée DNN 10.4.1 (02/11/2026, #2123) ──
+            // Mesuré le 03/11 : trois neutres de ce lot ont gagné des clés que les packs
+            // figés ne portent pas — AddModule +1, AddExistingModule +1, ResourceManager +5.
+            // Aucune orpheline : la montée n'a rien retiré ici. Déclarées par fichier,
+            // l'égalité ci-dessous reste exacte (une clé manquante NON déclarée rougit,
+            // et une déclaration portant sur une clé livrée rougit aussi).
+            var declared = new (string Dir, string Stem, string[] Keys)[]
+            {
+                ("Admin/Dnn.EditBar", "AddModule", new[] { "AddModule.Text" }),
+                ("Admin/Dnn.EditBar", "AddExistingModule", new[] { "AddExistingModule.Text" }),
+                ("ResourceManager", "ResourceManager", new[]
+                {
+                    "SortOrder_Ascending.Text", "SortOrder_Descending.Text", "OpenFile.Text",
+                    "CollapseFolders.Text", "ExpandFolders.Text",
+                }),
+            }
+            .Where(m => m.Dir == dir && m.Stem == stem)
+            .SelectMany(m => m.Keys).ToArray();
+
+            Values(dir, stem, "ar-SA").Keys.Should().BeEquivalentTo(
+                Values(dir, stem, string.Empty).Keys.Except(declared),
+                $"{RelOf(dir, stem, "ar-SA")} : livré = neutre − {declared.Length} clé(s) ajoutée(s) au neutre "
+                + "par la montée 10.4.1 et déclarée(s) ici ; toute autre clé non livrée est une traduction perdue");
         }
 
         [Theory]
