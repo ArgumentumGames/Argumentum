@@ -1,0 +1,23 @@
+key,item_id,type_code,lang,xml_paths,nodes,value_kind,fr,en-US
+productname,131,PRDLANG,fr-FR,textbox/txtproductname,1,plain,Le jeu de cartes Argumentum,The Argumentum card game
+summary,131,PRDLANG,fr-FR,textbox/txtsummary,1,plain,"Argumentum est un jeu de cartes dans lequel les joueurs vont à tour de rôle essayer de faire deviner une carte d’argument fallacieux aux autres joueurs, au cours d’une saynète d’improvisation.","Argumentum is a card game in which players take turns trying to make the other players guess a fallacious-argument card, during an improvised skit."
+description,131,PRDLANG,fr-FR,textbox/description ; edt/description,2,html,"<h2><strong>En Rupture Nous vous prions de nous excuser pour le retard de sortie de la nouvelle version.</strong></h2>
+
+<p><strong>Argumentum 2.0 contiendra 2 fois plus de cartes de scénarii et de la <a href=""https://www.argumentum.games/fallacies_fr.html"">taxonomie des arguments fallacieux</a>, et sortira dans <a href=""https://www.argumentum.games/fallacies_en.html"">plusieurs langues</a>.</strong></p>
+
+<p>Argumentum est un jeu de cartes dans lequel les joueurs vont &agrave; tour de r&ocirc;le essayer de faire deviner une carte d&rsquo;argument fallacieux aux autres joueurs, au cours d&rsquo;une sayn&egrave;te d&rsquo;improvisation &agrave; partir d&rsquo;un sc&eacute;nario tir&eacute; au hasard.</p>
+
+<p>Un moment transgressif et jubilatoire, de la rh&eacute;torique et du FUN.</p>
+
+<p>Argumentum est compos&eacute; d&rsquo;un paquet de 70 cartes &laquo;&nbsp;argument&nbsp;&raquo;, d&rsquo;un paquet de 78 cartes &laquo;&nbsp;sc&eacute;nario&nbsp;&raquo;, de 5 cartes &laquo;&nbsp;m&eacute;mo&nbsp;&raquo; et des r&egrave;gles du jeu.</p>
+","<h2><strong>Out of stock — we apologize for the delay in the release of the new version.</strong></h2>
+
+<p><strong>Argumentum 2.0 will contain twice as many scenario cards and the <a href=""https://www.argumentum.games/fallacies_en.html"">taxonomy of fallacious arguments</a>, and will be released in <a href=""https://www.argumentum.games/fallacies_en.html"">several languages</a>.</strong></p>
+
+<p>Argumentum is a card game in which players take turns trying to make the other players guess a fallacious-argument card, during an improvised skit based on a scenario drawn at random.</p>
+
+<p>A transgressive and jubilant moment, of rhetoric and FUN.</p>
+
+<p>Argumentum consists of a deck of 70 &ldquo;argument&rdquo; cards, a deck of 78 &ldquo;scenario&rdquo; cards, 5 &ldquo;memo&rdquo; cards and the rules of the game.</p>"
+image-1-caption,131,PRDLANG,fr-FR,textbox/txtimagedesc ; /imgs/genxml[0]/textbox/txtimagedesc,2,plain,La boite du jeu Argumentum,The Argumentum game box
+image-2-caption,131,PRDLANG,fr-FR,/imgs/genxml[1]/textbox/txtimagedesc,1,plain,Les cartes du jeu Argumentum,The Argumentum game cards
