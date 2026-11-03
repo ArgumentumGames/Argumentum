@@ -7,12 +7,84 @@
 
 ## Objet
 
-La page `/en/` sert la fiche produit 131 en français. Cause mesurée au tour précédent
-(dossier `#458 c.6608611350`) : il n'existe **aucune rangée `PRDLANG` de culture en-US**
-pour cet article ; DNN retombe donc sur le français.
+La fiche produit du lien « Buy the game » se rend **en français quelle que soit la
+culture demandée**. La cause retenue au tour précédent — « aucune rangée `PRDLANG` de
+culture en-US n'existe pour cet article » — est **RÉFUTÉE** par la mesure ci-dessous.
+Le diagnostic corrigé, et le fait qu'il déplace la cible du geste, sont l'essentiel de
+cette livraison.
 
 Cette PR pose le **pivot** : le texte FR source et sa traduction en-US, dans un fichier
-versionné, avant tout geste sur la base. Le geste en base vient **après** merge.
+versionné, avant tout geste sur la base. Le geste en base vient **après** merge — et
+après l'arbitrage demandé en fin de note.
+
+---
+
+## ⚠️ Le magasin réel : TROIS objets portent ce produit, pas un
+
+Mesuré le 03/11/2026 en lecture seule. Le comptage du tour précédent
+(`ItemId = 131 AND Lang = 'en-US'`) était **structurellement incapable** de voir les
+rangées de langue : dans `NBrightBuy`, une rangée de langue porte **son propre
+`ItemId`** et se rattache au produit par `ParentItemId`. Chercher l'en-US sous
+`ItemId 131` ne pouvait rendre que 0.
+
+| Magasin | Objet | Contenu en-US mesuré |
+|---|---|---|
+| `NBrightBuy` | `ItemId 130`, type `PRD` | — (la fiche produit elle-même) |
+| `NBrightBuy` | `ItemId 131`, `PRDLANG`, `fr-FR` | 4 589 car., **2 images**, 3 modèles, description « En Rupture » |
+| `NBrightBuy` | `ItemId 148`, `PRDLANG`, `en-US`, `ParentItemId 130` | 2 380 car., **1 image**, **texte français**, daté 2023 |
+| `NBrightBuy` | `ItemId 149`, `PRDLANG`, `en-US`, `ParentItemId 130` | 2 415 car., même forme, **texte français**, + `modelid` sur le modèle 0 |
+| `NBrightBuyLang` | `ParentItemId 130`, `fr-FR` | 11 563 car. — document complet (prix, stock, catégorie `140`) |
+| `NBrightBuyLang` | `ParentItemId 130`, `en-US` | 9 389 car. — sous-arbre `/lang[32]/genxml[0]` **en français**, **38 nœuds au lieu de 63** |
+
+Trois conséquences :
+
+1. **La garde « 0 rangée en-US ⇒ 1 insertion » ne tient pas** : il existe **deux** rangées
+   `PRDLANG` en-US et **une** rangée `NBrightBuyLang` en-US. Le geste est un **arbitrage
+   sur de l'existant**, pas une insertion.
+2. **Les deux rangées `PRDLANG` en-US sont des copies périmées d'un document français**
+   (pas de « En Rupture », une seule image, un seul modèle, datées 2023). Les traduire
+   reviendrait à figer une version ancienne du produit.
+3. **Le sous-arbre `/lang/genxml[0]` de `NBrightBuyLang` fr-FR est identique, valeur pour
+   valeur, au document `PRDLANG` 131** : **63 nœuds communs, 0 différent**. C'est pourquoi
+   le pivot ci-joint est **valable pour les deux magasins** — il ne dépend pas du choix.
+
+---
+
+## ⚠️ Le vrai bloqueur n'est pas la donnée : c'est le lien
+
+Même une traduction parfaite ne s'afficherait pas. Mesuré sur la préprod :
+
+```
+/en/Acheter-le-jeu/Detail/catid/140/eid/130/…   ->  301
+   Location: /Acheter-le-jeu/Detail/catid/140/eid/130/…   (sans préfixe de culture)
+   X-Redirect-Reason: Tab External Url Requested
+```
+
+L'onglet boutique est déclaré en **URL externe** : il **retire le préfixe de culture**,
+et la fiche est alors rendue par le portail par défaut, en `fr-FR`.
+
+Formes d'URL testées sur la fiche, toutes rendues en français :
+
+| Forme | `En Rupture` | `La boite` (image 1) | `Les cartes` (image 2) |
+| --- | --- | --- | --- |
+| `/…/eid/130/…` | 1 | 4 | 3 |
+| `?language=en-US` | 1 | 4 | 3 |
+| `?lang=en-US` | 1 | 4 | 3 |
+| `?Language=en-US` | 1 | 4 | 3 |
+| `?language=en-US&tabid=0` | 1 | 4 | 3 |
+
+Le jeu de marqueurs est **discriminant** : la rangée fr-FR est la seule à porter
+« En Rupture » *et* la légende « La boite », et la rangée `NBrightBuyLang` en-US ne porte
+ni l'une ni l'autre. La fiche rend donc bien le **fr-FR**, sur toutes les formes d'URL.
+
+**Relevé du lien de menu, non modifié** (demande explicite) : les deux accueils
+(`/` et `/en/`) pointent la **même** cible, sans préfixe de culture :
+
+```
+/Acheter-le-jeu/Detail/catid/140/eid/130/le-jeu-de-cartes-argumentum
+```
+
+C'est ce lien, et non la donnée, qui décide de la langue servie.
 
 ---
 
@@ -81,7 +153,7 @@ un compte d'occurrences exigé à l'avance :
 productname 1 · summary 1 · description 2 · image-1-caption 2 · image-2-caption 1
 ```
 
-## Preuves (`.tmp/buy131/verify_candidate.py`)
+## Preuves (quatre contrôles, rejouables)
 
 1. **Structure identique** — mêmes éléments, même ordre, mêmes attributs, mêmes `tail` :
    aucune substitution n'a touché un attribut par accident.
@@ -116,15 +188,31 @@ productname 1 · summary 1 · description 2 · image-1-caption 2 · image-2-capt
 - ❌ aucune écriture en base — ni sauvegarde, ni insertion, ni `UPDATE` ;
 - ❌ aucun accès aux tables de commandes, de clients ou de comptes ;
 - ❌ aucune modification de prix, de stock, de réglage de commande ou d'un autre article ;
-- ❌ le lien de menu « Buy the game » n'est pas touché (il sera **relevé**, pas corrigé).
+- ❌ le lien de menu « Buy the game » n'est pas touché — il a été **relevé** (voir plus
+  haut), pas corrigé.
 
-## Suite (hors PR)
+## Suite — bloquée sur un arbitrage, pas sur du travail
 
-1. merge → **sauvegarde JSON** des seules rangées produit et `PRDLANG` de `ItemId 131` ;
-2. **dry-run** avec garde de compte (0 rangée en-US existante ⇒ 1 insertion attendue) ;
-3. insertion en **transaction**, puis recyclage par `touch` de `web.config` (jamais `iisreset`) ;
-4. **DoD servie sur `/en/`**, sans geste entre les mesures : marqueurs EN > FR (pied de
-   page exclu) ; **relever la cible du lien de menu sans la modifier** ;
-5. puis les 6 autres cultures en une PR.
+La chaîne prévue au dispatch (`sauvegarde → dry-run → insertion d'1 rangée en-US →
+DoD sur /en/`) **ne peut pas s'exécuter telle quelle** : la garde de compte est fausse
+(3 rangées en-US existent) et le résultat serait invisible (le lien retire la culture).
+
+**Trois questions pour ai-01 :**
+
+1. **Quel magasin est la cible ?** `NBrightBuyLang` (parent 130, sous-arbre
+   `/lang/genxml[0]` — c'est le seul à porter prix, stock et `selectcategory = 140`, la
+   catégorie de l'URL) ou `NBrightBuy.PRDLANG` ? Le pivot est **neutre** : le texte FR est
+   identique dans les deux (63 nœuds, 0 écart).
+2. **Que faire des rangées existantes ?** Les deux `PRDLANG` en-US (148, 149) sont des
+   copies françaises périmées de 2023. Les laisser en place expose à servir un jour une
+   fiche anglaise **plus ancienne que la française**. Les supprimer est destructif : je ne
+   le fais pas sans GO nommé.
+3. **Le lien est-il dans le périmètre de quelqu'un ?** Tant que l'onglet boutique reste en
+   « External Url » et que le menu pointe la route sans culture, **toute** traduction est
+   sans effet observable. Ce n'est pas un défaut de donnée.
+
+En attendant l'arbitrage, cette PR ne contient **aucune écriture en base**. Si la réponse
+est « `NBrightBuyLang` », le pivot se rejoue tel quel sous `/lang/genxml[0]/` — le travail
+de traduction et les preuves ne sont pas à refaire.
 
 *po-2023*
