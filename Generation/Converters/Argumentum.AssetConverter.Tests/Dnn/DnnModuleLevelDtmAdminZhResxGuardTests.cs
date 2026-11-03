@@ -88,6 +88,22 @@ namespace Argumentum.AssetConverter.Tests
         };
 
         /// <summary>
+        /// Clés que le pack LIVRE alors que le NEUTRE ne les porte plus — orphelines
+        /// déclarées, par fichier. Mesuré le 03/11/2026 (#2127) : la montée DNN 10.4.1
+        /// a retiré <c>IsOnLine.Text</c> et <c>IsOnLine.Help</c> du neutre
+        /// <c>Admin/Security/Membership.ascx</c> (28 clés au neutre, 30 livrées) ; le
+        /// pack, figé, les livre encore. DNN ignore une clé sans contrepartie neutre,
+        /// mais la garde doit la NOMMER — sans déclaration elle serait indistinguable
+        /// d'une clé inventée. L'ensemble est asserté EXACTEMENT dans les deux sens
+        /// (TheDeclaredOrphansAreLiveInBothDirections) : une orpheline non déclarée
+        /// rougit, une déclaration devenue morte aussi.
+        /// </summary>
+        private static readonly (string Dir, string Stem, string[] Keys)[] OrphansByFile =
+        {
+            ("Admin/Security", "Membership.ascx", new[] { "IsOnLine.Text", "IsOnLine.Help" }),
+        };
+
+        /// <summary>
         /// Valeurs légitimement identiques à l'anglais — déclarées, pas tolérées :
         /// quatre marques + « Skype ID » + le filtre alphabétique A–Z (le
         /// filtrage par initiale pinyin utilise les mêmes lettres latines).
@@ -171,6 +187,10 @@ namespace Argumentum.AssetConverter.Tests
             DeclaredMissing.Where(m => m.Dir == dir && m.Stem == stem)
                 .SelectMany(m => m.Keys).ToArray();
 
+        private static string[] OrphansOf(string dir, string stem) =>
+            OrphansByFile.Where(m => m.Dir == dir && m.Stem == stem)
+                .SelectMany(m => m.Keys).ToArray();
+
         public static IEnumerable<object[]> CoveredFiles()
         {
             foreach (var (dir, stem, delivered) in Covered)
@@ -204,10 +224,16 @@ namespace Argumentum.AssetConverter.Tests
             var neutral = Values(dir, stem, string.Empty);
             var localized = Values(dir, stem, "zh-CN");
             var declared = MissingOf(dir, stem);
+            var orphans = OrphansOf(dir, stem);
 
-            localized.Keys.Should().BeEquivalentTo(neutral.Keys.Except(declared),
-                $"{RelOf(dir, stem, "zh-CN")} : livré = neutre − déclarées manquantes ({declared.Length} ici) — "
-                + "toute clé non livrée hors déclaration est une traduction perdue, toute clé en trop n'existe pas");
+            // livré = (neutre − déclarées manquantes) ∪ orphelines déclarées. Les
+            // orphelines viennent d'un RETRAIT du neutre par une montée DNN : le pack
+            // figé les livre toujours. Nommées, l'ensemble reste exact — une clé en
+            // trop non déclarée n'existe pas.
+            localized.Keys.Should().BeEquivalentTo(neutral.Keys.Except(declared).Union(orphans),
+                $"{RelOf(dir, stem, "zh-CN")} : livré = neutre − déclarées manquantes ({declared.Length} ici) "
+                + $"+ orphelines déclarées ({orphans.Length} ici) — toute clé non livrée hors déclaration est "
+                + "une traduction perdue, toute clé en trop doit être déclarée orpheline");
         }
 
         [Theory]
@@ -216,10 +242,25 @@ namespace Argumentum.AssetConverter.Tests
         {
             var neutral = Values(dir, stem, string.Empty);
             var localized = Values(dir, stem, "zh-CN");
+            var orphans = OrphansOf(dir, stem);
+
+            // Une orpheline déclarée n'a PLUS de valeur neutre : l'indexer lèverait.
+            // On n'exige d'elle que sa non-vacuité ; son appartenance exacte est
+            // assertée par TheDeliveredKeySetIsTheNeutralOnesMinusTheDeclaredMissing.
+            foreach (var orphan in orphans)
+            {
+                if (!localized.TryGetValue(orphan, out var orphanValue))
+                    continue;
+                orphanValue.Should().NotBeNullOrWhiteSpace(
+                    $"{RelOf(dir, stem, "zh-CN")}:{orphan} — orpheline déclarée mais VIDE");
+            }
 
             foreach (var (key, value) in localized)
             {
                 value.Should().NotBeNullOrWhiteSpace($"{RelOf(dir, stem, "zh-CN")}:{key} — valeur vide");
+
+                if (orphans.Contains(key, StringComparer.Ordinal))
+                    continue;
 
                 Placeholder.Matches(value).Select(m => m.Value).OrderBy(x => x, StringComparer.Ordinal)
                     .Should().Equal(
@@ -346,6 +387,36 @@ namespace Argumentum.AssetConverter.Tests
                 var neutral = Values(dir, stem, string.Empty);
                 keys.Should().OnlyContain(k => neutral.ContainsKey(k),
                     $"{dir}/{stem} : une clé déclarée manquante doit exister au neutre — sinon la déclaration est morte");
+            }
+        }
+
+        /// <summary>
+        /// Une orpheline déclarée doit être VIVANTE dans les deux sens : réellement
+        /// livrée par le pack, ET réellement absente du neutre. Sans cela, la
+        /// déclaration survivrait au retour de la clé au neutre (elle masquerait une
+        /// divergence réelle) ou à sa disparition du pack (elle ne décrirait rien).
+        /// </summary>
+        [Fact]
+        public void TheDeclaredOrphansAreLiveInBothDirections()
+        {
+            OrphansByFile.Length.Should().Be(1, "un seul fichier porte des orphelines déclarées (Membership)");
+            OrphansByFile.Sum(o => o.Keys.Length).Should().Be(2,
+                "2 clés retirées du neutre par la montée 10.4.1 : IsOnLine.Text et IsOnLine.Help");
+
+            foreach (var (dir, stem, keys) in OrphansByFile)
+            {
+                Covered.Should().Contain(c => c.Dir == dir && c.Stem == stem,
+                    $"la déclaration orpheline ({dir}/{stem}) porte sur un fichier du lot");
+
+                var neutral = Values(dir, stem, string.Empty);
+                var localized = Values(dir, stem, "zh-CN");
+
+                keys.Should().OnlyContain(k => !neutral.ContainsKey(k),
+                    $"{dir}/{stem} : une clé déclarée ORPHELINE ne doit plus exister au neutre — "
+                    + "si elle y est revenue, la déclaration est morte et masque une divergence");
+                keys.Should().OnlyContain(k => localized.ContainsKey(k),
+                    $"{dir}/{stem} : une clé déclarée ORPHELINE doit être livrée par le pack — "
+                    + "sinon la déclaration ne décrit rien");
             }
         }
 
