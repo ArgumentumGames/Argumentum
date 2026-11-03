@@ -949,7 +949,7 @@ CPM/费用：[Custom:3]
 
 您已请求从 [Portal:PortalName] 获取密码重置令牌，但您的帐户仍在等待审批。
 
-帐户获批后才能重置密码。
+[Portal:PortalName] 的管理员已收到通知，将对您的帐户进行审核；如果您的帐户获批，将另行向您发送密码重置邮件。
 
 此致，
 [Portal:PortalName]
