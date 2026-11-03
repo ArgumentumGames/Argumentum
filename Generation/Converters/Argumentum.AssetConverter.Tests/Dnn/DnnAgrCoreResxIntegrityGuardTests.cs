@@ -279,18 +279,20 @@ namespace Argumentum.AssetConverter.Tests
 		/// est refaite, ou si le neutre bouge encore, le test rougit et force à
 		/// retirer ou mettre à jour la déclaration.
 		/// <para>
-		/// Mesuré le 03/11/2026 (#2127) : DNN 10.4.1 a réécrit la valeur anglaise de
-		/// <c>EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_BODY.Text</c> en ajoutant une
-		/// PHRASE entière (304 → 398 caractères) qui nomme une troisième fois le
-		/// portail — 2 → 3 <c>[Portal:PortalName]</c>, soit 4 jetons DNN au neutre
-		/// contre 3 dans les trois packs. Retraduire cette phrase exige une validation
-		/// native (ar/fa/zh) : c'est un grain de traduction #458, pas un re-épinglage.
+		/// Cas fondateur (mesuré le 03/11/2026, #2127) : DNN 10.4.1 avait réécrit la
+		/// valeur anglaise de <c>EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_BODY.Text</c>
+		/// en ajoutant une PHRASE entière (304 → 398 caractères) qui nomme une troisième
+		/// fois le portail — 2 → 3 <c>[Portal:PortalName]</c>, soit 4 jetons DNN au
+		/// neutre contre 3 dans les trois packs (ar-SA, fa-IR, zh-CN). Déclaration
+		/// (3, 4) retirée le 03/11 par la PR de retraduction de cette phrase — la
+		/// table est VIDE tant qu'aucun neutre n'a été réécrit sous nos traductions :
+		/// la prochaine montée qui le fait se déclare ici, avec ses compteurs mesurés.
+		/// Note : <c>docs/dnn-localization/458-email-4th-phrase-ar-fa-zh-2026-11-03.md</c>.
 		/// </para>
 		/// </summary>
 		private static readonly Dictionary<(string Stem, string Key), (int Delivered, int Neutral)> NeutralRewrittenPendingRetranslation =
 			new Dictionary<(string, string), (int, int)>
 			{
-				[("GlobalResources", "EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_BODY.Text")] = (3, 4),
 			};
 
 		/// <summary>
