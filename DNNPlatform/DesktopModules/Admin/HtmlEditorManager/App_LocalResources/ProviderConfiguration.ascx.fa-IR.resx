@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AutoResizeHeight.Help" xml:space="preserve">
+    <value>مقدار ویژگی AutoResizeHeight نشان می‌دهد که RadEditor ارتفاع خود را برای منطبق‌شدن با ارتفاع محتوا به‌طور خودکار تغییر دهد یا نه.
+
+این ویژگی شبیه ویژگی Overflow عنصر DIV است که عناصر IFRAME آن را پشتیبانی نمی‌کنند.
+
+وقتی ویژگی AutoResizeHeight روی true تنظیم شود، ناحیه محتوای ویرایشگر برای منطبق‌شدن با ارتفاع محتوا تغییر اندازه می‌دهد و هیچ نوار پیمایشی ظاهر نمی‌شود.</value>
+  </data>
+  <data name="AutoResizeHeight.Text" xml:space="preserve">
+    <value>تغییر اندازه خودکار ارتفاع:</value>
+  </data>
+  <data name="BorderWidth.Help" xml:space="preserve">
+    <value>حاشیه دور کنترل را به پیکسل تنظیم می‌کند</value>
+  </data>
+  <data name="BorderWidth.Text" xml:space="preserve">
+    <value>عرض حاشیه:</value>
+  </data>
+  <data name="btnEditToolsFile.Text" xml:space="preserve">
+    <value>پیکربندی نوار ابزارهای ویرایشگر</value>
+  </data>
+  <data name="btnEnable.Text" xml:space="preserve">
+    <value>تغییر</value>
+  </data>
+  <data name="btnUpdateConfig.Text" xml:space="preserve">
+    <value>به‌روزرسانی پیکربندی</value>
+  </data>
+  <data name="Client Script Settings.Title" xml:space="preserve">
+    <value>تنظیمات اسکریپت سمت کاربر</value>
+  </data>
+  <data name="cmdCopy.Text" xml:space="preserve">
+    <value>کپی</value>
+  </data>
+  <data name="cmdCreate.Text" xml:space="preserve">
+    <value>ایجاد</value>
+  </data>
+  <data name="Common Settings.Title" xml:space="preserve">
+    <value>تنظیمات عمومی</value>
+  </data>
+  <data name="ContentAreaMode.Help" xml:space="preserve">
+    <value>بین ویرایش در سند جداگانه‌ای در یک Iframe (پیش‌فرض) یا درون‌خطی در یک Div در صفحه فعلی انتخاب کنید.</value>
+  </data>
+  <data name="ContentAreaMode.Text" xml:space="preserve">
+    <value>حالت ناحیه محتوا</value>
+  </data>
+  <data name="ContentFilters.Help" xml:space="preserve">
+    <value>فیلترها در RadEditor برای ASP.NET AJAX قطعه‌های کد کوچکی هستند که هنگام تعویض حالت (html / design / preview) یا هنگام ارسال صفحه، به‌ترتیب فراخوانی می‌شوند تا محتوای ویرایشگر را پردازش کنند. توضیح هر فیلتر اینجاست: &lt;a href="http://www.telerik.com/help/aspnet-ajax/contentfilters.html" target="_blank"&gt;راهنمای آنلاین Telerik&lt;/a&gt;</value>
+  </data>
+  <data name="ContentFilters.Text" xml:space="preserve">
+    <value>فیلترهای محتوا:</value>
+  </data>
+  <data name="ControlTitle_.Text" xml:space="preserve">
+    <value>مدیریت ویرایشگر HTML</value>
+  </data>
+  <data name="ControlTitle_.Text1" xml:space="preserve">
+    <value>مدیریت ویرایشگر HTML</value>
+  </data>
+  <data name="CssFile.Help" xml:space="preserve">
+    <value>فایل CSS‌ای که ویرایشگر در حالت WYSIWYG استفاده می‌کند. این فایل باید در فهرست پوسته یا فهرست وب‌سایت باشد. مسیر تنظیم‌شده نسبت به والد خود است (مثلاً /editor.css فایلی در ریشه پوسته شماست)</value>
+  </data>
+  <data name="CssFile.Text" xml:space="preserve">
+    <value>فایل CSS:</value>
+  </data>
+  <data name="Developer Settings.Title" xml:space="preserve">
+    <value>تنظیمات توسعه‌دهنده</value>
+  </data>
+  <data name="Document Manager Settings.Title" xml:space="preserve">
+    <value>تنظیمات مدیر اسناد</value>
+  </data>
+  <data name="DocumentsFilters.Help" xml:space="preserve">
+    <value>فهرستی جدا شده با نقطه‌ویرگول از پسوندهای ممکن برای استفاده در مدیر اسناد. این پسوندها باید در فهرست پسوندهای مجاز تنظیمات میزبان نیز باشند. از این قالب استفاده کنید: *.extensionname</value>
+  </data>
+  <data name="DocumentsFilters.Text" xml:space="preserve">
+    <value>فیلترها:</value>
+  </data>
+  <data name="DocumentsPath.Help" xml:space="preserve">
+    <value>پوشه‌ای که مدیر اسناد هنگام بارگذاری گفت‌وگو با آن شروع می‌کند</value>
+  </data>
+  <data name="DocumentsPath.Text" xml:space="preserve">
+    <value>مسیر:</value>
+  </data>
+  <data name="EditConfigTab.Text" xml:space="preserve">
+    <value>پیکربندی ویرایشگر</value>
+  </data>
+  <data name="EditModes.Help" xml:space="preserve">
+    <value>RadEditor سه حالت ویرایش متفاوت دارد: Design، Html و Preview:
+
+&lt;ul&gt;&lt;li&gt;Design: در حالت Design می‌توانید محتوا را با دکمه‌ها، فهرست‌های پایین‌رو و گفت‌وگوهای نوار ابزار RadEditor ویرایش و قالب‌بندی کنید. &lt;/li&gt;&lt;li&gt;Html: حالت HTML دسترسی مستقیم به HTML محتوا فراهم می‌کند. این حالت بیشترین کاربرد را نزد کاربران پیشرفته دارد.&lt;/li&gt;&lt;li&gt;Preview: نشان می‌دهد که محتوا پیش از به‌روزرسانی صفحه چگونه به نظر خواهد رسید.&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="EditModes.Text" xml:space="preserve">
+    <value>حالت‌های ویرایش:</value>
+  </data>
+  <data name="EnableResize.Help" xml:space="preserve">
+    <value>مقداری را می‌گیرد یا تنظیم می‌کند که نشان می‌دهد کاربران می‌توانند کنترل RadEditor را در سمت کاربر تغییر اندازه دهند یا نه.</value>
+  </data>
+  <data name="EnableResize.Text" xml:space="preserve">
+    <value>فعال کردن تغییر اندازه:</value>
+  </data>
+  <data name="FileBrowserContentProviderTypeName.Help" xml:space="preserve">
+    <value>ارائه‌دهنده محتوا کلاسی است که نحوه برخورد با فایل‌ها و پوشه‌ها در گفت‌وگوهای مدیر فایل را تعیین می‌کند. اگر ارائه‌دهنده محتوای دیگری دارید این تنظیم را بازنویسی کنید. </value>
+  </data>
+  <data name="FileBrowserContentProviderTypeName.Text" xml:space="preserve">
+    <value>ارائه‌دهنده مرورگر فایل:</value>
+  </data>
+  <data name="Flash Manager Settings.Title" xml:space="preserve">
+    <value>تنظیمات مدیر فلش</value>
+  </data>
+  <data name="FlashFilters.Help" xml:space="preserve">
+    <value>فهرستی جدا شده با نقطه‌ویرگول از پسوندهای ممکن برای استفاده در مدیر فلش. این پسوندها باید در فهرست پسوندهای مجاز تنظیمات میزبان نیز باشند. از این قالب استفاده کنید: *.extensionname</value>
+  </data>
+  <data name="FlashFilters.Text" xml:space="preserve">
+    <value>فیلترها:</value>
+  </data>
+  <data name="FlashPath.Help" xml:space="preserve">
+    <value>پوشه‌ای که مدیر فلش هنگام بارگذاری گفت‌وگو با آن شروع می‌کند</value>
+  </data>
+  <data name="FlashPath.Text" xml:space="preserve">
+    <value>مسیر:</value>
+  </data>
+  <data name="Height.Help" xml:space="preserve">
+    <value>ارتفاع کل کنترل ویرایشگر</value>
+  </data>
+  <data name="Height.Text" xml:space="preserve">
+    <value>ارتفاع:</value>
+  </data>
+  <data name="HTMLEditorPageDescription.Text" xml:space="preserve">
+    <value>گزینه‌های پیکربندی ارائه‌دهنده ویرایشگر HTML را فراهم می‌کند.</value>
+  </data>
+  <data name="HTMLEditorPageName.Text" xml:space="preserve">
+    <value>مدیریت ویرایشگر HTML</value>
+  </data>
+  <data name="Image Manager Settings.Title" xml:space="preserve">
+    <value>تنظیمات مدیر تصاویر</value>
+  </data>
+  <data name="ImagesFilters.Help" xml:space="preserve">
+    <value>فهرستی جدا شده با نقطه‌ویرگول از پسوندهای ممکن برای استفاده در مدیر تصاویر. این پسوندها باید در فهرست پسوندهای مجاز تنظیمات میزبان نیز باشند. از این قالب استفاده کنید: *.extensionname</value>
+  </data>
+  <data name="ImagesFilters.Text" xml:space="preserve">
+    <value>فیلترها:</value>
+  </data>
+  <data name="ImagesPath.Help" xml:space="preserve">
+    <value>پوشه‌ای که مدیر تصاویر هنگام بارگذاری گفت‌وگو با آن شروع می‌کند</value>
+  </data>
+  <data name="ImagesPath.Text" xml:space="preserve">
+    <value>مسیر:</value>
+  </data>
+  <data name="Language.Help" xml:space="preserve">
+    <value>اگر تنظیم شود، زبان بافت وب‌سایت را بازنویسی می‌کند. به‌طور پیش‌فرض محلی فعلی استفاده می‌شود، پس در بیشتر موارد بهتر است این را خالی بگذارید</value>
+  </data>
+  <data name="Language.Text" xml:space="preserve">
+    <value>زبان:</value>
+  </data>
+  <data name="lblChangeProvider.Help" xml:space="preserve">
+    <value>با انتخاب ارائه‌دهنده‌ای دیگر از فهرست پایین‌رو و سپس کلیک روی «تغییر»، ارائه‌دهنده ویرایشگر HTML برای کل نصب تغییر می‌کند.</value>
+  </data>
+  <data name="lblChangeProvider.Text" xml:space="preserve">
+    <value>تغییر ارائه‌دهنده</value>
+  </data>
+  <data name="lblCurrentProvider.Help" xml:space="preserve">
+    <value>این ارائه‌دهنده ویرایشگر HTML است که در حال حاضر برای این نصب تنظیم شده است. </value>
+  </data>
+  <data name="lblCurrentProvider.Text" xml:space="preserve">
+    <value>ارائه‌دهنده فعلی</value>
+  </data>
+  <data name="lblEditorConfig.Text" xml:space="preserve">
+    <value>پیکربندی ویرایشگر</value>
+  </data>
+  <data name="lblEditorType.Text" xml:space="preserve">
+    <value>ارائه‌دهنده فعلی در این نصب DNN، &lt;b&gt;{0}&lt;/b&gt; است</value>
+  </data>
+  <data name="lblMode.Help" xml:space="preserve">
+    <value>نقشی که می‌خواهید این پیکربندی ویرایشگر را به آن مرتبط کنید.</value>
+  </data>
+  <data name="lblMode.Text" xml:space="preserve">
+    <value>اتصال به نقش</value>
+  </data>
+  <data name="lblNotAuthorized.Text" xml:space="preserve">
+    <value>شما مجاز به استفاده از این ماژول نیستید.</value>
+  </data>
+  <data name="lblNote.Text" xml:space="preserve">
+    <value>هدف این ماژول، ثبت و پیکربندی ارائه‌دهنده Rad Editor است. به کاربران میزبان کمک می‌کند تا ارائه‌دهنده HTML را در web.config تنظیم کنند و پیکربندی آن را نگه دارند.</value>
+  </data>
+  <data name="lblOnlyHost.Text" xml:space="preserve">
+    <value>فقط کاربران میزبان مجاز به استفاده از این ماژول هستند.</value>
+  </data>
+  <data name="lblPortal.Help" xml:space="preserve">
+    <value>اگر علامت زده شود، وب‌سایت فعلی به این پیکربندی ویرایشگر مرتبط می‌شود. </value>
+  </data>
+  <data name="lblPortal.Text" xml:space="preserve">
+    <value>اتصال به وب‌سایت</value>
+  </data>
+  <data name="lblSelectedProvider.Text" xml:space="preserve">
+    <value>ارائه‌دهنده فعلی</value>
+  </data>
+  <data name="lblTabs.Help" xml:space="preserve">
+    <value>با انتخاب یک صفحه از نمایش درختی، این پیکربندی ویرایشگر به صفحه انتخاب‌شده مرتبط می‌شود.</value>
+  </data>
+  <data name="lblTabs.Text" xml:space="preserve">
+    <value>اتصال به صفحه</value>
+  </data>
+  <data name="LinksType.Help" xml:space="preserve">
+    <value>«استفاده از نام صفحه»: پیوندی به یک صفحه وب‌سایت به این شکل ساخته می‌شود: default.aspx?TabName=Home;&lt;br /&gt;«استفاده از شناسه صفحه»: پیوندی به یک صفحه وب‌سایت به این شکل ساخته می‌شود: default.aspx?TabId=100;&lt;br /&gt;«معمولی»: پیوندی به یک صفحه وب‌سایت به‌صورت پیوندی معمولی ساخته می‌شود.</value>
+  </data>
+  <data name="LinksType.Text" xml:space="preserve">
+    <value>نوع پیوندهای صفحه:</value>
+  </data>
+  <data name="LinksType_Normal.Text" xml:space="preserve">
+    <value>معمولی</value>
+  </data>
+  <data name="LinksType_UseTabId.Text" xml:space="preserve">
+    <value>استفاده از شناسه صفحه در URL</value>
+  </data>
+  <data name="LinksType_UseTabName.Text" xml:space="preserve">
+    <value>استفاده از نام صفحه در URL</value>
+  </data>
+  <data name="LinksUseRelativeUrls.Help" xml:space="preserve">
+    <value>اگر نادرست تنظیم شود، پیوندها مطلق ساخته می‌شوند</value>
+  </data>
+  <data name="LinksUseRelativeUrls.Text" xml:space="preserve">
+    <value>فعال کردن پیوندهای نسبی:</value>
+  </data>
+  <data name="MaxDocumentSize.Help" xml:space="preserve">
+    <value>حداکثر اندازه بارگذاری سند به بایت</value>
+  </data>
+  <data name="MaxDocumentSize.Text" xml:space="preserve">
+    <value>حداکثر اندازه فایل:</value>
+  </data>
+  <data name="MaxFlashSize.Help" xml:space="preserve">
+    <value>حداکثر اندازه بارگذاری فلش به بایت</value>
+  </data>
+  <data name="MaxFlashSize.Text" xml:space="preserve">
+    <value>حداکثر اندازه فایل:</value>
+  </data>
+  <data name="MaxImageSize.Help" xml:space="preserve">
+    <value>حداکثر اندازه بارگذاری تصویر به بایت</value>
+  </data>
+  <data name="MaxImageSize.Text" xml:space="preserve">
+    <value>حداکثر اندازه فایل:</value>
+  </data>
+  <data name="MaxMediaSize.Help" xml:space="preserve">
+    <value>حداکثر اندازه بارگذاری فیلم به بایت</value>
+  </data>
+  <data name="MaxMediaSize.Text" xml:space="preserve">
+    <value>حداکثر اندازه فایل:</value>
+  </data>
+  <data name="MaxSilverlightSize.Help" xml:space="preserve">
+    <value>حداکثر اندازه بارگذاری Silverlight به بایت</value>
+  </data>
+  <data name="MaxSilverlightSize.Text" xml:space="preserve">
+    <value>حداکثر اندازه فایل:</value>
+  </data>
+  <data name="MaxTemplateSize.Help" xml:space="preserve">
+    <value>حداکثر اندازه بارگذاری قالب به بایت</value>
+  </data>
+  <data name="MaxTemplateSize.Text" xml:space="preserve">
+    <value>حداکثر اندازه فایل:</value>
+  </data>
+  <data name="Media Manager Settings.Title" xml:space="preserve">
+    <value>تنظیمات مدیر رسانه</value>
+  </data>
+  <data name="MediaFilters.Help" xml:space="preserve">
+    <value>فهرستی جدا شده با نقطه‌ویرگول از پسوندهای ممکن برای استفاده در مدیر رسانه. این پسوندها باید در فهرست پسوندهای مجاز تنظیمات میزبان نیز باشند. از این قالب استفاده کنید: *.extensionname</value>
+  </data>
+  <data name="MediaFilters.Text" xml:space="preserve">
+    <value>فیلترها:</value>
+  </data>
+  <data name="MediaPath.Help" xml:space="preserve">
+    <value>پوشه‌ای که مدیر رسانه هنگام بارگذاری گفت‌وگو با آن شروع می‌کند</value>
+  </data>
+  <data name="MediaPath.Text" xml:space="preserve">
+    <value>مسیر:</value>
+  </data>
+  <data name="NewLineBr.Help" xml:space="preserve">
+    <value>ویژگی NewLineBr مشخص می‌کند که ویرایشگر هنگام فشرده‌شدن کلید Enter خط جدید (برچسب &lt;BR&gt;) بگذارد یا بند جدید (برچسب &lt;P&gt;). مقدار پیش‌فرض true است (برچسب &lt;BR&gt;) تا رفتار ویرایشگرهای متن رومیزی بازتاب داده شود. در این حالت می‌توانید برچسب بند را با فشردن Ctrl+M یا دکمه بند جدید وارد کنید.
+
+اگر ویژگی NewLineBr را روی false تنظیم کنید، با هر بازگشت رفت (فشردن Enter) یک برچسب بند وارد می‌شود. در این حالت فشردن Shift+Enter برچسب &lt;BR&gt; وارد می‌کند.
+
+کار با فهرست‌های گلوله‌ای/شماره‌دار در Telerik RadEditor
+فهرست‌ها نوعی بند هستند و همان ویژگی‌های برچسب بند را می‌پذیرند. یعنی هر بار که فهرستی در HTML خود وارد می‌کنید، بند جدیدی وارد کرده‌اید. از Telerik RadEditor نسخه 5.05 سازوکار NewLineBr بهبود یافته است. با این حال این امر مثلاً آغاز کردن فهرست گلوله‌ای/شماره‌دار با خطی خالی را ناممکن می‌کند. &lt;a href="http://www.telerik.com/help/aspnet-ajax/usingthenewlinebrproperty.html" target="_blank"&gt;برای اطلاعات بیشتر راهنمای آنلاین را بخوانید&lt;/a&gt;</value>
+  </data>
+  <data name="NewLineBr.Text" xml:space="preserve">
+    <value>نمایش خطوط جدید به‌صورت شکست خط:</value>
+  </data>
+  <data name="NotCurrentProvider.Text" xml:space="preserve">
+    <value>RadEditorProvider اکنون ارائه‌دهنده پیش‌فرض ویرایشگر HTML نیست؛ هیچ تغییری بر ارائه‌دهنده فعلی ویرایشگر اعمال نمی‌شود. اگر می‌خواهید پیکربندی اثر کند، لطفاً ارائه‌دهنده پیش‌فرض را در فهرست پایین‌رو سمت چپ به 'DotNetNuke.RadEditorProvider' تغییر دهید.</value>
+  </data>
+  <data name="OnClientCommandExecuting.Help" xml:space="preserve">
+    <value>نام تابعی را تنظیم کنید که ویرایشگر هنگام اجرای رویداد OnExecute در سمت کاربر آن را فراخوانی کند (درست پیش از اجرای یک فرمان اجرا می‌شود). این تابع می‌تواند در فایل js تعریف‌شده در تنظیم ScriptToLoad قرار گیرد. این رویداد مثلاً برای افزودن پشتیبانی شکلک به کار می‌آید. (برای اطلاعات بیشتر &lt;a href="http://radeditor.codeplex.com/Thread/View.aspx?ThreadId=231612" target="_blank"&gt;این فرستادن انجمن را بخوانید&lt;/a&gt;)</value>
+  </data>
+  <data name="OnClientCommandExecuting.Text" xml:space="preserve">
+    <value>اجرای فرمان:</value>
+  </data>
+  <data name="OnClientPasteHtml.Help" xml:space="preserve">
+    <value>نام تابعی را تنظیم کنید که ویرایشگر هنگام اجرای رویداد OnPaste آن را فراخوانی کند (هر بار چیزی در کد HTML ناحیه ویرایش HTML ویرایشگر چسبانده می‌شود). این تابع می‌تواند در فایل js تعریف‌شده در تنظیم ScriptToLoad قرار گیرد.
+
+&lt;a href="http://radeditor.codeplex.com/wikipage?title=OnClientPasteExample" target="_blank"&gt;برای نمونه‌ای کامل این مثال را ببینید&lt;/a&gt;</value>
+  </data>
+  <data name="OnClientPasteHtml.Text" xml:space="preserve">
+    <value>چسباندن HTML:</value>
+  </data>
+  <data name="PortalRoot.Text" xml:space="preserve">
+    <value>[PortalRoot]</value>
+  </data>
+  <data name="ScriptToLoad.Help" xml:space="preserve">
+    <value>در صورت تنظیم، ارائه‌دهنده فایل جاوااسکریپت مشخص‌شده اینجا را بارگذاری می‌کند. این باید مسیری نسبی نسبت به پوشه پوسته فعلی باشد.
+
+&lt;a href="http://radeditor.codeplex.com/wikipage?title=OnClientPasteExample" target="_blank"&gt;برای نمونه‌ای کامل این مثال را ببینید&lt;/a&gt;</value>
+  </data>
+  <data name="ScriptToLoad.Text" xml:space="preserve">
+    <value>اسکریپت برای بارگذاری:</value>
+  </data>
+  <data name="ShowPortalLinks.Help" xml:space="preserve">
+    <value>اگر روی true تنظیم شود، فهرست پایین‌رویی در نوار ابزار ظاهر می‌شود که درختی از صفحات وب‌سایت را نمایش می‌دهد. وقتی این قابلیت فعال است، می‌توانید یک بلوک متن را علامت بزنید و از آن درخت صفحاتی انتخاب کنید تا ویرایشگر متن را به صفحه‌ای مشخص پیوند بزند.
+
+برای کار کردن این قابلیت باید ابزار CustomLinks را در پیکربندی نوار ابزار خود قرار دهید!</value>
+  </data>
+  <data name="ShowPortalLinks.Text" xml:space="preserve">
+    <value>نمایش پیوندهای وب‌سایت:</value>
+  </data>
+  <data name="Silverlight Manager Settings.Title" xml:space="preserve">
+    <value>تنظیمات مدیر Silverlight</value>
+  </data>
+  <data name="SilverlightFilters.Help" xml:space="preserve">
+    <value>فهرستی جدا شده با نقطه‌ویرگول از پسوندهای ممکن برای استفاده در مدیر Silverlight. این پسوندها باید در فهرست پسوندهای مجاز تنظیمات میزبان نیز باشند. از این قالب استفاده کنید: *.extensionname</value>
+  </data>
+  <data name="SilverlightFilters.Text" xml:space="preserve">
+    <value>فیلترها:</value>
+  </data>
+  <data name="SilverlightPath.Help" xml:space="preserve">
+    <value>پوشه‌ای که مدیر Silverlight هنگام بارگذاری گفت‌وگو با آن شروع می‌کند</value>
+  </data>
+  <data name="SilverlightPath.Text" xml:space="preserve">
+    <value>مسیر:</value>
+  </data>
+  <data name="Skin.Help" xml:space="preserve">
+    <value>پوسته‌ای که کنترل ویرایشگر استفاده می‌کند</value>
+  </data>
+  <data name="Skin.Text" xml:space="preserve">
+    <value>پوسته:</value>
+  </data>
+  <data name="SpellAllowAddCustom.Help" xml:space="preserve">
+    <value>گزینه‌های بررسی املای متأسفانه به‌ندرت مستند شده‌اند. در حالت کلی باید این فیلدها را خالی بگذارید مگر آنکه بدانید چه می‌کنید. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;درباره گزینه‌های بررسی املای در وب‌سایت Telerik بیشتر بدانید&lt;/a&gt;</value>
+  </data>
+  <data name="SpellAllowAddCustom.Text" xml:space="preserve">
+    <value>اجازه املای سفارشی:</value>
+  </data>
+  <data name="SpellCheckProvider.Help" xml:space="preserve">
+    <value>گزینه‌های بررسی املای متأسفانه به‌ندرت مستند شده‌اند. در حالت کلی باید این فیلدها را خالی بگذارید مگر آنکه بدانید چه می‌کنید. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;درباره گزینه‌های بررسی املای در وب‌سایت Telerik بیشتر بدانید&lt;/a&gt;</value>
+  </data>
+  <data name="SpellCheckProvider.Text" xml:space="preserve">
+    <value>نام ارائه‌دهنده بررسی املای:</value>
+  </data>
+  <data name="SpellCustomDictionarySourceTypeName.Help" xml:space="preserve">
+    <value>گزینه‌های بررسی املای متأسفانه به‌ندرت مستند شده‌اند. در حالت کلی باید این فیلدها را خالی بگذارید مگر آنکه بدانید چه می‌کنید. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;درباره گزینه‌های بررسی املای در وب‌سایت Telerik بیشتر بدانید&lt;/a&gt;</value>
+  </data>
+  <data name="SpellCustomDictionarySourceTypeName.Text" xml:space="preserve">
+    <value>نام واژه‌نامه املای سفارشی:</value>
+  </data>
+  <data name="SpellCustomDictionarySuffix.Help" xml:space="preserve">
+    <value>گزینه‌های بررسی املای متأسفانه به‌ندرت مستند شده‌اند. در حالت کلی باید این فیلدها را خالی بگذارید مگر آنکه بدانید چه می‌کنید. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;درباره گزینه‌های بررسی املای در وب‌سایت Telerik بیشتر بدانید&lt;/a&gt;</value>
+  </data>
+  <data name="SpellCustomDictionarySuffix.Text" xml:space="preserve">
+    <value>پسوند واژه‌نامه املای سفارشی:</value>
+  </data>
+  <data name="SpellDictionaryLanguage.Help" xml:space="preserve">
+    <value>گزینه‌های بررسی املای متأسفانه به‌ندرت مستند شده‌اند. در حالت کلی باید این فیلدها را خالی بگذارید مگر آنکه بدانید چه می‌کنید. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;درباره گزینه‌های بررسی املای در وب‌سایت Telerik بیشتر بدانید&lt;/a&gt;</value>
+  </data>
+  <data name="SpellDictionaryLanguage.Text" xml:space="preserve">
+    <value>زبان واژه‌نامه املای:</value>
+  </data>
+  <data name="SpellDictionaryPath.Help" xml:space="preserve">
+    <value>گزینه‌های بررسی املای متأسفانه به‌ندرت مستند شده‌اند. در حالت کلی باید این فیلدها را خالی بگذارید مگر آنکه بدانید چه می‌کنید. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;درباره گزینه‌های بررسی املای در وب‌سایت Telerik بیشتر بدانید&lt;/a&gt;</value>
+  </data>
+  <data name="SpellDictionaryPath.Text" xml:space="preserve">
+    <value>مسیر واژه‌نامه املای:</value>
+  </data>
+  <data name="SpellEditDistance.Help" xml:space="preserve">
+    <value>گزینه‌های بررسی املای متأسفانه به‌ندرت مستند شده‌اند. در حالت کلی باید این فیلدها را خالی بگذارید مگر آنکه بدانید چه می‌کنید. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;درباره گزینه‌های بررسی املای در وب‌سایت Telerik بیشتر بدانید&lt;/a&gt;</value>
+  </data>
+  <data name="SpellEditDistance.Text" xml:space="preserve">
+    <value>فاصله ویرایش املای:</value>
+  </data>
+  <data name="SpellFragmentIgnoreOptions.Help" xml:space="preserve">
+    <value>گزینه‌های بررسی املای متأسفانه به‌ندرت مستند شده‌اند. در حالت کلی باید این فیلدها را خالی بگذارید مگر آنکه بدانید چه می‌کنید. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;درباره گزینه‌های بررسی املای در وب‌سایت Telerik بیشتر بدانید&lt;/a&gt;</value>
+  </data>
+  <data name="SpellFragmentIgnoreOptions.Text" xml:space="preserve">
+    <value>گزینه‌های نادیده‌گرفتن قطعه در بررسی املای:</value>
+  </data>
+  <data name="SpellWordIgnoreOptions.Help" xml:space="preserve">
+    <value>گزینه‌های بررسی املای متأسفانه به‌ندرت مستند شده‌اند. در حالت کلی باید این فیلدها را خالی بگذارید مگر آنکه بدانید چه می‌کنید. &lt;a href="http://www.telerik.com/products/aspnet-ajax/spell.aspx" target="_blank"&gt;درباره گزینه‌های بررسی املای در وب‌سایت Telerik بیشتر بدانید&lt;/a&gt;</value>
+  </data>
+  <data name="SpellWordIgnoreOptions.Text" xml:space="preserve">
+    <value>گزینه‌های نادیده‌گرفتن واژه در بررسی املای:</value>
+  </data>
+  <data name="StripFormattingOptions.Help" xml:space="preserve">
+    <value>توسعه‌دهندگان می‌توانند قالب‌بندی محتوا را با ویژگی StripFormattingOptions اعمال کنند. در نتیجه، حذف قالب‌بندی روی همه محتوایی که کاربران می‌خواهند بچسبانند اعمال می‌شود. تنظیم EditorStripFormattingOptions می‌تواند هر یک یا ترکیبی از مقادیر زیر باشد:
+&lt;ul&gt;
+&lt;li&gt;None: محتوای کلیپ‌بورد را همان‌طور که هست می‌چسباند. &lt;/li&gt;
+&lt;li&gt;NoneSupressCleanMessage: هنگام چسباندن چیزی را حذف نمی‌کند و پرسشی نمی‌پرسد. &lt;/li&gt;
+&lt;li&gt;MSWord: هنگام چسباندن برچسب‌های خاص Word را حذف می‌کند و فونت‌ها و اندازه‌های متن را نگه می‌دارد. &lt;/li&gt;
+&lt;li&gt;MSWordNoFonts: هنگام چسباندن برچسب‌های خاص Word را حذف می‌کند و فقط اندازه‌های متن را نگه می‌دارد. &lt;/li&gt;
+&lt;li&gt;MSWordRemoveAll: هنگام چسباندن برچسب خاص Word را حذف می‌کند و هم فونت‌ها و هم اندازه‌های متن را برمی‌دارد. &lt;/li&gt;
+&lt;li&gt;Css: هنگام چسباندن سبک‌های CSS را حذف می‌کند. &lt;/li&gt;
+&lt;li&gt;Font: هنگام چسباندن برچسب‌های Font را حذف می‌کند. &lt;/li&gt;
+&lt;li&gt;Span: هنگام چسباندن برچسب‌های Span را حذف می‌کند. &lt;/li&gt;
+&lt;li&gt;All: همه قالب‌بندی HTML را حذف می‌کند و متن ساده می‌چسباند. &lt;/li&gt;
+&lt;li&gt;AllExceptNewLines: هنگام چسباندن همه برچسب‌ها را به‌جز "br" و خطوط جدید (\n) پاک می‌کند.&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="StripFormattingOptions.Text" xml:space="preserve">
+    <value>گزینه‌های حذف قالب‌بندی:</value>
+  </data>
+  <data name="Template Manager Settings.Title" xml:space="preserve">
+    <value>تنظیمات مدیر قالب</value>
+  </data>
+  <data name="TemplateFilters.Help" xml:space="preserve">
+    <value>فهرستی جدا شده با نقطه‌ویرگول از پسوندهای ممکن برای استفاده در مدیر قالب. این پسوندها باید در فهرست پسوندهای مجاز تنظیمات میزبان نیز باشند. از این قالب استفاده کنید: *.extensionname</value>
+  </data>
+  <data name="TemplateFilters.Text" xml:space="preserve">
+    <value>فیلترها:</value>
+  </data>
+  <data name="TemplatePath.Help" xml:space="preserve">
+    <value>پوشه‌ای که مدیر قالب هنگام بارگذاری گفت‌وگو با آن شروع می‌کند</value>
+  </data>
+  <data name="TemplatePath.Text" xml:space="preserve">
+    <value>مسیر:</value>
+  </data>
+  <data name="Toolbar Settings.Title" xml:space="preserve">
+    <value>تنظیمات نوار ابزار</value>
+  </data>
+  <data name="ToolbarConfigTab.Text" xml:space="preserve">
+    <value>پیکربندی نوار ابزار</value>
+  </data>
+  <data name="ToolbarMode.Help" xml:space="preserve">
+    <value>RadEditor برای ASP.NET AJAX ویژگی‌ای به نام ToolbarMode معرفی می‌کند که رفتار نوار ابزار را مشخص می‌کند. گزینه‌های مختلف تنظیم ToolbarMode اینها هستند:&lt;ul&gt;&lt;li&gt;Default - نوار ابزار ایستاست و روی ناحیه محتوا قرار دارد
+&lt;/li&gt;&lt;li&gt;PageTop - در این حالت، وقتی ویرایشگری تمرکز می‌گیرد نوار ابزارش در بالای صفحه سوار می‌شود
+&lt;/li&gt;&lt;li&gt;ShowOnFocus - در اینجا نوار ابزار درست بالای ویرایشگر ظاهر می‌شود وقتی تمرکز می‌گیرد.
+&lt;/li&gt;&lt;li&gt;Floating - نوار ابزار در پنجره‌ای باز می‌شود و به کاربر اجازه می‌دهد آن را روی صفحه جابه‌جا کند
+&lt;/li&gt;&lt;/ul&gt;</value>
+  </data>
+  <data name="ToolbarMode.Text" xml:space="preserve">
+    <value>حالت:</value>
+  </data>
+  <data name="ToolsWidth.Help" xml:space="preserve">
+    <value>عرض نوار ابزار ویرایشگر را تنظیم می‌کند؛ فقط وقتی حالت نوار ابزار چیز دیگری غیر از Default است استفاده شود!</value>
+  </data>
+  <data name="ToolsWidth.Text" xml:space="preserve">
+    <value>عرض:</value>
+  </data>
+  <data name="UserFolder.Text" xml:space="preserve">
+    <value>[UserFolder]</value>
+  </data>
+  <data name="Width.Help" xml:space="preserve">
+    <value>عرض کل کنترل ویرایشگر. </value>
+  </data>
+  <data name="Width.Text" xml:space="preserve">
+    <value>عرض:</value>
+  </data>
+  <data name="CannotManageHTMLEditorProviders.Text" xml:space="preserve">
+    <value>شما نمی‌توانید ارائه‌دهنده‌های ویرایشگر HTML را مدیریت کنید</value>
+  </data>
+</root>
