@@ -179,5 +179,39 @@ namespace Argumentum.AssetConverter.Tests
 				+ "désinences espagnoles dont le pack historique est contaminé : {0}",
 				string.Join(" | ", offenders));
 		}
+
+		/// <summary>Correction demandée sur la PR (ai-01, c.6629942784) : la première
+		/// livraison échappait ses guillemets deux fois — le texte parsé portait
+		/// littéralement « &amp;quot;host&amp;quot; », qu'un écran affiche tel quel
+		/// au lieu du guillemet. Le lot corrigé écrit des guillemets typographiques
+		/// (« “host” »), comme le neutre écrit ses guillemets en clair. Le même
+		/// relevé accompagne les packs ru-RU, ar-SA, fa-IR et zh-CN.</summary>
+		[Fact]
+		public void NoNewCellCarriesEscapedEntityText()
+		{
+			var pt = Values(PtBrResx);
+			var offenders = NewNeutralKeys
+				.Where(k => pt.TryGetValue(k, out var v))
+				.Select(k => (Key: k, Value: pt[k]))
+				.Where(x => CarriesEntityText(x.Value))
+				.Select(x => x.Key)
+				.ToArray();
+			offenders.Should().BeEmpty(
+				"le texte parsé d'une cellule neuve ne doit contenir ni \"&amp;\" ni \"&quot;\" "
+				+ "(double échappement : l'écran affiche l'entité au lieu du guillemet) : {0}",
+				string.Join(" | ", offenders));
+
+			// Contrôle inverse : la forme doublement échappée de la première livraison,
+			// une fois parsée, DOIT être vue — et la forme corrigée laissée passer.
+			CarriesEntityText("Os superusuários têm acesso de &quot;host&quot; ao site.")
+				.Should().BeTrue("le détecteur doit voir la valeur fautive poussée dans la PR");
+			CarriesEntityText("Os superusuários têm acesso de “host” ao site.")
+				.Should().BeFalse("le détecteur doit laisser passer la forme corrigée");
+		}
+
+		/// <summary>Un texte parsé qui contient « &amp;amp; » ou « &amp;quot; » encode
+		/// un échappement visible : le lecteur voit l'entité, pas le caractère.</summary>
+		private static bool CarriesEntityText(string value) =>
+			value.Contains("&amp;") || value.Contains("&quot;");
 	}
 }
