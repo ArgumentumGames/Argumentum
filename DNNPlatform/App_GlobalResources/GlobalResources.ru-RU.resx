@@ -1280,4 +1280,100 @@ SOFTWARE.&lt;/p&gt;</value>
 	&lt;p align="justify"&gt;Мы приветствуем ваши замечания относительно настоящего заявления о конфиденциальности. Если вы полагаете, что наш Сайт не соблюдает настоящее заявление о конфиденциальности, свяжитесь с нами по электронной почте или обычной почтой по адресу, указанному в &lt;a href="/terms"&gt;&lt;b&gt;условиях использования&lt;/b&gt;&lt;/a&gt;, и мы примем все разумные меры для оперативного выявления и устранения проблемы.&lt;/p&gt;
 	&lt;p align="left"&gt;&lt;a class="topOfPage" href="#top"&gt;В начало страницы&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;</value>
   </data>
+  <data name="Administrators.Role" xml:space="preserve">
+    <value>Администраторы</value>
+  </data>
+  <data name="Administrators.RoleDescription" xml:space="preserve">
+    <value>Администраторы могут получать доступ ко всему содержимому этого сайта и изменять его, а также управлять всеми настройками сайта. Они могут управлять доступом пользователей к сайту, а также другими администраторами. Пользователи этого типа не могут вносить изменения на уровне системы или выполнять привилегированные задачи администрирования, доступные суперпользователям.</value>
+  </data>
+  <data name="All Users.Role" xml:space="preserve">
+    <value>Все пользователи</value>
+  </data>
+  <data name="All Users.RoleDescription" xml:space="preserve">
+    <value>Это роль, управляемая платформой (то есть вы не можете добавлять пользователей в эту роль или удалять их из нее). Эта роль представляет ЛЮБОГО посетителя сайта независимо от статуса входа или учетной записи.</value>
+  </data>
+  <data name="CompleteStateBody.Text" xml:space="preserve">
+    <value>Страница «{0}» находится в состоянии «{1}» и ожидает рассмотрения и утверждения.</value>
+  </data>
+  <data name="CompleteStateSubject.Text" xml:space="preserve">
+    <value>Утверждение страницы</value>
+  </data>
+  <data name="CompleteWorkflowBody.Text" xml:space="preserve">
+    <value>Страница «{0}» опубликована и теперь доступна.</value>
+  </data>
+  <data name="CompleteWorkflowSubject.Text" xml:space="preserve">
+    <value>Страница опубликована</value>
+  </data>
+  <data name="Content Editors.Role" xml:space="preserve">
+    <value>Редакторы контента</value>
+  </data>
+  <data name="Content Editors.RoleDescription" xml:space="preserve">
+    <value>Редакторы контента могут добавлять и изменять содержимое на этом сайте. Точный набор возможностей зависит от того, что поддерживают модули, используемые на этом сайте.</value>
+  </data>
+  <data name="Content Managers.Role" xml:space="preserve">
+    <value>Менеджеры контента</value>
+  </data>
+  <data name="Content Managers.RoleDescription" xml:space="preserve">
+    <value>Менеджеры контента решают, что отображается на сайте. Они могут изменять материалы, добавленные редакторами контента, и решать, публиковать их или нет. Точный набор возможностей зависит от того, что поддерживают модули, используемые на этом сайте.</value>
+  </data>
+  <data name="DiscardStateBody.Text" xml:space="preserve">
+    <value>Изменения страницы «{0}» были отклонены, и теперь она находится в состоянии «{1}».</value>
+  </data>
+  <data name="DiscardStateSubject.Text" xml:space="preserve">
+    <value>Страница отклонена</value>
+  </data>
+  <data name="DiscardWorkflowBody.Text" xml:space="preserve">
+    <value>Изменения страницы «{0}» были отменены.</value>
+  </data>
+  <data name="DiscardWorkflowSubject.Text" xml:space="preserve">
+    <value>Изменения страницы отменены</value>
+  </data>
+  <data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_BODY.Text" xml:space="preserve">
+    <value>
+Следующий пользователь запросил токен сброса пароля на сайте [Portal:PortalName], но его учетная запись ожидает одобрения.
+Имя пользователя: [User:UserName]
+Отображаемое имя: [User:DisplayName]
+
+После проверки этого пользователя, если учетная запись будет одобрена, повторно отправьте ему письмо для сброса пароля.
+    </value>
+  </data>
+  <data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] Запрос на восстановление пароля от неодобренного пользователя [User:Username]</value>
+  </data>
+  <data name="Registered Users.Role" xml:space="preserve">
+    <value>Зарегистрированные пользователи</value>
+  </data>
+  <data name="Registered Users.RoleDescription" xml:space="preserve">
+    <value>Все пользователи, имеющие учетную запись на этом сайте и (если включено подтверждение) прошедшие подтверждение.</value>
+  </data>
+  <data name="StartWorkflowBody.Text" xml:space="preserve">
+    <value>Страница «{0}» находится в состоянии «{1}» и ожидает отправки.</value>
+  </data>
+  <data name="StartWorkflowSubject.Text" xml:space="preserve">
+    <value>Страница отправлена</value>
+  </data>
+  <data name="Subscribers.Role" xml:space="preserve">
+    <value>Подписчики</value>
+  </data>
+  <data name="Subscribers.RoleDescription" xml:space="preserve">
+    <value>Подписчики разрешают связываться с ними по электронной почте с этого сайта. Пользователи могут сами выйти из этой роли, чтобы управлять этим.</value>
+  </data>
+  <data name="Superuser.Role" xml:space="preserve">
+    <value>Суперпользователи</value>
+  </data>
+  <data name="Superuser.RoleDescription" xml:space="preserve">
+    <value>Суперпользователи (иногда их называют пользователями хоста) имеют доступ уровня «хост» к сайту: они могут получать доступ к любому содержимому любого из сайтов этой установки и изменять его, включая добавление и удаление администраторов и других суперпользователей. Они также могут выполнять задачи системного уровня, такие как очистка кэша, перезапуск приложения, управление файлами конфигурации и настройка глобальных параметров.</value>
+  </data>
+  <data name="Unauthenticated Users.Role" xml:space="preserve">
+    <value>Неаутентифицированные пользователи</value>
+  </data>
+  <data name="Unauthenticated Users.RoleDescription" xml:space="preserve">
+    <value>Это роль, управляемая платформой (то есть вы не можете назначать пользователей этой роли). Она обозначает пользователей, которые не выполнили вход.</value>
+  </data>
+  <data name="Unverified Users.Role" xml:space="preserve">
+    <value>Неподтвержденные пользователи</value>
+  </data>
+  <data name="Unverified Users.RoleDescription" xml:space="preserve">
+    <value>Если на этом сайте используется подтверждение учетных записей, то любой зарегистрировавшийся пользователь сначала входит в эту роль, а не в роль «Зарегистрированные пользователи». Как только его учетная запись будет подтверждена (в зависимости от настройки — переходом по ссылке из письма или администратором), пользователь перестает быть членом этой роли и становится обычным «зарегистрированным пользователем».</value>
+  </data>
 </root>
