@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
@@ -23,6 +24,11 @@ namespace Argumentum.AssetConverter.Tests
     /// <c>git cat-file</c> (exit 128) — c'est voulu, pas un défaut : mieux vaut un
     /// rouge bruyant qu'un vert optimiste sur un blob qui n'existe pas encore.
     /// </para>
+    /// <para>
+    /// Chaque chemin n'est lu sous git qu'<b>une fois par run</b> (mémoire interne,
+    /// #2138) — les lectures répétées servent le blob déjà lu, ce qui supprime les
+    /// spawns en rafale que les jambes CI parallèles ne survivaient pas toujours.
+    /// </para>
     /// </summary>
     internal static class DnnResxGuardSocle
     {
@@ -30,7 +36,25 @@ namespace Argumentum.AssetConverter.Tests
         internal const int GitTimeoutMs = 30_000;
 
         /// <summary>
-        /// Lit le blob de <c>HEAD:&lt;rel&gt;</c> (relatif à la racine du dépôt).
+        /// Mémoire des blobs déjà lus, clé = chemin dépôt. <c>HEAD</c> ne bouge pas
+        /// pendant un run de tests — aucun test ne commit mid-run, épingle par
+        /// <c>NoTestMovesHeadOrTheWorktreeMidRun</c> — donc un blob lu une fois vaut
+        /// pour tout le run. Les échecs (chemin absent de HEAD, timeout) ne sont PAS
+        /// mis en mémoire : un retry peut suivre un commit survenu entre-temps.
+        /// <para>
+        /// Pourquoi : un spawn <c>git cat-file</c> PAR LECTURE mettait des dizaines de
+        /// processus en vol sur les jambes CI parallèles, et six témoins (#2138) ont
+        /// montré des rafales entières tuées au mur de 30 s simultanément — gel du
+        /// runner, pas fichier lent. Ne lire chaque fichier qu'une fois par run
+        /// supprime la majorité des spawns ; le délai de 30 s reste inchangé.
+        /// </para>
+        /// </summary>
+        private static readonly ConcurrentDictionary<string, byte[]> CommittedBlobCache =
+            new(StringComparer.Ordinal);
+
+        /// <summary>
+        /// Lit le blob de <c>HEAD:&lt;rel&gt;</c> (relatif à la racine du dépôt) —
+        /// une seule fois par run, les lectures suivantes servent la mémoire.
         /// </summary>
         /// <param name="rel">Chemin dépôt, séparateurs « / ».</param>
         /// <exception cref="InvalidOperationException">
@@ -43,6 +67,12 @@ namespace Argumentum.AssetConverter.Tests
             if (string.IsNullOrWhiteSpace(rel))
                 throw new ArgumentException("chemin vide : rien à lire dans HEAD", nameof(rel));
 
+            return CommittedBlobCache.GetOrAdd(rel, ReadCommittedBlobFromGit);
+        }
+
+        /// <summary>Lecture effective sous git, appelée au plus une fois par chemin et par run.</summary>
+        private static byte[] ReadCommittedBlobFromGit(string rel)
+        {
             var psi = new ProcessStartInfo("git", $"cat-file -p \"HEAD:{rel}\"")
             {
                 WorkingDirectory = TestRepoRoot.Find(),
