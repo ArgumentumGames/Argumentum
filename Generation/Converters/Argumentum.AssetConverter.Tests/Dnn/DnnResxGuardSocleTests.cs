@@ -72,12 +72,15 @@ namespace Argumentum.AssetConverter.Tests
                 + "Changer cette valeur est une décision — la garde l'épingle");
         }
 
-        // ── Mémoïsation (#2138, option 1 arbitrée par ai-01) ─────────────────
+        // ── Mémoïsation + transport batch (#2138, options 1 puis 2) ──────────
         //
         // Six témoins CI (issue #2138) : des rafales de `git cat-file` tués au mur
-        // de 30 s SIMULTANÉMENT — gel du runner, pas fichier lent. Un spawn PAR
-        // LECTURE multiplie les processus en vol ; ne lire chaque fichier qu'une
-        // fois par run supprime la majorité des spawns sans toucher au délai.
+        // de 30 s SIMULTANÉMENT — gel du runner, pas fichier lent. L'option 1
+        // (#2140) a mémoïsé : un spawn par FICHIER distinct au lieu d'un par
+        // lecture. Le témoin 7 est revenu quand même — des centaines de fichiers
+        // distincts faisaient encore des centaines de spawns. L'option 2 (GO
+        // ai-01, #2138 c.6630044378) fait traverser TOUS les blobs du run à UN
+        // SEUL processus `git cat-file --batch` : plus de rafale possible.
 
         [Fact]
         public void AFileIsReadFromHeadOnlyOncePerRun()
@@ -91,8 +94,45 @@ namespace Argumentum.AssetConverter.Tests
             ReferenceEquals(first, second).Should().BeTrue(
                 "la mémoïsation doit rendre L'INSTANCE lue au premier passage, pas une "
                 + "copie : c'est « chaque fichier n'est lu qu'une fois par run » rendu "
-                + "observable (#2138). Deux tableaux distincts = deux spawns = le coût "
+                + "observable (#2138). Deux tableaux distincts = deux lectures = le coût "
                 + "que six témoins CI ont payé en timeouts");
+        }
+
+        /// <summary>
+        /// Deux chemins commis, présents dans HEAD, et cités par AUCUN fichier du
+        /// projet de tests (vérifié par grep au moment du choix) : ce fait est leur
+        /// premier lecteur, donc leur première traversée du transport — sinon la
+        /// mémoire servirait les deux lectures et le fait sur les spawns ne
+        /// prouverait rien.
+        /// </summary>
+        private const string ColdA = "DNNPlatform/Config/SiteUrls.config";
+        private const string ColdB = "DNNPlatform/Config/DotNetNuke.config";
+
+        [Fact]
+        public void DistinctColdFilesShareOneBatchProcess()
+        {
+            var spawnsBefore = DnnResxGuardSocle.BatchSpawnCount;
+            var exchangesBefore = DnnResxGuardSocle.BatchExchangeCount;
+
+            var a = DnnResxGuardSocle.CommittedBlob(ColdA);
+            var b = DnnResxGuardSocle.CommittedBlob(ColdB);
+
+            a.Length.Should().BeGreaterThan(100);
+            b.Length.Should().BeGreaterThan(100,
+                "les deux lectures doivent rendre des octets réels — un transport qui "
+                + "rendrait des tableaux vides blanchirait tous les contrôles en aval");
+
+            (DnnResxGuardSocle.BatchExchangeCount - exchangesBefore).Should().BeGreaterThanOrEqualTo(2,
+                "les DEUX fichiers doivent avoir traversé le transport : si la mémoire "
+                + "les servait, le fait sur les spawns mesurerait un cache, pas le "
+                + "transport — c'est la garantie de non-vacuité du fait suivant");
+
+            (DnnResxGuardSocle.BatchSpawnCount - spawnsBefore).Should().BeInRange(0, 1,
+                "deux fichiers DISTINCTS doivent vivre dans le MÊME processus git "
+                + "cat-file --batch : 0 si le transport était déjà debout, 1 s'il "
+                + "vient de naître — jamais 2. La forme « un spawn par fichier » est "
+                + "celle que le témoin 7 de #2138 a abattue : 2 ici, c'est elle qui "
+                + "revient, avec les rafales qu'on a fuies");
         }
 
         /// <summary>
@@ -229,12 +269,22 @@ namespace Argumentum.AssetConverter.Tests
         }
 
         [Fact]
-        public void TheSocleDrainsStdoutAsynchronouslySoItsTimeoutCanActuallyFire()
+        public void TheSocleTimesOutItsBatchExchangesAndKeepsStderrDrained()
         {
             var src = File.ReadAllText(Path.Combine(DnnDir, "DnnResxGuardSocle.cs"));
 
-            src.Should().Contain("CopyToAsync",
-                "les deux tubes doivent être drainés sans bloquer l'appelant");
+            src.Should().Contain("cat-file --batch",
+                "le transport de l'option 2 : UN processus conversationnel pour tout le run, "
+                + "pas un spawn par fichier");
+            src.Should().NotContain("cat-file -p",
+                "la forme « un cat-file -p par fichier » est celle que le témoin 7 de #2138 a "
+                + "abattue : sa revenue, même mémoïsée, recrée les rafales de spawns");
+            src.Should().Contain("Wait(GitTimeoutMs)",
+                "chaque échange doit être attendu AVEC délai, sinon un git cat-file --batch muet "
+                + "gèlerait la jambe entière : c'est le mur de 30 s rendu tirable");
+            src.Should().Contain("DrainStderrAsync",
+                "stderr doit être vidé en continu : un tube d'erreur jamais lu se remplit et "
+                + "bloque l'enfant — la panne qu'on prétend éviter deviendrait celle qu'on provoque");
             src.Should().NotContain("BaseStream.CopyTo(",
                 "un drain SYNCHRONE se bloque si l'enfant n'écrit plus sans fermer son tube — "
                 + "et le délai placé après lui ne couvrirait alors rien du tout, précisément dans "
