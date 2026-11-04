@@ -1104,4 +1104,100 @@ SOFTWARE.&lt;/p&gt;</value>
     <value>
     </value>
   </data>
+  <data name="Administrators.Role">
+    <value xml:space="preserve">Administradores</value>
+  </data>
+  <data name="Administrators.RoleDescription">
+    <value xml:space="preserve">Os administradores podem acessar e alterar todo o conteúdo deste site e controlar todas as configurações do site. Eles podem gerenciar o acesso dos usuários ao site e também gerenciar outros administradores. Este tipo de usuário não pode fazer alterações em nível de sistema nem executar tarefas administrativas privilegiadas que os superusuários podem executar.</value>
+  </data>
+  <data name="All Users.Role">
+    <value xml:space="preserve">Todos</value>
+  </data>
+  <data name="All Users.RoleDescription">
+    <value xml:space="preserve">Esta é uma função gerenciada pela plataforma (ou seja, não é possível adicionar ou remover usuários desta função). Esta função representa QUALQUER visitante do site, independentemente do status de sessão ou de conta.</value>
+  </data>
+  <data name="CompleteStateBody.Text">
+    <value xml:space="preserve">A página '{0}' está no estado '{1}' e aguarda revisão e aprovação.</value>
+  </data>
+  <data name="CompleteStateSubject.Text">
+    <value xml:space="preserve">Aprovação de página</value>
+  </data>
+  <data name="CompleteWorkflowBody.Text">
+    <value xml:space="preserve">A página '{0}' foi publicada e já está no ar.</value>
+  </data>
+  <data name="CompleteWorkflowSubject.Text">
+    <value xml:space="preserve">Página publicada</value>
+  </data>
+  <data name="Content Editors.Role">
+    <value xml:space="preserve">Editores de Conteúdo</value>
+  </data>
+  <data name="Content Editors.RoleDescription">
+    <value xml:space="preserve">Os editores de conteúdo podem adicionar e alterar conteúdo neste site. A funcionalidade exata depende do suporte oferecido pelos módulos utilizados neste site.</value>
+  </data>
+  <data name="Content Managers.Role">
+    <value xml:space="preserve">Gestores de Conteúdo</value>
+  </data>
+  <data name="Content Managers.RoleDescription">
+    <value xml:space="preserve">Os gestores de conteúdo podem decidir o que é exibido no site. Eles podem alterar o que os editores de conteúdo contribuíram e decidir se isso será publicado ou não. A funcionalidade exata depende do suporte oferecido pelos módulos utilizados neste site.</value>
+  </data>
+  <data name="DiscardStateBody.Text">
+    <value xml:space="preserve">As alterações da página '{0}' foram rejeitadas, e ela agora está no estado '{1}'.</value>
+  </data>
+  <data name="DiscardStateSubject.Text">
+    <value xml:space="preserve">Página rejeitada</value>
+  </data>
+  <data name="DiscardWorkflowBody.Text">
+    <value xml:space="preserve">As alterações da página '{0}' foram descartadas.</value>
+  </data>
+  <data name="DiscardWorkflowSubject.Text">
+    <value xml:space="preserve">Página descartada</value>
+  </data>
+  <data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_BODY.Text" xml:space="preserve">
+    <value>
+O usuário a seguir solicitou um Token de Redefinição de Senha em [Portal:PortalName], mas a conta do usuário está pendente de aprovação.
+Nome de usuário: [User:UserName]
+Nome de exibição: [User:DisplayName]
+
+Após revisar este usuário, se a conta for autorizada, reenvie ao usuário um e-mail de redefinição de senha.
+    </value>
+  </data>
+  <data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_SUBJECT.Text">
+    <value xml:space="preserve">[Portal:PortalName] Lembrete de senha solicitado por usuário não aprovado [User:Username]</value>
+  </data>
+  <data name="Registered Users.Role">
+    <value xml:space="preserve">Usuários Registrados</value>
+  </data>
+  <data name="Registered Users.RoleDescription">
+    <value xml:space="preserve">Todos os usuários que possuem uma conta neste site e (caso a verificação tenha sido ativada) foram verificados.</value>
+  </data>
+  <data name="StartWorkflowBody.Text">
+    <value xml:space="preserve">A página '{0}' está no estado '{1}' e aguarda envio.</value>
+  </data>
+  <data name="StartWorkflowSubject.Text">
+    <value xml:space="preserve">Página enviada</value>
+  </data>
+  <data name="Subscribers.Role">
+    <value xml:space="preserve">Assinantes</value>
+  </data>
+  <data name="Subscribers.RoleDescription">
+    <value xml:space="preserve">Os assinantes autorizam o contato por e-mail deste site. Os usuários podem remover a si mesmos desta função para controlar isso.</value>
+  </data>
+  <data name="Superuser.Role">
+    <value xml:space="preserve">Superusuários</value>
+  </data>
+  <data name="Superuser.RoleDescription">
+    <value xml:space="preserve">Os superusuários (às vezes chamados de usuários host) têm acesso de &amp;quot;host&amp;quot; ao site, o que significa que podem acessar e alterar qualquer conteúdo de qualquer um dos sites desta instalação, incluindo adicionar e remover administradores e outros superusuários. Eles também podem executar tarefas em nível de sistema, como limpar o cache, reiniciar o aplicativo, gerenciar arquivos de configuração e definir as configurações globais.</value>
+  </data>
+  <data name="Unauthenticated Users.Role">
+    <value xml:space="preserve">Usuários Não Autenticados</value>
+  </data>
+  <data name="Unauthenticated Users.RoleDescription">
+    <value xml:space="preserve">Esta é uma função gerenciada pela plataforma (ou seja, não é possível atribuir usuários a esta função). Ela serve para identificar os usuários que não estão conectados.</value>
+  </data>
+  <data name="Unverified Users.Role">
+    <value xml:space="preserve">Usuários Não Verificados</value>
+  </data>
+  <data name="Unverified Users.RoleDescription">
+    <value xml:space="preserve">Se este site utiliza verificação de contas, qualquer usuário que se registrar fará primeiro parte desta função e não de &amp;quot;usuários registrados&amp;quot;. Assim que for verificado (dependendo da configuração, seja clicando em um link de e-mail ou por um administrador), o usuário deixará de ser membro desta função e se tornará um &amp;quot;usuário registrado&amp;quot; comum.</value>
+  </data>
 </root>
