@@ -167,9 +167,12 @@ namespace Argumentum.AssetConverter.Tests
         private const string Culture = "fa-IR";
 
         /// <summary>
-        /// Résidu hors lot, mesuré : <c>Security/DataConsent.ascx</c> — 7 clés
-        /// neutres, sœurs es-ES/ru-RU/zh-CN (packs DNN d'origine), ni ar-SA ni
-        /// fa-IR. Épinglé pour qu'une livraison future le déclare.
+        /// Ancien résidu hors lot : <c>Security/DataConsent.ascx</c> — 7 clés
+        /// neutres, sœurs es-ES/ru-RU/zh-CN (packs DNN d'origine). Épinglé hors lot
+        /// admin tant qu'aucun pack fa-IR ne le livrait ; livré depuis par le lot 4a
+        /// « résidu DesktopModules » (2026-11-04, doc 458-lot4a-fa-ir-base-arithmetique,
+        /// garde <c>DnnModuleLevelDtmResidualFaResxGuardTests</c>). Le fait ci-dessous
+        /// suit cette livraison au lieu de l'interdire.
         /// </summary>
         private const string OutOfLotStem = "DataConsent.ascx";
 
@@ -474,25 +477,29 @@ namespace Argumentum.AssetConverter.Tests
         }
 
         /// <summary>
-        /// Le résidu <c>DataConsent.ascx</c> est HORS lot et le reste : il porte des
-        /// sœurs de culture de stock (es/ru/zh) mais ni ar-SA ni fa-IR. Ce test le
-        /// nomme — une livraison fa-IR de ce fichier devra passer par une décision
-        /// (mise à jour de <see cref="Covered"/>), pas par un ajout silencieux.
+        /// Le résidu <c>DataConsent.ascx</c>, épinglé hors lot admin tant qu'aucun pack
+        /// fa-IR ne le livrait, est désormais livré — par le lot 4a « résidu
+        /// DesktopModules » (2026-11-04), pas par ce lot-ci : il reste hors
+        /// <see cref="Covered"/> et le fait suit la livraison au lieu de l'interdire.
+        /// Le contrôle d'intégrité de la traduction vit dans la garde du lot 4a
+        /// (<c>DnnModuleLevelDtmResidualFaResxGuardTests</c>) ; ici, on vérifie que le
+        /// fichier livré porte bien les 7 clés du neutre — le pont entre les deux lots.
         /// </summary>
         [Fact]
-        public void TheOutOfLotResidualIsNamedAndStillOutOfLot()
+        public void TheFormerOutOfLotResidualIsDeliveredByTheResidualLot()
         {
             Covered.Should().NotContain(c => c.Stem == OutOfLotStem,
-                "DataConsent est mesuré hors lot : le jumeau ar-SA ne l'a pas livré");
+                "DataConsent appartient au lot 4a « résidu », pas au lot admin — deux gardes, deux périmètres");
 
             var neutral = Values("Admin/Security", OutOfLotStem, string.Empty);
             neutral.Should().HaveCount(7,
                 $"DataConsent porte 7 clés neutres (mesuré 2026-11-01) ; ici {neutral.Count} — "
                 + "si le neutre a bougé, le résidu doit être re-mesuré, pas recopié");
 
-            File.Exists(PathOf("Admin/Security", OutOfLotStem, Culture)).Should().BeFalse(
-                $"{RelOf("Admin/Security", OutOfLotStem, Culture)} : le jour où ce fichier existe, il faut "
-                + "l'ajouter à Covered et à ce test DÉLIBÉRÉMENT — pas le laisser entrer par la porte de service");
+            var delivered = Values("Admin/Security", OutOfLotStem, Culture);
+            delivered.Keys.Should().BeEquivalentTo(neutral.Keys,
+                $"{RelOf("Admin/Security", OutOfLotStem, Culture)} : livré par le lot 4a depuis le "
+                + "2026-11-04 — le jeu de clés doit suivre le neutre (voir la garde du lot 4a pour le reste)");
         }
 
         /// <summary>
