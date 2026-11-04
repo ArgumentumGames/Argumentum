@@ -1,5 +1,10 @@
 # #1066 — Runbook de cutover : chaque item re-mesuré, avec geste, contrôle, rollback
 
+> ⚠️ **Remplacé par** [`1066-cutover-runbook-2026-11-04.md`](1066-cutover-runbook-2026-11-04.md)
+> (consolidation : EventLog, texte légal EN, portes #2132/#135/#1502/#457, VPS `myia-web1`,
+> état DNN 10.4.1 + 2sxc 22.01). Ce document reste le **détail mesuré** des items R1-R8 —
+> les mesures qu'il porte ne sont pas recopiées ; il n'est plus la procédure de référence.
+
 **Date** : 2026-09-22 ~10:00 · **Lane** : po-2023 (worker) · **Base** : `origin/master` `762848a6`
 **Nature** : re-mesure préprod (lecture seule, cache-buster) + runbook. ⛔ **Zéro écriture prod** (gel #972) ;
 ⛔ pas de `/MIR`, pas de synchronisation de répertoire, pas de `git checkout` sur un webroot, ⛔ jamais copier
