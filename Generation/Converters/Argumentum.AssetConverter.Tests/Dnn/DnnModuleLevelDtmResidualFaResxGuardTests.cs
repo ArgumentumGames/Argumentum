@@ -298,9 +298,12 @@ namespace Argumentum.AssetConverter.Tests
 
         /// <summary>
         /// Le BOM du fichier produit suit celui de SON neutre — le module-level est
-        /// hétérogène : dans ce lot, 30 fichiers portent le BOM et 7 n'en portent
-        /// pas (constat du jumeau ar-SA). ⚠️ Cette énumération est un CONSTAT daté,
-        /// pas la règle : l'attente se DÉRIVE du neutre fichier par fichier.
+        /// hétérogène : dans ce lot, la majorité des neutres porte le BOM et une
+        /// minorité n'en porte pas. ⚠️ Le partage n'est pas cité ici comme un compte :
+        /// il a déjà été publié faux deux fois (30/7 sur le lot zh, puis 30/7 encore
+        /// sur le lot 4a — mesuré 28/9 le 04/11 par une contre-revue), parce qu'un
+        /// chiffre recopié dérive. La règle est l'égalité par fichier, que cette
+        /// théorie asserte ; le compte, lui, se re-mesure et ne s'épingle pas.
         /// <para>
         /// ⚠️ Transport mesuré sur le <b>blob committé</b> (<c>git cat-file</c>), jamais
         /// sur l'arbre de travail : le runner CI a <c>core.autocrlf=true</c>, qui
