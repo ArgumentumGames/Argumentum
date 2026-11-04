@@ -36,15 +36,26 @@ Backup pré-geste : 41 valeurs E9169 (XML, scratchpad session). Plan : 24 champs
 cultures = **168 cellules** (dims : en=7, ru=8, pt=9, es=10, ar=11, fa=12, zh=13), 0
 cible dupliquée, anti-rejeu en transaction (`UPDLOCK, HOLDLOCK`).
 
+> **Sauvegardes hors scratchpad** (le scratchpad de session est nettoyé ; copiées le
+> 04/11 à `G:\Mon Drive\MyIA\Argumentum\backups-eav-2026-11-04\`, textes de démonstration,
+> pas de secrets — emplacement demandé par ai-01 c.6629943461) :
+> `contact-e9169-backup.xml` (41 valeurs, sha16 `9F41B95E5204A66B`) ·
+> `contact-e9169-applied.json` (post-geste, `D06B503499855F17`) ·
+> `e9169-base-backup-20261104-pre8fr.json` (pré-#2142, `D04F742BD812C70C`) ·
+> `e9169-fr8-payload.json` (`57BF308E81AB9DDA`).
+
 - **Rehearse** : transaction unique, 168 insert+lien+relecture in-tx byte-identical,
   ROLLBACK → 41 valeurs / 0 dims / 0 fantômes.
-- **Apply** : COMMIT. Seed `IDENT_CURRENT('TsDynDataValue')` : **30314** lu **avant le
-  Rehearse** (`$seedBefore`, script d'injection), **30482** relu **dans la transaction de
-  l'Apply** après les 168 inserts (Δ = 168, garde du script). `ValueId` réels des 168
-  rangées, **mesurés par requête le 04/11** : min = **30315**, max = **30482**, contigus.
-  ⇒ dans ce geste le Rehearse annulé n'a **laissé aucun trou** dans la séquence : la
-  « leçon E1 » (identités non rendues par un ROLLBACK) ne s'est pas matérialisée ici —
-  la garde Δ = 168 l'a prouvé en passant, la contiguïté mesurée le confirme. 209 valeurs
+- **Apply** : COMMIT. Seed `IDENT_CURRENT('TsDynDataValue')` : **30314** — lu après le
+  Rehearse, juste avant l'Apply (`$seedBefore`, script d'injection ; la rédaction initiale
+  de cette note le disait lu avant : erreur de datation, corrigée le 04/11 sur requête,
+  cf. §6), **30482** relu **dans la transaction de l'Apply** après les 168 inserts
+  (Δ = 168, garde du script). `ValueId` réels des 168 rangées, **mesurés par requête le
+  04/11** : min = **30315**, max = **30482**, contigus. **Le Rehearse annulé a consommé
+  ses 168 identités** (plage 30147-30314) : requête du 04/11,
+  `COUNT(*) … BETWEEN 30147 AND 30314` → **0 rangée** — comportement normal de SQL Server,
+  qui ne rend jamais des identités consommées, même par un ROLLBACK ; l'Apply a pris la
+  plage suivante, contiguë. 209 valeurs
   sur E9169 (41 + 168), relecture in-tx **168/168 identiques**, contrôle inverse du
   comparateur vert.
 - **Recycle app domain** : mtime `web.config` 2026-11-04 01:40:09Z, sha256 inchangé
@@ -109,6 +120,10 @@ explicite (elle change le fr servi pour ces 8 messages).
 - Hash recopié à la main = faux écart ; comparer dans la machine (`-y 0`).
 - `-not $a -ceq $b` : précédence → parenthéser `(-not ($a -ceq $b))`.
 - Identités : ne rien présupposer d'un ROLLBACK → mesurer (`IDENT_CURRENT` avant/après
-  et `MIN/MAX(ValueId)` réels par requête) ; ici le Rehearse annulé n'a laissé aucun trou
-  (ids contigus 30315-30482).
+  et `MIN/MAX(ValueId)` réels par requête). **Corrigé le 04/11 (requête c.6629943461,
+  `BETWEEN 30147 AND 30314` → 0 rangée)** : le Rehearse annulé **a consommé** ses 168
+  identités (30147-30314), conformément à la leçon E1 — SQL Server ne les rend jamais.
+  La « contiguïté 30315-30482 » de la rédaction initiale ne prouvait rien : elle ne
+  portait que sur les rangées de l'Apply, pas sur la séquence globale, et la datation du
+  seed (« lu avant le Rehearse ») était fausse — sinon l'Apply aurait commencé à 30483.
 - Sonde page-level mélange les magasins (iframe Brevo) → borner au bloc accordion.
