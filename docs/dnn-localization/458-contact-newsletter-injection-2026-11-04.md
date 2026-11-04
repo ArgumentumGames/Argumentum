@@ -26,7 +26,7 @@ alimentée par E10181. Toute contre-preuve doit borner son extraction aux blocs
   pas `-eq` — PowerShell `-eq` est insensible à la casse et lisait 16/1/7 en 16/3/5) :
   **fr = 16 / en = 1 / aucun = 7**. Les 7 « aucun » sont le texte de démo anglais Mobius
   (« occured », majuscules `Warning:`…) ; la base `en = 1` est le seul libellé dont la
-  base reflette le registre `en`.
+  base reflète le registre `en`.
 - **Les bases ne sont pas touchées** (DoD : « français inchangé » — la base dim-0 est ce
   que sert la culture fr). Voir §5 pour le résidu que cela laisse.
 
@@ -37,24 +37,40 @@ cultures = **168 cellules** (dims : en=7, ru=8, pt=9, es=10, ar=11, fa=12, zh=13
 cible dupliquée, anti-rejeu en transaction (`UPDLOCK, HOLDLOCK`).
 
 - **Rehearse** : transaction unique, 168 insert+lien+relecture in-tx byte-identical,
-  ROLLBACK → 41 valeurs / 0 dims / 0 fantômes. Les identités consommées par le ROLLBACK
-  ne sont pas rendues (leçon E1) → l'arithmétique porte sur `IDENT_CURRENT`, jamais sur
-  `MAX(ValueId)`.
-- **Apply** : COMMIT. Seed `IDENT_CURRENT('TsDynDataValue')` **30314 → 30482** (Δ = 168),
-  209 valeurs sur E9169 (41 + 168), relecture in-tx **168/168 identiques**, contrôle
-  inverse du comparateur vert.
+  ROLLBACK → 41 valeurs / 0 dims / 0 fantômes.
+- **Apply** : COMMIT. Seed `IDENT_CURRENT('TsDynDataValue')` : **30314** lu **avant le
+  Rehearse** (`$seedBefore`, script d'injection), **30482** relu **dans la transaction de
+  l'Apply** après les 168 inserts (Δ = 168, garde du script). `ValueId` réels des 168
+  rangées, **mesurés par requête le 04/11** : min = **30315**, max = **30482**, contigus.
+  ⇒ dans ce geste le Rehearse annulé n'a **laissé aucun trou** dans la séquence : la
+  « leçon E1 » (identités non rendues par un ROLLBACK) ne s'est pas matérialisée ici —
+  la garde Δ = 168 l'a prouvé en passant, la contiguïté mesurée le confirme. 209 valeurs
+  sur E9169 (41 + 168), relecture in-tx **168/168 identiques**, contrôle inverse du
+  comparateur vert.
 - **Recycle app domain** : mtime `web.config` 2026-11-04 01:40:09Z, sha256 inchangé
   (jamais `iisreset`).
 
-**Rollback** (si nécessaire) — les 168 rangées sont les seules dimensionnées de E9169 :
+**Rollback** (si nécessaire) — les 168 rangées sont les seules dimensionnées de E9169.
+Capturer d'abord leurs `ValueId`, puis délier et supprimer **sur cette capture** (une
+table temporaire, pas une sous-requête sur une table déjà modifiée) :
 
 ```sql
-DELETE d FROM TsDynDataValueDimension d JOIN TsDynDataValue v ON v.ValueId = d.ValueId WHERE v.EntityId = 9169;
-DELETE v FROM TsDynDataValue v WHERE v.EntityId = 9169 AND EXISTS (SELECT 1 FROM TsDynDataValueDimension d WHERE d.ValueId = v.ValueId);
+SELECT v.ValueId INTO #rb
+FROM TsDynDataValue v
+WHERE v.EntityId = 9169
+  AND EXISTS (SELECT 1 FROM TsDynDataValueDimension d WHERE d.ValueId = v.ValueId);
+-- attendu : 168
+DELETE d FROM TsDynDataValueDimension d JOIN #rb r ON r.ValueId = d.ValueId;
+-- attendu : 168
+DELETE v FROM TsDynDataValue v JOIN #rb r ON r.ValueId = v.ValueId;
+-- attendu : 168
 ```
 
-(le premier DELETE rend le second inopérant ; l'ordre est sans importance puisque les 41
-bases n'ont pas de rangée dimension).
+Relecture attendue après : **41 valeurs / 0 dimensionnée** — les 41 bases dim-0 restent,
+aucune n'a de rangée dimension. **Recette rejouée le 04/11 en transaction annulée** :
+sélection = 168, suppressions = 168/168, relecture in-tx 41/0, et après ROLLBACK la
+base était intacte (209 valeurs / 168 dims, `IDENT_CURRENT` inchangé) — rien de durable
+n'a été écrit.
 
 ## 4. Preuves
 
@@ -92,5 +108,7 @@ explicite (elle change le fr servi pour ces 8 messages).
   appeler à espace : `Scalar $sql @{...}`.
 - Hash recopié à la main = faux écart ; comparer dans la machine (`-y 0`).
 - `-not $a -ceq $b` : précédence → parenthéser `(-not ($a -ceq $b))`.
-- Transaction annulée ≠ identités rendues → arithmétique sur `IDENT_CURRENT`.
+- Identités : ne rien présupposer d'un ROLLBACK → mesurer (`IDENT_CURRENT` avant/après
+  et `MIN/MAX(ValueId)` réels par requête) ; ici le Rehearse annulé n'a laissé aucun trou
+  (ids contigus 30315-30482).
 - Sonde page-level mélange les magasins (iframe Brevo) → borner au bloc accordion.
