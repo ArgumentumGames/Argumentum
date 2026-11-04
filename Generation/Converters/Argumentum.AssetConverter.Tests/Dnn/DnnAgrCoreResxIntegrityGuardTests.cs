@@ -58,7 +58,12 @@ namespace Argumentum.AssetConverter.Tests
 			("ar-SA", "FileUpload", 4),
 			("ar-SA", "WebControls", 50),
 			("ar-SA", "Exceptions", 132),
-			("ar-SA", "GlobalResources", 172),
+			// #458 grain ar-SA 30 clés (04/11/2026) : la montée DNN 10.4.1 avait
+			// ajouté 30 clés au neutre ; le pack ar-SA les LIVRE désormais
+			// (172 -> 202). zh-CN et fa-IR ne les livrent pas encore : leur
+			// compte reste 172 et leur ensemble manquant garde le défaut à 40 —
+			// la divergence est déclarée dans AllowedMissingByFileAndCulture.
+			("ar-SA", "GlobalResources", 202),
 			// #458 grain 9-bis lot 5 — same denominator as zh-CN (lot 4): 617 neutral
 			// keys, 7 of them empty at the neutral, so 610 translatable.
 			("ar-SA", "SharedResources", 610),
@@ -162,12 +167,15 @@ namespace Argumentum.AssetConverter.Tests
 					// deux blocs juridiques : le neutre porte 211 clés, les packs
 					// ar-SA/fa-IR/zh-CN en livrent 172, l'ensemble manquant vaut
 					// EXACTEMENT 40 = ces 30 clés + les 10 blocs non traduits ci-dessus.
-					// Identique sur les trois cultures, donc bien un défaut de FICHIER :
-					// c'est le neutre qui a gagné ces clés, pas un pack qui en a perdu.
-					// Elles ne sont pas traduites (grain de traduction distinct de
-					// #2127) ; les déclarer ici est ce qui empêche un futur lot de
-					// croire à une couverture perdue, et une clé RETIRÉE de cette liste
-					// sans traduction livrée rend le test rouge (appartenance exacte).
+					// Identique sur les trois cultures au moment de la mesure, donc
+					// bien un défaut de FICHIER : c'est le neutre qui a gagné ces
+					// clés, pas un pack qui en a perdu. Elles ne sont pas traduites
+					// (grain de traduction distinct de #2127) ; les déclarer ici est
+					// ce qui empêche un futur lot de croire à une couverture perdue,
+					// et une clé RETIRÉE de cette liste sans traduction livrée rend
+					// le test rouge (appartenance exacte). DÉROGATION ar-SA depuis le
+					// 04/11 (#458) : ces 30 clés SONT livrées en ar-SA, qui déclare
+					// son ensemble à 10 dans AllowedMissingByFileAndCulture.
 					"EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_BODY.Text",
 					"EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_SUBJECT.Text",
 					"StartWorkflowSubject.Text",
@@ -218,14 +226,18 @@ namespace Argumentum.AssetConverter.Tests
 		/// <summary>
 		/// Dérogations au défaut de fichier, **par couple (fichier, culture)**.
 		/// <para>
-		/// Vide aujourd'hui, et ce n'est pas un oubli : les trois cultures couvertes
-		/// livrent exactement le même ensemble manquant sur les cinq fichiers, parce
-		/// que la cause est dans le NEUTRE (sept clés à valeur vide, dix blocs
-		/// volontairement non traduits) et que le neutre est commun. Le dictionnaire
-		/// existe pour que le premier lot où les cultures divergent n'ait pas à
-		/// choisir entre un rouge faux et un élargissement silencieux du défaut :
-		/// il déclare. C'est le point de fragilité que la contre-revue web2 a relevé
-		/// sur #2084 — « à passer en (stem, culture) avant que les lots ne divergent ».
+		/// Ce dictionnaire est né vide (les trois cultures couvertes livraient le
+		/// même ensemble manquant, la cause étant dans le NEUTRE commun) pour que le
+		/// premier lot où les cultures divergent n'ait pas à choisir entre un rouge
+		/// faux et un élargissement silencieux du défaut : il déclare. C'est le point
+		/// de fragilité que la contre-revue web2 a relevé sur #2084 — « à passer en
+		/// (stem, culture) avant que les lots ne divergent ».
+		/// </para>
+		/// <para>
+		/// Première dérogation vivante (#458 grain ar-SA, 04/11/2026) : le lot des
+		/// 30 clés de la montée 10.4.1 est livré en ar-SA, dont l'ensemble manquant
+		/// retombe aux 10 blocs historiques — sans les 30. zh-CN et fa-IR ne livrent
+		/// pas encore : ils gardent le défaut (40 clés).
 		/// </para>
 		/// <para>
 		/// Une entrée ici doit DIFFÉRER du défaut de son fichier et viser un couple
@@ -235,7 +247,25 @@ namespace Argumentum.AssetConverter.Tests
 		/// </para>
 		/// </summary>
 		private static readonly Dictionary<(string Stem, string Culture), string[]> AllowedMissingByFileAndCulture =
-			new Dictionary<(string, string), string[]>();
+			new Dictionary<(string, string), string[]>
+			{
+				// Les 10 blocs volontairement non traduits de GlobalResources, SANS
+				// les 30 clés 10.4.1 livrées par le grain ar-SA (cf. défaut pour
+				// la liste commentée des 30).
+				[("GlobalResources", "ar-SA")] = new[]
+				{
+					"MESSAGE_LOGIN_INSTRUCTIONS.Text",
+					"MESSAGE_REGISTRATION_INSTRUCTIONS.Text",
+					"403_3.Error",
+					"404.Error",
+					"500.Error",
+					"DefaultStopwordGroup.Text",
+					"DefaultSynonymGroup.Text",
+					"EMAIL_MESSAGING_DISPATCH_BODY.Text",
+					"EMAIL_MESSAGING_DISPATCH_ITEM.Text",
+					"License.Text",
+				},
+			};
 
 		/// <summary>
 		/// Clés que le pack LIVRE alors que le neutre ne les porte PLUS, **déclarées
@@ -582,9 +612,10 @@ namespace Argumentum.AssetConverter.Tests
 
 		/// <summary>
 		/// Contrôle inverse de <see cref="EveryOverrideIsLive"/> sur dictionnaires
-		/// LOCAUX : le dictionnaire réel étant vide, la logique de refus n'a aucun
-		/// sujet vivant en CI — sans ce test, une régression du prédicat (comparaison
-		/// ordonnée, jointure de chaînes) resterait verte. Mêmes clés dans un autre
+		/// LOCAUX : le refus des dérogations mortes ne se vérifie pas sur la seule
+		/// entrée vivante du dictionnaire réel — sans ce test, une régression du
+		/// prédicat (comparaison ordonnée, jointure de chaînes) resterait verte.
+		/// Mêmes clés dans un autre
 		/// ORDRE = morte ; clés différentes = vivante ; couple sans défaut = vivante
 		/// (l'absence de défaut est attrapée par la garde de couverture, pas ici).
 		/// </summary>

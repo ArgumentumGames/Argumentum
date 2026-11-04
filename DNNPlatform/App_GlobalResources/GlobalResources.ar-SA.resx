@@ -993,4 +993,99 @@ CPM/التكلفة: [Custom:3]
 <data name="cc_message.Text" xml:space="preserve">
     <value>يستخدم هذا الموقع ملفات تعريف الارتباط لضمان حصولك على أفضل تجربة على موقعنا.</value>
   </data>
+<data name="Administrators.Role" xml:space="preserve">
+    <value>المسؤولون</value>
+  </data>
+<data name="Administrators.RoleDescription" xml:space="preserve">
+    <value>يمكن للمسؤولين الوصول إلى جميع محتوى هذا الموقع وتغييره والتحكم في جميع إعدادات الموقع. ويمكنهم إدارة وصول المستخدمين إلى الموقع وإدارة المسؤولين الآخرين أيضًا. لا يمكن لنوع المستخدم هذا إجراء تغييرات على مستوى النظام أو تنفيذ مهام الإدارة المميزة التي يمكن للمستخدمين المتميزين تنفيذها.</value>
+  </data>
+<data name="All Users.Role" xml:space="preserve">
+    <value>الجميع</value>
+  </data>
+<data name="All Users.RoleDescription" xml:space="preserve">
+    <value>هذا دور تديره المنصة (أي لا يمكنك إضافة مستخدمين إليه أو إزالتهم منه). يمثل هذا الدور أي زائر لموقع الويب بغض النظر عن حالة تسجيل دخوله أو حسابه.</value>
+  </data>
+<data name="CompleteStateBody.Text" xml:space="preserve">
+    <value>الصفحة «{0}» في حالة «{1}» وتنتظر المراجعة والموافقة.</value>
+  </data>
+<data name="CompleteStateSubject.Text" xml:space="preserve">
+    <value>الموافقة على الصفحة</value>
+  </data>
+<data name="CompleteWorkflowBody.Text" xml:space="preserve">
+    <value>تم نشر الصفحة «{0}» وهي الآن متاحة على الإنترنت.</value>
+  </data>
+<data name="CompleteWorkflowSubject.Text" xml:space="preserve">
+    <value>تم نشر الصفحة</value>
+  </data>
+<data name="Content Editors.Role" xml:space="preserve">
+    <value>محررو المحتوى</value>
+  </data>
+<data name="Content Editors.RoleDescription" xml:space="preserve">
+    <value>يُسمح لمحرري المحتوى بإضافة المحتوى إلى هذا الموقع وتغييره. تعتمد الوظائف المتاحة بدقة على ما تدعمه الوحدات المستخدمة في هذا الموقع.</value>
+  </data>
+<data name="Content Managers.Role" xml:space="preserve">
+    <value>مديرو المحتوى</value>
+  </data>
+<data name="Content Managers.RoleDescription" xml:space="preserve">
+    <value>يمكن لمديري المحتوى أن يقرروا ما يظهر على موقع الويب. ويمكنهم تغيير ما أنتجه محررو المحتوى وتقرير ما إذا كان سيُنشر أم لا. تعتمد الوظائف المتاحة بدقة على ما تدعمه الوحدات المستخدمة في هذا الموقع.</value>
+  </data>
+<data name="DiscardStateBody.Text" xml:space="preserve">
+    <value>تم رفض تعديلات الصفحة «{0}»، وهي الآن في حالة «{1}».</value>
+  </data>
+<data name="DiscardStateSubject.Text" xml:space="preserve">
+    <value>رفض الصفحة</value>
+  </data>
+<data name="DiscardWorkflowBody.Text" xml:space="preserve">
+    <value>تم تجاهل تعديلات الصفحة «{0}».</value>
+  </data>
+<data name="DiscardWorkflowSubject.Text" xml:space="preserve">
+    <value>تجاهل الصفحة</value>
+  </data>
+<data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_BODY.Text" xml:space="preserve">
+    <value>
+طلب المستخدم التالي رمز إعادة تعيين كلمة المرور من [Portal:PortalName]، ولكن حساب المستخدم في انتظار الموافقة.
+اسم المستخدم: [User:UserName]
+الاسم المعروض: [User:DisplayName]
+
+بعد مراجعة هذا المستخدم، إذا تمت الموافقة على الحساب، فأعد إرسال بريد إلكتروني لإعادة تعيين كلمة المرور إلى المستخدم.</value>
+  </data>
+<data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] طلب مستخدم لم تتم الموافقة عليه إعادة تعيين كلمة المرور [User:Username]</value>
+  </data>
+<data name="Registered Users.Role" xml:space="preserve">
+    <value>المستخدمون المسجَّلون</value>
+  </data>
+<data name="Registered Users.RoleDescription" xml:space="preserve">
+    <value>جميع المستخدمين الذين لديهم حساب على هذا الموقع والذين تم التحقق منهم (في حال تفعيل التحقق).</value>
+  </data>
+<data name="StartWorkflowBody.Text" xml:space="preserve">
+    <value>الصفحة «{0}» في حالة «{1}» وفي انتظار الإرسال.</value>
+  </data>
+<data name="StartWorkflowSubject.Text" xml:space="preserve">
+    <value>إرسال الصفحة</value>
+  </data>
+<data name="Subscribers.Role" xml:space="preserve">
+    <value>المشتركون</value>
+  </data>
+<data name="Subscribers.RoleDescription" xml:space="preserve">
+    <value>يوافق المشتركون على تلقي رسائل البريد الإلكتروني من هذا الموقع. يمكن للمستخدمين إزالة أنفسهم من هذا الدور حتى يحتفظوا بالتحكم في هذا الخيار.</value>
+  </data>
+<data name="Superuser.Role" xml:space="preserve">
+    <value>المستخدمون المتميزون</value>
+  </data>
+<data name="Superuser.RoleDescription" xml:space="preserve">
+    <value>يتمتع المستخدمون المتميزون (ويُطلق عليهم أحيانًا مستخدمو المضيف) بصلاحيات «المضيف» على الموقع، أي أنه يمكنهم الوصول إلى أي محتوى في أي موقع من مواقع هذا التثبيت وتغييره، بما في ذلك إضافة المسؤولين والمستخدمين المتميزين الآخرين وإزالتهم. كما يمكنهم تنفيذ مهام على مستوى النظام مثل مسح ذاكرة التخزين المؤقت وإعادة تشغيل التطبيق وإدارة ملفات التهيئة وتهيئة الإعدادات العامة.</value>
+  </data>
+<data name="Unauthenticated Users.Role" xml:space="preserve">
+    <value>المستخدمون غير المصادَقين</value>
+  </data>
+<data name="Unauthenticated Users.RoleDescription" xml:space="preserve">
+    <value>هذا دور تديره المنصة (أي لا يمكنك تعيين مستخدمين له). الغرض منه الإشارة إلى المستخدمين الذين لم يسجلوا الدخول.</value>
+  </data>
+<data name="Unverified Users.Role" xml:space="preserve">
+    <value>المستخدمون غير الموثَّقين</value>
+  </data>
+<data name="Unverified Users.RoleDescription" xml:space="preserve">
+    <value>إذا كان هذا الموقع يستخدم التحقق من الحسابات، فإن أي مستخدم يسجل فيه يصبح أولًا جزءًا من هذا الدور وليس من «المستخدمين المسجَّلين». وبمجرد التحقق منه (حسب الإعداد، إما بالنقر فوق ارتباط في بريد إلكتروني أو من قبل مسؤول)، لم يعد المستخدم عضوًا في هذا الدور ويصبح «مستخدمًا مسجَّلًا» عاديًا.</value>
+  </data>
 </root>
