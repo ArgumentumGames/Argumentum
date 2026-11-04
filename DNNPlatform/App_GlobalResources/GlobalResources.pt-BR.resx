@@ -1186,7 +1186,7 @@ Após revisar este usuário, se a conta for autorizada, reenvie ao usuário um e
     <value xml:space="preserve">Superusuários</value>
   </data>
   <data name="Superuser.RoleDescription">
-    <value xml:space="preserve">Os superusuários (às vezes chamados de usuários host) têm acesso de &amp;quot;host&amp;quot; ao site, o que significa que podem acessar e alterar qualquer conteúdo de qualquer um dos sites desta instalação, incluindo adicionar e remover administradores e outros superusuários. Eles também podem executar tarefas em nível de sistema, como limpar o cache, reiniciar o aplicativo, gerenciar arquivos de configuração e definir as configurações globais.</value>
+    <value xml:space="preserve">Os superusuários (às vezes chamados de usuários host) têm acesso de “host” ao site, o que significa que podem acessar e alterar qualquer conteúdo de qualquer um dos sites desta instalação, incluindo adicionar e remover administradores e outros superusuários. Eles também podem executar tarefas em nível de sistema, como limpar o cache, reiniciar o aplicativo, gerenciar arquivos de configuração e definir as configurações globais.</value>
   </data>
   <data name="Unauthenticated Users.Role">
     <value xml:space="preserve">Usuários Não Autenticados</value>
@@ -1198,6 +1198,6 @@ Após revisar este usuário, se a conta for autorizada, reenvie ao usuário um e
     <value xml:space="preserve">Usuários Não Verificados</value>
   </data>
   <data name="Unverified Users.RoleDescription">
-    <value xml:space="preserve">Se este site utiliza verificação de contas, qualquer usuário que se registrar fará primeiro parte desta função e não de &amp;quot;usuários registrados&amp;quot;. Assim que for verificado (dependendo da configuração, seja clicando em um link de e-mail ou por um administrador), o usuário deixará de ser membro desta função e se tornará um &amp;quot;usuário registrado&amp;quot; comum.</value>
+    <value xml:space="preserve">Se este site utiliza verificação de contas, qualquer usuário que se registrar fará primeiro parte desta função e não de “usuários registrados”. Assim que for verificado (dependendo da configuração, seja clicando em um link de e-mail ou por um administrador), o usuário deixará de ser membro desta função e se tornará um “usuário registrado” comum.</value>
   </data>
 </root>
