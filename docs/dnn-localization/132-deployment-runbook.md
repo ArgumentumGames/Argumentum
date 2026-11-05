@@ -1,7 +1,7 @@
 # #132 — Production Deployment Runbook (DNN 9.11.1 → 10.3.2 go-live)
 
 > ⚠️ **Remplacé par** [`../quality/1066-cutover-runbook-2026-11-04.md`](../quality/1066-cutover-runbook-2026-11-04.md)
-> pour la procédure de bascule (cible re-mesurée : DNN **10.4.1** + 2sxc **22.01**, VPS `myia-web1`,
+> pour la procédure de bascule (cible re-mesurée : DNN **10.4.1** + 2sxc **22.01**, VPS servi par la lane `myia-web2`,
 > portes #2132/#135/#1502/#457, EventLog). Ce document reste la référence de ses leçons d'exécution
 > (B1-inversion pile BCL §5.5(a), contrat de rollback §6, frontière d'honnêteté §7) et de l'historique
 > sandbox/full-IIS.
