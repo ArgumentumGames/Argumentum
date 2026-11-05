@@ -52,7 +52,13 @@ TREES = (
     ("Release", os.path.join("Generation", "Converters", "Argumentum.AssetConverter",
                              "bin", "Release", "net9.0-windows", "Target")),
 )
-DEFAULT_REPO = r"D:\Dev\Argumentum"
+# ⛔ JAMAIS un chemin absolu en dur ici. Mesure du 05/11/2026 : avec `DEFAULT_REPO =
+# r"D:\Dev\Argumentum"`, lance depuis un worktree (D:\Dev\Argumentum\.tmp\wt-<lane>), le pilote
+# mesurait le clone PRINCIPAL — un verdict autoritaire sur un autre objet que celui qu'on croit
+# regarder ; et sur toute machine ou le depot vit ailleurs, il rendait « REPO INVALIDE » alors
+# qu'un arbre valide etait juste a cote. Le defaut est donc la racine du depot QUI PORTE ce
+# script (tools/..), surchargeable par --repo.
+DEFAULT_REPO = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir))
 # borne NOMMEE : les CSV de corpus sont sous Cards/, a la racine de la taxonomie.
 # `Archive/` est exclu (instantanés historiques : ils datent le passe, pas le present).
 CORPUS_ROOT = "Cards"
@@ -100,7 +106,8 @@ def fmt_t(ts):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--repo", default=DEFAULT_REPO)
+    ap.add_argument("--repo", default=DEFAULT_REPO,
+                    help="racine du depot a mesurer (defaut : la racine du depot qui porte ce script)")
     ap.add_argument("--json", action="store_true")
     a = ap.parse_args()
     repo = os.path.abspath(a.repo)
@@ -177,10 +184,12 @@ def main():
     print()
     if best == 0:
         print("  VERDICT : MESURABLE — au moins un arbre frais porte des PDF.")
-        print("            ⚠️ L'etat 1 (DIVERGENT) reste INATTEIGNABLE ici : aucune source")
-        print("            d'attendu n'est branchee, volontairement — deriver un compte")
-        print("            ici dupliquerait les organes de contrat (voir l'en-tete). Il")
-        print("            s'activera quand la phase A branchera la sienne.")
+        print("            ⚠️ L'etat 1 (DIVERGENT) reste INATTEIGNABLE *DANS CE PILOTE* :")
+        print("            aucune source d'attendu n'y est branchee, volontairement — deriver")
+        print("            un compte ici dupliquerait les organes de contrat (voir l'en-tete).")
+        print("            L'etat 1 est desormais ATTEINT quand la source existe deja :")
+        print("            PdfPageGeometryIntegrity.JudgeTree (phase A, Tests/PdfAssembly),")
+        print("            qui compare l'inventaire aux documents ACTIVES de la config.")
     else:
         print("  VERDICT : NON MESURABLE — aucun arbre frais porteur de PDF sur cette")
         print("            machine. Les phases A/B/C ne peuvent rien asserter ici ;")
