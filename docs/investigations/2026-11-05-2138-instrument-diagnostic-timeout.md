@@ -49,7 +49,16 @@ Le motif « n'a pas rendu la main » est conservé en tête de chaque message : 
 | `TheThreeCausesProduceThreeDifferentMessages` | les trois textes sont **distincts** — trois cas rendant la même ligne reproduiraient le défaut |
 | `ASuccessfulExchangeReachesTheLastStageAndReportsItsByteCount` | le chemin nominal atteint `BlobRead` et compte les bons octets — sans quoi l'instrument pourrait n'afficher que « pas démarré » |
 
-⚠️ **Un banc plus une fois instable, et c'est la mesure qui l'a dit** : le cas 2 a échoué en suite complète et passé seul, parce qu'il appliquait son délai de 250 ms avant que `Task.Run` n'ait seulement démarré. C'est la famine du pool que l'instrument traque, vue à l'échelle du banc. Corrigé en attendant la marque d'étape (`WaitForStage`) avant d'appliquer le délai : un banc qui dépend de l'ordonnanceur est instable par construction.
+⚠️ **Un banc deux fois instable, et les deux fois c'est la mesure qui l'a dit** — la seconde sous une forme qui invalide la première correction.
+
+1. Le cas 2 a échoué en suite complète et passé seul : il appliquait son délai de 250 ms avant que `Task.Run` n'ait seulement démarré. Correction : attendre la marque d'étape (`WaitForStage`) avant d'armer le délai.
+2. **La jambe `build (Release)` de la CI a rougi sur le MÊME cas**, avec `le faux transport n'a pas atteint l'étape RequestWritten en 10 s … (état observé : NotStarted)` — c'est-à-dire la borne d'attente de `WaitForStage` elle-même expirée. Attendre la marque ne suffit donc pas : sous la charge d'une jambe Release, `Task.Run` peut ne jamais être planifié, et le banc finit par mesurer **sa propre** famine au lieu du message qu'il éprouve.
+
+**Cause racine du banc, pas du socle** : `Task.Run` met la tâche en file dans le pool **partagé** avec les ~4 660 autres tests. Le banc n'avait donc aucun moyen d'être déterministe, quelle que soit la durée de la borne — allonger le délai n'aurait fait que déplacer le seuil. Correctif : `Task.Factory.StartNew(..., TaskCreationOptions.LongRunning, TaskScheduler.Default)` — un thread **dédié**, jamais mis en file ; le démarrage ne dépend plus de ce que fait la suite. Le cas 1 garde volontairement une tâche jamais démarrée : c'est lui, et lui seul, le témoin de la famine.
+
+`WaitForStage` remonte désormais l'exception de l'échange (`IsFaulted`) au lieu d'attendre sa borne : un `IOException` du transport masqué derrière « n'a pas atteint l'étape » enverrait le diagnostic sur la mauvaise cause — exactement le défaut que l'instrument corrige côté production.
+
+⭐ La leçon dépasse ce fichier : **la famine de pool est reproductible à l'échelle du banc**, et un banc qui l'ignore produit un rouge qui désigne le socle alors qu'il désigne le pool. Mesuré deux fois, à deux échelles (suite locale, jambe Release CI).
 
 ## Recalibrage des deux motifs (mesuré, pour la condition 3)
 
