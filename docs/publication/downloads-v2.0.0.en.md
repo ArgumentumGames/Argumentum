@@ -73,7 +73,12 @@ conflating the two decks: tarot **379** pages, poker **334**.
 | **Per language** | 10 PDFs of one language | 449.3..481.4 MB (table above) | `[PLACEHOLDER — URL ×8]` |
 | **Print & Play** | 4 P&P PDFs per language (standard + Light) | 204.7..217.3 MB | `[PLACEHOLDER — URL]` |
 | **Mind maps** | Fallacies + Virtues SVGs, 8 languages | `[PLACEHOLDER — measure at packaging (repo SVGs, outside the PDF bundle)]` | `[PLACEHOLDER — URL]` |
-| **Ontology** | `argumentum.owl` + `argumentum_virtues.owl` (SKOS + AIF) | `[PLACEHOLDER — measure at packaging]` | `[PLACEHOLDER — URL]` |
+| **Ontology — fallacies** | OWL of the 175 fallacies (SKOS + AIF), **served by the site** | `[PLACEHOLDER — size to measure]` | `/argumentum_fallacies.owl` (site root) |
+| **Ontology — virtues** | OWL of the virtues (SKOS + AIF), **served by the site** | `[PLACEHOLDER — size to measure]` | `/argumentum_virtues.owl` (site root) |
+
+> OWL link (#133 option A, rehearsed on préprod Nov 5 — runbook §6): the served name comes from the
+> **IRI** declared by the blob, not the repo filename (`argumentum.owl` → served `argumentum_fallacies.owl`).
+> Version and date stay blank until the tag.
 
 Professional-print PDFs are converted to **DeviceCMYK with OutputIntent** (criteria `/GTS_PDFX` +
 `CGATS TR 001` of the validation guide ed. 3, #1380); cards at native 300 dpi.
