@@ -72,7 +72,12 @@ sans confondre les deux decks : tarot **379** pages, poker **334**.
 | **Par langue** | 10 PDF d'une langue | 449,3..481,4 Mo (table ci-dessus) | `[PLACEHOLDER — URL ×8]` |
 | **Print & Play** | 4 PDF P&P par langue (standard + Light) | 204,7..217,3 Mo | `[PLACEHOLDER — URL]` |
 | **Cartes mentales** | SVG Fallacies + Virtues, 8 langues | `[PLACEHOLDER — à mesurer au packaging (SVG du dépôt, hors bundle PDF)]` | `[PLACEHOLDER — URL]` |
-| **Ontologie** | `argumentum.owl` + `argumentum_virtues.owl` (SKOS + AIF) | `[PLACEHOLDER — à mesurer au packaging]` | `[PLACEHOLDER — URL]` |
+| **Ontologie — sophismes** | OWL des 175 sophismes (SKOS + AIF), **servie par le site** | `[PLACEHOLDER — taille à mesurer]` | `/argumentum_fallacies.owl` (racine du site) |
+| **Ontologie — vertus** | OWL des vertus (SKOS + AIF), **servie par le site** | `[PLACEHOLDER — taille à mesurer]` | `/argumentum_virtues.owl` (racine du site) |
+
+> Lien OWL (#133 option A, répétée en préprod le 05/11 — runbook §6) : le nom servi vient de l'**IRI**
+> déclarée par le blob, pas du nom de fichier du dépôt (`argumentum.owl` → servi `argumentum_fallacies.owl`).
+> Version et date restent à blanc jusqu'au tag.
 
 Les PDF d'impression professionnelle sont convertis en **DeviceCMYK avec OutputIntent** (critères
 `/GTS_PDFX` + `CGATS TR 001` du guide de validation éd. 3, #1380) ; les cartes en 300 dpi natifs.
