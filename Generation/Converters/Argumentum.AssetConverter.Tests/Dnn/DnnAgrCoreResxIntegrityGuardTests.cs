@@ -70,7 +70,10 @@ namespace Argumentum.AssetConverter.Tests
 			("fa-IR", "FileUpload", 4),
 			("fa-IR", "WebControls", 50),
 			("fa-IR", "Exceptions", 132),
-			("fa-IR", "GlobalResources", 172),
+			// #458 grain fa-IR 30 clés (05/11/2026) : dernier des quatre packs du lot
+			// à recevoir les 30 clés 10.4.1 — 172 -> 202. Seul zh-CN garde encore 172
+			// et le défaut à 40 ; la divergence est déclarée ci-dessous.
+			("fa-IR", "GlobalResources", 202),
 			// #458 grain 9-bis lot 6 — troisième pack complet SharedResources :
 			// même neutre que les lots 4 et 5, donc même dénominateur (610).
 			("fa-IR", "SharedResources", 610),
@@ -173,9 +176,9 @@ namespace Argumentum.AssetConverter.Tests
 					// (grain de traduction distinct de #2127) ; les déclarer ici est
 					// ce qui empêche un futur lot de croire à une couverture perdue,
 					// et une clé RETIRÉE de cette liste sans traduction livrée rend
-					// le test rouge (appartenance exacte). DÉROGATION ar-SA depuis le
-					// 04/11 (#458) : ces 30 clés SONT livrées en ar-SA, qui déclare
-					// son ensemble à 10 dans AllowedMissingByFileAndCulture.
+					// le test rouge (appartenance exacte). DÉROGATIONS ar-SA (04/11) et
+					// fa-IR (05/11) : ces 30 clés SONT livrées dans ces deux packs, qui
+					// déclarent leur ensemble à 10 dans AllowedMissingByFileAndCulture.
 					"EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_BODY.Text",
 					"EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_SUBJECT.Text",
 					"StartWorkflowSubject.Text",
@@ -234,10 +237,10 @@ namespace Argumentum.AssetConverter.Tests
 		/// (stem, culture) avant que les lots ne divergent ».
 		/// </para>
 		/// <para>
-		/// Première dérogation vivante (#458 grain ar-SA, 04/11/2026) : le lot des
-		/// 30 clés de la montée 10.4.1 est livré en ar-SA, dont l'ensemble manquant
-		/// retombe aux 10 blocs historiques — sans les 30. zh-CN et fa-IR ne livrent
-		/// pas encore : ils gardent le défaut (40 clés).
+		/// Dérogations vivantes : ar-SA (#2149, 04/11/2026) puis fa-IR (05/11/2026)
+		/// livrent les 30 clés de la montée 10.4.1, leur ensemble manquant retombe
+		/// aux 10 blocs historiques — sans les 30. Seul zh-CN ne les livre pas
+		/// encore : il garde le défaut (40 clés).
 		/// </para>
 		/// <para>
 		/// Une entrée ici doit DIFFÉRER du défaut de son fichier et viser un couple
@@ -253,6 +256,21 @@ namespace Argumentum.AssetConverter.Tests
 				// les 30 clés 10.4.1 livrées par le grain ar-SA (cf. défaut pour
 				// la liste commentée des 30).
 				[("GlobalResources", "ar-SA")] = new[]
+				{
+					"MESSAGE_LOGIN_INSTRUCTIONS.Text",
+					"MESSAGE_REGISTRATION_INSTRUCTIONS.Text",
+					"403_3.Error",
+					"404.Error",
+					"500.Error",
+					"DefaultStopwordGroup.Text",
+					"DefaultSynonymGroup.Text",
+					"EMAIL_MESSAGING_DISPATCH_BODY.Text",
+					"EMAIL_MESSAGING_DISPATCH_ITEM.Text",
+					"License.Text",
+				},
+				// Même ensemble pour fa-IR : les 30 clés 10.4.1 y sont livrées par le
+				// grain du 05/11/2026, l'ensemble manquant retombe aux 10 blocs.
+				[("GlobalResources", "fa-IR")] = new[]
 				{
 					"MESSAGE_LOGIN_INSTRUCTIONS.Text",
 					"MESSAGE_REGISTRATION_INSTRUCTIONS.Text",
