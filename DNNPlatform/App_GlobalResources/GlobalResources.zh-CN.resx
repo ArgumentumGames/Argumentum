@@ -998,4 +998,100 @@ CPM/费用：[Custom:3]
 <data name="cc_message.Text" xml:space="preserve">
     <value>本网站使用 Cookie，以确保您在本网站获得最佳体验。</value>
   </data>
+<data name="Administrators.Role" xml:space="preserve">
+    <value>管理员</value>
+  </data>
+<data name="Administrators.RoleDescription" xml:space="preserve">
+    <value>管理员可以访问和更改本站点的所有内容，并控制所有站点设置。他们可以管理用户对此站点的访问权限，也可以管理其他管理员。此类用户无法进行系统级更改，也无法执行仅超级用户可执行的特权管理任务。</value>
+  </data>
+<data name="All Users.Role" xml:space="preserve">
+    <value>所有人</value>
+  </data>
+<data name="All Users.RoleDescription" xml:space="preserve">
+    <value>这是由平台管理的角色（即您无法在此角色中添加或删除用户）。此角色代表网站的任何访问者，无论其登录或帐户状态如何。</value>
+  </data>
+<data name="CompleteStateBody.Text" xml:space="preserve">
+    <value>页面“{0}”当前处于“{1}”状态，正在等待审核和审批。</value>
+  </data>
+<data name="CompleteStateSubject.Text" xml:space="preserve">
+    <value>页面审批</value>
+  </data>
+<data name="CompleteWorkflowBody.Text" xml:space="preserve">
+    <value>页面“{0}”已发布，现已上线。</value>
+  </data>
+<data name="CompleteWorkflowSubject.Text" xml:space="preserve">
+    <value>页面已发布</value>
+  </data>
+<data name="Content Editors.Role" xml:space="preserve">
+    <value>内容编辑</value>
+  </data>
+<data name="Content Editors.RoleDescription" xml:space="preserve">
+    <value>允许内容编辑在本站点上添加和更改内容。具体功能取决于本站点所用模块提供的支持。</value>
+  </data>
+<data name="Content Managers.Role" xml:space="preserve">
+    <value>内容管理员</value>
+  </data>
+<data name="Content Managers.RoleDescription" xml:space="preserve">
+    <value>内容管理员可以决定网站上显示的内容。他们可以更改内容编辑所贡献的内容，并决定是否将其发布。具体功能取决于本站点所用模块提供的支持。</value>
+  </data>
+<data name="DiscardStateBody.Text" xml:space="preserve">
+    <value>页面“{0}”的编辑内容已被拒绝，当前处于“{1}”状态。</value>
+  </data>
+<data name="DiscardStateSubject.Text" xml:space="preserve">
+    <value>页面已拒绝</value>
+  </data>
+<data name="DiscardWorkflowBody.Text" xml:space="preserve">
+    <value>页面“{0}”的编辑内容已被丢弃。</value>
+  </data>
+<data name="DiscardWorkflowSubject.Text" xml:space="preserve">
+    <value>页面已丢弃</value>
+  </data>
+<data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_BODY.Text" xml:space="preserve">
+    <value>
+以下用户曾从 [Portal:PortalName] 请求密码重置令牌，但其用户帐户正在等待审批。
+用户名：[User:UserName]
+显示名称：[User:DisplayName]
+
+审核该用户后，如果其帐户已获授权，请向该用户另行发送密码重置邮件。
+    </value>
+  </data>
+<data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] 未批准用户 [User:Username] 请求的密码提醒</value>
+  </data>
+<data name="Registered Users.Role" xml:space="preserve">
+    <value>注册用户</value>
+  </data>
+<data name="Registered Users.RoleDescription" xml:space="preserve">
+    <value>在本站点拥有帐户且（若已启用验证）已完成验证的所有用户。</value>
+  </data>
+<data name="StartWorkflowBody.Text" xml:space="preserve">
+    <value>页面“{0}”当前处于“{1}”状态，正在等待提交。</value>
+  </data>
+<data name="StartWorkflowSubject.Text" xml:space="preserve">
+    <value>页面已提交</value>
+  </data>
+<data name="Subscribers.Role" xml:space="preserve">
+    <value>订阅者</value>
+  </data>
+<data name="Subscribers.RoleDescription" xml:space="preserve">
+    <value>订阅者同意本网站通过电子邮件与其联系。用户可以自行退出此角色，以自行掌控此项设置。</value>
+  </data>
+<data name="Superuser.Role" xml:space="preserve">
+    <value>超级用户</value>
+  </data>
+<data name="Superuser.RoleDescription" xml:space="preserve">
+    <value>超级用户（有时也称主机用户）拥有站点的“主机”访问权限，即他们可以访问和更改此安装中任何站点的任何内容，包括添加和删除管理员及其他超级用户。他们还可以执行系统级任务，例如清除缓存、重新启动应用程序、管理配置文件以及配置全局设置。</value>
+  </data>
+<data name="Unauthenticated Users.Role" xml:space="preserve">
+    <value>未认证用户</value>
+  </data>
+<data name="Unauthenticated Users.RoleDescription" xml:space="preserve">
+    <value>这是由平台管理的角色（即您无法将用户分配到此角色）。它用于标识未登录的用户。</value>
+  </data>
+<data name="Unverified Users.Role" xml:space="preserve">
+    <value>未验证用户</value>
+  </data>
+<data name="Unverified Users.RoleDescription" xml:space="preserve">
+    <value>如果本站点启用帐户验证，则任何注册的用户首先属于此角色，而非“注册用户”。一旦通过验证（视设置而定，通过单击电子邮件链接或由管理员完成），该用户即不再是此角色的成员，并成为正式的“注册用户”。</value>
+  </data>
 </root>
