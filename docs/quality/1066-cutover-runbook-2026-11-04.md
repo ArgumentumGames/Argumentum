@@ -34,7 +34,7 @@
 | **#1502** | Règles du site divergé des cartes (4-10 vs 3-10 joueurs) | couvert par la **ré-injection EAV courant** (cf. #457) : la prod ne peut pas servir le corpus tel quel | **web2** (injection prod) ; po-2023 (script + essai à blanc préprod, mesures) | compteurs « de 3 à 10 joueurs » ×5 formes sur `/Règles`, par langue ; cf. garde `RulesExplorerD1PlayerCountGuardTests` | snapshot pré-injection, transaction gardée, rollback SQL borné |
 | **#457** | Localiser le site (8 langues) | se **ferme à la mise en ligne** : l'injection EAV courant + les packs de langue installés ce jour-là | **web2** (geste prod) ; po-2023 (script/essai) ; po-2024 (packs) | sondes visa 21/21 par langue ; sélecteur 8 langues ; témoins fr intacts | désinstall langpack **sans** « Delete Files » (R8) ; rollback EAV borné |
 | **#135** | Article d'actus + tous les téléchargements | **jour de la mise en ligne** : publier l'article News annonçant la version + rafraîchir tous les liens de téléchargement vers la release #134 ; périmètre mesuré en amont (brouillons + relevé des liens servis) | **web2** (édition + lien prod) ; ai-01 (texte/verdict) ; po-2023 (mesures) | chaque lien servi pointe vers un asset publié de #134 ; `Print.Play` = nom réécrit par GitHub | article = brouillon tant que non annoncé ; liens = tableau de remplacement à blanc |
-| **#133** | Publication OWL | gated sur #134 : publier/déployer les ontologies avec la release ; l'`fallacies.owl` **servi** aujourd'hui en préprod est un artefact non suivi (mars-2024), `virtues.owl` (1,1 Mo) déployé nulle part | **web2** (déploiement prod) ; ai-01 (verdict) | ontologies servies depuis un chemin suivi ; liens mindmap → OWL vérifiés | retrait des fichiers déployés |
+| **#133** | Publication OWL — **option A** (ai-01, 05/11) | **Répétition faite en préprod le 05/11** : les deux blobs du dépôt déployés à la racine du webroot, **sous les noms que les IRI déclarent** (`argumentum_fallacies.owl`, `argumentum_virtues.owl`) — ⚠️ le fichier du dépôt s'appelle `argumentum.owl`, l'IRI non : la cible est le **nom servi**, l'option A n'est pas un renommage. L'artefact remplacé (4 795 192 o, non suivi, mtime 28/08) était **périmé** et `virtues` **absent (404)** | **web2** (même geste en prod) ; po-2023 (répétition préprod, faite) ; ai-01 (verdict) | `HTTP 200` **et** taille exacte **et** `sha256` égal au blob du dépôt sur les deux URLs (préprod : 5 993 701 / 1 094 832, mesuré 05/11) ; puis lien depuis la **page des téléchargements** (#135, 8 langues — décision ai-01 du 05/11 : la page Argumentation n'est pas modifiée) | restaurer la **copie de préservation** de l'artefact 4,8 Mo (suivi nulle part = non régénérable ici) |
 | **#136** | Entités taxonomie 2sxc | état mesuré 30/10 : `Game Rule` = 5 entités × 8 langues en base, couverture complète par attribut ; le type `Rule` niveau ligne CSV n'existe pas dans l'app 60 (import non requis pour le rendu actuel) — à confirmer au go-live | ai-01 | rendu `/Règles` par langue = corpus CSV ; ancres du sweep | n/a (constat) ou rollback EAV |
 | **#1180** (C1) | Filtres date pipeline News cassés sous fa-IR | **reporter le geste base** en prod : bornes typées + 2 filtres neutralisés (PR #1947) — **la prod garde encore `<=`/`>`** ; ligne go-live posée sur [#1180 c.6361658507](https://github.com/ArgumentumGames/Argumentum/issues/1180#issuecomment-6361658507) | **web2** (geste base prod) ; po-2023 (script + essai à blanc préprod) | `/fa/Actus` rend 5 articles (comme fr/ar/ru/zh) | backups entités 9434/9435 : réécrire `"<="`/`">"` puis recycle |
 
@@ -130,6 +130,14 @@ release finale (#134) + verdicts.
         --label prod-jour-j --out docs/quality/controles-jour-j-prod-<date>.md
     ```
 
+    ⚠️ **Le journal lu est celui de la machine qui exécute le script**, et le script nomme
+    désormais cette machine dans sa sortie (`machine dont le journal est lu : …`). Le jour J,
+    il doit donc tourner **sur le VPS de la prod** : lancé depuis un autre siège, son
+    `0 FileLoadException` décrit le mauvais journal et le contrôle est **vert à tort** — la
+    forme exacte du défaut que ce contrôle existe pour attraper (`HTTP 200` avec 32
+    `FileLoadException`). Si la ligne ne nomme pas l'hôte attendu, le verdict du §4 ne vaut
+    rien, même vert.
+
 18. **Routes** : accueil 200 ×8 langues + `/terms`/`/privacy` par culture + `/fa/Actus` = 5 articles (C1).
     (Le script couvre les trois premiers ; `/fa/Actus` reste manuel.)
 19. **Contenu** : compteur Règles 3→10 par langue (#1502) ; 21/21 sondes visa par langue (#457) ;
@@ -188,3 +196,62 @@ comme un désaccord de mesure). Le préfixe `sha256` du `web.config` prod est re
 est la **taille**, 83 211 o.
 
 *po-2023*
+
+## 5. Mesures du 2026-11-05 — le geste d'avance préprod, exécuté et vérifié
+
+L'avance du clone préprod a été faite **de jour** (11:23, fenêtre 10 h-17 h), à la tête de master
+au moment du geste — `8c74ee13` → **`4332d26a`** (resx `ru-RU`, `ar-SA`, `fa-IR`).
+
+| Contrôle | Mesure |
+|---|---|
+| Empreinte de l'arbre sale | `sha256(porcelain trié)` = `ed3c4242…a33a38e` — **identique avant et après** |
+| Arbre sale | **22 `M` + 49 `??`** (un *compte* ne dit pas lesquels : le témoin est l'empreinte) |
+| Blob-égalité des 3 resx servis | `ebaa6d00` (ru-RU) · `e7892ac1` (ar-SA) · `4295c958` (fa-IR) — identiques à `origin/master` |
+| Accueils | **8/8 → 200** après stabilisation (0,23-0,33 s) |
+| Contrôles jour J rejoués | 32/32 routes, 8/8 Règles portent 3→10, **0 `FileLoadException`** (530 événements / 24 h) |
+| `web.config` | **non touché** — mtime du 04/11, 110 419 o (préprod ≠ les 83 211 o de la prod) |
+
+⭐ **Fait opérationnel à retenir pour le jour J** : écrire dans `App_GlobalResources` déclenche un
+**redémarrage d'app-domain ASP.NET** (surveillance de fichiers). Pendant quelques secondes, 2 sondes
+sur 8 ont rendu `000` — connexion non aboutie, **jamais** un `500` — puis 8/8 à `200`. Aucun
+événement WAS `5074`/`5186` pour ce pool (un recycle de *worker process* en produirait) : c'est donc
+un app-domain, pas un processus. Deux conséquences :
+
+- tout geste qui touche un `resx` **coupe le service quelques secondes** — acceptable en fenêtre de
+  jour, à ne jamais laisser tomber pendant une relecture du soir ;
+- une sonde lancée **pendant** la fenêtre lit `000` : le `000` d'abord, le `200` ensuite, ce n'est
+  pas une instabilité du site mais l'ordre des mesures. Rejouer après stabilisation, et ne jamais
+  conclure sur la première volée.
+
+## 6. Répétition OWL en préprod (#133, option A) — 2026-11-05
+
+Item ③ du pool. Geste exécuté **de jour**, annoncé au dashboard avant application.
+
+**Ce que la mesure a changé dans le geste** : les blobs du dépôt déclarent
+`ontologyIRI="https://www.argumentum.games/argumentum_fallacies.owl#"` et
+`…argumentum_virtues.owl#`. Le fichier du dépôt s'appelle `argumentum.owl`, mais **l'IRI
+désigne `argumentum_fallacies.owl`** : la cible du déploiement est donc le **nom déjà servi**.
+L'option A n'est pas un renommage — c'est le remplacement d'un artefact périmé, plus l'ajout
+du fichier absent.
+
+| Objet (racine du webroot) | Avant | Après |
+|---|---|---|
+| `argumentum_fallacies.owl` | 4 795 192 o, non suivi, mtime 28/08 (**périmé**) | **5 993 701 o** — blob du dépôt |
+| `argumentum_virtues.owl` | **404** | **1 094 832 o** — blob du dépôt |
+
+Contrôles joués, dans cet ordre :
+
+1. **Préservation avant remplacement** — l'artefact de 4,8 Mo n'est suivi nulle part : copie
+   nommée hors arbre servi, `sha256` de la copie comparé à l'original (`258a9e43…`, identiques).
+   C'est aussi le retour arrière.
+2. **Blob-égalité disque** — `sha256` du fichier servi comparé au blob du dépôt : `85e4c593…`
+   (fallacies) et `d4099c79…` (virtues), identiques.
+3. **Octets réellement servis** (pas ceux du disque) — deux `GET` avec cache-buster :
+   `HTTP 200` · **5 993 701 o** · `85e4c593…` et `HTTP 200` · **1 094 832 o** · `d4099c79…` :
+   taille exacte **et** `sha256` égal au dépôt. Un 200 de bonne taille ne prouve pas le contenu ;
+   les trois témoins sont demandés.
+
+⚠️ **Reste à faire, et ce n'est pas un geste de déploiement** : aucune page ne pointe encore vers
+ces fichiers (mesuré : 0 lien servi). Le lien se pose sur la **page des
+téléchargements** (#135), qui est réécrite dans les 8 langues pour la mise en ligne (décision
+ai-01 du 05/11) ; la page Argumentation n'est pas modifiée. Sans ce lien, l'OWL est correct et invisible.

@@ -13,6 +13,10 @@ un « 0 » le jour J ne distingue pas « propre » d'« instrument aveugle ».
                RulesExplorer), nombres lus, et repérage du 3->10 (#1502)
     EVENTLOG   journal Application : FileLoadException / « Could not load file or
                assembly » / exceptions 2sxc sur la fenêtre demandée (#1049/#2122)
+               ⚠️ le journal lu est celui de la MACHINE LOCALE ($env:COMPUTERNAME), et
+               le script nomme cette machine dans sa sortie. Le jour J il doit tourner
+               SUR le VPS de la prod : lancé depuis un autre siège, un
+               « 0 FileLoadException » décrit la mauvaise machine — vert à tort.
 
 ⛔ Lecture seule : uniquement des GET et des lectures de journal. Aucune écriture,
 aucun geste IIS, aucune sonde de connexion.
@@ -270,7 +274,9 @@ def control_eventlog(hours: int) -> list[dict]:
         "$ev=Get-WinEvent -FilterHashtable @{LogName='Application';StartTime=$since} -ErrorAction SilentlyContinue;"
         "$out=@();foreach($e in $ev){$m=$e.Message;if($m){$out+=[pscustomobject]@{Time=$e.TimeCreated.ToString('s');"
         "Provider=$e.ProviderName;Id=$e.Id;Level=$e.LevelDisplayName;Message=$m}}};"
-        "$out|ConvertTo-Json -Compress -Depth 3"
+        # La machine est dans la sortie, pas dans une note : un « 0 » n'a de sens que
+        # rapporté au journal dont il vient (le VPS prod, pas le siège qui pilote).
+        "[pscustomobject]@{Machine=$env:COMPUTERNAME;Events=$out}|ConvertTo-Json -Compress -Depth 3"
     )
     try:
         proc = subprocess.run(
@@ -284,9 +290,16 @@ def control_eventlog(hours: int) -> list[dict]:
     if not raw:
         return [{"error": (proc.stderr.decode("utf-8", errors="replace") or "journal vide")[:400], "ok": False}]
     try:
-        events = json.loads(raw)
+        payload = json.loads(raw)
     except json.JSONDecodeError as exc:
         return [{"error": f"JSON illisible : {exc}", "ok": False}]
+    if isinstance(payload, dict) and "Events" in payload:
+        machine = payload.get("Machine") or "?"
+        events = payload.get("Events") or []
+    elif isinstance(payload, dict):  # un dict nu = un seul événement (ancien format)
+        machine, events = "?", [payload]
+    else:
+        machine, events = "?", payload
     if isinstance(events, dict):
         events = [events]
     rows = []
@@ -311,7 +324,9 @@ def control_eventlog(hours: int) -> list[dict]:
                 "ok": hits == [] if name == "FileLoadException" else None,
             }
         )
-    rows.append({"window_hours": hours, "events_in_window": len(events), "ok": True})
+    rows.append(
+        {"window_hours": hours, "events_in_window": len(events), "machine": machine, "ok": True}
+    )
     return rows
 
 
@@ -379,12 +394,21 @@ def render_md(label: str, base: str, stamp: str, routes, legal, rules, events) -
         if "error" in r:
             out.append(f"- ❌ {r['error']}")
         elif "window_hours" in r:
-            out.append(f"- Fenêtre : {r['window_hours']} h · **{r['events_in_window']}** événements lus")
+            out.append(
+                f"- Fenêtre : {r['window_hours']} h · **{r['events_in_window']}** événements lus"
+                f" · machine dont le journal est lu : **{r.get('machine') or '?'}**"
+            )
         else:
             verdict = "✅ 0" if r["ok"] else ("—" if r["ok"] is None else "❌")
             out.append(f"- {verdict} **{r['marker']}** : {r['hits']} occurrence(s)")
             for s in r["sample"]:
                 out.append(f"  - `{s['time']}` id {s['id']} — {s['excerpt']}")
+    out += [
+        "",
+        "⚠️ Ce journal est celui de la machine qui exécute le script. Le jour J, lancez-le "
+        "**sur le VPS de la prod** : depuis un autre siège, un « 0 FileLoadException » décrit "
+        "la mauvaise machine et le contrôle est vert à tort.",
+    ]
     hard_fail = [r for r in routes if not r["ok"]] + [r for r in legal if not r["ok"]] + [
         r for r in rules if not r["ok"]
     ] + [r for r in events if r.get("ok") is False]
