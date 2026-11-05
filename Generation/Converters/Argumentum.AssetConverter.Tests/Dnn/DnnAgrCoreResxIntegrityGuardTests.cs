@@ -74,7 +74,10 @@ namespace Argumentum.AssetConverter.Tests
 			("fa-IR", "FileUpload", 4),
 			("fa-IR", "WebControls", 50),
 			("fa-IR", "Exceptions", 132),
-			("fa-IR", "GlobalResources", 172),
+			// #458 grain fa-IR 30 clés (05/11/2026) : dernier des quatre packs du lot
+			// à recevoir les 30 clés 10.4.1 — 172 -> 202. Seul zh-CN garde encore 172
+			// et le défaut à 40 ; la divergence est déclarée ci-dessous.
+			("fa-IR", "GlobalResources", 202),
 			// #458 grain 9-bis lot 6 — troisième pack complet SharedResources :
 			// même neutre que les lots 4 et 5, donc même dénominateur (610).
 			("fa-IR", "SharedResources", 610),
@@ -274,6 +277,22 @@ namespace Argumentum.AssetConverter.Tests
 					"EMAIL_MESSAGING_DISPATCH_ITEM.Text",
 					"License.Text",
 				},
+				// Même ensemble pour fa-IR : les 30 clés 10.4.1 y sont livrées par le
+				// grain du 05/11/2026, l'ensemble manquant retombe aux 10 blocs.
+				[("GlobalResources", "fa-IR")] = new[]
+				{
+					"MESSAGE_LOGIN_INSTRUCTIONS.Text",
+					"MESSAGE_REGISTRATION_INSTRUCTIONS.Text",
+					"403_3.Error",
+					"404.Error",
+					"500.Error",
+					"DefaultStopwordGroup.Text",
+					"DefaultSynonymGroup.Text",
+					"EMAIL_MESSAGING_DISPATCH_BODY.Text",
+					"EMAIL_MESSAGING_DISPATCH_ITEM.Text",
+					"License.Text",
+				},
+
 
 				// #458 grain zh-CN 30 clés (05/11/2026) — dernier pack du lot :
 				// mêmes 10 blocs historiques que ar-SA (et fa-IR #2151), sans
