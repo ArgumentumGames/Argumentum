@@ -17,10 +17,14 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
     /// d'être cru vert. Le fichier porte aussi le <b>contrôle inverse du contrôle</b> — un jeu sain
     /// ne produit aucun échec — sans quoi un vérificateur toujours-rouge passerait tous les témoins.</para>
     ///
-    /// <para>⚠️ Le témoin n° 2 encode une <b>mesure</b>, pas une opinion : la config déclare le Tarot
-    /// à 70 × 120 mm, et le PDF produit mesure 59,9 × 112,9 mm. Un organe qui pinçait le nominal de
-    /// la config serait rouge sur <b>chaque</b> PDF du deck ; ce témoin fixe que le nominal retenu est
-    /// celui de l'artefact, et que l'écart avec la config reste <b>visible</b> plutôt que résolu en silence.</para>
+    /// <para>⚠️ Le témoin n° 2 encode le <b>discriminant ancien/nouveau nominal</b>, pas une opinion.
+    /// Le nominal d'une page carte EST dérivable de la config (<c>ImageHelper.cs:170-185</c> :
+    /// <c>ResizeInMM</c> à 300 dpi sur chaque PNG, puis page Magick à la taille du PNG — le Poker
+    /// produit mesure exactement son nominal), donc l'organe l'<b>asserte</b>. La mesure du 05/11
+    /// (Tarot produit sous le nominal d'avant #1250, config passée au nouveau nominal le 02/09)
+    /// doit donc être <b>rouge</b> avec les deux nominaux nommés — c'est le discriminateur
+    /// arbre-périmé/nominal-changé. La première validation réelle de l'assertion reste la
+    /// prochaine régénération fraîche.</para>
     /// </summary>
     public class PdfStructurePhaseAContractTests
     {
@@ -57,26 +61,34 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
         }
 
         [Fact]
-        public void Witness_Config_Nominal_70x120_Is_Red_On_The_Produced_Tarot()
+        public void Witness_Tarot_Produced_Under_The_Old_Nominal_Is_Red_Against_The_Current_Config()
         {
-            // LE témoin de la mesure du 05/11 : si l'organe pinnait le couple de la config
-            // (FrontCards.WidthMM/HeigthMM = 70 x 120), il serait rouge sur les 8 langues, puisque
-            // la page du deck est la taille PHYSIQUE du PNG (Magick), mesurée 169,92 x 320,16 pt.
-            var withConfigNominal = PdfPageGeometryIntegrity.Check(new[]
+            // LE discriminant ancien/nouveau nominal. Le nominal d'une page carte est dérivable de la
+            // config (ResizeInMM à 300 dpi → PNG → page Magick ; preuve : le Poker produit = son
+            // nominal exact), donc l'organe asserte le nominal courant. La mesure du 05/11 (arbre du
+            // 15/08, antérieur au changement de nominal du 02/09) doit donc être ROUGE : une page
+            // produite sous l'ancien nominal, attendue sous le nominal courant de la config.
+            var oldNominalPage = PdfPageGeometryIntegrity.Check(new[]
             {
-                Row(70, 120, 169.92, 320.16, origin: "FrontCards.WidthMM/HeigthMM de la config (70 x 120)"),
+                Row(70, 120, 169.92, 320.16,
+                    origin: "nominal de config FrontCards 70 x 120 mm (post-02/09) — chaîne ImageHelper.ResizeInMM (300 dpi) → PNG → page"),
             });
-            withConfigNominal.Should().ContainSingle(
-                "le nominal de la config n'est PAS la taille de page du deck produit — la pinçer rendrait l'organe rouge sur un arbre sain");
-            withConfigNominal[0].Should().Contain("59.9").And.Contain("112.9").And.Contain("70.0").And.Contain("120.0");
+            oldNominalPage.Should().ContainSingle(
+                "une page produite sous l'ancien nominal doit être rouge contre le nominal courant — c'est le discriminateur arbre-périmé/nominal-changé");
+            oldNominalPage[0].Should().Contain("59.9").And.Contain("112.9")   // la mesure produite (ancien nominal)
+                            .And.Contain("70.0").And.Contain("120.0");       // l'attendu de config, nommé
 
-            // Le même PDF, mesuré contre l'attendu de l'ARTEFACT, est silencieux : c'est le nominal retenu.
-            var withMeasuredNominal = PdfPageGeometryIntegrity.Check(new[]
+            // Contrôle inverse AU NIVEAU DU CHECK : une page au nominal courant (mm→pt exact de la
+            // config — la chaîne ResizeInMM l'impose par construction) est silencieuse.
+            // ⚠️ Ce n'est PAS une mesure de régénération : la première validation réelle de
+            // l'assertion reste la prochaine régénération fraîche.
+            var ptPerMm = 72.0 / 25.4;
+            var currentNominalPage = PdfPageGeometryIntegrity.Check(new[]
             {
-                Row(169.92 * PdfPageGeometryIntegrity.MmPerPoint, 320.16 * PdfPageGeometryIntegrity.MmPerPoint,
-                    169.92, 320.16, origin: "taille physique des PNG du CardSet (mesurée 05/11, 8/8 langues)"),
+                Row(70, 120, 70 * ptPerMm, 120 * ptPerMm,
+                    origin: "nominal de config FrontCards 70 x 120 mm (mm→pt exact de la chaîne ResizeInMM)"),
             });
-            withMeasuredNominal.Should().BeEmpty();
+            currentNominalPage.Should().BeEmpty();
         }
 
         [Fact]
@@ -103,28 +115,29 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
         }
 
         [Fact]
-        public void Inverse_Control_The_Measured_Healthy_Set_Is_Silent()
+        public void Inverse_Control_The_Healthy_Set_Is_Silent()
         {
-            // Les 8 lignes MESURÉES le 05/11 sur l'arbre local (8/8 langues), chacune avec son
-            // propre attendu : le vérificateur doit être muet. Sans ce sens, un vérificateur
-            // toujours-rouge passerait tous les témoins ci-dessus.
-            var tarotW = 169.92 * PdfPageGeometryIntegrity.MmPerPoint;
-            var tarotH = 320.16 * PdfPageGeometryIntegrity.MmPerPoint;
+            // Le corpus sain, chaque ligne avec l'attendu que l'organe lui oppose aujourd'hui.
+            // Les lignes A4/A0/Poker sont MESURÉES (05/11) ; les lignes Tarot/Virtues portent le
+            // nominal de CONFIG courant en mm→pt exact (chaîne ResizeInMM) — le seul Tarot mesuré
+            // est celui de l'arbre périmé, et sa rougeur est précisément le témoin n° 2. Sans ce
+            // sens inverse, un vérificateur toujours-rouge passerait tous les témoins ci-dessus.
+            var ptPerMm = 72.0 / 25.4;
             var rows = new List<PdfPageGeometryIntegrity.SizeExpectation>
             {
-                new("Argumentum_Fallacies_Web_A0_fr.pdf", "fr", 2384 * PdfPageGeometryIntegrity.MmPerPoint, 3371 * PdfPageGeometryIntegrity.MmPerPoint, "PageSizes.A0", 2384, 3371, 1),
-                new("Argumentum_Fallacies_Web_A4_fr.pdf", "fr", A4WidthMm, A4HeightMm, "PageSizes.A4", 595, 842, 1),
-                new("Argumentum_Fallacies_Web_Thumbnails_A4_fr.pdf", "zh", A4WidthMm, A4HeightMm, "PageSizes.A4", 595, 842, 1),
-                new("Argumentum_PokerCards_fr.pdf", "fr", 63.5, 88.9, "PNG 2,5 x 3,5 in", 180, 252, 1),
-                new("Argumentum_PokerCards_Print&Play_A4_fr.pdf", "ar", A4WidthMm, A4HeightMm, "PageSizes.A4", 595, 842, 1),
-                new("Argumentum_TarotCards_fr.pdf", "pt", tarotW, tarotH, "PNG (169,92 x 320,16 pt)", 169.92, 320.16, 1),
-                new("Argumentum_TarotCards_Print&Play_A4_ru.pdf", "ru", A4WidthMm, A4HeightMm, "PageSizes.A4", 595, 842, 1),
-                new("Argumentum_TarotCards_Virtues_fa.pdf", "fa", tarotW, tarotH, "PNG (169,92 x 320,16 pt)", 169.92, 320.16, 1),
+                new("Argumentum_Fallacies_Web_A0_fr.pdf", "fr", 2384 * PdfPageGeometryIntegrity.MmPerPoint, 3371 * PdfPageGeometryIntegrity.MmPerPoint, "PageSizes.A0 (mesuré 05/11)", 2384, 3371, 1),
+                new("Argumentum_Fallacies_Web_A4_fr.pdf", "fr", A4WidthMm, A4HeightMm, "PageSizes.A4 (mesuré 05/11)", 595, 842, 1),
+                new("Argumentum_Fallacies_Web_Thumbnails_A4_fr.pdf", "zh", A4WidthMm, A4HeightMm, "PageSizes.A4 (mesuré 05/11)", 595, 842, 1),
+                new("Argumentum_PokerCards_fr.pdf", "fr", 63.5, 88.9, "nominal de config FrontCards 63,5 x 88,9 mm — MESURÉ exact (05/11)", 180, 252, 1),
+                new("Argumentum_PokerCards_Print&Play_A4_fr.pdf", "ar", A4WidthMm, A4HeightMm, "PageSizes.A4 (mesuré 05/11)", 595, 842, 1),
+                new("Argumentum_TarotCards_fr.pdf", "pt", 70, 120, "nominal de config 70 x 120 mm (mm→pt exact de la chaîne ResizeInMM)", 70 * ptPerMm, 120 * ptPerMm, 1),
+                new("Argumentum_TarotCards_Print&Play_A4_ru.pdf", "ru", A4WidthMm, A4HeightMm, "PageSizes.A4 (mesuré 05/11)", 595, 842, 1),
+                new("Argumentum_TarotCards_Virtues_fa.pdf", "fa", 70, 120, "nominal de config 70 x 120 mm (mm→pt exact de la chaîne ResizeInMM)", 70 * ptPerMm, 120 * ptPerMm, 1),
             };
 
             var failures = PdfPageGeometryIntegrity.Check(rows);
             _output.WriteLine(string.Join("\n", failures));
-            failures.Should().BeEmpty("les 8 géométries mesurées le 05/11 sont conformes à leurs attendus respectifs");
+            failures.Should().BeEmpty("le corpus sain (mesuré + nominal de config) est silencieux pour chaque ligne");
         }
 
         // ─────────────────────────────────────────────────────────────────────────
