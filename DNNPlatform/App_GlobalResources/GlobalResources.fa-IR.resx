@@ -996,4 +996,99 @@ CPM/هزینه: [Custom:3]
 <data name="cc_message.Text" xml:space="preserve">
     <value>این وب‌سایت از کوکی‌ها برای اطمینان از بهترین تجربه شما در سایت ما استفاده می‌کند.</value>
   </data>
+<data name="Administrators.Role" xml:space="preserve">
+    <value>مدیران</value>
+  </data>
+<data name="Administrators.RoleDescription" xml:space="preserve">
+    <value>مدیران می‌توانند به تمام محتوای این سایت دسترسی داشته باشند، آن را تغییر دهند و همه تنظیمات سایت را کنترل کنند. آن‌ها همچنین می‌توانند دسترسی کاربران به سایت را مدیریت کنند و مدیران دیگر را نیز مدیریت کنند. این نوع کاربر نمی‌تواند تغییراتی در سطح سیستم انجام دهد یا وظایف مدیریتی ممتازی را که کاربران ممتاز می‌توانند انجام دهند، اجرا کند.</value>
+  </data>
+<data name="All Users.Role" xml:space="preserve">
+    <value>همه</value>
+  </data>
+<data name="All Users.RoleDescription" xml:space="preserve">
+    <value>این نقشی است که پلتفرم آن را مدیریت می‌کند (یعنی نمی‌توانید کاربری را به آن اضافه یا از آن حذف کنید). این نقش نمایانگر هر بازدیدکننده‌ای از وب‌سایت است، صرف‌نظر از وضعیت ورود یا حساب او.</value>
+  </data>
+<data name="CompleteStateBody.Text" xml:space="preserve">
+    <value>صفحه «{0}» در وضعیت «{1}» است و در انتظار بازبینی و تأیید است.</value>
+  </data>
+<data name="CompleteStateSubject.Text" xml:space="preserve">
+    <value>تأیید صفحه</value>
+  </data>
+<data name="CompleteWorkflowBody.Text" xml:space="preserve">
+    <value>صفحه «{0}» منتشر شده است و اکنون در دسترس است.</value>
+  </data>
+<data name="CompleteWorkflowSubject.Text" xml:space="preserve">
+    <value>صفحه منتشر شد</value>
+  </data>
+<data name="Content Editors.Role" xml:space="preserve">
+    <value>ویرایشگران محتوا</value>
+  </data>
+<data name="Content Editors.RoleDescription" xml:space="preserve">
+    <value>ویرایشگران محتوا مجازند محتوا را به این سایت اضافه کنند و آن را تغییر دهند. کارکرد دقیق به آنچه ماژول‌های به‌کاررفته در این سایت پشتیبانی می‌کنند بستگی دارد.</value>
+  </data>
+<data name="Content Managers.Role" xml:space="preserve">
+    <value>مدیران محتوا</value>
+  </data>
+<data name="Content Managers.RoleDescription" xml:space="preserve">
+    <value>مدیران محتوا می‌توانند تصمیم بگیرند چه چیزی در وب‌سایت نمایش داده شود. آن‌ها می‌توانند آنچه ویرایشگران محتوا تولید کرده‌اند را تغییر دهند و تصمیم بگیرند که منتشر شود یا نه. کارکرد دقیق به آنچه ماژول‌های به‌کاررفته در این سایت پشتیبانی می‌کنند بستگی دارد.</value>
+  </data>
+<data name="DiscardStateBody.Text" xml:space="preserve">
+    <value>ویرایش‌های صفحه «{0}» رد شد و این صفحه اکنون در وضعیت «{1}» است.</value>
+  </data>
+<data name="DiscardStateSubject.Text" xml:space="preserve">
+    <value>صفحه رد شد</value>
+  </data>
+<data name="DiscardWorkflowBody.Text" xml:space="preserve">
+    <value>ویرایش‌های صفحه «{0}» کنار گذاشته شد.</value>
+  </data>
+<data name="DiscardWorkflowSubject.Text" xml:space="preserve">
+    <value>صفحه کنار گذاشته شد</value>
+  </data>
+<data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_BODY.Text" xml:space="preserve">
+    <value>
+کاربر زیر نشانه بازنشانی گذرواژه را از [Portal:PortalName] درخواست کرده است، اما حساب کاربری او در انتظار تأیید است.
+نام کاربری: [User:UserName]
+نام نمایشی: [User:DisplayName]
+
+پس از بررسی این کاربر، اگر حساب مجاز شد، رایانامه بازنشانی گذرواژه را دوباره برای او ارسال کنید.</value>
+  </data>
+<data name="EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_SUBJECT.Text" xml:space="preserve">
+    <value>[Portal:PortalName] یادآور گذرواژه برای کاربر تأییدنشده [User:Username]</value>
+  </data>
+<data name="Registered Users.Role" xml:space="preserve">
+    <value>کاربران ثبت‌شده</value>
+  </data>
+<data name="Registered Users.RoleDescription" xml:space="preserve">
+    <value>همه کاربرانی که در این سایت حساب دارند و (در صورت فعال بودن تأیید) تأیید شده‌اند.</value>
+  </data>
+<data name="StartWorkflowBody.Text" xml:space="preserve">
+    <value>صفحه «{0}» در وضعیت «{1}» است و در انتظار ارسال است.</value>
+  </data>
+<data name="StartWorkflowSubject.Text" xml:space="preserve">
+    <value>صفحه ارسال شد</value>
+  </data>
+<data name="Subscribers.Role" xml:space="preserve">
+    <value>مشترکان</value>
+  </data>
+<data name="Subscribers.RoleDescription" xml:space="preserve">
+    <value>مشترکان رضایت می‌دهند که از سوی این وب‌سایت با رایانامه با آن‌ها تماس گرفته شود. کاربران می‌توانند خود را از این نقش حذف کنند تا همچنان بر این گزینه کنترل داشته باشند.</value>
+  </data>
+<data name="Superuser.Role" xml:space="preserve">
+    <value>کاربران ممتاز</value>
+  </data>
+<data name="Superuser.RoleDescription" xml:space="preserve">
+    <value>کاربران ممتاز (که گاهی کاربران میزبان نامیده می‌شوند) دسترسی «میزبان» به سایت دارند، یعنی می‌توانند به هر محتوایی از هر سایتی در این نصب دسترسی داشته باشند و آن را تغییر دهند؛ از جمله افزودن و حذف مدیران و سایر کاربران ممتاز. آن‌ها همچنین می‌توانند وظایفی در سطح سیستم مانند پاک‌سازی حافظه نهان، راه‌اندازی دوباره برنامه، مدیریت فایل‌های پیکربندی و پیکربندی تنظیمات عمومی را انجام دهند.</value>
+  </data>
+<data name="Unauthenticated Users.Role" xml:space="preserve">
+    <value>کاربران واردنشده</value>
+  </data>
+<data name="Unauthenticated Users.RoleDescription" xml:space="preserve">
+    <value>این نقشی است که پلتفرم آن را مدیریت می‌کند (یعنی نمی‌توانید کاربری را به آن اختصاص دهید). هدف آن اشاره به کاربرانی است که وارد نشده‌اند.</value>
+  </data>
+<data name="Unverified Users.Role" xml:space="preserve">
+    <value>کاربران تأییدنشده</value>
+  </data>
+<data name="Unverified Users.RoleDescription" xml:space="preserve">
+    <value>اگر این سایت از تأیید حساب استفاده می‌کند، هر کاربری که ثبت‌نام می‌کند نخست بخشی از این نقش است و نه «کاربران ثبت‌شده». به‌محض تأیید شدن (بسته به تنظیم، یا با کلیک بر پیوندی در رایانامه یا به دست مدیر)، کاربر دیگر عضو این نقش نیست و به یک «کاربر ثبت‌شده» عادی تبدیل می‌شود.</value>
+  </data>
 </root>
