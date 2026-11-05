@@ -27,15 +27,24 @@ namespace Argumentum.AssetConverter.VisualTests
     /// skip reproduirait exactement le défaut que la garde ferme (#909 : une étape de test qui ne
     /// lançait rien et restait verte).</para>
     ///
-    /// <para><b>⛔ Ce que l'organe n'asserte pas, et pourquoi.</b> La taille d'une page « carte »
-    /// (Tarot, Virtues, Poker) n'est <b>pas</b> dérivable de la config : <c>PdfManager</c> écrit ces
-    /// PDF par Magick.NET, qui pose chaque page à la taille <b>physique du PNG</b>, et
-    /// <c>FrontCards.WidthMM/HeigthMM</c> n'est lu que par <c>PrintAndPlayDocument</c> (et
-    /// <c>PdfAuditor</c>) — mesuré le 05/11 : le Tarot produit 59,9 × 112,9 mm quand la config
-    /// déclare 70 × 120. Phase A asserte donc ce qui <i>est</i> dérivable — uniformité dans le
-    /// document, égalité entre les 8 langues, et une bande nommée qui exclut un format A4/A0 — et
-    /// <b>rapporte</b> l'écart avec la config au lieu de le trancher. ⛔ Le trancher ici
-    /// fabriquerait le cinquième chiffre interdit (#1187).</para>
+    /// <para><b>Le nominal d'une page « carte » est dérivable de la config — et l'organe l'asserte.</b>
+    /// (Correction du 05/11 au soir : la première mouture de ce commentaire affirmait le contraire —
+    /// erreur d'analyse, voir §3.1 du doc phase A.) <c>PdfManager</c> écrit bien ces PDF par
+    /// Magick.NET à la taille <b>physique du PNG</b>, mais c'est la <b>config qui fixe cette
+    /// taille</b> : <c>ImageHelper.cs:170-185</c> force 300 dpi puis
+    /// <c>ResizeInMM(FrontCards/BackCards.WidthMM, HeigthMM)</c> sur chaque PNG de carte avant
+    /// l'écriture. Preuve à l'appui : le Poker produit mesure <b>exactement</b> son nominal de
+    /// config (63,5 × 88,9 mm). L'organe asserte donc le nominal dérivable (config ± la tolérance
+    /// pointeur), en plus de l'uniformité et de l'égalité inter-langues ; la bande de plausibilité
+    /// reste en garde-fou pour un document carte <i>sans</i> nominal de config. ⛔ Aucun chiffre
+    /// n'est recopié : l'attendu se lit dans la config au moment du run (#1187).</para>
+    ///
+    /// <para><b>Le mesure du 05/11 (Tarot 59,9 × 112,9 mm) était l'âge de l'arbre, pas un défaut de
+    /// dérivation.</b> #1250 (02/09) a changé le nominal Tarot (front ET back, toutes langues) ;
+    /// l'arbre local daté du 15/08 est <b>antérieur</b> et porte l'ancien nominal. La garde d'arbre
+    /// le refuse déjà (STALE) ; le témoin CI correspondant vérifie que <c>Check</c> lui-même
+    /// nomme l'écart ancien/nouveau nominal. La première validation réelle de l'assertion reste la
+    /// prochaine régénération fraîche.</para>
     /// </summary>
     public class PdfStructurePhaseAGateTests
     {
@@ -181,11 +190,23 @@ namespace Argumentum.AssetConverter.VisualTests
                     cardMeasurements.Add((docName, lang, widthPt * PdfPageGeometryIntegrity.MmPerPoint,
                         heightPt * PdfPageGeometryIntegrity.MmPerPoint, hasNominal, configWidth, configHeight));
 
-                    geometryRows.Add(new PdfPageGeometryIntegrity.SizeExpectation(
-                        docName, lang,
-                        widthPt * PdfPageGeometryIntegrity.MmPerPoint, heightPt * PdfPageGeometryIntegrity.MmPerPoint,
-                        "mesure produite (uniformité/égalité inter-langues ci-dessous)",
-                        widthPt, heightPt, distinctSizes));
+                    // Le nominal EST dérivable : ImageHelper redimensionne chaque PNG de carte à
+                    // WidthMM × HeigthMM à 300 dpi (ResizeInMM, ImageHelper.cs:170-185) et Magick
+                    // pose la page à la taille physique du PNG — preuve : le Poker produit mesure
+                    // exactement son nominal. On asserte donc le nominal de config (± tolérance) ;
+                    // la self-expectation ne subsiste que pour un document carte SANS nominal.
+                    geometryRows.Add(hasNominal
+                        ? new PdfPageGeometryIntegrity.SizeExpectation(
+                            docName, lang, configWidth, configHeight,
+                            $"nominal de config : {docName} FrontCards {configWidth} x {configHeight} mm — " +
+                            "chaîne ImageHelper.ResizeInMM (300 dpi) → PNG → page Magick",
+                            widthPt, heightPt, distinctSizes)
+                        : new PdfPageGeometryIntegrity.SizeExpectation(
+                            docName, lang,
+                            widthPt * PdfPageGeometryIntegrity.MmPerPoint, heightPt * PdfPageGeometryIntegrity.MmPerPoint,
+                            "aucun nominal de config (WidthMM/HeigthMM à 0) : self-expectation, " +
+                            "uniformité/égalité inter-langues/bande seulement",
+                            widthPt, heightPt, distinctSizes));
                 }
             }
 
@@ -229,11 +250,11 @@ namespace Argumentum.AssetConverter.VisualTests
                 _output.WriteLine($"  {g.Lang}/{g.Doc}: {g.ActualWidthPt:F2} x {g.ActualHeightPt:F2} pt");
             if (cardMeasurements.Count > 0)
             {
-                _output.WriteLine("# Pages cartes — la config déclare une taille que le PDF NE reproduit pas (question ouverte, non tranchée ici)");
+                _output.WriteLine("# Pages cartes — nominal de config ASSERTÉ (chaîne ResizeInMM → PNG → page), pas seulement rapporté");
                 foreach (var m in cardMeasurements.Where(m => m.Lang == "fr"))
                     _output.WriteLine(m.HasConfigNominal
-                        ? $"  {m.Doc}: produit {m.WidthMm:F1} x {m.HeightMm:F1} mm · config {m.ConfigWidthMm:F1} x {m.ConfigHeightMm:F1} mm (WidthMM/HeigthMM ne dimensionne que le PrintAndPlay)"
-                        : $"  {m.Doc}: produit {m.WidthMm:F1} x {m.HeightMm:F1} mm · aucun nominal de config");
+                        ? $"  {m.Doc}: produit {m.WidthMm:F1} x {m.HeightMm:F1} mm · nominal de config {m.ConfigWidthMm:F1} x {m.ConfigHeightMm:F1} mm (asserté ±1 mm)"
+                        : $"  {m.Doc}: produit {m.WidthMm:F1} x {m.HeightMm:F1} mm · aucun nominal de config (bande + égalité inter-langues seulement)");
             }
 
             if (unreadable.Count > 0)

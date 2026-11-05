@@ -1,6 +1,6 @@
 # #1460 phase A — géométrie de page et comptes de pages sur les PDF produits
 
-**Auteur** : po-2023 (worker) · **Date** : 2026-11-05 · **Base** : master `284b49b8`
+**Auteur** : po-2023 (worker) · **Date** : 2026-11-05 (erratum §3.1 le même jour au soir) · **Base** : master `19c7efac`
 **Grain** : pool #458 — *« #1460 phase A : une PR par phase, sur le bundle local. Ce sont uniquement des tests. »*
 **Charpente** : [`1460-charpente-suite-regression.md`](1460-charpente-suite-regression.md) (po-2024, 21/09) — ce document en exécute la **phase A** et en corrige deux points par la mesure.
 
@@ -32,25 +32,31 @@
 | `TarotCards_Print&Play_A4` | 595 × 842 | 209,9 × 297,0 | 99 (pré-#1536) |
 | `TarotCards_Virtues` | 169,92 × 320,16 | **59,9 × 112,9** | 226 |
 
-Les comptes de pages de cette colonne sont **périmés** (arbre antérieur au corpus, §5) et ne sont cités que pour situer l'objet : ils ne sont **pas** assertés, et l'organe refuse justement de les lire.
+Les comptes de pages de cette colonne sont **périmés** (arbre antérieur au corpus, §5) et ne sont cités que pour situer l'objet : ils ne sont **pas** assertés, et l'organe refuse justement de les lire. Il en va de même des deux lignes **Tarot** : mesurées sur un arbre antérieur au changement de nominal du 02/09 (§3.1), elles portent l'ancien nominal — le Poker, lui, est resté au même nominal et sert de preuve que produit = config.
 
 ## 3. Deux corrections à la charpente, apportées par la mesure
 
-### 3.1 « Tarot ≈ 70 × 120 mm » est faux — et l'attendu n'est pas dans la config
+### 3.1 ERRATUM (05/11 au soir) — le nominal d'une page carte EST dérivable de la config
 
-La charpente §2 recopiait le corps de #1460 : *« Tarot ≈ 70 × 120 mm »*. Le PDF produit mesure **59,9 × 112,9 mm**. Les deux nombres ne décrivent pas le même objet, et le code le dit :
+La première mouture de cette section (livrée avec #2156) affirmait deux choses — *« le Tarot produit ne fait pas 70 × 120 mm »* et *« `FrontCards.WidthMM/HeigthMM` ne dimensionne pas la page d'un deck »* — dont la **seconde est fausse**, et la première décrivait un arbre périmé, pas la production courante. Correction le même jour, preuve à l'appui :
+
+**La chaîne complète** (l'analyse initiale s'était arrêtée au premier maillon) :
 
 ```
-$ grep -rn "WidthMM\|HeigthMM" --include=*.cs Generation/Converters/Argumentum.AssetConverter/ \
-    | grep -v WebBasedGeneratorConfig.cs | grep -v DocumentCard.cs
-ImageHelper.cs:182-184          ResizeInMM(...)          (redimensionnement d'asset embarqué)
-PdfAuditor/PdfAuditor.cs:86-87  géométrie de l'auditeur
-WebBasedGenerator/PrintAndPlayDocument.cs:60-61  ← la grille Print&Play
+config FrontCards/BackCards.WidthMM × HeigthMM
+  → ImageHelper.cs:170-185 : Density 300 dpi PUIS ResizeInMM(WidthMM, HeigthMM, BorderMM) sur
+    chaque PNG de carte                          ← le maillon manqué (lu comme « asset embarqué »)
+  → Magick.NET écrit la page à la taille physique du PNG (PdfManager.GenerateAlternateFaceAndBack)
 ```
 
-`FrontCards.WidthMM/HeigthMM` **ne dimensionne pas la page d'un deck** : `PdfManager.GenerateAlternateFaceAndBack` écrit ces PDF avec Magick.NET, qui pose chaque page à la **taille physique du PNG**. Un organe qui pinçait `70 × 120` aurait donc été rouge sur les **8 langues**, sur un arbre sain — c'est le témoin n° 2 (`Witness_Config_Nominal_70x120_Is_Red_On_The_Produced_Tarot`) qui l'épingle.
+**Deux preuves indépendantes** :
 
-⚠️ **Question ouverte, non tranchée ici** : pourquoi une carte du deck est-elle rendue à 59,9 × 112,9 mm quand la config déclare 70 × 120 mm ? La réponse n'est pas dans ce lot, et **la deviner serait le cinquième chiffre interdit (#1187)**. Elle touche au gabarit CSS et à la densité de récolte — donc à la taille de carte qui part chez le fabricant. L'organe **rapporte** l'écart (ligne de sortie « produit … · config … ») au lieu de le résoudre. À instruire avec #1187/#1188, où la taille de carte décide de la boîte et du devis.
+1. **Le Poker produit mesure exactement son nominal de config** (63,5 × 88,9 mm — §2). Si la config ne dimensionnait pas la page, cette égalité exacte serait un hasard impossible.
+2. **L'écart Tarot mesuré le 05/11 était l'âge de l'arbre** : #1250 (02/09) a changé le nominal Tarot (front ET back, toutes langues) ; l'arbre local date du **15/08** — antérieur. Sa page porte **l'ancien nominal** (mesurée à la tolérance d'arrondi près), et c'est exactement ce que la garde d'arbre refusait déjà (STALE, 77 j).
+
+**Conséquence sur l'organe** : le nominal étant dérivable, la porte l'**asserte** (config ± 1 mm, aucune valeur recopiée — l'attendu se lit dans la config au moment du run). Le témoin CI devient le **discriminant ancien/nouveau nominal** (`Witness_Tarot_Produced_Under_The_Old_Nominal_Is_Red_Against_The_Current_Config`) : une page produite sous l'ancien nominal contre le nominal courant de config est ROUGE avec les deux nominaux nommés. La bande de plausibilité et l'égalité inter-langues subsistent comme gardes-fous (et restent les seuls prédicats pour un document carte sans nominal de config).
+
+⚠️ **La première validation réelle de l'assertion reste la prochaine régénération fraîche** (§5) — les témoins CI prouvent que le vérificateur sait distinguer les deux nominaux, pas qu'un arbre régénéré sera vert.
 
 ### 3.2 `PageSizes.A4` n'est pas 595 × 842 pt
 
@@ -89,8 +95,8 @@ L'organe est donc **ROUGE**, avec le motif, le chemin mesuré et la commande qui
 - ⛔ **L'orientation** d'une page (aucun contrôle de rotation) ni l'ordre des faces/dos (c'est la phase C, et #1187 pour les comptes).
 - ⛔ **L'intérieur d'un PDF** : l'uniformité est échantillonnée sur **première, médiane, dernière page** — borne nommée, l'intérieur n'est pas balayé (un PDF de 381 pages coûte des secondes par page ; un défaut de `PageSize` se voit dès la première).
 - ⛔ **Les documents Web** ne sont pas couverts par l'égalité inter-langues (seules les pages cartes le sont) : leur format est déclaré (A4/A0) et c'est cela qui est asserté.
-- ⛔ **La conversion des formats carte en nominal** : elle exigerait la taille physique des PNG **et** l'arbitrage du §3.1.
+- ⛔ **La conversion des formats carte en nominal** — ~~elle exigerait la taille physique des PNG et l'arbitrage du §3.1~~ **faite** par l'erratum §3.1 : le nominal vient de la config, la chaîne `ResizeInMM` l'impose au PNG. Reste hors périmètre : la *justesse* de ce nominal pour la fabrication (c'est #1187/#1188 qui décident de la boîte et du devis, et eux seuls).
 
 ---
 
-*Phase A : la mesure a corrigé deux chiffres de la charpente — un nominal recopié (70 × 120) et un arrondi de bibliothèque (595 × 842). L'organe est rouge sur cette machine, et il dit pourquoi.*
+*Phase A : la mesure a corrigé deux chiffres de la charpente — un arrondi de bibliothèque (595 × 842) et un faux « nominal non dérivable » (erratum §3.1 : la chaîne `ResizeInMM` rend la config souveraine, et l'écart Tarot du 05/11 était l'âge de l'arbre). L'organe est rouge sur cette machine, et il dit pourquoi.*

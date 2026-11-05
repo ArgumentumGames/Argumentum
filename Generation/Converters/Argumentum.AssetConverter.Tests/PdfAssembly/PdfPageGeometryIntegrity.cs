@@ -21,13 +21,14 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
     /// <c>QuestPDF.Helpers.PageSizes</c>, c'est-à-dire le <b>même objet</b> que lit
     /// <c>PrintAndPlayDocument.Compose</c> pour composer la page. Voir
     /// <see cref="DeclaredPageFormats"/>.</description></item>
-    /// <item><description><b>Document « carte »</b> (Tarot, Virtues, Poker) : la page n'est pas
-    /// dimensionnée par la config mais par <b>l'image</b> — <c>PdfManager.GenerateAlternateFaceAndBack</c>
-    /// écrit le PDF avec Magick.NET, qui pose chaque page à la <b>taille physique du PNG</b>. L'attendu
-    /// est donc la taille physique des PNG du CardSet, lue à l'exécution. ⛔ Surtout pas
-    /// <c>FrontCards.WidthMM/HeigthMM</c> : ce couple n'est lu que par
-    /// <c>PrintAndPlayDocument</c> (et <c>PdfAuditor</c>) pour la grille — mesuré le 05/11, le Tarot
-    /// produit <b>59,9 × 112,9 mm</b> quand la config déclare 70 × 120.</description></item>
+    /// <item><description><b>Document « carte »</b> (Tarot, Virtues, Poker) : la page est écrite par
+    /// Magick.NET (<c>PdfManager.GenerateAlternateFaceAndBack</c>) à la <b>taille physique du PNG</b>,
+    /// et c'est la <b>config qui fixe cette taille</b> : <c>ImageHelper</c> redimensionne chaque PNG de
+    /// carte à <c>FrontCards/BackCards.WidthMM × HeigthMM</c> à 300 dpi (<c>ResizeInMM</c>,
+    /// <c>ImageHelper.cs:170-185</c>). L'attendu est donc <b>dérivable de la config</b> (± la
+    /// tolérance), preuve à l'appui : le Poker produit 63,5 × 88,9 mm, exactement son nominal, et le
+    /// Tarot d'un arbre d'avant #1250 portait l'ancien nominal (l. 60 × 113 d'alors) — l'écart mesuré
+    /// le 05/11 était l'âge de l'arbre, pas un défaut de dérivation.</description></item>
     /// </list>
     ///
     /// <para>⚠️ <b>Ce que cet organe n'établit pas</b> : il ne dit rien de la <i>justesse</i> d'une
@@ -143,7 +144,9 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
                     $"{F(r.ExpectedWidthMm)} x {F(r.ExpectedHeightMm)} mm (±{F(ToleranceMm)} mm) — " +
                     $"écart {F(dWidth)} mm en largeur, {F(dHeight)} mm en hauteur. Attendu : {r.Origin}. " +
                     "Si l'attendu vient d'un format déclaré (A4/A0), la composition a changé de PageSize ; " +
-                    "s'il vient de la taille physique des PNG, la récolte a changé de densité — dans les deux cas " +
+                    "s'il vient du nominal de config d'un document carte (WidthMM/HeigthMM → ResizeInMM → PNG → page), " +
+                    "l'arbre a probablement été généré AVANT ce nominal (régénérez — cf. #1250) ou la chaîne " +
+                    "ImageHelper a cessé de dimensionner le PNG ; dans tous les cas " +
                     "le PDF produit n'est pas au format annoncé, et c'est le format qui part chez le fabricant (#1187).");
             }
             return failures;
