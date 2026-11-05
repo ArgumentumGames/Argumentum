@@ -252,6 +252,59 @@ def self_test() -> int:
         hf = hard_failures(s, ["fr", "en"])
         if not any("density-1" in h for h in hf):
             fails.append("C: la density-1 incohérente n'est PAS signalée")
+
+        # ── corpus D : SAIN -> build_zips() écrit des zips complets, lisibles, bien nommés
+        #    (remarque relecture #2154 : la fonction d'écriture n'était jamais exécutée par
+        #    l'essai à blanc — seuls survey/hard_failures l'étaient.)
+        repo2 = tmp / "repo2"
+        (repo2 / TAXONOMY_CSV).parent.mkdir(parents=True)
+        (repo2 / TAXONOMY_CSV).write_text("pk,carte\n1,oui\n2,oui\n3,oui\n", encoding="utf-8")
+        tree2 = tmp / "tree2"
+        d = tree2 / "fr/Images/density-0/Fallacies"
+        d.mkdir(parents=True)
+        for i in (1, 2, 3):
+            (d / f"f{i:03d}_face.png").write_bytes(b"x" * 10)
+        (d / "card_001.png").write_bytes(b"x" * 10)
+        d1 = tree2 / "fr/Images/density-1/Fallacies"
+        d1.mkdir(parents=True)
+        for i in (1, 2, 3):
+            (d1 / f"f{i:03d}_face.png").write_bytes(b"x" * 10)
+        (d1 / "card_001.png").write_bytes(b"x" * 10)
+        mdir = repo2 / "Cards/Fallacies/Mindmaps/fr"
+        mdir.mkdir(parents=True)
+        for pat in MINDMAP_PATTERNS:
+            (mdir / pat.format(lang="fr")).write_text("<svg/>")
+        s = survey(tree2, repo2, ["fr"])
+        hf = hard_failures(s, ["fr"])
+        if hf:
+            fails.append(f"D: corpus sain signalé à tort : {hf}")
+        else:
+            out = tmp / "zips"
+            written = build_zips(s, tree2, repo2, ["fr"], out)
+            names = sorted(p.name for p in written)
+            want_names = sorted([
+                "Argumentum_Cards_PNG_fr.zip",
+                "Argumentum_Cards_PNG_light_fr.zip",
+                "Argumentum_MindMaps_fr.zip",
+            ])
+            if names != want_names:
+                fails.append(f"D: zips écrits {names} != {want_names} (le zip léger n'existe que si density-1 existe)")
+            want_cards = sorted(f"fr/{n}" for n in [
+                "f001_face.png", "f002_face.png", "f003_face.png", "card_001.png"])
+            want_mind = sorted(f"fr/{pat.format(lang='fr')}" for pat in MINDMAP_PATTERNS)
+            for zname, want_entries in (
+                ("Argumentum_Cards_PNG_fr.zip", want_cards),
+                ("Argumentum_Cards_PNG_light_fr.zip", want_cards),
+                ("Argumentum_MindMaps_fr.zip", want_mind),
+            ):
+                with zipfile.ZipFile(out / zname) as z:
+                    bad = z.testzip()
+                    if bad:
+                        fails.append(f"D: {zname} entrée corrompue : {bad}")
+                        continue
+                    got = sorted(z.namelist())
+                    if got != want_entries:
+                        fails.append(f"D: {zname} contenu {got} != {want_entries}")
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
@@ -259,7 +312,7 @@ def self_test() -> int:
         print(f"SELF-TEST FAIL — {f}")
     if fails:
         return 1
-    print("SELF-TEST PASS — trous plantés (SVG, dos, écart de faces, density-1 incohérente) tous signalés, langue saine jamais signalée")
+    print("SELF-TEST PASS — trous plantés (SVG, dos, écart de faces, density-1 incohérente) tous signalés, langue saine jamais signalée ; build_zips() vérifié sur corpus sain (zips complets, lisibles, bien nommés)")
     return 0
 
 
@@ -279,6 +332,17 @@ def main() -> int:
 
     langs = [l.strip() for l in args.langs.split(",") if l.strip()]
     repo = Path(args.repo).resolve()
+    tax = repo / TAXONOMY_CSV
+    if not tax.is_file():
+        # Remarque relecture #2154 : un --repo invalide tombait en FileNotFoundError brut
+        # dans expected_faces(). Sortie propre, code 2, message qui nomme l'attendu.
+        print(
+            f"--repo invalide : {tax} introuvable.\n"
+            f"  --repo attend la RACINE du dépôt (celle qui contient {TAXONOMY_CSV.as_posix()}), "
+            f"reçu : {args.repo}",
+            file=sys.stderr,
+        )
+        return 2
     if not args.tree:
         print("--tree requis (ou --self-test)", file=sys.stderr)
         return 2
