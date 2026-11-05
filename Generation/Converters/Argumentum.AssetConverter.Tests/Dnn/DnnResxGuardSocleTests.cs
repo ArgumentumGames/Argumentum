@@ -279,9 +279,14 @@ namespace Argumentum.AssetConverter.Tests
             src.Should().NotContain("cat-file -p",
                 "la forme « un cat-file -p par fichier » est celle que le témoin 7 de #2138 a "
                 + "abattue : sa revenue, même mémoïsée, recrée les rafales de spawns");
-            src.Should().Contain("Wait(GitTimeoutMs)",
+            src.Should().Contain("AwaitExchange(exchange, rel, trace, GitTimeoutMs",
                 "chaque échange doit être attendu AVEC délai, sinon un git cat-file --batch muet "
-                + "gèlerait la jambe entière : c'est le mur de 30 s rendu tirable");
+                + "gèlerait la jambe entière : c'est le mur de 30 s rendu tirable. Le délai a "
+                + "déménagé dans AwaitExchange avec l'instrument (#2138) — le fait épingle donc "
+                + "le PASSAGE de GitTimeoutMs à cet endroit, pas la forme d'appel d'avant");
+            src.Should().Contain("exchange.Wait(timeoutMs)",
+                "et c'est bien CE délai-là qui borne l'attente : un AwaitExchange qui recevrait "
+                + "GitTimeoutMs sans s'en servir serait un vert de forme");
             src.Should().Contain("DrainStderrAsync",
                 "stderr doit être vidé en continu : un tube d'erreur jamais lu se remplit et "
                 + "bloque l'enfant — la panne qu'on prétend éviter deviendrait celle qu'on provoque");
