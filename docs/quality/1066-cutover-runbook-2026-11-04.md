@@ -29,7 +29,7 @@
 | **#2132** | Relecture avant sortie | **Porte d'entrée** : les **5 cases** cochées AVANT toute bascule (site ×3, PDF ×2) | owner (humains) | les 5 cases sur la page #2132 | n/a — porte, pas un geste |
 | **#134** | Release GitHub | **créer la release finale** à partir du lot validé (80 PDF) ; déclenche #135 | ai-01 (release + verdicts) | assets publiés, tailles = bundle | `v2.1.0-review` **reste en l'état** (⛔ pas de `--clobber`) ; la finale est un objet distinct |
 | **#131** | Montée DNN + mise en ligne | déployer sur le VPS de prod (exploité par la lane **`myia-web2`**) la génération validée en rang 2 (10.4.1 + 2sxc 22.01), séquence A→J du plan de montée (`docs/dnn/2026-10-31-montee-dnn1041-2sxc2201-plan.md`) | **web2** (toutes les écritures prod) ; owner = fenêtre ; ai-01 = verdicts | §2 DoD ci-dessous (versions, redirections, EventLog, routes) | snapshot VPS + backup DB pré-geste ; DNS retour arrière |
-| **#1049** | web.config versionné = panne totale | **phase 2, au moment de la bascule** : le site servi vit dans une **copie hors dépôt** (comme la préprod depuis 08/10). Phase 1 faite (fichier sorti du dépôt, 2 tests CI) | **web2** | le dépôt ne peut plus écrire sur le `web.config` vivant ; discriminateur = les 4 comptes `grep -c` de l'étape 5 + taille 83 211 o | n/a — structurel ; la panne existe seulement si le fichier versionné atteint un webroot |
+| **#1049** | web.config versionné = panne totale | **phase 2, au moment de la bascule** : le site servi vit dans une **copie hors dépôt** (comme la préprod depuis 08/10). Phase 1 faite (fichier sorti du dépôt, 2 tests CI) | **web2** | le dépôt ne peut plus écrire sur le `web.config` vivant ; discriminateur = les 4 comptes de l'étape 5 (rendus par le script du jour J) + taille 83 211 o | n/a — structurel ; la panne existe seulement si le fichier versionné atteint un webroot |
 | **#1091** | Compte stocké en mot de passe **Clear** (depuis 2020) | passer Clear → **Hashed** **pendant la séance de bascule uniquement** ; la valeur est choisie par l'owner — ⛔ aucune valeur, empreinte ou sel ne transite par une issue, un commit, le dashboard ou un fichier | owner (valeur, le jour même) ; **web2** (geste admin DNN) | type de membership `Hashed` en base ; login OK avec la valeur owner | ⛔ **jamais** de retour à Clear |
 | **#1502** | Règles du site divergé des cartes (4-10 vs 3-10 joueurs) | couvert par la **ré-injection EAV courant** (cf. #457) : la prod ne peut pas servir le corpus tel quel | **web2** (injection prod) ; po-2023 (script + essai à blanc préprod, mesures) | compteurs « de 3 à 10 joueurs » ×5 formes sur `/Règles`, par langue ; cf. garde `RulesExplorerD1PlayerCountGuardTests` | snapshot pré-injection, transaction gardée, rollback SQL borné |
 | **#457** | Localiser le site (8 langues) | se **ferme à la mise en ligne** : l'injection EAV courant + les packs de langue installés ce jour-là | **web2** (geste prod) ; po-2023 (script/essai) ; po-2024 (packs) | sondes visa 21/21 par langue ; sélecteur 8 langues ; témoins fr intacts | désinstall langpack **sans** « Delete Files » (R8) ; rollback EAV borné |
@@ -67,12 +67,18 @@ release finale (#134) + verdicts.
    service depuis le 08/10). ⚠️ **Pas** le checkout git lui-même : la préprod **est** un checkout FF
    sur master — copier ce checkout embarquerait le `DNNPlatform/web.config` **versionné** dans le
    webroot = la mine #1049 (500 déterministe). **Contrôle AVANT que le site soit servi** — dernier
-   point où reculer ne coûte rien — par **comptes** sur le `web.config` de la copie (⛔ `grep -c`
-   uniquement, jamais une commande qui affiche les lignes trouvées — le fichier porte des secrets) :
-   `grep -c 'Data Source=REPLACE'` = **0** · `grep -c 'validationKey="REPLACE"'` = **0** ·
-   `grep -c 'Initial Catalog=ArgumentumGames'` = **1** · `grep -c 'fileExtension=".owl"'` = **1** —
-   et une taille de **83 211 o**. Un seul de ces comptes qui dévie = le fichier **versionné** a
-   atteint la copie : reculer (remplacer par le `web.config` vivant sauvegardé), ne pas « réparer ».
+   point où reculer ne coûte rien — par **comptes** sur le `web.config` de la copie :
+   `Data Source=REPLACE` = **0** · `validationKey="REPLACE"` = **0** ·
+   `Initial Catalog=ArgumentumGames` = **1** · `fileExtension=".owl"` = **1** — et une taille de
+   **83 211 o**. Un seul de ces comptes qui dévie = le fichier **versionné** a atteint la copie :
+   reculer (remplacer par le `web.config` vivant sauvegardé), ne pas « réparer ».
+   ⛔ **Comptes seulement, jamais les lignes trouvées** — le fichier porte la chaîne de connexion
+   (avec son mot de passe) et les `machineKey`.
+   **Comment on l'exécute** : par le **script du jour J** (`tools/1105-cutover-day-controls.py`,
+   section `web.config` — étendue par #2165, cinq comptes + verdicts), ⛔ **pas** en tapant un
+   `grep -c` dans PowerShell : sur le VPS de la prod `grep` est absent du PATH et `bash` est un WSL
+   **sans distribution** (mesuré, #2165) — les quatre commandes y échouent au seul endroit où
+   reculer ne coûte rien (même famille que le lanceur écrit pour le mauvais interpréteur).
    Jamais `git checkout` sur un webroot servi ; jamais de copie du
    `web.config` préprod → prod (le secret et les `machineKey` diffèrent).
 6. **Montée DNN 9.11.1 → 10.4.1 + 2sxc 15.02 → 22.01** sur la copie, selon le plan de montée rang 2 :
@@ -191,7 +197,8 @@ conservée à part : ce paragraphe **est** le delta.
 6. (web2-A) Étape 5 : **la source de la copie est nommée** — l'arbre **servi** de la préprod, déjà
    sorti du dépôt, et **pas** le checkout git (copier ce checkout embarquerait le
    `DNNPlatform/web.config` versionné dans le webroot = mine #1049, 500 déterministe) ; le contrôle
-   par **comptes** (4 `grep -c` + taille, étape 5) **précède** la mise en service.
+   par **comptes** (4 comptes + taille, rendus par le script du jour J — étape 5) **précède** la
+   mise en service.
 7. (web2-B) ⛔ **Aucun `--clobber` sur les assets de `v2.1.0-review`** — posé au retour arrière de
    #134 et à l'étape 12.
 
@@ -199,7 +206,8 @@ Deux mineurs en plus : « reste **une** archive » ; et les **38 redirections à
 `dependentAssembly` **déjà présents** dans le `web.config` vivant sont **deux objets distincts** (le
 runbook les opposait comme un désaccord de mesure). Le préfixe `sha256` du `web.config` prod est
 retiré ; le **compte `dependentAssembly`** (~176) est retiré aussi, remplacé comme discriminateur
-par les **4 comptes `grep -c`** de l'étape 5 : la preuve utile sur un fichier qui porte des secrets
+par les **4 comptes** de l'étape 5 (rendus par le script du jour J, jamais par `grep` — absent du
+PATH PowerShell du VPS) : la preuve utile sur un fichier qui porte des secrets
 est un **compte**, jamais une ligne affichée — et jamais un décompte de balises fragiles à
 re-mesurer. La **taille** (83 211 o) reste le cinquième témoin.
 
