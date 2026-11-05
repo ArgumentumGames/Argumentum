@@ -48,7 +48,10 @@ namespace Argumentum.AssetConverter.Tests
 			("zh-CN", "FileUpload", 4),
 			("zh-CN", "WebControls", 50),
 			("zh-CN", "Exceptions", 132),
-			("zh-CN", "GlobalResources", 172),
+			// #458 grain zh-CN 30 clés (05/11/2026) : dernier pack du lot — la
+			// montée DNN 10.4.1 est livrée sur les trois cultures 172-clés
+			// (ar-SA #2149, fa-IR #2151, zh-CN ce grain), 172 -> 202.
+			("zh-CN", "GlobalResources", 202),
 			// #458 grain 9-bis lot 4 — the neutral carries 617 keys, 7 of them with an
 			// EMPTY value (File.Text and six DefaultWorkflowState*.OnDiscard*/OnCompleteMessage*
 			// that the product never fills). The pack therefore delivers 610: a key with an
@@ -60,9 +63,10 @@ namespace Argumentum.AssetConverter.Tests
 			("ar-SA", "Exceptions", 132),
 			// #458 grain ar-SA 30 clés (04/11/2026) : la montée DNN 10.4.1 avait
 			// ajouté 30 clés au neutre ; le pack ar-SA les LIVRE désormais
-			// (172 -> 202). zh-CN et fa-IR ne les livrent pas encore : leur
-			// compte reste 172 et leur ensemble manquant garde le défaut à 40 —
-			// la divergence est déclarée dans AllowedMissingByFileAndCulture.
+			// (172 -> 202), suivi de fa-IR (#2151, 05/11) puis de zh-CN
+			// (05/11, dernier pack du lot). Les trois cultures 172-clés ont
+			// désormais une dérogation vivante dans
+			// AllowedMissingByFileAndCulture.
 			("ar-SA", "GlobalResources", 202),
 			// #458 grain 9-bis lot 5 — same denominator as zh-CN (lot 4): 617 neutral
 			// keys, 7 of them empty at the neutral, so 610 translatable.
@@ -173,9 +177,12 @@ namespace Argumentum.AssetConverter.Tests
 					// (grain de traduction distinct de #2127) ; les déclarer ici est
 					// ce qui empêche un futur lot de croire à une couverture perdue,
 					// et une clé RETIRÉE de cette liste sans traduction livrée rend
-					// le test rouge (appartenance exacte). DÉROGATION ar-SA depuis le
-					// 04/11 (#458) : ces 30 clés SONT livrées en ar-SA, qui déclare
-					// son ensemble à 10 dans AllowedMissingByFileAndCulture.
+					// le test rouge (appartenance exacte). DÉROGATIONS ar-SA (04/11),
+					// fa-IR (#2151, 05/11) puis zh-CN (05/11) : ces 30 clés SONT
+					// livrées par les trois cultures 172-clés, qui déclarent chacune
+					// leur ensemble à 10 dans AllowedMissingByFileAndCulture. Le
+					// défaut à 40 reste le point de chute de toute future culture
+					// couverte — et la référence dont chaque dérogation doit DIFFÉRER.
 					"EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_BODY.Text",
 					"EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_ADMINISTRATOR_SUBJECT.Text",
 					"StartWorkflowSubject.Text",
@@ -234,10 +241,12 @@ namespace Argumentum.AssetConverter.Tests
 		/// (stem, culture) avant que les lots ne divergent ».
 		/// </para>
 		/// <para>
-		/// Première dérogation vivante (#458 grain ar-SA, 04/11/2026) : le lot des
-		/// 30 clés de la montée 10.4.1 est livré en ar-SA, dont l'ensemble manquant
-		/// retombe aux 10 blocs historiques — sans les 30. zh-CN et fa-IR ne livrent
-		/// pas encore : ils gardent le défaut (40 clés).
+		/// Dérogations vivantes : ar-SA (#2149, 04/11/2026) puis fa-IR (#2151,
+		/// 05/11) et zh-CN (05/11) — le lot des 30 clés de la montée 10.4.1 est
+		/// livré par les trois, dont l'ensemble manquant retombe aux 10 blocs
+		/// historiques, sans les 30. Le défaut à 40 ne couvre plus aucune culture
+		/// couverte : il reste le point de chute d'une future culture et la
+		/// référence dont chaque dérogation doit différer.
 		/// </para>
 		/// <para>
 		/// Une entrée ici doit DIFFÉRER du défaut de son fichier et viser un couple
@@ -253,6 +262,23 @@ namespace Argumentum.AssetConverter.Tests
 				// les 30 clés 10.4.1 livrées par le grain ar-SA (cf. défaut pour
 				// la liste commentée des 30).
 				[("GlobalResources", "ar-SA")] = new[]
+				{
+					"MESSAGE_LOGIN_INSTRUCTIONS.Text",
+					"MESSAGE_REGISTRATION_INSTRUCTIONS.Text",
+					"403_3.Error",
+					"404.Error",
+					"500.Error",
+					"DefaultStopwordGroup.Text",
+					"DefaultSynonymGroup.Text",
+					"EMAIL_MESSAGING_DISPATCH_BODY.Text",
+					"EMAIL_MESSAGING_DISPATCH_ITEM.Text",
+					"License.Text",
+				},
+
+				// #458 grain zh-CN 30 clés (05/11/2026) — dernier pack du lot :
+				// mêmes 10 blocs historiques que ar-SA (et fa-IR #2151), sans
+				// les 30 clés 10.4.1 désormais livrées (172 -> 202).
+				[("GlobalResources", "zh-CN")] = new[]
 				{
 					"MESSAGE_LOGIN_INSTRUCTIONS.Text",
 					"MESSAGE_REGISTRATION_INSTRUCTIONS.Text",
