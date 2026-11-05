@@ -81,11 +81,10 @@ namespace Argumentum.AssetConverter.Tests
             var trace = new BatchExchangeProgress();
             using var silent = new BlockingStream(header: string.Empty);
 
-            var task = Task.Run(() => DnnResxGuardSocle.ExchangeOnce(
-                "HEAD:" + Rel, Rel, Stream.Null, silent, trace));
+            var task = RunOnDedicatedThread(silent, trace);
             try
             {
-                WaitForStage(trace, BatchExchangeStage.RequestWritten);
+                WaitForStage(task, trace, BatchExchangeStage.RequestWritten);
                 var message = TimeoutMessageFor(task, trace);
 
                 message.Should().Contain("requête écrite",
@@ -116,11 +115,10 @@ namespace Argumentum.AssetConverter.Tests
             // 100 octets annoncés, 10 servis, puis blocage : « au milieu » au sens strict.
             using var partial = new BlockingStream(header: "0123456789abcdef blob 100\n", payloadBytes: "0123456789");
 
-            var task = Task.Run(() => DnnResxGuardSocle.ExchangeOnce(
-                "HEAD:" + Rel, Rel, Stream.Null, partial, trace));
+            var task = RunOnDedicatedThread(partial, trace);
             try
             {
-                WaitForStage(trace, BatchExchangeStage.HeaderRead);
+                WaitForStage(task, trace, BatchExchangeStage.HeaderRead);
                 var message = TimeoutMessageFor(task, trace);
 
                 message.Should().Contain("AU MILIEU DU CONTENU",
@@ -189,21 +187,54 @@ namespace Argumentum.AssetConverter.Tests
         }
 
         /// <summary>
-        /// Attend que l'échange ait ATTEINT une étape avant d'appliquer le délai.
-        /// Sans cette attente, le banc mesure la latence de démarrage de
-        /// <c>Task.Run</c> sous la suite complète — et il a échoué exactement ainsi
-        /// une fois : c'est la famine du pool que l'instrument de #2138 traque,
-        /// pas un défaut du socle. Un banc qui dépend de l'ordonnanceur est
-        /// instable par construction, et le rouge qu'il produit est illisible.
+        /// Démarre l'échange sur un thread DÉDIÉ plutôt que par <c>Task.Run</c>.
+        /// <para>
+        /// <c>Task.Run</c> met la tâche en file dans le pool PARTAGÉ : sous la suite
+        /// complète, et plus encore sur la jambe Release de la CI, le thread tarde à
+        /// venir et le banc mesurait cette latence au lieu du message qu'il doit
+        /// éprouver. C'est la famine de pool que l'instrument de #2138 traque, et elle
+        /// a fait rougir ce banc deux fois (localement puis en CI, `état observé :
+        /// NotStarted`) : un banc qui dépend de l'ordonnanceur est instable par
+        /// construction, et son rouge ne désigne pas le socle.
+        /// </para>
+        /// <para>
+        /// <c>LongRunning</c> demande au planificateur un thread dédié, jamais mis en
+        /// file : le démarrage ne dépend plus de ce que fait le reste de la suite. Le
+        /// cas 1 garde volontairement une tâche jamais démarrée — c'est LUI le témoin
+        /// de la famine, et il n'a pas besoin de thread.
+        /// </para>
         /// </summary>
-        private static void WaitForStage(BatchExchangeProgress trace, BatchExchangeStage expected)
+        private static Task<(byte[]? Blob, bool Missing, string? NonBlobType)> RunOnDedicatedThread(
+            Stream stdout, BatchExchangeProgress trace) =>
+            Task.Factory.StartNew(
+                () => DnnResxGuardSocle.ExchangeOnce("HEAD:" + Rel, Rel, Stream.Null, stdout, trace),
+                CancellationToken.None,
+                TaskCreationOptions.LongRunning,
+                TaskScheduler.Default);
+
+        /// <summary>
+        /// Attend que l'échange ait ATTEINT une étape avant d'appliquer le délai, pour
+        /// que le message observé soit celui de l'étape voulue et non celui d'un
+        /// démarrage en cours. Le thread étant dédié, cette attente est de l'ordre de
+        /// la microseconde ; elle reste une borne, et si l'échange lève avant d'y
+        /// arriver c'est SON exception qui remonte — un banc qui masquerait une
+        /// <c>IOException</c> du transport derrière « n'a pas atteint l'étape »
+        /// enverrait le diagnostic sur la mauvaise cause.
+        /// </summary>
+        private static void WaitForStage(Task exchange, BatchExchangeProgress trace, BatchExchangeStage expected)
         {
-            var deadline = DateTime.UtcNow.AddSeconds(10);
+            var deadline = DateTime.UtcNow.AddSeconds(20);
             while (trace.Snapshot().Stage < expected)
             {
+                if (exchange.IsFaulted)
+                    throw new InvalidOperationException(
+                        $"l'échange a levé avant d'atteindre l'étape {expected} : "
+                        + exchange.Exception!.GetBaseException().Message,
+                        exchange.Exception);
+
                 if (DateTime.UtcNow > deadline)
                     throw new InvalidOperationException(
-                        $"le faux transport n'a pas atteint l'étape {expected} en 10 s : "
+                        $"le faux transport n'a pas atteint l'étape {expected} en 20 s : "
                         + "le banc ne peut plus rien mesurer (état observé : " + trace.Snapshot().Stage + ")");
 
                 Thread.Sleep(5);
