@@ -130,6 +130,14 @@ release finale (#134) + verdicts.
         --label prod-jour-j --out docs/quality/controles-jour-j-prod-<date>.md
     ```
 
+    ⚠️ **Le journal lu est celui de la machine qui exécute le script**, et le script nomme
+    désormais cette machine dans sa sortie (`machine dont le journal est lu : …`). Le jour J,
+    il doit donc tourner **sur le VPS de la prod** : lancé depuis un autre siège, son
+    `0 FileLoadException` décrit le mauvais journal et le contrôle est **vert à tort** — la
+    forme exacte du défaut que ce contrôle existe pour attraper (`HTTP 200` avec 32
+    `FileLoadException`). Si la ligne ne nomme pas l'hôte attendu, le verdict du §4 ne vaut
+    rien, même vert.
+
 18. **Routes** : accueil 200 ×8 langues + `/terms`/`/privacy` par culture + `/fa/Actus` = 5 articles (C1).
     (Le script couvre les trois premiers ; `/fa/Actus` reste manuel.)
 19. **Contenu** : compteur Règles 3→10 par langue (#1502) ; 21/21 sondes visa par langue (#457) ;
@@ -188,3 +196,29 @@ comme un désaccord de mesure). Le préfixe `sha256` du `web.config` prod est re
 est la **taille**, 83 211 o.
 
 *po-2023*
+
+## 5. Mesures du 2026-11-05 — le geste d'avance préprod, exécuté et vérifié
+
+L'avance du clone préprod a été faite **de jour** (11:23, fenêtre 10 h-17 h), à la tête de master
+au moment du geste — `8c74ee13` → **`4332d26a`** (resx `ru-RU`, `ar-SA`, `fa-IR`).
+
+| Contrôle | Mesure |
+|---|---|
+| Empreinte de l'arbre sale | `sha256(porcelain trié)` = `ed3c4242…a33a38e` — **identique avant et après** |
+| Arbre sale | **22 `M` + 49 `??`** (un *compte* ne dit pas lesquels : le témoin est l'empreinte) |
+| Blob-égalité des 3 resx servis | `ebaa6d00` (ru-RU) · `e7892ac1` (ar-SA) · `4295c958` (fa-IR) — identiques à `origin/master` |
+| Accueils | **8/8 → 200** après stabilisation (0,23-0,33 s) |
+| Contrôles jour J rejoués | 32/32 routes, 8/8 Règles portent 3→10, **0 `FileLoadException`** (530 événements / 24 h) |
+| `web.config` | **non touché** — mtime du 04/11, 110 419 o (préprod ≠ les 83 211 o de la prod) |
+
+⭐ **Fait opérationnel à retenir pour le jour J** : écrire dans `App_GlobalResources` déclenche un
+**redémarrage d'app-domain ASP.NET** (surveillance de fichiers). Pendant quelques secondes, 2 sondes
+sur 8 ont rendu `000` — connexion non aboutie, **jamais** un `500` — puis 8/8 à `200`. Aucun
+événement WAS `5074`/`5186` pour ce pool (un recycle de *worker process* en produirait) : c'est donc
+un app-domain, pas un processus. Deux conséquences :
+
+- tout geste qui touche un `resx` **coupe le service quelques secondes** — acceptable en fenêtre de
+  jour, à ne jamais laisser tomber pendant une relecture du soir ;
+- une sonde lancée **pendant** la fenêtre lit `000` : le `000` d'abord, le `200` ensuite, ce n'est
+  pas une instabilité du site mais l'ordre des mesures. Rejouer après stabilisation, et ne jamais
+  conclure sur la première volée.
