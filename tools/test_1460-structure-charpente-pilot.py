@@ -116,6 +116,25 @@ class TreeGuardContract(unittest.TestCase):
         r = run(self.mk(days_tree=0, days_corpus=1))
         self.assertIn("INATTEIGNABLE", r.stdout)
 
+    def test_08_default_repo_is_the_scripts_own_repo(self):
+        """Le defaut doit etre le depot QUI PORTE le script, jamais un chemin absolu.
+
+        Mesure du 05/11 : avec un `DEFAULT_REPO` en dur sur `D:\\Dev\\Argumentum`, lance depuis un
+        worktree, le pilote mesurait le clone PRINCIPAL — un verdict autoritaire sur un autre
+        objet — et sur une machine ou le depot vit ailleurs il rendait « REPO INVALIDE ».
+        Ici : lance SANS `--repo`, depuis un cwd etranger, il doit nommer la racine du script.
+        """
+        import tempfile
+        cwd = tempfile.mkdtemp(prefix="guard1460-cwd-")
+        self.roots.append(cwd)
+        r = subprocess.run([sys.executable, PILOT], cwd=cwd,
+                           capture_output=True, text=True, encoding="utf-8", errors="replace")
+        expected = os.path.abspath(os.path.dirname(HERE))
+        self.assertIn(r.returncode, (0, 1, 2), r.stdout + r.stderr)
+        self.assertIn(expected, r.stdout,
+                      f"le defaut doit designer '{expected}' (racine du script), pas un autre clone :\n{r.stdout}")
+        self.assertIn("VERDICT", r.stdout)
+
     def test_07_grounding_on_real_repo(self):
         """Grounding : la garde tourne sur le dépôt réel et rend un verdict, sans planter.
 

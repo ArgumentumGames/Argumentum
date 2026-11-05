@@ -47,6 +47,11 @@
     <Compile Include="..\Argumentum.AssetConverter.Tests\HarvestCardIdsCsv.cs" Link="HarvestCardIdsCsv.cs" />
     <Compile Include="..\Argumentum.AssetConverter.Tests\PdfAssembly\PdfCardCountIntegrity.cs" Link="PdfAssembly\PdfCardCountIntegrity.cs" />
     <Compile Include="..\Argumentum.AssetConverter.Tests\PdfAssembly\PdfDeckCountDerivation.cs" Link="PdfAssembly\PdfDeckCountDerivation.cs" />
+    <!-- #1460 phase A : le vérificateur de géométrie (pur, témoins en CI dans PdfStructurePhaseAContractTests)
+         et la garde d'arbre. Mêmes règles que ci-dessus : source unique sur disque, compilée ici,
+         aucun ProjectReference entre les deux suites (#1054). L'organe qui ouvre les PDF vit dans
+         ce projet parce que PdfPig n'est référencé qu'ici. -->
+    <Compile Include="..\Argumentum.AssetConverter.Tests\PdfAssembly\PdfPageGeometryIntegrity.cs" Link="PdfAssembly\PdfPageGeometryIntegrity.cs" />
   </ItemGroup>
 
   <ItemGroup>
