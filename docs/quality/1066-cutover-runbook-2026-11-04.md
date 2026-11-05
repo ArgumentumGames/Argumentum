@@ -82,10 +82,15 @@ release finale (#134) + verdicts.
    Cause mesurée : l'installeur DNN **écrase le neutre `GlobalResources.resx`**, et il **n'existe
    aucun `GlobalResources.en-US.resx`** — le neutre **est** le texte anglais
    (`MESSAGE_PORTAL_TERMS.Text` + `MESSAGE_PORTAL_PRIVACY.Text`). Sans ce geste, `/en/` sert le
-   gabarit DNN (« AGREEMENT BETWEEN USER AND ») **entre la montée et la phase 2**. Geste : restaurer
-   les 2 valeurs depuis le blob de master. Contrôle (cache-buster) : `/en/terms` et `/en/privacy`
-   contiennent « ARGUMENTUM SAS » et **plus** « AGREEMENT BETWEEN USER AND » — vérifié dans les deux
-   sens sur le master courant.
+   texte **stock** de DNN (« AGREEMENT BETWEEN USER AND ») **entre la montée et la phase 2**.
+   Geste : restaurer les 2 valeurs depuis le blob de master.
+   **Contrôle — un marqueur PROPRE à chaque page, pas le même aux deux** (mesuré 05/11 sur les
+   valeurs du dépôt, cf. [`controles-jour-j-baseline-preprod-2026-11-05.md`](controles-jour-j-baseline-preprod-2026-11-05.md)) :
+   `/en/terms` porte « ARGUMENTUM SAS » (×1 dans le neutre) ; `/en/privacy` **ne le porte pas** — ni
+   dans le neutre, ni dans le fr-FR — son marqueur est la phrase de primauté du français
+   (« The French version of this page is the authoritative version »). Négatif commun aux deux
+   pages : « AGREEMENT BETWEEN USER AND » **absent**. ⛔ Exiger « ARGUMENTUM SAS » sur `privacy`
+   serait rouge sur un site sain — un faux rouge au jour J coûte une fenêtre.
 7. **#1091** : Clear → Hashed, valeur owner, pendant la séance.
 8. **D2 alias racine** : `PortalAlias` racine `CultureCode` NULL → `fr-FR` **+ recycle** (l'UPDATE seul
    ne suffit pas — cache PortalAlias ; reporté « à la mise en ligne prod » par ai-01, 18/10).
@@ -113,11 +118,24 @@ release finale (#134) + verdicts.
 
 ### Phase 3 — Contrôles post-bascule (jamais déclarés sans mesure)
 
-17. **EventLog** : 0 exception 2sxc, 0 `FileLoadException`, 0 échec de login inattendu — c'est le seul
-    instrument qui voit les redirections ratées (#2132 DoD : EventLog sur les 3 DOWN signalés).
+17. **Les 4 contrôles en une commande** — [`tools/1105-cutover-day-controls.py`](../../tools/1105-cutover-day-controls.py) :
+    routes 8 cultures × 4 surfaces, texte légal EN (deux sens, marqueur par page), compteurs Règles
+    par langue, journal Application. Lecture seule, cache-buster et `-L` compris, code de sortie 1
+    au premier contrôle dur en échec. Ligne de base préprod mesurée le 05/11 : 32/32 routes 200,
+    0 `FileLoadException` sur 24 h — c'est à cette mesure-là que la prod se compare, pas au vide
+    ([rapport](controles-jour-j-baseline-preprod-2026-11-05.md)).
+
+    ```powershell
+    python tools/1105-cutover-day-controls.py --base-url https://www.argumentum.games `
+        --label prod-jour-j --out docs/quality/controles-jour-j-prod-<date>.md
+    ```
+
 18. **Routes** : accueil 200 ×8 langues + `/terms`/`/privacy` par culture + `/fa/Actus` = 5 articles (C1).
-19. **Contenu** : compteurs Règles ×5 formes par langue (#1502) ; 21/21 sondes visa par langue (#457) ;
-    ancres CSV du sweep 2c.
+    (Le script couvre les trois premiers ; `/fa/Actus` reste manuel.)
+19. **Contenu** : compteur Règles 3→10 par langue (#1502) ; 21/21 sondes visa par langue (#457) ;
+    ancres CSV du sweep 2c. ⚠️ Mesuré en préprod le 05/11 : **1 occurrence** du 3→10 par page
+    `/Règles`, et les intervalles servis sont 1→8, 1→20, 2→8, 3→10 — le « ×5 formes » de #1502 ne se
+    reproduit pas tel quel ; c'est la ligne de base qui tranche au jour J, pas le chiffre de l'issue.
 20. **Balayage 2c** (R5) : prod-200 + cible-404 = gap ; **témoins obligatoires** (un marqueur connu
     présent + un absent), cache-buster `?cb=` sur chaque sonde, `-L` systématique, statiques sans
     query string.
