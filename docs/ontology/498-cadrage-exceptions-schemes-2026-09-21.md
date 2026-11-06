@@ -1,5 +1,26 @@
 # #498 — Cadrage : les sophismes comme **exceptions à des schemes** (paradigme AIF/Walton)
 
+> ## ⛔ RETRAIT DU 06/11 — tout chiffre d'« héritage » de ce document est VOID
+>
+> L'instrument qui a produit les chiffres d'héritage de ce cadrage reconstruisait les ancêtres
+> en découpant `decimal_path` **aux virgules**. Mesuré sur l'arbre vivant : cette colonne porte
+> **une seule virgule** (1 400 rangées sur 1 408), juste après la famille — les niveaux suivants
+> sont collés. L'instrument ne voyait donc d'ancêtre que la **tête de famille** : aucun héritage
+> depuis un nœud intermédiaire n'a jamais été mesuré ici. La vraie hiérarchie est la colonne
+> `path` (pointée) : 1 408 chemins uniques, aucun orphelin.
+>
+> **Sont retirés** : les lignes d'héritage du tableau §1, tout le §3 (asymétrie par famille,
+> y compris ses pourcentages), et le compte du §4 — tout chiffre de ce document issu d'une
+> couverture « par héritage ».
+> **Reste valable** : le §2 (porteurs **bruts** : recensement du 14/09 confirmé à l'unité près —
+> pas d'ancêtres là-dedans), et l'avertissement méthodologique « le compte suit la définition
+> publiée », que ce retrait illustre une seconde fois.
+>
+> Les chiffres au goût du jour, re-dérivés sur `path` avec contrôle inverse, vivent dans
+> [`tools/498-aif-cadrage-measure.py`](../../tools/498-aif-cadrage-measure.py) (sorties §2-§3)
+> et son compte rendu : [`498-instrument-path-2026-11-06.md`](498-instrument-path-2026-11-06.md).
+> Ce bandeau ne recopie **aucun** des chiffres retirés — détail du retrait : #498 c.6665070534.
+
 **Auteur** : po-2024 (worker) · **Date** : 2026-09-21 · **Base** : master `6694d702`
 **Grain** : pool #458 **v8 ⑥** — *« cadrage docs-only. Sophismes comme exceptions à des schemes. **Aucune écriture corpus.** »*
 **Instrument** : [`tools/498-aif-cadrage-measure.py`](../../tools/498-aif-cadrage-measure.py) — lecture seule, rejouable, **n'écrit rien**.
