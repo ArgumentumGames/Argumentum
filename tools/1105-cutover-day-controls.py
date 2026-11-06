@@ -46,9 +46,13 @@ Usage :
     python tools/1105-cutover-day-controls.py --webconfig "<copie>\\web.config" \\
         --skip-web --skip-eventlog --label jour-j-webconfig   # le contrôle #1049, seul
 
-Sortie : tableau markdown sur stdout (+ fichier avec --out) ; code de sortie 1 si un
-contrôle DUR échoue (route non 200, legal EN inversé, FileLoadException présente,
-web.config de la cible qui ne porte pas les marqueurs du fichier vivant).
+Sortie : tableau markdown sur stdout (+ fichier avec --out) ; codes de sortie —
+**0** tous les contrôles durs passent · **1** un contrôle dur échoue (route non 200,
+legal EN inversé, FileLoadException présente, web.config de la cible qui ne porte
+pas les marqueurs du fichier vivant) · **2** `--require-webconfig` est posé sans
+`--webconfig` : le contrôle pivot du jour J n'a PAS été mesuré, et ce vert-là
+n'existe pas (remarque 🟡 de la review #2165, mesurée : l'omission du drapeau
+sortait en code 0, lisible par machine comme un succès).
 """
 
 from __future__ import annotations
@@ -401,7 +405,7 @@ def control_eventlog(hours: int) -> list[dict]:
     return rows
 
 
-def render_md(label: str, base: str, stamp: str, routes, legal, rules, events, webconfig) -> str:
+def render_md(label: str, base: str, stamp: str, routes, legal, rules, events, webconfig, webconfig_required: bool = False) -> str:
     out = [
         f"# Contrôles du jour J — ligne de base `{label}`",
         "",
@@ -501,11 +505,20 @@ def render_md(label: str, base: str, stamp: str, routes, legal, rules, events, w
         "",
     ]
     if not webconfig:
-        out += [
-            "⚠️ **Non mesuré** — aucun `--webconfig` fourni. Ce contrôle est **obligatoire le "
-            "jour J** : c'est lui qui dit si le fichier versionné a atteint la copie, avant que "
-            "le site soit servi. Une absence de mesure n'est pas un vert.",
-        ]
+        if webconfig_required:
+            out += [
+                "⛔ **Requis et absent** — `--require-webconfig` est posé sans `--webconfig`.",
+                "Le contrôle pivot du jour J n'a pas été mesuré : sortie **code 2**. Un vert",
+                "machine-lisible sans ce contrôle n'existe pas (remarque 🟡 de la review #2165,",
+                "mesurée : l'omission du drapeau sortait en code 0).",
+            ]
+        else:
+            out += [
+                "⚠️ **Non mesuré** — aucun `--webconfig` fourni. Ce contrôle est **obligatoire le "
+                "jour J** : c'est lui qui dit si le fichier versionné a atteint la copie, avant que "
+                "le site soit servi. Une absence de mesure n'est pas un vert. Le jour J, posez "
+                "`--require-webconfig` : son oubli sort en **code 2**, pas en 0.",
+            ]
     elif "error" in webconfig[0]:
         out.append(f"- ❌ {webconfig[0]['error']}")
     else:
@@ -527,6 +540,14 @@ def render_md(label: str, base: str, stamp: str, routes, legal, rules, events, w
             "",
             "Lecture : **un seul** compte qui dévie ⇒ le fichier **versionné** a atteint la copie.",
             "Reculer — remettre le `web.config` vivant sauvegardé — ne pas « réparer ».",
+            "",
+            "**Un rouge sur la taille SEULE se qualifie avant de reculer** : une retouche "
+            "légitime du fichier vivant (BOM, fin de ligne, réindentation IIS) fait bouger la "
+            "taille sans que rien de grave ne l'accompagne. Dans ce cas, ce sont les comptes "
+            "qui tranchent — cinq ✅ avec une taille qui dévie = vérifier la date et l'origine "
+            "du fichier, ajuster si besoin (`--webconfig-size`), puis continuer. Un compte qui "
+            "dévie, lui, ne se qualifie pas.",
+            "",
             "⛔ Comptes seulement, jamais les lignes trouvées : le fichier porte la chaîne de "
             "connexion et les `machineKey`.",
         ]
@@ -540,10 +561,14 @@ def render_md(label: str, base: str, stamp: str, routes, legal, rules, events, w
     verdict = "❌ " + str(len(hard_fail)) + " échec(s) dur(s)" if hard_fail else "✅ tous les contrôles durs passent"
     if not webconfig:
         # Une absence de mesure ne doit pas se lire dans la même ligne qu'un « tout passe ».
-        verdict += " · ⚠️ **web.config non mesuré** (obligatoire le jour J)"
+        if webconfig_required:
+            verdict = "⛔ **web.config requis et non mesuré** — sortie **code 2**"
+        else:
+            verdict += " · ⚠️ **web.config non mesuré** (obligatoire le jour J)"
     out += [
         "",
-        f"**Verdict** : {verdict}.",        "",
+        f"**Verdict** : {verdict}.",
+        "",
         "*po-2023 · script : `tools/1105-cutover-day-controls.py`*",
         "",
     ]
@@ -582,6 +607,12 @@ def main() -> int:
         default=WEBCONFIG_EXPECTED_SIZE,
         help=f"taille attendue du web.config en octets (défaut {WEBCONFIG_EXPECTED_SIZE})",
     )
+    ap.add_argument(
+        "--require-webconfig",
+        action="store_true",
+        help="échouer (code 2) si --webconfig manque : le jour J, l'oubli du contrôle "
+        "pivot ne doit pas se lire comme un succès (review #2165, remarque 🟡)",
+    )
     ap.add_argument("--out", default=None, help="fichier markdown à écrire")
     args = ap.parse_args()
 
@@ -595,7 +626,7 @@ def main() -> int:
     events = [] if args.skip_eventlog else control_eventlog(args.event_log_hours)
     webconfig = [] if not args.webconfig else control_webconfig(args.webconfig, args.webconfig_size)
 
-    md = render_md(args.label, base, stamp, routes, legal, rules, events, webconfig)
+    md = render_md(args.label, base, stamp, routes, legal, rules, events, webconfig, args.require_webconfig)
     print(md)
     if args.out:
         with open(args.out, "w", encoding="utf-8", newline="\n") as fh:
@@ -609,6 +640,11 @@ def main() -> int:
         + [r for r in events if r.get("ok") is False]
         + [r for r in webconfig if r.get("ok") is False]
     )
+    if args.require_webconfig and not args.webconfig:
+        # Code distinct de l'échec dur : ici rien n'a échoué, mais le contrôle pivot du
+        # jour J n'a pas été mesuré. Un code 0 serait un vert machine-lisible sans la
+        # mesure — exactement ce que la review #2165 a épinglé.
+        return 2
     return 1 if hard_fail else 0
 
 

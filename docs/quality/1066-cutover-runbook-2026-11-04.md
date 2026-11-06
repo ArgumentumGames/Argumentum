@@ -79,6 +79,20 @@ release finale (#134) + verdicts.
    `grep -c` dans PowerShell : sur le VPS de la prod `grep` est absent du PATH et `bash` est un WSL
    **sans distribution** (mesuré, #2165) — les quatre commandes y échouent au seul endroit où
    reculer ne coûte rien (même famille que le lanceur écrit pour le mauvais interpréteur).
+   Commande exacte, avec ⚠️ `--require-webconfig` — son oubli sort en **code 2**, jamais en 0 :
+   un vert machine-lisible sans la mesure n'existe pas (remarque 🟡 de la review #2165).
+
+   ```bash
+   python tools/1105-cutover-day-controls.py --webconfig "<copie>\web.config" \
+       --skip-web --skip-eventlog --require-webconfig --label jour-j-etape5
+   ```
+
+   Codes de sortie : **0** = passe · **1** = échec dur — un compte qui dévie ⇒ reculer ·
+   **2** = `--require-webconfig` posé sans `--webconfig` (mesure pivot absente).
+   **Un rouge sur la taille SEULE se qualifie avant de reculer** : une retouche légitime du
+   fichier vivant (BOM, fin de ligne, réindentation IIS) fait bouger la taille — quand les
+   cinq comptes passent, vérifier la date et l'origine du fichier, ajuster si besoin
+   (`--webconfig-size`), puis continuer. Un compte qui dévie, lui, ne se qualifie pas.
    Jamais `git checkout` sur un webroot servi ; jamais de copie du
    `web.config` préprod → prod (le secret et les `machineKey` diffèrent).
 6. **Montée DNN 9.11.1 → 10.4.1 + 2sxc 15.02 → 22.01** sur la copie, selon le plan de montée rang 2 :
