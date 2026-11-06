@@ -6,8 +6,19 @@ Anti-Fab design: model PICKS from real nodes + real AIF tokens (no open generati
 
 Run:  python docs/taxonomy/141-aif-stage1.py [N]
   N = number of sample nodes to process (default all in tmp/141-aif-sample.json).
+
+#498 grain 1b (06/11) : hierarchie lue dans `path` via `141-hierarchy`. Le
+sidecar garde ses cles coma (source_dp), re-derivees de `path` par dot2comma —
+les artefacts committes restent joints sans conversion. ⛔ Un echantillon
+regenere par 141-aif-explore.py n'est PAS comparable au sidecar committé sans
+cette jointure (provenance des cles, voir note du grain).
 """
 import csv, json, os, sys, time, re, urllib.request, urllib.error
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import importlib
+H = importlib.import_module("141-hierarchy")
 
 CSV_PATH = r"Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv"
 SAMPLE_JSON = r"tmp/141-aif-sample.json"
@@ -31,27 +42,8 @@ VERB_DEFS = {
 }
 MAP_TYPES = ["skos:broadMatch","skos:closeMatch","skos:narrowMatch"]
 
-def parent_of(dp):
-    dp=(dp or "").strip()
-    if "," not in dp: return ""
-    fam, rest = dp.split(",",1)
-    if len(rest)<=1: return fam
-    return fam+","+rest[:-1]
-
-def comma2dot(c):
-    c=(c or "").strip()
-    if "," not in c: return c
-    fam,rest=c.split(",",1)
-    return ".".join([fam]+list(rest))
-
 def load_taxonomy():
-    with open(CSV_PATH, encoding="utf-8-sig", newline="") as f:
-        rows=list(csv.DictReader(f))
-    bycomma={}; bydot={}
-    for r in rows:
-        c=(r.get("decimal_path") or "").strip()
-        if not c: continue
-        bycomma[c]=r; bydot[comma2dot(c)]=r
+    rows, bypath, bycomma, bydot = H.load_taxonomy(CSV_PATH)
     return rows, bycomma, bydot
 
 def aif_vocab(rows):
@@ -64,34 +56,9 @@ def aif_vocab(rows):
                 if t: toks.add(t)
     return sorted(toks)
 
-def build_pool(node, rows, bycomma):
+def build_pool(node, rows, bypath):
     """Candidate targets: siblings + parent + children + 7 family roots (all REAL nodes)."""
-    dp=(node.get("decimal_path") or "").strip()
-    fam = dp.split(",",1)[0] if "," in dp else dp
-    pool=[]; seen=set()
-    def add(c):
-        c=c.strip()
-        if not c or c in seen: return
-        r=bycomma.get(c)
-        if not r: return
-        seen.add(c)
-        pool.append({"dotted":comma2dot(c),"label":(r.get("text_fr") or r.get("text_en") or "").strip(),
-                     "desc":(r.get("desc_fr") or r.get("desc_en") or "").strip()[:140]})
-    # siblings (same parent)
-    for s in rows:
-        sdp=(s.get("decimal_path") or "").strip()
-        if parent_of(sdp)==parent_of(dp) and sdp!=dp: add(sdp)
-    # parent + children
-    par=parent_of(dp)
-    if par: add(par)
-    for s in rows:
-        sdp=(s.get("decimal_path") or "").strip()
-        if parent_of(sdp)==dp: add(sdp)
-    # 7 family roots as cross-family landmarks
-    for s in rows:
-        sdp=(s.get("decimal_path") or "").strip()
-        if (s.get("depth") or "").strip()=="1": add(sdp)
-    return pool[:30]
+    return H.build_pool(node, rows, bypath)
 
 def call_gpt(prompt, key):
     body=json.dumps({
@@ -122,6 +89,7 @@ def main():
     n = int(sys.argv[1]) if len(sys.argv)>1 else 999
     key=open(KEY_FILE).read().strip()
     rows, bycomma, bydot = load_taxonomy()
+    rows_by_path = {(r.get("path") or "").strip(): r for r in rows if (r.get("path") or "").strip()}
     vocab = aif_vocab(rows)
     print(f"AIF vocab: {len(vocab)} tokens | nodes: {len(rows)}")
     sample=json.load(open(SAMPLE_JSON, encoding="utf-8"))[:n]
@@ -129,11 +97,12 @@ def main():
     results=[]
     for i, node in enumerate(sample):
         dp=node["decimal_path"]; lbl=node.get("label_fr") or node.get("label_en")
-        pool=build_pool(node, rows, bycomma)
+        node_row = bycomma.get(dp, {})
+        pool=build_pool(node_row, rows, rows_by_path)
         pool_lines="\n".join(f"- {p['dotted']} | {p['label']} | {p['desc']}" for p in pool)
         vocab_str=", ".join(vocab)
         prompt=(f"You are an argumentation-theory expert mapping fallacies to the Walton AIF scheme and to each other.\n\n"
-                f"SOURCE NODE:\n- decimal_path(dotted): {comma2dot(dp)}\n- label: {lbl}\n"
+                f"SOURCE NODE:\n- decimal_path(dotted): {dp}\n- label: {lbl}\n"
                 f"- desc FR: {node.get('desc_fr','')}\n- desc EN: {node.get('desc_en','')}\n"
                 f"- example FR: {node.get('example_fr','')[:200]}\n\n"
                 f"CANDIDATE TARGET NODES (pick targets ONLY from this list, use the dotted path verbatim):\n{pool_lines}\n\n"
@@ -164,7 +133,7 @@ def main():
                 for t in a.get(k,[]):
                     if t not in vocab: warns.append(f"fab_aif_{k}:{t}")
             if a.get("mappingType") and a.get("mappingType") not in MAP_TYPES: warns.append(f"bad_map:{a.get('mappingType')}")
-            results.append({"source_dp":dp,"source_dotted":comma2dot(dp),"source_label":lbl,
+            results.append({"source_dp":dp,"source_dotted":(node_row.get("path") or "").strip(),"source_label":lbl,
                             "model":model,"data":obj,"warns":warns})
             ncl=len(cl); naif=len(a.get("directRef",[]))+len(a.get("exceptionRef",[]))
             w=(" WARN:"+",".join(set(warns))) if warns else ""

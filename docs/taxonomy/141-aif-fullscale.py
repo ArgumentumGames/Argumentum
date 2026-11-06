@@ -12,8 +12,17 @@ Run:
   python docs/taxonomy/141-aif-fullscale.py              # resume, all
   python docs/taxonomy/141-aif-fullscale.py --limit 50   # cap new nodes this run
   python docs/taxonomy/141-aif-fullscale.py --finalize   # aggregate tmp-> sidecar CSV/JSON, no API calls
+
+#498 grain 1b (06/11) : hierarchie lue dans `path` via `141-hierarchy` ; les
+cles coma (source_dp, checkpoint, sidecar) sont re-derivees de `path` par
+dot2comma — la jointure avec les artefacts committes reste directe.
 """
 import csv, json, os, sys, time, re, urllib.request, urllib.error, argparse
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import importlib
+H = importlib.import_module("141-hierarchy")
 
 CSV_PATH = r"Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv"
 KEY_FILE = r"C:/Users/jsboi/AppData/Local/Temp/claude/c--dev-Argumentum/1607d26f-99dc-4fab-b48a-6f18db62c89b/scratchpad/openai_key.txt"
@@ -45,27 +54,8 @@ def log(msg):
         with open(LOGF,"a",encoding="utf-8") as f: f.write(line+"\n")
     except Exception: pass
 
-def parent_of(dp):
-    dp=(dp or "").strip()
-    if "," not in dp: return ""
-    fam, rest = dp.split(",",1)
-    if len(rest)<=1: return fam
-    return fam+","+rest[:-1]
-
-def comma2dot(c):
-    c=(c or "").strip()
-    if "," not in c: return c
-    fam,rest=c.split(",",1)
-    return ".".join([fam]+list(rest))
-
 def load_taxonomy():
-    with open(CSV_PATH, encoding="utf-8-sig", newline="") as f:
-        rows=list(csv.DictReader(f))
-    bycomma={}; bydot={}
-    for r in rows:
-        c=(r.get("decimal_path") or "").strip()
-        if not c: continue
-        bycomma[c]=r; bydot[comma2dot(c)]=r
+    rows, bypath, bycomma, bydot = H.load_taxonomy(CSV_PATH)
     return rows, bycomma, bydot
 
 def aif_vocab(rows):
@@ -79,39 +69,22 @@ def aif_vocab(rows):
     return sorted(toks)
 
 def noncard_nodes(rows):
-    """Fallacies non-card nodes: carte not in {1,2}, ordered by decimal_path."""
+    """Fallacies non-card nodes: carte not in {1,2}, ordered by decimal_path (rendu coma)."""
     nc=[]
     for r in rows:
         c=(r.get("carte") or "").strip()
-        dp=(r.get("decimal_path") or "").strip()
+        dp=(r.get("path") or "").strip()
         if dp and c not in ("1","2"):
             nc.append(r)
     # sort by (family, depth, rest) for stable, family-grouped ordering
-    nc.sort(key=lambda r: (r.get("decimal_path",""),))
+    nc.sort(key=lambda r: H.dot2comma((r.get("path") or "").strip()))
     return nc
 
-def build_pool(node, rows, bycomma):
-    dp=(node.get("decimal_path") or "").strip()
-    pool=[]; seen=set()
-    def add(c):
-        c=c.strip()
-        if not c or c in seen: return
-        r=bycomma.get(c)
-        if not r: return
-        seen.add(c)
-        pool.append({"dotted":comma2dot(c),"label":(r.get("text_fr") or r.get("text_en") or "").strip(),
-                     "desc":(r.get("desc_fr") or r.get("desc_en") or "").strip()[:140]})
-    for s in rows:
-        sdp=(s.get("decimal_path") or "").strip()
-        if parent_of(sdp)==parent_of(dp) and sdp!=dp: add(sdp)
-    par=parent_of(dp)
-    if par: add(par)
-    for s in rows:
-        sdp=(s.get("decimal_path") or "").strip()
-        if parent_of(sdp)==dp: add(sdp)
-    for s in rows:
-        if (s.get("depth") or "").strip()=="1": add((s.get("decimal_path") or "").strip())
-    return pool[:30]
+def build_pool(node, rows, bypath):
+    return H.build_pool(node, rows, bypath)
+
+def dp_of(row):
+    return H.dot2comma((row.get("path") or "").strip())
 
 def call_gpt(prompt, key):
     body=json.dumps({"model":MODEL,"input":prompt,"reasoning":{"effort":"low"},
@@ -161,23 +134,24 @@ def load_ckpt():
 def run(limit):
     key=open(KEY_FILE).read().strip()
     rows, bycomma, bydot = load_taxonomy()
+    rows_by_path = {(r.get("path") or "").strip(): r for r in rows if (r.get("path") or "").strip()}
     vocab = aif_vocab(rows)
     nodes = noncard_nodes(rows)
     done = load_ckpt()
-    todo=[n for n in nodes if (n.get("decimal_path") or "").strip() not in done]
+    todo=[n for n in nodes if dp_of(n) not in done]
     log(f"START | vocab={len(vocab)} | non-card nodes={len(nodes)} | done(ckpt)={len(done)} | todo={len(todo)}")
     ckpt=open(CKPT,"a",encoding="utf-8")
     processed=0; errs=0
     for i, node in enumerate(todo):
         if limit and processed>=limit:
             log(f"LIMIT {limit} reached -> stop (resume next run)"); break
-        dp=(node.get("decimal_path") or "").strip()
+        dp=dp_of(node)
         lbl=(node.get("text_fr") or node.get("text_en") or "").strip()
-        pool=build_pool(node, rows, bycomma)
+        pool=build_pool(node, rows, rows_by_path)
         pool_lines="\n".join(f"- {p['dotted']} | {p['label']} | {p['desc']}" for p in pool)
         vocab_str=", ".join(vocab)
         prompt=(f"You are an argumentation-theory expert mapping fallacies to the Walton AIF scheme and to each other.\n\n"
-                f"SOURCE NODE:\n- decimal_path(dotted): {comma2dot(dp)}\n- label: {lbl}\n"
+                f"SOURCE NODE:\n- decimal_path(dotted): {(node.get('path') or '').strip()}\n- label: {lbl}\n"
                 f"- desc FR: {node.get('desc_fr','')}\n- desc EN: {node.get('desc_en','')}\n"
                 f"- example FR: {(node.get('example_fr','') or '')[:200]}\n\n"
                 f"CANDIDATE TARGET NODES (pick targets ONLY from this list, use the dotted path verbatim):\n{pool_lines}\n\n"
@@ -197,7 +171,7 @@ def run(limit):
                 errs+=1; log(f"[{i+1}/{len(todo)}] {dp} {lbl[:28]:28s} -> PARSE FAIL (skipped, not ckpt'd)");
                 time.sleep(DELAY); continue
             warns=validate(obj, bydot, vocab)
-            rec={"source_dp":dp,"source_dotted":comma2dot(dp),"source_label":lbl,"model":model,"data":obj,"warns":warns}
+            rec={"source_dp":dp,"source_dotted":(node.get("path") or "").strip(),"source_label":lbl,"model":model,"data":obj,"warns":warns}
             ckpt.write(json.dumps(rec, ensure_ascii=False)+"\n"); ckpt.flush()
             processed+=1
             ncl=len(obj.get("crossLinks",[])); a=obj.get("aif",{})
