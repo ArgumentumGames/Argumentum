@@ -219,6 +219,21 @@ namespace Argumentum.AssetConverter.Tests
         internal static long BatchExchangeCount;
 
         /// <summary>
+        /// Nombre d'échanges dont le CORPS a tourné sur un thread du pool depuis le
+        /// début du run. Cette valeur est la propriété que le témoin 9 de #2138 a
+        /// fait perdre — un échange qui attend un thread libre du pool — et elle est
+        /// mesurée là où le mécanisme se produit (dans <see cref="ExchangeOnce"/>),
+        /// pas dans le lanceur : le lanceur ne dit que ce qu'il a DEMANDÉ.
+        /// <para>
+        /// Reste à 0 sous <see cref="TaskCreationOptions.LongRunning"/> quelle que
+        /// soit la charge : la sonde est donc déterministe et n'attend aucun
+        /// ordonnancement. Contrôle inverse :
+        /// <c>DnnResxGuardSocleTests.TheExchangeLaunchDoesNotQueueBehindTheThreadPool</c>.
+        /// </para>
+        /// </summary>
+        internal static long ExchangeBodyOnPoolThreadCount;
+
+        /// <summary>
         /// Lit le blob de <c>HEAD:&lt;rel&gt;</c> (relatif à la racine du dépôt) —
         /// une seule fois par run, les lectures suivantes servent la mémoire.
         /// </summary>
@@ -244,8 +259,18 @@ namespace Argumentum.AssetConverter.Tests
         /// <see cref="BatchGate"/> : le délai de 30 s couvre L'ÉCHANGE ENTIER —
         /// un git qui ne répond plus est tué, pas attendu, et l'appel suivant
         /// repartira d'un transport neuf.
+        /// <para>
+        /// Le lanceur est un thread DÉDIÉ (<see cref="TaskCreationOptions.LongRunning"/>),
+        /// pas <c>Task.Run</c> : le témoin 9 de #2138 (run 42202111548, tentative 1)
+        /// a mesuré un pool à 25-27 threads avec 15-19 tâches en attente où
+        /// l'échange n'a JAMAIS démarré — les 30 s mesuraient une attente de
+        /// thread du pool, pas git. Un thread dédié ne passe pas par la file du
+        /// pool : le démarrage ne dépend plus de ce que font les gardes
+        /// parallèles. Contrôle inverse :
+        /// <c>DnnResxGuardSocleTests.TheExchangeLaunchDoesNotQueueBehindTheThreadPool</c>.
+        /// </para>
         /// </summary>
-        private static byte[] BatchExchange(string spec, string rel)
+        internal static byte[] BatchExchange(string spec, string rel)
         {
             lock (BatchGate)
             {
@@ -253,7 +278,11 @@ namespace Argumentum.AssetConverter.Tests
 
                 Interlocked.Increment(ref BatchExchangeCount);
                 var trace = new BatchExchangeProgress();
-                var exchange = Task.Run(() => ExchangeOnce(spec, rel, batchStdin, batchStdout, trace));
+                var exchange = Task.Factory.StartNew(
+                    () => ExchangeOnce(spec, rel, batchStdin, batchStdout, trace),
+                    CancellationToken.None,
+                    TaskCreationOptions.LongRunning,
+                    TaskScheduler.Default);
                 return AwaitExchange(exchange, rel, trace, GitTimeoutMs, KillAndDropBatchProcess);
             }
         }
@@ -345,17 +374,26 @@ namespace Argumentum.AssetConverter.Tests
             switch (s.Stage)
             {
                 case BatchExchangeStage.NotStarted:
-                    // L'état du pool au moment T est la mesure qui rend la famine
-                    // visible : un pool large avec des tâches en attente dit que
-                    // l'échange n'a simplement pas encore son tour, ce qui est la
-                    // signature des témoins (défauts simultanés, re-runs verts).
+                    // Témoin 9 : la file du pool était la cause TANT QUE
+                    // l'échange passait par Task.Run (25-27 threads occupés,
+                    // 15-19 tâches en attente, échange jamais démarré). Depuis
+                    // l'étape 2, l'échange court sur un thread DÉDIÉ : un
+                    // « jamais démarré » ne peut plus être la file du pool —
+                    // le message doit nommer le mécanisme RÉEL, sinon il
+                    // enverrait le prochain témoin corriger un défaut mort.
+                    // L'état du pool reste rendu comme CONTEXTE : c'est lui qui
+                    // a permis au témoin 9 de trancher, il éclaire encore la
+                    // charge du runner — mais il n'est plus la cause.
                     var pool = $"pool : {ThreadPool.ThreadCount} threads, "
                         + $"{ThreadPool.PendingWorkItemCount} tâche(s) en attente, "
-                        + $"{ThreadPool.CompletedWorkItemCount} terminée(s)";
-                    return head + " — diagnostic : l'échange n'a JAMAIS DÉMARRÉ (aucun thread "
-                        + "ne l'a pris en " + RenderDuration(timeoutMs) + " ; " + pool + ") : c'est le POOL "
-                        + "DE THREADS qui est affamé (Task.Run attendu par Wait), pas git — "
-                        + "les " + RenderDuration(timeoutMs) + " mesurent une attente de thread";
+                        + $"{ThreadPool.CompletedWorkItemCount} terminée(s) (contexte, "
+                        + "plus la cause)";
+                    return head + " — diagnostic : l'échange n'a JAMAIS DÉMARRÉ (thread "
+                        + "dédié hors pool, lancé sans atteindre la première marque en "
+                        + RenderDuration(timeoutMs) + " ; " + pool + ") : depuis l'étape 2 "
+                        + "de #2138 l'échange ne passe plus par la file du pool — les "
+                        + RenderDuration(timeoutMs) + " mesurent un thread dédié qui n'a "
+                        + "jamais tourné (création calée : mémoire, limite de threads OS ?)";
 
                 case BatchExchangeStage.Started:
                     return head + " — diagnostic : l'échange a démarré à " + s.StartedAtMs + " ms "
@@ -456,6 +494,9 @@ namespace Argumentum.AssetConverter.Tests
         internal static (byte[]? Blob, bool Missing, string? NonBlobType) ExchangeOnce(
             string spec, string rel, Stream? pipeIn, Stream? pipeOut, BatchExchangeProgress trace)
         {
+            if (Thread.CurrentThread.IsThreadPoolThread)
+                Interlocked.Increment(ref ExchangeBodyOnPoolThreadCount);
+
             trace.Mark(BatchExchangeStage.Started);
 
             var stdin = pipeIn ?? throw new IOException("transport batch absent (stdin)");

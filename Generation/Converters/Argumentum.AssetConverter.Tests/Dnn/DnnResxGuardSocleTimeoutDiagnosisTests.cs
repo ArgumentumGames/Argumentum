@@ -42,14 +42,16 @@ namespace Argumentum.AssetConverter.Tests
         }
 
         /// <summary>
-        /// Cas 1 — la tâche n'a JAMAIS obtenu de thread : c'est la famine du pool,
-        /// et c'est la seule lecture compatible avec des échecs simultanés sur des
-        /// fichiers différents. Une <see cref="TaskCompletionSource{TResult}"/> non
-        /// complétée reproduit exactement cet état : la tâche existe, elle ne
-        /// s'exécute jamais.
+        /// Cas 1 — la tâche n'a JAMAIS tourné : depuis l'étape 2 de #2138
+        /// (témoin 9, run 42202111548), l'échange est lancé sur un thread
+        /// DÉDIÉ hors pool — ce diagnostic ne peut plus être la file du pool,
+        /// et le message doit le DIRE : un texte qui continuerait d'accuser le
+        /// pool enverrait le prochain témoin corriger un défaut mort. Une
+        /// <see cref="TaskCompletionSource{TResult}"/> non complétée reproduit
+        /// exactement cet état : la tâche existe, elle ne s'exécute jamais.
         /// </summary>
         [Fact]
-        public void A_TaskThatNeverStarted_IsDiagnosedAsThreadPoolStarvation()
+        public void A_TaskThatNeverStarted_IsDiagnosedAsADedicatedThreadThatNeverRan()
         {
             var trace = new BatchExchangeProgress();
             var neverStarted = new TaskCompletionSource<(byte[]?, bool, string?)>(
@@ -61,10 +63,16 @@ namespace Argumentum.AssetConverter.Tests
                 "le motif que le relevé CI compte doit survivre à l'instrument, sinon la "
                 + "condition (3) de #2138 deviendrait inmesurable");
             message.Should().Contain("JAMAIS DÉMARRÉ",
-                "l'échange n'a pas commencé : c'est la marque d'un pool affamé, la piste "
-                + "SUPPOSÉE d'ai-01 — l'instrument doit la nommer, pas la supposer");
-            message.Should().Contain("POOL DE THREADS",
-                "la cause doit être nommée pour que le correctif puisse la viser");
+                "l'échange n'a pas commencé : sans cette marque, le message se confondrait "
+                + "avec un blocage en cours de transport");
+            message.Should().Contain("thread dédié",
+                "le mécanisme RÉEL doit être nommé : l'échange court hors pool depuis "
+                + "l'étape 2 — un message qui décrirait Task.Run décrirait un code qui "
+                + "n'existe plus");
+            message.Should().Contain("file du pool",
+                "et le message doit L'ÉCRIRE : la file du pool n'est plus la cause — "
+                + "c'est l'exonération du coupable du témoin 9, sans laquelle le "
+                + "prochain lecteur rouvrirait un défaut mort");
             message.Should().Contain("en 250 ms",
                 "l'en-tête rend le mur RÉELLEMENT appliqué — l'ancienne division entière "
                 + "rendait « en 0 s » (250 / 1000)");

@@ -428,5 +428,147 @@ namespace Argumentum.AssetConverter.Tests
                 + "que les témoins ont bien été pris ; les passages concurrents de la boucle "
                 + "sont du câble de détection en plus, jamais une condition du vert");
         }
+
+        // ── Lancement hors pool (#2138 étape 2, témoin 9) ─────────────────────
+        //
+        // Le témoin 9 (run 42202111548, tentative 1, les deux jambes) a mesuré
+        // l'échange JAMAIS démarré : pool à 25-27 threads, 15-19 tâches en
+        // attente. Task.Run mettait l'échange en FILE derrière les gardes
+        // parallèles, et les 30 s mesuraient une attente de thread, pas git.
+        // Le correctif lance l'échange sur un thread DÉDIÉ
+        // (TaskCreationOptions.LongRunning) : hors de la file du pool. Le
+        // défaut est REPRODUIT ici, pas raconté.
+
+        /// <summary>
+        /// Fichier commis, ancien, cité par AUCUN autre fait du projet (le
+        /// grep du choix de ColdA/ColdB a été rejoué en le couvrant). La sonde
+        /// de production traverse <c>BatchExchange</c> DIRECTEMENT — hors de la
+        /// mémoire du socle : même si un autre fait lisait ce chemin un jour,
+        /// l'échange serait refait et la mesure structurelle resterait réelle.
+        /// </summary>
+        private const string SaturationWitness = "docs/ontology/aif-export/README.md";
+
+#pragma warning disable xUnit1031 // Le Wait bloquant borné EST le mécanisme reproduit (Task.Run attendu par Wait, témoin 9) — pas un accident du banc.
+        /// <summary>
+        /// Contrôle inverse de l'étape 2, en trois sondes dont DEUX sont
+        /// structurelles : sous un pool saturé de façon contrôlée, la forme
+        /// ancienne (tâche de pool attendue par <c>Wait</c> — exactement le
+        /// couple que <c>BatchExchange</c> utilisait) ne démarre pas sous une
+        /// borne courte ; la forme neuve (<see cref="TaskCreationOptions.LongRunning"/>)
+        /// démarre ET rapporte qu'elle tourne hors du pool ; et l'échange de
+        /// PRODUCTION traverse le transport sans jamais consommer un thread du
+        /// pool (<c>ExchangeBodyOnPoolThreadCount</c> inchangé).
+        /// <para>
+        /// La sonde temporelle est garantie PAR CONSTRUCTION : les bloqueurs,
+        /// mis en file AVANT elle, dépassent le compte de threads du pool de 8 ;
+        /// au plus <c>ThreadCount</c> peuvent tourner, donc au moins 8 restent
+        /// DEVANT dans la file — qui ne démarre qu'après 8 injections (~1/s),
+        /// hors de portée d'une fenêtre de 250 ms, quel que soit le runner.
+        /// </para>
+        /// <para>
+        /// ⚠️ <b>La saturation a deux formes, et il faut les deux</b> : soit au
+        /// moins un bloqueur tourne (le pool dispatche), soit AUCUN n'a démarré
+        /// alors que la file contient les bloqueurs — le pool est alors déjà
+        /// affamé, et la sonde est encore PLUS valide. Un plancher « ≥ 1
+        /// bloqueur en cours » lisait cette seconde forme comme un banc
+        /// dégénéré : c'est exactement ainsi que ce fait a rougi une fois sous
+        /// la suite complète (06/11, [15 s] = 5 s de témoin + 10 s de
+        /// jointure), alors que la propriété testée tenait. Le préalable est
+        /// donc « des bloqueurs occupent ou remplissent le pool », jamais « le
+        /// pool a bien voulu dispatcher ».
+        /// </para>
+        /// <para>
+        /// ⚠️ Saturation bornée et auto-libérée (le banc ne doit pas affamer les
+        /// autres gardes) : les bloqueurs tiennent 20 s au plus puis rendent la
+        /// main d'eux-mêmes, et le <c>finally</c> ouvre le gate et JOINT tout —
+        /// dans le cas nominal ils sortent en quelques centaines de ms, la suite
+        /// ne garde ni thread occupé ni item en attente après ce fait.
+        /// </para>
+        /// </summary>
+        [Fact]
+        public void TheExchangeLaunchDoesNotQueueBehindTheThreadPool()
+        {
+            var poolThreads = ThreadPool.ThreadCount;
+            var blockers = poolThreads + 8;
+            using var gate = new ManualResetEventSlim(false);
+            long runningBlockers = 0;
+
+            var blockerTasks = new Task[blockers];
+            for (var i = 0; i < blockers; i++)
+            {
+                blockerTasks[i] = Task.Run(() =>
+                {
+                    Interlocked.Increment(ref runningBlockers);
+                    gate.Wait(TimeSpan.FromSeconds(20));
+                });
+            }
+
+            try
+            {
+                // PRÉALABLE — deux formes de saturation, voir le résumé.
+                // ⚠️ Les valeurs assertées sont celles que la boucle a LUES, pas
+                // une relecture d'après coup : au second passage du pool, un
+                // bloqueur quitte la file et un `pending` relu (13 pour 14 mis
+                // en file) ferait échouer un préalable qui était vrai à
+                // l'instant du constat (mesuré : 94 ms, 0 en cours / 13 en
+                // attente alors que la condition d'entrée était satisfaite).
+                long running = 0;
+                long pending = 0;
+                var deadline = DateTime.UtcNow.AddSeconds(5);
+                while (true)
+                {
+                    running = Volatile.Read(ref runningBlockers);
+                    pending = ThreadPool.PendingWorkItemCount;
+                    if (running >= 1 || pending >= blockers || DateTime.UtcNow > deadline)
+                        break;
+
+                    Thread.Sleep(5);
+                }
+
+                (running >= 1 || pending >= blockers).Should().BeTrue(
+                    "la saturation doit être établie avant de sonder : sinon le banc mesurerait "
+                    + $"son propre délai de démarrage — {blockers} bloqueurs mis en file, "
+                    + $"observé : {running} en cours et {pending} en attente");
+
+                // SONDE 1 — forme ANCIENNE (temporelle) : le défaut REPRODUIT,
+                // une tâche de pool mise en file derrière les bloqueurs.
+                var oldForm = Task.Run(() => "l'échange a démarré");
+                oldForm.Wait(250).Should().BeFalse(
+                    "sous pool saturé, une tâche Task.Run mise en file ne démarre pas en "
+                    + "250 ms : c'est exactement le couple du témoin 9 (Task.Run attendu "
+                    + "par Wait) — si ce sonde passe, le banc ne mesure plus la file du pool");
+
+                // SONDE 2 — forme NEUVE (structurelle) : démarre, et hors pool.
+                var newForm = Task.Factory.StartNew(
+                    () => Thread.CurrentThread.IsThreadPoolThread,
+                    CancellationToken.None, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+                newForm.Wait(5_000).Should().BeTrue(
+                    "un thread dédié démarre même quand tout le pool est occupé : le "
+                    + "lancement ne dépend plus d'un thread libre du pool");
+                newForm.Result.Should().BeFalse(
+                    "et ce thread n'est PAS un thread du pool : c'est ce qui retire "
+                    + "l'attente de file, pas seulement ce qui la contourne");
+
+                // SONDE 3 — le VRAI chemin de production, mesuré LÀ où le
+                // mécanisme se produit : le corps de l'échange n'occupe aucun
+                // item de pool. Déterministe : ni horloge ni état du pool.
+                var onPoolBefore = DnnResxGuardSocle.ExchangeBodyOnPoolThreadCount;
+                var blob = DnnResxGuardSocle.BatchExchange(
+                    "HEAD:" + SaturationWitness, SaturationWitness);
+                blob.Length.Should().BeGreaterThan(100,
+                    "sous saturation, le socle lit quand même le blob : c'est la promesse "
+                    + "de l'étape 2 rendue observable sur le chemin réel");
+                DnnResxGuardSocle.ExchangeBodyOnPoolThreadCount.Should().Be(onPoolBefore,
+                    "l'échange de production n'a pas tourné sur un thread du pool : revenir à "
+                    + "Task.Run ferait monter ce compteur — c'est le retour du témoin 9, et "
+                    + "cette mesure ne dépend d'aucun ordonnancement");
+            }
+            finally
+            {
+                gate.Set();
+                Task.WaitAll(blockerTasks, TimeSpan.FromSeconds(10));
+            }
+        }
+#pragma warning restore xUnit1031
     }
 }
