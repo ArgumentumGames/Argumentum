@@ -8,9 +8,9 @@ En avril 2024, Argumentum était un jeu de cartes prêt à imprimer. Aujourd’h
 
 ## Le jeu
 
-Argumentum est un jeu de cartes sur les sophismes, ces raisonnements qui paraissent valables sans l’être. Une carte décrit un sophisme, donne sa définition, un exemple et un contre-exemple. On apprend à le reconnaître, puis à lui opposer l’argument qui tient.
+Argumentum est un jeu de cartes sur les sophismes, ces raisonnements qui paraissent valables sans l’être. Une carte décrit un sophisme, donne sa définition et un exemple. On apprend à le reconnaître, puis à lui opposer l’argument qui tient.
 
-Le jeu se joue avec deux paquets. Le premier réunit les grandes cartes : les sophismes, les vertus argumentatives qui leur répondent, les règles et une carte mémo. Le second réunit les petites cartes : les scénarios, où il s’agit de reconnaître quel sophisme se cache dans une situation donnée.
+Le jeu se joue avec trois paquets. Le premier réunit les grandes cartes : les sophismes, les règles et une carte mémo. Le second réunit les petites cartes : les scénarios, où il s’agit de reconnaître quel sophisme se cache dans une situation donnée. Le troisième, à part, décrit les vertus de l’argumentation : les arguments qui tiennent.
 
 ## Un point de référence, puis une reconstruction
 
@@ -32,7 +32,7 @@ Quatre étapes, toutes à partir de fichiers texte.
 
 ## Ce qui s’est ajouté
 
-**Huit langues.** Français, anglais, russe, portugais, espagnol, arabe, farsi et chinois. Deux de ces écritures se lisent de droite à gauche, ce qui oblige à retourner la mise en page d’une carte et pas seulement à changer les mots.
+**Huit langues.** Français, anglais, russe, portugais, espagnol, arabe, farsi et chinois. Deux de ces écritures se lisent de droite à gauche, et chacune demande ses propres polices.
 
 **Les cartes mentales.** La taxonomie entière dessinée en arbre, une par langue, exportée en SVG — un format d’image vectorielle, qui reste net à n’importe quelle taille. Le dépôt en contient 43, accompagnées de pages HTML qui les affichent.
 
@@ -48,7 +48,7 @@ Quatre étapes, toutes à partir de fichiers texte.
 | Règles | 15 |
 | Mémo | 1, imprimée en 7 exemplaires |
 | Scénarios | 167 |
-| Vertus argumentatives | 131 |
+| Vertus argumentatives (paquet à part) | 131 |
 
 Deux remarques pour lire ce tableau. Les sophismes sont 175 à porter une carte, mais la taxonomie décrit 1 408 nœuds : elle descend des grandes familles jusqu’aux cas particuliers, et tous ne méritent pas une carte. Les vertus suivent la même règle, avec 223 nœuds décrits et 131 cartes.
 
@@ -68,7 +68,7 @@ Les cartes mentales ont leurs liens vérifiés un par un, et leurs pages d’aff
 
 Un dernier contrôle ouvre le paquet et lit ses premières pages pour vérifier que les règles y figurent, dans l’ordre. Il ne peut pas lire de texte : ces pages sont des images. Il compare donc les pixels des premières pages à ceux des cartes de règles.
 
-Tous ces contrôles s’exécutent à chaque modification proposée au dépôt.
+Ceux de ces contrôles qui ne lisent que le dépôt s’exécutent à chaque modification proposée : le compte des cartes, les liens des cartes mentales, et les témoins des contrôles sur PDF, qui éprouvent leur logique sur des cas construits pour l’épreuve. Les contrôles qui ouvrent les PDF produits, eux, tournent sur une machine qui vient de régénérer le jeu : une fabrication complète demande des heures, on ne la rejoue pas à chaque modification.
 
 ## Tout est ouvert
 
@@ -82,7 +82,7 @@ Reconstruire le jeu se fait en une commande, depuis la racine du dépôt :
 dotnet run --project Generation/Converters/Argumentum.AssetConverter/Argumentum.AssetConverter.csproj
 ```
 
-Les PDF sont écrits dans le dossier de sortie du projet, un sous-dossier par langue. Il faut, pour cela, un environnement .NET et le moteur de rendu installés sur la machine.
+Les PDF sont écrits dans le dossier de sortie du projet, un sous-dossier par langue. Il faut pour cela un environnement .NET, et le moteur de rendu des cartes servi par un site web local ; les cartes mentales demandent en outre FreeMind, le logiciel qui les dessine.
 
 ## Et maintenant
 
