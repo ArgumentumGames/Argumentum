@@ -99,7 +99,8 @@ INSERT INTO #expected (ValueId, EntityId, AttributeId, DimensionId, Val) VALUES
  (30563,8818,1545,10,N'50vh'), (30564,8818,1545,11,N'50vh'), (30565,8818,1545,12,N'50vh'),
  (30566,8818,1545,13,N'50vh');
 
--- Quatre agrégats ; attendus A=0, B=42, C=0, D=6. Un A>0, B<>42, C>0 ou D<6 ⇒ abandon.
+-- Quatre agrégats ; attendus A=0, B=42, C=0, D=6. Un A>0, B<>42, C>0 ou D≠6 ⇒ abandon.
+-- (D est borné à [0,6] par la clé de TsDynDataValue : D≠6 ≡ D<6.)
 SELECT
  (SELECT COUNT(*) FROM #expected e
     LEFT JOIN TsDynDataValue v ON v.ValueId=e.ValueId AND v.EntityId=e.EntityId
@@ -117,6 +118,8 @@ SELECT
    b(ValueId,Val) JOIN TsDynDataValue v ON v.ValueId=b.ValueId AND v.Value=b.Val) AS D_bases_conformes_backup;
 
 -- Abandon : si l'un des quatre n'est pas celui attendu, on annule et on ne supprime RIEN.
+-- ⚠️ Le IF porte les QUATRE agrégats : A, B, C et D. (Correction review #2184 — le premier
+--    jet ne testait que A, B, C : une base dim-0 dérivée (D=5) laissait passer la suppression.)
 IF (SELECT COUNT(*) FROM #expected e
       LEFT JOIN TsDynDataValue v ON v.ValueId=e.ValueId AND v.EntityId=e.EntityId
                                 AND v.AttributeId=e.AttributeId AND v.Value=e.Val
@@ -127,17 +130,23 @@ IF (SELECT COUNT(*) FROM #expected e
         WHERE v.EntityId IN (9416,9414,9415,9417,9413,8818) AND v.AttributeId IN (1755,1545)
           AND v.ValueId NOT IN (SELECT ValueId FROM #expected)
           AND v.ValueId NOT IN (22477,22474,22478,22476,22475,22064))
+   OR (SELECT COUNT(*) FROM (VALUES (22477,N'Frontpage with images'),(22474,N'Column without images'),
+       (22475,N'By category filtered news list'),(22478,N'News'),(22476,N'Archive news list'),(22064,N'50vh'))
+       b(ValueId,Val) JOIN TsDynDataValue v ON v.ValueId=b.ValueId AND v.Value=b.Val) <> 6
 BEGIN
     ROLLBACK TRAN r;
     THROW 50000, 'ROLLBACK ANNULE : la garde d''identite ne reconnait plus l''injection (drift). Aucune suppression.', 1;
 END
 
 -- ── Suppression bornée à #expected (identité ET valeur), jamais à une plage ──
+-- ⚠️ Colonne de #expected = Val, colonne de TsDynDataValue = Value. Le premier jet écrivait
+--    `e.Value=v.Val` (colonnes croisées) : erreur 207 après le premier DELETE, transaction
+--    ouverte. (Correction review #2184.)
 DELETE d FROM TsDynDataValueDimension d
   JOIN #expected e ON e.ValueId=d.ValueId AND e.DimensionId=d.DimensionId;
 DELETE v FROM TsDynDataValue v
   JOIN #expected e ON e.ValueId=v.ValueId AND e.EntityId=v.EntityId
-                  AND e.AttributeId=v.AttributeId AND e.Value=v.Val;
+                  AND e.AttributeId=v.AttributeId AND e.Val=v.Value;
 
 -- ── Contrôles post-suppression (ne remplacent pas la garde préalable) ──
 SELECT (SELECT COUNT(*) FROM TsDynDataValueDimension
@@ -157,8 +166,25 @@ DROP TABLE #expected;
 | Payload réel | 0 | 42 | 0 | 6 | **GARDE PASSE** |
 | Contrôle inverse : une valeur mutée (`Новости` → `Новости-MUTE`) | **1** | 42 | 0 | 6 | **BLOQUE** |
 | Contrôle inverse : une dimension mutée (30560 : 7 → 8) | **1** | 42 | 0 | 6 | **BLOQUE** |
+| Contrôle inverse (correction #2184) : une base dim-0 mutée (22064 : `50vh` → `50vh-MUTE`) | 0 | 42 | 0 | **5** | **BLOQUE** *(désormais : le `IF` teste D)* |
 
-La garde voit donc un `1` là où le count-seul rendait `42`. La mutation n'est pas une simulation : c'est le même SQL, seule l'attente change.
+Les trois mutations donnent **BLOQUE** par des agrégats **différents** (A, A, D) : la garde ne tient pas sur un seul capteur. La mutation n'est pas une simulation : c'est le même SQL, seule l'attente change.
+
+**Preuve en lecture seule des jointures de suppression (demandée par la review #2184)** — chacun des deux `DELETE` est rejoué en `SELECT COUNT(*)` sur **exactement les mêmes jointures** : le comptage lie les colonnes comme la suppression, sans rien écrire. Attendu **42 et 42** :
+
+```sql
+-- À exécuter en lecture seule, fenêtre de jour (10 h – 17 h), annoncé au dashboard.
+SELECT COUNT(*) AS delete_d_toucherait
+  FROM TsDynDataValueDimension d
+  JOIN #expected e ON e.ValueId=d.ValueId AND e.DimensionId=e.DimensionId;        -- attendu 42
+
+SELECT COUNT(*) AS delete_v_toucherait
+  FROM TsDynDataValue v
+  JOIN #expected e ON e.ValueId=v.ValueId AND e.EntityId=v.EntityId
+                  AND e.AttributeId=v.AttributeId AND e.Val=v.Value;              -- attendu 42
+```
+
+⚠️ Ces deux comptages **n'ont pas encore été exécutés** au moment de la correction (la validation du 06/11 16:4x n'a porté que la garde, jamais les jointures de suppression — c'est précisément pourquoi la coquille `e.Value=v.Val` a survécu). Ils sont posés ici pour la prochaine fenêtre de jour, avec le contrôle inverse D ci-dessus.
 
 Puis recycle app-domain (mtime web.config), et rejouer la preuve de §4 : attendu retour à 42 `registre_avance`. Les bases dim-0 (ValueIds 22477, 22474, 22478, 22476, 22475, 22064) ne sont **jamais** dans le périmètre du rollback — la colonne `D` de la garde les vérifie contre le backup avant tout geste.
 
