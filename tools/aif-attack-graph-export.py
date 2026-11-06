@@ -19,7 +19,7 @@ Honest verdict (no fabrication):
 Outputs (docs/ontology/aif-export/):
   aif-attack-edges.csv       145 bipartite attack-edges (CSV-sourced, PK-keyed)
   aif-canonical-concepts.csv AIF canonical concepts referenced via skos
-  taxonomy-tree-edges.csv    hierarchical tree edges (decimal_path, all 1408)
+  taxonomy-tree-edges.csv    hierarchical tree edges (from `path`, all 1408)
   aif-owl-attack-edges.csv   OWL-sourced mirror of attack-edges (cross-check)
   aif-relations-graph.csv    OWL inter-fallacy semantic relations (non-AIF)
 """
@@ -155,23 +155,41 @@ def export_canonical_concepts(data, col, out_path):
 
 
 def export_taxonomy_tree(data, col, out_path):
-    """Hierarchical tree edges derived from decimal_path (parent -> child)."""
+    """Hierarchical tree edges derived from `path` (parent -> child).
+
+    `path` is the true hierarchy: dot-separated, one segment per level
+    (e.g. 5.1.2.3.2.24). The old derivation read `decimal_path`, whose levels
+    are glued with a SINGLE comma after the family (5,123224): `dp.count(",")`
+    could only be 0 or 1, so the export was a STAR (depth in {1,2}, every node
+    parented to its family). We now read `path` directly.
+
+    Paths are emitted in the SAME comma shape as `decimal_path` (family +
+    comma + glued levels, ranks >= 10 kept whole) so downstream keys and the
+    committed sidecars still join; only the SOURCE OF TRUTH changes. Depth is
+    the segment count of `path` (NEVER the CSV `depth` column, wrong on 2 rows:
+    root "0" and row 824). See docs/taxonomy/141-hierarchy-path-2026-11-06.md.
+    """
     pk_i = col("PK")
-    dp_i = col("decimal_path")
+    path_i = col("path")
     fam_i = col("Famille")
     sfam_i = col("Sous-Famille")
     ssfam_i = col("Soussousfamille")
     fields = ["parent_path", "child_path", "child_pk", "depth", "family", "subfamily", "subsubfamily"]
+
+    def to_comma(p):
+        seg = p.split(".")
+        return seg[0] if len(seg) == 1 else seg[0] + "," + "".join(seg[1:])
+
     rows_out = []
     for r in data:
-        dp = r[dp_i].strip()
-        if not dp:
+        p = r[path_i].strip()
+        if not p:
             continue
-        depth = dp.count(",") + 1
-        parent = ",".join(dp.split(",")[:-1]) if depth > 1 else ""
+        depth = len(p.split("."))
+        parent = p.rsplit(".", 1)[0] if "." in p else ""
         rows_out.append({
-            "parent_path": parent,
-            "child_path": dp,
+            "parent_path": to_comma(parent) if parent else "",
+            "child_path": to_comma(p),
             "child_pk": r[pk_i],
             "depth": depth,
             "family": r[fam_i].strip(),
