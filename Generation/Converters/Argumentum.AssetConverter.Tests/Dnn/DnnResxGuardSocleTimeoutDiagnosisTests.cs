@@ -65,6 +65,13 @@ namespace Argumentum.AssetConverter.Tests
                 + "SUPPOSÉE d'ai-01 — l'instrument doit la nommer, pas la supposer");
             message.Should().Contain("POOL DE THREADS",
                 "la cause doit être nommée pour que le correctif puisse la viser");
+            message.Should().Contain("en 250 ms",
+                "l'en-tête rend le mur RÉELLEMENT appliqué — l'ancienne division entière "
+                + "rendait « en 0 s » (250 / 1000)");
+            message.Should().NotContain("30 s",
+                "contrôle inverse (review #2155) : la branche « jamais démarré » écrivait "
+                + "« les 30 s » en dur — au banc de 250 ms, le même message portait « 250 ms » "
+                + "ET « 30 s » : une seule fonction doit rendre la durée");
             message.Should().NotContain("en-tête",
                 "rien n'a été échangé : parler d'en-tête enverrait le diagnostic sur git, "
                 + "qui n'a jamais été sollicité");
@@ -134,6 +141,35 @@ namespace Argumentum.AssetConverter.Tests
                 partial.Release();
                 Observe(task);
             }
+        }
+
+        /// <summary>
+        /// Contrôle inverse de la remarque durée (review #2155) : la branche
+        /// « jamais démarré » écrivait « les 30 s » en dur alors que l'en-tête
+        /// calculait <c>timeoutMs / 1000</c> — au banc de 250 ms, le message se
+        /// contredisait. Une seule fonction rend la durée, au mur du banc comme
+        /// au mur de production : ce fait épingle les DEUX rendus cohérents.
+        /// </summary>
+        [Fact]
+        public void TheTimeoutDurationIsRenderedByOneFunctionAtBothWalls()
+        {
+            var atBenchWall = DnnResxGuardSocle.DescribeTimeout(Rel, ShortTimeoutMs,
+                new BatchExchangeSnapshot(BatchExchangeStage.NotStarted, -1, -1, -1, -1, -1, 0));
+            var atProductionWall = DnnResxGuardSocle.DescribeTimeout(Rel, DnnResxGuardSocle.GitTimeoutMs,
+                new BatchExchangeSnapshot(BatchExchangeStage.NotStarted, -1, -1, -1, -1, -1, 0));
+
+            atBenchWall.Should().Contain("en 250 ms",
+                "l'en-tête rend le mur du banc : l'ancienne division entière rendait « en 0 s »");
+            atBenchWall.Should().Contain("les 250 ms mesurent",
+                "la queue de la branche « jamais démarré » suit le même mur que l'en-tête : "
+                + "deux rendus différents de la MÊME durée, c'est le défaut");
+            atBenchWall.Should().NotContain("30 s",
+                "le « 30 s » en dur ne doit survivre nulle part quand le mur appliqué est un autre");
+
+            atProductionWall.Should().Contain("en 30 s",
+                "au mur de production (GitTimeoutMs), la durée se lit en secondes");
+            atProductionWall.Should().Contain("les 30 s mesurent",
+                "et la queue de branche l'accorde : UNE fonction, DEUX murs, zéro contradiction");
         }
 
         /// <summary>

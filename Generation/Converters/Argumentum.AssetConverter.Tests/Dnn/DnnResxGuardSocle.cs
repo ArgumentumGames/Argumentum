@@ -88,24 +88,27 @@ namespace Argumentum.AssetConverter.Tests
     /// </para>
     /// <para>
     /// Écrit par le thread de l'échange, lu par le thread qui attend : chaque
-    /// marque est un <see cref="Volatile.Write{T}(ref T, T)"/> (release) et
-    /// <see cref="Snapshot"/> relit jusqu'à voir un couple cohérent.
+    /// marque est un <see cref="Volatile.Write{T}(ref T, T)"/> (release), et
+    /// <see cref="Snapshot"/> DÉRIVE l'étape de la plus haute marque posée —
+    /// jamais d'un champ écrit séparément, qui laguerait derrière la marque
+    /// (review #2155 : l'ancienne relecture-boucle pouvait rendre
+    /// <c>Stage = NotStarted</c> avec un <c>StartedAtMs</c> déjà posé).
     /// </para>
     /// </summary>
     internal sealed class BatchExchangeProgress
     {
         private readonly Stopwatch clock = Stopwatch.StartNew();
         private readonly long[] marks = { -1, -1, -1, -1, -1 };
-        private int stage = (int)BatchExchangeStage.NotStarted;
         private long announcedBytes = -1;
         private long payloadBytesRead;
 
-        /// <summary>Marque l'entrée dans une étape ; l'horodatage précède la marque (release).</summary>
-        internal void Mark(BatchExchangeStage next)
-        {
+        /// <summary>
+        /// Marque l'entrée dans une étape (release). La marque EST l'état :
+        /// <see cref="Snapshot"/> en dérive l'étape courante, il n'existe pas de
+        /// champ séparé à tenir cohérent — c'est ce champ-là qui laguait.
+        /// </summary>
+        internal void Mark(BatchExchangeStage next) =>
             Volatile.Write(ref marks[(int)next], clock.ElapsedMilliseconds);
-            Volatile.Write(ref stage, (int)next);
-        }
 
         /// <summary>Taille annoncée par l'en-tête de réponse.</summary>
         internal void ReportHeader(long announced) => Volatile.Write(ref announcedBytes, announced);
@@ -114,27 +117,34 @@ namespace Argumentum.AssetConverter.Tests
         internal void ReportBytes(long read) => Volatile.Write(ref payloadBytesRead, read);
 
         /// <summary>
-        /// Photographie de l'avancement. Relit tant que la marque bouge : le
-        /// thread de l'échange peut avancer entre deux champs, et un message qui
-        /// mêlerait l'étape d'un instant à l'horodatage d'un autre enverrait le
-        /// diagnostic sur la mauvaise piste.
+        /// Photographie de l'avancement. L'étape est DÉRIVÉE de la plus haute
+        /// marque posée, lue dans l'ordre DÉCROISSANT : la première marque haute
+        /// observée (acquire) garantit la visibilité de toutes les marques posées
+        /// avant elle (release, ordre du protocole).
+        /// <para>
+        /// Pourquoi pas une boucle qui revérifie : <c>Mark</c> écrivait la marque
+        /// PUIS l'étape, et revérifier l'étape ne détectait pas la fenêtre entre
+        /// les deux — un instantané pouvait rendre <c>Stage = NotStarted</c> avec
+        /// un <c>StartedAtMs</c> déjà posé (review #2155), c'est-à-dire le
+        /// diagnostic « POOL AFFAMÉ » sur un échange qui avait démarré. Dériver
+        /// depuis les marques rend ce couple impossible par construction.
+        /// </para>
         /// </summary>
         internal BatchExchangeSnapshot Snapshot()
         {
-            while (true)
-            {
-                var seen = Volatile.Read(ref stage);
-                var started = Volatile.Read(ref marks[(int)BatchExchangeStage.Started]);
-                var request = Volatile.Read(ref marks[(int)BatchExchangeStage.RequestWritten]);
-                var header = Volatile.Read(ref marks[(int)BatchExchangeStage.HeaderRead]);
-                var blob = Volatile.Read(ref marks[(int)BatchExchangeStage.BlobRead]);
-                if (seen != Volatile.Read(ref stage))
-                    continue;
+            var blob = Volatile.Read(ref marks[(int)BatchExchangeStage.BlobRead]);
+            var header = Volatile.Read(ref marks[(int)BatchExchangeStage.HeaderRead]);
+            var request = Volatile.Read(ref marks[(int)BatchExchangeStage.RequestWritten]);
+            var started = Volatile.Read(ref marks[(int)BatchExchangeStage.Started]);
+            var stage = blob >= 0 ? BatchExchangeStage.BlobRead
+                : header >= 0 ? BatchExchangeStage.HeaderRead
+                : request >= 0 ? BatchExchangeStage.RequestWritten
+                : started >= 0 ? BatchExchangeStage.Started
+                : BatchExchangeStage.NotStarted;
 
-                return new BatchExchangeSnapshot(
-                    (BatchExchangeStage)seen, started, request, header, blob,
-                    Volatile.Read(ref announcedBytes), Volatile.Read(ref payloadBytesRead));
-            }
+            return new BatchExchangeSnapshot(
+                stage, started, request, header, blob,
+                Volatile.Read(ref announcedBytes), Volatile.Read(ref payloadBytesRead));
         }
     }
 
@@ -318,6 +328,11 @@ namespace Argumentum.AssetConverter.Tests
         /// cause. Les trois formes sont distinguables à la lecture du journal —
         /// c'est la condition (1) de #2138, et c'est ce qui manquait aux huit
         /// témoins : tous rendaient la même ligne.
+        /// <para>
+        /// Une seule fonction rend la durée (review #2155) : la branche « jamais
+        /// démarré » écrivait « les 30 s » en dur quand l'en-tête calculait
+        /// <c>timeoutMs / 1000</c> — au banc de 250 ms, le message se contredisait.
+        /// </para>
         /// </summary>
         /// <param name="rel">Chemin dépôt, nommé pour retrouver la garde fautive.</param>
         /// <param name="timeoutMs">Le mur appliqué à l'échange.</param>
@@ -325,7 +340,7 @@ namespace Argumentum.AssetConverter.Tests
         internal static string DescribeTimeout(string rel, int timeoutMs, BatchExchangeSnapshot s)
         {
             var head = $"git cat-file --batch sur '{rel}' n'a pas rendu la main en "
-                + $"{timeoutMs / 1000} s (processus tué)";
+                + RenderDuration(timeoutMs) + " (processus tué)";
 
             switch (s.Stage)
             {
@@ -338,19 +353,19 @@ namespace Argumentum.AssetConverter.Tests
                         + $"{ThreadPool.PendingWorkItemCount} tâche(s) en attente, "
                         + $"{ThreadPool.CompletedWorkItemCount} terminée(s)";
                     return head + " — diagnostic : l'échange n'a JAMAIS DÉMARRÉ (aucun thread "
-                        + "ne l'a pris en " + timeoutMs + " ms ; " + pool + ") : c'est le POOL "
+                        + "ne l'a pris en " + RenderDuration(timeoutMs) + " ; " + pool + ") : c'est le POOL "
                         + "DE THREADS qui est affamé (Task.Run attendu par Wait), pas git — "
-                        + "les 30 s mesurent une attente de thread";
+                        + "les " + RenderDuration(timeoutMs) + " mesurent une attente de thread";
 
                 case BatchExchangeStage.Started:
                     return head + " — diagnostic : l'échange a démarré à " + s.StartedAtMs + " ms "
-                        + "mais n'a pas écrit sa requête en " + timeoutMs + " ms : blocage à "
+                        + "mais n'a pas écrit sa requête en " + RenderDuration(timeoutMs) + " : blocage à "
                         + "l'ENTRÉE du transport (écriture sur stdin ou attente du verrou)";
 
                 case BatchExchangeStage.RequestWritten:
                     return head + " — diagnostic : l'échange a démarré à " + s.StartedAtMs
                         + " ms, requête écrite à " + s.RequestAtMs + " ms, mais AUCUN EN-TÊTE "
-                        + "n'est revenu en " + timeoutMs + " ms : git n'a pas répondu — c'est "
+                        + "n'est revenu en " + RenderDuration(timeoutMs) + " : git n'a pas répondu — c'est "
                         + "GIT qui est muet (dépôt verrouillé, lecteur lent), pas le pool";
 
                 case BatchExchangeStage.HeaderRead:
@@ -367,6 +382,15 @@ namespace Argumentum.AssetConverter.Tests
                         + "rendu la main : blocage APRÈS la lecture, à la sortie de l'échange";
             }
         }
+
+        /// <summary>
+        /// Rend une durée en UNE forme : secondes au-delà de la seconde (« 30 s »,
+        /// le mur de production), millisecondes en dessous (« 250 ms », le mur des
+        /// bancs). L'ancien en-tête divisait en entiers (<c>250 / 1000</c> →
+        /// « 0 s ») et la branche « jamais démarré » écrivait « 30 s » en dur :
+        /// deux rendus, deux contradictions possibles.
+        /// </summary>
+        private static string RenderDuration(int ms) => ms >= 1_000 ? $"{ms / 1000} s" : $"{ms} ms";
 
         /// <summary>
         /// Démarre le processus batch s'il n'existe pas encore. Un processus mort

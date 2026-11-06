@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using FluentAssertions;
 using Xunit;
 
@@ -296,6 +298,95 @@ namespace Argumentum.AssetConverter.Tests
                 + "le cas qu'il nomme (« dépôt verrouillé, lecteur réseau lent »). Ce fait épingle "
                 + "la FORME du code, faute de pouvoir provoquer un blocage de 30 s en CI : il ne "
                 + "prouve pas l'absence de blocage, il empêche le retour de la forme qui en produit un");
+        }
+
+        // ── Cohérence Mark/Snapshot (review #2155, remarque 2) ────────────────
+        //
+        // `Mark` écrivait la marque PUIS l'étape ; l'ancien `Snapshot` ne
+        // revérifiait que l'étape, qui lag derrière la marque : un instantané
+        // pouvait rendre Stage = NotStarted avec un StartedAtMs déjà posé —
+        // c'est-à-dire le diagnostic « POOL AFFAMÉ » sur un échange démarré.
+        // L'étape est désormais DÉRIVÉE de la plus haute marque posée.
+
+        [Fact]
+        public void TheStageIsDerivedFromTheHighestMarkPosed()
+        {
+            var trace = new BatchExchangeProgress();
+
+            trace.Snapshot().Stage.Should().Be(BatchExchangeStage.NotStarted,
+                "aucune marque posée : l'étape dérivée est l'absence d'étape, et toutes les "
+                + "marques restent à leur sentinelle -1");
+
+            trace.Mark(BatchExchangeStage.Started);
+            var oneMark = trace.Snapshot();
+            oneMark.Stage.Should().Be(BatchExchangeStage.Started,
+                "la marque Started est posée : l'étape ne peut PAS rester NotStarted — c'est le "
+                + "couple incohérent de #2155 rendu impossible par construction");
+            oneMark.StartedAtMs.Should().BeGreaterThanOrEqualTo(0,
+                "une marque posée est un horodatage, jamais la sentinelle -1");
+
+            trace.Mark(BatchExchangeStage.HeaderRead);
+            var twoMarks = trace.Snapshot();
+            twoMarks.Stage.Should().Be(BatchExchangeStage.HeaderRead,
+                "la plus haute marque posée commande l'étape, même en sautant une étape "
+                + "intermédiaire");
+            twoMarks.HeaderAtMs.Should().BeGreaterThanOrEqualTo(0);
+            twoMarks.RequestAtMs.Should().Be(-1,
+                "aucune marque RequestWritten posée : la photographie rend ce qui est marqué, "
+                + "rien d'autre — dériver n'est pas inventer");
+            twoMarks.StartedAtMs.Should().BeGreaterThanOrEqualTo(0,
+                "les marques inférieures restent visibles avec la haute : la lecture descendante "
+                + "de Snapshot (acquire) couvre tout ce que le thread d'échange a posé avant");
+        }
+
+        /// <summary>
+        /// Contrôle inverse concurrent de la remarque 2 de #2155 : pendant qu'un
+        /// thread dédié pose les quatre marques, AUCUN instantané ne doit rendre
+        /// le couple (Stage = NotStarted, StartedAtMs posé). Sur l'ancienne
+        /// implémentation — une boucle qui revérifiait le champ d'étape, écrit
+        /// APRÈS la marque — cette fenêtre était réelle ; l'étape étant dérivée
+        /// des marques elles-mêmes, le couple ne peut plus se produire, quelle
+        /// que soit l'entrelace.
+        /// </summary>
+        [Fact]
+        public async Task SnapshotsTakenWhileMarksArePosedNeverPairNotStartedWithAStartedMark()
+        {
+            long snapshots = 0;
+            for (var round = 0; round < 200; round++)
+            {
+                var trace = new BatchExchangeProgress();
+                var poser = Task.Factory.StartNew(() =>
+                {
+                    trace.Mark(BatchExchangeStage.Started);
+                    Thread.SpinWait(500);
+                    trace.Mark(BatchExchangeStage.RequestWritten);
+                    Thread.SpinWait(500);
+                    trace.Mark(BatchExchangeStage.HeaderRead);
+                    Thread.SpinWait(500);
+                    trace.Mark(BatchExchangeStage.BlobRead);
+                }, CancellationToken.None, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+
+                while (!poser.IsCompleted)
+                {
+                    var s = trace.Snapshot();
+                    snapshots++;
+                    if (s.StartedAtMs >= 0)
+                    {
+                        s.Stage.Should().NotBe(BatchExchangeStage.NotStarted,
+                            "StartedAtMs posé + Stage NotStarted = le couple incohérent de #2155 : "
+                            + "le message de timeout lirait « POOL AFFAMÉ » sur un échange démarré");
+                    }
+                }
+
+                await poser;
+                trace.Snapshot().Stage.Should().Be(BatchExchangeStage.BlobRead,
+                    "toutes les marques posées, l'étape dérivée est la dernière — preuve que la "
+                    + "boucle ci-dessus a photographié une trace vivante, pas une trace finie");
+            }
+
+            snapshots.Should().BeGreaterThan(1_000,
+                "garantie de non-vacuité : le marteau a réellement photographié PENDANT la pose "
+                + "des marques — sinon le contrôle inverse ne mesure que des traces déjà finies");
         }
     }
 }
