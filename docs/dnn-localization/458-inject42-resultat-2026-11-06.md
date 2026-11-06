@@ -63,22 +63,104 @@ Verdict après : « réimport à blanc = 0 valeur changée ». Les 42 écarts d'
 
 ## 5. Rollback (si jamais nécessaire)
 
-Les 42 lignes sont des **insertions pures** : les supprimer restitue l'état initial (0 dim sur les 6 cibles). À exécuter en transaction, après vérification du compte :
+Les 42 lignes sont des **insertions pures** : les supprimer restitue l'état initial (0 dim sur les 6 cibles).
+
+⚠️ **Un compte ne vaut pas une identité** (remarque 🟡 de la review #2171). `COUNT(*) = 42` sur une plage de `ValueId` ne prouve **pas** que ces 42 lignes sont encore celles de l'injection : après une restauration ou une réaffectation d'identités, une autre plage de 42 valeurs satisferait le compte, et le rollback supprimerait du contenu étranger. La garde ci-dessous **apparie chaque `ValueId`** au couple `EntityId`/`AttributeId` attendu, à sa dimension (7–13) et à sa valeur ; **un seul écart ⇒ abandon**, aucune suppression. La suppression elle-même est bornée à `#expected` (identité **et** valeur), plus jamais à une plage.
 
 ```sql
 BEGIN TRAN r;
--- garde : exactement 42 liens sur les ValueIds écrits
-SELECT COUNT(*) FROM TsDynDataValueDimension WHERE ValueId BETWEEN 30525 AND 30566;  -- attendu 42
-DELETE FROM TsDynDataValueDimension WHERE ValueId BETWEEN 30525 AND 30566;
-DELETE FROM TsDynDataValue WHERE ValueId BETWEEN 30525 AND 30566;
--- garde post : 0 dim résiduelle sur les 6 entités/attributs
-SELECT COUNT(*) FROM TsDynDataValueDimension d
-  WHERE d.ValueId IN (SELECT ValueId FROM TsDynDataValue
-    WHERE EntityId IN (9416,9414,9415,9417,9413,8818) AND AttributeId IN (1755,1545));  -- attendu 0
--- COMMIT r;  -- après contrôle
+
+-- ── Garde bloquante : les 42 tuples attendus, explicites (aucune inférence de plage) ──
+CREATE TABLE #expected (ValueId int PRIMARY KEY, EntityId int, AttributeId int, DimensionId int, Val nvarchar(200));
+INSERT INTO #expected (ValueId, EntityId, AttributeId, DimensionId, Val) VALUES
+ (30525,9416,1755, 7,N'Frontpage with images'), (30526,9416,1755, 8,N'Главная страница с изображениями'),
+ (30527,9416,1755, 9,N'Página inicial com imagens'), (30528,9416,1755,10,N'Página de inicio con imágenes'),
+ (30529,9416,1755,11,N'الصفحة الرئيسية مع الصور'), (30530,9416,1755,12,N'صفحه اصلی با تصاویر'),
+ (30531,9416,1755,13,N'带图片的首页'),
+ (30532,9414,1755, 7,N'Column without images'), (30533,9414,1755, 8,N'Колонка без изображений'),
+ (30534,9414,1755, 9,N'Coluna sem imagens'), (30535,9414,1755,10,N'Columna sin imágenes'),
+ (30536,9414,1755,11,N'عمود بدون صور'), (30537,9414,1755,12,N'ستون بدون تصویر'),
+ (30538,9414,1755,13,N'不带图片的栏目'),
+ (30539,9415,1755, 7,N'News'), (30540,9415,1755, 8,N'Новости'), (30541,9415,1755, 9,N'Notícias'),
+ (30542,9415,1755,10,N'Noticias'), (30543,9415,1755,11,N'الأخبار'), (30544,9415,1755,12,N'اخبار'),
+ (30545,9415,1755,13,N'新闻'),
+ (30546,9417,1755, 7,N'Archive news list'), (30547,9417,1755, 8,N'Список архивных новостей'),
+ (30548,9417,1755, 9,N'Lista de notícias do arquivo'), (30549,9417,1755,10,N'Lista de noticias del archivo'),
+ (30550,9417,1755,11,N'قائمة أخبار الأرشيف'), (30551,9417,1755,12,N'فهرست اخبار آرشیو'),
+ (30552,9417,1755,13,N'新闻存档列表'),
+ (30553,9413,1755, 7,N'News list filtered by category'),
+ (30554,9413,1755, 8,N'Список новостей, отфильтрованный по категории'),
+ (30555,9413,1755, 9,N'Lista de notícias filtrada por categoria'),
+ (30556,9413,1755,10,N'Lista de noticias filtrada por categoría'),
+ (30557,9413,1755,11,N'قائمة الأخبار مفلترة حسب الفئة'),
+ (30558,9413,1755,12,N'فهرست اخبار فیلترشده بر اساس دسته‌بندی'),
+ (30559,9413,1755,13,N'按类别筛选的新闻列表'),
+ (30560,8818,1545, 7,N'50vh'), (30561,8818,1545, 8,N'50vh'), (30562,8818,1545, 9,N'50vh'),
+ (30563,8818,1545,10,N'50vh'), (30564,8818,1545,11,N'50vh'), (30565,8818,1545,12,N'50vh'),
+ (30566,8818,1545,13,N'50vh');
+
+-- Quatre agrégats ; attendus A=0, B=42, C=0, D=6. Un A>0, B<>42, C>0 ou D<6 ⇒ abandon.
+SELECT
+ (SELECT COUNT(*) FROM #expected e
+    LEFT JOIN TsDynDataValue v ON v.ValueId=e.ValueId AND v.EntityId=e.EntityId
+                              AND v.AttributeId=e.AttributeId AND v.Value=e.Val
+    LEFT JOIN TsDynDataValueDimension d ON d.ValueId=e.ValueId AND d.DimensionId=e.DimensionId
+   WHERE v.ValueId IS NULL OR d.ValueId IS NULL)                      AS A_attendus_absents_ou_derives,
+ (SELECT COUNT(*) FROM TsDynDataValueDimension
+   WHERE ValueId BETWEEN 30525 AND 30566)                             AS B_liens_dans_la_plage,
+ (SELECT COUNT(*) FROM TsDynDataValue v
+   WHERE v.EntityId IN (9416,9414,9415,9417,9413,8818) AND v.AttributeId IN (1755,1545)
+     AND v.ValueId NOT IN (SELECT ValueId FROM #expected)
+     AND v.ValueId NOT IN (22477,22474,22478,22476,22475,22064))      AS C_valeurs_etrangeres,
+ (SELECT COUNT(*) FROM (VALUES (22477,N'Frontpage with images'),(22474,N'Column without images'),
+   (22475,N'By category filtered news list'),(22478,N'News'),(22476,N'Archive news list'),(22064,N'50vh'))
+   b(ValueId,Val) JOIN TsDynDataValue v ON v.ValueId=b.ValueId AND v.Value=b.Val) AS D_bases_conformes_backup;
+
+-- Abandon : si l'un des quatre n'est pas celui attendu, on annule et on ne supprime RIEN.
+IF (SELECT COUNT(*) FROM #expected e
+      LEFT JOIN TsDynDataValue v ON v.ValueId=e.ValueId AND v.EntityId=e.EntityId
+                                AND v.AttributeId=e.AttributeId AND v.Value=e.Val
+      LEFT JOIN TsDynDataValueDimension d ON d.ValueId=e.ValueId AND d.DimensionId=e.DimensionId
+     WHERE v.ValueId IS NULL OR d.ValueId IS NULL) <> 0
+   OR (SELECT COUNT(*) FROM TsDynDataValueDimension WHERE ValueId BETWEEN 30525 AND 30566) <> 42
+   OR EXISTS (SELECT 1 FROM TsDynDataValue v
+        WHERE v.EntityId IN (9416,9414,9415,9417,9413,8818) AND v.AttributeId IN (1755,1545)
+          AND v.ValueId NOT IN (SELECT ValueId FROM #expected)
+          AND v.ValueId NOT IN (22477,22474,22478,22476,22475,22064))
+BEGIN
+    ROLLBACK TRAN r;
+    THROW 50000, 'ROLLBACK ANNULE : la garde d''identite ne reconnait plus l''injection (drift). Aucune suppression.', 1;
+END
+
+-- ── Suppression bornée à #expected (identité ET valeur), jamais à une plage ──
+DELETE d FROM TsDynDataValueDimension d
+  JOIN #expected e ON e.ValueId=d.ValueId AND e.DimensionId=d.DimensionId;
+DELETE v FROM TsDynDataValue v
+  JOIN #expected e ON e.ValueId=v.ValueId AND e.EntityId=v.EntityId
+                  AND e.AttributeId=v.AttributeId AND e.Value=v.Val;
+
+-- ── Contrôles post-suppression (ne remplacent pas la garde préalable) ──
+SELECT (SELECT COUNT(*) FROM TsDynDataValueDimension
+         WHERE ValueId IN (SELECT ValueId FROM TsDynDataValue
+           WHERE EntityId IN (9416,9414,9415,9417,9413,8818) AND AttributeId IN (1755,1545))) AS dim_residuelles, -- attendu 0
+       (SELECT COUNT(*) FROM TsDynDataValue
+         WHERE ValueId IN (SELECT ValueId FROM #expected))                                       AS valeurs_residuelles; -- attendu 0
+
+DROP TABLE #expected;
+-- COMMIT TRAN r;  -- seulement après les contrôles ci-dessus
 ```
 
-Puis recycle app-domain (mtime web.config), et rejouer la preuve de §4 : attendu retour à 42 `registre_avance`. Les bases dim-0 (ValueIds 22477, 22474, 22478, 22476, 22475, 22064) ne sont **jamais** dans le périmètre du rollback.
+**Validation de la garde (06/11 16:4x, lecture seule)** — la requête a été exécutée sur la base vivante avec `#expected` en table **temporaire de session** : zéro écriture persistante, aucun `DELETE`, rollback non exécuté (⛔ ai-01). Mesures :
+
+| Passe | A | B | C | D | Verdict |
+|---|---:|---:|---:|---:|---|
+| Payload réel | 0 | 42 | 0 | 6 | **GARDE PASSE** |
+| Contrôle inverse : une valeur mutée (`Новости` → `Новости-MUTE`) | **1** | 42 | 0 | 6 | **BLOQUE** |
+| Contrôle inverse : une dimension mutée (30560 : 7 → 8) | **1** | 42 | 0 | 6 | **BLOQUE** |
+
+La garde voit donc un `1` là où le count-seul rendait `42`. La mutation n'est pas une simulation : c'est le même SQL, seule l'attente change.
+
+Puis recycle app-domain (mtime web.config), et rejouer la preuve de §4 : attendu retour à 42 `registre_avance`. Les bases dim-0 (ValueIds 22477, 22474, 22478, 22476, 22475, 22064) ne sont **jamais** dans le périmètre du rollback — la colonne `D` de la garde les vérifie contre le backup avant tout geste.
 
 ## 6. Comment vérifier que ce constat est mort
 
