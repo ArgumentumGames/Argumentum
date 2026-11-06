@@ -2,10 +2,22 @@
 """141 AIF Stage-0 exploration: hierarchy structure, fill state, sample design.
 
 Read-only. 0 write under Cards/. Outputs structural summary to stdout.
+
+#498 grain 1b (06/11) : la hierarchie est lue dans `path` via `141-hierarchy`
+(parent, freres, profondeur). La forme coma reste le RENDU des sorties
+(dot2comma), jamais la source de la structure. ⚠️ Le filtre de profondeur
+utilise path_depth : la colonne CSV `depth` vaut 7 sur la rangee 824 (8 segments)
+et 0 sur la racine '0' — la filtrer lirait la mauvaise population.
 """
 import csv
+import os
 import sys
 from collections import defaultdict, Counter
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import importlib
+H = importlib.import_module("141-hierarchy")
 
 CSV_PATH = r"Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv"
 CROSSLINK = ["crossLink_PredatesOn","crossLink_Denounces","crossLink_Leverages",
@@ -17,14 +29,12 @@ def is_card(row):
     c = (row.get("carte") or "").strip()
     return c in ("1","2")
 
-def parent_of(dp):
-    # comma form is "family,rest" with ONE comma; rest = 1 digit per level.
-    # parent drops the LAST digit of rest: "1,1111"(d5) -> "1,111"(d4); "1,1"(d2) -> "1"(d1).
-    dp=(dp or "").strip()
-    if "," not in dp: return ""              # depth-1 "1".."7" -> root ""
-    fam, rest = dp.split(",", 1)
-    if len(rest) <= 1: return fam            # depth-2 -> family root
-    return fam + "," + rest[:-1]             # drop last level digit
+def dp_of(row):
+    """Rendu coma du noeud (derive de `path`, pas la colonne d'origine)."""
+    return H.dot2comma((row.get("path") or "").strip())
+
+def depth_of(row):
+    return H.path_depth((row.get("path") or "").strip())
 
 def main():
     with open(CSV_PATH, encoding="utf-8-sig", newline="") as f:
@@ -34,15 +44,15 @@ def main():
     noncards = [r for r in rows if not is_card(r)]
     print(f"Cards (carte in 1/2): {len(cards)} | Non-card nodes: {len(noncards)}")
 
-    # depth distribution (non-cards)
-    depths = Counter((r.get("depth") or "").strip() for r in noncards)
+    # depth distribution (non-cards) — profondeur derivee de `path`
+    depths = Counter(str(depth_of(r)) for r in noncards)
     print(f"\nNon-card depth distribution: {dict(sorted(depths.items(), key=lambda x:(len(x[0]),x[0])))}")
 
     # top-level families (depth 1)
-    fams = sorted(set((r.get("decimal_path") or "") for r in rows if (r.get("depth") or "").strip()=="1"))
+    fams = sorted(set(dp_of(r) for r in rows if depth_of(r)==1))
     print(f"\nDepth-1 families ({len(fams)}):")
     for fp in fams:
-        lbl = next((r.get("text_fr") or r.get("Famille") or "") for r in rows if (r.get("decimal_path") or "").strip()==fp)
+        lbl = next((r.get("text_fr") or r.get("Famille") or "") for r in rows if dp_of(r)==fp)
         print(f"  {fp}: {lbl}")
 
     # fill state of crossLink_* / AIF_skos* on non-cards
@@ -51,11 +61,11 @@ def main():
         filled = sum(1 for r in noncards if (r.get(col) or "").strip())
         print(f"  {col:28s}: {filled:4d} / {len(noncards)} ({100*filled/len(noncards):4.1f}%)")
 
-    # siblings structure: group ALL nodes by parent (comma-sep hierarchy)
+    # siblings structure: group ALL nodes by parent (hierarchie lue dans `path`)
     by_parent = defaultdict(list)
     for r in rows:
-        dp = (r.get("decimal_path") or "").strip()
-        by_parent[parent_of(dp)].append(dp)
+        p = (r.get("path") or "").strip()
+        by_parent[H.path_parent(p)].append(p)
 
     # ORACLE: dump every already-filled crossLink_*/AIF_skos* cell (human gold-standard)
     print(f"\n=== ORACLE: existing filled cross-ref cells (validation gold) ===")
@@ -63,7 +73,7 @@ def main():
         for col in CROSSLINK + AIF:
             v=(r.get(col) or "").strip()
             if v:
-                dp=(r.get("decimal_path") or "").strip()
+                dp=dp_of(r)
                 lbl=(r.get("text_fr") or "").strip()[:34]
                 print(f"  {dp:12s} {col:24s} = {v[:46]:46s}  [{lbl}]")
 
@@ -71,40 +81,41 @@ def main():
     # headers (have children) and leaves (have siblings). Targets ~28 nodes.
     sample_nodes=[]; seen=set()
     for fp in fams:
-        fam_prefix = fp + ","
-        fam_nodes=[r for r in noncards if (r.get("decimal_path") or "").strip().startswith(fam_prefix)]
+        fam_prefix = fp + "."
+        fam_nodes=[r for r in noncards if (r.get("path") or "").strip().startswith(fam_prefix)]
         # 2 deeper subfamily headers (d4-5) + 2 leaves (d6-7) with siblings
         picked=0
         for r in fam_nodes:
-            dp=(r.get("decimal_path") or "").strip()
+            dp=dp_of(r)
             if dp in seen: continue
-            d=(r.get("depth") or "").strip()
-            sib=[s for s in by_parent.get(parent_of(dp),[]) if s!=dp]
-            if d in ("4","5") and picked<2:
+            d=depth_of(r)
+            sib=[s for s in by_parent.get(H.path_parent((r.get("path") or "").strip()),[]) if s!=(r.get("path") or "").strip()]
+            if d in (4,5) and picked<2:
                 sample_nodes.append(r); seen.add(dp); picked+=1
-            elif d in ("6","7") and len(sib)>=1 and picked<4:
+            elif d in (6,7) and len(sib)>=1 and picked<4:
                 sample_nodes.append(r); seen.add(dp); picked+=1
             if picked>=4: break
     print(f"\n=== SAMPLE DESIGN: {len(sample_nodes)} non-card nodes for Stage-1 pilot ===")
     for r in sample_nodes:
-        dp=(r.get("decimal_path") or "").strip(); d=(r.get("depth") or "").strip()
+        dp=dp_of(r); d=depth_of(r)
         lbl=(r.get("text_fr") or "").strip()
-        sib=[s for s in by_parent.get(parent_of(dp),[]) if s!=dp]
+        sib=[s for s in by_parent.get(H.path_parent((r.get("path") or "").strip()),[]) if s!=(r.get("path") or "").strip()]
         print(f"  [d{d}] {dp:12s} sibs={len(sib):2d}  {lbl[:55]}")
 
     # dump full context JSON for the sample (for Stage-1 generator input)
     import json
     out = []
     for r in sample_nodes:
-        dp=(r.get("decimal_path") or "").strip()
+        p=(r.get("path") or "").strip()
+        dp=H.dot2comma(p)
         sibs=[]
         for s in rows:
-            sdp=(s.get("decimal_path") or "").strip()
-            if parent_of(sdp)==parent_of(dp) and sdp!=dp:
-                sibs.append({"decimal_path":sdp,"label":(s.get("text_fr") or s.get("text_en") or "").strip()})
+            sp=(s.get("path") or "").strip()
+            if H.path_parent(sp)==H.path_parent(p) and sp!=p:
+                sibs.append({"decimal_path":H.dot2comma(sp),"label":(s.get("text_fr") or s.get("text_en") or "").strip()})
         out.append({
             "decimal_path":dp,
-            "depth":(r.get("depth") or "").strip(),
+            "depth":str(depth_of(r)),
             "label_fr":(r.get("text_fr") or "").strip(),
             "label_en":(r.get("text_en") or "").strip(),
             "desc_fr":(r.get("desc_fr") or "").strip(),
