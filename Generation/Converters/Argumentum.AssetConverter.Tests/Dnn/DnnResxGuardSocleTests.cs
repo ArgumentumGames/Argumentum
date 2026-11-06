@@ -347,46 +347,86 @@ namespace Argumentum.AssetConverter.Tests
         /// APRÈS la marque — cette fenêtre était réelle ; l'étape étant dérivée
         /// des marques elles-mêmes, le couple ne peut plus se produire, quelle
         /// que soit l'entrelace.
+        /// <para>
+        /// ⚠️ La non-vacuité est PAR CONSTRUCTION, pas par synchronisation : le
+        /// premier jet comptait les passages de boucle (> 1 000) et la jambe
+        /// Release de la CI l'a cassé avec « found 1 » — sur un runner chargé,
+        /// le thread de test est désordonnancé entre StartNew et la boucle, et
+        /// le banc mesurait l'ordonnanceur, pas le socle (même famille que le
+        /// commentaire LongRunning ci-dessus). Désormais chaque round porte DEUX
+        /// témoins pris séquentiellement par CE thread — avant l'ouverture du
+        /// gate (aucune marque posée) et après la pose complète — plus la boucle
+        /// concurrente comme câble de détection quand l'entrelace se produit.
+        /// </para>
         /// </summary>
         [Fact]
         public async Task SnapshotsTakenWhileMarksArePosedNeverPairNotStartedWithAStartedMark()
         {
+            const int rounds = 200;
             long snapshots = 0;
-            for (var round = 0; round < 200; round++)
+            for (var round = 0; round < rounds; round++)
             {
                 var trace = new BatchExchangeProgress();
+                using var go = new ManualResetEventSlim(false);
                 var poser = Task.Factory.StartNew(() =>
                 {
+                    go.Wait();
                     trace.Mark(BatchExchangeStage.Started);
-                    Thread.SpinWait(500);
+                    Thread.SpinWait(2_000);
                     trace.Mark(BatchExchangeStage.RequestWritten);
-                    Thread.SpinWait(500);
+                    Thread.SpinWait(2_000);
                     trace.Mark(BatchExchangeStage.HeaderRead);
-                    Thread.SpinWait(500);
+                    Thread.SpinWait(2_000);
                     trace.Mark(BatchExchangeStage.BlobRead);
                 }, CancellationToken.None, TaskCreationOptions.LongRunning, TaskScheduler.Default);
 
-                while (!poser.IsCompleted)
+                try
                 {
-                    var s = trace.Snapshot();
+                    // Témoin pré-pose : le gate est fermé, AUCUNE marque ne peut
+                    // exister — ce témoin ne dépend d'aucun ordonnancement.
+                    var before = trace.Snapshot();
                     snapshots++;
-                    if (s.StartedAtMs >= 0)
-                    {
-                        s.Stage.Should().NotBe(BatchExchangeStage.NotStarted,
-                            "StartedAtMs posé + Stage NotStarted = le couple incohérent de #2155 : "
-                            + "le message de timeout lirait « POOL AFFAMÉ » sur un échange démarré");
-                    }
-                }
+                    before.Stage.Should().Be(BatchExchangeStage.NotStarted,
+                        "le poseur attend le gate : aucune marque posée, l'étape dérivée est "
+                        + "NotStarted et les horodatages restent à leur sentinelle");
+                    before.StartedAtMs.Should().Be(-1,
+                        "StartedAtMs = -1 et Stage = NotStarted : cohérent dans l'AUTRE sens — "
+                        + "l'incohérence condamnée par #2155 est le couple inverse");
 
-                await poser;
-                trace.Snapshot().Stage.Should().Be(BatchExchangeStage.BlobRead,
-                    "toutes les marques posées, l'étape dérivée est la dernière — preuve que la "
-                    + "boucle ci-dessus a photographié une trace vivante, pas une trace finie");
+                    go.Set();
+
+                    while (!poser.IsCompleted)
+                    {
+                        var s = trace.Snapshot();
+                        snapshots++;
+                        if (s.StartedAtMs >= 0)
+                        {
+                            s.Stage.Should().NotBe(BatchExchangeStage.NotStarted,
+                                "StartedAtMs posé + Stage NotStarted = le couple incohérent de "
+                                + "#2155 : le message de timeout lirait « POOL AFFAMÉ » sur un "
+                                + "échange démarré");
+                        }
+                    }
+
+                    // Témoin post-pose : les quatre marques sont posées.
+                    var after = trace.Snapshot();
+                    snapshots++;
+                    after.Stage.Should().Be(BatchExchangeStage.BlobRead,
+                        "toutes les marques posées, l'étape dérivée est la dernière");
+                    after.StartedAtMs.Should().BeGreaterThanOrEqualTo(0);
+                }
+                finally
+                {
+                    go.Set();
+                    await poser;
+                }
             }
 
-            snapshots.Should().BeGreaterThan(1_000,
-                "garantie de non-vacuité : le marteau a réellement photographié PENDANT la pose "
-                + "des marques — sinon le contrôle inverse ne mesure que des traces déjà finies");
+            snapshots.Should().BeGreaterThanOrEqualTo(2L * rounds,
+                "non-vacuité PAR CONSTRUCTION : chaque round prend deux témoins séquentiels "
+                + "(pré-gate, post-pose) — ce planché ne mesure pas l'ordonnanceur, seulement "
+                + "que les témoins ont bien été pris ; les passages concurrents de la boucle "
+                + "sont du câble de détection en plus, jamais une condition du vert");
         }
     }
 }
