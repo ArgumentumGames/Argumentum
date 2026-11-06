@@ -10,7 +10,7 @@ Les jumeaux reconstruisaient parents, frères et profondeurs depuis `decimal_pat
 
 - `comma2dot(decimal_path) == path` sur **1 407 / 1 408** rangées ;
 - l'unique écart : **rangée 824** (`5,123224`, vrai `path` `5.1.2.3.2.24`, « Confusion sans retour ») — un rang **24** éclaté en `5.1.2.3.2.2.4`, une cible **inexistante** dans l'arbre (mesuré : `not in bypath`) ;
-- la colonne `depth` est **fausse sur 2 rangées** : `0` vaut 0 (racine document), la rangée 824 vaut 7 alors que `path` a **8 segments** — un filtre de profondeur posé sur cette colonne lit la mauvaise population.
+- la colonne `depth` est **fausse sur 2 rangées** : `0` vaut 0 (racine document), la rangée 824 vaut 7 alors que `path` a **6 segments** (`5.1.2.3.2.24`) — un filtre de profondeur posé sur cette colonne lit la mauvaise population. *(Le code et les assertions du self-test dérivent partout le nombre de segments de `path` — 6 ici ; seule cette phrase de prose portait une coquille « 8 », corrigée.)*
 
 Subtilité consignée par le self-test : le parent **coma** fabriqué par l'ancien code (`5,12322`) **existe bel et bien** — c'est `5.1.2.3.2.2`, un **frère** de la rangée 824. Le parent coma tombait par accident sur un voisin réel ; c'est la cible **pointée** (`5.1.2.3.2.2.4`), servie aux prompts via `bydot`, qui n'existe pas. Un contrôle qui n'aurait testé que le parent coma aurait lu un faux « sain ».
 
