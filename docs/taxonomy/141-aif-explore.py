@@ -6,7 +6,7 @@ Read-only. 0 write under Cards/. Outputs structural summary to stdout.
 #498 grain 1b (06/11) : la hierarchie est lue dans `path` via `141-hierarchy`
 (parent, freres, profondeur). La forme coma reste le RENDU des sorties
 (dot2comma), jamais la source de la structure. ⚠️ Le filtre de profondeur
-utilise path_depth : la colonne CSV `depth` vaut 7 sur la rangee 824 (8 segments)
+utilise path_depth : la colonne CSV `depth` vaut 7 sur la rangee 824 (6 segments)
 et 0 sur la racine '0' — la filtrer lirait la mauvaise population.
 """
 import csv

@@ -27,7 +27,7 @@ def path_parent(p):
 def path_depth(p):
     """Profondeur = nombre de segments. ⚠️ La colonne CSV `depth` ne doit PAS
     servir de filtre : elle vaut 0 sur la racine '0' et 7 sur '5.1.2.3.2.24'
-    (8 segments), mesure 06/11."""
+    (6 segments), mesure 06/11."""
     p = (p or "").strip()
     return len(p.split(".")) if p else 0
 
