@@ -52,6 +52,12 @@
          aucun ProjectReference entre les deux suites (#1054). L'organe qui ouvre les PDF vit dans
          ce projet parce que PdfPig n'est référencé qu'ici. -->
     <Compile Include="..\Argumentum.AssetConverter.Tests\PdfAssembly\PdfPageGeometryIntegrity.cs" Link="PdfAssembly\PdfPageGeometryIntegrity.cs" />
+    <!-- #1460 phase C : le moteur d'ordre « Rules d'abord » (pur, témoins en CI dans
+         Structure/RulesFirstOrderIntegrityTests.cs). Mêmes règles que ci-dessus : source unique
+         sur disque, compilée ici, aucun ProjectReference entre les deux suites (#1054). L'organe
+         qui ouvre les PDF vit dans ce projet ; la mesure passe par Magick.NET, qui délègue le PDF
+         à Ghostscript (⚠️ absent du PATH = échec nommé, jamais un skip). -->
+    <Compile Include="..\Argumentum.AssetConverter.Tests\Structure\RulesFirstOrderIntegrity.cs" Link="Structure\RulesFirstOrderIntegrity.cs" />
   </ItemGroup>
 
   <ItemGroup>
