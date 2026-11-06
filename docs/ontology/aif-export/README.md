@@ -67,7 +67,7 @@ The typed AIF attack graph, PK-keyed. One row per fully-modeled fallacy.
 | `attacker_pk` | Fallacy PK (primary key, stable across CSV versions). **Use this as the node id.** |
 | `attacker_label` | Best-effort label (`nom_vulgarisé` else `carte`). Often empty on family-level rows — join the full taxonomy CSV for a richer label. |
 | `family` / `subfamily` / `subsubfamily` | Taxonomy path (FR). |
-| `decimal_path` | Hierarchical position (comma-separated, e.g. `1,11` = family 1, sub 11). |
+| `decimal_path` | Hierarchical position (comma shape: family, then the deeper levels GLUED — e.g. `1,11` decodes to dotted `path` `1.1.1`, not « family 1, sub 11 »). |
 | `attack_type` | `undercut` / `undermine` / `rebut`. |
 | `attacked_node_type` | `RA-node` / `I-node` / `CA-node` (the abstract AIF node-TYPE attacked). |
 | `skos_direct_ref` / `skos_exception_ref` | AIF canonical concept(s) referenced (see concepts file). 116/145 edges carry ≥1. |
