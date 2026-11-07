@@ -32,7 +32,7 @@ Quatre étapes, toutes à partir de fichiers texte.
 
 ## Ce qui s’est ajouté
 
-**Huit langues.** Français, anglais, russe, portugais, espagnol, arabe, farsi et chinois. Deux de ces écritures se lisent de droite à gauche, et chacune demande ses propres polices.
+**Huit langues.** Français, anglais, russe, portugais, espagnol, arabe, persan et chinois. Deux d’entre elles, l’arabe et le persan, s’écrivent de droite à gauche, avec une police dédiée à leur alphabet.
 
 **Les cartes mentales.** La taxonomie entière dessinée en arbre, une par langue, exportée en SVG — un format d’image vectorielle, qui reste net à n’importe quelle taille. Le dépôt en contient 43, accompagnées de pages HTML qui les affichent.
 
