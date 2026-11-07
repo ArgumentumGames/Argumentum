@@ -39,6 +39,67 @@ namespace Argumentum.AssetConverter.Tests.Parsing
             "Texte FR,Desc FR,Exemple FR,https://fr,Remarque,1.1,1";
 
         /// <summary>
+        /// #498 grain 2 — the five AIF mapping columns (AIF_skosDirectRef, AIF_skosExceptionRef,
+        /// AIF_skosOther, AIF_criticalQuestion, AIF_skosMappingType) map to their properties when
+        /// present. The row mirrors the REAL prod row path=6.3 (« Raisonnement biaisé », the grappe
+        /// head of the 10-node articulation sample): AIF_criticalQuestion is the FR-prose critical
+        /// question the fallacy skips (RFC4180-quoted in prod because it contains a comma — the
+        /// corpus typography is U+2019 apostrophes + plain space before « ? »), AIF_skosMappingType
+        /// a skos:*Match token. Mirrors Virtue_LoadFromContent_Maps499RelationalAndAifColumns
+        /// (#1192) on the Fallacies side.
+        /// </summary>
+        [Fact]
+        public void Fallacy_LoadFromContent_MapsAifCriticalQuestionColumn()
+        {
+            var aifCols =
+                "AIF_skosDirectRef,AIF_skosExceptionRef,AIF_skosOther,AIF_criticalQuestion,AIF_skosMappingType";
+            // Real prod values of the path=6.3 row (measured on the 105-col CSV): direct ref +
+            // exception ref tokens, empty skosOther, the quoted FR critical question, a skos token.
+            var aifRow =
+                "Bias_Inference" +                 // AIF_skosDirectRef (Walton scheme label)
+                ",PresumptiveInference_Scheme" +   // AIF_skosExceptionRef (exception scheme label)
+                "," +                              // AIF_skosOther (empty — reserved for declared gaps)
+                ",\"La conclusion repose-t-elle sur des raisons, plutôt que sur un biais qui a orienté le choix des informations ?\"" +
+                ",skos:closeMatch";                // AIF_skosMappingType (skos:*Match tokens only)
+
+            var csv = FallacyRequiredHeader + "," + aifCols + "\n" + FallacyRequiredRow + "," + aifRow + "\n";
+
+            var fallacies = Fallacy.LoadFromContent(csv);
+
+            fallacies.Should().ContainSingle();
+            var f = fallacies[0];
+            f.AIFSkosDirectRef.Should().Be("Bias_Inference");
+            f.AIFSkosExceptionRef.Should().Be("PresumptiveInference_Scheme");
+            f.AIFCriticalQuestion.Should().Be(
+                "La conclusion repose-t-elle sur des raisons, plutôt que sur un biais qui a orienté le choix des informations ?",
+                "the quoted FR prose (comma inside) must map verbatim, RFC4180 unquoted by CsvHelper");
+            f.AIFSkosMappingType.Should().Be("skos:closeMatch",
+                "the token column stays token-only; the FR prose lives in AIF_criticalQuestion, never here");
+            f.AIFSkosOther.Should().BeEmpty("empty cell maps to empty string, not null (CsvHelper contract)");
+        }
+
+        /// <summary>
+        /// #498 grain 2 — AIF_criticalQuestion is .Optional(): a header set without it (a
+        /// pre-#498-grain-2 CSV, or a harvest header) must load without throwing and leave the
+        /// property null. Losing the .Optional() flag would make HeaderValidated throw when the
+        /// multilingual harvest loads a header missing the AIF block — the exact fragility class
+        /// this file pins (same shape as Fallacy_OptionalLocalizedColumns_AbsentDoesNotThrow).
+        /// </summary>
+        [Fact]
+        public void Fallacy_LoadFromContent_AifCriticalQuestionAbsent_DoesNotThrow()
+        {
+            var csv = FallacyRequiredHeader + "\n" + FallacyRequiredRow + "\n";
+
+            var act = () => Fallacy.LoadFromContent(csv);
+
+            act.Should().NotThrow();
+            var fallacies = act().Should().Subject;
+            fallacies.Should().ContainSingle();
+            fallacies.First().AIFCriticalQuestion.Should().BeNull(
+                "AIF_criticalQuestion is Optional and absent → null, not throw");
+        }
+
+        /// <summary>
         /// Loads a representative Fallacy row (required FR columns + a few localized columns)
         /// and asserts each maps to its property. The single "pk" column populates BOTH the
         /// PK property (Name "pk") and the Id property (Name "PK", normalized to "pk" by
