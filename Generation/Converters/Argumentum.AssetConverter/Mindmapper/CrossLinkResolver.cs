@@ -76,4 +76,23 @@ public static class CrossLinkResolver
             }
         }
     }
+
+    /// <summary>
+    /// #2190: the per-source link enumeration in the EXACT order <c>CreateMindMapNodes</c> feeds
+    /// <c>CreateNode</c> — verbs grouped then ordered by ascending enum value, targets in corpus
+    /// cell order (GroupBy preserves encounter order, and <see cref="Resolve"/> yields verb-major).
+    /// Extracted so the .mm writer and <see cref="CrossLinkTintTable"/> walk the links in one
+    /// shared order: the tint of a link IS its identity, so any drift between the walk that
+    /// assigns tints and the walk that reads them back would silently mislabel arrows. The
+    /// formulation below is the original inline code of CreateMindMapNodes moved verbatim —
+    /// equivalence with the writer is by construction, not by proof.
+    /// </summary>
+    public static IEnumerable<(CrossLink Verb, List<IMindMapItem> Targets)> ResolveOrdered(Fallacy source,
+        IReadOnlyDictionary<string, IMindMapItem> itemsByPath, CrossLink enabled)
+    {
+        return Resolve(source, itemsByPath, enabled)
+            .GroupBy(link => link.Verb)
+            .OrderBy(group => group.Key)
+            .Select(group => (group.Key, group.Select(link => link.Target).ToList()));
+    }
 }
