@@ -111,8 +111,23 @@ namespace Argumentum.AssetConverter.Tests.Structure
 			public double Share { get; }
 		}
 
-		private static readonly Regex FamilyBlock = new(
-			@"card\.([\p{L}]+)\s*\{([^{}]*)\}",
+		private static readonly Regex RuleBlock = new(
+			@"([^{}]+)\{([^{}]*)\}",
+			RegexOptions.CultureInvariant | RegexOptions.Compiled);
+
+		/// <summary>Une liste de sélecteurs <c>card.X</c> — et rien d'autre. Le fullmatch exclut
+		/// les sélecteurs descendants (<c>card.X .titre</c>), qui ciblent un enfant : leur couleur
+		/// ne dit rien de la racine de la carte.</summary>
+		private static readonly Regex CardSelectorList = new(
+			@"^card\.[\p{L}]+(?:\s*,\s*card\.[\p{L}]+)*$",
+			RegexOptions.CultureInvariant | RegexOptions.Compiled);
+
+		private static readonly Regex CardSelectorName = new(
+			@"card\.([\p{L}]+)",
+			RegexOptions.CultureInvariant | RegexOptions.Compiled);
+
+		private static readonly Regex CssComment = new(
+			@"/\*[\s\S]*?\*/",
 			RegexOptions.CultureInvariant | RegexOptions.Compiled);
 
 		private static readonly Regex BackgroundVar = new(
@@ -123,21 +138,39 @@ namespace Argumentum.AssetConverter.Tests.Structure
 		/// gabarit. <c>[\p{L}]+</c> couvre les noms accentués (<c>erreurMathématique</c>) ; le
 		/// hex à 8 chiffres (<c>#ffc307ff</c>) est accepté, son alpha ignoré. Un bloc sans
 		/// <c>--color-background</c> est ignoré — c'est <see cref="Check"/> qui nomme les classes
-		/// manquantes, pas le parseur.</summary>
+		/// manquantes, pas le parseur.
+		/// <para>⚠️ <b>Listes de sélecteurs</b> (motif de renommage additif — mesuré sur le gabarit
+		/// Virtues le 07/11 : 7 blocs sur 8 sont des listes <c>card.ancien,\ncard.nouveau { … }</c>) :
+		/// la couleur est assignée à <b>chaque</b> nom de la liste. Le regex d'origine ne voyait que
+		/// le dernier sélecteur avant l'accolade — par chance l'ordre additif met le nom courant en
+		/// dernier, mais un renommage qui l'écrirait en premier rendrait la classe introuvable sans
+		/// qu'aucun échec ne le nomme. Les commentaires CSS sont retirés avant le parse : mesuré, un
+		/// <c>/* --- */</c> précède chaque bloc famille du gabarit Virtues.</para></summary>
 		public static IReadOnlyDictionary<string, Rgb> ParseFamilyColors(string? css)
 		{
 			var colors = new Dictionary<string, Rgb>(StringComparer.Ordinal);
 			if (string.IsNullOrEmpty(css)) return colors;
 
-			foreach (Match block in FamilyBlock.Matches(css))
+			var withoutComments = CssComment.Replace(css, string.Empty);
+			foreach (Match rule in RuleBlock.Matches(withoutComments))
 			{
-				var color = BackgroundVar.Match(block.Groups[2].Value);
+				var selector = rule.Groups[1].Value.Trim();
+				if (!CardSelectorList.IsMatch(selector)) continue;
+
+				var color = BackgroundVar.Match(rule.Groups[2].Value);
 				if (!color.Success) continue;
 				var h = color.Groups[1].Value;
-				colors[block.Groups[1].Value] = new Rgb(
+				var rgb = new Rgb(
 					Convert.ToByte(h.Substring(0, 2), 16),
 					Convert.ToByte(h.Substring(2, 2), 16),
 					Convert.ToByte(h.Substring(4, 2), 16));
+
+				// Liste de sélecteurs : la couleur est celle de CHAQUE nom — le motif de
+				// renommage additif écrit « card.ancien, card.nouveau { … } » d'un seul bloc.
+				foreach (Match name in CardSelectorName.Matches(selector))
+				{
+					colors[name.Groups[1].Value] = rgb;
+				}
 			}
 
 			return colors;
@@ -183,17 +216,26 @@ namespace Argumentum.AssetConverter.Tests.Structure
 			// Garde structurelle AVANT toute carte : deux familles trop proches l'une de l'autre
 			// rendent le seuil aveugle — l'instrument refuse de verdir sur un gabarit où il ne
 			// pourrait pas distinguer, même si chaque carte tombe exactement sur sa teinte.
-			var names = familyColors.Keys.OrderBy(n => n, StringComparer.Ordinal).ToList();
-			for (var i = 0; i < names.Count; i++)
+			// ⚠️ La paire court sur les COULEURS DISTINCTES, pas sur les noms : les alias hérités
+			// du renommage additif partagent exactement la couleur de leur famille (mesuré sur le
+			// gabarit Virtues le 07/11 : 7 paires alias à 0,0) — ce sont UNE famille, pas deux
+			// familles indiscernables.
+			var byColor = familyColors
+				.GroupBy(pair => pair.Value)
+				.Select(group => (Color: group.Key,
+					Name: group.Select(p => p.Key).OrderBy(n => n, StringComparer.Ordinal).First()))
+				.OrderBy(entry => entry.Name, StringComparer.Ordinal)
+				.ToList();
+			for (var i = 0; i < byColor.Count; i++)
 			{
-				for (var j = i + 1; j < names.Count; j++)
+				for (var j = i + 1; j < byColor.Count; j++)
 				{
-					var d = Distance(familyColors[names[i]], familyColors[names[j]]);
+					var d = Distance(byColor[i].Color, byColor[j].Color);
 					if (d < minSeparation)
 					{
 						failures.Add(
-							$"gabarit : « {names[i]} » ({familyColors[names[i]].Hex}) et « {names[j]} » " +
-							$"({familyColors[names[j]].Hex}) ne sont qu'à {F(d)} l'une de l'autre (< {F(minSeparation)}) — " +
+							$"gabarit : « {byColor[i].Name} » ({byColor[i].Color.Hex}) et « {byColor[j].Name} » " +
+							$"({byColor[j].Color.Hex}) ne sont qu'à {F(d)} l'une de l'autre (< {F(minSeparation)}) — " +
 							$"au seuil de {F(maxDistance)} l'organe ne pourrait plus les distinguer : re-mesurer avant de verdir");
 					}
 				}

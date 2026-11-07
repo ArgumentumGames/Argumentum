@@ -110,7 +110,10 @@ prédicat vu rouge sur l'état défectueux, plus le contrôle inverse du contrô
   le nouvel attendu — et rougira (l'attendu a bougé), ce qui est le bon comportement, mais la
   fraîcheur relève de la garde d'arbre (organe 0 de la charpente), pas d'ici.
 - **Les autres paquets** : Virtues a ses propres classes de famille (`family_fr_camelcase`) ;
-  cet organe ne couvre que les Fallacies. Le même motif s'y transposera le jour voulu.
+  cet organe ne couvre que les Fallacies. Transposé le 07/11 par l'organe 3 —
+  [`1460-phase-c-virtues-2026-11-07.md`](1460-phase-c-virtues-2026-11-07.md) — qui a exigé deux
+  évolutions du moteur commun (listes de sélecteurs du renommage additif, garde de séparation sur
+  les couleurs distinctes).
 - La **règle de renommage additif** (nouveau nom cohabite avec l'ancien dans le même bloc CSS)
   n'est pas vérifiée *en soi* : elle l'est par conséquence — un renommage CSV sans bloc gabarit
   fait rougir la colonne « classe absente ».
