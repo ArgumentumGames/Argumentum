@@ -8,7 +8,7 @@ Le site d’Argumentum paraît désormais en huit langues, du français au persa
 
 ## Huit langues, un choix sur chaque page
 
-Français, anglais, espagnol, portugais, russe, chinois, arabe et persan : huit écritures, dont deux — l’arabe et le persan — se lisent de droite à gauche. Le sélecteur de langue, en tête du site, est le même sur toutes les pages : huit codes (FR, EN, ES, PT, RU, ZH, AR, FA), un clic, et la page change de langue entière — textes, menus, messages de l’interface.
+Français, anglais, espagnol, portugais, russe, chinois, arabe et persan : huit langues, dont deux — l’arabe et le persan — s’écrivent de droite à gauche. Le sélecteur de langue, en tête du site, est le même sur toutes les pages : huit codes (FR, EN, ES, PT, RU, ZH, AR, FA), un clic, et la page change de langue entière — textes, menus, messages de l’interface.
 
 Les pages d’accueil des huit langues répondent toutes, et la mise en page de la page arabe s’inverse bien de droite à gauche — vérifié sur la page servie elle-même, pas seulement dans les fichiers (mesures du 7 novembre 2026).
 
