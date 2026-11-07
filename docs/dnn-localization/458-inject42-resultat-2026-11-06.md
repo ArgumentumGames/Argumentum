@@ -176,7 +176,7 @@ Les trois mutations donnent **BLOQUE** par des agrégats **différents** (A, A, 
 -- À exécuter en lecture seule, fenêtre de jour (10 h – 17 h), annoncé au dashboard.
 SELECT COUNT(*) AS delete_d_toucherait
   FROM TsDynDataValueDimension d
-  JOIN #expected e ON e.ValueId=d.ValueId AND e.DimensionId=e.DimensionId;        -- attendu 42
+  JOIN #expected e ON e.ValueId=d.ValueId AND d.DimensionId=e.DimensionId;        -- attendu 42
 
 SELECT COUNT(*) AS delete_v_toucherait
   FROM TsDynDataValue v
@@ -184,7 +184,17 @@ SELECT COUNT(*) AS delete_v_toucherait
                   AND e.AttributeId=v.AttributeId AND e.Val=v.Value;              -- attendu 42
 ```
 
-⚠️ Ces deux comptages **n'ont pas encore été exécutés** au moment de la correction (la validation du 06/11 16:4x n'a porté que la garde, jamais les jointures de suppression — c'est précisément pourquoi la coquille `e.Value=v.Val` a survécu). Ils sont posés ici pour la prochaine fenêtre de jour, avec le contrôle inverse D ci-dessus.
+✅ **Exécutés le 07/11 11:2x (lecture seule, fenêtre de jour, annoncés)** — `#expected` reconstruite en table **temporaire de session** depuis les lignes 74-100 ci-dessus (aucune écriture persistante, aucun `DELETE`, aucun rollback exécuté) :
+
+| Mesure | Attendu | Obtenu |
+|---|---:|---:|
+| `delete_d_toucherait` (jointure dimension, identité complète) | 42 | **42** |
+| `delete_v_toucherait` (identité **et** valeur) | 42 | **42** |
+| Garde : A / B / C / D | 0 / 42 / 0 / 6 | **0 / 42 / 0 / 6** |
+
+Chaque `DELETE` toucherait exactement les 42 lignes de l'injection : ni plus (aucune valeur étrangère dans le rayon, C=0), ni moins (aucun drift, A=0).
+
+⚠️ Le bloc de preuve ci-dessus portait lui-même une coquille au moment de l'exécution — `e.DimensionId=e.DimensionId` (tautologie : la jointure se réduisait au seul `ValueId`, preuve affaiblie) — corrigée en `d.DimensionId=e.DimensionId` avant de lancer la mesure. Même famille que le `e.Value=v.Val` de la review : les colonnes croisées se glissent dans les requêtes de contrôle comme dans celles d'action. La ligne mesurée est la ligne corrigée.
 
 Puis recycle app-domain (mtime web.config), et rejouer la preuve de §4 : attendu retour à 42 `registre_avance`. Les bases dim-0 (ValueIds 22477, 22474, 22478, 22476, 22475, 22064) ne sont **jamais** dans le périmètre du rollback — la colonne `D` de la garde les vérifie contre le backup avant tout geste.
 
