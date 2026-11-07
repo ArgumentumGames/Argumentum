@@ -1002,22 +1002,28 @@ if (mapFile != null) {
 				? CrossLinkResolver.ItemsByPath(mindMapItems)
 				: null;
 
+			// #2190 voie B: one unique tint per link, so a Batik export can be mapped back to its
+			// (verb, source, target) exactly — the draw order is NOT recoverable (measured, see
+			// CrossLinkTintTable). Built BEFORE the node walk, from the same items and the same
+			// ResolveOrdered enumeration, so the tint handout below is aligned by construction.
+			var tintTable = itemsByPath != null ? CrossLinkTintTable.Build(mindMapItems, CrossLinks) : null;
+
 			foreach (var item in mindMapItems)
 			{
 				if (string.IsNullOrEmpty(item.PK)) continue;
 
 				var localPath = item.Path;
 
-				List<(CrossLink crossLinkType, List<IMindMapItem> targets)> crossLinks = new();
+				List<(CrossLink crossLinkType, List<IMindMapItem> targets, List<string> tints)> crossLinks = new();
 
 				if (itemsByPath != null && item is Fallacy fallacy)
 				{
-					var byVerb = CrossLinkResolver.Resolve(fallacy, itemsByPath, CrossLinks)
-						.GroupBy(link => link.Verb)
-						.OrderBy(g => g.Key);
-					foreach (var verbGroup in byVerb)
+					// ResolveOrdered is the original GroupBy/OrderBy walk moved verbatim — the
+					// writer and the tint table share ONE order (CrossLinkResolver.ResolveOrdered).
+					var tintsByVerb = tintTable.TintsForItem(item).ToDictionary(pair => pair.Verb, pair => pair.Tints);
+					foreach (var (verb, targets) in CrossLinkResolver.ResolveOrdered(fallacy, itemsByPath, CrossLinks))
 					{
-						crossLinks.Add((verbGroup.Key, verbGroup.Select(link => link.Target).ToList()));
+						crossLinks.Add((verb, targets, tintsByVerb.TryGetValue(verb, out var tints) ? tints : new List<string>()));
 					}
 				}
 
@@ -1163,7 +1169,7 @@ if (mapFile != null) {
 			return svgContent;
 		}
 
-		private Node CreateNode(IMindMapItem item, AssetConverterConfig config, string language, params (CrossLink crossLinkType, List<IMindMapItem> targets)[] crossLinks)
+		private Node CreateNode(IMindMapItem item, AssetConverterConfig config, string language, params (CrossLink crossLinkType, List<IMindMapItem> targets, List<string> tints)[] crossLinks)
 		{
 			var itemNode = new Node { TEXT = TitleFunc(item) };
 			itemNode.ID = item.Id;
@@ -1183,6 +1189,7 @@ if (mapFile != null) {
 
 			foreach (var crossLink in crossLinks)
 			{
+				var tintIndex = 0;
 				foreach (var target in crossLink.targets)
 				{
 					var crossLinkNode = new Arrowlink();
@@ -1191,8 +1198,14 @@ if (mapFile != null) {
 					crossLinkNode.StartInclination = "892;0;";
 					crossLinkNode.EndInclination = "892;0;";
 					crossLinkNode.Destination = target.Id;
-					crossLinkNode.Color = GetCrossLinkColor(crossLink.crossLinkType);
+					// #2190 voie B: the tint IS the link's identity through the FreeMind/Batik
+					// export; ProcessSvgFilesAsync maps it back and restores the verb pastel.
+					// No tint (CrossLinks disabled or an empty handout) = today's behaviour.
+					crossLinkNode.Color = tintIndex < crossLink.tints.Count
+						? crossLink.tints[tintIndex]
+						: GetCrossLinkColor(crossLink.crossLinkType);
 					itemNode.Arrowlinks.Add(crossLinkNode);
+					tintIndex++;
 
 				}
 			}
@@ -1384,6 +1397,13 @@ if (mapFile != null) {
 		{
 			var processedDocs = new Dictionary<string, XDocument>();
 
+			// #2190 voie B reader: rebuild the tint table from the same items the .mm was written
+			// from (same run, deterministic enumeration) and restore the verb palette per variant.
+			// Runs BEFORE RecolorCrossLinksToStudy so the study variant rewrites PASTELS, not tints.
+			var tintTable = CrossLinks != CrossLink.None && mindMapItems.Count > 0
+				? CrossLinkTintTable.Build(mindMapItems, CrossLinks)
+				: null;
+
 			foreach (var svgFilePath in sourceSvgPaths)
 			{
 				foreach (var svgFreemindMap in SVGMaps)
@@ -1407,6 +1427,12 @@ if (mapFile != null) {
 
 					XNamespace svgNamespace = "http://www.w3.org/2000/svg";
 					XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
+
+					if (tintTable != null && tintTable.Count > 0)
+					{
+						CrossLinkTintTable.RestoreTints(svgDoc, svgNamespace, tintTable,
+							Path.GetFileName(svgSavedFilePath));
+					}
 
 					UpdateSvgWithItems(svgFreemindMap, mindMapItems, svgDoc, svgNamespace, xlinkNamespace);
 
