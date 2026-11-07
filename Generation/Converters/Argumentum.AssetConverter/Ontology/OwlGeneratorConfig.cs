@@ -266,6 +266,15 @@ namespace Argumentum.AssetConverter.Ontology
 	                    }
 	                }
 	            }
+	            // #498 grain 2 — the critical-question prose (AIF_criticalQuestion) is carried
+	            // as a free-text rdfs:comment annotation, mirroring the Virtues generator
+	            // (#989/#1192): the question stays consumable and lossless, and prose never
+	            // enters the token columns pinned by FallacyAifVocabularyLockTests.
+	            if (!string.IsNullOrEmpty(fallacy.AIFCriticalQuestion))
+	            {
+	                ontology.AnnotateConcept(fallacyConcept, RDFVocabulary.RDFS.COMMENT,
+	                    new RDFPlainLiteral(fallacy.AIFCriticalQuestion.Trim(), "fr"));
+	            }
 	        }
 
 

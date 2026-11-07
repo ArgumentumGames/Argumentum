@@ -183,6 +183,14 @@ namespace Argumentum.AssetConverter.Entities
 
         public string AIFSkosOther { get; set; }
 
+        // #498 grain 2 — FR-prose critical question: the Walton CQ the fallacy SKIPS
+        // (component (c) of the #498 generative rule), mirroring the Virtues column of
+        // the same name (#989/#1192). PROSE ONLY: a question AIF does not name lives
+        // here — never as a fabricated *_Conflict token in the scheme columns (those
+        // are pinned by FallacyAifVocabularyLockTests) and never in AIF_skosOther
+        // (reserved for declared gaps, the three-state census depends on it).
+        public string AIFCriticalQuestion { get; set; }
+
         public string AIFSkosMappingType { get; set; }
 
         // Transverse relational layer (8 typed cross-links). Cell value = ';'-joined
@@ -304,6 +312,7 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.AIFSkosDirectRef).Name("AIF_skosDirectRef").Optional();
             Map(m => m.AIFSkosExceptionRef).Name("AIF_skosExceptionRef").Optional();
             Map(m => m.AIFSkosOther).Name("AIF_skosOther").Optional();
+            Map(m => m.AIFCriticalQuestion).Name("AIF_criticalQuestion").Optional();
             Map(m => m.AIFSkosMappingType).Name("AIF_skosMappingType").Optional();
             Map(m => m.CrossLinkPredatesOn).Name("crossLink_PredatesOn").Optional();
             Map(m => m.CrossLinkDenounces).Name("crossLink_Denounces").Optional();
