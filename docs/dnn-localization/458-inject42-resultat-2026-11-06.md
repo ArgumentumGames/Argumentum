@@ -166,9 +166,9 @@ DROP TABLE #expected;
 | Payload réel | 0 | 42 | 0 | 6 | **GARDE PASSE** |
 | Contrôle inverse : une valeur mutée (`Новости` → `Новости-MUTE`) | **1** | 42 | 0 | 6 | **BLOQUE** |
 | Contrôle inverse : une dimension mutée (30560 : 7 → 8) | **1** | 42 | 0 | 6 | **BLOQUE** |
-| Contrôle inverse (correction #2184) : une base dim-0 mutée (22064 : `50vh` → `50vh-MUTE`) | 0 | 42 | 0 | **5** | **BLOQUE** *(désormais : le `IF` teste D)* |
+| Contrôle inverse (correction #2184) : une base dim-0 mutée (22064 : `50vh` → `50vh-MUTE`) — ⚠️ **DÉRIVÉ, non exécuté** | 0 | 42 | 0 | **5** | **BLOQUE** *(désormais : le `IF` teste D)* |
 
-Les trois mutations donnent **BLOQUE** par des agrégats **différents** (A, A, D) : la garde ne tient pas sur un seul capteur. La mutation n'est pas une simulation : c'est le même SQL, seule l'attente change.
+Les deux premières mutations ont été **exécutées** le 06/11 16:4x et donnent **BLOQUE** par l'agrégat A. La troisième ligne est **dérivée, pas mesurée** : elle a été ajoutée le 06/11 au soir, hors fenêtre de lecture, avec la correction du `IF`, et l'exécution du 07/11 n'a porté que sur les deux jointures de suppression et la garde du payload réel. Elle se déduit sans ambiguïté de la mesure D=6 : changer le littéral de 22064 dans `b(ValueId,Val)` retire exactement une ligne de la jointure D, donc D=5, et le `IF` teste désormais `D <> 6`. À exécuter à la prochaine fenêtre de lecture en semaine, avec le même SQL où seule la valeur attendue change, pour que la colonne D ait elle aussi un contrôle inverse mesuré. *(Qualification ajoutée par ai-01 avant le merge.)*
 
 **Preuve en lecture seule des jointures de suppression (demandée par la review #2184)** — chacun des deux `DELETE` est rejoué en `SELECT COUNT(*)` sur **exactement les mêmes jointures** : le comptage lie les colonnes comme la suppression, sans rien écrire. Attendu **42 et 42** :
 
