@@ -58,6 +58,11 @@
          qui ouvre les PDF vit dans ce projet ; la mesure passe par Magick.NET, qui délègue le PDF
          à Ghostscript (⚠️ absent du PATH = échec nommé, jamais un skip). -->
     <Compile Include="..\Argumentum.AssetConverter.Tests\Structure\RulesFirstOrderIntegrity.cs" Link="Structure\RulesFirstOrderIntegrity.cs" />
+    <!-- #1460 phase C organe 2 : le moteur de couleur de famille (pur, témoins en CI dans
+         Structure/FamilyColorIntegrityTests.cs). Mêmes règles : source unique sur disque, compilée
+         ici, aucun ProjectReference entre les deux suites (#1054). Cet organe-ci n'ouvre aucun PDF —
+         seulement les PNG de récolte via Magick.NET, aucun Ghostscript requis. -->
+    <Compile Include="..\Argumentum.AssetConverter.Tests\Structure\FamilyColorIntegrity.cs" Link="Structure\FamilyColorIntegrity.cs" />
   </ItemGroup>
 
   <ItemGroup>
