@@ -24,11 +24,13 @@ C'est le complément attendu de l'organe 1, qui lit lui le PDF assemblé.
 | Variable `--color-background` du bloc `card.<famille>` | clé `css` du gabarit `Argumentum_Fallacies_Face_fr.json`, **parsée en JSON puis** regex sur la valeur (leçon #1485 : un regex sur les octets bruts s'arrête aux backslashes) | la **couleur** attendue de chaque famille |
 | Histogramme du PNG (1 point sur 16) | arbre de régénération (`ARGUMENTUM_PDF_BUNDLE_ROOT`) | la couleur **réalisée** |
 
-La jointure PNG ↔ CSV se fait par le préfixe `argumentum_fallacies_{path}..` — les virgules du
-`path` deviennent des points dans le nom de fichier. **Mesuré : 175/175 appariements uniques
-sur les 8 langues.** Le préfixe est non ambigu car le point y est le séparateur de niveaux :
-`_1..` ne peut pas matcher `_1.1..`. Un préfixe qui matche ≠ 1 fichier est un échec **nommé**
-de la langue entière, jamais une carte silencieusement sautée.
+La jointure PNG ↔ CSV se fait par le préfixe `argumentum_fallacies_{path}..` — le `path` CSV
+porte la hiérarchie **en points** (`1.1.2.1`) et entre tel quel dans le nom de fichier (⚠️ la
+virgule n'existe que dans `decimal_path`, notation décimale — le `Replace(',', '.')` du code
+est un no-op de robustesse, pas une conversion réelle). **Mesuré : 175/175 appariements
+uniques sur les 8 langues.** Le préfixe est non ambigu car le point y est le séparateur de
+niveaux : `_1..` ne peut pas matcher `_1.1..`. Un préfixe qui matche ≠ 1 fichier est un échec
+**nommé** de la langue entière, jamais une carte silencieusement sautée.
 
 ## 3. Le calibrage — mesuré, pas espéré
 

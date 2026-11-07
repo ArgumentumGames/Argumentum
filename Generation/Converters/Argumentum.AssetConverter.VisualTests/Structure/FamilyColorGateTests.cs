@@ -26,11 +26,14 @@ namespace Argumentum.AssetConverter.VisualTests.Structure
 	/// cet organe ne dépend pas de Ghostscript.</para>
 	///
 	/// <para><b>La jointure PNG ↔ CSV</b> se fait par le préfixe
-	/// <c>argumentum_fallacies_{path}..</c> — les virgules du <c>path</c> CSV deviennent des
-	/// points dans le nom de fichier (mesuré : 175/175 appariements uniques). Le préfixe est
-	/// non ambigu car le point y est le séparateur de niveaux : <c>_1..</c> ne peut pas matcher
-	/// <c>_1.1..</c>. Un préfixe qui matche ≠ 1 fichier est un échec <b>nommé</b> de la langue
-	/// entière, pas une carte silencieusement sautée.</para>
+	/// <c>argumentum_fallacies_{path}..</c> — le <c>path</c> CSV porte la hiérarchie en points
+	/// (<c>1.1.2.1</c>) et entre tel quel dans le nom de fichier (mesuré : 175/175
+	/// appariements uniques ; ⚠️ la virgule n'existe que dans <c>decimal_path</c>, notation
+	/// décimale — le <c>Replace(',', '.')</c> est donc un no-op de robustesse, pas une
+	/// conversion réelle). Le préfixe est non ambigu car le point y est le séparateur de
+	/// niveaux : <c>_1..</c> ne peut pas matcher <c>_1.1..</c>. Un préfixe qui matche ≠ 1
+	/// fichier est un échec <b>nommé</b> de la langue entière, pas une carte silencieusement
+	/// sautée.</para>
 	///
 	/// <para><b>Les 8 langues, pas la première trouvée</b> : une classe peut être correcte en
 	/// <c>fr</c> et manquer dans une seule autre langue ; chaque langue porte le même attendu
@@ -182,8 +185,10 @@ namespace Argumentum.AssetConverter.VisualTests.Structure
 				string.Join(" | ", allFailures));
 		}
 
-		/// <summary>Le préfixe de jointure : <c>argumentum_fallacies_{path}..</c>, virgules du CSV
-		/// devenues points. Mesuré 175/175 appariements uniques sur les 8 langues.</summary>
+		/// <summary>Le préfixe de jointure : <c>argumentum_fallacies_{path}..</c>. Le <c>path</c> CSV
+		/// porte la hiérarchie en points et entre tel quel ; le <c>Replace</c> ne sert qu'à
+		/// absorber une future source qui emploierait la virgule. Mesuré 175/175 appariements
+		/// uniques sur les 8 langues.</summary>
 		private static string Prefix(string csvPath) => $"argumentum_fallacies_{csvPath.Replace(',', '.')}..";
 
 		/// <summary>Couleur dominante non blanche, échantillonnage 1 point sur 16 (1 pixel sur 4
