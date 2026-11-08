@@ -36,9 +36,9 @@ Chaque langue a sa carte mentale de l’arbre entier ; sa variante « liens �
 
 ## Les vertus, et un export pour les programmes
 
-Le paquet des vertus a reçu le même traitement, avec sa différence : une vertu ne détourne rien, elle tient. Le corpus la décrit donc dans les deux sens — 142 contre-attaques typées, ce que la vertu réplique au mauvais raisonnement, et 222 liens de bonne tenue vers 14 schèmes légitimes, le bon argument qu’elle incarne.
+Le paquet des vertus a reçu le même traitement, avec sa différence : une vertu ne détourne rien, elle tient. Le corpus la relie donc au bon argument qu’elle incarne : 222 liens de bonne tenue vers 14 schèmes légitimes.
 
-Le tout est aussi exporté en fichiers CSV simples à consommer pour un programme : les 145 arêtes d’attaque des sophismes, les deux jeux des vertus, l’arbre des 1 408 nœuds, et le graphe des relations entre sophismes — 674 arêtes orientées, chaque lien symétrique y étant écrit dans les deux sens. Le projet d’enseignement CoursIA, public, s’en sert pour sa série d’analyse argumentative.
+Le tout est aussi exporté en fichiers CSV simples à consommer pour un programme : les 145 arêtes d’attaque des sophismes, les fichiers des vertus, l’arbre des 1 408 nœuds, et le graphe des relations entre sophismes — 674 arêtes orientées, chaque lien symétrique y étant écrit dans les deux sens. Le projet d’enseignement CoursIA, public, s’en sert pour sa série d’analyse argumentative.
 
 ## Où les trouver
 
