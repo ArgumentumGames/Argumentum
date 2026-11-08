@@ -14,7 +14,7 @@ C’est un dépôt public : des agents logiciels — analyse, logique, détecti
 
 La taxonomie des sophismes d’Argumentum compte 1 408 nœuds — mesure du 8 novembre 2026 —, du nœud racine aux cas particuliers, jusqu’à dix niveaux de profondeur. Demander à un modèle « quel est ce sophisme ? » devant la liste entière, c’est lui faire tirer une étiquette parmi plus de mille, sans structure pour guider le choix.
 
-Or la forme de l’arbre dit autre chose : chaque nœud y a au plus 9 enfants, et le plus souvent 2 (mesuré sur la colonne des chemins). Un choix guidé par la structure remplace le pari.
+Or la forme de l’arbre dit autre chose : chaque nœud y a au plus 9 enfants, et la moitié des nœuds qui en ont n’en ont pas plus de deux (mesuré sur la colonne des chemins). Un choix guidé par la structure remplace le pari.
 
 ## La descente, pas à pas
 
