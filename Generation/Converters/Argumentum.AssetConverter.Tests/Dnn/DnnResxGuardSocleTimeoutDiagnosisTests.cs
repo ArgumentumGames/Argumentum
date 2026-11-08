@@ -231,6 +231,39 @@ namespace Argumentum.AssetConverter.Tests
         }
 
         /// <summary>
+        /// Contrôle inverse du faux rouge du 08/11 (run 42471647833, tentative 1, jambe
+        /// Debug) : un échange appelé DIRECTEMENT depuis un thread du pool — ce que fait le
+        /// banc ci-dessus, sur le thread du test — ne doit pas toucher le compteur de
+        /// production que la sonde de
+        /// <c>DnnResxGuardSocleTests.TheExchangeLaunchDoesNotQueueBehindTheThreadPool</c>
+        /// lit en parallèle. Rouge de façon déterministe quand le comptage vit dans
+        /// <c>ExchangeOnce</c> ; vert quand il vit dans le corps lancé par
+        /// <c>BatchExchange</c>, seul chemin que la sonde doit juger.
+        /// </summary>
+        [Fact]
+        public async Task ADirectExchangeOnAPoolThreadDoesNotMoveTheProductionCounter()
+        {
+            var trace = new BatchExchangeProgress();
+            const string payload = "contenu-du-blob";
+            using var complete = new BlockingStream(header: "deadbeef blob " + payload.Length + "\n",
+                payloadBytes: payload + "\n", blockWhenExhausted: false);
+
+            var before = Interlocked.Read(ref DnnResxGuardSocle.ExchangeBodyOnPoolThreadCount);
+            var (onPool, result) = await Task.Run(() => (
+                Thread.CurrentThread.IsThreadPoolThread,
+                DnnResxGuardSocle.ExchangeOnce("HEAD:" + Rel, Rel, Stream.Null, complete, trace)));
+            var after = Interlocked.Read(ref DnnResxGuardSocle.ExchangeBodyOnPoolThreadCount);
+
+            onPool.Should().BeTrue(
+                "le contrôle n'éprouve rien si l'appel direct n'a pas tourné sur un thread du pool");
+            result.Blob.Should().NotBeNull(
+                "l'échange direct a bien eu lieu : un appel vide laisserait le compteur intact pour rien");
+            after.Should().Be(before,
+                "un banc qui appelle ExchangeOnce hors de BatchExchange ne doit pas faire rougir "
+                + "la sonde de production qui lit ce compteur en parallèle");
+        }
+
+        /// <summary>
         /// Démarre l'échange sur un thread DÉDIÉ plutôt que par <c>Task.Run</c>.
         /// <para>
         /// <c>Task.Run</c> met la tâche en file dans le pool PARTAGÉ : sous la suite

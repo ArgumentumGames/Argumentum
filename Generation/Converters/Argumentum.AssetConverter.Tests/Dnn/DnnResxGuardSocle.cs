@@ -219,11 +219,23 @@ namespace Argumentum.AssetConverter.Tests
         internal static long BatchExchangeCount;
 
         /// <summary>
-        /// Nombre d'échanges dont le CORPS a tourné sur un thread du pool depuis le
-        /// début du run. Cette valeur est la propriété que le témoin 9 de #2138 a
-        /// fait perdre — un échange qui attend un thread libre du pool — et elle est
-        /// mesurée là où le mécanisme se produit (dans <see cref="ExchangeOnce"/>),
-        /// pas dans le lanceur : le lanceur ne dit que ce qu'il a DEMANDÉ.
+        /// Nombre d'échanges DE PRODUCTION (lancés par <see cref="BatchExchange"/>) dont
+        /// le corps a tourné sur un thread du pool depuis le début du run. Cette valeur
+        /// est la propriété que le témoin 9 de #2138 a fait perdre — un échange qui
+        /// attend un thread libre du pool — et elle est mesurée là où le mécanisme se
+        /// produit : en tête du corps que la tâche EXÉCUTE, pas dans les options
+        /// du lanceur, qui ne disent que ce qu'il a DEMANDÉ.
+        /// <para>
+        /// Le comptage ne vit PAS dans <see cref="ExchangeOnce"/> : les bancs du
+        /// diagnostic l'appellent directement, sur le thread du test — un thread du
+        /// pool sous xUnit 2.9 — et faisaient monter ce compteur, global au processus,
+        /// pendant que la sonde le lisait en parallèle. Mesuré : run 42471647833,
+        /// tentative 1, jambe Debug, faux rouge de la sonde sur un diff sans C# ;
+        /// <c>ASuccessfulExchangeReachesTheLastStageAndReportsItsByteCount</c> passé à
+        /// 10:33:06.576, dans la fenêtre d'une seconde de la sonde rouge à 10:33:07.426.
+        /// Contrôle inverse du faux rouge :
+        /// <c>DnnResxGuardSocleTimeoutDiagnosisTests.ADirectExchangeOnAPoolThreadDoesNotMoveTheProductionCounter</c>.
+        /// </para>
         /// <para>
         /// Reste à 0 sous <see cref="TaskCreationOptions.LongRunning"/> quelle que
         /// soit la charge : la sonde est donc déterministe et n'attend aucun
@@ -279,7 +291,12 @@ namespace Argumentum.AssetConverter.Tests
                 Interlocked.Increment(ref BatchExchangeCount);
                 var trace = new BatchExchangeProgress();
                 var exchange = Task.Factory.StartNew(
-                    () => ExchangeOnce(spec, rel, batchStdin, batchStdout, trace),
+                    () =>
+                    {
+                        if (Thread.CurrentThread.IsThreadPoolThread)
+                            Interlocked.Increment(ref ExchangeBodyOnPoolThreadCount);
+                        return ExchangeOnce(spec, rel, batchStdin, batchStdout, trace);
+                    },
                     CancellationToken.None,
                     TaskCreationOptions.LongRunning,
                     TaskScheduler.Default);
@@ -494,9 +511,8 @@ namespace Argumentum.AssetConverter.Tests
         internal static (byte[]? Blob, bool Missing, string? NonBlobType) ExchangeOnce(
             string spec, string rel, Stream? pipeIn, Stream? pipeOut, BatchExchangeProgress trace)
         {
-            if (Thread.CurrentThread.IsThreadPoolThread)
-                Interlocked.Increment(ref ExchangeBodyOnPoolThreadCount);
-
+            // Pas de comptage ici : voir ExchangeBodyOnPoolThreadCount — les bancs
+            // appellent cette méthode directement, depuis des threads du pool.
             trace.Mark(BatchExchangeStage.Started);
 
             var stdin = pipeIn ?? throw new IOException("transport batch absent (stdin)");
