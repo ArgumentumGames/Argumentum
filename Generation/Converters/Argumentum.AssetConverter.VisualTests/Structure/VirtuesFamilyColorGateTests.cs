@@ -107,6 +107,11 @@ namespace Argumentum.AssetConverter.VisualTests.Structure
 			Assert.True(familyColors.Count > 0,
 				$"aucune couleur de famille parsée dans la clé css de {templatePath} — " +
 				"la clé est-elle absente, vide, ou sans bloc card.<famille> portant --color-background ?");
+			// Identité de BLOC (c.6714912295) : la garde court sur les blocs règle — les alias
+			// d'une même liste sont UNE famille, deux blocs distincts de même couleur rougissent.
+			var blocks = FamilyColorIntegrity.ParseFamilyBlocks(css);
+			Assert.True(blocks.Count > 0,
+				$"aucun bloc règle card.<famille> parsé dans {templatePath} alors que la vue aplatie en donne {familyColors.Count}");
 
 			var distinctColors = familyColors.Values.Distinct().ToList();
 			_output.WriteLine(
@@ -187,7 +192,7 @@ namespace Argumentum.AssetConverter.VisualTests.Structure
 				// Les cartes PRÉSENTES sont confrontées même sur un arbre périmé : la couleur des
 				// 113 présentes est un fait, indépendant des 18 manquantes.
 				allFailures.AddRange(
-					FamilyColorIntegrity.Check(cards, familyColors, measured)
+					FamilyColorIntegrity.Check(cards, familyColors, measured, blocks)
 						.Where(f => !f.Contains("aucune mesure de couleur dominante")) // les manquantes ont déjà leur échec nommé
 						.Select(f => $"{lang} : {f}"));
 			}
