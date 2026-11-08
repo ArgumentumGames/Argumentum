@@ -70,45 +70,35 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 CrossLinks = CrossLink.None // Simplify test
             };
 
-            var originalInteractive = Program.IsInteractive;
-            try
+
+            // Act
+            await generator.GenerateMindMapFile(fallacies, _config, _tempTestDirectory, "fr");
+            var generatedFilePath = Path.Combine(_tempTestDirectory, generator.DocumentName);
+
+            // Assert
+            File.Exists(generatedFilePath).Should().BeTrue("because the mindmap file should have been created.");
+
+            var mmContent = await File.ReadAllTextAsync(generatedFilePath);
+            mmContent.Should().NotBeNullOrEmpty();
+
+            var xmlDoc = XDocument.Parse(mmContent);
+            xmlDoc.Should().NotBeNull();
+            xmlDoc.Root!.Name.LocalName.Should().Be("map");
+
+            // Validate root node (TitleFunc uses TitleExpression = "{item.TextFr}")
+            // Parenthesised: "?.Value.Should()" would skip the assertion when the node or attribute is missing.
+            (xmlDoc.Root.Element("node")?.Attribute("TEXT")?.Value).Should().Be("Sophismes",
+                "the root node of the generated mindmap carries the root fallacy title");
+
+            foreach (var fallacy in fallacies)
             {
-                // Must disable interactive mode to prevent hang on SVG file not found prompt
-                Program.IsInteractive = false;
+                if (string.IsNullOrEmpty(fallacy.Id) || fallacy.Id == "ROOT") continue;
 
-                // Act
-                await generator.GenerateMindMapFile(fallacies, _config, _tempTestDirectory, "fr");
-                var generatedFilePath = Path.Combine(_tempTestDirectory, generator.DocumentName);
+                var node = xmlDoc.XPathSelectElement($"//node[@ID='{fallacy.Id}']");
+                node.Should().NotBeNull($"because a node for fallacy with ID '{fallacy.Id}' should exist.");
 
-                // Assert
-                File.Exists(generatedFilePath).Should().BeTrue("because the mindmap file should have been created.");
-
-                var mmContent = await File.ReadAllTextAsync(generatedFilePath);
-                mmContent.Should().NotBeNullOrEmpty();
-
-                var xmlDoc = XDocument.Parse(mmContent);
-                xmlDoc.Should().NotBeNull();
-                xmlDoc.Root!.Name.LocalName.Should().Be("map");
-
-                // Validate root node (TitleFunc uses TitleExpression = "{item.TextFr}")
-                // Parenthesised: "?.Value.Should()" would skip the assertion when the node or attribute is missing.
-                (xmlDoc.Root.Element("node")?.Attribute("TEXT")?.Value).Should().Be("Sophismes",
-                    "the root node of the generated mindmap carries the root fallacy title");
-
-                foreach (var fallacy in fallacies)
-                {
-                    if (string.IsNullOrEmpty(fallacy.Id) || fallacy.Id == "ROOT") continue;
-
-                    var node = xmlDoc.XPathSelectElement($"//node[@ID='{fallacy.Id}']");
-                    node.Should().NotBeNull($"because a node for fallacy with ID '{fallacy.Id}' should exist.");
-
-                    var textAttribute = node.Attribute("TEXT")?.Value;
-                    textAttribute.Should().Be(fallacy.TextFr, $"because the node text should match the fallacy TextFr '{fallacy.TextFr}'.");
-                }
-            }
-            finally
-            {
-                Program.IsInteractive = originalInteractive;
+                var textAttribute = node.Attribute("TEXT")?.Value;
+                textAttribute.Should().Be(fallacy.TextFr, $"because the node text should match the fallacy TextFr '{fallacy.TextFr}'.");
             }
         }
 
@@ -124,30 +114,21 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 DocumentName = "safety-net-test.mm",
             };
 
-            var originalInteractive = Program.IsInteractive;
-            try
-            {
-                Program.IsInteractive = false;
 
-                // Act
-                await generator.GenerateMindMapFile(fallacies, _config, _tempTestDirectory, "fr");
-                var generatedFilePath = Path.Combine(_tempTestDirectory, generator.DocumentName);
+            // Act
+            await generator.GenerateMindMapFile(fallacies, _config, _tempTestDirectory, "fr");
+            var generatedFilePath = Path.Combine(_tempTestDirectory, generator.DocumentName);
 
-                // Assert
-                File.Exists(generatedFilePath).Should().BeTrue();
-                var fileInfo = new FileInfo(generatedFilePath);
-                fileInfo.Length.Should().BeGreaterThan(0, "Le fichier ne doit pas être vide.");
+            // Assert
+            File.Exists(generatedFilePath).Should().BeTrue();
+            var fileInfo = new FileInfo(generatedFilePath);
+            fileInfo.Length.Should().BeGreaterThan(0, "Le fichier ne doit pas être vide.");
 
-                var mmContent = await File.ReadAllTextAsync(generatedFilePath);
-                var xmlDoc = XDocument.Parse(mmContent);
-                xmlDoc.Root.Should().NotBeNull();
-                xmlDoc.Root.Element("node").Should().NotBeNull("La map doit contenir au moins un noeud racine.");
-                xmlDoc.Root!.Element("node")!.Elements("node").Should().NotBeEmpty("La map doit contenir des noeuds enfants pour les données d'entrée.");
-            }
-            finally
-            {
-                Program.IsInteractive = originalInteractive;
-            }
+            var mmContent = await File.ReadAllTextAsync(generatedFilePath);
+            var xmlDoc = XDocument.Parse(mmContent);
+            xmlDoc.Root.Should().NotBeNull();
+            xmlDoc.Root.Element("node").Should().NotBeNull("La map doit contenir au moins un noeud racine.");
+            xmlDoc.Root!.Element("node")!.Elements("node").Should().NotBeEmpty("La map doit contenir des noeuds enfants pour les données d'entrée.");
         }
 
         [Fact]
@@ -162,34 +143,25 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 DocumentName = "test-virtues.mm",
             };
 
-            var originalInteractive = Program.IsInteractive;
-            try
-            {
-                Program.IsInteractive = false;
 
-                // Act
-                await generator.GenerateMindMapFile(virtues, _config, _tempTestDirectory, "fr");
-                var generatedFilePath = Path.Combine(_tempTestDirectory, generator.DocumentName);
+            // Act
+            await generator.GenerateMindMapFile(virtues, _config, _tempTestDirectory, "fr");
+            var generatedFilePath = Path.Combine(_tempTestDirectory, generator.DocumentName);
 
-                // Assert
-                File.Exists(generatedFilePath).Should().BeTrue("the Virtue mind map file should be created.");
-                var fileInfo = new FileInfo(generatedFilePath);
-                fileInfo.Length.Should().BeGreaterThan(0, "the file should not be empty.");
+            // Assert
+            File.Exists(generatedFilePath).Should().BeTrue("the Virtue mind map file should be created.");
+            var fileInfo = new FileInfo(generatedFilePath);
+            fileInfo.Length.Should().BeGreaterThan(0, "the file should not be empty.");
 
-                var mmContent = await File.ReadAllTextAsync(generatedFilePath);
-                var xmlDoc = XDocument.Parse(mmContent);
-                xmlDoc.Root.Should().NotBeNull();
-                xmlDoc.Root.Element("node").Should().NotBeNull("the map should contain a root node.");
-                xmlDoc.Root!.Element("node")!.Elements("node").Should().NotBeEmpty("the map should contain child nodes.");
+            var mmContent = await File.ReadAllTextAsync(generatedFilePath);
+            var xmlDoc = XDocument.Parse(mmContent);
+            xmlDoc.Root.Should().NotBeNull();
+            xmlDoc.Root.Element("node").Should().NotBeNull("the map should contain a root node.");
+            xmlDoc.Root!.Element("node")!.Elements("node").Should().NotBeEmpty("the map should contain child nodes.");
 
-                // Verify specific virtue nodes exist
-                mmContent.Should().Contain("Argument pertinent");
-                mmContent.Should().Contain("Présentation intègre");
-            }
-            finally
-            {
-                Program.IsInteractive = originalInteractive;
-            }
+            // Verify specific virtue nodes exist
+            mmContent.Should().Contain("Argument pertinent");
+            mmContent.Should().Contain("Présentation intègre");
         }
 
         [Fact]
@@ -207,16 +179,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 DocumentName = "xslt-pipeline-test.mm",
             };
 
-            var originalInteractive = Program.IsInteractive;
-            try
-            {
-                Program.IsInteractive = false;
-                await generator.GenerateMindMapFile(fallacies, _config, _tempTestDirectory, "fr");
-            }
-            finally
-            {
-                Program.IsInteractive = originalInteractive;
-            }
+            await generator.GenerateMindMapFile(fallacies, _config, _tempTestDirectory, "fr");
 
             var mmPath = Path.Combine(_tempTestDirectory, generator.DocumentName);
             File.Exists(mmPath).Should().BeTrue();
@@ -322,17 +285,8 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 localization.DoReflectionTranslate(generator, lang);
             }
 
-            var originalInteractive = Program.IsInteractive;
-            try
-            {
-                Program.IsInteractive = false; // no interactive SVG prompt
-                // Act — .mm is serialized before any SVG export; FreeMindPath="" ⇒ no GUI, XSLT throwaway.
-                await generator.GenerateMindMapFile(virtues, _config, _tempTestDirectory, lang);
-            }
-            finally
-            {
-                Program.IsInteractive = originalInteractive;
-            }
+            // Act — .mm is serialized before any SVG export; FreeMindPath="" ⇒ no GUI, XSLT throwaway.
+            await generator.GenerateMindMapFile(virtues, _config, _tempTestDirectory, lang);
 
             var mmPath = Path.Combine(_tempTestDirectory, generator.DocumentName);
             File.Exists(mmPath).Should().BeTrue($"the {lang} Virtue mind map .mm must be generated");

@@ -260,16 +260,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 CrossLinks = CrossLink.All,
             };
 
-            var originalInteractive = Program.IsInteractive;
-            try
-            {
-                Program.IsInteractive = false;
-                await generator.GenerateMindMapFile(fallacies, config, _tempTestDirectory, "fr");
-            }
-            finally
-            {
-                Program.IsInteractive = originalInteractive;
-            }
+            await generator.GenerateMindMapFile(fallacies, config, _tempTestDirectory, "fr");
 
             var mmPath = Path.Combine(_tempTestDirectory, generator.DocumentName);
             File.Exists(mmPath).Should().BeTrue("the mind map .mm must be generated");
@@ -321,16 +312,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 CrossLinks = CrossLink.None,
             };
 
-            var originalInteractive = Program.IsInteractive;
-            try
-            {
-                Program.IsInteractive = false;
-                await generator.GenerateMindMapFile(fallacies, config, _tempTestDirectory, "fr");
-            }
-            finally
-            {
-                Program.IsInteractive = originalInteractive;
-            }
+            await generator.GenerateMindMapFile(fallacies, config, _tempTestDirectory, "fr");
 
             var mm = XDocument.Load(Path.Combine(_tempTestDirectory, generator.DocumentName));
             var colors = mm.Descendants("arrowlink").Attributes("COLOR").Select(a => a.Value).ToList();
