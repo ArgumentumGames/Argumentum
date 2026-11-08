@@ -367,6 +367,14 @@ namespace Argumentum.AssetConverter.Mindmapper
 			if (!string.IsNullOrEmpty(link))
 			{
 				itemNode.LINK = link;
+				// #1471: badge the node when the served link is a cross-language fallback
+				// (link_xx empty, cascade served link_en / link_fr) — same contract as the
+				// Fallacies side; the SVG pairing matches against TitleFunc, not Node.TEXT.
+				var badge = MindMapLinkBadge.GetBadge(item, language);
+				if (badge.Length > 0)
+				{
+					itemNode.TEXT += badge;
+				}
 			}
 
 			var descRichContent = CreateRichContent(item);
