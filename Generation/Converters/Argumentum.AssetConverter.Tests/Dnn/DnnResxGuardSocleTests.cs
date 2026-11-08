@@ -488,7 +488,12 @@ namespace Argumentum.AssetConverter.Tests
         [Fact]
         public void TheExchangeLaunchDoesNotQueueBehindTheThreadPool()
         {
-            var poolThreads = ThreadPool.ThreadCount;
+            // Sous son minimum, le pool crée ses threads SANS délai : la file ne
+            // commence qu'au-delà de max(ThreadCount, minimum). Partir de ThreadCount
+            // seul rougissait la sonde 1 lancée isolément sur une machine à 32 cœurs
+            // (pool encore froid, 32 threads créables à la demande) — mesuré 3/3.
+            ThreadPool.GetMinThreads(out var minWorkerThreads, out _);
+            var poolThreads = Math.Max(ThreadPool.ThreadCount, minWorkerThreads);
             var blockers = poolThreads + 8;
             using var gate = new ManualResetEventSlim(false);
             long runningBlockers = 0;
