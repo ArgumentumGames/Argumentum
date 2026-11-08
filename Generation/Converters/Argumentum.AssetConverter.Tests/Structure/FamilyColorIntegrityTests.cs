@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 using FluentAssertions;
 using Xunit;
 
@@ -310,6 +312,96 @@ namespace Argumentum.AssetConverter.Tests.Structure
 
 			colors.Count.Should().Be(1);
 			colors["famille"].Hex.Should().Be("#222222");
+		}
+
+		// ── Garde par BLOC RÈGLE (suite demandée par ai-01 à la revue de l'organe 3,
+		//    c.6714912295) : groupée par couleur distincte, la garde de séparation ne voyait
+		//    plus une collision EXACTE entre deux familles différentes — elle rougissait à 0,1
+		//    mais plus à 0,0, et le contrôle par carte ne peut pas la voir puisque les cartes
+		//    des deux familles tombent exactement sur l'attendu partagé. ──
+
+		/// <summary>LE témoin de la faille : deux blocs règle distincts, même couleur, cartes
+		/// exactes — la seule garde qui puisse nommer la collision est celle des blocs.</summary>
+		[Fact]
+		public void Two_Distinct_Blocks_With_The_Same_Color_Are_Red_Even_Though_Every_Card_Matches()
+		{
+			const string css = @"
+                card.inférenceMaîtrisée { --color-background: #0054a4; }
+                card.justesseLexicale { --color-background: #0054a4; }";
+
+			var blocks = FamilyColorIntegrity.ParseFamilyBlocks(css);
+			var colors = FamilyColorIntegrity.ParseFamilyColors(css);
+			blocks.Should().HaveCount(2, "deux blocs distincts, pas une famille aliasée");
+
+			var failures = FamilyColorIntegrity.Check(
+				new[]
+				{
+					Card("a.png", "inférenceMaîtrisée"),
+					Card("b.png", "justesseLexicale"),
+				},
+				colors,
+				new[]
+				{
+					Measured("a.png", Bleu, 0.50),
+					Measured("b.png", Bleu, 0.50), // cartes exactes : la faille est invisible au contrôle par carte
+				},
+				blocks);
+
+			failures.Should().ContainSingle()
+				.Which.Should().Contain("inférenceMaîtrisée").And.Contain("justesseLexicale")
+				.And.Contain("MÊME couleur");
+		}
+
+		/// <summary>La contre-partie : les alias écrits dans UN seul bloc sont UNE famille —
+		/// la garde par bloc ne doit pas rougir sur eux (c'est le motif de renommage additif).</summary>
+		[Fact]
+		public void Aliases_In_One_Block_Do_Not_Trip_The_Block_Guard()
+		{
+			const string css = @"
+                card.exactitudeMathématique,
+                card.sensQuantitatif { --color-background: #08af93; }";
+
+			var blocks = FamilyColorIntegrity.ParseFamilyBlocks(css);
+			blocks.Should().HaveCount(1);
+
+			var failures = FamilyColorIntegrity.Check(
+				new[] { Card("c.png", "sensQuantitatif") },
+				FamilyColorIntegrity.ParseFamilyColors(css),
+				new[] { Measured("c.png", Turquoise, 0.47) },
+				blocks);
+
+			failures.Should().BeEmpty();
+		}
+
+		/// <summary>Le gabarit Virtues réel (mesuré le 07/11 : 7 listes alias + 1 bloc simple
+		/// = 8 familles, 15 noms) : la garde par bloc doit y rester verte — les alias vivent DANS
+		/// leur bloc, aucune famille ne partage la couleur d'une autre. Un renommage de famille
+		/// qui casserait la convention (nouveau nom dans un bloc séparé) rend ce témoin rouge.</summary>
+		[Fact]
+		public void Real_Virtues_Template_Gives_Eight_Family_Blocks_And_Passes_The_Block_Guard()
+		{
+			var templatePath = Path.Combine(TestRepoRoot.Find(),
+				"Cards", "Fallacies", "Argumentum_Virtues_Face_fr.json");
+			Assert.True(File.Exists(templatePath), $"gabarit introuvable : {templatePath}");
+
+			string? css;
+			using (var doc = JsonDocument.Parse(File.ReadAllText(templatePath)))
+			{
+				css = doc.RootElement.TryGetProperty("css", out var cssElement) ? cssElement.GetString() : null;
+			}
+
+			var blocks = FamilyColorIntegrity.ParseFamilyBlocks(css);
+
+			blocks.Should().HaveCount(8, "7 listes alias + 1 bloc simple = les 8 familles (mesuré le 07/11)");
+			blocks.SelectMany(b => b.Names).Should().HaveCount(15);
+			blocks.Should().OnlyHaveUniqueItems(b => b.Color, "les 8 familles ont 8 couleurs distinctes");
+
+			var failures = FamilyColorIntegrity.Check(
+				new[] { Card("argumentum_virtues_0..face.png", blocks[0].Names[0]) },
+				FamilyColorIntegrity.ParseFamilyColors(css),
+				new[] { Measured("argumentum_virtues_0..face.png", blocks[0].Color, 0.51) },
+				blocks);
+			failures.Should().BeEmpty();
 		}
 	}
 }

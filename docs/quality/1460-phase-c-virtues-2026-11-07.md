@@ -47,6 +47,13 @@ distance 0,0). Sur l'ancienne garde — paires sur les **noms** — un gabarit s
 groupe désormais les noms par couleur et confronte les **couleurs distinctes**. Sur le gabarit
 Fallacies (8 noms, 8 couleurs), le comportement est inchangé — témoin CI dédié.
 
+> ⚠️ **Corrigé le 08/11** ([`1460-phase-c-garde-bloc-2026-11-08.md`](1460-phase-c-garde-bloc-2026-11-08.md),
+> faille relevée par ai-01 en revue c.6714912295) : le groupement par couleur masquait une
+> collision **exacte** entre deux familles **différentes** — la garde rougissait à 0,1 mais plus
+> à 0,0. La garde court désormais sur les **blocs règle** (les alias d'une même liste restent UNE
+> famille ; deux blocs distincts de même couleur rougissent). Les deux gates passent les blocs ;
+> le repli sans blocs garde le comportement décrit ci-dessus.
+
 ## 3. Calibrage (07/11, arbre Release local, 8 langues × 113 cartes présentes)
 
 | Mesure | Valeur | Réserve vs borne |

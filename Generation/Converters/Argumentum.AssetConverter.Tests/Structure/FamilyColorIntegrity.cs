@@ -111,6 +111,15 @@ namespace Argumentum.AssetConverter.Tests.Structure
 			public double Share { get; }
 		}
 
+		/// <summary>Un <b>bloc règle</b> <c>card.&lt;famille&gt;</c> du gabarit : la liste de
+		/// sélecteurs (les alias d'une <b>seule</b> famille, motif de renommage additif : tous les
+		/// noms successifs cohabitent dans le même bloc) et SA couleur de fond. C'est l'identité
+		/// que <see cref="ParseFamilyColors"/> perdait en aplatissant : deux familles
+		/// <i>différentes</i> écrites dans deux blocs distincts de même couleur sont une collision
+		/// exacte que la garde par couleur distincte ne voyait plus (faille relevée par ai-01 à la
+		/// revue de l'organe 3, c.6714912295 : la garde rougissait à 0,1 mais plus à 0,0).</summary>
+		public sealed record FamilyBlock(IReadOnlyList<string> Names, Rgb Color);
+
 		private static readonly Regex RuleBlock = new(
 			@"([^{}]+)\{([^{}]*)\}",
 			RegexOptions.CultureInvariant | RegexOptions.Compiled);
@@ -148,8 +157,30 @@ namespace Argumentum.AssetConverter.Tests.Structure
 		/// <c>/* --- */</c> précède chaque bloc famille du gabarit Virtues.</para></summary>
 		public static IReadOnlyDictionary<string, Rgb> ParseFamilyColors(string? css)
 		{
+			// Vue aplatie de <see cref="ParseFamilyBlocks"/> : un nom par entrée, dernier bloc
+			// gagnant (déterminisme documenté, témoin dédié). Les organes 2 et 3 consomment ce
+			// dictionnaire — sa forme ne change pas ; l'identité de bloc vit dans la jumelle.
 			var colors = new Dictionary<string, Rgb>(StringComparer.Ordinal);
-			if (string.IsNullOrEmpty(css)) return colors;
+			foreach (var block in ParseFamilyBlocks(css))
+			{
+				foreach (var name in block.Names)
+				{
+					colors[name] = block.Color;
+				}
+			}
+
+			return colors;
+		}
+
+		/// <summary>Le parseur de référence : un <see cref="FamilyBlock"/> par bloc règle
+		/// <c>card.&lt;famille&gt;</c> portant <c>--color-background</c>. Contrairement à la vue
+		/// aplatie <see cref="ParseFamilyColors"/>, il conserve l'identité de bloc — deux blocs
+		/// distincts de même couleur restent visibles comme deux familles différentes en collision
+		/// exacte, ce que la garde de séparation exige (spécification c.6714912295).</summary>
+		public static IReadOnlyList<FamilyBlock> ParseFamilyBlocks(string? css)
+		{
+			var blocks = new List<FamilyBlock>();
+			if (string.IsNullOrEmpty(css)) return blocks;
 
 			var withoutComments = CssComment.Replace(css, string.Empty);
 			foreach (Match rule in RuleBlock.Matches(withoutComments))
@@ -167,13 +198,14 @@ namespace Argumentum.AssetConverter.Tests.Structure
 
 				// Liste de sélecteurs : la couleur est celle de CHAQUE nom — le motif de
 				// renommage additif écrit « card.ancien, card.nouveau { … } » d'un seul bloc.
-				foreach (Match name in CardSelectorName.Matches(selector))
-				{
-					colors[name.Groups[1].Value] = rgb;
-				}
+				var names = CardSelectorName.Matches(selector)
+					.Cast<Match>()
+					.Select(m => m.Groups[1].Value)
+					.ToList();
+				blocks.Add(new FamilyBlock(names, rgb));
 			}
 
-			return colors;
+			return blocks;
 		}
 
 		/// <summary>Distance euclidienne RGB entre deux couleurs.</summary>
@@ -193,10 +225,15 @@ namespace Argumentum.AssetConverter.Tests.Structure
 		/// <param name="cards">Cartes et familles attendues (jointe CSV).</param>
 		/// <param name="familyColors">Couleurs par classe, issues du gabarit parsé.</param>
 		/// <param name="measured">Couleurs dominantes mesurées, une par carte.</param>
+		/// <param name="blocks">Blocs règle du gabarit (jumeau de <see cref="ParseFamilyBlocks"/>).
+		/// Fournis, la garde de séparation court sur les <b>blocs</b> : les alias d'une même liste
+		/// sont UNE famille, mais deux blocs distincts de même couleur rougissent (collision
+		/// exacte, c.6714912295). Absents, repli sur les couleurs distinctes du dictionnaire.</param>
 		public static IReadOnlyList<string> Check(
 			IReadOnlyList<CardFamily>? cards,
 			IReadOnlyDictionary<string, Rgb>? familyColors,
 			IReadOnlyList<MeasuredDominant>? measured,
+			IReadOnlyList<FamilyBlock>? blocks = null,
 			double maxDistance = MaxColorDistance,
 			double minSeparation = MinFamilyColorSeparation,
 			double minShare = MinDominantShare)
@@ -216,26 +253,46 @@ namespace Argumentum.AssetConverter.Tests.Structure
 			// Garde structurelle AVANT toute carte : deux familles trop proches l'une de l'autre
 			// rendent le seuil aveugle — l'instrument refuse de verdir sur un gabarit où il ne
 			// pourrait pas distinguer, même si chaque carte tombe exactement sur sa teinte.
-			// ⚠️ La paire court sur les COULEURS DISTINCTES, pas sur les noms : les alias hérités
-			// du renommage additif partagent exactement la couleur de leur famille (mesuré sur le
-			// gabarit Virtues le 07/11 : 7 paires alias à 0,0) — ce sont UNE famille, pas deux
-			// familles indiscernables.
-			var byColor = familyColors
-				.GroupBy(pair => pair.Value)
-				.Select(group => (Color: group.Key,
-					Name: group.Select(p => p.Key).OrderBy(n => n, StringComparer.Ordinal).First()))
-				.OrderBy(entry => entry.Name, StringComparer.Ordinal)
-				.ToList();
-			for (var i = 0; i < byColor.Count; i++)
+			// ⚠️ La paire court sur les BLOCS RÈGLE quand ils sont fournis (spécification
+			// c.6714912295) : les alias d'une même liste de sélecteurs sont UNE famille (le
+			// renommage additif les écrit dans le même bloc — mesuré sur le gabarit Virtues le
+			// 07/11 : 7 listes alias), mais deux blocs DISTINCTS de même couleur sont deux
+			// familles différentes en collision exacte — la garde par couleur distincte rougissait
+			// à 0,1 mais plus à 0,0. Sans blocs, repli sur les couleurs distinctes du
+			// dictionnaire (une famille par couleur — comportement d'origine des organes).
+			var guardUnits = blocks is { Count: > 0 }
+				? blocks
+					.Select(b => (Label: string.Join(" | ", b.Names), Color: b.Color))
+					.OrderBy(u => u.Label, StringComparer.Ordinal)
+					.ToList()
+				: familyColors
+					.GroupBy(pair => pair.Value)
+					.Select(group => (Label: group.Select(p => p.Key).OrderBy(n => n, StringComparer.Ordinal).First(),
+						Color: group.Key))
+					.OrderBy(entry => entry.Label, StringComparer.Ordinal)
+					.ToList();
+			for (var i = 0; i < guardUnits.Count; i++)
 			{
-				for (var j = i + 1; j < byColor.Count; j++)
+				for (var j = i + 1; j < guardUnits.Count; j++)
 				{
-					var d = Distance(byColor[i].Color, byColor[j].Color);
-					if (d < minSeparation)
+					var d = Distance(guardUnits[i].Color, guardUnits[j].Color);
+					if (d >= minSeparation) continue;
+
+					if (d == 0)
+					{
+						// Ne peut naître que de la voie blocs : le repli par couleur groupée ne
+						// produit jamais deux unités de même couleur.
+						failures.Add(
+							$"gabarit : « {guardUnits[i].Label} » ({guardUnits[i].Color.Hex}) et « {guardUnits[j].Label} » " +
+							$"({guardUnits[j].Color.Hex}) portent la MÊME couleur — deux blocs règle distincts pour deux " +
+							"familles différentes ? (collision exacte : les cartes des deux familles tombent exactement " +
+							"sur l'attendu partagé, seul le bloc la nomme)");
+					}
+					else
 					{
 						failures.Add(
-							$"gabarit : « {byColor[i].Name} » ({byColor[i].Color.Hex}) et « {byColor[j].Name} » " +
-							$"({byColor[j].Color.Hex}) ne sont qu'à {F(d)} l'une de l'autre (< {F(minSeparation)}) — " +
+							$"gabarit : « {guardUnits[i].Label} » ({guardUnits[i].Color.Hex}) et « {guardUnits[j].Label} » " +
+							$"({guardUnits[j].Color.Hex}) ne sont qu'à {F(d)} l'une de l'autre (< {F(minSeparation)}) — " +
 							$"au seuil de {F(maxDistance)} l'organe ne pourrait plus les distinguer : re-mesurer avant de verdir");
 					}
 				}

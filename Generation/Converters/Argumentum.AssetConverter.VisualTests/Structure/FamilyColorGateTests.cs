@@ -103,6 +103,11 @@ namespace Argumentum.AssetConverter.VisualTests.Structure
 			Assert.True(familyColors.Count > 0,
 				$"aucune couleur de famille parsée dans la clé css de {templatePath} — " +
 				"la clé est-elle absente, vide, ou sans bloc card.<famille> portant --color-background ?");
+			// Identité de BLOC (c.6714912295) : la garde de séparation court sur les blocs règle,
+			// pas sur les couleurs distinctes — deux familles différentes de même couleur rougissent.
+			var blocks = FamilyColorIntegrity.ParseFamilyBlocks(css);
+			Assert.True(blocks.Count > 0,
+				$"aucun bloc règle card.<famille> parsé dans {templatePath} alors que la vue aplatie en donne {familyColors.Count}");
 
 			var separations = familyColors.Keys
 				.SelectMany(a => familyColors.Keys.Where(b => string.CompareOrdinal(a, b) < 0)
@@ -175,7 +180,7 @@ namespace Argumentum.AssetConverter.VisualTests.Structure
 					$"part dominante min {(worstShare == null ? "n/a" : FamilyColorIntegrity.P(worstShare.Share))}");
 
 				allFailures.AddRange(
-					FamilyColorIntegrity.Check(cards, familyColors, measured)
+					FamilyColorIntegrity.Check(cards, familyColors, measured, blocks)
 						.Select(f => $"{lang} : {f}"));
 			}
 
