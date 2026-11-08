@@ -16,13 +16,13 @@ Les deux fichiers sont publiés en ligne, et le canal de publication les ressert
 
 AIF — Argument Interchange Format — est le format de référence issu de la recherche sur l’argumentation artificielle pour écrire un argument, l’inférence qui le produit, et les conflits qui l’attaquent. Il s’appuie sur les schèmes d’argumentation dressés par Douglas Walton : un schème est une forme d’argument légitime — l’expertise, l’analogie, les conséquences — accompagnée de ses questions critiques, celles dont la réponse sépare l’usage honnête du détournement.
 
-Un sophisme, dans ce cadre, est une exception à un schème : il imite une forme valable et saute la question qui l’aurait fait tomber. AIF et Walton font ce geste sur une vingtaine de sophismes ; Argumentum l’applique à son arbre, nœud par nœud, en décrivant pour chacun le schème légitime qu’il imite, ce que son attaque vise, et la question critique qu’il saute.
+Un sophisme, dans ce cadre, est une exception à un schème : il imite une forme valable et saute la question qui l’aurait fait tomber. AIF et Walton font ce geste sur une poignée de sophismes ; Argumentum l’applique à son arbre, nœud par nœud, en décrivant pour chacun le schème légitime qu’il imite, ce que son attaque vise, et la question critique qu’il saute.
 
-Mesuré le 8 novembre 2026 sur le corpus du dépôt : 1 064 nœuds sur 1 408 ont leur schème imité, 1 400 leur cible d’attaque, 1 212 leur question critique. Parmi les 145 nœuds dont l’attaque est typée directement, 87 s’attaquent à la règle d’inférence — le raisonnement lui-même —, 53 à la prémisse, et 5 seulement avancent une contre-conclusion. Le sophisme, le plus souvent, ne dit pas le contraire de ce qu’il attaque : il fait semblant de conclure.
+Mesuré le 8 novembre 2026 sur le corpus du dépôt : 1 064 nœuds sur 1 408 ont leur schème imité, 1 400 leur cible d’attaque, 1 212 leur question critique. Parmi les 145 nœuds dont l’attaque est typée directement, 87 s’attaquent à la règle d’inférence — le raisonnement lui-même —, 53 à la prémisse, et 5 seulement avancent une contre-conclusion. Le sophisme, le plus souvent, ne contredit pas une conclusion : il s’en prend à ce qui y mène.
 
 ## La question posée au plus haut nœud
 
-La taxonomie descend jusqu’à dix niveaux, et la mécanique d’un nœud vaut souvent pour toute sa descendance. La question critique se pose donc au nœud le plus haut où elle est vraie, et les descendants l’héritent. Douze questions écrites à ce jour couvrent ainsi des groupes entiers : « Raisonnement biaisé », 257 nœuds, l’est par dix questions posées à sa tête et à ses premiers enfants ; « Procédé rhétorique » le devient par deux, dont celle-ci, posée au nœud « Humour » :
+La taxonomie descend jusqu’à dix niveaux, et la mécanique d’un nœud vaut souvent pour toute sa descendance. La question critique se pose donc au nœud le plus haut où elle est vraie, et les descendants l’héritent. Douze questions écrites à ce jour couvrent ainsi des groupes entiers : « Raisonnement biaisé », 257 nœuds, l’est par dix questions posées à sa tête, à ses trois enfants et à six de ses petits-enfants ; « Procédé rhétorique » le devient par deux, dont celle-ci, posée au nœud « Humour » :
 
 > Le rire a-t-il établi quelque chose sur le fond, ou a-t-il seulement évité d’y répondre ?
 
