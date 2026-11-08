@@ -210,5 +210,106 @@ namespace Argumentum.AssetConverter.Tests.Structure
 			FamilyColorIntegrity.ParseFamilyColors(null).Count.Should().Be(0);
 			FamilyColorIntegrity.ParseFamilyColors("").Count.Should().Be(0);
 		}
+
+		// ── Transposition Virtues (organe 3) : le gabarit Virtues mesure le 07/11 porte 7 blocs
+		//    famille sur 8 en LISTES de sélecteurs (renommage additif), chacune précédée d'un
+		//    commentaire CSS « /* --- */ ». Ces témoins éprouvent ce qui a changé au moteur. ──
+
+		/// <summary>La forme mesurée du gabarit Virtues : commentaire avant le sélecteur, liste
+		/// de trois générations séparées par virgule + retour à la ligne. La couleur doit
+		/// atteindre CHAQUE nom — l'ancien regex n'attrapait que le dernier avant l'accolade.</summary>
+		[Fact]
+		public void Parser_Assigns_The_Color_To_Every_Name_Of_A_Selector_List()
+		{
+			const string css = @"
+                /* ------ exactitude / rigueur / sens quantitatif ------ */
+                card.exactitudeMathématique,
+                card.rigueurMathématique,
+                card.sensQuantitatif {
+                    --color-background: #08af93;
+                }
+                card.ancienNom, card.nouveauNom { --color-background: #0054a4; }";
+
+			var colors = FamilyColorIntegrity.ParseFamilyColors(css);
+
+			colors.Count.Should().Be(5);
+			colors["exactitudeMathématique"].Hex.Should().Be("#08af93");
+			colors["rigueurMathématique"].Hex.Should().Be("#08af93");
+			colors["sensQuantitatif"].Hex.Should().Be("#08af93");
+			colors["ancienNom"].Hex.Should().Be("#0054a4");
+			colors["nouveauNom"].Hex.Should().Be("#0054a4");
+		}
+
+		/// <summary>Un sélecteur descendant (<c>card.X .icone</c>) porte la couleur d'un ENFANT :
+		/// l'assigner à la famille X ferait verdir l'organe sur un fond de carte d'une autre
+		/// couleur. Le fullmatch de liste doit l'exclure — tout comme un commentaire CONTENU dans
+		/// un corps de règle, qui ne doit casser aucun parse.</summary>
+		[Fact]
+		public void Parser_Ignores_Descendant_Selectors_And_Comments_In_Bodies()
+		{
+			const string css = @"
+                card.famille .icone { --color-background: #ff0000; }
+                card.valide {
+                    /* le bleu du panneau, pas de la carte : ignoré au profit de la ligne suivante */
+                    --color-text-1: #123456;
+                    --color-background: #0054a4;
+                }";
+
+			var colors = FamilyColorIntegrity.ParseFamilyColors(css);
+
+			colors.Count.Should().Be(1);
+			colors["valide"].Hex.Should().Be("#0054a4");
+			colors.ContainsKey("famille").Should().BeFalse();
+		}
+
+		/// <summary>LE témoin du changement de garde : les alias hérités du renommage additif
+		/// partagent exactement la couleur de leur famille (mesuré : 7 paires à 0,0 sur le gabarit
+		/// Virtues). Sur l'ancienne garde — paires sur les NOMS — un gabarit sain à 8 familles et
+		/// 15 noms rougissait 7 fois ; la garde court désormais sur les couleurs distinctes.</summary>
+		[Fact]
+		public void Aliases_Sharing_A_Color_Do_Not_Trip_The_Separation_Guard()
+		{
+			var colors = new Dictionary<string, FamilyColorIntegrity.Rgb>
+			{
+				["argumentsVertueux"] = Rgb(0x55, 0x55, 0x55),
+				["argumentValable"] = Rgb(0x55, 0x55, 0x55),   // alias : même couleur
+				["exactitudeMathématique"] = Turquoise,
+				["rigueurMathématique"] = Turquoise,            // alias : même couleur
+				["sensQuantitatif"] = Turquoise,                // alias : même couleur
+				["abusDeLangage"] = Bleu,
+				["tricherie"] = Jaune,
+			};
+
+			var failures = FamilyColorIntegrity.Check(
+				new[]
+				{
+					Card("argumentum_virtues_0..argument_valable_face.png", "argumentValable"),
+					Card("argumentum_virtues_1.1..argument_fondé_face.png", "exactitudeMathématique"),
+				},
+				colors,
+				new[]
+				{
+					Measured("argumentum_virtues_0..argument_valable_face.png", Rgb(0x55, 0x55, 0x55), 0.51),
+					Measured("argumentum_virtues_1.1..argument_fondé_face.png", Turquoise, 0.47),
+				});
+
+			failures.Should().BeEmpty();
+		}
+
+		/// <summary>Un nom présent dans DEUX blocs règle : le dernier gagne (comportement du
+		/// dictionnaire, documenté au lieu d'être découvert). Le renommage additif écrit les
+		/// générations dans UN bloc, mais un gabarit réorganisé doit rester déterministe.</summary>
+		[Fact]
+		public void Parser_Is_Deterministic_When_A_Name_Reappears_Last_Block_Wins()
+		{
+			const string css = @"
+                card.famille { --color-background: #111111; }
+                card.famille { --color-background: #222222; }";
+
+			var colors = FamilyColorIntegrity.ParseFamilyColors(css);
+
+			colors.Count.Should().Be(1);
+			colors["famille"].Hex.Should().Be("#222222");
+		}
 	}
 }
