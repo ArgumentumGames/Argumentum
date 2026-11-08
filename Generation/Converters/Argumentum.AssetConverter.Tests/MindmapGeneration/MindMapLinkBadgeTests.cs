@@ -182,19 +182,12 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 
         private async Task<XDocument> GenerateFallacyMm(FallacyMindMapDocumentConfig generator, string language)
         {
-            var originalInteractive = Program.IsInteractive;
-            try
-            {
-                Program.IsInteractive = false;
-                await generator.GenerateMindMapFile(BadgeFixtureFallacies(), _config, _tempTestDirectory, language);
-                var mmPath = Path.Combine(_tempTestDirectory, generator.DocumentName);
-                File.Exists(mmPath).Should().BeTrue("the mindmap file should have been created");
-                return XDocument.Parse(await File.ReadAllTextAsync(mmPath));
-            }
-            finally
-            {
-                Program.IsInteractive = originalInteractive;
-            }
+            // #1192/#2203: Program.IsInteractive is set once for the whole run at assembly
+            // level — a test must never assign it (ProcessWideStaticMutationGuard).
+            await generator.GenerateMindMapFile(BadgeFixtureFallacies(), _config, _tempTestDirectory, language);
+            var mmPath = Path.Combine(_tempTestDirectory, generator.DocumentName);
+            File.Exists(mmPath).Should().BeTrue("the mindmap file should have been created");
+            return XDocument.Parse(await File.ReadAllTextAsync(mmPath));
         }
 
         [Fact]
@@ -283,20 +276,12 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 DocumentName = "badge-virtues-fr.mm",
             };
 
-            var originalInteractive = Program.IsInteractive;
-            XDocument xmlDoc;
-            try
-            {
-                Program.IsInteractive = false;
-                await generator.GenerateMindMapFile(virtues, _config, _tempTestDirectory, "fr");
-                var mmPath = Path.Combine(_tempTestDirectory, generator.DocumentName);
-                File.Exists(mmPath).Should().BeTrue();
-                xmlDoc = XDocument.Parse(await File.ReadAllTextAsync(mmPath));
-            }
-            finally
-            {
-                Program.IsInteractive = originalInteractive;
-            }
+            // #1192/#2203: Program.IsInteractive is set once for the whole run at assembly
+            // level — a test must never assign it (ProcessWideStaticMutationGuard).
+            await generator.GenerateMindMapFile(virtues, _config, _tempTestDirectory, "fr");
+            var mmPath = Path.Combine(_tempTestDirectory, generator.DocumentName);
+            File.Exists(mmPath).Should().BeTrue();
+            var xmlDoc = XDocument.Parse(await File.ReadAllTextAsync(mmPath));
 
             (xmlDoc.Root?.Element("node")?.Attribute("TEXT")?.Value).Should().Be("Vertus",
                 "native fr link on the root — no badge");
