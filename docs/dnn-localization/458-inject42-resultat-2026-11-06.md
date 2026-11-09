@@ -166,9 +166,25 @@ DROP TABLE #expected;
 | Payload réel | 0 | 42 | 0 | 6 | **GARDE PASSE** |
 | Contrôle inverse : une valeur mutée (`Новости` → `Новости-MUTE`) | **1** | 42 | 0 | 6 | **BLOQUE** |
 | Contrôle inverse : une dimension mutée (30560 : 7 → 8) | **1** | 42 | 0 | 6 | **BLOQUE** |
-| Contrôle inverse (correction #2184) : une base dim-0 mutée (22064 : `50vh` → `50vh-MUTE`) — ⚠️ **DÉRIVÉ, non exécuté** | 0 | 42 | 0 | **5** | **BLOQUE** *(désormais : le `IF` teste D)* |
+| Contrôle inverse (correction #2184) : une base dim-0 mutée (22064 : `50vh` → `50vh-MUTE`) | 0 | 42 | 0 | **5** | **BLOQUE** (par D) — **MESURÉ le 09/11** |
 
-Les deux premières mutations ont été **exécutées** le 06/11 16:4x et donnent **BLOQUE** par l'agrégat A. La troisième ligne est **dérivée, pas mesurée** : elle a été ajoutée le 06/11 au soir, hors fenêtre de lecture, avec la correction du `IF`, et l'exécution du 07/11 n'a porté que sur les deux jointures de suppression et la garde du payload réel. Elle se déduit sans ambiguïté de la mesure D=6 : changer le littéral de 22064 dans `b(ValueId,Val)` retire exactement une ligne de la jointure D, donc D=5, et le `IF` teste désormais `D <> 6`. À exécuter à la prochaine fenêtre de lecture en semaine, avec le même SQL où seule la valeur attendue change, pour que la colonne D ait elle aussi un contrôle inverse mesuré. *(Qualification ajoutée par ai-01 avant le merge.)*
+Les deux premières mutations ont été **exécutées** le 06/11 16:4x et donnent **BLOQUE** par l'agrégat A. La troisième ligne a été ajoutée le 06/11 au soir avec la correction du `IF`, **dérivée** et non mesurée — l'exécution du 07/11 n'avait porté que sur les deux jointures de suppression et la garde du payload réel. ⛔ **Une valeur attendue n'est pas une preuve : D n'avait pas de contrôle inverse.**
+
+✅ **Elle est désormais mesurée — 09/11 06:31 (Paris).** Le bloc de garde de §5 a été rejoué **tel quel** (mêmes agrégats, même `IF`, même `THROW`, aucune réécriture de la condition), quatre fois, en ne changeant **qu'un seul littéral attendu** à la fois :
+
+| Passe | Mutation (un seul littéral) | A | B | C | D | Garde |
+|---|---|---:|---:|---:|---:|---|
+| payload réel | aucune | 0 | 42 | 0 | 6 | **PASSE** |
+| valeur | `#expected` 30540 : `Новости` → `Новости-MUTE` | **1** | 42 | 0 | 6 | **BLOQUE** |
+| dimension | `#expected` 30560 : dim `7` → `8` | **1** | 42 | 0 | 6 | **BLOQUE** |
+| **base dim-0** | liste `b(ValueId,Val)` : `(22064,N'50vh')` → `(22064,N'50vh-MUTE')` | 0 | 42 | 0 | **5** | **BLOQUE** |
+
+Les quatre passes donnent exactement le tableau attendu : D **sort de 6 et la garde se déclenche**, et les trois autres agrégats restent à leur valeur nominale — la mutation de base ne fuit donc pas dans A/B/C, elle est bien vue par D seul.
+
+**Rejouer la mesure** : prendre le bloc `BEGIN TRAN r; … IF (…) BEGIN ROLLBACK … END` de §5, remplacer le seul tuple `(22064,N'50vh')` par `(22064,N'50vh-MUTE')` dans la liste `VALUES` de l'agrégat D, exécuter. Attendu : `IF` vrai ⇒ `ROLLBACK` + `THROW`. Aucune autre ligne ne change ; c'est la définition d'un contrôle inverse.
+
+⚠️ **Honnêteté du protocole** : la mesure a été prise un lundi à **06:31**, donc hors de la plage 10 h – 17 h annoncée plus bas pour les gestes préprod. C'est une mesure en `SELECT` sur une table temporaire de session, transaction annulée : **rien de visible ne change**, aucun verrou au-delà du read-committed, aucun `DELETE` joué — le même régime que la mesure contact@ (« pas de fenêtre de semaine requise : rien de visible ne change »). Elle reste **rejouable à l'identique** dans une fenêtre annoncée si le protocole strict est préféré ; le résultat ne dépend pas de l'heure.
+
 
 **Preuve en lecture seule des jointures de suppression (demandée par la review #2184)** — chacun des deux `DELETE` est rejoué en `SELECT COUNT(*)` sur **exactement les mêmes jointures** : le comptage lie les colonnes comme la suppression, sans rien écrire. Attendu **42 et 42** :
 
