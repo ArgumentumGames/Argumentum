@@ -73,7 +73,31 @@ NEVER = {"UrlKey", "Path", "Email", "Link", "Images", "AlbumThumbnail", "Image",
 # it is a silent hole in the todo, and it grows as the corpus does. The anchored
 # form fires on the same 23 rows, none lost, none gained. `lorem`, `ipsum` and
 # `dolor` stay unanchored: they only ever occur inside filler text.
-DEMO = re.compile(r"lorem|ipsum|dolor|\b(demo|example|sample|placeholder|cta)\b", re.I)
+#
+# Measured 08/11 (grain #2164): the filter and the model did not agree on what a
+# demo IS. On scope apps 52,33,49 the filter excluded 15 rows while the model
+# declined 4 MORE under rule (6b) — `New image`, `New video`, `Edit this by
+# clicking the pencil icon…` and `Test` — so the real demo surface was 19, not 15.
+# The model covered the gap by declining; the filter alone would have paid to
+# translate four CMS placeholders into seven languages.
+#
+# The three new forms are anchored to the WHOLE VALUE, because these are exact
+# 2sxc placeholder strings, not prose to be found inside a sentence: a title such
+# as "New image of the debate" is content and must survive (inverse control
+# below). Measured on the pivot, 631 rows / 175 candidates: `^new (image|video)$`
+# fires on exactly the 2 placeholder rows, `^edit this by clicking` on exactly 1,
+# `^test$` on exactly 1 in scope — no real-content collision anywhere in the
+# corpus (the five other `Test`/`Test 2` rows are already translated and never
+# reach a todo; they are NOT matched here, which is deliberate: widening past the
+# measured surface would need its own inverse controls).
+DEMO = re.compile(
+    r"lorem|ipsum|dolor"
+    r"|\b(demo|example|sample|placeholder|cta)\b"
+    r"|^\s*new (image|video)\s*$"
+    r"|^edit this by clicking\b"
+    r"|^\s*test\s*$",
+    re.I,
+)
 # A decline must be EXPLICIT. The model answers this token, and nothing else,
 # when a value is a CMS default rather than content. An empty string is not a
 # decline: a truncated answer, a wrong-shaped answer or a degenerate generation
@@ -475,6 +499,22 @@ def main():
         for drop in ("Demo Slide CR", "Demo Title", "Example which is still empty",
                      "Lorem ipsum dolor sit amet", "PLACEHOLDER"):
             assert DEMO.search(drop), f"DEMO must still exclude demo material: {drop!r}"
+        # The 08/11 extension, both ways. The four positive controls are the real
+        # pivot values the model used to decline under (6b) — the filter must now
+        # exclude them before a paid pass ever sees them. The inverse controls are
+        # the sentences those forms must NOT reach: the word inside real prose, and
+        # two values that merely START like a placeholder (`New image of the
+        # debate`, `Shortlink Test`) — the anchoring is the whole point, so both
+        # halves are asserted on the compiled regex itself.
+        for drop in ("New image", "New video", "Test",
+                     "Edit this by clicking the \npencil icon when you mouse-over."):
+            assert DEMO.search(drop), f"DEMO must exclude the 2sxc placeholder: {drop!r}"
+        for keep in ("Ce test évalue votre raisonnement",
+                     "New image of the debate"):
+            assert not DEMO.search(keep), f"DEMO wrongly excludes real content: {keep!r}"
+        # Deliberately NOT pinned: `Test 2`, `Shortlink Test` (out-of-scope rows that
+        # never reach a todo) — asserting they must be kept would freeze a choice as
+        # if it were a requirement. The exact-value form matches only `Test`.
         # A field listed in both allowlists is a *reading* ambiguity, not an
         # evaluation-order dependency: `NEVER or field not in TRANSLATABLE`
         # short-circuits deterministically and NEVER wins either way. Measured
@@ -521,7 +561,7 @@ def main():
         print(f"self-test OK: round-trip content-identical (LF tree and CRLF checkout, "
               f"in-cell CRLF preserved), {len(rows)} rows, {len(todo)} to translate, "
               f"{stats.get('demo', 0)} demo rows excluded; URL rule accepts the own prefix and "
-              f"rejects a foreign one; DEMO anchored on 4 inverse controls; the 4 accounting "
+              f"rejects a foreign one; DEMO anchored on 6 inverse controls; the 4 accounting "
               f"classes partition 6 fabricated answers")
         # `--self-test` is TERMINAL. It used to fall through to the selection and,
         # without `--dry-run`, to a real paid pass: measured 23/10 on ai-01, one
