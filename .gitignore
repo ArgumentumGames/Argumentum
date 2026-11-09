@@ -211,6 +211,30 @@ yarn-error.log*
 /DNNPlatform/ontologie_fr.html
 /DNNPlatform/virtues_fr.svg
 
+# Deuxième génération des artefacts servis à la racine DNNPlatform — MÊME famille
+# que les 12 noms exacts ci-dessus, mais des NOMS DIFFÉRENTS : majuscule initiale,
+# suffixe `_ext`, `Argumentum_Virtues_MindMap_*`, `.content.svg`. Déposés le 26/10
+# (les `_ext`) et le 31/10 (les versions inlinantes) par le geste de déploiement
+# des mindmaps et de l'ontologie — cf. #2181, dont la cible de lien est
+# `/fallacies_<lang>.html`.
+#
+# Pourquoi des motifs et non 33 noms exacts, contrairement au bloc ci-dessus : la
+# liste exacte n'a pas couvert la génération suivante, et c'est précisément ce qui
+# a rempli `git status` (mesuré 09/11 : 33 entrées non suivies à cette racine).
+# Les motifs sont ancrés à la racine ET suffixés, donc bornés : aucun fichier de
+# `Cards/` ni de `Portals/` ne peut les rencontrer. Un `git ls-files` sur ces
+# familles rend 0 (vérifié 09/11) — aucune source n'est masquée.
+/DNNPlatform/Fallacies_*_ext.html
+/DNNPlatform/Fallacies_*.content.svg
+/DNNPlatform/Virtues_*.html
+/DNNPlatform/Argumentum_Virtues_MindMap_*.content.svg
+/DNNPlatform/argumentum_virtues.owl
+
+# Worktree de régénération, atteint par la jonction courte `D:\A1114` (cf. CLAUDE.md,
+# « launch shell and path length ») : c'est un checkout de travail, jamais du contenu
+# du dépôt. Il apparaissait comme `?? .prep-1114-worktree/` dans chaque `git status`.
+/.prep-1114-worktree/
+
 # Fichiers de configuration locaux
 /Chatgpt-plugin/azure-function/local.settings.json
 
