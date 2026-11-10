@@ -13,6 +13,22 @@
   var article = AsList(Data).FirstOrDefault();
   var render = GetService<ToSic.Sxc.Services.IRenderService>();
 
+  // #2220 — en fa (PersianCalendar) le ValueFilter `ShowFrom <= [DateTime:Now]` de la
+  // requête « News Detail » rend un flux vide alors que l'article est publiable :
+  // App.Data["News"] le trouve (12 articles, slug présent, ShowFrom passé). Repli :
+  // relire l'article depuis App.Data en réappliquant les gardes de publication.
+  // Brouillons : App.Data exclut déjà les non-publiés pour l'anonyme (publishing filter 2sxc).
+  // ShowFrom <= maintenant : RÉAPPLIQUÉ ici (comparaison DateTime typée, culture-free).
+  // Contrôle inverse : slug inexistant ⇒ article reste null ⇒ 404 (mesuré).
+  if (article == null) {
+    var urlKey = System.Web.HttpContext.Current.Request.QueryString["details"];
+    if (!string.IsNullOrEmpty(urlKey)) {
+      article = AsList(App.Data["News"]).FirstOrDefault(n =>
+        string.Equals((string)n.UrlKey, urlKey, System.StringComparison.InvariantCultureIgnoreCase)
+        && (n.ShowFrom == null || ((DateTime)n.ShowFrom) <= DateTime.Now));
+    }
+  }
+
   @* Show article not found notification and stop processing *@
   if(article == null) {
     <h1>@Resources.LabelEventNotExists</h1>
