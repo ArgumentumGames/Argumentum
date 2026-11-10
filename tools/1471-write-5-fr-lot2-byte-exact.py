@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# #1471 lot fr (sous-lot 2) — écriture byte-exact de 5 cellules link_fr vides (4 fiches fallaeasies, une paire).
+# #1471 lot fr (sous-lot 2) — écriture byte-exact de cellules link_fr vides (5 proposées, 2 retenues : voir révision ai-01).
 # Pattern #1554 : splice par offsets absolus, machine à états CSV, BOM + CRLF préservés,
 # re-parse complet, anti-overwrite, --write gated.
 #
@@ -10,16 +10,24 @@
 #    exemple = monter la barre ; baisser la barre = même procédé vers le bas — paire nommée).
 #   Rejets : 105 (miroir tradition vs précédent négatif), 726 (parties→tout ≠ propositions),
 #            800 (équivoque = double sens ≠ évasivité).
+#
+# Révision ai-01 (2026-11-10, avant merge) : 2 cellules retenues sur 5 — 112 et 974.
+#   Retirées, chacune pour collision ou miroir avec une AUTRE carte du corpus :
+#   - 759 « Conclusion hâtive » : la fiche s'intitule « Généralisation hâtive » = libellé exact
+#     de la carte 598 (deck) ; référent de 598, pas de 759 (link_en 759 = Jumping_to_conclusions).
+#   - 834 « Comparaison abusive » : la fiche s'intitule « Fausse équivalence » = libellé exact
+#     de la carte 768 (deck), qui porte déjà fr.wikipedia Fausse_équivalence.
+#   - 1011 « Exigence relâchée » : la fiche définit « modifier les standards de preuve une fois
+#     atteints POUR REJETER un argument » = relever la barre (974) ; abaisser est le miroir.
+# ⛔ Ne pas ré-ajouter ces 3 entrées : le script réécrirait des cellules vides à dessein.
 # ⛔ 10 vides justifiés (#1435) non touchés : PK 1,33,658,681,690,798,826,876,1004,1281.
 import csv, io, os, sys
 
-CSV_PATH = r"D:\Dev\Argumentum\Cards\Fallacies\Argumentum Fallacies - Taxonomy.csv"
+CSV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "Cards", "Fallacies",
+                        "Argumentum Fallacies - Taxonomy.csv")
 TARGETS = {
     112:  "https://www.fallaeasies.com/fr/fallacies/moralistic-fallacy",
-    759:  "https://www.fallaeasies.com/fr/fallacies/hasty-generalization",
     974:  "https://www.fallaeasies.com/fr/fallacies/moving-the-goalposts",
-    1011: "https://www.fallaeasies.com/fr/fallacies/moving-the-goalposts",
-    834:  "https://www.fallaeasies.com/fr/fallacies/false-equivalence",
 }
 JUSTIFIED = {1, 33, 658, 681, 690, 798, 826, 876, 1004, 1281}
 WRITE = "--write" in sys.argv
