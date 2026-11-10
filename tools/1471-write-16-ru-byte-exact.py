@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# #1471 lot ru (1) — écriture byte-exact de 16 cellules link_ru vides.
+# #1471 lot ru (1) — écriture byte-exact de cellules link_ru vides (16 proposées, 14 retenues : voir révision ai-01).
 # Pattern #1554 : splice par offsets absolus, machine à états CSV, BOM + CRLF préservés,
 # re-parse complet, anti-overwrite, --write gated.
 #
@@ -25,6 +25,19 @@
 #   exact), PK 726 (composition fautive ≠ composition), PK 973/1011 (la paire buts mobiles
 #   va à 974, cf. révision ai-01 #2225).
 #
+# Révision ai-01 (2026-11-10 soir, avant merge) : 14 cellules sur 16 — règle du titre étendue
+#   à TOUS les nœuds de l'arbre (pas seulement le deck), en russe ET en anglais (le slug est anglais) :
+#   - 844 retirée : le titre « Вина по ассоциации » est le libellé ru exact du nœud 1372
+#     « Culpabilité par association » (7.3.2.1, sous Sophisme génétique) ; 844 « Sophisme
+#     d'association » (5.2.3) est un autre concept (association indue de caractéristiques).
+#   - 953 retirée : « cherry-picking » = libellé anglais exact de la carte 603 « Picorage de
+#     données » (deck), qui porte déjà ru.wikipedia Cherry_picking.
+#   - 974 → 973 : « moving-the-goalposts » = libellé anglais exact de la carte 973 « Changement
+#     de cap » (6.2), parent de 974 (6.2.1) et 1011 (6.2.3). Le précédent fr #2225 était faux
+#     sur ce point ; corrigé dans la même PR (974 link_fr vidée).
+#   Les jumeaux hors deck (705, 843, 1350, 761) portent le même libellé que leur cible-carte :
+#   la carte garde la fiche.
+# ⛔ Ne pas ré-ajouter 844, 953, 974.
 # ⛔ 10 vides justifiés (#1435) non touchés : PK 1,33,658,681,690,798,826,876,1004,1281.
 import csv, io, os, sys
 
@@ -41,10 +54,8 @@ TARGETS = {
     697:  BASE + "false-cause",
     758:  BASE + "non-sequitur",
     768:  BASE + "false-equivalence",
-    844:  BASE + "guilt-by-association",
     846:  BASE + "ambiguity",
-    953:  BASE + "cherry-picking",
-    974:  BASE + "moving-the-goalposts",
+    973:  BASE + "moving-the-goalposts",
     977:  BASE + "nirvana-fallacy",
     989:  BASE + "burden-of-proof",
     1371: BASE + "genetic-fallacy",
