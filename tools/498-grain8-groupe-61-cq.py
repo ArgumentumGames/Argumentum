@@ -74,7 +74,7 @@ REF_COLS = ("AIF_skosDirectRef", "AIF_skosExceptionRef", "AIF_skosOther")
 SAMPLE = {
     "6.1": "La présentation des faits reflète-t-elle ce que la source peut établir, ou l’arrangement tient-il lieu de connaissance qu’il ne fonde pas ?",
     "6.1.1": "L’affirmation correspond-elle à ce que celui qui la formule sait être vrai, ou soutient-il à dessein ce qu’il sait faux ?",
-    "6.1.2": "La source invoquée soutient-elle réellement ce qui lui est attribuée, ou le poids qu’on lui prête tient-il lieu de preuve qu’elle ne fournit pas ?",
+    "6.1.2": "La source invoquée soutient-elle réellement ce qui lui est attribué, ou le poids qu’on lui prête tient-il lieu de preuve qu’elle ne fournit pas ?",
 }
 
 CARRIER_HEAD = "6.1"        # tête PORTEUSE : (a) refs + (b) attaque → CQ propre
