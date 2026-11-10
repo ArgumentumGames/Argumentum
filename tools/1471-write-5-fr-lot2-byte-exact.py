@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# #1471 lot fr (sous-lot 2) — écriture byte-exact de cellules link_fr vides (5 proposées, 2 retenues : voir révision ai-01).
+# #1471 lot fr (sous-lot 2) — écriture byte-exact de cellules link_fr vides (5 proposées, 1 retenue : voir révisions ai-01).
 # Pattern #1554 : splice par offsets absolus, machine à états CSV, BOM + CRLF préservés,
 # re-parse complet, anti-overwrite, --write gated.
 #
@@ -19,7 +19,13 @@
 #     de la carte 768 (deck), qui porte déjà fr.wikipedia Fausse_équivalence.
 #   - 1011 « Exigence relâchée » : la fiche définit « modifier les standards de preuve une fois
 #     atteints POUR REJETER un argument » = relever la barre (974) ; abaisser est le miroir.
-# ⛔ Ne pas ré-ajouter ces 3 entrées : le script réécrirait des cellules vides à dessein.
+# Seconde révision ai-01 (2026-11-10 soir, #2228) : 974 retirée à son tour — 1 cellule sur 5 (112).
+#   La fiche « moving-the-goalposts » porte le libellé anglais EXACT de la carte 973 « Changement de cap »
+#   (path 6.2, text_en « Moving the goalposts », link_fr fr.wikipedia Changer_les_règles_du_jeu) :
+#   974 (6.2.1) et 1011 (6.2.3) sont ses deux enfants (relever / abaisser), et une fiche
+#   « direction-agnostique » est celle du parent. La première révision n'avait comparé que les
+#   libellés français des cartes ; la règle compare désormais tous les nœuds, en langue visée ET en anglais.
+# ⛔ Ne pas ré-ajouter ces 4 entrées : le script réécrirait des cellules vides à dessein.
 # ⛔ 10 vides justifiés (#1435) non touchés : PK 1,33,658,681,690,798,826,876,1004,1281.
 import csv, io, os, sys
 
@@ -27,7 +33,6 @@ CSV_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "Cards
                         "Argumentum Fallacies - Taxonomy.csv")
 TARGETS = {
     112:  "https://www.fallaeasies.com/fr/fallacies/moralistic-fallacy",
-    974:  "https://www.fallaeasies.com/fr/fallacies/moving-the-goalposts",
 }
 JUSTIFIED = {1, 33, 658, 681, 690, 798, 826, 876, 1004, 1281}
 WRITE = "--write" in sys.argv
