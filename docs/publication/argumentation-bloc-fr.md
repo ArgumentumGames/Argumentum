@@ -21,7 +21,7 @@ cellules traduites en 2026 et les articles d'Actus).
 <h3>&nbsp;</h3>
 <h3>Comment parcourir la taxonomie</h3>
 <p>La carte mentale se parcourt comme un arbre : chaque famille se déploie en sous-familles jusqu’aux sophismes eux-mêmes, et chaque nœud porte ses liens de référence. Intégrée dans une page web, elle ouvre dans une modale le détail de chaque type d’argument fallacieux.</p>
-<p>L’ontologie se lit avec un outil du web sémantique : chaque sophisme y est un concept SKOS, relié à ses parents, ses enfants et ses termes voisins. Les correspondances AIF notent, sophisme par sophisme, ce que le procédé imite, ce qu’il attaque et comment, et la question critique qui permet de le démasquer.</p>
+<p>L’ontologie se lit avec un outil du web sémantique : chaque sophisme y est un concept SKOS, relié à ses parents, ses enfants et ses termes voisins. Les correspondances AIF notent, branche par branche, ce que le procédé imite, ce qu’il attaque et comment, et la question critique qui permet de le démasquer.</p>
 <p>La taxonomie des vertus de l’argumentation décrit à son tour les pratiques qui rendent un échange solide. Elle est proposée dans les mêmes formats : <a href="/Virtues_fr.html" target="_blank" rel="noopener">sa carte mentale</a> et <a href="/argumentum_virtues.owl" target="_blank" rel="noopener">son ontologie</a>.</p>
 <h3>&nbsp;</h3>
 <h3>À quoi elle sert</h3>
@@ -35,7 +35,7 @@ cellules traduites en 2026 et les articles d'Actus).
 </ul>
 ```
 
-*(Dans le bloc ci-dessus, les espaces avant « : », « ? » et autour de « × » sont
+*(Dans le bloc ci-dessus, les espaces avant « : » et autour de « × » sont
 des U+00A0 insécables ; les apostrophes sont U+2019.)*
 
 ## Pourquoi ces choix
@@ -52,10 +52,12 @@ des U+00A0 insécables ; les apostrophes sont U+2019.)*
 - **Aucun chiffre fragile** : pas de compte de familles ni de sophismes dans le
   texte (le compte évolue — #1288 en a déjà retiré un) ; la description reste
   structurelle.
-- **« Sophisme par sophisme »** décrit la granularité des correspondances AIF
-  (schéma imité, attaque, question critique — les trois colonnes
-  `AIF_skos*`/`AIF_attackType`/`AIF_criticalQuestion`), pas une complétude
-  revendiquée nœud par nœud.
+- **« Branche par branche »** (correction ai-01, 10/11) : une correspondance
+  AIF (schéma imité, attaque, question critique — les colonnes
+  `AIF_skos*`/`AIF_attackType`/`AIF_criticalQuestion`) est posée au plus haut
+  nœud où elle est vraie et vaut pour la branche qu'il porte (méthode #498).
+  « Sophisme par sophisme » laissait entendre une notation à chaque feuille, ce
+  que le corpus ne fait pas.
 - Les intitulés des renvois sont **les titres publiés exacts** (mesurés dans le
   registre, espaces insécables compris).
 
