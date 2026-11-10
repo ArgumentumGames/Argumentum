@@ -11,6 +11,8 @@
 
 Héritage par `path` (instrument du 06/11, contrôle inverse inclus). Le total reproduit à l'unité le tableau d'ai-01 : **336 nœuds sans (a) dans les 7 groupes**, dont **6 têtes de groupe hétérogènes** (2.1, 2.3, 3.3, 5.2, 6.2, 7.2 — un nœud chacune) dont aucune mécanique unique n'est vraie pour tout le sous-arbre : elles rejoignent les 8 têtes nues déjà documentées pour (c). Restent **330 nœuds** à couvrir, ventilés ci-dessous.
 
+> ⚠️ **Correction du 10/11 (ai-01, review du grain)** : les comptes ci-dessous sont des **sans-(a)**, pas des tailles de sous-arbre — re-vérifiés 14/14 par l'instrument (définition (a) : `AIF_skosExceptionRef` non vide, ou `AIF_skosDirectRef` avec cible en `_Inference`/`_Scheme`, héritée du plus proche ancêtre porteur ; base `25327fef`). Cinq sous-groupes contiennent des porteurs internes qui expliquent l'écart sous-arbre/sans-(a) : 2.2 (porteurs 300/322/337/340 → 56 nœuds couverts, reste la tête), 2.3.2.2.1 (432), 3.3.1.3.1 (677), 5.2.1.2/.4 (836/838), 6.2.3.4 (1020).
+
 | Groupe | Sous-groupe | Nœuds | Proposition (§3) |
 |---|---|---:|---|
 | 2.1 Procédé rhétorique | 2.1.2 Humour | 28 | référence (.1/.2) + phrase (.3) |
@@ -21,7 +23,7 @@ Héritage par `path` (instrument du 06/11, contrôle inverse inclus). Le total r
 | 3.3 Résultat invalide | 3.3.1 Imprécision | 13 | référence |
 | | 3.3.2 Erreur de calcul | 9 | référence |
 | | 3.3.3 Opération inappropriée | 6 | référence |
-| 5.2 Comparaison fallacieuse | 5.2.1 Comparaison abusive | 3 | référence à arbitrer (.1) + phrase (.3) ; tête = lacune déjà en place |
+| 5.2 Comparaison fallacieuse | 5.2.1 Comparaison abusive | 3 | lacune (.1, arbitrage ai-01 du 10/11) + phrase (.3) ; tête = lacune déjà en place |
 | 6.2 Changement de cap | 6.2.1 Exigence renforcée | 18 | phrase (tête) + référence (.3/.4/.1.1.1.1) + phrase (.1/.2/.5) |
 | | 6.2.2 Beurre et argent du beurre | 20 | référence (tête) |
 | | 6.2.3 Exigence relâchée | 10 | référence (.1/.3) + phrase (.2/.5) |
@@ -52,7 +54,9 @@ Chaque ligne : le nœud (mécanique posée **au plus haut nœud où elle est vra
 | 2.1.2.2 Satire (13) | idem | **référence** | La satire dérive l'absurde de la thèse adverse : même imitation de la reductio, sans la preuve que l'absurde s'ensuit. |
 | 2.1.2.3 Cynisme (3) | aucun | **phrase** : « imite la défiance méthodique envers les affirmations — la dévaluation généralisée tient lieu d'examen » | Le cynisme ne réfute pas : il dévalue par avance. Aucun scheme AIF ne couvre la défiance générale ; la phrase nomme ce qui est imité sans fabriquer de scheme. |
 
-### 2.1.3 Poésie — lacune déclarée (52 nœuds d'un coup)
+### 2.1.3 Poésie — lacune déclarée (52 nœuds, descentes testées)
+
+> **Test des descentes (demandé par ai-01 10/11)** : les six enfants immédiats ont été passés en revue un à un — 2.1.3.1 Jeu de sonorités (7), 2.1.3.2 Répétition (13), 2.1.3.3 Adjonction (5), 2.1.3.4 Ellipse (9), 2.1.3.5 Déplacement (8), 2.1.3.6 Substitution (9) + la tête (1) = 52. Aucun ne porte une mécanique inférentielle distincte de l'ornement : tous restent dans la lacune de la tête. Aucune descente retenue.
 
 | Nœud | Candidat | Proposition | Justification |
 |---|---|---|---|
@@ -73,11 +77,14 @@ Chaque ligne : le nœud (mécanique posée **au plus haut nœud où elle est vra
 | 2.3.2.3 Jeu psychologique (41) | **aucun** | **lacune déclarée** | La manipulation psychologique exploite des mécanismes (culpabilisation, menace implicite) sans contenu propositionnel imité. Fail-loud sur le plus gros sous-arbre du groupe. |
 | 2.3.2.4 Conditionnement social (14) | `PopularOpinion_Inference` (porté par 1.1.1, 1.2, 2.x — refs 3/70/177) | **référence** | « Tout le monde le fait / le pense » comme raison d'adopter : le conditionnement par la norme du groupe imite l'argument d'acceptation générale, dont l'appel au peuple est l'exception type (précédents 3, 70, 177). |
 
-### 2.3.3 Communication non verbale — lacune déclarée (84 nœuds d'un coup)
+### 2.3.3 Communication non verbale — référence sur .5 (décision ai-01) + lacune tête (81)
+
+> **Test des descentes (demandé par ai-01 10/11, tranché le même jour)** : les six enfants immédiats ont été passés en revue — 2.3.3.1 Paralangage (6), 2.3.3.2 Chronémique (1), 2.3.3.3 Oculésique (2), 2.3.3.4 Kinésique (70), 2.3.3.5 Apparence (3), 2.3.3.6 Haptique (1) + la tête (1) = 84. **Une seule descente retenue : 2.3.3.5 Apparence → `Sign_Inference`** (le statut affiché comme signe — c.6775643852). Les cinq autres canaux et la tête restent lacune : ils transmettent des signaux, pas des inférences.
 
 | Nœud | Candidat | Proposition | Justification |
 |---|---|---|---|
-| 2.3.3 tête (84) | **aucun** au niveau tête | **lacune déclarée** : « No honest AIF scheme imitated — le canal non verbal ne porte pas de proposition » | Les six canaux (paralangage, chronémique, oculésique, kinésique, apparence, haptique) transmettent des **signaux**, pas des inférences. Le précédent voisin 2.3.1 Conditionnement → `Sign_Inference` couvre l'association-apprentissage, pas le canal. **Note pour le PR de groupe** : un descendant est discutable (2.3.3.5 Apparence — le statut affiché comme signe, candidat `Sign_Inference`) : à trancher en descendant, jamais depuis la tête. |
+| 2.3.3 tête (81) | **aucun** au niveau tête | **lacune déclarée** : « No honest AIF scheme imitated — le canal non verbal ne porte pas de proposition » | Les canaux transmettent des **signaux**, pas des inférences. Le précédent voisin 2.3.1 Conditionnement → `Sign_Inference` couvre l'association-apprentissage, pas le canal. |
+| 2.3.3.5 Apparence (PK 590, 3 — dont .1 Marqueur socioculturel, .2 Habillement) | `Sign_Inference` (porté par 2.3.1 Conditionnement) | **référence** (décision ai-01 10/11) | L'apparence affiche un statut **comme signe** : le marqueur socioculturel et l'habillement fonctionnent par association-signale, exactement la mécanique du scheme du voisin 2.3.1. |
 
 ### 3.3 Résultat invalide — référence aux trois têtes (28 nœuds)
 
@@ -87,19 +94,19 @@ Chaque ligne : le nœud (mécanique posée **au plus haut nœud où elle est vra
 | 3.3.2 Erreur de calcul (9) | `Deductive_Inference` (porté par 4.3 Déduction invalide, 4.2) | **référence** | Le calcul est une déduction : le double compte ou l'erreur numérique imite la rigueur déductive du calcul, l'erreur tenant lieu de démonstration (CQ posée : « le résultat du calcul est-il exact et vérifiable, ou l'erreur qu'il contient tient-elle lieu de démonstration ? »). |
 | 3.3.3 Opération inappropriée (6) | `Deductive_Inference` | **référence** | L'opération mathématique appliquée à des objets qui n'y ont pas droit (sophisme mathématique, détournement de symbole, pseudo-science) imite la validité formelle de l'opération. |
 
-### 5.2.1 Comparaison abusive — le seul point d'arbitrage réel du grain
+### 5.2.1 Comparaison abusive — arbitré par ai-01 le 10/11
 
 | Nœud | Candidat (porteur existant) | Proposition | Justification |
 |---|---|---|---|
 | 5.2.1 tête (1) | — | **lacune déjà en place** (`skosOther` : « No native AIF Inference scheme for non-faulty comparison ; DirectRef-only ») | Précédent arbitré, non rouvert ici. |
-| 5.2.1.1 Comparaison incomplète (1) | `Analogy_Inference` (porté par le **frère** 5.2.2 Fausse analogie, 5.2.2.2/.3/.4 — dont Fausse équivalence) | **référence, À ARBITRER au PR** | La comparaison incomplète omet les différences qui détruisent la similarité — exactement la CQ de l'analogie (`DifferencesUndermineSimilarity_Conflict`, déjà en DirectRef sur la tête 5.2). **Tension** : la prose de la tête (« no native scheme for non-faulty comparison ») tranche l'inverse pour la *comparaison non fautive*. Défendre au PR : la comparaison **incomplète** est structurellement une analogie tronquée, là où la tête parlait de la comparaison en général. |
+| 5.2.1.1 Comparaison incomplète (PK 835, 1) | — | **lacune déclarée** (arbitrage ai-01 du 10/11 : « 5.2.1.1 reste une lacune ») | La proposition `Analogy_Inference` (par le frère 5.2.2) avait été défendue comme analogie tronquée, en tension avec la prose arbitrée de la tête (« no native scheme for non-faulty comparison »). Le coordinateur tranche pour la **cohérence avec la tête** : pas de référence posée, la lacune de la tête couvre .1. |
 | 5.2.1.3 Comparaison incohérente (1) | aucun | **phrase** : « imite la comparaison complète et à critères stables — l'incohérence des critères tient lieu de mesure » | Le défaut n'est pas la similarité mais la stabilité des critères : aucun scheme AIF ne couvre la cohérence de mesure. |
 
 ### 6.2.1 Exigence renforcée — phrase (tête + .1/.2/.5) + référence (.3/.4/feuille 977)
 
 | Nœud | Candidat (porteur existant) | Proposition | Justification |
 |---|---|---|---|
-| 6.2.1 tête (PK 974, 1 nœud) | aucun scheme AIF « standard of proof » | **phrase** : « imite la fixation légitime d'un standard de preuve avant acceptation — l'exigence est déplacée après coup » | La tête **est** la carte deck « Déplacer les buts » (PK 974). AIF n'a pas de scheme de charge de preuve ; la phrase nomme la norme imitée. |
+| 6.2.1 tête (PK 974 « Exigence renforcée », 1 nœud) | aucun scheme AIF « standard of proof » | **phrase** : « imite la fixation légitime d'un standard de preuve avant acceptation — l'exigence est déplacée après coup » | AIF n'a pas de scheme de charge de preuve ; la phrase nomme la norme imitée. *(Correctif du 10/11 : la carte deck « Déplacer les buts » = « Moving the goalposts » est le PK **973**, qui est la tête de groupe hétérogène **6.2** « Changement de cap », pas cette tête-ci ; le PK 974 porte « Exigence renforcée » / « Stronger requirements ».)* |
 | 6.2.1.1 Objections sans fin (9) | aucun | **phrase** : « imite l'examen critique exhaustif — l'itération sans fin d'objections tient lieu de réfutation » | Le doute méthodique n'est pas un scheme AIF nommé. |
 | 6.2.1.2 Confondre explication et réfutation (3) | aucun | **phrase** : « imite la réfutation — une explication concurrente est présentée comme une défaite de la thèse » | La distinction expliquer/réfuter n'a pas de scheme AIF. |
 | 6.2.1.3 Preuve d'un seul type exigée (2) | `EvidenceToHypothesis_Inference` (porté par 3.1, 3.2) | **référence** | Exiger un seul type de preuve imite la norme de convergence des preuves : le scheme des données vers l'hypothèse, restreint de façon défaisable. |
@@ -137,20 +144,23 @@ Chaque ligne : le nœud (mécanique posée **au plus haut nœud où elle est vra
 |---|---|---|---|
 | 7.2.3 tête (8) | `Ethotic_Inference` (porté par 7.3 Ad hominem, 1360) | **référence** | Tout le sous-arbre (questions piégées, convaincre le public plutôt que l'interlocuteur, projection, arguments factices) disqualifie **la source à l'avance** : il imite l'examen éthique légitime de la crédibilité — l'ethos waltonien — dont l'ad hominem est déjà l'exception référencée (précédent 7.3, même famille Obstruction). |
 
-## 4. Bilan du cadrage
+## 4. Bilan du cadrage — partition re-dérivée par l'instrument (correctif du 10/11)
 
-| Proposition | Nœuds couverts | Détail |
+> La première version de ce bilan (106 / 19 / 163) était fausse, pour **trois causes mesurées** : (1) des **tailles de sous-arbre** utilisées là où il faut compter les **sans-(a)** — l'ancienne ligne « 2.3.2.2 (25) » comptait 20 nœuds qui portent déjà (a) par héritage du porteur 2.3.2.2.1 (PK 432) ; (2) **quatre têtes intermédiaires** (2.1.2, 2.3.2, 6.2.3, 7.2.2) n'étaient affectées à rien ; (3) les arbitrages du coordinateur du 10/11 (5.2.1.1 → lacune, 2.3.3.5 → référence) n'étaient pas appliqués. Re-dérivation : définition (a) du cadrage du 06/11 (`ExceptionRef` non vide, ou `DirectRef` avec cible `_Inference`/`_Scheme`, héritée du plus proche ancêtre porteur), base `25327fef`, §1 re-vérifié **14/14**. Les lignes ci-dessous sont **non chevauchantes** : chaque nœud sans-(a) compte exactement une fois.
+
+| Proposition | Nœuds | Détail (non chevauchant) |
 |---|---:|---|
-| **Référence** (`ExceptionRef` prête) | **106** | 3.3.1/.2/.3 (28) · 6.2.2 (20) · 2.3.2.1/.4 (24) · 7.2.3 (8) · 2.1.2.1/.2 (24) · 6.2.1.3/.4/977 (6, dont 2 déjà dicibles) · 6.2.3.1/.3 (6, dont 5 nouveaux) · 7.2.2.2 (1) · 5.2.1.1 à arbitrer (1) |
-| **Phrase** (colonne à créer) | **19** | 2.2 tête (1) · 2.1.2.3 (3) · 6.2.1 tête+.1+.2+.5 (14) · 6.2.3.2/.5 (3) · 7.2.2.1/.3 (5) · 5.2.1.3 (1) |
-| **Lacune déclarée** (`skosOther`) | **163** | 2.1.3 Poésie (52) · 2.3.3 non verbale (84) · 2.3.2.2/.3 (66→25+41) · 5.2.1 tête (1, déjà en place) |
-| Têtes hétérogènes (rejoignent les 8 têtes nues) | 6 | 2.1, 2.3, 3.3, 5.2, 6.2, 7.2 |
+| **Référence** (`ExceptionRef` prête) | **120** | 3.3.1 (13) · 3.3.2 (9) · 3.3.3 (6) · 6.2.2 (20) · 7.2.3 (8) · 2.1.2.1 (11) · 2.1.2.2 (13) · 2.3.2.1 (10) · 2.3.2.4 (14) · 6.2.1.3 (2) · 6.2.1.4 (2) · 6.2.1.1.1.1/977 (2) · 6.2.3.1 (1) · 6.2.3.3 (5) · 7.2.2.2 (1) · **2.3.3.5 Apparence (3, décision ai-01 10/11)** |
+| **Phrase** (colonne `AIF_imitatedScheme` à créer) | **25** | 2.2 tête (1) · 2.1.2.3 (3) · 6.2.1 tête (1) + .1 (7) + .2 (3) + .5 (1) · 6.2.3.2 (2) + .5 (1) · 7.2.2.1 (4) + .3 (1) · 5.2.1.3 (1) |
+| **Lacune déclarée** (`skosOther`) | **181** | 2.1.3 Poésie (52, descentes testées, aucune retenue) · 2.3.3 hors .5 (81) · 2.3.2.2 hors porteur 432 (5) · 2.3.2.3 (41) · 5.2.1 tête (1, déjà en place) + 5.2.1.1 (1, arbitrage ai-01 10/11) |
+| Têtes intermédiaires sans mécanique propre | 4 | 2.1.2, 2.3.2, 6.2.3, 7.2.2 (enfants hétérogènes — même statut que les têtes de groupe) |
+| Têtes de groupe hétérogènes (rejoignent les 8 têtes nues) | 6 | 2.1, 2.3, 3.3, 5.2, **6.2 (PK 973 « Déplacer les buts » / « Moving the goalposts »)**, 7.2 |
+| **Total** | **336** | 120 + 25 + 181 + 4 + 6 |
 
-(Le compte « référence » inclut les recouvrements : 6.2.3.4 et 2.3.2.2.1 déjà porteurs ne sont pas à écrire ; total écritures nettes ≈ 330.)
-
-**Les deux décisions que ce cadrage laisse au PR de groupe ou au coordinateur** :
-1. **5.2.1.1** : référence `Analogy_Inference` vs la prose arbitrée de la tête (« no native scheme for non-faulty comparison ») — défendue au §5.2.1, à trancher en review.
-2. **2.3.3.5 Apparence** : descente possible vers `Sign_Inference` (le statut affiché comme signe) — la tête reste lacune dans tous les cas.
+**Décisions tranchées par le coordinateur le 10/11** (c.6775643852) — intégrées ci-dessus :
+1. **5.2.1.1 Comparaison incomplète** : reste une **lacune** (la défense `Analogy_Inference` de la première version n'est pas retenue ; cohérence avec la prose arbitrée de la tête).
+2. **2.3.3.5 Apparence** : **descente retenue** → `Sign_Inference` en référence (3 nœuds), la tête 2.3.3 reste lacune sur les 81 autres.
+3. **Descentes 2.3.3 et 2.1.3 testées avant fermeture** : testés enfant par enfant (§2.3.3, §2.1.3) — une retenue (2.3.3.5), aucune pour 2.1.3.
 
 ## 5. Ce que ce cadrage n'établit pas
 
@@ -158,4 +168,4 @@ Chaque ligne : le nœud (mécanique posée **au plus haut nœud où elle est vra
 
 ---
 
-*Un cadrage de (a) qui pose 106 nœuds en références sourcées par des précédents du corpus, 19 en phrases nommées, 163 en lacunes déclarées — et qui ne fabrique aucun scheme. C'est le fail-loud du DoD appliqué à l'échelle des groupes.*
+*Un cadrage de (a) qui pose 120 nœuds en références sourcées par des précédents du corpus, 25 en phrases nommées, 181 en lacunes déclarées, 4 têtes intermédiaires et 6 têtes de groupe sans mécanique unique (336 au total, partition re-dérivée par l'instrument) — et qui ne fabrique aucun scheme. C'est le fail-loud du DoD appliqué à l'échelle des groupes.*
