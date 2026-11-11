@@ -6,7 +6,16 @@ Table de correspondance DÉCIDÉE (#135 c.6650903268, ai-01 05/11) — ce script
 - **Cartes numériques** : un zip par langue des PNG de ``density-0/Fallacies``.
   Le nombre de faces attendues est DÉRIVÉ du CSV (colonne ``carte`` non vide) —
   jamais codé en dur (#1288 : le compte fait partie du contrat, il bouge avec le CSV).
+  **Identité dérivée (11/11, pool #458 c.6788623855)** : chaque fichier PNG est
+  joint à une rangée du deck via la colonne ``path`` (code hiérarchique) +
+  séparateur **double point** + slug (``text_<lang>`` normalisé). Un PNG qui ne
+  correspond à aucune rangée du deck est signalé **nominativement avec son PK
+  CSV et son état ``carte``** (arbre pré-#1288 : ``1.2.2..`` = PK 96, retiré du
+  deck le 05/09). Un compte juste ne suffit pas : un arbre de 175 dont le deck
+  est faux doit rougir.
   Le dos partagé (``card_001.png``) est requis.
+- **Manifeste** (``--build``) : ``manifest.json`` + ``manifest.md`` avec tailles
+  et sha256 de chaque zip et de chaque fichier, deck dérivé, HEAD du dépôt.
 - **Cartes légères** : uniquement si l'arbre de la release porte une ``density-1``.
   Sinon le paquet DISPARAÎT et la planche ``Fallacies_Web_Thumbnails_A4`` de chaque
   langue le remplace (décision de la table) — le signal « absent » est un résultat,
@@ -28,7 +37,9 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
+import re
 import sys
 import tempfile
 import zipfile
@@ -56,12 +67,109 @@ def expected_faces(repo: Path) -> int:
         return sum(1 for r in csv.DictReader(f) if (r.get("carte") or "").strip())
 
 
+FACE_RE = re.compile(r"^argumentum_fallacies_(?P<rest>.+)_face\.png$")
+
+
+def sha256_file(p: Path) -> str:
+    h = hashlib.sha256()
+    with p.open("rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def derive_deck(repo: Path) -> dict:
+    """{path_code: row} pour les lignes 'carte' non vide. Abort sur path dupliqué."""
+    deck = {}
+    with open(repo / TAXONOMY_CSV, encoding="utf-8-sig", newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if not (row.get("carte") or "").strip():
+                continue
+            if "path" not in (reader.fieldnames or []):
+                # corpus minimal (compte-seul) : pas de colonne path -> identité non vérifiable
+                deck[f"#{row.get('pk') or row.get('PK')}"] = row
+                continue
+            code = (row.get("path") or "").strip()
+            if not code:
+                raise SystemExit(f"ABORT: ligne deck PK={row.get('PK')} a carte mais path vide")
+            if code in deck:
+                raise SystemExit(f"ABORT: deux lignes deck partagent path {code!r} "
+                                 f"(PK {deck[code]['PK']} et {row.get('PK')})")
+            deck[code] = row
+    if not deck:
+        raise SystemExit("ABORT: dérivation du deck vide — l'instrument est cassé, pas la donnée")
+    return deck
+
+
+def derive_full_map(repo: Path) -> dict:
+    """{path: (PK, carte)} sur TOUTES les lignes — annotation ; le deck reste l'autorité."""
+    fm = {}
+    with open(repo / TAXONOMY_CSV, encoding="utf-8-sig", newline="") as f:
+        for row in csv.DictReader(f):
+            p = (row.get("path") or "").strip()
+            if p and p not in fm:
+                fm[p] = (row.get("PK") or row.get("pk") or "?", (row.get("carte") or "").strip())
+    return fm
+
+
+def _annotate(rest: str, full_map) -> str:
+    """Identifie le code propre d'un nom de fichier dans le CSV complet (deck ou non)."""
+    cands = [p for p in full_map if rest.startswith(p + "..")]
+    if not cands:
+        return "code CSV inconnu"
+    p = max(cands, key=len)
+    pk, carte = full_map[p]
+    return f"PK {pk} · carte={'vide' if not carte else carte}"
+
+
+def match_faces(deck: dict, face_names: list, full_map=None, want_slug: dict = None):
+    """Joint les noms de fichiers aux codes ``path`` du deck (plus long préfixe ``..``).
+
+    Format mesuré : ``argumentum_fallacies_<path>..<slug>_face.png`` (double point).
+    Retourne (matched, extra, missing, collisions) — extra = [(nom, annotation PK)] ;
+    collisions indécidables = le fichier doit rougir, jamais deviner.
+    """
+    want_slug = want_slug or {}
+    full_map = full_map or {}
+    homes, extra = {}, []
+    for name in face_names:
+        rest = FACE_RE.match(name).group("rest")
+        cands = [p for p in deck if rest.startswith(p + "..")]
+        if not cands:
+            extra.append((name, _annotate(rest, full_map)))
+            continue
+        homes.setdefault(max(cands, key=len), []).append(name)
+
+    matched, collisions = {}, {}
+    for p, names in sorted(homes.items()):
+        if len(names) == 1:
+            matched[p] = names[0]
+            continue
+        want = want_slug.get(p)
+
+        def _slug_of(n, p=p):
+            r = FACE_RE.match(n).group("rest")
+            return r[len(p) + 2:] if r.startswith(p + "..") else None
+        hit = [n for n in names if want and _slug_of(n) == want]
+        if len(hit) == 1:
+            matched[p] = hit[0]
+            extra.extend((n, _annotate(FACE_RE.match(n).group("rest"), full_map)
+                          + " · collision gagnée par le slug")
+                         for n in names if n != hit[0])
+        else:
+            collisions[p] = sorted(names)
+    missing = sorted(set(deck) - set(matched))
+    return matched, extra, missing, collisions
+
+
 def survey_cards(tree: Path, lang: str, density: str) -> dict:
     """Inventorie density-N/Fallacies d'une langue. Signale, ne devine pas."""
     d = tree / lang / "Images" / density / "Fallacies"
     pngs = sorted(d.glob("*.png")) if d.is_dir() else []
     faces = [p for p in pngs if p.name != "card_001.png"]
     back = d / "card_001.png"
+    named = [p.name for p in faces if FACE_RE.match(p.name)]
     return {
         "dir": str(d),
         "exists": d.is_dir(),
@@ -69,6 +177,8 @@ def survey_cards(tree: Path, lang: str, density: str) -> dict:
         "back": back.is_file(),
         "files": len(pngs),
         "bytes": sum(p.stat().st_size for p in pngs),
+        "named_faces": named,
+        "unnamed": len(faces) - len(named),
     }
 
 
@@ -89,6 +199,8 @@ def survey_mindmaps(repo: Path, lang: str) -> dict:
 
 def survey(tree: Path, repo: Path, langs: list[str]) -> dict:
     want = expected_faces(repo)
+    deck = derive_deck(repo)
+    full_map = derive_full_map(repo)
     cards, light, mind = {}, {}, {}
     for lang in langs:
         c = survey_cards(tree, lang, "density-0")
@@ -102,6 +214,8 @@ def survey(tree: Path, repo: Path, langs: list[str]) -> dict:
         mind[lang] = survey_mindmaps(repo, lang)
     return {
         "expected_faces_from_csv": want,
+        "deck": deck,
+        "full_map": full_map,
         "cards_png": cards,
         "cards_light": light,
         "mindmaps": mind,
@@ -130,13 +244,76 @@ def hard_failures(s: dict, langs: list[str]) -> list[str]:
             out.append(f"{lang}: {c['faces']} faces != {c['expected_faces']} attendues (CSV)")
         if not c["back"]:
             out.append(f"{lang}: dos partagé card_001.png manquant")
+        # Identité dérivée (11/11) : jointure path→PNG, annotation PK.
+        # Tollérance : si AUCUN fichier ne suit le motif canonique (corpus synthétique,
+        # arbre historique), on retombe sur les gardes de compte — le self-test les couvre.
+        named = c.get("named_faces", [])
+        if named:
+            want_slug = {p: (row.get("text_" + lang) or "").strip().lower().replace(" ", "_")
+                         for p, row in s["deck"].items()}
+            _m, extra, missing, collisions = match_faces(
+                s["deck"], named, s["full_map"], want_slug)
+            for name, why in extra:
+                out.append(f"{lang}: PNG hors deck : {name} ({why})")
+            if missing:
+                out.append(f"{lang}: rangées deck sans PNG : "
+                           + ", ".join(missing[:8]) + ("…" if len(missing) > 8 else ""))
+            for p, names in sorted(collisions.items()):
+                out.append(f"{lang}: collision indécidable sur path {p} : {names}")
         holes = s["mindmaps"][lang]["holes"]
         if holes:
             out.append(f"{lang}: SVG mindmap manquants : {', '.join(holes)}")
         lt = s["cards_light"][lang]
         if lt["exists"] and lt["face_delta"] != 0:
             out.append(f"{lang}: density-1 {lt['faces']} faces != {lt['expected_faces']} (CSV)")
+        if lt["exists"] and lt.get("named_faces"):
+            want_slug_l = {p: (row.get("text_" + lang) or "").strip().lower().replace(" ", "_")
+                           for p, row in s["deck"].items()}
+            _ml, extra_l, missing_l, coll_l = match_faces(
+                s["deck"], lt["named_faces"], s["full_map"], want_slug_l)
+            for name, why in extra_l:
+                out.append(f"{lang}: density-1 PNG hors deck : {name} ({why})")
+            if missing_l:
+                out.append(f"{lang}: density-1 deck sans PNG : "
+                           + ", ".join(missing_l[:8]) + ("…" if len(missing_l) > 8 else ""))
+            for p, names in sorted(coll_l.items()):
+                out.append(f"{lang}: density-1 collision sur path {p} : {names}")
     return out
+
+
+def write_manifest(written: list[Path], s: dict, out: Path, repo: Path) -> None:
+    """Tailles + sha256 par zip et par fichier ; comptes dérivés, jamais en dur."""
+    import subprocess
+    head = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
+                          capture_output=True, text=True, cwd=repo).stdout.strip()
+    manifest = {
+        "repo_head": head,
+        "tool": "tools/135-build-download-zips.py",
+        "deck_derived": {"faces": s["expected_faces_from_csv"],
+                         "join": "CSV colonne path (code hiérarchique) + '..' + slug text_<lang>"},
+        "zips": [],
+    }
+    lines = [f"# Manifeste #135 — HEAD {head}", "",
+             f"- faces dérivées du CSV : {s['expected_faces_from_csv']}"]
+    for zpath in written:
+        per_file = {}
+        with zipfile.ZipFile(zpath) as z:
+            names = z.namelist()
+        # les sources sont les fichiers originaux (zips déjà écrits) : empreintes du zip
+        # et de chaque entrée relue depuis le zip (empreinte du contenu compressé = entrée).
+        with zipfile.ZipFile(zpath) as z:
+            for n in sorted(names):
+                per_file[n] = hashlib.sha256(z.read(n)).hexdigest()
+        entry = {"zip": zpath.name, "bytes": zpath.stat().st_size,
+                 "sha256": sha256_file(zpath), "entries": len(names),
+                 "per_file_sha256": per_file}
+        manifest["zips"].append(entry)
+        lines.append(f"- {zpath.name} : {entry['entries']} fichiers, "
+                     f"{entry['bytes']:,} o, sha256 `{entry['sha256'][:16]}…`")
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2),
+                                       encoding="utf-8")
+    (out / "manifest.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def build_zips(s: dict, tree: Path, repo: Path, langs: list[str], out: Path) -> list[Path]:
@@ -305,6 +482,49 @@ def self_test() -> int:
                     got = sorted(z.namelist())
                     if got != want_entries:
                         fails.append(f"D: {zname} contenu {got} != {want_entries}")
+        # ── corpus E : identité dérivée (11/11) — même COMPTE que le deck mais
+        #    un PNG hors deck doit être nommé avec son PK ; retrait d'un PNG du
+        #    deck doit être nommé comme manquant. Aucune langue saine signalée.
+        repo3 = tmp / "repo3"
+        tax3 = repo3 / TAXONOMY_CSV
+        tax3.parent.mkdir(parents=True)
+        tax3.write_text(
+            "pk,path,carte,text_fr\n"
+            "70,1.2,1,Préjugé\n"
+            "96,1.2.2,,\n"
+            "108,1.2.2.4,1,Appel à la nature\n"
+            "200,1.3,1,Faux dilemme\n",
+            encoding="utf-8-sig",
+        )
+        tree3 = tmp / "tree3"
+        d3 = tree3 / "fr/Images/density-0/Fallacies"
+        d3.mkdir(parents=True)
+        for fn in ["argumentum_fallacies_1.2..préjugé_face.png",
+                   "argumentum_fallacies_1.2.2..appel_à_la_nature_face.png",
+                   "argumentum_fallacies_1.2.2.4..appel_à_la_nature_face.png",
+                   "argumentum_fallacies_1.3..faux_dilemme_face.png",
+                   "card_001.png"]:
+            (d3 / fn).write_bytes(b"x" * 10)
+        mdir3 = repo3 / "Cards/Fallacies/Mindmaps/fr"
+        mdir3.mkdir(parents=True)
+        for pat in MINDMAP_PATTERNS:
+            (mdir3 / pat.format(lang="fr")).write_text("<svg/>")
+        s3 = survey(tree3, repo3, ["fr"])
+        hf3 = hard_failures(s3, ["fr"])
+        # le compte est 4 faces vs 3 attendues ET l'extra doit être nommé PK 96
+        if not any("PK 96" in h for h in hf3):
+            fails.append(f"E: le PNG hors deck (arbre pré-#1288) n'est pas nommé PK 96 : {hf3}")
+        if not any("hors deck" in h for h in hf3):
+            fails.append("E: aucun 'PNG hors deck' signalé")
+        # contrôle inverse : retirer un PNG du deck -> 'sans PNG' nommé
+        (d3 / "argumentum_fallacies_1.3..faux_dilemme_face.png").unlink()
+        (d3 / "argumentum_fallacies_1.2.2..appel_à_la_nature_face.png").unlink()
+        s3 = survey(tree3, repo3, ["fr"])
+        hf3 = hard_failures(s3, ["fr"])
+        if not any("sans PNG" in h and "1.3" in h for h in hf3):
+            fails.append(f"E: le retrait d'un PNG du deck n'est pas signalé 'sans PNG 1.3' : {hf3}")
+        if any("hors deck" in h for h in hf3):
+            fails.append(f"E: extra signalé alors qu'il a été retiré : {hf3}")
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
@@ -369,6 +589,8 @@ def main() -> int:
         print()
         for p in written:
             print(f"écrit : {p.name} — {p.stat().st_size:,} o")
+        write_manifest(written, s, out, repo)
+        print(f"manifeste : {out / 'manifest.json'} (+ manifest.md)")
     return 0
 
 
