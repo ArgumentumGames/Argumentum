@@ -4,7 +4,7 @@
 **Grain** : 10 du plan du 10/11 ([#498 c.6665070534](https://github.com/ArgumentumGames/Argumentum/issues/498#issuecomment-6665070534)) — *« mesure du DoD 2, lecture seule : les 116 correspondances, avec le type déclaré et l'étroitesse mesurée »*. Le DoD 2 : **« `broadMatch` quand le sophisme est plus étroit que le schéma »**.
 
 > ⛔ **0 écriture CSV.** Deux instruments lecture-seule rejouables + ce document de verdicts. Rien d'autre.
-> **Instruments** : [`tools/498-grain10-mappingtype-dump.py`](../../tools/498-grain10-mappingtype-dump.py) — reproduit les 116 lignes (PK, type déclaré, path, libellé FR, cibles) ; [`tools/498-grain10-mappingtype-reclass.py`](../../tools/498-grain10-mappingtype-reclass.py) — applique Q1-Q3 aux 116 lignes et **asserte** la partition 61 inchangées + 55 reclassées, broad 102 / close 2 / narrow 4 / related 8. Les verdicts vivent ici.
+> **Instruments** : [`tools/498-grain10-mappingtype-dump.py`](../../tools/498-grain10-mappingtype-dump.py) — reproduit les 116 lignes (PK, type déclaré, path, libellé FR, cibles) ; [`tools/498-grain10-mappingtype-reclass.py`](../../tools/498-grain10-mappingtype-reclass.py) — applique Q1-Q3 aux 116 lignes et **asserte** la partition 60 inchangées + 56 reclassées, broad 103 / close 1 / narrow 4 / related 8 (révision ai-01 du 11/11 : 879 retournée, §3.5). Les verdicts vivent ici.
 
 ---
 
@@ -49,11 +49,11 @@ La doctrine ci-dessus mesure une **extension** ; elle ne regardait pas **ce que 
 
 | Type | Déclaré | Recommandé (Q1-Q3) | Flux |
 |---|---:|---:|---|
-| `skos:broadMatch` | 64 | **102** | +46 entrées (16 Q1 + 29 Q3 mécanique + 878 tranchée) − 8 sorties (PK 2 → narrow, 7 têtes → related) = **+38 net** |
-| `skos:closeMatch` | 33 | **2** | −31 sorties (29 Q3 mécanique + 878 tranchée + 696 → related) |
+| `skos:broadMatch` | 64 | **103** | +47 entrées (16 Q1 + 29 Q3 mécanique + 878 et 879 tranchées) − 8 sorties (PK 2 → narrow, 7 têtes → related) = **+39 net** |
+| `skos:closeMatch` | 33 | **1** | −32 sorties (29 Q3 mécanique + 878 et 879 tranchées + 696 → related) |
 | `skos:narrowMatch` | 19 | **4** | −16 sorties (Q1) + 1 entrée (PK 2, Q2 scheme unique) = **−15 net** |
 | `skos:relatedMatch` | 0 | **8** | +8 (7 têtes §3.3 + 696 §3.4 — classe introduite par Q2) |
-| **Total** | **116** | **116** | **55 lignes changent de type** |
+| **Total** | **116** | **116** | **56 lignes changent de type** |
 
 | Type déclaré | Lignes | Part |
 |---|---:|---:|
@@ -61,7 +61,7 @@ La doctrine ci-dessus mesure une **extension** ; elle ne regardait pas **ce que 
 | `skos:closeMatch` | 33 | 28 % |
 | `skos:narrowMatch` | 19 | 16 % |
 
-## 3. Verdicts — 61 inchangées, 55 reclassées (arbitrages Q1-Q3 du 10/11 appliqués)
+## 3. Verdicts — 60 inchangées, 56 reclassées (arbitrages Q1-Q3 du 10/11 appliqués, 879 retournée le 11/11)
 
 ### 3.1 Les 16 `narrowMatch` inversés — motif A, le plus net du corpus — **ARBITRÉ le 10/11 : `broadMatch` (Q1)**
 
@@ -142,7 +142,7 @@ Sous le régime R2, ces 32 `closeMatch` étaient **défendables** (le nom FR dé
 | 858 | Pente glissante sémantique ↔ VerbalSlipperySlope (scheme) | → `broadMatch` |
 | 859 | Argument de la barbe ↔ VerbalSlipperySlope (scheme) | → `broadMatch` |
 | 865 | Changement sémantique ↔ VagueVC (scheme) | → `broadMatch` |
-| **886** | **Polytélie ↔ ConflictingGoals_Conflict** | **✓ `closeMatch` retenu** — cible de conflit unique, et la polytélé est *littéralement* le conflit de buts (même défaut) |
+| **886** | **Polytélie ↔ ConflictingGoals_Conflict** | **✓ `closeMatch` retenu** — cible de conflit unique, et la polytélie est *littéralement* le conflit de buts (même défaut) |
 
 **Les 22 penchés `broadMatch`** (feuilles précises dont l'usage fallacieux est clairement plus étroit que le scheme complet) :
 
@@ -166,7 +166,7 @@ Sous le régime R2, ces 32 `closeMatch` étaient **défendables** (le nom FR dé
 | 864 | Jingle-jangle ↔ VagueVC | → `broadMatch` |
 | 867 | Confusion type-exemple ↔ Example_Inference | → `broadMatch` |
 | 875 | Motte castrale ↔ VagueVC | → `broadMatch` |
-| **879** | **Compliment empoisonné ↔ OpposedCommitment_Conflict** | **✓ `closeMatch` retenu** — cible de conflit unique ; le compliment empoisonné est l'attaque type de l'engagement opposé (même défaut) |
+| **879** | **Compliment empoisonné ↔ OpposedCommitment_Conflict** | **→ `broadMatch` (retournée par la review ai-01 du 11/11)** — passe le filtre mécanique (conflit unique), mais `OpposedCommitment_Conflict` est un conflit **générique** : il est aussi la cible de 777 « Inconsistance » et de 1297 « Preuve par assertion ». Le compliment empoisonné n'en est qu'une forme — et il est le fils de 878 « Insinuation », refusée pour la même raison. Plus étroit que sa cible ⇒ `broadMatch` |
 | 883 | Propagande noire ↔ ExpertOpinion | → `broadMatch` |
 | **878** | **Insinuation ↔ ConflictingGoals_Conflict** | **→ `broadMatch` (candidate refusée)** — passe le filtre mécanique (conflit unique) mais l'insinuation n'est pas *le* conflit de buts : défaut différent |
 | 1023 | Raisonnement biaisé ↔ Bias_Inference (tête famille 6.3) | → `broadMatch` |
@@ -180,19 +180,19 @@ Sous le régime R2, ces 32 `closeMatch` étaient **défendables** (le nom FR dé
 | 177 | Langage persuasif (2.1.1) ↔ PopularOpinion + EstablishedRule (E) | union → `broadMatch` (inchangé) |
 | 799 | Définition inexacte (5.1) ↔ VerbalClassification (E) | scheme unique → `broadMatch` (inchangé) |
 
-**Bilan §3.5** : 32 R2 → **29 `broadMatch` + 2 `closeMatch` (886, 879) + 1 refusée vers broad (878)** ; 4 ambigus inchangés broad. La review peut retourner les trois tranchées nommées — elles sont énumérées ci-dessus.
+**Bilan §3.5** : 32 R2 → **29 `broadMatch` + 1 `closeMatch` (886) + 2 refusées vers broad (878, 879)** ; 4 ambigus inchangés broad. Des trois tranchées nommées, la review ai-01 du 11/11 a retourné **879** (initialement retenue `closeMatch`).
 
-### 3.6 Les cohérentes après arbitrages (61 inchangées + 55 reclassées = 116)
+### 3.6 Les cohérentes après arbitrages (60 inchangées + 56 reclassées = 116)
 
 > **Correctif de décompte (10/11)** : la version initiale comptait « 65 cohérentes » en incluant les **10 `closeMatch` R2** du §3.5 — qui y étaient simultanément « à arbitrer ». Les mêmes 10 lignes comptaient deux fois ; 65 − 10 = **55 lignes réellement inchangées à l'époque**, et la partition initiale « 65 + 25 + 26 = 116 » n'était pas une partition (65 + 25 + 36 = 126 avec le vrai R2 = 32). La partition fermée ci-dessous re-dérive tout de l'instrument ([`tools/498-grain10-mappingtype-reclass.py`](../../tools/498-grain10-mappingtype-reclass.py), rejouable, assertions intégrées).
 
-**Les 61 inchangées (cohérentes déclarées et confirmées par Q1-Q3)** :
+**Les 60 inchangées (cohérentes déclarées et confirmées par Q1-Q3)** :
 
 - **56 `broadMatch`** — les 52 feuilles/têtes de mécanisme R1 : 4, 33, 34, 133, 153, 300, 322, 340, 357, 432, 595, 614, 621, 632, 633, 658, 697, 707, 726, 750, 758, 759, 777, 802, 804, 808, 827, 834, 838, 842, 856, 862, 866, 888, 953, 1020, 1066, 1083, 1087, 1090, 1092, 1104, 1148, 1175, 1198, 1281, 1297, 1313, 1360, 1361, 1371, 1398 — **plus les 4 « ambigus » du §3.5** (3, 70, 177, 799), que Q3 rend cohérents en broad.
-- **2 `closeMatch`** : 886 (Polytélie ↔ ConflictingGoals_Conflict), 879 (Compliment empoisonné ↔ OpposedCommitment_Conflict) — seuls survivants du filtre Q3.
+- **1 `closeMatch`** : 886 (Polytélie ↔ ConflictingGoals_Conflict) — seul survivant du filtre Q3 (879 retournée en review, §3.5).
 - **3 `narrowMatch`** : 677, 705, 727 (§3.2).
 
-**Les 55 reclassées (une par une, par motif)** :
+**Les 56 reclassées (une par une, par motif)** :
 
 | Motif | Lignes | Vers |
 |---|---:|---|
@@ -201,16 +201,16 @@ Sous le régime R2, ces 32 `closeMatch` étaient **défendables** (le nom FR dé
 | B — tête à scheme unique (§3.3, Q2) | 1 (PK 2) | `narrowMatch` |
 | B — tête closeM (§3.4, Q2) | 1 (696) | `relatedMatch` |
 | C — R2 scheme/union/ExceptionRef (§3.5, Q3) | 29 | `broadMatch` |
-| C — R2 candidate refusée (§3.5, tranchée) | 1 (878) | `broadMatch` |
+| C — R2 candidates refusées (§3.5, tranchées) | 2 (878, 879) | `broadMatch` |
 
 ## 4. Synthèse
 
-**Partition fermée** : 61 inchangées + 55 reclassées = **116** (aucune ligne double-comptée, aucun retrait — Q2 interdit de retirer une tête).
+**Partition fermée** : 60 inchangées + 56 reclassées = **116** (aucune ligne double-comptée, aucun retrait — Q2 interdit de retirer une tête).
 
 | Type | Déclaré | Recommandé (Q1-Q3) |
 |---|---:|---:|
-| `skos:broadMatch` | 64 | **102** |
-| `skos:closeMatch` | 33 | **2** (886, 879) |
+| `skos:broadMatch` | 64 | **103** |
+| `skos:closeMatch` | 33 | **1** (886) |
 | `skos:narrowMatch` | 19 | **4** (677, 705, 727, 2) |
 | `skos:relatedMatch` | 0 | **8** (1, 356, 696, 833, 846, 876, 973, 1280) |
 
@@ -218,7 +218,7 @@ Sous le régime R2, ces 32 `closeMatch` étaient **défendables** (le nom FR dé
 
 1. **Le sens SKOS de `narrowMatch` s'applique-t-il tel quel ?** → **Oui (Q1)** : les 16 du §3.1 passent à `broadMatch` — correction mécanique en une passe, famille 5 surtout.
 2. **Une tête englobante porte-t-elle un `MappingType` ?** → **Oui, jamais retirée (Q2)** : scheme unique englobé → `narrowMatch` (PK 2) ; conflit ou union → `relatedMatch` sans inclusion (les 8 autres).
-3. **La convention d'extension pour R2** → **Lettre stricte du DoD 2 (Q3)** : `closeMatch` réservé au cas « cible de conflit unique ET même défaut » ; tout le reste (scheme, union, ExceptionRef) → `broadMatch`. Survivent : 886, 879. La candidate 878 est refusée (défaut différent).
+3. **La convention d'extension pour R2** → **Lettre stricte du DoD 2 (Q3)** : `closeMatch` réservé au cas « cible de conflit unique ET même défaut » ; tout le reste (scheme, union, ExceptionRef) → `broadMatch`. Survit : 886. Les candidates 878 et 879 sont refusées (défaut différent ; 879 retournée en review le 11/11).
 
 ## 5. Ce que cette mesure n'établit pas
 
@@ -226,4 +226,4 @@ Sous le régime R2, ces 32 `closeMatch` étaient **défendables** (le nom FR dé
 
 ---
 
-*Une mesure qui trouvait 25 lignes inversées et 36 dont le sort dépendait d'une convention non fixée — les arbitrages Q1-Q3 du 10/11 tranchent tout : 55 lignes reclassées, 0 retrait, une distribution cible broad 102 / close 2 / narrow 4 / related 8. Les 16 narrowMatch à l'envers restent le défaut le plus mécanique du corpus AIF — une passe de correction les éteint dès le GO.*
+*Une mesure qui trouvait 25 lignes inversées et 36 dont le sort dépendait d'une convention non fixée — les arbitrages Q1-Q3 du 10/11 tranchent tout : 56 lignes reclassées, 0 retrait, une distribution cible broad 103 / close 1 / narrow 4 / related 8. Les 16 narrowMatch à l'envers restent le défaut le plus mécanique du corpus AIF — une passe de correction les éteint dès le GO.*
