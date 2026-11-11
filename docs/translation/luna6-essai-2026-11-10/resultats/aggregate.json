@@ -1,0 +1,1233 @@
+{
+ "per_stage": {
+  "axis-2.1-c": {
+   "runs": 11,
+   "propositions": 37,
+   "severite": {
+    "moyen": 27,
+    "nuance": 7,
+    "grossier": 3
+   },
+   "verdicts": {
+    "meilleur": 35,
+    "pire": 2
+   },
+   "judged": 37,
+   "precision": 0.946,
+   "degradation": 0.054
+  },
+  "axis-6.3-b": {
+   "runs": 6,
+   "propositions": 30,
+   "severite": {
+    "grossier": 3,
+    "moyen": 20,
+    "nuance": 7
+   },
+   "verdicts": {
+    "meilleur": 28,
+    "pire": 2
+   },
+   "judged": 30,
+   "precision": 0.933,
+   "degradation": 0.067
+  },
+  "axis-6.3-c": {
+   "runs": 22,
+   "propositions": 71,
+   "severite": {
+    "moyen": 47,
+    "nuance": 20,
+    "grossier": 4
+   },
+   "verdicts": {
+    "meilleur": 69,
+    "pire": 2
+   },
+   "judged": 71,
+   "precision": 0.972,
+   "degradation": 0.028
+  },
+  "clean": {
+   "runs": 5,
+   "propositions": 25,
+   "severite": {
+    "grossier": 7,
+    "moyen": 12,
+    "nuance": 6
+   },
+   "verdicts": {
+    "meilleur": 25
+   },
+   "judged": 25,
+   "precision": 1.0,
+   "degradation": 0.0
+  },
+  "haiku-axis-2.1-c": {
+   "runs": 11,
+   "propositions": 33,
+   "severite": {
+    "moyen": 21,
+    "nuance": 10,
+    "grossier": 2
+   },
+   "verdicts": {
+    "meilleur": 30,
+    "equivalent": 2,
+    "pire": 1
+   },
+   "judged": 33,
+   "precision": 0.909,
+   "degradation": 0.03
+  },
+  "haiku-axis-6.3-c": {
+   "runs": 22,
+   "propositions": 61,
+   "severite": {
+    "moyen": 37,
+    "nuance": 24
+   },
+   "verdicts": {
+    "meilleur": 52,
+    "pire": 7,
+    "equivalent": 2
+   },
+   "judged": 61,
+   "precision": 0.852,
+   "degradation": 0.115
+  },
+  "haiku-clean": {
+   "runs": 5,
+   "propositions": 24,
+   "severite": {
+    "moyen": 14,
+    "nuance": 10
+   },
+   "verdicts": {
+    "meilleur": 23,
+    "equivalent": 1
+   },
+   "judged": 24,
+   "precision": 0.958,
+   "degradation": 0.0
+  },
+  "haiku-planted-a": {
+   "runs": 5,
+   "propositions": 37,
+   "severite": {
+    "grossier": 25,
+    "moyen": 8,
+    "nuance": 4
+   },
+   "verdicts": {
+    "pire": 5,
+    "equivalent": 13,
+    "meilleur": 19
+   },
+   "judged": 37,
+   "precision": 0.514,
+   "degradation": 0.135
+  },
+  "haiku-planted-c": {
+   "runs": 46,
+   "propositions": 138,
+   "severite": {
+    "grossier": 30,
+    "moyen": 65,
+    "nuance": 43
+   },
+   "verdicts": {
+    "meilleur": 111,
+    "pire": 8,
+    "equivalent": 19
+   },
+   "judged": 138,
+   "precision": 0.804,
+   "degradation": 0.058
+  },
+  "incr1": {
+   "runs": 2,
+   "propositions": 9,
+   "severite": {
+    "grossier": 4,
+    "moyen": 4,
+    "nuance": 1
+   },
+   "verdicts": {
+    "meilleur": 8,
+    "equivalent": 1
+   },
+   "judged": 9,
+   "precision": 0.889,
+   "degradation": 0.0
+  },
+  "incr2": {
+   "runs": 2,
+   "propositions": 9,
+   "severite": {
+    "grossier": 2,
+    "moyen": 6,
+    "nuance": 1
+   },
+   "verdicts": {
+    "pire": 2,
+    "meilleur": 7
+   },
+   "judged": 9,
+   "precision": 0.778,
+   "degradation": 0.222
+  },
+  "incr3": {
+   "runs": 2,
+   "propositions": 11,
+   "severite": {
+    "grossier": 2,
+    "moyen": 7,
+    "nuance": 2
+   },
+   "verdicts": {
+    "meilleur": 10,
+    "pire": 1
+   },
+   "judged": 11,
+   "precision": 0.909,
+   "degradation": 0.091
+  },
+  "planted-a": {
+   "runs": 5,
+   "propositions": 33,
+   "severite": {
+    "grossier": 24,
+    "moyen": 7,
+    "nuance": 2
+   },
+   "verdicts": {
+    "meilleur": 32,
+    "pire": 1
+   },
+   "judged": 33,
+   "precision": 0.97,
+   "degradation": 0.03
+  },
+  "planted-c": {
+   "runs": 46,
+   "propositions": 152,
+   "severite": {
+    "grossier": 35,
+    "moyen": 79,
+    "nuance": 38
+   },
+   "verdicts": {
+    "meilleur": 148,
+    "pire": 3,
+    "equivalent": 1
+   },
+   "judged": 152,
+   "precision": 0.974,
+   "degradation": 0.02
+  },
+  "witness-haiku": {
+   "runs": 2,
+   "propositions": 10,
+   "severite": {
+    "moyen": 5,
+    "nuance": 5
+   },
+   "verdicts": {
+    "meilleur": 10
+   },
+   "judged": 10,
+   "precision": 1.0,
+   "degradation": 0.0
+  },
+  "witness-sol": {
+   "runs": 2,
+   "propositions": 16,
+   "severite": {
+    "grossier": 2,
+    "moyen": 12,
+    "nuance": 2
+   },
+   "verdicts": {
+    "meilleur": 14,
+    "pire": 2
+   },
+   "judged": 16,
+   "precision": 0.875,
+   "degradation": 0.125
+  }
+ },
+ "recall": {
+  "plantes": 30,
+  "retrouves": 27,
+  "rappel": 0.9,
+  "rang_moyen": 2.65,
+  "detail": [
+   {
+    "pk": "238",
+    "langue": "ru",
+    "champ": "desc",
+    "classe": 1,
+    "label": "contresens (négation inversée)",
+    "rang": 3,
+    "stage": "planted-a",
+    "run": "2.1__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "238",
+    "langue": "ru",
+    "champ": "desc",
+    "classe": 1,
+    "label": "contresens (négation inversée)",
+    "rang": 2,
+    "stage": "planted-c",
+    "run": "2.1__c06",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "834",
+    "langue": "en",
+    "champ": "desc",
+    "classe": 1,
+    "label": "contresens (négation inversée)",
+    "rang": 2,
+    "stage": "planted-a",
+    "run": "5.2__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "834",
+    "langue": "en",
+    "champ": "desc",
+    "classe": 1,
+    "label": "contresens (négation inversée)",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "5.2__c01",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "901",
+    "langue": "en",
+    "champ": "example",
+    "classe": 1,
+    "label": "contresens (négation inversée)",
+    "rang": 5,
+    "stage": "planted-a",
+    "run": "6.1__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "901",
+    "langue": "en",
+    "champ": "example",
+    "classe": 1,
+    "label": "contresens (négation inversée)",
+    "rang": 3,
+    "stage": "planted-c",
+    "run": "6.1__c02",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1120",
+    "langue": "es",
+    "champ": "example",
+    "classe": 2,
+    "label": "exemple échangé avec un nœud frère",
+    "rang": 5,
+    "stage": "planted-a",
+    "run": "6.3__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1120",
+    "langue": "es",
+    "champ": "example",
+    "classe": 2,
+    "label": "exemple échangé avec un nœud frère",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "6.3__c09",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1126",
+    "langue": "es",
+    "champ": "example",
+    "classe": 2,
+    "label": "exemple échangé avec un nœud frère",
+    "rang": 2,
+    "stage": "planted-c",
+    "run": "6.3__c09",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "265",
+    "langue": "pt",
+    "champ": "example",
+    "classe": 2,
+    "label": "exemple échangé avec un nœud frère",
+    "rang": 4,
+    "stage": "planted-a",
+    "run": "2.1__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "265",
+    "langue": "pt",
+    "champ": "example",
+    "classe": 2,
+    "label": "exemple échangé avec un nœud frère",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "2.1__c08",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "266",
+    "langue": "pt",
+    "champ": "example",
+    "classe": 2,
+    "label": "exemple échangé avec un nœud frère",
+    "rang": 5,
+    "stage": "planted-a",
+    "run": "2.1__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "266",
+    "langue": "pt",
+    "champ": "example",
+    "classe": 2,
+    "label": "exemple échangé avec un nœud frère",
+    "rang": 2,
+    "stage": "planted-c",
+    "run": "2.1__c08",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "891",
+    "langue": "ru",
+    "champ": "example",
+    "classe": 2,
+    "label": "exemple échangé avec un nœud frère",
+    "rang": 1,
+    "stage": "planted-a",
+    "run": "6.1__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "891",
+    "langue": "ru",
+    "champ": "example",
+    "classe": 2,
+    "label": "exemple échangé avec un nœud frère",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "6.1__c01",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "904",
+    "langue": "ru",
+    "champ": "example",
+    "classe": 2,
+    "label": "exemple échangé avec un nœud frère",
+    "rang": 2,
+    "stage": "planted-a",
+    "run": "6.1__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "904",
+    "langue": "ru",
+    "champ": "example",
+    "classe": 2,
+    "label": "exemple échangé avec un nœud frère",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "6.1__c02",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1081",
+    "langue": "zh",
+    "champ": "example",
+    "classe": 3,
+    "label": "texte FR laissé dans la cellule cible",
+    "rang": 6,
+    "stage": "planted-a",
+    "run": "6.3__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1081",
+    "langue": "zh",
+    "champ": "example",
+    "classe": 3,
+    "label": "texte FR laissé dans la cellule cible",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "6.3__c05",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1239",
+    "langue": "ar",
+    "champ": "desc",
+    "classe": 3,
+    "label": "texte FR laissé dans la cellule cible",
+    "rang": 4,
+    "stage": "planted-a",
+    "run": "6.3__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1239",
+    "langue": "ar",
+    "champ": "desc",
+    "classe": 3,
+    "label": "texte FR laissé dans la cellule cible",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "6.3__c19",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "176",
+    "langue": "es",
+    "champ": "example",
+    "classe": 3,
+    "label": "texte FR laissé dans la cellule cible",
+    "rang": 2,
+    "stage": "planted-c",
+    "run": "2.1__c01",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "840",
+    "langue": "ru",
+    "champ": "example",
+    "classe": 3,
+    "label": "texte FR laissé dans la cellule cible",
+    "rang": 1,
+    "stage": "planted-a",
+    "run": "5.2__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1091",
+    "langue": "fa",
+    "champ": "desc",
+    "classe": 4,
+    "label": "proposition amputée",
+    "rang": 10,
+    "stage": "planted-a",
+    "run": "6.3__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1091",
+    "langue": "fa",
+    "champ": "desc",
+    "classe": 4,
+    "label": "proposition amputée",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "6.3__c06",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "237",
+    "langue": "ar",
+    "champ": "desc",
+    "classe": 4,
+    "label": "proposition amputée",
+    "rang": 8,
+    "stage": "planted-a",
+    "run": "2.1__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "237",
+    "langue": "ar",
+    "champ": "desc",
+    "classe": 4,
+    "label": "proposition amputée",
+    "rang": 3,
+    "stage": "planted-c",
+    "run": "2.1__c06",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "712",
+    "langue": "es",
+    "champ": "example",
+    "classe": 4,
+    "label": "proposition amputée",
+    "rang": 2,
+    "stage": "planted-a",
+    "run": "4.1__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "712",
+    "langue": "es",
+    "champ": "example",
+    "classe": 4,
+    "label": "proposition amputée",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "4.1__c02",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1094",
+    "langue": "en",
+    "champ": "example",
+    "classe": 5,
+    "label": "mauvais registre (tutoiement / « You »)",
+    "rang": 9,
+    "stage": "planted-a",
+    "run": "6.3__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1094",
+    "langue": "en",
+    "champ": "example",
+    "classe": 5,
+    "label": "mauvais registre (tutoiement / « You »)",
+    "rang": 2,
+    "stage": "planted-c",
+    "run": "6.3__c06",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1063",
+    "langue": "en",
+    "champ": "example",
+    "classe": 6,
+    "label": "nom ou nombre changé",
+    "rang": 8,
+    "stage": "planted-a",
+    "run": "6.3__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1063",
+    "langue": "en",
+    "champ": "example",
+    "classe": 6,
+    "label": "nom ou nombre changé",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "6.3__c04",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1038",
+    "langue": "ru",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 7,
+    "stage": "planted-a",
+    "run": "6.3__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1038",
+    "langue": "ru",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "6.3__c02",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1049",
+    "langue": "zh",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 1,
+    "stage": "planted-a",
+    "run": "6.3__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1049",
+    "langue": "zh",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "6.3__c03",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1136",
+    "langue": "ru",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 2,
+    "stage": "planted-a",
+    "run": "6.3__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1136",
+    "langue": "ru",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "6.3__c10",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1198",
+    "langue": "fa",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 3,
+    "stage": "planted-a",
+    "run": "6.3__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "1198",
+    "langue": "fa",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "6.3__c15",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "179",
+    "langue": "en",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 1,
+    "stage": "planted-a",
+    "run": "2.1__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "179",
+    "langue": "en",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "2.1__c01",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "246",
+    "langue": "fa",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 2,
+    "stage": "planted-a",
+    "run": "2.1__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "246",
+    "langue": "fa",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "2.1__c06",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "706",
+    "langue": "ar",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 1,
+    "stage": "planted-a",
+    "run": "4.1__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "706",
+    "langue": "ar",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "4.1__c01",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "908",
+    "langue": "zh",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 3,
+    "stage": "planted-a",
+    "run": "6.1__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "908",
+    "langue": "zh",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 2,
+    "stage": "planted-c",
+    "run": "6.1__c02",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "912",
+    "langue": "fa",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 4,
+    "stage": "planted-a",
+    "run": "6.1__a",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   },
+   {
+    "pk": "912",
+    "langue": "fa",
+    "champ": "example",
+    "classe": 7,
+    "label": "exemple hors-sujet (gré d'une autre grappe)",
+    "rang": 1,
+    "stage": "planted-c",
+    "run": "6.1__c03",
+    "vise_le_plante": true,
+    "correction_differe_du_plante": true
+   }
+  ]
+ },
+ "witness": {},
+ "examples": {
+  "meilleur": [
+   {
+    "stage": "axis-2.1-c",
+    "run": "2.1__c01",
+    "pk": "177",
+    "langue": "en",
+    "champ": "desc",
+    "severite": "moyen",
+    "probleme": "La traduction remplace l’idée d’imposer implicitement le cadre et les termes du débat par une technique particulière — le langage chargé d’émotion ou de connotations — qui n’est pas mentionnée dans le texte français.",
+    "fr": "Vous vous exprimez de manière à imposer implicitement le cadre et les termes du débat.",
+    "avant": "Using emotionally charged or connotative language to implicitly shape the debate's framework.",
+    "apres": "Expressing yourself in a way that implicitly imposes the framework and terms of the debate.",
+    "raison": "B restitue fidèlement l’adresse à « vous », ainsi que l’idée d’imposer implicitement le cadre et les termes du débat, tandis que A ajoute à tort la notion de langage émotionnel ou connoté et omet les « termes »."
+   },
+   {
+    "stage": "axis-2.1-c",
+    "run": "2.1__c01",
+    "pk": "180",
+    "langue": "zh",
+    "champ": "example",
+    "severite": "nuance",
+    "probleme": "La traduction omet l’idée de « combien » la situation serait meilleure et celle que cela concerne tout le monde.",
+    "fr": "Dois-je vous rappeler combien nous serions tous bien mieux sans ces taxes supplémentaires ?",
+    "avant": "我需要提醒您我们没有这些额外税款会更好吗？",
+    "apres": "难道还需要我提醒您，没有这些额外税收，我们大家会过得好得多吗？",
+    "raison": "B restitue fidèlement la question rhétorique, le « vous », l’idée de « nous tous » et « bien mieux », tandis que A est maladroite et omet la dimension collective."
+   },
+   {
+    "stage": "axis-2.1-c",
+    "run": "2.1__c02",
+    "pk": "193",
+    "langue": "es",
+    "champ": "desc",
+    "severite": "moyen",
+    "probleme": "La traduction dit que les termes servent à impressionner, alors que le français précise qu’ils servent à intimider, ce qui brouille la distinction avec le jargon prestigieux.",
+    "fr": "Vous employez volontairement des termes complexes ou prestigieux pour intimider votre auditoire.",
+    "avant": "Utilizas términos complejos a propósito para impresionar a tu audiencia.",
+    "apres": "Utilizas deliberadamente términos complejos para intimidar a tu audiencia.",
+    "raison": "B restitue fidèlement « volontairement » et surtout « pour intimider », tandis que A remplace ce sens par « impresionar »."
+   },
+   {
+    "stage": "axis-2.1-c",
+    "run": "2.1__c02",
+    "pk": "194",
+    "langue": "ru",
+    "champ": "desc",
+    "severite": "moyen",
+    "probleme": "La traduction remplace l’intimidation par le fait d’impressionner l’auditoire, ce qui atténue l’intention décrite en français.",
+    "fr": "Vous utilisez des expressions latines pour intimider votre public.",
+    "avant": "Вы впечатляете аудиторию, используя латинские выражения.",
+    "apres": "Вы используете латинские выражения, чтобы запугать свою аудиторию.",
+    "raison": "A restitue fidèlement le but d’intimidation (« чтобы запугать »), tandis que B remplace ce sens par celui d’impressionner l’auditoire."
+   },
+   {
+    "stage": "axis-2.1-c",
+    "run": "2.1__c02",
+    "pk": "194",
+    "langue": "es",
+    "champ": "desc",
+    "severite": "moyen",
+    "probleme": "La traduction parle d’impressionner l’auditoire au lieu de l’intimider, ce qui atténue l’intention décrite en français.",
+    "fr": "Vous utilisez des expressions latines pour intimider votre public.",
+    "avant": "Impresionar a la audiencia con el uso de frases en latín.",
+    "apres": "Utilizas expresiones latinas para intimidar a tu audiencia.",
+    "raison": "A restitue fidèlement le « vous » impersonnel et le sens d’intimider, tandis que B est une formulation infinitive amputée et remplace « intimider » par « impressionner »."
+   },
+   {
+    "stage": "axis-2.1-c",
+    "run": "2.1__c03",
+    "pk": "211",
+    "langue": "pt",
+    "champ": "desc",
+    "severite": "moyen",
+    "probleme": "A tradução muda a ideia de invocar muitas fontes para dar autoridade a um argumento fraco e usa «fontes autoritárias», que significa fontes autoritárias no sentido de exercer autoridade, não fontes que conferem autoridade.",
+    "fr": "Vous invoquez un grand nombre de sources pour donner de l’autorité à un argument faible.",
+    "avant": "Alega que um argumento é apoiado por muitas fontes autoritárias, independentemente de sua relevância ou validade reais.",
+    "apres": "Você invoca um grande número de fontes para dar autoridade a um argumento fraco.",
+    "raison": "La version B traduit fidèlement et complètement le français, tandis que A modifie le sens en évoquant des sources autoritaires et ajoute l’idée d’indépendance par rapport à leur pertinence ou validité."
+   },
+   {
+    "stage": "axis-2.1-c",
+    "run": "2.1__c03",
+    "pk": "204",
+    "langue": "ar",
+    "champ": "desc",
+    "severite": "moyen",
+    "probleme": "A tradução diz que os números reforçam um argumento fraco, em vez de impressionar para ocultar a falta de solidez do argumento.",
+    "fr": "Vous impressionnez par des chiffres énormes pour masquer le manque de solidité de votre argument.",
+    "avant": "أنت تستخدم أرقاماً كبيرة للغاية لتعزيز حجتك الضعيفة.",
+    "apres": "أنت تبهر بأرقام ضخمة لإخفاء ضعف حجتك.",
+    "raison": "A restitue fidèlement l’idée d’impressionner par de gros chiffres afin de masquer la faiblesse de l’argument, tandis que B transforme ce but en renforcement de l’argument."
+   },
+   {
+    "stage": "axis-2.1-c",
+    "run": "2.1__c04",
+    "pk": "212",
+    "langue": "fa",
+    "champ": "desc",
+    "severite": "moyen",
+    "probleme": "عبارت «به تعریف قوی اخلاقی می‌پردازند» لا يعني أن الكلمات تحمل إيحاءً أخلاقيًا قويًا، كما أن مرجع «نتیجه‌گیری آن‌ها» غير واضح.",
+    "fr": "Votre discours repose sur des termes à forte connotation morale, qui orientent déjà la conclusion.",
+    "avant": "گفتار شما بر اساس کلماتی است که به تعریف قوی اخلاقی می‌پردازند و نتیجه‌گیری آن‌ها را دیکته می‌کنند.",
+    "apres": "گفتار شما بر واژه‌هایی با بار معنایی اخلاقیِ قوی تکیه دارد که از پیش نتیجه‌گیری را جهت می‌دهند.",
+    "raison": "نسخهٔ A معنای متن فرانسه را دقیق و طبیعی منتقل می‌کند؛ نسخهٔ B «forte connotation morale» را نادرست ترجمه کرده و با افزودن مفهوم «دیکته کردن» و ضمیر «آن‌ها» معنا را منحرف می‌کند."
+   },
+   {
+    "stage": "axis-2.1-c",
+    "run": "2.1__c05",
+    "pk": "235",
+    "langue": "ar",
+    "champ": "desc",
+    "severite": "moyen",
+    "probleme": "A tradução transforma «une idée sérieuse» em «فكرة ساخرة» («uma ideia satírica»), invertendo a característica da ideia imitada.",
+    "fr": "Vous imitez de façon satirique un discours ou une idée sérieuse pour la tourner en dérision.",
+    "avant": "تقليد خطاب جاد أو فكرة ساخرة للسخرية منها.",
+    "apres": "تقليد خطاب أو فكرة جادة بطريقة ساخرة للسخرية منها.",
+    "raison": "B restitue correctement la manière satirique appliquée à l’imitation, tandis que A qualifie à tort l’idée elle-même de « sarcastique »."
+   },
+   {
+    "stage": "axis-2.1-c",
+    "run": "2.1__c05",
+    "pk": "234",
+    "langue": "pt",
+    "champ": "desc",
+    "severite": "nuance",
+    "probleme": "«Os senhores» significa «you gentlemen» e muda o tratamento singular genérico do original para um plural masculino específico.",
+    "fr": "Vous amplifiez ou tordiez certaines caractéristiques pour moquer ou critiquer quelque chose ou quelqu’un.",
+    "avant": "Os senhores amplificam ou distorcem certas características para zombar ou criticar algo ou alguém.",
+    "apres": "Você amplifica ou distorce certas características para zombar de algo ou alguém, ou para criticá-lo.",
+    "raison": "A restitue mieux le « vous » générique et emploie correctement « zombar de », tandis que « Os senhores » en B est inutilement formel et pluriel."
+   },
+   {
+    "stage": "axis-2.1-c",
+    "run": "2.1__c06",
+    "pk": "243",
+    "langue": "fa",
+    "champ": "desc",
+    "severite": "moyen",
+    "probleme": "«به‌طور غیر مستقیم» signifie «indirectement», alors que le français indique que les propos ne doivent pas être interprétés au sens littéral.",
+    "fr": "Vous faites comprendre subtilement que vos propos sont à prendre de façon non littérale.",
+    "avant": "شما به‌طور لطیف نشان می‌دهید که گفته‌هایتان باید بطور غیر مستقیم تفسیر شود.",
+    "apres": "شما به‌طور ظریف نشان می‌دهید که گفته‌هایتان نباید به‌صورت تحت‌اللفظی برداشت شوند.",
+    "raison": "A restitue fidèlement l’idée que les propos ne doivent pas être pris au pied de la lettre, tandis que B remplace « non littérale » par « indirectement », ce qui modifie le sens."
+   },
+   {
+    "stage": "axis-2.1-c",
+    "run": "2.1__c06",
+    "pk": "241",
+    "langue": "ru",
+    "champ": "desc",
+    "severite": "moyen",
+    "probleme": "«В яростной манере» signifie «avec fureur» et ne rend pas l’ironie mordante du texte français.",
+    "fr": "Vous utilisez une ironie mordante pour ridiculiser ou critiquer.",
+    "avant": "Вы используете иронию в яростной манере, чтобы высмеять или критиковать.",
+    "apres": "Вы используете язвительную иронию, чтобы высмеивать или критиковать.",
+    "raison": "«Язвительная ирония» передаёт смысл «ironie mordante» точнее и естественнее, чем неидиоматичное «ирония в яростной манере»."
+   }
+  ],
+  "pire": [
+   {
+    "stage": "axis-2.1-c",
+    "run": "2.1__c05",
+    "pk": "232",
+    "langue": "pt",
+    "champ": "example",
+    "severite": "moyen",
+    "probleme": "A tradução elimina o jogo com «sujet»: «sobre você» não prepara o sentido de «súdito», e a resposta deixa de funcionar como trocadilho.",
+    "fr": "Vous me demandez de faire un mot d’esprit à votre sujet, mais, Sire, le roi n’est pas un sujet.",
+    "avant": "Você me pede para fazer um comentário perspicaz sobre você, mas Senhor, o rei não é um súdito.",
+    "apres": "Você me pede uma frase espirituosa sobre o seu «assunto», mas, senhor, o rei não é um «súdito» — em francês, «sujet» pode significar tanto «assunto» quanto «súdito».",
+    "raison": "A restitue fidèlement et naturellement le sens de la réplique, tandis que B altère « à votre sujet » en « sobre o seu assunto » et ajoute une explication métalinguistique absente du français."
+   },
+   {
+    "stage": "axis-2.1-c",
+    "run": "2.1__c07",
+    "pk": "253",
+    "langue": "zh",
+    "champ": "example",
+    "severite": "moyen",
+    "probleme": "La phrase transmet l’idée d’une condamnation à perpétuité, mais ne montre plus la modification ludique du mot qui illustre le métaplasme.",
+    "fr": "Las, il en a pris pour perpète.",
+    "avant": "唉，他这下被判了个“无期”。",
+    "apres": "唉，他这下可算是判了个“永无期”！",
+    "raison": "A准确自然地用“无期”表达“perpète”（无期徒刑）；B的“永无期”并非规范说法，且感叹语气偏离原文。"
+   },
+   {
+    "stage": "axis-6.3-b",
+    "run": "6.3__b01",
+    "pk": "1053",
+    "langue": "zh",
+    "champ": "desc",
+    "severite": "moyen",
+    "probleme": "La phrase chinoise est mal construite et rend difficile à comprendre l’idée que vous pensez mieux comprendre les autres qu’ils ne vous comprennent.",
+    "fr": "Vous croyez comprendre les autres mieux qu’ils ne vous comprennent.",
+    "avant": "你认为自己比别人理解你更理解他们。",
+    "apres": "你认为自己比别人更了解他们，而他们并没有那么了解你。",
+    "raison": "B restitue directement la comparaison réciproque (« comprendre les autres mieux qu’ils ne vous comprennent »), tandis que A introduit l’idée que vous les comprenez mieux que d’autres personnes."
+   },
+   {
+    "stage": "axis-6.3-b",
+    "run": "6.3__b01",
+    "pk": "1025",
+    "langue": "es",
+    "champ": "desc",
+    "severite": "moyen",
+    "probleme": "La traduction ajoute une perte d’objectivité scientifique qui n’est pas dans le français et omet l’idée de réflexes liés à la perspective humaine.",
+    "fr": "Vous accordez plus d’attention à certains types d’informations en fonction de vos intérêts ou de votre état émotionnel.",
+    "avant": "Prestáis más atención a ciertos tipos de información según vuestros intereses o estado emocional.",
+    "apres": "Tus argumentos reflejan las limitaciones y los reflejos propios de la perspectiva humana.",
+    "raison": "La version B restitue fidèlement l’attention sélective selon les intérêts ou l’état émotionnel, tandis que la version A exprime une idée entièrement différente."
+   },
+   {
+    "stage": "axis-6.3-c",
+    "run": "6.3__c06",
+    "pk": "1083",
+    "langue": "fa",
+    "champ": "desc",
+    "severite": "nuance",
+    "probleme": "La traduction omet l’idée de données ou d’événements « sans lien », présente dans le français en plus de celle du caractère aléatoire.",
+    "fr": "Vous identifiez des liens ou des motifs dans des données ou des événements aléatoires, en créant du sens là où il n’y en a pas.",
+    "avant": "شما در داده‌ها یا رویدادهای تصادفی اتصالات یا الگوهایی را شناسایی می‌کنید، معانی‌ای را ایجاد می‌کنید که وجود ندارند.",
+    "apres": "شما در داده‌ها یا رویدادهای تصادفی یا نامرتبط، ارتباط‌ها یا الگوهایی را شناسایی می‌کنید و معناهایی را ایجاد می‌کنید که وجود ندارند.",
+    "raison": "A est plus fidèle au texte français, tandis que B ajoute « نامرتبط » (« non liés »), notion absente de la référence."
+   },
+   {
+    "stage": "axis-6.3-c",
+    "run": "6.3__c08",
+    "pk": "1115",
+    "langue": "ar",
+    "champ": "desc",
+    "severite": "moyen",
+    "probleme": "الجملة تكرر معنى التأثير مرتين في نهايتها، ما يجعلها مضطربة مقارنةً بالمعنى الفرنسي.",
+    "fr": "Vous pensez pouvoir contrôler ou influencer des événements sur lesquels vous n’avez en réalité que peu ou pas d’influence.",
+    "avant": "تعتقدون أنكم تستطيعون التحكم في أحداث لا تملكون في الواقع إلا تأثيرًا ضئيلًا عليها أو لا تملكون أي تأثير عليها، أو التأثير فيها.",
+    "apres": "تعتقدون أنكم تستطيعون التحكم في أحداث لا تملكون في الواقع إلا تأثيرًا ضئيلًا عليها أو لا تملكون أي تأثير عليها.",
+    "raison": "La version B restitue « contrôler ou influencer », tandis que la version A omet l’idée de pouvoir influencer les événements."
+   },
+   {
+    "stage": "haiku-axis-2.1-c",
+    "run": "2.1__c04",
+    "pk": "216",
+    "langue": "es",
+    "champ": "example",
+    "severite": "nuance",
+    "probleme": "Incohérence de registre : la description espagnole utilise le vosoiros (« Criticáis »), alors que l'exemple passe au tú (« Prefieres »).",
+    "fr": "Préférez-vous faire confiance à cette horde de trolls ?",
+    "avant": "¿Prefieres confiar en la horda de trolls?",
+    "apres": "¿Preferís confiar en la horda de trolls?",
+    "raison": "« Prefieres » restitue le « vous » générique dans un espagnol standard, tandis que « preferís » relève du voseo régional."
+   },
+   {
+    "stage": "haiku-axis-6.3-c",
+    "run": "6.3__c02",
+    "pk": "1042",
+    "langue": "ru",
+    "champ": "example",
+    "severite": "moyen",
+    "probleme": "Participe présent « чувствующим » mal accordé et construction ungrammaticale ; la phrase ne rend pas l'amertume attendue.",
+    "fr": "J’étais tellement heureux avec ma médaille de bronze l’an dernier. Celle d’argent, aujourd’hui, me laisse amer.",
+    "avant": "В прошлом году я был так счастлив, получив бронзовую медаль. Сегодняшняя серебряная оставляет меня чувствующим горечь.",
+    "apres": "Сегодняшняя серебряная оставляет у меня горечь.",
+    "raison": "B restitue les deux phrases et l’opposition entre la joie passée et l’amertume présente, tandis que A omet entièrement la médaille de bronze de l’an dernier."
+   },
+   {
+    "stage": "haiku-axis-6.3-c",
+    "run": "6.3__c05",
+    "pk": "1081",
+    "langue": "es",
+    "champ": "desc",
+    "severite": "nuance",
+    "probleme": "Registre incohérent : cette cellule tutoie (« Tienes ») alors que le reste du corpus espagnol vouvoie le lecteur (« Descontáis », « Subestimáis »), et le FR utilise « vous ».",
+    "fr": "Vous êtes trop confiant dans vos réponses à des questions difficles et pas assez confiant dans vos réponses à des questions faciles.",
+    "avant": "Tienes demasiada confianza en tus respuestas a preguntas difíciles y no suficiente confianza en tus respuestas a preguntas fáciles.",
+    "apres": "Tenéis demasiada confianza en vuestras respuestas a preguntas difíciles y no suficiente confianza en vuestras respuestas a preguntas fáciles.",
+    "raison": "La version B restitue plus naturellement le « vous » générique par le singulier espagnol, tandis que A impose un pluriel « vosotros » absent du français."
+   },
+   {
+    "stage": "haiku-axis-6.3-c",
+    "run": "6.3__c11",
+    "pk": "1146",
+    "langue": "es",
+    "champ": "desc",
+    "severite": "moyen",
+    "probleme": "Le FR s'adresse à « vous » singulier et les autres cellules es utilisent le voseo ; « Ustedes » (pluriel) est incohérent et change la personne.",
+    "fr": "Vous centrez vos pensées et vos perceptions sur votre propre point de vue.",
+    "avant": "Ustedes centran sus pensamientos y sus percepciones en su propio punto de vista.",
+    "apres": "Centrás tus pensamientos y tus percepciones en tu propio punto de vista.",
+    "raison": "B conserve mieux le registre de « vous », tandis que A emploie le tutoiement en voseo (« centrás », « tus »)."
+   },
+   {
+    "stage": "haiku-axis-6.3-c",
+    "run": "6.3__c11",
+    "pk": "1148",
+    "langue": "es",
+    "champ": "desc",
+    "severite": "nuance",
+    "probleme": "« habéis » est une forme de vosotros, incohérente avec le voseo utilisé dans le reste de la cellule (« Atribuís »).",
+    "fr": "Vous attribuez plus de valeur à un résultat pour lequel vous avez beaucoup travaillé.",
+    "avant": "Atribuís más valor a un resultado por el que habéis trabajado mucho.",
+    "apres": "Atribuís más valor a un resultado por el que trabajaste mucho.",
+    "raison": "La version B maintient la cohérence grammaticale du « vosotros » entre « atribuís » et « habéis trabajado », contrairement à la version A qui mélange « vosotros » et « tú »."
+   },
+   {
+    "stage": "haiku-axis-6.3-c",
+    "run": "6.3__c11",
+    "pk": "1145",
+    "langue": "fa",
+    "champ": "example",
+    "severite": "nuance",
+    "probleme": "« رنگ رنگ » est maladroit ; « رنگ دیوار » rend mieux la peinture du FR.",
+    "fr": "On passe plus de temps à discuter de la couleur de la peinture qu’à planifier le budget du projet.",
+    "avant": "ما بیشتر وقت را صرف بحث در مورد رنگ رنگ می‌کنیم تا برنامه‌ریزی برای بودجه پروژه.",
+    "apres": "ما بیشتر وقت را صرف بحث در مورد رنگ دیوار می‌کنیم تا برنامه‌ریزی برای بودجه پروژه.",
+    "raison": "A conserve l’idée de la couleur de la peinture, malgré la répétition maladroite « رنگ رنگ », tandis que B remplace la peinture par le mur."
+   }
+  ]
+ },
+ "spend": {
+  "calls": 931,
+  "total_usd": 3.2662,
+  "by_arm": {
+   "haiku": 0.3155,
+   "luna": 0.237,
+   "sol": 2.7137
+  },
+  "by_stage": {
+   "judge": 2.391,
+   "haiku-axis-2.1-c": 0.0296,
+   "haiku-planted-a": 0.055,
+   "clean": 0.0329,
+   "haiku-clean": 0.0541,
+   "haiku-planted-c": 0.1131,
+   "axis-2.1-c": 0.0178,
+   "haiku-axis-6.3-c": 0.0552,
+   "incr2": 0.0133,
+   "planted-c": 0.0645,
+   "incr1": 0.0146,
+   "incr2-judge": 0.0244,
+   "witness-haiku": 0.0084,
+   "incr3": 0.0145,
+   "axis-6.3-b": 0.0187,
+   "planted-a": 0.0297,
+   "witness-sol": 0.1914,
+   "incr3-judge": 0.04,
+   "incr1-judge": 0.029,
+   "etalonnage": 0.0379,
+   "axis-6.3-c": 0.0311
+  }
+ },
+ "useful_corrections": 621,
+ "cost_per_useful_usd": 0.0053
+}

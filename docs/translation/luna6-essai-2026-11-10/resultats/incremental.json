@@ -1,0 +1,50 @@
+[
+ {
+  "passe": 1,
+  "propositions": 9,
+  "severites": {
+   "grossier": 4,
+   "moyen": 4,
+   "nuance": 1
+  },
+  "verdicts": {
+   "meilleur": 8,
+   "equivalent": 1
+  },
+  "appliquees": 8,
+  "precision": 0.889,
+  "degradation": 0.0
+ },
+ {
+  "passe": 2,
+  "propositions": 9,
+  "severites": {
+   "moyen": 6,
+   "nuance": 1,
+   "grossier": 2
+  },
+  "verdicts": {
+   "meilleur": 7,
+   "pire": 2
+  },
+  "appliquees": 7,
+  "precision": 0.778,
+  "degradation": 0.222
+ },
+ {
+  "passe": 3,
+  "propositions": 11,
+  "severites": {
+   "moyen": 7,
+   "nuance": 2,
+   "grossier": 2
+  },
+  "verdicts": {
+   "meilleur": 10,
+   "pire": 1
+  },
+  "appliquees": 10,
+  "precision": 0.909,
+  "degradation": 0.091
+ }
+]
