@@ -1,0 +1,67 @@
+{
+ "n": 6,
+ "preferent_original": 6,
+ "verdict": "juge etalonne",
+ "detail": [
+  {
+   "pk": "834",
+   "langue": "en",
+   "champ": "desc",
+   "classe": 1,
+   "original_en": "A",
+   "verdict": "A_meilleur",
+   "prefer_original": true,
+   "raison": "A conserve l’idée d’un raisonnement fondé sur une comparaison incorrecte, tandis que B la nie et contredit donc le texte français."
+  },
+  {
+   "pk": "706",
+   "langue": "ar",
+   "champ": "example",
+   "classe": 7,
+   "original_en": "A",
+   "verdict": "A_meilleur",
+   "prefer_original": true,
+   "raison": "La version A traduit fidèlement l’idée de devoir gagner l’argument pour montrer que le locuteur a raison, tandis que la version B parle sans rapport de perte de poids et d’aliments à supprimer."
+  },
+  {
+   "pk": "176",
+   "langue": "es",
+   "champ": "example",
+   "classe": 3,
+   "original_en": "A",
+   "verdict": "A_meilleur",
+   "prefer_original": true,
+   "raison": "La version A traduit fidèlement et complètement le texte en espagnol, tandis que la version B reste en français."
+  },
+  {
+   "pk": "265",
+   "langue": "pt",
+   "champ": "example",
+   "classe": 2,
+   "original_en": "B",
+   "verdict": "B_meilleur",
+   "prefer_original": true,
+   "raison": "La version B restitue l’ensemble de la citation et son opposition progressive, tandis que la version A est sans rapport avec le texte français."
+  },
+  {
+   "pk": "1038",
+   "langue": "ru",
+   "champ": "example",
+   "classe": 7,
+   "original_en": "B",
+   "verdict": "B_meilleur",
+   "prefer_original": true,
+   "raison": "La version B traduit fidèlement et complètement la phrase française, tandis que la version A est sans rapport avec le texte de référence."
+  },
+  {
+   "pk": "1091",
+   "langue": "fa",
+   "champ": "desc",
+   "classe": 4,
+   "original_en": "A",
+   "verdict": "A_meilleur",
+   "prefer_original": true,
+   "raison": "نسخهٔ A معنای جملهٔ مرجع را تقریباً کامل منتقل می‌کند، در حالی که نسخهٔ B آشکارا ناقص و بریده است."
+  }
+ ]
+}
