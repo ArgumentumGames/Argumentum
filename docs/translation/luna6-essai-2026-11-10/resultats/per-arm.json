@@ -1,0 +1,87 @@
+{
+ "per_arm": {
+  "luna": {
+   "meilleur": 362,
+   "total": 377,
+   "pire": 13,
+   "equivalent": 2
+  },
+  "haiku": {
+   "meilleur": 245,
+   "total": 303,
+   "equivalent": 37,
+   "pire": 21
+  },
+  "sol": {
+   "meilleur": 14,
+   "total": 16,
+   "pire": 2
+  }
+ },
+ "luna_clean": {
+  "verdicts": 163,
+  "meilleur": 157,
+  "cellules_distinctes": 125
+ },
+ "recall": {
+  "luna": {
+   "retrouves": 27,
+   "rappel": 0.9,
+   "retrouvailles": 51,
+   "exactes": 51,
+   "rang_moyen": 2.65,
+   "manques": [
+    {
+     "pk": "708",
+     "langue": "pt",
+     "champ": "desc",
+     "classe": 3,
+     "label": "texte FR laissé dans la cellule cible"
+    },
+    {
+     "pk": "274",
+     "langue": "zh",
+     "champ": "desc",
+     "classe": 5,
+     "label": "mauvais registre (tutoiement / « You »)"
+    },
+    {
+     "pk": "1212",
+     "langue": "pt",
+     "champ": "example",
+     "classe": 1,
+     "label": "contresens (négation inversée)"
+    }
+   ]
+  },
+  "haiku": {
+   "retrouves": 29,
+   "rappel": 0.967,
+   "retrouvailles": 55,
+   "exactes": 54,
+   "rang_moyen": 2.65,
+   "manques": [
+    {
+     "pk": "274",
+     "langue": "zh",
+     "champ": "desc",
+     "classe": 5,
+     "label": "mauvais registre (tutoiement / « You »)"
+    }
+   ]
+  }
+ },
+ "costs": {
+  "selecteur": {
+   "luna": 0.237,
+   "sol": 0.1914,
+   "haiku": 0.3155
+  },
+  "total": 3.2662
+ },
+ "haiku_clean": {
+  "verdicts": 128,
+  "meilleur": 115,
+  "cellules_distinctes": 101
+ }
+}

@@ -15,14 +15,30 @@ Protocole complet et contraintes : issue #1520. Point d'étape posté avant la p
 
 ## 1. Résultat global
 
-| Mesure | Valeur |
-|---|---|
-| Propositions jugées (sélecteur Luna) | **374** sur 210 émises en phases mesurées + 29 en incrémental |
-| Verdicts « meilleur » | **361** → précision **96,5 %** |
-| Verdicts « pire » (dégradation) | **12** → dégradation **3,2 %** ; « équivalent » : 1 |
-| Rappel sur 30 défauts plantés | **27/30 = 90 %**, rang moyen **2,65** ; 51/51 retrouvailles citent la cellule plantée à l'identique |
-| Corrections utiles par dollar | **361 corrections / 1,8205 $ = 0,005 $ par correction** (juge et étalonnage compris) |
-| Écritures dans `Cards/**` | **0** — tout l'essai travaille sur copies en mémoire |
+**Chiffres par bras** (revue ai-01 du 11/11, [c.6788606039](https://github.com/ArgumentumGames/Argumentum/pull/2231#issuecomment-6788606039) : les verdicts témoins ne se fondent jamais dans ceux du bras testé). Précision globale = toutes phases jugées (corpus propre + plantés + incrémental) ; précision corpus propre = clean + axe seuls, le seul périmètre qui mesure des candidats réels.
+
+| Mesure | Luna (bras testé) | Haiku (témoin) | Sol (témoin 4.1+5.2) |
+|---|---:|---:|---:|
+| Verdicts (toutes phases) | **377** | 303 | 16 |
+| Précision globale (« meilleur ») | **96.0 %** | 80.9 % | 87.5 % |
+| « équivalent » | 2 | 37 | 0 |
+| Dégradation (« pire ») | 13 (3.4 %) | 21 (6.9 %) | 2 |
+| **Rappel sur 30 défauts plantés** | **27/30 = 90 %** | **29/30 = 96.7 %** | non mesuré |
+| Rang moyen des retrouvailles | 2.65 | 2.65 | — |
+| Retrouvailles citant la cellule plantée exacte | 51/51 | 54/55 | — |
+
+**Corpus propre (le seul qui dimensionne une relecture humaine)** :
+
+| Mesure | Luna | Haiku |
+|---|---:|---:|
+| Verdicts clean + axe (lot a, b, c) | 163 | 128 |
+| « meilleur » | 157 (96.3 %) | 115 (89.8 %) |
+| **Cellules distinctes « meilleur » (pk, langue, champ)** | **125** | **101** |
+
+- **125 candidats Luna à relire** sur le corpus propre, **pas 361** : les 180 « meilleur » obtenus sur la copie plantée corrigent des défauts que nous avons nous-mêmes introduits — c'est la mesure du rappel, pas un apport au corpus. Le total 361 est relégué à l'annexe C (historique de la première rédaction, corrigée sur revue).
+- **Incrémental** (§4) : 27 cellules proposées (25 appliquées) ; 14 sont déjà dans les 125, donc **au plus 13 nouvelles** — borne haute des candidats Luna : **138 cellules**.
+- **Coût total : 3.2662 $ / 25 $** (journal `resultats/spend.jsonl`, 931 appels) dont **1,4447 $ de campagne de révision** (bras haiku complet + juge des 29 propositions incrémentales restantes). Coût par cellule utile : §6, sélecteur et juge séparés.
+- Écritures dans `Cards/**` : **0** — tout l'essai travaille sur copies en mémoire.
 
 Le solde de propositions (479 runs sélection au total) couvre les passes incrémentales auto-jugées (§4) et les répétitions a/c du corpus planté (rappel mesuré sur les deux tailles).
 
@@ -41,7 +57,7 @@ Lot `a` = grappe entière · `b` = 50 nœuds (6.3 seulement) · `c` = 12 nœuds.
 | 6.3 | b (×6) | 6 | 30 | 28 | 2 | 93,3 % | 6,7 % |
 | 6.3 | c (×22) | 22 | 71 | 69 | 2 | **97,2 %** | 2,8 % |
 
-**Lecture** : les petits paquets (c, 12 nœuds) font émettre **5 à 10 fois plus de propositions par nœud** que la grappe entière, à précision quasi égale (94,6–97,4 % contre 100 % — mais sur des échantillons de 4–7 propositions au lot a, trop petits pour trancher). Le lot b (50) est le moins bon (93,3 %) ; 22 paquets de 12 sur 6.3 donnent la meilleure précision absolue de l'axe. Sévérités déclarées (corpus propre, 167 props) : 10 grossier, 111 moyen, 46 nuance.
+**Lecture** : les petits paquets (c, 12 nœuds) font émettre **5 à 10 fois plus de propositions par nœud** que la grappe entière, à précision quasi égale (94,6–97,4 % contre 100 % — mais sur des échantillons de 4–7 propositions au lot a, trop petits pour trancher). Le lot b (50) est le moins bon (93,3 %) ; 22 paquets de 12 sur 6.3 donnent la meilleure précision absolue de l'axe. Sévérités déclarées (corpus propre, **163** props : 10 grossier, 111 moyen, 46 nuance.
 
 Corpus planté (rappel) : lot a 33 props (97,0 % meilleur), lot c 152 props (97,4 %) — détail au §3.
 
@@ -69,31 +85,46 @@ Corpus planté (rappel) : lot a 33 props (97,0 % meilleur), lot c 152 props (97,
 
 **Arrêt sur la limite des 3 passes**, pas sur un critère de qualité : la précision est remontée en P3 et le flux n'est pas devenu « nuance seulement ». Les 25 corrections appliquées ne le sont que dans la copie de travail de l'essai — rien n'atterrit dans le dépôt. Coût incrémental total : 0,136 $.
 
-## 5. Luna vs Sol vs Haiku (grappes 4.1 + 5.2, lot a, juge sol)
+## 5. Comparaison des bras (juge sol étalonné, même corpus, mêmes lots)
 
-| Bras | Props | Précision | Dégradation | Coût sélecteur |
-|---|---:|---:|---:|---:|
-| **gpt-6-luna** | 8 | **100 %** | 0 % | 0,0132 $ (part des 2 runs) |
-| gpt-5.6-sol | 16 | 87,5 % | 12,5 % | **0,1914 $** |
-| claude-haiku-5-5 | 10 | 100 % | 0 % | 0,0084 $ |
+| Mesure | **gpt-6-luna** | **claude-haiku-5-5** | gpt-5.6-sol (témoin) |
+|---|---:|---:|---:|
+| Verdicts totaux | 377 | 303 | 16 |
+| Précision | **96.0 %** | **80.9 %** | 87.5 % |
+| Dégradation | 13 | 21 | 2 |
+| **Rappel (30 plantés)** | **27/30** | **29/30** | non mesuré |
+| Rang moyen | 2.65 | 2.65 | — |
+| Citations exactes de la cellule plantée | 51/51 | 54/55 | — |
+| Coût sélecteur (toutes phases) | 0.2370 $ | 0.3155 $ | 0.1914 $ |
 
-- Sol émet **2 fois plus de propositions** mais dégrade 12,5 % du temps, pour un coût sélecteur **~40× Luna** sur le même périmètre — et c'est le juge (sol) qui se juge lui-même ici : l'auto-faveur possible joue **contre** Luna, qui gagne quand même.
-- Les trois bras **ne voient pas les mêmes défauts** : sur 4.1, union = 14 propositions pour 8+9+5 émises (recouvrement Luna∩sol = 2, Luna∩haiku = 1, sol∩haiku = 1). Un balayage multi-modèle est complémentaire, pas redondant.
-- Haiku (0,0084 $) est parfait sur ce micro-échantillon (10 props, 42 nœuds) — échantillon trop petit pour opposer sa 100 % à celle de Luna ; il n'a pas été testé sur l'axe ni le rappel.
+**Lecture** :
+- **Luna et Haiku sont au même prix tarifaire** (0,10/0,50 $ par 1M) et leurs volumes d'appels sont comparables — le coût sélecteur par cellule utile se lit au §6.
+- Le **rappel** est le discriminant principal : Luna 27/30 (rang 2.65), Haiku 29/30 (rang 2.65).
+- Sol (témoin 4.1+5.2 seulement) : 87,5 % de précision, ~40× le coût de Luna à périmètre égal, **jugé par lui-même** — l'auto-faveur possible joue en sa faveur et il reste en dessous.
+- Les trois bras **ne voient pas les mêmes défauts** (union 4.1 = 14 propositions pour 22 émises) : un balayage multi-modèle est complémentaire, pas redondant.
+- Le bras sol n'a **pas** été mesuré sur les défauts plantés (hors mandat initial — témoin seulement).
 
 ## 6. Coûts
 
+Dépense par poste (journal ligne à ligne : `resultats/spend.jsonl`) :
+
 | Poste | $ |
 |---|---:|
-| Juge (374 verdicts, sol) | 1,2524 |
-| Témoins sol (16 props) + haiku (10 props) | 0,1914 + 0,0084 |
-| Étalonnage (2 passes, cf. annexe A) | 0,0379 |
-| Sélecteur Luna — clean + axe (44 runs) | 0,1005 |
-| Sélecteur Luna — plantés (51 runs) | 0,0942 |
-| Incrémental (sélecteur + juge inline, 3 passes) | 0,1358 |
-| **Total** | **1,8205 / 25 $** |
+| Juge (verdicts sol, toutes phases + incrémental) | 1.4390 |
+| Témoin sol (sélecteur, 16 props) | 0.1914 |
+| Étalonnage (2 passes, cf. annexe A) | 0.0379 |
+| Sélecteur Luna (clean, axe, plantés, incrémental) | 0.2370 |
+| Sélecteur Haiku (clean, axe, plantés, témoin) | 0.3155 |
+| **Total** | **3.2662 / 25 $** |
 
-Par bras : luna **0,237 $** · sol **1,575 $** · haiku **0,0084 $** — le juge (sol) représente 69 % de la dépense ; le bras testé coûte 13 %. Une campagne sans témoin sol serait ~0,45 $.
+**Coût par cellule utile (corpus propre, cellules distinctes « meilleur »)** — c'est le chiffre qui dimensionne une campagne de production :
+
+| Bras | Cellules distinctes | Sélecteur | Juge (au prorata) | Sélecteur + juge / cellule |
+|---|---:|---:|---:|---:|
+| Luna | 125 | 0.2370 $ | ~1.2630 $ | **0.0120 $** |
+| Haiku | 101 | 0.3155 $ | ~1.0151 $ | **0.0132 $** |
+
+Le juge (sol, 0,00335 $/verdict mesuré) représente ~69 % de la dépense de la phase 1 : une **campagne de production sans juge systématique** (relecture humaine des seuls candidats) coûterait ~0.0019 $ par cellule candidate au sélecteur seul. À volume égal, le bras Haiku est tarifairement identique ; la différence se joue sur le rappel (§5).
 
 ## 7. Exemples (textes entiers)
 
@@ -514,20 +545,31 @@ Par bras : luna **0,237 $** · sol **1,575 $** · haiku **0,0084 $** — le juge
 
 ## 8. Ce que l'essai n'établit pas
 
-1. **Le juge est un modèle (gpt-5.6-sol), pas un relecteur natif.** « Précision 96,5 % » = accord Luna→Sol ; ce n'est pas une vérité humaine. Les 361 corrections « utiles » sont des **candidats**, pas des corrections validées — la relecture native reste à faire (aucune n'est appliquée au dépôt).
-2. **Le témoin sol est jugé par lui-même** (auto-faveur possible). Elle jouerait en faveur de sol — qui perd quand même face à Luna ; la conclusion du §5 y gagne en robustesse, elle n'en devient pas une vérité humaine pour autant.
+1. **Le juge est un modèle (gpt-5.6-sol), pas un relecteur natif.** « Précision » = accord sélecteur→Sol ; ce n'est pas une vérité humaine. Les **125 candidats** (borne haute 138 avec l'incrémental) sont des **propositions**, pas des corrections validées — la relecture native reste à faire (aucune n'est appliquée au dépôt).
+2. **Le témoin sol est jugé par lui-même** (auto-faveur possible). Elle jouerait en faveur de sol — qui reste en dessous de Luna ; la conclusion y gagne en robustesse sans devenir une vérité humaine.
 3. **Périmètre = Fallacies seulement** (5 grappes, 507 nœuds, 8 langues). Rien sur Scenarii, Rules, Virtues, ni sur les champs `link_*`.
 4. **L'étalonnage couvre 6 classes de défauts plantés** — il valide le juge sur ces classes, pas sur toutes les nuances d'une relecture réelle (style, cohérence inter-cartes, terminologie de famille).
 5. **Les tailles de lot ne sont pas tranchées statistiquement** : lot b mesuré sur une seule grappe (6.3), lot a sur 4–7 propositions par grappe. La hiérarchie observée (c ≥ a > b) est une tendance, pas un classement démontré.
-6. **Haiku n'est mesuré que sur 10 propositions** — sa perfection locale ne dit rien de son rappel ni de son comportement sur les grappes denses.
+6. **Haiku et Luna partagent le même prix tarifaire mais pas le même volume réel de tokens** — le coût par cellule utile intègre les volumes mesurés, il ne se déduit pas du seul tarif. Le bras sol n'a pas été mesuré sur les plantés (hors mandat initial).
+7. **Première version du dossier corrigée sur revue** (ai-01, 11/11) : la précision est désormais **par bras** (Luna seul : 362/377), les candidats sont **des cellules distinctes du corpus propre** (125), jamais le total brut de propositions ni celles de la copie plantée. L'annexe C consigne les chiffres initiaux et pourquoi ils mesuraient le mauvais objet.
 
 ## 9. Conclusion (3 lignes)
 
-> **Oui, gpt-6-luna apporte une correction utilisable** : 90 % des défauts plantés retrouvés (rang moyen 2,65), 96,5 % de propositions jugées meilleures, 0,005 $ par correction utile — et les 51 retrouvailles citent la cellule fautive exacte.
-> **Réglage recommandé : petits paquets (~12 nœuds)** — 5–10× plus de propositions à précision quasi égale (97,2 % sur la plus grosse grappe), contre la grappe entière qui n'émet presque rien.
-> **Le coût n'est pas l'obstacle (1,82 $ / 25 $)** : l'étape à financer est la relecture humaine des 361 candidats, et le juge reste un modèle.
+> **Oui, gpt-6-luna apporte des corrections utilisables** : rappel 27/30 (rang moyen 2.65), précision 96.0 % (362/377, juge étalonné 6/6), **125 cellules candidates** sur le corpus propre — 0.2370 $ de sélecteur, ~0.0101 $ de juge par cellule.
+> **Le bras haiku (même tarif) se compare sur le rappel** : 29/30 vs 27/30 pour Luna, 101 cellules candidates vs 125 — précision 80.9 % vs 96.0 %. Les deux bras sont complémentaires (recouvrement faible) ; le choix s'arbitre sur le §5-6.
+> **Le coût n'est pas l'obstacle (3.27 $ / 25 $)** : l'étape à financer est la **relecture humaine des ~125-138 cellules candidates**, et le juge reste un modèle.
 
 ---
+
+## Annexe C — Historique de la première rédaction (corrigée sur revue ai-01 du 11/11)
+
+La première version du dossier présentait : « 361 corrections utiles », « précision 96,5 % », « 0,005 $ par correction ». Ces trois chiffres mesuraient le mauvais objet :
+
+- **361** = total des « meilleur » tous bras et toutes phases confondus, dont **180 propositions faites sur la copie plantée** (défauts introduits par nous, pour mesurer le rappel — elles ne corrigent rien au corpus) et **26 verdicts de témoins**. Le bon objet : **125 cellules distinctes** du corpus propre, dédoublonnées entre tailles de lot (une même cellule revient en lot a et lot c).
+- **96,5 %** = précision fondue sur 374 verdicts incluant les 26 témoins. La précision du bras testé seul : **362/377 = 96.0 %**.
+- **0,005 $** = dépense totale / 361, mélangeant les objets. Le §6 recalcule sélecteur et juge séparément, par cellule distincte et par bras.
+
+Les instruments et les données brutes étaient corrects (revue ai-01 : « l'instrument est solide ») — seule la synthèse a été refaite.
 
 ## Annexe A — Transparence instrument
 

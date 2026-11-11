@@ -312,10 +312,10 @@ def stage_judge():
         a_txt, b_txt = (current, prop_txt) if ab else (prop_txt, current)
         user = (f"Texte FR de référence (fait foi) :\n{fr}\n\nVersion A :\n{a_txt}\n\nVersion B :\n{b_txt}\n\n"
                 f"Contexte — nœud : {p['pk']} ; langue cible : {p['langue']} ; champ : {p['champ']}")
-        gate(2000 / 1e6 * 4 + 400 / 1e6 * 20)
+        gate(2000 / 1e6 * 4 + 1400 / 1e6 * 20)
         parsed, tin, tout = call_api("sol", [
             {"role": "system", "content": PROMPT_JUGE}, {"role": "user", "content": user}],
-            JUDGE_SCHEMA, max_tokens=400)
+            JUDGE_SCHEMA, max_tokens=1200)
         ledger("judge", "sol", stage, run, tin, tout)
         current_label = "A" if ab else "B"
         v = parsed["verdict"]
@@ -397,15 +397,35 @@ def stage_incremental():
     json.dump(summary, open(fn, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("incremental:", json.dumps(summary, ensure_ascii=False)[:200])
 
+def stage_haiku_clean():
+    """Revue #2231 c.6788606039 : haiku sur les memes 5 grappes, clean a + axe 2.1/6.3 c."""
+    sha, cl = load()
+    print(f"haiku-clean (5 grappes a + axe c) — sha fige {sha}")
+    for cid in CLUSTER_ORDER:
+        selector_run("haiku", "haiku-clean", cl, cid, cl[cid], "a")
+    for cid in ("2.1", "6.3"):
+        for i, ch in enumerate(chunks(cl[cid], 12)):
+            selector_run("haiku", f"haiku-axis-{cid}-c", cl, cid, ch, f"c{i+1:02d}")
+
+def stage_haiku_planted():
+    """Revue #2231 : haiku sur le corpus plante, tailles a et c (rappel comparable a Luna)."""
+    sha, cl = load("planted-clusters")
+    print(f"haiku-planted (5 grappes a+c) — sha fige {sha}")
+    for cid in CLUSTER_ORDER:
+        selector_run("haiku", "haiku-planted-a", cl, cid, cl[cid], "a")
+        for i, ch in enumerate(chunks(cl[cid], 12)):
+            selector_run("haiku", "haiku-planted-c", cl, cid, ch, f"c{i+1:02d}")
+
 STAGES = dict(probe=stage_probe, etalonnage=stage_etalonnage, clean=stage_clean,
               axis=stage_axis, planted=stage_planted,
               witness_sol=lambda: stage_witness("sol", "witness-sol"),
               witness_haiku=lambda: stage_witness("haiku", "witness-haiku"),
-              judge=stage_judge, incremental=stage_incremental)
+              judge=stage_judge, incremental=stage_incremental,
+              haiku_clean=stage_haiku_clean, haiku_planted=stage_haiku_planted)
 
 if __name__ == "__main__":
     if len(sys.argv) != 2 or sys.argv[1] not in STAGES:
-        print("usage: essai.py <probe|etalonnage|clean|axis|planted|witness_sol|witness_haiku|judge|incremental>")
+        print("usage: essai.py <probe|etalonnage|clean|axis|planted|witness_sol|witness_haiku|judge|incremental|haiku_clean|haiku_planted>")
         sys.exit(2)
     STAGES[sys.argv[1]]()
     print(f"cumul spend: {cum_spend():.4f} $ / {CEILING} $")
