@@ -2,13 +2,15 @@
 # ~30 défauts, <=1/nœud, répartis sur 5 grappes et 7 langues, 7 classes, graine déterministe 1520.
 # Sorties : planted-clusters.json (corpus muté, même structure que clusters.json)
 #           planted-defects.json (manifeste-témoin : chaque défaut avec original + planté)
-import json, random, re, sys, hashlib, copy, io
+import json, os, random, re, sys, hashlib, copy, io
 
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
 
 SEED = 1520
-BASE = r"D:\Dev\Argumentum\.tmp\1520-luna"
-CL = json.load(open(BASE + r"\clusters.json", encoding="utf-8"))
+# Repertoire de travail (clusters.json en entree, sorties a cote) : argument optionnel,
+# sinon le dossier de ce script — aucun chemin machine en dur.
+BASE = sys.argv[1] if len(sys.argv) > 1 else os.path.dirname(os.path.abspath(__file__))
+CL = json.load(open(os.path.join(BASE, "clusters.json"), encoding="utf-8"))
 LANGS = ["en", "ru", "pt", "es", "ar", "zh", "fa"]
 QUOTA = {"5.2": 2, "4.1": 3, "6.1": 5, "2.1": 8, "6.3": 12}   # total 30
 CLASSES = {1: "contresens (négation inversée)", 2: "exemple échangé avec un nœud frère",
@@ -253,11 +255,11 @@ for cid, nodes in planted["clusters"].items():
                 assert v == src[n["pk"]][k], f"cellule non ciblée mutée: {n['pk']}.{k}"
 
 # ---------- écriture ----------
-json.dump(planted, open(BASE + r"\planted-clusters.json", "w", encoding="utf-8"),
+json.dump(planted, open(os.path.join(BASE, "planted-clusters.json"), "w", encoding="utf-8"),
           ensure_ascii=False, indent=1)
 json.dump({"seed": SEED, "sha_corpus_figé": CL["sha"], "total": len(defects),
            "défauts": defects},
-          open(BASE + r"\planted-defects.json", "w", encoding="utf-8"),
+          open(os.path.join(BASE, "planted-defects.json"), "w", encoding="utf-8"),
           ensure_ascii=False, indent=1)
 print(f"OK — {len(defects)} défauts plantés, graine {SEED}")
 from collections import Counter

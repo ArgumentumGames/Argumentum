@@ -34,13 +34,14 @@ Protocole complet et contraintes : issue #1520. Point d'étape posté avant la p
 | Verdicts clean + axe (lot a, b, c) | 163 | 128 |
 | « meilleur » | 157 (96.3 %) | 115 (89.8 %) |
 | **Cellules distinctes « meilleur » (pk, langue, champ)** | **125** | **101** |
+| **Recouvrement Luna ∩ Haiku** | **39 cellules communes** — **union 187** | |
 
 - **125 candidats Luna à relire** sur le corpus propre, **pas 361** : les 180 « meilleur » obtenus sur la copie plantée corrigent des défauts que nous avons nous-mêmes introduits — c'est la mesure du rappel, pas un apport au corpus. Le total 361 est relégué à l'annexe C (historique de la première rédaction, corrigée sur revue).
-- **Incrémental** (§4) : 27 cellules proposées (25 appliquées) ; 14 sont déjà dans les 125, donc **au plus 13 nouvelles** — borne haute des candidats Luna : **138 cellules**.
+- **Incrémental** (§4) : 27 cellules proposées, dont 25 jugées « meilleur » (appliquées) ; 14 de ces 25 sont déjà dans les 125. Borne haute des candidats Luna : **136 cellules** en ne retenant que les « meilleur », **138** si l'on comptait aussi les 2 propositions incrémentales non retenues — la valeur opérante est **136**.
 - **Coût total : 3.2662 $ / 25 $** (journal `resultats/spend.jsonl`, 931 appels) dont **1,4447 $ de campagne de révision** (bras haiku complet + juge des 29 propositions incrémentales restantes). Coût par cellule utile : §6, sélecteur et juge séparés.
 - Écritures dans `Cards/**` : **0** — tout l'essai travaille sur copies en mémoire.
 
-Le solde de propositions (890 runs sélection au total) couvre les passes incrémentales auto-jugées (§4), les témoins et les répétitions a/c du corpus planté (rappel mesuré sur les deux tailles).
+La campagne totalise **931 appels payants : 725 juge + 12 étalonnage + 194 runs de sélection** (journal `resultats/spend.jsonl`). Ces runs couvrent les passes incrémentales auto-jugées (§4), les témoins et les répétitions a/c du corpus planté (rappel mesuré sur les deux tailles).
 
 ## 2. Grappe × taille de lot (corpus propre, juge sol)
 
@@ -99,6 +100,7 @@ Corpus planté (rappel) : lot a 33 props (97,0 % meilleur), lot c 152 props (97,
 
 **Lecture** :
 - **Luna et Haiku sont au même prix tarifaire** (0,10/0,50 $ par 1M) et leurs volumes d'appels sont comparables — le coût sélecteur par cellule utile se lit au §6.
+- **Recouvrement corpus propre** : 39 cellules jugées « meilleur » par les deux bras, sur une union de 187 (125 Luna + 101 Haiku − 39 communes) — les deux listes partagent un socle mais ne sont pas redondantes.
 - Le **rappel** est le discriminant principal : Luna 27/30 (rang 2.65), Haiku 29/30 (rang 2.65).
 - Sol (témoin 4.1+5.2 seulement) : 87,5 % de précision, ~40× le coût de Luna à périmètre égal, **jugé par lui-même** — l'auto-faveur possible joue en sa faveur et il reste en dessous.
 - Les trois bras **ne voient pas les mêmes défauts** (union 4.1 = 14 propositions pour 22 émises) : un balayage multi-modèle est complémentaire, pas redondant.
@@ -545,7 +547,7 @@ Le juge (sol, 0.00343 $/appel mesuré sur 725 appels pour 696 verdicts persisté
 
 ## 8. Ce que l'essai n'établit pas
 
-1. **Le juge est un modèle (gpt-5.6-sol), pas un relecteur natif.** « Précision » = accord sélecteur→Sol ; ce n'est pas une vérité humaine. Les **125 candidats** (borne haute 138 avec l'incrémental) sont des **propositions**, pas des corrections validées — la relecture native reste à faire (aucune n'est appliquée au dépôt).
+1. **Le juge est un modèle (gpt-5.6-sol), pas un relecteur natif.** « Précision » = accord sélecteur→Sol ; ce n'est pas une vérité humaine. Les **125 candidats** (borne haute **136** avec l'incrémental « meilleur » seul ; 138 en comptant aussi les 2 propositions non retenues) sont des **propositions**, pas des corrections validées — la relecture native reste à faire (aucune n'est appliquée au dépôt).
 2. **Le témoin sol est jugé par lui-même** (auto-faveur possible). Elle jouerait en faveur de sol — qui reste en dessous de Luna ; la conclusion y gagne en robustesse sans devenir une vérité humaine.
 3. **Périmètre = Fallacies seulement** (5 grappes, 507 nœuds, 8 langues). Rien sur Scenarii, Rules, Virtues, ni sur les champs `link_*`.
 4. **L'étalonnage couvre 6 classes de défauts plantés** — il valide le juge sur ces classes, pas sur toutes les nuances d'une relecture réelle (style, cohérence inter-cartes, terminologie de famille).
@@ -556,8 +558,8 @@ Le juge (sol, 0.00343 $/appel mesuré sur 725 appels pour 696 verdicts persisté
 ## 9. Conclusion (3 lignes)
 
 > **Oui, gpt-6-luna apporte des corrections utilisables** : rappel 27/30 (rang moyen 2.65), précision 96.0 % (362/377, juge étalonné 6/6), **125 cellules candidates** sur le corpus propre — 0.2370 $ de sélecteur, ~0.0103 $ de juge par cellule.
-> **Le bras haiku (même tarif) se compare sur le rappel** : 29/30 vs 27/30 pour Luna, 101 cellules candidates vs 125 — précision 80.9 % vs 96.0 %. Les deux bras sont complémentaires (recouvrement faible) ; le choix s'arbitre sur le §5-6.
-> **Le coût n'est pas l'obstacle (3.27 $ / 25 $)** : l'étape à financer est la **relecture humaine des ~125-138 cellules candidates**, et le juge reste un modèle.
+> **Le bras haiku (même tarif) se compare sur le rappel** : 29/30 vs 27/30 pour Luna, 101 cellules candidates vs 125 — précision 80.9 % vs 96.0 %. Les deux bras sont complémentaires (39 cellules communes sur une union de 187) ; le choix s'arbitre sur le §5-6.
+> **Le coût n'est pas l'obstacle (3.27 $ / 25 $)** : l'étape à financer est la **relecture humaine des ~125-136 cellules candidates**, et le juge reste un modèle.
 
 ---
 
@@ -588,7 +590,7 @@ instruments/
   prompt-juge.md         # prompt juge + critères meilleur/pire/équivalent
 planted-defects.json     # manifeste témoin des 30 défauts
 resultats/
-  selector-runs.jsonl    # 890 runs (1 ligne/run, propositions + empreintes)
+  selector-runs.jsonl    # 194 runs de sélection (1 ligne/run, propositions + empreintes)
   verdicts.jsonl         # 696 verdicts du juge
   spend.jsonl            # journal de dépense ligne à ligne (931 appels, dont 725 appels juge)
   etalonnage.json  incremental.json

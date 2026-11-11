@@ -23,6 +23,23 @@
   "meilleur": 157,
   "cellules_distinctes": 125
  },
+ "haiku_clean": {
+  "verdicts": 128,
+  "meilleur": 115,
+  "cellules_distinctes": 101
+ },
+ "recouvrement": {
+  "luna": 125,
+  "haiku": 101,
+  "cellules_communes": 39,
+  "union": 187
+ },
+ "bornes_luna": {
+  "meilleur_seul": 136,
+  "toutes_propositions_incrementales": 138,
+  "cellules_incrementales_meilleur": 25,
+  "cellules_incrementales_proposees": 27
+ },
  "recall": {
   "luna": {
    "retrouves": 27,
@@ -83,10 +100,5 @@
   "calibration": 0.0379,
   "calls": 931,
   "total": 3.2662
- },
- "haiku_clean": {
-  "verdicts": 128,
-  "meilleur": 115,
-  "cellules_distinctes": 101
  }
 }

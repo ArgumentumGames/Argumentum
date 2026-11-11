@@ -1,9 +1,12 @@
 # #1520 phase 0 — figer le corpus, extraire les 5 grappes, vérifier les comptes (oracle : 13/29/85/123/257 = 507).
 # Le FR fait foi (lecture seule) ; champs desc_<l>/example_<l> pour en ru pt es ar zh fa.
-import csv, io, subprocess, sys
+import csv, io, os, subprocess, sys
 
 SHA = "25327fef"
-REPO = r"D:\Dev\Argumentum"
+ROOT = os.path.dirname(os.path.abspath(__file__))
+REPO = subprocess.run(["git", "rev-parse", "--show-toplevel"], cwd=ROOT,
+                      capture_output=True, text=True, check=True).stdout.strip()
+OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "clusters.json")
 CSV_PATH = "Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv"
 CLUSTERS = {"5.2": 13, "4.1": 29, "6.1": 85, "2.1": 123, "6.3": 257}
 LANGS = ["en", "ru", "pt", "es", "ar", "zh", "fa"]
@@ -29,9 +32,9 @@ for prefix, expected in CLUSTERS.items():
 
 import json
 json.dump({"sha": SHA, "clusters": out},
-          open(r"D:\Dev\Argumentum\.tmp\1520-luna\clusters.json", "w", encoding="utf-8"),
+          open(OUT, "w", encoding="utf-8"),
           ensure_ascii=False, indent=1)
 total = sum(len(v) for v in out.values())
 print(f"TOTAL {total} noeuds (attendu 507)")
 assert total == 507
-print("OK — clusters.json ecrit")
+print(f"OK — {OUT} ecrit")

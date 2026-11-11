@@ -1,15 +1,19 @@
 # -*- coding: utf-8 -*-
-# Analyse revue #2231 c.6788606039 : chiffres PAR BRAS, cellules distinctes du corpus
-# propre (dédoublonnées (pk,langue,champ) + valeur de correction), coûts selecteur/juge
-# séparés, rappel par bras. Contre-mesures attendues (Luna seul, avant bras haiku) :
-#   348 verdicts / 337 meilleur = 96,8 % ; 157/163 meilleur sur clean+axis ; 125 cellules
-#   distinctes ; 180 meilleur sur copie plantée ; 26 verdicts témoins.
+# Chiffres PAR BRAS, cellules distinctes du corpus propre (dédoublonnées
+# (pk,langue,champ)), coûts sélecteur/juge séparés, rappel par bras, recouvrement
+# Luna/Haiku et bornes haute du candidat Luna.
+# Entrées : les fichiers COMMITÉS du dossier — resultats/verdicts.jsonl,
+# resultats/selector-runs.jsonl, resultats/spend.jsonl, planted-defects.json
+# (aucune dépendance au répertoire de campagne .tmp — reproductible depuis tout clone).
+# Sortie : resultats/per-arm.json (surchargeable par LUNA6_RESULTS).
 import json, os, sys
 from collections import Counter, defaultdict
 from decimal import Decimal
 
-ROOT = r"D:\Dev\Argumentum\.tmp\1520-luna"
-RUNS = os.path.join(ROOT, "runs")
+HERE = os.path.dirname(os.path.abspath(__file__))
+DOSSIER = os.path.dirname(HERE)
+RESULTS = os.environ.get("LUNA6_RESULTS", os.path.join(DOSSIER, "resultats"))
+MANIFEST = os.path.join(os.path.dirname(RESULTS), "planted-defects.json")
 
 ARM_OF = {
     "clean": "luna", "axis": "luna", "planted": "luna", "incr": "luna",
@@ -22,22 +26,19 @@ def arm_for(stage):
             return arm
     return "?"
 
-verdicts = {}
-for fn in os.listdir(os.path.join(RUNS, "judge")):
-    if fn.endswith(".json"):
-        j = json.load(open(os.path.join(RUNS, "judge", fn), encoding="utf-8"))
-        verdicts[j["key"]] = j
+def read_jsonl(name):
+    path = os.path.join(RESULTS, name)
+    with open(path, encoding="utf-8") as f:
+        return [json.loads(l) for l in f if l.strip()]
+
+verdicts = {j["key"]: j for j in read_jsonl("verdicts.jsonl")}
+runs = read_jsonl("selector-runs.jsonl")
 
 per_arm = defaultdict(Counter)          # verdicts par bras
-clean_cells = defaultdict(dict)         # arm -> (pk,langue,champ) -> set(corrections)
 for j in verdicts.values():
     a = arm_for(j["stage"])
     per_arm[a][j["verdict"]] += 1
     per_arm[a]["total"] += 1
-    if j["verdict"] == "meilleur" and not j["stage"].startswith("planted"):
-        # cellules candidates corpus propre : clean/axis/haiku-*/witness-* (incr traité à part)
-        if j["stage"].startswith(("clean", "axis", "haiku-clean", "haiku-axis", "witness")):
-            clean_cells[a].setdefault((j["pk"], j["langue"], j["champ"]), set())
 
 print("== verdicts par bras ==")
 for a, c in sorted(per_arm.items()):
@@ -53,28 +54,38 @@ print(f"  cellules distinctes 'meilleur': {len(cells_luna)}")
 planted_mb = sum(1 for j in verdicts.values() if j["verdict"] == "meilleur" and j["stage"].startswith("planted"))
 print(f"  (controle: meilleur sur copie plantee = {planted_mb}, attendu 180)")
 
-# ---- rappel par bras (corpus plante) ----
-manifest = json.load(open(os.path.join(ROOT, "planted-defects.json"), encoding="utf-8"))["défauts"]
+haiku_clean = {k: j for k, j in verdicts.items()
+               if j["stage"].startswith(("haiku-clean", "haiku-axis", "witness-haiku"))}
+hmb = sum(1 for j in haiku_clean.values() if j["verdict"] == "meilleur")
+hcells = {(j["pk"], j["langue"], j["champ"]) for j in haiku_clean.values() if j["verdict"] == "meilleur"}
+print(f"  haiku corpus propre: {len(haiku_clean)} verdicts, {hmb} meilleur, {len(hcells)} cellules distinctes")
+
+common = cells_luna & hcells
+union = cells_luna | hcells
+print(f"  recouvrement Luna/Haiku: {len(common)} cellules communes, union {len(union)}")
+
+# ---- bornes haute du candidat Luna (corpus propre + incrémental) ----
+incr_all = {(j["pk"], j["langue"], j["champ"]) for j in verdicts.values() if j["stage"].startswith("incr")}
+incr_best = {(j["pk"], j["langue"], j["champ"]) for j in verdicts.values()
+             if j["stage"].startswith("incr") and j["verdict"] == "meilleur"}
+borne_best = len(cells_luna | incr_best)      # seules les corrections jugées « meilleur »
+borne_all = len(cells_luna | incr_all)        # toutes cellules incrémentales proposées (y c. non « meilleur »)
+print(f"  bornes Luna: {borne_best} (meilleur seul) / {borne_all} (toutes propositions incrémentales)")
+
+# ---- rappel par bras (corpus planté) ----
+manifest = json.load(open(MANIFEST, encoding="utf-8"))["défauts"]
 planted_keys = {(str(d["pk"]), d["langue"], d["champ"]): d for d in manifest}
 
 def recall(prefix):
     hits = {}
-    sd_all = []
-    for stage in sorted(os.listdir(RUNS)):
-        if not stage.startswith(prefix):
+    for r in runs:
+        if "meta" not in r or not r["meta"]["stage"].startswith(prefix):
             continue
-        sd = os.path.join(RUNS, stage)
-        if not os.path.isdir(sd):
-            continue
-        for fn in sorted(os.listdir(sd)):
-            if not fn.endswith(".json"):
-                continue
-            r = json.load(open(os.path.join(sd, fn), encoding="utf-8"))
-            for p in r.get("reponse", {}).get("propositions", []):
-                key = (str(p["pk"]), p["langue"], p["champ"])
-                if key in planted_keys:
-                    exact = p.get("extrait_fautif") == planted_keys[key]["plante"]
-                    hits.setdefault(key, []).append((p.get("rang"), exact))
+        for p in r.get("reponse", {}).get("propositions", []):
+            key = (str(p["pk"]), p["langue"], p["champ"])
+            if key in planted_keys:
+                exact = p.get("extrait_fautif") == planted_keys[key]["plante"]
+                hits.setdefault(key, []).append((p.get("rang"), exact))
     exact_n = sum(1 for lst in hits.values() for _, e in lst if e)
     total_n = sum(len(lst) for lst in hits.values())
     rangs = [r for lst in hits.values() for r, _ in lst if r]
@@ -91,8 +102,8 @@ rec_haiku = recall("haiku-planted")
 print("  Haiku:", {k: v for k, v in rec_haiku.items() if k != "manques"})
 print("  Haiku manques:", json.dumps(rec_haiku["manques"], ensure_ascii=False))
 
-# ---- couts selecteur vs juge ----
-recs = [json.loads(l) for l in open(os.path.join(RUNS, "spend.jsonl"), encoding="utf-8") if l.strip()]
+# ---- coûts sélecteur vs juge ----
+recs = read_jsonl("spend.jsonl")
 def cost(pred):
     return round(sum((Decimal(str(r["cost_usd"])) for r in recs if pred(r)), Decimal(0)), 4)
 def is_judge(r):
@@ -106,13 +117,11 @@ print("  juge sol:", cost(is_judge),
 print("  total:", cost(lambda r: True), "$ sur", len(recs), "appels")
 judge_n = sum(1 for r in recs if is_judge(r))
 judge_total = cost(is_judge)
-print(f"  cout juge moyen/appel: {judge_total/max(judge_n,1):.5f} $ ({judge_n} appels juge)")
+print(f"  cout juge moyen/appel: {judge_total/max(judge_n,1):.5f} $ ({judge_n} appels juge, {len(verdicts)} verdicts persistes)")
 
-# cout par cellule utile (corpus propre) = (selecteur du bras + quote-part juge) / cellules distinctes
-for a in ("luna", "haiku"):
-    n_cells = len({(j["pk"], j["langue"], j["champ"]) for j in verdicts.values()
-                   if arm_for(j["stage"]) == a and j["verdict"] == "meilleur"
-                   and j["stage"].startswith(("clean", "axis", "haiku-clean", "haiku-axis", "witness-haiku"))})
+# coût par cellule utile (corpus propre) = (sélecteur du bras + quote-part juge) / cellules distinctes
+for a, cells in (("luna", cells_luna), ("haiku", hcells)):
+    n_cells = len(cells)
     n_verdicts = per_arm[a]["total"]
     sel = sel_cost[a]
     jpart = n_verdicts * judge_total / max(judge_n, 1)
@@ -122,16 +131,17 @@ for a in ("luna", "haiku"):
 
 out = dict(per_arm={a: dict(c) for a, c in per_arm.items()},
            luna_clean=dict(verdicts=tot, meilleur=mb, cellules_distinctes=len(cells_luna)),
+           haiku_clean=dict(verdicts=len(haiku_clean), meilleur=hmb, cellules_distinctes=len(hcells)),
+           recouvrement=dict(luna=len(cells_luna), haiku=len(hcells),
+                             cellules_communes=len(common), union=len(union)),
+           bornes_luna=dict(meilleur_seul=borne_best, toutes_propositions_incrementales=borne_all,
+                            cellules_incrementales_meilleur=len(incr_best),
+                            cellules_incrementales_proposees=len(incr_all)),
            recall=dict(luna=rec_luna, haiku=rec_haiku),
            costs=dict(selecteur={a: float(v) for a, v in sel_cost.items()}, judge=float(judge_total),
                       judge_calls=judge_n, judge_verdicts=len(verdicts),
                       calibration=float(cost(lambda r: r["stage"] == "etalonnage")),
                       calls=len(recs), total=float(cost(lambda r: True))))
-haiku_clean = {k: j for k, j in verdicts.items()
-               if j["stage"].startswith(("haiku-clean", "haiku-axis", "witness-haiku"))}
-hmb = sum(1 for j in haiku_clean.values() if j["verdict"] == "meilleur")
-hcells = {(j["pk"], j["langue"], j["champ"]) for j in haiku_clean.values() if j["verdict"] == "meilleur"}
-out["haiku_clean"] = dict(verdicts=len(haiku_clean), meilleur=hmb, cellules_distinctes=len(hcells))
-print(f"\nhaiku corpus propre: {len(haiku_clean)} verdicts, {hmb} meilleur, {len(hcells)} cellules distinctes")
-json.dump(out, open(os.path.join(RUNS, "per-arm.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-print("\necrit runs/per-arm.json")
+out_path = os.path.join(RESULTS, "per-arm.json")
+json.dump(out, open(out_path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+print(f"\necrit {out_path}")

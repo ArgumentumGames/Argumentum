@@ -11,23 +11,29 @@
 #   incremental    : passes 6.1+2.1 (<=3), corrections "meilleur" appliquees a la copie
 # Regles : plafond dur 25 $ (refus d'appel si depassement projete), ledger spend.jsonl,
 # reprise : un fichier resultat existant est saute, jamias refait.
-# Cles : .keys/openai-key.txt (api.openai.com) et .keys/anthropic-key.txt (compat
-#        api.anthropic.com/v1). Jamais la valeur n'est affichee ni ecrite ailleurs.
-import json, os, sys, time, hashlib, random, urllib.request, urllib.error
+# Cles : <racine-du-depot>/.keys/openai-key.txt (api.openai.com) et
+#        <racine-du-depot>/.keys/anthropic-key.txt (compat api.anthropic.com/v1),
+#        racine derivee de git depuis ce script — aucun chemin machine en dur.
+#        Jamais la valeur n'est affichee ni ecrite ailleurs.
+# Sorties : LUNA6_RUNS si defini, sinon <ce script>/runs (reprise par fichier existant).
+import json, os, sys, time, hashlib, random, subprocess, urllib.request, urllib.error
 from collections import Counter
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-RUNS = os.path.join(ROOT, "runs")
+REPO = subprocess.run(["git", "rev-parse", "--show-toplevel"], cwd=ROOT,
+                      capture_output=True, text=True, check=True).stdout.strip()
+KEYS = os.path.join(REPO, ".keys")
+RUNS = os.environ.get("LUNA6_RUNS", os.path.join(ROOT, "runs"))
 os.makedirs(RUNS, exist_ok=True)
 LEDGER = os.path.join(RUNS, "spend.jsonl")
 
 CEILING = 25.0
 ARMS = {
-    "luna":   dict(base="https://api.openai.com/v1", keyfile=r"D:\Dev\Argumentum\.keys\openai-key.txt",
+    "luna":   dict(base="https://api.openai.com/v1", keyfile=os.path.join(KEYS, "openai-key.txt"),
                    model="gpt-6-luna", pin=0.10, pout=0.50),
-    "sol":    dict(base="https://api.openai.com/v1", keyfile=r"D:\Dev\Argumentum\.keys\openai-key.txt",
+    "sol":    dict(base="https://api.openai.com/v1", keyfile=os.path.join(KEYS, "openai-key.txt"),
                    model="gpt-5.6-sol", pin=4.00, pout=20.00),
-    "haiku":  dict(base="https://api.anthropic.com/v1", keyfile=r"D:\Dev\Argumentum\.keys\anthropic-key.txt",
+    "haiku":  dict(base="https://api.anthropic.com/v1", keyfile=os.path.join(KEYS, "anthropic-key.txt"),
                    model="claude-haiku-5-5", pin=0.10, pout=0.50),
 }
 LANGS = ["en", "ru", "pt", "es", "ar", "zh", "fa"]
