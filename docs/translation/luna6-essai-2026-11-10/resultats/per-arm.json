@@ -77,6 +77,11 @@
    "sol": 0.1914,
    "haiku": 0.3155
   },
+  "judge": 2.4843,
+  "judge_calls": 725,
+  "judge_verdicts": 696,
+  "calibration": 0.0379,
+  "calls": 931,
   "total": 3.2662
  },
  "haiku_clean": {

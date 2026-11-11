@@ -6,6 +6,7 @@
 #   distinctes ; 180 meilleur sur copie plantée ; 26 verdicts témoins.
 import json, os, sys
 from collections import Counter, defaultdict
+from decimal import Decimal
 
 ROOT = r"D:\Dev\Argumentum\.tmp\1520-luna"
 RUNS = os.path.join(ROOT, "runs")
@@ -93,16 +94,19 @@ print("  Haiku manques:", json.dumps(rec_haiku["manques"], ensure_ascii=False))
 # ---- couts selecteur vs juge ----
 recs = [json.loads(l) for l in open(os.path.join(RUNS, "spend.jsonl"), encoding="utf-8") if l.strip()]
 def cost(pred):
-    return round(sum(r["cost_usd"] for r in recs if pred(r)), 4)
+    return round(sum((Decimal(str(r["cost_usd"])) for r in recs if pred(r)), Decimal(0)), 4)
+def is_judge(r):
+    return r["stage"] == "judge" or r["stage"].endswith("-judge")
 sel_cost = {a: cost(lambda r, a=a: r["arm"] == a and r["stage"] not in ("judge", "etalonnage") and not r["stage"].endswith("-judge"))
             for a in ("luna", "sol", "haiku")}
 print("\n== couts ==")
-print("  selecteur par bras (propositions, toutes phases):", sel_cost)
-print("  juge sol:", cost(lambda r: r["stage"] == "judge" or r["stage"].endswith("-judge")),
+print("  selecteur par bras (propositions, toutes phases):", {a: float(v) for a, v in sel_cost.items()})
+print("  juge sol:", cost(is_judge),
       "| etalonnage:", cost(lambda r: r["stage"] == "etalonnage"))
 print("  total:", cost(lambda r: True), "$ sur", len(recs), "appels")
-judge_n = sum(1 for r in recs if r["stage"] == "judge")
-print(f"  cout juge moyen/verdict: {cost(lambda r: r['stage']=='judge')/max(judge_n,1):.5f} $ ({judge_n} verdicts)")
+judge_n = sum(1 for r in recs if is_judge(r))
+judge_total = cost(is_judge)
+print(f"  cout juge moyen/appel: {judge_total/max(judge_n,1):.5f} $ ({judge_n} appels juge)")
 
 # cout par cellule utile (corpus propre) = (selecteur du bras + quote-part juge) / cellules distinctes
 for a in ("luna", "haiku"):
@@ -111,7 +115,7 @@ for a in ("luna", "haiku"):
                    and j["stage"].startswith(("clean", "axis", "haiku-clean", "haiku-axis", "witness-haiku"))})
     n_verdicts = per_arm[a]["total"]
     sel = sel_cost[a]
-    jpart = n_verdicts * cost(lambda r: r["stage"] == "judge") / max(judge_n, 1)
+    jpart = n_verdicts * judge_total / max(judge_n, 1)
     if n_cells:
         print(f"  {a}: {n_cells} cellules distinctes | selecteur {sel:.4f} $ + juge ~{jpart:.4f} $ "
               f"=> {(sel + jpart) / n_cells:.4f} $/cellule (selecteur seul {sel / n_cells:.4f} $)")
@@ -119,7 +123,10 @@ for a in ("luna", "haiku"):
 out = dict(per_arm={a: dict(c) for a, c in per_arm.items()},
            luna_clean=dict(verdicts=tot, meilleur=mb, cellules_distinctes=len(cells_luna)),
            recall=dict(luna=rec_luna, haiku=rec_haiku),
-           costs=dict(selecteur=sel_cost, total=cost(lambda r: True)))
+           costs=dict(selecteur={a: float(v) for a, v in sel_cost.items()}, judge=float(judge_total),
+                      judge_calls=judge_n, judge_verdicts=len(verdicts),
+                      calibration=float(cost(lambda r: r["stage"] == "etalonnage")),
+                      calls=len(recs), total=float(cost(lambda r: True))))
 haiku_clean = {k: j for k, j in verdicts.items()
                if j["stage"].startswith(("haiku-clean", "haiku-axis", "witness-haiku"))}
 hmb = sum(1 for j in haiku_clean.values() if j["verdict"] == "meilleur")

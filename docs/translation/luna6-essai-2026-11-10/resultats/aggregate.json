@@ -63,6 +63,88 @@
    "precision": 1.0,
    "degradation": 0.0
   },
+  "haiku-axis-2.1-c": {
+   "runs": 11,
+   "propositions": 33,
+   "severite": {
+    "moyen": 21,
+    "nuance": 10,
+    "grossier": 2
+   },
+   "verdicts": {
+    "meilleur": 30,
+    "equivalent": 2,
+    "pire": 1
+   },
+   "judged": 33,
+   "precision": 0.909,
+   "degradation": 0.03
+  },
+  "haiku-axis-6.3-c": {
+   "runs": 22,
+   "propositions": 61,
+   "severite": {
+    "moyen": 37,
+    "nuance": 24
+   },
+   "verdicts": {
+    "meilleur": 52,
+    "pire": 7,
+    "equivalent": 2
+   },
+   "judged": 61,
+   "precision": 0.852,
+   "degradation": 0.115
+  },
+  "haiku-clean": {
+   "runs": 5,
+   "propositions": 24,
+   "severite": {
+    "moyen": 14,
+    "nuance": 10
+   },
+   "verdicts": {
+    "meilleur": 23,
+    "equivalent": 1
+   },
+   "judged": 24,
+   "precision": 0.958,
+   "degradation": 0.0
+  },
+  "haiku-planted-a": {
+   "runs": 5,
+   "propositions": 37,
+   "severite": {
+    "grossier": 25,
+    "moyen": 8,
+    "nuance": 4
+   },
+   "verdicts": {
+    "pire": 5,
+    "equivalent": 13,
+    "meilleur": 19
+   },
+   "judged": 37,
+   "precision": 0.514,
+   "degradation": 0.135
+  },
+  "haiku-planted-c": {
+   "runs": 46,
+   "propositions": 138,
+   "severite": {
+    "grossier": 30,
+    "moyen": 65,
+    "nuance": 43
+   },
+   "verdicts": {
+    "meilleur": 111,
+    "pire": 8,
+    "equivalent": 19
+   },
+   "judged": 138,
+   "precision": 0.804,
+   "degradation": 0.058
+  },
   "incr1": {
    "runs": 2,
    "propositions": 9,
@@ -71,10 +153,13 @@
     "moyen": 4,
     "nuance": 1
    },
-   "verdicts": {},
-   "judged": 0,
-   "precision": null,
-   "degradation": null
+   "verdicts": {
+    "meilleur": 8,
+    "equivalent": 1
+   },
+   "judged": 9,
+   "precision": 0.889,
+   "degradation": 0.0
   },
   "incr2": {
    "runs": 2,
@@ -84,10 +169,13 @@
     "moyen": 6,
     "nuance": 1
    },
-   "verdicts": {},
-   "judged": 0,
-   "precision": null,
-   "degradation": null
+   "verdicts": {
+    "pire": 2,
+    "meilleur": 7
+   },
+   "judged": 9,
+   "precision": 0.778,
+   "degradation": 0.222
   },
   "incr3": {
    "runs": 2,
@@ -97,10 +185,13 @@
     "moyen": 7,
     "nuance": 2
    },
-   "verdicts": {},
-   "judged": 0,
-   "precision": null,
-   "degradation": null
+   "verdicts": {
+    "meilleur": 10,
+    "pire": 1
+   },
+   "judged": 11,
+   "precision": 0.909,
+   "degradation": 0.091
   },
   "planted-a": {
    "runs": 5,
@@ -1026,112 +1117,117 @@
     "raison": "La version B restitue « contrôler ou influencer », tandis que la version A omet l’idée de pouvoir influencer les événements."
    },
    {
-    "stage": "planted-a",
-    "run": "6.1__a",
-    "pk": "910",
-    "langue": "zh",
-    "champ": "desc",
-    "severite": "moyen",
-    "probleme": "Le mot français « interlocuteur » a été laissé sans traduction dans la cellule chinoise.",
-    "fr": "Votre argument s’appuie sur de fausses informations sciemment présentées comme des actualités.",
-    "avant": "你的论点依靠故意作为新闻报道的虚假信息。",
-    "apres": "你明知信息不正确，却仍将其传播，以此误导对方。",
-    "raison": "A conserve l’idée que l’argument repose sur de fausses informations sciemment présentées comme des actualités, tandis que B ajoute une diffusion et une intention de tromper absentes du français."
+    "stage": "haiku-axis-2.1-c",
+    "run": "2.1__c04",
+    "pk": "216",
+    "langue": "es",
+    "champ": "example",
+    "severite": "nuance",
+    "probleme": "Incohérence de registre : la description espagnole utilise le vosoiros (« Criticáis »), alors que l'exemple passe au tú (« Prefieres »).",
+    "fr": "Préférez-vous faire confiance à cette horde de trolls ?",
+    "avant": "¿Prefieres confiar en la horda de trolls?",
+    "apres": "¿Preferís confiar en la horda de trolls?",
+    "raison": "« Prefieres » restitue le « vous » générique dans un espagnol standard, tandis que « preferís » relève du voseo régional."
    },
    {
-    "stage": "planted-c",
-    "run": "2.1__c05",
-    "pk": "230",
-    "langue": "pt",
+    "stage": "haiku-axis-6.3-c",
+    "run": "6.3__c02",
+    "pk": "1042",
+    "langue": "ru",
     "champ": "example",
     "severite": "moyen",
-    "probleme": "La traduction ne donne que le sens littéral et omet l’explication du contrepèterie obscène, indispensable pour comprendre l’exemple en portugais.",
-    "fr": "Le général est arrivé à pied par la Chine.",
-    "avant": "O general chegou a pé pela China",
-    "apres": "O general chegou a pé pela China — em francês, « à pied par la Chine »; trocando os sons, obtém-se a expressão obscena « à chier par la pine ».",
-    "raison": "A traduit fidèlement et intégralement la phrase française, tandis que B ajoute une explication et un jeu de mots obscène absents du texte de référence."
+    "probleme": "Participe présent « чувствующим » mal accordé et construction ungrammaticale ; la phrase ne rend pas l'amertume attendue.",
+    "fr": "J’étais tellement heureux avec ma médaille de bronze l’an dernier. Celle d’argent, aujourd’hui, me laisse amer.",
+    "avant": "В прошлом году я был так счастлив, получив бронзовую медаль. Сегодняшняя серебряная оставляет меня чувствующим горечь.",
+    "apres": "Сегодняшняя серебряная оставляет у меня горечь.",
+    "raison": "B restitue les deux phrases et l’opposition entre la joie passée et l’amertume présente, tandis que A omet entièrement la médaille de bronze de l’an dernier."
    },
    {
-    "stage": "planted-c",
-    "run": "4.1__c02",
-    "pk": "713",
-    "langue": "zh",
+    "stage": "haiku-axis-6.3-c",
+    "run": "6.3__c05",
+    "pk": "1081",
+    "langue": "es",
     "champ": "desc",
     "severite": "nuance",
-    "probleme": "«正确» signifie «correct» plutôt que «juste» au sens de résultat équitable.",
-    "fr": "Vous croyez à tort que deux erreurs combinées peuvent produire un résultat juste.",
-    "avant": "您错误地认为，两个错误结合起来可以产生一个正确的结果。",
-    "apres": "您错误地认为，两个错误结合起来可以产生一个公正的结果。",
-    "raison": "«正确的结果» traduit fidèlement «un résultat juste» au sens de résultat correct, tandis que «公正的结果» évoque à tort un résultat équitable."
+    "probleme": "Registre incohérent : cette cellule tutoie (« Tienes ») alors que le reste du corpus espagnol vouvoie le lecteur (« Descontáis », « Subestimáis »), et le FR utilise « vous ».",
+    "fr": "Vous êtes trop confiant dans vos réponses à des questions difficles et pas assez confiant dans vos réponses à des questions faciles.",
+    "avant": "Tienes demasiada confianza en tus respuestas a preguntas difíciles y no suficiente confianza en tus respuestas a preguntas fáciles.",
+    "apres": "Tenéis demasiada confianza en vuestras respuestas a preguntas difíciles y no suficiente confianza en vuestras respuestas a preguntas fáciles.",
+    "raison": "La version B restitue plus naturellement le « vous » générique par le singulier espagnol, tandis que A impose un pluriel « vosotros » absent du français."
    },
    {
-    "stage": "planted-c",
-    "run": "6.3__c08",
-    "pk": "1115",
-    "langue": "ar",
+    "stage": "haiku-axis-6.3-c",
+    "run": "6.3__c11",
+    "pk": "1146",
+    "langue": "es",
     "champ": "desc",
-    "severite": "nuance",
-    "probleme": "La fin répète inutilement l’idée d’influencer les événements et rend la phrase maladroite.",
-    "fr": "Vous pensez pouvoir contrôler ou influencer des événements sur lesquels vous n’avez en réalité que peu ou pas d’influence.",
-    "avant": "تعتقدون أنكم تستطيعون التحكم في أحداث لا تملكون في الواقع إلا تأثيرًا ضئيلًا عليها أو لا تملكون أي تأثير عليها، أو التأثير فيها.",
-    "apres": "تعتقدون أنكم تستطيعون التحكم في أحداث لا تملكون في الواقع إلا تأثيرًا ضئيلًا عليها أو لا تملكون أي تأثير فيها.",
-    "raison": "A restitue l’alternative « contrôler ou influencer », tandis que B omet la possibilité d’influencer les événements."
-   },
-   {
-    "stage": "witness-sol",
-    "run": "4.1__a",
-    "pk": "720",
-    "langue": "zh",
-    "champ": "example",
     "severite": "moyen",
-    "probleme": "La construction finale rattache syntaxiquement « 冲出路外 » à l’écureuil et rend ambigu le fait que c’est la voiture qui est sortie de la route.",
-    "fr": "Ma voiture, que je conduisais ivre et au téléphone, est sortie de route à cause d’un écureuil.",
-    "avant": "我醉酒并打电话时驾驶的汽车因为一只松鼠冲出路外。",
-    "apres": "我当时醉酒驾车，还在打电话，可我的车冲出道路却被我归咎于一只松鼠。",
-    "raison": "B restitue fidèlement la causalité due à l’écureuil, tandis que A ajoute l’idée absente du français que le conducteur lui en attribue la faute."
+    "probleme": "Le FR s'adresse à « vous » singulier et les autres cellules es utilisent le voseo ; « Ustedes » (pluriel) est incohérent et change la personne.",
+    "fr": "Vous centrez vos pensées et vos perceptions sur votre propre point de vue.",
+    "avant": "Ustedes centran sus pensamientos y sus percepciones en su propio punto de vista.",
+    "apres": "Centrás tus pensamientos y tus percepciones en tu propio punto de vista.",
+    "raison": "B conserve mieux le registre de « vous », tandis que A emploie le tutoiement en voseo (« centrás », « tus »)."
    },
    {
-    "stage": "witness-sol",
-    "run": "4.1__a",
-    "pk": "713",
-    "langue": "zh",
+    "stage": "haiku-axis-6.3-c",
+    "run": "6.3__c11",
+    "pk": "1148",
+    "langue": "es",
     "champ": "desc",
     "severite": "nuance",
-    "probleme": "« 正确的结果 » évoque un résultat factuellement correct, tandis que le français parle d’un résultat moralement juste censé compenser deux fautes.",
-    "fr": "Vous croyez à tort que deux erreurs combinées peuvent produire un résultat juste.",
-    "avant": "您错误地认为，两个错误结合起来可以产生一个正确的结果。",
-    "apres": "您错误地认为，两件错事结合起来可以产生一个公正的结果。",
-    "raison": "B traduit fidèlement « deux erreurs » par « 两个错误 » et « résultat juste » par « 正确的结果 », tandis que A évoque deux mauvaises actions et un résultat équitable."
+    "probleme": "« habéis » est une forme de vosotros, incohérente avec le voseo utilisé dans le reste de la cellule (« Atribuís »).",
+    "fr": "Vous attribuez plus de valeur à un résultat pour lequel vous avez beaucoup travaillé.",
+    "avant": "Atribuís más valor a un resultado por el que habéis trabajado mucho.",
+    "apres": "Atribuís más valor a un resultado por el que trabajaste mucho.",
+    "raison": "La version B maintient la cohérence grammaticale du « vosotros » entre « atribuís » et « habéis trabajado », contrairement à la version A qui mélange « vosotros » et « tú »."
+   },
+   {
+    "stage": "haiku-axis-6.3-c",
+    "run": "6.3__c11",
+    "pk": "1145",
+    "langue": "fa",
+    "champ": "example",
+    "severite": "nuance",
+    "probleme": "« رنگ رنگ » est maladroit ; « رنگ دیوار » rend mieux la peinture du FR.",
+    "fr": "On passe plus de temps à discuter de la couleur de la peinture qu’à planifier le budget du projet.",
+    "avant": "ما بیشتر وقت را صرف بحث در مورد رنگ رنگ می‌کنیم تا برنامه‌ریزی برای بودجه پروژه.",
+    "apres": "ما بیشتر وقت را صرف بحث در مورد رنگ دیوار می‌کنیم تا برنامه‌ریزی برای بودجه پروژه.",
+    "raison": "A conserve l’idée de la couleur de la peinture, malgré la répétition maladroite « رنگ رنگ », tandis que B remplace la peinture par le mur."
    }
   ]
  },
  "spend": {
-  "calls": 520,
-  "total_usd": 1.8205,
+  "calls": 931,
+  "total_usd": 3.2662,
   "by_arm": {
-   "haiku": 0.0084,
-   "sol": 1.575,
-   "luna": 0.237
+   "haiku": 0.3155,
+   "luna": 0.237,
+   "sol": 2.7137
   },
   "by_stage": {
-   "axis-6.3-c": 0.0311,
-   "planted-c": 0.0645,
-   "etalonnage": 0.0379,
+   "judge": 2.391,
+   "haiku-axis-2.1-c": 0.0296,
+   "haiku-planted-a": 0.055,
+   "clean": 0.0329,
+   "haiku-clean": 0.0541,
+   "haiku-planted-c": 0.1131,
    "axis-2.1-c": 0.0178,
-   "planted-a": 0.0297,
-   "incr1": 0.0146,
-   "witness-haiku": 0.0084,
-   "incr1-judge": 0.029,
-   "incr2-judge": 0.0244,
-   "incr3": 0.0145,
-   "incr3-judge": 0.04,
+   "haiku-axis-6.3-c": 0.0552,
    "incr2": 0.0133,
+   "planted-c": 0.0645,
+   "incr1": 0.0146,
+   "incr2-judge": 0.0244,
+   "witness-haiku": 0.0084,
+   "incr3": 0.0145,
    "axis-6.3-b": 0.0187,
+   "planted-a": 0.0297,
    "witness-sol": 0.1914,
-   "judge": 1.2524,
-   "clean": 0.0329
+   "incr3-judge": 0.04,
+   "incr1-judge": 0.029,
+   "etalonnage": 0.0379,
+   "axis-6.3-c": 0.0311
   }
  },
- "useful_corrections": 361,
- "cost_per_useful_usd": 0.005
+ "useful_corrections": 621,
+ "cost_per_useful_usd": 0.0053
 }

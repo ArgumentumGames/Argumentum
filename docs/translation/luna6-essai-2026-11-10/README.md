@@ -6,8 +6,8 @@
 | **Corpus figé** | SHA `25327fef` (extrait par `git show` — aucune écriture dans `Cards/**`) |
 | **Périmètre** | Fallacies, 5 grappes — 5.2 (13 nœuds), 4.1 (29), 6.1 (85), 2.1 (123), 6.3 (257) = 507 nœuds, 8 langues |
 | **Bras testé** | `gpt-6-luna` (0,10 $/0,50 $ par 1M tok.) — juge et témoin `gpt-5.6-sol` (4 $/20 $), témoin `claude-haiku-5-5` (0,10 $/0,50 $) |
-| **Dépense totale** | **1,8205 $ / 25 $** (7,3 % du plafond) — journal complet : `resultats/spend.jsonl` |
-| **Livrables annexes** | instruments/ (6 fichiers rejouables), `planted-defects.json` (témoin), `resultats/` (brut + agrégé) |
+| **Dépense totale** | **3,2662 $ / 25 $** (13,1 % du plafond, 931 appels) — journal complet : `resultats/spend.jsonl` |
+| **Livrables annexes** | instruments/ (7 fichiers rejouables), `planted-defects.json` (témoin), `resultats/` (brut + agrégés) |
 
 Protocole complet et contraintes : issue #1520. Point d'étape posté avant la phase lourde : commentaire [c.6783335148](https://github.com/ArgumentumGames/Argumentum/issues/1520#issuecomment-6783335148) (sonde gratuite, étalonnage dans sa porte de 0,05 $ — tenu à 0,0379 $, passe propre). Chaque proposition embarque l'empreinte SHA-256 de la cellule FR + de la cellule cible au SHA figé (`empreinte_fige` dans `resultats/selector-runs.jsonl`).
 
@@ -40,7 +40,7 @@ Protocole complet et contraintes : issue #1520. Point d'étape posté avant la p
 - **Coût total : 3.2662 $ / 25 $** (journal `resultats/spend.jsonl`, 931 appels) dont **1,4447 $ de campagne de révision** (bras haiku complet + juge des 29 propositions incrémentales restantes). Coût par cellule utile : §6, sélecteur et juge séparés.
 - Écritures dans `Cards/**` : **0** — tout l'essai travaille sur copies en mémoire.
 
-Le solde de propositions (479 runs sélection au total) couvre les passes incrémentales auto-jugées (§4) et les répétitions a/c du corpus planté (rappel mesuré sur les deux tailles).
+Le solde de propositions (890 runs sélection au total) couvre les passes incrémentales auto-jugées (§4), les témoins et les répétitions a/c du corpus planté (rappel mesuré sur les deux tailles).
 
 ## 2. Grappe × taille de lot (corpus propre, juge sol)
 
@@ -110,7 +110,7 @@ Dépense par poste (journal ligne à ligne : `resultats/spend.jsonl`) :
 
 | Poste | $ |
 |---|---:|
-| Juge (verdicts sol, toutes phases + incrémental) | 1.4390 |
+| Juge (verdicts sol, toutes phases + incrémental) | 2.4843 |
 | Témoin sol (sélecteur, 16 props) | 0.1914 |
 | Étalonnage (2 passes, cf. annexe A) | 0.0379 |
 | Sélecteur Luna (clean, axe, plantés, incrémental) | 0.2370 |
@@ -121,10 +121,10 @@ Dépense par poste (journal ligne à ligne : `resultats/spend.jsonl`) :
 
 | Bras | Cellules distinctes | Sélecteur | Juge (au prorata) | Sélecteur + juge / cellule |
 |---|---:|---:|---:|---:|
-| Luna | 125 | 0.2370 $ | ~1.2630 $ | **0.0120 $** |
-| Haiku | 101 | 0.3155 $ | ~1.0151 $ | **0.0132 $** |
+| Luna | 125 | 0.2370 $ | ~1.2918 $ | **0.0122 $** |
+| Haiku | 101 | 0.3155 $ | ~1.0383 $ | **0.0134 $** |
 
-Le juge (sol, 0,00335 $/verdict mesuré) représente ~69 % de la dépense de la phase 1 : une **campagne de production sans juge systématique** (relecture humaine des seuls candidats) coûterait ~0.0019 $ par cellule candidate au sélecteur seul. À volume égal, le bras Haiku est tarifairement identique ; la différence se joue sur le rappel (§5).
+Le juge (sol, 0.00343 $/appel mesuré sur 725 appels pour 696 verdicts persistés) représente **76 % de la dépense totale** : une **campagne de production sans juge systématique** (relecture humaine des seuls candidats) coûterait ~0.0019 $ par cellule candidate au sélecteur seul. À volume égal, le bras Haiku est tarifairement identique ; la différence se joue sur le rappel (§5).
 
 ## 7. Exemples (textes entiers)
 
@@ -555,7 +555,7 @@ Le juge (sol, 0,00335 $/verdict mesuré) représente ~69 % de la dépense de la 
 
 ## 9. Conclusion (3 lignes)
 
-> **Oui, gpt-6-luna apporte des corrections utilisables** : rappel 27/30 (rang moyen 2.65), précision 96.0 % (362/377, juge étalonné 6/6), **125 cellules candidates** sur le corpus propre — 0.2370 $ de sélecteur, ~0.0101 $ de juge par cellule.
+> **Oui, gpt-6-luna apporte des corrections utilisables** : rappel 27/30 (rang moyen 2.65), précision 96.0 % (362/377, juge étalonné 6/6), **125 cellules candidates** sur le corpus propre — 0.2370 $ de sélecteur, ~0.0103 $ de juge par cellule.
 > **Le bras haiku (même tarif) se compare sur le rappel** : 29/30 vs 27/30 pour Luna, 101 cellules candidates vs 125 — précision 80.9 % vs 96.0 %. Les deux bras sont complémentaires (recouvrement faible) ; le choix s'arbitre sur le §5-6.
 > **Le coût n'est pas l'obstacle (3.27 $ / 25 $)** : l'étape à financer est la **relecture humaine des ~125-138 cellules candidates**, et le juge reste un modèle.
 
@@ -582,15 +582,18 @@ instruments/
   extract-clusters.py    # extrait les 5 grappes du SHA figé (git show, lecture seule)
   plant-defects.py       # plante les 30 défauts dans une COPIE (témoin jamais committé avant essai)
   essai.py               # runner payant : sonde/étalonnage/clean/axe/plantés/témoins/juge/incrémental
-  aggregate.py           # agrégateur rejouable (produit resultats/aggregate.json)
+  aggregate.py           # agrégateur brut par étape (l'analyse consolidée est per-arm.py)
+  per-arm.py             # analyse par bras, cellules distinctes, rappel et coûts séparés
   prompt-selection.md    # prompt sélecteur (json_schema strict)
   prompt-juge.md         # prompt juge + critères meilleur/pire/équivalent
 planted-defects.json     # manifeste témoin des 30 défauts
 resultats/
-  selector-runs.jsonl    # 479 runs (1 ligne/run, propositions + empreintes)
-  verdicts.jsonl         # 374 verdicts du juge
-  spend.jsonl            # journal de dépense ligne à ligne (520 appels)
-  etalonnage.json  incremental.json  aggregate.json
+  selector-runs.jsonl    # 890 runs (1 ligne/run, propositions + empreintes)
+  verdicts.jsonl         # 696 verdicts du juge
+  spend.jsonl            # journal de dépense ligne à ligne (931 appels, dont 725 appels juge)
+  etalonnage.json  incremental.json
+  aggregate.json         # brut par étape, régénéré sur l'ensemble de la campagne
+  per-arm.json           # analyse consolidée de référence (bras/cellules distinctes/coûts)
 ```
 
 Rejouer : `python instruments/essai.py <stage>` (clés lues dans `<clone>/.keys/`, hors dépôt ; la garde de plafond stoppe à 25 $). Toute la chaîne travaille sur `git show 25327fef:…` — le dépôt n'est jamais écrit.
