@@ -106,7 +106,7 @@ Chaque ligne : le nœud (mécanique posée **au plus haut nœud où elle est vra
 
 | Nœud | Candidat (porteur existant) | Proposition | Justification |
 |---|---|---|---|
-| 6.2.1 tête (PK 974 « Exigence renforcée », 1 nœud) | aucun scheme AIF « standard of proof » | **phrase** : « imite la fixation légitime d'un standard de preuve avant acceptation — l'exigence est déplacée après coup » | AIF n'a pas de scheme de charge de preuve ; la phrase nomme la norme imitée. *(Correctif du 10/11 : la carte deck « Déplacer les buts » = « Moving the goalposts » est le PK **973**, qui est la tête de groupe hétérogène **6.2** « Changement de cap », pas cette tête-ci ; le PK 974 porte « Exigence renforcée » / « Stronger requirements ».)* |
+| 6.2.1 tête (PK 974 « Exigence renforcée », 1 nœud) | aucun scheme AIF « standard of proof » | **phrase** : « imite la fixation légitime d'un standard de preuve avant acceptation — l'exigence est déplacée après coup » | AIF n'a pas de scheme de charge de preuve ; la phrase nomme la norme imitée. *(Correctif du 10/11 : la fiche fallaeasies « Déplacer les buts » (slug `moving-the-goalposts`) est celle du PK **973** — tête de groupe hétérogène **6.2**, libellé « Changement de cap » / « Moving the goalposts » —, pas de cette tête-ci ; le PK 974 porte « Exigence renforcée » / « Stronger requirements ».)* |
 | 6.2.1.1 Objections sans fin (9) | aucun | **phrase** : « imite l'examen critique exhaustif — l'itération sans fin d'objections tient lieu de réfutation » | Le doute méthodique n'est pas un scheme AIF nommé. |
 | 6.2.1.2 Confondre explication et réfutation (3) | aucun | **phrase** : « imite la réfutation — une explication concurrente est présentée comme une défaite de la thèse » | La distinction expliquer/réfuter n'a pas de scheme AIF. |
 | 6.2.1.3 Preuve d'un seul type exigée (2) | `EvidenceToHypothesis_Inference` (porté par 3.1, 3.2) | **référence** | Exiger un seul type de preuve imite la norme de convergence des preuves : le scheme des données vers l'hypothèse, restreint de façon défaisable. |
@@ -154,7 +154,7 @@ Chaque ligne : le nœud (mécanique posée **au plus haut nœud où elle est vra
 | **Phrase** (colonne `AIF_imitatedScheme` à créer) | **25** | 2.2 tête (1) · 2.1.2.3 (3) · 6.2.1 tête (1) + .1 (7) + .2 (3) + .5 (1) · 6.2.3.2 (2) + .5 (1) · 7.2.2.1 (4) + .3 (1) · 5.2.1.3 (1) |
 | **Lacune déclarée** (`skosOther`) | **181** | 2.1.3 Poésie (52, descentes testées, aucune retenue) · 2.3.3 hors .5 (81) · 2.3.2.2 hors porteur 432 (5) · 2.3.2.3 (41) · 5.2.1 tête (1, déjà en place) + 5.2.1.1 (1, arbitrage ai-01 10/11) |
 | Têtes intermédiaires sans mécanique propre | 4 | 2.1.2, 2.3.2, 6.2.3, 7.2.2 (enfants hétérogènes — même statut que les têtes de groupe) |
-| Têtes de groupe hétérogènes (rejoignent les 8 têtes nues) | 6 | 2.1, 2.3, 3.3, 5.2, **6.2 (PK 973 « Déplacer les buts » / « Moving the goalposts »)**, 7.2 |
+| Têtes de groupe hétérogènes (rejoignent les 8 têtes nues) | 6 | 2.1, 2.3, 3.3, 5.2, **6.2 (PK 973 « Changement de cap » / « Moving the goalposts »)**, 7.2 |
 | **Total** | **336** | 120 + 25 + 181 + 4 + 6 |
 
 **Décisions tranchées par le coordinateur le 10/11** (c.6775643852) — intégrées ci-dessus :
