@@ -24,10 +24,14 @@ CE QUI EST ÉPINGLÉ :
      app, ou une rangée sans EntityId, ne sort jamais (fermé, pas ouvert).
   6. Le registre committé passe toujours la garde (le jeton `RawData` ajouté ne casse pas
      l'export courant).
+  7. Chaque actualité (`app 52`, type `News`) a Title, Teaser et Content non vides dans
+     les 8 langues (#2182). Le contrôle inverse vide une cellule dans une COPIE du
+     registre et exige l'échec sur cette cellule précise.
 """
 import importlib.util
 import pathlib
 import re
+import tempfile
 import unittest
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -287,6 +291,78 @@ class CommittedRegistryStillPasses(unittest.TestCase):
             return sorted({k for k in keys if keys.count(k) > 1})
         self.assertEqual(dupes(rows), [])
         self.assertEqual(dupes([*rows, rows[0]]), [rows[0]["key"]])
+
+
+class NewsAreCompleteInEightLanguages(unittest.TestCase):
+    """#2182: une actualité ne se déclare pas traduite avec un titre ou un corps vide."""
+
+    LANGS = ("fr", "en", "ru", "pt", "es", "ar", "fa", "zh")
+    FIELDS = ("Title", "Teaser", "Content")
+
+    @staticmethod
+    def assert_news_complete(rows):
+        """Return measured news count or fail with every missing/blank cell."""
+        articles = {}
+        for item in rows:
+            if item["app_id"] == "52" and item["content_type"] == "News":
+                articles.setdefault(item["entity_guid"], {})[item["field"]] = item
+        missing = []
+        for guid, fields in sorted(articles.items()):
+            for field in NewsAreCompleteInEightLanguages.FIELDS:
+                item = fields.get(field)
+                if item is None:
+                    missing.append(f"{guid}|{field}: rangée absente")
+                    continue
+                for lang in NewsAreCompleteInEightLanguages.LANGS:
+                    if not (item.get(lang) or "").strip():
+                        missing.append(f"{guid}|{field}|{lang}: vide")
+        if missing:
+            raise AssertionError(
+                "actualités app 52 incomplètes: " + "; ".join(missing[:20])
+                + (f" (+{len(missing) - 20} autres)" if len(missing) > 20 else "")
+            )
+        return len(articles)
+
+    def test_committed_news_are_complete(self):
+        count = self.assert_news_complete(eav.read_csv(REGISTRY))
+        # Anti-vacuité: zéro article ne peut pas rendre cette garde verte.
+        self.assertEqual(count, 12)
+
+    def test_empty_cells_in_registry_copy_fail_on_each_language_and_field(self):
+        with tempfile.TemporaryDirectory(prefix="argumentum-2182-") as tmp:
+            copied_registry = pathlib.Path(tmp) / "eav-content.csv"
+            copied_registry.write_bytes(REGISTRY.read_bytes())
+            rows = eav.read_csv(copied_registry)
+            original = REGISTRY.read_bytes()
+            for lang in self.LANGS:
+                for field in self.FIELDS:
+                    with self.subTest(lang=lang, field=field):
+                        target = next(
+                            item for item in rows
+                            if item["app_id"] == "52" and item["content_type"] == "News"
+                            and item["field"] == field
+                        )
+                        saved = target[lang]
+                        self.assertTrue(saved.strip(), "témoin inverse non vide")
+                        target[lang] = " \n"
+                        with self.assertRaises(AssertionError) as ctx:
+                            self.assert_news_complete(rows)
+                        self.assertIn(f"{target['entity_guid']}|{field}|{lang}: vide",
+                                      str(ctx.exception))
+                        target[lang] = saved
+            self.assert_news_complete(rows)
+            self.assertEqual(REGISTRY.read_bytes(), original, "le registre reste intact")
+
+    def test_missing_news_row_fails(self):
+        rows = eav.read_csv(REGISTRY)
+        target = next(
+            item for item in rows
+            if item["app_id"] == "52" and item["content_type"] == "News"
+            and item["field"] == "Teaser"
+        )
+        with self.assertRaises(AssertionError) as ctx:
+            self.assert_news_complete([item for item in rows if item is not target])
+        self.assertIn(f"{target['entity_guid']}|Teaser: rangée absente", str(ctx.exception))
 
 
 if __name__ == "__main__":
