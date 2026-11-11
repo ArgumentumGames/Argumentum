@@ -27,20 +27,18 @@
 #        **aucun appel d'API paye** (translate_game_rules.py, le traducteur, n'est PAS
 #        execute par ce test). 5 etapes, dont le self-test du pipeline site-content
 #        (2 round-trips + 19 controles).
-#     3. tools/test_458-eav-export-guards.py -- std-lib, offline, 20 cas. Charge
+#     3. tools/test_458-eav-export-guards.py -- std-lib, offline, 23 cas. Charge
 #        tools/458-eav-content-export.py SANS se connecter a la base (aucun
 #        web.config lu) et eprouve ses gardes sur des rangees synthetiques : RawData
 #        (soumissions visiteurs, app 50) refuse a la config, dans le SQL et par
 #        rangee ; champs app 50 re-derives des vues committees du formulaire ;
-#        app 48 bornee a l'entite mesuree E10181 ; temoins. Lit seulement des
-#        fichiers committes (vues + registre).
+#        app 48 bornee a l'entite mesuree E10181 ; temoins ; actualites app 52
+#        completes dans les 8 langues (#2182), avec 24 mutations inverses en sous-tests.
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
-#   - push sur master     : AUCUN declencheur declare. ⚠️ Ce n'est PAS obtenu par
-#     un `paths-ignore` : il n'y en a pas, et il n'y a pas non plus de cle `push:`.
-#     L'absence de declenchement vient de l'absence du declencheur lui-meme.
-#   - pull_request        : AUCUN declencheur declare. build.yml reste seul
-#     autorite sur les PRs.
+#   - push sur master / pull_request : déclenchés, y compris les changements du
+#     registre EAV qui doivent éprouver la garde #2182. build.yml ignore `docs/**`
+#     sur push ; ce workflow ne l'ignore donc pas.
 #   - workflow_dispatch   : lancement manuel (po-2024 l'utilise apres un touch).
 #   - schedule            : hebdomadaire, dimanche ~04:42 UTC (cf. `on.schedule`).
 #
@@ -56,6 +54,10 @@
 name: Python tools - offline tests
 
 on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
   workflow_dispatch:
   schedule:
     # Weekly Sunday ~04:42 UTC : la garde est std-lib-only, un cron hebdo suffit.
@@ -106,7 +108,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Run the EAV export guard contract (#458 item 7)
-        # 20 cas, std-lib, offline : aucune connexion, aucun web.config. Le module est
+        # 23 cas, std-lib, offline : aucune connexion, aucun web.config. Le module est
         # charge pour ses fonctions de garde ; fetch_rows (la seule a lire la base)
         # n'est jamais appele - finish_rows, son post-traitement, l'est.
         run: python tools/test_458-eav-export-guards.py
