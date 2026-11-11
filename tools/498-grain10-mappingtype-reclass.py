@@ -12,6 +12,9 @@
 # -> broadMatch (OpposedCommitment_Conflict est générique : cible aussi de 777 et 1297).
 # Une cible de conflit unique NON tranchée nommément fait échouer l'outil (avant : closeMatch
 # silencieux, ce qui rendait NAMED_CLOSE inerte — mesuré : retirer 879 de NAMED_CLOSE ne changeait rien).
+# Depuis #2232 (11/11) la passe CSV est APPLIQUÉE : un arbre conforme rend
+# « 116 inchangees ; 0 reclassees » (EXIT 0). L'écart 60+56 n'est exigé que si des
+# reclassifications subsistent ; tout autre écart reste une erreur.
 # Ne lit rien d'autre, n'écrit rien.
 import csv, os, sys, io
 from collections import Counter
@@ -82,6 +85,10 @@ changed = {pk: (r["AIF_skosMappingType"].replace("skos:", ""), reco[pk]) for r i
            if r["AIF_skosMappingType"].replace("skos:", "") != reco[int(r["PK"])]}
 unchanged = 116 - len(changed)
 print(f"116 lignes ; {unchanged} inchangees ; {len(changed)} reclassees")
+if len(changed) == 0:
+    # arbre conforme (post-#2232) : l'idempotence EST le verdict
+    print("IDEMPOTENT : arbre conforme, aucune reclassification restante.")
+    sys.exit(0)
 assert unchanged == 60 and len(changed) == 56, "partition attendue : 60 + 56"
 
 c = Counter(reco.values())
