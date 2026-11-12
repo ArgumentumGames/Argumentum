@@ -275,6 +275,15 @@ namespace Argumentum.AssetConverter.Ontology
 	                ontology.AnnotateConcept(fallacyConcept, RDFVocabulary.RDFS.COMMENT,
 	                    new RDFPlainLiteral(fallacy.AIFCriticalQuestion.Trim(), "fr"));
 	            }
+	            // #498 grain 12 — the imitated-scheme prose (AIF_imitatedScheme, component
+	            // (a)) rides the same rdfs:comment channel as the critical questions: an
+	            // existing annotation property, so an imitation adds zero new IRI to the
+	            // emitted ontology (the #133 invariant the group PRs must hold).
+	            if (!string.IsNullOrEmpty(fallacy.AIFImitatedScheme))
+	            {
+	                ontology.AnnotateConcept(fallacyConcept, RDFVocabulary.RDFS.COMMENT,
+	                    new RDFPlainLiteral(fallacy.AIFImitatedScheme.Trim(), "fr"));
+	            }
 	        }
 
 

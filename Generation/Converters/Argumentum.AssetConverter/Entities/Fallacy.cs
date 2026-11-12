@@ -181,6 +181,14 @@ namespace Argumentum.AssetConverter.Entities
 
         public string AIFSkosExceptionRef { get; set; }
 
+        // #498 grain 12 — FR-prose imitated scheme (component (a) of the #498
+        // generative rule): what the fallacy imitates when AIF has NO scheme for
+        // it (cadrage #2229 representation table). PROSE ONLY — never a fabricated
+        // *_Conflict token in the scheme columns (pinned by
+        // FallacyAifVocabularyLockTests) and never in AIF_skosOther (reserved for
+        // declared gaps; the census distinguishes the two states).
+        public string AIFImitatedScheme { get; set; }
+
         public string AIFSkosOther { get; set; }
 
         // #498 grain 2 — FR-prose critical question: the Walton CQ the fallacy SKIPS
@@ -311,6 +319,7 @@ namespace Argumentum.AssetConverter.Entities
             Map(m => m.SvgIllustration).Name("svg_illustration").Optional();
             Map(m => m.AIFSkosDirectRef).Name("AIF_skosDirectRef").Optional();
             Map(m => m.AIFSkosExceptionRef).Name("AIF_skosExceptionRef").Optional();
+            Map(m => m.AIFImitatedScheme).Name("AIF_imitatedScheme").Optional();
             Map(m => m.AIFSkosOther).Name("AIF_skosOther").Optional();
             Map(m => m.AIFCriticalQuestion).Name("AIF_criticalQuestion").Optional();
             Map(m => m.AIFSkosMappingType).Name("AIF_skosMappingType").Optional();
