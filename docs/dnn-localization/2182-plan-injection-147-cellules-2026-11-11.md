@@ -69,15 +69,37 @@ Chaque sonde tourne avec la connexion lue du `web.config` du checkout — jamais
    LEFT JOIN TsDynDataValueDimension vd ON vd.ValueId = v.ValueId
    LEFT JOIN TsDynDataDimension d ON d.DimensionId = vd.DimensionId
    WHERE v.EntityId BETWEEN 12011 AND 12017 AND a.StaticName IN ('Title','Teaser','Content')
-   ORDER BY v.EntityId, a.StaticName, d.DimensionId
+   ORDER BY v.EntityId, a.StaticName, DimensionId
    ```
+   ⚠️ **Corrigé le 12/11 après exécution** : la culture vit dans `d.SystemKey` (le `d.[Key]`
+   initiale n'existe pas — `Nom de colonne non valide`, colonnes réelles : `DimensionId, Parent,
+   Name, SystemKey, ExternalKey, Active, ZoneId`) ; l'`ORDER BY` porte sur `DimensionId`.
    **Cette sonde tranche l'écriture** : rangée de dimension **présente mais vide** ⇒ `UPDATE` ;
    **absente** ⇒ `INSERT` (`TsDynDataValue` + `TsDynDataValueDimension`, motif app 59 : une rangée
    de valeur **par dimension**, jamais une valeur partagée multi-langues).
 3. **Témoin « pas encore injectées »** : chaque cellule DB actuelle **égale** la valeur registre au
    parent `16126d26^`. Toute cellule déjà traduite = **arrêt et constat**, jamais d'écrasement aveugle.
-4. **Témoin servi avant** : matrice 7 slugs × 7 langues (`/en/Actus/…` … `/zh/Actus/…`) — attendu :
-   repli FR partout (traductions absentes de la base).
+4. **Témoin servi avant** : matrice 7 slugs × 7 langues (`/en/actus/details/…` … `/zh/actus/details/…`)
+   — attendu : repli FR partout (traductions absentes de la base). ⚠️ Le site sert `actus` en
+   **minuscules** (mesuré 12/11 : le motif `/Actus/` majuscule ne matche aucun lien servi ; sur ce
+   DNN une URL à la mauvaise casse peut répondre 200 avec une page d'erreur).
+
+### 2.1 Résultat d'exécution — fenêtre du 12/11 (lecture seule, 11h23-11h4x)
+
+| Sonde | Résultat mesuré |
+|---|---|
+| 1. GUID → EntityId | **7/7 conformes** à la table §1 (12011-12017) |
+| 2. Valeurs par dimension | **21 valeurs base (dim-0), 0 rangée de dimension** ⇒ les 147 cellules sont toutes des **INSERT** (motif app 59 : une rangée de valeur par dimension) |
+| 3. Base == registre parent `16126d26^` | **21/21 égales au Len ET au SHA-256** ; 147 cellules cibles non vides au merge ; prémisses tenues (fr inchangé parent→merge, cellules langues vides au parent) |
+| 4. Matrice servie 7×7 | **49/49 repli FR** (200 + fragment du titre FR partout, `fa` compris — repli #2220 intact) |
+
+ValueIds des 21 valeurs base (mesurés 12/11, à re-sonder au moment du geste) : Title/Teaser/Content
+de 12011 = 30776/30781/30783, 12012 = 30787/30792/30794, 12013 = 30798/30803/30805,
+12014 = 30809/30814/30816, 12015 = 30820/30825/30827, 12016 = 30831/30836/30838,
+12017 = 30842/30847/30849.
+
+**Verdict : « 147 cellules injectables, aucune déjà traduite » (INSERT pur).** L'injection reste
+gatée sur la réponse de l'owner à Q-2026-11-09-2.
 
 Sortie attendue : table `ValueId × dimension × (Len DB, Len registre)` + verdict « 147 cellules
 injectables, aucune déjà traduite », ou écart nommé.
