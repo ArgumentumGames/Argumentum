@@ -63,7 +63,7 @@ Chaque sonde tourne avec la connexion lue du `web.config` du checkout — jamais
    `LEFT JOIN` obligatoire, dim NULL = dim-0). ⚠️ Une rangée de langue a son **propre ValueId** —
    requêter `EntityId + dimension`, jamais « la » valeur de l'attribut :
    ```sql
-   SELECT v.ValueId, v.EntityId, a.StaticName AS Attribute, d.DimensionId, d.[Key] AS Culture, LEN(v.Value) AS Len
+   SELECT v.ValueId, v.EntityId, a.StaticName AS Attribute, d.DimensionId, d.SystemKey AS Culture, LEN(v.Value) AS Len
    FROM TsDynDataValue v
    JOIN TsDynDataAttribute a ON a.AttributeId = v.AttributeId
    LEFT JOIN TsDynDataValueDimension vd ON vd.ValueId = v.ValueId
