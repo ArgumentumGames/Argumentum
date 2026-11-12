@@ -100,6 +100,48 @@ namespace Argumentum.AssetConverter.Tests.Parsing
         }
 
         /// <summary>
+        /// #498 grain 12 — the imitated-scheme column (AIF_imitatedScheme, component (a) of
+        /// the #498 generative rule) maps to its property when present. The row mirrors the
+        /// REAL prod row path=2.1.2.3 (PK 244, « Cynisme ») — the only row carrying the column
+        /// in the group-2.1 PR: the FR-prose phrase names what the fallacy IMITATES where AIF
+        /// has no scheme for it (cadrage #2229 representation table). The phrase is
+        /// RFC4180-quoted in prod (prose convention, measured on skosOther/criticalQuestion),
+        /// so the test exercises the quoted path too. Absence is already pinned by
+        /// Fallacy_OptionalLocalizedColumns_AbsentDoesNotThrow (required header only, no AIF
+        /// block → loads, property null) — the column is .Optional() like every AIF column.
+        /// </summary>
+        [Fact]
+        public void Fallacy_LoadFromContent_MapsAifImitatedSchemeColumn()
+        {
+            var aifCols = "AIF_skosDirectRef,AIF_skosExceptionRef,AIF_imitatedScheme,AIF_skosOther";
+            // Real prod values of the path=2.1.2.3 row as written by the grain-12 PR (106-col
+            // CSV): empty refs (no correspondence — that is the point of the representation),
+            // the quoted FR imitation phrase, empty skosOther (reserved for declared gaps; the
+            // census distinguishes the two states). First term is field 1's VALUE (empty
+            // string), each following term starts with its separator comma — same shape as
+            // the critical-question row above.
+            var aifRow =
+                "" +                               // AIF_skosDirectRef (empty — no AIF correspondence)
+                "," +                              // AIF_skosExceptionRef (empty)
+                ",\"imite la défiance méthodique envers les affirmations — la dévaluation généralisée tient lieu d'examen\"" +
+                ",";                               // AIF_skosOther (empty — declared gaps only)
+
+            var csv = FallacyRequiredHeader + "," + aifCols + "\n" + FallacyRequiredRow + "," + aifRow + "\n";
+
+            var fallacies = Fallacy.LoadFromContent(csv);
+
+            fallacies.Should().ContainSingle();
+            var f = fallacies[0];
+            f.AIFImitatedScheme.Should().Be(
+                "imite la défiance méthodique envers les affirmations — la dévaluation généralisée tient lieu d'examen",
+                "the quoted FR prose must map verbatim, RFC4180 unquoted by CsvHelper");
+            f.AIFSkosDirectRef.Should().BeEmpty("empty cell maps to empty string, not null (CsvHelper contract)");
+            f.AIFSkosExceptionRef.Should().BeEmpty();
+            f.AIFSkosOther.Should().BeEmpty(
+                "an imitation is NOT a declared gap — skosOther stays empty so the census buckets stay disjoint");
+        }
+
+        /// <summary>
         /// Loads a representative Fallacy row (required FR columns + a few localized columns)
         /// and asserts each maps to its property. The single "pk" column populates BOTH the
         /// PK property (Name "pk") and the Id property (Name "PK", normalized to "pk" by
