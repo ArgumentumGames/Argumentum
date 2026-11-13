@@ -24,7 +24,13 @@ tools/dnn_i18n/fixtures/*.xml text eol=lf
 # numstat 1409/1409 on the Fallacies taxonomy instead of the one row edited.
 # Globs, not full paths: the file names contain spaces. They match the 5 live
 # files only - not `Cards.old.csv`, not anything under an `Archive/` directory.
-# Pinned by tools/test_dataset-byte-contract.py.
+# Pinned BOTH WAYS by tools/test_dataset-byte-contract.py: each of the 5 files is
+# `-text`, and no other tracked CSV under Cards/ is. The test reads the attribute
+# case-exact, because git matches these globs case-insensitively on Windows and
+# case-sensitively on the Linux runner: keep the case of the file names.
+# `-text` PREVENTS a conversion, it does not REPAIR one: a blob already
+# committed with LF stays LF. That defect is seen by the contract (rule 3), not
+# by this file.
 Cards/Fallacies/*Taxonomy.csv -text
 Cards/Rules/*Cards.csv -text
 Cards/Rules/*Play.csv -text

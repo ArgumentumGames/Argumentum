@@ -34,12 +34,15 @@
 #        rangee ; champs app 50 re-derives des vues committees du formulaire ;
 #        app 48 bornee a l'entite mesuree E10181 ; temoins ; actualites app 52
 #        completes dans les 8 langues (#2182), avec 24 mutations inverses en sous-tests.
-#     4. tools/test_dataset-byte-contract.py -- std-lib, offline, 17 cas. Lit les 5 CSV
+#     4. tools/test_dataset-byte-contract.py -- std-lib, offline, 25 cas. Lit les 5 CSV
 #        de donnees vivants DU CHECKOUT (toujours presents : aucun artefact, aucun
-#        Target/) et epingle leur forme d'octets : BOM, CRLF en fin d'enregistrement,
-#        LF nus en cellule, nombre de champs. 13 mutations des octets reels + 1 temoin
-#        prouvent que chaque regle voit son defaut. Un cas lit `git check-attr` (regle `-text` de .gitattributes) : il
-#        ECHOUE au lieu de se sauter si git manque en CI.
+#        Target/) et epingle leur forme d'octets : un seul BOM, CRLF en fin
+#        d'enregistrement, LF nus en cellule, nombre de champs (les enregistrements
+#        courts de Rules sont NOMMES par leur cle), aucun octet de controle. 19
+#        mutations des octets reels + 1 temoin prouvent que chaque regle voit son
+#        defaut. Deux cas lisent `git check-attr` (regle `-text` de .gitattributes,
+#        dans les deux sens, a la casse exacte) : ils ECHOUENT au lieu de se sauter
+#        si git manque en CI.
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
 #   - push sur master / pull_request : déclenchés, y compris les changements du
@@ -127,8 +130,9 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Run the dataset byte contract
-        # 17 cas, std-lib, offline. Les 5 CSV de donnees sont dans le checkout : la CI
+        # 25 cas, std-lib, offline. Les 5 CSV de donnees sont dans le checkout : la CI
         # est ici un cas NOMINAL, jamais un vert a vide (un fichier reduit a son en-tete
         # est refuse par le contrat lui-meme). Rouge = une PR a reecrit des fins de
-        # ligne, perdu ou ajoute un BOM, ou desaligne un enregistrement.
+        # ligne, perdu, ajoute ou double un BOM, desaligne un enregistrement, glisse
+        # un octet de controle, ou elargi un motif `-text` de .gitattributes.
         run: python tools/test_dataset-byte-contract.py
