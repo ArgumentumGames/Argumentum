@@ -5,7 +5,7 @@ description: Reprend le rôle de coordinateur Argumentum (ai-01) — lit memory 
 
 # Skill : Coordinate — Hub de coordination multi-agents Argumentum
 
-Tu es le **coordinateur** sur **myia-ai-01** (hostname `MyIA-AI-01`). Le cluster compte 2 workers : `myia-po-2023` et `myia-po-2024`. Ta mission : faire avancer la roadmap release v0.9.0 + go-live DNN, merger ce qui est mergeable, et dispatcher du travail **durable et profond** aux workers pour qu'ils ne stallent jamais pendant ton gap cron.
+Tu es le **coordinateur** sur **myia-ai-01** (hostname `MyIA-AI-01`). Le cluster compte 2 workers : `myia-po-2023` et `myia-po-2024`. Ta mission : faire avancer la roadmap #458 (release + go-live DNN), merger ce qui est mergeable, et dispatcher du travail **durable et profond** aux workers pour qu'ils ne stallent jamais pendant ton gap cron.
 
 **Vérifie ton identité d'abord** : `hostname`. Si différent de `MyIA-AI-01`, tu n'es **pas** le coordinateur — utilise `pipeline-recovery` (entrée de session worker/exécution), pas ce skill.
 
@@ -16,7 +16,7 @@ Tu es le **coordinateur** sur **myia-ai-01** (hostname `MyIA-AI-01`). Le cluster
 | Machine | Rôle | Lane |
 |---------|------|------|
 | `myia-ai-01` | **Coordinateur** | merge, dispatch deep-queue, structuration issues/Epics, **verdict QA visuelle** (Playwright+vision), aiguillage root-cause, conclusion de cycle |
-| `myia-po-2023` | Worker | **driver DNN** (#131/#132/#457…) + **régénérations lourdes** du pipeline + présente le dossier de validation release à jsboige |
+| `myia-po-2023` | Worker | **driver DNN** (#131/#457…) + **régénérations lourdes** du pipeline + présente le dossier de validation release à jsboige |
 | `myia-po-2024` | Worker | **backlog** : polish traduction (`gpt-5.6-sol`, vérif cell-by-cell), dette technique, micro-fixes éditoriaux, contenu |
 
 Adressage : toujours `machine-id:workspace-id` (ex `myia-po-2023:Argumentum`, `myia-po-2024:Argumentum`).
@@ -24,6 +24,8 @@ Adressage : toujours `machine-id:workspace-id` (ex `myia-po-2023:Argumentum`, `m
 Repo GitHub : `ArgumentumGames/Argumentum`. Le compte `gh` actif sur ai-01 = **`jsboige`** (a les droits write ici). Vérifie `gh auth status` ; si le défaut a basculé, `gh auth switch --user jsboige`. Le droit de merge ai-01 est **intermittent** : en régime deny, router merge ET close via `jsboige` (cf [[feedback_can_merge_argumentum]]).
 
 ## Phase 1 — Charger le contexte
+
+**Le siège ne dépend ni d'un modèle ni d'une mémoire privée** : la méthode est dans le dépôt — `AGENTS.md`, `docs/agents/method.md` (mesurer, reviewer, dispatcher, clore), `docs/agents/hazards.md`, `docs/agents/consolidation.md`. **Lis le thème avant le geste.** Les `[[…]]` (mémoire d'ai-01) sont facultatifs : la phrase qui les cite suffit.
 
 **Lecture obligatoire dans cet ordre** :
 
@@ -38,7 +40,7 @@ Repo GitHub : `ArgumentumGames/Argumentum`. Le compte `gh` actif sur ai-01 = **`
    roosync_messages(action: "inbox", status: "unread", limit: 10)
    ```
    → ACKs et notifications des workers (si timeout, retry × 2 puis skip — bug intermittent connu).
-4. **État GitHub** — ⚠️ **toujours un `--limit` explicite et large** : les défauts CLI (`gh pr list` = 30, `gh issue list` = 30) tronquent **silencieusement**, et le dépôt porte en permanence ~46 PRs dependabot gelées (`DNNPlatform/Portals/**`, cf #942/#910) qui **saturent la première page**. Sans `--limit`, le scan rend « 0 PR non-dependabot » alors qu'il y en a.
+4. **État GitHub** — ⚠️ **toujours un `--limit` explicite et large** : les défauts CLI (`gh pr list` = 30, `gh issue list` = 30) tronquent **silencieusement**, et des PRs dependabot gelées (`DNNPlatform/Portals/**`, cf #942/#910) ont déjà **saturé la première page** : sans `--limit`, le scan a rendu « 0 PR non-dependabot » alors qu'il y en avait.
    ```bash
    # PRs : exclure dependabot DANS la requête, pas après
    gh pr list --state open --limit 200 \
@@ -70,6 +72,10 @@ Puis classer chaque prise **M** (mesure) / **F** (fix) / **D** (décision) / **V
 
 📖 Politique complète, mesures et angles morts : [`triage-github.md`](triage-github.md).
 
+## Phase 1ter — Clore d'abord
+
+Chaque passe **commence par fermer** ce qui peut l'être, mesure à l'appui. Toute issue ouverte porte **en tête de corps**, entre `<!-- etat-cloture:debut -->` et `<!-- etat-cloture:fin -->` : **Fait** · **Reste** · **Pour clore** · **Ce qui bloque** · **Prochain pas** (lane) ; texte d'origine inchangé sous un filet `---`. Qui merge un changement touchant l'issue met ce bloc à jour **dans la même passe**, en éditant le corps (seul l'intervalle des marqueurs), jamais en rafale de commentaires. ⛔ #2132 (fil humain) : ni bloc ni rapport d'agent ; corps de #1498 jamais édité. Règle : `docs/agents/method.md` § *Closing issues*.
+
 ## Phase 2 — Lire AVANT d'agir (règle HARD, aucune exception)
 
 Avant tout merge / comment / dispatch / review :
@@ -82,6 +88,10 @@ Avant tout merge / comment / dispatch / review :
 | Conclusion de cycle | PRs récentes mergées + état des tracks #458 |
 
 **Anti-patterns interdits** : « le titre dit X » (lire le body) · « CI verte → merge » (lire les reviews, CHANGES_REQUESTED bloque) · « le bot a APPROVED → merge » (vérifier les humains) · « je sais quoi dispatcher » (lire si déjà commencé). Incident référence : 2026-05-17 CoursIA EPITA, 6 reviews en duplicate/conflit faute d'avoir lu les comments existants.
+
+**Lire une PR avant merge = lecture adverse**, pas rejouer les commandes de l'auteur : reproduis le claim avec **ton** instrument ; test ou contrat nouveau ⇒ **run de mutation** (chaque garde retirée tour à tour ⇒ rouge ; mutant mal formé : corrigé, pas compté) ; écris ce qui n'a **pas** été vérifié (`docs/agents/method.md` § *Reviewing*).
+
+**Délégation** : lecture lourde ⇒ sous-agents ; leur rapport reste RAPPORTÉ jusqu'au recoupement à la source ; un producteur ne se vérifie jamais ; rien ne part sous le compte owner sans lecture.
 
 ## Phase 2bis — Scepticisme sur les « décisions jsboige » (leçon Argumentum)
 
@@ -140,11 +150,15 @@ Note le hash de tête (`$NEW_MASTER`) pour le dispatch. Si des tests doivent re-
 
 **Principe** : ne pas hoarder. Chaque worker possède un **pool global multi-cycle**, pas une file P0 linéaire. Provisionne 8–12 grains indépendants et exécutables — au moins deux cycles de travail — plus un registre séparé des candidats bloqués. Le pool remplace `primaire + secondaire + tertiaire + idle` : son ordre guide la pioche, mais un élément indisponible ne bloque jamais les suivants.
 
-**Blocage événementiel** : représenter chaque blocage par `(candidat, événement exact de reprise)`, exclure temporairement le candidat de la pioche, puis prendre le grain READY suivant. Une PR rouge, une re-review attendue, une tête déjà jugée ou une décision owner manquante ne doit pas être re-sondée tant que l'événement nommé n'est pas arrivé. **Le temps qui passe sans événement nommé n'est pas un événement.**
+**Blocage événementiel** : représenter chaque blocage par `(candidat, événement exact de reprise)`, exclure temporairement le candidat de la pioche, puis prendre le grain READY suivant. Une PR rouge, une re-review attendue, une tête déjà jugée ou une décision owner manquante ne doit pas être re-sondée tant que l'événement nommé n'est pas arrivé. **Le temps qui passe sans événement nommé n'est pas un événement.** L'événement autorise le **réexamen**, pas l'action.
+
+**File profonde par lane, en tête de #458**, miroir au dashboard, ordonnée ; un grain = **une PR** avec « fini quand » mesurable, sa porte, son contre-relecteur. **Une seule PR CSV de taxonomie ouverte à la fois.** Re-remplir une file **avant** qu'elle tarisse ; toute décision corrige #458 et le dashboard **dans le même geste**.
 
 **Multi-grains (règle owner du 2026-09-10, en vigueur)** : une PR ouverte ne met **pas** le worker en attente du merge coordinateur. Chaque session worker traite **tous les grains READY indépendants** qu'elle peut terminer sans feedback : branche fraîche depuis `origin/master` + **une PR autonome par grain**, jamais de branche empilée sur une PR en vol. Arrêt uniquement sur : vraie décision owner/coordinateur, collision de fichiers avec une PR en vol, gate explicite (tag, QA visuelle, UAC/IIS, séquencement régén) ou épuisement démontré des grains READY. Les gates de merge (Phase 3), UAC et verdict QA visuelle **restent inchangées** — l'autonomie porte sur l'enchaînement des grains, pas sur les portes. Le débit doit être limité par les dépendances réelles, pas par la cadence de merge du coordinateur.
 
 **Responsabilité du paquet de preuve** : le worker porte l'instrumentation, le contrôle inverse, la mutation falsifiante, la correction complète, la CI et le paquet de revue. Quand une contre-review croisée est utile, **po-2024 prépare le paquet final des PR po-2023 et po-2023 celui des PR po-2024**, sans corriger la PR de l'autre. Ai-01 conserve les arbitrages owner, le merge final, la QA visuelle et les frontières de sécurité ; il spot-checke les claims falsifiables au lieu de reconstruire l'analyse complète.
+
+**Consolidation** : acceptée seulement contre `docs/agents/consolidation.md` § *Definition of done* (preuve-instrument, index de référence, tentative de casse par une autre lane).
 
 Vérifie chaque lane. ⛔ **Ne mesure PAS la liveness d'une lane avec `gh pr list --author "po-20XX"`** : le token GitHub est partagé, ce filtre rend **toujours `0`**, donc « worker sans PR » y est un artefact permanent — et re-dispatcher là-dessus **double-démarre** une campagne (coûteuse en crédits sur les lanes traduction). La liveness se mesure **là où le travail atterrit**, c'est-à-dire sur le dashboard (cf [[feedback_explicit_dashboard_comm]]) :
 
@@ -158,12 +172,12 @@ gh pr list --state open --limit 200 --json number,title,body,headRefName \
   --jq '.[]|select(.body|test("po-2024";"i"))|"#\(.number) \(.title)"'
 ```
 
-Un worker est à re-dispatcher s'il n'a **ni PR ouverte signée, ni post dashboard récent, ni dispatch en cours non-ACKé**. Si un dispatch est en vol et non ACKé → **ping**, jamais re-dispatch. Et l'absence de post ≠ mort : certaines lanes ont une cadence cron longue (po-2023 lane IIS = 12 h, cf [[feedback_po2023_iis_cron_12h]]).
+Un worker est à re-dispatcher s'il n'a **ni PR ouverte signée, ni post dashboard récent, ni dispatch en cours non-ACKé**. Si un dispatch est en vol et non ACKé → **ping**, jamais re-dispatch. Et l'absence de post ≠ mort : certaines lanes ont une cadence cron longue (po-2023 lane IIS = 12 h, cf [[feedback_po2023_lane]]).
 
 ### Tasking par worker
 
-- **po-2023** : DNN (Epic #131/#132/#457…), régénérations lourdes du pipeline, dossier de validation release pour jsboige. Travail compute-intensive et visuel-lourd.
-- **po-2024** : backlog — polish traduction (`gpt-5.6-sol` **uniquement**, re-runs vérifiés cell-by-cell ; pushback si un worker propose un tier inférieur), dette technique (#28/#29/#415…), micro-fixes éditoriaux, contenu.
+- **po-2023** : DNN (Epic #131/#457…), régénérations lourdes du pipeline, dossier de validation release pour jsboige. Travail compute-intensive et visuel-lourd.
+- **po-2024** : backlog — polish traduction (`gpt-5.6-sol` **uniquement**, re-runs vérifiés cell-by-cell ; pushback si un worker propose un tier inférieur), dette technique (#415…), micro-fixes éditoriaux, contenu.
 - **Sérialisation forcée** : si deux tâches éditent les mêmes fichiers (ex CSV trad), dispatcher en séquentiel. `git log -- <fichier>` pour repérer les collisions avant un dispatch parallèle.
 
 ### Où poser le dispatch — le dashboard/l'issue PORTE, le DM NOTIFIE
@@ -273,7 +287,7 @@ CronList()
 CronCreate(cron: "<minute off-:00> */<N> * * *", prompt: "/coordinate", recurring: true)
 ```
 
-- **Cadence = dernière demande explicite jsboige** (cf [[feedback-argumentum-cron-3h]] / [[feedback_schedulewakeup_not_cron]]). Elle oscille — aucune valeur n'est écrite ici parce qu'elle s'y périme : la lire dans le **dashboard** (section État / Décisions actées) ou dans la dernière demande owner, jamais dans ce fichier.
+- **Cadence = dernière demande explicite jsboige** (cf [[feedback_argumentum_cron_3h]] / [[feedback_schedulewakeup_not_cron]]). Elle oscille — aucune valeur n'est écrite ici parce qu'elle s'y périme : la lire dans le **dashboard** (section État / Décisions actées) ou dans la dernière demande owner, jamais dans ce fichier.
 - **En régime cron, NE PAS empiler de `ScheduleWakeup`** — cela ré-introduirait un cycle court superseded.
 - Minute off-`:00` (jitter, éviter que tout le fleet frappe l'API à la même seconde).
 - **Exception** : si jsboige bascule explicitement en ping-pong serré interactif (≤1h), alors `ScheduleWakeup(delaySeconds: 3540, prompt: "/coordinate", reason: "...")` à chaque fin de turn — mais c'est l'exception, pas le régime courant.
@@ -281,6 +295,8 @@ CronCreate(cron: "<minute off-:00> */<N> * * *", prompt: "/coordinate", recurrin
 ## Phase 8 — Présenter à l'utilisateur (+ arbitrages en attente)
 
 Si la session est interactive, **termine par 2-4 phrases factuelles** : ce qui a été mergé, quelles lanes ont été dispatchées (workers + issues), état des tracks #458, prochain tick cron.
+
+**Trancher ce qui l'est.** Décide ce qui est à ta portée et écris-le dans le bloc `etat-cloture` : « décision de coordination du <date> », révisable par l'owner. Ne lui monte que ce qui est sien, chaque question décidable à sa seule lecture. Un arbitrage de taxonomie soldé ne se rouvre que par une PR distincte et contre-relue.
 
 **Arbitrages en attente** — critère de suffisance : un arbitrage doit être **tranchable sur ta description seule, sans ouvrir l'issue**. C'est la barre, pas un nombre de lignes.
 
