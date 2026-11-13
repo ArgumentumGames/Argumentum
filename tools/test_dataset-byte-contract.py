@@ -289,6 +289,20 @@ class InverseControls(unittest.TestCase):
                            "choisir un autre témoin, ce cas ne prouve plus rien")
         self.assertIn("CELL_CRLF", self.mutated(self.FALLACIES, True, dos))
 
+    def test_a_cr_terminated_record_is_seen(self):
+        # Fin de ligne « vieux Mac » sur le dernier enregistrement.
+        def one_cr(d):
+            return d[:-2] + b"\r"
+        self.assertIn("ROW_CR", self.mutated(self.SCENARII, False, one_cr))
+
+    def test_in_cell_lf_turned_into_bare_cr_is_seen(self):
+        def cr(d):
+            return d.replace(b"\r\n", b"\x00").replace(b"\n", b"\r").replace(b"\x00", b"\r\n")
+        self.assertIn("CELL_CR", self.mutated(self.FALLACIES, True, cr))
+
+    def test_an_unclosed_quote_is_seen(self):
+        self.assertIn("QUOTE", self.mutated(self.SCENARII, False, lambda d: d + b'"jamais fermee\r\n'))
+
     def test_missing_final_terminator_is_seen(self):
         self.assertIn("EOF", self.mutated(self.SCENARII, False, lambda d: d[:-2]))
 
