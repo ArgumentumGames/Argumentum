@@ -32,7 +32,10 @@ definit au niveau d'un noeud intermediaire, pas a chaque feuille) :
 
   (a) le schema legitime imite   : `AIF_skosExceptionRef` non vide, OU
                                    `AIF_skosDirectRef` dont une cible finit
-                                   en `_Inference` / `_Scheme`.
+                                   en `_Inference` / `_Scheme`, OU
+                                   `AIF_imitatedScheme` non vide (prose
+                                   « imite… », grains 12+ : scheme sans nom
+                                   AIF — tranche de representation #2229).
   (b) l'element attaque          : `AIF_attackType` non vide.
   (c) la question sautee, nommee : une cible de `AIF_skosDirectRef` ou
                                    `AIF_skosExceptionRef` finissant en
@@ -140,7 +143,15 @@ def measure(rows, cols):
         p = g(f, "path")
         return p in carrier_set or any(a in carrier_set for a in ancestors_path(p)[:-1])
 
+    # (a) carriers — grain 12/13 : la colonne dédiée AIF_imitatedScheme (prose
+    # « imite… », décision de représentation d'ai-01 sur #2229) compte comme
+    # porteur, à côté de la référence skos ; g() rend "" si la colonne est
+    # absente (bases pré-grain-12 → comportement inchangé). La re-dérivation
+    # #2239 avait laissé tomber cette extension — les phrases (244 Cynisme, 2.2)
+    # étaient comptées « sans (a) » alors que la tranche de représentation leur
+    # donne une colonne précisément pour être des porteuses.
     a_set = carriers(lambda f: g(f, "AIF_skosExceptionRef")
+                     or g(f, "AIF_imitatedScheme")
                      or (g(f, "AIF_skosDirectRef")
                          and any(has_suffix(f, "AIF_skosDirectRef", s)
                                  for s in SCHEME_SUFFIXES)))
@@ -227,7 +238,7 @@ def main():
 
     print("=== 2) LE TRIPLET — chaque element herite du plus proche ancetre porteur ===")
     print(f"  {'element':<52}{'porteurs':>9}{'noeuds':>9}{'cartes':>10}")
-    order = (("(a)", "schema legitime imite (ExceptionRef | DirectRef _Inference/_Scheme)"),
+    order = (("(a)", "schema legitime imite (ExceptionRef | DirectRef _Inference/_Scheme | imitatedScheme prose)"),
              ("(b)", "element attaque (AIF_attackType)"),
              ("(c)", "question sautee nommee par un conflit AIF (_Conflict)"))
     for lab, desc in order:
@@ -347,6 +358,24 @@ def self_test():
     r3 = measure(synth3, cols)
     check("3" not in r3["cov"]["(a)"] and "3" in r3["cov"]["(c)"],
           "DirectRef _Conflict compte pour (c), pas pour (a)")
+
+    # 6) (a) grains 12/13 : la colonne dédiée AIF_imitatedScheme (prose « imite… »)
+    #    compte comme porteur ; une base SANS la colonne ne change pas de compte.
+    #    (Contrôle inverse du défaut #2239 : sans cette extension, les phrases
+    #    étaient comptées « sans (a) » — l'instrument contredisant la tranche de
+    #    représentation qui leur donne une colonne dédiée.)
+    header12 = header + ["AIF_imitatedScheme"]
+    synth12 = [[*row, ""] for row in synth]
+    synth12[3][header12.index("AIF_imitatedScheme")] = "imite la défiance méthodique"
+    r12 = measure(synth12, {h: n for n, h in enumerate(header12)})
+    check("3" in r12["cov"]["(a)"],
+          "AIF_imitatedScheme porteur compte pour (a)")
+    synth12b = [[*row, ""] for row in synth]  # colonne présente mais vide partout
+    r12b = measure(synth12b, {h: n for n, h in enumerate(header12)})
+    check("3" not in r12b["cov"]["(a)"],
+          "colonne AIF_imitatedScheme vide ne couvre rien")
+    check(measure(synth, cols)["sets"]["(a)"] == r12b["sets"]["(a)"],
+          "base sans la colonne = même compte de porteurs (rétro-compatible)")
 
     print(f"SELF-TEST VERT : {ok[0]} controles")
     return 0

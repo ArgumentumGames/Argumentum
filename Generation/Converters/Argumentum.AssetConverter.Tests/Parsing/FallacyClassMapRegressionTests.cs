@@ -142,6 +142,29 @@ namespace Argumentum.AssetConverter.Tests.Parsing
         }
 
         /// <summary>
+        /// #498 grains 12/13 — AIF_imitatedScheme is .Optional(): a header set without it
+        /// (a pre-grain-12 105-col CSV, or a harvest header) must load without throwing and
+        /// leave the property null. Losing the .Optional() flag would make HeaderValidated
+        /// throw on every base predating the column — the exact fragility class this file
+        /// pins (same shape as Fallacy_LoadFromContent_AifCriticalQuestionAbsent_DoesNotThrow).
+        /// Re-instated by grain 13: the #2239 re-derivation had dropped this guard.
+        /// </summary>
+        [Fact]
+        public void Fallacy_LoadFromContent_AifImitatedSchemeAbsent_DoesNotThrow()
+        {
+            var csv = FallacyRequiredHeader + ",AIF_skosExceptionRef,AIF_skosOther\n" +
+                      FallacyRequiredRow + ",,\n";
+
+            var act = () => Fallacy.LoadFromContent(csv);
+
+            act.Should().NotThrow();
+            var fallacies = act().Should().Subject;
+            fallacies.Should().ContainSingle();
+            fallacies.First().AIFImitatedScheme.Should().BeNull(
+                "AIF_imitatedScheme is Optional and absent → null, not throw");
+        }
+
+        /// <summary>
         /// Loads a representative Fallacy row (required FR columns + a few localized columns)
         /// and asserts each maps to its property. The single "pk" column populates BOTH the
         /// PK property (Name "pk") and the Id property (Name "PK", normalized to "pk" by
