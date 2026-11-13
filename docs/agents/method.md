@@ -6,7 +6,7 @@ Each rule below was paid for by at least one wrong conclusion, dispatch or publi
 
 **An unexpected measurement indicts the instrument before the artefact.** A stale cache, a download killed by a timeout, a browser cache and an incremental build have each produced a "finding" here, as many false regressions as false passes. Confirm the read completed (bytes received against `Content-Length`; a size that is an exact multiple of a power of two signals truncation) and restate the full identifier — host and path, absolute file — in every pass of a before/after comparison.
 
-**Suspecting the instrument is not a diagnosis; opening it is.** "CI does not run the tests" was published while the workflow had run `dotnet test` since #909; the cause was test parallelism following the core count (#1194). Read the workflow, config or script before saying why it is blind; when two measurements diverge, look first for the environment that differs (cores, shell, path, locale).
+**Suspecting the instrument is not a diagnosis; opening it is.** "CI does not run the tests" was published while the workflow had run `dotnet test` since the fix of #909; the cause was test parallelism following the core count (#1194). Read the workflow, config or script before saying why it is blind; when two measurements diverge, look first for the environment that differs (cores, shell, path, locale).
 
 **Calibrate a control on a case whose answer you know.** A zero, a perfect symmetry, or exactly the value that confirms the suspicion are the three most seductive results. `pdftotext` returns 0 on these PDFs because they carry no text layer: the probe cannot perceive the object. An uncalibrated zero is not published, even as a note.
 
