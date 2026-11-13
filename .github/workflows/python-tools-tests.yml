@@ -1,4 +1,4 @@
-# Tests Python offline std-lib : garde d'arbre #1460 + suite DNN i18n #457 + gardes export EAV #458 (charpente #1460).
+# Tests Python offline std-lib : garde d'arbre #1460 + suite DNN i18n #457 + gardes export EAV #458 + contrat d'octets des CSV de donnees (charpente #1460).
 #
 # POURQUOI UN WORKFLOW DISTINCT DE build.yml
 #   build.yml est le pipeline dotnet principal : il fait tourner 1129 tests .NET a
@@ -17,7 +17,7 @@
 #   d'execution sera documentee. C'est la distinction posee en tete de
 #   docs/quality/1460-charpente-suite-regression.md.
 #
-#   CABLES A CE JOUR (3), avec la condition qui les autorise ici :
+#   CABLES A CE JOUR (4), avec la condition qui les autorise ici :
 #     1. tools/test_1460-structure-charpente-pilot.py -- std-lib, 7 cas, arbres
 #        synthetiques ; aucun Target/ requis (le cas 7 est un grounding sur le depot
 #        reel, volontairement NON asserte).
@@ -34,6 +34,12 @@
 #        rangee ; champs app 50 re-derives des vues committees du formulaire ;
 #        app 48 bornee a l'entite mesuree E10181 ; temoins ; actualites app 52
 #        completes dans les 8 langues (#2182), avec 24 mutations inverses en sous-tests.
+#     4. tools/test_dataset-byte-contract.py -- std-lib, offline, 14 cas. Lit les 5 CSV
+#        de donnees vivants DU CHECKOUT (toujours presents : aucun artefact, aucun
+#        Target/) et epingle leur forme d'octets : BOM, CRLF en fin d'enregistrement,
+#        LF nus en cellule, nombre de champs. 10 controles inverses mutent les octets
+#        reels. Un cas lit `git check-attr` (regle `-text` de .gitattributes) : il
+#        ECHOUE au lieu de se sauter si git manque en CI.
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
 #   - push sur master / pull_request : déclenchés, y compris les changements du
@@ -112,3 +118,17 @@ jobs:
         # charge pour ses fonctions de garde ; fetch_rows (la seule a lire la base)
         # n'est jamais appele - finish_rows, son post-traitement, l'est.
         run: python tools/test_458-eav-export-guards.py
+
+  dataset-byte-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run the dataset byte contract
+        # 14 cas, std-lib, offline. Les 5 CSV de donnees sont dans le checkout : la CI
+        # est ici un cas NOMINAL, jamais un vert a vide (un fichier reduit a son en-tete
+        # est refuse par le contrat lui-meme). Rouge = une PR a reecrit des fins de
+        # ligne, perdu ou ajoute un BOM, ou desaligne un enregistrement.
+        run: python tools/test_dataset-byte-contract.py

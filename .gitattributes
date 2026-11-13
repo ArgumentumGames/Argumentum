@@ -15,3 +15,17 @@
 # ai-01, master 5a132aa8: 177746 bytes on disk vs 177156 regenerated). The
 # blob is already LF - this rule pins the checkout to match, on every box.
 tools/dnn_i18n/fixtures/*.xml text eol=lf
+
+# The 5 live dataset CSVs are byte-exact artefacts: CRLF record terminators and
+# bare LF inside quoted cells, in the same file. `-text` tells git never to
+# convert them, whatever core.autocrlf says. Without it, a `git add` on a
+# core.autocrlf=true machine whose index entry is absent (fresh index, plumbing,
+# re-added file) rewrites every CRLF to LF: measured on ai-01, master 92076717,
+# numstat 1409/1409 on the Fallacies taxonomy instead of the one row edited.
+# Globs, not full paths: the file names contain spaces. They match the 5 live
+# files only - not `Cards.old.csv`, not anything under an `Archive/` directory.
+# Pinned by tools/test_dataset-byte-contract.py.
+Cards/Fallacies/*Taxonomy.csv -text
+Cards/Rules/*Cards.csv -text
+Cards/Rules/*Play.csv -text
+Cards/Scenarii/*Cards.csv -text
