@@ -201,7 +201,7 @@ Le remède n'est pas d'abandonner le DM (ce serait le pendule), ni d'ajouter une
 
 ### Gabarit pool multi-cycle — l'issue porte, le dashboard résume, le DM pointe
 
-Publie le pool durable sur #458 ou l'issue de tracking appropriée ; ne recopie pas son contenu intégral dans trois canaux.
+Publie le pool durable **en tête du corps de #458**, entre les marqueurs `<!-- file-de-travail:debut -->` et `<!-- file-de-travail:fin -->` (le corps, pas un commentaire : un commentaire s'enfouit, la tête se lit d'abord) ; ne recopie pas son contenu intégral dans trois canaux.
 
 ```markdown
 ## Lane pool — `myia-po-XXXX:Argumentum`
@@ -238,7 +238,7 @@ roosync_messages(
   subject: "[DISPATCH] pool multi-cycle <lane>",
   priority: "HIGH",
   tags: ["TASK"],
-  body: "Pool durable : #458 c.<comment-id> ; gouvernance c.<comment-id>. Prends les grains READY sans attendre merge/ACK ; candidat bloqué exclu jusqu'à son événement nommé. Le dashboard porte le résumé."
+  body: "Pool durable : tête du corps de #458 (marqueurs file-de-travail:debut/fin) ; consignes durables : issue de passation en vigueur. Prends les grains READY sans attendre merge/ACK ; candidat bloqué exclu jusqu'à son événement nommé. Le dashboard porte le résumé."
 )
 ```
 
