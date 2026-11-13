@@ -493,6 +493,24 @@ class InverseControls(unittest.TestCase):
         self.assertEqual(sorted(key for _, _, key in after["short_rows"]), sorted(keys))
         self.assertEqual(kinds(violations(after, True, keys)), ["FIELDS_SHORT"])
 
+    def test_a_duplicated_short_record_key_is_seen(self):
+        # La 3e branche de l'égalité RULES_SHORT, restée sans témoin : dupliquer un
+        # enregistrement court NOMMÉ ne crée ni un court non nommé (sa clé l'est), ni un
+        # nommé complété (il reste court) — les deux branches ci-dessus restent muettes.
+        # L'enregistrement est recollé à l'identique (CRLF final compris) : seule la
+        # liste des clés dérive, et la violation doit NOMMER la clé doublée.
+        data, m, keys = self.rules()
+        start = data.rindex(b"\r\n" + keys[-1].encode("utf-8") + b",") + 2
+        self.assertTrue(data[start:].endswith(b"\r\n"),
+                        "l'enregistrement à dupliquer doit finir par CRLF")
+        after = scan(data + data[start:])
+        self.assertEqual(after["short"], m["short"] + 1,
+                         "la duplication devait ajouter exactement un enregistrement court")
+        found = violations(after, True, keys)
+        self.assertEqual(len(found), 1, "une seule violation attendue : %r" % found)
+        self.assertIn("en double", found[0])
+        self.assertIn(keys[-1], found[0])
+
     def test_invalid_utf8_is_seen(self):
         self.assertIn("UTF8", self.mutated(self.SCENARII, False, lambda d: d + b"\xff\r\n"))
 
