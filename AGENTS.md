@@ -118,11 +118,18 @@ Work is done by **lanes**: `ai-01` (coordination, merges), `po-2023` (site, rege
    - **last line: the signature**, literally `*<lane>*`.
 6. **You do not merge your own pull request.** The coordinator squash-merges once all of this holds on the **head commit**:
    - the four required checks are green — `build (Debug)`, `build (Release)`, `guard` (no new blob over 2 MiB outside the allow-list), `behaviour` (mind-map wrapper acceptance);
-   - a lane **other than the author** has reviewed it, re-running the measurement against the source rather than trusting the description. A push after the review voids it;
+   - a lane **other than the author** has reviewed it, re-running the measurement against the source rather than trusting the description. A push after the review voids it: when you push again, comment what the delta changes and ask for the review again;
    - no unanswered change request or inline comment;
    - the body closes no issue it does not finish.
 
 `master` is protected by a ruleset: pull request required, no force-push, no deletion, even for admins. A rejected push (`GH013`) means the protection works — open a pull request.
+
+**Four readings this workflow has already made wrong**
+
+- **The merge is a squash**: the commits of your branch never become ancestors of `master`, so `git merge-base --is-ancestor <your commit> origin/master` answers *no* for a change that landed. Check a landing with `gh pr view <N> --json state,mergeCommit` — or, for a file nobody else touched since, compare `git rev-parse origin/master:<path>` with `git rev-parse <your commit>:<path>`.
+- **`gh pr checks <N>` exits `8` while checks are still running**: pending, not red. Wait for the run to end before you read the verdict.
+- **A `gh` error `403` (rate limit) says nothing about the pull request**: the quota belongs to the account, and every lane draws on it. Do not retry in a loop — `gh api rate_limit` gives the reset time. Reading a pull request needs no API: `git fetch origin pull/<N>/head:refs/tmp/pr<N>` brings its head.
+- **Reviewing a test, a gate or a guard by replaying the author's commands only shows what the author saw.** Disable the guard — or remove the line under test — and re-run: if the suite stays green, that is a finding.
 
 ## 7. Off-limits without an explicit maintainer decision
 
