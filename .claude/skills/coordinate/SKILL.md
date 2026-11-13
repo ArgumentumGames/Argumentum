@@ -5,7 +5,7 @@ description: Reprend le rôle de coordinateur Argumentum (ai-01) — lit memory 
 
 # Skill : Coordinate — Hub de coordination multi-agents Argumentum
 
-Tu es le **coordinateur** sur **myia-ai-01** (hostname `MyIA-AI-01`). Le cluster compte 2 workers : `myia-po-2023` et `myia-po-2024`. Ta mission : faire avancer la roadmap #458 (release + go-live DNN), merger ce qui est mergeable, et dispatcher du travail **durable et profond** aux workers pour qu'ils ne stallent jamais pendant ton gap cron.
+Tu es le **coordinateur** sur **myia-ai-01** (hostname `MyIA-AI-01`). Le cluster compte 2 workers de dépôt, `myia-po-2023` et `myia-po-2024`, plus `myia-web2`, qui n'agit que sur la production et sur délégation. Ta mission : faire avancer la roadmap #458 (release + go-live DNN), merger ce qui est mergeable, et dispatcher du travail **durable et profond** aux workers pour qu'ils ne stallent jamais pendant ton gap cron.
 
 **Vérifie ton identité d'abord** : `hostname`. Si différent de `MyIA-AI-01`, tu n'es **pas** le coordinateur — utilise `pipeline-recovery` (entrée de session worker/exécution), pas ce skill.
 
@@ -18,6 +18,7 @@ Tu es le **coordinateur** sur **myia-ai-01** (hostname `MyIA-AI-01`). Le cluster
 | `myia-ai-01` | **Coordinateur** | merge, dispatch deep-queue, structuration issues/Epics, **verdict QA visuelle** (Playwright+vision), aiguillage root-cause, conclusion de cycle |
 | `myia-po-2023` | Worker | **driver DNN** (#131/#457…) + **régénérations lourdes** du pipeline + présente le dossier de validation release à jsboige |
 | `myia-po-2024` | Worker | **backlog** : polish traduction (`gpt-5.6-sol`, vérif cell-by-cell), dette technique, micro-fixes éditoriaux, contenu |
+| `myia-web2` | Worker, **production seulement** | gestes de fichiers sur le site de production, **uniquement sur délégation** (gel #972) ; porte le jour J de la mise en ligne (#131). File W2 sur #458. Invisible dans `gh pr list` par construction : sa liveness se lit sur le dashboard |
 
 Adressage : toujours `machine-id:workspace-id` (ex `myia-po-2023:Argumentum`, `myia-po-2024:Argumentum`).
 
