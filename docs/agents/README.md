@@ -10,6 +10,7 @@
 - A pipeline failure that is **silent** → one row in the table of `CLAUDE.md`, its detail here.
 - A measure, an incident, a dated finding → `docs/<area>/<issue>-<slug>-<YYYY-MM-DD>.md`, with a one-line pointer from the file here that it qualifies.
 - Section titles are **addresses**: issues, pull requests and other files cite them. Rename one only together with **every** pointer to it — the two tables of `CLAUDE.md` (the silent failures, and *Where the former sections went*) and the table of `AGENTS.md` §8. `python tools/test_agent-docs-contract.py` goes red on each pointer left behind.
+- A lesson that cost a cycle and belongs to no single pipeline gesture → one paragraph under its theme in [`method.md`](method.md) (how to measure, verify, report, review, dispatch, close) or [`hazards.md`](hazards.md) (a gesture that destroys or misleads in silence). The rule comes first, in bold; then the incident, with its issue number. It names no person, machine, account or price — the repository is public.
 - A folder of dated findings that has been consolidated carries an **index of record** — a `README.md` listing every file with its status. Add a file there, add its line: [`consolidation.md`](consolidation.md).
 - These files describe a state at a date. A count, a status or a "next step" read here is re-measured before it is quoted or acted on (`AGENTS.md` §4 and §5).
 
