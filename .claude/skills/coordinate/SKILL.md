@@ -103,6 +103,8 @@ Avant tout merge / comment / dispatch / review :
 
 ## Phase 3 — Merger ce qui est mergeable
 
+**Organe : `python scripts/gates/pr_merge_gate.py N --expect-head <sha relu>`** — il mécanise la liste ci-dessous (état, tête, CI, revues, fils inline, signature de lane, contre-revue, mots de fermeture, hygiène du diff, chemins protégés, PR unique sur le CSV de taxonomie) et rend `0` PASS · `3` HOLD · `2` BLOCK · `1` instrument aveugle (jamais un PASS). **Il ne lit pas le fond à ta place** : body, commentaires, revues et diff restent dus (Phase 2) — sa sortie se termine par la surface de lecture. Règles, acquittements et limites : [`scripts/gates/README.md`](../../../scripts/gates/README.md).
+
 **Critères (TOUS vrais)** :
 
 - [ ] **Provenance worker établie — ⛔ PAS via `author`.** Les deux workers poussent avec le **token partagé `jsboige`** : `author.login` vaut `jsboige` sur *toutes* les PRs du cluster, donc un critère « auteur = `myia-po-2023` » est **structurellement toujours faux** et rejetterait toute PR mergeable. La provenance se lit dans le **corps de la PR** (signature `po-2023` / `po-2024`) et se recoupe avec le **dispatch correspondant** sur le dashboard :
@@ -118,10 +120,10 @@ Avant tout merge / comment / dispatch / review :
 - [ ] Pas de modification de `.github/workflows/`, `.claude/rules/*`, ou config de discipline sans intention claire
 - [ ] PR rebasé sur master récent (`mergeStateStatus` ; si `BEHIND` → demander rebase au worker)
 
-**Workflow merge** :
+**Workflow merge** — la commande que le gate imprime sur PASS : identité liée **dans le même appel** (ni `gh auth status` ni `gh auth switch`, qui lisent ou modifient le compte actif partagé par les lanes de la machine) et tête épinglée (`--match-head-commit` refuse si la tête a bougé depuis la lecture) :
 ```bash
-gh auth status                 # confirme "jsboige" actif (sinon: gh auth switch --user jsboige)
-gh pr merge N --squash --delete-branch
+python scripts/gates/pr_merge_gate.py N --expect-head <sha relu>    # PASS (0) => imprime la ligne suivante
+GH_TOKEN=$(gh auth token --user jsboige) gh pr merge N --squash --delete-branch --match-head-commit <sha complet>
 ```
 
 **Si `mergeStateStatus: BLOCKED`** malgré CI verte et concerns adressés (reviews "commented" jamais dismissed) → `gh pr merge N --admin --squash --delete-branch`, **mais uniquement** après lecture body+reviews+comments+diff et vérification explicite que tous les bloquants sont adressés. Documenter dans le dashboard.
