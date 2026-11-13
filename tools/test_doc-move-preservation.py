@@ -19,14 +19,27 @@ CE QUI EST ÉPINGLÉ
    6. ligne présente 2 fois, reprise 1 fois          -> 1 (multi-ensemble, pas ensemble)
    7. CRLF, espaces de fin, indentation changés      -> 0 (déclaré hors périmètre)
    8. aucun fichier d'arrivée                        -> 2, ORGANE AVEUGLE, jamais un vert
-   9. source absente à la ref                        -> 2, ORGANE AVEUGLE
-  10. ref d'origine inconnue                         -> 2, ORGANE AVEUGLE
-  11. `--head <ref>` lit les BLOBS, pas l'arbre      -> le verdict suit la ref, pas le disque
+   9. source absente à la ref                        -> 2, et l'organe dit que c'est elle
+  10. ref d'origine inconnue                         -> 2, et l'organe dit que c'est elle
+  11. `--head <ref>` lit les BLOBS, pas l'arbre      -> le verdict suit la ref, pas le disque :
+      ni le contenu, ni la LISTE des fichiers d'arrivée ne viennent du disque
   12. un dossier d'arrivée est parcouru (ses *.md)   -> 0
   13. manifeste en chemin relatif                    -> lu depuis la racine du dépôt, pas le cwd
   14. `--head <ref>` + manifeste relatif             -> lu DANS ce commit ; absent du commit -> 2
   15. deux sources partageant une ligne              -> décompte commun (2 reprises exigées)
-  16. manifeste malformé (raison vide, doublon…)     -> 2, ORGANE AVEUGLE
+  16. manifeste malformé (raison vide, champ manquant, doublon, « ³ ») -> 2, ORGANE AVEUGLE
+  17. un `--into` vide parmi d'autres qui trouvent   -> 2 (arbre, ref, dossier sans *.md —
+      sur l'arbre comme sur une ref : un .txt n'est pas un fichier d'arrivée)
+  18. `--source` désigne un dossier                  -> 2
+  19. ligne déjà présente à l'arrivée AVANT le déplacement -> ne compte pas ; le gain se
+      mesure fichier par fichier
+  20. les lignes faibles (courtes, balisage seul)    -> comptées à part, affichées ; une
+      règle de tableau LONGUE est faible elle aussi
+  21. manifeste déclarant une source non examinée    -> 2 (ce n'est pas une déclaration périmée)
+  22. source vide à la ref                           -> 2 — « rien à perdre » n'est pas PRÉSERVÉ
+
+Chaque garde de l'organe a été retirée une à une (mutation) : la suite doit rougir à chaque
+fois. Une garde qu'on peut retirer sans rien rougir est une garde que rien ne tient.
 """
 import os
 import shutil
@@ -182,7 +195,7 @@ class DocMovePreservationContract(unittest.TestCase):
                                self.repo.base, "--source", "ABSENT.md", "--into", "docs"],
                               capture_output=True)
         self.assertEqual(done.returncode, 2)
-        self.assertIn("ORGANE AVEUGLE", done.stdout.decode("utf-8", "replace"))
+        self.assertIn("ORGANE AVEUGLE : source `ABSENT.md` introuvable", done.stdout.decode("utf-8", "replace"))
 
     def test_10_unknown_base_ref_is_blind(self):
         self.repo.move()
@@ -190,6 +203,7 @@ class DocMovePreservationContract(unittest.TestCase):
                                "refs/heads/does-not-exist", "--source", "GUIDE.md",
                                "--into", "docs"], capture_output=True)
         self.assertEqual(done.returncode, 2)
+        self.assertIn("ref d'origine `refs/heads/does-not-exist` inconnue", done.stdout.decode("utf-8", "replace"))
 
     def test_11_head_ref_reads_blobs_not_the_working_tree(self):
         self.repo.move()
@@ -201,6 +215,14 @@ class DocMovePreservationContract(unittest.TestCase):
         self.assertEqual(code_head, 0, out_head)
         self.assertEqual(code_tree, 1, out_tree)
         self.assertIn("L17  the last line", out_tree)
+        # La LISTE des fichiers d'arrivée vient du commit elle aussi : un fichier effacé du
+        # disque après le commit compte toujours, un fichier jamais commité ne compte pas.
+        os.remove(os.path.join(self.repo.root, "docs", "traps.md"))
+        self.repo.write("docs/untracked.md", "never committed\n")
+        code_head, out_head = self.repo.run("--head", good)
+        self.assertEqual(code_head, 0, out_head)
+        self.assertIn("docs/traps.md", out_head)
+        self.assertNotIn("docs/untracked.md", out_head)
 
     def test_12_a_directory_target_is_walked(self):
         self.repo.move()
@@ -257,12 +279,97 @@ class DocMovePreservationContract(unittest.TestCase):
     def test_16_a_malformed_manifest_is_blind(self):
         self.repo.move(traps=TRAPS.replace("never edit the json", "never edit that json"))
         for text in ("GUIDE.md\t13\t\n",                                   # raison vide
+                     "GUIDE.md\t13\n",                                     # champ manquant
                      "GUIDE.md\ttreize\treformulée\n",                      # numéro illisible
+                     "GUIDE.md\t³\treformulée\n",                      # « ³ » : isdigit() dit oui, int() lève
                      "GUIDE.md\t13\tune\nGUIDE.md\t13\tdeux\n"):            # déclarée deux fois
             path = self.repo.write("manifest.tsv", text)
             code, out = self.repo.run("--manifest", path)
             self.assertEqual(code, 2, (text, out))
             self.assertIn("ORGANE AVEUGLE", out)
+
+    def test_17_one_empty_into_among_several_is_blind(self):
+        # Un `--into` qui ne désigne rien, à côté d'autres qui trouvent : le décompte aurait
+        # l'air complet alors qu'une arrivée entière manque. Sur l'arbre et sur une ref.
+        self.repo.move()
+        code, out = self.repo.run(into=("GUIDE.md", "docs", "nowhere"))
+        self.assertEqual(code, 2, out)
+        self.assertIn("`--into nowhere` ne désigne aucun fichier", out)
+        good = self.repo.commit("moved")
+        code, out = self.repo.run("--head", good, into=("GUIDE.md", "docs", "nowhere"))
+        self.assertEqual(code, 2, out)
+        self.assertIn("`--into nowhere` ne désigne aucun fichier", out)
+        # Un dossier qui existe mais ne porte aucun *.md : même verdict.
+        self.repo.write("empty/notes.txt", "not markdown\n")
+        code, out = self.repo.run(into=("GUIDE.md", "docs", "empty"))
+        self.assertEqual(code, 2, out)
+        good = self.repo.commit("a folder without markdown")
+        code, out = self.repo.run("--head", good, into=("GUIDE.md", "docs", "empty"))
+        self.assertEqual(code, 2, out)
+        self.assertIn("`--into empty` ne désigne aucun fichier", out)
+
+    def test_18_a_directory_is_not_a_source(self):
+        # `git show <ref>:<dossier>` réussit : sans garde, la « source » serait une liste de noms.
+        self.repo.write("guides/A.md", "# A\n\nline of a\n")
+        self.repo.base = self.repo.commit("a directory")
+        self.repo.move()
+        code, out = self.repo.run(sources=("guides",))
+        self.assertEqual(code, 2, out)
+        self.assertIn("n'est pas un fichier", out)
+
+    def test_19_a_line_already_in_a_destination_at_base_does_not_count(self):
+        # « never edit the json » était déjà dans docs/old.md AVANT le déplacement. Le
+        # déplacement la perd : la copie d'avant ne doit pas servir de preuve (docs/old.md
+        # portait 2 lignes non vides à la base : son titre et celle-ci).
+        self.repo.write("docs/old.md", "# Old\n\nnever edit the json\n")
+        self.repo.base = self.repo.commit("a destination that pre-exists")
+        self.repo.move(traps=TRAPS.replace("never edit the json\n", ""))
+        code, out = self.repo.run()
+        self.assertEqual(code, 1, out)
+        self.assertIn("L13  never edit the json", out)
+        self.assertIn("DÉJÀ LÀ à %s (non comptées) : 2 ligne(s) dans 1 fichier(s) d'arrivée" % self.repo.base, out)
+        # Elle arrive pour de bon — dans ce même fichier, en plus de la copie d'avant : préservé.
+        self.repo.write("docs/old.md", "# Old\n\nnever edit the json\n\nnever edit the json\n")
+        code, out = self.repo.run()
+        self.assertEqual(code, 0, out)
+        # Ou dans un fichier neuf, pendant que l'ancien perd la sienne : préservé aussi
+        # (le gain se compte fichier par fichier, pas sur la somme).
+        self.repo.write("docs/old.md", "# Old\n")
+        self.repo.move()
+        code, out = self.repo.run()
+        self.assertEqual(code, 0, out)
+
+    def test_20_weak_lines_are_counted_apart(self):
+        # 9 des 13 lignes retrouvées sont des titres courts ou des lignes de tableau :
+        # le décompte le dit, pour que « 13 retrouvées » ne soit pas lu comme 13 preuves.
+        self.repo.move()
+        code, out = self.repo.run()
+        self.assertEqual(code, 0, out)
+        self.assertIn("FAIBLES (retrouvées, mais ≤ 12 caractères ou balisage seul — prouvent peu) : 9 sur 13", out)
+        # Une règle de tableau large dépasse 12 caractères : faible par sa nature, pas par sa longueur.
+        wide = "a sentence long enough to prove something\n|---|---|---|---|---|\n"
+        self.repo.write("WIDE.md", wide)
+        self.repo.base = self.repo.commit("a wide table rule")
+        self.repo.write("docs/wide.md", wide)
+        code, out = self.repo.run(sources=("WIDE.md",), into=("docs",))
+        self.assertEqual(code, 0, out)
+        self.assertIn("prouvent peu) : 1 sur 2", out)
+
+    def test_21_a_manifest_naming_an_unexamined_source_is_blind(self):
+        # Une faute de frappe dans le chemin : la déclaration ne couvre rien de ce qui est
+        # examiné. La dire « périmée » enverrait le lecteur la supprimer.
+        self.repo.move()
+        code, out = self.repo.run("--manifest", self.manifest(("OTHER.md", 3, "ailleurs")))
+        self.assertEqual(code, 2, out)
+        self.assertIn("le manifeste déclare une source non examinée : OTHER.md", out)
+
+    def test_22_an_empty_source_is_blind_not_preserved(self):
+        self.repo.write("EMPTY.md", "\n\n")
+        self.repo.base = self.repo.commit("an empty source")
+        self.repo.move()
+        code, out = self.repo.run(sources=("EMPTY.md",))
+        self.assertEqual(code, 2, out)
+        self.assertIn("source `EMPTY.md` vide à la ref", out)
 
 
 if __name__ == "__main__":

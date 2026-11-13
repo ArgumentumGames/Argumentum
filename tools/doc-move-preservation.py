@@ -18,7 +18,11 @@ CE QU'IL PROUVE
     ligne présente 3 fois à l'origine doit l'être au moins 3 fois à l'arrivée) ;
   - toute ligne absente est DÉCLARÉE au manifeste, et toute déclaration du manifeste
     désigne bien une ligne absente (une déclaration devenue inutile est une erreur :
-    elle masquerait la prochaine perte au même numéro).
+    elle masquerait la prochaine perte au même numéro) ;
+  - une ligne qui était DÉJÀ dans un fichier d'arrivée à la ref d'origine ne compte pas :
+    elle n'a pas été déplacée, elle était là. Seul ce qu'un fichier d'arrivée a GAGNÉ
+    depuis `--base` sert de preuve (un fichier qui est aussi une source compte en entier :
+    ce qu'il garde est ce qui n'a pas bougé).
 
 CE QU'IL NE PROUVE PAS, et le dit
   - que l'ORDRE est conservé : les « suites » affichées (lignes d'origine retrouvées
@@ -26,13 +30,21 @@ CE QU'IL NE PROUVE PAS, et le dit
   - que le texte déplacé est encore JUSTE, ni que les liens relatifs tiennent toujours
     depuis le nouvel emplacement ;
   - la comparaison ignore les espaces de début et de fin de ligne, et les fins de ligne
-    (CRLF/LF) : un changement d'indentation seul n'est pas vu.
+    (CRLF/LF) : un changement d'indentation seul n'est pas vu ;
+  - qu'une ligne retrouvée est bien CELLE qui a été déplacée. Une ligne courte ou de pur
+    balisage (`---`, une clôture de bloc de code, `|---|---|`) se retrouve partout : sa
+    présence prouve peu. L'organe les compte à part (« FAIBLES ») pour que le lecteur
+    sache quelle part du décompte repose sur elles ;
+  - il ne lit pas le markdown : une ligne retrouvée dans un commentaire HTML ou dans un
+    bloc de code compte comme retrouvée.
 
 SORTIES
   0  PRÉSERVÉ — aucune ligne perdue hors manifeste, aucun manifeste périmé
   1  PERTE — au moins une ligne absente non déclarée, ou une déclaration inutile
-  2  ORGANE AVEUGLE — source introuvable à la ref, aucun fichier d'arrivée, git absent :
-     l'organe ne peut pas mesurer et refuse de rendre un vert.
+  2  ORGANE AVEUGLE — source introuvable à la ref ou qui n'est pas un fichier, un `--into`
+     qui ne désigne aucun fichier (un seul suffit : une arrivée absente est une perte que
+     l'organe ne verrait pas), manifeste illisible, git absent : l'organe ne peut pas
+     mesurer et refuse de rendre un vert.
 
 MANIFESTE (TSV, `#` = commentaire) :  <chemin source> TAB <numéro de ligne> TAB <raison>
   Un chemin RELATIF se lit depuis la racine du dépôt, jamais depuis le répertoire courant ;
@@ -46,6 +58,7 @@ import argparse
 import collections
 import difflib
 import os
+import re
 import subprocess
 import sys
 
@@ -72,9 +85,15 @@ def norm(raw):
 
 
 def read_source(repo, base, path):
-    code, out, err = git(repo, "show", "%s:%s" % (base, path))
+    code, kind, err = git(repo, "cat-file", "-t", "%s:%s" % (base, path))
     if code != 0:
         blind("source `%s` introuvable à la ref `%s` (%s)" % (path, base, err))
+    if kind.decode("utf-8", "replace").strip() != "blob":
+        # `git show <ref>:<dossier>` réussit et rend la liste du dossier : ce n'est pas un texte.
+        blind("source `%s` n'est pas un fichier à la ref `%s`" % (path, base))
+    code, out, err = git(repo, "show", "%s:%s" % (base, path))
+    if code != 0:
+        blind("source `%s` illisible à la ref `%s` (%s)" % (path, base, err))
     return norm(out)
 
 
@@ -83,6 +102,7 @@ def list_targets(repo, head, specs):
     found = []
     for spec in specs:
         spec = spec.replace("\\", "/").rstrip("/")
+        mine = []
         if head is None:
             full = os.path.join(repo, *spec.split("/"))
             if os.path.isdir(full):
@@ -90,16 +110,53 @@ def list_targets(repo, head, specs):
                     for name in sorted(names):
                         if name.lower().endswith(".md"):
                             rel = os.path.relpath(os.path.join(root, name), repo)
-                            found.append(rel.replace(os.sep, "/"))
+                            mine.append(rel.replace(os.sep, "/"))
             elif os.path.isfile(full):
-                found.append(spec)
+                mine.append(spec)
         else:
             code, out, _ = git(repo, "ls-tree", "-r", "--name-only", head, "--", spec)
             if code == 0:
                 for rel in out.decode("utf-8", "replace").splitlines():
                     if rel == spec or rel.lower().endswith(".md"):
-                        found.append(rel)
+                        mine.append(rel)
+        if not mine:
+            # Un seul `--into` vide suffit à aveugler : les autres rendraient un décompte
+            # d'apparence complète alors qu'une arrivée entière manque.
+            blind("`--into %s` ne désigne aucun fichier (%s)" % (spec, head or "arbre de travail"))
+        found += mine
     return sorted(set(found))
+
+
+WEAK = re.compile(r"^[\s|:\-`*#>=_~.]+$")
+
+
+def is_weak(line):
+    """Ligne courte ou de pur balisage : la retrouver ailleurs ne prouve presque rien."""
+    return len(line) <= 12 or WEAK.match(line) is not None
+
+
+def gained(repo, base, sources, targets):
+    """-> (budget, déjà-là). Ce que chaque fichier d'arrivée a GAGNÉ depuis `base`.
+
+    Un fichier d'arrivée qui existait déjà à `base`, et qui n'est pas une source, ne prête
+    que ses lignes nouvelles : celles qu'il portait déjà n'ont pas été déplacées."""
+    budget = collections.Counter()
+    already = []
+    for rel, lines in targets.items():
+        now = collections.Counter(line for line in lines if line)
+        if rel not in sources:
+            code, kind, _ = git(repo, "cat-file", "-t", "%s:%s" % (base, rel))
+            if code == 0 and kind.decode("utf-8", "replace").strip() == "blob":
+                code, out, err = git(repo, "show", "%s:%s" % (base, rel))
+                if code != 0:
+                    blind("fichier d'arrivée `%s` illisible à la ref `%s` (%s)" % (rel, base, err))
+                before = collections.Counter(line for line in norm(out) if line)
+                kept = sum((now & before).values())
+                if kept:
+                    already.append((rel, kept))
+                now = now - before
+        budget.update(now)
+    return budget, sorted(already)
 
 
 def read_target(repo, head, rel):
@@ -145,7 +202,8 @@ def read_manifest(repo, head, path):
         if not line.strip() or line.lstrip().startswith("#"):
             continue
         parts = line.split("\t")
-        if len(parts) < 3 or not parts[1].strip().isdigit() or not parts[2].strip():
+        # `isdigit()` accepte « ³ », que `int()` refuse : chiffres ASCII seulement.
+        if len(parts) < 3 or not re.match(r"^[0-9]+$", parts[1].strip()) or not parts[2].strip():
             blind("manifeste `%s` ligne %d : attendu <source> TAB <ligne> TAB <raison>"
                   % (origin, number))
         key = (parts[0].strip().replace("\\", "/"), int(parts[1]))
@@ -207,20 +265,25 @@ def main(argv=None):
     if code != 0:
         blind("ref d'origine `%s` inconnue dans ce dépôt" % args.base)
 
-    rels = list_targets(repo, args.head, args.into)
-    if not rels:
-        blind("aucun fichier d'arrivée trouvé pour %s" % ", ".join(args.into))
+    rels = list_targets(repo, args.head, args.into)      # aveugle si un seul `--into` est vide
     targets = {rel: read_target(repo, args.head, rel) for rel in rels}
     have = collections.Counter(line for lines in targets.values() for line in lines if line)
     declared, manifest_origin = read_manifest(repo, args.head, args.manifest)
     used = set()
     lost_total = 0
-    budget = dict(have)     # commun à toutes les sources : une ligne ne sert qu'une fois
+    source_paths = set(p.replace("\\", "/") for p in args.source)
+    # Commun à toutes les sources : une ligne ne sert qu'une fois. Et seul le GAIN compte.
+    budget, already = gained(repo, args.base, source_paths, targets)
 
     print("ARRIVÉE (%s) : %d fichier(s), %d lignes non vides"
           % (args.head or "arbre de travail", len(targets), sum(have.values())))
     for rel in rels:
         print("  %s (%d lignes)" % (rel, len(targets[rel])))
+    if already:
+        print("DÉJÀ LÀ à %s (non comptées) : %d ligne(s) dans %d fichier(s) d'arrivée"
+              % (args.base, sum(n for _, n in already), len(already)))
+        for rel, n in already:
+            print("  %s (%d)" % (rel, n))
     if manifest_origin:
         print("MANIFESTE : %s, %d déclaration(s)" % (manifest_origin, len(declared)))
 
@@ -253,6 +316,9 @@ def main(argv=None):
         print("ISOLÉES (retrouvées mot pour mot, hors suite) : %d" % len(isolated))
         if isolated:
             print("  " + ", ".join("L%d" % n for n in isolated))
+        weak = sum(1 for n, line in nonblank if n not in absent_numbers and is_weak(line))
+        print("FAIBLES (retrouvées, mais ≤ 12 caractères ou balisage seul — prouvent peu) : %d sur %d"
+              % (weak, len(nonblank) - len(absent)))
 
         stated = [(n, line) for n, line in absent if (path, n) in declared]
         lost = [(n, line) for n, line in absent if (path, n) not in declared]
@@ -265,9 +331,8 @@ def main(argv=None):
             print("  L%d  %s" % (n, line[:140]))
         lost_total += len(lost)
 
-    sources = set(p.replace("\\", "/") for p in args.source)
     stale = sorted(key for key in declared if key not in used)
-    foreign = [key for key in stale if key[0] not in sources]
+    foreign = [key for key in stale if key[0] not in source_paths]
     if foreign:
         blind("le manifeste déclare une source non examinée : %s" % foreign[0][0])
     print("")

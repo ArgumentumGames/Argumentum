@@ -35,14 +35,14 @@
 #        rangee ; champs app 50 re-derives des vues committees du formulaire ;
 #        app 48 bornee a l'entite mesuree E10181 ; temoins ; actualites app 52
 #        completes dans les 8 langues (#2182), avec 24 mutations inverses en sous-tests.
-#     4. tools/test_agent-docs-contract.py -- std-lib, offline, 7 cas. Les cas 1-4
+#     4. tools/test_agent-docs-contract.py -- std-lib, offline, 13 cas. Les cas 1-4
 #        lisent AGENTS.md, CLAUDE.md et docs/agents/ **du depot reel** : liens
 #        relatifs, renvois de section, import unique, budget d'octets des deux
-#        fichiers charges par defaut. Les cas 5-7 eprouvent les detecteurs sur un
+#        fichiers charges par defaut. Les cas 5-13 eprouvent les detecteurs sur un
 #        arbre synthetique (un lien mort, un titre renomme, un import ajoute SONT
 #        vus). Aucun artefact : les documents controles sont le depot lui-meme.
 #     5. tools/test_doc-move-preservation.py -- std-lib + `git` (present sur le
-#        runner), offline, 16 cas sur des depots `git init` jetables en repertoire
+#        runner), offline, 22 cas sur des depots `git init` jetables en repertoire
 #        temporaire. N'interroge PAS l'historique du depot reel : le `fetch-depth`
 #        par defaut suffit. Eprouve tools/doc-move-preservation.py (preuve ligne a
 #        ligne d'un deplacement de documentation) : chaque facon de perdre une ligne
@@ -134,14 +134,14 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Run the agent documentation contract (AGENTS.md, CLAUDE.md, docs/agents)
-        # 7 cas, std-lib, offline. Un lien relatif mort, un renvoi de section vers un
+        # 13 cas, std-lib, offline. Un lien relatif mort, un renvoi de section vers un
         # titre renomme, un import en plus de AGENTS.md, ou les deux fichiers charges
         # par defaut au-dessus du budget d'octets : rouge. Le budget se releve dans la
         # PR qui l'argumente, pas pour faire passer un ajout.
         run: python tools/test_agent-docs-contract.py
 
       - name: Run the doc-move preservation contract
-        # 16 cas sur des depots git jetables : l'organe qui prouve qu'un deplacement
+        # 22 cas sur des depots git jetables : l'organe qui prouve qu'un deplacement
         # de documentation n'a perdu aucune ligne doit lui-meme voir chaque perte.
         # N'a pas besoin de l'historique du depot reel.
         run: python tools/test_doc-move-preservation.py
