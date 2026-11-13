@@ -1,5 +1,5 @@
 # Tests Python offline std-lib : garde d'arbre #1460 + suite DNN i18n #457 + gardes export EAV #458 (charpente #1460)
-# + auto-test du gate de merge (scripts/gates) + contrat d'octets des CSV de donnees + contrats de la documentation pour agents + contrat des index de reference.
+# + auto-test du gate de merge (scripts/gates) + contrat d'octets des CSV de donnees + contrats de la documentation pour agents + contrat des index de reference + outil du bloc de cloture des issues.
 #
 # POURQUOI UN WORKFLOW DISTINCT DE build.yml
 #   build.yml est le pipeline dotnet principal : il fait tourner 1129 tests .NET a
@@ -18,7 +18,7 @@
 #   d'execution sera documentee. C'est la distinction posee en tete de
 #   docs/quality/1460-charpente-suite-regression.md.
 #
-#   CABLES A CE JOUR (8), avec la condition qui les autorise ici :
+#   CABLES A CE JOUR (9), avec la condition qui les autorise ici :
 #     1. tools/test_1460-structure-charpente-pilot.py -- std-lib, 7 cas, arbres
 #        synthetiques ; aucun Target/ requis (le cas 7 est un grounding sur le depot
 #        reel, volontairement NON asserte).
@@ -68,6 +68,10 @@
 #        suivi du dossier y est cite avec un statut, aucun lien mort. Les cas 6-12
 #        eprouvent les detecteurs sur des depots `git init` jetables. Methode :
 #        docs/agents/consolidation.md.
+#     9. tools/test_issue-closing-block.py -- std-lib, offline, 18 cas. Le `gh` de
+#        tools/issue-closing-block.py est injecte : les tests le simulent, aucun appel
+#        reseau, aucune ecriture GitHub. Aller-retour octet pour octet du texte
+#        d'origine (CRLF compris), chaque refus, le chemin --apply.
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
 #   - push sur master / pull_request : déclenchés, y compris les changements du
@@ -201,3 +205,7 @@ jobs:
         # `<!-- index-of-record -->` doit citer chaque fichier suivi de son dossier,
         # avec un statut : un fichier ajoute sans sa ligne d'index rougit la PR.
         run: python tools/test_docs-index-contract.py
+
+      - name: Run the issue closing-block contract
+        # 18 cas, std-lib, `gh` simule : le texte d'origine d'une issue ne change jamais.
+        run: python tools/test_issue-closing-block.py
