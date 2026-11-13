@@ -34,7 +34,7 @@ Verdict = worst level. BLOCK > HOLD > INFO.
 | R5 | reviews | `CHANGES_REQUESTED` not lifted by the **same** author | blocking prose marker posted after the head |
 | R6 | inline threads | unresolved and not outdated | (unresolved but outdated: INFO) |
 | R7 | lane signature | | last body line is not a literal `*lane*` |
-| R8 | counter-review | | none on the head, when the PR is from the merger's lane or `--require-counter-review` |
+| R8 | counter-review | | none on the head, when the PR is from the merger's lane or `--require-counter-review`. Formal reviews keep their rule (attached to the head commit); a **comment** counts only when posted after the head, declaring itself counter-review (`contre-revue` / `counter-review`, case-insensitive) **and** naming the head (first 8 hex chars of its SHA). When R8 finds nothing, it names the post-head comments it saw and excluded, and any counter-review another lane declared on a **previous** head (the stacked-PR case after a base merge): it does not count, and the message says what to compare |
 | R9 | closing keywords | | body, title or a commit message will close an issue: keyword + `#N`, `owner/repo#N`, `GH-N` or an issue/PR URL |
 | R10 | diff hygiene (added lines) | token and private-key formats | secret-like assignment, profile path, mention of the `.keys` directory; any file the scan could not fully read |
 | R11 | protected paths | printed reference (`Cards/*/Archive`, CardPen `examples`, the directories themselves included), env files (`.env`, `.env.*`, `.env-*`, `.envrc`), `.keys` directory, `*.pfx` | workflows, `.claude`, `AGENTS.md`, `CLAUDE.md`, `scripts/gates`, `web.config`, env models (`.env.example`, `.sample`, `.template`, `.dist`) |
@@ -80,9 +80,9 @@ acknowledgement has to name the path as the pull request writes it, so
 - Of the branch ruleset it reads the required check contexts and nothing else.
   A required approval, or any other rule, shows only as `blocked` (R3).
 - R5 (prose), R8 (dates: a comment counts when posted after the head commit's
-  committer date, an approximation) and R10 (patterns) are heuristics. Their
-  silence is not proof. R8 establishes that a counter-review **exists**, not
-  what it says.
+  committer date, an approximation; and its declaration is matched by keyword,
+  not read) and R10 (patterns) are heuristics. Their silence is not proof. R8
+  establishes that a counter-review **exists**, not what it says.
 
 ## Size limits
 
@@ -110,7 +110,9 @@ soon as the PR moves. Merge on a live run, with `--expect-head`.
 For every rule it injects the defect and expects the verdict, then **disables the
 rule and expects PASS again** — a case that still fails with its rule disabled
 does not discriminate. It also runs inverse controls (prose that must not
-trigger, removed lines, signature not on the last line, neighbours of a protected
+trigger, removed lines, signature not on the last line, a literal signature
+followed by trailing text on the last line, an arbitration comment that must not
+count as a counter-review, neighbours of a protected
 name such as `docs/web.config.md`) and drives the collector through a fake `gh`
 where each endpoint fails in turn (exit `1`, never `0`), where an endpoint
 answers with **fewer items than it announces**, and where GraphQL returns an
