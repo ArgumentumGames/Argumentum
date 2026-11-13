@@ -2,7 +2,7 @@
 
 This file is written for an agent (or a person) who sees **only this git repository**: no shared dashboard, no machine memory, no chat history. It is the **single source** for what follows. Claude Code loads it through the `@AGENTS.md` import at the top of [`CLAUDE.md`](CLAUDE.md); other tools read it natively. Do not copy its content elsewhere — link to it.
 
-It covers what the repository is, how to build and test it, the invariants that have each already cost a defect, and how to contribute a change that can be merged. The deep pipeline knowledge (regeneration, mind maps, CMYK, release) stays in [`CLAUDE.md`](CLAUDE.md), indexed in §8.
+It covers what the repository is, how to build and test it, the invariants that have each already cost a defect, and how to contribute a change that can be merged. The deep pipeline knowledge (regeneration, mind maps, CMYK, release) lives in [`docs/agents/`](docs/agents/), one topic per file, read on demand and indexed in §8; [`CLAUDE.md`](CLAUDE.md) keeps the table of the pipeline's silent failures.
 
 ## 1. What this is
 
@@ -94,7 +94,7 @@ dotnet build "Argumentum Converters.sln"
 
 ## 5. State lives in the issues, not in the documents
 
-- The status tables and the "Prochaines étapes" list in `CLAUDE.md` are **dated documentation**. Before acting on any item: `gh issue view <N> --json state,stateReason`, then read the body **and every comment** — the latest comments routinely supersede the body.
+- The status tables and the "Prochaines étapes" list in `docs/agents/status-and-history.md` are **dated documentation**. Before acting on any item: `gh issue view <N> --json state,stateReason`, then read the body **and every comment** — the latest comments routinely supersede the body.
 - `scripts/triage/dispatch-freshness.sh <N> [<N>…]` prints, per issue, the state and the last three comments. `scripts/triage/human-requests.sh` lists new requests written by humans. Both need `gh`.
 - **`author.login` tells you nothing**: every maintainer lane writes through the same GitHub account. Who did what is carried by the **signature line** (§6), and a review arrives as a pull-request *comment* — `reviewDecision` stays empty by construction.
 - #458 is the coordination roadmap. #2132 is reserved for the human reviewers: **agents do not post there.**
@@ -118,11 +118,18 @@ Work is done by **lanes**: `ai-01` (coordination, merges), `po-2023` (site, rege
    - **last line: the signature**, literally `*<lane>*`.
 6. **You do not merge your own pull request.** The coordinator squash-merges once all of this holds on the **head commit**:
    - the four required checks are green — `build (Debug)`, `build (Release)`, `guard` (no new blob over 2 MiB outside the allow-list), `behaviour` (mind-map wrapper acceptance);
-   - a lane **other than the author** has reviewed it, re-running the measurement against the source rather than trusting the description. A push after the review voids it;
+   - a lane **other than the author** has reviewed it, re-running the measurement against the source rather than trusting the description. A push after the review voids it: when you push again, comment what the delta changes and ask for the review again;
    - no unanswered change request or inline comment;
    - the body closes no issue it does not finish.
 
 `master` is protected by a ruleset: pull request required, no force-push, no deletion, even for admins. A rejected push (`GH013`) means the protection works — open a pull request.
+
+**Four readings this workflow has already made wrong**
+
+- **The merge is a squash**: the commits of your branch never become ancestors of `master`, so `git merge-base --is-ancestor <your commit> origin/master` answers *no* for a change that landed. Check a landing with `gh pr view <N> --json state,mergeCommit` — or, for a file nobody else touched since, compare `git rev-parse origin/master:<path>` with `git rev-parse <your commit>:<path>`.
+- **`gh pr checks <N>` exits `8` while checks are still running**: pending, not red. Wait for the run to end before you read the verdict.
+- **A `gh` error `403` (rate limit) says nothing about the pull request**: the quota belongs to the account, and every lane draws on it. Do not retry in a loop — `gh api rate_limit` gives the reset time. Reading a pull request needs no API: `git fetch origin pull/<N>/head:refs/tmp/pr<N>` brings its head.
+- **Reviewing a test, a gate or a guard by replaying the author's commands only shows what the author saw.** Disable the guard — or remove the line under test — and re-run: if the suite stays green, that is a finding.
 
 ## 7. Off-limits without an explicit maintainer decision
 
@@ -137,12 +144,15 @@ Work is done by **lanes**: `ai-01` (coordination, merges), `po-2023` (site, rege
 
 | You are about to… | Read |
 |---|---|
-| change pipeline configuration or a card set | `CLAUDE.md` § *Architecture*, § *Leçons Apprises* |
-| regenerate cards or PDFs, one language or all | `CLAUDE.md` § *Regeneration runs*, § *Regenerating a SINGLE language* |
-| touch Debug/Release behaviour or CMYK | `CLAUDE.md` § *Debug vs Release Builds* |
-| touch mind maps or their HTML wrappers | `CLAUDE.md` § *Pipeline Stages* (item 3), `docs/quality/visual-tests-release-gate.md` |
-| edit a card template (`Cards/**/*.json`) | `CLAUDE.md` § *A branch fix to a card template…*, § *CSS Card Templates* |
-| bump a dependency | `CLAUDE.md` § *Stable Dependency Versions* |
+| run any pipeline gesture | the table of silent failures in `CLAUDE.md` — one row per gesture, each naming its section |
+| change pipeline configuration or a card set | `docs/agents/pipeline.md` § *Architecture*, `docs/agents/card-templates.md` § *Leçons Apprises* |
+| regenerate cards or PDFs, one language or all | `docs/agents/regeneration.md` § *Regeneration runs*, § *Regenerating a SINGLE language* |
+| touch Debug/Release behaviour or CMYK | `docs/agents/build-modes-and-cmyk.md` § *Debug vs Release Builds* |
+| touch mind maps or their HTML wrappers | `docs/agents/pipeline.md` § *Pipeline Stages* (item 3), `docs/quality/visual-tests-release-gate.md` |
+| edit a card template (`Cards/**/*.json`) | `docs/agents/regeneration.md` § *A branch fix to a card template…*, `docs/agents/card-templates.md` § *CSS Card Templates* |
+| bump a dependency | `docs/agents/dependencies.md` § *Stable Dependency Versions* |
+| quote a count, a status or a "next step" | `docs/agents/status-and-history.md` — dated snapshots: re-measure, and read the issue (§5) |
+| move documentation from one file to another | `docs/agents/README.md` — the move is proven line by line with `tools/doc-move-preservation.py` |
 | add a Python test to CI | header of `.github/workflows/python-tools-tests.yml`, `docs/quality/1460-charpente-suite-regression.md` |
 | understand the pipeline end to end | `Generation/Documentation/ARCHITECTURE_PIPELINE.md` |
 | run a coordination or worker session (Claude Code) | `.claude/skills/coordinate/SKILL.md`, `.claude/skills/pipeline-recovery/SKILL.md` |

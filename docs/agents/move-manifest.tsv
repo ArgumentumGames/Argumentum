@@ -1,0 +1,16 @@
+# Lines of CLAUDE.md at 92076717 that are NOT found word for word after the move of 2026-11-13.
+# Read by tools/doc-move-preservation.py (see docs/agents/README.md). Every other non-blank line of
+# the original is found verbatim in CLAUDE.md, AGENTS.md or docs/agents/*.md.
+# A declaration that no longer designates an absent line is an error: remove it, do not keep it.
+#
+# source<TAB>line<TAB>reason
+CLAUDE.md	5	heading only (## Project Overview) - its content is carried word for word by AGENTS.md section 1, under that section's own title
+CLAUDE.md	13	heading only (## Build & Run Commands) - its content is carried word for word by AGENTS.md section 3, under that section's own title
+CLAUDE.md	254	corrected, not moved - the line named columns Title, Title_en... that exist in no CSV (headers measured 2026-11-13); docs/agents/pipeline.md section Multilingual Support states the real, per-file names
+CLAUDE.md	349	heading only (## Golden Rule: Code = Truth) - restated as the invariant 'Code = truth.' in AGENTS.md section 4
+CLAUDE.md	351	restated in AGENTS.md section 4, invariant 'Code = truth.': never edit the JSON
+CLAUDE.md	352	restated in AGENTS.md section 4, invariant 'Code = truth.': regenerate it from correct C#
+CLAUDE.md	353	restated in AGENTS.md section 4, invariant 'Code = truth.': the JSON is generated and git-ignored
+CLAUDE.md	568	one relative link re-based for the new location (docs/translation/ -> ../translation/), rest of the line unchanged - in docs/agents/status-and-history.md
+CLAUDE.md	574	one relative link re-based for the new location (docs/translation/ -> ../translation/), rest of the line unchanged - in docs/agents/status-and-history.md
+CLAUDE.md	606	one relative link re-based for the new location (docs/translation/ -> ../translation/), rest of the line unchanged - in docs/agents/status-and-history.md
