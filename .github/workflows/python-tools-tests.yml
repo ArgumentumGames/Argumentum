@@ -1,4 +1,5 @@
-# Tests Python offline std-lib : garde d'arbre #1460 + suite DNN i18n #457 + gardes export EAV #458 (charpente #1460).
+# Tests Python offline std-lib : garde d'arbre #1460 + suite DNN i18n #457 + gardes export EAV #458 (charpente #1460)
+# + auto-test du gate de merge (scripts/gates).
 #
 # POURQUOI UN WORKFLOW DISTINCT DE build.yml
 #   build.yml est le pipeline dotnet principal : il fait tourner 1129 tests .NET a
@@ -17,7 +18,7 @@
 #   d'execution sera documentee. C'est la distinction posee en tete de
 #   docs/quality/1460-charpente-suite-regression.md.
 #
-#   CABLES A CE JOUR (3), avec la condition qui les autorise ici :
+#   CABLES A CE JOUR (4), avec la condition qui les autorise ici :
 #     1. tools/test_1460-structure-charpente-pilot.py -- std-lib, 7 cas, arbres
 #        synthetiques ; aucun Target/ requis (le cas 7 est un grounding sur le depot
 #        reel, volontairement NON asserte).
@@ -34,6 +35,12 @@
 #        rangee ; champs app 50 re-derives des vues committees du formulaire ;
 #        app 48 bornee a l'entite mesuree E10181 ; temoins ; actualites app 52
 #        completes dans les 8 langues (#2182), avec 24 mutations inverses en sous-tests.
+#     4. scripts/gates/pr_merge_gate.py --self-test -- std-lib, offline. Le gate de
+#        merge lit GitHub via `gh api` en usage reel ; son auto-test NE LE FAIT PAS :
+#        instantanes synthetiques + un `gh` factice. Pour chaque regle, le defaut
+#        injecte doit rendre le verdict attendu, puis la regle desactivee doit
+#        rendre PASS (mutation falsifiante) ; chaque point d'API en echec doit
+#        rendre le code 1, jamais 0. Aucun jeton, aucun appel reseau, aucun artefact.
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
 #   - push sur master / pull_request : déclenchés, y compris les changements du
@@ -112,3 +119,17 @@ jobs:
         # charge pour ses fonctions de garde ; fetch_rows (la seule a lire la base)
         # n'est jamais appele - finish_rows, son post-traitement, l'est.
         run: python tools/test_458-eav-export-guards.py
+
+  pr-merge-gate-selftest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run the merge gate self-test (scripts/gates)
+        # Std-lib, offline : instantanes synthetiques et `gh` factice, aucun appel a
+        # GitHub (le job n'a ni besoin ni usage d'un jeton). Echoue si une regle ne
+        # rend pas le verdict attendu, si elle ne discrimine pas (regle desactivee
+        # != PASS), ou si un echec d'API simule rend autre chose que le code 1.
+        run: python scripts/gates/pr_merge_gate.py --self-test
