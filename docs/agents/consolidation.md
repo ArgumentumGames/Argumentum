@@ -74,7 +74,7 @@ The worked example is [`docs/repo/README.md`](../repo/README.md).
 
 1. `git ls-files docs/<area> | wc -l` — the count to account for. Quote it in the pull request.
 2. Group the files by subject (most are named after their issue). For each subject, read the issue first: it says what is open.
-3. For each file, read its header (date, base commit, declared status) and decide. `current` is the expensive status — it asserts a re-reading. When in doubt between `current` and `historical`, it is `historical`.
+3. For each file, read its header (date, base commit, declared status) and decide. `current` is the expensive status — it asserts a re-reading. When in doubt between `current` and `historical`, it is `historical`. The status follows what the file governs, never the state of its issue: a file that governs a gesture still to come stays `current` after its issue closes (its known defects go under the index's contradictions), and an open issue does not make a file `current` — a file not re-read against `master` is `historical`, and its line points to the issue, which holds the live state.
 4. On top, a short dated paragraph per subject: where it stands, and which file governs. This paragraph is what the next reader will actually use.
 5. Add the marker last, run the contract, open the pull request. Keep a pull request under about sixty files indexed: beyond that, nobody reviews the statuses.
 6. The index changes no finding. A file that turns out to be wrong gets its own pull request.
