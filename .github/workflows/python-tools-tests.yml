@@ -1,5 +1,5 @@
 # Tests Python offline std-lib : garde d'arbre #1460 + suite DNN i18n #457 + gardes export EAV #458 (charpente #1460)
-# + auto-test du gate de merge (scripts/gates) + contrat d'octets des CSV de donnees + contrats de la documentation pour agents.
+# + auto-test du gate de merge (scripts/gates) + contrat d'octets des CSV de donnees + contrats de la documentation pour agents + contrat des index de reference.
 #
 # POURQUOI UN WORKFLOW DISTINCT DE build.yml
 #   build.yml est le pipeline dotnet principal : il fait tourner 1129 tests .NET a
@@ -18,7 +18,7 @@
 #   d'execution sera documentee. C'est la distinction posee en tete de
 #   docs/quality/1460-charpente-suite-regression.md.
 #
-#   CABLES A CE JOUR (7), avec la condition qui les autorise ici :
+#   CABLES A CE JOUR (8), avec la condition qui les autorise ici :
 #     1. tools/test_1460-structure-charpente-pilot.py -- std-lib, 7 cas, arbres
 #        synthetiques ; aucun Target/ requis (le cas 7 est un grounding sur le depot
 #        reel, volontairement NON asserte).
@@ -62,6 +62,12 @@
 #        par defaut suffit. Eprouve tools/doc-move-preservation.py (preuve ligne a
 #        ligne d'un deplacement de documentation) : chaque facon de perdre une ligne
 #        est vue, et un organe qui ne peut pas mesurer rend 2, jamais un vert.
+#     8. tools/test_docs-index-contract.py -- std-lib + `git ls-files`, offline,
+#        8 cas. Le cas 1 lit les index du depot reel (tout README.md sous docs/ ou
+#        tools/ qui porte la marque `<!-- index-of-record -->`) : chaque fichier
+#        suivi du dossier y est cite avec un statut, aucun lien mort. Les cas 6-12
+#        eprouvent les detecteurs sur des depots `git init` jetables. Methode :
+#        docs/agents/consolidation.md.
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
 #   - push sur master / pull_request : déclenchés, y compris les changements du
@@ -189,3 +195,9 @@ jobs:
         # de documentation n'a perdu aucune ligne doit lui-meme voir chaque perte.
         # N'a pas besoin de l'historique du depot reel.
         run: python tools/test_doc-move-preservation.py
+
+      - name: Run the index-of-record contract (docs/, tools/)
+        # 8 cas, std-lib + `git ls-files`. Tout README.md qui porte la marque
+        # `<!-- index-of-record -->` doit citer chaque fichier suivi de son dossier,
+        # avec un statut : un fichier ajoute sans sa ligne d'index rougit la PR.
+        run: python tools/test_docs-index-contract.py
