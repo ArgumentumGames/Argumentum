@@ -153,6 +153,7 @@ Work is done by **lanes**: `ai-01` (coordination, merges), `po-2023` (site, rege
 | bump a dependency | `docs/agents/dependencies.md` § *Stable Dependency Versions* |
 | quote a count, a status or a "next step" | `docs/agents/status-and-history.md` — dated snapshots: re-measure, and read the issue (§5) |
 | move documentation from one file to another | `docs/agents/README.md` — the move is proven line by line with `tools/doc-move-preservation.py` |
+| consolidate documents, a folder of findings or overlapping tools | `docs/agents/consolidation.md` § *Definition of done* — eight conditions, and a folder is held by an index of record |
 | add a Python test to CI | header of `.github/workflows/python-tools-tests.yml`, `docs/quality/1460-charpente-suite-regression.md` |
 | understand the pipeline end to end | `Generation/Documentation/ARCHITECTURE_PIPELINE.md` |
 | run a coordination or worker session (Claude Code) | `.claude/skills/coordinate/SKILL.md`, `.claude/skills/pipeline-recovery/SKILL.md` |
