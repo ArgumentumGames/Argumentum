@@ -23,6 +23,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 import time
 from datetime import datetime, timezone
 
@@ -222,6 +223,14 @@ def collect(pr, repo=DEFAULT_REPO, runner=gh_run, sleep=time.sleep):
                                 "line": c.get("line"), "created_at": c.get("created_at"),
                                 "body": c.get("body") or ""} for c in raw]
 
+    # Both listings are capped by GitHub. Past the cap the gate cannot read every
+    # path (R11) or every commit message (R9): say so, instead of "pagination".
+    for what, field, cap in (("fichiers", "changed_files", MAX_LISTED_FILES),
+                             ("commits", "commits", MAX_LISTED_COMMITS)):
+        if isinstance(slim.get(field), int) and slim[field] > cap:
+            raise Blind("%s : %d annoncés, l'API GitHub n'en liste que %d -- le gate ne peut pas tout lire, "
+                        "il ne rend aucun verdict sur cette PR" % (what, slim[field], cap))
+
     raw, _ = _api_pages(runner, pr_path + "/files", "fichiers")
     _expect_count("fichiers", len(raw), slim.get("changed_files"))
     snap["files"] = [{k: f.get(k) for k in ("filename", "previous_filename", "status", "additions",
@@ -300,7 +309,7 @@ def lane_signature(body):
     return m.group(1) if m else None
 
 
-def _glob_re(glob):
+def _glob_re(glob, flags=0):
     out, i = "", 0
     while i < len(glob):
         if glob.startswith("**/", i):
@@ -313,11 +322,18 @@ def _glob_re(glob):
             out, i = out + "[^/]", i + 1
         else:
             out, i = out + re.escape(glob[i]), i + 1
-    return re.compile("^" + out + "$")
+    return re.compile("^" + out + "$", flags)
 
 
-def _glob_any(path, globs):
-    return any(_glob_re(g).match(path) for g in globs)
+def _glob_any(path, globs, flags=0):
+    return any(_glob_re(g, flags).match(path) for g in globs)
+
+
+def _protected(path, globs):
+    # A protected path is matched whatever its case: `Web.config` and
+    # `web.config` are one file on a Windows checkout, and the repository tracks
+    # both spellings. Acknowledgement globs stay case-exact (the narrower reading).
+    return _glob_any(path, globs, re.I)
 
 
 def _rx(*parts, **kw):
@@ -340,9 +356,9 @@ _VAL = (r"(?:\"[^\"\s]{12,}\"|'[^'\s]{12,}'"
         r"|(?=[A-Za-z0-9_\-+/=]*[0-9])[A-Za-z0-9_\-+/=]{12,}(?=\s|$|[;\"'&]))")
 SOFT_PATTERNS = (
     ("affectation d'une valeur à un nom de secret", re.compile(_KW + _VAL)),
-    ("chemin de profil machine", _rx(r"[A-Za-z]:[\\/]Users[\\/]", r"|/home/[A-Za-z0-9._-]+/",
-                                     r"|/Users/[A-Za-z0-9._-]+/")),
-    ("mention du dossier de clés", _rx(r"\.keys", r"[\\/]")),
+    ("chemin de profil machine", _rx(r"[A-Za-z]:[\\/](?i:users)[\\/]", r"|/home/[A-Za-z0-9._-]+/",
+                                     r"|/(?i:users)/[A-Za-z0-9._-]+/")),
+    ("mention du dossier de clés", _rx(r"(?i:\.keys)", r"[\\/]")),
 )
 def _looks_like_address(dotted):
     # A taxonomy decimal path ("2.3.2.1") has the shape of an address. Keep only
@@ -366,18 +382,39 @@ PROSE_MARKERS = (
     ("do not merge", re.compile(r"do not merge", re.I)),
     ("ligne ouverte par le signe sens interdit", re.compile(r"(?m)^[ \t>*-]*⛔")),
 )
-CLOSING_RE = re.compile(r"(?i)\b(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\s*:?\s+(?:[\w.-]+/[\w.-]+)?#(\d+)")
-ARCHIVE_GLOBS = ("Cards/*/Archive/**", "Generation/CardPen/examples/**")
+# GitHub closes an issue on `<keyword> #N`, `<keyword> owner/repo#N`, `<keyword> GH-N`
+# and `<keyword> <issue URL>`. The URL form is how another repository's issue gets closed.
+CLOSING_RE = re.compile(
+    r"(?i)\b(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\s*:?\s+"
+    r"(?:(?P<repo>[\w.-]+/[\w.-]+)?#|GH-"
+    r"|https?://(?:www\.)?github\.com/(?P<urlrepo>[\w.-]+/[\w.-]+)/(?:issues|pull)/)(?P<num>\d+)")
+ARCHIVE_GLOBS = ("Cards/*/Archive", "Cards/*/Archive/**",
+                 "Generation/CardPen/examples", "Generation/CardPen/examples/**")
 SENSITIVE_GLOBS = (".github/workflows/**", ".claude/**", "AGENTS.md", "CLAUDE.md",
                    "scripts/gates/**", "**/web.config")
 _KEYS_DIR = "." + "keys"
+_ENV_RE = re.compile(r"^\.env(?:rc)?(?:$|[._-])")
+ENV_MODELS = tuple(".env" + sfx for sfx in (".example", ".sample", ".template", ".dist"))
 BAD_CONCLUSIONS = ("failure", "timed_out", "cancelled", "action_required", "startup_failure")
 HUNK_RE = re.compile(r"^@@ -\d+(?:,(\d+))? \+(\d+)(?:,(\d+))? @@")
+MAX_LISTED_COMMITS, MAX_LISTED_FILES = 250, 3000  # caps of the two GitHub listings
+
+
+def _env_file(name):
+    """'secret' for an environment file, 'model' for its committed template, else None.
+
+    `.env`, `.env.local`, `.env-prod`, `.envrc` are secrets; `.env.example` and
+    its three usual spellings are models; `.environment.md` is neither.
+    """
+    name = name.lower()
+    if not _ENV_RE.match(name):
+        return None
+    return "model" if name in ENV_MODELS else "secret"
 
 
 def _is_secret_path(path):
-    segs = path.split("/")
-    return segs[-1].startswith(".env") or segs[-1].lower().endswith(".pfx") or _KEYS_DIR in segs
+    segs = [seg.lower() for seg in path.split("/")]
+    return _env_file(segs[-1]) == "secret" or segs[-1].endswith(".pfx") or _KEYS_DIR in segs
 
 
 def _unquote(text):
@@ -516,7 +553,18 @@ def r3_mergeable(s, o, c):
     elif state == "behind":
         reasons.append(("INFO", "en retard sur la base (behind) : toléré, le ruleset n'est pas strict"))
     elif state == "blocked":
-        reasons.append(("INFO", "GitHub déclare la fusion bloquée : voir R4 (checks requis) et R5 (revues)"))
+        # GitHub does not say WHY. If R4, R5 or R6 hold or block, the cause is in view.
+        # Otherwise it lies where the gate does not look (an approval rule of the
+        # ruleset, an unattributed push) and a PASS would print a command GitHub refuses.
+        seen = any(level in ("HOLD", "BLOCK") for fn in (r4_ci, r5_reviews, r6_threads)
+                   for level, _ in fn(s, o, c)[0])
+        if seen:
+            reasons.append(("INFO", "GitHub déclare la fusion bloquée : cause en vue dans R4, R5 ou R6"))
+        else:
+            reasons.append(("HOLD", "GitHub déclare la fusion bloquée et ni R4 (checks), ni R5 (revues), ni R6 "
+                            "(fils) n'en voient la cause : règle du ruleset que le gate ne lit pas "
+                            "(approbation exigée, poussée non attribuée), ou état pas encore recalculé -- "
+                            "relancer, puis lire le ruleset"))
     elif state not in ("clean", "has_hooks"):
         reasons.append(("INFO", "mergeable_state=%s : voir R4" % state))
     return reasons, "mergeable_state=%s" % state
@@ -639,16 +687,19 @@ def r9_closing(s, o, c):
     found, reasons = {}, []
     sources = [("corps", s["pr"].get("body") or ""), ("titre", s["pr"].get("title") or "")]
     sources += [("commit %s" % (cm.get("sha") or "")[:7], cm.get("message") or "") for cm in s["commits"]]
+    here = (s.get("repo") or "").lower()
     for where, text in sources:
         for m in CLOSING_RE.finditer(text):
-            found.setdefault(int(m.group(1)), set()).add(where)
-    for num in sorted(found):
-        where = _cap(sorted(found[num]), 3)
+            repo = m.group("repo") or m.group("urlrepo") or ""
+            target = "#%s" % m.group("num") if repo.lower() in ("", here) else "%s#%s" % (repo, m.group("num"))
+            found.setdefault((int(m.group("num")), target), set()).add(where)
+    for num, target in sorted(found):
+        where = _cap(sorted(found[(num, target)]), 3)
         if num in o["ack_closes"]:
-            reasons.append(("INFO", "le merge fermera #%d (%s) -- acquitté par --ack-closes" % (num, where)))
+            reasons.append(("INFO", "le merge fermera %s (%s) -- acquitté par --ack-closes" % (target, where)))
         else:
-            reasons.append(("HOLD", "le merge fermera #%d (%s) : confronter à la DoD de l'issue, puis "
-                            "--ack-closes %d" % (num, where, num)))
+            reasons.append(("HOLD", "le merge fermera %s (%s) : confronter à la DoD de l'issue, puis "
+                            "--ack-closes %d" % (target, where, num)))
     return reasons, "aucun mot de fermeture dans le corps, le titre ni les messages de commit"
 
 
@@ -688,9 +739,9 @@ def r11_paths(s, o, c):
             seen.add(path)
             if _is_secret_path(path):
                 secret.append(path)
-            elif _glob_any(path, ARCHIVE_GLOBS):
+            elif _protected(path, ARCHIVE_GLOBS):
                 (acked if _glob_any(path, o["ack_paths"]) else archive).append(path)
-            elif _glob_any(path, SENSITIVE_GLOBS):
+            elif _protected(path, SENSITIVE_GLOBS) or _env_file(path.split("/")[-1]) == "model":
                 (acked if _glob_any(path, o["ack_paths"]) else shared).append(path)
     reasons = []
     if secret:
@@ -699,7 +750,8 @@ def r11_paths(s, o, c):
         reasons.append(("BLOCK", "référence imprimée (Archive / examples), levée seulement par --ack-path : %s"
                         % _cap(archive)))
     if shared:
-        reasons.append(("HOLD", "fichier partagé, intention à confirmer (--ack-path) : %s" % _cap(shared)))
+        reasons.append(("HOLD", "fichier partagé ou modèle d'environnement, intention à confirmer "
+                        "(--ack-path, à la casse exacte) : %s" % _cap(shared)))
     if acked:
         reasons.append(("INFO", "chemin protégé acquitté par --ack-path : %s" % _cap(acked)))
     return reasons, "%d chemin(s), aucun protégé" % len(seen)
@@ -819,6 +871,8 @@ NOT_ESTABLISHED = (
     "il ne lit pas le fond à la place du merger : corps, commentaires, revues et diff restent à lire ;",
     "il ne re-parse aucun CSV (BOM, CRLF, colonnes) : c'est le rôle de tools/bytecheck-datasets.py ;",
     "il ne juge aucun verdict visuel (rendu de carte, PDF, mindmap) ;",
+    "une signature de lane est déclarative : plusieurs lanes écrivent par le même compte, le gate "
+    "n'authentifie pas qui a écrit -- R7 et R8 voient l'oubli, pas l'usurpation ;",
     "R5 (prose), R8 (dates) et R10 (motifs) sont des heuristiques : leur silence n'est pas une preuve.",
 )
 
@@ -982,7 +1036,8 @@ _FX_SOFT = {
     "chemin de profil machine": "C:" + "\\Users\\" + "someone\\notes.txt",
     "mention du dossier de clés": "see ." + "keys" + "/deploy.txt",
 }
-_FX_SOFT_MORE = ("api" + "_key: " + "abcd1234efgh5678", "/ho" + "me/someone/x", "/Us" + "ers/someone/x")
+_FX_SOFT_MORE = ("api" + "_key: " + "abcd1234efgh5678", "/ho" + "me/someone/x", "/Us" + "ers/someone/x",
+                 "c:" + "\\users\\" + "someone\\notes.txt", "see ." + "KEYS" + "/deploy.txt")
 _FX_NOTE = ("D:" + "\\data\\file.txt", "host 10.1." + "2.3 here")
 _FX_PROSE = ("le secret des mots", "mot de passe oublié", "pass" + "word: voir le gestionnaire",
              "GH_" + "TOKEN=$(gh auth status)", "mcp__sk" + "-agent__run_conversation_with_tools_v2",
@@ -1050,18 +1105,32 @@ def _fx_review(state, when=_FX_AFTER, body="", login="reviewer", commit=_FX_HEAD
             "commit_id": commit, "body": body}
 
 
-def _fx_runner(snap, fail=None, short_files=False):
-    """Fake `gh`: serves a snapshot back through the API shapes collect() reads."""
+def _fx_runner(snap, fail=None, short_files=False, tamper=None, unknown_reads=0):
+    """Fake `gh`: serves a snapshot back through the API shapes collect() reads.
+
+    `fail` makes one endpoint exit non-zero. `tamper` makes one endpoint ANSWER
+    (exit 0, well-formed) while announcing one item more than it serves, or, for
+    "graphql-errors", while carrying an `errors` envelope next to complete data --
+    the partial reads a guard on the return code alone would wave through.
+    `unknown_reads` serves that many first PR reads with an uncomputed merge state.
+    """
     pr, head, num = snap["pr"], snap["pr"]["head"]["sha"], snap["pr"]["number"]
     prefix = "repos/%s/" % snap["repo"]
+    seen = {"pr_reads": 0}
+
+    def more(what):
+        return 1 if tamper == what else 0
 
     def run(args):
         if fail and fail in " ".join(args):
             return 1, "", "HTTP 500: simulated failure"
         if "graphql" in args:
-            block = {"totalCount": len(snap["threads"]), "nodes": snap["threads"],
+            block = {"totalCount": len(snap["threads"]) + more("threads"), "nodes": snap["threads"],
                      "pageInfo": {"hasNextPage": False, "endCursor": None}}
-            return 0, json.dumps({"data": {"repository": {"pullRequest": {"reviewThreads": block}}}}), ""
+            reply = {"data": {"repository": {"pullRequest": {"reviewThreads": block}}}}
+            if tamper == "graphql-errors":
+                reply["errors"] = [{"message": "simulated partial failure"}]
+            return 0, json.dumps(reply), ""
         path, _, query = args[-1].partition("?")
         later = "page=" in query and "page=1" not in query.split("&")
         tail = path[len(prefix):] if path.startswith(prefix) else None
@@ -1072,6 +1141,9 @@ def _fx_runner(snap, fail=None, short_files=False):
         if tail == "pulls/%d" % num:
             if any("diff" in a for a in args[:-1]):
                 return 0, snap["diff_text"], ""
+            seen["pr_reads"] += 1
+            if seen["pr_reads"] <= unknown_reads:
+                return 0, json.dumps(dict(pr, mergeable_state="unknown", mergeable=None)), ""
             return 0, json.dumps(pr), ""
         if tail == "issues/%d/comments" % num:
             return listing(snap["issue_comments"])
@@ -1084,10 +1156,10 @@ def _fx_runner(snap, fail=None, short_files=False):
         if tail == "pulls/%d/commits" % num:
             return listing([{"sha": c["sha"], "commit": {"message": c["message"]}} for c in snap["commits"]])
         if tail == "commits/%s/check-runs" % head:
-            return 0, json.dumps({"total_count": len(snap["checks"]),
+            return 0, json.dumps({"total_count": len(snap["checks"]) + more("check-runs"),
                                   "check_runs": [] if later else snap["checks"]}), ""
         if tail == "commits/%s/status" % head:
-            return 0, json.dumps({"state": "pending", "total_count": len(snap["statuses"]),
+            return 0, json.dumps({"state": "pending", "total_count": len(snap["statuses"]) + more("statuses"),
                                   "statuses": snap["statuses"]}), ""
         if tail == "commits/%s" % head:
             return 0, json.dumps({"sha": head, "commit": {"committer": {"date": snap["head_commit"]["date"]}}}), ""
@@ -1099,6 +1171,7 @@ def _fx_runner(snap, fail=None, short_files=False):
             return listing([{"number": num, "user": {"login": "owner"}, "title": "self"}])
         return 1, "", "HTTP 404: unrouted %s" % path
 
+    run.seen = seen
     return run
 
 
@@ -1173,7 +1246,18 @@ def self_test(out):
     case("fusion non calculée (unknown)", "R3", "HOLD",
          lambda s: s["pr"].update(mergeable_state="unknown", mergeable=None))
     control("behind", lambda s: s["pr"].update(mergeable_state="behind"), None, "R3", "INFO")
-    control("blocked", lambda s: s["pr"].update(mergeable_state="blocked"), None, "R3", "INFO")
+    case("mergeable=false sous un état clean", "R3", "BLOCK", lambda s: s["pr"].update(mergeable=False))
+    case("blocked sans cause vue par R4, R5 ni R6", "R3", "HOLD",
+         lambda s: s["pr"].update(mergeable_state="blocked"))
+
+    def blocked_by_ci(s):
+        s["pr"]["mergeable_state"] = "blocked"
+        s["checks"][0].update(status="in_progress", conclusion=None)
+    snap = copy.deepcopy(base)
+    blocked_by_ci(snap)
+    res = evaluate(snap)
+    check("R3 blocked, cause en vue dans R4 -> R3 INFO, R4 HOLD",
+          level_of(res, "R3") == "INFO" and level_of(res, "R4") == "HOLD" and res["verdict"] == "HOLD")
 
     # --- R4
     case("check requis absent", "R4", "HOLD", lambda s: s["checks"].pop(0))
@@ -1272,7 +1356,17 @@ def self_test(out):
     case("mot de fermeture dans un message de commit", "R9", "HOLD",
          lambda s: s["commits"][0].update(message="feat: x\n\nfixes: #7"))
     case("mot de fermeture dans le titre", "R9", "HOLD", lambda s: s["pr"].update(title="Resolved #5"))
+    issue_url = "https://github.com/%s/issues/12" % DEFAULT_REPO
+    case("mot de fermeture suivi de l'URL de l'issue", "R9", "HOLD",
+         lambda s: s["pr"].update(body="Closes %s\n\n*po-2024*" % issue_url))
+    case("mot de fermeture, forme GH-N", "R9", "HOLD",
+         lambda s: s["commits"][0].update(message="feat: x\n\nFixed GH-31"))
+    snap, res = case("fermeture d'une issue d'un AUTRE dépôt, par URL", "R9", "HOLD", lambda s: s["pr"].update(
+        body="Resolves https://github.com/other-org/other-repo/issues/7\n\n*po-2024*"))
+    check("R9 autre dépôt : la cible est nommée avec son dépôt", "other-org/other-repo#7" in render(snap, res))
     control("fermeture acquittée", closes, {"ack_closes": [12]}, "R9", "INFO")
+    control("URL d'issue citée sans mot de fermeture",
+            lambda s: s["pr"].update(body="Voir %s et GH-12.\n\n*po-2024*" % issue_url), None, "R9", "OK")
     control("prose sans mot de fermeture",
             lambda s: s["pr"].update(body="Le suffix #12, voir #12, prefixes #3.\n\n*po-2024*"), None, "R9", "OK")
 
@@ -1344,13 +1438,28 @@ def self_test(out):
     case("point d'entrée des agents", "R11", "HOLD", add("AGENTS.md"))
     case("le gate lui-même", "R11", "HOLD", add("scripts/gates/x.py"))
     case("web.config imbriqué", "R11", "HOLD", add("site/app/web.config"))
+    # Case: the repository tracks `Web.config` AND `web.config`; on Windows they are one file.
+    case("Web.config, majuscule (forme réelle du dépôt)", "R11", "HOLD", add("DNNPlatform/Install/Web.config"))
+    case("workflow, autre casse", "R11", "HOLD", add(".GitHub/Workflows/x.yml"))
+    case("référence imprimée, autre casse", "R11", "BLOCK", add("cards/Fallacies/archive/ref.txt"))
+    case("fichier d'environnement, autre casse", "R11", "BLOCK", add("site/.ENV"))
+    case("dossier de clés, autre casse", "R11", "BLOCK", add("." + "KEYS" + "/a.txt"))
+    case("acquittement à la mauvaise casse : ne lève pas", "R11", "HOLD", add("DNNPlatform/Install/Web.config"),
+         {"ack_paths": ["**/web.config"]})
+    case("le dossier de référence lui-même (lien, sous-module)", "R11", "BLOCK", add("Cards/Fallacies/Archive"))
+    case(".envrc", "R11", "BLOCK", add("deploy/.envrc"), {"ack_paths": ["**"]})
+    case("fichier d'environnement à tiret", "R11", "BLOCK", add(".env-prod"))
+    case("modèle d'environnement (.env.example)", "R11", "HOLD", add(".env.example"))
+    control("modèle d'environnement acquitté", add("site/.env.example"), {"ack_paths": ["site/.env.example"]},
+            "R11", "INFO")
     control("référence imprimée acquittée", add("Cards/Fallacies/Archive/ref.txt"),
             {"ack_paths": ["Cards/*/Archive/**"]}, "R11", "INFO")
     control("workflow acquitté", add(".github/workflows/x.yml"), {"ack_paths": [".github/workflows/**"]},
             "R11", "INFO")
     control("chemins voisins non protégés",
             lambda s: (add("Cards/Fallacies/ArchiveNotes/x.txt")(s), add("docs/AGENTS.md")(s),
-                       add("docs/environment.md")(s)), None, "R11", "OK")
+                       add("docs/environment.md")(s), add("docs/.environment.md")(s),
+                       add("docs/web.config.md")(s)), None, "R11", "OK")
 
     # --- R12
     def taxonomy(others):
@@ -1384,6 +1493,28 @@ def self_test(out):
               rc == 1 and "AVEUGLE" in text and "VERDICT" not in text and "gh pr merge" not in text)
     rc, text = run_main(["4242"], _fx_runner(base, short_files=True))
     check("pagination incomplète (fichiers) -> code 1", rc == 1 and "VERDICT" not in text)
+    # An endpoint that ANSWERS (exit 0, well-formed) but serves less than it announces.
+    # No count in the PR object backs these three up: the collector guard is the only one.
+    for what in ("check-runs", "threads", "statuses"):
+        rc, text = run_main(["4242"], _fx_runner(base, tamper=what))
+        check("lecture partielle annoncée par le serveur (%s) -> code 1, aucun verdict" % what,
+              rc == 1 and "AVEUGLE" in text and "VERDICT" not in text and "gh pr merge" not in text)
+    rc, text = run_main(["4242"], _fx_runner(base, tamper="graphql-errors"))
+    check("GraphQL : enveloppe d'erreurs à côté de données complètes -> code 1",
+          rc == 1 and "AVEUGLE" in text and "VERDICT" not in text)
+    many = copy.deepcopy(base)
+    many["pr"]["commits"] = MAX_LISTED_COMMITS + 1
+    rc, text = run_main(["4242"], _fx_runner(many))
+    check("plus de commits que l'API n'en liste -> code 1, et la cause est dite",
+          rc == 1 and ("n'en liste que %d" % MAX_LISTED_COMMITS) in text)
+    lazy = _fx_runner(base, unknown_reads=2)
+    rc, text = run_main(["4242"], lazy)
+    check("état de fusion calculé à la 3e lecture -> PASS (relance bornée)",
+          rc == 0 and lazy.seen["pr_reads"] == 3)
+    never = _fx_runner(base, unknown_reads=99)
+    rc, text = run_main(["4242"], never)
+    check("état de fusion jamais calculé -> HOLD après 3 relances, pas de boucle",
+          rc == 3 and never.seen["pr_reads"] == 4 and "R3   HOLD" in text)
     rc, text = run_main(["4242"], _fx_runner(base, fail="rules/branches"))
     check("ruleset illisible -> repli nommé, dit dans la sortie", rc == 0 and "REPLI NOMMÉ" in text)
     rc, text = run_main(["4242"], _fx_runner(base, fail="v3.diff"))
@@ -1404,6 +1535,26 @@ def self_test(out):
     check("instantané illisible -> code 1", rc == 1 and "AVEUGLE" in text)
     rc, text = run_main(["4242", "--ack-read", "R4"], _fx_runner(base))
     check("--ack-read hors R5/R10 -> code 1", rc == 1)
+    rc, text = run_main(["4242", "--ack-closes", "douze"], _fx_runner(base))
+    check("--ack-closes non numérique -> code 1, argument nommé", rc == 1 and "--ack-closes attend" in text)
+    fd, replay_path = tempfile.mkstemp(suffix=".json", prefix="pr-merge-gate-selftest-")
+    os.close(fd)
+    try:
+        _write_json(replay_path, base)
+        rc, text = run_main(["--from-snapshot", replay_path], _fx_runner(base, fail="repos/"))
+        check("instantané rejoué sans réseau -> même verdict", rc == 0 and "instantané rejoué" in text)
+        rc, text = run_main(["4243", "--from-snapshot", replay_path], _fx_runner(base, fail="repos/"))
+        check("instantané d'une AUTRE PR que celle demandée -> code 1", rc == 1 and "#4242" in text)
+    finally:
+        os.remove(replay_path)
+    check("commande de merge : dépôt nommé seulement s'il n'est pas le dépôt par défaut",
+          " -R " not in merge_command(base) and " -R other/repo " in merge_command(dict(base, repo="other/repo")))
+    blind("tête abrégée dans l'instantané", lambda s: (s["pr"]["head"].update(sha=_FX_HEAD[:7]),
+                                                       s["head_commit"].update(sha=_FX_HEAD[:7])))
+    check("diff : fichier supprimé, aucune ligne attribuée", _diff_path("/dev/null") is None and _parse_diff(
+        "diff --git a/gone.txt b/gone.txt\n--- a/gone.txt\n+++ /dev/null\n@@ -1,1 +0,0 @@\n-gone\n") == {})
+    check("limite déclarée dans la sortie : signature de lane déclarative",
+          "déclarative" in render(base, evaluate(base)))
     hold_snap, hold_res = case("sortie HOLD", "R7", "HOLD", lambda s: s["pr"].update(body="Objet."))
     check("sortie non PASS : aucune commande de merge", "gh pr merge" not in render(hold_snap, hold_res))
     check("globs", _glob_any("web.config", ["**/web.config"]) and _glob_any("a/b/web.config", ["**/web.config"])
