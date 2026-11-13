@@ -78,7 +78,7 @@ Each rule below was paid for by at least one wrong conclusion, dispatch or publi
 
 ## Closing issues
 
-**Each pass starts with closure.** An issue that is settled or superseded is closed with its measure and its inverse control in the comment. One that cannot close carries, at the top of its body, the path to its closure: what is done, what remains, the closing criterion, what blocks, and the next step with its lane — kept current by whoever merges a change that touches it.
+**Each pass starts with closure.** An issue that is settled or superseded is closed with its measure and its inverse control in the comment. One that cannot close carries, at the top of its body, the path to its closure: what is done, what remains, the closing criterion, what blocks, and the next step with its lane — kept current by whoever merges a change that touches it. Update it with [`tools/issue-closing-block.py`](../../tools/issue-closing-block.py) (`set N --block-file F`, a dry-run until `--apply`), which keeps the original text under the rule byte-identical and refuses a malformed body.
 
 **A roadmap's negative claims are perishable.** "No GO yet" or "blocked on X" is re-measured like an unchecked box; record a decision on the issue and the roadmap in the same gesture.
 
