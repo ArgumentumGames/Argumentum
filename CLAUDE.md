@@ -2,29 +2,9 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Project Overview
+**Start with [`AGENTS.md`](AGENTS.md)** — the cross-vendor entry point, and the single source for what the repository is, its map, the build and test commands, the index of invariants and the contribution protocol. The line below imports it, so Claude Code loads it together with this file; nothing it states is repeated here. This file keeps the deep pipeline knowledge.
 
-Argumentum is an educational card game about logical fallacies (sophisms). The repository contains:
-- A .NET pipeline (`Argumentum.AssetConverter`) that transforms CSV data into print-ready PDFs, mind maps, and OWL ontologies
-- A customized fork of CardPen (HTML card renderer using Mustache/Handlebars templates)
-- Source data (CSV files) for fallacies taxonomy, game scenarios, rules, and virtues
-- A DNN web platform export (partial, keys excluded)
-
-## Build & Run Commands
-
-```bash
-# Run the full generation pipeline
-dotnet run --project "Generation/Converters/Argumentum.AssetConverter/Argumentum.AssetConverter.csproj"
-
-# Run tests (xUnit)
-dotnet test "Generation/Converters/Argumentum.AssetConverter.Tests/Argumentum.AssetConverter.Tests.csproj"
-
-# Run visual tests
-dotnet test "Generation/Converters/Argumentum.AssetConverter.VisualTests/Argumentum.AssetConverter.VisualTests.csproj"
-
-# Build all projects
-dotnet build "Argumentum Converters.sln"
-```
+@AGENTS.md
 
 ## Architecture
 
@@ -345,12 +325,6 @@ Located in `docs/investigations/scripts/`:
 Located in `docs/investigations/archeologie-git/`:
 - `WebBasedGeneratorConfig_REFERENCE_FUNCTIONAL_*.cs` - Known working config (20KB)
 - 15 historical versions for comparison
-
-## Golden Rule: Code = Truth
-
-- **NEVER edit JSON directly** - Always modify C# source (single source of truth)
-- **Regenerate JSON** from correct C# code to ensure consistency
-- `AssetConverterConfig.json` is in `.gitignore` (generated, not tracked)
 
 ## Leçons Apprises (Pipeline Recovery 2025-2026)
 
