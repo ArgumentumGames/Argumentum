@@ -39,7 +39,9 @@ import unittest
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENTRY = ("AGENTS.md", "CLAUDE.md")
 DETAIL_DIR = "docs/agents"
-BUDGET = 32000      # octets, AGENTS.md + CLAUDE.md. Mesuré 2026-11-13 : 21 938 (61 Ko avant).
+BUDGET = 32000      # octets, AGENTS.md + CLAUDE.md. Mesuré 2026-11-13 sur les blobs : 21 787
+                    # (60 960 avant, pour CLAUDE.md seul). Lu sur disque : un checkout Windows
+                    # en CRLF compte un octet de plus par ligne, la CI Linux compte les blobs.
 
 LINK = re.compile(r"\]\(([^)\s]+)\)")
 POINTER = re.compile(r"`([^`]+\.md)`|§ \*([^*]+)\*")

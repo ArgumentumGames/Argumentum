@@ -1,4 +1,5 @@
-# Tests Python offline std-lib : garde d'arbre #1460 + suite DNN i18n #457 + gardes export EAV #458 (charpente #1460).
+# Tests Python offline std-lib : garde d'arbre #1460 + suite DNN i18n #457 + gardes export EAV #458
+# + contrats de la documentation pour agents (charpente #1460).
 #
 # POURQUOI UN WORKFLOW DISTINCT DE build.yml
 #   build.yml est le pipeline dotnet principal : il fait tourner 1129 tests .NET a
@@ -17,7 +18,7 @@
 #   d'execution sera documentee. C'est la distinction posee en tete de
 #   docs/quality/1460-charpente-suite-regression.md.
 #
-#   CABLES A CE JOUR (3), avec la condition qui les autorise ici :
+#   CABLES A CE JOUR (5), avec la condition qui les autorise ici :
 #     1. tools/test_1460-structure-charpente-pilot.py -- std-lib, 7 cas, arbres
 #        synthetiques ; aucun Target/ requis (le cas 7 est un grounding sur le depot
 #        reel, volontairement NON asserte).
@@ -34,6 +35,18 @@
 #        rangee ; champs app 50 re-derives des vues committees du formulaire ;
 #        app 48 bornee a l'entite mesuree E10181 ; temoins ; actualites app 52
 #        completes dans les 8 langues (#2182), avec 24 mutations inverses en sous-tests.
+#     4. tools/test_agent-docs-contract.py -- std-lib, offline, 7 cas. Les cas 1-4
+#        lisent AGENTS.md, CLAUDE.md et docs/agents/ **du depot reel** : liens
+#        relatifs, renvois de section, import unique, budget d'octets des deux
+#        fichiers charges par defaut. Les cas 5-7 eprouvent les detecteurs sur un
+#        arbre synthetique (un lien mort, un titre renomme, un import ajoute SONT
+#        vus). Aucun artefact : les documents controles sont le depot lui-meme.
+#     5. tools/test_doc-move-preservation.py -- std-lib + `git` (present sur le
+#        runner), offline, 16 cas sur des depots `git init` jetables en repertoire
+#        temporaire. N'interroge PAS l'historique du depot reel : le `fetch-depth`
+#        par defaut suffit. Eprouve tools/doc-move-preservation.py (preuve ligne a
+#        ligne d'un deplacement de documentation) : chaque facon de perdre une ligne
+#        est vue, et un organe qui ne peut pas mesurer rend 2, jamais un vert.
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
 #   - push sur master / pull_request : déclenchés, y compris les changements du
@@ -112,3 +125,23 @@ jobs:
         # charge pour ses fonctions de garde ; fetch_rows (la seule a lire la base)
         # n'est jamais appele - finish_rows, son post-traitement, l'est.
         run: python tools/test_458-eav-export-guards.py
+
+  agent-docs-contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run the agent documentation contract (AGENTS.md, CLAUDE.md, docs/agents)
+        # 7 cas, std-lib, offline. Un lien relatif mort, un renvoi de section vers un
+        # titre renomme, un import en plus de AGENTS.md, ou les deux fichiers charges
+        # par defaut au-dessus du budget d'octets : rouge. Le budget se releve dans la
+        # PR qui l'argumente, pas pour faire passer un ajout.
+        run: python tools/test_agent-docs-contract.py
+
+      - name: Run the doc-move preservation contract
+        # 16 cas sur des depots git jetables : l'organe qui prouve qu'un deplacement
+        # de documentation n'a perdu aucune ligne doit lui-meme voir chaque perte.
+        # N'a pas besoin de l'historique du depot reel.
+        run: python tools/test_doc-move-preservation.py
