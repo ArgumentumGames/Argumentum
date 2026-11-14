@@ -23,8 +23,9 @@ L'anglais reste la valeur du neutre : en-US retombe dessus à raison — ce grai
 n'écrit donc que 7 cultures (fr, ru, pt, es, ar, fa, zh), jamais en-US.
 
 Modes :
-  (défaut)  --check   vérifie le contrat (clé présente, valeur exacte, aucune
-                      valeur anglaise dans un jumeau non-en) ; exit 1 si rouge.
+  (défaut)  sans option : vérifie le contrat (clé présente, valeur exacte,
+                      aucune valeur anglaise dans un jumeau non-en) ; exit 1 si
+                      rouge — aucune option `--check` n'existe.
   --write            applique les 3 familles de gestes (garde anti-écrasement :
                       refuse si la clé existe déjà avec une autre valeur, refuse
                       d'insérer deux fois).

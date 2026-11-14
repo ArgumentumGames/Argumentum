@@ -36,8 +36,10 @@ Skip-link (`SkipLink.MainContent`, neutre « Skip to main content ») :
 | zh-CN | 跳转到主要内容 |
 
 Boutons sociaux (2 cultures × 3 fournisseurs ; `Title.Text` suit la lecture
-moderne des jumeaux existants — fr-FR et zh-CN disent déjà « Microsoft » pour
-Live, es-ES garde « Windows Live ») :
+moderne du seul jumeau fr-FR — lui seul dit déjà « Microsoft » ; zh-CN et es-ES
+disent « Live ». Le libellé hérité « Windows Live » ne subsiste que dans les
+**textes de boutons** es-ES (`SignInLive.Text`, `RegisterLive.Text`), pas dans
+leur titre) :
 
 | Fournisseur | Clé | pt-BR | ru-RU |
 |---|---|---|---|
@@ -51,7 +53,7 @@ Live, es-ES garde « Windows Live ») :
 ## Instrument et garde
 
 - **`tools/457-p24-01-langpack-residu-visible.py`** — dry-run par défaut
-  (`--check`), `--write` gardé (refus d'écraser, refus de double insertion,
+  (sans option), `--write` gardé (refus d'écraser, refus de double insertion,
   idempotent), `--self-test` à contrôle inverse sur copies : base reconstruite
   rouge (les 3 familles), geste vert, puis (a) clé retirée → échec **nommé**,
   (b) valeur anglaise substituée → fuite **vue**, (c) second `--write` → no-op.
