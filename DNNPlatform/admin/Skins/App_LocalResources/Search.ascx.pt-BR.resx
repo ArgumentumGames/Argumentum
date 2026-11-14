@@ -16,7 +16,7 @@
     <value xml:space="preserve">Selecione o tipo de busca</value>
   </data>
   <data name="NoResult.Text">
-    <value xml:space="preserve">Não foin encontrado resultados</value>
+    <value xml:space="preserve">Nenhum resultado encontrado</value>
   </data>
   <data name="Placeholder.Text">
     <value xml:space="preserve">Buscar...</value>

@@ -26,4 +26,8 @@
   <data name="Logoff.Tooltip" xml:space="preserve">
     <value>Déconnexion</value>
   </data>
+  <!-- #457 P24-01: skip-link — part visible du résidu langpack, mesurée servie (#2154). -->
+  <data name="SkipLink.MainContent" xml:space="preserve">
+    <value>Aller au contenu principal</value>
+  </data>
 </root>
