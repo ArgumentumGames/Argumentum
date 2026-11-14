@@ -14,7 +14,7 @@ Le jeu se joue avec trois paquets. Le premier réunit les grandes cartes : les 
 
 ## Un point de référence, puis une reconstruction
 
-Le dépôt existe depuis le 20 mars 2020 et compte 2 632 commits (mesure du 6 novembre 2026, commit `33f25e82`).
+Le dépôt existe depuis le 20 mars 2020.
 
 Une version est longtemps restée la référence : le commit `0087f0ec`, du 25 avril 2024. C’est elle qui produisait le jeu complet. Entre 2025 et 2026, la chaîne de fabrication a été remise en état pièce par pièce, et surtout outillée : chaque étape a désormais son contrôle, et une modification qui casserait une carte ne passe plus inaperçue.
 
@@ -34,9 +34,9 @@ Quatre étapes, toutes à partir de fichiers texte.
 
 **Huit langues.** Français, anglais, russe, portugais, espagnol, arabe, persan et chinois. Deux d’entre elles, l’arabe et le persan, s’écrivent de droite à gauche, avec une police dédiée à leur alphabet.
 
-**Les cartes mentales.** La taxonomie entière dessinée en arbre, une par langue, exportée en SVG — un format d’image vectorielle, qui reste net à n’importe quelle taille. Le dépôt en contient 43, accompagnées de pages HTML qui les affichent.
+**Les cartes mentales.** La taxonomie entière dessinée en arbre, une par langue, exportée en SVG — un format d’image vectorielle, qui reste net à n’importe quelle taille. Des pages HTML du dépôt les affichent.
 
-**L’ontologie.** Deux fichiers OWL, de près de 6 Mo pour les sophismes et 1 Mo pour les vertus. Une ontologie est une description formelle des concepts et de leurs relations, écrite pour être lue par une machine : elle permet à un logiciel de savoir qu’un sophisme appartient à une famille, qu’il a des variantes, et comment il se relie aux autres. La taxonomie s’y retrouve aussi décrite dans SKOS, un vocabulaire standard pour publier un thésaurus.
+**L’ontologie.** Deux fichiers OWL, l’un pour les sophismes, l’autre pour les vertus. Une ontologie est une description formelle des concepts et de leurs relations, écrite pour être lue par une machine : elle permet à un logiciel de savoir qu’un sophisme appartient à une famille, qu’il a des variantes, et comment il se relie aux autres. La taxonomie s’y retrouve aussi décrite dans SKOS, un vocabulaire standard pour publier un thésaurus.
 
 **Le Print & Play.** En plus des fichiers destinés à un imprimeur, le dépôt produit des pages A4 à imprimer chez soi, découper et jouer.
 
@@ -50,11 +50,11 @@ Quatre étapes, toutes à partir de fichiers texte.
 | Scénarios | 167 |
 | Vertus argumentatives (paquet à part) | 131 |
 
-Deux remarques pour lire ce tableau. Les sophismes sont 175 à porter une carte, mais la taxonomie décrit 1 408 nœuds : elle descend des grandes familles jusqu’aux cas particuliers, et tous ne méritent pas une carte. Les vertus suivent la même règle, avec 223 nœuds décrits et 131 cartes.
+Deux remarques pour lire ce tableau. Les sophismes sont 175 à porter une carte, mais la taxonomie décrit 1 408 nœuds : elle descend des grandes familles jusqu’aux cas particuliers, et tous ne méritent pas une carte. Les vertus suivent la même règle.
 
-Le paquet de tarot réunit donc 197 cartes à fabriquer : 175 sophismes, 15 cartes de règles, et la carte mémo imprimée sept fois. Avec les 167 scénarios, la boîte en compte 364. Elle en compte 495 si l’on y ajoute les vertus.
+Le paquet de tarot réunit donc 197 cartes à fabriquer. Avec les 167 scénarios, la boîte en compte 364. Elle en compte 495 si l’on y ajoute les vertus.
 
-Ces chiffres sont comptés sur les fichiers CSV du dépôt, au commit `33f25e82`, le 6 novembre 2026, par la même règle que le contrôle automatique qui revérifie ce compte à chaque modification.
+Ces chiffres sont comptés sur les fichiers CSV du dépôt, par la même règle que le contrôle automatique qui revérifie ce compte à chaque modification.
 
 ## Comment on s’assure que rien ne casse
 
