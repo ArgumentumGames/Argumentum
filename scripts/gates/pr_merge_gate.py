@@ -42,6 +42,10 @@ LANE_TOKEN = r"ai-01|po-2023|po-2024|web2|cloud-[a-z0-9-]+"
 LANE_RE = re.compile(r"^\*(" + LANE_TOKEN + r")\*$")
 LANE_MENTION_RE = re.compile(r"(?<![A-Za-z0-9-])(" + LANE_TOKEN + r")(?![A-Za-z0-9])")
 ATTRIB_RE = re.compile(r"^(?:\U0001F916\s*Generated with\b.*|Co-Authored-By:\s.*)$", re.I)
+# R8 : a comment counts as a counter-review only when it says so AND pins the head
+# it reviewed -- an arbitration comment from another lane is not a counter-review
+# (measured on a live PR). Formal review objects keep their own rule.
+COUNTER_REVIEW_RE = re.compile(r"contre-revue|counter-review", re.I)
 ACKABLE_READ = ("R5", "R10")
 
 
@@ -307,6 +311,15 @@ def lane_signature(body):
         return None
     m = LANE_RE.match(lines[-1].strip())
     return m.group(1) if m else None
+
+
+def _cited_head(body, head):
+    """First hex string of 7-40 chars in `body` that is not `head` (a prefix of it
+    counts as the head itself): the previous head a comment says it reviewed."""
+    for m in re.finditer(r"\b[0-9a-f]{7,40}\b", body or ""):
+        if not head.lower().startswith(m.group(0)):
+            return m.group(0)
+    return None
 
 
 def _glob_re(glob, flags=0):
@@ -652,22 +665,55 @@ def r7_signature(s, o, c):
 
 
 def r8_counter_review(s, o, c):
-    lane, author, found = c["lane"], c["author"], []
+    lane, author, found, rejected, earlier = c["lane"], c["author"], [], [], []
+    head8 = c["head"][:8].lower()
 
-    def consider(kind, item, when, at_head):
-        if not at_head:
-            return
+    def foreign(kind, item, when):
+        """How the item would count before the declaration test: another lane's
+        signature, or a non-bot account other than the PR author's."""
         login, sig = item["user"]["login"], lane_signature(item.get("body"))
         if sig and lane and sig != lane:
-            found.append("%s signée *%s* (%s)" % (kind, sig, _short(when)))
-        elif login != author and item["user"]["type"] != "Bot" and not login.endswith("[bot]"):
-            found.append("%s du compte %s (%s)" % (kind, login, _short(when)))
+            return "%s signée *%s* (%s)" % (kind, sig, _short(when))
+        if login != author and item["user"]["type"] != "Bot" and not login.endswith("[bot]"):
+            return "%s du compte %s (%s)" % (kind, login, _short(when))
+        return None
 
     for rv in s["reviews"]:
-        consider("revue", rv, rv.get("submitted_at"), rv.get("commit_id") == c["head"])
+        if rv.get("commit_id") == c["head"]:  # formal reviews keep their rule
+            hit = foreign("revue", rv, rv.get("submitted_at"))
+            if hit:
+                found.append(hit)
     for cm in s["issue_comments"]:
         dt = _ts(cm.get("created_at"))
-        consider("commentaire", cm, cm.get("created_at"), dt is not None and dt > c["head_dt"])
+        body = cm.get("body") or ""
+        hit = foreign("commentaire", cm, cm.get("created_at"))
+        if dt is not None and dt <= c["head_dt"]:
+            # Before the head: can never count, but a DECLARED counter-review from
+            # another lane reviewed a previous head -- name it (stacked PRs).
+            if hit and COUNTER_REVIEW_RE.search(body):
+                earlier.append((hit, _cited_head(body, c["head"])))
+            continue
+        if dt is None or hit is None:  # (a) after the head: unchanged rule
+            continue
+        if not COUNTER_REVIEW_RE.search(body):  # (b) declares itself a counter-review
+            rejected.append("%s -- non déclaré contre-revue" % hit)
+        elif head8 not in body.lower():  # (c) names the head (first 8 hex chars)
+            rejected.append("%s -- ne nomme pas la tête %s" % (hit, head8))
+        else:
+            found.append(hit)
+    excluded = ""
+    if rejected:
+        excluded = (" ; commentaire(s) postérieur(s) à la tête mais écarté(s) : %s -- un commentaire ne "
+                    "compte comme contre-revue que déclaré contre-revue et nommant la tête %s"
+                    % (_cap(rejected, 3), head8))
+    if earlier:
+        items = ["contre-revue déclarée sur une %s (%s)" % (
+            ("tête antérieure `%s`" % cited[:8]) if cited else "tête antérieure non nommée", hit)
+            for hit, cited in earlier]
+        excluded += (" ; contre-revue(s) déclarée(s) par une autre lane sur une tête ANTÉRIEURE, qui ne "
+                     "comptent pas : %s -- si la tête courante n'est qu'une fusion de la base, comparer "
+                     "`git diff <base>...<tête revue>` et `git diff <base>...<tête>` hors fichiers résolus"
+                     % _cap(items, 3))
     if found:
         return [], "contre-revue présente sur la tête (présence, pas teneur) : %s" % _cap(found, 3)
     if o["require_counter_review"] or (lane is not None and lane == o["merger_lane"]):
@@ -675,12 +721,13 @@ def r8_counter_review(s, o, c):
             "la PR est de la lane du merger (*%s*)" % lane)
         return [("HOLD", "aucune contre-revue sur la tête par une autre lane ni un autre compte, or %s : "
                  "producteur et vérificateur doivent différer (revue rattachée au commit de tête, ou "
-                 "commentaire postérieur à sa date -- approximation)" % why)], ""
+                 "commentaire postérieur à sa date, se déclarant contre-revue et nommant la tête %s "
+                 "-- approximation)%s" % (why, head8, excluded))], ""
     if lane is None:
         return [("INFO", "aucune contre-revue trouvée, et lane de la PR inconnue (R7) : le gate ne peut pas "
-                 "établir que le merger n'est pas le producteur")], ""
-    return [("INFO", "aucune contre-revue ; PR de *%s*, merger *%s* : le merger est le vérificateur"
-             % (lane, o["merger_lane"]))], ""
+                 "établir que le merger n'est pas le producteur%s" % excluded)], ""
+    return [("INFO", "aucune contre-revue ; PR de *%s*, merger *%s* : le merger est le vérificateur%s"
+             % (lane, o["merger_lane"], excluded))], ""
 
 
 def r9_closing(s, o, c):
@@ -873,7 +920,8 @@ NOT_ESTABLISHED = (
     "il ne juge aucun verdict visuel (rendu de carte, PDF, mindmap) ;",
     "une signature de lane est déclarative : plusieurs lanes écrivent par le même compte, le gate "
     "n'authentifie pas qui a écrit -- R7 et R8 voient l'oubli, pas l'usurpation ;",
-    "R5 (prose), R8 (dates) et R10 (motifs) sont des heuristiques : leur silence n'est pas une preuve.",
+    "R5 (prose), R8 (dates et déclaration par mot-clé) et R10 (motifs) sont des heuristiques : "
+    "leur silence n'est pas une preuve.",
 )
 
 
@@ -1316,6 +1364,10 @@ def self_test(out):
          lambda s: s["pr"].update(body="*po-2024*\n\nObjet."))
     case("signature décorée, non littérale", "R7", "HOLD",
          lambda s: s["pr"].update(body="Objet.\n\n-- *po-2024 (worker lane) -- signale*"))
+    # Witness of LANE_RE's anchors: without ^...$ this line matches and R7 would
+    # turn OK with a "signature" that is only the start of the last line.
+    case("signature littérale suivie de texte sur la dernière ligne", "R7", "HOLD",
+         lambda s: s["pr"].update(body="Objet.\n\n*po-2024* texte après"))
     case("lane inconnue", "R7", "HOLD", lambda s: s["pr"].update(body="Objet.\n\n*po-9999*"))
     control("attribution finale tolérée", lambda s: s["pr"].update(
         body="Objet.\r\n\r\n*po-2024*\r\n\r\n" + _FX_ATTRIB + "\r\nCo-Authored-By: X <x@example.invalid>\r\n"),
@@ -1344,8 +1396,38 @@ def self_test(out):
          lambda s: (own_with()(s), _fx_comment(s, "Relu.\n\n*web2*", _FX_BEFORE)))
     control("lane du merger, contre-revue d'une autre lane", own, None, "R8", "OK")
     control("lane du merger, contre-revue d'un autre compte", own_with(_fx_review("COMMENTED")), None, "R8", "OK")
-    control("lane du merger, commentaire d'une autre lane après la tête",
-            lambda s: (own_with()(s), _fx_comment(s, "Relu.\n\n*web2*", _FX_AFTER)), None, "R8", "OK")
+    # A comment counts only when it DECLARES itself a counter-review and NAMES the
+    # head: each guard has a case that still holds when the other guard is neutralised.
+    snap, res = case("arbitrage d'une autre lane après la tête, non déclaré", "R8", "HOLD",
+                     lambda s: (own_with()(s), _fx_comment(
+                         s, "Arbitrage, sur la tête " + _FX_HEAD[:8] + " : reprendre la trame.\n\n*web2*",
+                         _FX_AFTER)))
+    check("R8 : l'arbitrage écarté est dit dans la sortie, avec la raison",
+          "écarté" in render(snap, res) and "non déclaré" in render(snap, res))
+    case("--require-counter-review : arbitrage non déclaré", "R8", "HOLD",
+         lambda s: (s["reviews"].clear(), _fx_comment(
+             s, "Arbitrage, tête " + _FX_HEAD[:8] + " : reprendre la trame.\n\n*ai-01*", _FX_AFTER)),
+         {"require_counter_review": True})
+    snap, res = case("déclaré contre-revue, mais nommant une autre tête", "R8", "HOLD",
+                     lambda s: (own_with()(s), _fx_comment(
+                         s, "Contre-revue de " + "f" * 8 + " : relu, RAS.\n\n*web2*", _FX_AFTER)))
+    check("R8 : le commentaire nommant une autre tête est dit écarté",
+          "écarté" in render(snap, res) and "ne nomme pas la tête" in render(snap, res))
+    # Declared by another lane but BEFORE the head, naming another SHA: the
+    # counter-review of a previous head -- it must not count, but be named.
+    snap, res = case("contre-revue déclarée d'une autre lane, ANTÉRIEURE, sur un autre SHA", "R8", "HOLD",
+                     lambda s: (own_with()(s), _fx_comment(
+                         s, "Contre-revue de " + "8b72140e" + " : relu, RAS.\n\n*web2*", _FX_BEFORE)))
+    check("R8 : la contre-revue d'une tête antérieure est citée, sans compter",
+          "tête antérieure" in render(snap, res) and "8b72140e" in render(snap, res))
+    control("lane du merger : commentaire déclaré contre-revue et nommant la tête",
+            lambda s: (own_with()(s), _fx_comment(
+                s, "Contre-revue de la tête " + _FX_HEAD[:8] + " : relu, RAS.\n\n*web2*", _FX_AFTER)),
+            None, "R8", "OK")
+    control("--require-counter-review : commentaire déclaré (anglais), tête nommée en majuscules",
+            lambda s: (s["reviews"].clear(), _fx_comment(
+                s, "Counter-review of head " + _FX_HEAD[:8].upper() + ": verified.\n\n*ai-01*", _FX_AFTER)),
+            {"require_counter_review": True}, "R8", "OK")
     control("autre lane, aucune revue, sans drapeau", lambda s: s["reviews"].clear(), None, "R8", "INFO")
 
     # --- R9
