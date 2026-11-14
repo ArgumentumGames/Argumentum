@@ -8,7 +8,7 @@ Une carte du jeu décrit un sophisme à la fois ; l’ontologie du dépôt les 
 
 ## Une description lisible par les machines
 
-Une ontologie est une description formelle des concepts d’un domaine et de leurs relations, écrite pour être lue par un programme plutôt que par un œil. Argumentum en publie deux, dans le langage OWL du web sémantique : près de 6 méga-octets pour les 1 408 nœuds de la taxonomie des sophismes, 1,1 pour les 223 nœuds des vertus. Chaque nœud y porte un identifiant stable, un libellé en français et en anglais, et sa place dans la hiérarchie — écrite dans SKOS, le vocabulaire standard pour publier des thésaurus. Les huit langues du jeu vivent dans les cartes et les cartes mentales ; l’ontologie, elle, reste volontairement bilingue.
+Une ontologie est une description formelle des concepts d’un domaine et de leurs relations, écrite pour être lue par un programme plutôt que par un œil. Argumentum en publie deux, dans le langage OWL du web sémantique : l’un pour les 1 408 nœuds de la taxonomie des sophismes, l’autre pour les 223 nœuds des vertus. Chaque nœud y porte un identifiant stable, un libellé en français et en anglais, et sa place dans la hiérarchie — écrite dans SKOS, le vocabulaire standard pour publier des thésaurus. Les huit langues du jeu vivent dans les cartes et les cartes mentales ; l’ontologie, elle, reste volontairement bilingue.
 
 Les deux fichiers sont publiés en ligne, et le canal de publication les ressert à chaque mise à jour du dépôt.
 
@@ -18,7 +18,7 @@ AIF — Argument Interchange Format — est le format de référence issu de la 
 
 Un sophisme, dans ce cadre, est une exception à un schème : il imite une forme valable et saute la question qui l’aurait fait tomber. AIF et Walton font ce geste sur une poignée de sophismes ; Argumentum l’applique à son arbre, nœud par nœud, en décrivant pour chacun le schème légitime qu’il imite, ce que son attaque vise, et la question critique qu’il saute.
 
-Mesuré le 8 novembre 2026 sur le corpus du dépôt : 1 064 nœuds sur 1 408 ont leur schème imité, 1 400 leur cible d’attaque, 1 212 leur question critique. Parmi les 145 nœuds dont l’attaque est typée directement, 87 s’attaquent à la règle d’inférence — le raisonnement lui-même —, 53 à la prémisse, et 5 seulement avancent une contre-conclusion. Le sophisme, le plus souvent, ne contredit pas une conclusion : il s’en prend à ce qui y mène.
+Mesuré sur le corpus du dépôt : 1 064 nœuds sur 1 408 ont leur schème imité, 1 400 leur cible d’attaque, 1 212 leur question critique. Le sophisme, le plus souvent, ne contredit pas une conclusion : il s’en prend à ce qui y mène, la règle d’inférence qui la produit.
 
 ## La question posée au plus haut nœud
 
@@ -30,7 +30,7 @@ Chaque question vit dans le corpus, et le générateur de l’ontologie sait l�
 
 ## Les liens transverses, tracés sur la carte
 
-Le corpus dit aussi comment les sophismes se répondent, par huit relations : s’appuyer sur un autre, le dénoncer, le permettre, s’y opposer, l’inverser, le refléter, le précéder, lui être apparenté. Le 8 novembre 2026, 487 sophismes sur 1 408 portent au moins un de ces liens — 581 liens en tout, dont 327 pour la seule relation « s’appuyer sur ».
+Le corpus dit aussi comment les sophismes se répondent, par huit relations : s’appuyer sur un autre, le dénoncer, le permettre, s’y opposer, l’inverser, le refléter, le précéder, lui être apparenté. 487 sophismes sur 1 408 portent au moins un de ces liens.
 
 Chaque langue a sa carte mentale de l’arbre entier ; sa variante « liens » trace chaque relation en couleur, une teinte par verbe. La carte française porte exactement ses 581 flèches, comptées à l’unité près. Rendre chaque flèche cliquable — voir où elle mène, et pourquoi elle existe — est le chantier suivant.
 
@@ -38,11 +38,11 @@ Chaque langue a sa carte mentale de l’arbre entier ; sa variante « liens �
 
 Le paquet des vertus a reçu le même traitement, avec sa différence : une vertu ne détourne rien, elle tient. Le corpus la relie donc au bon argument qu’elle incarne : 222 liens de bonne tenue vers 14 schèmes légitimes.
 
-Le tout est aussi exporté en fichiers CSV simples à consommer pour un programme : les 145 arêtes d’attaque des sophismes, les fichiers des vertus, l’arbre des 1 408 nœuds, et le graphe des relations entre sophismes — 674 arêtes orientées, chaque lien symétrique y étant écrit dans les deux sens. Le projet d’enseignement CoursIA, public, s’en sert pour sa série d’analyse argumentative.
+Le tout est aussi exporté en fichiers CSV simples à consommer pour un programme : les 145 arêtes d’attaque des sophismes, les fichiers des vertus, l’arbre de la taxonomie, et le graphe des relations entre sophismes, chaque lien symétrique y étant écrit dans les deux sens. Le projet d’enseignement CoursIA, public, s’en sert pour sa série d’analyse argumentative.
 
 ## Où les trouver
 
-- les deux ontologies, publiées en ligne : [sophismes](https://argumentumgames.github.io/Argumentum/docs/ontology/argumentum.owl) (6 Mo) et [vertus](https://argumentumgames.github.io/Argumentum/docs/ontology/argumentum_virtues.owl) (1,1 Mo) ;
+- les deux ontologies, publiées en ligne : [sophismes](https://argumentumgames.github.io/Argumentum/docs/ontology/argumentum.owl) et [vertus](https://argumentumgames.github.io/Argumentum/docs/ontology/argumentum_virtues.owl) ;
 - la carte mentale de chaque langue et sa variante « liens » : [dossier `Cards/Fallacies/Mindmaps`](https://github.com/ArgumentumGames/Argumentum/tree/32408fdd/Cards/Fallacies/Mindmaps) du dépôt ;
 - les exports CSV, avec leur documentation : [dossier `docs/ontology/aif-export`](https://github.com/ArgumentumGames/Argumentum/tree/32408fdd/docs/ontology/aif-export).
 

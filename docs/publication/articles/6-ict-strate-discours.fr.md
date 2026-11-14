@@ -8,7 +8,7 @@ Une série de recherche de CoursIA, ICT — « trajectoires causales intégrée
 
 ## Le discours comme substrat
 
-La série progresse en sept strates, du tri auto-organisé de cellules jusqu’à des degrés de liberté d’ordre supérieur, et son descriptif résume la sixième d’une phrase : savoir si une structure causale se maintient quand ce qui circule n’est plus de la matière ni des poids, mais des raisons. Le substrat est le discours : des trajectoires de croyance sur des graphes d’arguments — l’objet même que le philosophe Phan Minh Dung a formalisé en 1995, des arguments dont les uns en attaquent d’autres. (État lu dans le descriptif de la série, CoursIA, commit du 8 novembre 2026.)
+La série progresse en sept strates, du tri auto-organisé de cellules jusqu’à des degrés de liberté d’ordre supérieur, et son descriptif résume la sixième d’une phrase : savoir si une structure causale se maintient quand ce qui circule n’est plus de la matière ni des poids, mais des raisons. Le substrat est le discours : des trajectoires de croyance sur des graphes d’arguments — l’objet même que le philosophe Phan Minh Dung a formalisé en 1995, des arguments dont les uns en attaquent d’autres.
 
 ## Une prédiction posée avant la mesure
 
@@ -28,7 +28,7 @@ Le [**capstone**](https://github.com/jsboige/CoursIA/blob/7eea21ebefe/MyIA.AI.No
 
 ## Ce que le jeu apporte
 
-La matière réelle, c’est le corpus : la taxonomie des sophismes, 1 408 nœuds, son ontologie AIF — la description formelle des arguments et de leurs attaques — et l’export du graphe qui en dérive. Cet export existe : un script du dépôt du jeu produit, à partir des sources, 145 arêtes d’attaque typées (87 qui sapent la justification d’une inférence, 53 qui minent une prémisse, 5 qui retournent une conclusion), 674 relations entre sophismes, 1 408 arêtes d’arbre, et côté vertus 142 arêtes d’attaque et 222 liens de « bonne tenue » (comptes établis le 8 novembre 2026 sur les fichiers exportés, rafraîchis le 6 novembre). Il dit aussi honnêtement sa limite : le graphe d’attaques est biparti — chaque sophisme pleinement modélisé attaque un type de nœud abstrait, pas un autre sophisme ; les relations entre sophismes vivent dans un graphe séparé, étiqueté comme tel.
+La matière réelle, c’est le corpus : la taxonomie des sophismes, 1 408 nœuds, son ontologie AIF — la description formelle des arguments et de leurs attaques — et l’export du graphe qui en dérive. Cet export existe : un script du dépôt du jeu produit, à partir des sources, 145 arêtes d’attaque typées, les relations entre sophismes, l’arbre, et côté vertus les liens de « bonne tenue ». Il dit aussi honnêtement sa limite : le graphe d’attaques est biparti — chaque sophisme pleinement modélisé attaque un type de nœud abstrait, pas un autre sophisme ; les relations entre sophismes vivent dans un graphe séparé, étiqueté comme tel.
 
 ## Le rôle du projet
 
