@@ -35,3 +35,19 @@ Cards/Fallacies/*Taxonomy.csv -text
 Cards/Rules/*Cards.csv -text
 Cards/Rules/*Play.csv -text
 Cards/Scenarii/*Cards.csv -text
+
+# The 2shine skin twins and the auth-provider Login twins are resx files the
+# repo carries with LF-only blobs. The visible-residual langpack guard
+# (DnnVisibleResidualLangpackGuardTests, #457 P24-01) asserts byte-level
+# envelopes on the WORKING TREE (2shine: no BOM, LF; Login: exactly one BOM,
+# LF). A core.autocrlf=true checkout - the Git-for-Windows default, so the
+# windows-latest CI runners and the cluster's Windows boxes - smudges every
+# text file to CRLF and the guard goes red on a correct tree (measured on CI
+# run 43562114232, PR #2268 first push: both build legs red on
+# Enveloppes_2shine_sans_BOM_Login_exactement_un while the blobs were LF).
+# `text eol=lf` pins the checkout to match the blob on every box, same remedy
+# as the dnn_i18n fixtures above. All 43 blobs under these globs are LF-only
+# (measured via git cat-file before adding the rule) - the rule changes no
+# blob, it only stops the smudge.
+DNNPlatform/Portals/_default/Skins/2shineBS5/App_LocalResources/*.resx text eol=lf
+DNNPlatform/DesktopModules/AuthenticationServices/*/App_LocalResources/Login.ascx.*.resx text eol=lf
