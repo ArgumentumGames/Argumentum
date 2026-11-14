@@ -165,7 +165,7 @@ ouvrable dans le rapport (PNG bruts, heatmap).
 |---|---|---|
 | `IDENTIQUE-SOUS-SEUIL` | écart fort ≤ 0,05 % (descriptif — cause non établie par l'outil) | consultable ; pas une exemption de revue |
 | `DELTA-CONNU` | écart sous le seuil **et** deltas du registre §5 présents | vérifier que chaque delta a le sens attendu |
-| `DIFF-A-CLASSER` | écart fort > seuil, **y compris avec des deltas connus** (le registre §5 ne couvre pas cet écart) | **à revérifier** — queue #1180 |
+| `DIFF-A-CLASSER` | écart fort > seuil, **y compris avec des deltas connus** (le registre §5 ne couvre pas cet écart) | **à revérifier** — à porter sur #131 |
 | `ECART-DIMENSIONS` | dimensions différentes | écart explicite ; dire quel hôte change |
 | `HTTP-ERROR` / `ATTENDU-HTTP` | erreur HTTP (même déclarée attendue) — aucune comparaison pixel | diagnostiquer ; échec global |
 | `ERROR` | capture impossible/suspecte, attentes de marqueurs non satisfaites (la fraîcheur reste toujours `unknown`), empreinte modifiée, erreur de comparaison | la route n'a PAS de verdict |
@@ -195,7 +195,7 @@ de conformité. Un marqueur observé n'établit ni la fraîcheur (§3.3) ni la c
 
 Rapport HTML et manifest = **artefacts locaux** (ne pas committer les PNG). Le
 **résumé** (verdicts + deltas classés + routes à revérifier) va sur le dashboard et/ou
-en commentaire de #1180. Les décisions se gravent sur l'issue GitHub, pas seulement
+en commentaire de #131 (épopée ouverte qui porte le dossier de mise en ligne ; #1180 est close depuis le 2026-11-03). Les décisions se gravent sur l'issue GitHub, pas seulement
 sur le dashboard (le dashboard se condense — mémoire
 `hazard_dashboard_condensation_resurrects_retracted_claims`).
 
