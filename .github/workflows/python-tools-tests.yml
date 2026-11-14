@@ -41,11 +41,11 @@
 #        injecte doit rendre le verdict attendu, puis la regle desactivee doit
 #        rendre PASS (mutation falsifiante) ; chaque point d'API en echec doit
 #        rendre le code 1, jamais 0. Aucun jeton, aucun appel reseau, aucun artefact.
-#     5. tools/test_dataset-byte-contract.py -- std-lib, offline, 25 cas. Lit les 5 CSV
+#     5. tools/test_dataset-byte-contract.py -- std-lib, offline, 26 cas. Lit les 5 CSV
 #        de donnees vivants DU CHECKOUT (toujours presents : aucun artefact, aucun
 #        Target/) et epingle leur forme d'octets : un seul BOM, CRLF en fin
 #        d'enregistrement, LF nus en cellule, nombre de champs (les enregistrements
-#        courts de Rules sont NOMMES par leur cle), aucun octet de controle. 19
+#        courts de Rules sont NOMMES par leur cle), aucun octet de controle. 20
 #        mutations des octets reels + 1 temoin prouvent que chaque regle voit son
 #        defaut. Deux cas lisent `git check-attr` (regle `-text` de .gitattributes,
 #        dans les deux sens, a la casse exacte) : ils ECHOUENT au lieu de se sauter
@@ -173,7 +173,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Run the dataset byte contract
-        # 25 cas, std-lib, offline. Les 5 CSV de donnees sont dans le checkout : la CI
+        # 26 cas, std-lib, offline. Les 5 CSV de donnees sont dans le checkout : la CI
         # est ici un cas NOMINAL, jamais un vert a vide (un fichier reduit a son en-tete
         # est refuse par le contrat lui-meme). Rouge = une PR a reecrit des fins de
         # ligne, perdu, ajoute ou double un BOM, desaligne un enregistrement, glisse
