@@ -46,6 +46,22 @@ ATTRIB_RE = re.compile(r"^(?:\U0001F916\s*Generated with\b.*|Co-Authored-By:\s.*
 # it reviewed -- an arbitration comment from another lane is not a counter-review
 # (measured on a live PR). Formal review objects keep their own rule.
 COUNTER_REVIEW_RE = re.compile(r"contre-revue|counter-review", re.I)
+
+
+def declares_counter_review(body):
+    """True only when the keyword OPENS the comment: its first non-blank line.
+
+    Anywhere in the body is not a declaration. Measured false positive (#2246):
+    a comment whose prose *mentioned* a counter-review further down was read as
+    one, so a merge gate counted a discussion as a verdict. The first line is
+    where a comment states what it is -- a title, in practice.
+    """
+    for line in (body or "").replace("\r\n", "\n").split("\n"):
+        if line.strip():
+            return bool(COUNTER_REVIEW_RE.search(line))
+    return False
+
+
 ACKABLE_READ = ("R5", "R10")
 
 
@@ -315,7 +331,10 @@ def lane_signature(body):
 
 def _cited_head(body, head):
     """First hex string of 7-40 chars in `body` that is not `head` (a prefix of it
-    counts as the head itself): the previous head a comment says it reviewed."""
+    counts as the head itself): the previous head a comment says it reviewed.
+
+    The pattern is lowercase-only: a SHA written in capitals is not seen at all, so
+    `None` here means "no lowercase hex other than the head", not "nothing cited"."""
     for m in re.finditer(r"\b[0-9a-f]{7,40}\b", body or ""):
         if not head.lower().startswith(m.group(0)):
             return m.group(0)
@@ -690,13 +709,13 @@ def r8_counter_review(s, o, c):
         if dt is not None and dt <= c["head_dt"]:
             # Before the head: can never count, but a DECLARED counter-review from
             # another lane reviewed a previous head -- name it (stacked PRs).
-            if hit and COUNTER_REVIEW_RE.search(body):
+            if hit and declares_counter_review(body):
                 earlier.append((hit, _cited_head(body, c["head"])))
             continue
         if dt is None or hit is None:  # (a) after the head: unchanged rule
             continue
-        if not COUNTER_REVIEW_RE.search(body):  # (b) declares itself a counter-review
-            rejected.append("%s -- non déclaré contre-revue" % hit)
+        if not declares_counter_review(body):  # (b) declares itself a counter-review, in its first line
+            rejected.append("%s -- non déclaré contre-revue en tête de commentaire" % hit)
         elif head8 not in body.lower():  # (c) names the head (first 8 hex chars)
             rejected.append("%s -- ne nomme pas la tête %s" % (hit, head8))
         else:
@@ -1413,6 +1432,24 @@ def self_test(out):
                          s, "Contre-revue de " + "f" * 8 + " : relu, RAS.\n\n*web2*", _FX_AFTER)))
     check("R8 : le commentaire nommant une autre tête est dit écarté",
           "écarté" in render(snap, res) and "ne nomme pas la tête" in render(snap, res))
+    # Witness of the "first line only" rule (#2246): the same comment counts when the
+    # keyword opens it, and stops counting when the keyword merely appears below.
+    snap, res = case("contre-revue annoncée plus bas que la première ligne", "R8", "HOLD",
+                     lambda s: (own_with()(s), _fx_comment(
+                         s, "Arbitrage, tête " + _FX_HEAD[:8] + " : relu.\n\n"
+                            "Cette contre-revue reprend la trame.\n\n*web2*", _FX_AFTER)))
+    check("R8 : le rejet dit que le mot-clé n'est pas en tête",
+          "en tête de commentaire" in render(snap, res))
+    control("première ligne ouverte par le mot-clé, prose ensuite",
+            lambda s: (own_with()(s), _fx_comment(
+                s, "Contre-revue de la tête " + _FX_HEAD[:8] + " : relu.\n\nDétail ensuite.\n\n*web2*",
+                _FX_AFTER)), None, "R8", "OK")
+    # Witness of _cited_head's prefix exclusion: a comment quoting the head in ITS OWN
+    # short form must not have that citation read as "some other head".
+    check("_cited_head écarte le préfixe de la tête et rend le suivant",
+          _cited_head("têtes " + _FX_HEAD[:8] + " et 8b72140e", _FX_HEAD) == "8b72140e")
+    check("_cited_head ne rend rien quand seule la tête est citée",
+          _cited_head("tête " + _FX_HEAD[:8], _FX_HEAD) is None)
     # Declared by another lane but BEFORE the head, naming another SHA: the
     # counter-review of a previous head -- it must not count, but be named.
     snap, res = case("contre-revue déclarée d'une autre lane, ANTÉRIEURE, sur un autre SHA", "R8", "HOLD",
