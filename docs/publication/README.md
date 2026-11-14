@@ -28,6 +28,7 @@ Dates are the first and last commits touching the file (`git log`).
 | [`news-article-v2.0.0.en.md`](news-article-v2.0.0.en.md) | 2026-09-15 | `current` | English mirror of the draft above |
 | [`news-article-v0.9.0.fr.md`](news-article-v0.9.0.fr.md) | 2026-06-29 → 09-15 | `superseded` | The first announcement draft, for the version number abandoned on 2026-08-06. It declares itself « Superseded 15/09/2026 »; replaced by [`news-article-v2.0.0.fr.md`](news-article-v2.0.0.fr.md) |
 | [`news-article-v0.9.0.en.md`](news-article-v0.9.0.en.md) | 2026-06-29 → 09-15 | `superseded` | English mirror of the draft above, same banner; replaced by [`news-article-v2.0.0.en.md`](news-article-v2.0.0.en.md) |
+| [`articles/README.md`](articles/README.md) | 2026-11-14 | `current` | The rule the seven articles are held to, in the owner's words of 2026-11-14: the narrative first, the numbers second, and illustrations that answer the article's subject (#2173, #2263) |
 | [`articles/1-depot.fr.md`](articles/1-depot.fr.md) | 2026-11-07 | `current` | Article 1/7 — from the card game to a reproducible repository (#2174) |
 | [`articles/2-aif-liens-transverses.fr.md`](articles/2-aif-liens-transverses.fr.md) | 2026-11-08 | `current` | Article 2/7 — the ontology, the AIF format and the cross-links (#2175) |
 | [`articles/3-epita-descente-guidee.fr.md`](articles/3-epita-descente-guidee.fr.md) | 2026-11-08 | `current` | Article 3/7 — a student project's plugin that walks down the taxonomy level by level (#2176) |

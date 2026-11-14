@@ -10,7 +10,7 @@ Le site d’Argumentum paraît désormais en huit langues, du français au persa
 
 Français, anglais, espagnol, portugais, russe, chinois, arabe et persan : huit langues, dont deux — l’arabe et le persan — s’écrivent de droite à gauche. Le sélecteur de langue, en tête du site, est le même sur toutes les pages : huit codes (FR, EN, ES, PT, RU, ZH, AR, FA), un clic, et la page change de langue entière — textes, menus, messages de l’interface.
 
-Les pages d’accueil des huit langues répondent toutes, et la mise en page de la page arabe s’inverse bien de droite à gauche — vérifié sur la page servie elle-même, pas seulement dans les fichiers (mesures du 7 novembre 2026).
+Les pages d’accueil des huit langues répondent toutes, et la mise en page de la page arabe s’inverse bien de droite à gauche — vérifié sur la page servie elle-même, pas seulement dans les fichiers.
 
 ## Les mêmes pages dans chaque langue
 
@@ -18,7 +18,7 @@ La navigation ne change pas d’une langue à l’autre : Accueil, Actus, Règl
 
 ## La carte mentale et l’ontologie
 
-Sous le menu Argumentation, la carte mentale des sophismes est dessinée dans chaque langue : huit pages, une par langue, toutes vérifiées le même jour. Chacune dessine l’arbre entier de la taxonomie — 1 408 nœuds, des grandes familles aux cas particuliers — avec ses liens entre nœuds apparentés.
+Sous le menu Argumentation, la carte mentale des sophismes est dessinée dans chaque langue : huit pages, une par langue, toutes vérifiées le même jour. Chacune dessine l’arbre entier de la taxonomie — des grandes familles aux cas particuliers — avec ses liens entre nœuds apparentés.
 
 L’ontologie décrit la même taxonomie, cette fois pour être lue par une machine : un fichier OWL, c’est-à-dire une description formelle des concepts et de leurs relations, qui permet à un logiciel de savoir qu’un sophisme appartient à une famille et comment il se relie aux autres. Elle est publiée dans le dépôt, en deux fichiers — sophismes et vertus.
 
@@ -28,7 +28,7 @@ La traduction du site est documentée geste par geste dans le dépôt, avec ses 
 
 L’interface — menus, boutons, messages du système — utilise les paquets de langue de la plateforme, installés puis complétés clé par clé là où le paquet manquait.
 
-Les contenus — titres, diaporama, actualités — ont été traduits par un modèle de langue, puis chaque traduction a été relue par un second modèle indépendant, qui peut la valider, la corriger ou la rejeter. Cette relecture attrape des défauts réels : un titre anglais avait recopié l’ordre des mots de la source française (« By category filtered news list ») ; la passe de relecture l’a rétabli dans l’ordre naturel de l’anglais (« News list filtered by category »). Les actualités de 2022 ont suivi la même double passe : 105 cellules de texte, traduites puis contre-relues.
+Les contenus — titres, diaporama, actualités — ont été traduits par un modèle de langue, puis chaque traduction a été relue par un second modèle indépendant, qui peut la valider, la corriger ou la rejeter. Cette relecture attrape des défauts réels : un titre anglais avait recopié l’ordre des mots de la source française (« By category filtered news list ») ; la passe de relecture l’a rétabli dans l’ordre naturel de l’anglais (« News list filtered by category »). Les actualités de 2022 ont suivi la même double passe : traduites puis contre-relues.
 
 Chaque geste laisse une preuve d’intégrité : l’outil qui écrit les traductions sait aussi relire le fichier et le reproduire à l’octet près — tout écart dans le fichier produit est donc attribuable aux seules cellules changées, et rien d’autre ne bouge.
 
