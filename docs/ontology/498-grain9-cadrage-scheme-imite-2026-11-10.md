@@ -22,7 +22,7 @@ Héritage par `path` (instrument du 06/11, contrôle inverse inclus). Le total r
 | | 2.3.3 Communication non verbale | 84 | **lacune déclarée** |
 | 3.3 Résultat invalide | 3.3.1 Imprécision | 13 | référence |
 | | 3.3.2 Erreur de calcul | 9 | référence |
-| | 3.3.3 Opération inappropriée | 6 | référence |
+| | 3.3.3 Opération inappropriée | 6 | descente (arbitrage 13/11) : référence sur 3.3.3.1 (691, héritée par 692/693) et 3.3.3.2 (694) + phrase sur 3.3.3.3 (695) ; tête 690 non écrite |
 | 5.2 Comparaison fallacieuse | 5.2.1 Comparaison abusive | 3 | lacune (.1, arbitrage ai-01 du 10/11) + phrase (.3) ; tête = lacune déjà en place |
 | 6.2 Changement de cap | 6.2.1 Exigence renforcée | 18 | phrase (tête) + référence (.3/.4/.1.1.1.1) + phrase (.1/.2/.5) |
 | | 6.2.2 Beurre et argent du beurre | 20 | référence (tête) |
@@ -86,13 +86,22 @@ Chaque ligne : le nœud (mécanique posée **au plus haut nœud où elle est vra
 | 2.3.3 tête (81) | **aucun** au niveau tête | **lacune déclarée** : « No honest AIF scheme imitated — le canal non verbal ne porte pas de proposition » | Les canaux transmettent des **signaux**, pas des inférences. Le précédent voisin 2.3.1 Conditionnement → `Sign_Inference` couvre l'association-apprentissage, pas le canal. |
 | 2.3.3.5 Apparence (PK 590, 3 — dont .1 Marqueur socioculturel, .2 Habillement) | `Sign_Inference` (porté par 2.3.1 Conditionnement) | **référence** (décision ai-01 10/11) | L'apparence affiche un statut **comme signe** : le marqueur socioculturel et l'habillement fonctionnent par association-signale, exactement la mécanique du scheme du voisin 2.3.1. |
 
-### 3.3 Résultat invalide — référence aux trois têtes (28 nœuds)
+### 3.3 Résultat invalide — référence aux têtes 3.3.1 et 3.3.2, descente sous 3.3.3 (28 nœuds)
 
 | Nœud | Candidat (porteur existant) | Proposition | Justification |
 |---|---|---|---|
 | 3.3.1 Imprécision (13) | `EvidenceToHypothesis_Inference` (porté par 3.1 Généralisation abusive et 3.2 Mauvaise interprétation — **les deux voisins directs**) | **référence** | La précision apparente (fausse précision, faux équilibre, appel aux extrêmes) imite la preuve par les données : le nombre exact comme raison de croire. Les deux groupes voisins de la même famille Erreur sont déjà modélisés par ce scheme — la continuité est immédiate. |
 | 3.3.2 Erreur de calcul (9) | `Deductive_Inference` (porté par 4.3 Déduction invalide, 4.2) | **référence** | Le calcul est une déduction : le double compte ou l'erreur numérique imite la rigueur déductive du calcul, l'erreur tenant lieu de démonstration (CQ posée : « le résultat du calcul est-il exact et vérifiable, ou l'erreur qu'il contient tient-elle lieu de démonstration ? »). |
-| 3.3.3 Opération inappropriée (6) | `Deductive_Inference` | **référence** | L'opération mathématique appliquée à des objets qui n'y ont pas droit (sophisme mathématique, détournement de symbole, pseudo-science) imite la validité formelle de l'opération. |
+| 3.3.3 Opération inappropriée (6) | — | **descente sous la tête** (arbitrage ai-01 du 13/11) | La référence posée sur la tête serait héritée par ses 5 descendants ; le document de cluster sépare le sous-arbre en deux mécaniques (691-694 corrompent l'inférence ; 695 fabrique une prémisse). PK 690 n'est pas écrite. Détail enfant par enfant ci-dessous. |
+
+> **Correctif du 14/11 — descente de 3.3.3, enfant par enfant** (arbitrage ai-01 du 13/11, [PR #2246 c.6850786269](https://github.com/ArgumentumGames/Argumentum/pull/2246#issuecomment-6850786269) : « le verdict épinglé prime » ; `FallacyAttackOnlyStopGateTests` épingle PK 690 attack-only, et le document de cluster §3 sépare les deux mécaniques). La ligne ci-dessus remplaçait celle du 10/11, qui prescrivait `Deductive_Inference` sur la tête : elle n'est **pas** appliquée telle quelle. La mécanique se pose au plus haut nœud où elle est vraie — les trois sous-groupes :
+>
+> | Nœud | Candidat (porteur existant) | Proposition | Justification |
+> |---|---|---|---|
+> | 3.3.3.1 Sophisme mathématique (PK 691, couvre 692 et 693) | `Deductive_Inference` (porté par 3.3.2, 4.2, 4.3) | **référence** | Une erreur de calcul cachée — division par zéro (692), égalité masquée (693) — corrompt l'étape d'inférence : le calcul imite la rigueur déductive, l'erreur tient lieu de démonstration. Même mécanique pour les trois (document de cluster, sous-mécanisme A). |
+> | 3.3.3.2 Détournement de symbole (PK 694) | `Deductive_Inference` | **référence** | L'équivoque sur le sens d'un symbole casse la dérivation qui suppose un sens univoque — branche « corrompt l'inférence ». La frontière documentée (le sens du symbole est une prémisse, donc *undermine*) ne change pas la branche ni le scheme imité. |
+> | 3.3.3.3 Pseudo-science (PK 695) | — (aucun jeton natif) | **phrase** (`AIF_imitatedScheme`) | Elle fabrique la prémisse « c'est un fait scientifique » : elle imite l'appel à une connaissance scientifique établie, qu'AIF ne nomme pas. Le fail-loud du document de cluster porte sur la **couche skos** (aucun jeton ne convient) ; une phrase n'y fabrique aucun scheme. |
+> | 3.3.3 tête (PK 690) | — | **non écrite** | Ancre RATIFIÉE attack-columns-only, épinglée par `FallacyAttackOnlyStopGateTests` : la rouvrir demanderait une PR d'arbitrage à part, pas un grain de groupe. |
 
 ### 5.2.1 Comparaison abusive — arbitré par ai-01 le 10/11
 
@@ -150,17 +159,19 @@ Chaque ligne : le nœud (mécanique posée **au plus haut nœud où elle est vra
 
 | Proposition | Nœuds | Détail (non chevauchant) |
 |---|---:|---|
-| **Référence** (`ExceptionRef` prête) | **120** | 3.3.1 (13) · 3.3.2 (9) · 3.3.3 (6) · 6.2.2 (20) · 7.2.3 (8) · 2.1.2.1 (11) · 2.1.2.2 (13) · 2.3.2.1 (10) · 2.3.2.4 (14) · 6.2.1.3 (2) · 6.2.1.4 (2) · 6.2.1.1.1.1/977 (2) · 6.2.3.1 (1) · 6.2.3.3 (5) · 7.2.2.2 (1) · **2.3.3.5 Apparence (3, décision ai-01 10/11)** |
-| **Phrase** (colonne `AIF_imitatedScheme` à créer) | **25** | 2.2 tête (1) · 2.1.2.3 (3) · 6.2.1 tête (1) + .1 (7) + .2 (3) + .5 (1) · 6.2.3.2 (2) + .5 (1) · 7.2.2.1 (4) + .3 (1) · 5.2.1.3 (1) |
+| **Référence** (`ExceptionRef` prête) | **118** | 3.3.1 (13) · 3.3.2 (9) · **3.3.3.1+3.3.3.2 (4, descente du 14/11 : 691 hérité par 692/693, 694)** · 6.2.2 (20) · 7.2.3 (8) · 2.1.2.1 (11) · 2.1.2.2 (13) · 2.3.2.1 (10) · 2.3.2.4 (14) · 6.2.1.3 (2) · 6.2.1.4 (2) · 6.2.1.1.1.1/977 (2) · 6.2.3.1 (1) · 6.2.3.3 (5) · 7.2.2.2 (1) · **2.3.3.5 Apparence (3, décision ai-01 10/11)** |
+| **Phrase** (colonne `AIF_imitatedScheme` à créer) | **26** | 2.2 tête (1) · 2.1.2.3 (3) · 6.2.1 tête (1) + .1 (7) + .2 (3) + .5 (1) · 6.2.3.2 (2) + .5 (1) · 7.2.2.1 (4) + .3 (1) · 5.2.1.3 (1) · **3.3.3.3/695 (1, descente du 14/11)** |
 | **Lacune déclarée** (`skosOther`) | **181** | 2.1.3 Poésie (52, descentes testées, aucune retenue) · 2.3.3 hors .5 (81) · 2.3.2.2 hors porteur 432 (5) · 2.3.2.3 (41) · 5.2.1 tête (1, déjà en place) + 5.2.1.1 (1, arbitrage ai-01 10/11) |
-| Têtes intermédiaires sans mécanique propre | 4 | 2.1.2, 2.3.2, 6.2.3, 7.2.2 (enfants hétérogènes — même statut que les têtes de groupe) |
+| Têtes intermédiaires sans mécanique propre | 5 | 2.1.2, 2.3.2, 6.2.3, 7.2.2 (enfants hétérogènes — même statut que les têtes de groupe) · **3.3.3 (PK 690, ancre ratifiée — non écrite)** |
 | Têtes de groupe hétérogènes (rejoignent les 8 têtes nues) | 6 | 2.1, 2.3, 3.3, 5.2, **6.2 (PK 973 « Changement de cap » / « Moving the goalposts »)**, 7.2 |
-| **Total** | **336** | 120 + 25 + 181 + 4 + 6 |
+| **Total** | **336** | 118 + 26 + 181 + 5 + 6 |
 
 **Décisions tranchées par le coordinateur le 10/11** (c.6775643852) — intégrées ci-dessus :
 1. **5.2.1.1 Comparaison incomplète** : reste une **lacune** (la défense `Analogy_Inference` de la première version n'est pas retenue ; cohérence avec la prose arbitrée de la tête).
 2. **2.3.3.5 Apparence** : **descente retenue** → `Sign_Inference` en référence (3 nœuds), la tête 2.3.3 reste lacune sur les 81 autres.
 3. **Descentes 2.3.3 et 2.1.3 testées avant fermeture** : testés enfant par enfant (§2.3.3, §2.1.3) — une retenue (2.3.3.5), aucune pour 2.1.3.
+
+**Correctif du 14/11 — descente de 3.3.3** (arbitrage ai-01 du 13/11, PR #2246 c.6850786269) : la ligne « 3.3.3 (6) » de la partition du 10/11 est remplacée par **4 nœuds en référence** (3.3.3.1 : 691, hérité par 692/693 ; 3.3.3.2 : 694), **1 en phrase** (3.3.3.3 : 695) et la **tête 690** en tête intermédiaire sans mécanique propre (ancre ratifiée, non écrite). La partition somme toujours à **336**.
 
 ## 5. Ce que ce cadrage n'établit pas
 
