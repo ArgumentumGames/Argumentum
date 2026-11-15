@@ -144,8 +144,9 @@ python -I tools/1472-cover-chain/run-candidates.py `
   --prompt-file tools/1472-cover-chain/prompts/cover-kids-01.txt `
   --seeds <24 graines> --out-dir <sortie>
 
-# 3. la teinte d'une famille
-python -I tools/1472-cover-chain/postprocess-ink.py `
+# 3. la teinte d'une famille — ⚠️ sans -I : Pillow vit dans le site utilisateur,
+#    que le mode isolé exclut (« Pillow is required » alors que le paquet est là)
+python tools/1472-cover-chain/postprocess-ink.py `
   <sortie>/argu1472_s<graine>.png <sortie>/argu1472_s<graine>-ink.png `
   --ink 1A1A1A --stats
 ```
@@ -163,6 +164,35 @@ affiché, jamais journalisé, jamais commité.
 
 ## Mesures de ce lot
 
-À compléter par la mesure du run de calibration (voir le commentaire de
-livraison sur #1472) : régime du serveur, durée par image, nombre de candidats
-effectivement produits, et répartition d'alpha de la planche après teinte.
+**Candidat de calibration** — graine `20261116`, références `5.3.3` + `1.3`,
+premier run après le redémarrage du conteneur (15/11, 22:0x) :
+
+| Objet | Mesure |
+|---|---|
+| Durée | **1 128 s (18 min 48 s)** |
+| Régime | GPU 1 occupé 15 157 / 24 576 Mo avant chargement (9 419 libres) ⇒ **régime intermédiaire** : ni les 256 s du serveur frais de septembre, ni les ≈ 34 min du serveur usé |
+| Sortie | 832 × 1152, 1 214 742 o, encre noire sur blanc |
+| Registre | conforme : hachures et taille-douce, quatre enfants à la table, pips de couleur seuls, **aucun texte** |
+| RAM hôte avant lot | 10,5 Go libres / 63,7 Go (WSL 23,5 Go) ; D: 644,6 Gio libres |
+
+**Post-traitement du même fichier**, `--ink 811DA3` (violet de famille du deck),
+`--black 40 --white 235` :
+
+```
+alpha déciles : 0 0 0 0 0 10 199 255 255 255
+entièrement opaque : 28,8 %   entièrement transparent : 58,9 %
+```
+
+Le détourage est franc : 59 % de papier tombe à alpha nul, 29 % d'encre à alpha
+plein, et les hachures occupent la rampe entre les deux. La teinte appliquée est
+exactement `811DA3` sur tous les pixels non nuls.
+
+⚠️ **Une visionneuse qui ignore le canal alpha n'affiche qu'un aplat de la
+couleur d'encre** — la planche RGBA paraît alors monochrome alors que le dessin
+est dans l'alpha. Pour la juger, la composer sur blanc (c'est ce que fait un
+navigateur, et c'est ce que fera la planche de comparaison).
+
+**Lot ④** — 24 graines `20261117` à `20261140`, paires de références tournantes
+sur les 12 médianes, lancé le 15/11 à 22:26. À 18 min 48 s l'image, la course
+demande ≈ 7 h 30 ; la durée réelle est relevée à la réception et non déduite du
+premier candidat.
