@@ -19,16 +19,21 @@ Répartition (la mécanique se pose au plus haut nœud où elle est vraie) :
                           (AIF n'a pas de scheme de charge de preuve)
     PK 975  .1 (7 n.)   → PHRASE « imite l'examen critique exhaustif — l'itération sans
                           fin d'objections tient lieu de réfutation »
-    PK 984  .2 (3 n.)   → PHRASE « imite la réfutation — une explication concurrente est
-                          présentée comme une défaite de la thèse »
+    PK 984  .2 (3 n.)   → PHRASE « imite la critique d'une justification — l'explication
+                          causale d'un acte est traitée comme son excuse »
+                          (reprise 15/11, c.6894233749 : la phrase du 10/11 parlait de
+                          réfutation, un autre sophisme que la carte PK 984)
     PK 987  .3 (2 n.)   → référence EvidenceToHypothesis_Inference (porteurs 3.1/3.2 :
                           exiger un seul type de preuve imite la convergence des preuves)
     PK 989  .4 (2 n.)   → référence Ignorance_Inference (porteur 1.1.1.1 : renverser la
                           charge = absence de preuve tenue pour preuve d'absence)
     PK 977  .1.1.1.1(2) → référence PracticalReasoning_Inference (porteurs 1.2/4.1 : le
                           nirvana exige l'option parfaite — jumeau de 7.2.2.2, §7.2.2)
-    PK 991  .5 (1 n.)   → PHRASE « imite la précision technique — l'obscurité
-                          terminologique tient lieu de rigueur »
+    PK 991  .5 (1 n.)   → PHRASE « imite l'exigence légitime de clarté — l'emploi de
+                          termes spécialisés est présenté comme l'aveu d'un manque de
+                          substance »
+                          (reprise 15/11 : la phrase du 10/11 inversait le sens — la
+                          carte décrit celui qui critique les termes, pas qui les emploie)
   6.2.2 Beurre et argent du beurre (20 sans-(a), UNE écriture) :
     PK 992  tête        → référence Commitment_Inference (porteurs 4.3.2/7.3.1/1.3.2 :
                           tout le sous-arbre dévoie l'engagement de position)
@@ -84,14 +89,25 @@ PHRASE_EDITS = {  # PK -> prose française (colonne AIF_imitatedScheme), cadrage
             "l'exigence est déplacée après coup"),                                  # 6.2.1 tête
     "975": ("imite l'examen critique exhaustif — l'itération sans fin d'objections "
             "tient lieu de réfutation"),                                            # 6.2.1.1
-    "984": ("imite la réfutation — une explication concurrente est présentée comme "
-            "une défaite de la thèse"),                                             # 6.2.1.2
-    "991": ("imite la précision technique — l'obscurité terminologique tient lieu "
-            "de rigueur"),                                                          # 6.2.1.5
+    "984": ("imite la critique d'une justification — l'explication causale d'un acte "
+            "est traitée comme son excuse"),                                        # 6.2.1.2, reprise 15/11
+    "991": ("imite l'exigence légitime de clarté — l'emploi de termes spécialisés est "
+            "présenté comme l'aveu d'un manque de substance"),                      # 6.2.1.5, reprise 15/11
     "1013": ("imite la tolérance aux incohérences mineures — tout admettre tient "
              "lieu de souplesse"),                                                  # 6.2.3.2
     "1022": ("imite la pertinence de l'ancienneté — l'âge d'un fait tient lieu "
              "d'objection"),                                                        # 6.2.3.5
+}
+# Reprise du 15/11 (c.6894233749) : les phrases de 984/991 du cran af6d43be décrivaient
+# un autre sophisme que leur carte (règle du 15/11 : une phrase du cadrage se confronte
+# à desc_fr/desc_en du nœud avant d'être écrite). Anti-dérive : chaque cellule PHRASE
+# accepte EXACTEMENT deux états — "" (base 5cc2e4f0) ou la valeur du cran précédent.
+# Jamais la cible : re-jeu sur CSV corrigé = échec (contrôle négatif préservé).
+PHRASE_PRIOR = {  # valeurs du cran af6d43be, remplacées par la reprise
+    "984": ("imite la réfutation — une explication concurrente est présentée comme "
+            "une défaite de la thèse"),
+    "991": ("imite la précision technique — l'obscurité terminologique tient lieu "
+            "de rigueur"),
 }
 PATHS = {
     "974": "6.2.1", "975": "6.2.1.1", "984": "6.2.1.2", "987": "6.2.1.3",
@@ -209,13 +225,21 @@ def main():
     for pk in by_pk:
         if by_pk[pk][I["path"]] in NAKED_HEADS:
             assert pk not in REF_EDITS and pk not in PHRASE_EDITS, "tête nue visée : PK %s" % pk
-    for pk in REF_EDITS:
-        assert by_pk[pk][I["AIF_skosExceptionRef"]] == "", "anti-overwrite: PK %s Exc non vide" % pk
-        assert by_pk[pk][I["AIF_skosMappingType"]] == "", "anti-overwrite: PK %s Map non vide" % pk
+    for pk, (exc, m) in REF_EDITS.items():
+        cur_exc = decode(by_pk[pk][I["AIF_skosExceptionRef"]])
+        cur_mt = decode(by_pk[pk][I["AIF_skosMappingType"]])
+        if not ((cur_exc == "" and cur_mt == "") or (cur_exc == exc and cur_mt == m)):
+            raise AssertionError("anti-drift: PK %s Exc/Map %r/%r" % (pk, cur_exc, cur_mt))
         assert by_pk[pk][I["AIF_imitatedScheme"]] == "", "anti-overwrite: PK %s imitated non vide" % pk
-    for pk in PHRASE_EDITS:
-        assert by_pk[pk][I["AIF_imitatedScheme"]] == "", "anti-overwrite: PK %s imitated non vide" % pk
+    for pk, prose in PHRASE_EDITS.items():
+        cur = decode(by_pk[pk][I["AIF_imitatedScheme"]])
+        prior = PHRASE_PRIOR.get(pk, prose)  # les 4 autres : la cible EST le cran précédent
+        if cur not in ("", prior):
+            raise AssertionError("anti-drift: PK %s imitated %r (cible %r)" % (pk, cur, prose))
         assert by_pk[pk][I["AIF_skosExceptionRef"]] == "", "anti-overwrite: PK %s Exc non vide" % pk
+    # mode : base fraîche (première écriture) ou reprise (cran af6d43be déjà écrit)
+    fresh = all(decode(by_pk[pk][I["AIF_imitatedScheme"]]) == "" for pk in PHRASE_EDITS) \
+        and all(by_pk[pk][I["AIF_skosExceptionRef"]] == "" for pk in REF_EDITS)
     # tête 973 : mapping (c) préexistant épinglé — aucun write (a) ne le touche
     hpk, hdr, hmt, hat, han = HEAD_C_MAPPING
     assert decode(by_pk[hpk][I["AIF_skosDirectRef"]]) == hdr, "973 DirectRef inattendu"
@@ -299,7 +323,12 @@ def main():
     # les 12 rangées cibles sont les SEULES différentes, octet pour octet
     diff_rows = [i for i, (a, b) in enumerate(zip(rows, new_rows)) if a != b]
     targets = {i for i, f in enumerate(field_rows) if f[I["PK"]] in set(REF_EDITS) | set(PHRASE_EDITS)}
-    assert diff_rows == sorted(targets), "rangées modifiées inattendues : %r != %r" % (diff_rows, sorted(targets))
+    if fresh:
+        assert diff_rows == sorted(targets), "rangées modifiées inattendues : %r != %r" % (diff_rows, sorted(targets))
+    else:  # reprise : seules les deux phrases remplacées peuvent différer du disque
+        idx = {f[I["PK"]]: i for i, f in enumerate(field_rows)}
+        assert set(diff_rows) == {idx["984"], idx["991"]}, \
+            "rejeu : seules 984/991 doivent différer, %r" % (diff_rows,)
     # héritage : les descendants et le porteur existant restent byte-identiques
     for pk in INHERITED_UNTOUCHED:
         assert by_pk[pk] == vby[pk], "PK %s a bougé (héritage attendu, pas d'écriture)" % pk
@@ -310,18 +339,26 @@ def main():
 
     after = census(vfields, I)
     assert sum(after) == 1408, "census après %r ne somme pas à 1408" % (after,)
-    assert after[0] == before[0] + 6, "mapped %d->%d (attendu +6)" % (before[0], after[0])
-    assert after[2] == before[2] + 6, "declared-imitation %d->%d (attendu +6)" % (before[2], after[2])
-    assert after[3] == before[3] - 12, "untouched %d->%d (attendu -12)" % (before[3], after[3])
+    if fresh:
+        assert after[0] == before[0] + 6, "mapped %d->%d (attendu +6)" % (before[0], after[0])
+        assert after[2] == before[2] + 6, "declared-imitation %d->%d (attendu +6)" % (before[2], after[2])
+        assert after[3] == before[3] - 12, "untouched %d->%d (attendu -12)" % (before[3], after[3])
+    else:  # reprise : phrases remplacées sur des rangées déjà comptées — census inchangé
+        assert after == before, "rejeu : census doit rester inchangé (%r -> %r)" % (before, after)
 
     if write:
         tmp = CSV_PATH + ".new18"
         with open(tmp, "wb") as fh:
             fh.write(BOM + new_text.encode("utf-8"))
         os.replace(tmp, CSV_PATH)
-        print("ECRIT: 18 cellules / 12 rangées (6 ref: 987/989/977/992/1012/1015 ; 6 phrases: 974/975/984/991/1013/1022).")
+        if fresh:
+            print("ECRIT: 18 cellules / 12 rangées (6 ref: 987/989/977/992/1012/1015 ; 6 phrases: 974/975/984/991/1013/1022).")
+        else:
+            print("ECRIT (reprise 15/11): 2 cellules remplacées — 984, 991 ; les 16 autres déjà en place.")
+    elif fresh:
+        print("DRY-RUN OK (base fraîche): 18 cellules / 12 rangées seraient écrites (6 ref ; 6 phrases).")
     else:
-        print("DRY-RUN OK: 18 cellules / 12 rangées seraient écrites (6 ref ; 6 phrases).")
+        print("DRY-RUN OK (reprise 15/11): 2 cellules seraient remplacées (984, 991).")
     print("census avant: mapped=%d gap=%d imitation=%d untouched=%d (somme %d)"
           % (before + (sum(before),)))
     print("census après: mapped=%d gap=%d imitation=%d untouched=%d (somme %d)"
