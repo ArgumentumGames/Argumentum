@@ -1444,6 +1444,14 @@ def self_test(out):
             lambda s: (own_with()(s), _fx_comment(
                 s, "Contre-revue de la tête " + _FX_HEAD[:8] + " : relu.\n\nDétail ensuite.\n\n*web2*",
                 _FX_AFTER)), None, "R8", "OK")
+    # Witness of the blank-line skip in declares_counter_review (P24-20, counter-review
+    # of #2267, c.6873032337, mutation M3): GitHub trims bodies but does not guarantee
+    # they open on a non-empty line. Reading the first line even when it is empty would
+    # reject this declared counter-review, so the gate must skip the blank lines.
+    control("contre-revue déclarée après des lignes vides initiales",
+            lambda s: (own_with()(s), _fx_comment(
+                s, "\n\nContre-revue de la tête " + _FX_HEAD[:8] + " : relu, RAS.\n\n*web2*",
+                _FX_AFTER)), None, "R8", "OK")
     # Witness of _cited_head's prefix exclusion: a comment quoting the head in ITS OWN
     # short form must not have that citation read as "some other head".
     check("_cited_head écarte le préfixe de la tête et rend le suivant",
@@ -1457,6 +1465,16 @@ def self_test(out):
                          s, "Contre-revue de " + "8b72140e" + " : relu, RAS.\n\n*web2*", _FX_BEFORE)))
     check("R8 : la contre-revue d'une tête antérieure est citée, sans compter",
           "tête antérieure" in render(snap, res) and "8b72140e" in render(snap, res))
+    # Witness of the declaration test at the before-head site (P24-20, counter-review
+    # of #2267, c.6873032337, mutation M4): a comment that only MENTIONS a counter-
+    # review below its first line must not be named "contre-revue d'une tête
+    # antérieure", which would read as a stacked-PR counter-review having taken place.
+    snap, res = case("ANTÉRIEUR à la tête : contre-revue mentionnée en cours de corps", "R8", "HOLD",
+                     lambda s: (own_with()(s), _fx_comment(
+                         s, "Arbitrage du lot précédent, sur " + "8b72140e" + ".\n\n"
+                            "Cette contre-revue reprend la trame.\n\n*web2*", _FX_BEFORE)))
+    check("R8 : la mention en cours de corps n'est pas dite « tête antérieure »",
+          "tête antérieure" not in render(snap, res))
     control("lane du merger : commentaire déclaré contre-revue et nommant la tête",
             lambda s: (own_with()(s), _fx_comment(
                 s, "Contre-revue de la tête " + _FX_HEAD[:8] + " : relu, RAS.\n\n*web2*", _FX_AFTER)),
