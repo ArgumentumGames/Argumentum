@@ -1,0 +1,671 @@
+# #1471 P24-22 — Audit des redirections par colonne link_* (2026-11-15)
+
+**Auteur** : po-2024 · **Date** : 2026-11-15 · **Base** : master `5cc2e4f0`
+**Outil** : `tools/1471-redirect-audit.py` — lecture seule, `--self-test` hors réseau, cache de reprise dans `.tmp/` (ignoré).
+**Règle ratifiée du 15/11** (#1471) : « le titre de l'article est comparé aux libellés des 1 408 nœuds, en portugais et en anglais, après résolution des redirections » — l'unicité d'URL est aveugle aux redirections, une collision se juge sur l'article d'ARRIVÉE.
+
+## Méthode
+
+- Résolution via l'API MediaWiki de chaque wiki (`action=query&redirects=1`, lots de 50 titres, chaîne suivie ≤ 5 sauts, délai 2 s, `Retry-After` honoré).
+- **Collision** = ≥ 2 cartes dont le lien mène au **même article d'arrivée, même fragment** (ou sans fragment).
+- **Même article, fragments distincts** = accepté (précédent 1024/1174 → Novum Organum, sections distinctes, contre-revue #2273 c.6890284753) — listé à part, jamais compté comme collision.
+- **Titre = libellé d'un autre nœud** : le titre d'arrivée (résolu) est le libellé (`text_<langue du lien>` ou `text_en`) d'un nœud DIFFÉRENT — le lecteur croit lire la fiche de ce nœud-là.
+- Articles rouges (« missing ») signalés ; liens hors `<langue>.wikipedia.org` inventoriés par hôte, non résolus.
+- ⛔ **0 écriture CSV** : ce document est le terrain de décision, pas un plan d'écriture — chaque collision demandera un arbitrage (vider, ancrer une section, ou sourcer ailleurs).
+
+## Témoin reproduit
+
+Colonne `link_pt` : **13 groupes de collision sur 191 liens** — exactement la mesure d'ai-01 (contre-revue #2273, c.6890284753), y compris 172 & 1083 → « Apofenia » et 0 & 696 → « Falácia » ; la paire 1024 & 1174 (Novum Organum, deux sections distinctes) est listée à part, conforme au verdict.
+
+## Synthèse (mesuré, 8 colonnes)
+
+| Colonne | Liens | Wikipedia | Redirections | Rouges | **Collisions** | Sections distinctes | Titres = libellé |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| link_fr | 672 | 579 | 23 | 13 | **54** | 6 | 80 |
+| link_en | 1338 | 907 | 39 | 3 | **80** | 23 | 157 |
+| link_ru | 179 | 162 | 2 | 0 | **13** | 0 | 17 |
+| link_pt | 194 | 191 | 3 | 0 | **13** ✓ témoin | 1 | 16 |
+| link_es | 208 | 205 | 10 | 0 | **16** | 1 | 23 |
+| link_ar | 204 | 204 | 12 | 0 | **15** | 1 | 11 |
+| link_fa | 172 | 172 | 5 | 0 | **12** | 0 | 15 |
+| link_zh | 200 | 200 | 5 | 0 | **16** | 0 | 4 |
+| **Total** | 3167 | 2620 | 99 | 16 | **219** | 32 | 323 |
+
+## Ce que l'audit n'établit pas
+
+- **Aucune correction n'est proposée** : la liste est la mesure, pas la décision. Les 219 groupes existent pour la plupart sur master depuis longtemps (le témoin pt le prouve : aucun ne contenait une case du lot #2273).
+- Normalisation minimale (casefold, `_` → espace, espaces collapsés) : les variantes diacritiques ou scriptaires ne sont PAS rapprochées.
+- La résolution est datée du 15/11 (~12:30 local) — une redirection peut bouger après ; l'outil re-dérive tout à l'exécution.
+- Les liens hors Wikipédia (fr 93, en 431, ru 17, pt/es 3) ne sont pas résolus — inventoriés par hôte dans les listes.
+
+## Reproduire
+
+    python tools/1471-redirect-audit.py --self-test   # logique hors réseau
+    python tools/1471-redirect-audit.py --lang pt     # une colonne
+    python tools/1471-redirect-audit.py               # les 8 colonnes (réseau, ~57 requêtes)
+
+---
+
+## Listes complètes par colonne (sortie de l'outil, base `5cc2e4f0`)
+
+# #1471 audit redirections — collisions d'article d'arrivée (lecture seule)
+
+## link_fr : 672 liens (579 wikipedia, 93 autres hôtes), 23 redirections, 13 articles rouges
+- autres hôtes (non résolus) : cortecs.org ×8, fr.wikisource.org ×22, fr.wiktionary.org ×11, hansen-hypnose.com ×1, initiativerationnelle.wordpress.com ×1, misterming.free.fr ×1, nicomaque.com ×1, nospensees.fr ×1, psychologie.savoir.fr ×1, rationalwiki.org ×2, skepdic.com ×1, sophismes.free.fr ×2, thedecisionlab.com ×1, ug.ambafrance.org ×1, vert.eco ×5, web.archive.org ×12, www.charlatans.info ×1, www.cogsci.rpi.edu ×1, www.cs.oswego.edu ×1, www.ditext.com ×2, www.etudes-litteraires.com ×1, www.fallacydetective.com ×2, www.fallacyfiles.org ×1, www.fallaeasies.com ×1, www.linternaute.com ×1, www.logicallyfallacious.com ×1, www.projet-voltaire.fr ×1, www.seekfind.net ×1, www.thinklikeacop.org ×2, yourlogicalfallacyis.com ×6
+- **collisions (même article, même fragment) : 54 groupes**
+  - 2 (1.1), 598 (3.1.1.1.1) -> « Généralisation abusive »
+  - 3 (1.1.1), 4 (1.1.1.1) -> « Appel à l'ignorance »
+  - 22 (1.1.1.3), 770 (4.3.1.3) -> « Acte de foi »
+  - 34 (1.1.2.1), 1087 (6.3.1.1.2.3.4) -> « Preuve anecdotique »
+  - 53 (1.1.2.3.2), 1119 (6.3.1.2.2) -> « Raisonnement émotionnel »
+  - 65 (1.1.3.3.2), 616 (3.1.2.1.1), 813 (5.1.2.2.3) -> « Sophisme du vrai Écossais »
+  - 71 (1.2.1), 72 (1.2.1.1), 78 (1.2.1.2) -> « Argument d'autorité »
+  - 115 (1.2.3.2), 1069 (6.3.1.1.2.1.3) -> « Argumentum ad novitatem »
+  - 121 (1.2.3.3.2), 1341 (7.2.1.3.2.2) -> « Politiquement correct »
+  - 132 (1.2.3.7), 344 (2.2.3.1.3) -> « Validisme »
+  - 141 (1.3.1.2), 1155 (6.3.1.2.3.1.2.2) -> « Biais rétrospectif »
+  - 160 (1.3.2.3.2), 1382 (7.3.2.2.1) -> « Procès d'intention »
+  - 168 (1.3.3.2.1), 894 (6.1.1.1.1.2.1), 1365 (7.3.1.2) -> « Épouvantail (rhétorique) »
+  - 172 (1.3.3.4), 1083 (6.3.1.1.2.3) -> « Apophénie »
+  - 174 (1.3.3.4.2), 643 (3.2.1.5.1) -> « Illusion des séries »
+  - 179 (2.1.1.1.1), 701 (4.1.1.2) -> « Plurium interrogationum »
+  - 182 (2.1.1.1.3), 814 (5.1.2.2.4) -> « Faux dilemme »
+  - 183 (2.1.1.2), 698 (4.1.1) -> « Pétition de principe »
+  - 233 (2.1.2.2.2), 264 (2.1.3.2.4) -> « Hyperbole (rhétorique) »
+  - 295 (2.1.3.6.5), 866 (5.3.2.3.1) -> « Métonymie »
+  - 297 (2.1.3.6.7), 1316 (7.2.1.1.1.1) -> « Digression »
+  - 302 (2.2.1.1.1), 1231 (6.3.2.3.1.4) -> « Effet de halo »
+  - 338 (2.2.2.4.1), 920 (6.1.1.2.2.2.1) -> « Fear, uncertainty and doubt »
+  - 339 (2.2.2.4.2), 922 (6.1.1.2.2.2.2) -> « Panique morale »
+  - 340 (2.2.3), 351 (2.2.3.3) -> « Argumentum ad consequentiam »
+  - 358 (2.3.1.1), 1039 (6.3.1.1.1.2.1) -> « Cadrage (décision) »
+  - 368 (2.3.1.1.1.8), 1067 (6.3.1.1.2.1.1) -> « Effet de vérité illusoire »
+  - 418 (2.3.1.6.3), 919 (6.1.1.2.2.2) -> « Culture de la peur »
+  - 460 (2.3.2.3.1.1.2), 915 (6.1.1.2.1.6) -> « Firehose of falsehood »
+  - 475 (2.3.2.3.2.2.1), 772 (4.3.1.4.1), 1331 (7.2.1.2.3) -> « Gish gallop »
+  - 478 (2.3.2.3.2.2.4), 1302 (7.1.3.3.1) -> « Lavage de cerveau »
+  - 579 (2.3.3.4.2.6.8), 582 (2.3.3.4.2.7.2) -> « Gestuelle des doigts et des mains » [ROUGE]
+  - 594 (3), 666 (3.3), 693 (3.3.3.1.2) -> « Pseudo-démonstration d'égalité entre nombres »
+  - 595 (3.1), 1123 (6.3.1.2.2.1.3) -> « Généralisation »
+  - 604 (3.1.1.2.2), 657 (3.2.2.4) -> « Erreur de conjonction »
+  - 633 (3.2.1), 642 (3.2.1.5), 1085 (6.3.1.1.2.3.2) -> « Corrélation illusoire »
+  - 644 (3.2.2), 654 (3.2.2.3.2) -> « Erreur du parieur »
+  - 662 (3.2.3.2.1), 664 (3.2.3.2.2), 979 (6.2.1.1.1.2), 1349 (7.2.2.1.2) -> « Régression à l'infini »
+  - 695 (3.3.3.3), 1271 (6.3.3.3.1.2) -> « Pseudoscience »
+  - 702 (4.1.1.3), 1328 (7.2.1.2.1) -> « Ignoratio elenchi »
+  - 706 (4.1.1.7), 1171 (6.3.1.2.3.2.2.2) -> « Distorsion cognitive »
+  - 708 (4.1.2.1), 731 (4.2.1.2.1) -> « Affirmation du conséquent »
+  - 714 (4.1.2.5.1), 1362 (7.3.1.1) -> « Argumentum ad hominem »
+  - 722 (4.1.3.1.1.1), 729 (4.2.1.1.1) -> « Négation de l'antécédent »
+  - 723 (4.1.3.1.1.2), 1169 (6.3.1.2.3.2.2) -> « Distorsion cognitive »
+  - 756 (4.2.3.4.1), 1102 (6.3.1.2.1.1.2.2) -> « Distorsion cognitive »
+  - 761 (4.3.1.1.1), 1371 (7.3.2) -> « Sophisme génétique »
+  - 768 (4.3.1.2), 833 (5.2) -> « Fausse équivalence »
+  - 774 (4.3.1.6), 775 (4.3.1.7) -> « Distorsion cognitive »
+  - 817 (5.1.2.2.4.3), 1120 (6.3.1.2.2.1) -> « Distorsion cognitive »
+  - 895 (6.1.1.1.1.3), 1101 (6.3.1.2.1.1.2.1.2) -> « Distorsion cognitive »
+  - 900 (6.1.1.1.3.3), 1329 (7.2.1.2.1.1) -> « Restriction mentale »
+  - 1020 (6.2.3.4), 1151 (6.3.1.2.3.1.1.3) -> « Coût irrécupérable »
+  - 1297 (7.1.3), 1301 (7.1.3.3) -> « Argumentum ad nauseam »
+- même article, fragments distincts (acceptés, non collisions) : 6
+  - 967 (6.1.3.1.3), 969 (6.1.3.1.3.2) -> « Biais de publication » (sections : , Effet tiroir)
+  - 432 (2.3.2.2.1), 435 (2.3.2.2.1.1.1.1), 437 (2.3.2.2.1.1.2), 438 (2.3.2.2.1.1.3), 439 (2.3.2.2.1.1.4), 442 (2.3.2.2.1.2.1), 444 (2.3.2.2.1.2.2), 445 (2.3.2.2.1.2.3), 446 (2.3.2.2.1.2.3.1), 447 (2.3.2.2.1.2.4), 448 (2.3.2.2.1.2.5), 449 (2.3.2.2.1.2.5.1), 450 (2.3.2.2.1.2.6) -> « Engagement (psychologie sociale) » (sections : , Approche implicite, L.27amor.C3.A7age, L.E2.80.99hypocrisie induite, La technique du ce-n.27est-pas-tout, La technique)
+  - 238 (2.1.2.2.3), 239 (2.1.2.2.3.1) -> « Ironie » (sections : , L.27ironie situationnelle)
+  - 373 (2.3.1.1.2.2), 375 (2.3.1.1.2.2.2) -> « Lecture à froid » (sections : , Tir au petit plomb)
+  - 889 (6.1.1), 902 (6.1.1.1.3.3.2) -> « Mensonge » (sections : , Cas du mensonge par omission)
+  - 376 (2.3.1.1.4), 377 (2.3.1.1.4.1), 378 (2.3.1.1.4.2), 379 (2.3.1.1.4.3), 380 (2.3.1.1.4.4) -> « Programmation neuro-linguistique » (sections : , L.27ancrage, La dissociation, La synchronisation, Le recadrage)
+- titres d'arrivée = libellé d'un AUTRE nœud (text_fr / text_en) : 80
+  - 2 (1.1) -> « Généralisation abusive » = libellé de 595
+  - 22 (1.1.1.3) -> « Acte de foi » = libellé de 770
+  - 34 (1.1.2.1) -> « Preuve anecdotique » = libellé de 1087
+  - 53 (1.1.2.3.2) -> « Raisonnement émotionnel » = libellé de 1119
+  - 65 (1.1.3.3.2) -> « Sophisme du vrai Écossais » = libellé de 616
+  - 121 (1.2.3.3.2) -> « Politiquement correct » = libellé de 1341
+  - 141 (1.3.1.2) -> « Biais rétrospectif » = libellé de 1155
+  - 172 (1.3.3.4) -> « Apophénie » = libellé de 1083
+  - 182 (2.1.1.1.3) -> « Faux dilemme » = libellé de 814
+  - 183 (2.1.1.2) -> « Pétition de principe » = libellé de 698
+  - 239 (2.1.2.2.3.1) -> « Ironie » = libellé de 238
+  - 295 (2.1.3.6.5) -> « Métonymie » = libellé de 866
+  - 297 (2.1.3.6.7) -> « Digression » = libellé de 1316
+  - 302 (2.2.1.1.1) -> « Effet de halo » = libellé de 1231
+  - 338 (2.2.2.4.1) -> « Fear, uncertainty and doubt » = libellé de 920
+  - 368 (2.3.1.1.1.8) -> « Effet de vérité illusoire » = libellé de 1067
+  - 375 (2.3.1.1.2.2.2) -> « Lecture à froid » = libellé de 373
+  - 418 (2.3.1.6.3) -> « Culture de la peur » = libellé de 919
+  - 460 (2.3.2.3.1.1.2) -> « Firehose of falsehood » = libellé de 915
+  - 475 (2.3.2.3.2.2.1) -> « Gish gallop » = libellé de 772
+  - 478 (2.3.2.3.2.2.4) -> « Lavage de cerveau » = libellé de 1302
+  - 598 (3.1.1.1.1) -> « Généralisation abusive » = libellé de 595
+  - 604 (3.1.1.2.2) -> « Erreur de conjonction » = libellé de 657
+  - 616 (3.1.2.1.1) -> « Sophisme du vrai Écossais » = libellé de 65
+  - 633 (3.2.1) -> « Corrélation illusoire » = libellé de 642
+  - 642 (3.2.1.5) -> « Corrélation illusoire » = libellé de 1085
+  - 644 (3.2.2) -> « Erreur du parieur » = libellé de 654
+  - 695 (3.3.3.3) -> « Pseudoscience » = libellé de 1271
+  - 698 (4.1.1) -> « Pétition de principe » = libellé de 183
+  - 706 (4.1.1.7) -> « Distorsion cognitive » = libellé de 1098
+  - 708 (4.1.2.1) -> « Affirmation du conséquent » = libellé de 731
+  - 713 (4.1.2.5) -> « Two wrongs make a right » = libellé de 1325
+  - 723 (4.1.3.1.1.2) -> « Distorsion cognitive » = libellé de 1098
+  - 731 (4.2.1.2.1) -> « Affirmation du conséquent » = libellé de 708
+  - 756 (4.2.3.4.1) -> « Distorsion cognitive » = libellé de 1098
+  - 761 (4.3.1.1.1) -> « Sophisme génétique » = libellé de 1371
+  - 768 (4.3.1.2) -> « Fausse équivalence » = libellé de 843
+  - 770 (4.3.1.3) -> « Acte de foi » = libellé de 22
+  - 772 (4.3.1.4.1) -> « Gish gallop » = libellé de 475
+  - 774 (4.3.1.6) -> « Distorsion cognitive » = libellé de 1098
+  - 775 (4.3.1.7) -> « Distorsion cognitive » = libellé de 1098
+  - 787 (4.3.3.1.1.1) -> « Syllogisme du politicien » = libellé de 21
+  - 813 (5.1.2.2.3) -> « Sophisme du vrai Écossais » = libellé de 65
+  - 817 (5.1.2.2.4.3) -> « Distorsion cognitive » = libellé de 1098
+  - 833 (5.2) -> « Fausse équivalence » = libellé de 768
+  - 866 (5.3.2.3.1) -> « Métonymie » = libellé de 295
+  - 875 (5.3.2.3.2.4) -> « Sophisme de la motte castrale » = libellé de 364
+  - 895 (6.1.1.1.1.3) -> « Distorsion cognitive » = libellé de 1098
+  - 900 (6.1.1.1.3.3) -> « Restriction mentale » = libellé de 1329
+  - 902 (6.1.1.1.3.3.2) -> « Mensonge » = libellé de 889
+  - 915 (6.1.1.2.1.6) -> « Firehose of falsehood » = libellé de 460
+  - 919 (6.1.1.2.2.2) -> « Culture de la peur » = libellé de 418
+  - 920 (6.1.1.2.2.2.1) -> « Fear, uncertainty and doubt » = libellé de 338
+  - 953 (6.1.3) -> « Cherry picking » = libellé de 603
+  - 969 (6.1.3.1.3.2) -> « Biais de publication » = libellé de 967
+  - 1067 (6.3.1.1.2.1.1) -> « Effet de vérité illusoire » = libellé de 368
+  - 1083 (6.3.1.1.2.3) -> « Apophénie » = libellé de 172
+  - 1085 (6.3.1.1.2.3.2) -> « Corrélation illusoire » = libellé de 642
+  - 1087 (6.3.1.1.2.3.4) -> « Preuve anecdotique » = libellé de 34
+  - 1100 (6.3.1.2.1.1.2.1.1) -> « Distorsion cognitive » = libellé de 1098
+  - 1101 (6.3.1.2.1.1.2.1.2) -> « Distorsion cognitive » = libellé de 1098
+  - 1102 (6.3.1.2.1.1.2.2) -> « Distorsion cognitive » = libellé de 1098
+  - 1119 (6.3.1.2.2) -> « Raisonnement émotionnel » = libellé de 53
+  - 1120 (6.3.1.2.2.1) -> « Distorsion cognitive » = libellé de 1098
+  - 1155 (6.3.1.2.3.1.2.2) -> « Biais rétrospectif » = libellé de 141
+  - 1169 (6.3.1.2.3.2.2) -> « Distorsion cognitive » = libellé de 1098
+  - 1170 (6.3.1.2.3.2.2.1) -> « Distorsion cognitive » = libellé de 1098
+  - 1171 (6.3.1.2.3.2.2.2) -> « Distorsion cognitive » = libellé de 1098
+  - 1187 (6.3.2.1.2.1.2) -> « Not invented here » = libellé de 106
+  - 1199 (6.3.2.2.1) -> « Stéréotype » = libellé de 619
+  - 1231 (6.3.2.3.1.4) -> « Effet de halo » = libellé de 302
+  - 1271 (6.3.3.3.1.2) -> « Pseudoscience » = libellé de 695
+  - 1297 (7.1.3) -> « Argumentum ad nauseam » = libellé de 1301
+  - 1302 (7.1.3.3.1) -> « Lavage de cerveau » = libellé de 478
+  - 1316 (7.2.1.1.1.1) -> « Digression » = libellé de 297
+  - 1328 (7.2.1.2.1) -> « Ignoratio elenchi » = libellé de 702
+  - 1329 (7.2.1.2.1.1) -> « Restriction mentale » = libellé de 900
+  - 1331 (7.2.1.2.3) -> « Gish gallop » = libellé de 475
+  - 1341 (7.2.1.3.2.2) -> « Politiquement correct » = libellé de 121
+  - 1371 (7.3.2) -> « Sophisme génétique » = libellé de 761
+- articles rouges (missing) : 119 -> « Elitisme », 569 -> « Gestuelle des doigts et des mains », 570 -> « Gestuelle des doigts et des mains », 576 -> « Gestuelle des doigts et des mains », 577 -> « Gestuelle des doigts et des mains », 578 -> « Gestuelle des doigts et des mains », 579 -> « Gestuelle des doigts et des mains », 582 -> « Gestuelle des doigts et des mains », 583 -> « Gestuelle des doigts et des mains », 584 -> « Gestuelle des doigts et des mains », 585 -> « Gestuelle des doigts et des mains », 816 -> « Ou vous êtes avec nous », 917 -> « Campagne de dénigrement »
+
+## link_en : 1338 liens (907 wikipedia, 431 autres hôtes), 39 redirections, 3 articles rouges
+- autres hôtes (non résolus) : 7esl.com ×1, ? ×1, aflintvisuallanguage2014.wordpress.com ×1, changingminds.org ×1, cogbtherapy.com ×1, commons.wikimedia.org ×1, criticalthinkingacademy.net ×1, cybertext.wordpress.com ×1, en.wikisource.org ×19, en.wiktionary.org ×18, handwiki.org ×1, homepages.hass.rpi.edu ×1, infidels.org ×2, journals.openedition.org ×1, leanlogic.online ×2, mathworld.wolfram.com ×1, nonverbalcommunicationpreserviceteacherr.weebly.com ×1, onemindtherapy.com ×1, onlinelibrary.wiley.com ×1, philosophy.lander.edu ×2, prezi.com ×1, rationalwiki.org ×118, repository.upenn.edu ×1, skepdic.com ×32, utminers.utep.edu ×10, web.archive.org ×45, www.academia.edu ×1, www.cogsci.rpi.edu ×3, www.csun.edu ×1, www.ditext.com ×12, www.encyclopedia.com ×1, www.fallacyfiles.org ×29, www.ifioque.com ×1, www.logicallyfallacious.com ×85, www.onegoodmove.org ×3, www.oxfordreference.com ×2, www.readjuancarlos.com ×2, www.seekfind.net ×3, www.skepdic.com ×2, www.springer.com ×1, www.thefreedictionary.com ×2, www.thinklikeacop.org ×12, www.thoughtco.com ×2, www.urbandictionary.com ×2, www.usingenglish.com ×1, www.vanderbilt.edu ×1
+- **collisions (même article, même fragment) : 80 groupes**
+  - 2 (1.1), 595 (3.1), 598 (3.1.1.1.1), 1123 (6.3.1.2.2.1.3) -> « Faulty generalization »
+  - 17 (1.1.1.1.6.1), 1292 (7.1.2.2.1) -> « Appeal to the stone »
+  - 21 (1.1.1.2.1), 787 (4.3.3.1.1.1) -> « Politician's syllogism »
+  - 22 (1.1.1.3), 770 (4.3.1.3) -> « Leap of faith »
+  - 43 (1.1.2.2), 98 (1.2.2.2), 1326 (7.2.1.1.2.3) -> « Argumentum ad populum »
+  - 51 (1.1.2.3), 1055 (6.3.1.1.1.2.2.5.1) -> « Psychologist's fallacy »
+  - 52 (1.1.2.3.1), 1164 (6.3.1.2.3.2) -> « Mind projection fallacy »
+  - 53 (1.1.2.3.2), 1119 (6.3.1.2.2) -> « Emotional reasoning »
+  - 65 (1.1.3.3.2), 616 (3.1.2.1.1), 813 (5.1.2.2.3) -> « No true Scotsman »
+  - 71 (1.2.1), 72 (1.2.1.1), 78 (1.2.1.2) -> « Argument from authority »
+  - 79 (1.2.1.2.1), 1386 (7.3.2.3) -> « Appeal to accomplishment »
+  - 106 (1.2.2.3.2), 1187 (6.3.2.1.2.1.2) -> « Not invented here »
+  - 115 (1.2.3.2), 1069 (6.3.1.1.2.1.3) -> « Appeal to novelty »
+  - 117 (1.2.3.3), 315 (2.2.1.3.2) -> « Moral high ground »
+  - 138 (1.3.1.1.3), 1074 (6.3.1.1.2.1.7) -> « Streetlight effect »
+  - 141 (1.3.1.2), 1155 (6.3.1.2.3.1.2.2) -> « Hindsight bias »
+  - 158 (1.3.2.3), 160 (1.3.2.3.2), 1382 (7.3.2.2.1) -> « Appeal to motive »
+  - 168 (1.3.3.2.1), 894 (6.1.1.1.1.2.1), 1365 (7.3.1.2) -> « Straw man »
+  - 179 (2.1.1.1.1), 701 (4.1.1.2) -> « Complex question »
+  - 183 (2.1.1.2), 698 (4.1.1) -> « Begging the question »
+  - 187 (2.1.1.4.2), 944 (6.1.2.1.1) -> « Sound bite »
+  - 218 (2.1.1.6.4), 812 (5.1.2.2.2.2) -> « Emotive conjugation »
+  - 233 (2.1.2.2.2), 893 (6.1.1.1.1.2) -> « Exaggeration »
+  - 268 (2.1.3.3), 279 (2.1.3.4.6) -> « Zeugma and syllepsis »
+  - 295 (2.1.3.6.5), 866 (5.3.2.3.1) -> « Metonymy »
+  - 297 (2.1.3.6.7), 1316 (7.2.1.1.1.1) -> « Digression »
+  - 302 (2.2.1.1.1), 1231 (6.3.2.3.1.4) -> « Halo effect »
+  - 323 (2.2.2.1), 844 (5.2.3) -> « Association fallacy »
+  - 338 (2.2.2.4.1), 920 (6.1.1.2.2.2.1) -> « Fear, uncertainty, and doubt »
+  - 339 (2.2.2.4.2), 922 (6.1.1.2.2.2.2) -> « Moral panic »
+  - 343 (2.2.3.1.2), 468 (2.3.2.3.1.4.1.1) -> « Argumentum ad baculum »
+  - 368 (2.3.1.1.1.8), 1067 (6.3.1.1.2.1.1) -> « Illusory truth effect »
+  - 390 (2.3.1.2.3.1), 1040 (6.3.1.1.1.2.1.1) -> « Contrast effect »
+  - 418 (2.3.1.6.3), 919 (6.1.1.2.2.2) -> « Fearmongering »
+  - 420 (2.3.2), 498 (2.3.2.4.1) -> « Controlling behavior in relationships »
+  - 451 (2.3.2.2.1.2.7), 1103 (6.3.1.2.1.1.2.3), 1324 (7.2.1.1.2.1.2) -> « Gratitude trap »
+  - 460 (2.3.2.3.1.1.2), 915 (6.1.1.2.1.6) -> « Firehose of falsehood »
+  - 476 (2.3.2.3.2.2.2), 1300 (7.1.3.2.1) -> « Spreading (debate) »
+  - 478 (2.3.2.3.2.2.4), 1302 (7.1.3.3.1) -> « Brainwashing »
+  - 491 (2.3.2.3.3.4), 923 (6.1.1.2.2.3) -> « Gossip »
+  - 496 (2.3.2.3.6), 892 (6.1.1.1.1.1) -> « Minimisation (psychology) »
+  - 499 (2.3.2.4.1.1), 500 (2.3.2.4.1.1.1) -> « Micromanagement »
+  - 559 (2.3.3.4.2.4.6), 570 (2.3.3.4.2.5.7) -> « Raised fist »
+  - 566 (2.3.3.4.2.5.3), 579 (2.3.3.4.2.6.8) -> « Thumb signal »
+  - 594 (3), 666 (3.3), 691 (3.3.3.1) -> « Mathematical fallacy »
+  - 600 (3.1.1.1.1.2), 1084 (6.3.1.1.2.3.1) -> « Insensitivity to sample size »
+  - 634 (3.2.1.1), 707 (4.1.2), 719 (4.1.3), 724 (4.1.3.2) -> « Correlation does not imply causation »
+  - 635 (3.2.1.2), 725 (4.1.3.4) -> « Post hoc ergo propter hoc »
+  - 642 (3.2.1.5), 1085 (6.3.1.1.2.3.2) -> « Illusory correlation »
+  - 648 (3.2.2.2.1), 650 (3.2.2.2.3) -> « Base rate fallacy »
+  - 654 (3.2.2.3.2), 717 (4.1.2.6) -> « Gambler's fallacy »
+  - 662 (3.2.3.2.1), 664 (3.2.3.2.2) -> « Infinite regress »
+  - 668 (3.3.1.1), 857 (5.3.2.1.1) -> « False precision »
+  - 702 (4.1.1.3), 1328 (7.2.1.2.1) -> « Irrelevant conclusion »
+  - 706 (4.1.1.7), 1171 (6.3.1.2.3.2.2.2) -> « Cognitive distortion »
+  - 708 (4.1.2.1), 731 (4.2.1.2.1) -> « Affirming the consequent »
+  - 713 (4.1.2.5), 1325 (7.2.1.1.2.2) -> « Two wrongs don't make a right »
+  - 714 (4.1.2.5.1), 1362 (7.3.1.1) -> « Tu quoque »
+  - 722 (4.1.3.1.1.1), 729 (4.2.1.1.1) -> « Denying the antecedent »
+  - 723 (4.1.3.1.1.2), 1169 (6.3.1.2.3.2.2) -> « Cognitive distortion »
+  - 740 (4.2.2.2), 744 (4.2.2.2.3), 745 (4.2.2.2.4), 746 (4.2.2.2.5), 747 (4.2.2.2.6) -> « Immediate inference »
+  - 749 (4.2.2.3), 850 (5.3.1.2.1) -> « Quantifier shift »
+  - 756 (4.2.3.4.1), 1102 (6.3.1.2.1.1.2.2) -> « Cognitive distortion »
+  - 759 (4.3.1), 1127 (6.3.1.2.2.2.1) -> « Jumping to conclusions »
+  - 768 (4.3.1.2), 843 (5.2.2.4) -> « False equivalence »
+  - 817 (5.1.2.2.4.3), 1120 (6.3.1.2.2.1) -> « Splitting (psychology) »
+  - 880 (5.3.3.1.1.2), 924 (6.1.1.2.2.3.1) -> « Blind item »
+  - 881 (5.3.3.2), 883 (5.3.3.3) -> « Propaganda »
+  - 882 (5.3.3.2.1), 918 (6.1.1.2.2.1.1) -> « Whispering campaign »
+  - 895 (6.1.1.1.1.3), 1101 (6.3.1.2.1.1.2.1.2) -> « Cognitive distortion »
+  - 900 (6.1.1.1.3.3), 1329 (7.2.1.2.1.1) -> « Mental reservation »
+  - 914 (6.1.1.2.1.5), 1318 (7.2.1.1.1.2.1) -> « Dead cat strategy »
+  - 973 (6.2), 1005 (6.2.2.5.1) -> « Moving the goalposts »
+  - 977 (6.2.1.1.1.1), 1350 (7.2.2.2) -> « Nirvana fallacy »
+  - 979 (6.2.1.1.1.2), 1349 (7.2.2.1.2) -> « Infinite regress »
+  - 1042 (6.3.1.1.1.2.1.1.2), 1239 (6.3.2.3.2.2) -> « Less-is-better effect »
+  - 1124 (6.3.1.2.2.1.4), 1125 (6.3.1.2.2.1.5) -> « Ambiguity effect »
+  - 1165 (6.3.1.2.3.2.1), 1355 (7.2.3.3) -> « Psychological projection »
+  - 1166 (6.3.1.2.3.2.1.1), 1344 (7.2.1.3.3.2) -> « Buck passing »
+  - 1313 (7.2.1), 1332 (7.2.1.2.4), 1333 (7.2.1.2.4.1), 1335 (7.2.1.3.1), 1336 (7.2.1.3.1.1), 1337 (7.2.1.3.1.2), 1338 (7.2.1.3.2), 1339 (7.2.1.3.2.1), 1342 (7.2.1.3.3) -> « Evasion (ethics) »
+- même article, fragments distincts (acceptés, non collisions) : 23
+  - 1360 (7.3), 1381 (7.3.2.2) -> « Ad hominem » (sections : , Circumstantial)
+  - 1126 (6.3.1.2.2.2), 1128 (6.3.1.2.2.2.2), 1129 (6.3.1.2.2.2.3), 1130 (6.3.1.2.2.2.3.1), 1131 (6.3.1.2.2.2.3.2), 1134 (6.3.1.2.2.2.4.1) -> « Affective forecasting » (sections : , Expectation effects, Focalism, Immune neglect, Misconstruals, Projection bias)
+  - 833 (5.2), 839 (5.2.2) -> « Argument from analogy » (sections : , False analogy)
+  - 539 (2.3.3.4.2.2.4), 549 (2.3.3.4.2.3.6) -> « Bowing » (sections : , In martial arts)
+  - 948 (6.1.2.2), 949 (6.1.2.2.1) -> « Circular reporting » (sections : , History of citogenesis)
+  - 373 (2.3.1.1.2.2), 374 (2.3.1.1.2.2.1), 375 (2.3.1.1.2.2.2) -> « Cold reading » (sections : , Shotgunning, The rainbow ruse)
+  - 431 (2.3.2.2), 452 (2.3.2.2.2), 453 (2.3.2.2.3), 454 (2.3.2.2.4), 473 (2.3.2.3.2.1) -> « Compliance gaining » (sections : , Disrupt-then-reframe .28DTR.29, Dump and chase .28DAC.29, Just-One-More .28JOM.29, Persistence)
+  - 626 (3.1.3.2.1), 628 (3.1.3.2.1.2), 629 (3.1.3.2.1.3), 630 (3.1.3.2.1.4) -> « Ecological fallacy » (sections : , Group and total averages, Individual and aggregate correlations, Mean and median)
+  - 799 (5.1), 805 (5.1.2.1) -> « Fallacies of definition » (sections : , Incongruity: overly broad or narrow)
+  - 0 (0), 696 (4) -> « Fallacy » (sections : , Logical fallacies)
+  - 209 (2.1.1.5.2.4.2), 210 (2.1.1.5.2.4.2.1) -> « Headline » (sections : Criticism, Headlinese)
+  - 238 (2.1.2.2.3), 239 (2.1.2.2.3.1), 240 (2.1.2.2.3.2) -> « Irony » (sections : , Situational irony, Socratic irony)
+  - 889 (6.1.1), 898 (6.1.1.1.3.1), 902 (6.1.1.1.3.3.2), 934 (6.1.1.3.3.1) -> « Lie » (sections : , Fib, Polite lie and butler lie, Types and associated terms)
+  - 1031 (6.3.1.1.1.1.1.3), 1045 (6.3.1.1.1.2.1.2.1.1), 1141 (6.3.1.2.2.3.1.2), 1149 (6.3.1.2.3.1.1.1), 1153 (6.3.1.2.3.1.2) -> « List of cognitive biases » (sections : Consistency bias, Continued influence effect, Humor effect, Processing difficulty effect, Suffix effect)
+  - 176 (2.1), 248 (2.1.3.1) -> « Literary device » (sections : , Sonic devices)
+  - 1033 (6.3.1.1.1.1.3), 1034 (6.3.1.1.1.1.3.1) -> « Memory inhibition » (sections : Part-set cuing effect, Part-set cuing effectt)
+  - 376 (2.3.1.1.4), 377 (2.3.1.1.4.1), 379 (2.3.1.1.4.3), 380 (2.3.1.1.4.4), 381 (2.3.1.1.4.5), 382 (2.3.1.1.4.6) -> « Methods of neuro-linguistic programming » (sections : , Anchoring, Future pacing, Reframing, Swish, VK.2FD)
+  - 1001 (6.2.2.4), 1003 (6.2.2.4.2) -> « Non-apology » (sections : , The .22if apology.22)
+  - 1091 (6.3.1.2.1), 1093 (6.3.1.2.1.1.1), 1105 (6.3.1.2.1.2.1) -> « Optimism bias » (sections : , Pessimism bias, Valence effect)
+  - 514 (2.3.3.1.2), 515 (2.3.3.1.2.1), 516 (2.3.3.1.2.2), 517 (2.3.3.1.2.3) -> « Paralanguage » (sections : Gasps, Sighs, Specific forms of paralinguistic respiration, The Throat-Clear)
+  - 967 (6.1.3.1.3), 969 (6.1.3.1.3.2) -> « Publication bias » (sections : , Definition)
+  - 1028 (6.3.1.1.1.1.1), 1029 (6.3.1.1.1.1.1.1) -> « Serial-position effect » (sections : , Primacy effect)
+  - 525 (2.3.3.4.2.1.1), 526 (2.3.3.4.2.1.1.1), 528 (2.3.3.4.2.1.1.3) -> « Wink » (sections : , Both eyes (bat/flutter), Double wink)
+- titres d'arrivée = libellé d'un AUTRE nœud (text_en / text_en) : 157
+  - 17 (1.1.1.1.6.1) -> « Appeal to the stone » = libellé de 1292
+  - 21 (1.1.1.2.1) -> « Politician's syllogism » = libellé de 787
+  - 22 (1.1.1.3) -> « Leap of faith » = libellé de 770
+  - 51 (1.1.2.3) -> « Psychologist's fallacy » = libellé de 1055
+  - 52 (1.1.2.3.1) -> « Mind projection fallacy » = libellé de 1164
+  - 53 (1.1.2.3.2) -> « Emotional reasoning » = libellé de 1119
+  - 65 (1.1.3.3.2) -> « No true Scotsman » = libellé de 616
+  - 66 (1.1.3.4) -> « Confirmation bias » = libellé de 602
+  - 72 (1.2.1.1) -> « Argument from authority » = libellé de 71
+  - 78 (1.2.1.2) -> « Argument from authority » = libellé de 71
+  - 85 (1.2.1.3.1) -> « Argument from authority » = libellé de 71
+  - 106 (1.2.2.3.2) -> « Not invented here » = libellé de 1187
+  - 115 (1.2.3.2) -> « Appeal to novelty » = libellé de 1069
+  - 138 (1.3.1.1.3) -> « Streetlight effect » = libellé de 1074
+  - 141 (1.3.1.2) -> « Hindsight bias » = libellé de 1155
+  - 158 (1.3.2.3) -> « Appeal to motive » = libellé de 1382
+  - 160 (1.3.2.3.2) -> « Appeal to motive » = libellé de 1382
+  - 168 (1.3.3.2.1) -> « Straw man » = libellé de 894
+  - 183 (2.1.1.2) -> « Begging the question » = libellé de 698
+  - 184 (2.1.1.3) -> « Persuasive definition » = libellé de 819
+  - 218 (2.1.1.6.4) -> « Emotive conjugation » = libellé de 812
+  - 233 (2.1.2.2.2) -> « Exaggeration » = libellé de 893
+  - 239 (2.1.2.2.3.1) -> « Irony » = libellé de 238
+  - 240 (2.1.2.2.3.2) -> « Irony » = libellé de 238
+  - 295 (2.1.3.6.5) -> « Metonymy » = libellé de 866
+  - 297 (2.1.3.6.7) -> « Digression » = libellé de 1316
+  - 302 (2.2.1.1.1) -> « Halo effect » = libellé de 1231
+  - 323 (2.2.2.1) -> « Association fallacy » = libellé de 844
+  - 339 (2.2.2.4.2) -> « Moral panic » = libellé de 922
+  - 368 (2.3.1.1.1.8) -> « Illusory truth effect » = libellé de 1067
+  - 374 (2.3.1.1.2.2.1) -> « Cold reading » = libellé de 373
+  - 375 (2.3.1.1.2.2.2) -> « Cold reading » = libellé de 373
+  - 390 (2.3.1.2.3.1) -> « Contrast effect » = libellé de 1040
+  - 418 (2.3.1.6.3) -> « Fearmongering » = libellé de 919
+  - 451 (2.3.2.2.1.2.7) -> « Gratitude trap » = libellé de 1103
+  - 460 (2.3.2.3.1.1.2) -> « Firehose of falsehood » = libellé de 915
+  - 478 (2.3.2.3.2.2.4) -> « Brainwashing » = libellé de 1302
+  - 491 (2.3.2.3.3.4) -> « Gossip » = libellé de 923
+  - 500 (2.3.2.4.1.1.1) -> « Micromanagement » = libellé de 499
+  - 501 (2.3.2.4.1.2) -> « Scapegoating » = libellé de 960
+  - 514 (2.3.3.1.2) -> « Paralanguage » = libellé de 512
+  - 515 (2.3.3.1.2.1) -> « Paralanguage » = libellé de 512
+  - 516 (2.3.3.1.2.2) -> « Paralanguage » = libellé de 512
+  - 517 (2.3.3.1.2.3) -> « Paralanguage » = libellé de 512
+  - 526 (2.3.3.4.2.1.1.1) -> « Wink » = libellé de 525
+  - 528 (2.3.3.4.2.1.1.3) -> « Wink » = libellé de 525
+  - 570 (2.3.3.4.2.5.7) -> « Raised fist » = libellé de 559
+  - 592 (2.3.3.5.2) -> « Nonverbal communication » = libellé de 511
+  - 594 (3) -> « Mathematical fallacy » = libellé de 691
+  - 600 (3.1.1.1.1.2) -> « Insensitivity to sample size » = libellé de 1084
+  - 616 (3.1.2.1.1) -> « No true Scotsman » = libellé de 65
+  - 628 (3.1.3.2.1.2) -> « Ecological fallacy » = libellé de 626
+  - 629 (3.1.3.2.1.3) -> « Ecological fallacy » = libellé de 626
+  - 630 (3.1.3.2.1.4) -> « Ecological fallacy » = libellé de 626
+  - 635 (3.2.1.2) -> « Post hoc ergo propter hoc » = libellé de 725
+  - 642 (3.2.1.5) -> « Illusory correlation » = libellé de 1085
+  - 650 (3.2.2.2.3) -> « Base rate fallacy » = libellé de 648
+  - 654 (3.2.2.3.2) -> « Gambler's fallacy » = libellé de 717
+  - 662 (3.2.3.2.1) -> « Infinite regress » = libellé de 979
+  - 664 (3.2.3.2.2) -> « Infinite regress » = libellé de 979
+  - 666 (3.3) -> « Mathematical fallacy » = libellé de 691
+  - 668 (3.3.1.1) -> « False precision » = libellé de 857
+  - 677 (3.3.1.3.1) -> « Slippery slope » = libellé de 705
+  - 696 (4) -> « Fallacy » = libellé de 0
+  - 698 (4.1.1) -> « Begging the question » = libellé de 183
+  - 702 (4.1.1.3) -> « Irrelevant conclusion » = libellé de 1328
+  - 706 (4.1.1.7) -> « Cognitive distortion » = libellé de 1098
+  - 708 (4.1.2.1) -> « Affirming the consequent » = libellé de 731
+  - 714 (4.1.2.5.1) -> « Tu quoque » = libellé de 1362
+  - 717 (4.1.2.6) -> « Gambler's fallacy » = libellé de 654
+  - 722 (4.1.3.1.1.1) -> « Denying the antecedent » = libellé de 729
+  - 723 (4.1.3.1.1.2) -> « Cognitive distortion » = libellé de 1098
+  - 729 (4.2.1.1.1) -> « Denying the antecedent » = libellé de 722
+  - 731 (4.2.1.2.1) -> « Affirming the consequent » = libellé de 708
+  - 749 (4.2.2.3) -> « Quantifier shift » = libellé de 850
+  - 756 (4.2.3.4.1) -> « Cognitive distortion » = libellé de 1098
+  - 768 (4.3.1.2) -> « False equivalence » = libellé de 843
+  - 770 (4.3.1.3) -> « Leap of faith » = libellé de 22
+  - 774 (4.3.1.6) -> « Cognitive distortion » = libellé de 1098
+  - 775 (4.3.1.7) -> « Cognitive distortion » = libellé de 1098
+  - 776 (4.3.1.8) -> « Cognitive distortion » = libellé de 1098
+  - 787 (4.3.3.1.1.1) -> « Politician's syllogism » = libellé de 21
+  - 812 (5.1.2.2.2.2) -> « Emotive conjugation » = libellé de 218
+  - 813 (5.1.2.2.3) -> « No true Scotsman » = libellé de 65
+  - 843 (5.2.2.4) -> « False equivalence » = libellé de 768
+  - 850 (5.3.1.2.1) -> « Quantifier shift » = libellé de 749
+  - 857 (5.3.2.1.1) -> « False precision » = libellé de 668
+  - 866 (5.3.2.3.1) -> « Metonymy » = libellé de 295
+  - 880 (5.3.3.1.1.2) -> « Blind item » = libellé de 924
+  - 882 (5.3.3.2.1) -> « Whispering campaign » = libellé de 918
+  - 893 (6.1.1.1.1.2) -> « Exaggeration » = libellé de 233
+  - 894 (6.1.1.1.1.2.1) -> « Straw man » = libellé de 168
+  - 895 (6.1.1.1.1.3) -> « Cognitive distortion » = libellé de 1098
+  - 900 (6.1.1.1.3.3) -> « Mental reservation » = libellé de 1329
+  - 914 (6.1.1.2.1.5) -> « Dead cat strategy » = libellé de 1318
+  - 915 (6.1.1.2.1.6) -> « Firehose of falsehood » = libellé de 460
+  - 918 (6.1.1.2.2.1.1) -> « Whispering campaign » = libellé de 882
+  - 919 (6.1.1.2.2.2) -> « Fearmongering » = libellé de 418
+  - 922 (6.1.1.2.2.2.2) -> « Moral panic » = libellé de 339
+  - 923 (6.1.1.2.2.3) -> « Gossip » = libellé de 491
+  - 924 (6.1.1.2.2.3.1) -> « Blind item » = libellé de 880
+  - 944 (6.1.2.1.1) -> « Sound bite » = libellé de 187
+  - 949 (6.1.2.2.1) -> « Circular reporting » = libellé de 948
+  - 969 (6.1.3.1.3.2) -> « Publication bias » = libellé de 967
+  - 977 (6.2.1.1.1.1) -> « Nirvana fallacy » = libellé de 1350
+  - 979 (6.2.1.1.1.2) -> « Infinite regress » = libellé de 1349
+  - 1005 (6.2.2.5.1) -> « Moving the goalposts » = libellé de 973
+  - 1029 (6.3.1.1.1.1.1.1) -> « Serial-position effect » = libellé de 1028
+  - 1034 (6.3.1.1.1.1.3.1) -> « Memory inhibition » = libellé de 1033
+  - 1042 (6.3.1.1.1.2.1.1.2) -> « Less-is-better effect » = libellé de 1239
+  - 1055 (6.3.1.1.1.2.2.5.1) -> « Psychologist's fallacy » = libellé de 51
+  - 1067 (6.3.1.1.2.1.1) -> « Illusory truth effect » = libellé de 368
+  - 1069 (6.3.1.1.2.1.3) -> « Appeal to novelty » = libellé de 115
+  - 1074 (6.3.1.1.2.1.7) -> « Streetlight effect » = libellé de 138
+  - 1084 (6.3.1.1.2.3.1) -> « Insensitivity to sample size » = libellé de 600
+  - 1085 (6.3.1.1.2.3.2) -> « Illusory correlation » = libellé de 642
+  - 1091 (6.3.1.2.1) -> « Optimism bias » = libellé de 1105
+  - 1093 (6.3.1.2.1.1.1) -> « Optimism bias » = libellé de 1105
+  - 1099 (6.3.1.2.1.1.2.1) -> « Cognitive distortion » = libellé de 1098
+  - 1100 (6.3.1.2.1.1.2.1.1) -> « Cognitive distortion » = libellé de 1098
+  - 1101 (6.3.1.2.1.1.2.1.2) -> « Cognitive distortion » = libellé de 1098
+  - 1102 (6.3.1.2.1.1.2.2) -> « Cognitive distortion » = libellé de 1098
+  - 1103 (6.3.1.2.1.1.2.3) -> « Gratitude trap » = libellé de 451
+  - 1119 (6.3.1.2.2) -> « Emotional reasoning » = libellé de 53
+  - 1125 (6.3.1.2.2.1.5) -> « Ambiguity effect » = libellé de 1124
+  - 1128 (6.3.1.2.2.2.2) -> « Affective forecasting » = libellé de 1126
+  - 1129 (6.3.1.2.2.2.3) -> « Affective forecasting » = libellé de 1126
+  - 1130 (6.3.1.2.2.2.3.1) -> « Affective forecasting » = libellé de 1126
+  - 1131 (6.3.1.2.2.2.3.2) -> « Affective forecasting » = libellé de 1126
+  - 1134 (6.3.1.2.2.2.4.1) -> « Affective forecasting » = libellé de 1126
+  - 1155 (6.3.1.2.3.1.2.2) -> « Hindsight bias » = libellé de 141
+  - 1164 (6.3.1.2.3.2) -> « Mind projection fallacy » = libellé de 52
+  - 1165 (6.3.1.2.3.2.1) -> « Psychological projection » = libellé de 1355
+  - 1166 (6.3.1.2.3.2.1.1) -> « Buck passing » = libellé de 1344
+  - 1169 (6.3.1.2.3.2.2) -> « Cognitive distortion » = libellé de 1098
+  - 1170 (6.3.1.2.3.2.2.1) -> « Cognitive distortion » = libellé de 1098
+  - 1171 (6.3.1.2.3.2.2.2) -> « Cognitive distortion » = libellé de 1098
+  - 1187 (6.3.2.1.2.1.2) -> « Not invented here » = libellé de 106
+  - 1199 (6.3.2.2.1) -> « Stereotype » = libellé de 619
+  - 1231 (6.3.2.3.1.4) -> « Halo effect » = libellé de 302
+  - 1239 (6.3.2.3.2.2) -> « Less-is-better effect » = libellé de 1042
+  - 1271 (6.3.3.3.1.2) -> « Pseudoscience » = libellé de 695
+  - 1292 (7.1.2.2.1) -> « Appeal to the stone » = libellé de 17
+  - 1302 (7.1.3.3.1) -> « Brainwashing » = libellé de 478
+  - 1316 (7.2.1.1.1.1) -> « Digression » = libellé de 297
+  - 1318 (7.2.1.1.1.2.1) -> « Dead cat strategy » = libellé de 914
+  - 1324 (7.2.1.1.2.1.2) -> « Gratitude trap » = libellé de 451
+  - 1329 (7.2.1.2.1.1) -> « Mental reservation » = libellé de 900
+  - 1344 (7.2.1.3.3.2) -> « Buck passing » = libellé de 1166
+  - 1349 (7.2.2.1.2) -> « Infinite regress » = libellé de 979
+  - 1350 (7.2.2.2) -> « Nirvana fallacy » = libellé de 977
+  - 1355 (7.2.3.3) -> « Psychological projection » = libellé de 1165
+  - 1362 (7.3.1.1) -> « Tu quoque » = libellé de 714
+  - 1365 (7.3.1.2) -> « Straw man » = libellé de 168
+  - 1371 (7.3.2) -> « Genetic fallacy » = libellé de 761
+  - 1381 (7.3.2.2) -> « Ad hominem » = libellé de 1360
+  - 1386 (7.3.2.3) -> « Appeal to accomplishment » = libellé de 79
+- articles rouges (missing) : 39 -> « The squeaky wheel gets the grease* », 108 -> « Appeal to naturehttps://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm », 217 -> « Judgmental language »
+
+## link_ru : 179 liens (162 wikipedia, 17 autres hôtes), 2 redirections, 0 articles rouges
+- autres hôtes (non résolus) : studme.org ×3, www.fallaeasies.com ×14
+- **collisions (même article, même fragment) : 13 groupes**
+  - 0 (0), 154 (1.3.2.1) -> « Софизм »
+  - 43 (1.1.2.2), 98 (1.2.2.2) -> « Апелляция к большинству »
+  - 71 (1.2.1), 78 (1.2.1.2) -> « Апелляция к авторитету »
+  - 172 (1.3.3.4), 1083 (6.3.1.1.2.3) -> « Апофения »
+  - 182 (2.1.1.1.3), 814 (5.1.2.2.4) -> « Ложная дилемма »
+  - 295 (2.1.3.6.5), 866 (5.3.2.3.1) -> « Метонимия »
+  - 297 (2.1.3.6.7), 1316 (7.2.1.1.1.1) -> « Лирическое отступление »
+  - 491 (2.3.2.3.3.4), 923 (6.1.1.2.2.3) -> « Сплетни »
+  - 499 (2.3.2.4.1.1), 500 (2.3.2.4.1.1.1) -> « Микроменеджмент »
+  - 594 (3), 666 (3.3) -> « Математический софизм »
+  - 696 (4), 698 (4.1.1) -> « Логическая ошибка »
+  - 1165 (6.3.1.2.3.2.1), 1355 (7.2.3.3) -> « Проекция (психология) »
+  - 1360 (7.3), 1362 (7.3.1.1) -> « Апелляция к личности »
+- titres d'arrivée = libellé d'un AUTRE nœud (text_ru / text_en) : 17
+  - 43 (1.1.2.2) -> « Апелляция к большинству » = libellé de 98
+  - 78 (1.2.1.2) -> « Апелляция к авторитету » = libellé de 71
+  - 172 (1.3.3.4) -> « Апофения » = libellé de 1083
+  - 182 (2.1.1.1.3) -> « Ложная дилемма » = libellé de 814
+  - 289 (2.1.3.5.6.1) -> « Перифраз » = libellé de 288
+  - 295 (2.1.3.6.5) -> « Метонимия » = libellé de 866
+  - 491 (2.3.2.3.3.4) -> « Сплетни » = libellé de 923
+  - 500 (2.3.2.4.1.1.1) -> « Микроменеджмент » = libellé de 499
+  - 594 (3) -> « Математический софизм » = libellé de 691
+  - 644 (3.2.2) -> « Ошибка игрока » = libellé de 654
+  - 666 (3.3) -> « Математический софизм » = libellé de 691
+  - 866 (5.3.2.3.1) -> « Метонимия » = libellé de 295
+  - 923 (6.1.1.2.2.3) -> « Сплетни » = libellé de 491
+  - 1083 (6.3.1.1.2.3) -> « Апофения » = libellé de 172
+  - 1202 (6.3.2.2.2) -> « Этноцентризм » = libellé de 1174
+  - 1271 (6.3.3.3.1.2) -> « Псевдонаука » = libellé de 695
+  - 1404 (7.3.3.5.1) -> « Оскорбление » = libellé de 1403
+
+## link_pt : 194 liens (191 wikipedia, 3 autres hôtes), 3 redirections, 0 articles rouges
+- autres hôtes (non résolus) : www.fallaeasies.com ×3
+- **collisions (même article, même fragment) : 13 groupes**
+  - 0 (0), 696 (4) -> « Falácia »
+  - 43 (1.1.2.2), 98 (1.2.2.2) -> « Argumentum ad populum »
+  - 71 (1.2.1), 78 (1.2.1.2) -> « Argumentum ad verecundiam »
+  - 172 (1.3.3.4), 1083 (6.3.1.1.2.3) -> « Apofenia »
+  - 182 (2.1.1.1.3), 814 (5.1.2.2.4) -> « Falsa dicotomia »
+  - 295 (2.1.3.6.5), 866 (5.3.2.3.1) -> « Metonímia »
+  - 297 (2.1.3.6.7), 1316 (7.2.1.1.1.1) -> « Digressão (literatura) »
+  - 478 (2.3.2.3.2.2.4), 1302 (7.1.3.3.1) -> « Lavagem cerebral »
+  - 491 (2.3.2.3.3.4), 923 (6.1.1.2.2.3) -> « Fofoca »
+  - 499 (2.3.2.4.1.1), 500 (2.3.2.4.1.1.1) -> « Microgerência »
+  - 594 (3), 666 (3.3) -> « Falácia matemática »
+  - 707 (4.1.2), 719 (4.1.3) -> « Correlação não implica causalidade »
+  - 1360 (7.3), 1362 (7.3.1.1) -> « Argumentum ad hominem »
+- même article, fragments distincts (acceptés, non collisions) : 1
+  - 1024 (6.3.1), 1174 (6.3.2) -> « Novum Organum » (sections : Os ídolos da caverna, Os ídolos da tribo)
+- titres d'arrivée = libellé d'un AUTRE nœud (text_pt / text_en) : 16
+  - 172 (1.3.3.4) -> « Apofenia » = libellé de 1083
+  - 295 (2.1.3.6.5) -> « Metonímia » = libellé de 866
+  - 478 (2.3.2.3.2.2.4) -> « Lavagem cerebral » = libellé de 1302
+  - 491 (2.3.2.3.3.4) -> « Fofoca » = libellé de 923
+  - 696 (4) -> « Falácia » = libellé de 0
+  - 698 (4.1.1) -> « Petitio principii » = libellé de 1369
+  - 708 (4.1.2.1) -> « Afirmação do consequente » = libellé de 731
+  - 729 (4.2.1.1.1) -> « Negação do antecedente » = libellé de 722
+  - 768 (4.3.1.2) -> « Falsa equivalência » = libellé de 843
+  - 787 (4.3.3.1.1.1) -> « Silogismo do político » = libellé de 21
+  - 866 (5.3.2.3.1) -> « Metonímia » = libellé de 295
+  - 923 (6.1.1.2.2.3) -> « Fofoca » = libellé de 491
+  - 977 (6.2.1.1.1.1) -> « Falácia Nirvana » = libellé de 1350
+  - 1083 (6.3.1.1.2.3) -> « Apofenia » = libellé de 172
+  - 1271 (6.3.3.3.1.2) -> « Pseudociência » = libellé de 695
+  - 1302 (7.1.3.3.1) -> « Lavagem cerebral » = libellé de 478
+
+## link_es : 208 liens (205 wikipedia, 3 autres hôtes), 10 redirections, 0 articles rouges
+- autres hôtes (non résolus) : www.fallaeasies.com ×3
+- **collisions (même article, même fragment) : 16 groupes**
+  - 0 (0), 696 (4) -> « Falacia »
+  - 43 (1.1.2.2), 98 (1.2.2.2) -> « Argumento ad populum »
+  - 71 (1.2.1), 78 (1.2.1.2) -> « Argumento ad verecundiam »
+  - 172 (1.3.3.4), 1083 (6.3.1.1.2.3) -> « Apofenia »
+  - 182 (2.1.1.1.3), 814 (5.1.2.2.4) -> « Falso dilema »
+  - 295 (2.1.3.6.5), 866 (5.3.2.3.1) -> « Metonimia »
+  - 297 (2.1.3.6.7), 1316 (7.2.1.1.1.1) -> « Digresión »
+  - 323 (2.2.2.1), 844 (5.2.3) -> « Falacia de asociación »
+  - 478 (2.3.2.3.2.2.4), 1302 (7.1.3.3.1) -> « Lavado de cerebro »
+  - 491 (2.3.2.3.3.4), 923 (6.1.1.2.2.3) -> « Murmuración »
+  - 499 (2.3.2.4.1.1), 500 (2.3.2.4.1.1.1) -> « Microgestión »
+  - 594 (3), 666 (3.3) -> « Demostración inválida »
+  - 707 (4.1.2), 719 (4.1.3) -> « Cum hoc ergo propter hoc »
+  - 1024 (6.3.1), 1174 (6.3.2) -> « Novum organum »
+  - 1297 (7.1.3), 1301 (7.1.3.3) -> « Argumento ad nauseam »
+  - 1360 (7.3), 1362 (7.3.1.1) -> « Argumento ad hominem »
+- même article, fragments distincts (acceptés, non collisions) : 1
+  - 833 (5.2), 839 (5.2.2) -> « Razonamiento por analogía » (sections : , Falsa analogía)
+- titres d'arrivée = libellé d'un AUTRE nœud (text_es / text_en) : 23
+  - 34 (1.1.2.1) -> « Prueba anecdótica » = libellé de 1087
+  - 51 (1.1.2.3) -> « Falacia del psicólogo » = libellé de 1055
+  - 121 (1.2.3.3.2) -> « Corrección política » = libellé de 1341
+  - 182 (2.1.1.1.3) -> « Falso dilema » = libellé de 814
+  - 295 (2.1.3.6.5) -> « Metonimia » = libellé de 866
+  - 297 (2.1.3.6.7) -> « Digresión » = libellé de 1316
+  - 323 (2.2.2.1) -> « Falacia de asociación » = libellé de 844
+  - 478 (2.3.2.3.2.2.4) -> « Lavado de cerebro » = libellé de 1302
+  - 614 (3.1.2) -> « Generalización apresurada » = libellé de 598
+  - 677 (3.3.1.3.1) -> « Pendiente resbaladiza » = libellé de 705
+  - 696 (4) -> « Falacia » = libellé de 0
+  - 698 (4.1.1) -> « Petición de principio » = libellé de 183
+  - 708 (4.1.2.1) -> « Afirmación del consecuente » = libellé de 731
+  - 713 (4.1.2.5) -> « Dos errores hacen un acierto » = libellé de 1325
+  - 729 (4.2.1.1.1) -> « Negación del antecedente » = libellé de 722
+  - 768 (4.3.1.2) -> « Falsa equivalencia » = libellé de 843
+  - 866 (5.3.2.3.1) -> « Metonimia » = libellé de 295
+  - 869 (5.3.2.3.2.1) -> « Falacia patética » = libellé de 171
+  - 977 (6.2.1.1.1.1) -> « Falacia del Nirvana » = libellé de 1350
+  - 1271 (6.3.3.3.1.2) -> « Pseudociencia » = libellé de 695
+  - 1302 (7.1.3.3.1) -> « Lavado de cerebro » = libellé de 478
+  - 1316 (7.2.1.1.1.1) -> « Digresión » = libellé de 297
+  - 1371 (7.3.2) -> « Falacia genética » = libellé de 761
+
+## link_ar : 204 liens (204 wikipedia, 0 autres hôtes), 12 redirections, 0 articles rouges
+- **collisions (même article, même fragment) : 15 groupes**
+  - 0 (0), 696 (4) -> « مغالطة »
+  - 2 (1.1), 595 (3.1), 598 (3.1.1.1.1) -> « تعميم خاطئ »
+  - 43 (1.1.2.2), 98 (1.2.2.2) -> « احتكام إلى عامة الناس »
+  - 71 (1.2.1), 78 (1.2.1.2) -> « توسل بالمرجعية »
+  - 172 (1.3.3.4), 1083 (6.3.1.1.2.3) -> « استسقاط »
+  - 182 (2.1.1.1.3), 814 (5.1.2.2.4) -> « مأزق مفتعل »
+  - 295 (2.1.3.6.5), 866 (5.3.2.3.1) -> « كناية »
+  - 297 (2.1.3.6.7), 1316 (7.2.1.1.1.1) -> « استطراد »
+  - 323 (2.2.2.1), 844 (5.2.3) -> « ذنب بالتداعي (مغالطة) »
+  - 478 (2.3.2.3.2.2.4), 1302 (7.1.3.3.1) -> « غسيل دماغ »
+  - 491 (2.3.2.3.3.4), 923 (6.1.1.2.2.3) -> « نميمة »
+  - 499 (2.3.2.4.1.1), 500 (2.3.2.4.1.1.1) -> « إدارة تفصيلية »
+  - 594 (3), 666 (3.3) -> « إثبات خاطئ »
+  - 707 (4.1.2), 719 (4.1.3) -> « الارتباط لا يقتضي السببية »
+  - 1360 (7.3), 1362 (7.3.1.1) -> « شخصنة »
+- même article, fragments distincts (acceptés, non collisions) : 1
+  - 833 (5.2), 839 (5.2.2) -> « الحجة من القياس » (sections : , القياس الزائف)
+- titres d'arrivée = libellé d'un AUTRE nœud (text_ar / text_en) : 11
+  - 153 (1.3.2) -> « مغالطة المغالطة » = libellé de 154
+  - 179 (2.1.1.1.1) -> « سؤال مركب » = libellé de 181
+  - 296 (2.1.3.6.5.1) -> « مجاز مرسل » = libellé de 295
+  - 491 (2.3.2.3.3.4) -> « نميمة » = libellé de 923
+  - 501 (2.3.2.4.1.2) -> « كبش فداء » = libellé de 960
+  - 644 (3.2.2) -> « مغالطة المقامر » = libellé de 654
+  - 923 (6.1.1.2.2.3) -> « نميمة » = libellé de 491
+  - 1316 (7.2.1.1.1.1) -> « استطراد » = libellé de 297
+  - 1360 (7.3) -> « شخصنة » = libellé de 1398
+  - 1362 (7.3.1.1) -> « شخصنة » = libellé de 1398
+  - 1371 (7.3.2) -> « مغالطة المنشأ » = libellé de 761
+
+## link_fa : 172 liens (172 wikipedia, 0 autres hôtes), 5 redirections, 0 articles rouges
+- **collisions (même article, même fragment) : 12 groupes**
+  - 0 (0), 696 (4) -> « مغالطه »
+  - 43 (1.1.2.2), 98 (1.2.2.2) -> « توسل به اکثریت »
+  - 71 (1.2.1), 78 (1.2.1.2) -> « توسل به مرجعیت »
+  - 153 (1.3.2), 154 (1.3.2.1) -> « مغالطه رد استدلال »
+  - 172 (1.3.3.4), 1083 (6.3.1.1.2.3) -> « ارتباط‌پنداری »
+  - 182 (2.1.1.1.3), 814 (5.1.2.2.4) -> « دوگانه جعلی »
+  - 295 (2.1.3.6.5), 866 (5.3.2.3.1) -> « کنایه »
+  - 478 (2.3.2.3.2.2.4), 1302 (7.1.3.3.1) -> « شستشوی مغزی »
+  - 491 (2.3.2.3.3.4), 923 (6.1.1.2.2.3) -> « سخن‌چینی »
+  - 499 (2.3.2.4.1.1), 500 (2.3.2.4.1.1.1) -> « مدیریت ذره‌بینی »
+  - 707 (4.1.2), 719 (4.1.3) -> « مغالطه علت شمردن همبستگی »
+  - 1360 (7.3), 1362 (7.3.1.1) -> « توسل به شخص »
+- titres d'arrivée = libellé d'un AUTRE nœud (text_fa / text_en) : 15
+  - 185 (2.1.1.4) -> « کلیشه » = libellé de 619
+  - 221 (2.1.2.1.1) -> « لطیفه » = libellé de 232
+  - 231 (2.1.2.2) -> « طنز » = libellé de 219
+  - 264 (2.1.3.2.4) -> « مبالغه » = libellé de 233
+  - 313 (2.2.1.3) -> « چاپلوسی » = libellé de 312
+  - 469 (2.3.2.3.1.4.2) -> « تحقیر » = libellé de 325
+  - 478 (2.3.2.3.2.2.4) -> « شستشوی مغزی » = libellé de 1302
+  - 491 (2.3.2.3.3.4) -> « سخن‌چینی » = libellé de 923
+  - 644 (3.2.2) -> « مغالطه قمارباز » = libellé de 717
+  - 677 (3.3.1.3.1) -> « شیب لغزنده » = libellé de 705
+  - 698 (4.1.1) -> « مصادره به مطلوب » = libellé de 183
+  - 923 (6.1.1.2.2.3) -> « سخن‌چینی » = libellé de 491
+  - 1271 (6.3.3.3.1.2) -> « شبه‌علم » = libellé de 695
+  - 1302 (7.1.3.3.1) -> « شستشوی مغزی » = libellé de 478
+  - 1402 (7.3.3.4) -> « تهمت » = libellé de 1403
+
+## link_zh : 200 liens (200 wikipedia, 0 autres hôtes), 5 redirections, 0 articles rouges
+- **collisions (même article, même fragment) : 16 groupes**
+  - 0 (0), 696 (4) -> « 謬誤 »
+  - 2 (1.1), 595 (3.1), 598 (3.1.1.1.1) -> « 草率歸納 »
+  - 43 (1.1.2.2), 98 (1.2.2.2) -> « 訴諸群眾 »
+  - 71 (1.2.1), 78 (1.2.1.2) -> « 訴諸權威 »
+  - 182 (2.1.1.1.3), 814 (5.1.2.2.4) -> « 假兩難推理 »
+  - 295 (2.1.3.6.5), 866 (5.3.2.3.1) -> « 轉喻 »
+  - 323 (2.2.2.1), 844 (5.2.3) -> « 關聯謬誤 »
+  - 478 (2.3.2.3.2.2.4), 1302 (7.1.3.3.1) -> « 洗腦 »
+  - 491 (2.3.2.3.3.4), 923 (6.1.1.2.2.3) -> « 八卦新闻 »
+  - 499 (2.3.2.4.1.1), 500 (2.3.2.4.1.1.1) -> « 微觀管理 »
+  - 594 (3), 666 (3.3) -> « 無效證明 »
+  - 698 (4.1.1), 699 (4.1.1.1) -> « 循環論證 »
+  - 707 (4.1.2), 719 (4.1.3) -> « 相關不蘊涵因果 »
+  - 809 (5.1.2.2.1), 973 (6.2) -> « 歧義謬誤 »
+  - 833 (5.2), 839 (5.2.2) -> « 类推论证 »
+  - 1360 (7.3), 1362 (7.3.1.1) -> « 訴諸人身 »
+- titres d'arrivée = libellé d'un AUTRE nœud (text_zh / text_en) : 4
+  - 729 (4.2.1.1.1) -> « 否定前件 » = libellé de 722
+  - 909 (6.1.1.2.1) -> « 谣言 » = libellé de 913
+  - 1271 (6.3.3.3.1.2) -> « 伪科学 » = libellé de 695
+  - 1404 (7.3.3.5.1) -> « 侮辱 » = libellé de 1403
+
+TOTAL : 219 groupes en collision, 32 paires même-article-sections-distinctes, 323 titres = libellé d'un autre nœud
