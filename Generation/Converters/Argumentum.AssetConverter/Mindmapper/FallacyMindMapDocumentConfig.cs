@@ -1179,8 +1179,9 @@ if (mapFile != null) {
 				itemNode.LINK = link;
 				// #1471: badge the node when the served link is a cross-language fallback
 				// (link_xx empty, cascade served link_en / link_fr). Appended to TEXT so the
-				// badge flows into the SVGs at the next FreeMind pass — the SVG post-processing
-				// pairing matches SVG text against TitleFunc (substring), not against Node.TEXT.
+				// badge flows into the SVGs at the next FreeMind pass. #2275: the SVG pairing
+				// matches on THIS composed text (see WrittenNodeTextFunc) — matching on the bare
+				// title used to drop every homonym group whose variants carried different badges.
 				var badge = MindMapLinkBadge.GetBadge(item, language);
 				if (badge.Length > 0)
 				{
@@ -1377,7 +1378,7 @@ if (mapFile != null) {
 			// Pass the real mind-map items through so node attributes get injected.
 			// (Regression fix #820: the item-less overload below silently dropped them,
 			// leaving Fallacy content.svg with 0 class="node" — no click-to-define overlay.)
-			var processedDocs = await ProcessSvgFilesAsync(new[] { svgFilePath }, mindMapItems);
+			var processedDocs = await ProcessSvgFilesAsync(new[] { svgFilePath }, mindMapItems, language);
 
 			foreach (var svgDoc in processedDocs)
 			{
@@ -1402,7 +1403,7 @@ if (mapFile != null) {
 		internal Task<Dictionary<string, XDocument>> ProcessSvgFilesAsync(IEnumerable<string> sourceSvgPaths)
 			=> ProcessSvgFilesAsync(sourceSvgPaths, new List<IMindMapItem>());
 
-		internal async Task<Dictionary<string, XDocument>> ProcessSvgFilesAsync(IEnumerable<string> sourceSvgPaths, IList<IMindMapItem> mindMapItems)
+		internal async Task<Dictionary<string, XDocument>> ProcessSvgFilesAsync(IEnumerable<string> sourceSvgPaths, IList<IMindMapItem> mindMapItems, string language = null)
 		{
 			var processedDocs = new Dictionary<string, XDocument>();
 
@@ -1443,7 +1444,7 @@ if (mapFile != null) {
 							Path.GetFileName(svgSavedFilePath));
 					}
 
-					UpdateSvgWithItems(svgFreemindMap, mindMapItems, svgDoc, svgNamespace, xlinkNamespace);
+					UpdateSvgWithItems(svgFreemindMap, mindMapItems, svgDoc, svgNamespace, xlinkNamespace, language);
 
 					var svgContent = GetSvgContent(svgDoc);
 					if (svgFreemindMap.HighContrastCrossLinks)
@@ -1508,7 +1509,7 @@ if (mapFile != null) {
 			// declaration on an already-decoded string. The declaration is preserved as-is on write.
 			var svgText = File.ReadAllText(contentSvgPath);
 			var svgDoc = XDocument.Parse(svgText);
-			UpdateSvgWithItems(contentMap, items, svgDoc, svgNamespace, xlinkNamespace);
+			UpdateSvgWithItems(contentMap, items, svgDoc, svgNamespace, xlinkNamespace, language);
 			File.WriteAllText(contentSvgPath, GetSvgContent(svgDoc), Encoding.UTF8);
 
 			var nodeCount = svgDoc.Descendants(svgNamespace + "g")
@@ -1590,12 +1591,12 @@ if (mapFile != null) {
 
 
 
-		internal void UpdateSvgWithItems(SVGFreemindMap svgMap, IList<IMindMapItem> items, XDocument svgDoc, XNamespace svgNamespace, XNamespace xlinkNamespace)
+		internal void UpdateSvgWithItems(SVGFreemindMap svgMap, IList<IMindMapItem> items, XDocument svgDoc, XNamespace svgNamespace, XNamespace xlinkNamespace, string language = null)
 		{
 
 
-			var itemToSVGNodes = CollectPossibleSvgNodes(items, svgDoc, svgNamespace);
-			var disambiguatedItemToSVGNode = DisambiguateSvgNodes(itemToSVGNodes, items, svgNamespace);
+			var itemToSVGNodes = CollectPossibleSvgNodes(items, svgDoc, svgNamespace, language);
+			var disambiguatedItemToSVGNode = DisambiguateSvgNodes(itemToSVGNodes, items, svgNamespace, language);
 			var warned = false;
 			foreach (var pair in disambiguatedItemToSVGNode)
 			{
@@ -1628,12 +1629,18 @@ if (mapFile != null) {
 		// #458 jumeau Vertus -- l'appariement vit dans MindMapSvgItemPairing, partagé avec
 		// VirtueMindMapDocumentConfig. Les forwarders préservent le contrat réflexion des
 		// tests (SvgDisambiguationContractTests) : méthodes d'instance privées sur la config.
-		private Dictionary<IMindMapItem, List<XElement>> CollectPossibleSvgNodes(IList<IMindMapItem> items, XDocument svgDoc, XNamespace svgNamespace)
-			=> MindMapSvgItemPairing.CollectPossibleSvgNodes(items, svgDoc, svgNamespace, TitleFunc);
+		// #2275 — `language` traverse jusqu'à l'appariement : c'est LUI qui compose le texte écrit
+		// (titre + badge), seul oracle capable de distinguer deux homonymes badgés différemment.
+		private Dictionary<IMindMapItem, List<XElement>> CollectPossibleSvgNodes(IList<IMindMapItem> items, XDocument svgDoc,
+			XNamespace svgNamespace, string language = null)
+			=> MindMapSvgItemPairing.CollectPossibleSvgNodes(items, svgDoc, svgNamespace, TitleFunc,
+				MindMapSvgItemPairing.WrittenNodeTextFunc(TitleFunc, language));
 
 		private Dictionary<IMindMapItem, XElement> DisambiguateSvgNodes(
-			Dictionary<IMindMapItem, List<XElement>> itemToSvgNodes, IList<IMindMapItem> items, XNamespace svgNamespace)
-			=> MindMapSvgItemPairing.DisambiguateSvgNodes(itemToSvgNodes, items, svgNamespace, TitleFunc);
+			Dictionary<IMindMapItem, List<XElement>> itemToSvgNodes, IList<IMindMapItem> items, XNamespace svgNamespace,
+			string language = null)
+			=> MindMapSvgItemPairing.DisambiguateSvgNodes(itemToSvgNodes, items, svgNamespace, TitleFunc,
+				MindMapSvgItemPairing.WrittenNodeTextFunc(TitleFunc, language));
 
 		/// <summary>Forwarder vers MindMapSvgItemPairing.CompareBatikDocumentOrder -- conservé ici (interne statique) : les tests l'appellent directement.</summary>
 		internal static int CompareBatikDocumentOrder(string leftPath, string rightPath)

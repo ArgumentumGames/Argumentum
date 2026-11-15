@@ -369,7 +369,8 @@ namespace Argumentum.AssetConverter.Mindmapper
 				itemNode.LINK = link;
 				// #1471: badge the node when the served link is a cross-language fallback
 				// (link_xx empty, cascade served link_en / link_fr) — same contract as the
-				// Fallacies side; the SVG pairing matches against TitleFunc, not Node.TEXT.
+				// Fallacies side. #2275: the SVG pairing matches on THIS composed text (see
+				// WrittenNodeTextFunc), no longer on the bare title.
 				var badge = MindMapLinkBadge.GetBadge(item, language);
 				if (badge.Length > 0)
 				{
@@ -586,7 +587,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 					XNamespace svgNamespace = "http://www.w3.org/2000/svg";
 					XNamespace xlinkNamespace = "http://www.w3.org/1999/xlink";
 
-					UpdateSvgWithItems(svgFreemindMap, mindMapItems, svgDoc, svgNamespace, xlinkNamespace);
+					UpdateSvgWithItems(svgFreemindMap, mindMapItems, svgDoc, svgNamespace, xlinkNamespace, language);
 
 
 					svgLoader = () => Task.FromResult(GetSvgContent(svgDoc));
@@ -622,12 +623,12 @@ namespace Argumentum.AssetConverter.Mindmapper
 			//await UtilityExtensions.KeyPressSemaphore.WaitAsync();
 		}
 		
-		private void UpdateSvgWithItems(SVGFreemindMap svgMap, IList<IMindMapItem> items, XDocument svgDoc, XNamespace svgNamespace, XNamespace xlinkNamespace)
+		private void UpdateSvgWithItems(SVGFreemindMap svgMap, IList<IMindMapItem> items, XDocument svgDoc, XNamespace svgNamespace, XNamespace xlinkNamespace, string language = null)
 		{
 
 
-			var itemToSVGNodes = CollectPossibleSvgNodes(items, svgDoc, svgNamespace);
-			var disambiguatedItemToSVGNode = DisambiguateSvgNodes(itemToSVGNodes, items, svgNamespace);
+			var itemToSVGNodes = CollectPossibleSvgNodes(items, svgDoc, svgNamespace, language);
+			var disambiguatedItemToSVGNode = DisambiguateSvgNodes(itemToSVGNodes, items, svgNamespace, language);
 			var warned = false;
 			foreach (var pair in disambiguatedItemToSVGNode)
 			{
@@ -662,12 +663,19 @@ namespace Argumentum.AssetConverter.Mindmapper
 		// candidat unique sans exclusion, écrasement svgNodeToItem[candidate] = item) est
 		// retirée au profit de MindMapSvgItemPairing -- la MÊME implémentation que Fallacies,
 		// jamais une copie divergente (une copie divergente est ce qui a laissé passer #1698).
-		private Dictionary<IMindMapItem, List<XElement>> CollectPossibleSvgNodes(IList<IMindMapItem> items, XDocument svgDoc, XNamespace svgNamespace)
-			=> MindMapSvgItemPairing.CollectPossibleSvgNodes(items, svgDoc, svgNamespace, TitleFunc);
+		// #2275 — `language` traverse jusqu'à l'appariement, comme côté Fallacies : c'est LUI
+		// qui compose le texte écrit (titre + badge), seul oracle capable de distinguer deux
+		// homonymes badgés différemment.
+		private Dictionary<IMindMapItem, List<XElement>> CollectPossibleSvgNodes(IList<IMindMapItem> items, XDocument svgDoc,
+			XNamespace svgNamespace, string language = null)
+			=> MindMapSvgItemPairing.CollectPossibleSvgNodes(items, svgDoc, svgNamespace, TitleFunc,
+				MindMapSvgItemPairing.WrittenNodeTextFunc(TitleFunc, language));
 
 		private Dictionary<IMindMapItem, XElement> DisambiguateSvgNodes(
-			Dictionary<IMindMapItem, List<XElement>> itemToSvgNodes, IList<IMindMapItem> items, XNamespace svgNamespace)
-			=> MindMapSvgItemPairing.DisambiguateSvgNodes(itemToSvgNodes, items, svgNamespace, TitleFunc);
+			Dictionary<IMindMapItem, List<XElement>> itemToSvgNodes, IList<IMindMapItem> items, XNamespace svgNamespace,
+			string language = null)
+			=> MindMapSvgItemPairing.DisambiguateSvgNodes(itemToSvgNodes, items, svgNamespace, TitleFunc,
+				MindMapSvgItemPairing.WrittenNodeTextFunc(TitleFunc, language));
 
 
 		private void UpdateSvgMatch(SVGFreemindMap svgMap, XElement match, IMindMapItem item, XNamespace svgNamespace,

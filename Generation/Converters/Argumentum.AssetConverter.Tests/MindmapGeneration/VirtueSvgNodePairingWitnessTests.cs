@@ -58,16 +58,18 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         private static VirtueMindMapDocumentConfig Config() => new();
 
         // Reflection entry to the private VirtueMindMapDocumentConfig.CollectPossibleSvgNodes.
+        // #2275: the forwarder gained an optional `language` parameter — reflection does NOT fill
+        // optionals, the 4th slot is explicit.
         private static Dictionary<IMindMapItem, List<XElement>> Collect(
             VirtueMindMapDocumentConfig config, IList<IMindMapItem> items, XDocument doc)
         {
             var m = typeof(VirtueMindMapDocumentConfig).GetMethod(
                 "CollectPossibleSvgNodes", BindingFlags.NonPublic | BindingFlags.Instance);
             m.Should().NotBeNull("CollectPossibleSvgNodes must exist on VirtueMindMapDocumentConfig");
-            return (Dictionary<IMindMapItem, List<XElement>>)m!.Invoke(config, new object[] { items, doc, Svg })!;
+            return (Dictionary<IMindMapItem, List<XElement>>)m!.Invoke(config, new object?[] { items, doc, Svg, null })!;
         }
 
-        // Reflection entry to the private VirtueMindMapDocumentConfig.DisambiguateSvgNodes.
+        // Reflection entry to the private VirtueMindMapDocumentConfig.DisambiguateSvgNodes (#2275: same 4th slot).
         private static Dictionary<IMindMapItem, XElement> Disambiguate(
             VirtueMindMapDocumentConfig config,
             Dictionary<IMindMapItem, List<XElement>> collected, IList<IMindMapItem> items)
@@ -75,7 +77,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             var m = typeof(VirtueMindMapDocumentConfig).GetMethod(
                 "DisambiguateSvgNodes", BindingFlags.NonPublic | BindingFlags.Instance);
             m.Should().NotBeNull("DisambiguateSvgNodes must exist on VirtueMindMapDocumentConfig");
-            return (Dictionary<IMindMapItem, XElement>)m!.Invoke(config, new object[] { collected, items, Svg })!;
+            return (Dictionary<IMindMapItem, XElement>)m!.Invoke(config, new object?[] { collected, items, Svg, null })!;
         }
 
         /// <summary>Sanity floor — the shared pairing still wires the trivial case on the twin.
