@@ -27,8 +27,8 @@ Chaque ligne « Affichage » donne le facteur réel et ce qui survit à cette ta
 
 ![1a](1a-du-texte-a-la-carte.png)
 
-*Pourquoi :* l'article raconte ce trajet (§ « Comment naît une carte »). À gauche, dix-neuf lignes réelles de la taxonomie, en-tête compris ; à droite, la carte que l'une d'elles produit — la rangée `2,1.1`, visible dans l'extrait (4ᵉ ligne), produit la carte « Généralisation hâtive » rendue à côté. La légende sous la carte nomme la rangée.
-*Source :* `Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv` (lignes réelles) et `argumentum_fallacies_1.1..généralisation_hâtive_face.png` (rendu réel de la carte de la rangée `2,1.1`, arbre Release du 22/08) — montage. Reprise du 15/11 : la carte de règles a été remplacée par cette carte de sophisme — les lignes affichées produisent des cartes de sophisme, pas la couverture des règles.
+*Pourquoi :* l'article raconte ce trajet (§ « Comment naît une carte »). À gauche, dix-neuf lignes réelles de la taxonomie, en-tête compris ; à droite, la carte que l'une d'elles produit — la rangée `2,1.1`, visible dans l'extrait (4ᵉ ligne), produit la carte « Argument bâclé » rendue à côté. La légende sous la carte nomme la rangée. Reprise du 15/11 : la carte porte son titre d'après le renommage du 23/09 (#1522, « Généralisation hâtive » → « Argument bâclé ») — un rendu antérieur montrait l'ancien titre, en contradiction avec la ligne CSV visible dans la même image ; la légende emploie les guillemets français d'un bout à l'autre.
+*Source :* `Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv` (lignes réelles) et `argumentum_fallacies_1.1..argument_bâclé_face.png` (rendu réel de la carte de la rangée `2,1.1`, arbre Release du 26/10, postérieur au renommage) — montage. Reprise du 15/11 : la carte de règles a été remplacée par cette carte de sophisme — les lignes affichées produisent des cartes de sophisme, pas la couverture des règles.
 
 ### 1b — les chiffres du dépôt
 
@@ -130,12 +130,14 @@ Chaque ligne « Affichage » donne le facteur réel et ce qui survit à cette ta
 *Pourquoi :* « la matière réelle, c'est le corpus : la taxonomie des sophismes, 1 408 nœuds ». Les sept familles et leurs poids réels, en barres.
 *Source :* `docs/ontology/aif-export/taxonomy-tree-edges.csv` (1 408 nœuds mesurés).
 
-### 6c — une flèche, deux familles
+### 6c — deux cartes, un miroir
 
-![6c](6c-une-fleche-deux-familles.png)
+![6c](6c-deux-cartes-un-miroir.png)
 
-*Pourquoi :* l'article décrit des arguments qui s'attaquent entre eux : un discours en atteint un autre, et le lien ne se défait pas. Ici une flèche de la carte des liens traverse le cadre d'une famille à l'autre — « Abus de langage » vers « Tricherie » (chemins `5.3.3.3.2` → `6.1.1`, verbe `IsRelatedTo` du dépôt) — sans qu'aucun chiffre soit le sujet de l'image. La flèche a été élargie (×3,2 sur son épaisseur) pour être le sujet du cadrage ; sa géométrie est celle du dépôt, non retouchée.
-*Source :* `Cards/Fallacies/Mindmaps/fr/Fallacies_fr.links.svg`, recadrage ×2 (région 1 595 × 1 043 unités autour de la flèche, mesurée au rendu) ; 41 libellés et 126 autres flèches tombent dans le cadre.
+*Pourquoi :* l'article décrit des arguments qui s'attaquent entre eux, puis dit lui-même sa limite : « le graphe d'attaques est biparti — chaque sophisme pleinement modélisé attaque un type de nœud abstrait, pas un autre sophisme ; les relations entre sophismes vivent dans un graphe séparé, étiqueté comme tel ». Cette image illustre ce second graphe : deux cartes réelles du jeu, reliées par une flèche portant le verbe que la taxonomie déclare entre elles — `Mirrors`, « est le miroir de » — dans les deux sens (`5.1.2.2.4` → `3.3.1.2.2` et retour). « Faux dilemme » et « Juste milieu » se répondent exactement : l'un réduit un continuum à deux options, l'autre pose que la vérité est au milieu — chacun est le miroir de l'autre.
+
+Reprise du 15/11, en réponse à la demande de deux cartes réelles reliées par une flèche. Mesure faite avant de composer : le graphe d'attaque (`docs/ontology/aif-export/aif-attack-edges.csv`, 145 arêtes) ne contient **aucune** arête sophisme↔sophisme — la référence de type y est celle de l'attaquant lui-même dans 86 arêtes, celle d'un autre sophisme dans 0 ; les 71 arêtes à `skos_exception_ref` renvoient vers un schème d'argument, et sur les 14 qui correspondent à un type porté par une rangée, aucune paire n'a ses deux extrémités dans les 175 cartes. Un lien d'attaque entre deux cartes aurait donc été une arête inventée. Les liens carte↔carte existent, eux, dans le graphe des liens transverses : 3 paires sur les 8 verbes (une `Leverages`, deux `Mirrors` qui sont la même relation déclarée dans les deux sens) — la paire retenue est la seule réciproque.
+*Source :* `argumentum_fallacies_5.1.2.2.4..faux_dilemme_face.png` et `argumentum_fallacies_3.3.1.2.2..juste_milieu_face.png`, rendus réels (arbre Release du 26/10) ; verbes et chemins lus dans `Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv` (colonnes `crossLink_*`), qui portent des chemins, pas des PK. Montage typographique ; aucune carte retouchée.
 
 ---
 
@@ -182,7 +184,7 @@ Mesuré, pas supposé — facteur de réduction et verdict :
 
 | Image | Largeur native | Facteur liste (390 px) | Facteur article (578 px) | Verdict |
 |---|---:|---:|---:|---|
-| 1a | 1 297 | 0,30 | 0,45 | la carte se reconnaît ; les lignes CSV sont une texture, pas un texte à lire |
+| 1a | 1 281 | 0,30 | 0,45 | la carte se reconnaît ; les lignes CSV sont une texture, pas un texte à lire |
 | 1b | 1 346 | 0,29 | 0,43 | les quatre nombres se lisent (104 px → 30 px) |
 | 2a | 3 004 | 0,13 | 0,19 | le réseau se lit, les libellés non — image d'article plutôt que de liste |
 | 2b | 3 004 | 0,13 | 0,19 | idem |
@@ -194,7 +196,7 @@ Mesuré, pas supposé — facteur de réduction et verdict :
 | 5b | 1 346 | 0,29 | 0,43 | titre et deux gravures lisibles |
 | 6a | 1 100 | 0,35 | 0,53 | titre et trois nombres lisibles |
 | 6b | 1 100 | 0,35 | 0,53 | titre et sept barres lisibles |
-| 6c | 3 190 | 0,12 | 0,18 | le réseau et la flèche élargie se lisent, les libellés non — image d'article plutôt que de liste |
+| 6c | 980 | 0,40 | 0,59 | **passe aux deux tailles** : les deux libellés (12,7 px) et le verbe (11,9 px) se lisent dans la liste |
 | 7a | 1 200 | 0,33 | 0,48 | les huit codes se devinent ; la navigation ne se lit pas |
 | 7b | 1 200 | 0,33 | 0,48 | la page arabe se reconnaît à sa structure |
 | 7c | 227 | 1,72 | 2,55 | bandeau : à utiliser en petit, jamais en pleine largeur |
