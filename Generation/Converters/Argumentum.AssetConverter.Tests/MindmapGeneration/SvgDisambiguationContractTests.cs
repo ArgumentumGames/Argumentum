@@ -53,17 +53,18 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         private static XDocument Doc(params XElement[] groups)
             => new(new XElement(Svg + "svg", groups));
 
-        // Reflection entry to the private CollectPossibleSvgNodes.
+        // Reflection entry to the private CollectPossibleSvgNodes. #2275: the forwarder gained an
+        // optional `language` parameter — reflection does NOT fill optionals, the 4th slot is explicit.
         private static Dictionary<IMindMapItem, List<XElement>> Collect(
             FallacyMindMapDocumentConfig config, IList<IMindMapItem> items, XDocument doc)
         {
             var m = typeof(FallacyMindMapDocumentConfig).GetMethod(
                 "CollectPossibleSvgNodes", BindingFlags.NonPublic | BindingFlags.Instance);
             m.Should().NotBeNull("CollectPossibleSvgNodes must exist on FallacyMindMapDocumentConfig");
-            return (Dictionary<IMindMapItem, List<XElement>>)m!.Invoke(config, new object[] { items, doc, Svg })!;
+            return (Dictionary<IMindMapItem, List<XElement>>)m!.Invoke(config, new object?[] { items, doc, Svg, null })!;
         }
 
-        // Reflection entry to the private DisambiguateSvgNodes.
+        // Reflection entry to the private DisambiguateSvgNodes (#2275: same 4th optional slot).
         private static Dictionary<IMindMapItem, XElement> Disambiguate(
             FallacyMindMapDocumentConfig config,
             Dictionary<IMindMapItem, List<XElement>> collected, IList<IMindMapItem> items)
@@ -71,7 +72,7 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             var m = typeof(FallacyMindMapDocumentConfig).GetMethod(
                 "DisambiguateSvgNodes", BindingFlags.NonPublic | BindingFlags.Instance);
             m.Should().NotBeNull("DisambiguateSvgNodes must exist on FallacyMindMapDocumentConfig");
-            return (Dictionary<IMindMapItem, XElement>)m!.Invoke(config, new object[] { collected, items, Svg })!;
+            return (Dictionary<IMindMapItem, XElement>)m!.Invoke(config, new object?[] { collected, items, Svg, null })!;
         }
 
         private static FallacyMindMapDocumentConfig Config() => new() { AddNodePath = false };

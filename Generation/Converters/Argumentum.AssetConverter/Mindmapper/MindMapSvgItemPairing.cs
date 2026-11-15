@@ -20,21 +20,39 @@ namespace Argumentum.AssetConverter.Mindmapper
 	/// </summary>
 	internal static class MindMapSvgItemPairing
 	{
+		/// <param name="nodeTextFunc">
+		/// #2275 — le texte RÉELLEMENT écrit dans le <c>.mm</c> pour cet item (titre + badge de repli de
+		/// langue, cf. <see cref="MindMapLinkBadge"/>). Laissé <c>null</c>, il vaut <paramref name="titleFunc"/>
+		/// et l'appariement garde son comportement d'avant. Quand il diffère, l'égalité EXACTE sur le texte
+		/// écrit passe avant le filtre par sous-chaîne : sans elle, deux homonymes badgés différemment
+		/// (« X (fr) » et « X (en) ») ne laissent qu'un candidat à la longueur minimale, et le groupe
+		/// entier reste muet — la mesure du 14/11 donne 31 (fr) à 59 (fa) nœuds perdus, 0 en anglais.
+		/// </param>
 		public static Dictionary<IMindMapItem, List<XElement>> CollectPossibleSvgNodes(IList<IMindMapItem> items,
-			XDocument svgDoc, XNamespace svgNamespace, Func<IMindMapItem, string> titleFunc)
+			XDocument svgDoc, XNamespace svgNamespace, Func<IMindMapItem, string> titleFunc,
+			Func<IMindMapItem, string> nodeTextFunc = null)
 		{
 			Dictionary<IMindMapItem, List<XElement>> itemToSvgNodes = new();
 			var textGroups = svgDoc.Descendants(svgNamespace + "g").Where(g => g.Elements(svgNamespace + "text").Any()).ToList();
+			nodeTextFunc ??= titleFunc;
 
 			foreach (var item in items)
 			{
 				string title = titleFunc(item);
-				var matchingGroups = textGroups.Where(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Contains(title)).ToList();
+				string written = nodeTextFunc(item) ?? title;
+				// #2275 — le groupe au texte ÉGAL au texte écrit est le seul candidat du nœud lui-même ;
+				// il n'y a alors plus de longueur minimale à arbitrer. Le repli par sous-chaîne reste pour
+				// les cartes périmées (SVG d'une passe antérieure au badge) et pour les titres contenus
+				// dans un texte plus long.
+				var exactGroups = textGroups.Where(g => string.Equals(SvgNodeText(g, svgNamespace), written, StringComparison.Ordinal)).ToList();
+				var matchingGroups = exactGroups.Count > 0
+					? exactGroups
+					: textGroups.Where(g => SvgNodeText(g, svgNamespace).Contains(title)).ToList();
 
 				if (matchingGroups.Any())
 				{
 					// Group the g elements by the length of their text content
-					var groupedGroups = matchingGroups.GroupBy(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Length);
+					var groupedGroups = matchingGroups.GroupBy(g => SvgNodeText(g, svgNamespace).Length);
 
 					// Get the minimum length among the groups
 					var groups = groupedGroups as IGrouping<int, XElement>[] ?? groupedGroups.ToArray();
@@ -52,8 +70,8 @@ namespace Argumentum.AssetConverter.Mindmapper
 					// sans candidat tuait l'injection zh entière en
 					// ArgumentOutOfRangeException sur Substring(0, 3).
 					var titleHead = title.Length <= 3 ? title : title.Substring(0, 3);
-					var closeMatches = textGroups.Where(g => string.Join("", g.Elements(svgNamespace + "text").Select(t => t.Value)).Contains(titleHead)).ToList();
-					var closeMatchesMessages = closeMatches.Select(g => string.Join(" ", g.Elements(svgNamespace + "text").Select(t => t.Value))).ToList().Aggregate("", (s1, s2) => $"{s1}\n{s2}");
+					var closeMatches = textGroups.Where(g => SvgNodeText(g, svgNamespace).Contains(titleHead)).ToList();
+					var closeMatchesMessages = closeMatches.Select(g => SvgNodeText(g, svgNamespace)).ToList().Aggregate("", (s1, s2) => $"{s1}\n{s2}");
 					Logger.LogProblem($"Could not find Svg node for item {titleFunc(item)}\nClose matches:\n{closeMatchesMessages}");
 				}
 			}
@@ -61,15 +79,23 @@ namespace Argumentum.AssetConverter.Mindmapper
 			return itemToSvgNodes;
 		}
 
+		/// <param name="nodeTextFunc">
+		/// #2275 — même contrat que dans <see cref="CollectPossibleSvgNodes"/> : le texte réellement écrit
+		/// dans le <c>.mm</c> (titre + badge). C'est lui qui juge la réservation des textes exacts (suite A) :
+		/// jugée sur le titre nu, elle ne reconnaissait aucun nœud badgé et restait donc inerte dès qu'un
+		/// badge s'appliquait. Laissé <c>null</c>, il vaut <paramref name="titleFunc"/>.
+		/// </param>
 		public static Dictionary<IMindMapItem, XElement> DisambiguateSvgNodes(
 			Dictionary<IMindMapItem, List<XElement>> itemToSvgNodes, IList<IMindMapItem> items, XNamespace svgNamespace,
-			Func<IMindMapItem, string> titleFunc)
+			Func<IMindMapItem, string> titleFunc, Func<IMindMapItem, string> nodeTextFunc = null)
 		{
 			if (!itemToSvgNodes.Any() || itemToSvgNodes.First().Value.Any() == false)
 			{
 				Logger.LogProblem("No SVG nodes to disambiguate.");
 				return new Dictionary<IMindMapItem, XElement>();
 			}
+
+			nodeTextFunc ??= titleFunc;
 
 			var tempNode = itemToSvgNodes.First().Value.First();
 			var allNodesList = tempNode.Document.Descendants(svgNamespace + tempNode.Name.LocalName).ToList();
@@ -96,14 +122,18 @@ namespace Argumentum.AssetConverter.Mindmapper
 			// tôt au rang 2.x : le premier attribué gardait le nœud — fiche FAUSSE sur le
 			// nœud de 975, et 975 muet. Sans effet sur une carte fraîchement dérivée
 			// (chaque rangée y a son nœud à son titre exact).
+			// #2275 — l'égalité se juge sur le texte ÉCRIT (titre + badge), pas sur le titre
+			// nu : « X (en) » n'est jamais égal à « X », si bien qu'aucun nœud badgé n'était
+			// réservé et que la suite A devenait inerte partout où un badge s'appliquait.
 			var exactOwner = new Dictionary<XElement, string>();
-			foreach (var exactGroup in itemToSvgNodes.GroupBy(pair => titleFunc(pair.Key) ?? "", StringComparer.Ordinal))
+			foreach (var itemToNodes in itemToSvgNodes)
 			{
-				foreach (var node in exactGroup.SelectMany(pair => pair.Value).Distinct())
+				var written = nodeTextFunc(itemToNodes.Key) ?? titleFunc(itemToNodes.Key) ?? "";
+				foreach (var node in itemToNodes.Value.Distinct())
 				{
-					if (string.Equals(SvgNodeText(node, svgNamespace), exactGroup.Key, StringComparison.Ordinal))
+					if (string.Equals(SvgNodeText(node, svgNamespace), written, StringComparison.Ordinal))
 					{
-						exactOwner[node] = exactGroup.Key;
+						exactOwner[node] = written;
 					}
 				}
 			}
@@ -132,10 +162,15 @@ namespace Argumentum.AssetConverter.Mindmapper
 					.OrderBy(node => nodeIndices[node]).ToList();
 				// Un nœud déjà attribué à un item d'UN AUTRE groupe ne se ré-attribue pas :
 				// c'est l'exclusion minimale demandée par #1698 pour les collisions de
-				// sous-chaînes entre titres différents. Suite A : un nœud qui porte le titre
-				// EXACT d'un item d'un autre groupe leur reste réservé.
+				// sous-chaînes entre titres différents. Suite A : un nœud qui porte le texte
+				// EXACT d'un item d'un autre groupe leur reste réservé. #2275 — les textes
+				// comparés sont ceux ÉCRITS (badge compris) : le groupe homonyme en porte
+				// plusieurs (« X (en) », « X (fr) »), donc on compare à l'ENSEMBLE des textes
+				// écrits du groupe, pas au titre nu.
+				var groupTexts = new HashSet<string>(
+					titleGroup.Select(pair => nodeTextFunc(pair.Key) ?? titleFunc(pair.Key) ?? ""), StringComparer.Ordinal);
 				var available = candidates.Where(node => !svgNodeToItem.ContainsKey(node)
-					&& (!exactOwner.TryGetValue(node, out var exactTitle) || exactTitle == titleGroup.Key)).ToList();
+					&& (!exactOwner.TryGetValue(node, out var exactText) || groupTexts.Contains(exactText))).ToList();
 
 				if (available.Count == 0)
 				{
@@ -283,6 +318,23 @@ namespace Argumentum.AssetConverter.Mindmapper
 			{
 				return CompareBatikDocumentOrder(x ?? "", y ?? "");
 			}
+		}
+
+		/// <summary>
+		/// #2275 — l'ORACLE d'appariement : le texte réellement écrit dans le <c>.mm</c> pour
+		/// <paramref name="item"/>, c'est-à-dire <paramref name="titleFunc"/> SUIVI du badge de repli de
+		/// langue, exactement comme <c>CreateNode</c> compose <c>Node.TEXT</c>
+		/// (<see cref="MindMapLinkBadge.GetBadge"/> rend la chaîne vide quand aucun badge ne s'applique,
+		/// donc ce composite égale le titre nu sur une carte sans repli). Retourne <c>null</c> quand la
+		/// langue est inconnue : les appelants retombent alors sur <paramref name="titleFunc"/>.
+		/// </summary>
+		public static Func<IMindMapItem, string> WrittenNodeTextFunc(Func<IMindMapItem, string> titleFunc, string language)
+		{
+			if (string.IsNullOrEmpty(language))
+			{
+				return null;
+			}
+			return item => (titleFunc(item) ?? "") + MindMapLinkBadge.GetBadge(item, language);
 		}
 
 		/// <summary>
