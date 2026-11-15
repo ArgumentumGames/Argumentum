@@ -1456,6 +1456,21 @@ if (mapFile != null) {
 					Logger.LogSuccess($"SVG file with detailed content {svgSavedFilePath} successfully saved");
 					processedDocs.Add(svgSavedFilePath, svgDoc);
 				}
+
+				// #2190 PR 2 — the ORIGINAL export ships too (KeepOriginalSVG): restore its verb
+				// pastels there as well, or the shipped base is the ONE variant still carrying the
+				// per-link tints while every derived variant carries the register — exactly the
+				// divergence CrossLinkArrowCountTests (#1238) exists to catch (0 verb pastel on a
+				// fresh Fallacies_fr.svg, measured 14/11: HEAD carried 581). The tint carrier lives
+				// in this very file — the variants above were derived from it — so the restore finds
+				// the same links it just restored per variant, and a legacy pastel-only export is
+				// left untouched by RestoreTints' own contract (warning, no mutation).
+				if (tintTable != null && tintTable.Count > 0 && File.Exists(svgFilePath))
+				{
+					var baseDoc = XDocument.Load(svgFilePath);
+					CrossLinkTintTable.RestoreTints(baseDoc, baseDoc.Root.Name.Namespace, tintTable, Path.GetFileName(svgFilePath));
+					File.WriteAllText(svgFilePath, GetSvgContent(baseDoc), Encoding.UTF8);
+				}
 			}
 			return processedDocs;
 		}
