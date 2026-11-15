@@ -27,8 +27,8 @@ Chaque ligne « Affichage » donne le facteur réel et ce qui survit à cette ta
 
 ![1a](1a-du-texte-a-la-carte.png)
 
-*Pourquoi :* l'article raconte ce trajet (§ « Comment naît une carte »). À gauche, dix-neuf lignes réelles de la taxonomie, en-tête compris ; à droite, la carte qu'elles produisent. Le sujet se lit sans un mot de légende.
-*Source :* `Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv` (lignes réelles) et `rules_face_01.png` (rendu de la carte de règles) — montage.
+*Pourquoi :* l'article raconte ce trajet (§ « Comment naît une carte »). À gauche, dix-neuf lignes réelles de la taxonomie, en-tête compris ; à droite, la carte que l'une d'elles produit — la rangée `2,1.1`, visible dans l'extrait (4ᵉ ligne), produit la carte « Généralisation hâtive » rendue à côté. La légende sous la carte nomme la rangée.
+*Source :* `Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv` (lignes réelles) et `argumentum_fallacies_1.1..généralisation_hâtive_face.png` (rendu réel de la carte de la rangée `2,1.1`, arbre Release du 22/08) — montage. Reprise du 15/11 : la carte de règles a été remplacée par cette carte de sophisme — les lignes affichées produisent des cartes de sophisme, pas la couverture des règles.
 
 ### 1b — les chiffres du dépôt
 
@@ -130,6 +130,13 @@ Chaque ligne « Affichage » donne le facteur réel et ce qui survit à cette ta
 *Pourquoi :* « la matière réelle, c'est le corpus : la taxonomie des sophismes, 1 408 nœuds ». Les sept familles et leurs poids réels, en barres.
 *Source :* `docs/ontology/aif-export/taxonomy-tree-edges.csv` (1 408 nœuds mesurés).
 
+### 6c — une flèche, deux familles
+
+![6c](6c-une-fleche-deux-familles.png)
+
+*Pourquoi :* l'article décrit des arguments qui s'attaquent entre eux : un discours en atteint un autre, et le lien ne se défait pas. Ici une flèche de la carte des liens traverse le cadre d'une famille à l'autre — « Abus de langage » vers « Tricherie » (chemins `5.3.3.3.2` → `6.1.1`, verbe `IsRelatedTo` du dépôt) — sans qu'aucun chiffre soit le sujet de l'image. La flèche a été élargie (×3,2 sur son épaisseur) pour être le sujet du cadrage ; sa géométrie est celle du dépôt, non retouchée.
+*Source :* `Cards/Fallacies/Mindmaps/fr/Fallacies_fr.links.svg`, recadrage ×2 (région 1 595 × 1 043 unités autour de la flèche, mesurée au rendu) ; 41 libellés et 126 autres flèches tombent dans le cadre.
+
 ---
 
 ## Article 7 — « Le site Argumentum, en huit langues »
@@ -187,6 +194,7 @@ Mesuré, pas supposé — facteur de réduction et verdict :
 | 5b | 1 346 | 0,29 | 0,43 | titre et deux gravures lisibles |
 | 6a | 1 100 | 0,35 | 0,53 | titre et trois nombres lisibles |
 | 6b | 1 100 | 0,35 | 0,53 | titre et sept barres lisibles |
+| 6c | 3 190 | 0,12 | 0,18 | le réseau et la flèche élargie se lisent, les libellés non — image d'article plutôt que de liste |
 | 7a | 1 200 | 0,33 | 0,48 | les huit codes se devinent ; la navigation ne se lit pas |
 | 7b | 1 200 | 0,33 | 0,48 | la page arabe se reconnaît à sa structure |
 | 7c | 227 | 1,72 | 2,55 | bandeau : à utiliser en petit, jamais en pleine largeur |
