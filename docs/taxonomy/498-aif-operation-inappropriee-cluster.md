@@ -14,6 +14,19 @@ cluster — Complication exagérée, MERGED `3a87eb0e`), #760 (rebut cluster —
 > the CSV edits in a follow-up PR (gated), same flow as #753/#760/#837. Serialization to the 2 attack columns
 > is deferred to the gated apply.
 
+> **↩ Renvoi du 14/11/2026 — skos layer partially superseded by #2270.** Since PR #2270 (grain 17, merged
+> `fbbe6a9f`; arbitration of 13/11), leaves **691** and **694** carry `AIF_skosExceptionRef` =
+> `Deductive_Inference` + `AIF_skosMappingType` = `skos:broadMatch` (their descendants 692/693 inherit 691's
+> reference), and **695** carries a phrase in `AIF_imitatedScheme`. The §3 « fail-loud » constat — no honest
+> native token, `ExceptionRef` empty — is **superseded for those three leaves**: it was measured against the
+> « Native math-family token inventory » (§2), which does not contain `Deductive_Inference` and could not see
+> that candidate. The token has since been retained for the same mechanism by the cadrage of 10/11 (§3.3.3,
+> corrected 14/11) and by neighbour 3.3.2 « Erreur de calcul » (PK 681, grain 15). The question asked here —
+> a scheme that would *be* the fallacy — also differs from component (a): the legitimate scheme the fallacy
+> *imitates*. Full motive: ai-01 counter-review of #2270 (comment 6882172458). The §3 attack-columns
+> serialization remains what the STATUS above says — deferred, unapplied. Anchor **690** stays
+> attack-columns-only: the ratified verdict prevails.
+
 ---
 
 ## TL;DR
