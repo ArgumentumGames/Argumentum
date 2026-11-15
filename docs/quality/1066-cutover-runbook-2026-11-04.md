@@ -30,7 +30,7 @@
 | **#134** | Release GitHub | **créer la release finale** à partir du lot validé (80 PDF) ; déclenche #135 | ai-01 (release + verdicts) | assets publiés, tailles = bundle | `v2.1.0-review` **reste en l'état** (⛔ pas de `--clobber`) ; la finale est un objet distinct |
 | **#131** | Montée DNN + mise en ligne | déployer sur le VPS de prod (exploité par la lane **`myia-web2`**) la génération validée en rang 2 (10.4.1 + 2sxc 22.01), séquence A→J du plan de montée (`docs/dnn/2026-10-31-montee-dnn1041-2sxc2201-plan.md`) | **web2** (toutes les écritures prod) ; owner = fenêtre ; ai-01 = verdicts | §2 DoD ci-dessous (versions, redirections, EventLog, routes) | snapshot VPS + backup DB pré-geste ; DNS retour arrière |
 | **#1049** | web.config versionné = panne totale | **phase 2, au moment de la bascule** : le site servi vit dans une **copie hors dépôt** (comme la préprod depuis 08/10). Phase 1 faite (fichier sorti du dépôt, 2 tests CI) | **web2** | le dépôt ne peut plus écrire sur le `web.config` vivant ; discriminateur = les 4 comptes de l'étape 5 (rendus par le script du jour J) + taille 83 211 o | n/a — structurel ; la panne existe seulement si le fichier versionné atteint un webroot |
-| **#1091** | Compte stocké en mot de passe **Clear** (depuis 2020) | passer Clear → **Hashed** **pendant la séance de bascule uniquement** ; la valeur est choisie par l'owner — ⛔ aucune valeur, empreinte ou sel ne transite par une issue, un commit, le dashboard ou un fichier | owner (valeur, le jour même) ; **web2** (geste admin DNN) | type de membership `Hashed` en base ; login OK avec la valeur owner | ⛔ **jamais** de retour à Clear |
+| **#1091** | Compte stocké en mot de passe **Clear** (depuis 2020) | **Étape retirée du déroulé** (décision ai-01 du 14/11, motif au canal privé — cf. §7). La ligne reste comme trace ; le geste Clear → Hashed n'est plus exécuté. ⛔ aucune valeur, empreinte ou sel ne transite par une issue, un commit, le dashboard ou un fichier | — | n/a — étape retirée | ⛔ **jamais** de retour à Clear |
 | **#1502** | Règles du site divergé des cartes (4-10 vs 3-10 joueurs) | couvert par la **ré-injection EAV courant** (cf. #457) : la prod ne peut pas servir le corpus tel quel | **web2** (injection prod) ; po-2023 (script + essai à blanc préprod, mesures) | compteurs « de 3 à 10 joueurs » ×5 formes sur `/Règles`, par langue ; cf. garde `RulesExplorerD1PlayerCountGuardTests` | snapshot pré-injection, transaction gardée, rollback SQL borné |
 | **#457** | Localiser le site (8 langues) | se **ferme à la mise en ligne** : l'injection EAV courant + les packs de langue installés ce jour-là | **web2** (geste prod) ; po-2023 (script/essai) ; po-2024 (packs) | sondes visa 21/21 par langue ; sélecteur 8 langues ; témoins fr intacts | désinstall langpack **sans** « Delete Files » (R8) ; rollback EAV borné |
 | **#135** | Article d'actus + tous les téléchargements | **jour de la mise en ligne** : publier l'article News annonçant la version + rafraîchir tous les liens de téléchargement vers la release #134 ; périmètre mesuré en amont (brouillons + relevé des liens servis) | **web2** (édition + lien prod) ; ai-01 (texte/verdict) ; po-2023 (mesures) | chaque lien servi pointe vers un asset publié de #134 ; `Print.Play` = nom réécrit par GitHub | article = brouillon tant que non annoncé ; liens = tableau de remplacement à blanc |
@@ -116,7 +116,9 @@ release finale (#134) + verdicts.
    (« The French version of this page is the authoritative version »). Négatif commun aux deux
    pages : « AGREEMENT BETWEEN USER AND » **absent**. ⛔ Exiger « ARGUMENTUM SAS » sur `privacy`
    serait rouge sur un site sain — un faux rouge au jour J coûte une fenêtre.
-7. **#1091** : Clear → Hashed, valeur owner, pendant la séance.
+7. **#1091 — étape retirée** (décision ai-01 du 14/11 ; motif au canal privé, cf. §7). Le numéro est
+   conservé pour que les étapes 8 à 16 gardent le leur (le §2 et le §4 y renvoient). ⛔ L'interdiction
+   de retour à un mot de passe Clear reste en vigueur (voir « Interdictions permanentes »).
 8. **D2 alias racine** : `PortalAlias` racine `CultureCode` NULL → `fr-FR` **+ recycle** (l'UPDATE seul
    ne suffit pas — cache PortalAlias ; reporté « à la mise en ligne prod » par ai-01, 18/10).
 9. **C1/#1180** : reporter le geste base des filtres date (bornes typées / neutralisation) — la prod
@@ -136,9 +138,31 @@ release finale (#134) + verdicts.
     finale de #134 est créée **à part**, et c'est elle que les liens servent.
 13. **Texte légal anglais — re-vérifier** (le geste est en 6 bis) : les 2 pages `/en/` tiennent après
     la phase 2 — la ré-injection EAV ne doit pas les avoir écrasées (cache-buster, mêmes marqueurs).
-14. **R1** : déployer les 2 fichiers E12 (`Portals/1/Images/github-mark.png` 6 393 o ;
-    `Portals/1/adam/News5/4bLeKJXdFUGdPtYu4lCPnA/Image/Open-Store.png` source 40 766 o).
-15. **R2** : les 16 wrappers mindmap (famille `included`, **pas** `_ext`).
+14. **R1 — les 2 fichiers E12** (classe « prod 200 + cible 404 ») :
+    `Portals/1/Images/github-mark.png` (**6 393 o**, `sha256` `367d5cb2…`) et
+    `Portals/1/adam/News5/4bLeKJXdFUGdPtYu4lCPnA/Image/Open-Store.png` (**source brute 40 766 o**,
+    `sha256` `5964179c…` — ⛔ **pas** le dérivé 14 708 o : déposer la source reproduit les deux
+    formes d'URL, le handler dérive à la volée).
+    **Source** : l'**arbre servi de la préprod** — donc la copie de l'étape 5 les porte déjà. Ces
+    deux chemins **n'existent pas dans le dépôt** (`git ls-files` : 0 fichier suivi), d'où
+    l'imprécision que l'audit web2 a relevée : rien à récupérer depuis un checkout. Mesuré le
+    14/11 : **200 sur les deux hôtes, octets identiques** (6 393 o et 40 766 o, `sha256` égaux).
+    **Contrôle** : `sha256` cible == `sha256` de la **prod lue le jour J** (curl, cache-buster) ·
+    200 des deux côtés, statique sans query string · re-jeu É2 home/actus : les bandes causales de
+    1 148 px disparaissent (**contrôle inverse** : si l'écart persiste, la cause était fausse — le dire).
+    **Rollback** : supprimer les 2 entrées (fichier + répertoire GUID pour le second). Aucun autre levier.
+15. **R2 — les 16 wrappers mindmap inline** (famille `included`, **pas** `_ext`) : 8 langues ×
+    {`Fallacies_<lang>.html`, `Argumentation_Virtues_<lang>.html`}.
+    ⚠️ **L'arbre en compte 17** : le 17ᵉ, `Fallacies_cards_fr.html` (FR seul), est **404 sur les
+    deux hôtes** (re-mesuré le 14/11 ; déjà 404/404 au relevé de parité du 02/11). Ce n'est donc
+    **pas** une route à restaurer — le déployer créerait une route **neuve**, hors périmètre de
+    bascule. ⇒ **le périmètre reste 16** : il compte les routes **servies**, pas les fichiers
+    **committés**. Contrôle : **16/16 en 200** avec tailles substantielles (0,50 → 5,32 Mo) ; les
+    2 liens de `/Acheter-le-jeu` résolvent.
+    ⚠️ Les 16 `_ext` sont, eux, servis **par la prod** (32 = 16 inline + 16 `_ext` au relevé du
+    02/11) mais **pas** par la préprod : leur exclusion est une **décision** du runbook du 22/09
+    (famille `<object>` non autoportante → 16 pages vides), **pas** un oubli. Conséquence assumée :
+    ces 16 routes passeront en 404 au cutover. Aucun fichier du dépôt ne les référence.
 16. **R3/#133** : OWL avec la release (gated).
 
 ### Phase 3 — Contrôles post-bascule (jamais déclarés sans mesure)
@@ -285,3 +309,29 @@ Contrôles joués, dans cet ordre :
 ces fichiers (mesuré : 0 lien servi). Le lien se pose sur la **page des
 téléchargements** (#135), qui est réécrite dans les 8 langues pour la mise en ligne (décision
 ai-01 du 05/11) ; la page Argumentation n'est pas modifiée. Sans ce lien, l'OWL est correct et invisible.
+
+## 7. Révision du 2026-11-14 — les 3 retours de l'audit web2
+
+Trois corrections relevées par l'audit en lecture seule de la lane web2
+([c.6863975698](https://github.com/ArgumentumGames/Argumentum/pull/2148#issuecomment-6863975698)).
+Chacune est **re-mesurée** avant d'être écrite ici ; aucune n'ajoute de valeur de production.
+
+1. **Étape 7 (#1091) — retirée.** Décision ai-01 du 14/11. Le motif est au **canal privé** : il
+   porte un état de compte, et le dépôt n'en reçoit aucun. La ligne de la table maîtresse reste
+   comme trace, le geste n'est plus exécuté, et l'interdiction de retour à Clear reste en vigueur.
+   Le numéro 7 est conservé pour ne pas décaler les étapes 8 à 16, auxquelles §2 et §4 renvoient.
+2. **Étape 14 (R1) — la source des 2 fichiers E12 est nommée.** Le runbook du 22/09 la portait
+   (« copie depuis prod fraîchement lus, `curl`, cache-buster ») ; la consolidation du 04/11
+   l'avait perdue, d'où la question de l'audit. Re-mesuré le 14/11 : les deux chemins répondent
+   **200 sur la prod *et* sur la préprod**, **octets identiques** (`367d5cb2…` · 6 393 o ;
+   `5964179c…` · 40 766 o), et `git ls-files` n'en suit **aucun**. La source du geste est donc
+   l'**arbre servi de la préprod** (déjà copié à l'étape 5) ; la référence d'octets reste la
+   **prod lue le jour même**.
+3. **Étape 15 (R2) — 16, et le 17ᵉ est nommé.** L'arbre compte **17** wrappers inline ; le 17ᵉ,
+   `Fallacies_cards_fr.html`, est **404 sur les deux hôtes** (14/11, et déjà au relevé de parité
+   du 02/11) : il n'est pas dans le périmètre jour J, et le déployer créerait une route neuve.
+   Le décompte **16** est donc exact — il décrit les routes **servies**, pas les fichiers
+   **committés**. Même distinction pour les 16 `_ext` : servies par la prod, absentes de la
+   préprod, exclues **par décision** (famille `<object>` non autoportante), pas par oubli.
+
+*po-2023*
