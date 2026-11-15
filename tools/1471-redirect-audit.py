@@ -32,7 +32,20 @@ résolution et re-rattaché après, décodé et comparé sans casse.
 Usage :
     python tools/1471-redirect-audit.py                # audit complet (réseau)
     python tools/1471-redirect-audit.py --lang pt      # une seule colonne
+    python tools/1471-redirect-audit.py --classes      # + classe de chaque groupe
     python tools/1471-redirect-audit.py --self-test    # logique hors réseau
+
+P24-23 (décision de coordination du 15/11) — `--classes` classe chaque groupe de
+collision par la parenté MÉCANIQUE de ses nœuds, et liste à part les groupes
+« autres », seuls à juger un par un dans les lots :
+  carte-ancetre : une paire du groupe est en relation d'ascendance (chemin
+                  préfixe strict à frontière de segment) ;
+  freres        : tous les PK partagent le même parent de chemin (même profondeur) ;
+  meme-sophisme : une paire partage un libellé normalisé, text_fr OU text_en ;
+  autres        : aucune des trois.
+Précédence : carte-ancetre > freres > meme-sophisme > autres. La classe décrit la
+relation des NŒUDS ; le nombre de cartes du deck par groupe (colonne `carte` non
+vide) est imprimé à part — il sert au tri des jugements, pas à la classe.
 
 La normalisation des titres/libellés : casefold, _ -> espace, espaces collapsés.
 C'est la même des deux côtés de la comparaison ; les formes diacritiques
@@ -251,6 +264,39 @@ def fmt_group(links):
     return ", ".join("%s (%s)" % (l["pk"], l["path"]) for l in sorted(links, key=lambda x: int(x["pk"])))
 
 
+def classify_group(pks, by_pk):
+    """Classe mécanique d'un groupe de collision (P24-23, décision du 15/11).
+
+    Voir l'en-tête du module : carte-ancetre > freres > meme-sophisme > autres.
+    """
+    paths = {pk: by_pk[pk]["path"] for pk in pks}
+
+    def is_prefix(a, b):
+        return b.startswith(a + ".")
+
+    if any(a != b and (is_prefix(paths[a], paths[b]) or is_prefix(paths[b], paths[a]))
+           for a in pks for b in pks):
+        return "carte-ancetre"
+
+    def parent(p):
+        return p.rsplit(".", 1)[0] if "." in p else ""
+
+    if len({parent(paths[x]) for x in pks}) == 1:
+        return "freres"
+    for col in ("text_fr", "text_en"):
+        for a in pks:
+            for b in pks:
+                la = norm(by_pk[a].get(col) or "")
+                if a != b and la and la == norm(by_pk[b].get(col) or ""):
+                    return "meme-sophisme"
+    return "autres"
+
+
+def deck_count(pks, by_pk):
+    """Cartes du deck parmi les PK du groupe (colonne `carte` non vide)."""
+    return sum(1 for pk in pks if (by_pk[pk].get("carte") or "").strip())
+
+
 def self_test():
     """Logique hors réseau : collisions, fragments distincts, libellés."""
     rows = [
@@ -282,7 +328,32 @@ def self_test():
     w, t, f = parse_url("https://pt.wikipedia.org/wiki/Novum_Organum#Os_%C3%ADdolos_da_tribo")
     assert (w, t, f) == ("pt", "Novum Organum", "Os ídolos da tribo"), (w, t, f)
     assert parse_url("https://fallaeasies.com/x") is None
-    print("SELF-TEST OK (collisions / fragments distincts / libellé autre nœud / parse URL)")
+
+    # classification P24-23 : chaque classe sur des nœuds synthétiques
+    cls_rows = [
+        {"PK": "1", "path": "5.1", "text_fr": "X", "text_en": "X", "carte": ""},
+        {"PK": "2", "path": "5.1.2", "text_fr": "Y", "text_en": "Y", "carte": "1"},
+        {"PK": "3", "path": "6.2.1", "text_fr": "P", "text_en": "P", "carte": ""},
+        {"PK": "4", "path": "6.2.2", "text_fr": "Q", "text_en": "Q", "carte": ""},
+        {"PK": "5", "path": "7.1.1", "text_fr": "Même", "text_en": "Same", "carte": ""},
+        {"PK": "6", "path": "8.2.2", "text_fr": "Même", "text_en": "Same", "carte": ""},
+        {"PK": "7", "path": "9.1.1", "text_fr": "R", "text_en": "R", "carte": ""},
+        {"PK": "8", "path": "10.2.2", "text_fr": "S", "text_en": "S", "carte": ""},
+        {"PK": "9", "path": "11.1", "text_fr": "T", "text_en": "T", "carte": ""},
+    ]
+    cbp = {r["PK"]: r for r in cls_rows}
+    assert classify_group(["1", "2"], cbp) == "carte-ancetre"
+    assert classify_group(["3", "4"], cbp) == "freres"
+    assert classify_group(["5", "6"], cbp) == "meme-sophisme"
+    assert classify_group(["7", "8"], cbp) == "autres"
+    # précédence : l'ascendance prime sur le libellé partagé
+    cbp["2"]["text_fr"] = "X"
+    assert classify_group(["1", "2"], cbp) == "carte-ancetre"
+    # frontière de segment : 11.1 n'est PAS un préfixe de 11.10
+    cbp["9"]["path"] = "11.10"
+    assert classify_group(["9", "8"], cbp) == "autres"
+    assert deck_count(["1", "2"], cbp) == 1
+    print("SELF-TEST OK (collisions / fragments distincts / libellé autre nœud / parse URL / classes P24-23)")
 
 
 def main():
@@ -292,12 +363,16 @@ def main():
     langs = LANGS
     if "--lang" in sys.argv:
         langs = (sys.argv[sys.argv.index("--lang") + 1],)
+    classes_mode = "--classes" in sys.argv
     raw = open(CSV_PATH, "rb").read().decode("utf-8-sig")
     rows = list(csv.DictReader(io.StringIO(raw)))
     assert len(rows) == 1408, "rangées %d != 1408" % len(rows)
+    by_pk = {r["PK"]: r for r in rows}
     resolver = Resolver()
     resolver._load_cache()
     total_col = total_sec = total_lab = 0
+    class_totals = {}
+    autres_all = []
     print("# #1471 audit redirections — collisions d'article d'arrivée (lecture seule)")
     print()
     for lang in langs:
@@ -319,8 +394,16 @@ def main():
         for k in sorted(a["collisions"], key=lambda k: min(int(x["pk"]) for x in a["collisions"][k])):
             grp = a["collisions"][k]
             art = grp[0]["final"]
-            print("  - %s -> « %s »%s" % (fmt_group(grp), art,
-                                          " [ROUGE]" if art in resolver.missing.get(grp[0]["wiki"], ()) else ""))
+            tag = ""
+            if classes_mode:
+                pks = sorted({l["pk"] for l in grp}, key=int)
+                cls = classify_group(pks, by_pk)
+                class_totals[cls] = class_totals.get(cls, 0) + 1
+                tag = "[%s] " % cls
+                if cls == "autres":
+                    autres_all.append((lang, grp, pks))
+            print("  - %s%s -> « %s »%s" % (tag, fmt_group(grp), art,
+                                            " [ROUGE]" if art in resolver.missing.get(grp[0]["wiki"], ()) else ""))
         if a["section_split"]:
             print("- même article, fragments distincts (acceptés, non collisions) : %d" % len(a["section_split"]))
             for k, v in a["section_split"]:
@@ -337,6 +420,20 @@ def main():
         print()
     print("TOTAL : %d groupes en collision, %d paires même-article-sections-distinctes, %d titres = libellé d'un autre nœud"
           % (total_col, total_sec, total_lab))
+    if classes_mode:
+        print("CLASSES : " + " · ".join("%s %d" % (c, class_totals.get(c, 0))
+                                        for c in ("carte-ancetre", "freres", "meme-sophisme", "autres")))
+        print()
+        print("## AUTRES — groupes sans parenté mécanique, à juger un par un : %d" % len(autres_all))
+        for lang, grp, pks in autres_all:
+            art = grp[0]["final"]
+            titles = " ; ".join("%s p=%s deck=%d « %s » / « %s »" % (
+                pk, by_pk[pk]["path"], 1 if (by_pk[pk].get("carte") or "").strip() else 0,
+                (by_pk[pk].get("text_fr") or "").strip(), (by_pk[pk].get("text_en") or "").strip())
+                for pk in pks)
+            print("- %s · %s · deck=%d -> « %s »%s · %s" % (
+                lang, " ".join(pks), deck_count(pks, by_pk), art,
+                " [ROUGE]" if art in resolver.missing.get(grp[0]["wiki"], ()) else "", titles))
 
 
 if __name__ == "__main__":
