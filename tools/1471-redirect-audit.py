@@ -35,17 +35,24 @@ Usage :
     python tools/1471-redirect-audit.py --classes      # + classe de chaque groupe
     python tools/1471-redirect-audit.py --self-test    # logique hors réseau
 
-P24-23 (décision de coordination du 15/11) — `--classes` classe chaque groupe de
-collision par la parenté MÉCANIQUE de ses nœuds, et liste à part les groupes
-« autres », seuls à juger un par un dans les lots :
-  carte-ancetre : une paire du groupe est en relation d'ascendance (chemin
-                  préfixe strict à frontière de segment) ;
-  freres        : tous les PK partagent le même parent de chemin (même profondeur) ;
-  meme-sophisme : une paire partage un libellé normalisé, text_fr OU text_en ;
-  autres        : aucune des trois.
-Précédence : carte-ancetre > freres > meme-sophisme > autres. La classe décrit la
-relation des NŒUDS ; le nombre de cartes du deck par groupe (colonne `carte` non
-vide) est imprimé à part — il sert au tri des jugements, pas à la classe.
+P24-23 (décision de coordination du 15/11, règle par connexité du 15/11 soir) —
+`--classes` classe chaque groupe de collision par la parenté MÉCANIQUE de ses
+nœuds, et liste à part les groupes « autres », seuls à juger un par un dans les
+lots. Un groupe est accepté si ses membres forment UN SEUL bloc quand on les
+relie deux à deux par les relations acceptées :
+  ascendance   : un chemin préfixe strict de l'autre, à frontière de segment
+                 (`5.1` est préfixe de `5.1.2`, pas de `5.10`) ;
+  fratrie      : même parent de chemin ;
+  même libellé : text_fr OU text_en normalisés égaux (casefold, _ -> espace).
+La classe d'un groupe accepté suit la précédence carte-ancetre > freres >
+meme-sophisme. Un groupe dont un membre n'est relié à aucun autre — même si
+d'autres paires du groupe sont apparentées — est « autres » : c'est précisément
+ce membre isolé que les lots doivent juger (HOLD du 15/11 : « une paire suffit »
+laissait passer 6 tels groupes, dont PK 2 « Argument bâclé », dont le link_en
+est resté `Hasty_generalization`, le titre anglais de son ancien nom d'avant
+#1522). La classe décrit la relation des NŒUDS ; le nombre de cartes du deck
+par groupe (colonne `carte` non vide) est imprimé à part — il sert au tri des
+jugements, pas à la classe.
 
 La normalisation des titres/libellés : casefold, _ -> espace, espaces collapsés.
 C'est la même des deux côtés de la comparaison ; les formes diacritiques
@@ -265,31 +272,59 @@ def fmt_group(links):
 
 
 def classify_group(pks, by_pk):
-    """Classe mécanique d'un groupe de collision (P24-23, décision du 15/11).
+    """Classe mécanique d'un groupe de collision (P24-23, règle par connexité).
 
-    Voir l'en-tête du module : carte-ancetre > freres > meme-sophisme > autres.
+    Un groupe est accepté si ses membres forment UN SEUL bloc quand on les
+    relie deux à deux par les relations acceptées (ascendance, même parent,
+    même libellé normalisé) ; sinon « autres ». La classe d'un groupe accepté
+    garde la précédence carte-ancetre > freres > meme-sophisme. Voir l'en-tête
+    du module (HOLD du 15/11 : la version « une paire suffit » acceptait des
+    groupes contenant un membre isolé).
     """
     paths = {pk: by_pk[pk]["path"] for pk in pks}
+    members = sorted(pks)
 
     def is_prefix(a, b):
         return b.startswith(a + ".")
 
-    if any(a != b and (is_prefix(paths[a], paths[b]) or is_prefix(paths[b], paths[a]))
-           for a in pks for b in pks):
-        return "carte-ancetre"
-
     def parent(p):
         return p.rsplit(".", 1)[0] if "." in p else ""
 
-    if len({parent(paths[x]) for x in pks}) == 1:
+    def edge(a, b):
+        """Relation acceptée entre deux membres : 'anc', 'fre', 'sos' ou None."""
+        if is_prefix(paths[a], paths[b]) or is_prefix(paths[b], paths[a]):
+            return "anc"
+        if parent(paths[a]) == parent(paths[b]):
+            return "fre"
+        for col in ("text_fr", "text_en"):
+            la = norm(by_pk[a].get(col) or "")
+            if la and la == norm(by_pk[b].get(col) or ""):
+                return "sos"
+        return None
+
+    # connexité : union-find sur les seules arêtes acceptées
+    comp = {m: m for m in members}
+
+    def find(x):
+        while comp[x] != x:
+            comp[x] = comp[comp[x]]
+            x = comp[x]
+        return x
+
+    kinds = set()
+    for i, a in enumerate(members):
+        for b in members[i + 1:]:
+            k = edge(a, b)
+            if k is not None:
+                kinds.add(k)
+                comp[find(a)] = find(b)
+    if len({find(m) for m in members}) > 1:
+        return "autres"  # au moins un membre isolé : à juger, pas à présumer
+    if "anc" in kinds:
+        return "carte-ancetre"
+    if "fre" in kinds:
         return "freres"
-    for col in ("text_fr", "text_en"):
-        for a in pks:
-            for b in pks:
-                la = norm(by_pk[a].get(col) or "")
-                if a != b and la and la == norm(by_pk[b].get(col) or ""):
-                    return "meme-sophisme"
-    return "autres"
+    return "meme-sophisme"
 
 
 def deck_count(pks, by_pk):
@@ -340,12 +375,34 @@ def self_test():
         {"PK": "7", "path": "9.1.1", "text_fr": "R", "text_en": "R", "carte": ""},
         {"PK": "8", "path": "10.2.2", "text_fr": "S", "text_en": "S", "carte": ""},
         {"PK": "9", "path": "11.1", "text_fr": "T", "text_en": "T", "carte": ""},
+        # témoins de la règle par connexité (HOLD du 15/11)
+        {"PK": "10", "path": "3.1", "text_fr": "U", "text_en": "U", "carte": ""},
+        {"PK": "11", "path": "3.1.1", "text_fr": "V", "text_en": "V", "carte": ""},
+        {"PK": "12", "path": "1.1", "text_fr": "W", "text_en": "W", "carte": ""},
+        {"PK": "13", "path": "3.2.3.2.1", "text_fr": "X1", "text_en": "X1", "carte": ""},
+        {"PK": "14", "path": "3.2.3.2.2", "text_fr": "X2", "text_en": "X2", "carte": ""},
+        {"PK": "15", "path": "9.9.1", "text_fr": "Jumeau", "text_en": "Twin", "carte": ""},
+        {"PK": "16", "path": "12.3.4", "text_fr": "Jumeau", "text_en": "Twin", "carte": ""},
+        {"PK": "17", "path": "3.2.1", "text_fr": "Y1", "text_en": "Y1", "carte": ""},
+        {"PK": "18", "path": "3.2.1.5", "text_fr": "Y2", "text_en": "Y2", "carte": ""},
+        {"PK": "19", "path": "5.5.5", "text_fr": "Y2", "text_en": "Y2", "carte": ""},
     ]
     cbp = {r["PK"]: r for r in cls_rows}
     assert classify_group(["1", "2"], cbp) == "carte-ancetre"
     assert classify_group(["3", "4"], cbp) == "freres"
     assert classify_group(["5", "6"], cbp) == "meme-sophisme"
     assert classify_group(["7", "8"], cbp) == "autres"
+    # témoin 1 du HOLD : {3.1, 3.1.1, 1.1} — une paire apparentée (ascendance)
+    # + un membre isolé doit sortir « autres » (la règle « une paire suffit »
+    # y rendait « carte-ancetre » : cette assertion était ROUGE avant fix)
+    assert classify_group(["10", "11", "12"], cbp) == "autres"
+    # témoin 2 du HOLD : deux paires apparentées sans lien entre elles
+    # (forme 662/664 frères + 979/1349 jumeaux) doit sortir « autres »
+    assert classify_group(["13", "14", "15", "16"], cbp) == "autres"
+    # face stricte de la connexité : relations mixtes en chaîne (forme
+    # 633/642/1085 : ancêtre + jumeau) = UN seul bloc → accepté, classe
+    # par précédence (une règle « tous liés à tous » l'excluait à tort)
+    assert classify_group(["17", "18", "19"], cbp) == "carte-ancetre"
     # précédence : l'ascendance prime sur le libellé partagé
     cbp["2"]["text_fr"] = "X"
     assert classify_group(["1", "2"], cbp) == "carte-ancetre"
@@ -353,7 +410,7 @@ def self_test():
     cbp["9"]["path"] = "11.10"
     assert classify_group(["9", "8"], cbp) == "autres"
     assert deck_count(["1", "2"], cbp) == 1
-    print("SELF-TEST OK (collisions / fragments distincts / libellé autre nœud / parse URL / classes P24-23)")
+    print("SELF-TEST OK (collisions / fragments distincts / libellé autre nœud / parse URL / classes P24-23 par connexité)")
 
 
 def main():
