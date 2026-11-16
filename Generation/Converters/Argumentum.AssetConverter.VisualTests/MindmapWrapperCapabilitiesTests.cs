@@ -1331,5 +1331,111 @@ namespace Argumentum.AssetConverter.VisualTests
                 await page.CloseAsync();
             }
         }
+
+        /// <summary>
+        /// Cap 18 — #2190 lot 3. P23-23: the legend shows one swatch per relation, its colour
+        /// READ from the drawn arrows of that verb, never hardcoded. The verification reads the
+        /// colour by a DIFFERENT instrument than the implementation (the SVG stroke ATTRIBUTE,
+        /// where readCrosslinkStroke uses the computed style): a swatch that diverges from the
+        /// arrows, or a legend without swatches, fails. Inverse control baked in: an empty or
+        /// missing backgroundColor on any dot is a red. P23-20: every interface element that
+        /// declares a `font:` shorthand (which resets font-variant-ligatures) must still compute
+        /// no-common-ligatures — the DINPro fi/fl/ff ligatures corrupt interface words.
+        /// </summary>
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg")]
+        [InlineData("en", "Fallacies_en.content.svg")]
+        [InlineData("ru", "Fallacies_ru.content.svg")]
+        [InlineData("pt", "Fallacies_pt.content.svg")]
+        [InlineData("es", "Fallacies_es.content.svg")]
+        [InlineData("ar", "Fallacies_ar.content.svg")]
+        [InlineData("fa", "Fallacies_fa.content.svg")]
+        [InlineData("zh", "Fallacies_zh.content.svg")]
+        public async Task Cap18_LegendSwatchesMatchArrowStrokes_InterfaceCutsLigatures(string lang, string svgFileName)
+        {
+            var wrapperPath = await ComposeIncludedAsync(lang, svgFileName);
+            var page = await OpenPageAsync(wrapperPath);
+            try
+            {
+                await WaitForViewportSettledAsync(page);
+
+                // Legend must be awake (the fixture carries crosslinks).
+                Assert.False(await page.Locator("#mmLegend").EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "fixture has crosslinks → the legend must be visible");
+
+                // Two independent reads: what the legend dots show, and what the arrows carry.
+                var probe = await page.EvaluateAsync<string[]>(@"() => {
+                    const norm = (s) => (s || '').replace(/\s+/g, '').toLowerCase();
+                    const nav = window.__mmNav;
+                    const verbStrokes = {};
+                    nav.linkRecs.forEach((l) => {
+                        if (!(l.verb in verbStrokes)) verbStrokes[l.verb] = norm(l.g.getAttribute('stroke'));
+                    });
+                    const rows = [];
+                    document.querySelectorAll('#mmLegendList li').forEach((li) => {
+                        const dot = li.querySelector('.mm-verb-dot');
+                        rows.push([
+                            (li.textContent || '').trim(),
+                            dot ? norm(dot.style.backgroundColor) : '',
+                            dot ? dot.getBoundingClientRect().width : 0
+                        ]);
+                    });
+                    return [JSON.stringify(verbStrokes)].concat(rows.map(r => r.join('||')));
+                }");
+                Assert.NotNull(probe);
+                Assert.True(probe.Length >= 2, "legend must list at least one relation");
+
+                var verbStrokes = System.Text.Json.JsonSerializer
+                    .Deserialize<System.Collections.Generic.Dictionary<string, string>>(probe[0]);
+                Assert.NotNull(verbStrokes);
+                Assert.True(verbStrokes.Count >= 1, "fixture must carry at least one verb");
+                _output.WriteLine($"[{lang}] verbs on the map: {verbStrokes.Count}");
+
+                var dotColors = new System.Collections.Generic.List<string>();
+                for (var i = 1; i < probe.Length; i++)
+                {
+                    var row = probe[i];
+                    var parts = row.Split("||");
+                    Assert.True(parts.Length >= 3, $"malformed legend row: '{row}'");
+                    var (text, bg, width) = (parts[0], parts[1], parts[2]);
+                    Assert.True(!string.IsNullOrEmpty(bg.Trim()),
+                        $"legend row '{text}' has NO swatch colour — the pastille must exist and be filled (P23-23)");
+                    Assert.True(double.TryParse(width, System.Globalization.CultureInfo.InvariantCulture,
+                            out var w) && w >= 10,
+                        $"legend row '{text}': swatch is {width}px wide — a pastel stroke needs a large, bordered dot");
+                    dotColors.Add(bg);
+                }
+
+                // Every verb's arrow colour must be carried by exactly the swatches.
+                Assert.True(verbStrokes.Count == dotColors.Count,
+                    $"one legend entry per relation present on the map: {verbStrokes.Count} verbs vs {dotColors.Count} legend rows");
+                foreach (var kv in verbStrokes)
+                {
+                    Assert.True(dotColors.Contains(kv.Value),
+                        $"verb '{kv.Key}': arrows are {kv.Value} but no legend swatch carries it — the colour must be READ from the drawn arrows (P23-23)");
+                }
+
+                // P23-20 — computed style on every `font:`-shorthand bearer: the reasserted
+                // longhand must win over the shorthand's reset.
+                var lig = await page.EvaluateAsync<string[]>(@"() => {
+                    const sel = ['#mmSearch', '#mmLegend', '#mmLinkPanel', 'card .relations'];
+                    return sel.map((s) => {
+                        const el = document.querySelector(s);
+                        return s + '=' + (el ? getComputedStyle(el).fontVariantLigatures : 'absent');
+                    });
+                }");
+                Assert.NotNull(lig);
+                foreach (var line in lig)
+                {
+                    _output.WriteLine($"[{lang}] ligature computed: {line}");
+                    Assert.True(line.EndsWith("no-common-ligatures", StringComparison.Ordinal),
+                        $"P23-20: {line} — the `font:` shorthand resets font-variant-ligatures; the reasserted rule must win");
+                }
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
     }
 }

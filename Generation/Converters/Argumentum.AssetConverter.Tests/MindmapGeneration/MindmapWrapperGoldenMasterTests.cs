@@ -212,6 +212,46 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 "#2190 lot 2: every shipped mindmap artifact — inlining AND _ext — must carry the navigation surface (search, suggestions, link panel, legend, __mmNav); a file missing here was skipped by the wrapper re-derivation");
         }
 
+        // Lot-3 (#2190) interface anchors, pinned on BOTH wrapper variants. P23-20: the
+        // DINPro fi/fl/ff ligatures corrupt interface words (« Insuffisance » renders as
+        // « Insuf(sance ») — the whole template interface disables common ligatures
+        // (contract #1613). P23-23: each legend entry carries a colour swatch whose colour
+        // is READ from the drawn arrows of its verb (readCrosslinkStroke), never hardcoded.
+        // The behavioural proof (dot rendered, colour matches a drawn stroke) lives in the
+        // Playwright suite; this headless scan is the variant-parity belt — remove the
+        // pastille (or the ligature rule) from the templates and skip a re-derivation, and
+        // this is the test that goes red.
+        private static readonly string[] RequiredLot3Interface =
+        {
+            "font-variant-ligatures: no-common-ligatures",
+            "mm-verb-dot",
+            "readCrosslinkStroke"
+        };
+
+        [Fact]
+        public void AllCommittedMindmapHtmlFiles_CarryLot3InterfaceAnchors()
+        {
+            var files = Directory.EnumerateFiles(MindmapsRoot, "*.html", SearchOption.AllDirectories)
+                .OrderBy(f => f)
+                .ToList();
+            files.Count.Should().BeGreaterThanOrEqualTo(34,
+                "anti-collapse floor: 8 langs x {Fallacies,Virtues} x {embed,_ext} + cards_fr pair + 2 templates");
+
+            var missing = new List<string>();
+            foreach (var file in files)
+            {
+                var content = File.ReadAllText(file);
+                foreach (var needle in RequiredLot3Interface)
+                {
+                    if (!content.Contains(needle))
+                        missing.Add($"{Path.GetFileName(file)}: missing '{needle}'");
+                }
+            }
+
+            missing.Should().BeEmpty(
+                "#2190 lot 3: every shipped mindmap artifact — inlining AND _ext — must carry the anti-ligature rule (P23-20) and the verb-dot legend swatch read from the drawn arrows (P23-23); a file missing here was skipped by the wrapper re-derivation");
+        }
+
         /// <summary>
         /// #2190 lot 2 — the Fallacies content SVGs (8 languages + the FR-only cards variant)
         /// must carry the navigation anchors on EVERY node: <c>pk</c> (deep links) and

@@ -636,6 +636,29 @@
             fill: none;
             pointer-events: stroke;
         }
+
+        /* #2190 lot 3 — P23-20 : DINPro ligature fi/fl/ff (contrat #1613). L'interface du
+           gabarit coupe les ligatures communes : « Insuffisance » rendait « Insuf(sance »,
+           « rejète »/« reflète » perdaient leurs lettres. Les shorthands `font:` plus haut
+           resetent la propriété — elle est réaffirmée ici sur chaque porteur, après eux. */
+        #mmToolbar, #mmSearch, #mmSuggestions .mm-sugg, #mmLegend, #mmLinkPanel,
+        card, card .relations {
+            -webkit-font-variant-ligatures: no-common-ligatures;
+            font-variant-ligatures: no-common-ligatures;
+        }
+
+        /* #2190 lot 3 — P23-23 : pastille de relation. La teinte des flèches est pastelle
+           (contraste 1,1–1,5 sur blanc) : la pastille est large et bordée de sombre. */
+        #mmLegend .mm-verb-dot {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid #5f6368;
+            box-sizing: border-box;
+            margin-right: 6px;
+            vertical-align: -2px;
+        }
     </style>
 </head>
 <body>
@@ -1280,6 +1303,23 @@
                                 });
 
                                 // Légende repliable des 8 relations — cachée si la carte n'en porte pas.
+                                // #2190 lot 3 (P23-23) : chaque entrée porte une pastille de la couleur
+                                // de son verbe, LUE sur une flèche dessinée (stroke du g.crosslink de ce
+                                // verbe, mesuré : 1 stroke unique par verbe dans un même SVG) — jamais
+                                // recopiée en dur : la palette reste celle de la carte.
+                                const readCrosslinkStroke = (g) => {
+                                    if (!g) return '';
+                                    const path = g.querySelector('path:not(.mm-link-hit)');
+                                    const el = path || g;
+                                    const view = el.ownerDocument && el.ownerDocument.defaultView;
+                                    if (view) {
+                                        try {
+                                            const c = view.getComputedStyle(el).stroke;
+                                            if (c && c !== 'none') return c;
+                                        } catch (e) { /* document détaché : repli attribut */ }
+                                    }
+                                    return g.getAttribute('stroke') || '';
+                                };
                                 const legend = hostDoc.getElementById('mmLegend');
                                 if (legend && linkRecs.length) {
                                     const counts = {};
@@ -1288,7 +1328,14 @@
                                     Object.keys(verbLabels).forEach((v) => {
                                         if (!counts[v]) return;
                                         const li = hostDoc.createElement('li');
-                                        li.textContent = (verbLabels[v]) + ' (' + counts[v] + ')';
+                                        const dot = hostDoc.createElement('span');
+                                        dot.className = 'mm-verb-dot';
+                                        const sample = linkRecs.find((L) => L.verb === v);
+                                        const stroke = sample ? readCrosslinkStroke(sample.g) : '';
+                                        if (stroke) dot.style.backgroundColor = stroke;
+                                        dot.setAttribute('aria-hidden', 'true');
+                                        li.appendChild(dot);
+                                        li.appendChild(hostDoc.createTextNode(verbLabels[v] + ' (' + counts[v] + ')'));
                                         list.appendChild(li);
                                     });
                                     legend.classList.remove('hidden');
