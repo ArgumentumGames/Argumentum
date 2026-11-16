@@ -707,6 +707,12 @@ namespace Argumentum.AssetConverter.Mindmapper
 				match.SetAttributeValue(nameof(link), link);
 				match.SetAttributeValue("depth", item.Depth);
 				match.SetAttributeValue("familyclass", item.Family.Replace(" ", ""));
+				// #2190 lot 2 — same navigation anchors as the Fallacies twin: `pk` backs the
+				// #pk=<n> deep link, `path` lets the wrapper resolve family ancestors for the
+				// card's clickable family line. Virtues carry no crosslinks, so the link layer
+				// stays off by construction (0 data-crosslink-* elements in these maps).
+				match.SetAttributeValue("pk", item.PK);
+				match.SetAttributeValue("path", item.Path);
 			}
 
 			if (svgMap.WrapNodeByLink)

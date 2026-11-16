@@ -785,5 +785,551 @@ namespace Argumentum.AssetConverter.VisualTests
                 await page.CloseAsync();
             }
         }
+
+        // ---- #2190 lot 2 — navigation capabilities (#10–#17) -----------------
+        //
+        // Lot 2 adds to the wrapper (both templates; this suite proves the behaviour on the
+        // INLINING variant, the substring presence on both variants is pinned by the headless
+        // golden master): search over the nodes with suggestions, `#pk=` deep links with
+        // browser-back, clickable family ancestors, keyboard access (Échap closes, Tab reaches
+        // nodes and links with screen-reader names), crosslink hover/click panel, and the
+        // node's relations listed in the card. Every test carries its inverse control — the
+        // measurement that would stay green if the capability silently degraded.
+
+        private static string Norm(string? s)
+            => System.Text.RegularExpressions.Regex.Replace(s ?? "", @"\s+", " ").Trim();
+
+        /// <summary>
+        /// Cap 10 — search: a matching query shows suggestions and Enter opens the card on the
+        /// selected node. Inverse control: a no-match query keeps the suggestion box hidden and
+        /// the card closed (the pre-lot-2 wrapper had no search field at all, so "the box stays
+        /// hidden" is also exactly the degraded state this test must distinguish from).
+        /// </summary>
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg")]
+        public async Task Cap10_Search_SuggestsAndEnterOpensCard(string lang, string svgFileName)
+        {
+            var wrapperPath = await ComposeIncludedAsync(lang, svgFileName);
+            var page = await OpenPageAsync(wrapperPath);
+            try
+            {
+                await WaitForViewportSettledAsync(page);
+
+                var search = page.Locator("#mmSearch");
+                Assert.Equal(1, await search.CountAsync());
+                var card = page.Locator("card");
+
+                // Inverse FIRST: no-match query → box hidden, card closed.
+                Assert.True(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "card must start hidden");
+                await search.FillAsync("zzqqxxnoexist");
+                await page.WaitForTimeoutAsync(120);
+                Assert.True(await page.Locator("#mmSuggestions")
+                    .EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "no-match query must keep the suggestion box hidden");
+                Assert.True(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "no-match query must not open the card");
+
+                // Real query: « Homme de paille » is a real fr label.
+                await search.FillAsync("Homme de paille");
+                await page.WaitForTimeoutAsync(120);
+                Assert.False(await page.Locator("#mmSuggestions")
+                    .EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "matching query must show the suggestion box");
+                var firstLabel = await page.Locator("#mmSuggestions .mm-sugg span").First
+                    .EvaluateAsync<string>("el => el.textContent");
+                _output.WriteLine($"[{lang}] first suggestion = '{firstLabel}'");
+                Assert.Contains("homme de paille", (firstLabel ?? "").ToLower());
+
+                // Enter activates the selected suggestion → deep link → card opens on that node.
+                await search.PressAsync("Enter");
+                await page.WaitForTimeoutAsync(500);
+                Assert.False(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "Enter on a suggestion must open the card");
+                var cardTitle = Norm(await page.Locator("card .title").EvaluateAsync<string>("el => el.textContent"));
+                _output.WriteLine($"[{lang}] card title after Enter = '{cardTitle}'");
+                Assert.Contains("Homme de paille", cardTitle);
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        /// <summary>
+        /// Cap 11 — deep link: <c>#pk=N</c> focuses the node and opens its card, a second hash
+        /// pushes history so the browser BACK returns to the previous node, and an invalid pk is
+        /// a bounded no-op (the inverse control: nothing moves for a pk that does not exist —
+        /// an unguarded handler would throw or open a stale card).
+        /// </summary>
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg")]
+        public async Task Cap11_DeepLink_PkHashNavigates_BackReturns_InvalidIsNoOp(string lang, string svgFileName)
+        {
+            var wrapperPath = await ComposeIncludedAsync(lang, svgFileName);
+            var page = await OpenPageAsync(wrapperPath);
+            try
+            {
+                await WaitForViewportSettledAsync(page);
+                var card = page.Locator("card");
+
+                // Inverse FIRST: pk that matches no node, then a malformed hash — the card must
+                // stay closed for both.
+                await page.EvaluateAsync("location.hash = '#pk=999999'");
+                await page.WaitForTimeoutAsync(300);
+                Assert.True(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "unknown pk must be a no-op (card stays closed)");
+                await page.EvaluateAsync("location.hash = '#pk=abc'");
+                await page.WaitForTimeoutAsync(200);
+                Assert.True(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "malformed pk hash must be a no-op");
+
+                // Two distinct nodes, picked from the index (never hardcoded: the corpus moves).
+                var pick = await page.EvaluateAsync<string[]>(@"() => {
+                    const nav = window.__mmNav;
+                    const ks = Object.keys(nav.byPk);
+                    const a = nav.byPk[ks[10]], b = nav.byPk[ks[11]];
+                    return [a.pk, a.label, b.pk, b.label];
+                }");
+                Assert.NotNull(pick); Assert.True(pick.Length >= 4);
+                var (pkA, labelA, pkB, labelB) = (pick[0], pick[1], pick[2], pick[3]);
+                _output.WriteLine($"[{lang}] pkA={pkA} '{labelA}' pkB={pkB} '{labelB}'");
+
+                await page.EvaluateAsync<string>("pk => { location.hash = 'pk=' + pk; }", pkA);
+                await page.WaitForTimeoutAsync(400);
+                Assert.False(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "#pk= must open the card");
+                Assert.Equal(Norm(labelA), Norm(await page.Locator("card .title").EvaluateAsync<string>("el => el.textContent")));
+                var activeA = await page.EvaluateAsync<bool>(
+                    "pk => window.__mmNav.byPk[pk].el.classList.contains('active')", pkA);
+                Assert.True(activeA, "the deep-linked node itself must carry the active state");
+
+                await page.EvaluateAsync<string>("pk => { location.hash = 'pk=' + pk; }", pkB);
+                await page.WaitForTimeoutAsync(400);
+                Assert.Equal(Norm(labelB), Norm(await page.Locator("card .title").EvaluateAsync<string>("el => el.textContent")));
+
+                // Browser back: history returns to pkA and the hashchange re-applies it.
+                await page.GoBackAsync();
+                await page.WaitForTimeoutAsync(500);
+                var titleAfterBack = Norm(await page.Locator("card .title").EvaluateAsync<string>("el => el.textContent"));
+                _output.WriteLine($"[{lang}] title after browser back = '{titleAfterBack}'");
+                Assert.Equal(Norm(labelA), titleAfterBack);
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        /// <summary>
+        /// Cap 12 — Échap: a no-op when everything is already closed (inverse), closes the card
+        /// when only the card is open, and closes the LINK PANEL first when both are open (the
+        /// declared precedence panel → card), the second Échap then closing the card.
+        /// </summary>
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg")]
+        public async Task Cap12_Escape_NoOpWhenClosed_ClosesCard_PanelTakesPrecedence(string lang, string svgFileName)
+        {
+            var wrapperPath = await ComposeIncludedAsync(lang, svgFileName);
+            var page = await OpenPageAsync(wrapperPath);
+            try
+            {
+                await WaitForViewportSettledAsync(page);
+                var card = page.Locator("card");
+                var panel = page.Locator("#mmLinkPanel");
+
+                // Inverse: Échap with everything closed changes nothing (and must not throw).
+                await page.Keyboard.PressAsync("Escape");
+                await page.WaitForTimeoutAsync(120);
+                Assert.True(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "Échap with everything closed must leave the card closed");
+
+                // Card only.
+                await page.Locator("#mindmap svg g.node[id=\"0\"]").ClickAsync();
+                await page.WaitForTimeoutAsync(150);
+                Assert.False(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"));
+                await page.Keyboard.PressAsync("Escape");
+                await page.WaitForTimeoutAsync(120);
+                Assert.True(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "Échap must close the card");
+
+                // Both open: the panel is closed by a real crosslink click, the card by a node click.
+                await page.EvaluateAsync(@"() => {
+                    const nav = window.__mmNav;
+                    const L = nav.linkRecs.find(l => nav.byPath[l.source] && nav.byPath[l.target]);
+                    L.g.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+                }");
+                await page.WaitForTimeoutAsync(120);
+                Assert.False(await panel.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "crosslink click must open the relation panel");
+                await page.Locator("#mindmap svg g.node[id=\"0\"]").ClickAsync();
+                await page.WaitForTimeoutAsync(120);
+                Assert.False(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"));
+
+                await page.Keyboard.PressAsync("Escape");
+                await page.WaitForTimeoutAsync(120);
+                Assert.True(await panel.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "first Échap must close the PANEL");
+                Assert.False(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "first Échap must NOT close the card while the panel was open (declared precedence)");
+
+                await page.Keyboard.PressAsync("Escape");
+                await page.WaitForTimeoutAsync(120);
+                Assert.True(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "second Échap must close the card");
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        /// <summary>
+        /// Cap 13 — keyboard: nodes and crosslinks are tab-reachable (tabindex=0) and every one
+        /// carries a screen-reader name (aria-label) and a role. The inverse control is the
+        /// mass: on the pre-lot-2 wrapper these counts were ZERO (no tabindex, no name), so the
+        /// assertions "named == tabbable == roled, over the whole map" are exactly the
+        /// differential. Tab traversal is exercised from the page start until focus lands on a
+        /// node, and one crosslink is focused directly (focusability is what Tab consumes).
+        /// </summary>
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg")]
+        public async Task Cap13_Keyboard_NodesAndLinksAreTabbableAndNamed(string lang, string svgFileName)
+        {
+            var wrapperPath = await ComposeIncludedAsync(lang, svgFileName);
+            var page = await OpenPageAsync(wrapperPath);
+            try
+            {
+                await WaitForViewportSettledAsync(page);
+
+                var counts = await page.EvaluateAsync<long[]>(@"() => {
+                    const nodes = document.querySelectorAll('#mindmap svg g.node');
+                    let named = 0, tabbable = 0, roled = 0;
+                    nodes.forEach(n => {
+                        if ((n.getAttribute('aria-label') || '').trim()) named++;
+                        if (n.getAttribute('tabindex') === '0') tabbable++;
+                        if (n.getAttribute('role') === 'button') roled++;
+                    });
+                    const links = document.querySelectorAll('g.crosslink');
+                    let lNamed = 0, lTabbable = 0, lRoled = 0;
+                    links.forEach(g => {
+                        if ((g.getAttribute('aria-label') || '').trim()) lNamed++;
+                        if (g.getAttribute('tabindex') === '0') lTabbable++;
+                        if (g.getAttribute('role') === 'link') lRoled++;
+                    });
+                    return [nodes.length, named, tabbable, roled, links.length, lNamed, lTabbable, lRoled];
+                }");
+                Assert.NotNull(counts);
+                Assert.True(counts.Length >= 8, $"counts probe returned {counts.Length} values");
+                var (n, named, tabbable, roled) = (counts[0], counts[1], counts[2], counts[3]);
+                var (l, lNamed, lTabbable, lRoled) = (counts[4], counts[5], counts[6], counts[7]);
+                _output.WriteLine($"[{lang}] nodes={n} named={named} tabbable={tabbable} roled={roled} | " +
+                    $"links={l} named={lNamed} tabbable={lTabbable} roled={lRoled}");
+
+                // Named nodes are the tabbable ones, in full, with the button role. The floor
+                // (>1000) is the mass of the map (measured 1408 nodes, 581 links on fr) — the
+                // exact figure is corpus-derived and stays out of the test.
+                Assert.True(n > 1000, $"expected the full Fallacies map, got {n} nodes");
+                Assert.Equal(named, tabbable);
+                Assert.Equal(named, roled);
+                Assert.True(l > 0, "the fr Fallacies map must carry crosslinks");
+                Assert.Equal(l, lNamed);
+                Assert.Equal(l, lTabbable);
+                Assert.Equal(l, lRoled);
+
+                // Tab from the page start reaches a node (bounded walk past the toolbar).
+                string? reached = null;
+                for (var i = 0; i < 12 && reached == null; i++)
+                {
+                    await page.Keyboard.PressAsync("Tab");
+                    reached = await page.EvaluateAsync<string?>(@"() => {
+                        const a = document.activeElement;
+                        if (!a || !a.getAttribute) return null;
+                        const cls = a.getAttribute('class') || '';
+                        if (cls.split(/\s+/).indexOf('node') >= 0 && a.closest && a.closest('#mindmap svg'))
+                            return a.getAttribute('aria-label') || '';
+                        return null;
+                    }");
+                }
+                _output.WriteLine($"[{lang}] Tab reached node with aria-label '{reached}'");
+                Assert.False(string.IsNullOrWhiteSpace(reached),
+                    "Tab must reach a mindmap node carrying a non-empty screen-reader name");
+
+                // A crosslink is focusable (what Tab consumes once focus order reaches it).
+                var linkFocused = await page.EvaluateAsync<bool>(@"() => {
+                    const nav = window.__mmNav;
+                    const L = nav.linkRecs.find(l2 => nav.byPath[l2.source] && nav.byPath[l2.target]);
+                    L.g.focus();
+                    return document.activeElement === L.g &&
+                        !!(L.g.getAttribute('aria-label') || '').trim();
+                }");
+                Assert.True(linkFocused, "a crosslink must be focusable with a non-empty aria-label");
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        /// <summary>
+        /// Cap 14 — crosslink hover: entering the link highlights the curve (mm-link-hover) and
+        /// BOTH endpoint nodes (mm-endpoint); leaving removes all three. The leave measurement
+        /// is the inverse control — a highlight that never cleared would read as a sticky state.
+        /// The pre-state (no class) is asserted inside the same evaluate, before the enter.
+        /// </summary>
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg")]
+        public async Task Cap14_CrosslinkHover_HighlightsLinkAndEndpoints_LeaveClears(string lang, string svgFileName)
+        {
+            var wrapperPath = await ComposeIncludedAsync(lang, svgFileName);
+            var page = await OpenPageAsync(wrapperPath);
+            try
+            {
+                await WaitForViewportSettledAsync(page);
+
+                var on = await page.EvaluateAsync<bool[]>(@"() => {
+                    const nav = window.__mmNav;
+                    const L = nav.linkRecs.find(l => nav.byPath[l.source] && nav.byPath[l.target]);
+                    const pre = !L.g.classList.contains('mm-link-hover');
+                    L.g.dispatchEvent(new MouseEvent('pointerenter'));
+                    const g = L.g.classList.contains('mm-link-hover');
+                    const s = nav.byPath[L.source].el.classList.contains('mm-endpoint');
+                    const t = nav.byPath[L.target].el.classList.contains('mm-endpoint');
+                    return [pre, g, s, t];
+                }");
+                Assert.NotNull(on);
+                Assert.True(on.Length >= 4, "hover probe returned too few values");
+                _output.WriteLine($"[{lang}] hover: pre-clean={on[0]} link={on[1]} src={on[2]} tgt={on[3]}");
+                Assert.True(on[0]); // pre-state: nothing highlighted
+                Assert.True(on[1]); // the curve
+                Assert.True(on[2]); // the source node
+                Assert.True(on[3]); // the target node
+
+                // Inverse: leaving clears every class the enter set.
+                var off = await page.EvaluateAsync<bool[]>(@"() => {
+                    const nav = window.__mmNav;
+                    const L = nav.linkRecs.find(l => nav.byPath[l.source] && nav.byPath[l.target]);
+                    L.g.dispatchEvent(new MouseEvent('pointerleave'));
+                    const g = !L.g.classList.contains('mm-link-hover');
+                    const s = !nav.byPath[L.source].el.classList.contains('mm-endpoint');
+                    const t = !nav.byPath[L.target].el.classList.contains('mm-endpoint');
+                    return [g, s, t];
+                }");
+                Assert.NotNull(off);
+                Assert.True(off.Length >= 3);
+                Assert.True(off[0]);
+                Assert.True(off[1]);
+                Assert.True(off[2]);
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        /// <summary>
+        /// Cap 15 — crosslink click opens the relation panel naming both endpoints
+        /// (« source — verbe → target »), and clicking the TARGET button closes the panel and
+        /// opens the target's card. Inverse control: the panel is hidden before the click (and
+        /// the card too), so the opening is the click's effect, not a default state.
+        /// </summary>
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg")]
+        public async Task Cap15_CrosslinkClick_PanelNamesBothNodes_TargetButtonNavigates(string lang, string svgFileName)
+        {
+            var wrapperPath = await ComposeIncludedAsync(lang, svgFileName);
+            var page = await OpenPageAsync(wrapperPath);
+            try
+            {
+                await WaitForViewportSettledAsync(page);
+                var card = page.Locator("card");
+                var panel = page.Locator("#mmLinkPanel");
+
+                // Inverse pre-state.
+                Assert.True(await panel.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "panel must start hidden");
+                Assert.True(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "card must start hidden");
+
+                var info = await page.EvaluateAsync<string[]>(@"() => {
+                    const nav = window.__mmNav;
+                    const L = nav.linkRecs.find(l => nav.byPath[l.source] && nav.byPath[l.target]);
+                    L.g.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+                    return [nav.byPath[L.source].label, nav.byPath[L.target].label, L.verbLabel];
+                }");
+                Assert.NotNull(info); Assert.True(info.Length >= 3);
+                var (srcLabel, tgtLabel, verb) = (info[0], info[1], info[2]);
+                _output.WriteLine($"[{lang}] panel link: '{srcLabel}' --{verb}--> '{tgtLabel}'");
+
+                await page.WaitForTimeoutAsync(150);
+                Assert.False(await panel.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "crosslink click must open the relation panel");
+
+                var buttons = page.Locator("#mmLinkBody .mm-node-btn");
+                Assert.Equal(2, await buttons.CountAsync());
+                var b0 = Norm(await buttons.Nth(0).EvaluateAsync<string>("el => el.textContent"));
+                var b1 = Norm(await buttons.Nth(1).EvaluateAsync<string>("el => el.textContent"));
+                Assert.Equal(Norm(srcLabel), b0);
+                Assert.Equal(Norm(tgtLabel), b1);
+                var bodyText = Norm(await page.Locator("#mmLinkBody").EvaluateAsync<string>("el => el.textContent"));
+                Assert.Contains(verb, bodyText);
+
+                // Click the TARGET: panel closes, card opens on the target node.
+                await buttons.Nth(1).ClickAsync();
+                await page.WaitForTimeoutAsync(500);
+                Assert.True(await panel.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "choosing an endpoint must close the panel");
+                Assert.False(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "choosing an endpoint must open that node's card");
+                var title = Norm(await page.Locator("card .title").EvaluateAsync<string>("el => el.textContent"));
+                _output.WriteLine($"[{lang}] card after clicking target = '{title}'");
+                Assert.Equal(Norm(tgtLabel), title);
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        /// <summary>
+        /// Cap 16 — the card lists the node's relations and clicking one navigates to the related
+        /// node (card title changes). Inverse control: a node with NO relation keeps the
+        /// .relations block hidden — the block is content-driven, not always-rendered.
+        /// </summary>
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg")]
+        public async Task Cap16_CardListsRelations_ClickingOneNavigates_LonelyNodeHidesBlock(string lang, string svgFileName)
+        {
+            var wrapperPath = await ComposeIncludedAsync(lang, svgFileName);
+            var page = await OpenPageAsync(wrapperPath);
+            try
+            {
+                await WaitForViewportSettledAsync(page);
+                var card = page.Locator("card");
+                var relations = page.Locator("card .relations");
+
+                // Pick an endpoint node and its first relation's far side, from the corpus.
+                var pick = await page.EvaluateAsync<string[]>(@"() => {
+                    const nav = window.__mmNav;
+                    const involved = new Set();
+                    nav.linkRecs.forEach(l => { involved.add(l.source); involved.add(l.target); });
+                    const L = nav.linkRecs.find(l => nav.byPath[l.source] && nav.byPath[l.target]);
+                    const me = nav.byPath[L.target];
+                    const other = L.source === me.path ? L.target : L.source;
+                    // A node with no relation at all, for the inverse.
+                    let lonely = null;
+                    for (const k of Object.keys(nav.byPk)) {
+                        const r = nav.byPk[k];
+                        if (r.path && !involved.has(r.path)) { lonely = r; break; }
+                    }
+                    return [me.pk, me.label, nav.byPath[other].label,
+                            lonely ? lonely.pk : '', lonely ? lonely.label : ''];
+                }");
+                Assert.NotNull(pick); Assert.True(pick.Length >= 5);
+                var (mePk, meLabel, otherLabel, lonelyPk, lonelyLabel) =
+                    (pick[0], pick[1], pick[2], pick[3], pick[4]);
+                _output.WriteLine($"[{lang}] me pk={mePk} '{meLabel}' -> other '{otherLabel}' | lonely pk={lonelyPk} '{lonelyLabel}'");
+
+                // Inverse FIRST: a node with no relation shows no relations block.
+                if (!string.IsNullOrEmpty(lonelyPk))
+                {
+                    await page.EvaluateAsync<string>("pk => { location.hash = 'pk=' + pk; }", lonelyPk);
+                    await page.WaitForTimeoutAsync(450);
+                    Assert.False(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                        "deep link must open the lonely node's card");
+                    Assert.True(await relations.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                        $"node '{lonelyLabel}' has no relation — the .relations block must stay hidden");
+                }
+
+                // The endpoint node: relations listed, clicking the first navigates.
+                await page.EvaluateAsync<string>("pk => { location.hash = 'pk=' + pk; }", mePk);
+                await page.WaitForTimeoutAsync(450);
+                Assert.False(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "deep link must open the node's card");
+                Assert.False(await relations.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    $"node '{meLabel}' has relations — the block must be visible");
+                var rows = page.Locator("card .relations .mm-relation");
+                Assert.True(await rows.CountAsync() >= 1, "at least one relation row must be listed");
+                var rowText = Norm(await rows.First.EvaluateAsync<string>("el => el.textContent"));
+                _output.WriteLine($"[{lang}] first relation row = '{rowText}'");
+                Assert.Contains("→", rowText);
+
+                await rows.First.ClickAsync();
+                await page.WaitForTimeoutAsync(500);
+                var titleAfter = Norm(await page.Locator("card .title").EvaluateAsync<string>("el => el.textContent"));
+                _output.WriteLine($"[{lang}] card title after relation click = '{titleAfter}' (was '{meLabel}')");
+                Assert.NotEqual(Norm(meLabel), titleAfter);
+                Assert.Contains(Norm(otherLabel), titleAfter);
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        /// <summary>
+        /// Cap 17 — degrade path on Virtues (fixture with no pk attribute and no crosslinks):
+        /// the legend and the relation panel never appear, an <c>#pk=</c> hash is a no-op, but
+        /// the SEARCH + card capabilities stay on (that is the "graceful" part — the wrapper
+        /// does not lose its lot-1 behaviour where the data does not carry lot-2 anchors).
+        /// </summary>
+        [Theory]
+        [InlineData("fr", "Argumentum_Virtues_MindMap_fr.content.svg")]
+        public async Task Cap17_VirtuesDegrade_NoDeepLinkNoLegend_SearchStillWorks(string lang, string svgFileName)
+        {
+            var wrapperPath = await ComposeIncludedAsync(lang, svgFileName);
+            var page = await OpenPageAsync(wrapperPath);
+            try
+            {
+                await WaitForViewportSettledAsync(page);
+                var card = page.Locator("card");
+
+                // Precondition measured on the fixture: no pk attribute, no crosslinks.
+                var pre = await page.EvaluateAsync<long[]>(@"() => [
+                    document.querySelectorAll('#mindmap svg g.node[pk]').length,
+                    document.querySelectorAll('g.crosslink').length,
+                    Object.keys(window.__mmNav.byPk).length,
+                    Object.keys(window.__mmNav.byPath).length
+                ]");
+                Assert.NotNull(pre);
+                Assert.True(pre.Length >= 4, "precondition probe returned too few values");
+                _output.WriteLine($"[{lang}] Virtues precondition: pk-attr={pre[0]} crosslinks={pre[1]} " +
+                    $"byPk={pre[2]} byPath={pre[3]}");
+                Assert.Equal(0, pre[0]); // the degrade premise itself, re-measured
+                Assert.Equal(0, pre[1]);
+                Assert.Equal(0, pre[2]);
+                Assert.Equal(0, pre[3]);
+
+                // Degrade: legend never unhidden, #pk= is a no-op.
+                Assert.True(await page.Locator("#mmLegend").EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "no crosslinks → the legend must stay hidden");
+                await page.EvaluateAsync("location.hash = '#pk=42'");
+                await page.WaitForTimeoutAsync(400);
+                Assert.True(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "no pk attributes → an #pk= hash must be a no-op (card stays closed)");
+
+                // Still on: search over the node labels reaches a node and opens its card.
+                var firstLabel = await page.EvaluateAsync<string>(@"() => {
+                    const n = document.querySelector('#mindmap svg g.node');
+                    return (n.textContent || '').replace(/\s+/g, ' ').trim();
+                }");
+                Assert.False(string.IsNullOrWhiteSpace(firstLabel), "fixture must carry at least one labelled node");
+                var probe = firstLabel.Split(' ')[0];
+                _output.WriteLine($"[{lang}] searching '{probe}' (from label '{firstLabel}')");
+                await page.Locator("#mmSearch").FillAsync(probe);
+                await page.WaitForTimeoutAsync(150);
+                Assert.False(await page.Locator("#mmSuggestions")
+                    .EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "search must still work on a map without pk attributes");
+                await page.Locator("#mmSearch").PressAsync("Enter");
+                await page.WaitForTimeoutAsync(500);
+                Assert.False(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "Enter on a suggestion must still open the card (no-pk path navigates directly)");
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
     }
 }

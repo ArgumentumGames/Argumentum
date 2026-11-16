@@ -479,6 +479,188 @@
             cursor: grabbing;
         }
 
+        /* ===== #2190 lot 2 — couche navigation (recherche, lien profond, relations, clavier) =====
+           Un seul gabarit sert Fallacies ET Virtues : la couche se degrade d'elle-meme —
+           0 data-crosslink-* (Virtues) => legende et panneau de relation restent `hidden`,
+           il reste recherche + fiche + familles cliquables. */
+
+        #mmToolbar {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            z-index: 200;
+            direction: ltr;
+        }
+
+        #mmSearch {
+            width: 260px;
+            max-width: 60vw;
+            padding: 6px 10px;
+            font: 14px/1.2 'DINPro', sans-serif;
+            border: 1px solid #9aa0a6;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+        }
+
+        #mmSuggestions {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 4px;
+            min-width: 260px;
+            max-width: 70vw;
+            max-height: 40vh;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid #c8ccd0;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #mmSuggestions .mm-sugg {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 6px 10px;
+            border: 0;
+            background: none;
+            font: 13px/1.3 'DINPro', sans-serif;
+            cursor: pointer;
+        }
+
+        #mmSuggestions .mm-sugg:hover,
+        #mmSuggestions .mm-sugg.mm-selected {
+            background: #ece8f4;
+        }
+
+        #mmSuggestions .mm-sugg .mm-sugg-family {
+            display: block;
+            font-size: 11px;
+            opacity: 0.65;
+        }
+
+        #mmLegend {
+            position: fixed;
+            bottom: 12px;
+            left: 12px;
+            z-index: 200;
+            max-width: 300px;
+            padding: 6px 10px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #c8ccd0;
+            border-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+            font: 12px/1.4 'DINPro', sans-serif;
+            direction: ltr;
+        }
+
+        #mmLegend summary {
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        #mmLegend ul {
+            margin: 6px 0 2px;
+            padding-left: 18px;
+        }
+
+        #mmLinkPanel {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 200;
+            max-width: 340px;
+            padding: 10px 34px 10px 12px;
+            background: rgba(255, 255, 255, 0.97);
+            border: 1px solid #c8ccd0;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            font: 13px/1.4 'DINPro', sans-serif;
+            direction: ltr;
+        }
+
+        #mmLinkClose {
+            position: absolute;
+            top: 4px;
+            right: 6px;
+            border: 0;
+            background: none;
+            font-size: 16px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .mm-node-btn {
+            border: 0;
+            padding: 0;
+            background: none;
+            color: #4b1e6e;
+            font: inherit;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* Relations dans la fiche (card) — bornées, la carte a overflow:hidden + ratio fixe. */
+        card .relations {
+            max-height: 12vh;
+            overflow-y: auto;
+            padding: 4px 10px;
+            font: 12px/1.35 'DINPro', sans-serif;
+        }
+
+        card .relations .mm-relation {
+            display: block;
+            width: 100%;
+            text-align: left;
+            border: 0;
+            padding: 2px 0;
+            background: none;
+            color: var(--color-text-2, #601362);
+            font: inherit;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        card .famille.mm-nav,
+        card .sous_famille.mm-nav,
+        card .Soussousfamille.mm-nav {
+            cursor: pointer;
+            text-decoration: underline dotted;
+        }
+
+        /* Liens transverses : zone de clic elargie + etat survole + extremites mises en avant. */
+        g.crosslink {
+            cursor: pointer;
+        }
+
+        g.crosslink:focus {
+            outline: none;
+        }
+
+        path.mm-link-hit {
+            stroke: transparent;
+            stroke-width: 18;
+            fill: none;
+            pointer-events: stroke;
+        }
+
+        g.crosslink.mm-link-hover > path:not(.mm-link-hit) {
+            stroke-width: 4;
+        }
+
+        g.node.mm-endpoint {
+            fill: #ff9800;
+        }
+
+        g.node:focus {
+            outline: none;
+        }
+
+        g.node:focus-visible {
+            fill: #ffb74d;
+        }
+
 
     </style>
 </head>
@@ -3725,6 +3907,25 @@
 	</g>
 </svg>
     </div>
+
+    <!-- #2190 lot 2 — couche navigation : recherche, legende des relations, panneau de relation.
+         `hidden` par defaut ; le JS ne reveille la legende/le panneau que si la carte porte
+         des data-crosslink-* (Fallacies). Libelles en francais (garde #2190). -->
+    <div id="mmToolbar">
+        <input id="mmSearch" type="search" autocomplete="off" spellcheck="false"
+               placeholder="Rechercher dans la carte…"
+               aria-label="Rechercher un sophisme dans la carte">
+        <div id="mmSuggestions" class="hidden" role="listbox" aria-label="Résultats de recherche"></div>
+    </div>
+    <details id="mmLegend" class="hidden">
+        <summary>Relations entre sophismes</summary>
+        <ul id="mmLegendList"></ul>
+    </details>
+    <div id="mmLinkPanel" class="hidden" role="dialog" aria-label="Relation entre deux sophismes">
+        <button type="button" id="mmLinkClose" aria-label="Fermer le panneau de relation">×</button>
+        <div id="mmLinkBody"></div>
+    </div>
+
     <card class="hidden">
         <bleed>
             <cut>
@@ -3750,6 +3951,9 @@
                             <div class="desc_fr"></div>
                             <div class="exemple_fr"></div>
                         </div>
+                        <!-- #2190 lot 1 (volet interactif) : les relations transverses du nœud,
+                             remplies par le JS a l'ouverture de la fiche. -->
+                        <div class="relations hidden"></div>
                     </div>
                     <div class="footer">
                         <div class="niveau"></div>
@@ -3785,19 +3989,22 @@
             }
         };
 
-        const showOverlay = (e) => {
+        // #2190 lot 2 — le corps de showOverlay vit dans openNodeCard(targetNode) pour que la
+        // navigation (recherche, #pk=, clic de relation, famille cliquable) ouvre la MEME fiche
+        // par le meme chemin que le clic direct. Au passage, deux defauts fixes : la requete
+        // '.node.active' restait sur `document` (les noeuds sont bien dans ce document-ci pour
+        // le gabarit inline, mais la const interne masquait le `let activeNode` externe, donc
+        // hideOverlay ne retirait jamais la classe 'active' — la fiche fermee laissait le nœud
+        // en rouge), et parentElement pouvait etre null au clic sur la racine SVG.
+        const openNodeCard = (targetNode) => {
             isNodeActive = true;
 
             // Remove the 'active' class from any previously active node
-            const activeNode = document.querySelector('.node.active');
-            if (activeNode) {
-                activeNode.classList.remove('active');
+            const prevActive = document.querySelector('.node.active');
+            if (prevActive) {
+                prevActive.classList.remove('active');
             }
-
-            let targetNode = e.target;
-            if (!targetNode.classList.contains('node') && targetNode.parentElement.classList.contains('node')) {
-                targetNode = targetNode.parentElement;
-            }
+            activeNode = targetNode;
 
             // Add the 'active' class to the clicked node
             targetNode.classList.add('active');
@@ -3860,6 +4067,15 @@
             }
 
             targetNode.classList.add('active');
+        };
+
+        const showOverlay = (e) => {
+            let targetNode = e.target;
+            if (!targetNode.classList.contains('node') &&
+                targetNode.parentElement && targetNode.parentElement.classList.contains('node')) {
+                targetNode = targetNode.parentElement;
+            }
+            openNodeCard(targetNode);
         };
 
 
@@ -3939,6 +4155,9 @@
                     })
 
                     document.addEventListener('keydown', (event) => {
+                        // #2190 lot 2 — le champ de recherche doit pouvoir contenir '+' et '-'
+                        // sans zoomer la carte derriere lui.
+                        if (event.target && /^(INPUT|TEXTAREA|SELECT)$/.test(event.target.tagName)) return;
                         if (event.key === '+') {
                             instance.zoomIn();
                         } else if (event.key === '-') {
@@ -4034,6 +4253,371 @@
                     panZoomInstance.resize();
                     requestAnimationFrame(recenterRoot);
                 });
+
+                // ===== #2190 lot 2 + lot 1 (volet interactif) — couche navigation =====
+                // Recherche sur les nœuds, lien profond #pk=, familles cliquables dans la fiche,
+                // Échap/Tab/Enter au clavier, survol/clic des liens transverses (lot 1).
+                // Degradation prevue : sans attribut pk (Virtues avant re-derivation) la
+                // navigation marche, seul le lien profond reste inactif ; sans data-crosslink-*
+                // la legende et le panneau de relation restent caches.
+                (function installNavigation() {
+                    const scope = document; // gabarit inline : le SVG vit dans CE document
+                    const hostDoc = document;
+                    const container = document.getElementById('mindmap');
+                    const verbLabels = {
+                        'PredatesOn': 'précède', 'Denounces': 'dénonce', 'Leverages': 'exploite',
+                        'Allows': 'permet', 'Opposes': 's’oppose à', 'Inverts': 'inverse',
+                        'Mirrors': 'reflète', 'IsRelatedTo': 'est apparenté à'
+                    };
+
+                    const nodeEls = Array.prototype.slice.call(scope.querySelectorAll('g.node'));
+                    const byPk = {}, byPath = {}, nodeIndex = [];
+                    nodeEls.forEach((n) => {
+                        const pk = n.getAttribute('pk') || '';
+                        const path = n.getAttribute('path') || '';
+                        const label = (n.textContent || '').replace(/\s+/g, ' ').trim();
+                        const rec = { el: n, pk: pk, path: path, label: label,
+                                      family: n.getAttribute('family') || '' };
+                        if (pk && !byPk[pk]) byPk[pk] = rec;
+                        if (path && !byPath[path]) byPath[path] = rec;
+                        nodeIndex.push(rec);
+                        // Tab atteint les nœuds, avec un nom lisible pour le lecteur d'écran.
+                        if (label) {
+                            n.setAttribute('tabindex', '0');
+                            n.setAttribute('role', 'button');
+                            n.setAttribute('aria-label', label + (rec.family ? ' — ' + rec.family : ''));
+                        }
+                    });
+
+                    let currentRec = null;
+
+                    // --- recentrage + fiche -------------------------------------------------
+                    // La fiche (card) est fixée au centre : on cible le TIERS GAUCHE pour que le
+                    // nœud atteint reste visible à côté d'elle. panBy prend des pixels client —
+                    // getBoundingClientRect est déjà dans cette unité, aucune conversion CTM.
+                    const focusNode = (rec) => {
+                        if (!rec) return;
+                        currentRec = rec;
+                        try {
+                            const center = () => {
+                                const r = rec.el.getBoundingClientRect();
+                                return { x: r.left + r.width / 2, y: r.top + r.height / 2,
+                                         w: r.width, h: r.height };
+                            };
+                            let c = center();
+                            if (Math.max(c.w, c.h) < 44) {
+                                const factor = Math.min(6, Math.max(1.5, 90 / Math.max(c.w, c.h, 1)));
+                                panZoomInstance.zoomAtPoint(factor, { x: c.x, y: c.y });
+                                c = center();
+                            }
+                            const cr = container.getBoundingClientRect();
+                            panZoomInstance.panBy({ x: (cr.left + cr.width * 0.28) - c.x,
+                                                    y: (cr.top + cr.height / 2) - c.y });
+                        } catch (e) { console.error('navigation focus error', e); }
+                        openNodeCard(rec.el);
+                        fillRelations(rec);
+                    };
+
+                    const navigateTo = (rec) => {
+                        if (!rec) return;
+                        if (rec.pk) {
+                            const want = '#pk=' + rec.pk;
+                            if (location.hash === want) { focusNode(rec); }
+                            else { location.hash = 'pk=' + rec.pk; } // hashchange déclenche focusNode
+                        } else {
+                            focusNode(rec);
+                        }
+                    };
+
+                    // --- liens transverses (lot 1 : survol + clic) --------------------------
+                    const crosslinkEls = Array.prototype.slice.call(
+                        scope.querySelectorAll('g.crosslink[data-crosslink-verb]'));
+                    const linksByPath = {};
+                    const linkRecs = [];
+                    crosslinkEls.forEach((g) => {
+                        const verb = g.getAttribute('data-crosslink-verb');
+                        const src = g.getAttribute('data-crosslink-source') || '';
+                        const tgt = g.getAttribute('data-crosslink-target') || '';
+                        const L = { g: g, verb: verb, verbLabel: verbLabels[verb] || verb,
+                                    source: src, target: tgt };
+                        linkRecs.push(L);
+                        [src, tgt].forEach((p) => {
+                            if (!p) return;
+                            (linksByPath[p] = linksByPath[p] || []).push(L);
+                        });
+                        // Zone de clic élargie : copie de la courbe, trait gras et transparent.
+                        const curve = g.querySelector('path');
+                        if (curve && !g.querySelector('path.mm-link-hit')) {
+                            const hit = curve.cloneNode(false);
+                            hit.setAttribute('class', 'mm-link-hit');
+                            hit.removeAttribute('clip-path');
+                            g.appendChild(hit);
+                        }
+                        const srcRec = byPath[src], tgtRec = byPath[tgt];
+                        const aria = 'relation : ' + (srcRec ? srcRec.label : src) + ' ' +
+                                     (L.verbLabel) + ' ' + (tgtRec ? tgtRec.label : tgt);
+                        g.setAttribute('tabindex', '0');
+                        g.setAttribute('role', 'link');
+                        g.setAttribute('aria-label', aria);
+                    });
+
+                    const setLinkHighlight = (L, on) => {
+                        L.g.classList.toggle('mm-link-hover', on);
+                        [L.source, L.target].forEach((p) => {
+                            const r = byPath[p];
+                            if (r) r.el.classList.toggle('mm-endpoint', on);
+                        });
+                    };
+
+                    const linkPanel = hostDoc.getElementById('mmLinkPanel');
+                    const linkBody = hostDoc.getElementById('mmLinkBody');
+                    const openLinkPanel = (L) => {
+                        if (!linkPanel || !L) return;
+                        linkBody.innerHTML = '';
+                        const mk = (rec, pathText) => {
+                            const btn = hostDoc.createElement('button');
+                            btn.type = 'button';
+                            btn.className = 'mm-node-btn';
+                            if (rec) {
+                                btn.textContent = rec.label;
+                                btn.setAttribute('data-pk', rec.pk || '');
+                                btn.addEventListener('click', (ev) => {
+                                    ev.stopPropagation();
+                                    closeLinkPanel();
+                                    navigateTo(rec);
+                                });
+                            } else {
+                                btn.textContent = pathText;
+                                btn.disabled = true;
+                                btn.style.textDecoration = 'none';
+                                btn.style.cursor = 'default';
+                            }
+                            return btn;
+                        };
+                        const srcRec = byPath[L.source], tgtRec = byPath[L.target];
+                        linkBody.appendChild(mk(srcRec, L.source));
+                        const v = hostDoc.createElement('span');
+                        v.textContent = ' — ' + L.verbLabel + ' → ';
+                        linkBody.appendChild(v);
+                        linkBody.appendChild(mk(tgtRec, L.target));
+                        linkPanel.classList.remove('hidden');
+                    };
+                    const closeLinkPanel = () => { if (linkPanel) linkPanel.classList.add('hidden'); };
+                    const linkCloseBtn = hostDoc.getElementById('mmLinkClose');
+                    if (linkCloseBtn) linkCloseBtn.addEventListener('click', closeLinkPanel);
+
+                    crosslinkEls.forEach((g) => {
+                        const L = linkRecs.find((x) => x.g === g);
+                        if (!L) return;
+                        g.addEventListener('pointerenter', () => setLinkHighlight(L, true));
+                        g.addEventListener('pointerleave', () => setLinkHighlight(L, false));
+                        g.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            openLinkPanel(L);
+                        });
+                    });
+
+                    // Survol d'un nœud : ses liens transverses se signalent.
+                    nodeEls.forEach((n) => {
+                        const rec = byPath[n.getAttribute('path') || ''] ||
+                                    byPk[n.getAttribute('pk') || ''];
+                        if (!rec) return;
+                        let hoverLinks = null;
+                        n.addEventListener('pointerenter', () => {
+                            hoverLinks = linksByPath[rec.path] || [];
+                            hoverLinks.forEach((L) => setLinkHighlight(L, true));
+                        });
+                        n.addEventListener('pointerleave', () => {
+                            (hoverLinks || []).forEach((L) => setLinkHighlight(L, false));
+                            hoverLinks = null;
+                        });
+                    });
+
+                    // Légende repliable des 8 relations — cachée si la carte n'en porte pas.
+                    const legend = hostDoc.getElementById('mmLegend');
+                    if (legend && linkRecs.length) {
+                        const counts = {};
+                        linkRecs.forEach((L) => { counts[L.verb] = (counts[L.verb] || 0) + 1; });
+                        const list = hostDoc.getElementById('mmLegendList');
+                        Object.keys(verbLabels).forEach((v) => {
+                            if (!counts[v]) return;
+                            const li = hostDoc.createElement('li');
+                            li.textContent = (verbLabels[v]) + ' (' + counts[v] + ')';
+                            list.appendChild(li);
+                        });
+                        legend.classList.remove('hidden');
+                    }
+
+                    // --- relations dans la fiche + familles cliquables ----------------------
+                    const relationsEl = hostDoc.querySelector('card .relations');
+                    const fillRelations = (rec) => {
+                        if (!relationsEl) return;
+                        relationsEl.innerHTML = '';
+                        const links = (rec.path && linksByPath[rec.path]) || [];
+                        if (!links.length) { relationsEl.classList.add('hidden'); return; }
+                        links.slice(0, 12).forEach((L) => {
+                            const other = (L.source === rec.path) ? byPath[L.target] : byPath[L.source];
+                            if (!other || other === rec) return;
+                            const row = hostDoc.createElement('button');
+                            row.type = 'button';
+                            row.className = 'mm-relation';
+                            row.textContent = (L.verbLabel) + ' → ' + other.label;
+                            row.addEventListener('click', (ev) => {
+                                ev.stopPropagation();
+                                navigateTo(other);
+                            });
+                            relationsEl.appendChild(row);
+                        });
+                        if (relationsEl.childElementCount) relationsEl.classList.remove('hidden');
+                        else relationsEl.classList.add('hidden');
+                    };
+
+                    // Remontée : .famille → racine de famille, .sous_famille → niveau 2, etc.
+                    const wireFamilyNav = () => {
+                        const pairs = [
+                            [hostDoc.querySelector('card .famille'), 1],
+                            [hostDoc.querySelector('card .sous_famille'), 2],
+                            [hostDoc.querySelector('card .Soussousfamille'), 3]
+                        ];
+                        pairs.forEach(([el, depth]) => {
+                            if (!el) return;
+                            el.classList.add('mm-nav');
+                            el.setAttribute('tabindex', '0');
+                            el.setAttribute('role', 'link');
+                            el.addEventListener('click', (e) => {
+                                e.stopPropagation();
+                                if (!currentRec || !currentRec.path) return;
+                                const parts = currentRec.path.split('.');
+                                if (parts.length <= depth) return;
+                                const anc = byPath[parts.slice(0, depth).join('.')];
+                                if (anc && anc !== currentRec) navigateTo(anc);
+                            });
+                        });
+                    };
+                    wireFamilyNav();
+
+                    // --- recherche ------------------------------------------------------------
+                    const searchInput = hostDoc.getElementById('mmSearch');
+                    const suggBox = hostDoc.getElementById('mmSuggestions');
+                    const norm = (s) => (s || '').toLowerCase().normalize('NFD')
+                        .replace(/[̀-ͯ]/g, '');
+                    const normIndex = nodeIndex.filter((r) => r.label)
+                        .map((r) => ({ r: r, n: norm(r.label) }));
+                    let selectedIdx = -1;
+
+                    const suggest = (q) => {
+                        const nq = norm(q.trim());
+                        if (!nq) return [];
+                        const starts = [], contains = [];
+                        for (let i = 0; i < normIndex.length; i++) {
+                            if (starts.length >= 10) break;
+                            const e = normIndex[i];
+                            const pos = e.n.indexOf(nq);
+                            if (pos === 0) starts.push(e.r);
+                            else if (pos > 0 && contains.length < 10) contains.push(e.r);
+                        }
+                        return starts.concat(contains).slice(0, 10);
+                    };
+
+                    const renderSuggestions = (recs) => {
+                        if (!suggBox) return;
+                        suggBox.innerHTML = '';
+                        selectedIdx = recs.length ? 0 : -1;
+                        recs.forEach((rec, i) => {
+                            const btn = hostDoc.createElement('button');
+                            btn.type = 'button';
+                            btn.className = 'mm-sugg' + (i === selectedIdx ? ' mm-selected' : '');
+                            btn.setAttribute('role', 'option');
+                            const t = hostDoc.createElement('span');
+                            t.textContent = rec.label;
+                            btn.appendChild(t);
+                            if (rec.family) {
+                                const f = hostDoc.createElement('span');
+                                f.className = 'mm-sugg-family';
+                                f.textContent = rec.family;
+                                btn.appendChild(f);
+                            }
+                            btn.addEventListener('click', (ev) => {
+                                ev.stopPropagation();
+                                suggBox.classList.add('hidden');
+                                if (searchInput) searchInput.value = rec.label;
+                                navigateTo(rec);
+                            });
+                            suggBox.appendChild(btn);
+                        });
+                        suggBox.classList.toggle('hidden', recs.length === 0);
+                    };
+
+                    if (searchInput && suggBox) {
+                        searchInput.addEventListener('input', () => renderSuggestions(suggest(searchInput.value)));
+                        searchInput.addEventListener('keydown', (e) => {
+                            const items = Array.prototype.slice.call(suggBox.querySelectorAll('.mm-sugg'));
+                            if (!items.length) return;
+                            if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                                e.preventDefault();
+                                selectedIdx = (selectedIdx + (e.key === 'ArrowDown' ? 1 : -1) + items.length) % items.length;
+                                items.forEach((it, i) => it.classList.toggle('mm-selected', i === selectedIdx));
+                            } else if (e.key === 'Enter') {
+                                e.preventDefault();
+                                const recs = suggest(searchInput.value);
+                                if (recs[selectedIdx] || recs[0]) {
+                                    suggBox.classList.add('hidden');
+                                    navigateTo(recs[selectedIdx] || recs[0]);
+                                }
+                            } else if (e.key === 'Escape') {
+                                suggBox.classList.add('hidden');
+                            }
+                        });
+                        searchInput.addEventListener('blur', () => {
+                            setTimeout(() => suggBox.classList.add('hidden'), 150);
+                        });
+                        searchInput.addEventListener('focus', () => renderSuggestions(suggest(searchInput.value)));
+                    }
+
+                    // --- lien profond #pk= + retour navigateur -------------------------------
+                    const applyHash = () => {
+                        const m = (location.hash || '').match(/^#pk=(\d+)$/);
+                        if (!m) return false;
+                        const rec = byPk[m[1]];
+                        if (!rec) return false;
+                        focusNode(rec);
+                        return true;
+                    };
+                    window.addEventListener('hashchange', applyHash);
+                    // Après le zoom initial (rAF post-DOMContentLoaded) : appliquer une URL
+                    // partagée #pk=N. Borné : si le nœud n'existe pas, rien ne bouge.
+                    setTimeout(applyHash, 350);
+
+                    // --- clavier : Échap ferme, Enter/Espace active l'élément focalisé ---------
+                    hostDoc.addEventListener('keydown', (e) => {
+                        if (e.key === 'Escape') {
+                            if (linkPanel && !linkPanel.classList.contains('hidden')) {
+                                closeLinkPanel();
+                            } else if (!overlay.classList.contains('hidden')) {
+                                hideOverlay();
+                                if (relationsEl) relationsEl.classList.add('hidden');
+                            }
+                            return;
+                        }
+                        if (e.key !== 'Enter' && e.key !== ' ') return;
+                        const t = e.target;
+                        if (!t || !t.classList) return;
+                        if (t.classList.contains('node')) {
+                            e.preventDefault();
+                            const rec = byPk[t.getAttribute('pk') || ''] ||
+                                        byPath[t.getAttribute('path') || ''];
+                            if (rec) navigateTo(rec);
+                        } else if (t.classList.contains('crosslink')) {
+                            e.preventDefault();
+                            const L = linkRecs.find((x) => x.g === t);
+                            if (L) openLinkPanel(L);
+                        }
+                    });
+
+                    // Exposé pour les tests de capacités (#830/#2190) — aucun autre usage.
+                    window.__mmNav = { byPk: byPk, byPath: byPath, focusNode: focusNode,
+                                      navigateTo: navigateTo, linkRecs: linkRecs };
+                })();
 
                 // Conservez ici votre logique d'affichage de la modale
             } else {

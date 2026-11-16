@@ -1676,6 +1676,14 @@ if (mapFile != null) {
 				match.SetAttributeValue(nameof(link), link);
 				match.SetAttributeValue("depth", item.Depth);
 				match.SetAttributeValue("familyclass", item.Family.Replace(" ", ""));
+				// #2190 lot 2 — navigation anchors. `pk` backs the #pk=<n> deep link (wrapper JS
+				// locates the node from the URL hash); `path` is the taxonomy key the crosslink
+				// annotations already use (data-crosslink-source/target, CrossLinkResolver), so
+				// the wrapper resolves a link's endpoints without any second corpus. Additive:
+				// the wrapper treats a missing/empty value as "capability off" (Virtues maps
+				// carry no crosslinks and stay on the search-only path).
+				match.SetAttributeValue("pk", item.PK);
+				match.SetAttributeValue("path", item.Path);
 			}
 
 			if (svgMap.WrapNodeByLink)
