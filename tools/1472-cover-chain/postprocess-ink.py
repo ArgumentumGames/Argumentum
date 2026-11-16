@@ -21,7 +21,10 @@ Invariants:
       BYTES at equal Pillow/zlib versions — the PNG encoder is not part of
       the invariant.
     - the source is NEVER overwritten; .png in, -ink.png out, side by side —
-      and src == dst is REFUSED outright (exit, no write).
+      and src == dst is REFUSED outright (exit, no write), **including the
+      same file written with another letter case on Windows** (`IN.PNG` and
+      `in.png` are one file there — measured T7d): samefile when both exist,
+      normcase(realpath) otherwise.
     - --stats prints the alpha histogram deciles so a calibration run can be
       judged numerically instead of by eye (a blank or all-grey plate reads
       immediately as a collapsed histogram).
@@ -48,6 +51,19 @@ def parse_hex(value):
     return tuple(int(v[i:i + 2], 16) for i in (0, 2, 4))
 
 
+def same_underlying_path(a, b):
+    """Windows compares paths case-insensitively: `IN.PNG` and `in.png` name
+    ONE file (measured T7d), so abspath equality alone misses the case and
+    the run would overwrite its source. samefile settles it by identity when
+    both paths exist; normcase(realpath) covers a dst that does not exist
+    yet (realpath also resolves junctions and symlinks)."""
+    try:
+        return os.path.samefile(a, b)
+    except OSError:
+        return os.path.normcase(os.path.realpath(a)) == \
+            os.path.normcase(os.path.realpath(b))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("src")
@@ -62,8 +78,9 @@ def main():
                     help="print alpha deciles and ink coverage")
     args = ap.parse_args()
 
-    if os.path.abspath(args.src) == os.path.abspath(args.dst):
-        sys.exit("refusing: dst is the same path as src — "
+    if same_underlying_path(args.src, args.dst):
+        sys.exit("refusing: dst is the same file as src (case-insensitively "
+                 "— Windows resolves IN.PNG and in.png to one file) — "
                  "the source must not be overwritten")
 
     if args.black >= args.white:
