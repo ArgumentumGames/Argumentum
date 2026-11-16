@@ -46,7 +46,7 @@ La scène est celle de A et A′ : des enfants attablés jouent aux cartes
 | Conteneur | `comfyui-qwen`, ComfyUI 0.36.0, RTX 3090 24 Go (GPU 1) | — |
 
 **Licence lue sur les poids, pas sur une fiche de modèle** : sans cette lecture,
-le grain ne produit rien (garde #1472). Les trois composants sont Apache-2.0 ;
+le grain ne produit rien (garde #1472). Les quatre composants sont Apache-2.0 ;
 la chaîne SDXL/openrail++ n'est pas dans ce chemin.
 
 ### Invariant du négatif
@@ -66,7 +66,7 @@ distinct. Les références sont des entrées IMAGE : chacune est un nœud
 
 ## Les références médianes
 
-Douze faces du deck, listées dans `references_mediane_12.txt` (analyse du
+Douze faces du deck (analyse du
 25/09) : huit de registre caricature — `1.2.1.2.1`, `1.3`, `2.2.3.1.2`,
 `3.1.1.1.1`, `4.3.1.2`, `5`, `5.2.1.3`, `4.3.1.1.1` — et quatre de registre
 gravure — `1.2.2.4`, `7`, `3.2.1`, `5.3.3`.
@@ -86,7 +86,9 @@ RGB   = --ink, uniforme sur tous les pixels
 ```
 
 Sortie RGBA. La fonction est **pure** : mêmes octets d'entrée et mêmes
-paramètres ⇒ sortie identique au bit près, sur n'importe quelle machine (aucun
+paramètres ⇒ **pixels identiques sur toute machine** ; **octets identiques à
+versions égales** de Pillow/zlib — l'encodage PNG n'est pas partie de
+l'invariant (aucun
 dithering, aucun rééchantillonnage). `--stats` imprime les déciles d'alpha et
 la couverture : une planche blanche ou non détourée se lit dans l'histogramme
 avant qu'on la regarde, et le script le signale lui-même au-delà de 99 % dans

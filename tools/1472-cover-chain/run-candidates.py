@@ -147,14 +147,12 @@ def main():
                          "default: the first two refs for every candidate")
     ap.add_argument("--out-dir", required=True)
     ap.add_argument("--dry-run", action="store_true",
-                    help="build and print the graph, post nothing")
+                    help="build and print the graph, zero requests")
+    ap.add_argument("--max-wait", type=int, default=7200,
+                    help="per-seed wall-clock bound while waiting for "
+                         "/history (default 7200 s; longest measured render "
+                         "is 3002 s)")
     args = ap.parse_args()
-
-    if not args.token:
-        ap.error("--token is required (or set ARGUMENTUM_COMFYUI_TOKEN_FILE)")
-
-    with open(args.token, encoding="ascii") as fh:
-        token = fh.read().strip()
 
     with open(args.prompt_file, encoding="utf-8") as fh:
         prompt = fh.read().strip()
@@ -162,26 +160,40 @@ def main():
     os.makedirs(args.out_dir, exist_ok=True)
     seeds = [int(s) for s in args.seeds.split(",")]
 
+    # --dry-run makes ZERO requests and reads NO secret: the graph is built
+    # with the local basenames (which is what the server would store after
+    # upload) and printed. No token use, no upload, no queue probe (HOLD
+    # #2284).
+    if args.dry_run:
+        ref_names = [os.path.basename(r) for r in args.refs]
+        print(json.dumps(build_graph(prompt, args.negative, seeds[0], ref_names),
+                         indent=1, ensure_ascii=False))
+        return
+
+    if not args.token:
+        ap.error("--token is required (or set ARGUMENTUM_COMFYUI_TOKEN_FILE)")
+
+    with open(args.token, encoding="ascii") as fh:
+        token = fh.read().strip()
+
     ref_names = []
     for r in args.refs:
         n = upload_ref(args.base, token, r)
         ref_names.append(n)
         print("uploaded ref:", n, flush=True)
 
-    if args.dry_run:
-        print(json.dumps(build_graph(prompt, args.negative, seeds[0], ref_names),
-                         indent=1, ensure_ascii=False))
-        return
-
-    # Solo-run doctrine: refuse to post behind an existing job.
-    queue = http(args.base, "/queue", token)
-    pending = len(queue.get("queue_running", [])) + len(queue.get("queue_pending", []))
-    if pending:
-        print(f"REFUSING: queue not empty ({pending} job(s)) — solo-run doctrine",
-              file=sys.stderr)
-        sys.exit(3)
-
     for i, seed in enumerate(seeds):
+        # Solo-run doctrine, re-checked before EVERY posting: a co-tenant
+        # job arriving between two candidates must abort the batch, not
+        # queue ours behind it (HOLD #2284, c.6904271308 — the crash case
+        # CONDITIONS.md documents).
+        queue = http(args.base, "/queue", token)
+        pending = len(queue.get("queue_running", [])) + \
+            len(queue.get("queue_pending", []))
+        if pending:
+            print(f"REFUSING at seed {seed}: queue not empty "
+                  f"({pending} job(s)) — solo-run doctrine", file=sys.stderr)
+            sys.exit(3)
         if args.cycle_refs and len(ref_names) > 1:
             n = len(ref_names)
             pair = [ref_names[i % n], ref_names[(i + 1) % n]]
@@ -213,6 +225,11 @@ def main():
                 continue
             entry = hist.get(pid)
             if not entry:
+                if time.time() - t0 > args.max_wait:
+                    print(f"seed {seed}: no result after {args.max_wait}s "
+                          "(history lost — server restart? job dropped?) "
+                          "— aborting", file=sys.stderr)
+                    sys.exit(6)
                 continue
             status = entry.get("status", {})
             if status.get("completed") or status.get("status_str") == "success":

@@ -17,8 +17,11 @@ as partial alpha, and nothing else in the pipeline touches it.
 
 Invariants:
     - pure function of (input bytes, --ink, --black, --white): same inputs ⇒
-      byte-identical output, on any machine (no dithering, no resampling).
-    - the source is NEVER overwritten; .png in, -ink.png out, side by side.
+      identical PIXELS on any machine (no dithering, no resampling); identical
+      BYTES at equal Pillow/zlib versions — the PNG encoder is not part of
+      the invariant.
+    - the source is NEVER overwritten; .png in, -ink.png out, side by side —
+      and src == dst is REFUSED outright (exit, no write).
     - --stats prints the alpha histogram deciles so a calibration run can be
       judged numerically instead of by eye (a blank or all-grey plate reads
       immediately as a collapsed histogram).
@@ -29,6 +32,7 @@ Usage:
 """
 
 import argparse
+import os
 import sys
 
 try:
@@ -57,6 +61,10 @@ def main():
     ap.add_argument("--stats", action="store_true",
                     help="print alpha deciles and ink coverage")
     args = ap.parse_args()
+
+    if os.path.abspath(args.src) == os.path.abspath(args.dst):
+        sys.exit("refusing: dst is the same path as src — "
+                 "the source must not be overwritten")
 
     if args.black >= args.white:
         sys.exit("--black must be < --white")
