@@ -136,10 +136,33 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
         }
 
         /// <summary>
+        /// P23-21 (#2190 lot 3): the templates ship an <c>MM_UI</c> interface-localisation
+        /// bundle covering all 8 languages — like any client-side i18n bundle, the EN
+        /// wrapper legitimately carries the RU/ZH/AR/FA interface strings in its JS. Those
+        /// codepoints are interface strings, not corpus contamination. The no-contamination
+        /// contract targets the INLINED CORPUS (the wrong-svg regression this guard was
+        /// written for), so the script counters run on the wrapper with the UI bundle
+        /// stripped. The strip is anchored on <c>var MM_UI = {</c> …
+        /// <c>const verbLabels = ui.verbs;</c>; if the bundle is ever dropped from the
+        /// template the strip becomes a no-op and the guard measures everything again.
+        /// </summary>
+        private static string StripInterfaceUiBundle(string wrapper)
+        {
+            var start = wrapper.IndexOf("var MM_UI = {", StringComparison.Ordinal);
+            if (start < 0) return wrapper;
+            const string endAnchor = "const verbLabels = ui.verbs;";
+            var end = wrapper.IndexOf(endAnchor, start, StringComparison.Ordinal);
+            if (end < 0) return wrapper; // structure drifted: measure the whole wrapper
+            return wrapper.Remove(start, end + endAnchor.Length - start);
+        }
+
+        /// <summary>
         /// Cross-language no-contamination contract: the EN wrapper must not contain
-        /// the FR-frozen marker AND must not accidentally carry another language's
-        /// native script. Guards against a future regression where the wrong per-language
-        /// <c>content.svg</c> is inlined (e.g. all wrappers seeded from FR).
+        /// the FR-frozen marker AND its corpus must not accidentally carry another
+        /// language's native script. Guards against a future regression where the wrong
+        /// per-language <c>content.svg</c> is inlined (e.g. all wrappers seeded from FR).
+        /// Since P23-21 the script counts run on the wrapper minus the multi-language
+        /// interface bundle (see <see cref="StripInterfaceUiBundle"/>).
         /// </summary>
         [Fact]
         public async Task FormatWrapper_VirtuesEnglish_NoFrenchOrForeignScriptContamination()
@@ -153,12 +176,13 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
 
             Assert.Contains("Intellectual honesty", wrapper);
             Assert.DoesNotContain(FrenchFrozenMarker, wrapper);
-            Assert.True(CountCyrillic(wrapper) == 0,
-                $"EN wrapper should have zero Cyrillic codepoints, got {CountCyrillic(wrapper)}.");
-            Assert.True(CountCjk(wrapper) == 0,
-                $"EN wrapper should have zero CJK codepoints, got {CountCjk(wrapper)}.");
-            Assert.True(CountArabicScript(wrapper) == 0,
-                $"EN wrapper should have zero Arabic-script codepoints, got {CountArabicScript(wrapper)}.");
+            var corpus = StripInterfaceUiBundle(wrapper);
+            Assert.True(CountCyrillic(corpus) == 0,
+                $"EN wrapper corpus should have zero Cyrillic codepoints, got {CountCyrillic(corpus)}.");
+            Assert.True(CountCjk(corpus) == 0,
+                $"EN wrapper corpus should have zero CJK codepoints, got {CountCjk(corpus)}.");
+            Assert.True(CountArabicScript(corpus) == 0,
+                $"EN wrapper corpus should have zero Arabic-script codepoints, got {CountArabicScript(corpus)}.");
         }
     }
 }

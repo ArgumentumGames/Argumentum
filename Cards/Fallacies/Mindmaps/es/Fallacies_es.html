@@ -20307,7 +20307,8 @@
 
     <!-- #2190 lot 2 — couche navigation : recherche, legende des relations, panneau de relation.
          `hidden` par defaut ; le JS ne reveille la legende/le panneau que si la carte porte
-         des data-crosslink-* (Fallacies). Libelles en francais (garde #2190). -->
+         des data-crosslink-* (Fallacies). Libelles statiques en francais (degrade sans JS) ;
+         la couche JS les traduit par langue depuis MM_UI (P23-21). -->
     <div id="mmToolbar">
         <input id="mmSearch" type="search" autocomplete="off" spellcheck="false"
                placeholder="Rechercher dans la carte…"
@@ -20661,11 +20662,120 @@
                     const scope = document; // gabarit inline : le SVG vit dans CE document
                     const hostDoc = document;
                     const container = document.getElementById('mindmap');
-                    const verbLabels = {
-                        'PredatesOn': 'précède', 'Denounces': 'dénonce', 'Leverages': 'exploite',
-                        'Allows': 'permet', 'Opposes': 's’oppose à', 'Inverts': 'inverse',
-                        'Mirrors': 'reflète', 'IsRelatedTo': 'est apparenté à'
+                    // #2190 lot 3 (P23-21) — libellés d'interface par langue. Le writer
+                    // substitue es dans <html lang> (#457 T4a) : la couche lit la
+                    // langue du document et prend ses libellés, repli fr (langue source du
+                    // corpus). Les libellés statiques du HTML restent français (dégradé
+                    // sans JS) — la couche les remplace ici. Revue native ar/fa conseillée.
+                    var MM_UI = {
+                        fr: { searchPlaceholder: 'Rechercher dans la carte…',
+                              searchAria: 'Rechercher un sophisme dans la carte',
+                              suggestionsAria: 'Résultats de recherche',
+                              legendSummary: 'Relations entre sophismes',
+                              panelAria: 'Relation entre deux sophismes',
+                              closeAria: 'Fermer le panneau de relation',
+                              relationAriaPrefix: 'relation : ',
+                              verbs: { 'PredatesOn': 'précède', 'Denounces': 'dénonce',
+                                       'Leverages': 'exploite', 'Allows': 'permet',
+                                       'Opposes': 's’oppose à', 'Inverts': 'inverse',
+                                       'Mirrors': 'reflète', 'IsRelatedTo': 'est apparenté à' } },
+                        en: { searchPlaceholder: 'Search the map…',
+                              searchAria: 'Search the map for a fallacy',
+                              suggestionsAria: 'Search results',
+                              legendSummary: 'Relations between fallacies',
+                              panelAria: 'Relation between two fallacies',
+                              closeAria: 'Close the relation panel',
+                              relationAriaPrefix: 'relation: ',
+                              verbs: { 'PredatesOn': 'precedes', 'Denounces': 'denounces',
+                                       'Leverages': 'exploits', 'Allows': 'allows',
+                                       'Opposes': 'opposes', 'Inverts': 'inverts',
+                                       'Mirrors': 'mirrors', 'IsRelatedTo': 'is related to' } },
+                        ru: { searchPlaceholder: 'Поиск по карте…',
+                              searchAria: 'Искать софизм на карте',
+                              suggestionsAria: 'Результаты поиска',
+                              legendSummary: 'Связи между софизмами',
+                              panelAria: 'Связь между двумя софизмами',
+                              closeAria: 'Закрыть панель связей',
+                              relationAriaPrefix: 'связь: ',
+                              verbs: { 'PredatesOn': 'предшествует', 'Denounces': 'разоблачает',
+                                       'Leverages': 'использует', 'Allows': 'допускает',
+                                       'Opposes': 'противостоит', 'Inverts': 'переворачивает',
+                                       'Mirrors': 'отражает', 'IsRelatedTo': 'родственен с' } },
+                        pt: { searchPlaceholder: 'Pesquisar no mapa…',
+                              searchAria: 'Pesquisar um sofisma no mapa',
+                              suggestionsAria: 'Resultados da pesquisa',
+                              legendSummary: 'Relações entre sofismas',
+                              panelAria: 'Relação entre dois sofismas',
+                              closeAria: 'Fechar o painel de relações',
+                              relationAriaPrefix: 'relação: ',
+                              verbs: { 'PredatesOn': 'precede', 'Denounces': 'denuncia',
+                                       'Leverages': 'explora', 'Allows': 'permite',
+                                       'Opposes': 'opõe-se a', 'Inverts': 'inverte',
+                                       'Mirrors': 'reflete', 'IsRelatedTo': 'é aparentado com' } },
+                        es: { searchPlaceholder: 'Buscar en el mapa…',
+                              searchAria: 'Buscar una falacia en el mapa',
+                              suggestionsAria: 'Resultados de la búsqueda',
+                              legendSummary: 'Relaciones entre falacias',
+                              panelAria: 'Relación entre dos falacias',
+                              closeAria: 'Cerrar el panel de relaciones',
+                              relationAriaPrefix: 'relación: ',
+                              verbs: { 'PredatesOn': 'precede', 'Denounces': 'denuncia',
+                                       'Leverages': 'explota', 'Allows': 'permite',
+                                       'Opposes': 'se opone a', 'Inverts': 'invierte',
+                                       'Mirrors': 'refleja', 'IsRelatedTo': 'está emparentado con' } },
+                        ar: { searchPlaceholder: 'ابحث في الخريطة…',
+                              searchAria: 'ابحث عن مغالطة في الخريطة',
+                              suggestionsAria: 'نتائج البحث',
+                              legendSummary: 'العلاقات بين المغالطات',
+                              panelAria: 'علاقة بين مغالطتين',
+                              closeAria: 'إغلاق لوحة العلاقات',
+                              relationAriaPrefix: 'علاقة: ',
+                              verbs: { 'PredatesOn': 'يسبق', 'Denounces': 'يفضح',
+                                       'Leverages': 'يستغل', 'Allows': 'يتيح',
+                                       'Opposes': 'يعارض', 'Inverts': 'يقلب',
+                                       'Mirrors': 'يعكس', 'IsRelatedTo': 'يرتبط بـ' } },
+                        fa: { searchPlaceholder: 'جستجو در نقشه…',
+                              searchAria: 'جستجوی مغلطه در نقشه',
+                              suggestionsAria: 'نتایج جستجو',
+                              legendSummary: 'روابط میان مغلطه‌ها',
+                              panelAria: 'رابطه میان دو مغلطه',
+                              closeAria: 'بستن پنل رابطه',
+                              relationAriaPrefix: 'رابطه: ',
+                              verbs: { 'PredatesOn': 'پیش می‌آید', 'Denounces': 'رسوا می‌کند',
+                                       'Leverages': 'بهره می‌گیرد', 'Allows': 'ممکن می‌سازد',
+                                       'Opposes': 'مخالفت می‌کند با', 'Inverts': 'وارونه می‌کند',
+                                       'Mirrors': 'بازتاب می‌دهد', 'IsRelatedTo': 'هم‌خانواده است با' } },
+                        zh: { searchPlaceholder: '在地图中搜索…',
+                              searchAria: '在地图中搜索谬误',
+                              suggestionsAria: '搜索结果',
+                              legendSummary: '谬误之间的关系',
+                              panelAria: '两个谬误之间的关系',
+                              closeAria: '关闭关系面板',
+                              relationAriaPrefix: '关系：',
+                              verbs: { 'PredatesOn': '先于', 'Denounces': '揭露',
+                                       'Leverages': '利用', 'Allows': '容许',
+                                       'Opposes': '对立于', 'Inverts': '颠倒',
+                                       'Mirrors': '映照', 'IsRelatedTo': '同类于' } }
                     };
+                    var uiLang = (hostDoc.documentElement.getAttribute('lang') || 'fr').toLowerCase();
+                    var ui = MM_UI[uiLang] || MM_UI.fr;
+                    (function applyUiStrings() {
+                        var search = hostDoc.getElementById('mmSearch');
+                        if (search) {
+                            search.setAttribute('placeholder', ui.searchPlaceholder);
+                            search.setAttribute('aria-label', ui.searchAria);
+                        }
+                        var byAria = { mmSuggestions: ui.suggestionsAria,
+                                       mmLinkPanel: ui.panelAria,
+                                       mmLinkClose: ui.closeAria };
+                        Object.keys(byAria).forEach((id) => {
+                            var el = hostDoc.getElementById(id);
+                            if (el && byAria[id]) el.setAttribute('aria-label', byAria[id]);
+                        });
+                        var summary = hostDoc.querySelector('#mmLegend summary');
+                        if (summary) summary.textContent = ui.legendSummary;
+                    })();
+                    const verbLabels = ui.verbs;
 
                     const nodeEls = Array.prototype.slice.call(scope.querySelectorAll('g.node'));
                     const byPk = {}, byPath = {}, nodeIndex = [];
@@ -20751,7 +20861,7 @@
                             g.appendChild(hit);
                         }
                         const srcRec = byPath[src], tgtRec = byPath[tgt];
-                        const aria = 'relation : ' + (srcRec ? srcRec.label : src) + ' ' +
+                        const aria = ui.relationAriaPrefix + (srcRec ? srcRec.label : src) + ' ' +
                                      (L.verbLabel) + ' ' + (tgtRec ? tgtRec.label : tgt);
                         g.setAttribute('tabindex', '0');
                         g.setAttribute('role', 'link');
