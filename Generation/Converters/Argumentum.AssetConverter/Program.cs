@@ -470,6 +470,34 @@ namespace Argumentum.AssetConverter
 							Logger.LogSuccess($"[{lang}] injected {nodeCount} class=\"node\" -> {contentSvgPath}");
 						}
 
+						// #2190 lot 2 — the FR-only cards variant (same 1408 nodes and 581 crosslinks as the
+						// main map, measured 2026-11-16) must receive the same attribute injection, else its
+						// committed wrappers keep the pre-lot-2 template and the rewrite surface stops at 32
+						// wrappers instead of the 34 the freshness gate walks. Same mechanism as the main
+						// loop, still no FreeMind: in-place injection + wrapper rewrite from the existing SVG.
+						var cardsMapTemplate = regenConfig.FallacyMindMapCreatorConfig.DocumentConfigs
+							.FirstOrDefault(d => d.InsertCardsThumbnails && d.SVGMaps.Any(m => m.SetSVGNodeAttributes));
+						if (cardsMapTemplate != null)
+						{
+							var cardsContentSvgPath = Path.Combine(repoRoot, "Cards", "Fallacies", "Mindmaps", "fr",
+								"Argumentum_Fallacies_MindMap_cards_fr.content.svg");
+							if (File.Exists(cardsContentSvgPath))
+							{
+								var localizedCardsMap = cardsMapTemplate.CloneMindMap();
+								foreach (var documentLocalization in regenConfig.LocalizationConfig.MindMapLocalization)
+								{
+									documentLocalization.DoReflectionTranslate(localizedCardsMap, "fr");
+								}
+
+								var cardsNodeCount = await localizedCardsMap.RegenerateInteractiveContentSvgAsync(fallacyItems, cardsContentSvgPath, regenConfig, "fr");
+								Logger.LogSuccess($"[fr-cards] injected {cardsNodeCount} class=\"node\" -> {cardsContentSvgPath}");
+							}
+							else
+							{
+								Logger.LogWarning($"[fr-cards] content.svg missing, skipped: {cardsContentSvgPath}");
+							}
+						}
+
 						return;
 					}
 					else if (args[0].Equals("--regen-virtue-mindmap-html", StringComparison.OrdinalIgnoreCase))

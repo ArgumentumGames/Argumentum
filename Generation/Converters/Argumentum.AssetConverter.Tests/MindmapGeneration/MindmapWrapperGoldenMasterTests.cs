@@ -170,5 +170,91 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
             legacy.Should().BeEmpty(
                 "capability #11 (#830 / #1040): the racy anonymous 'load' subscription must be replaced by the named initSvgViewer + readyState/documentElement guard");
         }
+
+        // Lot-2 (#2190) navigation anchors, pinned on BOTH wrapper variants. The behavioural
+        // proof lives in the Playwright suite (MindmapWrapperCapabilitiesTests, Cap 10-17,
+        // inlining variant); this headless scan is the variant-parity belt: the _ext wrappers
+        // embed no SVG and no browser opens them here, so their ONLY contract is that the
+        // committed bytes carry the same navigation surface as the inlining ones. A wrapper the
+        // regeneration silently SKIPPED (the OverwriteExistingHtmlMaps trap, CLAUDE.md
+        // "re-derive mind maps") is exactly the file this turns red on.
+        private static readonly string[] RequiredLot2Navigation =
+        {
+            "installNavigation()",
+            "id=\"mmSearch\"",
+            "id=\"mmSuggestions\"",
+            "id=\"mmLinkPanel\"",
+            "id=\"mmLegend\"",
+            "window.__mmNav"
+        };
+
+        [Fact]
+        public void AllCommittedMindmapHtmlFiles_CarryLot2NavigationAnchors()
+        {
+            var files = Directory.EnumerateFiles(MindmapsRoot, "*.html", SearchOption.AllDirectories)
+                .OrderBy(f => f)
+                .ToList();
+            files.Count.Should().BeGreaterThanOrEqualTo(34,
+                "anti-collapse floor: 8 langs x {Fallacies,Virtues} x {embed,_ext} + cards_fr pair + 2 templates");
+
+            var missing = new List<string>();
+            foreach (var file in files)
+            {
+                var content = File.ReadAllText(file);
+                foreach (var needle in RequiredLot2Navigation)
+                {
+                    if (!content.Contains(needle))
+                        missing.Add($"{Path.GetFileName(file)}: missing '{needle}'");
+                }
+            }
+
+            missing.Should().BeEmpty(
+                "#2190 lot 2: every shipped mindmap artifact — inlining AND _ext — must carry the navigation surface (search, suggestions, link panel, legend, __mmNav); a file missing here was skipped by the wrapper re-derivation");
+        }
+
+        /// <summary>
+        /// #2190 lot 2 — the Fallacies content SVGs (8 languages + the FR-only cards variant)
+        /// must carry the navigation anchors on EVERY node: <c>pk</c> (deep links) and
+        /// <c>path</c> (crosslink endpoint resolution). The expected count is DERIVED per file
+        /// from its own <c>class="node"</c> population — every node is a navigation target, so
+        /// <c>nodes == pk == path</c>; no corpus count is hardcoded (measured 1408/node file at
+        /// introduction). Virtues is deliberately out of scope: its SVGs are not re-injected by
+        /// the lot-2 pass and the wrapper degrades (Cap 17 of the Playwright suite).
+        /// </summary>
+        [Fact]
+        public void FallaciesContentSvgs_CarryPkAndPathOnEveryNode()
+        {
+            var files = Directory.EnumerateFiles(MindmapsRoot, "Fallacies_*.content.svg", SearchOption.AllDirectories)
+                .Concat(Directory.EnumerateFiles(MindmapsRoot, "Argumentum_Fallacies_MindMap_cards_fr.content.svg", SearchOption.AllDirectories))
+                .OrderBy(f => f)
+                .ToList();
+            files.Count.Should().Be(9, "8 language content.svg + the FR-only cards variant (scope derived from the file set the regen entry walks)");
+
+            var offenders = new List<string>();
+            foreach (var file in files)
+            {
+                var content = File.ReadAllText(file);
+                var nodes = CountOccurrences(content, "class=\"node\"");
+                var pks = CountOccurrences(content, " pk=\"");
+                var paths = CountOccurrences(content, " path=\"");
+                if (nodes == 0 || pks != nodes || paths != nodes)
+                    offenders.Add($"{Path.GetFileName(file)}: nodes={nodes} pk={pks} path={paths}");
+            }
+
+            offenders.Should().BeEmpty(
+                "#2190 lot 2: every Fallacies node must carry pk + path (deep links and crosslink resolution); a file where pk/path < nodes was not re-injected");
+        }
+
+        private static int CountOccurrences(string haystack, string needle)
+        {
+            var count = 0;
+            for (var i = haystack.IndexOf(needle, StringComparison.Ordinal);
+                 i >= 0;
+                 i = haystack.IndexOf(needle, i + needle.Length, StringComparison.Ordinal))
+            {
+                count++;
+            }
+            return count;
+        }
     }
 }
