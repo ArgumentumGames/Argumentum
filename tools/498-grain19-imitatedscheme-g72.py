@@ -1,17 +1,28 @@
 # -*- coding: utf-8 -*-
-"""#498 grain 19 — groupe 7.2 « Sabotage du débat » (partie 7.2.2/7.2.3) : 2 références + 2 phrases, 4 rangées.
+"""#498 grain 19 — groupe 7.2 « Sabotage du débat » (partie 7.2.2) : 1 référence + 2 phrases, 3 rangées.
 
 Cadrage : docs/ontology/498-grain9-cadrage-scheme-imite-2026-11-10.md (§7.2.2, §7.2.3,
-partition §4). Base : origin/master 64307b98. Sans arbitrage nouveau : le grain applique
-les tables du cadrage telles quelles.
+partition §4). Base : origin/master 64307b98.
+
+VERDICT RATIFIÉ PRIME SUR LE CADRAGE (16/11) : la première mise de ce grain écrivait
+aussi la référence Ethotic_Inference sur la tête 1352 (7.2.3) — la CI l'a refusée :
+FallacyAttackOnlyStopGateTests.RatifiedAttackOnlyAnchors_MustKeepTheirVerdictExactly
+(« PK 1352 : skos cells are no longer empty — the verdict (498-aif-empoisonner-le-puits-
+cluster.md) ratifies "sans scheme AIF natif", attack-columns-only IS the final state »).
+Le doc docs/taxonomy/498-aif-empoisonner-le-puits-cluster.md ratifie 1352 SANS scheme
+AIF natif : ses 5 cellules skos restent vides, undermine/I-node est l'état final —
+même traitement que PK 690 au grain 17. La porte dit : rouvrir l'arbitrage AVANT
+d'écrire. 1352 est donc NON écrite, et les 7 descendants 1353-1359 restent sans-(a)
+jusqu'à arbitrage ai-01 (descente éventuelle, précédent 3.3.3 c.6850786269) — objet
+d'un ASK, PAS d'un contournement.
 
 Re-dérivation du périmètre (définition (a) du cadrage du 06/11 : AIF_skosExceptionRef
 non vide, OU AIF_skosDirectRef avec cible en _Inference/_Scheme, héritée du plus proche
 ancêtre porteur) : 48 nœuds dans le sous-arbre 7.2, dont 16 sans-(a) — la tête 1312 (7.2,
 groupe hétérogène), la tête intermédiaire 1345 (7.2.2, enfants hétérogènes), 7.2.2.1
 (1346+1347+1348+1349), 7.2.2.2 (1350), 7.2.2.3 (1351) et 7.2.3 (1352+1353…1359).
-Les 4 écritures couvrent 14 nœuds ; restent sans écriture VOLONTAIRE les deux têtes
-1312 et 1345 (cadrage §4 : « même statut que les têtes de groupe »).
+Les 3 écritures couvrent 6 nœuds ; restent sans écriture VOLONTAIRE les têtes 1312 et
+1345, et tout 7.2.3 (verdict ratifié / arbitrage ouvert).
 
   PK 1346  7.2.2.1 (4 n.) → PHRASE « imite la rigueur méthodique — la complication du
                           protocole tient lieu d'examen »
@@ -19,9 +30,6 @@ Les 4 écritures couvrent 14 nœuds ; restent sans écriture VOLONTAIRE les deux
                           le nirvana exige l'option parfaite — jumeau du PK 977, §6.2.1)
   PK 1351  7.2.2.3 (1 n.) → PHRASE « imite la réfutation par détail — un défaut mineur
                           tient lieu de réfutation du tout »
-  PK 1352  7.2.3 tête (8) → référence Ethotic_Inference (porteur 7.3/1360 : discréditer
-                          la source à l'avance imite l'examen éthique légitime ; le
-                          « +liens transverses: ad hominem » de la rangée corrobore)
 
 Confrontation phrases↔cartes (règle ai-01 du 15/11, c.6894233749 : chaque phrase du
 cadrage se confronte à desc_fr/desc_en AVANT écriture — mesuré à la base 64307b98) :
@@ -33,11 +41,10 @@ cadrage se confronte à desc_fr/desc_en AVANT écriture — mesuré à la base 6
        mineur tenu pour réfutation du tout). FIDÈLE.
 Aucune correction de phrase nécessaire ce grain (différence d'avec 984/991, 15/11).
 
-Ancre 1352 : la rangée porte AIF_attackType=undermine + AIF_attackedNode=I-node
-(aif-attack-edges.csv l.142) et « +liens transverses: ad hominem ». Le cadrage §7.2.3
-pose la référence (a) SUR la tête (8 nœuds couverts par héritage) — les colonnes
-d'attaque et tout le reste de la rangée restent byte-identiques (seules les deux
-cellules (a) vides sont remplies). Idem 1345 : undercut/RA-node épinglé, non écrite.
+Ancres ratifiées (docs/taxonomy/498-aif-*-cluster.md, épinglées par
+FallacyAttackOnlyStopGateTests) : 1345 (undercut/RA-node) et 1352 (undermine/I-node,
+« sans scheme AIF natif ») — 5 cellules skos VIDENTES avant et après, colonnes
+d'attaque byte-identiques, jamais écrites.
 
 Représentation (GO ai-01 sur #2229, même que grain 18) : référence → AIF_skosExceptionRef
 jeton nu + AIF_skosMappingType='skos:broadMatch' ; phrase → colonne dédiée
@@ -64,7 +71,6 @@ BOM = b"\xef\xbb\xbf"
 
 REF_EDITS = {  # PK -> (ExceptionRef, MappingType) — jetons nus (pas de virgule)
     "1350": ("PracticalReasoning_Inference", "skos:broadMatch"),  # 7.2.2.2
-    "1352": ("Ethotic_Inference", "skos:broadMatch"),             # 7.2.3 tête
 }
 PHRASE_EDITS = {  # PK -> prose française (colonne AIF_imitatedScheme), cadrage §7.2 verbatim
     "1346": ("imite la rigueur méthodique — la complication du protocole tient lieu "
@@ -73,21 +79,25 @@ PHRASE_EDITS = {  # PK -> prose française (colonne AIF_imitatedScheme), cadrage
              "de réfutation du tout"),                             # 7.2.2.3
 }
 PATHS = {
-    "1346": "7.2.2.1", "1350": "7.2.2.2", "1351": "7.2.2.3", "1352": "7.2.3",
+    "1346": "7.2.2.1", "1350": "7.2.2.2", "1351": "7.2.2.3",
 }
 # Têtes non écrites (cadrage §4) : 1312 tête de groupe hétérogène, 1345 tête
 # intermédiaire 7.2.2 (enfants hétérogènes — même statut que 2.1.2/2.3.2/6.2.3).
 NAKED_HEADS = ("7.2", "7.2.2")
 NAKED_HEAD_PKS = ("1312", "1345")
-# Ancres d'attaque épinglées (jamais touchées par un write (a)) : 1345 et 1352.
+# Ancres d'attaque RATIFIÉES (jamais touchées par un write (a), skos vides pour toujours) :
+# 1345 = docs/taxonomy/498-aif-complication-exageree-cluster.md, 1352 = 498-aif-empoisonner-
+# le-puits-cluster.md (« sans scheme AIF natif », verdict final, refus CI du 16/11).
 ANCHOR_PINS = {
     "1345": ("undercut", "RA-node"),   # aif-attack-edges + colonnes AIF_attackType/attackedNode
     "1352": ("undermine", "I-node"),
 }
 # Couvertes par héritage (écriture d'un ancêtre) : aucune cellule propre, contrôle
-# explicite de non-écriture — tout le reste du sous-arbre sans-(a).
-INHERITED_UNTOUCHED = ("1347", "1348", "1349",                       # sous 1346
-                       "1353", "1354", "1355", "1356", "1357", "1358", "1359")  # sous 1352
+# explicite de non-écriture.
+INHERITED_UNTOUCHED = ("1347", "1348", "1349")                      # sous 1346
+# 7.2.3 resté sans-(a) EN ATTENDANT ARBITRAGE (verdict ratifié sur la tête 1352, la
+# descente aux 7 enfants n'est pas tranchée — ASK ai-01, précédent 3.3.3 c.6850786269).
+REMAINING_SANS_A = ("1352", "1353", "1354", "1355", "1356", "1357", "1358", "1359")
 # Périmètre re-dérivé attendu : les 16 sans-(a) de 7.2 à la base (anti-dérive path).
 EXPECTED_SANS_A = frozenset(NAKED_HEAD_PKS + ("1346", "1347", "1348", "1349", "1350",
                                               "1351", "1352", "1353", "1354", "1355",
@@ -274,7 +284,7 @@ def main():
             f[I["AIF_imitatedScheme"]] = '"%s"' % prose  # quotée, comme PK 244/837
             n_cells += 1
         new_rows.append(",".join(f))
-    assert n_cells == 6, "cellules écrites %d != 6" % n_cells
+    assert n_cells == 4, "cellules écrites %d != 4" % n_cells
     new_text = "\r\n".join(new_rows) + "\r\n"
     assert new_text.count("\r\n") == text.count("\r\n"), "CRLF modifiés"
 
@@ -304,28 +314,29 @@ def main():
         for ci, col in enumerate(header):
             want = expected.get((pk, col), o_row[ci])
             assert n_row[ci] == want, "delta inattendu PK %s %s" % (pk, col)
-    # les 4 rangées cibles sont les SEULES différentes, octet pour octet
+    # les 3 rangées cibles sont les SEULES différentes, octet pour octet
     diff_rows = [i for i, (a, b) in enumerate(zip(rows, new_rows)) if a != b]
     targets = {i for i, f in enumerate(field_rows) if f[I["PK"]] in set(REF_EDITS) | set(PHRASE_EDITS)}
     assert diff_rows == sorted(targets), "rangées modifiées inattendues : %r != %r" % (diff_rows, sorted(targets))
     # héritage : les descendants restent byte-identiques
     for pk in INHERITED_UNTOUCHED:
         assert by_pk[pk] == vby[pk], "PK %s a bougé (héritage attendu, pas d'écriture)" % pk
-    # têtes et ancres intactes après (rangées byte-identiques SAUF les cellules (a) posées)
+    # têtes et ancres intactes après (rangées byte-identiques)
     for pk in NAKED_HEAD_PKS:
         assert vby[pk] == by_pk[pk], "PK %s a bougé (tête nue non écrite)" % pk
     for pk in ANCHOR_PINS:
-        changed = [header[i] for i, (a, b) in enumerate(zip(by_pk[pk], vby[pk])) if a != b]
-        assert set(changed) <= {"AIF_skosExceptionRef", "AIF_skosMappingType"}, \
-            "ancre %s : colonnes bougées %r" % (pk, changed)
-        assert vby[pk][I["AIF_attackType"]] == by_pk[pk][I["AIF_attackType"]], "ancre %s attackType" % pk
-        assert vby[pk][I["AIF_attackedNode"]] == by_pk[pk][I["AIF_attackedNode"]], "ancre %s attackedNode" % pk
+        assert vby[pk] == by_pk[pk], "ancre %s a bougé — verdict ratifié, rangée intouchable" % pk
+        assert all(vby[pk][I[c]] == "" for c in SKOS_COLS), "ancre %s : skos non vides" % pk
+    # 7.2.3 reste sans-(a) en attendant arbitrage : aucune cellule posée
+    for pk in REMAINING_SANS_A:
+        assert vby[pk] == by_pk[pk], "PK %s a bougé (7.2.3 attend l'arbitrage)" % pk
+        assert all(vby[pk][I[c]] == "" for c in SKOS_COLS), "PK %s : skos non vides (sans-(a) attendu)" % pk
 
     after = census(vfields, I)
     assert sum(after) == 1408, "census après %r ne somme pas à 1408" % (after,)
-    assert after[0] == before[0] + 2, "mapped %d->%d (attendu +2)" % (before[0], after[0])
+    assert after[0] == before[0] + 1, "mapped %d->%d (attendu +1)" % (before[0], after[0])
     assert after[2] == before[2] + 2, "declared-imitation %d->%d (attendu +2)" % (before[2], after[2])
-    assert after[3] == before[3] - 4, "untouched %d->%d (attendu -4)" % (before[3], after[3])
+    assert after[3] == before[3] - 3, "untouched %d->%d (attendu -3)" % (before[3], after[3])
     assert after[1] == before[1], "gap %d->%d (attendu inchangé)" % (before[1], after[1])
 
     if write:
@@ -333,15 +344,15 @@ def main():
         with open(tmp, "wb") as fh:
             fh.write(BOM + new_text.encode("utf-8"))
         os.replace(tmp, CSV_PATH)
-        print("ECRIT: 6 cellules / 4 rangées (2 ref: 1350 PracticalReasoning, 1352 Ethotic ; 2 phrases: 1346, 1351).")
+        print("ECRIT: 4 cellules / 3 rangées (1 ref: 1350 PracticalReasoning ; 2 phrases: 1346, 1351).")
     else:
-        print("DRY-RUN OK: 6 cellules / 4 rangées seraient écrites (2 ref ; 2 phrases).")
+        print("DRY-RUN OK: 4 cellules / 3 rangées seraient écrites (1 ref ; 2 phrases).")
     print("census avant: mapped=%d gap=%d imitation=%d untouched=%d (somme %d)"
           % (before + (sum(before),)))
     print("census après: mapped=%d gap=%d imitation=%d untouched=%d (somme %d)"
           % (after + (sum(after),)))
-    print("têtes non écrites: 1312 (7.2, groupe), 1345 (7.2.2, intermédiaire, ancre undercut/RA-node intacte)")
-    print("ancre 1352: undermine/I-node + liens transverses intacts, seules les cellules (a) posées")
+    print("non écrites: 1312 (7.2 groupe), 1345 (7.2.2 intermédiaire, ancre ratifiée undercut/RA-node)")
+    print("7.2.3 ENTIER sans-(a): 1352 ancre ratifiée (undermine/I-node, « sans scheme AIF natif ») + 1353-1359 en attente d'arbitrage")
 
 
 if __name__ == "__main__":
