@@ -193,9 +193,24 @@ def main():
                       {"prompt": graph, "client_id": "argu1472-runner"})
         pid = queued["prompt_id"]
         print(f"seed {seed}: queued as {pid}", flush=True)
+        failures = 0
         while True:
             time.sleep(5)
-            hist = http(args.base, "/history/" + pid, token)
+            try:
+                hist = http(args.base, "/history/" + pid, token, timeout=60)
+                failures = 0
+            except (TimeoutError, urllib.error.URLError, OSError) as exc:
+                # A 52-minute render (16/11) outlived one 30 s poll: a single
+                # transient timeout must not kill the batch (measured: the
+                # job COMPLETED server-side while the runner was crashing).
+                failures += 1
+                print(f"seed {seed}: poll failed ({exc}) {failures}/12",
+                      file=sys.stderr, flush=True)
+                if failures >= 12:
+                    print(f"seed {seed}: giving up after 12 failed polls",
+                          file=sys.stderr)
+                    sys.exit(5)
+                continue
             entry = hist.get(pid)
             if not entry:
                 continue
