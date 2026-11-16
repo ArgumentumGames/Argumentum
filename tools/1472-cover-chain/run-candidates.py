@@ -25,8 +25,9 @@ Reference images are uploaded via POST /upload/image before the run. The
 queue must be EMPTY before posting (solo-run doctrine, 2026-09-22: a run
 queued behind a co-tenant job crashed the container once).
 
-Auth: bearer token read from the file at --token (default
-D:/Dev/CoursIA/.secrets/qwen-api-user.token). Never printed, never logged.
+Auth: bearer token read from the file at --token (no default; the path can
+also come from the ARGUMENTUM_COMFYUI_TOKEN_FILE env var). Never printed,
+never logged. Deliberately NO machine-specific default (AGENTS.md §6.4).
 """
 
 import argparse
@@ -39,7 +40,6 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-DEFAULT_TOKEN = r"D:/Dev/CoursIA/.secrets/qwen-api-user.token"
 UNET = "qwen-image-edit-2511-Q4_K_M.gguf"
 LORA = "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors"
 CLIP = "qwen_2.5_vl_7b_fp8_scaled.safetensors"
@@ -131,7 +131,9 @@ def upload_ref(base, token, path):
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--base", default="http://127.0.0.1:8188")
-    ap.add_argument("--token", default=DEFAULT_TOKEN)
+    ap.add_argument("--token", default=os.environ.get("ARGUMENTUM_COMFYUI_TOKEN_FILE"),
+                    help="path to the bearer-token file (or set "
+                         "ARGUMENTUM_COMFYUI_TOKEN_FILE); no machine default")
     ap.add_argument("--refs", nargs="+", required=True,
                     help="reference images (median deck faces)")
     ap.add_argument("--prompt-file", required=True)
@@ -147,6 +149,9 @@ def main():
     ap.add_argument("--dry-run", action="store_true",
                     help="build and print the graph, post nothing")
     args = ap.parse_args()
+
+    if not args.token:
+        ap.error("--token is required (or set ARGUMENTUM_COMFYUI_TOKEN_FILE)")
 
     with open(args.token, encoding="ascii") as fh:
         token = fh.read().strip()

@@ -134,12 +134,14 @@ mesure du premier candidat.
 ```powershell
 # 1. un candidat de calibration, chronométré
 python -I tools/1472-cover-chain/run-candidates.py `
+  --token <chemin du fichier jeton> `
   --refs <ref1.png> <ref2.png> `
   --prompt-file tools/1472-cover-chain/prompts/cover-kids-01.txt `
   --seeds 20261116 --out-dir <sortie>
 
 # 2. le lot, paires tournantes
 python -I tools/1472-cover-chain/run-candidates.py `
+  --token <chemin du fichier jeton> `
   --refs @(les 12) --cycle-refs `
   --prompt-file tools/1472-cover-chain/prompts/cover-kids-01.txt `
   --seeds <24 graines> --out-dir <sortie>
@@ -151,8 +153,10 @@ python tools/1472-cover-chain/postprocess-ink.py `
   --ink 1A1A1A --stats
 ```
 
-Le jeton Bearer se lit dans le fichier de secrets du conteneur ; il n'est jamais
-affiché, jamais journalisé, jamais commité.
+Le jeton Bearer se lit dans le fichier donné par `--token` ou la variable
+d'environnement `ARGUMENTUM_COMFYUI_TOKEN_FILE` — **aucun chemin machine par
+défaut** (AGENTS.md §6.4) ; il n'est jamais affiché, jamais journalisé, jamais
+commité.
 
 ## Ce que ce grain ne fait pas
 
