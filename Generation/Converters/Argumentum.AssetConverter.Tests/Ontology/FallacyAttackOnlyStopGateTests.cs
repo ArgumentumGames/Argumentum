@@ -63,6 +63,12 @@ namespace Argumentum.AssetConverter.Tests.Ontology
 			("690",  "undercut", "RA-node", "498-aif-operation-inappropriee-cluster.md"),
 			("1282", "rebut",    "CA-node", "498-aif-relativisme-abusif-cluster.md (serialized by #760)"),
 			("1345", "undercut", "RA-node", "498-aif-complication-exageree-cluster.md"),
+			// 1352's doc is PROPOSITION ONLY: it serializes the anchor attack-columns-only and
+			// itself flags the fully-empty skos state as a modelling gap (§5) — it does not
+			// declare a ratified « no native scheme ». What the gate pins here is the serialized
+			// state; the 16/11 arbitration (P24-28) keeps 1352 unwritten while its seven
+			// descendants are modelled child by child (3 references + 4 phrases). The equality
+			// stays: any (a) write on 1352 reopens the arbitration first.
 			("1352", "undermine", "I-node", "498-aif-empoisonner-le-puits-cluster.md"),
 		};
 
