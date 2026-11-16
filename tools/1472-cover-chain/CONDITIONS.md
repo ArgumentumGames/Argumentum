@@ -199,6 +199,25 @@ est dans l'alpha. Pour la juger, la composer sur blanc (c'est ce que fait un
 navigateur, et c'est ce que fera la planche de comparaison).
 
 **Lot ④** — 24 graines `20261117` à `20261140`, paires de références tournantes
-sur les 12 médianes, lancé le 15/11 à 22:26. À 18 min 48 s l'image, la course
-demande ≈ 7 h 30 ; la durée réelle est relevée à la réception et non déduite du
-premier candidat.
+sur les 12 médianes, lancé le 15/11 à 22:26, **terminé le 16/11 (24/24)**.
+
+Durées **mesurées** (lignes `saved` du log, plus `s20261130` à ≈ 52 min —
+client mort sur un timeout de poll isolé, image récupérée depuis `/history`
+sans re-rendu) :
+
+| Statistique | Valeur |
+|---|---|
+| Minimum | 251 s |
+| Médiane | ≈ 765 s |
+| Maximum | 4 058 s |
+| Total | ≈ 39 200 s ≈ 10 h 54 (24 images) |
+
+⚠️ **La distribution observée n'est pas le pronostic « frais 256 s / usé
+34-50 min »** : elle est bimodale — 16 rendus entre 251 et 842 s, 8 entre
+1 972 et 4 058 s — et **l'alternance se produit dans une seule et même session
+serveur**, tard dans le lot aussi bien qu'au début (`s20261138` et `s20261140`
+sortent en 561 s et 401 s après un `s20261137` à 3 180 s). L'état « frais vs
+usé » du tableau de VRAM ci-dessus **ne suffit donc pas** à expliquer le débit :
+c'est une mesure, pas une explication — la cause du basculement par rendu reste
+ouverte. Un dimensionnement de lot se fait sur la distribution mesurée, pas sur
+les deux régimes nominaux.
