@@ -79,8 +79,14 @@ namespace Argumentum.AssetConverter.Tests
             string Cell(string pk, string column) => csv.LoadColumn(column)[pks.IndexOf(pk)];
 
             // Échantillon exact du grain (URL percent-encodées, convention du corpus fallacies).
-            // pk 358 porte les SIX langues du GO — le cas multi-langue le plus large ;
-            // pk 973 zh est le TÉMOIN de la troncature llcontinue (absent du batch du 16/10 matin).
+            // pk 358 porte les SIX langues du GO — le cas multi-langue le plus large.
+            // pk 973 zh a été le TÉMOIN de la troncature llcontinue (absent du batch du 16/10
+            // matin) : son URL du grain langlinks est retirée du pin le 16/11 par le lot zh
+            // (P24-13, #1471) — jugement du groupe 27 de la liste #2282 : 挪動門柱 atterrit par
+            // redirection sur 歧義謬誤 (fallacy of ambiguity, hors concept pour « Changement
+            // de cap »), et aucun article dédié n'existe (移動門柱, 移动门柱, 挪移門柱,
+            // 移動球門柱… tous absents). La cellule est vidée, la leçon llcontinue reste en
+            // remarque de classe, et le pin vide ci-dessous garde la trace du jugement.
             var pinnedUrls = new[]
             {
                 ("358", "link_ru", "https://ru.wikipedia.org/wiki/%D0%A4%D1%80%D0%B5%D0%B9%D0%BC_%28%D1%81%D0%BE%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5_%D0%BD%D0%B0%D1%83%D0%BA%D0%B8%29"),
@@ -88,7 +94,7 @@ namespace Argumentum.AssetConverter.Tests
                 ("358", "link_es", "https://es.wikipedia.org/wiki/Encuadre_%28ciencias_sociales%29"),
                 ("358", "link_ar", "https://ar.wikipedia.org/wiki/%D8%AA%D8%A3%D8%B7%D9%8A%D8%B1"),
                 ("358", "link_zh", "https://zh.wikipedia.org/wiki/%E6%A1%86%E6%9E%B6_%28%E7%A4%BE%E6%9C%83%E7%A7%91%E5%AD%B8%29"),
-                ("973", "link_zh", "https://zh.wikipedia.org/wiki/%E6%8C%AA%E5%8B%95%E9%96%80%E6%9F%B1"),
+                ("973", "link_zh", ""), // vidée par jugement P24-13 (#1471, groupe 27 de #2282) — cf. commentaire ci-dessus
                 ("1024", "link_es", "https://es.wikipedia.org/wiki/%C3%8Ddolos_de_la_tribu"),
                 ("1174", "link_es", "https://es.wikipedia.org/wiki/%C3%8Ddolos_de_la_caverna"),
                 ("614", "link_pt", "https://pt.wikipedia.org/wiki/Dicto_simpliciter"),
