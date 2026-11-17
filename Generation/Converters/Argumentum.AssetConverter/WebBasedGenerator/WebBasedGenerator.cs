@@ -16,7 +16,6 @@ using Argumentum.AssetConverter.Entities;
 using Argumentum.AssetConverter.Mindmapper;
 using Xunit.Abstractions;
 using Argumentum.AssetConverter.PdfAuditor;
-using AutoMapper;
 using ExtendedXmlSerializer.Core.Sources;
 using ImageMagick;
 using Spectre.Console;
