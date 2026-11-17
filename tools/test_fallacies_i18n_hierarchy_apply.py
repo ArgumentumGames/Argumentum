@@ -4,7 +4,9 @@
 
 Stdlib unittest only. Tests the logic contract (canonical map derivation, gap detection, conflict
 abort, novel-key abort, apply round-trip byte-targeting) on synthetic CSV rows, plus a grounding
-check on the real Fallacies CSV (48 gap rows x 3 EN cols = 144 cells, 0 conflict).
+check on the real Fallacies CSV: the #712/#716 gap (48 rows x 3 EN cols = 144 cells) is either
+still open (144, pre-apply inventory) or fully closed (0, applied — the state of master since
+the apply landed); anything in between is a partial application and stays red.
 
 Run: python tools/test_fallacies_i18n_hierarchy_apply.py
 """
@@ -152,19 +154,32 @@ class ApplyRoundTripTests(unittest.TestCase):
 
 @unittest.skipUnless(os.path.exists(REAL_CSV), "Real Fallacies CSV not present (run from repo root).")
 class RealCSVGroundingTests(unittest.TestCase):
-    def test_real_csv_48_rows_144_cells_zero_conflict(self):
-        """On the real master CSV: 48 gap rows, 144 cells (48x3), 0 conflict, 0 novel."""
+    def test_real_csv_gap_open_144_or_applied_0(self):
+        """Grounding on the living corpus, two coherent states (P24-24, #458):
+
+        - 144 plan cells = the pre-apply inventory of #712/#716 (48 gap rows x 3 EN cols);
+        - 0 plan cells = the gap fully closed: the consolidated apply has landed and every
+          FR-keyed row carries its 3 EN hierarchy columns (measured on master 6ad2c9a1,
+          2026-11-17: 1379/1379 FR-keyed rows complete, canonical map 63 keys).
+
+        Any other count is a PARTIAL application or a NEW gap (a row added with an FR key
+        but empty EN columns) — both must go through the apply instrument, so both stay red.
+        """
         with open(REAL_CSV, encoding="utf-8-sig", newline="") as f:
             rows = list(csv.DictReader(f))
         cmap, conflicts = mod.build_canonical_map(rows)
         plan, novel = mod.build_plan(rows, cmap)
-        # Exactly 6 FR keys in the canonical map (per #712/#716).
-        # Plan = 144 cells (48 rows x 3 EN cols), 0 conflict, 0 novel.
         self.assertEqual(conflicts, [], "no FR key should map to >1 EN tuple")
         self.assertEqual(novel, [], "every gap row's FR key must be in the map")
-        # 48 rows x 3 cols = 144. If this drifts, the gap changed since the inventory — investigate.
-        self.assertEqual(len(plan), 144,
-                         f"expected 144 cells (48x3), got {len(plan)} — re-audit the gap")
+        self.assertIn(len(plan), (144, 0),
+                      f"plan = {len(plan)} cells: neither the pre-apply inventory (144 = 48x3) "
+                      f"nor the applied state (0) — partial application or new gap, re-audit")
+        if len(plan) == 0:
+            # Applied-state witness: the canonical map still derives from the corpus
+            # (63 keys measured; the inventory spoke of 6 — the map has since grown with
+            # the corpus, the floor keeps the derivation from being vacuously empty).
+            self.assertGreaterEqual(len(cmap), 6,
+                                    "canonical map should still derive from the living corpus")
 
 
 if __name__ == "__main__":
