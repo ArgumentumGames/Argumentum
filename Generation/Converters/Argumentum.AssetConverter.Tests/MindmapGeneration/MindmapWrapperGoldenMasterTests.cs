@@ -252,6 +252,44 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 "#2190 lot 3: every shipped mindmap artifact — inlining AND _ext — must carry the anti-ligature rule (P23-20) and the verb-dot legend swatch read from the drawn arrows (P23-23); a file missing here was skipped by the wrapper re-derivation");
         }
 
+        // P23-21 (#2190 lot 3): the interface-string localisation layer. The MM_UI
+        // dictionary, the document-language resolution (repli fr) and the applyUiStrings
+        // overlay must ship in BOTH wrapper variants — the static HTML stays French
+        // (no-JS degrade), the JS layer replaces the strings per document language
+        // (read from <html lang>, substituted by the writer's [LANGUAGE] token, #457 T4a).
+        // Red here = a wrapper was skipped by the re-derivation (OverwriteExistingHtmlMaps
+        // trap) or the localisation layer was dropped from a template.
+        private static readonly string[] RequiredP2321UiLocalisation =
+        {
+            "var MM_UI = {",
+            "MM_UI[uiLang] || MM_UI.fr",
+            "applyUiStrings"
+        };
+
+        [Fact]
+        public void AllCommittedMindmapHtmlFiles_CarryP2321UiLocalisationAnchors()
+        {
+            var files = Directory.EnumerateFiles(MindmapsRoot, "*.html", SearchOption.AllDirectories)
+                .OrderBy(f => f)
+                .ToList();
+            files.Count.Should().BeGreaterThanOrEqualTo(34,
+                "anti-collapse floor: 8 langs x {Fallacies,Virtues} x {embed,_ext} + cards_fr pair + 2 templates");
+
+            var missing = new List<string>();
+            foreach (var file in files)
+            {
+                var content = File.ReadAllText(file);
+                foreach (var needle in RequiredP2321UiLocalisation)
+                {
+                    if (!content.Contains(needle))
+                        missing.Add($"{Path.GetFileName(file)}: missing '{needle}'");
+                }
+            }
+
+            missing.Should().BeEmpty(
+                "#2190 lot 3 (P23-21): every shipped mindmap artifact — inlining AND _ext — must carry the MM_UI localisation layer; a file missing here was skipped by the wrapper re-derivation");
+        }
+
         /// <summary>
         /// #2190 lot 2 — the Fallacies content SVGs (8 languages + the FR-only cards variant)
         /// must carry the navigation anchors on EVERY node: <c>pk</c> (deep links) and

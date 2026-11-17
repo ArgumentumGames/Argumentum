@@ -1437,5 +1437,121 @@ namespace Argumentum.AssetConverter.VisualTests
                 await page.CloseAsync();
             }
         }
+
+        // ===== #2190 lot 3, P23-21 — interface strings localised by document language =====
+        //
+        // The wrapper's static HTML ships French (no-JS degrade); the JS layer reads
+        // <html lang> — substituted by the writer's [LANGUAGE] token (#457 T4a), the same
+        // FormatWrapper path ComposeIncludedAsync exercises — picks its strings from MM_UI
+        // (repli fr) and overlays them onto placeholder, aria-labels, legend summary and
+        // verb labels. Until P23-21 the interface was French in all 8 languages.
+        //
+        // INDEPENDENT ORACLE: the tables below restate the expected strings and verbs per
+        // language; they are NOT read from the template's MM_UI — that would test the
+        // implementation against itself. Any divergence (a language left on the French
+        // statics because the overlay did not run, a typo in the dictionary, a broken
+        // [LANGUAGE] substitution) turns the case red. The fr case pins the identity
+        // mapping; by itself it cannot catch a dead overlay (statics are already French) —
+        // the seven non-fr cases and the authoring-time mutation control carry the
+        // falsifiability: replacing `var ui = MM_UI[uiLang] || MM_UI.fr;` with
+        // `var ui = MM_UI.fr;` in the worktree template turned them red (backup + restore).
+        private static readonly System.Collections.Generic.Dictionary<string, string[]> P2321ExpectedUi =
+            new System.Collections.Generic.Dictionary<string, string[]>
+            {
+                // [placeholder, searchAria, suggestionsAria, legendSummary, panelAria, closeAria]
+                ["fr"] = new[] { "Rechercher dans la carte…", "Rechercher un sophisme dans la carte", "Résultats de recherche", "Relations entre sophismes", "Relation entre deux sophismes", "Fermer le panneau de relation" },
+                ["en"] = new[] { "Search the map…", "Search the map for a fallacy", "Search results", "Relations between fallacies", "Relation between two fallacies", "Close the relation panel" },
+                ["ru"] = new[] { "Поиск по карте…", "Искать софизм на карте", "Результаты поиска", "Связи между софизмами", "Связь между двумя софизмами", "Закрыть панель связей" },
+                ["pt"] = new[] { "Pesquisar no mapa…", "Pesquisar um sofisma no mapa", "Resultados da pesquisa", "Relações entre sofismas", "Relação entre dois sofismas", "Fechar o painel de relações" },
+                ["es"] = new[] { "Buscar en el mapa…", "Buscar una falacia en el mapa", "Resultados de la búsqueda", "Relaciones entre falacias", "Relación entre dos falacias", "Cerrar el panel de relaciones" },
+                ["ar"] = new[] { "ابحث في الخريطة…", "ابحث عن مغالطة في الخريطة", "نتائج البحث", "العلاقات بين المغالطات", "علاقة بين مغالطتين", "إغلاق لوحة العلاقات" },
+                ["fa"] = new[] { "جستجو در نقشه…", "جستجوی مغلطه در نقشه", "نتایج جستجو", "روابط میان مغلطه‌ها", "رابطه میان دو مغلطه", "بستن پنل رابطه" },
+                ["zh"] = new[] { "在地图中搜索…", "在地图中搜索谬误", "搜索结果", "谬误之间的关系", "两个谬误之间的关系", "关闭关系面板" },
+            };
+
+        private static readonly System.Collections.Generic.Dictionary<string, string[]> P2321ExpectedVerbs =
+            new System.Collections.Generic.Dictionary<string, string[]>
+            {
+                ["fr"] = new[] { "précède", "dénonce", "exploite", "permet", "s’oppose à", "inverse", "reflète", "est apparenté à" },
+                ["en"] = new[] { "precedes", "denounces", "exploits", "allows", "opposes", "inverts", "mirrors", "is related to" },
+                ["ru"] = new[] { "предшествует", "разоблачает", "использует", "допускает", "противостоит", "переворачивает", "отражает", "родственен с" },
+                ["pt"] = new[] { "precede", "denuncia", "explora", "permite", "opõe-se a", "inverte", "reflete", "é aparentado com" },
+                ["es"] = new[] { "precede", "denuncia", "explota", "permite", "se opone a", "invierte", "refleja", "está emparentado con" },
+                ["ar"] = new[] { "يسبق", "يفضح", "يستغل", "يتيح", "يعارض", "يقلب", "يعكس", "يرتبط بـ" },
+                ["fa"] = new[] { "پیش می‌آید", "رسوا می‌کند", "بهره می‌گیرد", "ممکن می‌سازد", "مخالفت می‌کند با", "وارونه می‌کند", "بازتاب می‌دهد", "هم‌خانواده است با" },
+                ["zh"] = new[] { "先于", "揭露", "利用", "容许", "对立于", "颠倒", "映照", "同类于" },
+            };
+
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg")]
+        [InlineData("en", "Fallacies_en.content.svg")]
+        [InlineData("ru", "Fallacies_ru.content.svg")]
+        [InlineData("pt", "Fallacies_pt.content.svg")]
+        [InlineData("es", "Fallacies_es.content.svg")]
+        [InlineData("ar", "Fallacies_ar.content.svg")]
+        [InlineData("fa", "Fallacies_fa.content.svg")]
+        [InlineData("zh", "Fallacies_zh.content.svg")]
+        public async Task Cap19_InterfaceStringsLocalisedByDocumentLanguage(string lang, string svgFileName)
+        {
+            var wrapperPath = await ComposeIncludedAsync(lang, svgFileName);
+            var page = await OpenPageAsync(wrapperPath);
+            try
+            {
+                await WaitForViewportSettledAsync(page);
+
+                var probe = await page.EvaluateAsync<string[]>(@"() => {
+                    const gs = (id) => document.getElementById(id);
+                    const attr = (el, name) => (el ? (el.getAttribute(name) || '') : 'ABSENT');
+                    const summary = document.querySelector('#mmLegend summary');
+                    const rows = [];
+                    document.querySelectorAll('#mmLegendList li').forEach((li) => rows.push((li.textContent || '').trim()));
+                    return [
+                        (document.documentElement.lang || ''),
+                        attr(gs('mmSearch'), 'placeholder'),
+                        attr(gs('mmSearch'), 'aria-label'),
+                        attr(gs('mmSuggestions'), 'aria-label'),
+                        summary ? (summary.textContent || '').trim() : 'ABSENT',
+                        attr(gs('mmLinkPanel'), 'aria-label'),
+                        attr(gs('mmLinkClose'), 'aria-label'),
+                        rows.join('||')
+                    ];
+                }");
+                Assert.NotNull(probe);
+                Assert.True(probe.Length >= 8, "the probe must return 8 fields");
+
+                var expected = P2321ExpectedUi[lang];
+                var fieldNames = new[] { "html[lang]", "search placeholder", "search aria-label", "suggestions aria-label", "legend summary", "link-panel aria-label", "close aria-label" };
+                Assert.True(string.Equals(probe[0], lang, StringComparison.Ordinal),
+                    $"html[lang] is '{probe[0]}' — the writer's [LANGUAGE] substitution feeds the whole lookup (P23-21)");
+                for (var i = 0; i < 6; i++)
+                {
+                    _output.WriteLine($"[{lang}] {fieldNames[i + 1]}: '{probe[i + 1]}'");
+                    Assert.True(string.Equals(probe[i + 1], expected[i], StringComparison.Ordinal),
+                        $"P23-21 [{lang}] {fieldNames[i + 1]}: expected '{expected[i]}', got '{probe[i + 1]}' — the interface must speak the document language, not the French statics");
+                }
+
+                // Legend rows: 'verb (count)' — the verb part must be one of the language's
+                // verbs (count varies per map, the label does not).
+                var rows = probe[7].Split(new[] { "||" }, System.StringSplitOptions.RemoveEmptyEntries);
+                Assert.True(rows.Length >= 1, "fixture has crosslinks → the legend must list relations");
+                var verbs = P2321ExpectedVerbs[lang];
+                var rowVerb = new System.Collections.Generic.List<string>();
+                foreach (var row in rows)
+                {
+                    var stripped = System.Text.RegularExpressions.Regex.Replace(row, @"\s*\(\d+\)$", "");
+                    _output.WriteLine($"[{lang}] legend row: '{row}' → verb '{stripped}'");
+                    Assert.True(System.Array.IndexOf(verbs, stripped) >= 0,
+                        $"P23-21 [{lang}] legend verb '{stripped}' (row '{row}') is not one of the localised verb labels — the legend is still speaking another language");
+                    rowVerb.Add(stripped);
+                }
+                var distinctVerbs = new System.Collections.Generic.HashSet<string>(rowVerb);
+                Assert.True(distinctVerbs.Count == rowVerb.Count,
+                    $"P23-21 [{lang}]: each verb must label exactly one legend row ({distinctVerbs.Count} distinct for {rowVerb.Count} rows)");
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
     }
 }
