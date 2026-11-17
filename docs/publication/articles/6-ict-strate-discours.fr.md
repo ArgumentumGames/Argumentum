@@ -1,8 +1,8 @@
 # La dette d’irréversibilité du discours : une prédiction posée sur le corpus d’Argumentum
 
-![La carte mentale des vertus et ses liens](https://raw.githubusercontent.com/ArgumentumGames/Argumentum/32408fdd/Cards/Fallacies/Mindmaps/fr/Argumentum_Virtues_MindMap_fr.links.svg)
+![Les cartes « Faux dilemme » et « Juste milieu », reliées par une double flèche « est le miroir de »](https://raw.githubusercontent.com/ArgumentumGames/Argumentum/981e5233/docs/publication/articles/illustrations/6c-deux-cartes-un-miroir.png)
 
-*Illustration : `Cards/Fallacies/Mindmaps/fr/Argumentum_Virtues_MindMap_fr.links.svg`, dépôt Argumentum, commit `32408fdd` — la carte des vertus de l’argumentation et les liens qui relient ses nœuds : un graphe, matière première de la strate décrite ici.*
+*Illustration : `docs/publication/articles/illustrations/6c-deux-cartes-un-miroir.png`, dépôt Argumentum, commit `981e5233` — montage des rendus réels des cartes « Faux dilemme » (rangée `5.1.2.2.4`) et « Juste milieu » (rangée `3.3.1.2.2`) : le lien `Mirrors`, déclaré dans les deux sens par la taxonomie, vit dans le graphe des liens transverses — distinct du graphe d’attaques, comme le dit l’article.*
 
 Une série de recherche de CoursIA, ICT — « trajectoires causales intégrées » —, étudie comment des structures s’organisent, se transforment et se réparent le long du temps. Sa sixième strate prend le discours pour matière, et elle a posé à l’avance la prédiction qui devra la faire échouer ou tenir : une « dette d’irréversibilité du discours », que le corpus d’Argumentum sera chargé de mesurer.
 

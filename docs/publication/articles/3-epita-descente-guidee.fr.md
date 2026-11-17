@@ -1,8 +1,8 @@
 # La descente guidée dans l’arbre : le plugin Argumentum du projet Epita
 
-![L’illustration de face du nœud « Homme de paille »](https://raw.githubusercontent.com/ArgumentumGames/Argumentum/32408fdd/Cards/Fallacies/Assets/Fallacy-front/7.3.1.2.png)
+![Quatre niveaux de descente dans l’arbre, chacun avec sa carte](https://raw.githubusercontent.com/ArgumentumGames/Argumentum/981e5233/docs/publication/articles/illustrations/3b-du-chemin-a-la-carte.png)
 
-*Illustration : `Cards/Fallacies/Assets/Fallacy-front/7.3.1.2.png`, dépôt Argumentum, commit `32408fdd` — l’illustration de face du nœud « Homme de paille », but de l’exemple de descente ci-dessous.*
+*Illustration : `docs/publication/articles/illustrations/3b-du-chemin-a-la-carte.png`, dépôt Argumentum, commit `981e5233` — montage des gravures du dépôt (`Cards/Fallacies/Assets/Fallacy-front/`) : les niveaux `7`, `7.3`, `7.3.1` et `7.3.1.2`, le numéro de chemin au-dessus et le nom de la carte en dessous.*
 
 Le projet d’intelligence symbolique d’Epita, édition 2025, a construit un système d’agents qui analyse un texte argumentatif. Son plugin Argumentum y détecte les sophismes en descendant la taxonomie du jeu niveau par niveau, au lieu de choisir d’un coup parmi plus de mille étiquettes. La forme de l’arbre fait que chaque pas ne propose que quelques branches — et la réponse arrive avec le chemin qui y mène.
 
