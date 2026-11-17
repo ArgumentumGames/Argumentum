@@ -126,7 +126,7 @@ first (Phase 4) then prod (Phase 5):
 - ✅ **In scope for 10.3.2:** DNN platform schema migration (wizard-handled) + **2sxc upgrade 15.02 → 21.07** + **12 custom-template audit** (`_FallacyExplorer_Root.cshtml` `RazorComponent` → `Custom.Hybrid.Razor14`, `_Parts.cshtml` `@helper` → `@functions`) + **data preservation** (all 26 apps' content rows, portal/page settings, users).
 - ⚠️ **Still verify** post-upgrade that 2sxc 21.07 serves the migrated `Argumentum` app templates. This is a smoke-test item (Phase 5/6), not a separate migration.
 
-The detailed 2sxc migration procedure lives in [131-2sxc-migration-plan.md](131-2sxc-migration.md);
+The detailed 2sxc migration procedure lives in [131-2sxc-migration-plan.md](131-2sxc-migration-plan.md);
 this runbook sequences it as §5.5 and does not repeat its internals.
 
 ## 5. Phase-by-phase go-live procedure

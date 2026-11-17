@@ -85,7 +85,7 @@ Priorites par ordre decroissant :
 1. **Bugs actifs** rapportes par po-2023 sur le dashboard
 2. **PRs en attente** de review
 3. **Validation visuelle** des documents generes (prerequis publication)
-4. **Issues ouvertes prioritaires** : #183 (traduction), #134 (release), #140 (QA multilingue), #131/#132 (DNN)
+4. **Issues ouvertes prioritaires** : #134 (release), #131 (DNN) — #183, #140 et #132 sont closes (mesuré 17/11/2026)
 5. **Nettoyages** : dependabot, stale branches
 
 Si la session est bloquee sur une decision → poster `ASK` sur le dashboard et s'arreter.
@@ -142,7 +142,7 @@ Pipeline operationnel sur les 4 langues. Artefacts generes :
 - OWL ontology 664 KB avec SKOS + AIF
 - 27/27 tests pass
 
-**Issues en cours** : #119 (layout Rules), #131/#132 (DNN), #133 (OWL publication), #134 (GitHub release), #140 (QA multilingue), #183 (upgrade SDK traduction + Virtues i18n).
+**Issues en cours** : #131 (DNN site), #133 (OWL publication), #134 (GitHub release) — seules encore ouvertes au 17/11/2026 ; #119, #132, #140 et #183 sont closes et retirées de cette liste (la file de travail réelle vit dans #458).
 
 **Prochaine grande etape** : validation complete de TOUS les documents generes avant publication.
 
