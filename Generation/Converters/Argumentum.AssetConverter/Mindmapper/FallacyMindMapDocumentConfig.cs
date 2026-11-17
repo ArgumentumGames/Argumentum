@@ -127,7 +127,7 @@ namespace Argumentum.AssetConverter.Mindmapper
 		public string CardExpression { get; set; } =
 			@"
 <p>
-    <img src=""{mindMap.GetThumbnailsPath(item)}"" width=""60"" height=""60""/>" + DefaultTitleExpression + @"
+    <img src=""{mindMap.GetThumbnailsPath(item)}"" width=""60"" height=""60""/>" + DefaultTitleExpression + @"{mindMap.GetCardNodeBadge(item)}" + @"
 </p>
 ";
 
@@ -140,6 +140,24 @@ namespace Argumentum.AssetConverter.Mindmapper
 			{
 				return item => CardExpression.Replace("fallacy.", "item.").Replace("fallacy", "item").Interpolate(new Dictionary<string, object>() { { "mindMap", this }, { "item", item } }); // $"<font size='4'>{HttpUtility.HtmlEncode(item.Description)}</font>";
 			}
+		}
+
+		/// <summary>
+		/// #1471/P24-30 : badge de repli à append au libellé RENDU des cartes (richcontent NODE).
+		/// FreeMind rend le libellé d'un nœud porteur d'un richcontent NODE depuis ce HTML, PAS
+		/// depuis l'attribut TEXT : badger uniquement TEXT (CreateNode) rendait le libellé de la
+		/// carte nu, et l'appariement SVG (#2275, égalité exacte prioritaire) ne voyait plus qu'un
+		/// seul candidat exact pour les paires d'homonymes carte/sans-carte — suite B laissait les
+		/// deux items muets (6 nœuds non cliquables, porte d'ordre 1402/1408).
+		/// Assigné par AddCardIcon (qui seul connaît la langue), pattern ThumbnailsPathFunc.
+		/// </summary>
+		[IgnoreDataMember]
+		[JsonIgnore]
+		public Func<IMindMapItem, string> CardNodeBadgeFunc { get; set; }
+
+		public string GetCardNodeBadge(IMindMapItem item)
+		{
+			return CardNodeBadgeFunc?.Invoke(item) ?? string.Empty;
 		}
 
 
@@ -1328,6 +1346,10 @@ if (mapFile != null) {
 				{
 					this.ThumbnailsPathFunc = objItem => ResolveThumbnailPathForItem(assetConverterConfig, language, item);
 				}
+
+				// #1471/P24-30 : le badge doit vivre dans le libellé RENDU (richcontent), pas
+				// seulement dans TEXT — voir CardNodeBadgeFunc.
+				this.CardNodeBadgeFunc = objItem => MindMapLinkBadge.GetBadge(objItem, language);
 
 				var cardDoc = new XmlDocument();
 				cardDoc.LoadXml($"{CardFunc(item)}");
