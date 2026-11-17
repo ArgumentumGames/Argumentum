@@ -1,8 +1,8 @@
 # Chaque sophisme à sa place : l’ontologie d’Argumentum et le format AIF
 
-![La carte mentale française des sophismes, variante qui trace les liens transverses](https://raw.githubusercontent.com/ArgumentumGames/Argumentum/32408fdd/Cards/Fallacies/Mindmaps/fr/Fallacies_fr.links.svg)
+![Des flèches colorées traversent les branches de la carte mentale : les liens transverses](https://raw.githubusercontent.com/ArgumentumGames/Argumentum/981e5233/docs/publication/articles/illustrations/2a-liens-transverses.png)
 
-*Illustration : `Cards/Fallacies/Mindmaps/fr/Fallacies_fr.links.svg`, dépôt Argumentum, commit `32408fdd` — chaque trait coloré relie deux sophismes que le corpus déclare apparentés.*
+*Illustration : `docs/publication/articles/illustrations/2a-liens-transverses.png`, dépôt Argumentum, commit `981e5233` — recadrage ×2 de la carte des liens transverses (`Cards/Fallacies/Mindmaps/fr/Fallacies_fr.links.svg`) : les flèches traversent les branches au lieu de suivre l’arbre.*
 
 Une carte du jeu décrit un sophisme à la fois ; l’ontologie du dépôt les décrit tous ensemble, avec leurs parentés et leurs liens. Sa notation reprend le format de référence AIF, et le geste qu’AIF ne fait que sur une poignée de sophismes, Argumentum l’étend à son arbre entier.
 

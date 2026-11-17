@@ -27,7 +27,7 @@ Les règles communes de l'Epic restent valables : un chapô de deux phrases au p
   - un carnet public de CoursIA ;
   - un montage de plusieurs de ces éléments.
 
-  La source est nommée sous l'image.
+  La source est nommée sous l'image. Les fichiers retenus vivent dans `articles/illustrations/`, un par article, choisis par l'owner sur une planche de proposition.
 - Une image générée ne vient qu'en option, signalée comme telle : c'est l'owner qui décide d'en utiliser une.
 - ⛔ Jamais une carte de sophisme à côté d'une carte de vertu, présentées comme une paire. La correspondance entre les deux paquets n'est jamais publique.
 - Changer l'illustration d'un article passe par une proposition de deux ou trois images, chacune avec une ligne qui dit pourquoi elle colle. L'owner choisit en les regardant.

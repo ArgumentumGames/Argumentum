@@ -1,8 +1,8 @@
 # Argumentum : du jeu de cartes au dépôt reproductible
 
-![Le logo d’Argumentum](https://raw.githubusercontent.com/ArgumentumGames/Argumentum/33f25e82/Cards/Rules/logo.png)
+![Dix-neuf lignes de la taxonomie, à gauche ; la carte « Argument bâclé » qu’elles produisent, à droite](https://raw.githubusercontent.com/ArgumentumGames/Argumentum/981e5233/docs/publication/articles/illustrations/1a-du-texte-a-la-carte.png)
 
-*Illustration : `Cards/Rules/logo.png`, dépôt Argumentum, commit `33f25e82`.*
+*Illustration : `docs/publication/articles/illustrations/1a-du-texte-a-la-carte.png`, dépôt Argumentum, commit `981e5233` — montage d’un extrait réel de la taxonomie (dix-neuf lignes, en-tête compris) et du rendu réel de la carte « Argument bâclé », la rangée `2,1.1` visible dans l’extrait — le trajet que raconte la section « Comment naît une carte ».*
 
 En avril 2024, Argumentum était un jeu de cartes prêt à imprimer. Aujourd’hui, c’est aussi un dépôt public dont chaque carte se reconstruit à partir de fichiers texte, en huit langues, avec ses cartes mentales et son ontologie.
 

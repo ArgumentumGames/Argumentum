@@ -1,8 +1,8 @@
 # Sophismes × scénarios : le jeu comme jeu de données
 
-![Le dos d’une carte de scénario, thème Histoire](https://raw.githubusercontent.com/ArgumentumGames/Argumentum/6da19683/Cards/Scenarii/Assets/Scenario-back/img-histoire.png)
+![Un dos de scénario « Histoire » et une carte de sophisme : les deux moitiés du produit](https://raw.githubusercontent.com/ArgumentumGames/Argumentum/981e5233/docs/publication/articles/illustrations/5b-une-manche-deux-cartes.png)
 
-*Illustration : `Cards/Scenarii/Assets/Scenario-back/img-histoire.png`, dépôt Argumentum, commit `6da19683` — un dos par thème, sept thèmes pour 167 scénarios.*
+*Illustration : `docs/publication/articles/illustrations/5b-une-manche-deux-cartes.png`, dépôt Argumentum, commit `981e5233` — montage du dos « Histoire » (`Cards/Scenarii/Assets/Scenario-back/img-histoire.png`) et de la carte de sophisme (`Cards/Fallacies/Assets/Fallacy-front/7.3.png`) — une manche du jeu, en une image.*
 
 Tirer un scénario, jouer une carte de sophisme : chaque manche d’Argumentum combine les deux, et chaque combinaison est une consigne dont on connaît d’avance la réponse. La série « détection de sophismes » du projet CoursIA en fait un générateur d’exemples annotés qui couvre l’arbre de la taxonomie entier — une couverture que, selon la documentation de la série, aucun corpus de textes naturels ne donne.
 

@@ -1,8 +1,8 @@
 # Des carnets de cours lisent le jeu : Argumentum dans CoursIA
 
-![L’illustration de face de la carte « Argument réel »](https://raw.githubusercontent.com/ArgumentumGames/Argumentum/32408fdd/Cards/Fallacies/Assets/Virtues-front/1.1.1.png)
+![Les cinq carnets CoursIA, leur dossier et leur commit](https://raw.githubusercontent.com/ArgumentumGames/Argumentum/981e5233/docs/publication/articles/illustrations/4a-cinq-carnets.png)
 
-*Illustration : `Cards/Fallacies/Assets/Virtues-front/1.1.1.png`, dépôt Argumentum, commit `32408fdd` — la carte « Argument réel », du paquet des vertus que parcourt l’un des carnets décrits ici.*
+*Illustration : `docs/publication/articles/illustrations/4a-cinq-carnets.png`, dépôt Argumentum, commit `981e5233` — montage typographique d’après le dépôt CoursIA au commit `7eea21ebefe` : les cinq carnets qui consomment le corpus, dans leur dossier réel, avec l’épingle du sous-module.*
 
 CoursIA, un dépôt public de supports de cours en intelligence artificielle, consacre une série de carnets à l’analyse argumentative. Cinq d’entre eux prennent le corpus d’Argumentum pour terrain — taxonomie, ontologie, liens transverses, vertus — sur une version du dépôt du jeu expressément figée pour eux.
 

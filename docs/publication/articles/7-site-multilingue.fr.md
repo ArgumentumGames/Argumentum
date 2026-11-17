@@ -1,8 +1,8 @@
 # Le site Argumentum, en huit langues
 
-![La barre de navigation du site, en français](https://raw.githubusercontent.com/ArgumentumGames/Argumentum/6da19683/docs/dnn-localization/preuves/i1-navbar-fr-1440.png)
+![La page d’accueil du site en arabe, lue de droite à gauche](https://raw.githubusercontent.com/ArgumentumGames/Argumentum/981e5233/docs/publication/articles/illustrations/7b-accueil-arabe.png)
 
-*Illustration : `docs/dnn-localization/preuves/i1-navbar-fr-1440.png`, dépôt Argumentum, commit `6da19683` — la barre de navigation du site, capturée lors des vérifications d’octobre 2026.*
+*Illustration : `docs/publication/articles/illustrations/7b-accueil-arabe.png`, dépôt Argumentum, commit `981e5233` — capture de la page d’accueil du site en arabe (`dnn.argumentum.myia.io/ar/`, 15/11/2026) : les huit langues sont servies, pas seulement listées.*
 
 Le site d’Argumentum paraît désormais en huit langues, du français au persan, et chaque page porte le même choix de langue. Les cartes mentales et l’ontologie de la taxonomie y ont leur place, dans la langue de lecture de chacun.
 
