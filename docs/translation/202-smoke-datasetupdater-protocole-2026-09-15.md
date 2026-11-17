@@ -13,6 +13,16 @@ grain ⑦ ([inventaire gpt-5.5](gpt55-modele-courant-inventaire-2026-09-15.md)) 
 > (l.72, usage l.258), `CompareMode` (l.93/163), `TargetPath` (l.434) sont **retrouvés conformes** aux
 > lignes citées. **L'exécution reste gated** — GO owner + clé nommée inchangés, aucun appel API effectué.
 
+> **[Mise à jour 2026-11-17 — #2262, po-2024]** Sur master `91707a7e`, les références du corps sont
+> passées aux **ancres stables** (nom de propriété / de mécanisme) ; tout numéro résiduel porte son
+> commit. Trois corrections : (1) les numéros du 21/09 avaient bougé (`TakeChunkNb` l.72→92,
+> branche `CompareMode` l.163→189, `TargetPath` l.434 n'est plus le site d'écriture) ; (2) l'énoncé
+> « `SelectEmptyTargets` commenté » ne tenait plus : un **filtre actif par groupe** existe désormais
+> (le bloc par-record d'origine reste le seul commenté) ; (3) le §5 n'ordonne plus `git checkout --`
+> (interdit : restaure depuis l'index et efface tout le non-commité) mais sauvegarde + recopie +
+> empreinte. Compte modèle à `91707a7e` : **96× `gpt-5.6-sol`, 0× `gpt-5.5`** (RootConfig).
+> **L'exécution reste gated** — GO owner + clé nommée inchangés, aucun appel API effectué.
+
 ---
 
 ## §0 Objet
@@ -30,7 +40,7 @@ l'instrument, pas la qualité de traduction (verdict qualité = passes dédiées
 | P2 | **Clé nommée** | `OpenAIKeyPath` → fichier hors dépôt (`.keys/`, jamais committé — le défaut historique pointe un chemin G:Drive : le remplacer par le chemin local de la lane). | ⛔ GO requis |
 | P3 | **Probe crédit AVANT** | `POST /v1/responses` minimal : un `429 credit_balance_exhausted` = stop immédiat. Un `GET /v1/models` 200 ne prouve rien. | à l'exécution |
 | P4 | **API Responses + effort low** | `UseResponsesApi = true`, `ReasoningEffort = "low"` — sans quoi un modèle raisonneur brûle le budget en raisonnement (précédent mesuré, chat/completions inclu). | config à poser |
-| P5 | **Sandbox par construction** | `TargetPath` = **copie scratch** du CSV cible dans un dossier jetable (jamais sous `Cards/`). Mesuré : l'écriture va à `TargetPath` (`DatasetUpdaterConfig.cs:434`), la source est lue séparément — 0 write corpus garanti par le chemin. | config à poser |
+| P5 | **Sandbox par construction** | `TargetPath` = **copie scratch** du CSV cible dans un dossier jetable (jamais sous `Cards/`). Mesuré : l'écriture va à un chemin **dérivé de `TargetPath`** — bloc `saveResults` de `DatasetUpdaterConfig.cs`, `csvPath = TargetPath.Replace(…)` (propriété l.109, bloc l.453 à `91707a7e`) — la source est lue séparément — 0 write corpus garanti par le chemin. | config à poser |
 
 ## §2 La task smoke (valeurs exactes, dérivées des champs réels)
 
@@ -46,10 +56,16 @@ FieldsToUpdate = { une colonne Text_<lang> }        // 1 seul champ : le diff mi
 MaxTokensPerMinute = 70000                          // 1 chunk ⇒ jamais atteint
 ```
 
-Les mécanismes cités existent tous (`DatasetUpdaterConfig.cs:21-103`) : `TakeChunkNb` (l.72, −1 =
-tout — **le laisser à −1 traite le corpus entier**), `SelectEmptyTargets` existe mais son bloc
-d'usage est **commenté** (l.176-194) — ne pas compter dessus pour restreindre. `CompareMode=true`
-saute la traduction (l.163) : ce n'est PAS un smoke LLM, l'ignorer.
+Les mécanismes cités existent tous dans `DatasetUpdaterConfig.cs` (bloc de propriétés — `TakeChunkNb`
+et `SelectEmptyTargets` y jouxtent `TargetPath` et `CompareMode` ; l.92-113 à `91707a7e`) :
+`TakeChunkNb` (−1 = tout — **le laisser à −1 traite le corpus entier** ; usage
+`recordGroups = recordGroups.Take(TakeChunkNb)`), `CompareMode=true` saute la traduction (tout le
+bloc sous `if (!CompareMode)` est ignoré, chunking compris) : ce n'est PAS un smoke LLM, l'ignorer.
+`SelectEmptyTargets` porte aujourd'hui **deux usages** : le filtre par-record d'origine reste
+**commenté** (l.202-243 à `91707a7e`), mais un **filtre actif par groupe** existe —
+`if (SelectEmptyTargets)` garde tout groupe contenant au moins un record à cible vide (l.266-269).
+La smoke task le laisse à `false` (défaut de la propriété) : aucune restriction ne doit intervenir
+avant `TakeChunkNb = 1`.
 
 ## §3 Critères d'arrêt (n'importe lequel = stop + rapport)
 
@@ -70,9 +86,14 @@ saute la traduction (l.163) : ce n'est PAS un smoke LLM, l'ignorer.
 
 ## §5 Rollback
 
-Le corpus n'étant jamais cible (P5), le rollback = supprimer le scratch. En cas d'écriture accidentelle
-dans le dépôt : `git checkout -- <fichier>` AVANT tout commit (le run ne committe pas — commit et PR
-restent le protocole normal, worker ne merge jamais).
+Le corpus n'étant jamais cible (P5), le rollback = supprimer le scratch. **En cas d'écriture accidentelle
+dans le dépôt** : recopier par-dessus le fichier la **sauvegarde prise avant le run** — ⛔ jamais
+`git checkout -- <fichier>`, qui restaure depuis l'index et efface TOUT le non-commité du fichier
+(le run ne committe pas — commit et PR restent le protocole normal, worker ne merge jamais).
+Protocole de sauvegarde, AVANT le run : `cp <fichier> <fichier>.backup-<run>` puis relever le
+sha256 du fichier (le dépôt est propre à ce point — §4). Après recopie de la sauvegarde :
+re-sha256 — **l'égalité avec l'empreinte d'avant-run fait foi** que le fichier est revenu à son
+état d'avant-run ; toute différence = inspection, pas second rollback à l'aveugle.
 
 ## §6 Ce que ce protocole n'établit pas
 
