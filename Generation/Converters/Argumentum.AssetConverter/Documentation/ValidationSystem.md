@@ -226,7 +226,7 @@ La validation de la cohérence multilingue vérifie :
 
 En plus des validations de base, une stratégie de tests d'intégration ciblés est essentielle pour valider les étapes de conversion complexes, comme la transformation de HTML en PNG. Ces tests doivent être granulaires, rapides et indépendants pour garantir une couverture efficace sans ralentir le cycle de développement.
 
-Pour une explication détaillée de l'approche et des exemples de mise en œuvre, veuillez consulter le document [TESTING_ARCHITECTURE.md](TESTING_ARCHITECTURE.md).
+Pour une explication détaillée de l'approche et des exemples de mise en œuvre, veuillez consulter le document [TESTING_ARCHITECTURE.md](../../../Documentation/TESTING_ARCHITECTURE.md).
 
 ## Système de validation continue
 

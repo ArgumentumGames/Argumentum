@@ -15,7 +15,7 @@ L'implémentation de référence se trouve dans la méthode `TryAutomateSvgConve
 
 ### 2.1. Point d'entrée
 
-- **Fichier :** [`Generation/Converters/Argumentum.AssetConverter/Mindmapper/FallacyMindMapDocumentConfig.cs`](Generation/Converters/Argumentum.AssetConverter/Mindmapper/FallacyMindMapDocumentConfig.cs:312)
+- **Fichier :** [`Generation/Converters/Argumentum.AssetConverter/Mindmapper/FallacyMindMapDocumentConfig.cs`](../../Generation/Converters/Argumentum.AssetConverter/Mindmapper/FallacyMindMapDocumentConfig.cs:312)
 - **Méthode :** `private bool TryAutomateSvgConversion(string sourceMmPath, string destinationSvgPath, AssetConverterConfig config, bool isInteractive)`
 
 ### 2.2. Objectif du Processus
