@@ -788,6 +788,12 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#comic" />
   </Declaration>
   <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflicted" />
+  </Declaration>
+  <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflict" />
+  </Declaration>
+  <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#joke" />
   </Declaration>
   <Declaration>
@@ -1413,6 +1419,12 @@
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#personalCharm" />
+  </Declaration>
+  <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Ethotic_Inference_Conflicted" />
+  </Declaration>
+  <Declaration>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Ethotic_Inference_Conflict" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#ingratiation" />
@@ -2412,12 +2424,6 @@
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Inference_Scheme_Conflict" />
-  </Declaration>
-  <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflicted" />
-  </Declaration>
-  <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflict" />
   </Declaration>
   <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#spuriousComposition_Conflict" />
@@ -4469,12 +4475,6 @@
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#adHominem" />
   </Declaration>
   <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Ethotic_Inference_Conflicted" />
-  </Declaration>
-  <Declaration>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Ethotic_Inference_Conflict" />
-  </Declaration>
-  <Declaration>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#accusationOfInconsistency" />
   </Declaration>
   <Declaration>
@@ -4881,6 +4881,20 @@
     </ObjectUnionOf>
   </EquivalentClasses>
   <SubClassOf>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflicted" />
+    <ObjectExactCardinality cardinality="1">
+      <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#hasConflictedElement" />
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#Deductive_Inference" />
+    </ObjectExactCardinality>
+  </SubClassOf>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflict" />
+    <ObjectIntersectionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflicted" />
+    </ObjectIntersectionOf>
+  </EquivalentClasses>
+  <SubClassOf>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#PositiveConsequences_Inference_Conflicted" />
     <ObjectExactCardinality cardinality="1">
       <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#hasConflictedElement" />
@@ -4935,6 +4949,20 @@
       <Class IRI="http://www.arg.dundee.ac.uk/aif#SignFromOtherEvents_Conflict" />
       <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Sign_Inference_Conflict" />
     </ObjectUnionOf>
+  </EquivalentClasses>
+  <SubClassOf>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Ethotic_Inference_Conflicted" />
+    <ObjectExactCardinality cardinality="1">
+      <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#hasConflictedElement" />
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#Ethotic_Inference" />
+    </ObjectExactCardinality>
+  </SubClassOf>
+  <EquivalentClasses>
+    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Ethotic_Inference_Conflict" />
+    <ObjectIntersectionOf>
+      <Class IRI="http://www.arg.dundee.ac.uk/aif#Conflict" />
+      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Ethotic_Inference_Conflicted" />
+    </ObjectIntersectionOf>
   </EquivalentClasses>
   <SubClassOf>
     <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Waste_Inference_Conflicted" />
@@ -5128,20 +5156,6 @@
     <ObjectIntersectionOf>
       <Class IRI="http://www.arg.dundee.ac.uk/aif#Conflict" />
       <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Inference_Scheme_Conflicted" />
-    </ObjectIntersectionOf>
-  </EquivalentClasses>
-  <SubClassOf>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflicted" />
-    <ObjectExactCardinality cardinality="1">
-      <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#hasConflictedElement" />
-      <Class IRI="http://www.arg.dundee.ac.uk/aif#Deductive_Inference" />
-    </ObjectExactCardinality>
-  </SubClassOf>
-  <EquivalentClasses>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflict" />
-    <ObjectIntersectionOf>
-      <Class IRI="http://www.arg.dundee.ac.uk/aif#Conflict" />
-      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflicted" />
     </ObjectIntersectionOf>
   </EquivalentClasses>
   <EquivalentClasses>
@@ -5481,20 +5495,6 @@
     <ObjectIntersectionOf>
       <Class IRI="http://www.arg.dundee.ac.uk/aif#Conflict" />
       <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Dialogue_Scheme_Conflicted" />
-    </ObjectIntersectionOf>
-  </EquivalentClasses>
-  <SubClassOf>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Ethotic_Inference_Conflicted" />
-    <ObjectExactCardinality cardinality="1">
-      <ObjectProperty IRI="http://www.arg.dundee.ac.uk/aif#hasConflictedElement" />
-      <Class IRI="http://www.arg.dundee.ac.uk/aif#Ethotic_Inference" />
-    </ObjectExactCardinality>
-  </SubClassOf>
-  <EquivalentClasses>
-    <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Ethotic_Inference_Conflict" />
-    <ObjectIntersectionOf>
-      <Class IRI="http://www.arg.dundee.ac.uk/aif#Conflict" />
-      <Class IRI="https://www.argumentum.games/argumentum_fallacies.owl#Ethotic_Inference_Conflicted" />
     </ObjectIntersectionOf>
   </EquivalentClasses>
   <SubClassOf>
@@ -10070,7 +10070,7 @@
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#relatedMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insufficiency</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#GeneralAcceptanceDoubt_Conflict</IRI>
   </AnnotationAssertion>
@@ -10135,7 +10135,7 @@
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insufficiency</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sloppyArgument</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#LackOfPTKReliability_Scheme</IRI>
   </AnnotationAssertion>
@@ -12470,7 +12470,7 @@
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trivialJustification</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToCommonPractice</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#PopularPractice_Inference_Conflict</IRI>
   </AnnotationAssertion>
@@ -14057,7 +14057,7 @@
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#prejudice</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentFromAuthority</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentFromAuthority_Conflict</IRI>
   </AnnotationAssertion>
@@ -16371,6 +16371,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#moralisticFallacy</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Moralistic_fallacy</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#moralisticFallacy</IRI>
+    <Literal xml:lang="fr">https://www.fallaeasies.com/fr/fallacies/moralistic-fallacy</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -18696,6 +18701,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#badReasonsFallacy</IRI>
     <Literal xml:lang="en">http://www.fallacyfiles.org/badreasn.html</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#badReasonsFallacy</IRI>
+    <Literal xml:lang="fr">https://yourlogicalfallacyis.com/fr/l-erreur-sur-l-erreur</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -21205,7 +21215,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#academese</IRI>
-    <Literal xml:lang="fr">Academisme</Literal>
+    <Literal xml:lang="fr">Académisme</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
@@ -22478,6 +22488,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#rhetoricalDevice</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#humour</IRI>
+    <Literal xml:lang="fr">Le rire a-t-il établi quelque chose sur le fond, ou a-t-il seulement évité d’y répondre ?</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#comic</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -22531,6 +22546,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#comic</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#humour</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#comic</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -23186,6 +23206,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#satire</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#humour</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#satire</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -23963,6 +23988,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#humour</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#cynicism</IRI>
+    <Literal xml:lang="fr">imite la défiance méthodique envers les affirmations — la dévaluation généralisée tient lieu d'examen</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#blackComedy</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -24141,6 +24171,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#poetry</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#rhetoricalDevice</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#poetry</IRI>
+    <Literal xml:lang="fr">L’image embellit-elle un fait établi, ou tient-elle lieu du fait qui manque ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -27223,6 +27258,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Appeal_to_emotion</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToEmotion</IRI>
+    <Literal xml:lang="fr">https://yourlogicalfallacyis.com/fr/appel-a-l-emotion</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#influence</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToEmotion</IRI>
@@ -27231,6 +27271,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToEmotion</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#influence</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToEmotion</IRI>
+    <Literal xml:lang="fr">imite l'appel à l'émotion pertinent et fondé — l'émotion proportionnée à un enjeu établi (Walton : fear appeal, appeal to pity)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -27296,6 +27341,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#connivance</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#PositiveConsequences_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#connivance</IRI>
+    <Literal xml:lang="fr">Le bénéfice promis est-il démontré, ou l’alliance émotionnelle tient-elle lieu de preuve ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -28558,6 +28608,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#NegativeConsequences_Inference_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#foil</IRI>
+    <Literal xml:lang="fr">Le mal invoqué est-il démontré, ou l’aversion tient-elle lieu d’examen ?</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToSpite</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -29418,7 +29473,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#foil</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToFear</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToFear_Conflict</IRI>
   </AnnotationAssertion>
@@ -29606,6 +29661,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToConsequences</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#EstablishedRule_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToConsequences</IRI>
+    <Literal xml:lang="fr">Les conséquences avancées sont-elles établies, ou tiennent-elles lieu de la justesse de l’idée ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -30509,7 +30569,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#influence</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#relatedMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#psychologicalManipulation</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#ConflictingGoals_Conflict</IRI>
   </AnnotationAssertion>
@@ -30786,7 +30846,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#baitAndSwitch</IRI>
-    <Literal xml:lang="en">Stating a series of uncontroversial statements before introducing the proposed, debatable argument.</Literal>
+    <Literal xml:lang="en">You start with statements everyone accepts, then subtly slide toward your debatable ideas.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
@@ -34279,6 +34339,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#powerGames</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#personalCharm</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Ethotic_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#ingratiation</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -36891,7 +36956,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#coercion</IRI>
-    <Literal xml:lang="fr">Si tu ne change pas de comportement, je vais me facher.</Literal>
+    <Literal xml:lang="fr">Si tu ne changes pas de comportement, je vais me fâcher.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
@@ -38647,6 +38712,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#socialConditioning</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#powerGames</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#socialConditioning</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#PopularOpinion_Inference_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -44044,6 +44114,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonverbalCommunication</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appearance</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Sign_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#socioCulturalMarker</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -44334,6 +44409,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyGeneralisation_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyGeneralisation</IRI>
+    <Literal xml:lang="fr">L’exemple invoqué autorise-t-il la généralisation, ou la conclusion s’étend-elle au-delà de ce qu’il montre ?</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#samplingBias</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -44392,6 +44472,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#samplingBias</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyGeneralisation</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#samplingBias</IRI>
+    <Literal xml:lang="fr">L’échantillon est-il représentatif de la population visée, ou la conclusion porte-t-elle sur une population qu’il ne représente pas ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -46451,6 +46536,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#EvidenceToHypothesis_Inference_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#interpretationFallacy</IRI>
+    <Literal xml:lang="fr">La relation établie entre les données est-elle celle qu’elles portent, ou l’interprétation leur fait-elle dire plus qu’elles n’établissent ?</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#unfoundedRelationship</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -46494,6 +46584,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#unfoundedRelationship</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Spurious_relationship</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#unfoundedRelationship</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Corr%C3%A9lation_illusoire</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -47141,6 +47236,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#interpretationFallacy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#probabilisticFallacy</IRI>
+    <Literal xml:lang="fr">La probabilité invoquée s’applique-t-elle au cas considéré, ou le raisonnement en tire-t-il une conclusion qu’elle n’autorise pas ?</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToProbability</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -47636,6 +47736,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <Literal xml:lang="en">http://www.fallacyfiles.org/hothandf.html</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hotHandFallacy</IRI>
+    <Literal xml:lang="fr">https://thedecisionlab.com/fr/biases/hot-hand-fallacy</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#gamblersRuin</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hotHandFallacy</IRI>
@@ -47929,6 +48034,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#deceptiveInfinity</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Gradualism_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#deceptiveInfinity</IRI>
+    <Literal xml:lang="fr">Le passage d’un degré au suivant est-il justifié par un critère établi, ou la série est-elle traitée comme si elle devait avoir une limite nette qu’aucune étape n’établit ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -48363,7 +48473,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#invalidResult</IRI>
-    <Literal xml:lang="en">Drawing conclusions based on incorrect mathematical reasoning.</Literal>
+    <Literal xml:lang="en">You draw a conclusion from incorrect mathematical reasoning.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
@@ -48449,6 +48559,16 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#imprecision</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#invalidResult</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#imprecision</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#EvidenceToHypothesis_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#imprecision</IRI>
+    <Literal xml:lang="fr">La certitude de la conclusion correspond-elle à la précision réelle des données, ou l’impression d’exactitude tient-elle lieu de mesure ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -49241,6 +49361,16 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#invalidResult</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#erroneousCalculation</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#erroneousCalculation</IRI>
+    <Literal xml:lang="fr">Le résultat du calcul est-il exact et vérifiable, ou l’erreur qu’il contient tient-elle lieu de démonstration ?</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#doubleCounting</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -49746,6 +49876,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#invalidResult</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inappropriateOperation</IRI>
+    <Literal xml:lang="fr">L’opération appliquée est-elle valide pour les objets qu’elle manipule, ou le résultat tient-il lieu de preuve alors que l’opération ne s’applique pas ?</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#mathematicalFallacy</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -49799,6 +49934,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#mathematicalFallacy</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inappropriateOperation</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#mathematicalFallacy</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -49961,6 +50101,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inappropriateOperation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misuseOfSymbol</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Deductive_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoscience</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -50019,6 +50164,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoscience</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inappropriateOperation</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#pseudoscience</IRI>
+    <Literal xml:lang="fr">imite l'appel à une connaissance scientifique établie — le statut de fait scientifique est fabriqué pour tenir lieu de preuve</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -50081,7 +50231,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#relatedMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyReasoning</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#Logical_Conflict</IRI>
   </AnnotationAssertion>
@@ -51431,7 +51581,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#questionableCausality</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#storkEffect</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#storkEffect_Conflict</IRI>
   </AnnotationAssertion>
@@ -52598,7 +52748,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyImmediateInference</IRI>
-    <Literal xml:lang="en">Drawing a conclusion directly from a single premise incorrectly, attributing properties or conclusions that are not logically supported by that premise.</Literal>
+    <Literal xml:lang="en">From a single premise, you directly draw an incorrect conclusion, attributing to it properties or implications that it does not logically support.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
@@ -53609,7 +53759,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#wrongEntailment</IRI>
-    <Literal xml:lang="en">Drawing conclusions that do not logically follow from the starting assumptions.</Literal>
+    <Literal xml:lang="en">You draw conclusions that do not logically follow from your premises.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
@@ -56013,7 +56163,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vagueDefinition</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
@@ -56073,7 +56223,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vagueDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#failureToElucidate</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
@@ -56193,7 +56343,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vagueDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#essentiallyContestedConcept</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
@@ -56318,7 +56468,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#arbitraryDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#incongruity</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#incongruity_Conflict</IRI>
   </AnnotationAssertion>
@@ -56378,7 +56528,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#incongruity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#broadDefinition</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#broadDefinition_Conflict</IRI>
   </AnnotationAssertion>
@@ -56438,7 +56588,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#incongruity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrowDefinition</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrowDefinition_Conflict</IRI>
   </AnnotationAssertion>
@@ -56845,7 +56995,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfCorrelatives</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseDilemma</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Dilemma_Inference_Conflict</IRI>
   </AnnotationAssertion>
@@ -57497,7 +57647,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inconsistentDefinition</IRI>
-    <Literal xml:lang="en">Defining terms in inconsistent, logically faulty ways.</Literal>
+    <Literal xml:lang="en">You give the terms you use contradictory or inconsistent definitions.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
@@ -57520,7 +57670,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inexactDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inconsistentDefinition</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inconsistentDefinition_Conflict</IRI>
   </AnnotationAssertion>
@@ -57640,7 +57790,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#conflictingConditions</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#stolenConceptFallacy</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#InconsistentCommitment_Inference</IRI>
   </AnnotationAssertion>
@@ -57755,7 +57905,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#circularDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#dictionaryArgument</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#dictionaryArgument_Conflict</IRI>
   </AnnotationAssertion>
@@ -57815,7 +57965,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#circularDefinition</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#definistFallacy</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
@@ -57902,7 +58052,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciousComparison</IRI>
-    <Literal xml:lang="en">Reasoning on the basis of illegitimate associations of elements brought together incorrectly.</Literal>
+    <Literal xml:lang="en">You draw a misleading comparison to support your point of view.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
@@ -57935,7 +58085,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingLanguage</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#relatedMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciousComparison</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciousComparison_Conflict</IRI>
   </AnnotationAssertion>
@@ -58110,7 +58260,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyComparison</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonExclusiveClassification</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nonExclusiveClassification_Conflict</IRI>
   </AnnotationAssertion>
@@ -58168,6 +58318,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inconsistentComparison</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#faultyComparison</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#inconsistentComparison</IRI>
+    <Literal xml:lang="fr">imite la comparaison complète et à critères stables — l'incohérence des critères tient lieu de mesure</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -58290,7 +58445,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciousComparison</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseAnalogy</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseAnalogy_Conflict</IRI>
   </AnnotationAssertion>
@@ -58405,7 +58560,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseAnalogy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#extendedAnalogy</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#extendedAnalogy_Conflict</IRI>
   </AnnotationAssertion>
@@ -58525,7 +58680,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseAnalogy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseEquivalence</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseEquivalence_Conflict</IRI>
   </AnnotationAssertion>
@@ -58590,7 +58745,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciousComparison</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#associationFallacy</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#associationFallacy_Conflict</IRI>
   </AnnotationAssertion>
@@ -58655,7 +58810,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#associationFallacy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#conflation</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#conflation_Conflict</IRI>
   </AnnotationAssertion>
@@ -58720,7 +58875,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#misleadingLanguage</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#relatedMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#ambiguity</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#ambiguity_Conflict</IRI>
   </AnnotationAssertion>
@@ -58785,7 +58940,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#ambiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#syntacticAmbiguity</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#VerbalClassification_Inference_Conflict</IRI>
   </AnnotationAssertion>
@@ -58900,7 +59055,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#syntacticAmbiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#modalScopeFallacy</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#modalScopeFallacy_Conflict</IRI>
   </AnnotationAssertion>
@@ -58960,7 +59115,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#modalScopeFallacy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#quantifierShift</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#quantifierShift_Conflict</IRI>
   </AnnotationAssertion>
@@ -59020,7 +59175,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#syntacticAmbiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#accent</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#ArbitraryVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
@@ -59080,7 +59235,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#accent</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#illicitContrast</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#ArbitraryVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
@@ -59205,7 +59360,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#syntacticAmbiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#barbarism</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
@@ -59270,7 +59425,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#ambiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#semanticAmbiguity</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
@@ -59390,7 +59545,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vagueness</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falsePrecision</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#ArbitraryVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
@@ -59450,7 +59605,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#vagueness</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#semanticSlipperySlope</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#VerbalSlipperySlope_Inference_Conflict</IRI>
   </AnnotationAssertion>
@@ -59510,7 +59665,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#semanticSlipperySlope</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentOfTheBeard</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#VerbalSlipperySlope_Inference_Conflict</IRI>
   </AnnotationAssertion>
@@ -59570,7 +59725,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#semanticAmbiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#polysemicLexicalShift</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
@@ -59750,7 +59905,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#homonym</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#heterosemy</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
@@ -59810,7 +59965,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#polysemicLexicalShift</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#jingleJangleFallacy</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
@@ -59870,7 +60025,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#semanticAmbiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#polysemyBySemanticChange</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
@@ -59995,7 +60150,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#metonymy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#typeTokenFallacy</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#Example_Inference</IRI>
   </AnnotationAssertion>
@@ -60455,7 +60610,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#idolaFori</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#motteAndBaileyFallacy</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#VagueVerbalClassification_Inference</IRI>
   </AnnotationAssertion>
@@ -60510,7 +60665,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#ambiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#relatedMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrativeAmbiguity</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#ConflictingGoals_Conflict</IRI>
   </AnnotationAssertion>
@@ -60570,7 +60725,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrativeAmbiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseImplication</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#ConflictingGoals_Conflict</IRI>
   </AnnotationAssertion>
@@ -60630,7 +60785,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseImplication</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insinuation</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#ConflictingGoals_Conflict</IRI>
   </AnnotationAssertion>
@@ -60690,7 +60845,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insinuation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#damningWithFaintPraise</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#OpposedCommitment_Conflict</IRI>
   </AnnotationAssertion>
@@ -60750,7 +60905,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#insinuation</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#blindItem</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#blindItem_Conflict</IRI>
   </AnnotationAssertion>
@@ -60815,7 +60970,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrativeAmbiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#grayPropaganda</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#grayPropaganda_Conflict</IRI>
   </AnnotationAssertion>
@@ -60875,7 +61030,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#grayPropaganda</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#whisperingCampaign</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#whisperingCampaign_Conflict</IRI>
   </AnnotationAssertion>
@@ -60940,7 +61095,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#narrativeAmbiguity</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#blackPropaganda</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#blackPropaganda_Conflict</IRI>
   </AnnotationAssertion>
@@ -61000,7 +61155,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#blackPropaganda</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#covertInterrogation</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#covertInterrogation_Conflict</IRI>
   </AnnotationAssertion>
@@ -61060,7 +61215,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#blackPropaganda</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrowMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#baitingForTruth</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#Bias_Inference</IRI>
   </AnnotationAssertion>
@@ -61245,6 +61400,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
+    <Literal xml:lang="fr">La présentation des faits reflète-t-elle ce que la source peut établir, ou l’arrangement tient-il lieu de connaissance qu’il ne fonde pas ?</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#lying</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -61303,6 +61463,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#lying</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#lying</IRI>
+    <Literal xml:lang="fr">L’affirmation correspond-elle à ce que celui qui la formule sait être vrai, ou soutient-il à dessein ce qu’il sait faux ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -64360,6 +64525,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#falseAttribution</IRI>
+    <Literal xml:lang="fr">La source invoquée soutient-elle réellement ce qui lui est attribué, ou le poids qu’on lui prête tient-il lieu de preuve qu’elle ne fournit pas ?</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#contextomy</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -64977,6 +65147,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <Literal xml:lang="en">https://www.logicallyfallacious.com/tools/lp/Bo/LogicalFallacies/159/Selective-Attention</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#selectiveAttention</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Cherry_picking</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#spinDoctoring</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#selectiveAttention</IRI>
@@ -65150,6 +65325,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#specialPleading</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Special_pleading</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#specialPleading</IRI>
+    <Literal xml:lang="fr">https://yourlogicalfallacyis.com/fr/deux-poids-deux-mesures</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -66122,7 +66302,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#cheating</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#relatedMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#movingTheGoalposts</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#ConflictingGoals_Conflict</IRI>
   </AnnotationAssertion>
@@ -66186,6 +66366,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#movingTheGoalposts</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#strongerRequirements</IRI>
+    <Literal xml:lang="fr">imite la fixation légitime d'un standard de preuve avant acceptation — l'exigence est déplacée après coup</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciesOfObjection</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -66239,6 +66424,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciesOfObjection</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#strongerRequirements</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallaciesOfObjection</IRI>
+    <Literal xml:lang="fr">imite l'examen critique exhaustif — l'itération sans fin d'objections tient lieu de réfutation</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -66359,6 +66549,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nirvanaFallacy</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#impossibleExpectations</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nirvanaFallacy</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#PracticalReasoning_Inference_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -66756,6 +66951,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#strongerRequirements</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#confusingAnExplanationWithAnExcuse</IRI>
+    <Literal xml:lang="fr">imite la critique d'une justification — l'explication causale d'un acte est traitée comme son excuse</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#sanctioningTheDevil</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -66926,6 +67126,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#strongerRequirements</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#oneSingleProof</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#EvidenceToHypothesis_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#onTheSpotFallacy</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -67041,6 +67246,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#strongerRequirements</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#shiftingTheBurdenOfProof</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Ignorance_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#provingNonExistence</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -67151,6 +67361,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#strongerRequirements</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#bigWords</IRI>
+    <Literal xml:lang="fr">imite l'exigence légitime de clarté — l'emploi de termes spécialisés est présenté comme l'aveu d'un manque de substance</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#havingYourCakeAndEatingItToo</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -67204,6 +67419,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#havingYourCakeAndEatingItToo</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#movingTheGoalposts</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#havingYourCakeAndEatingItToo</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Commitment_Inference_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -68381,6 +68601,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#weakerDemands</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#argumentumASilentio</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Ignorance_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trivialism</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -68434,6 +68659,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trivialism</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#weakerDemands</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trivialism</IRI>
+    <Literal xml:lang="fr">imite la tolérance aux incohérences mineures — tout admettre tient lieu de souplesse</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -68549,6 +68779,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToEffort</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#weakerDemands</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToEffort</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Waste_Inference_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -68946,6 +69181,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#weakerDemands</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#thatWasYearsAgo</IRI>
+    <Literal xml:lang="fr">imite la pertinence de l'ancienneté — l'âge d'un fait tient lieu d'objection</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedThinking</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -68973,7 +69213,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedThinking</IRI>
-    <Literal xml:lang="en">Arguing under the influence of a cognitive bias, which hinders the ability to reason in a balanced manner.</Literal>
+    <Literal xml:lang="en">Your biases steer your arguments, which keeps you from judging the situation in a balanced way.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
@@ -69001,9 +69241,14 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#cheating</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#closeMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedThinking</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedThinking_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedThinking</IRI>
+    <Literal xml:lang="fr">La conclusion repose-t-elle sur des raisons, plutôt que sur un biais qui a orienté le choix des informations ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -69066,6 +69311,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedThinking</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#humanNatureBias</IRI>
+    <Literal xml:lang="fr">Ce qui semble évident a-t-il été vérifié, ou n’est-ce qu’un réflexe naturel de la pensée ?</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#attentionalBias</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -69124,6 +69374,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#attentionalBias</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#humanNatureBias</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#attentionalBias</IRI>
+    <Literal xml:lang="fr">Les informations négligées parce qu’elles n’intéressent pas ont-elles été cherchées avant de conclure ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -72846,6 +73101,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#emotionalBiases_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#emotionalBiases</IRI>
+    <Literal xml:lang="fr">Les alternatives sont-elles réellement exclusives, ou l’émotion n’en fait-elle voir qu’une seule ?</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#valenceEffect</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -72944,6 +73204,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#negativityBias</IRI>
     <Literal xml:lang="en">http://skepdic.com/negativitybias.html</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#negativityBias</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Biais_de_n%C3%A9gativit%C3%A9</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -74848,7 +75113,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#neglectOfProbabilityBias</IRI>
-    <Literal xml:lang="fr">Je ne veux pas aller me faire soigner à l’hopital car on y attrape des maladies.</Literal>
+    <Literal xml:lang="fr">Je ne veux pas aller me faire soigner à l’hôpital car on y attrape des maladies.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
@@ -77666,6 +77931,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Idola_specus</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#culturalBias</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Biais_culturel</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedThinking</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#culturalBias</IRI>
@@ -77674,6 +77944,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#culturalBias</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedThinking</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#culturalBias</IRI>
+    <Literal xml:lang="fr">La règle suivie vaut-elle au-delà du groupe qui la partage, ou seulement à l’intérieur de lui ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -77739,6 +78014,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#attributionBias</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Example_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#attributionBias</IRI>
+    <Literal xml:lang="fr">Le cas observé est-il représentatif, ou n’est-il qu’un exemple choisi par la commodité de l’explication ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -78488,7 +78768,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#islandMentality</IRI>
-    <Literal xml:lang="fr">Mentalité de l’ilot</Literal>
+    <Literal xml:lang="fr">Mentalité de l’îlot</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
@@ -79044,6 +79324,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#essentialism</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Preference_Scheme_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#essentialism</IRI>
+    <Literal xml:lang="fr">Le trait présenté comme naturel a-t-il été démontré, ou l’est-il seulement parce que le groupe le dit ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -80681,6 +80966,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#culturalBias</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#subjectivityBias</IRI>
+    <Literal xml:lang="fr">Le point de vue personnel est-il distingué du fait établi, et vérifié par autre chose que lui-même ?</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#suggestibility</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -81606,6 +81896,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#biasedThinking</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#theoreticalBiases</IRI>
+    <Literal xml:lang="fr">Le concept théorique s’applique-t-il à la situation, ou la situation est-elle pliée pour entrer dans le concept ?</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#dogmatism</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -81664,6 +81959,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#dogmatism</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#theoreticalBiases</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#dogmatism</IRI>
+    <Literal xml:lang="fr">La croyance de départ accepte-t-elle d’être confrontée à des preuves contraires ?</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -83823,7 +84123,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacy</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#relatedMatch" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#obstruction</IRI>
     <IRI>http://www.arg.dundee.ac.uk/aif#ResolvingInconsistency_Conflict</IRI>
   </AnnotationAssertion>
@@ -83926,6 +84226,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#abusiveRelativism</IRI>
     <Literal xml:lang="en">http://www.ditext.com/fearnside/9.html#b</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#abusiveRelativism</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Relativisme</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -84263,6 +84568,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <Literal xml:lang="en">https://www.logicallyfallacious.com/tools/lp/Bo/LogicalFallacies/178/Unfalsifiability</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#unfalsifiability</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/R%C3%A9futabilit%C3%A9</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#fallacyOfExplanation</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#unfalsifiability</IRI>
@@ -84410,7 +84720,7 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#limitedDepth</IRI>
-    <Literal xml:lang="en">Failing to engage with the underlying causes of a phenomenon, thus resorting to superficial assertions.</Literal>
+    <Literal xml:lang="en">You stay on the surface of the subject instead of sufficiently examining the underlying causes.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#example" />
@@ -84756,6 +85066,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#proofByAssertion</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Proof_by_assertion</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#proofByAssertion</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Argumentum_ad_nauseam</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -87568,6 +87883,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#overcomplicating</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#hypercriticalMethod</IRI>
+    <Literal xml:lang="fr">imite la rigueur méthodique — la complication du protocole tient lieu d'examen</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#appealToExpertise</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -87788,6 +88108,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#overcomplicating</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#nirvanaFallacy</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#PracticalReasoning_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trivialObjections</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -87846,6 +88171,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trivialObjections</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#overcomplicating</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#trivialObjections</IRI>
+    <Literal xml:lang="fr">imite la réfutation par détail — un défaut mineur tient lieu de réfutation du tout</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -87963,6 +88293,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#poisoningTheWell</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#justAskingQuestions</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Ethotic_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#persuadeTheAudience</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -88021,6 +88356,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#persuadeTheAudience</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#poisoningTheWell</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#persuadeTheAudience</IRI>
+    <Literal xml:lang="fr">imite le débat public — influencer l'auditoire tient lieu de convaincre l'interlocuteur</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -88083,6 +88423,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#poisoningTheWell</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#psychologicalProjection</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Ethotic_Inference_Conflict</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#darvo</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -88136,6 +88481,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#darvo</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#psychologicalProjection</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broadMatch" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#darvo</IRI>
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#Ethotic_Inference_Conflict</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -88198,6 +88548,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#poisoningTheWell</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#shamArguments</IRI>
+    <Literal xml:lang="fr">imite la réfutation — des arguments fabriqués tiennent lieu de thèse adverse</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#absurdPropositions</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -88258,6 +88613,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#shamArguments</IRI>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#absurdPropositions</IRI>
+    <Literal xml:lang="fr">imite la mise à l'épreuve de la position adverse — une idée absurde tient lieu de test</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#usingABadCounterArgument</IRI>
     <IRI>http://www.w3.org/2004/02/skos/core#Concept</IRI>
@@ -88316,6 +88676,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#broader" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#usingABadCounterArgument</IRI>
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#shamArguments</IRI>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#comment" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#usingABadCounterArgument</IRI>
+    <Literal xml:lang="fr">imite la réfutation — une contre-argumentation tout aussi discutable tient lieu de réponse</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#type" />
@@ -88426,6 +88791,11 @@ https://utminers.utep.edu/omwilliamson/ENGL1311/fallacies.htm</Literal>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_fallacies.owl#accusationOfInconsistency</IRI>
     <Literal xml:lang="en">http://web.archive.org/web/20181221142544/http://www.dougwalton.ca/papers%20in%20pdf/04historical.pdf</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_fallacies.owl#accusationOfInconsistency</IRI>
+    <Literal xml:lang="fr">https://yourlogicalfallacyis.com/fr/tu-quoque</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
