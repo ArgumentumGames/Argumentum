@@ -46,7 +46,7 @@ Several files here are cited by path from guard tests, from the generator config
 
 | File | Dated | Status | What it is |
 |---|---|---|---|
-| [`202-smoke-datasetupdater-protocole-2026-09-15.md`](202-smoke-datasetupdater-protocole-2026-09-15.md) | 2026-09-15, updated 09-21 | `current` | Protocol for a three-record round-trip smoke run of DatasetUpdater on a scratch copy, gated on an owner GO and a named key; never executed. Its model prerequisite is settled (#1426); its line numbers have moved and one claim no longer holds — see Contradictions |
+| [`202-smoke-datasetupdater-protocole-2026-09-15.md`](202-smoke-datasetupdater-protocole-2026-09-15.md) | 2026-09-15, updated 11-17 | `current` | Protocol for a three-record round-trip smoke run of DatasetUpdater on a scratch copy, gated on an owner GO and a named key; never executed. Its model prerequisite is settled (#1426); its three stale statements (moved line numbers, the `SelectEmptyTargets` claim, the `git checkout --` rollback) were corrected on stable anchors (#2262) |
 | [`gpt55-modele-courant-inventaire-2026-09-15.md`](gpt55-modele-courant-inventaire-2026-09-15.md) | 2026-09-15, erratum 09-17 | `superseded` | Inventory showing that the compiled config still named the previous model after the decision. Replaced by #1426, which migrated the config |
 | [`202-en-campaign-plan.md`](202-en-campaign-plan.md) | 2026-07-15 | `historical` | Plan, with zero CSV writes, of a post-release English campaign on `Simple_name_en` and `political_example_en` (#809). Never executed; #202 closed |
 | [`202-qa-gate-protocol.md`](202-qa-gate-protocol.md) | 2026-07-16 | `historical` | Per-tranche byte-exact spot-check criteria for that campaign, waiting on a register decision (#810). Never executed |
@@ -109,7 +109,6 @@ None is corrected in the files: an index changes no finding. Each line says whic
 - The class B and E sizes of the characterisation against the tiering of class B: the tiering holds — it re-measures through interwiki and names the artefact.
 - The class-E re-survey (class E massively over-estimated) against the class-E relevance audit (about one hit in ten relevant): the relevance audit holds; the owner decision of 22/09 and #1554 rest on it.
 - The title and §0 of the model inventory against today's config: #1426 holds (measured: 53 literals of the decided model, none of the previous one).
-- The smoke protocol cites mechanism lines that have moved (for instance `TakeChunkNb`, line 72 at its base, line 92 today) and says the `SelectEmptyTargets` usage block is commented out, while an active group filter on that flag exists (line 240 at its base, line 266 today); its occurrence count of the model has grown from 48 to 53. Whether the recipe of its §2 changes: undetermined — needs the owning lane.
 - The es/ar/fa/zh re-measure concludes that no editorial question remains, yet the `Campaign` sub-category was a false friend, fixed by #1434 six days later; its `link` figures are also older than the #1471 and #458 fills. For coverage, re-measure; for links, the #1471 issue holds.
 - The yield grain and the title of #1471 size the epic by its opening count; the closure dossier of 12/11 re-measures the residual at 438, as does this index: the dossier holds.
 
@@ -117,7 +116,7 @@ None is corrected in the files: an index changes no finding. Each line says whic
 
 The owning lane should sample these first: the judgement was closest to the line.
 
-- The smoke protocol as `current`: its issue #202 is closed, but the protocol still governs a gesture to come (item 9 of the next steps), and one of its claims does not hold today.
+- The smoke protocol as `current`: its issue #202 is closed, but the protocol still governs a gesture to come (item 9 of the next steps) — its three stale statements were corrected on stable anchors (#2262, owning lane; the §2 recipe is unchanged, `SelectEmptyTargets` stays at its `false` default).
 - The six-language Rules dossier as `current`: only the Persian trump-term observation was re-measured; its other defects were not re-checked one by one.
 - The English campaign plan and its QA gate as `historical`: never executed, the gap they target is unchanged, and the release they were waiting for has not shipped. If the campaign is still wanted, they are current and need an open issue.
 - The Scenarii `es`, `pt` and `en` dossiers as `historical`: the corrections are traced through the matrix and the pull requests, not re-measured observation by observation.
