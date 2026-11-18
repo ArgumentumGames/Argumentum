@@ -17975,7 +17975,7 @@
     <Language>fa-IR</Language>
     <Name>زئوقما</Name>
     <Description>اتصال عناصر که به طور طبیعی با هم نمی‌آیند برای ایجاد اثری شگفت انگیز.</Description>
-    <Example>قرض دادن با نرخ  ۱۵ درصد بهتر از قرض دادن به سردرگم است.</Example>
+    <Example>قرض دادن با نرخ ۱۵ درصد بهتر از قرض دادن به سردرگم است.</Example>
     <Parent>785ad308-b7e6-152e-b3cf-88c589c3b171</Parent>
   </Entity>
   <Entity Type="Fallacy">
@@ -88351,7 +88351,7 @@
   <Entity Type="Fallacy">
     <Guid>9f3e1b3c-6011-9023-2049-64fd46fddfa0</Guid>
     <Language>fa-IR</Language>
-    <Name>اِتهام به  تروریسم</Name>
+    <Name>اِتهام به تروریسم</Name>
     <Description>شما با پیوند ناموجه رقیب خود به یک سازمان تروریستی، او را بی‌اعتبار می‌کنید.</Description>
     <Example>با امتناع از حمایت از این جنگ، شما در کنار کسانی قرار می‌گیرید که در به وحشت انداختن بی‌گناهان تردیدی ندارند.</Example>
     <Parent>d77cee93-b979-0c26-b585-057e744aa7b4</Parent>
