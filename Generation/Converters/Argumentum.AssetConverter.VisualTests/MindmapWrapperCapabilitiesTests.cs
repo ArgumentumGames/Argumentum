@@ -1268,14 +1268,20 @@ namespace Argumentum.AssetConverter.VisualTests
         }
 
         /// <summary>
-        /// Cap 17 — degrade path on Virtues (fixture with no pk attribute and no crosslinks):
-        /// the legend and the relation panel never appear, an <c>#pk=</c> hash is a no-op, but
-        /// the SEARCH + card capabilities stay on (that is the "graceful" part — the wrapper
-        /// does not lose its lot-1 behaviour where the data does not carry lot-2 anchors).
+        /// Cap 17 — Virtues map with its lot-2 anchors present. Since #2289 the pipeline writes
+        /// `pk`/`path` on every paired Virtues node ("same navigation anchors as the Fallacies
+        /// twin"); #2303 ships the first re-derived Virtues SVGs, so this fixture no longer is
+        /// the degrade case it was when the test was born (no pk, no path, `#pk=` a no-op).
+        /// What still holds BY CONSTRUCTION is the crosslink-free topology (the Virtues writer
+        /// poses no data-crosslink-* elements): the legend must stay hidden. Everything the
+        /// anchors enable is on and measured against the source index: every node carries `pk`,
+        /// `byPk`/`byPath` are fully populated, `#pk=<n>` opens that exact node's card, an
+        /// unknown pk stays a bounded no-op (the inverse control), and the lot-1 search
+        /// behaviour survives the pairing (suggestions, Enter opens the card).
         /// </summary>
         [Theory]
         [InlineData("fr", "Argumentum_Virtues_MindMap_fr.content.svg")]
-        public async Task Cap17_VirtuesDegrade_NoDeepLinkNoLegend_SearchStillWorks(string lang, string svgFileName)
+        public async Task Cap17_Virtues_PairedAnchors_LegendHidden_PkDeepLinkAndSearchWork(string lang, string svgFileName)
         {
             var wrapperPath = await ComposeIncludedAsync(lang, svgFileName);
             var page = await OpenPageAsync(wrapperPath);
@@ -1284,31 +1290,55 @@ namespace Argumentum.AssetConverter.VisualTests
                 await WaitForViewportSettledAsync(page);
                 var card = page.Locator("card");
 
-                // Precondition measured on the fixture: no pk attribute, no crosslinks.
+                // Precondition measured on the fixture: full pairing, crosslink-free topology.
+                // The node total is read from the DOM (never hardcoded: the corpus moves) and
+                // every anchor count must equal it — a partial pairing is a red, not a degrade.
                 var pre = await page.EvaluateAsync<long[]>(@"() => [
+                    document.querySelectorAll('#mindmap svg g.node').length,
                     document.querySelectorAll('#mindmap svg g.node[pk]').length,
                     document.querySelectorAll('g.crosslink').length,
                     Object.keys(window.__mmNav.byPk).length,
                     Object.keys(window.__mmNav.byPath).length
                 ]");
                 Assert.NotNull(pre);
-                Assert.True(pre.Length >= 4, "precondition probe returned too few values");
-                _output.WriteLine($"[{lang}] Virtues precondition: pk-attr={pre[0]} crosslinks={pre[1]} " +
-                    $"byPk={pre[2]} byPath={pre[3]}");
-                Assert.Equal(0, pre[0]); // the degrade premise itself, re-measured
-                Assert.Equal(0, pre[1]);
-                Assert.Equal(0, pre[2]);
-                Assert.Equal(0, pre[3]);
+                Assert.True(pre.Length >= 5, "precondition probe returned too few values");
+                _output.WriteLine($"[{lang}] Virtues precondition: nodes={pre[0]} pk-attr={pre[1]} crosslinks={pre[2]} " +
+                    $"byPk={pre[3]} byPath={pre[4]}");
+                Assert.True(pre[0] > 0, "fixture must carry at least one node");
+                Assert.Equal(pre[0], pre[1]); // every node paired — the #2289 premise, re-measured
+                Assert.Equal(0, pre[2]);      // crosslink-free by construction — the Virtues constant
+                Assert.Equal(pre[0], pre[3]);
+                Assert.Equal(pre[0], pre[4]);
 
-                // Degrade: legend never unhidden, #pk= is a no-op.
+                // Crosslink-free topology: the legend never unhides on this map.
                 Assert.True(await page.Locator("#mmLegend").EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
                     "no crosslinks → the legend must stay hidden");
-                await page.EvaluateAsync("location.hash = '#pk=42'");
+
+                // Inverse control FIRST: a pk matching no node stays a bounded no-op.
+                await page.EvaluateAsync("location.hash = '#pk=999999'");
                 await page.WaitForTimeoutAsync(400);
                 Assert.True(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
-                    "no pk attributes → an #pk= hash must be a no-op (card stays closed)");
+                    "unknown pk must be a no-op (card stays closed)");
 
-                // Still on: search over the node labels reaches a node and opens its card.
+                // Deep link on a REAL node, picked from the index (never hardcoded).
+                var pick = await page.EvaluateAsync<string[]>(@"() => {
+                    const nav = window.__mmNav;
+                    const k = Object.keys(nav.byPk)[0];
+                    const a = nav.byPk[k];
+                    return [String(a.pk), a.label];
+                }");
+                Assert.NotNull(pick);
+                Assert.True(pick.Length >= 2 && !string.IsNullOrEmpty(pick[0]), "byPk index must be readable");
+                var (pkA, labelA) = (pick[0], pick[1]);
+                _output.WriteLine($"[{lang}] deep link pk={pkA} '{labelA}'");
+                await page.EvaluateAsync<string>("pk => { location.hash = 'pk=' + pk; }", pkA);
+                await page.WaitForTimeoutAsync(400);
+                Assert.False(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
+                    "#pk= must open the card on the paired Virtues map");
+                Assert.Equal(Norm(labelA), Norm(await page.Locator("card .title").EvaluateAsync<string>("el => el.textContent")));
+
+                // Lot-1 behaviour survives the pairing: search over the node labels reaches a
+                // node and opens its card.
                 var firstLabel = await page.EvaluateAsync<string>(@"() => {
                     const n = document.querySelector('#mindmap svg g.node');
                     return (n.textContent || '').replace(/\s+/g, ' ').trim();
@@ -1320,11 +1350,11 @@ namespace Argumentum.AssetConverter.VisualTests
                 await page.WaitForTimeoutAsync(150);
                 Assert.False(await page.Locator("#mmSuggestions")
                     .EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
-                    "search must still work on a map without pk attributes");
+                    "search must still work on the paired Virtues map");
                 await page.Locator("#mmSearch").PressAsync("Enter");
                 await page.WaitForTimeoutAsync(500);
                 Assert.False(await card.EvaluateAsync<bool>("el => el.classList.contains('hidden')"),
-                    "Enter on a suggestion must still open the card (no-pk path navigates directly)");
+                    "Enter on a suggestion must still open the card");
             }
             finally
             {
