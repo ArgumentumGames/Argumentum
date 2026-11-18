@@ -65,7 +65,7 @@ dotnet build "Argumentum Converters.sln"
 
 - **Code = truth.** The C# property initializers in `AssetConverterConfig.cs` *are* the configuration. `AssetConverterConfig.json` is generated, git-ignored and **not read** (`SkipConfigFile = true`, deliberate). **Never edit the JSON; regenerate it from correct C#; never "fix" the flag to `false`.**
 - Every `DataSetInfo` needs its `CsvType`; never set `RowsetNb` when the template expects one CSV row per card; **never transform CSV content before it is injected into CardPen**. Each of these yields empty cards without an error.
-- QuestPDF (`2022.12.12`) and AutoMapper (`14.0.0`) are **licence-pinned**: a Dependabot bump of either is closed, not merged. QuestPDF is also not thread-safe (global lock).
+- QuestPDF (`2022.12.12`) is **licence-pinned**: a Dependabot bump is closed, not merged. QuestPDF is also not thread-safe (global lock).
 - Generated files go to `Generation/Converters/Argumentum.AssetConverter/bin/{Debug|Release}/net9.0-windows/Target/`, never to the repository root; the Debug and Release trees are independent.
 - A **Release** render downloads card templates from `master`: a template fix living on a branch is invisible to it. Validate template fixes in Debug.
 

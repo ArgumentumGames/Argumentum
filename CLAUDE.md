@@ -29,7 +29,7 @@ Most of these raise no error at all: a green run, an exit code 0, an empty resul
 | hand a regenerated bundle to a reviewer | the build tree, the review bundle and the published release assets are three objects, and the third does not move on its own (GitHub also rewrites `&` to `.` in asset names) | `regeneration.md` § *Regenerating a SINGLE language* |
 | add or change a card set or a dataset | a missing `CsvType`, a forced `RowsetNb`, or CSV content altered before injection ⇒ empty cards, no error | `card-templates.md` |
 | rename or search a Virtues family | a missing CSS class gives a white card; an old family name returns 0 rows — an instrument failure, not an absence | `card-templates.md` § *Classes CSS Familles* |
-| bump a NuGet package | QuestPDF and AutoMapper are licence-pinned; audit warnings appear on `restore --force`, not on an incremental build | `dependencies.md` |
+| bump a NuGet package | QuestPDF is licence-pinned; audit warnings appear on `restore --force`, not on an incremental build | `dependencies.md` |
 | read artefacts from `Target/` | the Debug and Release trees are independent, so one of them is stale; the PNGs sit two levels under `{lang}/Images/` | `pipeline.md` § *Output Directories* |
 | quote a card count or a test count, or pick a "next step" | the status tables are dated snapshots; two unstruck list items pointed at closed issues, and one produced a false dispatch | `status-and-history.md`, then the issue itself (`AGENTS.md` §5) |
 

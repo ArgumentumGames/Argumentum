@@ -53,11 +53,14 @@ updates:
       dotnet:
         patterns: ["*"]
     ignore:
-      # AutoMapper 14.0.0 is the LAST MIT release; 15.0.0+ flips to RPL-1.5 / commercial
-      # (Lucky Penny, requireLicenseAcceptance). Pinned by decision jsboige 2026-06-23 (#588).
-      # A dependabot major bump would re-propose the commercial line; ignore it at the source.
-      - dependency-name: "AutoMapper"
-        update-types: ["version-update:semver-major"]
+      # HISTORICAL (retired 2026-11-17, #2259): the `AutoMapper` ignore entry that lived here is
+      # dead and has been removed with its reason. 14.0.0 was the LAST MIT release (pinned by
+      # decision jsboige 2026-06-23, #588); 15.0.0+ flips to RPL-1.5 / commercial, and the two
+      # 2026 MaxDepth-bypass advisories (GHSA-6vhm-j9h7-f9gh, GHSA-gpwp-5797-mjff) had no patched
+      # 14.x. #2259 then removed the dependency itself: nothing in the code base ever called it
+      # (the only Profile was a flat, never-instantiated map). If AutoMapper is ever re-introduced,
+      # re-derive the licence gate from #588/#887 before letting any version through; do not re-add
+      # the ignore speculatively.
       # FluentAssertions 7.2.2 is the LAST Apache-2.0 release; 8.0+ flips to a commercial
       # Xceed licence (the exact invisible-to-expression-scanner shape #905 flagged, same as
       # QuestPDF below). #949 proposed 8.10.0 and would have shipped the commercial line inside

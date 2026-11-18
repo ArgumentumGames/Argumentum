@@ -11,7 +11,6 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using Argumentum.AssetConverter.Entities;
-using AutoMapper;
 using CsvHelper;
 using ImageMagick;
 using Utf8Json;
