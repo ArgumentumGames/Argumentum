@@ -1,5 +1,5 @@
 # Tests Python offline std-lib : garde d'arbre #1460 + suite DNN i18n #457 + gardes export EAV #458 (charpente #1460)
-# + auto-test du gate de merge (scripts/gates) + contrat d'octets des CSV de donnees + contrats de la documentation pour agents + contrat des index de reference + outil du bloc de cloture des issues.
+# + auto-test du gate de merge (scripts/gates) + contrat d'octets des CSV de donnees + contrats de la documentation pour agents + contrat des index de reference + outil du bloc de cloture des issues + garde des liens transverses des mindmaps #2190.
 #
 # POURQUOI UN WORKFLOW DISTINCT DE build.yml
 #   build.yml est le pipeline dotnet principal : il fait tourner 1129 tests .NET a
@@ -18,7 +18,7 @@
 #   d'execution sera documentee. C'est la distinction posee en tete de
 #   docs/quality/1460-charpente-suite-regression.md.
 #
-#   CABLES A CE JOUR (10), avec la condition qui les autorise ici :
+#   CABLES A CE JOUR (11), avec la condition qui les autorise ici :
 #     1. tools/test_1460-structure-charpente-pilot.py -- std-lib, 7 cas, arbres
 #        synthetiques ; aucun Target/ requis (le cas 7 est un grounding sur le depot
 #        reel, volontairement NON asserte).
@@ -80,6 +80,17 @@
 #        coherents : 144 cellules (inventaire pre-apply #712/#716) ou 0 (trou comble --
 #        etat de master, P24-24). Tout autre compte = application partielle ou nouveau
 #        trou : rouge. Condition d'execution documentee dans la docstring du fichier.
+#    11. tools/test_2190-crosslink-integrity.py -- std-lib, offline, 8 cas, ~7 s.
+#        Charge tools/2190-crosslink-integrity.py (garde des annotations des liens
+#        transverses des mindmaps Fallacies) et l'eprouve dans les DEUX sens :
+#        depots synthetiques minimaux d'une rangee et deux noeuds (chaque compte
+#        non-nul PAR CONSTRUCTION — un vert a compte nul ne serait pas une mesure),
+#        chaque defaut injecte rougit sa couche (C1/C3/C4) ; puis la garde reelle
+#        sur les 8 langues du checkout (cas NOMINAL : les cartes sont commitees,
+#        aucun artefact, aucun Target/) et les cinq temoins de mutation du module
+#        (m1-m5) — dont m2, la permutation entre deux traits de meme verbe, qui
+#        doit laisser C1 VERT : c'est le trou que la couche geometrique C4 ferme.
+#        Condition d'execution documentee dans la docstring du fichier.
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
 #   - push sur master / pull_request : déclenchés, y compris les changements du
@@ -231,3 +242,17 @@ jobs:
       - name: Run the issue closing-block contract
         # 18 cas, std-lib, `gh` simule : le texte d'origine d'une issue ne change jamais.
         run: python tools/test_issue-closing-block.py
+
+  crosslink-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run the crosslink integrity contract (#2190)
+        # 8 cas, std-lib, ~7 s. Les mindmaps Fallacies et le CSV de taxonomie sont
+        # dans le checkout : cas NOMINAL. Rouge = une re-derivation a perdu une
+        # annotation (C1/C2), retargete un _ext (C3), ou dessine un trait ailleurs
+        # que ce que ses annotations designent (C4 — les permutations comprises).
+        run: python tools/test_2190-crosslink-integrity.py
