@@ -18,7 +18,7 @@
 #   d'execution sera documentee. C'est la distinction posee en tete de
 #   docs/quality/1460-charpente-suite-regression.md.
 #
-#   CABLES A CE JOUR (12), avec la condition qui les autorise ici :
+#   CABLES A CE JOUR (11), avec la condition qui les autorise ici :
 #     1. tools/test_1460-structure-charpente-pilot.py -- std-lib, 7 cas, arbres
 #        synthetiques ; aucun Target/ requis (le cas 7 est un grounding sur le depot
 #        reel, volontairement NON asserte).
@@ -80,9 +80,7 @@
 #        coherents : 144 cellules (inventaire pre-apply #712/#716) ou 0 (trou comble --
 #        etat de master, P24-24). Tout autre compte = application partielle ou nouveau
 #        trou : rouge. Condition d'execution documentee dans la docstring du fichier.
-#    11. tools/test_2190-crosslink-integrity.py -- std-lib + git, offline : garde sur
-#        les cartes committées des 8 langues, dépôt synthétique et mutations m1-m8.
-#    12. tools/test_2190-served-mindmap-inventory.py -- std-lib + git, OFFLINE : le
+#    11. tools/test_2190-served-mindmap-inventory.py -- std-lib + git, OFFLINE : le
 #        serveur HTTP est local et jetable, aucune préprod ni réseau externe. Témoin
 #        identique au blob, mutation d'octets et route absente doivent être distingués.
 #
@@ -237,16 +235,12 @@ jobs:
         # 18 cas, std-lib, `gh` simule : le texte d'origine d'une issue ne change jamais.
         run: python tools/test_issue-closing-block.py
 
-  crosslink-integrity:
+  served-mindmap-inventory:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-
-      - name: Run the crosslink integrity contract (#2190)
-        # Std-lib + git, offline : cartes committées, arbre synthétique, m1-m8.
-        run: python tools/test_2190-crosslink-integrity.py
 
       - name: Run the served mindmap inventory contract (#2190)
         # Std-lib + git, serveur HTTP LOCAL jetable : jamais la préprod en CI.

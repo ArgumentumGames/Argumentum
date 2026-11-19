@@ -7,8 +7,11 @@
 Pour chaque route `fallacies_<lang>.html` et `Virtues_<lang>.html` (8 langues),
 le script compare le SHA-256 des octets servis à celui du BLOB git de `ref`,
 et non à un fichier de working tree (dont les fins de ligne dépendent de la
-machine). Il enregistre aussi les marqueurs de navigation : champ de recherche,
-dictionnaire MM_UI et relations annotées. Aucune écriture HTTP, aucun déploiement.
+machine). Il enregistre aussi des sondes HTML des marqueurs de navigation :
+champ de recherche, dictionnaire MM_UI et relations annotées. Les attributs sont
+parsés avec leurs entités décodées, quels que soient guillemets et casse. Ce sont
+des marqueurs de structure, pas une preuve du comportement JavaScript. Aucune
+écriture HTTP, aucun déploiement.
 
 Le manifeste distingue volontairement :
   * la divergence d'octets servi/dépôt, mesurée ici ;
@@ -31,6 +34,7 @@ import subprocess
 import sys
 import urllib.error
 import urllib.request
+from html.parser import HTMLParser
 from pathlib import Path
 
 LANGS = ["ar", "en", "es", "fa", "fr", "pt", "ru", "zh"]
@@ -50,6 +54,33 @@ def blob_sha(repo: Path, ref: str, path: str):
     return hashlib.sha256(show.stdout).hexdigest(), oid, len(show.stdout)
 
 
+class NavigationMarkers(HTMLParser):
+    """Sonde HTML : entités décodées, attributs quotés ou non, noms insensibles à la casse."""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.search_input_count = 0
+        self.crosslink_source_count = 0
+
+    def handle_starttag(self, tag, attrs):
+        attributes = {name.lower(): value for name, value in attrs}
+        if attributes.get("id", "").lower() == "mmsearch":
+            self.search_input_count += 1
+        if "data-crosslink-source" in attributes:
+            self.crosslink_source_count += 1
+
+
+def navigation_markers(body: bytes):
+    parser = NavigationMarkers()
+    parser.feed(body.decode("utf-8", errors="replace"))
+    parser.close()
+    return {
+        "search_input_count": parser.search_input_count,
+        "mm_ui_present": b"var MM_UI" in body,
+        "crosslink_source_count": parser.crosslink_source_count,
+    }
+
+
 def fetch(base: str, route: str):
     url = f"{base.rstrip('/')}/{route}"
     req = urllib.request.Request(url, headers={
@@ -64,9 +95,7 @@ def fetch(base: str, route: str):
             "http_status": response.status,
             "served_bytes": len(body),
             "served_sha256": hashlib.sha256(body).hexdigest(),
-            "search_input_count": body.count(b'id="mmSearch"'),
-            "mm_ui_present": b"var MM_UI" in body,
-            "crosslink_source_count": body.count(b"data-crosslink-source="),
+            **navigation_markers(body),
         }
 
 

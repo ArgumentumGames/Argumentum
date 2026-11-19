@@ -80,6 +80,15 @@ with tempfile.TemporaryDirectory(prefix="t2190-inventory-") as td:
              and all(e["same_bytes_as_blob"] and e["search_input_count"] == 1
                      and e["mm_ui_present"] and e["crosslink_source_count"] == 1
                      for e in data["entries"]))
+        case("1c sonde HTML : casse, entité, guillemets et self-closing",
+             mod.navigation_markers(
+                 b'<INPUT ID=mmSearch /><g DATA-CROSSLINK-SOURCE="a&#x2D;b"></g>'
+             ) == {"search_input_count": 1, "mm_ui_present": False,
+                   "crosslink_source_count": 1})
+        case("1d un commentaire ou du texte ne fabrique pas de marqueur",
+             mod.navigation_markers(
+                 b'<!-- id="mmSearch" --><script>"id=mmSearch"</script>'
+             )["search_input_count"] == 0)
 
         Handler.routes["/fallacies_fr.html"] += b"mutation"
         case("2 octets mutés -> divergence", mod.main() == 0)
