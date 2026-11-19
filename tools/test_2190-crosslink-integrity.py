@@ -19,10 +19,11 @@ qu'elle est verte aujourd'hui. Ce contrat éprouve les DEUX sens :
      vert sur un arbre vide ne serait pas un vert), puis rouge sur chaque défaut
      injecté : extrémité déplacée au-delà de TOL (cas 2, C4), triplet retiré du
      SVG (cas 3, C1), _ext retargeté (cas 4, C3).
-  2. RÉEL (cas 5-6) — la garde sur les 8 langues du checkout (cas 5) et les cinq
-     témoins de mutation du module (cas 6, m1-m5) : chaque couche (C1-C4) doit
-     rougir sur sa mutation, et m2 doit laisser C1 VERT — la permutation entre
-     deux traits de même verbe est le trou que la couche géométrique ferme.
+  2. RÉEL (cas 5-6) — la garde sur les 8 langues du checkout (cas 5) et les huit
+     témoins de mutation du module (cas 6, m1-m8) : chaque couche (C1-C4) doit
+     rougir sur sa mutation, m2 doit laisser C1 VERT — la permutation entre
+     deux traits de même verbe est le trou que la couche géométrique ferme —
+     et m7/m8 doivent rougir l'embarqué SANS toucher l'autonome.
 
 Sortie : exit 0 si tout passe, exit 1 avec la liste des cas rouges sinon.
 """
@@ -133,15 +134,30 @@ case("4 _ext retargeté -> C3",
          'data="Fallacies_fr.content.svg"', 'data="Fallacies_fr.links.svg"'))),
      "C3 n'a pas vu le object data retargeté")
 
+# Cas 4b — _ext pointe un mauvais RÉPERTOIRE, basename intact : C3 rouge.
+case("4b _ext mauvais répertoire -> C3",
+     any("C3" in e for e in syn_errors(ext=SYN_EXT.replace(
+         'data="Fallacies_fr.content.svg"', 'data="missing/Fallacies_fr.content.svg"'))),
+     "C3 s'est contenté du basename")
+
+# Cas 4c — couple path/pk inconnu ajouté au SEUL SVG autonome : C2 rouge aussi sur
+# la branche « extra » (l'ancienne soustraction avec elle-même était toujours vide).
+case("4c couple inconnu -> C2",
+     any("INCONNU" in e for e in syn_errors(svg=SYN_SVG.replace(
+         '<g id="1280" class="node"',
+         '<g id="9999" class="node" transform="translate(0,0)" pk="99999" path="99"><text x="0" y="0">Extra</text></g>\n'
+         '<g id="1280" class="node"'))),
+     "C2 n'a pas nommé le couple inconnu")
+
 # Cas 5 — la garde réelle sur les 8 langues du checkout (cas nominal en CI :
 # les cartes sont committées, aucun artefact externe).
 errors, report = p2190.check_repo(REPO)
 case("5 arbre réel 8 langues vert", not errors, "; ".join(errors[:2]))
 
-# Cas 6 — les cinq témoins de mutation du module : chaque couche voit sa
-# mutation, m2 laisse C1 vert (le trou que C4 ferme).
+# Cas 6 — les huit témoins de mutation du module : chaque couche voit sa
+# mutation, m2 laisse C1 vert (le trou que C4 ferme), m7/m8 isolent l'embarqué.
 witness_failures = p2190.selftest(REPO)
-case("6 self-test mutations m1-m5", not witness_failures,
+case("6 self-test mutations m1-m8", not witness_failures,
      "; ".join(witness_failures[:2]))
 
 print()

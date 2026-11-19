@@ -28,14 +28,17 @@ CONTRÔLES
       CSV (colonnes `crossLink_*`, cibles `;`-séparées, source = `path` de la rangée)
       est ÉGAL à celui des annotations de chaque langue, dans le SVG autonome ET dans
       le SVG embarqué du gabarit inlinant. Jamais écrit en dur : recompté du CSV.
-  C2  Les couples (path, pk) de chaque nœud du SVG égalent ceux du CSV.
+  C2  Les couples (path, pk) de chaque nœud du SVG autonome ET du SVG embarqué
+      égalent ceux du CSV.
   C3  Chaque `Fallacies_<lang>_ext.html` référence, par son `<object data=>`, le SVG
-      autonome qui vient d'être contrôlé.
-  C4  Pour chaque trait, l'extrémité de départ tombe à ≤ TOL de l'ancre texte du nœud
-      `data-crosslink-source`, celle d'arrivée à ≤ TOL de celle du nœud
-      `data-crosslink-target`. L'ancre = translate(g) + (x, y) du <text> du nœud.
-      TOL est calée sur la mesure (fr, master fb4b8992 : max 609) avec marge :
-      800. Une permutation d'annotations entre traits y devient visible.
+      autonome qui vient d'être contrôlé. La cible est résolue relativement au
+      gabarit : conserver le seul basename ne suffit pas.
+  C4  Pour chaque trait du SVG autonome ET du SVG embarqué, l'extrémité de départ
+      tombe à ≤ TOL de l'ancre texte du nœud `data-crosslink-source`, celle
+      d'arrivée à ≤ TOL de celle du nœud `data-crosslink-target`. L'ancre =
+      translate(g) + (x, y) du <text> du nœud. TOL est calée sur la mesure (fr,
+      master fb4b8992 : max 609) avec marge : 800. Une permutation d'annotations
+      entre traits y devient visible.
   QUAL  La preuve C4 a une limite, elle est NOMMÉE au lieu d'être tue : deux traits de
       même verbe dont les DEUX couples d'ancres (source ET cible) sont à moins de
       2×TOL l'un de l'autre pourraient être permutés sans que C4 le voie. Ces paires
@@ -49,6 +52,9 @@ TÉMOINS (--self-test, mutations sur copies jetables — le dépôt n'est jamais
   m3  corrompre le pk d'un nœud                     → C2 rouge
   m4  réécrire le object data d'un _ext             → C3 rouge
   m5  déplacer l'extrémité dessinée d'un trait      → C4 rouge
+  m6  cibler `missing/Fallacies_fr.content.svg`     → C3 rouge malgré le basename
+  m7  corrompre un pk du SEUL SVG embarqué           → C2 embarqué rouge, autonome vert
+  m8  déplacer une extrémité du SEUL SVG embarqué    → C4 embarqué rouge, autonome vert
   Le témoin positif (copie intacte → vert) précède chaque mutation : une garde qui
   échouerait pour une mauvaise raison (parse cassé par la mutation) est rejetée.
 
@@ -120,7 +126,7 @@ def _translate(transform: str):
 
 
 def svg_facts(svg_text: str):
-    """Parse un SVG autonome : triplets, ancres, positions, géométrie des traits."""
+    """Parse un fragment SVG : triplets, ancres, positions, géométrie des traits."""
     root = ET.fromstring(svg_text)
     triplets = Counter()
     anchors = Counter()
@@ -175,6 +181,64 @@ def extract_embedded_svg(html_text: str):
 
 # ---------------------------------------------------------------- la garde
 
+def check_anchors(lang: str, surface: str, facts, csv_anchors, errors):
+    """C2 — chaque surface porte exactement les couples (path, pk) du corpus."""
+    if facts["anchors"] == csv_anchors:
+        return
+    miss = csv_anchors - facts["anchors"]
+    extra = facts["anchors"] - csv_anchors
+    for a, n in list(miss.items())[:3]:
+        errors.append(f"[{lang}] C2 {surface}: couple du corpus ABSENT: {a} ×{n}")
+    for a, n in list(extra.items())[:3]:
+        errors.append(f"[{lang}] C2 {surface}: couple INCONNU du corpus: {a} ×{n}")
+
+
+def check_geometry(lang: str, surface: str, facts, errors, report):
+    """C4 + qualification — chaque extrémité contre le nœud ANNOTÉ.
+
+    Appliqué aux DEUX surfaces : l'autonome contrôlée ne garantit pas celle que
+    le gabarit inlinant sert réellement.
+    """
+    worst_s = worst_t = 0.0
+    for verb, src, tgt, start, end in facts["crosslinks"]:
+        if src not in facts["nodes"] or tgt not in facts["nodes"]:
+            errors.append(f"[{lang}] C4 {surface}: trait ({src},{verb},{tgt}) "
+                          f"désigne un nœud absent")
+            continue
+        ds = math.dist(start, facts["nodes"][src])
+        dt = math.dist(end, facts["nodes"][tgt])
+        worst_s, worst_t = max(worst_s, ds), max(worst_t, dt)
+        if ds > TOL:
+            errors.append(f"[{lang}] C4 {surface} départ {ds:.0f} > {TOL:.0f} du nœud "
+                          f"source ({src},{verb},{tgt}) — trait permuté ou déplacé ?")
+        if dt > TOL:
+            errors.append(f"[{lang}] C4 {surface} arrivée {dt:.0f} > {TOL:.0f} du nœud "
+                          f"cible ({src},{verb},{tgt}) — trait permuté ou déplacé ?")
+
+    # QUAL — paires que C4 ne pourrait pas départager (les NOMMER, pas les taire)
+    by_verb = {}
+    for verb, src, tgt, start, end in facts["crosslinks"]:
+        by_verb.setdefault(verb, []).append((src, tgt))
+    ambiguous = []
+    same_verb_pairs = 0
+    for verb, pairs in by_verb.items():
+        for a in range(len(pairs)):
+            for b in range(a + 1, len(pairs)):
+                same_verb_pairs += 1
+                (s1, t1), (s2, t2) = pairs[a], pairs[b]
+                if (s1 in facts["nodes"] and s2 in facts["nodes"]
+                        and t1 in facts["nodes"] and t2 in facts["nodes"]
+                        and math.dist(facts["nodes"][s1], facts["nodes"][s2]) < 2 * TOL
+                        and math.dist(facts["nodes"][t1], facts["nodes"][t2]) < 2 * TOL):
+                    ambiguous.append((verb, s1, t1, s2, t2))
+    report.append(f"[{lang}] {surface}: traits={len(facts['crosslinks'])} "
+                  f"nœuds={len(facts['nodes'])} pire-départ={worst_s:.0f} "
+                  f"pire-arrivée={worst_t:.0f} paires-ambiguës={len(ambiguous)}"
+                  f"/{same_verb_pairs} même-verbe")
+    for amb in ambiguous[:5]:
+        report.append(f"[{lang}] {surface}  ambigu: {amb}")
+
+
 def check_lang(repo: Path, lang: str, csv_triplets, csv_anchors, report, errors):
     svg_path = MM_REL / lang / f"Fallacies_{lang}.content.svg"
     html_path = MM_REL / lang / f"Fallacies_{lang}.html"
@@ -182,8 +246,6 @@ def check_lang(repo: Path, lang: str, csv_triplets, csv_anchors, report, errors)
 
     svg_text = (repo / svg_path).read_bytes().decode("utf-8-sig")
     facts = svg_facts(svg_text)
-    n_cl = len(facts["crosslinks"])
-    n_nd = len(facts["nodes"])
 
     # C1 — triplets du SVG autonome vs corpus
     if facts["triplets"] != csv_triplets:
@@ -207,56 +269,25 @@ def check_lang(repo: Path, lang: str, csv_triplets, csv_anchors, report, errors)
                       f"diffèrent du corpus ({sum(embedded['triplets'].values())} vs "
                       f"{sum(csv_triplets.values())})")
 
-    # C2 — couples (path, pk)
-    if facts["anchors"] != csv_anchors:
-        miss = csv_anchors - facts["anchors"]
-        extra = facts["anchors"] - facts["anchors"]
-        errors.append(f"[{lang}] C2 ancres: {sum(miss.values())} couple(s) du corpus "
-                      f"absents du SVG ({list(miss.items())[:3]})")
+    # C2/C4 — les deux surfaces : l'autonome ET l'embarqué réellement servi.
+    check_anchors(lang, "SVG autonome", facts, csv_anchors, errors)
+    if embedded is not None:
+        check_anchors(lang, "SVG embarqué", embedded, csv_anchors, errors)
+    check_geometry(lang, "SVG autonome", facts, errors, report)
+    if embedded is not None:
+        check_geometry(lang, "SVG embarqué", embedded, errors, report)
 
-    # C3 — le _ext référence le SVG testé
+    # C3 — la cible RELATIVE du _ext doit résoudre exactement le SVG testé.
     ext_text = (repo / ext_path).read_bytes().decode("utf-8-sig")
     m = re.search(r'<object[^>]*data="([^"]+)"', ext_text)
-    want = f"Fallacies_{lang}.content.svg"
-    if not m or Path(m.group(1)).name != want:
+    resolved = None
+    if m:
+        raw_target = m.group(1).replace("\\", "/")
+        if "://" not in raw_target and not raw_target.startswith("/"):
+            resolved = (repo / ext_path.parent / raw_target).resolve()
+    if resolved != (repo / svg_path).resolve():
         errors.append(f"[{lang}] C3 _ext: object data="
-                      f"{m.group(1) if m else 'ABSENT'} != {want}")
-
-    # C4 — géométrie : chaque extrémité contre le nœud ANNOTÉ (jamais le plus proche)
-    worst_s = worst_t = 0.0
-    for verb, src, tgt, start, end in facts["crosslinks"]:
-        if src not in facts["nodes"] or tgt not in facts["nodes"]:
-            errors.append(f"[{lang}] C4: trait ({src},{verb},{tgt}) désigne un nœud absent")
-            continue
-        ds = math.dist(start, facts["nodes"][src])
-        dt = math.dist(end, facts["nodes"][tgt])
-        worst_s, worst_t = max(worst_s, ds), max(worst_t, dt)
-        if ds > TOL:
-            errors.append(f"[{lang}] C4 départ {ds:.0f} > {TOL:.0f} du nœud source "
-                          f"({src},{verb},{tgt}) — trait permuté ou déplacé ?")
-        if dt > TOL:
-            errors.append(f"[{lang}] C4 arrivée {dt:.0f} > {TOL:.0f} du nœud cible "
-                          f"({src},{verb},{tgt}) — trait permuté ou déplacé ?")
-
-    # QUAL — paires que C4 ne pourrait pas départager (les NOMMER, pas les taire)
-    by_verb = {}
-    for verb, src, tgt, start, end in facts["crosslinks"]:
-        by_verb.setdefault(verb, []).append((src, tgt))
-    ambiguous = []
-    same_verb_pairs = 0
-    for verb, pairs in by_verb.items():
-        for a in range(len(pairs)):
-            for b in range(a + 1, len(pairs)):
-                same_verb_pairs += 1
-                (s1, t1), (s2, t2) = pairs[a], pairs[b]
-                if (math.dist(facts["nodes"][s1], facts["nodes"][s2]) < 2 * TOL
-                        and math.dist(facts["nodes"][t1], facts["nodes"][t2]) < 2 * TOL):
-                    ambiguous.append((verb, s1, t1, s2, t2))
-    report.append(f"[{lang}] traits={n_cl} nœuds={n_nd} pire-départ={worst_s:.0f} "
-                  f"pire-arrivée={worst_t:.0f} paires-ambiguës={len(ambiguous)}"
-                  f"/{same_verb_pairs} même-verbe")
-    for amb in ambiguous[:5]:
-        report.append(f"[{lang}]   ambigu: {amb}")
+                      f"{m.group(1) if m else 'ABSENT'} ne résout pas {svg_path}")
 
 
 def check_repo(repo: Path, langs=None):
@@ -321,10 +352,29 @@ def _far_pair(svg_text: str):
     return best[1], best[2]
 
 
+def _move_end(svg_text: str, pattern: str):
+    """Déplace l'extrémité dessinée du trait portant `pattern`."""
+    rx = re.compile("(" + re.escape(pattern) + r'[^>]*>\s*<path fill="none" d="M)([-\d.]+) ([-\d.]+)(.*?)([-\d.]+) ([-\d.]+)"')
+    m = rx.search(svg_text)
+    assert m, "pattern du path du trait ciblé introuvable"
+    x2 = float(m.group(5)) + 5000.0
+    y2 = float(m.group(6)) + 5000.0
+    return svg_text[:m.start(5)] + f"{x2} {y2}" + svg_text[m.end(6):]
+
+
+def _embedded_only(tmp: Path, mutate):
+    """Applique une mutation au SEUL SVG embarqué du gabarit inlinant fr."""
+    html_file = tmp / MM_REL / "fr" / "Fallacies_fr.html"
+    text = html_file.read_bytes().decode("utf-8-sig")
+    fragment = extract_embedded_svg(text)
+    assert fragment is not None, "fixture sans SVG embarqué"
+    html_file.write_text(text.replace(fragment, mutate(fragment), 1), encoding="utf-8")
+
+
 def selftest(repo: Path):
     failures = []
 
-    def run_case(name, mutate, expect_layer):
+    def run_case(name, mutate, expect_layer, forbidden=None):
         with tempfile.TemporaryDirectory(prefix="p2190-") as td:
             tmp = Path(td)
             _copy_fr_fixture(repo, tmp)
@@ -338,6 +388,9 @@ def selftest(repo: Path):
                                 f"(erreurs: {errors[:2] or 'AUCUNE'})")
             else:
                 print(f"  {name}: ROUGE sur {expect_layer} — {detail[0][:110]}")
+            if forbidden and any(forbidden in e for e in errors):
+                failures.append(f"{name}: rougit AUSSI sur la surface indemne "
+                                f"{forbidden} — le mutant n'isole pas l'embarqué")
 
     # Témoin positif d'abord : une garde qui échouerait à vide ne prouve rien.
     with tempfile.TemporaryDirectory(prefix="p2190-") as td:
@@ -412,19 +465,35 @@ def selftest(repo: Path):
     run_case("m4 _ext retarget", m4, "C3")
 
     # m5 — déplacer l'extrémité dessinée d'un trait (le d) → C4
-    pat5 = re.escape(pa)
-
     def m5(tmp, svg_file):
         t = svg_file.read_text(encoding="utf-8-sig")
-        rx = re.compile("(" + pat5 + r'[^>]*>\s*<path fill="none" d="M)([-\d.]+) ([-\d.]+)(.*?)([-\d.]+) ([-\d.]+)"')
-        m = rx.search(t)
-        assert m, "pattern du path du trait ciblé introuvable"
-        x2 = float(m.group(5)) + 5000.0
-        y2 = float(m.group(6)) + 5000.0
-        t = t[:m.start(5)] + f"{x2} {y2}" + t[m.end(6):]
-        svg_file.write_text(t, encoding="utf-8")
+        svg_file.write_text(_move_end(t, pa), encoding="utf-8")
 
     run_case("m5 extrémité déplacée", m5, "C4")
+
+    # m6 — mauvais répertoire, basename intact : l'ancienne C3 le laissait passer.
+    def m6(tmp, svg_file):
+        ext = tmp / MM_REL / "fr" / "Fallacies_fr_ext.html"
+        t = ext.read_text(encoding="utf-8-sig")
+        assert 'data="Fallacies_fr.content.svg"' in t
+        ext.write_text(t.replace('data="Fallacies_fr.content.svg"',
+                                 'data="missing/Fallacies_fr.content.svg"'), encoding="utf-8")
+
+    run_case("m6 _ext mauvais répertoire", m6, "C3")
+
+    # m7 — un pk faux dans le SEUL SVG embarqué : C2 embarqué rouge, autonome vert.
+    def m7(tmp, svg_file):
+        _embedded_only(tmp, lambda fragment: fragment.replace('pk="1280"', 'pk="99999"'))
+
+    run_case("m7 pk corrompu seulement dans l'embarqué", m7, "C2 SVG embarqué",
+             forbidden="C2 SVG autonome")
+
+    # m8 — extrémité déplacée dans le SEUL SVG embarqué : C4 embarqué rouge.
+    def m8(tmp, svg_file):
+        _embedded_only(tmp, lambda fragment: _move_end(fragment, pa))
+
+    run_case("m8 extrémité déplacée seulement dans l'embarqué", m8, "C4 SVG embarqué",
+             forbidden="C4 SVG autonome")
 
     return failures
 
