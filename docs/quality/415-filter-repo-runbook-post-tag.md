@@ -6,6 +6,8 @@ L'exécution est **gated sur tag v2.0.0 publié + GO owner explicite** (réécri
 
 **Révision du 21/09 (v8 ⑧)** — trois ajouts, tous mesurés : le **gain est chiffré** (1,50 GiB) au lieu d'estimé · le pathspec `Cartes/`, déclaré « mort », **ne l'était pas** (1 154 objets) — motif corrigé · le **contrôle de non-régression sur les refs** est ajouté et outillé.
 
+**Révision du 19/11 (P24-14)** — le geste a été **répété sur miroir jetable** (jamais exécuté pour de vrai) : rapport complet dans [`415-p24-14-mirror-dry-run-2026-11-19.md`](415-p24-14-mirror-dry-run-2026-11-19.md). Quatre corrections en découlent, intégrées ci-dessous : le contrat de refs doit partir d'un **miroir GitHub frais** (2 157 refs, pas 431) · la comparaison de SHAs passe par **`commit-map`**, les anciens objets n'existant plus · `filter-repo` **supprime le remote `origin`** · le résiduel **dépend de la copie** mesurée.
+
 ## État mesuré avant le geste (21/09, `git count-objects -vH` sur ce clone)
 
 | | Valeur |
@@ -103,6 +105,7 @@ git filter-repo --force \
 
   ⚠️ **Le danger n'est pas théorique** : un lecteur qui « répare » la commande en remettant `Cartes/`, sur la foi du motif erroné (« il ne matche rien, donc il est inoffensif »), **détruit 1 086 objets d'historique de source pour 14,2 MiB** — 0,9 % du gain, contre un historique de corpus amputé. **Le motif d'un retrait fait partie de la commande : un motif faux se re-exécute à l'envers.**
 - ⚠️ `filter-repo` exige un clone frais (il refuse un dépôt avec remote configuré) : c'est pourquoi le geste part du miroir.
+- ⚠️ **Le miroir doit être un `git clone --mirror` de GitHub, pas une copie du clone de travail** (mesuré 19/11) : une copie du clone local mélange refs publiées et refs propres à une lane, et `filter-repo` y convertit les `refs/remotes/origin/*` en branches locales — le contrat de noms des refs devient alors invérifiable.
 - Les **sources design** (`Generation/Sketch/*.sketch`, `Cards/Packaging/*.ai`) ne sont **pas** dans la liste : sources non régénérables, à trancher séparément (LFS, Phase 3).
 
 ## Vérifications AVANT tout push
@@ -113,7 +116,7 @@ git fsck --full                          # intégrité
 git log --oneline -3                     # histoire lisible
 git ls-files | wc -l                     # ordre de grandeur du HEAD préservé
 ```
-Le gain doit être **chiffré et rapporté**. Attendu (mesuré le 21/09, borne haute) : **1,50 GiB de moins**, soit un pack résiduel **≤ 0,67 GiB**. Un gain nul = un pathspec faux (relire l'étape « vérifier la liste ») ; un gain très inférieur à 1,50 GiB = des objets cibles ont survécu.
+Le gain doit être **chiffré et rapporté**. Attendu (mesuré le 21/09, borne haute) : **1,50 GiB de moins**. ⚠️ **Le résiduel dépend de la copie** (mesuré 19/11) : le « ≤ 0,67 GiB » du 21/09 était propre au pack du clone de travail ; la répétition a mesuré **760,99 MiB** résiduels sur une copie du clone local et **924,37 MiB** sur un miroir GitHub frais (2,40 GiB → 924,37 MiB, soit ≈ 1,53 GiB retirés — cohérent avec la borne). Le critère est le **gain réalisé**, pas un résiduel absolu. Un gain nul = un pathspec faux (relire l'étape « vérifier la liste ») ; un gain très inférieur à 1,50 GiB = des objets cibles ont survécu.
 
 ### Contrôle de non-régression sur les refs
 
@@ -121,11 +124,12 @@ Le gain doit être **chiffré et rapporté**. Attendu (mesuré le 21/09, borne h
 
 | Contrôle | Attendu | Pourquoi |
 |---|---|---|
-| Nombre de refs PRE → POST | **431 → 431** | 375 branches, 2 tags, 52 remotes, 2 `stash-archive` (relevé du 21/09) |
+| Nombre de refs PRE → POST | **2 157 → 2 157** | **105 branches + 2 049 `refs/pull/*` + 3 tags**, relevé du 19/11 sur un **miroir GitHub frais**. ⛔ Le relevé « 431 » du 21/09 venait du clone local (375 branches, 52 remotes, 2 `stash-archive`) : sur une copie de ce clone, `filter-repo` convertit les `refs/remotes/origin/*` en branches locales et le contrat de noms devient **faux** (mesuré 19/11 : 130 « disparues », 84 « apparues », toutes artefacts de conversion). Le PRE doit être émis depuis le miroir GitHub frais. |
 | Refs **disparues** | **0** | une ref perdue = un travail perdu, et le rollback ne le dit pas |
 | Refs **apparues** | **0** | un filtre qui *crée* une ref a mal tourné |
-| SHAs de déplacés | **toutes** | c'est le but — **jamais** un critère d'échec |
-| **Les 3 familles au HEAD** | **0 fichier** | ⭐ l'invariant : ces chemins ne sont pas au HEAD, donc l'**arbre du HEAD doit être identique** après filtrage. Mesuré le 21/09 : `Published/`=0, `Downloads/*.zip`=0, `ExtensionPackages/`=0. |
+| SHAs de déplacés | **tous = image par `commit-map`** | ⛔ Les **anciens objets n'existent plus** après filtrage : une comparaison directe d'anciens SHAs échoue par construction. La preuve passe par `filter-repo/commit-map` (5 226 correspondances, mesuré 19/11) + un second miroir intact de référence : 2 157/2 157 refs conformes à la carte. Les SHAs **doivent** bouger — **jamais** un critère d'échec. |
+| **Les 3 familles au HEAD** | **0 fichier** | ⭐ l'invariant : ces chemins ne sont pas au HEAD, donc l'**arbre du HEAD doit être identique** après filtrage. Mesuré le 21/09 : `Published/`=0, `Downloads/*.zip`=0, `ExtensionPackages/`=0. Vérifié 19/11 : listing `master` octet-identique. |
+| **Arbres des pointes des autres refs** | inchangés **ou** anciens − ciblés | mesuré 19/11 : 1 828 refs inchangées, 329 refs dont la pointe portait encore des fichiers ciblés (branches historiques `ExtensionPackages/*.resources`) et dont le nouvel arbre est exactement l'ancien privé des ciblés — **0** autre écart. ⛔ Comparer avec la **sémantique de globs de `filter-repo`** : les mêmes globs passés en pathspec à `git ls-tree` rendent « 0 fichier ciblé » sur des pointes qui en portent 172 (`*` ne franchit pas `/` de la même façon des deux côtés). |
 
 L'instrument est **committé**, avec l'état PRE figé :
 
@@ -148,6 +152,8 @@ git push --force --all
 git push --force --tags
 ```
 - **Force-push coordonné et annoncé** (dashboards + DM à toutes les lanes) : c'est le seul cas où il est légitime ici.
+- ⚠️ **`filter-repo` supprime le remote `origin` du miroir** (constaté 19/11) : le recréer (`git remote add origin https://github.com/ArgumentumGames/Argumentum.git`) ou pousser par URL explicite — sinon les deux `push` ci-dessus échouent.
+- ⚠️ **`git push --force --all` réécrit les branches, pas les `refs/pull/*`** : GitHub rejette les push vers `refs/pull/*`, donc les pull requests du dépôt restent sur l'ancienne histoire (objets orphelins conservés ~90 jours). Conforme au point « PRs invalidées » ci-dessous — mais l'annonce doit le dire : les PRs **ouvertes** sont à recréer sur les nouveaux SHAs, les fermées restent lisibles tant que GitHub en garde les objets.
 - **Toutes les machines re-clonent** (`git clone`, jamais `git pull` — les SHAs ont changé).
 - Message d'annonce : ce qui a changé (SHAs), ce qu'il faut faire (re-clone), ce qui reste vrai (contenu du HEAD identique, tag v2.0.0 re-poussé).
 
@@ -157,9 +163,11 @@ Le miroir + bundle pré-filtrés restaurés sur GitHub = retour à l'état anté
 
 ## Ce que ce runbook n'établit pas
 
-⛔ **Rien n'a été exécuté** — le gain **1,50 GiB est une borne haute calculée sur le pack actuel**, pas un résultat de `filter-repo` : le filtre n'a jamais tourné, donc le pack résiduel réel (≤ 0,67 GiB) reste **calculé, non constaté** · ⛔ **la liste des 416 objets est un périmètre de CHEMINS** : elle établit quels objets matchent, ⛔ pas qu'aucun objet légitime ne sera emporté par ricochet (un blob partagé entre un chemin visé et un chemin conservé disparaît pour les deux — le contrôle au HEAD l'attrape, pas l'énumération) · ⛔ **les 46 marqueurs laissés en place** sont nommés mais pas mesurés au-delà de leur taille : on n'établit pas qu'ils soient sans usage (un `.git-id` peut être lu par un outil DNN — non vérifié) · ⛔ le sort des **sources design** (`Sketch/`, `Packaging/`) reste une décision séparée (Phase 3, LFS) · ⛔ les PRs ouvertes au moment du geste devront être recréées (à séquencer) · ⛔ les références de commits dans les issues existantes resteront affichées mais orphelines — c'est accepté, à dire dans l'annonce · ⛔ **le gain n'est pas une mesure de temps** : rien ici ne chiffre la durée du geste ni celle du re-clone des 6 lanes.
+⛔ **Le geste réel n'a jamais été exécuté** — le filtre n'a tourné que sur des **miroirs jetables** (19/11 : ≈ 1,53 GiB retirés, résiduel 924,37 MiB sur le miroir GitHub frais, [rapport](415-p24-14-mirror-dry-run-2026-11-19.md)), jamais sur le dépôt publié · ⛔ **la liste des 416 objets est un périmètre de CHEMINS** : elle établit quels objets matchent, ⛔ pas qu'aucun objet légitime ne sera emporté par ricochet (un blob partagé entre un chemin visé et un chemin conservé disparaît pour les deux — le contrôle au HEAD l'attrape, pas l'énumération) · ⛔ **les 46 marqueurs laissés en place** sont nommés mais pas mesurés au-delà de leur taille : on n'établit pas qu'ils soient sans usage (un `.git-id` peut être lu par un outil DNN — non vérifié) · ⛔ le sort des **sources design** (`Sketch/`, `Packaging/`) reste une décision séparée (Phase 3, LFS) · ⛔ les PRs ouvertes au moment du geste devront être recréées (à séquencer) · ⛔ les références de commits dans les issues existantes resteront affichées mais orphelines — c'est accepté, à dire dans l'annonce · ⛔ **le gain n'est pas une mesure de temps** : rien ici ne chiffre la durée du geste ni celle du re-clone des 6 lanes.
 
 *MaJ du 2026-09-21 (pool #458 v8, grain ⑧) : gain chiffré au lieu d'estimé · pathspec `Cartes/` corrigé · périmètre **commande** (416) distingué de la **famille** (462), écart nommé · contrôle de refs ajouté · instrument et évidence committés.*
+
+*MaJ du 2026-11-19 (pool #458 P24-14) : répétition sur miroir jetable ([rapport](415-p24-14-mirror-dry-run-2026-11-19.md)) · contrat de refs recalé sur le miroir GitHub frais (2 157) · vérification des SHAs via `commit-map` · suppression du remote `origin` par `filter-repo` et statut des `refs/pull/*` écrits · résiduel déclaré dépendant de la copie.*
 
 ---
 
