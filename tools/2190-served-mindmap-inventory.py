@@ -63,8 +63,13 @@ class NavigationMarkers(HTMLParser):
         self.crosslink_source_count = 0
 
     def handle_starttag(self, tag, attrs):
-        attributes = {name.lower(): value for name, value in attrs}
-        if attributes.get("id", "").lower() == "mmsearch":
+        # Un attribut sans valeur (`<div id>`) est livré avec `value=None` par
+        # HTMLParser : le normaliser en chaîne vide avant tout `.lower()`.
+        attributes = {name.lower(): "" if value is None else value
+                      for name, value in attrs}
+        # Le champ de recherche est un contrôle `<input>` ; un autre élément
+        # portant le même id n'est pas un champ (témoin 1f du contrat).
+        if tag.lower() == "input" and attributes.get("id", "").lower() == "mmsearch":
             self.search_input_count += 1
         if "data-crosslink-source" in attributes:
             self.crosslink_source_count += 1

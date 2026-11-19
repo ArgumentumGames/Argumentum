@@ -89,6 +89,15 @@ with tempfile.TemporaryDirectory(prefix="t2190-inventory-") as td:
              mod.navigation_markers(
                  b'<!-- id="mmSearch" --><script>"id=mmSearch"</script>'
              )["search_input_count"] == 0)
+        case("1e attribut sans valeur : pas d'AttributeError, l'input est vu",
+             mod.navigation_markers(
+                 b'<div id></div><input id=mmSearch>'
+             ) == {"search_input_count": 1, "mm_ui_present": False,
+                   "crosslink_source_count": 0})
+        case("1f seul un élément input compte comme champ de recherche",
+             mod.navigation_markers(
+                 b'<div id="mmSearch"></div><input id=other>'
+             )["search_input_count"] == 0)
 
         Handler.routes["/fallacies_fr.html"] += b"mutation"
         case("2 octets mutés -> divergence", mod.main() == 0)
