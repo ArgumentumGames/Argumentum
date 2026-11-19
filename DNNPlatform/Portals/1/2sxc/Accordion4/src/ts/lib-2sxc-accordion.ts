@@ -20,7 +20,12 @@ export function initAccordion({ domId, options } : { domId: string, options: Acc
   // attach click to all accordions when loading
   var accordionOpener = document.querySelectorAll(`[${options.attrParent}]`);
 
-  accordionOpener.forEach((elem: HTMLElement, index) => {	
+  accordionOpener.forEach((elem: HTMLElement, index) => {
+    // 2sxc calls init once per app instance. Bind each shared title only once.
+    if (elem.dataset.accordionInitialized === 'true')
+      return;
+    elem.dataset.accordionInitialized = 'true';
+
     elem.addEventListener('click', (event) => {
       event.preventDefault();
 
