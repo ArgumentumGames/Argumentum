@@ -1,5 +1,6 @@
 # Tests Python offline std-lib : garde d'arbre #1460 + suite DNN i18n #457 + gardes export EAV #458 (charpente #1460)
 # + auto-test du gate de merge (scripts/gates) + contrat d'octets des CSV de donnees + contrats de la documentation pour agents + contrat des index de reference + outil du bloc de cloture des issues.
+# + contrat Node du bundle BS5 Accordion4 #2317 (job separe, aucun npm install).
 #
 # POURQUOI UN WORKFLOW DISTINCT DE build.yml
 #   build.yml est le pipeline dotnet principal : il fait tourner 1129 tests .NET a
@@ -231,3 +232,15 @@ jobs:
       - name: Run the issue closing-block contract
         # 18 cas, std-lib, `gh` simule : le texte d'origine d'une issue ne change jamais.
         run: python tools/test_issue-closing-block.py
+
+  accordion4-bs5-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run the Accordion4 idempotent-init contract (#2317)
+        # Node std-lib uniquement : execute le bundle BS5 committe, deux init() comme
+        # les deux instances turnOn, puis attend RAF + transitionend avant chaque etat.
+        run: node DNNPlatform/Portals/1/2sxc/Accordion4/test_2317-accordion-init.cjs
