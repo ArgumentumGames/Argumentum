@@ -144,7 +144,7 @@
           <span itemprop="addressCountry">France</span>
         </span>
       </li>
-        <li><a href="tel:+33689156807">+33 6 89 15 68 07</a></li>
+        <li><a href="tel:+33689156807" style="white-space:nowrap;">+33 6 89 15 68 07</a></li>
       <li>
         <span data-madr1="contact" data-madr2="argumentum" data-madr3="games" data-linktext=""></span>
       </li>
