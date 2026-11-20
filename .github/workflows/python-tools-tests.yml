@@ -19,7 +19,7 @@
 #   d'execution sera documentee. C'est la distinction posee en tete de
 #   docs/quality/1460-charpente-suite-regression.md.
 #
-#   CABLES A CE JOUR (11), avec la condition qui les autorise ici :
+#   CABLES A CE JOUR (12), avec la condition qui les autorise ici :
 #     1. tools/test_1460-structure-charpente-pilot.py -- std-lib, 7 cas, arbres
 #        synthetiques ; aucun Target/ requis (le cas 7 est un grounding sur le depot
 #        reel, volontairement NON asserte).
@@ -92,6 +92,9 @@
 #        (m1-m5) — dont m2, la permutation entre deux traits de meme verbe, qui
 #        doit laisser C1 VERT : c'est le trou que la couche geometrique C4 ferme.
 #        Condition d'execution documentee dans la docstring du fichier.
+#    12. tools/test_2190-served-mindmap-inventory.py -- std-lib + git, OFFLINE : le
+#        serveur HTTP est local et jetable, aucune préprod ni réseau externe. Témoin
+#        identique au blob, mutation d'octets et route absente doivent être distingués.
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
 #   - push sur master / pull_request : déclenchés, y compris les changements du
@@ -269,3 +272,14 @@ jobs:
         # annotation (C1/C2), retargete un _ext (C3), ou dessine un trait ailleurs
         # que ce que ses annotations designent (C4 — les permutations comprises).
         run: python tools/test_2190-crosslink-integrity.py
+
+  served-mindmap-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run the served mindmap inventory contract (#2190)
+        # Std-lib + git, serveur HTTP LOCAL jetable : jamais la préprod en CI.
+        run: python tools/test_2190-served-mindmap-inventory.py
