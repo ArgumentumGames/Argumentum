@@ -65,9 +65,11 @@ namespace Argumentum.AssetConverter.Tests
 				"⑱b pk 19 fa : kasra d'ezafe retiré, le ZWNJ de غیرمناقشه‌برانگیز reste.");
 			rows["50"].GetValueOrDefault("title_fa").Should().Be("آرایه‌های پشتیبان روشنی",
 				"⑱b pk 50 fa : kasra d'ezafe retiré.");
-			rows["126"].GetValueOrDefault("title_fa").Should().Be("قیاس فرسیسون",
-				"⑱b pk 126 fa : kasra PHONÉTIQUE retiré comme les ezafe (arbitrage ai-01) — la " +
-				"transcription latine « Fresison » reste lisiblement فرسیسون.");
+			rows["126"].GetValueOrDefault("title_fa").Should().Be("قیاس Fresison",
+				"⑱b pk 126 fa : kasra PHONÉTIQUE retiré comme les ezafe (arbitrage ai-01) ; " +
+				"la transcription فرسیسون cède ensuite place au jeton latin « Fresison » par " +
+				"la décision owner #654 option B (04/07) — l'épingle suit le grain, le kasra " +
+				"reste absent par construction (script latin).");
 			rows["184"].GetValueOrDefault("title_fa").Should().Be("سطح کافی دلیل",
 				"⑱b pk 184 fa : kasra d'ezafe retiré.");
 
