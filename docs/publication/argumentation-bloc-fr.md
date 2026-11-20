@@ -65,8 +65,7 @@ des U+00A0 insécables ; les apostrophes sont U+2019.)*
   a retiré « et son ontologie » entièrement (route 404 prod ; décision ai-01).
   La valeur ci-dessus suit cette **variante B**, pour que la prochaine pose ne
   réintroduise ni le lien ni la conjonction. L'ontologie des vertus sera liée
-  seulement après vérification publique de #133. Les cinq renvois aux Actus
-  restent en français : leurs traductions ne sont pas encore publiées.
+  seulement après vérification publique de #133.
 - Les intitulés des renvois sont **les titres publiés exacts** (mesurés dans le
   registre, espaces insécables compris).
 
