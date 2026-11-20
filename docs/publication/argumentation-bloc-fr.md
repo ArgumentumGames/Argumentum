@@ -1,9 +1,10 @@
 # Bloc « L'argumentation » — prolongement du texte français (#2181 point 4)
 
-> **Statut : brouillon pour lecture de l'owner.** Rien n'est injecté — la page
-> Argumentation est en relecture (#2132) et le texte partira avec un lot
-> ultérieur. Les traductions suivent #2182, après lecture du français.
-> Issue : #2181 · lane : po-2024 · rédigé le 2026-11-10.
+> **Statut : texte français lu par l'owner le 19/11 ; bloc correspondant en
+> ligne.** La clause AIF est adoucie par arbitrage ai-01 du 20/11 (P24-31) ;
+> cette retouche servie attend la pose groupée des 7 autres langues après la
+> bascule #131. Le lien OWL vertus reste exclu jusqu'à vérification de #133.
+> Issue : #2181 · lane : po-2024 · rédigé le 2026-11-10, révisé le 2026-11-20.
 
 ## Où va ce texte
 
@@ -21,8 +22,8 @@ cellules traduites en 2026 et les articles d'Actus).
 <h3>&nbsp;</h3>
 <h3>Comment parcourir la taxonomie</h3>
 <p>La carte mentale se parcourt comme un arbre : chaque famille se déploie en sous-familles jusqu’aux sophismes eux-mêmes, et chaque nœud porte ses liens de référence. Intégrée dans une page web, elle ouvre dans une modale le détail de chaque type d’argument fallacieux.</p>
-<p>L’ontologie se lit avec un outil du web sémantique : chaque sophisme y est un concept SKOS, relié à ses parents, ses enfants et ses termes voisins. Les correspondances AIF notent, branche par branche, ce que le procédé imite, ce qu’il attaque et comment, et la question critique qui permet de le démasquer.</p>
-<p>La taxonomie des vertus de l’argumentation décrit à son tour les pratiques qui rendent un échange solide. Elle est proposée dans les mêmes formats : <a href="/Virtues_fr.html" target="_blank" rel="noopener">sa carte mentale</a> et <a href="/argumentum_virtues.owl" target="_blank" rel="noopener">son ontologie</a>.</p>
+<p>L’ontologie se lit avec un outil du web sémantique : chaque sophisme y est un concept SKOS, relié à ses parents, ses enfants et ses termes voisins. Les correspondances AIF notent, branche par branche, ce que le procédé imite, ce qu’il attaque et comment, et, là où le corpus l’a déjà établie, la question critique qui permet de le démasquer.</p>
+<p>La taxonomie des vertus de l’argumentation décrit à son tour les pratiques qui rendent un échange solide. Elle est proposée dans les mêmes formats : <a href="/Virtues_fr.html" target="_blank" rel="noopener">sa carte mentale</a>.</p>
 <h3>&nbsp;</h3>
 <h3>À quoi elle sert</h3>
 <p>La taxonomie est le socle du matériel pédagogique du jeu : cartes, scénarios et mémos en dérivent directement. Hors du jeu, elle sert de référentiel pour relire un discours, construire un cours ou outiller l’analyse d’arguments. Plusieurs usages en sont déjà faits :</p>
@@ -57,7 +58,14 @@ des U+00A0 insécables ; les apostrophes sont U+2019.)*
   `AIF_skos*`/`AIF_attackType`/`AIF_criticalQuestion`) est posée au plus haut
   nœud où elle est vraie et vaut pour la branche qu'il porte (méthode #498).
   « Sophisme par sophisme » laissait entendre une notation à chaque feuille, ce
-  que le corpus ne fait pas.
+  que le corpus ne fait pas. La **troisième clause est adoucie le 20/11**
+  (arbitrage ai-01, P24-31) : la question critique est établie pour 48 des 175
+  cartes (mesure du 19/11) — le texte ne la promet donc que là où elle existe.
+- **Lien OWL vertus exclu de la valeur à servir** : la publication FR du 19/11
+  a retiré « et son ontologie » entièrement (route 404 prod ; décision ai-01).
+  La valeur ci-dessus suit cette **variante B**, pour que la prochaine pose ne
+  réintroduise ni le lien ni la conjonction. L'ontologie des vertus sera liée
+  seulement après vérification publique de #133.
 - Les intitulés des renvois sont **les titres publiés exacts** (mesurés dans le
   registre, espaces insécables compris).
 
@@ -79,8 +87,12 @@ présente cette signature.
 
 ## Après lecture
 
-1. Owner lit/amende le français (ce fichier ou la PR).
-2. Les amendements repartent ici, puis les 7 traductions passent par la chaîne
-   #2182 (retraduction des seules cellules dont le français a changé).
-3. L'injection sur la préprod se fait dans un lot coordonné (garde #2132) —
-   la cellule FR existante n'est pas réécrite, l'extension est appendue.
+1. Le français a été lu par l'owner le 19/11 ; le bloc correspondant est en ligne,
+   avec le lien OWL vertus retiré à la pose. La clause AIF est adoucie par
+   l'arbitrage ai-01 du 20/11 (P24-31).
+2. Les 7 traductions sont préparées dans `argumentation-bloc-<lang>.md`, avec
+   leur carte des vertus localisée. Leur absence de relecture native est dite
+   dans chaque fichier.
+3. La pose des 8 versions est un geste web2 après la bascule #131 : le français
+   servi est retouché **au même geste**, pas avant. Aucune injection n'est
+   autorisée ici ; la cellule existante reste préservée.
