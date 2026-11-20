@@ -10,13 +10,23 @@ connexion n'est code en dur.
 PERIMETRE. Une rangée de valeur PAR dimension, appariement par (EntityGuid, field) :
 le registre ne porte pas d'EntityId (les ids changent d'une base a l'autre — la copie
 de prod, le staging et la preprod ne partagent pas les memes), les GUID, eux, sont
-stables. fr (dim-0) n'est JAMAIS ecrit : la base dim-0 est ce que sert la culture fr.
+stables.
 
   - registre non-vide, dimension ABSENTE       -> INSERT (TsDynDataValue + lien dim)
   - registre non-vide, dimension VIDE en base  -> UPDATE de cette rangée
   - registre non-vide == base                  -> deja present, on saute
   - registre non-vide != base (les deux pleins) -> CONFLIT : aucune ecriture, liste
   - registre vide                              -> on saute (pas d'effacement)
+
+FRANCAIS DE BASE (revue ai-01 c.7038852934). La colonne `fr` du registre est comparee
+a la valeur de base (dim-0) SERVIE de la cible — la rangee au ValueId MAX, 2sxc etant
+append-only (les orphelines survivent ; mesure 20/11 : 961 paires dupliquees, 50 des
+51 FR_DRIFT d'une premiere passe etaient ce fantome). FR_SAME si identique, FR_DRIFT
+sinon. En --apply, les FR_DRIFT sont REECRITS depuis le registre — sauf exclusions
+explicites (--fr-exclude guid:field ; par defaut le bloc #2181, ou la prod est en
+avance) et sauf references 'file:NNN' (FR_DB_LOCAL : id ADAM locaux a la base, jamais
+ecrits cross-base). La valeur anterieure de chaque base reecrite est sauvegardee dans
+--backup-dir AVANT la transaction. Une base absente (FR_MISSING) refuse l'apply.
 
 PRESERVATION (controle avant ET apres, dans la meme transaction). Le contenu propre a
 la cible ne doit pas bouger : bloc #2181 (ValueID 27942) et les 7 entites #2182
@@ -50,6 +60,8 @@ _spec.loader.exec_module(EXP)
 
 REGISTRY = EXP.REPO_ROOT / "docs" / "dnn-localization" / "eav-content.csv"
 LANGS = EXP.LANGS  # ["en","ru","pt","es","ar","fa","zh"]
+CURRENT_PLAN: list[dict] = []      # cellules traductibles (7 langues)
+CURRENT_FR_PLAN: list[dict] = []   # cellules de base fr (comparaison FR_* )
 
 # 7 articles News de #2182, par GUID (ids dependent de la base ; sur le staging ils sont
 # 12020-12026, sur la preprod 12011-12017). Mesures: docs/dnn-localization/2182-*.
@@ -70,11 +82,6 @@ NEWS_2182_GUIDS = [
 # uniquement sur arbitrage explicite (--include-preserved-2181).
 PRESERVED_2181_GUID = "8A8636A4-069A-4692-A139-4773B161931B"
 PRESERVED_2181_FIELD = "Text"
-
-
-def q(s: str) -> str:
-    """Litteral SQL nvarchar, apostrophes doublees."""
-    return "N'" + s.replace("'", "''") + "'"
 
 
 def read_registry(path=None) -> list[dict]:
@@ -106,13 +113,38 @@ def build_plan(reg_rows: list[dict]) -> list[dict]:
     return plan
 
 
+def build_fr_plan(reg_rows: list[dict]) -> list[dict]:
+    """Une entree par cellule de BASE (colonne fr du registre) non vide.
+
+    La base dim-0 est ce que sert la culture fr : la comparer, c'est verifier que la
+    cible sert bien le francais du registre — condition pour que les 7 traductions
+    ecrites traduisent le texte reellement servi (revue ai-01 c.7038852934).
+    """
+    plan = []
+    for r in reg_rows:
+        val = r.get("fr") or ""
+        if val == "":
+            continue
+        plan.append({
+            "app_id": int(r["app_id"]),
+            "content_type": r["content_type"],
+            "entity_guid": r["entity_guid"].upper(),
+            "field": r["field"],
+            "lang": "fr",
+            "value": val,
+        })
+    return plan
+
+
 def fetch_target(conn) -> dict:
     """Lit la base cible : dimensions, valeurs existantes du perimetre, contenu preserve."""
     # La meme culture existe dans plusieurs zones 2sxc (zone 2 = defaut DNN, zone 3 =
     # apps Argumentum). Les docs d'injection (app 59/35, inject42) utilisent les dims
     # 7-13 = zone 3. On resout la dimension PAR ZONE : la zone de l'app de la cellule,
     # mesuree sur TsDynDataApp.ZoneId. Ne jamais prendre le premier en-US venu.
-    app_ids = sorted({p["app_id"] for p in CURRENT_PLAN})
+    # Union des deux plans : une entite peut avoir un fr sans aucune traduction, et sa
+    # valeur de base doit quand meme etre lue pour la classification FR_*.
+    app_ids = sorted({p["app_id"] for p in CURRENT_PLAN} | {p["app_id"] for p in CURRENT_FR_PLAN})
     in_apps = ", ".join(str(a) for a in app_ids)
     zones = EXP.run_query(conn,
         f"SET NOCOUNT ON; SELECT AppId AS app, ZoneId AS zone FROM TsDynDataApp WHERE AppId IN ({in_apps});")
@@ -138,7 +170,8 @@ def fetch_target(conn) -> dict:
             m[lang] = d
         lang_dim_by_app[app] = m
 
-    guids = sorted({p["entity_guid"] for p in CURRENT_PLAN})
+    guids = sorted({p["entity_guid"] for p in CURRENT_PLAN}
+                   | {p["entity_guid"] for p in CURRENT_FR_PLAN})
     in_guids = ", ".join("'" + g + "'" for g in guids)
     sql = f"""
 SET NOCOUNT ON;
@@ -146,6 +179,7 @@ SELECT CONVERT(nvarchar(64), e.EntityGuid) AS entity_guid,
        e.EntityId AS entity_id,
        a.StaticName AS field,
        vd.DimensionId AS dimension_id,
+       v.ValueId AS vid,
        CONVERT(nvarchar(max), v.Value) AS val
 FROM TsDynDataEntity e
 JOIN TsDynDataContentType ct ON ct.ContentTypeId = e.ContentTypeId
@@ -155,10 +189,16 @@ LEFT JOIN TsDynDataValueDimension vd ON vd.ValueId = v.ValueId
 WHERE e.TransDeletedId IS NULL
   AND CONVERT(nvarchar(64), e.EntityGuid) IN ({in_guids})
   AND ct.Name NOT IN ('RawData')
-ORDER BY entity_guid, field, dimension_id;
+ORDER BY entity_guid, field, dimension_id, vid;
 """
     rows = EXP.run_query(conn, sql)
     # index: (GUID, field, dimId-or-0) -> value
+    # LA RANGEE SERVIE = ValueId MAX (2sxc est append-only : une edition cree une
+    # nouvelle rangee et l'ancienne survit en orpheline). Mesure 20/11 : 961 paires
+    # (guid, champ) portent 2+ rangees dim-0 sur la preprod — sans le tie-break
+    # ValueId ci-dessus, l'ordre des ex-aequo est non deterministe et la classification
+    # compare contre l'orpheline (50 des 51 FR_DRIFT initiaux etaient ce fantome).
+    # Le tri vid croissant + dernier-gagnant garde exactement le ValueId MAX.
     existing = {}
     entities = {}
     for row in rows:
@@ -178,17 +218,25 @@ def preservation_probe(conn) -> dict:
     """
     out = {}
     r1 = EXP.run_query(conn,
-        "SET NOCOUNT ON; SELECT v.ValueId AS vid, "
-        "LEN(CAST(v.Value AS nvarchar(max))) AS len "
+        "SET NOCOUNT ON; SELECT TOP 1 v.ValueId AS vid, "
+        "CONVERT(nvarchar(max), v.Value) AS val "
         "FROM TsDynDataValue v "
         "JOIN TsDynDataEntity e ON e.EntityId = v.EntityId "
         "JOIN TsDynDataAttribute a ON a.AttributeId = v.AttributeId "
         "LEFT JOIN TsDynDataValueDimension vd ON vd.ValueId = v.ValueId "
         f"WHERE CONVERT(nvarchar(64), e.EntityGuid) = '{PRESERVED_2181_GUID}' "
         f"  AND a.StaticName = '{PRESERVED_2181_FIELD}' "
-        "  AND vd.ValueId IS NULL;")
-    out["block_2181"] = [
-        {"value_id": int(x["vid"]), "len": int(x["len"])} for x in r1]
+        "  AND vd.ValueId IS NULL "
+        "ORDER BY v.ValueId DESC;")  # rangee servie = ValueId MAX (orphelines incluses)
+    out["block_2181"] = [{
+        "value_id": int(x["vid"]),
+        "len": len(x["val"] or ""),
+        # Empreinte du CONTENU (pas de la longueur seule) : deux textes de meme
+        # longueur ne passent plus. UTF-16-LE = encodage natif nvarchar, ce que
+        # HASHBYTES aurait hashe cote SQL — sans sa limite de 8000 octets.
+        "sha256": hashlib.sha256((x["val"] or "").encode("utf-16-le")).hexdigest(),
+        "value": x["val"] or "",
+    } for x in r1]
     in_guids = ", ".join("'" + g + "'" for g in NEWS_2182_GUIDS)
     r2 = EXP.run_query(conn,
         "SET NOCOUNT ON; SELECT CONVERT(nvarchar(64), e.EntityGuid) AS g, e.EntityId AS id "
@@ -197,6 +245,50 @@ def preservation_probe(conn) -> dict:
         ({"guid": x["g"].upper(), "entity_id": int(x["id"])} for x in r2),
         key=lambda d: d["guid"])
     return out
+
+
+def compute_fr_actions(fr_plan, target, excludes: set) -> list[dict]:
+    """Classe chaque cellule de base fr du registre contre la cible.
+
+    FR_SAME       base cible == fr du registre (rien a faire)
+    FR_DRIFT      les deux non vides, differents -> REECRITURE en --apply
+    FR_EXCLUDED   exclue explicitement (defaut : bloc #2181, prod en avance)
+    FR_DB_LOCAL   reference adam 'file:NNN' divergente -> JAMAIS ecrite (voir ci-dessous)
+    FR_MISSING    aucune valeur de base sur la cible -> refuse l'apply
+    """
+    existing = target["existing"]
+    actions = []
+    for p in fr_plan:
+        g, field = p["entity_guid"], p["field"]
+        base = existing.get((g, field, 0))
+        if base is None:
+            actions.append({**p, "op": "FR_MISSING"})
+        elif (g, field) in excludes:
+            actions.append({**p, "op": "FR_EXCLUDED", "db_value": base})
+        elif base == p["value"]:
+            actions.append({**p, "op": "FR_SAME"})
+        elif p["value"].startswith("file:"):
+            # Les references 'file:NNN' sont des ids ADAM LOCAUX A LA BASE : le
+            # meme numero ne designe pas le meme fichier d'une base a l'autre.
+            # Une reecriture cross-base (registre preprod -> staging) pointerait
+            # le staging vers les fichiers d'une autre base. Garde structurelle,
+            # pas une politique : jamais ecrit, toujours rapporte.
+            actions.append({**p, "op": "FR_DB_LOCAL", "db_value": base})
+        else:
+            actions.append({**p, "op": "FR_DRIFT", "db_value": base})
+    return actions
+
+
+def fr_report(fr_actions) -> list[dict]:
+    """Liste des cellules FR_DRIFT : GUID court, ContentType.champ, longueurs."""
+    return [{
+        "guid8": a["entity_guid"][:8],
+        "key": f"{a['entity_guid']}/{a['field']}",
+        "content_type": a["content_type"],
+        "field": a["field"],
+        "len_base": len(a["db_value"]),
+        "len_registre": len(a["value"]),
+    } for a in fr_actions if a["op"] == "FR_DRIFT"]
 
 
 def compute_actions(plan, target, allow_preserved=False):
@@ -228,7 +320,7 @@ def compute_actions(plan, target, allow_preserved=False):
 
 
 def main(argv=None) -> int:
-    global CURRENT_PLAN
+    global CURRENT_PLAN, CURRENT_FR_PLAN
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--config", default=str(EXP.DEFAULT_CONFIG))
     ap.add_argument("--apply", action="store_true", help="ecrit (defaut: dry-run)")
@@ -236,33 +328,79 @@ def main(argv=None) -> int:
     ap.add_argument("--registry", default=None,
                     help="chemin du registre CSV (defaut: docs/dnn-localization/eav-content.csv du depot)")
     ap.add_argument("--include-preserved-2181", action="store_true",
-                    help="ecrit AUSSI les traductions du bloc #2181 (par defaut: ecartees ; "
-                         "arbitrage requis, le texte servi est plus long que celui du registre)")
+                    help="ecrit AUSSI les traductions du bloc #2181 (arbitrage ai-01 20/11 : "
+                         "option c transitoire — la base FR du bloc reste celle de la prod)")
+    ap.add_argument("--fr-exclude", action="append", default=[], metavar="GUID:FIELD",
+                    help="exclut une cellule de base fr de la reecriture (cumulable) ; "
+                         "le bloc #2181 est exclu par defaut")
+    ap.add_argument("--fr-report", default="fr-drift-report.json",
+                    help="fichier ou ecrire la liste FR_DRIFT (defaut: ./fr-drift-report.json)")
     args = ap.parse_args(argv)
+
+    excludes = {(PRESERVED_2181_GUID, PRESERVED_2181_FIELD)}
+    for item in args.fr_exclude:
+        g, _, f = item.partition(":")
+        if not g or not f:
+            print(f"REFUS: --fr-exclude mal forme ({item!r}) — attendu GUID:FIELD")
+            return 1
+        excludes.add((g.upper(), f))
 
     reg = read_registry(args.registry)
     CURRENT_PLAN = build_plan(reg)
+    CURRENT_FR_PLAN = build_fr_plan(reg)
     conn = EXP.read_connection_string(pathlib.Path(args.config))
     target = fetch_target(conn)
     actions = compute_actions(CURRENT_PLAN, target, allow_preserved=args.include_preserved_2181)
+    fr_actions = compute_fr_actions(CURRENT_FR_PLAN, target, excludes)
 
     counts = {}
     for a in actions:
         counts[a["op"]] = counts.get(a["op"], 0) + 1
-    print(f"registre: {len(reg)} lignes, {len(CURRENT_PLAN)} cellules traductibles non vides")
+    fr_counts = {}
+    for a in fr_actions:
+        fr_counts[a["op"]] = fr_counts.get(a["op"], 0) + 1
+    print(f"registre: {len(reg)} lignes, {len(CURRENT_PLAN)} cellules traductibles non vides, "
+          f"{len(CURRENT_FR_PLAN)} cellules de base fr")
     print(f"entites resolues sur la cible: {len(target['entities'])}")
     for op in sorted(counts):
         print(f"  {op}: {counts[op]}")
+    print("base fr (dim-0) :")
+    for op in sorted(fr_counts):
+        print(f"  {op}: {fr_counts[op]}")
+
+    # Rapport FR : listes dans un fichier (GUID court, ContentType.champ, longueurs).
+    report = fr_report(fr_actions)
+    pathlib.Path(args.fr_report).write_text(
+        json.dumps({"fr_drift": report, "excluded": [
+            {"key": f"{a['entity_guid']}/{a['field']}", "len_base": len(a["db_value"]),
+             "len_registre": len(a["value"])}
+            for a in fr_actions if a["op"] == "FR_EXCLUDED"],
+            "db_local_refused": [
+            # references file:NNN divergentes — jamais ecrites, id ADAM locaux a la base
+            {"key": f"{a['entity_guid']}/{a['field']}", "len_base": len(a["db_value"]),
+             "len_registre": len(a["value"])}
+            for a in fr_actions if a["op"] == "FR_DB_LOCAL"]},
+            ensure_ascii=False, indent=1), encoding="utf-8")
+    if report:
+        print(f"  FR_DRIFT detaille -> {args.fr_report} ({len(report)} cellule(s))")
+        for r in report[:15]:
+            print(f"    - {r['guid8']} {r['content_type']}.{r['field']} "
+                  f"base={r['len_base']}c registre={r['len_registre']}c")
+    if fr_counts.get("FR_DB_LOCAL"):
+        print(f"  NOTE: {fr_counts['FR_DB_LOCAL']} reference(s) file:NNN divergente(s) — "
+              f"JAMAIS ecrite(s) (id ADAM locaux a la base, voir db_local_refused du rapport)")
 
     pres_before = preservation_probe(conn)
-    print(f"preservation AVANT: #2181 {pres_before['block_2181']}, "
-          f"#2182 entites={len(pres_before['news_2182'])}/7")
+    b2181 = pres_before["block_2181"][0] if pres_before["block_2181"] else {}
+    print(f"preservation AVANT: #2181 value_id={b2181.get('value_id')} len={b2181.get('len')} "
+          f"sha256={str(b2181.get('sha256'))[:12]}…, #2182 entites={len(pres_before['news_2182'])}/7")
     if counts.get("SKIP_PRESERVED_2181"):
-        print(f"  NOTE: {counts['SKIP_PRESERVED_2181']} traduction(s) du bloc #2181 ecartee(s) "
-              f"(texte servi plus long que celui du registre) — --include-preserved-2181 pour forcer")
+        print(f"  NOTE: {counts['SKIP_PRESERVED_2181']} traduction(s) du bloc #2181 ecartee(s) — "
+              f"--include-preserved-2181 pour les ecrire (arbitrage ai-01 20/11 : option c)")
 
     conflicts = [a for a in actions if a["op"] == "CONFLICT"]
     missing = [a for a in actions if a["op"] == "MISSING_ENTITY_OR_FIELD"]
+    fr_missing = [a for a in fr_actions if a["op"] == "FR_MISSING"]
     if missing:
         print(f"\n{len(missing)} cellule(s) sans entite/champ resolu sur la cible (extrait):")
         for a in missing[:15]:
@@ -272,17 +410,24 @@ def main(argv=None) -> int:
         for a in conflicts[:15]:
             print(f"  - {a['entity_guid'][:8]} {a['field']} [{a['lang']}] "
                   f"db={len(a['db_value'])}c registre={len(a['value'])}c")
+    if fr_missing:
+        print(f"\n{len(fr_missing)} cellule(s) de base fr SANS valeur sur la cible (extrait):")
+        for a in fr_missing[:15]:
+            print(f"  - {a['entity_guid'][:8]} {a['content_type']}.{a['field']}")
 
+    fr_writes = [{**a, "op": "FR_UPDATE"} for a in fr_actions if a["op"] == "FR_DRIFT"]
     writes = [a for a in actions if a["op"] in ("INSERT", "UPDATE")]
     if not args.apply:
-        print(f"\nDRY-RUN: {len(writes)} ecriture(s) prevues "
-              f"({counts.get('INSERT',0)} INSERT + {counts.get('UPDATE',0)} UPDATE). "
+        print(f"\nDRY-RUN: {len(writes)} ecriture(s) dimensionnees prevues "
+              f"({counts.get('INSERT',0)} INSERT + {counts.get('UPDATE',0)} UPDATE) "
+              f"+ {len(fr_writes)} REECRITURE(S) de base fr (FR_DRIFT non exclues). "
               f"Aucune ecriture effectuee.")
-        print("VERDICT: " + ("ECHEC (conflits ou cibles manquantes a arbitrer)" if (conflicts or missing)
+        blocked = conflicts or missing or fr_missing
+        print("VERDICT: " + ("ECHEC (conflits ou cibles manquantes a arbitrer)" if blocked
                              else "plan coherent, pret pour --apply"))
-        return 1 if (conflicts or missing) else 0
+        return 1 if blocked else 0
 
-    if conflicts or missing:
+    if conflicts or missing or fr_missing:
         print("REFUS d'appliquer: conflits ou cibles manquantes non arbitres.")
         return 1
     if not args.backup_dir:
@@ -290,13 +435,24 @@ def main(argv=None) -> int:
         return 1
     backup_dir = pathlib.Path(args.backup_dir)
     backup_dir.mkdir(parents=True, exist_ok=True)
-    stamp = datetime.datetime.now(datetime.UTC).strftime("%Y%m%dT%H%M%SZ")
+    stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    # Valeurs anterieures des bases reecrites : sauvegardees AVANT la transaction.
+    (backup_dir / f"reinject-fr-prior-{stamp}.json").write_text(
+        json.dumps([{"entity_guid": a["entity_guid"], "content_type": a["content_type"],
+                     "field": a["field"], "prior_value": a["db_value"], "new_value": a["value"]}
+                    for a in fr_actions if a["op"] == "FR_DRIFT"],
+                   ensure_ascii=False, indent=1), encoding="utf-8")
     (backup_dir / f"reinject-plan-{stamp}.json").write_text(
         json.dumps({"writes": [{k: a[k] for k in ('entity_guid','field','lang','op','dim','value')} for a in writes],
-                    "preservation_before": pres_before}, ensure_ascii=False, indent=1),
+                    "fr_writes": [{k: a[k] for k in ('entity_guid','field','lang','op','value')} for a in fr_writes],
+                    "preservation_before": {k: v for k, v in pres_before.items() if k != "block_2181"}
+                                          | {"block_2181": [{kk: vv for kk, vv in b.items() if kk != "value"}
+                                                            for b in pres_before["block_2181"]]}},
+                    ensure_ascii=False, indent=1),
         encoding="utf-8")
-    print(f"plan + preservation AVANT sauvegardes dans {backup_dir} ({len(writes)} ecritures)")
-    return run_writer(conn, writes, pres_before, backup_dir, stamp)
+    print(f"plan + valeurs anterieures FR + preservation AVANT sauvegardes dans {backup_dir} "
+          f"({len(writes)} ecritures dimensionnees + {len(fr_writes)} bases fr)")
+    return run_writer(conn, writes, fr_writes, pres_before, backup_dir, stamp)
 
 
 # ---------------------------------------------------------------------------
@@ -305,26 +461,36 @@ def main(argv=None) -> int:
 # TsDynDataValueDimension ; UPDATE des rangees dimensionnees vides. Appariement par
 # (EntityId resolu du GUID, AttributeId resolu du (ContentType, field), DimensionId).
 # ---------------------------------------------------------------------------
-def run_writer(conn, writes, pres_before, backup_dir, stamp) -> int:
+def run_writer(conn, writes, fr_writes, pres_before, backup_dir, stamp) -> int:
     import os
     import subprocess
     import tempfile
 
     payload_file = backup_dir / f"reinject-payload-{stamp}.json"
-    payload_file.write_text(json.dumps({"writes": writes}, ensure_ascii=False), encoding="utf-8")
+    b2181 = pres_before["block_2181"][0] if pres_before["block_2181"] else {}
+    payload_file.write_text(json.dumps({
+        "writes": writes,
+        "fr_writes": fr_writes,
+        # Preservation par le CONTENU lui-meme : l'egalite exacte in-tx est plus forte
+        # qu'une empreinte et evite la limite 8000 octets de HASHBYTES (le bloc fait
+        # 6709 caracteres = 13418 octets en UTF-16). L'empreinte sha256 est rapportee
+        # a part pour le journal.
+        "expected_2181_value": b2181.get("value", ""),
+        "expected_2181_vid": b2181.get("value_id"),
+    }, ensure_ascii=False), encoding="utf-8")
 
     ps = r'''
 $ErrorActionPreference = "Stop"
 Add-Type -AssemblyName System.Data
-$writes = (Get-Content -LiteralPath $env:REINJECT_PAYLOAD -Raw -Encoding UTF8 | ConvertFrom-Json).writes
-if ($writes -isnot [System.Array]) { $writes = @($writes) }
+$payload  = Get-Content -LiteralPath $env:REINJECT_PAYLOAD -Raw -Encoding UTF8 | ConvertFrom-Json
+$writes   = $payload.writes;   if ($writes   -isnot [System.Array]) { $writes   = @($writes) }
+$frwrites = $payload.fr_writes; if ($frwrites -isnot [System.Array]) { $frwrites = @($frwrites) }
 $conn = New-Object System.Data.SqlClient.SqlConnection($env:REINJECT_CS)
 $conn.Open()
 $tx = $conn.BeginTransaction()
 try {
     $cmd = $conn.CreateCommand(); $cmd.Transaction = $tx; $cmd.CommandTimeout = 600
-    $log = New-Object System.Collections.Generic.List[object]
-    $inserted = 0; $updated = 0
+    $inserted = 0; $updated = 0; $frupdated = 0
     foreach ($w in $writes) {
         $guid = $w.entity_guid; $field = $w.field; $ct = $w.content_type; $val = $w.value
         # Resoudre EntityId + AttributeId (UPDLOCK/HOLDLOCK) a l'interieur de la transaction.
@@ -372,6 +538,53 @@ WHERE v.EntityId=@e AND v.AttributeId=@a AND (v.[Value] IS NULL OR v.[Value]=N''
             $updated++
         }
     }
+    # Reecritures de BASE fr (FR_DRIFT) : la rangee dim-0 seulement, et seulement si
+    # elle vaut encore EXACTEMENT ce que le dry-run a mesure (concurrence optimiste —
+    # si la base a bouge entre-temps, on refuse plutot qu'ecraser par-dessus).
+    foreach ($w in $frwrites) {
+        $guid = $w.entity_guid; $field = $w.field; $ct = $w.content_type
+        $val = $w.value; $old = $w.db_value
+        $cmd.Parameters.Clear()
+        $cmd.CommandText = @"
+SELECT e.EntityId, a.AttributeId FROM TsDynDataEntity e WITH (UPDLOCK,HOLDLOCK)
+JOIN TsDynDataContentType c ON c.ContentTypeId = e.ContentTypeId
+JOIN TsDynDataAttribute a WITH (UPDLOCK,HOLDLOCK) ON a.ContentTypeId = c.ContentTypeId
+WHERE e.EntityGuid = @g AND c.Name = @ct AND a.StaticName = @f AND a.TransDeletedId IS NULL AND e.TransDeletedId IS NULL
+"@
+        [void]$cmd.Parameters.Add("@g", [System.Data.SqlDbType]::NVarChar, 64); $cmd.Parameters["@g"].Value = $guid
+        [void]$cmd.Parameters.Add("@ct", [System.Data.SqlDbType]::NVarChar, 256); $cmd.Parameters["@ct"].Value = $ct
+        [void]$cmd.Parameters.Add("@f", [System.Data.SqlDbType]::NVarChar, 256); $cmd.Parameters["@f"].Value = $field
+        $r = $cmd.ExecuteReader()
+        if (-not $r.Read()) { $r.Close(); throw "FR: entite/attribut introuvable: $guid $ct.$field" }
+        $eid = $r.GetInt32(0); $aid = $r.GetInt32(1); $r.Close()
+
+        # Epingle la rangee SERVIE : 2sxc est append-only, une (entite, attribut) peut
+        # porter plusieurs rangees dim-0 (orphelines + servie = ValueId MAX, mesure
+        # 20/11 : 961 paires). Sans epingle, l'UPDATE pourrait toucher l'orpheline et
+        # la relecture croire au succes.
+        $cmd.Parameters.Clear()
+        $cmd.CommandText = @"
+SELECT MAX(v.ValueId) FROM TsDynDataValue v WITH (UPDLOCK,HOLDLOCK)
+LEFT JOIN TsDynDataValueDimension vd ON vd.ValueId = v.ValueId
+WHERE v.EntityId=@e AND v.AttributeId=@a AND vd.ValueId IS NULL
+"@
+        [void]$cmd.Parameters.Add("@e",[System.Data.SqlDbType]::Int); $cmd.Parameters["@e"].Value=$eid
+        [void]$cmd.Parameters.Add("@a",[System.Data.SqlDbType]::Int); $cmd.Parameters["@a"].Value=$aid
+        $vid0 = $cmd.ExecuteScalar()
+        if ($null -eq $vid0) { throw "FR_UPDATE $guid.$field : aucune rangee dim-0 (base modifiee depuis le dry-run?)" }
+
+        $cmd.Parameters.Clear()
+        $cmd.CommandText = @"
+UPDATE v SET v.[Value]=@v FROM TsDynDataValue v
+WHERE v.ValueId=@vid0 AND v.[Value]=@old
+"@
+        [void]$cmd.Parameters.Add("@v",[System.Data.SqlDbType]::NVarChar,-1); $cmd.Parameters["@v"].Value=$val
+        [void]$cmd.Parameters.Add("@old",[System.Data.SqlDbType]::NVarChar,-1); $cmd.Parameters["@old"].Value=$old
+        [void]$cmd.Parameters.Add("@vid0",[System.Data.SqlDbType]::Int); $cmd.Parameters["@vid0"].Value=[int]$vid0
+        $n = $cmd.ExecuteNonQuery()
+        if ($n -ne 1) { throw "FR_UPDATE $guid.$field : $n rangee(s) touchee(s), attendu 1 (base modifiee depuis le dry-run?)" }
+        $frupdated++
+    }
     # Relecture in-tx, octet par octet : chaque ecriture doit relire SA valeur a SA dimension.
     $bad = 0
     foreach ($w in $writes) {
@@ -392,12 +605,35 @@ WHERE e.EntityGuid=@g AND c.Name=@ct AND a.StaticName=@f AND vd.DimensionId=@d A
         $c = [int]$cmd.ExecuteScalar()
         if ($c -lt 1) { $bad++; Write-Host "RELECTURE ECHEC: $($w.entity_guid) $($w.field) dim$($w.dim)" }
     }
+    # Relecture in-tx des bases fr reecrites : la rangee SERVIE (ValueId MAX) doit
+    # valoir le registre — la relecture epingle la meme rangee que l'ecriture.
+    foreach ($w in $frwrites) {
+        $cmd.Parameters.Clear()
+        $cmd.CommandText = @"
+SELECT TOP 1 CONVERT(nvarchar(max), v.[Value])
+FROM TsDynDataValue v
+JOIN TsDynDataEntity e ON e.EntityId=v.EntityId
+JOIN TsDynDataContentType c ON c.ContentTypeId=e.ContentTypeId
+JOIN TsDynDataAttribute a ON a.AttributeId=v.AttributeId
+LEFT JOIN TsDynDataValueDimension vd ON vd.ValueId=v.ValueId
+WHERE e.EntityGuid=@g AND c.Name=@ct AND a.StaticName=@f AND vd.ValueId IS NULL
+ORDER BY v.ValueId DESC
+"@
+        [void]$cmd.Parameters.Add("@g",[System.Data.SqlDbType]::NVarChar,64); $cmd.Parameters["@g"].Value=$w.entity_guid
+        [void]$cmd.Parameters.Add("@ct",[System.Data.SqlDbType]::NVarChar,256); $cmd.Parameters["@ct"].Value=$w.content_type
+        [void]$cmd.Parameters.Add("@f",[System.Data.SqlDbType]::NVarChar,256); $cmd.Parameters["@f"].Value=$w.field
+        $srv = $cmd.ExecuteScalar()
+        if ($null -eq $srv -or -not ([string]$srv -ceq [string]$w.value)) { $bad++; Write-Host "RELECTURE FR ECHEC: $($w.entity_guid) $($w.field)" }
+    }
     if ($bad -gt 0) { throw "relecture in-tx: $bad valeur(s) non conformes - ROLLBACK" }
-    # Preservation #2181 : la valeur de base du bloc, longueur inchangee.
+    # Preservation #2181 : la valeur de base du bloc, identique OCTET PAR OCTET a ce que
+    # le dry-run a mesure (l'egalite exacte est plus forte qu'une empreinte, et HASHBYTES
+    # est limite a 8000 octets -- le bloc en fait 13418 en UTF-16).
     $cmd.Parameters.Clear()
-    $cmd.CommandText = "SELECT LEN(CAST([Value] AS nvarchar(max))) FROM TsDynDataValue WHERE ValueId=$($env:REINJECT_2181_VID)"
-    $len2181 = $cmd.ExecuteScalar()
-    if ($null -eq $len2181 -or [int]$len2181 -ne [int]$env:REINJECT_2181_LEN) { throw "preservation #2181: ValueId $($env:REINJECT_2181_VID) len=$len2181 attendu $env:REINJECT_2181_LEN - ROLLBACK" }
+    $cmd.CommandText = "SELECT CONVERT(nvarchar(max), [Value]) FROM TsDynDataValue WHERE ValueId=@vid"
+    [void]$cmd.Parameters.Add("@vid",[System.Data.SqlDbType]::Int); $cmd.Parameters["@vid"].Value=[int]$payload.expected_2181_vid
+    $v2181 = $cmd.ExecuteScalar()
+    if ($null -eq $v2181 -or -not ([string]$v2181 -ceq [string]$payload.expected_2181_value)) { throw "preservation #2181: valeur de base MODIFIEE (attendu identique au dry-run) - ROLLBACK" }
     # Preservation #2182 : les 7 entites News toujours presentes.
     $cmd.Parameters.Clear()
     $cmd.CommandText = "SELECT COUNT(*) FROM TsDynDataEntity WHERE EntityGuid IN ($env:REINJECT_2182_GUIDS)"
@@ -405,7 +641,7 @@ WHERE e.EntityGuid=@g AND c.Name=@ct AND a.StaticName=@f AND vd.DimensionId=@d A
     if ($n2182 -ne 7) { throw "preservation #2182: $n2182/7 entites News - ROLLBACK" }
 
     $tx.Commit()
-    Write-Host "COMMIT OK: INSERT=$inserted UPDATE=$updated ; relecture in-tx conforme ; #2181 len=$len2181 ; #2182=$n2182/7"
+    Write-Host "COMMIT OK: INSERT=$inserted UPDATE=$updated FR_UPDATE=$frupdated ; relecture in-tx conforme ; #2181 identique ; #2182=$n2182/7"
     $conn.Close()
 }
 catch {
@@ -418,14 +654,10 @@ catch {
     env = os.environ.copy()
     env["REINJECT_CS"] = conn
     env["REINJECT_PAYLOAD"] = str(payload_file)
-    len2181 = pres_before["block_2181"][0]["len"] if pres_before["block_2181"] else -1
-    vid2181 = pres_before["block_2181"][0]["value_id"] if pres_before["block_2181"] else -1
-    if vid2181 < 0:
+    env["REINJECT_2182_GUIDS"] = ", ".join("'" + g + "'" for g in NEWS_2182_GUIDS)
+    if not pres_before["block_2181"]:
         print("REFUS d'appliquer: bloc #2181 introuvable sur la cible (entite/champ/dim-0).")
         return 1
-    env["REINJECT_2181_LEN"] = str(len2181)
-    env["REINJECT_2181_VID"] = str(vid2181)
-    env["REINJECT_2182_GUIDS"] = ", ".join("'" + g + "'" for g in NEWS_2182_GUIDS)
     proc = subprocess.run(["powershell", "-NoProfile", "-NonInteractive", "-Command", ps],
                           capture_output=True, text=True, encoding="utf-8", errors="replace", env=env)
     sys.stdout.write(proc.stdout or "")
@@ -444,10 +676,6 @@ catch {
     print("VERDICT: apply termine" + (" — preservation OK" if same else " — ⚠️ PRESERVATION A QUALIFIER"))
     print("Rappel lane: recycler l'app-domain par mtime web.config (sha256 inchange), jamais iisreset.")
     return 0 if same else 1
-
-
-if __name__ == "__main__":
-    sys.exit(main())
 
 
 if __name__ == "__main__":
