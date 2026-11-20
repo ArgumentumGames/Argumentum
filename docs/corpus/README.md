@@ -1,14 +1,19 @@
 # docs/corpus — constats datés des chantiers de corpus
 
+<!-- index-of-record -->
+
 Ce dossier ne fait que grossir : chaque chantier y dépose ses rapports datés et ses
 instruments compagnons. Rien ne s'y supprime — chaque fichier est une pièce. Ce README
-indexe la **tranche 1 : les constats de chantier** — 53 fichiers `1499-*` et `458-*`.
-Il n'est **pas encore** un index de record : la marque viendra avec la dernière tranche
-(24 instruments `.py`, le manifeste `bfg-recovered-blobs-manifest.txt` et 4 pièces
-éparses `.md` — 29 fichiers), conformément à
-[`docs/agents/consolidation.md`](../agents/consolidation.md) (§ *Procedure* :
-« Add the marker last »). En attendant, **rien ne tient cet index en CI** — une ligne
-oubliée ne rougira rien ; la complétude ci-dessous est celle de sa PR.
+est l'**index de référence** : les 53 constats de la tranche 1 ci-dessous, puis les 29
+fichiers restants (24 instruments, 4 constats et 1 manifeste). Chaque fichier suivi est
+cité une fois, avec un statut. La règle est dans
+[`docs/agents/consolidation.md`](../agents/consolidation.md) ;
+`python tools/test_docs-index-contract.py` tient désormais cette complétude en CI.
+
+Le compte complet s'établit par `git ls-files docs/corpus | wc -l` → **83**, README
+compris. Les 3 plans JSON présents sur certaines machines sont **git-ignorés** : ils ne
+font pas partie de l'inventaire. La marque n'a été posée qu'avec cette dernière tranche ;
+les 3 constats hors vague sont restés dans leur section thématique de la tranche 1.
 
 Compte établi par `git ls-files docs/corpus | grep -cE '^docs/corpus/(1499|458)-.*\.md$'`
 → **53**.
@@ -29,7 +34,68 @@ Compte établi par `git ls-files docs/corpus | grep -cE '^docs/corpus/(1499|458)
   « plus de contre-lecture des 147 actuelles »). L'état vivant vit sur
   [#458](https://github.com/ArgumentumGames/Argumentum/issues/458).
 
-## La tranche — 53 fichiers
+## Tranche 2 — instruments et pièces de preuve (29)
+
+Les instruments de campagne sont des exécutables **datés**, pas des commandes génériques à
+rejouer sans lire leur en-tête : références git anciennes, plans et décisions d'époque,
+parfois modes d'écriture bornés. Ils sont donc `historical`, sauf `rules-site-vs-cards.py`,
+toujours prescrit pour le contrôle #1502. Aucun script n'est exécuté par cette indexation.
+
+### Archives et attribution (10)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`archive-bridge-instrument.py`](archive-bridge-instrument.py) | 2026-09-22 | `historical` | Pont archive → baseline 2024 → HEAD ; corrige les faux « nouveaux » dus au déplacement de `path` |
+| [`bfg-blob-recovery.py`](bfg-blob-recovery.py) | 2026-09-22 | `historical` | Moisson et vérification SHA-1 des blobs décrochés par BFG, depuis les objets GitHub encore accessibles |
+| [`bfg-recovered-blobs-manifest.txt`](bfg-recovered-blobs-manifest.txt) | 2026-09-22 | `historical` | Manifeste daté des blobs récupérés (commit, SHA-1, sujet), preuve du dossier BFG |
+| [`fallacies-desc-diff.py`](fallacies-desc-diff.py) | 2026-09-23 | `historical` | Diff `desc_fr` par couche et par PK ; produit son JSON git-ignoré pour lecture, ne tranche pas l'éditorial |
+| [`fallacies-exemples-diff.py`](fallacies-exemples-diff.py) | 2026-09-23 | `historical` | Diff `example_fr` par couche ; ré-appariement contrôlé des sœurs déplacées |
+| [`fallacies-exemples-g2c.py`](fallacies-exemples-g2c.py) | 2026-09-23 | `historical` | Liste courte G2-C des pertes entre baseline et HEAD, textes entiers pour lecture |
+| [`fallacies-renommages-diff.py`](fallacies-renommages-diff.py) | 2026-09-23 | `historical` | Renommages FR par couche ; sépare changements de nom, déplacements et typographie |
+| [`g1w-extract.py`](g1w-extract.py) | 2026-09-24 | `historical` | Extrait les titres cibles G1-W de trois commits historiques, colonnes `text_*` seules |
+| [`g1w-impact.py`](g1w-impact.py) | 2026-09-24 | `historical` | Construit le plan d'écriture G1-W ; contrôle les comptes et invariants avant geste |
+| [`g1w-write.py`](g1w-write.py) | 2026-09-24 | `historical` | Applique le plan G1-W par segments de cellules ; ⛔ écriture ancienne, à ne pas rejouer hors répétition jetable |
+
+### Mesures multilingues (7)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`definitions-fidelity-instrument.py`](definitions-fidelity-instrument.py) | 2026-10-03 | `historical` | Écrans mécaniques des définitions puis exemples par langue ; les drapeaux sont priorités de lecture, pas verdicts |
+| [`ledger-attribution.py`](ledger-attribution.py) | 2026-09-22 | `historical` | Attribue chaque valeur courante au commit qui l'a introduite, en un balayage de l'historique |
+| [`ledger-instrument.py`](ledger-instrument.py) | 2026-09-22 | `historical` | Premier ledger contre les archives par `path` ; sa limite de couverture est corrigée par le pont d'archive |
+| [`pt-continental-markers.py`](pt-continental-markers.py) | 2026-10-10 | `historical` | Compteurs avec témoins des marqueurs pt-PT/pt-BR ; classes non ambiguës, penchées et contextuelles |
+| [`register-consistency-instrument.py`](register-consistency-instrument.py) | 2026-10-03 | `historical` | Registre de personne pt/es, définitions et exemples ; classe `GRIS` et preuve mécanique obligatoire |
+| [`regles-fidelity-instrument.py`](regles-fidelity-instrument.py) | 2026-10-04 | `historical` | Écran des Règles multilingues ; sa docstring nomme ses faux positifs et ses limites |
+| [`virtues-baseline-diff.py`](virtues-baseline-diff.py) | 2026-09-23 | `historical` | Régressions Virtues baseline→HEAD par PK ; invariant `path`, jamais `family_fr` renommé |
+
+### Gabarits et gardes de chirurgie (7)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`g4cw-pk94-desc.py`](g4cw-pk94-desc.py) | 2026-09-24 | `historical` | Garde des 8 descriptions de PK 94 après Q-13 ; mutations de contrôle et `remark_fr` protégée |
+| [`memo-gabarit-inventory.py`](memo-gabarit-inventory.py) | 2026-09-24 | `historical` | Mesure le CSV embarqué du gabarit Mémo ; distingue sa dérive latente du pipeline qui injecte la taxonomie |
+| [`pk944-desc-fa-fix.py`](pk944-desc-fa-fix.py) | 2026-09-23 | `historical` | Chirurgie datée d'une cellule persane ; préserve ZWNJ et les autres cellules, ⛔ ne pas rejouer sur master |
+| [`rules-memo-material-1539.py`](rules-memo-material-1539.py) | 2026-09-24 | `historical` | Garde puis chirurgie des 40 lignes « mémo » des Règles après Q-14 ; anti-disparition par plancher |
+| [`scenarii-voix-en-71.py`](scenarii-voix-en-71.py) | 2026-09-14 | `historical` | Garde post-merge des 71 cellules de voix EN Scenarii ; sonde explicite seulement, self-test |
+| [`virtues-remark-g4bis.py`](virtues-remark-g4bis.py) | 2026-09-24 | `historical` | Planche d'arbitrage Virtues, tirage stratifié déterministe et textes entiers |
+| [`virtues-remark-g4c.py`](virtues-remark-g4c.py) | 2026-09-24 | `historical` | Liste courte G4-C des pertes de remarques Virtues entre pré-#367 et HEAD |
+
+### Contrôle encore prescrit (1)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`rules-site-vs-cards.py`](rules-site-vs-cards.py) | 2026-09-23 → 10-10 | `current` | Instrument #1502 de comparaison des six pages Règles aux 15 cartes ; son en-tête prévoit encore le rejeu préprod P23-03. Lecture seule HTTP, contrôle inverse par copie mutée. Relecture faite le 20/11 ; écarts site↔cartes = résultats, non échecs |
+
+### Quatre constats épars (4)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`archive-coverage-2026-09-22.md`](archive-coverage-2026-09-22.md) | 2026-09-22 | `historical` | Corrige la couverture d'archive : 168/175 cartes couvertes, 7 sans référence ; explique pourquoi `path` seul échoue |
+| [`bfg-history-recovery-2026-09-22.md`](bfg-history-recovery-2026-09-22.md) | 2026-09-22 | `historical` | Dossier de l'historique décroché par BFG et de la baseline 2024 ; précède les mesures #415 sans autoriser de réécriture |
+| [`g5-cle-scenarii-2026-09-25.md`](g5-cle-scenarii-2026-09-25.md) | 2026-09-25 | `historical` | Clé Scenarii E1 titre normalisé + E2 path et contenu ; contrôle inverse exhaustif sur les paires |
+| [`ledger-cartes-existantes-2026-09-22.md`](ledger-cartes-existantes-2026-09-22.md) | 2026-09-22 | `historical` | Grand registre des changements FR ; son propre correctif §0 corrige l'imputation de deux couches superposées |
+
+## La tranche 1 — 53 constats de chantier
 
 ### #1499 — archive 2022 → corpus courant (7)
 
