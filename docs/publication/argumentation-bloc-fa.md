@@ -9,8 +9,7 @@
 متن درست پس از `</ul>` پایانی بخش موجود به قلم `Text` (FA) نهاد
 «استدلال‌ورزی» (کاربرد ۳۳، `8A8636A4`) افزوده می‌شود. مقدار موجود باید بایت
 به بایت حفظ شود. پیوند نقشهٔ ذهنی فضایل برای زبان صفحه بومی‌سازی شده است.
-پیوند OWL فضایل تا راستی‌آزمایی عمومی #133 کنار گذاشته می‌شود. عنوان و نشانی
-پنج خبر به زبان فرانسه، یعنی زبان انتشارشان، باقی می‌ماند.
+پیوند OWL فضایل تا راستی‌آزمایی عمومی #133 کنار گذاشته می‌شود.
 
 ## مقدار دقیقی که افزوده می‌شود
 
@@ -24,11 +23,11 @@
 <h3>به چه کار می‌آید</h3>
 <p>رده‌بندی بنیان مواد آموزشی بازی است: کارت‌ها، سناریوها و یادآورها مستقیماً از آن برآمده‌اند. بیرون از بازی نیز چارچوبی مرجع برای بازخوانی سخنرانی، ساختن درس یا پشتیبانی از تحلیل استدلال‌ها به شمار می‌رود. این رده‌بندی اکنون چند کاربرد دارد:</p>
 <ul>
-<li><a href="/Actus/details/chaque-sophisme-a-sa-place-l-ontologie-d-argumentum-et-le-format-aif" target="_blank" rel="noopener">Chaque sophisme à sa place : l’ontologie d’Argumentum et le format AIF</a></li>
-<li><a href="/Actus/details/la-descente-guidee-dans-l-arbre-le-plugin-argumentum-du-projet-epita" target="_blank" rel="noopener">La descente guidée dans l’arbre : le plugin Argumentum du projet Epita</a></li>
-<li><a href="/Actus/details/des-carnets-de-cours-lisent-le-jeu-argumentum-dans-coursia" target="_blank" rel="noopener">Des carnets de cours lisent le jeu : Argumentum dans CoursIA</a></li>
-<li><a href="/Actus/details/sophismes-x-scenarios-le-jeu-comme-jeu-de-donnees" target="_blank" rel="noopener">Sophismes × scénarios : le jeu comme jeu de données</a></li>
-<li><a href="/Actus/details/la-dette-d-irreversibilite-du-discours-une-prediction-posee-sur-le-corpus-d-argumentum" target="_blank" rel="noopener">La dette d’irréversibilité du discours : une prédiction posée sur le corpus d’Argumentum</a></li>
+<li><a href="/fa/Actus/details/chaque-sophisme-a-sa-place-l-ontologie-d-argumentum-et-le-format-aif" target="_blank" rel="noopener">هر مغالطه در جای خود: آنتولوژیِ Argumentum و قالب AIF</a></li>
+<li><a href="/fa/Actus/details/la-descente-guidee-dans-l-arbre-le-plugin-argumentum-du-projet-epita" target="_blank" rel="noopener">فرود هدایت‌شده در درخت: افزونهٔ Argumentum از پروژهٔ Epita</a></li>
+<li><a href="/fa/Actus/details/des-carnets-de-cours-lisent-le-jeu-argumentum-dans-coursia" target="_blank" rel="noopener">دفترهای درسی بازی را می‌خوانند: Argumentum در CoursIA</a></li>
+<li><a href="/fa/Actus/details/sophismes-x-scenarios-le-jeu-comme-jeu-de-donnees" target="_blank" rel="noopener">مغالطه‌ها × سناریوها: بازی به‌مثابه مجموعه‌داده</a></li>
+<li><a href="/fa/Actus/details/la-dette-d-irreversibilite-du-discours-une-prediction-posee-sur-le-corpus-d-argumentum" target="_blank" rel="noopener">بدهی بازگشت‌ناپذیری گفتمان: پیش‌بینی‌ای نهاده بر پیکرهٔ Argumentum</a></li>
 </ul>
 ```
 

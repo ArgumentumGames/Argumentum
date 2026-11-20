@@ -1,4 +1,4 @@
-# Bloco « Argumentação » — extensão em português (#2181, P24-31)
+# Bloco «Argumentação» — extensão em português (#2181, P24-31)
 
 > **Estado da tradução:** traduzida para o pacote de implantação de 20/11/2026;
 > **não houve revisão por um falante nativo**. Este ficheiro não publica nada.
@@ -10,8 +10,7 @@ Acrescentar ao campo `Text` (PT) da entidade « Argumentação » (app 33,
 `8A8636A4`), imediatamente após o `</ul>` final da secção existente. Preservar
 o valor existente byte por byte. A ligação para o mapa mental das virtudes é
 localizada. A ligação OWL das virtudes permanece excluída até verificação
-pública de #133. Os cinco títulos e URLs das notícias continuam em francês,
-a língua em que foram publicados.
+pública de #133.
 
 ## Valor exato a acrescentar
 
@@ -25,11 +24,11 @@ a língua em que foram publicados.
 <h3>Para que serve</h3>
 <p>A taxonomia é a base do material pedagógico do jogo: as cartas, os cenários e os memos derivam diretamente dela. Fora do jogo, serve de referência para reler um discurso, construir uma aula ou apoiar a análise de argumentos. Já alimenta vários usos:</p>
 <ul>
-<li><a href="/Actus/details/chaque-sophisme-a-sa-place-l-ontologie-d-argumentum-et-le-format-aif" target="_blank" rel="noopener">Chaque sophisme à sa place : l’ontologie d’Argumentum et le format AIF</a></li>
-<li><a href="/Actus/details/la-descente-guidee-dans-l-arbre-le-plugin-argumentum-du-projet-epita" target="_blank" rel="noopener">La descente guidée dans l’arbre : le plugin Argumentum du projet Epita</a></li>
-<li><a href="/Actus/details/des-carnets-de-cours-lisent-le-jeu-argumentum-dans-coursia" target="_blank" rel="noopener">Des carnets de cours lisent le jeu : Argumentum dans CoursIA</a></li>
-<li><a href="/Actus/details/sophismes-x-scenarios-le-jeu-comme-jeu-de-donnees" target="_blank" rel="noopener">Sophismes × scénarios : le jeu comme jeu de données</a></li>
-<li><a href="/Actus/details/la-dette-d-irreversibilite-du-discours-une-prediction-posee-sur-le-corpus-d-argumentum" target="_blank" rel="noopener">La dette d’irréversibilité du discours : une prédiction posée sur le corpus d’Argumentum</a></li>
+<li><a href="/pt/Actus/details/chaque-sophisme-a-sa-place-l-ontologie-d-argumentum-et-le-format-aif" target="_blank" rel="noopener">Cada falácia em seu lugar: a ontologia do Argumentum e o formato AIF</a></li>
+<li><a href="/pt/Actus/details/la-descente-guidee-dans-l-arbre-le-plugin-argumentum-du-projet-epita" target="_blank" rel="noopener">Descida guiada na árvore: o plugin Argumentum do projeto Epita</a></li>
+<li><a href="/pt/Actus/details/des-carnets-de-cours-lisent-le-jeu-argumentum-dans-coursia" target="_blank" rel="noopener">Cadernos de curso leem o jogo: Argumentum no CoursIA</a></li>
+<li><a href="/pt/Actus/details/sophismes-x-scenarios-le-jeu-comme-jeu-de-donnees" target="_blank" rel="noopener">Falácias × cenários: o jogo como conjunto de dados</a></li>
+<li><a href="/pt/Actus/details/la-dette-d-irreversibilite-du-discours-une-prediction-posee-sur-le-corpus-d-argumentum" target="_blank" rel="noopener">A dívida de irreversibilidade do discurso: uma previsão lançada sobre o corpus do Argumentum</a></li>
 </ul>
 ```
 

@@ -22,11 +22,11 @@
 <h3>它有什么用途</h3>
 <p>该分类体系是游戏教学材料的基础：卡牌、情境和备忘卡都直接由此衍生。在游戏之外，它还为重读演说、设计课程或辅助论证分析提供参考框架。目前已有以下数种应用：</p>
 <ul>
-<li><a href="/Actus/details/chaque-sophisme-a-sa-place-l-ontologie-d-argumentum-et-le-format-aif" target="_blank" rel="noopener">Chaque sophisme à sa place : l’ontologie d’Argumentum et le format AIF</a></li>
-<li><a href="/Actus/details/la-descente-guidee-dans-l-arbre-le-plugin-argumentum-du-projet-epita" target="_blank" rel="noopener">La descente guidée dans l’arbre : le plugin Argumentum du projet Epita</a></li>
-<li><a href="/Actus/details/des-carnets-de-cours-lisent-le-jeu-argumentum-dans-coursia" target="_blank" rel="noopener">Des carnets de cours lisent le jeu : Argumentum dans CoursIA</a></li>
-<li><a href="/Actus/details/sophismes-x-scenarios-le-jeu-comme-jeu-de-donnees" target="_blank" rel="noopener">Sophismes × scénarios : le jeu comme jeu de données</a></li>
-<li><a href="/Actus/details/la-dette-d-irreversibilite-du-discours-une-prediction-posee-sur-le-corpus-d-argumentum" target="_blank" rel="noopener">La dette d’irréversibilité du discours : une prédiction posée sur le corpus d’Argumentum</a></li>
+<li><a href="/zh/Actus/details/chaque-sophisme-a-sa-place-l-ontologie-d-argumentum-et-le-format-aif" target="_blank" rel="noopener">每个谬误各归其位：Argumentum 的本体论与 AIF 格式</a></li>
+<li><a href="/zh/Actus/details/la-descente-guidee-dans-l-arbre-le-plugin-argumentum-du-projet-epita" target="_blank" rel="noopener">树中引导式下行：Epita 项目的 Argumentum 插件</a></li>
+<li><a href="/zh/Actus/details/des-carnets-de-cours-lisent-le-jeu-argumentum-dans-coursia" target="_blank" rel="noopener">课程笔记本解读游戏：CoursIA 中的 Argumentum</a></li>
+<li><a href="/zh/Actus/details/sophismes-x-scenarios-le-jeu-comme-jeu-de-donnees" target="_blank" rel="noopener">谬论×情景：游戏即数据集</a></li>
+<li><a href="/zh/Actus/details/la-dette-d-irreversibilite-du-discours-une-prediction-posee-sur-le-corpus-d-argumentum" target="_blank" rel="noopener">话语的不可逆性债务：一项押在Argumentum语料库上的预测</a></li>
 </ul>
 ```
 

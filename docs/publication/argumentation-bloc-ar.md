@@ -9,8 +9,7 @@
 يُضاف إلى الحقل `Text` (AR) للكيان «الحِجاج» (التطبيق 33، `8A8636A4`)، مباشرة
 بعد وسم `</ul>` الختامي للقسم الموجود. تُحفظ القيمة الحالية بايتاً بايتاً.
 يرتبط رابط الخريطة الذهنية للفضائل بلغة الصفحة. يبقى رابط OWL للفضائل مستبعداً
-إلى أن يُتحقق من #133 علناً. تبقى عناوين الأخبار الخمسة وروابطها بالفرنسية،
-وهي اللغة التي نُشرت بها.
+إلى أن يُتحقق من #133 علناً.
 
 ## القيمة الدقيقة التي تُضاف
 
@@ -24,11 +23,11 @@
 <h3>فيما يُستخدم</h3>
 <p>يشكل التصنيف أساس المواد التعليمية للعبة: فالبطاقات والسيناريوهات والمذكرات مشتقة منه مباشرة. وخارج اللعبة، يعمل إطاراً مرجعياً لإعادة قراءة خطاب، أو بناء درس، أو دعم تحليل الحجج. وقد استُخدم بالفعل في عدة مجالات:</p>
 <ul>
-<li><a href="/Actus/details/chaque-sophisme-a-sa-place-l-ontologie-d-argumentum-et-le-format-aif" target="_blank" rel="noopener">Chaque sophisme à sa place : l’ontologie d’Argumentum et le format AIF</a></li>
-<li><a href="/Actus/details/la-descente-guidee-dans-l-arbre-le-plugin-argumentum-du-projet-epita" target="_blank" rel="noopener">La descente guidée dans l’arbre : le plugin Argumentum du projet Epita</a></li>
-<li><a href="/Actus/details/des-carnets-de-cours-lisent-le-jeu-argumentum-dans-coursia" target="_blank" rel="noopener">Des carnets de cours lisent le jeu : Argumentum dans CoursIA</a></li>
-<li><a href="/Actus/details/sophismes-x-scenarios-le-jeu-comme-jeu-de-donnees" target="_blank" rel="noopener">Sophismes × scénarios : le jeu comme jeu de données</a></li>
-<li><a href="/Actus/details/la-dette-d-irreversibilite-du-discours-une-prediction-posee-sur-le-corpus-d-argumentum" target="_blank" rel="noopener">La dette d’irréversibilité du discours : une prédiction posée sur le corpus d’Argumentum</a></li>
+<li><a href="/ar/Actus/details/chaque-sophisme-a-sa-place-l-ontologie-d-argumentum-et-le-format-aif" target="_blank" rel="noopener">لكل مغالطة مكانها: أنطولوجيا Argumentum وصيغة AIF</a></li>
+<li><a href="/ar/Actus/details/la-descente-guidee-dans-l-arbre-le-plugin-argumentum-du-projet-epita" target="_blank" rel="noopener">النزول الموجّه في الشجرة: إضافة Argumentum من مشروع Epita</a></li>
+<li><a href="/ar/Actus/details/des-carnets-de-cours-lisent-le-jeu-argumentum-dans-coursia" target="_blank" rel="noopener">دفاتر دراسية تقرأ اللعبة: Argumentum في CoursIA</a></li>
+<li><a href="/ar/Actus/details/sophismes-x-scenarios-le-jeu-comme-jeu-de-donnees" target="_blank" rel="noopener">السفسطات × السيناريوهات: اللعبة كمجموعة بيانات</a></li>
+<li><a href="/ar/Actus/details/la-dette-d-irreversibilite-du-discours-une-prediction-posee-sur-le-corpus-d-argumentum" target="_blank" rel="noopener">دين اللارجعية في الخطاب: تنبؤ مطروح على مدونة Argumentum</a></li>
 </ul>
 ```
 
