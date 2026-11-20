@@ -63,6 +63,14 @@ NEWS_2182_GUIDS = [
     "2E10F534-92EC-41FD-A9BE-767FD992DB78",
 ]
 
+# Bloc #2181 -- entite 11915, champ Text, dimension de base. Le texte de base fait 4421
+# caracteres sur la PREPROD (mesure 20/11) et 6709 sur le STAGING (copie prod, mesure web2
+# 20/11) : la base prod est en AVANCE sur la preprod pour ce bloc. Les 7 traductions du
+# registre derivent donc d'un texte plus court que celui qui sera servi -> ecrites
+# uniquement sur arbitrage explicite (--include-preserved-2181).
+PRESERVED_2181_GUID = "8A8636A4-069A-4692-A139-4773B161931B"
+PRESERVED_2181_FIELD = "Text"
+
 
 def q(s: str) -> str:
     """Litteral SQL nvarchar, apostrophes doublees."""
@@ -162,12 +170,24 @@ ORDER BY entity_guid, field, dimension_id;
 
 
 def preservation_probe(conn) -> dict:
-    """Capture l'etat du contenu preserve (AVANT et APRES doivent etre identiques)."""
+    """Capture l'etat du contenu preserve (AVANT et APRES doivent etre identiques).
+
+    Resolution par GUID + champ + dimension de base, JAMAIS par ValueId : les ValueId ne
+    survivent pas a une copie de base, et 27942 sur la preprod peut designer autre chose
+    sur le staging. Le ValueId REELLEMENT trouve est rapporte, mais n'est pas l'identite.
+    """
     out = {}
     r1 = EXP.run_query(conn,
-        "SET NOCOUNT ON; SELECT ValueId AS vid, LEN(CAST(Value AS nvarchar(max))) AS len "
-        "FROM TsDynDataValue WHERE ValueId = 27942;")
-    out["block_2181_valueid_27942"] = [
+        "SET NOCOUNT ON; SELECT v.ValueId AS vid, "
+        "LEN(CAST(v.Value AS nvarchar(max))) AS len "
+        "FROM TsDynDataValue v "
+        "JOIN TsDynDataEntity e ON e.EntityId = v.EntityId "
+        "JOIN TsDynDataAttribute a ON a.AttributeId = v.AttributeId "
+        "LEFT JOIN TsDynDataValueDimension vd ON vd.ValueId = v.ValueId "
+        f"WHERE CONVERT(nvarchar(64), e.EntityGuid) = '{PRESERVED_2181_GUID}' "
+        f"  AND a.StaticName = '{PRESERVED_2181_FIELD}' "
+        "  AND vd.ValueId IS NULL;")
+    out["block_2181"] = [
         {"value_id": int(x["vid"]), "len": int(x["len"])} for x in r1]
     in_guids = ", ".join("'" + g + "'" for g in NEWS_2182_GUIDS)
     r2 = EXP.run_query(conn,
@@ -179,12 +199,17 @@ def preservation_probe(conn) -> dict:
     return out
 
 
-def compute_actions(plan, target):
+def compute_actions(plan, target, allow_preserved=False):
     existing = target["existing"]
     lang_dim_by_app = target["lang_dim_by_app"]
     actions = []
     for p in plan:
         g, field, lang = p["entity_guid"], p["field"], p["lang"]
+        if g == PRESERVED_2181_GUID and field == PRESERVED_2181_FIELD and not allow_preserved:
+            # Les traductions derivent du texte preprod (4421c) ; la base servie en porte un
+            # plus long (6709c). Ecrire ici accouplerait un FR long a des traductions courtes.
+            actions.append({**p, "op": "SKIP_PRESERVED_2181"})
+            continue
         dim = lang_dim_by_app[p["app_id"]][lang]
         base = existing.get((g, field, 0))
         if base is None:
@@ -210,13 +235,16 @@ def main(argv=None) -> int:
     ap.add_argument("--backup-dir", default=None, help="requis en --apply, hors depot")
     ap.add_argument("--registry", default=None,
                     help="chemin du registre CSV (defaut: docs/dnn-localization/eav-content.csv du depot)")
+    ap.add_argument("--include-preserved-2181", action="store_true",
+                    help="ecrit AUSSI les traductions du bloc #2181 (par defaut: ecartees ; "
+                         "arbitrage requis, le texte servi est plus long que celui du registre)")
     args = ap.parse_args(argv)
 
     reg = read_registry(args.registry)
     CURRENT_PLAN = build_plan(reg)
     conn = EXP.read_connection_string(pathlib.Path(args.config))
     target = fetch_target(conn)
-    actions = compute_actions(CURRENT_PLAN, target)
+    actions = compute_actions(CURRENT_PLAN, target, allow_preserved=args.include_preserved_2181)
 
     counts = {}
     for a in actions:
@@ -227,8 +255,11 @@ def main(argv=None) -> int:
         print(f"  {op}: {counts[op]}")
 
     pres_before = preservation_probe(conn)
-    print(f"preservation AVANT: #2181 ValueId27942={pres_before['block_2181_valueid_27942']}, "
+    print(f"preservation AVANT: #2181 {pres_before['block_2181']}, "
           f"#2182 entites={len(pres_before['news_2182'])}/7")
+    if counts.get("SKIP_PRESERVED_2181"):
+        print(f"  NOTE: {counts['SKIP_PRESERVED_2181']} traduction(s) du bloc #2181 ecartee(s) "
+              f"(texte servi plus long que celui du registre) — --include-preserved-2181 pour forcer")
 
     conflicts = [a for a in actions if a["op"] == "CONFLICT"]
     missing = [a for a in actions if a["op"] == "MISSING_ENTITY_OR_FIELD"]
@@ -362,11 +393,11 @@ WHERE e.EntityGuid=@g AND c.Name=@ct AND a.StaticName=@f AND vd.DimensionId=@d A
         if ($c -lt 1) { $bad++; Write-Host "RELECTURE ECHEC: $($w.entity_guid) $($w.field) dim$($w.dim)" }
     }
     if ($bad -gt 0) { throw "relecture in-tx: $bad valeur(s) non conformes - ROLLBACK" }
-    # Preservation #2181 : ValueId 27942 present, longueur inchangee.
+    # Preservation #2181 : la valeur de base du bloc, longueur inchangee.
     $cmd.Parameters.Clear()
-    $cmd.CommandText = "SELECT LEN(CAST([Value] AS nvarchar(max))) FROM TsDynDataValue WHERE ValueId=27942"
+    $cmd.CommandText = "SELECT LEN(CAST([Value] AS nvarchar(max))) FROM TsDynDataValue WHERE ValueId=$($env:REINJECT_2181_VID)"
     $len2181 = $cmd.ExecuteScalar()
-    if ($null -eq $len2181 -or [int]$len2181 -ne [int]$env:REINJECT_2181_LEN) { throw "preservation #2181: ValueId27942 len=$len2181 attendu $env:REINJECT_2181_LEN - ROLLBACK" }
+    if ($null -eq $len2181 -or [int]$len2181 -ne [int]$env:REINJECT_2181_LEN) { throw "preservation #2181: ValueId $($env:REINJECT_2181_VID) len=$len2181 attendu $env:REINJECT_2181_LEN - ROLLBACK" }
     # Preservation #2182 : les 7 entites News toujours presentes.
     $cmd.Parameters.Clear()
     $cmd.CommandText = "SELECT COUNT(*) FROM TsDynDataEntity WHERE EntityGuid IN ($env:REINJECT_2182_GUIDS)"
@@ -387,8 +418,13 @@ catch {
     env = os.environ.copy()
     env["REINJECT_CS"] = conn
     env["REINJECT_PAYLOAD"] = str(payload_file)
-    len2181 = pres_before["block_2181_valueid_27942"][0]["len"] if pres_before["block_2181_valueid_27942"] else -1
+    len2181 = pres_before["block_2181"][0]["len"] if pres_before["block_2181"] else -1
+    vid2181 = pres_before["block_2181"][0]["value_id"] if pres_before["block_2181"] else -1
+    if vid2181 < 0:
+        print("REFUS d'appliquer: bloc #2181 introuvable sur la cible (entite/champ/dim-0).")
+        return 1
     env["REINJECT_2181_LEN"] = str(len2181)
+    env["REINJECT_2181_VID"] = str(vid2181)
     env["REINJECT_2182_GUIDS"] = ", ".join("'" + g + "'" for g in NEWS_2182_GUIDS)
     proc = subprocess.run(["powershell", "-NoProfile", "-NonInteractive", "-Command", ps],
                           capture_output=True, text=True, encoding="utf-8", errors="replace", env=env)
@@ -399,7 +435,7 @@ catch {
         return 1
 
     pres_after = preservation_probe(conn)
-    same = (pres_after["block_2181_valueid_27942"] == pres_before["block_2181_valueid_27942"]
+    same = (pres_after["block_2181"] == pres_before["block_2181"]
             and pres_after["news_2182"] == pres_before["news_2182"])
     (backup_dir / f"reinject-result-{stamp}.json").write_text(
         json.dumps({"preservation_after": pres_after, "preservation_intact": same}, ensure_ascii=False, indent=1),
