@@ -208,14 +208,31 @@ WHERE e.TransDeletedId IS NULL AND vd.ValueId IS NULL
         if not scored:
             raise SystemExit(f"REFUS: app {a} du registre introuvable sur la cible (aucun GUID reconnu)")
         win = scored[0]
-        tie = (len(scored) > 1 and scored[1]["matched"] == win["matched"]
-               and scored[1]["overlap_guids"] == win["overlap_guids"])
-        if tie:
-            raise SystemExit(f"REFUS: app {a} ambigue sur la cible: {scored}")
+        # G2 (revue ai-01 c.7053569313) : un vainqueur sans marge = un choix au hasard.
+        # - matched == 0 : le contenu n'a rien departage (candidat sans fr reconnu, ou
+        #   app du registre sans cellule fr) — la carte ne dit rien, on refuse.
+        # - 2e candidat a matched == vainqueur : plus de marge. L'overlap de GUIDs ne
+        #   departage plus rien (deux copies du meme gabarit sevent les memes GUIDs) :
+        #   on refuse au lieu de trancher par un tie-break silencieux.
+        if win["matched"] == 0:
+            raise SystemExit(f"REFUS (G2): app {a} — aucun contenu fr reconnu chez le "
+                             f"candidat vainqueur: {scored}")
+        if len(scored) > 1 and scored[1]["matched"] >= win["matched"]:
+            raise SystemExit(f"REFUS (G2): app {a} — vainqueur sans marge "
+                             f"({win['matched']} contre {scored[1]['matched']}): {scored}")
         amap[a] = win["app"]
         evidence.append({"registry_app": a, "target_app": win["app"],
                          "matched": f"{win['matched']}/{win['cells_fr']}",
                          "candidats": scored})
+    # G3 (revue ai-01 c.7053569313) : carte non injective — deux apps du registre
+    # vers la meme app cible. Les cles (app, guid) du plan se confondraient et les
+    # memes entites seraient ecrites sous deux identites : carte cassee, pas un mapping.
+    seen_target = {}
+    for a_src, a_tgt in sorted(amap.items()):
+        if a_tgt in seen_target:
+            raise SystemExit(f"REFUS (G3): carte non injective — apps {seen_target[a_tgt]} "
+                             f"et {a_src} du registre toutes deux mappees vers l'app cible {a_tgt}")
+        seen_target[a_tgt] = a_src
     return {"map": amap, "evidence": evidence}
 
 
@@ -256,6 +273,24 @@ def fetch_target(conn, app_map) -> dict:
     guids = sorted({p["entity_guid"] for p in CURRENT_PLAN}
                    | {p["entity_guid"] for p in CURRENT_FR_PLAN})
     in_guids = ", ".join("'" + g + "'" for g in guids)
+    # G1 (revue ai-01 c.7053569313) : une paire (app cible, GUID) qui designe plus
+    # d'une entite vivante. M1 a mesure le cas (1 GUID sur 65 porte deux entites dans
+    # la MEME app) : les valeurs des deux entites se melangeraient sous une meme cle
+    # et le writer prendrait la premiere ligne. Requete dediee sur TsDynDataEntity —
+    # sans jointure sur les valeurs, une entite sans valeur compte aussi.
+    dup = EXP.run_query(conn, f"""
+SET NOCOUNT ON;
+SELECT e.AppId AS app, CONVERT(nvarchar(64), e.EntityGuid) AS g,
+       COUNT(DISTINCT e.EntityId) AS n
+FROM TsDynDataEntity e
+WHERE e.TransDeletedId IS NULL AND e.AppId IN ({in_apps})
+  AND CONVERT(nvarchar(64), e.EntityGuid) IN ({in_guids})
+GROUP BY e.AppId, CONVERT(nvarchar(64), e.EntityGuid)
+HAVING COUNT(DISTINCT e.EntityId) > 1;
+""")
+    if dup:
+        detail = "; ".join(f"app {d['app']} {str(d['g']).upper()} ({d['n']} entites)" for d in dup)
+        raise SystemExit(f"REFUS (G1): paire(s) (app, guid) multi-entites sur la cible: {detail}")
     sql = f"""
 SET NOCOUNT ON;
 SELECT e.AppId AS app,
@@ -620,7 +655,9 @@ WHERE e.EntityGuid = @g AND e.AppId = @app AND c.Name = @ct AND a.StaticName = @
         [void]$cmd.Parameters.Add("@f", [System.Data.SqlDbType]::NVarChar, 256); $cmd.Parameters["@f"].Value = $field
         $r = $cmd.ExecuteReader()
         if (-not $r.Read()) { $r.Close(); throw "entite/attribut introuvable: $guid (app $app) $ct.$field" }
-        $eid = $r.GetInt32(0); $aid = $r.GetInt32(1); $r.Close()
+        $eid = $r.GetInt32(0); $aid = $r.GetInt32(1)
+        if ($r.Read()) { $r.Close(); throw "G1 in-tx: plusieurs entites pour $guid (app $app) $ct.$field — base modifiee depuis le dry-run" }
+        $r.Close()
 
         $dim = [int]$w.dim
         if ($w.op -eq "INSERT") {
@@ -671,7 +708,9 @@ WHERE e.EntityGuid = @g AND e.AppId = @app AND c.Name = @ct AND a.StaticName = @
         [void]$cmd.Parameters.Add("@f", [System.Data.SqlDbType]::NVarChar, 256); $cmd.Parameters["@f"].Value = $field
         $r = $cmd.ExecuteReader()
         if (-not $r.Read()) { $r.Close(); throw "FR: entite/attribut introuvable: $guid (app $app) $ct.$field" }
-        $eid = $r.GetInt32(0); $aid = $r.GetInt32(1); $r.Close()
+        $eid = $r.GetInt32(0); $aid = $r.GetInt32(1)
+        if ($r.Read()) { $r.Close(); throw "FR G1 in-tx: plusieurs entites pour $guid (app $app) $ct.$field — base modifiee depuis le dry-run" }
+        $r.Close()
 
         # Epingle la rangee SERVIE : 2sxc est append-only, une (entite, attribut) peut
         # porter plusieurs rangees dim-0 (orphelines + servie = ValueId MAX, mesure
