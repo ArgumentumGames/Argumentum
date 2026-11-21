@@ -75,14 +75,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  
-  <ItemGroup>
-    <Compile Update="DatasetUpdater\Resource1.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resource1.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="DatasetUpdater\Resource1.resx">
