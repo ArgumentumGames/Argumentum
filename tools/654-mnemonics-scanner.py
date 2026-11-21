@@ -54,11 +54,13 @@ MNEMONICS = ["Barbara", "Celarent", "Darii", "Ferio", "Cesare", "Camestres",
              "Bamalip"]
 LOWER = [m.lower() for m in MNEMONICS]
 
-# etalonnage : le chiffrage de reference du 2026-09-20, re-mesure sur master 6694d702
-EXPECT_TITLE = {("title", "ru"): 14, ("title", "ar"): 16, ("title", "fa"): 16,
-                ("title", "zh"): 6}
-EXPECT_REMARK = {("remark", "ru"): 4, ("remark", "ar"): 4, ("remark", "fa"): 4,
-                 ("remark", "zh"): 2}
+# etalonnage : reference = l'etat APRES chantier (fix #654, 20/11/2026) : 0 partout.
+# avant le chantier, le chiffrage du 2026-09-20 (master 6694d702) mesurait
+# title ru 14 / ar 16 / fa 16 / zh 6 et remark ru 4 / ar 4 / fa 4 / zh 2 = 66 cellules.
+EXPECT_TITLE = {("title", "ru"): 0, ("title", "ar"): 0, ("title", "fa"): 0,
+                ("title", "zh"): 0}
+EXPECT_REMARK = {("remark", "ru"): 0, ("remark", "ar"): 0, ("remark", "fa"): 0,
+                 ("remark", "zh"): 0}
 
 CJK = re.compile(r"[一-鿿]")
 SPLIT = re.compile(r"[^\w؀-ۿ一-鿿Ѐ-ӿ‌]+")
@@ -203,7 +205,7 @@ def main():
             got = counts.get(key, 0)
             if got != exp:
                 gaps.append(f"{key[0]}_{key[1]} attendu {exp} -> {got}")
-        print(f"\n  ETALONNAGE (chiffrage de reference 2026-09-20) : "
+        print(f"\n  ETALONNAGE (reference = etat post-chantier #654, 20/11/2026) : "
               + ("conforme" if not gaps else "ECART — " + " ; ".join(gaps)))
         if gaps:
             print("  ⚠️ L'instrument ne reproduit plus la reference : "
