@@ -189,26 +189,38 @@ C1, ré-injection EAV, packs de langue, article et liens #135, fichiers E12, wra
     - **La boucle refus → zone → nouveau dry-run** (P23-26) : sur une base où les dimensions
       n'existent pas encore, le premier dry-run du paquet v4 termine en refus — message exact,
       **sans** préfixe « REFUS » : `dimension <lang> absente de la zone <zone> (app <app>)`, avec
-      `<lang>` en **forme courte** (`en`, `ru`, `pt`, `es`, `ar`, `fa`, `zh` — fr est la base
-      dim-0, elle n'a pas de dimension à créer). ⚠️ Ce refus est levé dans `fetch_target`,
-      **avant** l'impression de la carte d'apps : la zone se lit **dans le message**, pas dans
-      la carte. Chaque itération : créer les dimensions de la zone nommée (recette ci-dessus —
-      une transaction, inverse, avant/après, recycle) puis relancer le dry-run. Trois issues,
-      et elles seules :
+      `<lang>` en **forme courte** (`en`, `ru`, `pt`, `es`, `ar`, `fa`, `zh` — l'outil ne nomme
+      jamais fr : fr = dim-0, absent de `LANGS` ; **mais la zone doit porter les 8 cultures,
+      fr-FR comprise** — préprod zone 3 id 6 : la recette insère celles qui manquent). ⚠️ Ce
+      refus est levé dans `fetch_target`, **avant** l'impression de la carte d'apps : la zone se
+      lit **dans le message**, pas dans la carte. ⚠️ Le message ne nomme que la **première**
+      langue manquante, dans l'ordre en, ru, pt, es, ar, fa, zh — **chaque tour insère toutes
+      les cultures de la recette absentes de la zone nommée** (mesurées par le SELECT avant),
+      jamais la seule langue du message : sinon le tour suivant nomme la langue suivante et
+      retombe sur l'issue 3, un STOP sans défaut réel. Chaque itération : créer les dimensions
+      de la zone nommée (recette ci-dessus — une transaction, inverse, avant/après, recycle)
+      puis relancer le dry-run. Trois issues, et elles seules :
       1. **Le dry-run passe** (plus aucun refus de dimension) — la boucle est close : la carte
          d'apps imprimée confirme la zone de chaque app cible, l'étape 10 peut suivre.
-      2. **Le refus nomme une autre zone** — reprendre l'itération pour elle, même recette. Le
-         nombre de zones est fini et petit (en préprod, toutes les apps cibles vivent en zone 3 ;
-         la zone 2, défaut DNN, n'en porte aucune) : la boucle converge en peu de tours.
-      3. **Le refus nomme une zone déjà traitée** — **STOP** : la culture y a été insérée au
-         tour précédent et le refus persiste (INSERT non pris, `ExternalKey` erroné, ou zone
-         mal lue). Ré-insérer créerait un **doublon de dimension** — deux `en-US` dans la même
-         zone, précisément ce que la garde « jamais le premier `en-US` venu » interdit.
-         Diagnostiquer en lecture seule, sortie complète au dashboard.
-      ⛔ **Tout refus préfixé `REFUS (G1)` / `REFUS (G2)` / `REFUS (G3)`** = **STOP immédiat**,
-      hors boucle : ce sont les gardes d'entités (paire (app, guid) multi-entités · vainqueur de
-      carte sans marge · carte non injective), elles ne se résolvent pas par des INSERT de
-      dimensions. Sortie complète au dashboard.
+      2. **Le refus nomme une autre zone** — reprendre l'itération pour elle, même recette
+         (toutes ses cultures absentes, donc). Le nombre de zones est fini et petit (en préprod,
+         toutes les apps cibles vivent en zone 3 ; la zone 2, défaut DNN, n'en porte aucune) :
+         la boucle converge en peu de tours.
+      3. **Le refus nomme une zone déjà traitée** — **STOP** : les cultures y ont été insérées
+         au tour précédent et le refus persiste. Ré-insérer créerait un **doublon de
+         dimension** — deux `en-US` dans la même zone, précisément ce que la garde « jamais le
+         premier `en-US` venu » interdit. Première hypothèse à lire : la **casse**
+         d'`ExternalKey` — l'outil compare par égalité **exacte** (`en-US`, `pt-BR`) quand le
+         SELECT de l'opérateur suit la collation de la colonne, peut-être insensible à la casse
+         (supposé, non mesuré) : une culture stockée `en-us` serait vue par le SELECT et
+         refusée par l'outil. Puis : INSERT non pris, ou zone mal lue. Diagnostiquer en lecture
+         seule, sortie complète au dashboard.
+      ⛔ **Tout autre refus = STOP immédiat**, hors boucle : `REFUS (G1)` / `REFUS (G2)` /
+      `REFUS (G3)` — gardes d'entités (paire (app, guid) multi-entités · vainqueur de carte
+      sans marge · carte non injective) ; `REFUS: app <a> du registre introuvable sur la cible
+      (aucun GUID reconnu)` — émis par `build_app_map`, qui tourne **avant** `fetch_target` ;
+      ou **tout message hors du gabarit `dimension … absente de la zone …`**. Aucun ne se
+      résout par des INSERT de dimensions. Sortie complète au dashboard.
 12. **#135** : article News + liens de téléchargement (→ assets de la release finale, `Print.Play` =
     nom réécrit par GitHub — `--clobber` cible le nom **publié**), méta/sitemap/og:image.
     ⛔ **Aucun `--clobber` sur les assets de `v2.1.0-review`** : les relecteurs la lisent. La release
@@ -438,10 +450,13 @@ complètes, `PortalAlias` du portail 1, fallbacks de langues, `DefaultPortalAlia
 3. **Étape 11 bis (P23-26) — la boucle refus → zone → nouveau dry-run écrite dans l'étape** :
    le refus attendu du premier dry-run cite la zone **dans son message** (`dimension <lang>
    absente de la zone <zone> (app <app>)`, sans préfixe — l'outil refuse avant d'imprimer la
-   carte d'apps) ; chaque tour crée les dimensions de la zone nommée puis relance. Conditions
-   d'arrêt : dry-run qui passe (la carte imprimée confirme les zones) · refus nommant une zone
-   **déjà traitée** = stop (ré-insérer créerait un doublon de dimension) · tout refus
-   `REFUS (G1)/(G2)/(G3)` = stop (gardes d'entités, hors boucle).
+   carte d'apps). Le message ne nomme que la **première** langue manquante : chaque tour insère
+   **toutes** les cultures de la recette absentes de la zone nommée — **8 au total, fr-FR
+   comprise** (l'outil ne nomme jamais fr, absent de `LANGS`). Conditions d'arrêt : dry-run qui
+   passe (la carte imprimée confirme les zones) · refus nommant une zone **déjà traitée** = stop
+   (ré-insérer créerait un doublon de dimension ; première hypothèse = la casse d'`ExternalKey`,
+   l'outil comparant par égalité exacte) · **tout autre refus** (`REFUS (G1)/(G2)/(G3)`,
+   `REFUS: app … introuvable sur la cible`, message hors gabarit) = stop, hors boucle.
 4. **Résidu #1091 retiré du partage des lanes (§1)** : la ligne attribuait encore à l'owner la
    « valeur du mot de passe #1091 le jour même », en contradiction avec le retrait de l'étape 7
    (§7, décision ai-01 du 14/11) — l'owner ne garde que la **fenêtre de bascule**. Aucune autre
