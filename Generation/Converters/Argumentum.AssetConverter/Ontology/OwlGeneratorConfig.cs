@@ -74,6 +74,16 @@ namespace Argumentum.AssetConverter.Ontology
 				.Camelize().Replace("'","").Replace("-","").Replace(",","").Replace(" ","");
 	    }
 
+	    /// <summary>#133 (P24-34) — concept IRIs resolve through the pk-keyed OwlIriRegistry, never
+	    /// from the English label: since #1795 renamed two served titles after the artefact was
+	    /// committed, GetId here would relocate served IRIs. Refuses loudly on an unknown pk (a new
+	    /// corpus row extends the registry in the same reviewed diff). GetId stays the derivation
+	    /// authority and feeds the refusal message.</summary>
+	    internal static string ResolveFallacyIriFragment(Fallacy fallacy)
+	    {
+		    return OwlIriRegistry.ResolvePinnedFragment("Fallacies", OwlIriRegistry.Fallacies, fallacy.PK, GetId(fallacy.TextEn));
+	    }
+
 	    public string OntologyNamespace { get; set; } = "";
 
 	    public string ExternalReferenceOntologyNamespaceURI { get; set; } = "";
@@ -165,7 +175,7 @@ namespace Argumentum.AssetConverter.Ontology
 	        ontology.DeclareObjectProperty(hasConflictResource);
 
 	        // Scheme declaration
-	        var schemeName = GetId(fallacies.First().TextEn);
+	        var schemeName = ResolveFallacyIriFragment(fallacies.First());
 	        RDFResource mainScheme = new RDFResource($"{OntologyNamespace}{schemeName}Scheme" );
 	        ontology.DeclareConceptScheme(mainScheme);
 
@@ -245,7 +255,7 @@ namespace Argumentum.AssetConverter.Ontology
 
 	                    if (mappedConcepts.Count>1)
 	                    {
-	                        var fallacyId = GetId(fallacy.TextEn);
+	                        var fallacyId = ResolveFallacyIriFragment(fallacy);
 	                        var fallacyConflictUri = $"{OntologyNamespace}{fallacyId}_Conflict";
 
 	                        RDFResource conflictUnionClass = new RDFResource(fallacyConflictUri);
@@ -371,10 +381,13 @@ namespace Argumentum.AssetConverter.Ontology
 	        await ontology.ToFileAsync(OWLEnums.OWLFormats.OWL2XML, fileName);
 	        Logger.LogSuccess($"Owl document {fileName} successfully saved");
 	    }
-	    private RDFResource GetFallacyConcept(Fallacy targetFallacy,
+	    /// <summary>internal for OwlIriPinningContractTests (P24-34): the tests pin the concept IRI
+	    /// through this PRODUCTION mint channel — the exact method CreateOwlDocument calls per
+	    /// concept — never a test-side replica (#2332 review lesson).</summary>
+	    internal RDFResource GetFallacyConcept(Fallacy targetFallacy,
 	     OwlAdapter ontology, RDFResource mainScheme)
 	    {
-	        var fallacyId = GetId(targetFallacy.TextEn);
+	        var fallacyId = ResolveFallacyIriFragment(targetFallacy);
 	        var fallacyUri = $"{OntologyNamespace}{fallacyId}";
 
 	        RDFResource fallacyResource = new RDFResource(fallacyUri);

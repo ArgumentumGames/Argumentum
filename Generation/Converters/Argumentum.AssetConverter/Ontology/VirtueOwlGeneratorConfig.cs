@@ -83,6 +83,14 @@ namespace Argumentum.AssetConverter.Ontology
 				.Camelize().Replace("'","").Replace("-","").Replace(",","").Replace(" ","");
 	    }
 
+	    /// <summary>#133 (P24-34) — mirrors OwlDocumentConfig.ResolveFallacyIriFragment: virtue IRIs
+	    /// resolve through the pk-keyed OwlIriRegistry (see its header for the freeze rationale and
+	    /// the measured #1795 renames), never from the English label.</summary>
+	    internal static string ResolveVirtueIriFragment(Virtue virtue)
+	    {
+		    return OwlIriRegistry.ResolvePinnedFragment("Virtues", OwlIriRegistry.Virtues, virtue.Pk, GetId(virtue.TitleEn));
+	    }
+
 	    public string OntologyNamespace { get; set; } = "";
 
 	    public string ExternalReferenceOntologyNamespaceURI { get; set; } = "";
@@ -199,7 +207,7 @@ namespace Argumentum.AssetConverter.Ontology
 	        }
 
 	        // Scheme declaration
-	        var schemeName = GetId(virtues.First().TitleEn);
+	        var schemeName = ResolveVirtueIriFragment(virtues.First());
 	        RDFResource mainScheme = new RDFResource($"{OntologyNamespace}{schemeName}Scheme");
 	        ontology.DeclareConceptScheme(mainScheme);
 
@@ -337,10 +345,13 @@ namespace Argumentum.AssetConverter.Ontology
 	        "(pk to AIF_attackType), deliberately deferred with the generator's Phase 3 cross-corpus " +
 	        "architecture; until then the marker verifies the script's signature, not its rule (#989).";
 
-	    private RDFResource GetVirtueConcept(Virtue targetVirtue,
+	    /// <summary>internal for OwlIriPinningContractTests (P24-34): the tests pin the concept IRI
+	    /// through this PRODUCTION mint channel — the exact method CreateVirtueOwlDocument calls
+	    /// per concept — never a test-side replica (#2332 review lesson).</summary>
+	    internal RDFResource GetVirtueConcept(Virtue targetVirtue,
 	     OwlAdapter ontology, RDFResource mainScheme)
 	    {
-	        var virtueId = GetId(targetVirtue.TitleEn);
+	        var virtueId = ResolveVirtueIriFragment(targetVirtue);
 	        var virtueUri = $"{OntologyNamespace}{virtueId}";
 
 	        RDFResource virtueResource = new RDFResource(virtueUri);
