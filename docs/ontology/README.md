@@ -128,7 +128,7 @@ dotnet run --project Generation/Converters/Argumentum.AssetConverter/Argumentum.
 - **Bilingual only** (FR + EN) — see §1 scope note.
 - **Layer C not covered** — ~1263 fallacy leaves without a skos signature are not AIF-typed (generative pass deferred). See the P1 closure report.
 - **OWLSharp round-trip bug** (#133): the `rdf:type` / `skos:inScheme` assertions are dropped by the OWL/XML round-trip. Readers are scoped on the surviving annotations (`prefLabel`, `broader`, the 3 relational layers). This does not affect the generated artefact.
-- **`versionInfo` = 1.0.0** — bump to the release tag at publication time (**v2.0.0**, ex-v0.9.0 — re-scoped 2026-08-06, #999).
+- **`versionInfo` = 1.0.0** — bump to the release tag at publication time (**v2.0.0**, ex-v0.9.0 — re-scoped 2026-08-06, #999). The bump is a **config diff** (recipe in §6.1), pinned by `OwlVersionInfoContractTests` — nothing else may move this value.
 
 ---
 
@@ -186,6 +186,40 @@ discriminates a served artefact from an error page.
   accept the move) remain open on #133; the owner has exercised the third once, for PK 511 (§3.1 of the
   dossier above).
 
+### 6.1 Version bump and `v{semver}/` snapshot recipe (P24-05, 2026-11-21)
+
+**Doctrine** (issue #133, 2026-10) : the canonical URL always serves the **latest** generation; the
+version lives **in the file** via `owl:versionInfo`; snapshot copies under `v{semver}/` are made at
+**release tags only**. Nothing freezes between updates.
+
+**The bump is a config diff, not a code edit.** The version is a property of the two document configs —
+`OwlGeneratorConfig.cs` and `VirtueOwlGeneratorConfig.cs`, `Version = new Version(1,0,0)` (the C#
+initializers **are** the configuration, `SkipConfigFile = true`). At the tag:
+
+1. Bump `Version` in **both** initializers (e.g. `new Version(2,0,0)` for #134) — one reviewed commit;
+2. Regenerate: `--generate-owl` (§4) and commit both artefacts — the emitted `owl:versionInfo` follows
+   the config (pinned by `OwlVersionInfoContractTests`: defaults at 1.0.0 until this diff, emission
+   carries the configured value, literal survives the OWL2XML reload, **no Argumentum-namespace IRI
+   moves** — A/B control);
+3. Copy each artefact to `v{semver}/argumentum[_virtues].owl` (the versioned snapshot — a new tracked
+   directory per tag; its line in the §8 index-of-record comes with the copy). The canonical path is
+   left untouched: latest stays latest.
+
+**Why the snapshot recipe gates the Virtues regen** (décision #133 du 17/11) : regenerating
+`argumentum_virtues.owl` renames **2 already-served IRIs** (`acceptableInformalLogic`→`solidInformalLogic`,
+`takingTheOpponentsIdeas…`→`takingTheParties…` — cause measured in
+[`133-owl-virtues-peremption-mesuree-2026-10-09.md`](133-owl-virtues-peremption-mesuree-2026-10-09.md)).
+The freeze holds **until this recipe is in place**: publishing under a new version path makes the
+renaming inoffensive. The regen rides the bump commit of step 1-2.
+
+**Structural remedy inscribed** (17/11, root cause of the same measure): the IRI is minted from the
+English label (`GetId(TextEn)`), so **any** label rename relocates a served IRI — the « stable
+endpoint » asks a naming policy the label cannot provide (§6 « Publishing pins a surface that already
+moves »). Remedy to implement before the Virtues regen carries its 2 renames: **pin the existing
+IRIs** — decouple minting from the label so a rename never breaks a served IRI again. The
+implementation (e.g. an IRI-pinning pass or a frozen-alias map in the generators) is its own grain;
+this section is where the decision lives.
+
 ### Rollback
 
 Bounded and complete: `git revert` the workflow commit → Pages rebuilds → both URLs return 404 again.
@@ -193,10 +227,10 @@ The `.owl` files stay tracked, so nothing is lost. No database, no server, no CS
 
 ### Still staged (not done here)
 
-`owl:versionInfo` stays `1.0.0`; bump it to the release tag at publication time (v2.0.0, ex-v0.9.0 —
-re-scoped 2026-08-06, #999). Snapshot copies under `v{semver}/` at release tags, the download link in the
-root `README.md`, a WebVOWL index page, and cross-linking from the Walton AIF portal / LOV remain
-follow-ups.
+`owl:versionInfo` stays `1.0.0`; the bump and snapshot gesture at the release tag (v2.0.0, ex-v0.9.0 —
+re-scoped 2026-08-06, #999) now have their **recipe** (§6.1, P24-05) — the execution belongs to the tag.
+The download link in the root `README.md`, a WebVOWL index page, and cross-linking from the Walton AIF
+portal / LOV remain follow-ups.
 
 ---
 
