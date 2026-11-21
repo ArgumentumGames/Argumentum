@@ -111,6 +111,15 @@ namespace Argumentum.AssetConverter.Ontology
 
 		public Version Version { get; set; } = new Version(1,0,0);
 
+		/// <summary>#133 (P24-05) — single production emission point of owl:versionInfo, shared by
+		/// CreateVirtueOwlDocument and OwlVersionInfoContractTests (which probes a Version ≠ default
+		/// and asserts the serialized literal): the pin is the generator's own channel — a test-side
+		/// replica of this call would pin nothing (review 2026-11-21).</summary>
+		public void AnnotateVersionInfo(OwlAdapter ontology)
+		{
+			ontology.Annotate(RDFVocabulary.OWL.VERSION_INFO, new RDFPlainLiteral(Version.ToString()));
+		}
+
 
 		public override async Task GenerateMindMapFile(IList objects, AssetConverterConfig config, string targetDirectory, string language)
 		{
@@ -149,7 +158,7 @@ namespace Argumentum.AssetConverter.Ontology
 
 	        // Metadata init
 	        ontology.Annotate(RDFVocabulary.RDFS.COMMENT, new RDFPlainLiteral(Comment, "en"));
-	        ontology.Annotate(RDFVocabulary.OWL.VERSION_INFO, new RDFPlainLiteral(Version.ToString()));
+	        AnnotateVersionInfo(ontology);
 	        ontology.Annotate(RDFVocabulary.DC.CREATOR, new RDFPlainLiteral(Creator.ToString()));
 	        ontology.AnnotatePublicationMetadata(Title, Creator, SeeAlsoEndpoints, LicenseIri);
 
