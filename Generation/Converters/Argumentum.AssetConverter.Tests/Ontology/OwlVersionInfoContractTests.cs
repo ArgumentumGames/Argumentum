@@ -18,15 +18,19 @@ namespace Argumentum.AssetConverter.Tests.Ontology
 	/// C# initializers (OwlGeneratorConfig / VirtueOwlGeneratorConfig) and nothing else. The
 	/// doctrine (issue #133, 2026-10): the canonical URL always serves the latest generation;
 	/// the version lives IN the file via `owl:versionInfo`; snapshot copies under `v{semver}/`
-	/// are made at release tags only. The snapshot recipe is what the 17/11 freeze decision
-	/// waits for before `argumentum_virtues.owl` may be regenerated (its regen renames 2 served
-	/// IRIs — inoffensive once published under a new version path).
+	/// are made at release tags only. The 17/11 freeze on `argumentum_virtues.owl` was REVISED on
+	/// 21/11 (#133 c.7062194283): it now holds until the IRI-pinning remedy (grain P24-34) — a
+	/// `v{semver}/` snapshot carries the same IRIs as the canonical path, so the version recipe
+	/// alone does not make the 2 served-IRI renames of the Virtues regen inoffensive.
 	///
 	/// Same two-part pin as OwlPublicationMetadataBridgeTests: the DEFAULTS live on the config
-	/// objects (a full generation needs the dataset); the SERIALIZED SHAPE is pinned through the
-	/// OwlAdapter + OWL2XML path the generators use, with a version value chosen DIFFERENT from
-	/// the default — a generator that ignored the config and emitted a constant would emit 1.0.0
-	/// and turn both assertions of the emission test red (the built-in mutation). These tests
+	/// objects (a full generation needs the dataset); the SERIALIZED SHAPE goes through the
+	/// PRODUCTION method `AnnotateVersionInfo` (OwlDocumentConfig / VirtueOwlDocumentConfig) —
+	/// the exact channel CreateOwlDocument / CreateVirtueOwlDocument call, not a test-side
+	/// replica: the first draft replicated the call locally and stayed green when
+	/// `Version.ToString()` was mutated to a constant in the generators (review 2026-11-21),
+	/// so the emission facts cover BOTH generators and each one's mutation reddens its own
+	/// facts (probe 2.0.0 ≠ default 1.0.0). These tests
 	/// never read the committed ontology artefacts: a version bump moves them only with the
 	/// release regeneration, and the A/B control keeps the Argumentum-namespace IRI surface
 	/// frozen (the #133 invariant "0 IRI changée").
@@ -57,13 +61,22 @@ namespace Argumentum.AssetConverter.Tests.Ontology
 			return path;
 		}
 
-		/// <summary>The exact annotation call both generators make on their config's Version
-		/// (OwlGeneratorConfig.cs / VirtueOwlGeneratorConfig.cs: Annotate(OWL.VERSION_INFO,
-		/// new RDFPlainLiteral(Version.ToString()))) — kept byte-identical so the pinned channel
-		/// is the generator's own, not a lookalike.</summary>
-		private static void AnnotateVersion(OwlAdapter adapter, Version version)
+		/// <summary>The two generator configs with Version forced to the probe value. The emission
+		/// tests call the PRODUCTION method AnnotateVersionInfo on these — the pinned channel is
+		/// the generator's own, never a test-side replica (review 2026-11-21: a replica stayed
+		/// green under the constant mutation).</summary>
+		private static OwlDocumentConfig FallaciesDocWithProbedVersion()
 		{
-			adapter.Annotate(RDFVocabulary.OWL.VERSION_INFO, new RDFPlainLiteral(version.ToString()));
+			var doc = new OwlGeneratorConfig().DocumentConfigs.Single();
+			doc.Version = ProbedVersion;
+			return doc;
+		}
+
+		private static VirtueOwlDocumentConfig VirtuesDocWithProbedVersion()
+		{
+			var doc = new VirtueOwlGeneratorConfig().DocumentConfigs.Single();
+			doc.Version = ProbedVersion;
+			return doc;
 		}
 
 		private static readonly Regex ArgumentumIriRegex = new Regex(
@@ -94,16 +107,30 @@ namespace Argumentum.AssetConverter.Tests.Ontology
 		}
 
 		// ─────────────────────────────────────────────────────────────────────────────
-		// (2) Serialized shape — the emitted owl:versionInfo carries the CONFIGURED value.
-		//     ProbedVersion (2.0.0) ≠ default (1.0.0): a generator that ignored the config
-		//     would emit the constant and fail both assertions below (the built-in mutation).
+		// (2) Serialized shape — the emitted owl:versionInfo carries the CONFIGURED value,
+		//     per generator. ProbedVersion (2.0.0) ≠ default (1.0.0): mutating the production
+		//     AnnotateVersionInfo to a constant (or ignoring the config) makes THAT
+		//     generator's fact red — the emission goes through production code (21/11 review).
 		// ─────────────────────────────────────────────────────────────────────────────
 
 		[Fact]
-		public async Task VersionInfo_SerializesTheConfiguredVersion()
+		public async Task Fallacies_VersionInfo_SerializesTheConfiguredVersion()
 		{
 			var adapter = BuildSkeleton(FallaciesNs);
-			AnnotateVersion(adapter, ProbedVersion);
+			FallaciesDocWithProbedVersion().AnnotateVersionInfo(adapter);
+			await AssertSerializedVersionCarriesProbe(adapter);
+		}
+
+		[Fact]
+		public async Task Virtues_VersionInfo_SerializesTheConfiguredVersion()
+		{
+			var adapter = BuildSkeleton(VirtuesNs);
+			VirtuesDocWithProbedVersion().AnnotateVersionInfo(adapter);
+			await AssertSerializedVersionCarriesProbe(adapter);
+		}
+
+		private static async Task AssertSerializedVersionCarriesProbe(OwlAdapter adapter)
+		{
 			var path = await SerializeToTemp(adapter);
 			try
 			{
@@ -116,8 +143,9 @@ namespace Argumentum.AssetConverter.Tests.Ontology
 				xml.Should().Contain($">{ProbedVersion}<",
 					"the emitted versionInfo is the CONFIGURED version's ToString().");
 				xml.Should().NotContain("1.0.0",
-					"mutation control: a generator that ignored the config and emitted a constant " +
-					"1.0.0 makes this red while the 2.0.0 assertion above is red too — the pin bites.");
+					"mutation control: a production AnnotateVersionInfo that ignores the config and " +
+					"emits a constant 1.0.0 makes this red while the 2.0.0 assertion above is red " +
+					"too — the pin bites, per generator.");
 			}
 			finally
 			{
@@ -136,7 +164,7 @@ namespace Argumentum.AssetConverter.Tests.Ontology
 		{
 			var bare = BuildSkeleton(VirtuesNs);
 			var versioned = BuildSkeleton(VirtuesNs);
-			AnnotateVersion(versioned, ProbedVersion);
+			VirtuesDocWithProbedVersion().AnnotateVersionInfo(versioned);
 
 			var barePath = await SerializeToTemp(bare);
 			var versionedPath = await SerializeToTemp(versioned);
@@ -165,10 +193,23 @@ namespace Argumentum.AssetConverter.Tests.Ontology
 		// ─────────────────────────────────────────────────────────────────────────────
 
 		[Fact]
-		public async Task VersionInfo_SurvivesOwl2XmlReload()
+		public async Task Fallacies_VersionInfo_SurvivesOwl2XmlReload()
 		{
 			var adapter = BuildSkeleton(FallaciesNs);
-			AnnotateVersion(adapter, ProbedVersion);
+			FallaciesDocWithProbedVersion().AnnotateVersionInfo(adapter);
+			await AssertVersionSurvivesReload(adapter);
+		}
+
+		[Fact]
+		public async Task Virtues_VersionInfo_SurvivesOwl2XmlReload()
+		{
+			var adapter = BuildSkeleton(VirtuesNs);
+			VirtuesDocWithProbedVersion().AnnotateVersionInfo(adapter);
+			await AssertVersionSurvivesReload(adapter);
+		}
+
+		private static async Task AssertVersionSurvivesReload(OwlAdapter adapter)
+		{
 			var path = await SerializeToTemp(adapter);
 			try
 			{

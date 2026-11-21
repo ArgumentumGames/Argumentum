@@ -11,7 +11,7 @@ Ce README est un **index of record** : chaque fichier suivi du dossier est cité
 | [`argumentum.owl`](argumentum.owl) | `https://www.argumentum.games/argumentum_fallacies.owl#` | 6 019 161 B (mesurés 2026-11-19) | 1408 fallacies | `current` |
 | [`argumentum_virtues.owl`](argumentum_virtues.owl) | `https://www.argumentum.games/argumentum_virtues.owl#` | 1 094 832 B (mesurés 2026-11-19) | 223 virtues | `current` |
 
-L'OWL Vertus est **gelé** (décision [#133](https://github.com/ArgumentumGames/Argumentum/issues/133), 17/11) : sa régénération porte une rupture d'IRI mesurée dans [`133-owl-virtues-peremption-mesuree-2026-10-09.md`](133-owl-virtues-peremption-mesuree-2026-10-09.md) ; l'OWL Fallacies, lui, a été régénéré le 17/11 (#2295).
+L'OWL Vertus est **gelé** (décision [#133](https://github.com/ArgumentumGames/Argumentum/issues/133) du 17/11, révisée le 21/11 : le gel tient jusqu'au remède d'épinglage des IRI, grain P24-34 — §6.1) : sa régénération porte une rupture d'IRI mesurée dans [`133-owl-virtues-peremption-mesuree-2026-10-09.md`](133-owl-virtues-peremption-mesuree-2026-10-09.md) ; l'OWL Fallacies, lui, a été régénéré le 17/11 (#2295).
 
 **Version:** 1.0.0 · **License:** CC BY-SA 4.0 (see root [`LICENSE-CONTENT.md`](../../LICENSE-CONTENT.md) §1 — derived artefacts of the CC BY-SA taxonomies, decision Q-15a 2026-09-24; the C# generator itself remains LGPL-3.0) · **Format:** OWL/XML.
 
@@ -205,20 +205,25 @@ initializers **are** the configuration, `SkipConfigFile = true`). At the tag:
    directory per tag; its line in the §8 index-of-record comes with the copy). The canonical path is
    left untouched: latest stays latest.
 
-**Why the snapshot recipe gates the Virtues regen** (décision #133 du 17/11) : regenerating
-`argumentum_virtues.owl` renames **2 already-served IRIs** (`acceptableInformalLogic`→`solidInformalLogic`,
-`takingTheOpponentsIdeas…`→`takingTheParties…` — cause measured in
+**Why the Virtues freeze outlives this recipe** (décision #133 du 17/11, **révisée le 21/11**,
+c.7062194283) : regenerating `argumentum_virtues.owl` renames **2 already-served IRIs**
+(`acceptableInformalLogic`→`solidInformalLogic`, `takingTheOpponentsIdeas…`→`takingTheParties…` —
+cause measured in
 [`133-owl-virtues-peremption-mesuree-2026-10-09.md`](133-owl-virtues-peremption-mesuree-2026-10-09.md)).
-The freeze holds **until this recipe is in place**: publishing under a new version path makes the
-renaming inoffensive. The regen rides the bump commit of step 1-2.
+The first version of the decision held the freeze « until this recipe is in place » — **withdrawn**:
+a `v{semver}/` snapshot carries the **same IRIs** as the canonical file, the canonical path serves
+the **latest** generation, and the version served today is copied nowhere, so the renaming breaks
+what the canonical URL serves whatever the snapshot. The freeze now holds until the **IRI-pinning
+remedy** (grain P24-34, #458). Recommended, non-blocking: copy the frozen artefacts to `v1.0.0/`
+before any regeneration, so the pre-rename generation stays retrievable.
 
-**Structural remedy inscribed** (17/11, root cause of the same measure): the IRI is minted from the
-English label (`GetId(TextEn)`), so **any** label rename relocates a served IRI — the « stable
-endpoint » asks a naming policy the label cannot provide (§6 « Publishing pins a surface that already
-moves »). Remedy to implement before the Virtues regen carries its 2 renames: **pin the existing
-IRIs** — decouple minting from the label so a rename never breaks a served IRI again. The
-implementation (e.g. an IRI-pinning pass or a frozen-alias map in the generators) is its own grain;
-this section is where the decision lives.
+**Structural remedy = grain P24-34** (17/11, root cause of the same measure; numbered in #458 by the
+revised decision): the IRI is minted from the English label (`GetId(TextEn)`), so **any** label
+rename relocates a served IRI — the « stable endpoint » asks a naming policy the label cannot
+provide (§6 « Publishing pins a surface that already moves »). Remedy: **pin the existing IRIs** —
+decouple minting from the label so a rename never breaks a served IRI again, in both generators.
+Done when a Virtues regeneration on a branch makes **0 served IRI disappear** (gate: P24-05 merged;
+counter-review po-2023). This section is where the decision lives; the implementation is P24-34.
 
 ### Rollback
 
