@@ -32,7 +32,7 @@
 | **#1049** | web.config versionné = panne totale | **phase 2, au moment de la bascule** : le site servi vit dans une **copie hors dépôt** (comme la préprod depuis 08/10). Phase 1 faite (fichier sorti du dépôt, 2 tests CI) | **web2** | le dépôt ne peut plus écrire sur le `web.config` vivant ; discriminateur = les 4 comptes de l'étape 5 (rendus par le script du jour J) + taille 83 211 o | n/a — structurel ; la panne existe seulement si le fichier versionné atteint un webroot |
 | **#1091** | Compte stocké en mot de passe **Clear** (depuis 2020) | **Étape retirée du déroulé** (décision ai-01 du 14/11, motif au canal privé — cf. §7). La ligne reste comme trace ; le geste Clear → Hashed n'est plus exécuté. ⛔ aucune valeur, empreinte ou sel ne transite par une issue, un commit, le dashboard ou un fichier | — | n/a — étape retirée | ⛔ **jamais** de retour à Clear |
 | **#1502** | Règles du site divergé des cartes (4-10 vs 3-10 joueurs) | couvert par la **ré-injection EAV courant** (cf. #457) : la prod ne peut pas servir le corpus tel quel | **web2** (injection prod) ; po-2023 (script + essai à blanc préprod, mesures) | compteurs « de 3 à 10 joueurs » ×5 formes sur `/Règles`, par langue ; cf. garde `RulesExplorerD1PlayerCountGuardTests` | snapshot pré-injection, transaction gardée, rollback SQL borné |
-| **#457** | Localiser le site (8 langues) | se **ferme à la mise en ligne** : l'injection EAV courant + les packs de langue installés ce jour-là | **web2** (geste prod) ; po-2023 (script/essai) ; po-2024 (packs) | sondes visa 21/21 par langue ; sélecteur 8 langues ; témoins fr intacts | désinstall langpack **sans** « Delete Files » (R8) ; rollback EAV borné |
+| **#457** | Localiser le site (8 langues) | se **ferme à la mise en ligne** : l'injection EAV courant + les packs de langue + l'activation portail + les **dimensions 2sxc** (étape 11 bis, P23-25) installés ce jour-là | **web2** (geste prod) ; po-2023 (script/essai + relevé préprod) ; po-2024 (packs) | sondes visa 21/21 par langue ; sélecteur 8 langues ; témoins fr intacts ; dims résolues sans REFUS au dry-run | désinstall langpack **sans** « Delete Files » (R8) ; DELETE dims par id mesuré (inverse écrit avant COMMIT) ; rollback EAV borné |
 | **#135** | Article d'actus + tous les téléchargements | **jour de la mise en ligne** : publier l'article News annonçant la version + rafraîchir tous les liens de téléchargement vers la release #134 ; périmètre mesuré en amont (brouillons + relevé des liens servis) | **web2** (édition + lien prod) ; ai-01 (texte/verdict) ; po-2023 (mesures) | chaque lien servi pointe vers un asset publié de #134 ; `Print.Play` = nom réécrit par GitHub | article = brouillon tant que non annoncé ; liens = tableau de remplacement à blanc |
 | **#133** | Publication OWL — **option A** (ai-01, 05/11) | **Répétition faite en préprod le 05/11** : les deux blobs du dépôt déployés à la racine du webroot, **sous les noms que les IRI déclarent** (`argumentum_fallacies.owl`, `argumentum_virtues.owl`) — ⚠️ le fichier du dépôt s'appelle `argumentum.owl`, l'IRI non : la cible est le **nom servi**, l'option A n'est pas un renommage. L'artefact remplacé (4 795 192 o, non suivi, mtime 28/08) était **périmé** et `virtues` **absent (404)** | **web2** (même geste en prod) ; po-2023 (répétition préprod, faite) ; ai-01 (verdict) | `HTTP 200` **et** taille exacte **et** `sha256` égal au blob du dépôt sur les deux URLs (préprod : 5 993 701 / 1 094 832, mesuré 05/11) ; puis lien depuis la **page des téléchargements** (#135, 8 langues — décision ai-01 du 05/11 : la page Argumentation n'est pas modifiée) | restaurer la **copie de préservation** de l'artefact 4,8 Mo (suivi nulle part = non régénérable ici) |
 | **#136** | Entités taxonomie 2sxc | état **re-mesuré le 05/11** ([c.6662268609](https://github.com/ArgumentumGames/Argumentum/issues/136#issuecomment-6662268609)) : `Game Rule` (ct **377**, app **60**) = **5 entités** publiées, `Title` 5/5 dans les **8 cultures** — inventaire identique au 30/10, **l'import d'essai n'a pas été exécuté**. ⛔ La « couverture complète par attribut » de la v1 était **fausse** : le rapport du 30/10 n'a mesuré que `Title` et dit lui-même que l'audit par attribut **n'a pas été exécuté**. L'export prêt = **128 entités = 16 règles × 8 cultures** (#2050). Import **post-mise en ligne** : il ferait passer `/Règles` de 5 à 16 fiches, donc il **change une page relue** | ai-01 | `/Règles` fr sert **5 fiches** = les 5 entités ; ⛔ ne pas écrire « rendu = corpus CSV » (16 règles au CSV) | n/a (constat) ou rollback EAV |
@@ -119,8 +119,34 @@ release finale (#134) + verdicts.
 7. **#1091 — étape retirée** (décision ai-01 du 14/11 ; motif au canal privé, cf. §7). Le numéro est
    conservé pour que les étapes 8 à 16 gardent le leur (le §2 et le §4 y renvoient). ⛔ L'interdiction
    de retour à un mot de passe Clear reste en vigueur (voir « Interdictions permanentes »).
-8. **D2 alias racine** : `PortalAlias` racine `CultureCode` NULL → `fr-FR` **+ recycle** (l'UPDATE seul
-   ne suffit pas — cache PortalAlias ; reporté « à la mise en ligne prod » par ai-01, 18/10).
+8. **D2 alias racine ET alias de langue** (étendu P23-25, arbitrages ai-01 du 21/11) — par **web2**,
+   d'abord répété sur le site de test ; **avant/après posté au dashboard AVANT le COMMIT**, inverse
+   écrit **avant le COMMIT**, puis **recycle** (cache PortalAlias — l'UPDATE seul ne suffit pas,
+   mesuré 18/10). État de référence = la préprod relevée le 21/11 (lecture seule), avec l'hôte de
+   prod :
+   - **Racine** : `www.argumentum.games` en `CultureCode` fr-FR, `IsPrimary=1`.
+   - **Les 7 alias de langue** : `www.argumentum.games/{en,es,pt,ru,zh,ar,fa}` — sous-chemins en
+     **2 lettres** (comme la préprod et les liens de #2324), `CultureCode` = codes **complets**
+     mesurés sur la préprod : `/en`→en-US · `/es`→es-ES · `/pt`→**pt-BR** · `/ru`→ru-RU ·
+     `/zh`→zh-CN · `/ar`→ar-SA · `/fa`→fa-IR · `IsPrimary=0` pour les 7.
+   - **Les rangées `argumentum2.dnndev.me/<cc>` créées par l'activation** : ⛔ **aucun DELETE**.
+     Les 7 non-fr sont **réécrites en place** (`UPDATE HTTPAlias`, le `PortalAliasID` est gardé)
+     vers l'alias cible ; la rangée `fr-fr` passe à `IsPrimary=0`.
+   - **Réglages du portail** (même transaction) : `DefaultPortalAlias` aligné sur
+     `www.argumentum.games`. Mesure préprod 21/11 : `'argumentum2.dnndev.me'` + `PortalAliasMapping
+     = 'CANONICALURL'` — la préprod porte elle-même le default sur l'hôte dnndev et sert pourtant
+     depuis un autre hôte (CANONICALURL ne force pas la redirection) ; l'état cible reste **plus
+     sûr** que la préprod. web2 mesure et rapporte les **deux** réglages : **R5 (étape 20) n'est
+     une mesure que si 0 redirection vers un autre hôte** que le site interrogé.
+   - **Fallbacks de langues** (`Languages.FallbackCulture`), selon la préprod mesurée le 21/11 :
+     en-US→fr-FR · ru-RU→en-US · fr-FR/es-ES/pt-BR/zh-CN/ar-SA/fa-IR → **vides**. ⚠️ Ce n'est pas
+     le défaut DNN laissé par l'activation (« anglais pour les 6 autres ») : les 5 fallbacks
+     parasites se **vident** explicitement.
+   - **Répétition (site de test seulement)** : alias **non primaires** `localhost:8123` et
+     `localhost:8123/<lang>` avec les mêmes `CultureCode` — inoffensifs après le swap (joignables
+     depuis le serveur seulement) ; le déroulé les liste.
+   - **Ordre d'exécution sur la prod** : après l'**étape 11 bis** (activation) — les rangées
+     `<hôte>/<cc>` à réécrire n'existent qu'après elle (détail au 11 bis).
 9. **C1/#1180** : reporter le geste base des filtres date (bornes typées / neutralisation) — la prod
    garde encore la config fautive.
 
@@ -129,9 +155,38 @@ release finale (#134) + verdicts.
 10. **Ré-injection EAV courant** (préprod → prod) : la prod sert une 3ᵉ génération (9/96 ancres) ;
     l'injection suit le motif éprouvé (transaction gardée, snapshot pré, anti-rejeu par dimension).
     ⛔ Périmètre déclaré : **aucune autre entité ; aucune table de membres, de commandes ou de comptes.**
+    ⚠️ **Ordre d'exécution : l'étape 11 bis précède CETTE étape** — l'outil de ré-injection
+    (`tools/458-eav-reinject.py`, paquet P23-24 v4) **refuse** toute dimension de langue absente de
+    la zone des apps cibles (REFUS explicite, pas un skip) : sans les dimensions, le dry-run même
+    ne passe pas. Exécuter dans l'ordre **11 → 11 bis → 10**.
 11. **Langpacks installés** (R8) : `Install/Install.aspx?mode=installresources` restauré du zip
     d'upgrade, **quarantaine des strays** `Install/*/` (le trigger installe tout), install = crée la
     langue host, **n'active pas le portail** ; contrôle 0 écart `git status` avant/après.
+11 bis. **Activation portail des langues + dimensions 2sxc de la zone des apps** (P23-25,
+    arbitrages ai-01 du 21/11 — par **web2**, d'abord répété sur le site de test). Deux gestes
+    distincts dans cet ordre :
+    - **Activation portail** : l'étape 11 crée la langue host sans activer le portail — activer
+      ici les 8 langues du portail (fr-FR incluse). ⚠️ L'activation crée des rangées
+      `PortalAlias` `<hôte-courant>/<cc>` — c'est ce que l'étape 8 réécrit en place. D'où l'ordre :
+      sur le site de test les rangées existent déjà (R8 répété) et le geste 8 s'y répète avant ;
+      sur la prod, l'étape 8 s'applique **après** cette activation — réécrire avant, c'est
+      réécrire des rangées qui n'existent pas encore.
+    - **Dimensions 2sxc** : recette d'origine =
+      [`../dnn-localization/1781-i1b-culture-dimensions-2026-10-10.md`](../dnn-localization/1781-i1b-culture-dimensions-2026-10-10.md)
+      — **INSERT SQL direct documenté**, pas l'UI 2sxc. Préprod mesurée 21/11 (lecture seule) :
+      une racine `SystemKey='Culture'`, `ExternalKey` vide, puis **8 cultures** fr-FR, en-US,
+      ru-RU, **pt-BR** (re-keyée depuis pt-PT le 11/10 — pas pt-PT), es-ES, ar-SA, fa-IR, zh-CN,
+      toutes `Active=1`, toutes filles de la racine.
+      ⚠️ **Ids et zones se mesurent sur la base cible, jamais copiés** : la préprod porte zone 3
+      + racine 5 + ids 6-13 ; la zone cible = le `ZoneId` des **apps cibles** de la carte
+      d'apps imprimée par le dry-run du paquet P23-24 v4 (`TsDynDataApp.AppId` → `ZoneId`),
+      les `DimensionId` viennent de l'IDENTITY de la base cible. Une culture identique existe
+      dans plusieurs zones (défaut DNN zone 2 vs apps Argumentum zone 3 en préprod) — ne jamais
+      prendre le premier `en-US` venu.
+      Garde : **UNE transaction** · **inverse écrit AVANT le COMMIT** (DELETE par `DimensionId`
+      mesuré) · avant/après posté au dashboard **avant le COMMIT** · recycle après (cache 2sxc) ·
+      **re-dry-run de l'outil P23-24** juste après : les dimensions doivent y être résolues sans
+      REFUS — c'est la porte d'entrée de l'étape 10.
 12. **#135** : article News + liens de téléchargement (→ assets de la release finale, `Print.Play` =
     nom réécrit par GitHub — `--clobber` cible le nom **publié**), méta/sitemap/og:image.
     ⛔ **Aucun `--clobber` sur les assets de `v2.1.0-review`** : les relecteurs la lisent. La release
@@ -333,5 +388,30 @@ Chacune est **re-mesurée** avant d'être écrite ici ; aucune n'ajoute de valeu
    Le décompte **16** est donc exact — il décrit les routes **servies**, pas les fichiers
    **committés**. Même distinction pour les 16 `_ext` : servies par la prod, absentes de la
    préprod, exclues **par décision** (famille `<object>` non autoportante), pas par oubli.
+
+## 8. Révision du 2026-11-21 (P23-25) — dimensions 2sxc + alias de langue
+
+Deux gestes manquaient au déroulé ; ils sont écrits aux étapes **8 (étendue)** et **11 bis**
+(nouvelle), sur arbitrages ai-01 du 21/11. L'état de référence cité dans les deux étapes est le
+**relevé préprod en lecture seule du 21/11** (dashboard workspace po-2023) : dimensions zone 3
+complètes, `PortalAlias` du portail 1, fallbacks de langues, `DefaultPortalAlias` +
+`PortalAliasMapping`.
+
+1. **Étape 8 étendue** — l'ancienne étape ne couvrait que la culture de l'alias racine (D2).
+   L'état cible complet : racine `www.argumentum.games` fr-FR primaire ; 7 alias de langue en
+   sous-chemins 2 lettres avec les codes complets mesurés (`/pt`→**pt-BR**, pas pt-PT) ; les
+   rangées `argumentum2.dnndev.me/<cc>` créées par l'activation **réécrites en place** (⛔ aucun
+   DELETE) ; `DefaultPortalAlias` aligné sur www ; fallbacks selon la préprod (en→fr, ru→en,
+   5 vides — ⚠️ ≠ défaut DNN) ; alias `localhost:8123` non primaires pour la répétition.
+   Mesures qui ont fait écrire l'étape : la préprod porte `DefaultPortalAlias` sur l'hôte
+   dnndev et sert pourtant correctement (`PortalAliasMapping='CANONICALURL'`) — l'état cible
+   reste plus sûr que la préprod, et R5 (étape 20) n'est une mesure qu'avec 0 redirection
+   vers un autre hôte.
+2. **Étape 11 bis (nouvelle)** — activation portail des 8 langues + création des dimensions
+   2sxc de la zone des apps, recette `1781-i1b` (INSERT SQL documenté, pas l'UI). Les ids et
+   zones se **mesurent** sur la base cible (zone = `ZoneId` des apps cibles de la carte
+   d'apps imprimée par le dry-run P23-24 v4), jamais copiés de la préprod. Dépendance posée
+   dans les deux sens : l'étape 10 (outil de ré-injection) **refuse** une dimension absente
+   (ordre 11 → 11 bis → 10) et l'étape 8 s'applique **après** l'activation sur la prod.
 
 *po-2023*
