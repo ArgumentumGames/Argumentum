@@ -314,16 +314,21 @@ Source mesurée des consignes de tirage. Aucun prix ni volume de fabrication ici
 - **7 dos distincts, un par catégorie** — effectifs mesurés dans le PDF = effectifs du CSV
   `Argumentum Scenarii - Cards.csv` : relation intime **36** (p. 89-159) · vie
   professionnelle **30** (p. 161-221) · mythologie **27** (p. 35-87) · vie personnelle
-  **25** (p. 287-333) · pop culture **18** (p. 223-257) · histoire **17** (p. 1-33) ·
-  politique **14** (p. 259-285) — Σ = 167. L'ordre des cartes suit l'ordre des lignes du
-  CSV, vérifié aux 7 frontières de blocs ; **une exception mesurée** : la carte 101
+  **25** (p. 287-333 — 24 dos dans la plage, le 25ᵉ est l'exception p. 201 ; symétriquement,
+  la plage vie pro ci-dessus l'inclut) · pop culture **18** (p. 223-257) · histoire **17**
+  (p. 1-33) · politique **14** (p. 259-285) — Σ = 167. L'ordre des cartes suit l'ordre des
+  lignes du CSV, vérifié aux **8** frontières de blocs (9 blocs — l'exception scinde
+  « vie professionnelle ») ; **une exception mesurée** : la carte 101
   « La promotion ratée » (vie personnelle) est imprimée aux pages 201-202 **au milieu du
   bloc « vie professionnelle »**, avec le dos de sa propre catégorie — c'est l'ordre du CSV,
   pas un défaut de mise en page.
-- **Tarot (`Argumentum_TarotCards_{lang}.pdf`)** : 379 pages = Fallacies **175 couples**
-  (dos puis face) + Memo **7 couples** + **Rules 15 pages en recto seul** (aucun dos natif) —
-  mesure du 28/10 (po-2023, confirmée ai-01). Les feuilles Rules sortent recto seul ou
-  verso blanc.
+- **Tarot (`Argumentum_TarotCards_{lang}.pdf`)** : 379 pages — **ordre physique mesuré**
+  (contre-revue po-2024 du 22/11, instrument indépendant) : **Rules p. 1-15 en tête**, recto
+  seul (aucun dos natif) · **Memo p. 16-29** = **7 couples identiques** (2 images alternées
+  ×7) · **Fallacies p. 30-379** = **175 couples, dos en pages PAIRES** — ⚠️ **parité inverse
+  du Poker** (dos impairs) : un repérage par parité réutilisé d'un deck à l'autre se trompe
+  de moitié de deck. La décomposition arithmétique du 28/10 (po-2023, confirmée ai-01) reste
+  exacte ; les feuilles Rules sortent recto seul ou verso blanc.
 - **Sens de retournement duplex : non mesuré** — les profils d'encre des dos sont quasi
   symétriques, l'instrument ne tranche pas ; à confirmer sur **épreuve** avant tirage.
 
@@ -498,10 +503,12 @@ complètes, `PortalAlias` du portail 1, fallbacks de langues, `DefaultPortalAlia
 5. **Section « Ordre d'impression » + correction du sous-code MIME (P23-07, 22/11)** : le §3
    reçoit la structure de tirage mesurée du lot PDF (Poker fr : 334 pages = 167 couples
    dos-impair/face-pair, 7 dos par catégorie, effectifs = CSV ; Tarot : Rules recto seul —
-   mesure du 28/10). Le témoin 4 (§6) citait pour une carte MIME absente le sous-code IIS
-   d'un **autre** défaut (« URL trop longue ») — le sous-code d'une carte MIME absente est
-   **404.3** (relecture ai-01 du 21/11,
+   mesure du 28/10). **Retouche du 22/11 au soir (contre-revue po-2024, mesurée)** : l'ordre
+   **physique** du Tarot est précisé — Rules **en tête** (p. 1-15) · Memo p. 16-29 = **7
+   couples identiques** · Fallacies p. 30-379, dos en pages **paires** (parité inverse du
+   Poker) ; Poker : la plage vie personnelle est annotée (24 dos + l'exception p. 201) et les
+   frontières recomptées **8** (9 blocs). Le témoin 4 (§6) citait pour une carte MIME absente
+   le sous-code IIS d'un **autre** défaut (« URL trop longue ») — le sous-code d'une carte
+   MIME absente est **404.3** (relecture ai-01 du 21/11,
    [c.7071193468](https://github.com/ArgumentumGames/Argumentum/pull/2335#issuecomment-7071193468)).
    Corrigé au §6 ; le sous-code erroné n'est plus cité nulle part dans ce document.
-
-*po-2023*
