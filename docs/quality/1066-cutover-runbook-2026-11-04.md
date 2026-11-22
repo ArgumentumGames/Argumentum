@@ -302,6 +302,36 @@ touch `web.config` mtime, sha inchangé) · ⛔ GTM/GA à rejouer (R4 — clos 0
   complètes au moment du go-live.
 - Grains #135 (brouillons, liens servis) : mesurés en parallèle ce cycle — résultats à joindre au jour J.
 
+### Ordre d'impression du lot PDF (#1187) — mesuré le 22/11 (P23-07)
+
+Source mesurée des consignes de tirage. Aucun prix ni volume de fabrication ici : ils vivent sur
+#1187. Mesure sur l'**asset publié** de `v2.1.0-review`, pas sur un arbre de build.
+
+- **Poker (`Argumentum_PokerCards_fr.pdf`, 32 251 668 o — mesuré sur `fr` ; les 7 autres
+  langues suivent le même générateur, non mesurées)** : **334 pages = 167 couples (dos,
+  face)** — dos **toujours en page impaire**, face au pair, une image par page, 180 × 252 pt
+  (63,5 × 89 mm), rotation 0 sur les 334 pages. **Recto/verso, une carte par couple de pages.**
+- **7 dos distincts, un par catégorie** — effectifs mesurés dans le PDF = effectifs du CSV
+  `Argumentum Scenarii - Cards.csv` : relation intime **36** (p. 89-159) · vie
+  professionnelle **30** (p. 161-221) · mythologie **27** (p. 35-87) · vie personnelle
+  **25** (p. 287-333 — 24 dos dans la plage, le 25ᵉ est l'exception p. 201 ; symétriquement,
+  la plage vie pro ci-dessus l'inclut) · pop culture **18** (p. 223-257) · histoire **17**
+  (p. 1-33) · politique **14** (p. 259-285) — Σ = 167. L'ordre des cartes suit l'ordre des
+  lignes du CSV, vérifié aux **8** frontières de blocs (9 blocs — l'exception scinde
+  « vie professionnelle ») ; **une exception mesurée** : la carte 101
+  « La promotion ratée » (vie personnelle) est imprimée aux pages 201-202 **au milieu du
+  bloc « vie professionnelle »**, avec le dos de sa propre catégorie — c'est l'ordre du CSV,
+  pas un défaut de mise en page.
+- **Tarot (`Argumentum_TarotCards_{lang}.pdf`)** : 379 pages — **ordre physique mesuré**
+  (contre-revue po-2024 du 22/11, instrument indépendant) : **Rules p. 1-15 en tête**, recto
+  seul (aucun dos natif) · **Memo p. 16-29** = **7 couples identiques** (2 images alternées
+  ×7) · **Fallacies p. 30-379** = **175 couples, dos en pages PAIRES** — ⚠️ **parité inverse
+  du Poker** (dos impairs) : un repérage par parité réutilisé d'un deck à l'autre se trompe
+  de moitié de deck. La décomposition arithmétique du 28/10 (po-2023, confirmée ai-01) reste
+  exacte ; les feuilles Rules sortent recto seul ou verso blanc.
+- **Sens de retournement duplex : non mesuré** — les profils d'encre des dos sont quasi
+  symétriques, l'instrument ne tranche pas ; à confirmer sur **épreuve** avant tirage.
+
 ## 4. Révision du 2026-11-05 — delta de la contre-relecture
 
 Sept corrections appliquées à la v1 du 04/11 (contre-relecture ai-01 + web2). La v1 n'est pas
@@ -398,7 +428,7 @@ Contrôles joués, dans cet ordre :
    cache-buster, jouable en même temps que le témoin 3). C'est le **quatrième témoin** : les
    trois premiers restent verts si la carte MIME dérive — un `web.config` dont la carte
    `fileExtension=".owl"` (l'un des 4 comptes de l'étape 5) disparaît à la copie ou à la montée
-   DNN répond **404.14** (extension non autorisée), et une carte différente sert
+   DNN répond **404.3** (carte MIME absente), et une carte différente sert
    `application/octet-stream` sur un `200` de bonne taille : l'OWL devient des octets opaques
    pour tout consommateur. `application/xml` **et** `nosniff` : les deux, sur les deux URLs.
 
@@ -431,7 +461,7 @@ Chacune est **re-mesurée** avant d'être écrite ici ; aucune n'ajoute de valeu
    **committés**. Même distinction pour les 16 `_ext` : servies par la prod, absentes de la
    préprod, exclues **par décision** (famille `<object>` non autoportante), pas par oubli.
 
-## 8. Révision du 2026-11-21 (P23-25, P23-26) — dimensions 2sxc + alias de langue
+## 8. Révision du 2026-11-21 → 22 (P23-25, P23-26, P23-07) — dimensions 2sxc, alias de langue, ordre d'impression
 
 Deux gestes manquaient au déroulé ; ils sont écrits aux étapes **8 (étendue)** et **11 bis**
 (nouvelle), sur arbitrages ai-01 du 21/11. L'état de référence cité dans les deux étapes est le
@@ -470,5 +500,15 @@ complètes, `PortalAlias` du portail 1, fallbacks de langues, `DefaultPortalAlia
    (§7, décision ai-01 du 14/11) — l'owner ne garde que la **fenêtre de bascule**. Aucune autre
    mention de #1091 ne change : la ligne #1091 de la table maîtresse (§1) et le §4 restent des
    traces historiques.
-
-*po-2023*
+5. **Section « Ordre d'impression » + correction du sous-code MIME (P23-07, 22/11)** : le §3
+   reçoit la structure de tirage mesurée du lot PDF (Poker fr : 334 pages = 167 couples
+   dos-impair/face-pair, 7 dos par catégorie, effectifs = CSV ; Tarot : Rules recto seul —
+   mesure du 28/10). **Retouche du 22/11 au soir (contre-revue po-2024, mesurée)** : l'ordre
+   **physique** du Tarot est précisé — Rules **en tête** (p. 1-15) · Memo p. 16-29 = **7
+   couples identiques** · Fallacies p. 30-379, dos en pages **paires** (parité inverse du
+   Poker) ; Poker : la plage vie personnelle est annotée (24 dos + l'exception p. 201) et les
+   frontières recomptées **8** (9 blocs). Le témoin 4 (§6) citait pour une carte MIME absente
+   le sous-code IIS d'un **autre** défaut (« URL trop longue ») — le sous-code d'une carte
+   MIME absente est **404.3** (relecture ai-01 du 21/11,
+   [c.7071193468](https://github.com/ArgumentumGames/Argumentum/pull/2335#issuecomment-7071193468)).
+   Corrigé au §6 ; le sous-code erroné n'est plus cité nulle part dans ce document.
