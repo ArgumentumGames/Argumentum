@@ -11,7 +11,7 @@ Ce README est un **index of record** : chaque fichier suivi du dossier est cité
 | [`argumentum.owl`](argumentum.owl) | `https://www.argumentum.games/argumentum_fallacies.owl#` | 6 019 161 B (mesurés 2026-11-19) | 1408 fallacies | `current` |
 | [`argumentum_virtues.owl`](argumentum_virtues.owl) | `https://www.argumentum.games/argumentum_virtues.owl#` | 1 094 832 B (mesurés 2026-11-19) | 223 virtues | `current` |
 
-L'OWL Vertus est **gelé** (décision [#133](https://github.com/ArgumentumGames/Argumentum/issues/133) du 17/11, révisée le 21/11 : le gel tient jusqu'au remède d'épinglage des IRI, grain P24-34 — §6.1) : sa régénération porte une rupture d'IRI mesurée dans [`133-owl-virtues-peremption-mesuree-2026-10-09.md`](133-owl-virtues-peremption-mesuree-2026-10-09.md) ; l'OWL Fallacies, lui, a été régénéré le 17/11 (#2295).
+L'OWL Vertus est **gelé** (décision [#133](https://github.com/ArgumentumGames/Argumentum/issues/133) du 17/11, révisée le 21/11 ; le remède d'épinglage des IRI (P24-34) est **implémenté** — §6.1 — le gel sur l'artefact committé tient jusqu'à la décision de régénérer) : sa régénération portait une rupture d'IRI mesurée dans [`133-owl-virtues-peremption-mesuree-2026-10-09.md`](133-owl-virtues-peremption-mesuree-2026-10-09.md) ; l'OWL Fallacies, lui, a été régénéré le 17/11 (#2295).
 
 **Version:** 1.0.0 · **License:** CC BY-SA 4.0 (see root [`LICENSE-CONTENT.md`](../../LICENSE-CONTENT.md) §1 — derived artefacts of the CC BY-SA taxonomies, decision Q-15a 2026-09-24; the C# generator itself remains LGPL-3.0) · **Format:** OWL/XML.
 
@@ -224,6 +224,19 @@ provide (§6 « Publishing pins a surface that already moves »). Remedy: **pin 
 decouple minting from the label so a rename never breaks a served IRI again, in both generators.
 Done when a Virtues regeneration on a branch makes **0 served IRI disappear** (gate: P24-05 merged;
 counter-review po-2023). This section is where the decision lives; the implementation is P24-34.
+
+**Implemented (21/11, P24-34)**: fragments now resolve through the pk-keyed `OwlIriRegistry`
+(`Ontology/OwlIriRegistry.cs`, frozen from the committed artefacts — Fallacies 1408/1408, Virtues
+223/223), both generators call `Resolve{Fallacy,Virtue}IriFragment` at every mint site, and an
+unknown pk **refuses loudly** (a new corpus row extends the registry in the same reviewed diff —
+the label never mints a served IRI). Measured on the branch regen (`--generate-owl`): **0 served
+IRI disappears** (Fallacies 1445/1445 fragments, Virtues 227/227), both regenerated artefacts
+carry `owl:versionInfo` 1.0.0, and the two renamed titles (pk 128/176) keep their served IRIs —
+pinned by `OwlIriPinningContractTests` (8 facts; 5 mutation controls redden per generator, call
+site included). The regeneration of the committed artefacts remains a **separate decision**
+(ai-01/owner): with the remedy in place it is no longer IRI-breaking, and the pre-rename
+generation is still reachable in git history — the `v1.0.0/` copy recommendation stays valid until
+that decision.
 
 ### Rollback
 
