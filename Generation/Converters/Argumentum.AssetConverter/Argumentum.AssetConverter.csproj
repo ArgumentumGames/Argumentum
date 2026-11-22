@@ -77,13 +77,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="DatasetUpdater\Resource1.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
     <InternalsVisibleTo Include="Argumentum.AssetConverter.Tests" />
   </ItemGroup>
 
