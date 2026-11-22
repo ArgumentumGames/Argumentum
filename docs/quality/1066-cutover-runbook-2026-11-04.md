@@ -29,7 +29,7 @@
 | **#2132** | Relecture avant sortie | **Porte d'entrée** : les **5 cases** cochées AVANT toute bascule (site ×3, PDF ×2) | owner (humains) | les 5 cases sur la page #2132 | n/a — porte, pas un geste |
 | **#134** | Release GitHub | **créer la release finale** à partir du lot validé (80 PDF) ; déclenche #135 | ai-01 (release + verdicts) | assets publiés, tailles = bundle | `v2.1.0-review` **reste en l'état** (⛔ pas de `--clobber`) ; la finale est un objet distinct |
 | **#131** | Montée DNN + mise en ligne | déployer sur le VPS de prod (exploité par la lane **`myia-web2`**) la génération validée en rang 2 (10.4.1 + 2sxc 22.01), séquence A→J du plan de montée (`docs/dnn/2026-10-31-montee-dnn1041-2sxc2201-plan.md`) | **web2** (toutes les écritures prod) ; owner = fenêtre ; ai-01 = verdicts | §2 DoD ci-dessous (versions, redirections, EventLog, routes) | snapshot VPS + backup DB pré-geste ; DNS retour arrière |
-| **#1049** | web.config versionné = panne totale | **phase 2, au moment de la bascule** : le site servi vit dans une **copie hors dépôt** (comme la préprod depuis 08/10). Phase 1 faite (fichier sorti du dépôt, 2 tests CI) | **web2** | le dépôt ne peut plus écrire sur le `web.config` vivant ; discriminateur = les 4 comptes de l'étape 5 (rendus par le script du jour J) + taille 83 211 o | n/a — structurel ; la panne existe seulement si le fichier versionné atteint un webroot |
+| **#1049** | web.config versionné = panne totale | **phase 2, au moment de la bascule** : le site servi vivra dans une **copie hors dépôt**. ⚠️ **Mesuré le 22/11 (P23-05)** : la **préprod est encore servie par le checkout git**, pas par une copie — le « comme la préprod depuis 08/10 » était faux (corrigé à l'étape 5 et au §8). Phase 1 faite (fichier sorti du dépôt, 2 tests CI) | **web2** | le dépôt ne peut plus écrire sur le `web.config` vivant ; discriminateur = les 4 comptes de l'étape 5 (rendus par le script du jour J) + taille 83 211 o | n/a — structurel ; la panne existe seulement si le fichier versionné atteint un webroot |
 | **#1091** | Compte stocké en mot de passe **Clear** (depuis 2020) | **Étape retirée du déroulé** (décision ai-01 du 14/11, motif au canal privé — cf. §7). La ligne reste comme trace ; le geste Clear → Hashed n'est plus exécuté. ⛔ aucune valeur, empreinte ou sel ne transite par une issue, un commit, le dashboard ou un fichier | — | n/a — étape retirée | ⛔ **jamais** de retour à Clear |
 | **#1502** | Règles du site divergé des cartes (4-10 vs 3-10 joueurs) | couvert par la **ré-injection EAV courant** (cf. #457) : la prod ne peut pas servir le corpus tel quel | **web2** (injection prod) ; po-2023 (script + essai à blanc préprod, mesures) | compteurs « de 3 à 10 joueurs » ×5 formes sur `/Règles`, par langue ; cf. garde `RulesExplorerD1PlayerCountGuardTests` | snapshot pré-injection, transaction gardée, rollback SQL borné |
 | **#457** | Localiser le site (8 langues) | se **ferme à la mise en ligne** : l'injection EAV courant + les packs de langue + l'activation portail + les **dimensions 2sxc** (étape 11 bis, P23-25) installés ce jour-là | **web2** (geste prod) ; po-2023 (script/essai + relevé préprod) ; po-2024 (packs) | sondes visa 21/21 par langue ; sélecteur 8 langues ; témoins fr intacts ; dims résolues sans REFUS au dry-run | désinstall langpack **sans** « Delete Files » (R8) ; DELETE dims par id mesuré (inverse écrit avant COMMIT) ; rollback EAV borné |
@@ -62,10 +62,16 @@ C1, ré-injection EAV, packs de langue, article et liens #135, fichiers E12, wra
 ### Phase 1 — Déploiement technique (VPS, fenêtre owner)
 
 5. **Copie hors dépôt** (#1049 phase 2), par **web2** — la copie devient le site servi.
-   **Source nommée** : l'arbre **servi** de la préprod, **déjà sorti du dépôt** (copie hors dépôt en
-   service depuis le 08/10). ⚠️ **Pas** le checkout git lui-même : la préprod **est** un checkout FF
-   sur master — copier ce checkout embarquerait le `DNNPlatform/web.config` **versionné** dans le
-   webroot = la mine #1049 (500 déterministe). **Contrôle AVANT que le site soit servi** — dernier
+   **Source nommée** : l'arbre **servi** de la préprod. ⚠️ **Mesuré le 22/11 (P23-05, lecture
+   seule)** : cet arbre servi **est** le checkout git — site IIS « dnn.argumentum.myia.io »
+   (id 52), le `physicalPath` lu dans `applicationHost.config` pointe sur le dossier
+   `DNNPlatform` **du checkout** ; « copie hors dépôt en service depuis le 08/10 » était
+   **faux** ([c.6256818241](https://github.com/ArgumentumGames/Argumentum/issues/1049#issuecomment-6256818241)
+   du 19/10 avait raison). La distinction « arbre servi ≠ checkout » ne tient donc plus : ce
+   qui ferme la mine #1049 n'est pas le choix de la source mais les **comptes ci-dessous** —
+   d'autant que le `web.config` **versionné** n'existe plus depuis #1055 (le fichier du
+   checkout est l'original vivant, non suivi) : le résidu attrapé par les comptes est un
+   template/`REPLACE` ou l'`example`, pas un fichier suivi. **Contrôle AVANT que le site soit servi** — dernier
    point où reculer ne coûte rien — par **comptes** sur le `web.config` de la copie :
    `Data Source=REPLACE` = **0** · `validationKey="REPLACE"` = **0** ·
    `Initial Catalog=ArgumentumGames` = **1** · `fileExtension=".owl"` = **1** — et une taille de
@@ -94,6 +100,19 @@ C1, ré-injection EAV, packs de langue, article et liens #135, fichiers E12, wra
    (`--webconfig-size`), puis continuer. Un compte qui dévie, lui, ne se qualifie pas.
    Jamais `git checkout` sur un webroot servi ; jamais de copie du
    `web.config` préprod → prod (le secret et les `machineKey` diffèrent).
+   **Phase 2 à blanc — #1049, mesuré le 22/11 (P23-05), lecture seule, rien copié** : la copie
+   de secours hors dépôt (rafraîchie le 20/09, phase 1-bis) est **périmée au point de
+   régresser #133** si on basculait dessus telle quelle : elle porte `argumentum_fallacies.owl`
+   **périmé** (4 795 192 o, mtime 28/08 — l'artefact remplacé le 05/11) et
+   `argumentum_virtues.owl` **absent**, quand l'arbre servi tient la paire du 05/11
+   (5 993 701 / 1 094 832 o) ; **2 349 fichiers suivis** du webroot ont changé depuis le
+   20/09 (DesktopModules 1089 · Icons 551 · Providers 234 · admin 179 · controls 69 ·
+   Portals 53 · App_GlobalResources 44 — liste jointe à la livraison P23-05). Ordre imposé :
+   **refresh de la copie d'abord** (recette phase 1-bis — robocopy à exclusions, jamais
+   `/MIR`), puis le geste serait `appcmd set vdir "dnn.argumentum.myia.io/"
+   -physicalPath:"<copie>"` (rollback symétrique vers le chemin du checkout, lu dans
+   `applicationHost.config`) — **jamais exécuté** : la bascule de la préprod reste un
+   arbitrage owner ([c.5314245647](https://github.com/ArgumentumGames/Argumentum/issues/1049#issuecomment-5314245647)).
 6. **Montée DNN 9.11.1 → 10.4.1 + 2sxc 15.02 → 22.01** sur la copie, selon le plan de montée rang 2 :
    installeurs natifs (assistant DNN puis installeur d'extensions 2sxc) → **mesurer `bin/`** → une
    redirection par nom à la **version mesurée** (**38 redirections à poser** sur la copie validée —
@@ -351,11 +370,13 @@ conservée à part : ce paragraphe **est** le delta.
    `GlobalResources.en-US.resx`, le neutre *est* le texte anglais. Contrôle dans les deux sens.
 5. **#2132** = **5 cases** (site ×3 : Jean-Sylvain, Adeline, Thomas ; PDF ×2 : Adeline, Thomas),
    toutes décochées — et non « 0/3 ».
-6. (web2-A) Étape 5 : **la source de la copie est nommée** — l'arbre **servi** de la préprod, déjà
-   sorti du dépôt, et **pas** le checkout git (copier ce checkout embarquerait le
-   `DNNPlatform/web.config` versionné dans le webroot = mine #1049, 500 déterministe) ; le contrôle
-   par **comptes** (4 comptes + taille, rendus par le script du jour J — étape 5) **précède** la
-   mise en service.
+6. (web2-A) Étape 5 : **la source de la copie est nommée** — l'arbre **servi** de la préprod, qui
+   **est** le checkout git (mesuré le 22/11, P23-05 : site id 52, `physicalPath` → `DNNPlatform`
+   du checkout — l'« hors dépôt depuis le 08/10 » était faux) ; ce qui ferme la mine #1049 reste
+   le contrôle par **comptes** (4 comptes + taille, rendus par le script du jour J — étape 5),
+   qui **précède** la mise en service. La copie du jour J part **refresh** : 2 349 fichiers
+   suivis + les blobs OWL ont changé depuis le rafraîchissement du 20/09 (phase 2 répétée à
+   blanc, P23-05).
 7. (web2-B) ⛔ **Aucun `--clobber` sur les assets de `v2.1.0-review`** — posé au retour arrière de
    #134 et à l'étape 12.
 
@@ -461,7 +482,7 @@ Chacune est **re-mesurée** avant d'être écrite ici ; aucune n'ajoute de valeu
    **committés**. Même distinction pour les 16 `_ext` : servies par la prod, absentes de la
    préprod, exclues **par décision** (famille `<object>` non autoportante), pas par oubli.
 
-## 8. Révision du 2026-11-21 → 22 (P23-25, P23-26, P23-07) — dimensions 2sxc, alias de langue, ordre d'impression
+## 8. Révision du 2026-11-21 → 22 (P23-25, P23-26, P23-07, P23-05) — dimensions 2sxc, alias de langue, ordre d'impression, racine servie de la préprod
 
 Deux gestes manquaient au déroulé ; ils sont écrits aux étapes **8 (étendue)** et **11 bis**
 (nouvelle), sur arbitrages ai-01 du 21/11. L'état de référence cité dans les deux étapes est le
@@ -512,3 +533,12 @@ complètes, `PortalAlias` du portail 1, fallbacks de langues, `DefaultPortalAlia
    MIME absente est **404.3** (relecture ai-01 du 21/11,
    [c.7071193468](https://github.com/ArgumentumGames/Argumentum/pull/2335#issuecomment-7071193468)).
    Corrigé au §6 ; le sous-code erroné n'est plus cité nulle part dans ce document.
+6. **Racine servie de la préprod + phase 2 à blanc (P23-05, 22/11)** : le runbook disait « copie
+   hors dépôt en service depuis le 08/10 » (table §1, étape 5, §8-A) — **faux** : mesuré dans
+   `applicationHost.config` (site « dnn.argumentum.myia.io », id 52), le `physicalPath` sert le
+   dossier `DNNPlatform` **du checkout git**. Corrigé aux trois endroits pour que le document ne
+   dise qu'une chose ; le contrôle par comptes de l'étape 5 reste le garde anti-mine #1049 (le
+   `web.config` versionné n'existe plus depuis #1055 — le résidu attrapé est un
+   template/`REPLACE`). Phase 2 répétée **à blanc** : la copie du 20/09 porte l'artefact OWL
+   périmé et `virtues` absent — refresh obligatoire avant tout geste (2 349 fichiers suivis +
+   blobs). Rien copié, aucune écriture IIS, lecture seule.
