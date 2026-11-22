@@ -19,7 +19,7 @@
 #   d'execution sera documentee. C'est la distinction posee en tete de
 #   docs/quality/1460-charpente-suite-regression.md.
 #
-#   CABLES A CE JOUR (13), avec la condition qui les autorise ici :
+#   CABLES A CE JOUR (14), avec la condition qui les autorise ici :
 #     1. tools/test_1460-structure-charpente-pilot.py -- std-lib, 7 cas, arbres
 #        synthetiques ; aucun Target/ requis (le cas 7 est un grounding sur le depot
 #        reel, volontairement NON asserte).
@@ -104,6 +104,14 @@
 #        de bord). Le faux run_query refuse tout SQL non attendu : une derive des
 #        requetes fait echouer le test bruyamment, jamais passer des rangees
 #        fausses. Condition d'execution documentee dans la docstring du fichier.
+#    14. tools/test_458-derive-run-registry.py -- std-lib, offline, 5 cas, ~0.4 s.
+#        Execute tools/458-derive-run-registry.py (copie d'execution du registre,
+#        arbitrage ai-01 22/11 option iii) sur le registre officiel COMMITTE :
+#        empreinte de sortie epinglee, 22 retirees / 651 conservees, la carte
+#        existante garde ses champs hors Link, aucun -review survivant, et controle
+#        inverse (entree mutee d'un octet refusee). Aucune connexion, aucune base :
+#        la CI est le cas NOMINAL du rejouage du geste. Condition d'execution
+#        documentee dans la docstring du fichier.
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
 #   - push sur master / pull_request : déclenchés, y compris les changements du
@@ -197,6 +205,24 @@ jobs:
         # une MUTATION : la garde neutralisee dans le source doit laisser passer
         # le defaut — le test epingle la garde, pas un effet de bord.
         run: python tools/test_458-eav-reinject-guards.py
+
+  eav-derive-run-registry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run the derive-run-registry contract (#458 P23-30, arbitrage option iii)
+        # 5 cas, std-lib, offline, ~0.4 s : execute tools/458-derive-run-registry.py
+        # sur le registre officiel COMMITTE (toujours present : aucun artefact) et
+        # epingle la copie d'execution de l'arbitrage ai-01 du 22/11 : empreinte de
+        # sortie 92bf1e06... (1 166 864 octets), 673 -> 22 retirees -> 651 conservees,
+        # la carte 6A24AE92 garde ses autres champs, aucun marqueur -review survivant,
+        # et controle inverse : un registre mute d'un octet est refuse (exit non nul,
+        # aucune sortie ecrite). Toute derive LEGITIME du registre officiel rougit
+        # ici AVANT d'atteindre le staging — c'est le role de l'epinglage.
+        run: python tools/test_458-derive-run-registry.py
 
   pr-merge-gate-selftest:
     runs-on: ubuntu-latest
