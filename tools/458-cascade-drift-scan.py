@@ -15,6 +15,14 @@ confuse two very different things:
 Only the first is in scope here, and git history is what tells them apart: a
 translation can only be stale with respect to content the source once carried.
 
+A third shape was measured on 2026-11-23 (report §3, PK 1282): the French cell can
+make a ROUND TRIP — A -> A' -> A. The translation aligned on A is then correct,
+yet the return to A looks like a tightening when the scan reaches that commit. The
+rule that tells the two apart is historical: the candidate is a round trip when
+`fr_new` already appeared BEFORE `fr_old`. Those are dropped by default
+(`--keep-round-trips` reproduces the pre-2026-11-23 behaviour: 45 candidates where
+26 are actionable).
+
 Usage
   python -I tools/458-cascade-drift-scan.py --csv "Cards/Fallacies/..." --out worklist.csv
 """
@@ -68,6 +76,10 @@ def main():
     ap.add_argument("--langs", default=",".join(LANGS))
     ap.add_argument("--fields", default=",".join(FIELDS))
     ap.add_argument("--min-shrink", type=int, default=MIN_FR_SHRINK)
+    ap.add_argument("--keep-round-trips", action="store_true",
+                    help="keep candidates whose fr_new wording already existed before "
+                         "fr_old (the FR came back to an earlier value: the translation "
+                         "is aligned). Default: dropped, per report §3 of P24-07.")
     ap.add_argument("--cards-only", action="store_true",
                     help="keep rows the deck actually prints (deck column resolved)")
     ap.add_argument("--key-column", default=None,
@@ -95,7 +107,14 @@ def main():
 
     hits = {}
     scanned = 0
-    for sha in shas:
+    # Chronological FR history, recorded only where the cell CHANGES (rare), plus the
+    # value each pair starts with. It is what tells a tightening apart from a round
+    # trip without re-walking the corpus. The rank is a step counter, not the commit
+    # index: at one commit the value can both start and change, and the starting value
+    # is older — a shared index would make the two ranks equal and hide the return.
+    fr_changes = {}  # (pk, base) -> [(step, value)]
+    step = 0
+    for sha in reversed(shas):
         try:
             old = parse_at(sha + "^", a.csv, keycol)
             new = parse_at(sha, a.csv, keycol)
@@ -109,6 +128,13 @@ def main():
             for base in fields:
                 frc = "%s_fr" % base
                 fr_old, fr_new = (orow.get(frc) or ""), (nr.get(frc) or "")
+                seq = fr_changes.get((pk, base))
+                if seq is None:
+                    seq = fr_changes[(pk, base)] = [(step, fr_old)]
+                    step += 1
+                if fr_old != fr_new and seq[-1][1] != fr_new:
+                    seq.append((step, fr_new))
+                    step += 1
                 if len(fr_old) - len(fr_new) < a.min_shrink:
                     continue
                 for lang in langs:
@@ -124,7 +150,8 @@ def main():
                     cur = hits.get(key)
                     if cur is None or loss > cur["loss"]:
                         hits[key] = dict(pk=pk, col=col, field=base, lang=lang, sha=sha[:8],
-                                         loss=loss, fr_old=fr_old, fr_new=fr_new, target=t_new)
+                                         loss=loss, fr_old=fr_old, fr_new=fr_new,
+                                         target=t_new)
     print("commits scanned: %d | cascade-drift candidates (as of their commit): %d"
           % (scanned, len(hits)))
     # A candidate is only actionable if the two cells still hold at HEAD: the scan
@@ -142,6 +169,27 @@ def main():
             stale += 1
             del hits[key]
     print("dropped as already repaired since: %d | actionable at HEAD: %d" % (stale, len(hits)))
+    # Round trips (report §3): the FR returned to a wording it already carried, so the
+    # translation that stayed put is aligned with the CURRENT cell, not stale. Rank by
+    # first appearance; when fr_new predates fr_old, the change is a return.
+    roundtrips = 0
+    rt_groups = []
+    if not a.keep_round_trips:
+        for key in list(hits):
+            h = hits[key]
+            first = {}
+            for i, v in fr_changes.get((h["pk"], h["field"]), []):
+                first.setdefault(v, i)
+            if first.get(h["fr_new"], 1 << 30) < first.get(h["fr_old"], 1 << 30):
+                roundtrips += 1
+                g = (h["pk"], h["field"])
+                if g not in rt_groups:
+                    rt_groups.append(g)
+                del hits[key]
+    print("dropped as FR round-trips: %d%s | actionable: %d"
+          % (roundtrips,
+             " (groups: %s)" % ", ".join("%s %s" % g for g in sorted(rt_groups)) if rt_groups else "",
+             len(hits)))
     rows = sorted(hits.values(), key=lambda h: (-h["loss"], h["pk"]))
     by_field = {}
     for h in rows:

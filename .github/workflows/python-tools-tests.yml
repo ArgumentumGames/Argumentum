@@ -19,7 +19,7 @@
 #   d'execution sera documentee. C'est la distinction posee en tete de
 #   docs/quality/1460-charpente-suite-regression.md.
 #
-#   CABLES A CE JOUR (14), avec la condition qui les autorise ici :
+#   CABLES A CE JOUR (15), avec la condition qui les autorise ici :
 #     1. tools/test_1460-structure-charpente-pilot.py -- std-lib, 7 cas, arbres
 #        synthetiques ; aucun Target/ requis (le cas 7 est un grounding sur le depot
 #        reel, volontairement NON asserte).
@@ -112,6 +112,19 @@
 #        inverse (entree mutee d'un octet refusee). Aucune connexion, aucune base :
 #        la CI est le cas NOMINAL du rejouage du geste. Condition d'execution
 #        documentee dans la docstring du fichier.
+#    15. tools/test_458-cascade-drift-roundtrip.py -- std-lib + `git` (present sur le
+#        runner), offline, 3 cas, ~25 s. Construit un depot `git init` jetable de trois
+#        commits et eprouve tools/458-cascade-drift-scan.py sur la forme mesuree au
+#        rapport P24-07 §3 (PK 1282) : FR court -> long -> court avec traduction jamais
+#        retouchee = ALLER-RETOUR, ecarte par defaut ; FR long -> court jamais revenu
+#        = derive GARDEE (controle inverse dans la meme passe, un instrument qui
+#        ecarterait tout ne passerait pas) ; traduction qui a suivi le FR = jamais
+#        candidate. `--keep-round-trips` restaure le comportement d'avant le 23/11.
+#        Ne lit aucun corpus reel : le depot jetable est la seule entree. Le balayage
+#        du vrai corpus Fallacies demande l'historique complet (164 commits) alors que
+#        `actions/checkout` clone en `fetch-depth: 1` — mesure sur un corpus tronque,
+#        il ne verrait aucun candidat et un vert a compte nul ne serait pas une mesure.
+#        Condition d'execution documentee dans la docstring du fichier.
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
 #   - push sur master / pull_request : déclenchés, y compris les changements du
@@ -223,6 +236,17 @@ jobs:
         # aucune sortie ecrite). Toute derive LEGITIME du registre officiel rougit
         # ici AVANT d'atteindre le staging — c'est le role de l'epinglage.
         run: python tools/test_458-derive-run-registry.py
+
+      - name: Run the cascade-drift round-trip contract (#458 P24-42)
+        # 3 cas, std-lib + git, offline, ~25 s : construit un depot git jetable (trois
+        # commits) et eprouve tools/458-cascade-drift-scan.py sur la forme mesuree au
+        # rapport P24-07 §3 (PK 1282) : FR court -> long -> court, traduction jamais
+        # retouchee = ALLER-RETOUR, ecarte par defaut ; FR long -> court jamais revenu
+        # = derive GARDEE (controle inverse dans la meme passe) ; traduction qui a suivi
+        # le FR = jamais candidate. --keep-round-trips restaure le comportement d'avant
+        # le 23/11. Aucun corpus reel lu : sur un clone `fetch-depth: 1`, un balayage
+        # tronque rendrait un vert a compte nul, qui n'est pas une mesure.
+        run: python tools/test_458-cascade-drift-roundtrip.py
 
   pr-merge-gate-selftest:
     runs-on: ubuntu-latest
