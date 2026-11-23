@@ -72,6 +72,15 @@ Fallacies est passé de 176 à **175**. Le chiffre de **381 pages/langue** cité
 d'avant cette sortie : 381 − 379 = **2** = une face + son dos. L'écart est entièrement expliqué par la
 décision, ce qui confirme que l'instrument discrimine.
 
+**Ordre d'impression — la source reste unique** *(renvoi posé le 22/11, P24-39)*. Ce dossier chiffre les
+volumes ; l'**ordre physique des pages** ne se recopie pas ici : il vit dans le déroulé de bascule, §3,
+section « Ordre d'impression du lot PDF (#1187) — mesuré le 22/11 (P23-07) »
+([`1066-cutover-runbook-2026-11-04.md`](../quality/1066-cutover-runbook-2026-11-04.md)). Le renvoi ne porte
+qu'un avertissement, celui qui change un calage : **la parité des dos n'est pas la même d'un deck à
+l'autre** — dos du Scenarii (Poker) en page **impaire**, dos des Sophismes (Tarot) en page **paire**,
+Règles p. 1-15 en **recto seul**. Un appairage réglé sur un deck et appliqué à l'autre apparie chaque face
+avec le dos de sa voisine.
+
 ---
 
 ## §2 — Le point qui change un devis : le Memo est imprimé **7 fois**, pas 1
