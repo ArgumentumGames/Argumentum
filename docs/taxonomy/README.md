@@ -137,14 +137,22 @@ Indexé sur master `6b7afbb9`. #141 (« Iterate on non-card taxonomy nodes ») e
   au statut `historical`. Leur régénération serait un nouvel instrument, pas une
   reproduction — ils gardent la date et le commit auxquels ils ont été mesurés.
 - **Le module de hiérarchie `141-hierarchy.py`** — **code vivant** (`current`),
-  repris par le grain 1b de #498 (06/11) puis importé par
-  [`tools/aif-attack-graph-export.py`](../../tools/aif-attack-graph-export.py)
-  (l'export du graphe d'arêtes). Sa règle unique : la hiérarchie se lit dans la
+  repris par le grain 1b de #498 (06/11). Il est chargé (par
+  `importlib.import_module("141-hierarchy")`, le nom à tiret n'étant pas
+  importable par un `import` simple) par ses jumeaux `141-aif-explore.py`,
+  `141-aif-fullscale.py`, `141-aif-stage1.py` et par son propre
+  [`141-hierarchy-self-test.py`](141-hierarchy-self-test.py), qui tourne et
+  passe (**25/25**) ; le self-test n'est **pas câblé en CI** — le relancer à la
+  main. ⚠️ **Ne pas confondre** : [`tools/aif-attack-graph-export.py`](../../tools/aif-attack-graph-export.py)
+  n'importe **pas** ce module — il **réimplémente** la même logique `path` en
+  ligne (`to_comma`, l. 179) et ne fait que **citer** le rapport en commentaire.
+  Le statut `current` du module tient donc à ce qu'il est **exécutable et
+  vérifié** (self-test vert), non à un usage par un outil de `tools/`.
+  Sa règle unique : la hiérarchie se lit dans la
   colonne **`path`** (pointée, un segment par niveau, 1 408 uniques, 0 orphelin) ;
   la forme coma reste la clé de **rendu** (`dot2comma`), jamais l'inverse — la
   reconstruction chiffre par chiffre depuis `decimal_path` fabriquait un parent
-  inexistant (`5,123224`, rang 24). Le [`141-hierarchy-self-test.py`](141-hierarchy-self-test.py)
-  tourne et passe (**25/25**) ; il n'est **pas câblé en CI** — le relancer à la main.
+  inexistant (`5,123224`, rang 24).
 
 ## La tranche #141 — 21 fichiers
 
@@ -154,7 +162,7 @@ Compte établi par `git ls-files docs/taxonomy | grep -c '^docs/taxonomy/141-'` 
 
 | Fichier | Daté | Statut | Ce que c'est |
 |---|---|---|---|
-| [`141-hierarchy.py`](141-hierarchy.py) | 2026-11-06 | `current` | **Module partagé** des primitives de hiérarchie (`path_parent`, `dot2comma`, `comma_parent_DEFECTUEUX` pour contrôle inverse) — importé par les jumeaux `141-aif-*.py` et par `tools/aif-attack-graph-export.py` |
+| [`141-hierarchy.py`](141-hierarchy.py) | 2026-11-06 | `current` | **Module partagé** des primitives de hiérarchie (`path_parent`, `dot2comma`, `comma_parent_DEFECTUEUX` pour contrôle inverse) — chargé par `importlib` par ses jumeaux `141-aif-*.py` et son self-test ; **exécutable et vérifié** (self-test 25/25). NB : `tools/aif-attack-graph-export.py` réimplémente la logique inline, ne l'importe pas |
 | [`141-hierarchy-self-test.py`](141-hierarchy-self-test.py) | 2026-11-06 | `current` | Contrôle du module ci-dessus — **25/25** (mesuré 23/11), non câblé en CI ; se lance par `python -I docs/taxonomy/141-hierarchy-self-test.py` |
 | [`141-hierarchy-path-2026-11-06.md`](141-hierarchy-path-2026-11-06.md) | 2026-11-06 | `historical` | Rapport du grain 1b : la mesure qui a imposé la lecture par `path` (écart rangée 824, `depth` faux sur 2 rangées) — pièce datée, le module est la référence vivante |
 
