@@ -3,14 +3,14 @@
 Ce dossier ne fait que grossir : chaque chantier y dépose ses rapports datés, ses
 annotations CSV et ses scripts compagnons. Rien ne s'y supprime — chaque fichier
 est une pièce. Ce README indexe les tranches **#498** (65 fichiers), **#141**
-(21 fichiers) et **#499** (37 fichiers). Il n'est **pas encore** un index de record : la marque d'index
+(21 fichiers), **#499** (37 fichiers) et **#847** (15 fichiers). Il n'est **pas encore** un index de record : la marque d'index
 viendra avec la dernière tranche, quand les 168 fichiers du dossier seront tous
 indexés, conformément à
 [`docs/agents/consolidation.md`](../agents/consolidation.md) (§ *Procedure* :
 « Add the marker last »). En attendant, **rien ne tient cet index en CI** — une
 ligne oubliée ne rougira rien ; la complétude ci-dessous est celle de sa PR.
 
-Tranches restantes : #192, #202, #299, #497, #600, #847, #986 et les
+Tranches restantes : #192, #202, #299, #497, #600, #986 et les
 fichiers non numérotés (`aif-structural-audit-method.md`, `family-gap-inventory.md`,
 `i18n-hierarchy-apply-spec.md`, `subsubfamily-gap-inventory.md`,
 `taxonomy-coherence-scan.md`).
@@ -280,3 +280,78 @@ Découpage mesuré : `…499-*.md` → 25, `…499-*.csv` → 12.
 | [`499-scaleup-phase2-raisonnement-a-annotations.csv`](499-scaleup-phase2-raisonnement-a-annotations.csv) | 22 | `historical` | Annotations du batch 7a |
 | [`499-scaleup-phase2-raisonnement-b-annotations.csv`](499-scaleup-phase2-raisonnement-b-annotations.csv) | 23 | `historical` | Annotations du batch 7b |
 | [`499-scaleup-phase2-raisonnement-c-annotations.csv`](499-scaleup-phase2-raisonnement-c-annotations.csv) | 6 | `historical` | Annotations du batch 7c |
+
+## La tranche #847 — 15 fichiers
+
+Compte établi par `git ls-files docs/taxonomy | grep -c '^docs/taxonomy/847-'` → 15.
+
+#847 (« AIF two-layer structural homogeneity audit ») est **clos** (COMPLETED le
+7 septembre 2026). La tranche est la **chaîne complète d'un audit contradictoire** :
+une mesure des couches (a)+(b), **deux** instruments de couche (c) — chacun conçu
+pour *disculper* la structure plutôt que pour la condamner —, une synthèse-verdict
+d'ai-01, une liste de réparation, puis **une re-passe de release** qui refait la
+mesure sur Fallacies et la tente pour la première fois sur Virtues. **7 `.md`,
+7 `.csv`, 1 `.py`.** Toutes les pièces portent « MEASURE, not verdict » en tête
+**sauf** la synthèse, qui est le verdict et le dit.
+
+Aucune ligne n'est `current`, et la raison est **mesurée**, pas de principe : la
+tranche est close, et le seul fichier exécutable ne sert qu'à réécrire ses propres
+sidecars. `git grep -n "847-virtues-two-layer" -- ':!docs/taxonomy'` rend **0
+hit**, et il n'existe aucun `tools/847-*` : rien dans `tools/` ni en CI ne
+l'appelle. Il reste rejouable — il lit les deux CSV de prod et écrit les deux
+sidecars datés du 28/08 —, ce qui ne fait pas de lui un organe : c'est le
+**compagnon d'une passe datée**. Il n'a **pas** été rejoué pour écrire cet index
+(c'est un générateur : le relancer réécrirait des fichiers commités, geste hors
+du périmètre d'un index).
+
+### Mesure des couches (a) et (b) — juillet 2026
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`847-acompte-homogeneity.md`](847-acompte-homogeneity.md) | 2026-07-22 | `historical` | Acompte des couches (a)+(b) sur les **145 feuilles entièrement modélisées** — `87 undercut / 53 undermine / 5 rebut` ; en-tête « MEASURE ONLY, not a verdict », 0 écriture CSV prod |
+| [`847-acompte.csv`](847-acompte.csv) | 2026-07-22 | `historical` | Sidecar de l'acompte — **41** rangées (nœuds mesurés, 145 feuilles en prod) |
+| [`847-acompte-projected.csv`](847-acompte-projected.csv) | 2026-07-22 | `historical` | Variante **illustrative** : les 145 feuilles de prod **plus 8 propositions** de feuilles du cluster Layer-C **qui ne sont pas dans le CSV de prod** — **50** rangées ; à ne pas lire comme un état |
+
+### Couche (c) — les deux moitiés de l'instrument de disculpe — juillet 2026
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`847-layerc-reference-reachability.md`](847-layerc-reference-reachability.md) | 2026-07-23 | `historical` | Couche (c) §2.2 — accessibilité des références : la moitié qui devait séparer un **défaut de groupement** (axe A, à arbitrer) d'un **artefact de tradition** (axe C, la faute de personne) |
+| [`847-layerc-reference-reachability.csv`](847-layerc-reference-reachability.csv) | 2026-07-23 | `historical` | Sidecar de la couche (c) §2.2 — **90** rangées |
+| [`847-layerc-reference-reachability-refs.csv`](847-layerc-reference-reachability-refs.csv) | 2026-07-23 | `historical` | Le détail **par référence** — **2 580** rangées, compartimentées en `{wikipedia-stable, archive-repointed, dictionary-known, alive, dead, unknown, unparseable}` (liste blanche déterministe + sonde HEAD en lecture seule pour la longue traîne) |
+| [`847-layerc-label-distortion.md`](847-layerc-label-distortion.md) | 2026-07-23 | `historical` | Couche (c) §2.1 — la **contrainte d'étiquetage** des 39 nœuds internes ; deux proxys sémantiques testés et **non discriminants** (`dispersion_fr` saturée 0,94-1,00, `n_en_groupings = 1` partout) ⇒ `stretched`/`narrowed` restent non mesurés |
+| [`847-layerc-label-distortion.csv`](847-layerc-label-distortion.csv) | 2026-07-23 | `historical` | Sidecar de la couche (c) §2.1 — **41** rangées, `label_fit ∈ {borrowed, unflagged}` (`unflagged` = aucun drapeau mécanique, **pas** une validation de portée) |
+
+### Verdict et backlog de réparation — juillet 2026
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`847-synthesis-verdict.md`](847-synthesis-verdict.md) | 2026-07-25 | `historical` | La **synthèse-verdict d'ai-01** : « l'arbre survit à l'audit, aucune restructuration proposée ». Sur les **39** nœuds de groupement : 4 cohérents · 1 **pont** (*Ad hominem*, à annoter, à ne pas aplatir) · **28** résistances de matière · **6** candidats axe A dont **2 seulement** passent une porte de confiance. Constat dominant : **65,5 %** des 145 feuilles n'ont aucun jeton de schéma AIF natif |
+| [`847-reference-repair-worklist.md`](847-reference-repair-worklist.md) | 2026-07-26 | `historical` | La moitié **actionnable** du §5 — re-sonde en **GET**, qui réfute la réserve de la synthèse : la sonde HEAD sur-comptait (rationalwiki.org rend 503 en HEAD, 200 en GET) |
+| [`847-reference-repair-worklist.csv`](847-reference-repair-worklist.csv) | 2026-07-26 | `historical` | Le backlog machine — **134** rangées, la borne haute des références mortes (5,2 %) |
+
+### Re-passe de release — 28 août 2026 (Fallacies + première passe Virtues)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`847-virtues-two-layer.md`](847-virtues-two-layer.md) | 2026-08-28 | `historical` | Re-passe déclenchée par la release du 25/08 : contrôle de dérive Fallacies — **0 dérive**, 145 feuilles et `87/53/5` **identiques** aux chiffres de juillet, tables et nominations du verdict valides telles quelles — plus la **première** passe sur Virtues (222 feuilles `206/13/3`, entropie normalisée 0,267, homogénéité 0,928 ; **la couche (b) ne se transpose pas** aux Virtues, les tags y sont dégénérés dans les deux lectures) |
+| [`847-virtues-two-layer.py`](847-virtues-two-layer.py) | 2026-08-28 | `historical` | Le script compagnon de la re-passe — lit les deux CSV de prod, réimprime les mêmes normalisations que juillet et réécrit ses deux sidecars (une ligne de commentaire en tête, puis l'en-tête) |
+| [`847-fallacies-rerun.csv`](847-fallacies-rerun.csv) | 2026-08-28 | `historical` | Sortie machine du script — Fallacies, **91** rangées |
+| [`847-virtues-pass.csv`](847-virtues-pass.csv) | 2026-08-28 | `historical` | Sortie machine du script — Virtues, **91** rangées |
+
+La méthode que ces six pièces appliquent — 3 axes A/B/C, table de décision §4,
+règle de séparation mesure / verdict — vit dans
+[`aif-structural-audit-method.md`](aif-structural-audit-method.md), qui relève de
+la tranche des fichiers non numérotés ; le chantier porteur est #498.
+
+### Non établi
+
+- **Les 134 références mortes ont-elles été réparées ?** L'index ne le dit pas et
+  ne l'établit pas. Aucune pièce du dossier ne porte de lot de réparation
+  postérieur au 26/07, mais une réparation a pu se faire sous un autre nom :
+  l'instrument employé (`git grep` sur « 134 dead », « dead references ») ne
+  mesure que l'absence de ce **motif**, pas l'absence du travail.
+- Le contenu des sidecars au-delà de leur compte de rangées : la tranche est
+  indexée, pas ré-auditée. Un chantier clos ne se re-mesure pas pour l'indexer.
+- Le marqueur `<!-- index-of-record -->` reste absent (dernière tranche
+  seulement) : la complétude ci-dessus est celle de cette PR.
