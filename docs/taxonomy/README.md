@@ -2,15 +2,15 @@
 
 Ce dossier ne fait que grossir : chaque chantier y dépose ses rapports datés, ses
 annotations CSV et ses scripts compagnons. Rien ne s'y supprime — chaque fichier
-est une pièce. Ce README indexe les tranches **#498** (65 fichiers) et **#141**
-(21 fichiers). Il n'est **pas encore** un index de record : la marque d'index
+est une pièce. Ce README indexe les tranches **#498** (65 fichiers), **#141**
+(21 fichiers) et **#499** (37 fichiers). Il n'est **pas encore** un index de record : la marque d'index
 viendra avec la dernière tranche, quand les 168 fichiers du dossier seront tous
 indexés, conformément à
 [`docs/agents/consolidation.md`](../agents/consolidation.md) (§ *Procedure* :
 « Add the marker last »). En attendant, **rien ne tient cet index en CI** — une
 ligne oubliée ne rougira rien ; la complétude ci-dessous est celle de sa PR.
 
-Tranches restantes : #192, #202, #299, #497, #499, #600, #847, #986 et les
+Tranches restantes : #192, #202, #299, #497, #600, #847, #986 et les
 fichiers non numérotés (`aif-structural-audit-method.md`, `family-gap-inventory.md`,
 `i18n-hierarchy-apply-spec.md`, `subsubfamily-gap-inventory.md`,
 `taxonomy-coherence-scan.md`).
@@ -203,3 +203,80 @@ Compte établi par `git ls-files docs/taxonomy | grep -c '^docs/taxonomy/141-'` 
 | [`141-crosslink-datasetupdater-adaptation.md`](141-crosslink-datasetupdater-adaptation.md) | 2026-07-04 | `historical` | Proposition additive gated d'adaptation CrossLink/DatasetUpdater |
 | [`141-crosslink-sample-run.md`](141-crosslink-sample-run.md) | 2026-07-04 | `historical` | Exécution d'échantillon CrossLink (sortie réelle, curatée depuis #626) |
 | [`141-closure-recommendation.md`](141-closure-recommendation.md) | 2026-07-01 | `historical` | Recommandation de clôture du chantier #141 |
+
+## Où en est #499 — parité relationnel/AIF des Virtues, chantier clos
+
+Indexé sur master `93a218e5`. #499 (« amener la taxonomie Virtues à parité
+relationnel + AIF ») est **clos** (COMPLETED). La tranche entière est un
+**instantané daté d'un chantier fermé** : les 37 fichiers sont des rapports de
+batch, des sidecars d'annotation et des specs gated, tous de **juin–juillet
+2026**. **Rien d'exécutable dans la tranche** (25 `.md` + 12 `.csv`, aucun `.py`) ;
+**aucun outil ne lit ces sidecars en entrée** — l'apply (`tools/499-virtues-*-apply.py`,
+`tools/989-*`) lit le CSV `Cards/Fallacies/Argumentum Virtues - Taxonomy.csv`
+directement, et [`tools/validate_taxonomy_annotations.md`](../../tools/validate_taxonomy_annotations.md)
+les cite comme **exemples mesurés**, pas comme entrées. Les deux références
+externes (`docs/RELEASE-VALIDATION-v0.9.0.md` → `499-virtues-prod-write-spec.md` ;
+`docs/investigations/2026-07-03-654-*.md` → `499-virtues-scaleup-phase2-raisonnement-b.md`
+§86) pointent un **daté**, elles ne le rendent pas gouvernant.
+
+## La tranche #499 — 37 fichiers
+
+Compte établi par `git ls-files docs/taxonomy | grep -c '^docs/taxonomy/499-'` → 37.
+Découpage mesuré : `…499-*.md` → 25, `…499-*.csv` → 12.
+
+### Pilote, plan, spec et clôture (juin 2026)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`499-virtues-parity-pilot.md`](499-virtues-parity-pilot.md) | 2026-06-16 | `historical` | Pilote de parité relationnel/AIF des Virtues (proposition gated) — la graine du chantier |
+| [`499-virtues-scaleup-phase1.md`](499-virtues-scaleup-phase1.md) | 2026-06-17 | `historical` | Scale-up phase 1 : les 18 sous-familles de profondeur 2 (proposition gated) |
+| [`499-virtues-parity-closure.md`](499-virtues-parity-closure.md) | 2026-06-23 | `historical` | Évaluation de clôture de la parité (couverture + validation) |
+| [`499-virtues-prod-write-spec.md`](499-virtues-prod-write-spec.md) | 2026-06-23 | `historical` | Spec d'écriture prod (brouillon, non-prod, gated sur le contenu owner) — **ground-truth 223 rangées × 66 colonnes** cité par `RELEASE-VALIDATION-v0.9.0` |
+| [`499-virtues-backfill-mechanical-plan.md`](499-virtues-backfill-mechanical-plan.md) | 2026-07-07 | `historical` | Plan mécanique de back-fill 222 rangées (Option A, HOLD prod) |
+
+### Scale-up phase 2 — un rapport par batch (juin 2026)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`499-virtues-scaleup-phase2.md`](499-virtues-scaleup-phase2.md) | 2026-06-18 | `historical` | Batch 1 : Langage exact, feuilles de profondeur 3-4 |
+| [`499-virtues-scaleup-phase2-rigmath.md`](499-virtues-scaleup-phase2-rigmath.md) | 2026-06-18 | `historical` | Batch 2 : Rigueur mathématique, profondeur 3… |
+| [`499-virtues-scaleup-phase2-honnetete.md`](499-virtues-scaleup-phase2-honnetete.md) | 2026-06-18 | `historical` | Batch 3 : Honnêteté intellectuelle, profondeur 3… |
+| [`499-virtues-scaleup-phase2-presentation.md`](499-virtues-scaleup-phase2-presentation.md) | 2026-06-18 | `historical` | Batch 4 : Présentation intègre, profondeur 3-4 |
+| [`499-virtues-scaleup-phase2-argument.md`](499-virtues-scaleup-phase2-argument.md) | 2026-06-18 | `historical` | Batch 5 : Argument pertinent, profondeur 3…6 |
+| [`499-virtues-scaleup-phase2-echange-a.md`](499-virtues-scaleup-phase2-echange-a.md) | 2026-06-18 | `historical` | Batch 6a : Échange enrichissant, profondeur 3… |
+| [`499-virtues-scaleup-phase2-echange-b.md`](499-virtues-scaleup-phase2-echange-b.md) | 2026-06-19 | `historical` | Batch 6b : Échange enrichissant, profondeur 3… |
+| [`499-virtues-scaleup-phase2-raisonnement-a.md`](499-virtues-scaleup-phase2-raisonnement-a.md) | 2026-06-19 | `historical` | Batch 7a : Raisonnement valide, profondeur 3…6 |
+| [`499-virtues-scaleup-phase2-raisonnement-b.md`](499-virtues-scaleup-phase2-raisonnement-b.md) | 2026-06-19 | `historical` | Batch 7b : Raisonnement valide, profondeur 6…7 — **§86 : définition des mnémoniques syllogistiques** (Barbara, Celarent…), citée par `docs/investigations/2026-07-03-654-*.md` |
+| [`499-virtues-scaleup-phase2-raisonnement-c.md`](499-virtues-scaleup-phase2-raisonnement-c.md) | 2026-06-19 | `historical` | Batch 7c : Raisonnement valide, profondeur 4…5 |
+
+### Clusters AIF des Virtues (juillet 2026)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`499-aif-raisonnement-causalite-cluster.md`](499-aif-raisonnement-causalite-cluster.md) | 2026-07-07 | `historical` | Cluster PR-1 : Raisonnement valide / Causalités bien établies |
+| [`499-aif-honnetete-fidelite-aux-faits-cluster.md`](499-aif-honnetete-fidelite-aux-faits-cluster.md) | 2026-07-07 | `historical` | Cluster PR-2 : Honnêteté intellectuelle / Fidélité aux faits |
+| [`499-aif-echange-respect-de-la-personne-cluster.md`](499-aif-echange-respect-de-la-personne-cluster.md) | 2026-07-07 | `historical` | Cluster PR-3 : Échange enrichissant / Respect de la personne |
+| [`499-aif-langage-definitions-claires-cluster.md`](499-aif-langage-definitions-claires-cluster.md) | 2026-07-07 | `historical` | Cluster PR-4 : Langage exact / Définitions claires |
+| [`499-aif-rigmath-generalisations-justifiees-cluster.md`](499-aif-rigmath-generalisations-justifiees-cluster.md) | 2026-07-07 | `historical` | Cluster PR-5 : Rigueur mathématique / Généralisations justifiées |
+| [`499-aif-presentation-equilibre-emotionnel-cluster.md`](499-aif-presentation-equilibre-emotionnel-cluster.md) | 2026-07-07 | `historical` | Cluster PR-6 : Présentation intègre / Équilibre émotionnel |
+| [`499-aif-argument-fonde-cluster.md`](499-aif-argument-fonde-cluster.md) | 2026-07-07 | `historical` | Cluster PR-7 : Argument pertinent / Argument fondé |
+| [`499-aif-premisses-fiables-cluster.md`](499-aif-premisses-fiables-cluster.md) | 2026-07-07 | `historical` | Cluster PR-8 : Argument pertinent / Prémisses fiables |
+| [`499-aif-presentation-humour-cluster.md`](499-aif-presentation-humour-cluster.md) | 2026-07-07 | `historical` | Cluster PR-9 : Présentation intègre / Rhétorique et humour |
+| [`499-aif-interpretation-juste-cluster.md`](499-aif-interpretation-juste-cluster.md) | 2026-07-08 | `historical` | Cluster PR-10 : Interprétation juste (famille 1.3) |
+
+### Sidecars d'annotation machine (12 CSV)
+
+| Fichier | Lignes | Statut | Ce que c'est |
+|---|---:|---|---|
+| [`499-pilot-annotations.csv`](499-pilot-annotations.csv) | 10 | `historical` | Annotations du pilote (10 rangées) |
+| [`499-scaleup-phase1-annotations.csv`](499-scaleup-phase1-annotations.csv) | 18 | `historical` | Annotations de la phase 1 (18 rangées, #510) |
+| [`499-scaleup-phase2-annotations.csv`](499-scaleup-phase2-annotations.csv) | 14 | `historical` | Annotations du batch 1 |
+| [`499-scaleup-phase2-rigmath-annotations.csv`](499-scaleup-phase2-rigmath-annotations.csv) | 16 | `historical` | Annotations du batch 2 |
+| [`499-scaleup-phase2-honnetete-annotations.csv`](499-scaleup-phase2-honnetete-annotations.csv) | 23 | `historical` | Annotations du batch 3 |
+| [`499-scaleup-phase2-presentation-annotations.csv`](499-scaleup-phase2-presentation-annotations.csv) | 21 | `historical` | Annotations du batch 4 |
+| [`499-scaleup-phase2-argument-annotations.csv`](499-scaleup-phase2-argument-annotations.csv) | 29 | `historical` | Annotations du batch 5 |
+| [`499-scaleup-phase2-echange-a-annotations.csv`](499-scaleup-phase2-echange-a-annotations.csv) | 18 | `historical` | Annotations du batch 6a |
+| [`499-scaleup-phase2-echange-b-annotations.csv`](499-scaleup-phase2-echange-b-annotations.csv) | 22 | `historical` | Annotations du batch 6b |
+| [`499-scaleup-phase2-raisonnement-a-annotations.csv`](499-scaleup-phase2-raisonnement-a-annotations.csv) | 22 | `historical` | Annotations du batch 7a |
+| [`499-scaleup-phase2-raisonnement-b-annotations.csv`](499-scaleup-phase2-raisonnement-b-annotations.csv) | 23 | `historical` | Annotations du batch 7b |
+| [`499-scaleup-phase2-raisonnement-c-annotations.csv`](499-scaleup-phase2-raisonnement-c-annotations.csv) | 6 | `historical` | Annotations du batch 7c |
