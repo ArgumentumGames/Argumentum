@@ -17,7 +17,8 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
     /// <para>DoD du grain : page permutée ⇒ rouge, page modifiée ⇒ rouge, PDF identique ⇒ vert.
     /// Chaque prédicat est vu dans les <b>deux</b> sens (#1046 : une garde jamais vue rouge est un
     /// no-op) — y compris la classe <b>must-stay-green</b> : changer la sérialisation physique
-    /// (compression, ordre d'écriture, /Length indirect, bruit d'espacements) ne doit PAS rougir,
+    /// (compression, ordre d'écriture, /Length indirect, bruit d'espacements, <b>ordre des clés
+    /// d'un dictionnaire</b>, <b>orthographe des nombres</b>) ne doit PAS rougir,
     /// sinon la future référence réelle serait liée à une version de générateur.</para>
     ///
     /// <para>Le fabriqueur synthétique écrit des PDF minimaux valides (catalogue, arbre /Pages,
@@ -80,6 +81,62 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
                 PdfPageFingerprintIntegrity.Fingerprints(fastest),
                 "le niveau de compression change les octets encodés, jamais le contenu décodé — " +
                 "la classe must-stay-green du discriminant sérialisation/contenu.");
+        }
+
+        // ─────────────────────────────────────────────────────────────────────────
+        // (1 bis) L'ORDRE DES CLÉS D'UN DICTIONNAIRE n'entre pas dans l'empreinte.
+        // Témoin rouge de `.OrderBy(kv => kv.Key, StringComparer.Ordinal)` (#1460 phase D,
+        // P24-40) : sans ce tri, un générateur qui écrit /Type en premier et un autre qui
+        // l'écrit en dernier produiraient deux empreintes pour le même document.
+        // ─────────────────────────────────────────────────────────────────────────
+
+        [Fact]
+        public void Dictionary_Key_Order_Alone_Stays_Green()
+        {
+            var contents = new[] { Content(0), Content(1) };
+            var images = new[] { ImageBytes(0), ImageBytes(1) };
+
+            var canonicalOrder = BuildPdf(contents, perPageImages: images);
+            // Mêmes clés, même contenu : seul l'ordre PHYSIQUE d'écriture change, dans le
+            // dictionnaire de page ET dans celui de chaque flux image.
+            var permutedOrder = BuildPdf(contents, perPageImages: images, permuteDictKeys: true);
+
+            // Témoin de non-vacuité : les octets diffèrent bel et bien.
+            Convert.ToHexString(canonicalOrder).Should().NotBe(Convert.ToHexString(permutedOrder),
+                "les clés sont écrites dans un ordre physique différent — sans quoi l'égalité " +
+                "des empreintes ne prouverait rien.");
+
+            PdfPageFingerprintIntegrity.Fingerprints(permutedOrder).Should().Equal(
+                PdfPageFingerprintIntegrity.Fingerprints(canonicalOrder),
+                "l'ordre d'écriture des clés est une propriété de sérialisation : le canoniseur doit " +
+                "trier les clés (ordre ordinal) avant de hacher, sinon la référence réelle dépendrait " +
+                "de l'ordre d'émission du générateur.");
+        }
+
+        // ─────────────────────────────────────────────────────────────────────────
+        // (1 ter) L'ORTHOGRAPHE D'UN NOMBRE n'entre pas dans l'empreinte.
+        // Témoin rouge de `NormalizeNumber` (#1460 phase D, P24-40) : 16, 1.6e1 et 8.000
+        // désignent les mêmes valeurs — un générateur peut écrire un entier en réel.
+        // ─────────────────────────────────────────────────────────────────────────
+
+        [Fact]
+        public void Number_Spelling_Alone_Stays_Green()
+        {
+            var contents = new[] { Content(0), Content(1) };
+            var images = new[] { ImageBytes(0), ImageBytes(1) };
+
+            var integerSpelling = BuildPdf(contents, perPageImages: images);
+            // /Width 16 -> /Width 1.6e1, /Height 16 -> /Height 1.6e1, /BitsPerComponent 8 -> 8.000 :
+            // mêmes valeurs, frontières de tokens inchangées (suivies d'un /Name, jamais d'un chiffre).
+            var realSpelling = BuildPdf(contents, perPageImages: images, respellNumbers: true);
+
+            Convert.ToHexString(integerSpelling).Should().NotBe(Convert.ToHexString(realSpelling),
+                "témoin de non-vacuité : les valeurs sont orthographiées différemment sur le fil.");
+
+            PdfPageFingerprintIntegrity.Fingerprints(realSpelling).Should().Equal(
+                PdfPageFingerprintIntegrity.Fingerprints(integerSpelling),
+                "16 et 1.6e1 sont le même nombre : sans normalisation de l'orthographe, un générateur " +
+                "qui passe un entier en réel changerait l'empreinte sans changer le document.");
         }
 
         // ─────────────────────────────────────────────────────────────────────────
@@ -267,11 +324,23 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             string noise = "",
             int[]? kidsOrder = null,
             bool stripCatalogType = false,
-            bool addObjStmJunk = false)
+            bool addObjStmJunk = false,
+            bool permuteDictKeys = false,
+            bool respellNumbers = false)
         {
             sharedImages ??= Array.Empty<(string, byte[])>();
             perPageImages ??= Array.Empty<byte[]>();
             kidsOrder ??= Enumerable.Range(0, contents.Count).ToArray();
+
+            // Deux leviers de la forme canonique (#1460 phase D, P24-40) : l'ordre PHYSIQUE des
+            // clés d'un dictionnaire et l'orthographe d'un nombre sont des propriétés de
+            // sérialisation, pas de contenu. Chacun a son témoin must-stay-green ci-dessus.
+            var widthEntry = respellNumbers ? "/Width 1.6e1" : "/Width 16";
+            var heightEntry = respellNumbers ? "/Height 1.6e1" : "/Height 16";
+            var bitsEntry = respellNumbers ? "/BitsPerComponent 8.000" : "/BitsPerComponent 8";
+            var imageDictPrefix = permuteDictKeys
+                ? $"<< {bitsEntry} /ColorSpace /DeviceGray {heightEntry} {widthEntry} /Subtype /Image /Type /XObject"
+                : $"<< /Type /XObject /Subtype /Image {widthEntry} {heightEntry} /ColorSpace /DeviceGray {bitsEntry}";
 
             var next = 1;
             var catalogObj = next++;
@@ -323,7 +392,7 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             for (var s = 0; s < sharedImages.Count; s++)
             {
                 EmitStream(sharedObjs[s],
-                    "<< /Type /XObject /Subtype /Image /Width 16 /Height 16 /ColorSpace /DeviceGray /BitsPerComponent 8",
+                    imageDictPrefix,
                     sharedImages[s].Bytes, flateImages);
             }
 
@@ -334,7 +403,7 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
                 if (imageObjs[i] > 0)
                 {
                     EmitStream(imageObjs[i],
-                        "<< /Type /XObject /Subtype /Image /Width 16 /Height 16 /ColorSpace /DeviceGray /BitsPerComponent 8",
+                        imageDictPrefix,
                         perPageImages[i], flateImages);
                 }
 
@@ -342,8 +411,9 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
                 if (imageObjs[i] > 0) resources.Append($"/Im0 {imageObjs[i]} 0 R ");
                 for (var s = 0; s < sharedImages.Count; s++) resources.Append($"{sharedImages[s].Name} {sharedObjs[s]} 0 R ");
                 resources.Append(">> >>");
-                bodies[pageObjs[i]] =
-                    $"<< /Type /Page /Parent {pagesObj} 0 R /MediaBox [0 0 200 300] /Resources {resources} /Contents {contentObjs[i]} 0 R >>";
+                bodies[pageObjs[i]] = permuteDictKeys
+                    ? $"<< /Contents {contentObjs[i]} 0 R /Type /Page /Resources {resources} /MediaBox [0 0 200 300] /Parent {pagesObj} 0 R >>"
+                    : $"<< /Type /Page /Parent {pagesObj} 0 R /MediaBox [0 0 200 300] /Resources {resources} /Contents {contentObjs[i]} 0 R >>";
             }
 
             foreach (var (lenObj, value) in lengthValues)
