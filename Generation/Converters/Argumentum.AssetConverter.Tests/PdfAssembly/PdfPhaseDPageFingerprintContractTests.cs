@@ -77,6 +77,12 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
             // Témoin : les deux sérialisations compressées diffèrent bien physiquement.
             Convert.ToHexString(fastest).Should().NotBe(Convert.ToHexString(smallest));
 
+            // Même vacuité possible que dans les deux témoins ci-dessous : `Equal` sur deux listes
+            // vides est vert. Constat du contrôle inverse de P24-41 (le test restait vert quand le
+            // canoniseur rendait 0 page) — une page de garde, trois pages construites.
+            PdfPageFingerprintIntegrity.Fingerprints(smallest).Should().HaveCount(3,
+                "sans cette garde, deux listes vides seraient égales et le témoin passerait à vide.");
+
             PdfPageFingerprintIntegrity.Fingerprints(smallest).Should().Equal(
                 PdfPageFingerprintIntegrity.Fingerprints(fastest),
                 "le niveau de compression change les octets encodés, jamais le contenu décodé — " +
@@ -106,6 +112,11 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
                 "les clés sont écrites dans un ordre physique différent — sans quoi l'égalité " +
                 "des empreintes ne prouverait rien.");
 
+            // Garde de longueur (#2350, remarque po-2024 → P24-41) : deux listes vides sont égales,
+            // donc l'égalité ci-dessous serait verte sans rien tester si le canoniseur rendait 0 page.
+            PdfPageFingerprintIntegrity.Fingerprints(permutedOrder).Should().HaveCount(2,
+                "sans cette garde, deux listes vides seraient égales et le témoin passerait à vide.");
+
             PdfPageFingerprintIntegrity.Fingerprints(permutedOrder).Should().Equal(
                 PdfPageFingerprintIntegrity.Fingerprints(canonicalOrder),
                 "l'ordre d'écriture des clés est une propriété de sérialisation : le canoniseur doit " +
@@ -132,6 +143,10 @@ namespace Argumentum.AssetConverter.Tests.PdfAssembly
 
             Convert.ToHexString(integerSpelling).Should().NotBe(Convert.ToHexString(realSpelling),
                 "témoin de non-vacuité : les valeurs sont orthographiées différemment sur le fil.");
+
+            // Même garde de longueur que ci-dessus : l'égalité ne prouve rien sur deux listes vides.
+            PdfPageFingerprintIntegrity.Fingerprints(realSpelling).Should().HaveCount(2,
+                "sans cette garde, deux listes vides seraient égales et le témoin passerait à vide.");
 
             PdfPageFingerprintIntegrity.Fingerprints(realSpelling).Should().Equal(
                 PdfPageFingerprintIntegrity.Fingerprints(integerSpelling),
