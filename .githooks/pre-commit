@@ -2,15 +2,15 @@
 # pre-commit hook: block accidental commit of real secrets in DNNPlatform/web.config
 #
 # Context (#131 Phase D security hardening):
-#   - DNNPlatform/web.config is git-tracked but carries PLACEHOLDERS on master
-#     (Data Source=REPLACE, validationKey="REPLACE", decryptionKey="REPLACE").
-#   - At runtime, DNN expands these placeholders to real credentials (SQL password,
-#     machineKey). The expanded file then shows as modified ("M") in git status,
-#     creating a permanent risk of accidentally committing the real password/machineKey.
+#   - DNNPlatform/web.config has been UNTRACKED since #1055 — the live file is a
+#     local, non-repo file (the placeholder era ended with the tracking).
+#   - If a web.config is ever staged under DNNPlatform/, it is therefore a LIVE
+#     copy carrying real credentials (SQL password, machineKey), and committing
+#     it would leak them to a public repository.
 #
 # This hook is defense-in-depth: if web.config is staged and contains a REAL
-# (non-placeholder) password or machineKey, the commit is REJECTED.
-# It does NOT touch the template itself (master stays intact — load-bearing per #442).
+# password or machineKey, the commit is REJECTED.
+# It never modifies anything — it only rejects the commit.
 
 set -euo pipefail
 
@@ -34,9 +34,8 @@ if [ -n "$real_password" ] || [ -n "$real_validation" ] || [ -n "$real_decryptio
     echo "  COMMIT BLOCKED: real secret detected in $target" >&2
     echo "============================================================" >&2
     echo "" >&2
-    echo "DNNPlatform/web.config is tracked as a PLACEHOLDER template on master." >&2
-    echo "It must keep 'Data Source=REPLACE' and 'validationKey=\"REPLACE\"' placeholders." >&2
-    echo "The runtime expands these to real credentials locally — never commit those." >&2
+    echo "DNNPlatform/web.config is untracked since #1055 — a staged copy is a LIVE file." >&2
+    echo "It carries real credentials (SQL password, machineKey) — never commit it." >&2
     echo "" >&2
     [ -n "$real_password" ]   && echo "  - Real SQL password pattern found" >&2
     [ -n "$real_validation" ] && echo "  - Real machineKey validationKey found" >&2
