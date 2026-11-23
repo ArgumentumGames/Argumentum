@@ -1,18 +1,18 @@
 # docs/taxonomy — constats datés des chantiers de taxonomie
 
+<!-- index-of-record -->
+
 Ce dossier ne fait que grossir : chaque chantier y dépose ses rapports datés, ses
 annotations CSV et ses scripts compagnons. Rien ne s'y supprime — chaque fichier
-est une pièce. Ce README indexe **146 des 168 fichiers** du dossier : les tranches
-**#498** (65 fichiers), **#141** (21), **#499** (37) et **#847** (15), puis les
-tranches d'un seul fichier **#202**, **#299**, **#986** et les cinq documents non
-numérotés (8 fichiers). Il n'est **pas encore** un index de record : la marque d'index
-viendra avec la dernière tranche, quand les 168 fichiers du dossier seront tous
-indexés, conformément à
+est une pièce. Ce README **est** l'index de record du dossier depuis le 23/11/2026 :
+il cite les **168 fichiers** suivis, à travers les tranches **#498** (65), **#141**
+(21), **#499** (37), **#847** (15), **#202**, **#299**, **#986** et les cinq
+documents non numérotés (8), puis **#192** (8), **#497** (9) et **#600** (5). La
+marque d'index a été posée avec la **dernière** tranche, conformément à
 [`docs/agents/consolidation.md`](../agents/consolidation.md) (§ *Procedure* :
-« Add the marker last »). En attendant, **rien ne tient cet index en CI** — une
-ligne oubliée ne rougira rien ; la complétude ci-dessous est celle de sa PR.
-
-Tranches restantes : #192 (8 fichiers), #497 (9) et #600 (5) — 22 fichiers.
+« Add the marker last »). À partir de maintenant **la CI tient la complétude** :
+`python -I tools/test_docs-index-contract.py` rougit un fichier ajouté au dossier
+sans ligne d'index, un lien mort, ou une ligne citante sans statut.
 
 ## Où en est #498 — fermé le 17 novembre 2026
 
@@ -339,9 +339,8 @@ du périmètre d'un index).
 | [`847-virtues-pass.csv`](847-virtues-pass.csv) | 2026-08-28 | `historical` | Sortie machine du script — Virtues, **91** rangées |
 
 La méthode que ces six pièces appliquent — 3 axes A/B/C, table de décision §4,
-règle de séparation mesure / verdict — vit dans
-[`aif-structural-audit-method.md`](aif-structural-audit-method.md), qui relève de
-la tranche des fichiers non numérotés ; le chantier porteur est #498.
+règle de séparation mesure / verdict — vit dans `aif-structural-audit-method.md`,
+indexé plus bas avec les fichiers non numérotés ; le chantier porteur est #498.
 
 ### Non établi
 
@@ -352,8 +351,8 @@ la tranche des fichiers non numérotés ; le chantier porteur est #498.
   mesure que l'absence de ce **motif**, pas l'absence du travail.
 - Le contenu des sidecars au-delà de leur compte de rangées : la tranche est
   indexée, pas ré-auditée. Un chantier clos ne se re-mesure pas pour l'indexer.
-- Le marqueur `<!-- index-of-record -->` reste absent (dernière tranche
-  seulement) : la complétude ci-dessus est celle de cette PR.
+- Le marqueur `<!-- index-of-record -->` n'était pas encore posé à cette tranche
+  (il l'est avec la dernière) : la complétude ci-dessus est celle de sa PR.
 
 ## Les tranches d'un fichier (#202, #299, #986) et les cinq documents non numérotés — 8 fichiers
 
@@ -426,3 +425,71 @@ documents sont des pièces datées, pas un travail en attente.
   la mesure ci-dessus établit l'état, pas l'historique.
 - Le contenu des trois postures de #986 au-delà de leur existence : l'index les
   nomme, il ne les arbitre pas — c'est l'objet de #986, qui attend un humain.
+
+## La dernière tranche — #192 (8), #497 (9) et #600 (5) : 22 fichiers
+
+Compte établi par `git ls-files docs/taxonomy | grep -cE '^docs/taxonomy/(192|497|600)-'` → 22.
+
+Trois chantiers, **tous clos** : #192 et #600 forment la **piste `link_*`** (mesurer
+la couverture → résoudre les URL candidates → harnais d'application), #497 est la
+**couche relationnelle transverse** entre grappes. Aucune de leurs pièces n'est
+`current` : les trois issues sont CLOSED/MERGED, et aucun de leurs scripts n'est
+appelé par la CI ni importé par un outil (`git grep` de chaque nom hors
+`docs/taxonomy` : seul `192-link-coverage-langlinks-probe` est **cité**, dans la
+docstring de `tools/link-langlinks-resolve.py`, qui étend sa mesure en résolution —
+vérifié sur la **forme** : cet outil n'importe que la std-lib).
+
+### #192 — couverture de traduction et terminologie (juin 2026)
+
+Issue **CLOSED/COMPLETED** (28/06).
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`192-coverage-report.py`](192-coverage-report.py) | 2026-06-28 | `historical` | Rapport de couverture **READ-ONLY** : par dataset, par champ traduisible, par langue — remplis/total et vides ; couvre aussi `link_*`. Aucune écriture CSV |
+| [`192-link-coverage-research.md`](192-link-coverage-research.md) | 2026-06-25 | `historical` | La piste de recherche du gap `link_*` (master `bef3bc6c`, gel de release) — recherche seule, 0 écriture sous `Cards/` |
+| [`192-link-coverage-langlinks-probe.py`](192-link-coverage-langlinks-probe.py) | 2026-06-27 | `historical` | La **sonde** : taux de remplissage réel du gap `link_*` via l'API `langlinks` de MediaWiki — elle convertit le plafond **théorique** de #600 en mesure. C'est la pièce que `tools/link-langlinks-resolve.py` cite comme la mesure qu'il étend |
+| [`192-native-ratification-checklist.md`](192-native-ratification-checklist.md) | 2026-06-28 | `historical` | Checklist **turnkey** du résidu natif de #607 — ratifiable en ~10 min par un locuteur natif, **post-release** ; 0 écriture sous `Cards/` |
+| [`192-terminology-audit.py`](192-terminology-audit.py) | 2026-06-28 | `historical` | Le **détecteur** : pour chaque (dataset, champ de groupement, langue), la source FR → le compteur des traductions vues ; toute étiquette à plus d'une traduction est imprimée |
+| [`192-terminology-apply.py`](192-terminology-apply.py) | 2026-06-28 | `historical` | L'**applicateur** correspondant — **dry-run par défaut**, `--apply` gaté |
+| [`192-terminology-apply-dryrun.txt`](192-terminology-apply-dryrun.txt) | 2026-06-28 | `historical` | La **sortie** du dry-run (71 lignes) : 6 groupes multi-variantes sur Virtues, **0 cellule à changer**, 6 en attente de jugement |
+| [`192-terminology-glossary-register.md`](192-terminology-glossary-register.md) | 2026-06-25 | `historical` | **Proposition** de glossaire et de registre, en attente de ratification (jsboige / natif) — c'est la pièce qui pré-instruisait la porte de #192 |
+
+### #497 — la couche relationnelle transverse (juin–juillet 2026)
+
+Issue **CLOSED/COMPLETED** (05/09), fermée sur ce constat : couche peuplée à
+**844/1 408** (59,9 %), **rendue nulle part** (0 flèche sur 41 SVG, OWL non publié)
+— état lu dans l'issue, pas re-mesuré ici.
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`497-crosslinks-pilot.md`](497-crosslinks-pilot.md) | 2026-06-17 | `historical` | Le **pilote** de liens transverses avec TYPE documenté et réciprocité — proposition GATED ; auteur de la pièce : lane po-2023 |
+| [`497-pilot-crosslinks.csv`](497-pilot-crosslinks.csv) | 2026-06-17 | `historical` | Le sidecar du pilote — **24** rangées (`crossLink_Mirrors`, `IsRelatedTo`… avec justification rédigée) |
+| [`497-grappe-inventory.csv`](497-grappe-inventory.csv) | 2026-06-18 | `historical` | Inventaire par grappe — **21** rangées : taille du sous-arbre, profondeur min/max, liens transverses déjà présents |
+| [`497-grappe-substrate.md`](497-grappe-substrate.md) | 2026-06-18 | `historical` | Le **substrat de comparaison grappe-à-grappe** — proposition GATED, chantier multi-sessions ; aucune écriture au CSV de prod |
+| [`497-grappe-substrate.py`](497-grappe-substrate.py) | 2026-06-18 | `historical` | Le **générateur** du substrat (lane ai-01) : inventaire par grappe, remontée empirique des grappes répondeuses, passe d'affinité lexicale — gate-safe, n'écrit que sous `docs/taxonomy/` |
+| [`497-responding-grappes.csv`](497-responding-grappes.csv) | 2026-06-18 | `historical` | La remontée empirique — **107** rangées (poids, grappe source → cible, exemples de liens de feuilles) |
+| [`497-grappe-substrate-refresh.md`](497-grappe-substrate-refresh.md) | 2026-07-22 | `historical` | Le **re-run** du générateur contre le CSV courant (master `b442c658`), pour actualiser le substrat |
+| [`497-inter-family-bridges.md`](497-inter-family-bridges.md) | 2026-07-22 | `historical` | Les **ponts inter-familles** : **84** paires de feuilles quasi-dupliquées entre familles, **toutes non liées** — le ROI après la saturation intra-grappe de #834 |
+| [`497-inter-family-bridges-annotations.csv`](497-inter-family-bridges-annotations.csv) | 2026-07-22 | `historical` | Le sidecar des 84 paires — **84** rangées : Jaccard, termes distinctifs partagés, relation proposée, verdict sémantique |
+
+### #600 — résolution des `link_*` et harnais d'application (juillet 2026)
+
+Issue **MERGED** (27/06).
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`600-link-resolve-report.md`](600-link-resolve-report.md) | 2026-07-01 | `historical` | **Snapshot** de la résolution des URL candidates : matérialise le plafond ~57 % résolvable mesuré par la sonde de #192 |
+| [`600-link-resolve-fallacies.csv`](600-link-resolve-fallacies.csv) | 2026-07-01 | `historical` | Les URL résolues pour Fallacies — **2 754** rangées (`dataset, key, link_lang, resolved_url`) |
+| [`600-link-resolve-virtues.csv`](600-link-resolve-virtues.csv) | 2026-07-01 | `historical` | Les URL résolues pour Virtues — **180** rangées |
+| [`600-link-apply-report.md`](600-link-apply-report.md) | 2026-07-01 | `historical` | L'audit **DRY-RUN** du harnais d'application — `0 write under Cards/` (gel pré-tag) |
+| [`600-link-apply.py`](600-link-apply.py) | 2026-07-01 | `historical` | Le **harnais** — dry-run par défaut, `#595` drift-free ; applique le sidecar #618 (**2 934** URL `link_<lang>` candidates) à Fallacies et Virtues |
+
+### Non établi
+
+- **Le harnais #600 a-t-il été exécuté ?** L'index ne l'établit pas : la pièce est
+  un **DRY-RUN daté** (`0 write under Cards/`), et le taux de remplissage réel des
+  `link_*` n'est pas re-mesuré ici. Un `0` de write dans une pièce de juillet ne
+  dit rien de l'état de novembre.
+- Le **rendu** de la couche relationnelle après la clôture de #497 : l'issue le dit
+  nul (« 0 flèche sur 41 SVG, OWL non publié ») ; c'est un état lu dans l'issue,
+  pas une mesure refaite par cet index.
