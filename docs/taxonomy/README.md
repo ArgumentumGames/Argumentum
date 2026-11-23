@@ -2,14 +2,15 @@
 
 Ce dossier ne fait que grossir : chaque chantier y dépose ses rapports datés, ses
 annotations CSV et ses scripts compagnons. Rien ne s'y supprime — chaque fichier
-est une pièce. Ce README indexe la tranche **#498** (65 fichiers suivis). Il n'est
-**pas encore** un index de record : la marque d'index viendra avec la dernière
-tranche, quand les 168 fichiers du dossier seront tous indexés, conformément à
+est une pièce. Ce README indexe les tranches **#498** (65 fichiers) et **#141**
+(21 fichiers). Il n'est **pas encore** un index de record : la marque d'index
+viendra avec la dernière tranche, quand les 168 fichiers du dossier seront tous
+indexés, conformément à
 [`docs/agents/consolidation.md`](../agents/consolidation.md) (§ *Procedure* :
 « Add the marker last »). En attendant, **rien ne tient cet index en CI** — une
 ligne oubliée ne rougira rien ; la complétude ci-dessous est celle de sa PR.
 
-Tranches restantes : #141, #192, #202, #299, #497, #499, #600, #847, #986 et les
+Tranches restantes : #192, #202, #299, #497, #499, #600, #847, #986 et les
 fichiers non numérotés (`aif-structural-audit-method.md`, `family-gap-inventory.md`,
 `i18n-hierarchy-apply-spec.md`, `subsubfamily-gap-inventory.md`,
 `taxonomy-coherence-scan.md`).
@@ -123,3 +124,74 @@ Rapports cluster par cluster du chantier AIF (12 PR numérotées + 7 clusters d'
 | [`498-coverage-status.md`](498-coverage-status.md) | 2026-07-10 | `historical` | Snapshot à deux couches (attaque 93 · skos 70 · union 145 · intersection 18) — l'état final (schéma (a), 1 207/1 408) vit sur #498 |
 | [`498-layerC-pilot-design.md`](498-layerC-pilot-design.md) | 2026-07-12 | `historical` | Design gated de la passe générative Layer C (~1 259 feuilles) — **jamais exécutée**, GO/NO-GO tranché par la clôture de #498 sans elle |
 | [`498-aif-closure.md`](498-aif-closure.md) | 2026-06-19 | `superseded` | Évaluation de clôture de juin — recommandait déjà de fermer ; le chantier a continué jusqu'en novembre, et l'état de clôture réel vit sur [#498](https://github.com/ArgumentumGames/Argumentum/issues/498) (clos le 17/11/2026) |
+
+## Où en est #141 — chantier clos, module de hiérarchie toujours vivant
+
+Indexé sur master `6b7afbb9`. #141 (« Iterate on non-card taxonomy nodes ») est
+**clos** (COMPLETED). Deux choses y cohabitent et ne doivent pas être confondues :
+
+- **Le chantier AIF de renvois croisés (juin–juillet 2026)** — recensement des
+  nœuds non-carte, pilote génératif dry-run (Stage-1 gpt-5.5), tri des WARN
+  `bad_map:*`, adjudication d'expert, adaptation CrossLink/DatasetUpdater. Tout
+  ceci est un **instantané daté d'un chantier fermé** : rapports et sidecars CSV
+  au statut `historical`. Leur régénération serait un nouvel instrument, pas une
+  reproduction — ils gardent la date et le commit auxquels ils ont été mesurés.
+- **Le module de hiérarchie `141-hierarchy.py`** — **code vivant** (`current`),
+  repris par le grain 1b de #498 (06/11) puis importé par
+  [`tools/aif-attack-graph-export.py`](../../tools/aif-attack-graph-export.py)
+  (l'export du graphe d'arêtes). Sa règle unique : la hiérarchie se lit dans la
+  colonne **`path`** (pointée, un segment par niveau, 1 408 uniques, 0 orphelin) ;
+  la forme coma reste la clé de **rendu** (`dot2comma`), jamais l'inverse — la
+  reconstruction chiffre par chiffre depuis `decimal_path` fabriquait un parent
+  inexistant (`5,123224`, rang 24). Le [`141-hierarchy-self-test.py`](141-hierarchy-self-test.py)
+  tourne et passe (**25/25**) ; il n'est **pas câblé en CI** — le relancer à la main.
+
+## La tranche #141 — 21 fichiers
+
+Compte établi par `git ls-files docs/taxonomy | grep -c '^docs/taxonomy/141-'` → 21.
+
+### Code vivant — hiérarchie lue dans `path`
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`141-hierarchy.py`](141-hierarchy.py) | 2026-11-06 | `current` | **Module partagé** des primitives de hiérarchie (`path_parent`, `dot2comma`, `comma_parent_DEFECTUEUX` pour contrôle inverse) — importé par les jumeaux `141-aif-*.py` et par `tools/aif-attack-graph-export.py` |
+| [`141-hierarchy-self-test.py`](141-hierarchy-self-test.py) | 2026-11-06 | `current` | Contrôle du module ci-dessus — **25/25** (mesuré 23/11), non câblé en CI ; se lance par `python -I docs/taxonomy/141-hierarchy-self-test.py` |
+| [`141-hierarchy-path-2026-11-06.md`](141-hierarchy-path-2026-11-06.md) | 2026-11-06 | `historical` | Rapport du grain 1b : la mesure qui a imposé la lecture par `path` (écart rangée 824, `depth` faux sur 2 rangées) — pièce datée, le module est la référence vivante |
+
+### Recensement et exploration (juin 2026)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`141-noncard-enrichment-census.md`](141-noncard-enrichment-census.md) | 2026-06-29 | `historical` | Recensement des nœuds non-carte + proposition d'enrichissement — le point de départ du chantier |
+| [`141-noncard-census.py`](141-noncard-census.py) | 2026-06 | `historical` | Script compagnon du recensement (one-shot) |
+| [`141-aif-explore.py`](141-aif-explore.py) | 2026-07 | `historical` | Exploration structurelle read-only des candidats AIF (résumé sur stdout, 0 écriture `Cards/`) |
+
+### Stage-1 — pilote génératif dry-run et montée à l'échelle (juillet 2026)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`141-aif-stage1-report.md`](141-aif-stage1-report.md) | 2026-07-01 | `historical` | Pilote Stage-1 (gpt-5.5, dry-run) — candidats de renvois croisés sur nœuds non-carte |
+| [`141-aif-stage1.py`](141-aif-stage1.py) | 2026-07 | `historical` | Script du pilote dry-run — n'écrit que le sidecar `docs/taxonomy/`, 0 écriture `Cards/` |
+| [`141-aif-fullscale-report.md`](141-aif-fullscale-report.md) | 2026-07-01 | `historical` | Rapport full-scale : couverture et WARN sur l'ensemble des nœuds non-carte |
+| [`141-aif-fullscale.py`](141-aif-fullscale.py) | 2026-07 | `historical` | Passage du pilote (28 nœuds) à tous les non-carte (1 232) — dry-run |
+| [`141-aif-candidates-sample.csv`](141-aif-candidates-sample.csv) | — | `historical` | Sidecar : échantillon de 148 candidats Stage-1 |
+| [`141-aif-candidates-fullscale.csv`](141-aif-candidates-fullscale.csv) | — | `historical` | Sidecar : 6 160 candidats Stage-1 à l'échelle |
+
+### Stage-2/3 — diff, tri des WARN, adjudication (juillet 2026)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`141-aif-stage2-diff.py`](141-aif-stage2-diff.py) | 2026-07 | `historical` | Compare le sidecar Stage-1 full-scale aux référents (contrôle de diff) |
+| [`141-aif-stage2-diff.csv`](141-aif-stage2-diff.csv) | — | `historical` | Sortie du diff Stage-2 (16 lignes) |
+| [`141-aif-warn-triage.md`](141-aif-warn-triage.md) | 2026-07-01 | `historical` | Tri des WARN `bad_map:*` (dry-run, no auto-apply) |
+| [`141-aif-warn-triage.py`](141-aif-warn-triage.py) | 2026-07 | `historical` | Helper de tri des 87 nœuds non-carte dont la proposition Stage-1 utilisait un schéma AIF |
+| [`141-aif-warn-triage.csv`](141-aif-warn-triage.csv) | — | `historical` | Sidecar du tri (87 lignes) |
+| [`141-aif-stage3-adjudication.md`](141-aif-stage3-adjudication.md) | 2026-07-01 | `historical` | Paquet d'adjudication d'expert Stage-3 (dry-run, no auto-apply) |
+
+### CrossLink, adaptation et clôture (juillet 2026)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`141-crosslink-datasetupdater-adaptation.md`](141-crosslink-datasetupdater-adaptation.md) | 2026-07-04 | `historical` | Proposition additive gated d'adaptation CrossLink/DatasetUpdater |
+| [`141-crosslink-sample-run.md`](141-crosslink-sample-run.md) | 2026-07-04 | `historical` | Exécution d'échantillon CrossLink (sortie réelle, curatée depuis #626) |
+| [`141-closure-recommendation.md`](141-closure-recommendation.md) | 2026-07-01 | `historical` | Recommandation de clôture du chantier #141 |
