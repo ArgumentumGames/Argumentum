@@ -1,19 +1,18 @@
 # docs/taxonomy — constats datés des chantiers de taxonomie
 
+<!-- index-of-record -->
+
 Ce dossier ne fait que grossir : chaque chantier y dépose ses rapports datés, ses
 annotations CSV et ses scripts compagnons. Rien ne s'y supprime — chaque fichier
-est une pièce. Ce README indexe les tranches **#498** (65 fichiers) et **#141**
-(21 fichiers). Il n'est **pas encore** un index de record : la marque d'index
-viendra avec la dernière tranche, quand les 168 fichiers du dossier seront tous
-indexés, conformément à
+est une pièce. Ce README **est** l'index de record du dossier depuis le 23/11/2026 :
+il cite les **168 fichiers** suivis, à travers les tranches **#498** (65), **#141**
+(21), **#499** (37), **#847** (15), **#202**, **#299**, **#986** et les cinq
+documents non numérotés (8), puis **#192** (8), **#497** (9) et **#600** (5). La
+marque d'index a été posée avec la **dernière** tranche, conformément à
 [`docs/agents/consolidation.md`](../agents/consolidation.md) (§ *Procedure* :
-« Add the marker last »). En attendant, **rien ne tient cet index en CI** — une
-ligne oubliée ne rougira rien ; la complétude ci-dessous est celle de sa PR.
-
-Tranches restantes : #192, #202, #299, #497, #499, #600, #847, #986 et les
-fichiers non numérotés (`aif-structural-audit-method.md`, `family-gap-inventory.md`,
-`i18n-hierarchy-apply-spec.md`, `subsubfamily-gap-inventory.md`,
-`taxonomy-coherence-scan.md`).
+« Add the marker last »). À partir de maintenant **la CI tient la complétude** :
+`python -I tools/test_docs-index-contract.py` rougit un fichier ajouté au dossier
+sans ligne d'index, un lien mort, ou une ligne citante sans statut.
 
 ## Où en est #498 — fermé le 17 novembre 2026
 
@@ -203,3 +202,294 @@ Compte établi par `git ls-files docs/taxonomy | grep -c '^docs/taxonomy/141-'` 
 | [`141-crosslink-datasetupdater-adaptation.md`](141-crosslink-datasetupdater-adaptation.md) | 2026-07-04 | `historical` | Proposition additive gated d'adaptation CrossLink/DatasetUpdater |
 | [`141-crosslink-sample-run.md`](141-crosslink-sample-run.md) | 2026-07-04 | `historical` | Exécution d'échantillon CrossLink (sortie réelle, curatée depuis #626) |
 | [`141-closure-recommendation.md`](141-closure-recommendation.md) | 2026-07-01 | `historical` | Recommandation de clôture du chantier #141 |
+
+## Où en est #499 — parité relationnel/AIF des Virtues, chantier clos
+
+Indexé sur master `93a218e5`. #499 (« amener la taxonomie Virtues à parité
+relationnel + AIF ») est **clos** (COMPLETED). La tranche entière est un
+**instantané daté d'un chantier fermé** : les 37 fichiers sont des rapports de
+batch, des sidecars d'annotation et des specs gated, tous de **juin–juillet
+2026**. **Rien d'exécutable dans la tranche** (25 `.md` + 12 `.csv`, aucun `.py`) ;
+**aucun outil ne lit ces sidecars en entrée** — l'apply (`tools/499-virtues-*-apply.py`,
+`tools/989-*`) lit le CSV `Cards/Fallacies/Argumentum Virtues - Taxonomy.csv`
+directement, et [`tools/validate_taxonomy_annotations.md`](../../tools/validate_taxonomy_annotations.md)
+les cite comme **exemples mesurés**, pas comme entrées. Les deux références
+externes (`docs/RELEASE-VALIDATION-v0.9.0.md` → `499-virtues-prod-write-spec.md` ;
+`docs/investigations/2026-07-03-654-*.md` → `499-virtues-scaleup-phase2-raisonnement-b.md`
+§86) pointent un **daté**, elles ne le rendent pas gouvernant.
+
+## La tranche #499 — 37 fichiers
+
+Compte établi par `git ls-files docs/taxonomy | grep -c '^docs/taxonomy/499-'` → 37.
+Découpage mesuré : `…499-*.md` → 25, `…499-*.csv` → 12.
+
+### Pilote, plan, spec et clôture (juin 2026)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`499-virtues-parity-pilot.md`](499-virtues-parity-pilot.md) | 2026-06-16 | `historical` | Pilote de parité relationnel/AIF des Virtues (proposition gated) — la graine du chantier |
+| [`499-virtues-scaleup-phase1.md`](499-virtues-scaleup-phase1.md) | 2026-06-17 | `historical` | Scale-up phase 1 : les 18 sous-familles de profondeur 2 (proposition gated) |
+| [`499-virtues-parity-closure.md`](499-virtues-parity-closure.md) | 2026-06-23 | `historical` | Évaluation de clôture de la parité (couverture + validation) |
+| [`499-virtues-prod-write-spec.md`](499-virtues-prod-write-spec.md) | 2026-06-23 | `historical` | Spec d'écriture prod (brouillon, non-prod, gated sur le contenu owner) — **ground-truth 223 rangées × 66 colonnes** cité par `RELEASE-VALIDATION-v0.9.0` |
+| [`499-virtues-backfill-mechanical-plan.md`](499-virtues-backfill-mechanical-plan.md) | 2026-07-07 | `historical` | Plan mécanique de back-fill 222 rangées (Option A, HOLD prod) |
+
+### Scale-up phase 2 — un rapport par batch (juin 2026)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`499-virtues-scaleup-phase2.md`](499-virtues-scaleup-phase2.md) | 2026-06-18 | `historical` | Batch 1 : Langage exact, feuilles de profondeur 3-4 |
+| [`499-virtues-scaleup-phase2-rigmath.md`](499-virtues-scaleup-phase2-rigmath.md) | 2026-06-18 | `historical` | Batch 2 : Rigueur mathématique, profondeur 3… |
+| [`499-virtues-scaleup-phase2-honnetete.md`](499-virtues-scaleup-phase2-honnetete.md) | 2026-06-18 | `historical` | Batch 3 : Honnêteté intellectuelle, profondeur 3… |
+| [`499-virtues-scaleup-phase2-presentation.md`](499-virtues-scaleup-phase2-presentation.md) | 2026-06-18 | `historical` | Batch 4 : Présentation intègre, profondeur 3-4 |
+| [`499-virtues-scaleup-phase2-argument.md`](499-virtues-scaleup-phase2-argument.md) | 2026-06-18 | `historical` | Batch 5 : Argument pertinent, profondeur 3…6 |
+| [`499-virtues-scaleup-phase2-echange-a.md`](499-virtues-scaleup-phase2-echange-a.md) | 2026-06-18 | `historical` | Batch 6a : Échange enrichissant, profondeur 3… |
+| [`499-virtues-scaleup-phase2-echange-b.md`](499-virtues-scaleup-phase2-echange-b.md) | 2026-06-19 | `historical` | Batch 6b : Échange enrichissant, profondeur 3… |
+| [`499-virtues-scaleup-phase2-raisonnement-a.md`](499-virtues-scaleup-phase2-raisonnement-a.md) | 2026-06-19 | `historical` | Batch 7a : Raisonnement valide, profondeur 3…6 |
+| [`499-virtues-scaleup-phase2-raisonnement-b.md`](499-virtues-scaleup-phase2-raisonnement-b.md) | 2026-06-19 | `historical` | Batch 7b : Raisonnement valide, profondeur 6…7 — **§86 : définition des mnémoniques syllogistiques** (Barbara, Celarent…), citée par `docs/investigations/2026-07-03-654-*.md` |
+| [`499-virtues-scaleup-phase2-raisonnement-c.md`](499-virtues-scaleup-phase2-raisonnement-c.md) | 2026-06-19 | `historical` | Batch 7c : Raisonnement valide, profondeur 4…5 |
+
+### Clusters AIF des Virtues (juillet 2026)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`499-aif-raisonnement-causalite-cluster.md`](499-aif-raisonnement-causalite-cluster.md) | 2026-07-07 | `historical` | Cluster PR-1 : Raisonnement valide / Causalités bien établies |
+| [`499-aif-honnetete-fidelite-aux-faits-cluster.md`](499-aif-honnetete-fidelite-aux-faits-cluster.md) | 2026-07-07 | `historical` | Cluster PR-2 : Honnêteté intellectuelle / Fidélité aux faits |
+| [`499-aif-echange-respect-de-la-personne-cluster.md`](499-aif-echange-respect-de-la-personne-cluster.md) | 2026-07-07 | `historical` | Cluster PR-3 : Échange enrichissant / Respect de la personne |
+| [`499-aif-langage-definitions-claires-cluster.md`](499-aif-langage-definitions-claires-cluster.md) | 2026-07-07 | `historical` | Cluster PR-4 : Langage exact / Définitions claires |
+| [`499-aif-rigmath-generalisations-justifiees-cluster.md`](499-aif-rigmath-generalisations-justifiees-cluster.md) | 2026-07-07 | `historical` | Cluster PR-5 : Rigueur mathématique / Généralisations justifiées |
+| [`499-aif-presentation-equilibre-emotionnel-cluster.md`](499-aif-presentation-equilibre-emotionnel-cluster.md) | 2026-07-07 | `historical` | Cluster PR-6 : Présentation intègre / Équilibre émotionnel |
+| [`499-aif-argument-fonde-cluster.md`](499-aif-argument-fonde-cluster.md) | 2026-07-07 | `historical` | Cluster PR-7 : Argument pertinent / Argument fondé |
+| [`499-aif-premisses-fiables-cluster.md`](499-aif-premisses-fiables-cluster.md) | 2026-07-07 | `historical` | Cluster PR-8 : Argument pertinent / Prémisses fiables |
+| [`499-aif-presentation-humour-cluster.md`](499-aif-presentation-humour-cluster.md) | 2026-07-07 | `historical` | Cluster PR-9 : Présentation intègre / Rhétorique et humour |
+| [`499-aif-interpretation-juste-cluster.md`](499-aif-interpretation-juste-cluster.md) | 2026-07-08 | `historical` | Cluster PR-10 : Interprétation juste (famille 1.3) |
+
+### Sidecars d'annotation machine (12 CSV)
+
+| Fichier | Lignes | Statut | Ce que c'est |
+|---|---:|---|---|
+| [`499-pilot-annotations.csv`](499-pilot-annotations.csv) | 10 | `historical` | Annotations du pilote (10 rangées) |
+| [`499-scaleup-phase1-annotations.csv`](499-scaleup-phase1-annotations.csv) | 18 | `historical` | Annotations de la phase 1 (18 rangées, #510) |
+| [`499-scaleup-phase2-annotations.csv`](499-scaleup-phase2-annotations.csv) | 14 | `historical` | Annotations du batch 1 |
+| [`499-scaleup-phase2-rigmath-annotations.csv`](499-scaleup-phase2-rigmath-annotations.csv) | 16 | `historical` | Annotations du batch 2 |
+| [`499-scaleup-phase2-honnetete-annotations.csv`](499-scaleup-phase2-honnetete-annotations.csv) | 23 | `historical` | Annotations du batch 3 |
+| [`499-scaleup-phase2-presentation-annotations.csv`](499-scaleup-phase2-presentation-annotations.csv) | 21 | `historical` | Annotations du batch 4 |
+| [`499-scaleup-phase2-argument-annotations.csv`](499-scaleup-phase2-argument-annotations.csv) | 29 | `historical` | Annotations du batch 5 |
+| [`499-scaleup-phase2-echange-a-annotations.csv`](499-scaleup-phase2-echange-a-annotations.csv) | 18 | `historical` | Annotations du batch 6a |
+| [`499-scaleup-phase2-echange-b-annotations.csv`](499-scaleup-phase2-echange-b-annotations.csv) | 22 | `historical` | Annotations du batch 6b |
+| [`499-scaleup-phase2-raisonnement-a-annotations.csv`](499-scaleup-phase2-raisonnement-a-annotations.csv) | 22 | `historical` | Annotations du batch 7a |
+| [`499-scaleup-phase2-raisonnement-b-annotations.csv`](499-scaleup-phase2-raisonnement-b-annotations.csv) | 23 | `historical` | Annotations du batch 7b |
+| [`499-scaleup-phase2-raisonnement-c-annotations.csv`](499-scaleup-phase2-raisonnement-c-annotations.csv) | 6 | `historical` | Annotations du batch 7c |
+
+## La tranche #847 — 15 fichiers
+
+Compte établi par `git ls-files docs/taxonomy | grep -c '^docs/taxonomy/847-'` → 15.
+
+#847 (« AIF two-layer structural homogeneity audit ») est **clos** (COMPLETED le
+7 septembre 2026). La tranche est la **chaîne complète d'un audit contradictoire** :
+une mesure des couches (a)+(b), **deux** instruments de couche (c) — chacun conçu
+pour *disculper* la structure plutôt que pour la condamner —, une synthèse-verdict
+d'ai-01, une liste de réparation, puis **une re-passe de release** qui refait la
+mesure sur Fallacies et la tente pour la première fois sur Virtues. **6 `.md`,
+8 `.csv`, 1 `.py`.** Toutes les pièces portent « MEASURE, not verdict » en tête
+**sauf** la synthèse, qui est le verdict et le dit.
+
+Aucune ligne n'est `current`, et la raison est **mesurée**, pas de principe : la
+tranche est close, et le seul fichier exécutable ne sert qu'à réécrire ses propres
+sidecars. `git grep -n "847-virtues-two-layer" -- ':!docs/taxonomy'` rend **0
+hit**, et il n'existe aucun `tools/847-*` : rien dans `tools/` ni en CI ne
+l'appelle. Il reste rejouable — il lit les deux CSV de prod et écrit les deux
+sidecars datés du 28/08 —, ce qui ne fait pas de lui un organe : c'est le
+**compagnon d'une passe datée**. Il n'a **pas** été rejoué pour écrire cet index
+(c'est un générateur : le relancer réécrirait des fichiers commités, geste hors
+du périmètre d'un index).
+
+### Mesure des couches (a) et (b) — juillet 2026
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`847-acompte-homogeneity.md`](847-acompte-homogeneity.md) | 2026-07-22 | `historical` | Acompte des couches (a)+(b) sur les **145 feuilles entièrement modélisées** — `87 undercut / 53 undermine / 5 rebut` ; en-tête « MEASURE ONLY, not a verdict », 0 écriture CSV prod |
+| [`847-acompte.csv`](847-acompte.csv) | 2026-07-22 | `historical` | Sidecar de l'acompte — **41** rangées (nœuds mesurés, 145 feuilles en prod) |
+| [`847-acompte-projected.csv`](847-acompte-projected.csv) | 2026-07-22 | `historical` | Variante **illustrative** : les 145 feuilles de prod **plus 8 propositions** de feuilles du cluster Layer-C **qui ne sont pas dans le CSV de prod** — **50** rangées ; à ne pas lire comme un état |
+
+### Couche (c) — les deux moitiés de l'instrument de disculpe — juillet 2026
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`847-layerc-reference-reachability.md`](847-layerc-reference-reachability.md) | 2026-07-23 | `historical` | Couche (c) §2.2 — accessibilité des références : la moitié qui devait séparer un **défaut de groupement** (axe A, à arbitrer) d'un **artefact de tradition** (axe C, la faute de personne) |
+| [`847-layerc-reference-reachability.csv`](847-layerc-reference-reachability.csv) | 2026-07-23 | `historical` | Sidecar de la couche (c) §2.2 — **90** rangées |
+| [`847-layerc-reference-reachability-refs.csv`](847-layerc-reference-reachability-refs.csv) | 2026-07-23 | `historical` | Le détail **par référence** — **2 580** rangées, compartimentées en `{wikipedia-stable, archive-repointed, dictionary-known, alive, dead, unknown, unparseable}` (liste blanche déterministe + sonde HEAD en lecture seule pour la longue traîne) |
+| [`847-layerc-label-distortion.md`](847-layerc-label-distortion.md) | 2026-07-23 | `historical` | Couche (c) §2.1 — la **contrainte d'étiquetage** des 39 nœuds internes ; deux proxys sémantiques testés et **non discriminants** (`dispersion_fr` saturée 0,94-1,00, `n_en_groupings = 1` partout) ⇒ `stretched`/`narrowed` restent non mesurés |
+| [`847-layerc-label-distortion.csv`](847-layerc-label-distortion.csv) | 2026-07-23 | `historical` | Sidecar de la couche (c) §2.1 — **41** rangées, `label_fit ∈ {borrowed, unflagged}` (`unflagged` = aucun drapeau mécanique, **pas** une validation de portée) |
+
+### Verdict et backlog de réparation — juillet 2026
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`847-synthesis-verdict.md`](847-synthesis-verdict.md) | 2026-07-25 | `historical` | La **synthèse-verdict d'ai-01** : « l'arbre survit à l'audit, aucune restructuration proposée ». Sur les **39** nœuds de groupement : 4 cohérents · 1 **pont** (*Ad hominem*, à annoter, à ne pas aplatir) · **28** résistances de matière · **6** candidats axe A dont **2 seulement** passent une porte de confiance. Constat dominant : **65,5 %** des 145 feuilles n'ont aucun jeton de schéma AIF natif |
+| [`847-reference-repair-worklist.md`](847-reference-repair-worklist.md) | 2026-07-26 | `historical` | La moitié **actionnable** du §5 — re-sonde en **GET**, qui réfute la réserve de la synthèse : la sonde HEAD sur-comptait (rationalwiki.org rend 503 en HEAD, 200 en GET) |
+| [`847-reference-repair-worklist.csv`](847-reference-repair-worklist.csv) | 2026-07-26 | `historical` | Le backlog machine — **134** rangées, la borne haute des références mortes (5,2 %) |
+
+### Re-passe de release — 28 août 2026 (Fallacies + première passe Virtues)
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`847-virtues-two-layer.md`](847-virtues-two-layer.md) | 2026-08-28 | `historical` | Re-passe déclenchée par la release du 25/08 : contrôle de dérive Fallacies — **0 dérive**, 145 feuilles et `87/53/5` **identiques** aux chiffres de juillet, tables et nominations du verdict valides telles quelles — plus la **première** passe sur Virtues (222 feuilles `206/13/3`, entropie normalisée 0,267, homogénéité 0,928 ; **la couche (b) ne se transpose pas** aux Virtues, les tags y sont dégénérés dans les deux lectures) |
+| [`847-virtues-two-layer.py`](847-virtues-two-layer.py) | 2026-08-28 | `historical` | Le script compagnon de la re-passe — lit les deux CSV de prod, réimprime les mêmes normalisations que juillet et réécrit ses deux sidecars (une ligne de commentaire en tête, puis l'en-tête) |
+| [`847-fallacies-rerun.csv`](847-fallacies-rerun.csv) | 2026-08-28 | `historical` | Sortie machine du script — Fallacies, **91** rangées |
+| [`847-virtues-pass.csv`](847-virtues-pass.csv) | 2026-08-28 | `historical` | Sortie machine du script — Virtues, **91** rangées |
+
+La méthode que ces six pièces appliquent — 3 axes A/B/C, table de décision §4,
+règle de séparation mesure / verdict — vit dans `aif-structural-audit-method.md`,
+indexé plus bas avec les fichiers non numérotés ; le chantier porteur est #498.
+
+### Non établi
+
+- **Les 134 références mortes ont-elles été réparées ?** L'index ne le dit pas et
+  ne l'établit pas. Aucune pièce du dossier ne porte de lot de réparation
+  postérieur au 26/07, mais une réparation a pu se faire sous un autre nom :
+  l'instrument employé (`git grep` sur « 134 dead », « dead references ») ne
+  mesure que l'absence de ce **motif**, pas l'absence du travail.
+- Le contenu des sidecars au-delà de leur compte de rangées : la tranche est
+  indexée, pas ré-auditée. Un chantier clos ne se re-mesure pas pour l'indexer.
+- Le marqueur `<!-- index-of-record -->` n'était pas encore posé à cette tranche
+  (il l'est avec la dernière) : la complétude ci-dessus est celle de sa PR.
+
+## Les tranches d'un fichier (#202, #299, #986) et les cinq documents non numérotés — 8 fichiers
+
+Compte établi par
+`git ls-files docs/taxonomy | grep -E '^docs/taxonomy/(202|299|986)-|^docs/taxonomy/(aif-structural-audit-method|family-gap-inventory|i18n-hierarchy-apply-spec|subsubfamily-gap-inventory|taxonomy-coherence-scan)\.md$' | wc -l`
+→ 8.
+
+Ce lot rassemble deux familles que rien ne rapprochait jusqu'ici : **trois tranches
+d'un seul fichier** (#202, #299, #986), et **cinq documents non numérotés** qui
+n'appartiennent à aucun chantier — le dossier de méthode de l'audit #847, deux
+inventaires de qualité de données et leur spec d'application consolidée, et une
+passe de cohérence terminologique de la sign-off de release.
+
+### Le gap des 48 rangées est fermé — et c'est mesurable
+
+Les trois documents `family-gap-inventory` / `subsubfamily-gap-inventory` /
+`i18n-hierarchy-apply-spec` décrivent **le même défaut** : 48 rangées du CSV
+Fallacies dont une colonne de groupement anglaise était vide (propagation i18n
+manquante). Un lecteur de l'index doit pouvoir savoir s'il est encore ouvert.
+Mesure du 23/11 sur le blob `origin/master` (`Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv`,
+**1 408** rangées ; profondeur = nombre de segments de `path`) :
+
+| Colonne EN | Rangées vides | Profondeur des rangées vides |
+|---|---:|---|
+| `Family` | **0** | — |
+| `Subfamily` | **8** | **8** à profondeur 1 |
+| `Subsubfamily` | **29** | **8** à profondeur 1 + **21** à profondeur 2 |
+
+Le CSV porte par ailleurs exactement **8** nœuds de profondeur 1 et **21** de
+profondeur 2. Un nœud de profondeur 1 n'a pas de `Subfamily` ; un nœud de
+profondeur ≤ 2 n'a pas de `Subsubfamily` : les populations **coïncident
+exactement** avec les cellules vides. Il ne reste donc **aucune cellule vide qui
+soit un défaut** — le gap des 48 rangées a été **appliqué**, et les trois
+documents sont des pièces datées, pas un travail en attente.
+
+> Ce que cette mesure n'établit pas : elle ne dit pas *quand* ni par quelle PR les
+> 144 cellules ont été remplies. Elle établit l'état, pas l'historique.
+
+### Les trois tranches d'un fichier
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`202-bulk-en-scoping.md`](202-bulk-en-scoping.md) | 2026-07-01 | `historical` | Recensement **read-only** du « bulk EN » de #202 (master `18b4d023`) — conclusion : c'est un **dispatch périmé**. Les items de la phase 2 sont faits ou ne sont pas des trous de traduction (`Simple_name_en` 61/1408 remplis contre 40 sources FR : la source est vide, pas la traduction ; Scenarii 167/167 ; Virtues 8 langues ; Rules PT corrigé). #202 est **CLOSED/COMPLETED** |
+| [`299-llm-quality-delta-investigation.md`](299-llm-quality-delta-investigation.md) | 2026-07-23 | `historical` | Investigation **read-only** du **delta** entre le banc #299 (clos le 17/05) et l'état de juillet (pivot gpt-5.5, chemin `/v1/responses` de #852 câblé mais dormant) — **0 run live** (`DatasetUpdater.Enabled=false` sur les 48 configs, gel T&A). Entrée de la décision d'activation post-T&A. #299 est **CLOSED/COMPLETED** |
+| [`986-c1-note-cadrage-pre-draft-3-postures.md`](986-c1-note-cadrage-pre-draft-3-postures.md) | 2026-09-21 | `current` | **Pré-draft** du principe générateur du deck Vertus : la mesure (les titres des 131 cartes, le miroir qui atteint 33 % du deck Sophismes sans orphelin) puis **trois postures** — dispositions (A), standards (B), deux couches déclarées (C) — et un test d'inclusion applicable aux trois. ⚠️ **Aucune posture n'y est retenue** : #986 est **OPEN**, et son dernier commentaire (ai-01, 08/11) demande l'avis de Thomas. Ce statut dit « seule pièce écrite de la question, rien ne la remplace » — **pas** « décision prise » |
+
+### Le dossier de méthode de l'audit AIF
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`aif-structural-audit-method.md`](aif-structural-audit-method.md) | 2026-07-22 | `historical` | Le **document de méthode et de gouvernance** de l'audit #847 : conversation de conception jsboige × ai-01, les **trois axes d'arbitraire** (A groupement, B matière, C tradition), la table de décision §4 et le **principe de gouvernance §5** (mesure ≠ verdict, tout changement structurel gaté par la ratification). Committé « exprès pour que le raisonnement survive à la condensation ». Il est cité par les six pièces de la [tranche #847](#la-tranche-847--15-fichiers) ; `git grep` hors `docs/taxonomy` → **0** référence, et #847 est clos |
+
+### Les inventaires de qualité de données et leur spec
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`family-gap-inventory.md`](family-gap-inventory.md) | 2026-07-06 | `historical` | Inventaire du gap #712 : **48 rangées** à colonne `Family` (EN) vide, méthode code=truth, **0 écriture** au CSV de prod (gel `Cards/`) — proposition prête pour une application post-tag |
+| [`subsubfamily-gap-inventory.md`](subsubfamily-gap-inventory.md) | 2026-07-06 | `historical` | Le **même défaut, une troisième colonne** (#716) : `Subsubfamily` vide sur « les exactement mêmes 48 rangées » — trouvé en appliquant la méthode #712 à tout le CSV |
+| [`i18n-hierarchy-apply-spec.md`](i18n-hierarchy-apply-spec.md) | 2026-07-06 | `historical` | La **spec d'application unifiée** qui consolide les deux inventaires en un seul geste gaté, byte-targeted, sur les 48 rangées × 3 colonnes EN — c'est elle qui porte le mode opératoire, les deux inventaires portant le constat |
+
+### La passe de cohérence terminologique
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`taxonomy-coherence-scan.md`](taxonomy-coherence-scan.md) | 2026-07-04 | `historical` | Passe de cohérence terminologique **cross-langue** (master `d5913862`, dispatch `lofjtd`, secondaire) : **read-only, 0 constat**, sign-off de release — 0 écriture CSV, 0 appel gpt-5.5. Citée par `docs/RELEASE-VERIFICATION-INDEX-v0.9.0.md` et le dossier de release |
+
+### Non établi
+
+- **Quand** les cellules du gap des 48 rangées ont été remplies, et par quelle PR :
+  la mesure ci-dessus établit l'état, pas l'historique.
+- Le contenu des trois postures de #986 au-delà de leur existence : l'index les
+  nomme, il ne les arbitre pas — c'est l'objet de #986, qui attend un humain.
+
+## La dernière tranche — #192 (8), #497 (9) et #600 (5) : 22 fichiers
+
+Compte établi par `git ls-files docs/taxonomy | grep -cE '^docs/taxonomy/(192|497|600)-'` → 22.
+
+Trois chantiers, **tous clos** : #192 et #600 forment la **piste `link_*`** (mesurer
+la couverture → résoudre les URL candidates → harnais d'application), #497 est la
+**couche relationnelle transverse** entre grappes. Aucune de leurs pièces n'est
+`current` : les trois issues sont CLOSED/MERGED, et aucun de leurs scripts n'est
+appelé par la CI ni importé par un outil (`git grep` de chaque nom hors
+`docs/taxonomy` : seul `192-link-coverage-langlinks-probe` est **cité**, dans la
+docstring de `tools/link-langlinks-resolve.py`, qui étend sa mesure en résolution —
+vérifié sur la **forme** : cet outil n'importe que la std-lib).
+
+### #192 — couverture de traduction et terminologie (juin 2026)
+
+Issue **CLOSED/COMPLETED** (28/06).
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`192-coverage-report.py`](192-coverage-report.py) | 2026-06-28 | `historical` | Rapport de couverture **READ-ONLY** : par dataset, par champ traduisible, par langue — remplis/total et vides ; couvre aussi `link_*`. Aucune écriture CSV |
+| [`192-link-coverage-research.md`](192-link-coverage-research.md) | 2026-06-25 | `historical` | La piste de recherche du gap `link_*` (master `bef3bc6c`, gel de release) — recherche seule, 0 écriture sous `Cards/` |
+| [`192-link-coverage-langlinks-probe.py`](192-link-coverage-langlinks-probe.py) | 2026-06-27 | `historical` | La **sonde** : taux de remplissage réel du gap `link_*` via l'API `langlinks` de MediaWiki — elle convertit le plafond **théorique** de #600 en mesure. C'est la pièce que `tools/link-langlinks-resolve.py` cite comme la mesure qu'il étend |
+| [`192-native-ratification-checklist.md`](192-native-ratification-checklist.md) | 2026-06-28 | `historical` | Checklist **turnkey** du résidu natif de #607 — ratifiable en ~10 min par un locuteur natif, **post-release** ; 0 écriture sous `Cards/` |
+| [`192-terminology-audit.py`](192-terminology-audit.py) | 2026-06-28 | `historical` | Le **détecteur** : pour chaque (dataset, champ de groupement, langue), la source FR → le compteur des traductions vues ; toute étiquette à plus d'une traduction est imprimée |
+| [`192-terminology-apply.py`](192-terminology-apply.py) | 2026-06-28 | `historical` | L'**applicateur** correspondant — **dry-run par défaut**, `--apply` gaté |
+| [`192-terminology-apply-dryrun.txt`](192-terminology-apply-dryrun.txt) | 2026-06-28 | `historical` | La **sortie** du dry-run (71 lignes) : 6 groupes multi-variantes sur Virtues, **0 cellule à changer**, 6 en attente de jugement |
+| [`192-terminology-glossary-register.md`](192-terminology-glossary-register.md) | 2026-06-25 | `historical` | **Proposition** de glossaire et de registre, en attente de ratification (jsboige / natif) — c'est la pièce qui pré-instruisait la porte de #192 |
+
+### #497 — la couche relationnelle transverse (juin–juillet 2026)
+
+Issue **CLOSED/COMPLETED** (05/09), fermée sur ce constat : couche peuplée à
+**844/1 408** (59,9 %), **rendue nulle part** (0 flèche sur 41 SVG, OWL non publié)
+— état lu dans l'issue, pas re-mesuré ici.
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`497-crosslinks-pilot.md`](497-crosslinks-pilot.md) | 2026-06-17 | `historical` | Le **pilote** de liens transverses avec TYPE documenté et réciprocité — proposition GATED ; auteur de la pièce : lane po-2023 |
+| [`497-pilot-crosslinks.csv`](497-pilot-crosslinks.csv) | 2026-06-17 | `historical` | Le sidecar du pilote — **24** rangées (`crossLink_Mirrors`, `IsRelatedTo`… avec justification rédigée) |
+| [`497-grappe-inventory.csv`](497-grappe-inventory.csv) | 2026-06-18 | `historical` | Inventaire par grappe — **21** rangées : taille du sous-arbre, profondeur min/max, liens transverses déjà présents |
+| [`497-grappe-substrate.md`](497-grappe-substrate.md) | 2026-06-18 | `historical` | Le **substrat de comparaison grappe-à-grappe** — proposition GATED, chantier multi-sessions ; aucune écriture au CSV de prod |
+| [`497-grappe-substrate.py`](497-grappe-substrate.py) | 2026-06-18 | `historical` | Le **générateur** du substrat (lane ai-01) : inventaire par grappe, remontée empirique des grappes répondeuses, passe d'affinité lexicale — gate-safe, n'écrit que sous `docs/taxonomy/` |
+| [`497-responding-grappes.csv`](497-responding-grappes.csv) | 2026-06-18 | `historical` | La remontée empirique — **107** rangées (poids, grappe source → cible, exemples de liens de feuilles) |
+| [`497-grappe-substrate-refresh.md`](497-grappe-substrate-refresh.md) | 2026-07-22 | `historical` | Le **re-run** du générateur contre le CSV courant (master `b442c658`), pour actualiser le substrat |
+| [`497-inter-family-bridges.md`](497-inter-family-bridges.md) | 2026-07-22 | `historical` | Les **ponts inter-familles** : **84** paires de feuilles quasi-dupliquées entre familles, **toutes non liées** — le ROI après la saturation intra-grappe de #834 |
+| [`497-inter-family-bridges-annotations.csv`](497-inter-family-bridges-annotations.csv) | 2026-07-22 | `historical` | Le sidecar des 84 paires — **84** rangées : Jaccard, termes distinctifs partagés, relation proposée, verdict sémantique |
+
+### #600 — résolution des `link_*` et harnais d'application (juillet 2026)
+
+Issue **MERGED** (27/06).
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`600-link-resolve-report.md`](600-link-resolve-report.md) | 2026-07-01 | `historical` | **Snapshot** de la résolution des URL candidates : matérialise le plafond ~57 % résolvable mesuré par la sonde de #192 |
+| [`600-link-resolve-fallacies.csv`](600-link-resolve-fallacies.csv) | 2026-07-01 | `historical` | Les URL résolues pour Fallacies — **2 754** rangées (`dataset, key, link_lang, resolved_url`) |
+| [`600-link-resolve-virtues.csv`](600-link-resolve-virtues.csv) | 2026-07-01 | `historical` | Les URL résolues pour Virtues — **180** rangées |
+| [`600-link-apply-report.md`](600-link-apply-report.md) | 2026-07-01 | `historical` | L'audit **DRY-RUN** du harnais d'application — `0 write under Cards/` (gel pré-tag) |
+| [`600-link-apply.py`](600-link-apply.py) | 2026-07-01 | `historical` | Le **harnais** — dry-run par défaut, `#595` drift-free ; applique le sidecar #618 (**2 934** URL `link_<lang>` candidates) à Fallacies et Virtues |
+
+### Non établi
+
+- **Le harnais #600 a-t-il été exécuté ?** L'index ne l'établit pas : la pièce est
+  un **DRY-RUN daté** (`0 write under Cards/`), et le taux de remplissage réel des
+  `link_*` n'est pas re-mesuré ici. Un `0` de write dans une pièce de juillet ne
+  dit rien de l'état de novembre.
+- Le **rendu** de la couche relationnelle après la clôture de #497 : l'issue le dit
+  nul (« 0 flèche sur 41 SVG, OWL non publié ») ; c'est un état lu dans l'issue,
+  pas une mesure refaite par cet index.
