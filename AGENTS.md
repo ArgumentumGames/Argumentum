@@ -136,7 +136,7 @@ Work is done by **lanes**: `ai-01` (coordination, merges), `po-2023` (site, rege
 - Rewriting the **wording of the game rules**, or changing the content of an existing card. Typography (accents, quotation marks, spacing) is the exception: it is always corrected, in every language, without asking.
 - Rebasing, closing or "fixing" someone else's open pull request. Long-lived open PRs are parked on purpose.
 - Uploading, replacing or deleting **release assets**; tagging; publishing.
-- Anything that acts on the live website or assumes a deployment. `DNNPlatform/web.config` has been **untracked since #1055** — the preprod one (83 211 o) is a live local file, not a repo file; if a `web.config` ever shows up under `DNNPlatform/` it is a **live copy**: never commit it (`.githooks/pre-commit` guards it as defence in depth — activate with `git config core.hooksPath .githooks`).
+- Anything that acts on the live website or assumes a deployment. `DNNPlatform/web.config` has been **untracked since #1055** — the served copies are live local files, not repo files; if a `web.config` ever shows up under `DNNPlatform/` it is a **live copy**: never commit it (`.githooks/pre-commit` guards it as defence in depth — activate with `git config core.hooksPath .githooks`).
 - Any paid API call (translation runs through `DatasetUpdater` are gated on an owner decision and a named key).
 - `@`-mentioning a human without a new fact for them; contacting anyone outside GitHub.
 
