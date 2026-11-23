@@ -100,6 +100,12 @@ Several files here are cited by path from guard tests, from the generator config
 |---|---|---|---|
 | [`luna6-essai-2026-11-10/`](luna6-essai-2026-11-10/) | 2026-11-10 / 11 | `historical` | A model trial detecting translation defects on Fallacies clusters (#1520, closed; #2231): the dossier `README.md`, the seven files of its instruments (scripts and prompts), the planted-defect control and the raw and aggregated results — sixteen files, zero writes under `Cards/`. Its first draft was corrected on review and is kept in its annex C: the corrected §1 holds |
 
+### Cascade-drift scan — #458 (P24-07)
+
+| File | Dated | Status | What it is |
+|---|---|---|---|
+| [`458-cascade-drift-scan-2026-11-23.md`](458-cascade-drift-scan-2026-11-23.md) | 2026-11-23 | `historical` | Measured run of `tools/458-cascade-drift-scan.py`: Fallacies 45 candidates on 13 PKs, Virtues 0, Scenarii out of the instrument's `_fr`/`_<lang>` schema. Measures the detector's blind spot (an FR round-trip A→A'→A flags aligned cells: 19 of the 45), reads the 8 remaining groups (no content loss demonstrated; ar/fa only assumed, not oracled), and records guard #2235 green 23/23. Zero CSV writes; the retranslation it may call for is owner-gated (named key + credit) |
+
 ## Contradictions
 
 None is corrected in the files: an index changes no finding. Each line says which side holds.
