@@ -290,8 +290,8 @@ Compte établi par `git ls-files docs/taxonomy | grep -c '^docs/taxonomy/847-'` 
 une mesure des couches (a)+(b), **deux** instruments de couche (c) — chacun conçu
 pour *disculper* la structure plutôt que pour la condamner —, une synthèse-verdict
 d'ai-01, une liste de réparation, puis **une re-passe de release** qui refait la
-mesure sur Fallacies et la tente pour la première fois sur Virtues. **7 `.md`,
-7 `.csv`, 1 `.py`.** Toutes les pièces portent « MEASURE, not verdict » en tête
+mesure sur Fallacies et la tente pour la première fois sur Virtues. **6 `.md`,
+8 `.csv`, 1 `.py`.** Toutes les pièces portent « MEASURE, not verdict » en tête
 **sauf** la synthèse, qui est le verdict et le dit.
 
 Aucune ligne n'est `current`, et la raison est **mesurée**, pas de principe : la
