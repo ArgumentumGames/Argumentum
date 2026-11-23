@@ -2,18 +2,17 @@
 
 Ce dossier ne fait que grossir : chaque chantier y dépose ses rapports datés, ses
 annotations CSV et ses scripts compagnons. Rien ne s'y supprime — chaque fichier
-est une pièce. Ce README indexe les tranches **#498** (65 fichiers), **#141**
-(21 fichiers), **#499** (37 fichiers) et **#847** (15 fichiers). Il n'est **pas encore** un index de record : la marque d'index
+est une pièce. Ce README indexe **146 des 168 fichiers** du dossier : les tranches
+**#498** (65 fichiers), **#141** (21), **#499** (37) et **#847** (15), puis les
+tranches d'un seul fichier **#202**, **#299**, **#986** et les cinq documents non
+numérotés (8 fichiers). Il n'est **pas encore** un index de record : la marque d'index
 viendra avec la dernière tranche, quand les 168 fichiers du dossier seront tous
 indexés, conformément à
 [`docs/agents/consolidation.md`](../agents/consolidation.md) (§ *Procedure* :
 « Add the marker last »). En attendant, **rien ne tient cet index en CI** — une
 ligne oubliée ne rougira rien ; la complétude ci-dessous est celle de sa PR.
 
-Tranches restantes : #192, #202, #299, #497, #600, #986 et les
-fichiers non numérotés (`aif-structural-audit-method.md`, `family-gap-inventory.md`,
-`i18n-hierarchy-apply-spec.md`, `subsubfamily-gap-inventory.md`,
-`taxonomy-coherence-scan.md`).
+Tranches restantes : #192 (8 fichiers), #497 (9) et #600 (5) — 22 fichiers.
 
 ## Où en est #498 — fermé le 17 novembre 2026
 
@@ -355,3 +354,75 @@ la tranche des fichiers non numérotés ; le chantier porteur est #498.
   indexée, pas ré-auditée. Un chantier clos ne se re-mesure pas pour l'indexer.
 - Le marqueur `<!-- index-of-record -->` reste absent (dernière tranche
   seulement) : la complétude ci-dessus est celle de cette PR.
+
+## Les tranches d'un fichier (#202, #299, #986) et les cinq documents non numérotés — 8 fichiers
+
+Compte établi par
+`git ls-files docs/taxonomy | grep -E '^docs/taxonomy/(202|299|986)-|^docs/taxonomy/(aif-structural-audit-method|family-gap-inventory|i18n-hierarchy-apply-spec|subsubfamily-gap-inventory|taxonomy-coherence-scan)\.md$' | wc -l`
+→ 8.
+
+Ce lot rassemble deux familles que rien ne rapprochait jusqu'ici : **trois tranches
+d'un seul fichier** (#202, #299, #986), et **cinq documents non numérotés** qui
+n'appartiennent à aucun chantier — le dossier de méthode de l'audit #847, deux
+inventaires de qualité de données et leur spec d'application consolidée, et une
+passe de cohérence terminologique de la sign-off de release.
+
+### Le gap des 48 rangées est fermé — et c'est mesurable
+
+Les trois documents `family-gap-inventory` / `subsubfamily-gap-inventory` /
+`i18n-hierarchy-apply-spec` décrivent **le même défaut** : 48 rangées du CSV
+Fallacies dont une colonne de groupement anglaise était vide (propagation i18n
+manquante). Un lecteur de l'index doit pouvoir savoir s'il est encore ouvert.
+Mesure du 23/11 sur le blob `origin/master` (`Cards/Fallacies/Argumentum Fallacies - Taxonomy.csv`,
+**1 408** rangées ; profondeur = nombre de segments de `path`) :
+
+| Colonne EN | Rangées vides | Profondeur des rangées vides |
+|---|---:|---|
+| `Family` | **0** | — |
+| `Subfamily` | **8** | **8** à profondeur 1 |
+| `Subsubfamily` | **29** | **8** à profondeur 1 + **21** à profondeur 2 |
+
+Le CSV porte par ailleurs exactement **8** nœuds de profondeur 1 et **21** de
+profondeur 2. Un nœud de profondeur 1 n'a pas de `Subfamily` ; un nœud de
+profondeur ≤ 2 n'a pas de `Subsubfamily` : les populations **coïncident
+exactement** avec les cellules vides. Il ne reste donc **aucune cellule vide qui
+soit un défaut** — le gap des 48 rangées a été **appliqué**, et les trois
+documents sont des pièces datées, pas un travail en attente.
+
+> Ce que cette mesure n'établit pas : elle ne dit pas *quand* ni par quelle PR les
+> 144 cellules ont été remplies. Elle établit l'état, pas l'historique.
+
+### Les trois tranches d'un fichier
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`202-bulk-en-scoping.md`](202-bulk-en-scoping.md) | 2026-07-01 | `historical` | Recensement **read-only** du « bulk EN » de #202 (master `18b4d023`) — conclusion : c'est un **dispatch périmé**. Les items de la phase 2 sont faits ou ne sont pas des trous de traduction (`Simple_name_en` 61/1408 remplis contre 40 sources FR : la source est vide, pas la traduction ; Scenarii 167/167 ; Virtues 8 langues ; Rules PT corrigé). #202 est **CLOSED/COMPLETED** |
+| [`299-llm-quality-delta-investigation.md`](299-llm-quality-delta-investigation.md) | 2026-07-23 | `historical` | Investigation **read-only** du **delta** entre le banc #299 (clos le 17/05) et l'état de juillet (pivot gpt-5.5, chemin `/v1/responses` de #852 câblé mais dormant) — **0 run live** (`DatasetUpdater.Enabled=false` sur les 48 configs, gel T&A). Entrée de la décision d'activation post-T&A. #299 est **CLOSED/COMPLETED** |
+| [`986-c1-note-cadrage-pre-draft-3-postures.md`](986-c1-note-cadrage-pre-draft-3-postures.md) | 2026-09-21 | `current` | **Pré-draft** du principe générateur du deck Vertus : la mesure (les titres des 131 cartes, le miroir qui atteint 33 % du deck Sophismes sans orphelin) puis **trois postures** — dispositions (A), standards (B), deux couches déclarées (C) — et un test d'inclusion applicable aux trois. ⚠️ **Aucune posture n'y est retenue** : #986 est **OPEN**, et son dernier commentaire (ai-01, 08/11) demande l'avis de Thomas. Ce statut dit « seule pièce écrite de la question, rien ne la remplace » — **pas** « décision prise » |
+
+### Le dossier de méthode de l'audit AIF
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`aif-structural-audit-method.md`](aif-structural-audit-method.md) | 2026-07-22 | `historical` | Le **document de méthode et de gouvernance** de l'audit #847 : conversation de conception jsboige × ai-01, les **trois axes d'arbitraire** (A groupement, B matière, C tradition), la table de décision §4 et le **principe de gouvernance §5** (mesure ≠ verdict, tout changement structurel gaté par la ratification). Committé « exprès pour que le raisonnement survive à la condensation ». Il est cité par les six pièces de la [tranche #847](#la-tranche-847--15-fichiers) ; `git grep` hors `docs/taxonomy` → **0** référence, et #847 est clos |
+
+### Les inventaires de qualité de données et leur spec
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`family-gap-inventory.md`](family-gap-inventory.md) | 2026-07-06 | `historical` | Inventaire du gap #712 : **48 rangées** à colonne `Family` (EN) vide, méthode code=truth, **0 écriture** au CSV de prod (gel `Cards/`) — proposition prête pour une application post-tag |
+| [`subsubfamily-gap-inventory.md`](subsubfamily-gap-inventory.md) | 2026-07-06 | `historical` | Le **même défaut, une troisième colonne** (#716) : `Subsubfamily` vide sur « les exactement mêmes 48 rangées » — trouvé en appliquant la méthode #712 à tout le CSV |
+| [`i18n-hierarchy-apply-spec.md`](i18n-hierarchy-apply-spec.md) | 2026-07-06 | `historical` | La **spec d'application unifiée** qui consolide les deux inventaires en un seul geste gaté, byte-targeted, sur les 48 rangées × 3 colonnes EN — c'est elle qui porte le mode opératoire, les deux inventaires portant le constat |
+
+### La passe de cohérence terminologique
+
+| Fichier | Daté | Statut | Ce que c'est |
+|---|---|---|---|
+| [`taxonomy-coherence-scan.md`](taxonomy-coherence-scan.md) | 2026-07-04 | `historical` | Passe de cohérence terminologique **cross-langue** (master `d5913862`, dispatch `lofjtd`, secondaire) : **read-only, 0 constat**, sign-off de release — 0 écriture CSV, 0 appel gpt-5.5. Citée par `docs/RELEASE-VERIFICATION-INDEX-v0.9.0.md` et le dossier de release |
+
+### Non établi
+
+- **Quand** les cellules du gap des 48 rangées ont été remplies, et par quelle PR :
+  la mesure ci-dessus établit l'état, pas l'historique.
+- Le contenu des trois postures de #986 au-delà de leur existence : l'index les
+  nomme, il ne les arbitre pas — c'est l'objet de #986, qui attend un humain.
