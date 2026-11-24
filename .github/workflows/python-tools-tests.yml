@@ -129,14 +129,19 @@
 #        `actions/checkout` clone en `fetch-depth: 1` — mesure sur un corpus tronque,
 #        il ne verrait aucun candidat et un vert a compte nul ne serait pas une mesure.
 #        Condition d'execution documentee dans la docstring du fichier.
-#    16. tools/test_1105-home-render-p2.py -- std-lib, offline, 25 cas, ~0.1 s. Charge
+#    16. tools/test_1105-home-render-p2.py -- std-lib, offline, 33 cas, ~0.1 s. Charge
 #        tools/1105-cutover-day-controls.py et eprouve sa sonde P2 (section 6 du
 #        rapport : dir="rtl" en ar et fa seulement, meta description non vide,
 #        selecteur de langue a 7 liens, marqueur d'audience) sur du HTML
 #        SYNTHETIQUE, dans la forme mesuree sur le servi le 24/11. Le cas bout-en-bout
 #        execute main() avec un `fetch` FAUX : aucun curl, aucun reseau, le site servi
 #        n'est jamais demande. Il epingle aussi la discipline du runbook : un ecart de
-#        cette sonde laisse le code de sortie a 0, une route rouge sort 1.
+#        cette sonde laisse le code de sortie a 0, une route rouge sort 1. Depuis
+#        P24-50, il eprouve le REVEIL du site endormi : transport a demarrage a froid
+#        et horloge SIMULES (un serveur qui ne repond qu'apres la borne de passe passe
+#        grace a l'eveil ; le meme sans eveil rougit a l'ancienne borne), un serveur
+#        muet sort 1 sans faire tourner la passe, un 503 a l'eveil n'est pas un site
+#        muet, et les bornes 60 / 240 sont epinglees en litteraux.
 #        Condition d'execution documentee dans la docstring du fichier.
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi

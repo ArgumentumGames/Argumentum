@@ -287,6 +287,14 @@ C1, ré-injection EAV, packs de langue, article et liens #135, fichiers E12, wra
         --label prod-jour-j --out docs/quality/controles-jour-j-prod-<date>.md
     ```
 
+    ⚠️ **Site endormi** : une requête d'**éveil** précède la passe, avec sa propre borne
+    (`--wake-max-time`, défaut **240 s** — mesuré 93 à 107 s sur la prod endormie le
+    24/11, rapporté par web2 ; la borne de passe reste 60 s). Le rapport la nomme
+    (« Réveil : `GET /` → 200 en N s »). **Aucune** réponse HTTP dans cette borne ⇒
+    contrôles 1 à 3 **non mesurés**, code **1**, et la passe ne tourne pas : une borne
+    au lieu de 42 requêtes. Un statut HTTP à l'éveil (même 503) n'est **pas** ce cas —
+    le site répond, la passe le juge.
+
     ⚠️ **Le journal lu est celui de la machine qui exécute le script**, et le script nomme
     désormais cette machine dans sa sortie (`machine dont le journal est lu : …`). Le jour J,
     il doit donc tourner **sur le VPS de la prod** : lancé depuis un autre siège, son
