@@ -8,21 +8,25 @@ Link row of the existing card 6A24AE92 — the 4 cells carrying a pre-release UR
 Official registry is never modified. Usage: python -I derive_run_registry.py <official.csv> <out.csv>
 
 Auto-checks (each one a STOP, exit non nul) :
-  - l'empreinte d'entrée est celle du registre officiel (sha256[:16] ``277aac83e0b71e64``) ;
+  - l'empreinte d'entrée est celle du registre officiel (sha256[:16] ``fc23b9a748ce3758``,
+    depuis P24-32 le 24/11 ; avant : ``277aac83e0b71e64``) ;
   - pas de BOM ;
   - 673 lignes de corps -> 22 retirées -> 651 conservées ;
   - aucune chaîne ``-review`` ne survit dans ce qui reste ;
   - l'aller-retour du parse est identique.
 
-Empreinte de sortie attendue (calculée par ai-01 sur le blob master) :
-  sha256 = 92bf1e0624256e7f672035446461718f64e5cd6a64912390d72a1ebaf0e1fbc0 (1 166 864 octets).
+Empreinte de sortie attendue :
+  sha256 = a130a663b9374655c6e6eb5a3c913b540d689c3c8d0ac3c183d44f28e92627d7 (1 166 868 octets).
+Calculée par ai-01 sur le blob master pour l'empreinte 92bf1e06… (1 166 864 octets) ;
+re-mesurée par po-2024 (P24-32, 24/11) après la correction typographique de 3 cellules
+du registre (+4 octets), 673 -> 22 -> 651 inchangé - à revérifier par la contre-revue.
 Toute autre valeur : STOP, et poster les deux sorties.
 """
 import csv, hashlib, io, sys
 src, dst = sys.argv[1], sys.argv[2]
 raw = open(src, 'rb').read()
 print('input sha256[:16]', hashlib.sha256(raw).hexdigest()[:16], 'bytes', len(raw))
-assert hashlib.sha256(raw).hexdigest()[:16] == '277aac83e0b71e64', 'STOP: input is not the official registry'
+assert hashlib.sha256(raw).hexdigest()[:16] == 'fc23b9a748ce3758', 'STOP: input is not the official registry'
 assert not raw.startswith(b'\xef\xbb\xbf')
 rows = list(csv.reader(io.StringIO(raw.decode('utf-8'), newline='')))
 hdr, body = rows[0], rows[1:]

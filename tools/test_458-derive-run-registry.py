@@ -13,9 +13,11 @@ contre le registre committé, sans toucher à la base.
 
 CE QUI EST ÉPINGLÉ :
   1. Le registre officiel committé passe : 673 corps -> 22 retirées -> 651
-     conservées, et l'empreinte de sortie est EXACTEMENT celle qu'ai-01 a calculée
-     sur le blob master (``92bf1e06…``, 1 166 864 octets) - toute dérive du registre
-     officiel rougit ici AVANT d'atteindre le staging.
+     conservées, et l'empreinte de sortie est EXACTEMENT celle mesurée sur le
+     registre committé (``a130a663…``, 1 166 868 octets ; ai-01 avait épinglé
+     ``92bf1e06…``, 1 166 864 octets avant la correction typographique P24-32 du
+     24/11) - toute dérive du registre officiel rougit ici AVANT d'atteindre le
+     staging.
   2. Les 22 clés retirées sont nommées : les 3 entités P&P absentes de prod
      (7 champs chacune) ET la ligne ``6A24AE92-…|Link`` de la carte existante -
      la 4e cellule porteuse d'URL de pré-release, celle que l'option (i) aurait
@@ -40,9 +42,9 @@ HERE = pathlib.Path(__file__).resolve().parent
 TOOL = HERE / "458-derive-run-registry.py"
 REGISTRY = HERE.parent / "docs" / "dnn-localization" / "eav-content.csv"
 
-OFFICIAL_IN = "277aac83e0b71e64"
-EXPECTED_OUT_SHA = "92bf1e0624256e7f672035446461718f64e5cd6a64912390d72a1ebaf0e1fbc0"
-EXPECTED_OUT_BYTES = 1166864
+OFFICIAL_IN = "fc23b9a748ce3758"
+EXPECTED_OUT_SHA = "a130a663b9374655c6e6eb5a3c913b540d689c3c8d0ac3c183d44f28e92627d7"
+EXPECTED_OUT_BYTES = 1166868
 
 MISSING_ENTITIES = {
     "494AB453-EC8B-4372-A6F7-A4A13A142153",
