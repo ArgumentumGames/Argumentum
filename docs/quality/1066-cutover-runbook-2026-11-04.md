@@ -177,6 +177,16 @@ C1, ré-injection EAV, packs de langue, article et liens #135, fichiers E12, wra
     (`tools/458-eav-reinject.py`, paquet P23-24 v4) **refuse** toute dimension de langue absente de
     la zone des apps cibles (REFUS explicite, pas un skip) : sans les dimensions, le dry-run même
     ne passe pas. Exécuter dans l'ordre **11 → 11 bis → 10**.
+    ⚠️ **Cellule en conflit** (les deux côtés pleins et différents — cas de P24-32 : trois
+    cellules d'un app corrigées en typographie au registre, que la base porte encore dans
+    leur ancienne valeur) : l'outil ne l'écrit **pas** de lui-même. Elle ne s'écrit que
+    **nommée, une à une** : `--force GUID-complet:CHAMP:LANGUE` (cumulable ; un préfixe de
+    GUID est refusé). Le dry-run liste chaque écrasement nommé avec ses deux longueurs, la
+    valeur d'avant est sauvegardée avec le plan (`reinject-force-prior-*.json`), et
+    l'écriture exige, dans la transaction, que la rangée porte encore exactement cette
+    valeur — sinon ROLLBACK, rien n'est écrasé. Tout autre conflit refuse l'apply, comme
+    avant. Le mode à blanc de W2-11 **doit donc montrer ces cellules en `CONFLICT`** sans
+    `--force` : c'est l'état attendu, pas un écart de la PR.
 11. **Langpacks installés** (R8) : `Install/Install.aspx?mode=installresources` restauré du zip
     d'upgrade, **quarantaine des strays** `Install/*/` (le trigger installe tout), install = crée la
     langue host, **n'active pas le portail** ; contrôle 0 écart `git status` avant/après.

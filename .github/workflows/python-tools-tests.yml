@@ -98,8 +98,7 @@
 #    12. tools/test_2190-served-mindmap-inventory.py -- std-lib + git, OFFLINE : le
 #        serveur HTTP est local et jetable, aucune préprod ni réseau externe. Témoin
 #        identique au blob, mutation d'octets et route absente doivent être distingués.
-#    13. tools/test_458-eav-reinject-guards.py -- std-lib, offline, 25 cas. Charge
-#        tools/458-eav-reinject.py SANS se connecter (EXP.run_query remplace par un
+#    13. tools/test_458-eav-reinject-guards.py -- std-lib, offline, 38 cas. Charge#        tools/458-eav-reinject.py SANS se connecter (EXP.run_query remplace par un
 #        faux qui sert des rangees synthetiques) et eprouve les gardes de refus
 #        G1-G3 de la re-injection EAV (#2326, revue c.7053569313) : chaque garde
 #        avec son temoin sain ET sa mutation (garde neutralisee dans le source ->
@@ -116,7 +115,15 @@
 #        inverse laisse verte une divergence hors FROM..WHERE ; et l'avertissement
 #        « la base a bouge entre les deux lectures » a son cas court, son cas long,
 #        son temoin muet et sa mutation (R5).
-#        Le faux run_query refuse tout SQL non attendu : une derive des
+#        Depuis l'ecrasement nomme (--force, #2181) : seule la cellule NOMMEE sort
+#        du CONFLIT, un nom qui ne designe rien est refuse avant toute lecture, et
+#        la branche FORCE du script writer est LUE (comparaison ordinale, rangee
+#        epinglee par ValueId, sous verrou) avec sa mutation. Le script writer
+#        n'est jamais execute ici : seule la lane qui sert la base l'execute.
+#        Deux instruments de ce grain se lancent A LA MAIN, hors CI (ils rejouent
+#        des suites entieres) : tools/2181-reinject-mutations.py (12 mutations de
+#        l'outil, temoin 29/29) et tools/2181-reinject-rehearsal.py (repetition du
+#        plan entre deux registres, aucune base).#        Le faux run_query refuse tout SQL non attendu : une derive des
 #        requetes fait echouer le test bruyamment, jamais passer des rangees
 #        fausses. Condition d'execution documentee dans la docstring du fichier.
 #    14. tools/test_458-derive-run-registry.py -- std-lib, offline, 5 cas, ~0.4 s.
