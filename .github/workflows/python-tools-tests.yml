@@ -95,13 +95,17 @@
 #    12. tools/test_2190-served-mindmap-inventory.py -- std-lib + git, OFFLINE : le
 #        serveur HTTP est local et jetable, aucune préprod ni réseau externe. Témoin
 #        identique au blob, mutation d'octets et route absente doivent être distingués.
-#    13. tools/test_458-eav-reinject-guards.py -- std-lib, offline, 9 cas. Charge
+#    13. tools/test_458-eav-reinject-guards.py -- std-lib, offline, 16 cas. Charge
 #        tools/458-eav-reinject.py SANS se connecter (EXP.run_query remplace par un
 #        faux qui sert des rangees synthetiques) et eprouve les gardes de refus
 #        G1-G3 de la re-injection EAV (#2326, revue c.7053569313) : chaque garde
 #        avec son temoin sain ET sa mutation (garde neutralisee dans le source ->
 #        le meme defaut passe sans refus — le test epingle la garde, pas un effet
-#        de bord). Le faux run_query refuse tout SQL non attendu : une derive des
+#        de bord). Eprouve aussi les trois retouches P23-27 (contre-revue po-2024
+#        c.7057778259) : carte d'apps imprimee avant fetch_target, EntityId listes
+#        par le refus G1 (et refus maintenu si la liste echoue), garde de source
+#        contre la formulation « rangee servie = ValueId MAX » refutee par M1/M3.
+#        Le faux run_query refuse tout SQL non attendu : une derive des
 #        requetes fait echouer le test bruyamment, jamais passer des rangees
 #        fausses. Condition d'execution documentee dans la docstring du fichier.
 #    14. tools/test_458-derive-run-registry.py -- std-lib, offline, 5 cas, ~0.4 s.
@@ -211,12 +215,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Run the EAV reinject guard contract (#458 P23-24, gardes G1-G3)
-        # 9 cas, std-lib, offline : aucune connexion, aucun web.config. Les gardes
+      - name: Run the EAV reinject guard contract (#458 P23-24 G1-G3, P23-27 R1-R3)
+        # 16 cas, std-lib, offline : aucune connexion, aucun web.config. Les gardes
         # de refus G1-G3 (paire (app, guid) multi-entites, vainqueur de carte sans
         # marge, carte non injective) sont eprouvees chacune par un temoin sain et
         # une MUTATION : la garde neutralisee dans le source doit laisser passer
-        # le defaut — le test epingle la garde, pas un effet de bord.
+        # le defaut — le test epingle la garde, pas un effet de bord. Les retouches
+        # P23-27 (carte imprimee avant fetch_target, EntityId listes dans le refus
+        # G1, source sans la formulation refutee par M1/M3) ont leur propre cas et
+        # leur propre mutation.
         run: python tools/test_458-eav-reinject-guards.py
 
   eav-derive-run-registry:
