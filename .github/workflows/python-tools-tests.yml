@@ -19,7 +19,7 @@
 #   d'execution sera documentee. C'est la distinction posee en tete de
 #   docs/quality/1460-charpente-suite-regression.md.
 #
-#   CABLES A CE JOUR (15), avec la condition qui les autorise ici :
+#   CABLES A CE JOUR (16), avec la condition qui les autorise ici :
 #     1. tools/test_1460-structure-charpente-pilot.py -- std-lib, 7 cas, arbres
 #        synthetiques ; aucun Target/ requis (le cas 7 est un grounding sur le depot
 #        reel, volontairement NON asserte).
@@ -128,6 +128,15 @@
 #        du vrai corpus Fallacies demande l'historique complet (164 commits) alors que
 #        `actions/checkout` clone en `fetch-depth: 1` — mesure sur un corpus tronque,
 #        il ne verrait aucun candidat et un vert a compte nul ne serait pas une mesure.
+#        Condition d'execution documentee dans la docstring du fichier.
+#    16. tools/test_1105-home-render-p2.py -- std-lib, offline, 25 cas, ~0.1 s. Charge
+#        tools/1105-cutover-day-controls.py et eprouve sa sonde P2 (section 6 du
+#        rapport : dir="rtl" en ar et fa seulement, meta description non vide,
+#        selecteur de langue a 7 liens, marqueur d'audience) sur du HTML
+#        SYNTHETIQUE, dans la forme mesuree sur le servi le 24/11. Le cas bout-en-bout
+#        execute main() avec un `fetch` FAUX : aucun curl, aucun reseau, le site servi
+#        n'est jamais demande. Il epingle aussi la discipline du runbook : un ecart de
+#        cette sonde laisse le code de sortie a 0, une route rouge sort 1.
 #        Condition d'execution documentee dans la docstring du fichier.
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
@@ -254,6 +263,21 @@ jobs:
         # le 23/11. Aucun corpus reel lu : sur un clone `fetch-depth: 1`, un balayage
         # tronque rendrait un vert a compte nul, qui n'est pas une mesure.
         run: python tools/test_458-cascade-drift-roundtrip.py
+
+  cutover-day-controls-p2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run the cutover day P2 home-render contract (#131 P24-45)
+        # 25 cas, std-lib, offline, ~0.1 s : la sonde P2 du script du jour J est lue
+        # sur du HTML synthetique — aucun site servi, aucun curl : `fetch` est remplace
+        # par un faux dans le cas bout-en-bout. Chaque defaut injecte rougit SON
+        # controle ; un ecart de cette sonde laisse le code de sortie a 0 (elle
+        # informe, elle ne declenche pas de retour arriere), une route rouge sort 1.
+        run: python tools/test_1105-home-render-p2.py
 
   pr-merge-gate-selftest:
     runs-on: ubuntu-latest
