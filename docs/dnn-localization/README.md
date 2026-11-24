@@ -1,10 +1,11 @@
-# DNN Localization & Upgrade Arc — Index of record (tranche 1/4, measured 2026-11-24)
+# DNN Localization & Upgrade Arc — Index of record (tranches 1–2/4, measured 2026-11-24)
 
 > **Entry point for the `#131` / `#132` / `#457` DNN documentation arc.**
 > The folder holds **217 tracked files** (`git ls-files docs/dnn-localization`, measured 2026-11-24). This
-> README is being rebuilt as an **index of record, by tranches**: tranche 1 (this file) indexes the **49
-> root files whose name is not `458-*`** — the 48 documents below plus this README — and the two
-> subfolders; tranches 2–4 index the **134 `458-*` files** (the injection records). ⚠️ The
+> README is being rebuilt as an **index of record, by tranches**: tranche 1 indexes the **49 root files
+> whose name is not `458-*`** — the 48 documents of §1–§6 plus this README — and the two subfolders;
+> tranche 2 (§8) indexes the **first 49 of the 134 `458-*` files**; tranches 3–4 index the **other 85**.
+> ⚠️ The
 > `<!-- index-of-record -->` mark is posed at the **last** tranche: this file does not carry it yet, and
 > the contract `tools/test_docs-index-contract.py` holds only a marked README to completeness.
 
@@ -142,21 +143,140 @@ Everything else is the record that led to it.
 
 ---
 
-## §8 — Remaining tranches
+## §8 — `458-*` records, tranche 2/4 (49 files)
 
-Tranche 1 (this file) covers the 49 root files that are not `458-*`, plus the two subfolders. Tranches 2–4
-index the **134 `458-*` root files** (≈45 each), one PR at a time, each branched from master **after** the
-previous one merged — never stacked (a chain on the same README re-conflicts at every squash, measured
-23/11). The `<!-- index-of-record -->` mark is posed at the **last** tranche, and the DoD mutant —
-"a row of a file cited only once removed, contract red and named" — is played on **that** PR, not on this
-one. Until then this file is a navigation index that happens to carry statuses, not a contract.
+The **134 `458-*` files** of this folder are the working records of pool #458: 73 `.md` reports, 55
+`.translations.json` fragments, 1 other `.json`, 4 `.py` builders and 1 `.csv` pivot (counted 2026-11-24). Tranche 1 called them
+"the injection records"; most are not. They are dated measurements, notes of preprod writes, and the payloads
+of the language packs. They are indexed in tranches cut on `git ls-files` order, so that the membership of a
+tranche is a fact to re-derive rather than a judgement to review:
+
+```text
+git ls-files docs/dnn-localization | grep -E '^docs/dnn-localization/458-[^/]+$'
+```
+
+This tranche takes the **first 49** — everything before the first builder, `458-item9bis-agr-core-extract.py`:
+**30 `.md`, 18 `.json`, 1 `.csv`**. Tranches 3 and 4 take the **other 85**.
+
+Each row reads its file's own header. The **Date** column is the date the record bears — its header, which
+for these documents is also in the file name — so it can precede the commit that carried it; the two data
+files bear no date of their own and are dated by their last commit. A figure followed by a date of
+2026-11-24 was taken for this index, on master (`git ls-files`, a parse of the file) or on the served
+production site (a GET); nothing else was replayed, on no base. A pull request number is read from the
+subject of the commit that carried the file on master, never from another report's citation.
+
+### §8.1 — Content written on preprod (10 files)
+
+**Where it stands on 2026-11-24.** Every write recorded here was made on the **preprod** base, between
+2026-10-24 and 2026-11-06, before the production swap of 2026-11-24 (§0). Two findings outlive their grain
+and are carried in their rows: the registry is not a mirror of the base — `verify` measures a gap, never a
+stale artefact — and a content read is taken on a fresh render, never on the DNN output cache.
+
+| File | Date | Status | What it is |
+|---|---|---|---|
+| [458-24b-4-app59-injection-2026-10-24.md](458-24b-4-app59-injection-2026-10-24.md) | 2026-10-24 | `historical` | App 59 (Glossaire) written on preprod: 98 cells × 7 languages, dry run 98/98 then apply (PR #1967) — the five translations had been merged by #1924 and never written to the base. §6 leaves three points open; the first says not to purge the 27 `Game Rule` rows on the strength of the pool — the base already carries their ar/fa titles, byte for byte equal to the cards' headings (the arbitration is ai-01's, not a pool item's). |
+| [458-app35-injection-2026-10-25.md](458-app35-injection-2026-10-25.md) | 2026-10-25 | `historical` | App 35 (persona accordions) written on preprod: 105 cells × 7 languages, dry run 105/105 then apply (PR #1971). Four demo titles stay English in the 8 cultures — demo content, rendered on no public page. |
+| [458-item8-memo-card-name-prefix-2026-10-25.md](458-item8-memo-card-name-prefix-2026-10-25.md) | 2026-10-25 | `historical` | Read-only finding: the memo-card name prefix is served in French on ru/ar/fa/zh, and it is the registry that gets injected, not the templates (PR #1968). Its correctif was ready, not executed; the repository half landed the same day in #1979 — the registry row filled (4 cells) and the tool's comment rewritten — while the field stays in the tool's `NEVER` list (re-read 2026-11-24). The base half was not written from that file. |
+| [458-app49-injection-2026-10-25.md](458-app49-injection-2026-10-25.md) | 2026-10-25 | `historical` | App 49 (presets of the content slider) written on preprod: 70 cells × 7 languages, pure addition (PR #1980; last touched by #1994). §5 records the instrument trap: the DNN output cache answered a false negative right after the recycle — a content read is taken on a fresh render. |
+| [458-app52-actus-h1-2026-10-25.md](458-app52-actus-h1-2026-10-25.md) | 2026-10-25 | `historical` | Two findings (PR #1987). The `h1` of Actus is a `ViewConfiguration.Title`, not a `Content` row: the export filter is corrected, self-tested (585 lines, 0 gap; a mutated cell seen exactly once). And §5: the registry is not a mirror of the base — 129 cells differ, in both directions — so `verify` measures a registry↔base gap, never a stale artefact. |
+| [458-cultname-ru-2026-10-25.md](458-cultname-ru-2026-10-25.md) | 2026-10-25 | `historical` | One preprod transaction: `Languages.CultureName` for ru-RU goes from the raw code to the native name (PR #1982), after an INFO post and a green dry run. |
+| [458-contact-newsletter-injection-2026-11-04.md](458-contact-newsletter-injection-2026-11-04.md) | 2026-11-04 | `historical` | Contact form and newsletter written on preprod: 24 labels of app 50 (entity E9169) + 1 `Html` of app 48, × 7 cultures = 175 cells, method E1, served proof (PR #2139; erratum #2145 on the identity range a cancelled Rehearse had consumed). The French error messages it left for a later grain are the next row. |
+| [458-e9169-fr8-base-2026-11-04.md](458-e9169-fr8-base-2026-11-04.md) | 2026-11-04 | `historical` | The 8 French error messages of the contact form (base values, dimension 0, entity E9169) aligned on the `fr` column of the registry — backup, dry run, transaction (PR #2142). Closes the residue of the previous row. |
+| [458-eav-70-cellules-2026-11-05.md](458-eav-70-cellules-2026-11-05.md) | 2026-11-05 | `historical` | The 70 registry cells of apps 52/33/49 triaged: 42 translated for the write, 28 declined by construction (2sxc defaults — titles, `UrlKey`, demo placeholders); no base write in that grain (PR #2164, completed by #2210). The write of the 42 is the next row. |
+| [458-inject42-resultat-2026-11-06.md](458-inject42-resultat-2026-11-06.md) | 2026-11-06 | `historical` | Run record of the 42-cell write on preprod (06/11, method E1): before/after proofs, rollback, and a guard on the identity of the rows — a count is not an identity — validated by four mutation passes (PR #2171, completed by #2213). |
+
+### §8.2 — Files written in the repository: resx (9 files)
+
+**Where it stands on 2026-11-24.** The nine changes are on master. Each of the six `GlobalResources.<culture>.resx`
+carries `Administrators.RoleDescription`, one of the 30 keys the 10.4.1 upgrade added to the neutral (six files
+parsed), and `security.es-ES.resx` has no `fitro` left (read that day).
+
+| File | Date | Status | What it is |
+|---|---|---|---|
+| [458-eses-security-fitro-2026-11-02.md](458-eses-security-fitro-2026-11-02.md) | 2026-11-02 | `historical` | One typo in `security.es-ES.resx`: `fitro` → `filtro` (PR #2120; erratum on a witness name, PR #2122). Re-measured 2026-11-24 on master: 0 `fitro`. |
+| [458-adminresethelp-resync-2026-11-03.md](458-adminresethelp-resync-2026-11-03.md) | 2026-11-03 | `historical` | `Password.ascx.es-ES.resx` and `.ru-RU.resx` resynchronised on the neutral for `AdminResetHelp`, with a guard (PR #2129). |
+| [458-globalresources-frfr-30-cles-2026-11-03.md](458-globalresources-frfr-30-cles-2026-11-03.md) | 2026-11-03 | `historical` | First of the lot: what the DNN 10.4.1 upgrade added to the neutral `GlobalResources.resx` — 30 keys, in three families — and their French translation, 30 cells added, none touched (PR #2133). |
+| [458-email-4th-phrase-ar-fa-zh-2026-11-03.md](458-email-4th-phrase-ar-fa-zh-2026-11-03.md) | 2026-11-03 | `historical` | The sentence DNN 10.4.1 added to `EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_BODY` translated in the ar-SA, fa-IR and zh-CN packs, and the drift declaration retired; 52/52 green (commit `d4b2ac3f`). Its "remaining" note — the 30 keys in the five other packs — is closed by the five rows below. |
+| [458-globalresources-ptbr-30-cles-2026-11-04.md](458-globalresources-ptbr-30-cles-2026-11-04.md) | 2026-11-04 | `historical` | pt-BR twin of the fr-FR grain: the same 30 keys, 30 cells added, none touched (PR #2143). |
+| [458-globalresources-ruru-30-cles-2026-11-04.md](458-globalresources-ruru-30-cles-2026-11-04.md) | 2026-11-04 | `historical` | ru-RU twin of the fr-FR and pt-BR grains: the same 30 keys, 30 cells added, none touched (PR #2147). |
+| [458-globalresources-arsa-30-cles-2026-11-04.md](458-globalresources-arsa-30-cles-2026-11-04.md) | 2026-11-04 | `historical` | ar-SA twin of the fr-FR, pt-BR and ru-RU grains: the same 30 keys, 30 cells added, none touched (PR #2149). |
+| [458-globalresources-fair-30-cles-2026-11-05.md](458-globalresources-fair-30-cles-2026-11-05.md) | 2026-11-05 | `historical` | fa-IR: the same 30 keys, 30 cells added, none touched (PR #2151). |
+| [458-globalresources-zhcn-30-cles-2026-11-05.md](458-globalresources-zhcn-30-cles-2026-11-05.md) | 2026-11-05 | `historical` | zh-CN: the same 30 keys, 30 cells added, none touched — last pack of the lot (PR #2152). |
+
+### §8.3 — Site state: webroot, language lever, chrome, shop (9 files)
+
+**Where it stands on 2026-11-24.** These files measure a site that has since moved: production was swapped on
+2026-11-24 (§0), and today's state is read there, not here. Seven rows are the record of a date.
+Two are `current`, and they belong to one dossier — the « Buy the game » product sheet: prepared, pivot
+versioned, not written; the write waits for an arbitration. Two rows carry a measurement taken on the served
+production that day, marked ⚠️.
+
+| File | Date | Status | What it is |
+|---|---|---|---|
+| [458-etape3-webroot-sync-simulation-2026-10-12.md](458-etape3-webroot-sync-simulation-2026-10-12.md) | 2026-10-12 | `historical` | Step 3 of the preprod webroot recovery, rehearsed on a copy: the naïve test, refuted by execution; the protected sequence and its checks (PR #1873). Its object is the clone of that date — 506 commits behind, 226 tracked files modified — and the real execution stayed frozen until ai-01's verdict. |
+| [458-item9-langpack-ar-fa-2026-10-25.md](458-item9-langpack-ar-fa-2026-10-25.md) | 2026-10-25 | `historical` | Read-only state of the ar/fa base chrome: no upstream pack to install, English fallback, zero chrome resx for zh/ar/fa outside the skin rail (PR #1970). §6 offers options and executes none; the fallback chrome it scoped is the next row. |
+| [458-chrome-minimal-zh-ar-fa-2026-10-25.md](458-chrome-minimal-zh-ar-fa-2026-10-25.md) | 2026-10-25 | `historical` | The 13 keys that made zh/ar/fa fall back to English on the login path — 4 carrier files, 39 triples — proved by the rendered page, not deduced from the module (PR #1972). Read-only by itself; executed the next day by PR #1995: the 13 keys are on master in the three cultures (four carriers parsed in each, 2026-11-24). |
+| [458-hreflang-skin-2026-10-25.md](458-hreflang-skin-2026-10-25.md) | 2026-10-25 | `historical` | The 2shineBS5 skin emits `hreflang` alternates, canonical and x-default from the portal's languages (PR #1989 — preprod only at the time). ⚠️ Measured 2026-11-24 on the served production: the three home pages probed (`/`, `/en/`, `/ar/`) each carry one `rel="canonical"` and **no `hreflang`**, although `EmitLanguageAlternates()` is on master (`controls/theme-body.ascx`). |
+| [458-cl-flag-origin-2026-10-26.md](458-cl-flag-origin-2026-10-26.md) | 2026-10-26 | `historical` | Origin of the `ContentLocalizationEnabled=True` write of 11/10: the residue of a lane experiment, never reverted — not an intention (PR #2002). Established by four read-only instruments, as the preliminary of the go-live arbitration « Option B » (switching back to `False`); whether that switch was made is not measured by this index. |
+| [458-grain-crlf-accueil-acheter-2026-11-03.md](458-grain-crlf-accueil-acheter-2026-11-03.md) | 2026-11-03 | `historical` | Two preprod gestures done — the webroot clone switched to `core.autocrlf=true`, 1 751 status lines brought back to 22; and the home-page typo, base and pivot — and the « Buy the game » dossier measured without a gesture (PR #2134). The dossier continues in the two rows below. |
+| [458-buy-the-game-item131-enus-2026-11-03.md](458-buy-the-game-item131-enus-2026-11-03.md) | 2026-11-03 | `current` | **Preparation only** — no base write (PR #2136). The product sheet of the « Buy the game » link renders in French whatever the culture asked. It stops before the write: three objects carry the product, the planned chain cannot run as dispatched, and three questions are put to ai-01. It governs a gesture still to come. ⚠️ Measured 2026-11-24 on the served production: `/en/Acheter-le-jeu/…` still answers **301** to the same URL without `/en/`; the arbitration has no line in the #458 pool body read that day. |
+| [458-buy-the-game-item131-pivot.csv](458-buy-the-game-item131-pivot.csv) | 2026-11-04 | `current` | The payload of the previous row: 5 records of item 131 (`PRDLANG`, `fr-FR`) — name, summary, HTML description, two image captions — French against en-US, in 23 physical lines because the description cell spans several (parsed 2026-11-24), versioned before any gesture on the base. No file on master cites it by name (`git grep`): it waits for the write the previous row gates. |
+| [458-ff-preprod-66b28511-essai-a-blanc-2026-11-05.md](458-ff-preprod-66b28511-essai-a-blanc-2026-11-05.md) | 2026-11-05 | `historical` | Read-only rehearsal of the preprod webroot advance to `66b28511`, before the daytime window (committed with PR #2148). It is the rehearsal of one advance; its last section says to re-measure before the `merge --ff-only`, never on the faith of that document. |
+
+### §8.4 — Admin language packs, module-level lots 2, 4 and 6 (21 files)
+
+**Where it stands on 2026-11-24.** The three packs are on master, in the parity of the other cultures: each of
+the seven cultures has 28 `<culture>.resx` under the six `DNNPlatform/admin/*/App_LocalResources/`
+directories, and the pack covers 27 of them — `Skins/Login.ascx` is excluded on purpose, its zh/ar/fa files
+existed already (`git log --diff-filter=A`: added 2026-10-26). Four file names exist in two directories each — `Export`
+and `Import` in `Modules` and `Tabs`, `Privacy` and `Terms` in `Portal` and `Skins` — so a name identifies
+a file only with its directory. The 18 JSON fragments are the **source** of the merged `.resx`: the guards
+`DnnModuleLevelAdmin{Zh,Ar,Fa}ResxGuardTests` read the `.resx`, and no file under `tools/` or `Generation/`
+cites a fragment — the only `.translations.json` cited there is the older `684-translations.json`
+(`git grep`).
+
+| File | Date | Status | What it is |
+|---|---|---|---|
+| [458-item9bis-admin-zh-2026-10-31.md](458-item9bis-admin-zh-2026-10-31.md) | 2026-10-31 | `historical` | Lot 2: the zh-CN pack of the six admin directories — 27 files, 328 keys of the 338 neutrals, 10 declared not delivered (neutral fallback) (PR #2088). |
+| [458-item9bis-admin-zh-CN.modules.translations.json](458-item9bis-admin-zh-CN.modules.translations.json) | 2026-10-31 | `historical` | Source fragment of the previous row — `Modules`: 6 files, 165 keys. |
+| [458-item9bis-admin-zh-CN.portal.translations.json](458-item9bis-admin-zh-CN.portal.translations.json) | 2026-10-31 | `historical` | Source fragment of the same pack — `Portal`: 2 files, 2 keys. |
+| [458-item9bis-admin-zh-CN.security.translations.json](458-item9bis-admin-zh-CN.security.translations.json) | 2026-10-31 | `historical` | Source fragment of the same pack — `Security`: 3 files, 54 keys. |
+| [458-item9bis-admin-zh-CN.skins.translations.json](458-item9bis-admin-zh-CN.skins.translations.json) | 2026-10-31 | `historical` | Source fragment of the same pack — `Skins`: 13 files, 52 keys. |
+| [458-item9bis-admin-zh-CN.tabs.translations.json](458-item9bis-admin-zh-CN.tabs.translations.json) | 2026-10-31 | `historical` | Source fragment of the same pack — `Tabs`: 2 files, 53 keys. |
+| [458-item9bis-admin-zh-CN.users.translations.json](458-item9bis-admin-zh-CN.users.translations.json) | 2026-10-31 | `historical` | Source fragment of the same pack — `Users`: 1 file, 2 keys. |
+| [458-item9bis-admin-ar-2026-10-31.md](458-item9bis-admin-ar-2026-10-31.md) | 2026-10-31 | `historical` | Lot 4: the same perimeter for ar-SA — 27 files, 328 keys, key sets equal to the zh-CN lot stem by stem (PR #2093). |
+| [458-item9bis-admin-ar-SA.modules.translations.json](458-item9bis-admin-ar-SA.modules.translations.json) | 2026-10-31 | `historical` | Source fragment of the previous row — `Modules`: 6 files, 165 keys. |
+| [458-item9bis-admin-ar-SA.portal.translations.json](458-item9bis-admin-ar-SA.portal.translations.json) | 2026-10-31 | `historical` | Source fragment of the same pack — `Portal`: 2 files, 2 keys. |
+| [458-item9bis-admin-ar-SA.security.translations.json](458-item9bis-admin-ar-SA.security.translations.json) | 2026-10-31 | `historical` | Source fragment of the same pack — `Security`: 3 files, 54 keys. |
+| [458-item9bis-admin-ar-SA.skins.translations.json](458-item9bis-admin-ar-SA.skins.translations.json) | 2026-10-31 | `historical` | Source fragment of the same pack — `Skins`: 13 files, 52 keys. |
+| [458-item9bis-admin-ar-SA.tabs.translations.json](458-item9bis-admin-ar-SA.tabs.translations.json) | 2026-10-31 | `historical` | Source fragment of the same pack — `Tabs`: 2 files, 53 keys. |
+| [458-item9bis-admin-ar-SA.users.translations.json](458-item9bis-admin-ar-SA.users.translations.json) | 2026-10-31 | `historical` | Source fragment of the same pack — `Users`: 1 file, 2 keys. |
+| [458-item9bis-admin-fa-2026-10-31.md](458-item9bis-admin-fa-2026-10-31.md) | 2026-10-31 | `historical` | Lot 6: the same perimeter for fa-IR — 27 files, 328 keys, translations authored by the lane, 0 $ of API (PR #2097). |
+| [458-item9bis-admin-fa-IR.modules.translations.json](458-item9bis-admin-fa-IR.modules.translations.json) | 2026-10-31 | `historical` | Source fragment of the previous row — `Modules`: 6 files, 165 keys. |
+| [458-item9bis-admin-fa-IR.portal.translations.json](458-item9bis-admin-fa-IR.portal.translations.json) | 2026-10-31 | `historical` | Source fragment of the same pack — `Portal`: 2 files, 2 keys. |
+| [458-item9bis-admin-fa-IR.security.translations.json](458-item9bis-admin-fa-IR.security.translations.json) | 2026-10-31 | `historical` | Source fragment of the same pack — `Security`: 3 files, 54 keys. |
+| [458-item9bis-admin-fa-IR.skins.translations.json](458-item9bis-admin-fa-IR.skins.translations.json) | 2026-10-31 | `historical` | Source fragment of the same pack — `Skins`: 13 files, 52 keys. |
+| [458-item9bis-admin-fa-IR.tabs.translations.json](458-item9bis-admin-fa-IR.tabs.translations.json) | 2026-10-31 | `historical` | Source fragment of the same pack — `Tabs`: 2 files, 53 keys. |
+| [458-item9bis-admin-fa-IR.users.translations.json](458-item9bis-admin-fa-IR.users.translations.json) | 2026-10-31 | `historical` | Source fragment of the same pack — `Users`: 1 file, 2 keys. |
+
+---
+
+## §9 — Remaining tranches
+
+Tranche 1 covers the 49 root files that are not `458-*`, plus the two subfolders; tranche 2 (§8) covers
+the **first 49 `458-*` files**. Tranches 3 and 4 index the **85 that remain** — 50 and 35, cut on the same
+`git ls-files` order — one PR at a time, each branched from master **after** the previous one merged —
+never stacked (a chain on the same README re-conflicts at every squash, measured 23/11). The
+`<!-- index-of-record -->` mark is posed at the **last** tranche, and the DoD mutant — "a row of a file
+cited only once removed, contract red and named" — is played on **that** PR, not on this one. Until then
+this file is a navigation index that happens to carry statuses, not a contract.
 
 The former navigation index is kept **byte for byte** at the end of this file, under *Archive*. It is not
 indexed row by row: it is part of this file. It sits in a fenced block on purpose: the contract holds
 every table row that links to a file of this folder to a status, and the rows of the former index carry
 none — fenced, the record stays exact and the contract stays readable.
 
-*po-2023 — pool #458, P23-34, tranche 1/4 · 24/11/2026.*
+*po-2023 — pool #458, P23-34, tranches 1–2 · 24/11/2026.*
 
 ---
 
