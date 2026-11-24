@@ -34,6 +34,15 @@ RETOUCHES P23-27 (contre-revue po-2024 c.7057778259) — trois proprietes de plu
       ecrites, pas une preuve d'absence d'idee. La retouche du docstring (l. 39)
       est une precision de prose, sans garde machine : le defaut y etait une
       implicature (« la rangee au MAX »), pas une phrase.
+
+RESERVES DE LA CONTRE-REVUE #2362 (po-2024 c.7131327983, P23-38) — deux cas de plus :
+  R4  la clause WHERE de g1_entity_ids est la MEME que celle de la requete de
+      comptage : les ids listes sont exactement ceux qui ont ete comptes. Le
+      detecteur compare les SQL captures a l'execution (ce que l'outil ENVOIE), et
+      deux mutations retirent `TransDeletedId IS NULL` d'un seul des deux cotes.
+  R5  l'avertissement « la base a bouge entre les deux lectures » (liste plus
+      courte ou plus longue que le compte) a son cas, son temoin muet quand les
+      deux concordent, et sa mutation.
 """
 import contextlib
 import importlib.util
@@ -76,6 +85,15 @@ def mutated_tool(tag):
     echoue sur cette copie, c'est qu'il epingle autre chose que la garde."""
     return load_source(mutated_source([(f'raise SystemExit(f"REFUS ({tag})',
                                         f'print(f"REFUS ({tag})')]))
+
+
+def where_of(sql):
+    """Fragment WHERE d'une requete, normalise : de « WHERE » a la clause suivante
+    (GROUP BY / ORDER BY / fin d'instruction). Sert a comparer deux requetes telles
+    qu'elles ont ete ENVOYEES, sans epingler leur mise en forme."""
+    m = re.search(r"\bWHERE\b(.*?)(?:\bGROUP BY\b|\bORDER BY\b|;)", sql, re.S)
+    assert m, f"requete sans WHERE: {sql[:120]!r}"
+    return " ".join(m.group(1).split())
 
 
 class FakeQuery:
@@ -222,6 +240,134 @@ class G1MultiEntityPair(unittest.TestCase):
                 {"app": 33, "g": "AAAAAAAA-0000-0000-0000-000000000001", "eid": 101},
                 {"app": 33, "g": "AAAAAAAA-0000-0000-0000-000000000001", "eid": 102}])
         self.assertNotIn("EntityId 101/102", str(cm.exception))  # defaut revu par R2
+
+
+class G1MemeClauseWhere(unittest.TestCase):
+    """R4 : la clause WHERE de g1_entity_ids est celle de la requete de comptage.
+
+    « Les ids listes sont exactement ceux qu'elle a comptes » est une affirmation du
+    docstring de l'outil, tenue par RIEN avant ce cas : la mutation « sans
+    TransDeletedId IS NULL », appliquee a une seule des deux requetes, laissait la
+    suite verte. Le detecteur compare les SQL captures a l'execution — ce que
+    l'outil envoie, pas une formulation du source.
+    """
+
+    def setUp(self):
+        self.mod = load_tool()
+        self.mod.CURRENT_PLAN = [{"app_id": 33, "entity_guid": "AAAAAAAA-0000-0000-0000-000000000001",
+                                  "field": "Title", "lang": "en", "value": "Title en",
+                                  "content_type": "News"}]
+        self.mod.CURRENT_FR_PLAN = []
+        self.dup = [{"app": 33, "g": "aaaaaaaa-0000-0000-0000-000000000001", "n": 2}]
+
+    def clauses(self, mod):
+        """(WHERE du comptage, WHERE de la liste des EntityId), captures a l'execution."""
+        fake = FakeQuery(mod, self.dup, val_rows_healthy(), eid_rows=[
+            {"app": 33, "g": "AAAAAAAA-0000-0000-0000-000000000001", "eid": 101},
+            {"app": 33, "g": "AAAAAAAA-0000-0000-0000-000000000001", "eid": 102}])
+        try:
+            with self.assertRaises(SystemExit):
+                mod.fetch_target("fake-conn", {33: 33})
+        finally:
+            fake.restore(mod)
+        count = [s for s in fake.calls if "HAVING COUNT(DISTINCT e.EntityId) > 1" in s]
+        listed = [s for s in fake.calls if "e.EntityId AS eid" in s]
+        self.assertEqual((len(count), len(listed)), (1, 1), "une requete de chaque attendue")
+        return where_of(count[0]), where_of(listed[0])
+
+    def mutant(self, replacements):
+        ns = load_source(mutated_source(replacements))
+        mod = type("M", (), ns)
+        mod.CURRENT_PLAN = self.mod.CURRENT_PLAN
+        mod.CURRENT_FR_PLAN = []
+        return mod
+
+    def test_clauses_identiques_et_vivantes(self):
+        compte, liste = self.clauses(self.mod)
+        self.assertEqual(compte, liste)
+        self.assertIn("e.TransDeletedId IS NULL", compte)
+        self.assertIn("e.TransDeletedId IS NULL", liste)
+
+    def test_mutation_sans_transdeletedid_dans_la_liste(self):
+        """Retirer la clause de la SEULE liste des EntityId doit etre vu."""
+        mod = self.mutant([(
+            "WHERE e.TransDeletedId IS NULL AND e.AppId IN ({in_apps})\n"
+            "  AND CONVERT(nvarchar(64), e.EntityGuid) IN ({in_guids});",
+            "WHERE e.AppId IN ({in_apps})\n"
+            "  AND CONVERT(nvarchar(64), e.EntityGuid) IN ({in_guids});",
+        )])
+        compte, liste = self.clauses(mod)
+        self.assertNotIn("e.TransDeletedId IS NULL", liste)
+        self.assertNotEqual(compte, liste)  # la mutation ne passe plus inapercue
+
+    def test_mutation_sans_transdeletedid_dans_le_comptage(self):
+        """Retirer la clause du SEUL comptage doit etre vu."""
+        mod = self.mutant([(
+            "WHERE e.TransDeletedId IS NULL AND e.AppId IN ({in_apps})\n"
+            "  AND CONVERT(nvarchar(64), e.EntityGuid) IN ({in_guids})\nGROUP BY",
+            "WHERE e.AppId IN ({in_apps})\n"
+            "  AND CONVERT(nvarchar(64), e.EntityGuid) IN ({in_guids})\nGROUP BY",
+        )])
+        compte, liste = self.clauses(mod)
+        self.assertNotIn("e.TransDeletedId IS NULL", compte)
+        self.assertNotEqual(compte, liste)
+
+
+class G1AvertissementBaseBougee(unittest.TestCase):
+    """R5 : la liste des EntityId peut ne pas concorder avec le compte — le dire.
+
+    Entre la requete de comptage et la lecture des EntityId, la base peut bouger
+    (une entite supprimee, une autre apparue). `g1_pair_detail` porte la branche qui
+    l'annonce ; avant ce cas, aucun test ne la couvrait, dans aucun sens.
+    """
+
+    PHRASE = "la base a bouge entre les deux lectures"
+
+    def setUp(self):
+        self.mod = load_tool()
+        self.mod.CURRENT_PLAN = [{"app_id": 33, "entity_guid": "AAAAAAAA-0000-0000-0000-000000000001",
+                                  "field": "Title", "lang": "en", "value": "Title en",
+                                  "content_type": "News"}]
+        self.mod.CURRENT_FR_PLAN = []
+        self.dup = [{"app": 33, "g": "aaaaaaaa-0000-0000-0000-000000000001", "n": 2}]
+
+    def message(self, mod, eid_rows):
+        fake = FakeQuery(mod, self.dup, val_rows_healthy(), eid_rows=eid_rows)
+        try:
+            with self.assertRaises(SystemExit) as cm:
+                mod.fetch_target("fake-conn", {33: 33})
+        finally:
+            fake.restore(mod)
+        return str(cm.exception)
+
+    def ids(self, *eids):
+        return [{"app": 33, "g": "AAAAAAAA-0000-0000-0000-000000000001", "eid": e} for e in eids]
+
+    def test_avertissement_quand_la_liste_est_plus_courte(self):
+        msg = self.message(self.mod, self.ids(101))
+        self.assertIn("EntityId 101, " + self.PHRASE, msg)
+
+    def test_avertissement_quand_la_liste_est_plus_longue(self):
+        msg = self.message(self.mod, self.ids(101, 102, 103))
+        self.assertIn("EntityId 101/102/103, " + self.PHRASE, msg)
+
+    def test_pas_d_avertissement_quand_le_compte_concorde(self):
+        msg = self.message(self.mod, self.ids(101, 102))
+        self.assertIn("EntityId 101/102)", msg)
+        self.assertNotIn(self.PHRASE, msg)
+
+    def test_mutation_avertissement_toujours_muet(self):
+        """Remplacer la branche par `moved = ""` doit se voir : sans elle, le cas
+        « liste plus courte » ci-dessus resterait vert."""
+        ns = load_source(mutated_source([(
+            'moved = "" if len(ids) == int(dup_row["n"]) else ", la base a bouge entre les deux lectures"',
+            'moved = ""',
+        )]))
+        mod = type("M", (), ns)
+        mod.CURRENT_PLAN = self.mod.CURRENT_PLAN
+        mod.CURRENT_FR_PLAN = []
+        msg = self.message(mod, self.ids(101))
+        self.assertNotIn(self.PHRASE, msg)
 
 
 class G2CarteSansMarge(unittest.TestCase):
