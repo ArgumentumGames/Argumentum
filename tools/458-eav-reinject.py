@@ -36,9 +36,13 @@ sont stables.
 FRANCAIS DE BASE (revue ai-01 c.7038852934). La colonne `fr` du registre est comparee
 a la valeur de base (dim-0) de la cible — sur l'entite epingle par la carte (app, guid).
 Au sein d'une (entite, attribut) plusieurs rangees dim-0 peuvent coexister (2sxc
-append-only, orphelines) : lecture et ecriture epinent la rangee au ValueId MAX
-(determinisme ; la resolution d'entite fait le reste). FR_SAME si identique, FR_DRIFT
-sinon. En --apply, les FR_DRIFT sont REECRITS depuis le registre — sauf exclusions
+append-only, orphelines) : lecture et ecriture epinglent le ValueId MAX de l'entite
+epinglee. Ce MAX est un choix de DETERMINISME — il ne departage que les rangees d'une
+MEME entite, pour que la relecture relise celle qui a ete ecrite. Il n'etablit pas
+laquelle de ces rangees le site rend : ce point n'est pas tranche (M1/M3,
+c.7050026044 — ce qui a ete mesure est la resolution d'app, pas un id).
+FR_SAME si identique, FR_DRIFT sinon. En --apply, les FR_DRIFT sont REECRITS depuis
+le registre — sauf exclusions
 explicites (--fr-exclude guid:field ; par defaut le bloc #2181, ou la prod est en
 avance) et sauf references 'file:NNN' (FR_DB_LOCAL : id ADAM locaux a la base, jamais
 ecrits cross-base). La valeur anterieure de chaque base reecrite est sauvegardee dans
@@ -236,6 +240,64 @@ WHERE e.TransDeletedId IS NULL AND vd.ValueId IS NULL
     return {"map": amap, "evidence": evidence}
 
 
+def print_app_map(evidence) -> None:
+    """Imprime la carte mesuree : une ligne par app du registre, avec ses marges."""
+    print("carte d'apps (registre -> cible, mesuree a l'execution) :")
+    for e in evidence:
+        cands = ", ".join(f"{c['app']}:{c['matched']}/{c['cells_fr']}" for c in e["candidats"])
+        print(f"  app {e['registry_app']} -> {e['target_app']} "
+              f"(fr reconnu {e['matched']} ; candidats {cands})")
+
+
+def resolve_target(conn, reg_rows):
+    """Mesure la carte d'apps, l'IMPRIME, puis lit la cible (P23-27, c.7057778259).
+
+    L'ordre est volontaire : fetch_target peut refuser (G1, dimension absente) et le
+    dry-run s'arrete la. La carte est la seule piece qui dit quelle app de la cible
+    joue le role de chaque app du registre ; imprimee apres la lecture, un refus se
+    lit sur des numeros d'app dont rien n'etablit qu'ils sont les bons.
+    """
+    info = build_app_map(conn, reg_rows)
+    print_app_map(info["evidence"])
+    return info, fetch_target(conn, info["map"])
+
+
+def g1_entity_ids(conn, in_apps, in_guids) -> dict:
+    """EntityId vivants par paire (app, GUID), pour NOMMER le refus G1 (nit po-2024).
+
+    Meme clause WHERE que la requete de comptage : les ids listes sont exactement
+    ceux qu'elle a comptes. Aide au debogage seulement — si cette lecture echoue,
+    le refus tombe quand meme, sans les ids : la garde est le refus, pas la liste.
+    """
+    try:
+        rows = EXP.run_query(conn, f"""
+SET NOCOUNT ON;
+SELECT e.AppId AS app, CONVERT(nvarchar(64), e.EntityGuid) AS g, e.EntityId AS eid
+FROM TsDynDataEntity e
+WHERE e.TransDeletedId IS NULL AND e.AppId IN ({in_apps})
+  AND CONVERT(nvarchar(64), e.EntityGuid) IN ({in_guids});
+""")
+    except Exception as exc:  # noqa: BLE001 — le REFUS (G1) ne depend d'aucune lecture
+        print(f"G1: EntityId non listes ({type(exc).__name__}: {exc}) — le refus tient.")
+        return {}
+    out = {}
+    for r in rows:
+        out.setdefault((int(r["app"]), str(r["g"]).upper()), set()).add(int(r["eid"]))
+    return out
+
+
+def g1_pair_detail(dup_row, ids_by_pair) -> str:
+    """Une paire refusee par G1, avec ses EntityId quand ils ont pu etre relus."""
+    key = (int(dup_row["app"]), str(dup_row["g"]).upper())
+    ids = sorted(ids_by_pair.get(key, ()))
+    base = f"app {dup_row['app']} {key[1]} ({dup_row['n']} entites"
+    if not ids:
+        return base + ", EntityId non listes)"
+    listed = "/".join(str(i) for i in ids)
+    moved = "" if len(ids) == int(dup_row["n"]) else ", la base a bouge entre les deux lectures"
+    return base + f", EntityId {listed}{moved})"
+
+
 def fetch_target(conn, app_map) -> dict:
     """Lit la base cible : dimensions, valeurs existantes du perimetre, contenu preserve."""
     # La meme culture existe dans plusieurs zones 2sxc (zone 2 = defaut DNN, zone 3 =
@@ -289,7 +351,11 @@ GROUP BY e.AppId, CONVERT(nvarchar(64), e.EntityGuid)
 HAVING COUNT(DISTINCT e.EntityId) > 1;
 """)
     if dup:
-        detail = "; ".join(f"app {d['app']} {str(d['g']).upper()} ({d['n']} entites)" for d in dup)
+        # Nit po-2024 (c.7057778259) : nommer les EntityId, pas seulement leur nombre
+        # (demande ai-01 c.7053569313, « liste les paires et leurs ids »). Le refus est
+        # deja decide ci-dessus : cette seconde lecture ne fait que le rendre lisible.
+        ids = g1_entity_ids(conn, in_apps, in_guids)
+        detail = "; ".join(g1_pair_detail(d, ids) for d in dup)
         raise SystemExit(f"REFUS (G1): paire(s) (app, guid) multi-entites sur la cible: {detail}")
     sql = f"""
 SET NOCOUNT ON;
@@ -484,8 +550,11 @@ def main(argv=None) -> int:
     CURRENT_PLAN = build_plan(reg)
     CURRENT_FR_PLAN = build_fr_plan(reg)
     conn = EXP.read_connection_string(pathlib.Path(args.config))
-    app_map_info = build_app_map(conn, reg)
-    target = fetch_target(conn, app_map_info["map"])
+    print(f"registre: {len(reg)} lignes, {len(CURRENT_PLAN)} cellules traductibles non vides, "
+          f"{len(CURRENT_FR_PLAN)} cellules de base fr")
+    # Carte d'apps imprimee AVANT la lecture de la cible (P23-27) : fetch_target peut
+    # refuser (G1, dimension absente) et l'operateur doit deja lire la carte.
+    app_map_info, target = resolve_target(conn, reg)
     actions = compute_actions(CURRENT_PLAN, target, app_map_info["map"],
                               allow_preserved=args.include_preserved_2181)
     fr_actions = compute_fr_actions(CURRENT_FR_PLAN, target, app_map_info["map"], excludes)
@@ -496,13 +565,6 @@ def main(argv=None) -> int:
     fr_counts = {}
     for a in fr_actions:
         fr_counts[a["op"]] = fr_counts.get(a["op"], 0) + 1
-    print(f"registre: {len(reg)} lignes, {len(CURRENT_PLAN)} cellules traductibles non vides, "
-          f"{len(CURRENT_FR_PLAN)} cellules de base fr")
-    print("carte d'apps (registre -> cible, mesuree a l'execution) :")
-    for e in app_map_info["evidence"]:
-        cands = ", ".join(f"{c['app']}:{c['matched']}/{c['cells_fr']}" for c in e["candidats"])
-        print(f"  app {e['registry_app']} -> {e['target_app']} "
-              f"(fr reconnu {e['matched']} ; candidats {cands})")
     print(f"entites resolues sur la cible: {len(target['entities'])}")
     for op in sorted(counts):
         print(f"  {op}: {counts[op]}")
@@ -712,10 +774,10 @@ WHERE e.EntityGuid = @g AND e.AppId = @app AND c.Name = @ct AND a.StaticName = @
         if ($r.Read()) { $r.Close(); throw "FR G1 in-tx: plusieurs entites pour $guid (app $app) $ct.$field — base modifiee depuis le dry-run" }
         $r.Close()
 
-        # Epingle la rangee SERVIE : 2sxc est append-only, une (entite, attribut) peut
-        # porter plusieurs rangees dim-0 (orphelines + servie = ValueId MAX, mesure
-        # 20/11 : 961 paires). Sans epingle, l'UPDATE pourrait toucher l'orpheline et
-        # la relecture croire au succes.
+        # Epingle une seule rangee dim-0 : 2sxc est append-only, une (entite, attribut)
+        # peut en porter plusieurs (mesure 20/11 : 961 paires). Le choix du ValueId MAX
+        # est un choix de DETERMINISME — la relecture in-tx relira la meme rangee que
+        # l'ecriture. Il n'etablit pas laquelle de ces rangees le site rend (M1/M3).
         $cmd.Parameters.Clear()
         $cmd.CommandText = @"
 SELECT MAX(v.ValueId) FROM TsDynDataValue v WITH (UPDLOCK,HOLDLOCK)
@@ -760,8 +822,9 @@ WHERE e.EntityGuid=@g AND e.AppId=@app AND c.Name=@ct AND a.StaticName=@f AND vd
         $c = [int]$cmd.ExecuteScalar()
         if ($c -lt 1) { $bad++; Write-Host "RELECTURE ECHEC: $($w.entity_guid) $($w.field) dim$($w.dim)" }
     }
-    # Relecture in-tx des bases fr reecrites : la rangee SERVIE (ValueId MAX) doit
-    # valoir le registre — la relecture epingle la meme rangee que l'ecriture.
+    # Relecture in-tx des bases fr reecrites : la rangee au ValueId MAX doit valoir le
+    # registre. Meme choix de DETERMINISME qu'a l'ecriture (M1/M3) : la relecture
+    # epingle la meme rangee que l'UPDATE, pas une autre.
     foreach ($w in $frwrites) {
         $cmd.Parameters.Clear()
         $cmd.CommandText = @"

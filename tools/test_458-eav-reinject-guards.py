@@ -22,9 +22,24 @@ LES TROIS GARDES (revue c.7053569313) :
       rien departage) ou 2e candidat a matched == vainqueur (l'overlap de GUIDs
       ne departage plus rien entre deux copies d'un meme gabarit).
   G3  une carte non injective — deux apps du registre vers la meme app cible.
+
+RETOUCHES P23-27 (contre-revue po-2024 c.7057778259) — trois proprietes de plus :
+  R1  la carte d'apps est imprimee AVANT fetch_target : un refus (G1, dimension
+      absente) se lit alors sur des apps etablies (resolve_target).
+  R2  le REFUS (G1) liste les EntityId des paires, pas seulement leur nombre, et
+      le refus tient meme si cette seconde lecture echoue.
+  R3  le source ne met plus une rangee « servie » et le ValueId MAX sur la meme
+      ligne — regle refutee par M1/M3 (c.7050026044 : le MAX ne departage que les
+      rangees d'une meme entite). Garde de SOURCE : un detecteur des formulations
+      ecrites, pas une preuve d'absence d'idee. La retouche du docstring (l. 39)
+      est une precision de prose, sans garde machine : le defaut y etait une
+      implicature (« la rangee au MAX »), pas une phrase.
 """
+import contextlib
 import importlib.util
+import io
 import pathlib
+import re
 import unittest
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -39,24 +54,36 @@ def load_tool():
     return mod
 
 
+def mutated_source(replacements):
+    """Copie du source avec des remplacements litteraux (mutations). Chaque aiguille
+    doit exister : une mutation muette ferait passer le test pour une garde qui mord."""
+    src = TOOL.read_text(encoding="utf-8")
+    for needle, repl in replacements:
+        assert needle in src, f"aiguille de mutation introuvable: {needle[:70]!r}"
+        src = src.replace(needle, repl)
+    return src
+
+
+def load_source(src):
+    ns = {"__file__": str(TOOL)}
+    exec(compile(src, str(TOOL), "exec"), ns)  # noqa: S102 (mutation volontaire)
+    return ns
+
+
 def mutated_tool(tag):
     """Charge une COPIE du source ou la garde `tag` (G1/G2/G3) est neutralisee :
     son `raise SystemExit(f"REFUS (tag)...")` devient un simple print. Si le test
     echoue sur cette copie, c'est qu'il epingle autre chose que la garde."""
-    src = TOOL.read_text(encoding="utf-8")
-    needle = f'raise SystemExit(f"REFUS ({tag})'
-    assert needle in src, f"garde {tag} introuvable dans le source"
-    mutated = src.replace(needle, f'print(f"REFUS ({tag})')
-    ns = {"__file__": str(TOOL)}
-    exec(compile(mutated, str(TOOL), "exec"), ns)  # noqa: S102 (mutation volontaire)
-    return ns
+    return load_source(mutated_source([(f'raise SystemExit(f"REFUS ({tag})',
+                                        f'print(f"REFUS ({tag})')]))
 
 
 class FakeQuery:
     """EXP.run_query de remplacement : sert des rangees synthetiques par marqueur SQL."""
 
-    def __init__(self, mod, dup_rows, val_rows):
+    def __init__(self, mod, dup_rows, val_rows, eid_rows=None, eid_fails=False):
         self.dup_rows, self.val_rows = dup_rows, val_rows
+        self.eid_rows, self.eid_fails = eid_rows or [], eid_fails
         self.original = mod.EXP.run_query
         mod.EXP.run_query = self
         self.calls = []
@@ -65,6 +92,10 @@ class FakeQuery:
         self.calls.append(sql)
         if "HAVING COUNT(DISTINCT e.EntityId) > 1" in sql:
             return self.dup_rows
+        if "e.EntityId AS eid" in sql:  # liste des EntityId du refus G1 (P23-27, R2)
+            if self.eid_fails:
+                raise RuntimeError("liste des EntityId indisponible (test)")
+            return self.eid_rows
         if "FROM TsDynDataApp" in sql:
             return [{"app": 33, "zone": 3}]
         if "FROM TsDynDataDimension" in sql:
@@ -148,6 +179,49 @@ class G1MultiEntityPair(unittest.TestCase):
         dup = [{"app": 33, "g": "aaaaaaaa-0000-0000-0000-000000000001", "n": 2}]
         out = self.run_fetch(mod, dup)  # sans la garde : PAS de refus
         self.assertIn(33, out["lang_dim_by_app"])
+
+    def run_fetch_with_ids(self, mod, dup_rows, **kw):
+        fake = FakeQuery(mod, dup_rows, val_rows_healthy(), **kw)
+        try:
+            return mod.fetch_target("fake-conn", {33: 33})
+        finally:
+            fake.restore(mod)
+
+    def test_refus_liste_les_entityid(self):
+        """R2 : le refus nomme les EntityId relus, pas seulement leur nombre."""
+        dup = [{"app": 33, "g": "aaaaaaaa-0000-0000-0000-000000000001", "n": 2}]
+        with self.assertRaises(SystemExit) as cm:
+            self.run_fetch_with_ids(self.mod, dup, eid_rows=[
+                {"app": 33, "g": "AAAAAAAA-0000-0000-0000-000000000001", "eid": 102},
+                {"app": 33, "g": "AAAAAAAA-0000-0000-0000-000000000001", "eid": 101}])
+        msg = str(cm.exception)
+        self.assertIn("REFUS (G1)", msg)
+        self.assertIn("EntityId 101/102", msg)
+
+    def test_refus_tient_si_la_liste_echoue(self):
+        """R2 : la liste est une aide au debogage — son echec ne desarme pas le refus."""
+        dup = [{"app": 33, "g": "aaaaaaaa-0000-0000-0000-000000000001", "n": 2}]
+        with self.assertRaises(SystemExit) as cm:
+            self.run_fetch_with_ids(self.mod, dup, eid_fails=True)
+        msg = str(cm.exception)
+        self.assertIn("REFUS (G1)", msg)
+        self.assertIn("EntityId non listes", msg)
+
+    def test_mutation_sans_les_ids(self):
+        """R2 mutation : remettre l'ancien message (nombre seul) doit faire rougir R2."""
+        ns = load_source(mutated_source([(
+            "g1_pair_detail(d, ids)",
+            '''f"app {d['app']} {str(d['g']).upper()} ({d['n']} entites)"''',
+        )]))
+        mod = type("M", (), ns)
+        mod.CURRENT_PLAN = self.mod.CURRENT_PLAN
+        mod.CURRENT_FR_PLAN = []
+        dup = [{"app": 33, "g": "aaaaaaaa-0000-0000-0000-000000000001", "n": 2}]
+        with self.assertRaises(SystemExit) as cm:
+            self.run_fetch_with_ids(mod, dup, eid_rows=[
+                {"app": 33, "g": "AAAAAAAA-0000-0000-0000-000000000001", "eid": 101},
+                {"app": 33, "g": "AAAAAAAA-0000-0000-0000-000000000001", "eid": 102}])
+        self.assertNotIn("EntityId 101/102", str(cm.exception))  # defaut revu par R2
 
 
 class G2CarteSansMarge(unittest.TestCase):
@@ -235,6 +309,94 @@ class G3CarteNonInjective(unittest.TestCase):
         mod = type("M", (), ns)
         out = self.run_map(mod)  # sans la garde : PAS de refus, carte non injective
         self.assertEqual(sorted(out["map"].values()), [33, 33])
+
+
+class CarteImprimeeAvantFetch(unittest.TestCase):
+    """R1 (P23-27) : la carte d'apps est a l'ecran avant que fetch_target puisse refuser."""
+
+    def setUp(self):
+        self.mod = load_tool()
+        self.mod.CURRENT_PLAN = [{"app_id": 33, "entity_guid": "AAAAAAAA-0000-0000-0000-000000000001",
+                                  "field": "Title", "lang": "en", "value": "Title en",
+                                  "content_type": "News"}]
+        self.mod.CURRENT_FR_PLAN = []
+        self.dup = [{"app": 33, "g": "aaaaaaaa-0000-0000-0000-000000000001", "n": 2}]
+
+    def run_resolve(self, mod):
+        fake = FakeQuery(mod, self.dup, val_rows_healthy(), eid_rows=[
+            {"app": 33, "g": "AAAAAAAA-0000-0000-0000-000000000001", "eid": 101},
+            {"app": 33, "g": "AAAAAAAA-0000-0000-0000-000000000001", "eid": 102}])
+        out, exc = io.StringIO(), None
+        try:
+            with contextlib.redirect_stdout(out):
+                mod.resolve_target("fake-conn", reg_rows())
+        except SystemExit as e:
+            exc = e
+        finally:
+            fake.restore(mod)
+        return out.getvalue(), exc
+
+    def test_carte_imprimee_avant_le_refus(self):
+        stdout, exc = self.run_resolve(self.mod)
+        self.assertIsNotNone(exc, "G1 doit refuser ce cas")
+        self.assertIn("REFUS (G1)", str(exc))
+        self.assertIn("carte d'apps", stdout)
+        self.assertIn("app 33 -> 33", stdout)
+
+    def test_mutation_carte_apres_fetch(self):
+        """R1 mutation : imprimer la carte apres fetch_target la rend invisible au refus."""
+        before = ('    info = build_app_map(conn, reg_rows)\n'
+                  '    print_app_map(info["evidence"])\n'
+                  '    return info, fetch_target(conn, info["map"])')
+        after = ('    info = build_app_map(conn, reg_rows)\n'
+                 '    target = fetch_target(conn, info["map"])\n'
+                 '    print_app_map(info["evidence"])\n'
+                 '    return info, target')
+        ns = load_source(mutated_source([(before, after)]))
+        mod = type("M", (), ns)
+        mod.CURRENT_PLAN = self.mod.CURRENT_PLAN
+        mod.CURRENT_FR_PLAN = []
+        stdout, exc = self.run_resolve(mod)
+        self.assertIsNotNone(exc)                 # le refus tombe toujours...
+        self.assertNotIn("carte d'apps", stdout)  # ...mais sans la carte : R1 rougit
+
+
+class SourceSansLaRegleRefutee(unittest.TestCase):
+    """R3 (P23-27) : le source ne met pas une rangee « servie » ET le ValueId MAX sur la
+    meme ligne — la regle refutee par M1/M3 (c.7050026044).
+
+    Garde de SOURCE : elle voit les formulations ecrites sur une ligne, pas une
+    reformulation en deux lignes ni une implicature. C'est un detecteur des deux
+    phrases historiques, pas une preuve que l'idee est absente.
+    """
+
+    # Les deux formulations explicites retirees par P23-27, telles qu'elles etaient
+    # sur master avant le changement (writer PowerShell : epingle et relecture FR).
+    HISTORIQUES = (
+        "porter plusieurs rangees dim-0 (orphelines + servie = ValueId MAX, mesure",
+        "Relecture in-tx des bases fr reecrites : la rangee SERVIE (ValueId MAX) doit",
+    )
+
+    @staticmethod
+    def accuse(line):
+        return bool(re.search(r"servi", line, re.IGNORECASE)) and "MAX" in line
+
+    def accusations(self, text):
+        return [(i, ln.strip()) for i, ln in enumerate(text.splitlines(), 1) if self.accuse(ln)]
+
+    def test_source_propre(self):
+        hits = self.accusations(TOOL.read_text(encoding="utf-8"))
+        self.assertEqual(hits, [], f"formulation refutee remise dans le source: {hits}")
+
+    def test_mutation_reintroduction_vue(self):
+        """Re-introduire une formulation historique dans une copie du source doit etre vu."""
+        marker = "# Reecritures de BASE fr (FR_DRIFT)"
+        src = TOOL.read_text(encoding="utf-8")
+        self.assertIn(marker, src)
+        for h in self.HISTORIQUES:
+            mutant = src.replace(marker, "# " + h + "\n    " + marker)
+            hits = self.accusations(mutant)
+            self.assertEqual(len(hits), 1, f"reintroduction non vue: {h!r} -> {hits}")
 
 
 if __name__ == "__main__":
