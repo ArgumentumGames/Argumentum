@@ -25,6 +25,14 @@ un « 0 » le jour J ne distingue pas « propre » d'« instrument aveugle ».
                VPS de la prod `grep` n'est PAS sur le PATH de PowerShell et `bash` y est
                WSL sans distribution : d'où ce contrôle **dans le script**, où le shell
                ne décide plus de rien.
+    HOME-P2    sonde P2 du runbook sur les 8 accueils : `dir="rtl"` en ar et fa
+               SEULEMENT, `<meta name="description">` non vide, sélecteur de langue à
+               8 entrées dont 1 `active` (donc 7 liens), marqueur d'audience
+               `G-VHLTL18PEW` ≥ 1. Réutilise les corps déjà fetchés par ROUTES
+               (aucune requête en plus). ⚠️ Elle **informe** : un écart est un
+               `[WARN]`, pas un retour arrière — il ne change pas le code de sortie
+               (runbook, « Sondes après la bascule » : « ces sondes informent — elles
+               ne déclenchent pas de retour arrière »).
 
 ⛔ Lecture seule : uniquement des GET et des lectures de journal. Aucune écriture,
 aucun geste IIS, aucune sonde de connexion.
@@ -53,6 +61,8 @@ pas les marqueurs du fichier vivant) · **2** `--require-webconfig` est posé sa
 `--webconfig` : le contrôle pivot du jour J n'a PAS été mesuré, et ce vert-là
 n'existe pas (remarque 🟡 de la review #2165, mesurée : l'omission du drapeau
 sortait en code 0, lisible par machine comme un succès).
+La sonde P2 (section 6) **n'entre pas** dans ce code : ses écarts sont nommés dans
+la ligne « Verdict », et rien d'autre.
 """
 
 from __future__ import annotations
@@ -76,6 +86,20 @@ CULTURES = {
     "ar": ("ar/", "ar-SA"),
     "fa": ("fa/", "fa-IR"),
 }
+
+# ── Sonde P2 : rendu et contenu des 8 accueils (#131, P24-45) ───────────────────────
+# Ce que la sonde P2 du runbook (§ « Sondes après la bascule ») mesurait à la main.
+# Formes MESURÉES le 24/11 sur les 8 accueils servis (l'arbre servi était alors celui
+# de la préprod, d'où la comparabilité avec la référence du 23/11 13:00Z) :
+#   · `<html dir>` : `ltr` ×6, `rtl` ×2 (ar, fa) ;
+#   · description : 38 à 104 caractères — longueur BRUTE de l'attribut `content`,
+#     entités comptées telles quelles, l'instrument de la référence ;
+#   · sélecteur : 1 bloc `<ul class="to-shine-page-language">`, 8 `<li>`, 8 `<a>`,
+#     une seule `active` = `nav-<culture servie>` — donc 7 liens vers les autres ;
+#   · marqueur d'audience : `G-VHLTL18PEW` ×2 sur chacune des 8 pages.
+RTL_LANGS = ("ar", "fa")
+AUDIENCE_MARKER = "G-VHLTL18PEW"
+LANGUAGE_SELECTOR_CLASS = "to-shine-page-language"  # thème 2shine, mesuré sur le servi
 
 # ── Commutateur D1 : les 16 formes des DEUX gabarits RulesExplorer ───────────────────
 # Source unique : DNNPlatform/Portals/1/2sxc/Argumentum/_RulesExplorer_RuleDetail.cshtml
@@ -249,9 +273,14 @@ def fetch(url: str, resolve: str | None, cb: str) -> tuple[int, str]:
     return status, body.decode("utf-8", errors="replace")
 
 
-def control_routes(base: str, resolve: str | None, cb: str) -> list[dict]:
+def control_routes(
+    base: str, resolve: str | None, cb: str, keep: dict | None = None
+) -> list[dict]:
     """8 cultures × 4 surfaces. Une route 404 est un échec DUR : c'est exactement ce
-    que la bascule peut casser sans le dire (le /en/ 404 de la prod gelée)."""
+    que la bascule peut casser sans le dire (le /en/ 404 de la prod gelée).
+
+    `keep` (optionnel) reçoit le corps de chaque ACCUEIL, par culture : la sonde P2
+    lit ces corps-là au lieu d'une seconde série de requêtes."""
     rows = []
     for lang, (prefix, expect_lang) in CULTURES.items():
         for surface, path in (
@@ -261,6 +290,8 @@ def control_routes(base: str, resolve: str | None, cb: str) -> list[dict]:
             ("règles", f"{prefix}Règles"),
         ):
             status, body = fetch(f"{base}/{path}", resolve, cb)
+            if keep is not None and surface == "accueil":
+                keep[lang] = body
             served = None
             m = re.search(r'<html[^>]*\blang="([^"]+)"', body)
             if m:
@@ -339,6 +370,110 @@ def control_rules_d1(base: str, resolve: str | None, cb: str) -> list[dict]:
     return rows
 
 
+# ── Sonde P2 : lecture d'un accueil servi ───────────────────────────────────────────
+_HTML_TAG = re.compile(r"<html\b[^>]*>", re.IGNORECASE)
+_DIR_ATTR = re.compile(r'\bdir\s*=\s*"([^"]*)"', re.IGNORECASE)
+_META_TAG = re.compile(r"<meta\b[^>]*>", re.IGNORECASE)
+_META_NAME = re.compile(r'\bname\s*=\s*"description"', re.IGNORECASE)
+_CONTENT_ATTR = re.compile(r"\bcontent\s*=\s*(?:\"([^\"]*)\"|'([^']*)')", re.IGNORECASE | re.DOTALL)
+_SELECTOR_BLOCK = re.compile(
+    r"<ul\b[^>]*\bclass\s*=\s*\"[^\"]*\b%s\b[^\"]*\"[^>]*>(.*?)</ul>"
+    % re.escape(LANGUAGE_SELECTOR_CLASS),
+    re.IGNORECASE | re.DOTALL,
+)
+_SELECTOR_ITEM = re.compile(r"<li\b([^>]*)>(.*?)</li>", re.IGNORECASE | re.DOTALL)
+_CLASS_ATTR = re.compile(r'\bclass\s*=\s*"([^"]*)"', re.IGNORECASE)
+_A_HREF = re.compile(r"<a\b[^>]*\bhref\s*=", re.IGNORECASE)
+P2_CHECKS = ("dir_ok", "description_ok", "selector_ok", "audience_ok")
+
+
+def analyze_home(lang: str, body: str) -> dict:
+    """Les quatre lectures de la sonde P2 sur UN accueil servi.
+
+    Fonction PURE du corps HTML — ni requête ni horloge : c'est elle que le contrat
+    hors ligne éprouve sur du HTML synthétique (`test_1105-home-render-p2.py`).
+    Chaque lecture a sa clé `*_ok` ; un défaut injecté ne doit rougir que la sienne.
+    """
+    expect_lang = CULTURES[lang][1]
+    expect_dir = "rtl" if lang in RTL_LANGS else "ltr"
+    # 1. Direction, lue sur la balise <html> : un `dir` posé plus bas ne dirige pas
+    #    la page. Absente n'est pas `ltr` : l'absence n'est pas une mesure.
+    tag = _HTML_TAG.search(body)
+    dm = _DIR_ATTR.search(tag.group(0)) if tag else None
+    served_dir = dm.group(1).strip().lower() if dm else None
+    # 2. Description : le verdict porte sur le contenu DÉCODÉ (une description réduite
+    #    à `&nbsp;` est vide) ; la longueur brute de l'attribut est celle de la
+    #    référence du 23/11 (38 à 104), elle est rendue pour s'y comparer.
+    raw = text = None
+    for meta in _META_TAG.findall(body):
+        if _META_NAME.search(meta):
+            cm = _CONTENT_ATTR.search(meta)
+            if cm:
+                raw = cm.group(1) if cm.group(1) is not None else cm.group(2)
+                text = normalize(raw).strip()
+            break
+    # 3. Sélecteur de langue : 8 entrées (une par culture servie), chacune un lien,
+    #    une seule `active` et c'est celle de la page — donc 7 liens vers les autres
+    #    langues. Trois clauses, chacune avec son défaut propre : un code qui ne
+    #    correspond à aucune culture, une entrée sans lien, une active de trop.
+    want = sorted("nav-" + code.lower() for _, code in CULTURES.values())
+    mine = "nav-" + expect_lang.lower()
+    blocks = []
+    for inner in _SELECTOR_BLOCK.findall(body):
+        codes, active, anchors = [], [], 0
+        for attrs, content in _SELECTOR_ITEM.findall(inner):
+            cm = _CLASS_ATTR.search(attrs)
+            tokens = (cm.group(1) if cm else "").split()
+            code = next((t.lower() for t in tokens if t.lower().startswith("nav-")), None)
+            if code:
+                codes.append(code)
+            if "active" in tokens:
+                active.append(code)
+            anchors += len(_A_HREF.findall(content))
+        blocks.append({"codes": codes, "active": active, "anchors": anchors})
+    selector_ok = bool(blocks) and all(
+        sorted(b["codes"]) == want and b["active"] == [mine] and b["anchors"] == len(want)
+        for b in blocks
+    )
+    # 4. Marqueur d'audience : ≥ 1 occurrence suffit (mesuré ×2 sur les 8).
+    audience = body.count(AUDIENCE_MARKER)
+    first = blocks[0] if blocks else {"codes": [], "active": [], "anchors": 0}
+    return {
+        "lang": lang,
+        "dir": served_dir,
+        "dir_expected": expect_dir,
+        "dir_ok": served_dir == expect_dir,
+        "description_raw": len(raw) if raw is not None else None,
+        "description_text": len(text) if text is not None else None,
+        "description_ok": bool(text),
+        "selector_blocks": len(blocks),
+        "selector_items": len(first["codes"]),
+        "selector_active": first["active"],
+        "lang_links": first["anchors"] - len(first["active"]),
+        "selector_ok": selector_ok,
+        "audience_count": audience,
+        "audience_ok": audience >= 1,
+    }
+
+
+def control_home_render(bodies: dict, statuses: dict) -> list[dict]:
+    """Sonde P2 sur les 8 accueils, lue dans les corps que ROUTES a déjà fetchés.
+
+    Un accueil qui n'est pas en 200 n'est pas mesuré (`ok=None`) : c'est déjà un
+    échec DUR des routes, et le compter deux fois ne dirait rien de plus."""
+    rows = []
+    for lang in CULTURES:
+        status = statuses.get(lang)
+        if status != 200 or lang not in bodies:
+            rows.append({"lang": lang, "status": status, "ok": None})
+            continue
+        row = analyze_home(lang, bodies[lang])
+        row["status"] = status
+        row["ok"] = all(row[k] for k in P2_CHECKS)
+        rows.append(row)
+    return rows
+
+
 def control_eventlog(hours: int) -> list[dict]:
     """Journal Application sur la fenêtre. Instrument qui seul voit une redirection
     ratée (HTTP 200 avec 32 FileLoadException, mesuré 02/11). CIM plutôt que
@@ -405,7 +540,26 @@ def control_eventlog(hours: int) -> list[dict]:
     return rows
 
 
-def render_md(label: str, base: str, stamp: str, routes, legal, rules, events, webconfig, webconfig_required: bool = False) -> str:
+def hard_failures(routes, legal, rules, events, webconfig) -> list[dict]:
+    """Les lignes en échec DUR — elles seules décident du code de sortie 1.
+
+    La sonde P2 n'est PAS un paramètre, et c'est le contrat : le runbook dit de ces
+    sondes qu'elles « informent » et ne déclenchent pas de retour arrière. Un écart P2
+    est nommé dans la ligne « Verdict » (voir `render_md`), jamais ici ; le contrat
+    hors ligne épingle les deux sens — écart P2 ⇒ code inchangé, route rouge ⇒ code 1."""
+    return (
+        [r for r in routes if not r["ok"]]
+        + [r for r in legal if not r["ok"]]
+        + [r for r in rules if not r["ok"]]
+        + [r for r in events if r.get("ok") is False]
+        + [r for r in webconfig if r.get("ok") is False]
+    )
+
+
+def render_md(
+    label: str, base: str, stamp: str, routes, legal, rules, events, webconfig,
+    webconfig_required: bool = False, home=None,
+) -> str:
     out = [
         f"# Contrôles du jour J — ligne de base `{label}`",
         "",
@@ -551,13 +705,55 @@ def render_md(label: str, base: str, stamp: str, routes, legal, rules, events, w
             "⛔ Comptes seulement, jamais les lignes trouvées : le fichier porte la chaîne de "
             "connexion et les `machineKey`.",
         ]
-    hard_fail = (
-        [r for r in routes if not r["ok"]]
-        + [r for r in legal if not r["ok"]]
-        + [r for r in rules if not r["ok"]]
-        + [r for r in events if r.get("ok") is False]
-        + [r for r in webconfig if r.get("ok") is False]
-    )
+    out += ["", "## 6. Sonde P2 — rendu et contenu des 8 accueils (#131)", ""]
+    if not home:
+        out.append("⚠️ **Non mesuré** (`--skip-web`).")
+    else:
+        out += [
+            "| Langue | `dir` | Description (car.) | Sélecteur de langue | Marqueur d'audience | Verdict |",
+            "|---|---|---|---|---|---|",
+        ]
+        for r in home:
+            if r.get("ok") is None:
+                out.append(
+                    f"| {r['lang']} | — | — | — | — | ⚠️ non mesuré (accueil à {r.get('status')}) |"
+                )
+                continue
+            if r["dir_ok"]:
+                dir_cell = "✅ " + r["dir"]
+            else:
+                dir_cell = "❌ " + (r["dir"] or "absent") + f" (attendu {r['dir_expected']})"
+            if r["description_ok"]:
+                desc_cell = "✅ " + str(r["description_raw"])
+            else:
+                desc_cell = "❌ " + (
+                    str(r["description_raw"]) if r["description_raw"] is not None else "absente"
+                )
+            if r["selector_ok"]:
+                sel_cell = f"✅ {r['selector_items']} entrées · {r['lang_links']} liens"
+            else:
+                active = ", ".join(r["selector_active"]) or "aucune"
+                sel_cell = (
+                    f"❌ {r['selector_blocks']} bloc · {r['selector_items']} entrées · "
+                    f"{r['lang_links']} liens · active : {active}"
+                )
+            aud_cell = f"{'✅' if r['audience_ok'] else '❌'} ×{r['audience_count']}"
+            out.append(
+                f"| {r['lang']} | {dir_cell} | {desc_cell} | {sel_cell} | {aud_cell} | "
+                f"{'✅' if r['ok'] else '❌'} |"
+            )
+        out += [
+            "",
+            "Lecture : `dir=\"rtl\"` n'est attendu qu'en **ar** et **fa** ; la description est comptée en",
+            "caractères bruts de l'attribut (référence préprod du 23/11 : 38 à 104) ; le sélecteur porte",
+            "8 entrées dont une seule `active` — celle de la langue servie — donc **7 liens** ; le marqueur",
+            f"d'audience est `{AUDIENCE_MARKER}`, ≥ 1 occurrence.",
+            "",
+            "⚠️ Cette sonde **informe** : un écart ici est un `[WARN]`, pas un retour arrière, et il ne",
+            "change pas le code de sortie (runbook, « Sondes après la bascule »). Un sélecteur à **0 bloc**",
+            "est d'abord un signal d'instrument (classe du thème renommée), pas un résultat.",
+        ]
+    hard_fail = hard_failures(routes, legal, rules, events, webconfig)
     verdict = "❌ " + str(len(hard_fail)) + " échec(s) dur(s)" if hard_fail else "✅ tous les contrôles durs passent"
     if not webconfig:
         # Une absence de mesure ne doit pas se lire dans la même ligne qu'un « tout passe ».
@@ -565,6 +761,13 @@ def render_md(label: str, base: str, stamp: str, routes, legal, rules, events, w
             verdict = "⛔ **web.config requis et non mesuré** — sortie **code 2**"
         else:
             verdict += " · ⚠️ **web.config non mesuré** (obligatoire le jour J)"
+    # Un écart de la sonde P2 ne se lit pas dans la même ligne qu'un « tout passe » non
+    # plus : il est nommé, et dit ce qu'il est — informatif, pas un retour arrière.
+    p2_bad = [r for r in home or [] if r.get("ok") is False]
+    if p2_bad:
+        verdict += (
+            f" · ⚠️ **{len(p2_bad)} écart(s) de la sonde P2** (informatif — pas un retour arrière)"
+        )
     out += [
         "",
         f"**Verdict** : {verdict}.",
@@ -620,26 +823,31 @@ def main() -> int:
     cb = _dt.datetime.now().strftime("%Y%m%d%H%M%S")
     stamp = _dt.datetime.now().strftime("%Y-%m-%d %H:%M")
 
-    routes = [] if args.skip_web else control_routes(base, args.resolve, cb)
+    home_bodies: dict = {}
+    routes = [] if args.skip_web else control_routes(base, args.resolve, cb, keep=home_bodies)
     legal = [] if args.skip_web else control_legal_en(base, args.resolve, cb)
     rules = [] if args.skip_web else control_rules_d1(base, args.resolve, cb)
+    # La sonde P2 lit les corps d'accueil que ROUTES vient de fetcher : zéro requête en plus.
+    home = (
+        []
+        if args.skip_web
+        else control_home_render(
+            home_bodies, {r["lang"]: r["status"] for r in routes if r["surface"] == "accueil"}
+        )
+    )
     events = [] if args.skip_eventlog else control_eventlog(args.event_log_hours)
     webconfig = [] if not args.webconfig else control_webconfig(args.webconfig, args.webconfig_size)
 
-    md = render_md(args.label, base, stamp, routes, legal, rules, events, webconfig, args.require_webconfig)
+    md = render_md(
+        args.label, base, stamp, routes, legal, rules, events, webconfig, args.require_webconfig, home
+    )
     print(md)
     if args.out:
         with open(args.out, "w", encoding="utf-8", newline="\n") as fh:
             fh.write(md)
         print(f"\n[écrit] {args.out}", file=sys.stderr)
 
-    hard_fail = (
-        [r for r in routes if not r["ok"]]
-        + [r for r in legal if not r["ok"]]
-        + [r for r in rules if not r["ok"]]
-        + [r for r in events if r.get("ok") is False]
-        + [r for r in webconfig if r.get("ok") is False]
-    )
+    hard_fail = hard_failures(routes, legal, rules, events, webconfig)
     if args.require_webconfig and not args.webconfig:
         # Code distinct de l'échec dur : ici rien n'a échoué, mais le contrôle pivot du
         # jour J n'a pas été mesuré. Un code 0 serait un vert machine-lisible sans la
