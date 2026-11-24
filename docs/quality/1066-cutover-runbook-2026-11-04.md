@@ -547,3 +547,116 @@ complètes, `PortalAlias` du portail 1, fallbacks de langues, `DefaultPortalAlia
    template/`REPLACE`). Phase 2 répétée **à blanc** : la copie du 20/09 porte l'artefact OWL
    périmé et `virtues` absent — refresh obligatoire avant tout geste (2 349 fichiers suivis +
    blobs). Rien copié, aucune écriture IIS, lecture seule.
+
+## 9. Révision du 2026-11-23 (P23-33) — portes et sondes du jour J : arrêt à 14:54Z, décision à 20:40Z
+
+Sources : les posts dashboard `ai01-repetition-validee-20261123` (validation de 12:40Z) et
+`ai01-g1g3-tranches-20261123` (décision de 20:40Z, après l'arrêt du jour J à 14:54Z). Ce qui suit
+**inscrit les portes et leur mode de défaillance**, sans recopier le script du jour J : celui-ci est
+`tools/1105-cutover-day-controls.py` (17) et le déroulé de web2, dont les empreintes ne changent pas.
+Le déroulé ci-dessus n'est pas modifié : chaque porte ci-dessous dit **où elle se place**.
+
+Ce que `1105` ne voit pas, et pourquoi : il mesure le **rendu HTTP**, le texte légal, les compteurs de
+contenu et le journal Application **de la machine qui l'exécute**. Il ne lit ni les **ACL du dossier
+servi**, ni les **réglages des pools**, ni les **réglages de base** (`PortalSettings`/`HostSettings`).
+Ces trois surfaces sont donc des portes de lecture **avant** le swap — un écart s'y produit sans que
+`1105` rougisse, et parfois sans que la préprod l'ait jamais rencontré.
+
+### G1 — droits du pool de prod sur le dossier servi (avant le swap)
+
+- **Porte** : le pool qui servira la prod au swap (`Argumentum`) doit porter, sur le dossier du staging,
+  **le même droit** qu'il porte sur `wwwroot` — `(OI)(CI)(M)` à la racine, hérité. C'est aussi celui que
+  le pool de test porte déjà sur ce dossier, éprouvé en R6.
+- **Mode de défaillance mesuré (arrêt du 23/11 14:54Z)** : le pool de prod n'avait **aucun `(M)`** sur le
+  dossier du staging — la répétition sur le site de test ne le montre jamais, puisqu'elle s'exécute avec
+  le pool de test. Après le swap, le site de prod aurait refusé toute écriture du pool : `App_Data`,
+  `Portals`, `DesktopModules`, `bin`… DNN écrit dans **toute sa racine**, pas dans un seul sous-dossier
+  (mesure po-2023 du 23/11 sur la préprod : **851 fichiers appartenant au pool** sur 30 jours, répartis
+  sur 5 zones de premier niveau et 11 dossiers de second niveau — un octroi borné à un sous-dossier ne
+  suffirait pas).
+- **Critère d'arrêt** : l'absence du droit, ou un réglage de pool qui diffère, arrête la séquence — on ne
+  swap pas « pour voir ».
+- **G1.a — réglages des deux pools (lecture)** : `managedRuntimeVersion`, `managedPipelineMode`,
+  `enable32BitAppOnWin64` comparés entre les deux pools — **STOP** si l'un diffère (le dossier n'a été
+  éprouvé qu'avec les réglages du pool de test) ; `processModel.loadUserProfile` listé seulement.
+- **G1.b — dossiers dont l'héritage est coupé (lecture)** : un droit posé à la racine **n'atteint pas** un
+  dossier dont l'héritage est rompu. Passe si `protégés = 0` **et** les deux comptes d'erreurs à 0 : une
+  erreur de lecture rend l'instrument aveugle, un 0 lu comme « rien » n'est alors pas une mesure.
+- **G1.c — sauvegarde avant le geste** : `icacls <racine> /save`, empreinte du fichier de sauvegarde et
+  `icacls <racine>` postés **avant** G1.d. C'est le dry-run du geste.
+- **G1.d — le geste borné** : `icacls <racine> /grant 'IIS APPPOOL\Argumentum:(OI)(CI)(M)'`. **Pas de
+  `/T`** : c'est l'héritage qui propage. Le droit s'ajoute, rien n'est retiré ; ni `wwwroot` ni le gel
+  #972 ne sont touchés. Attendu : 1 fichier traité, 0 échec.
+- **G1.e — relecture** : racine `(OI)(CI)(M)` sans `(I)` ; `App_Data`, `Portals\1`, `Portals\_default`,
+  `bin` : `(I)(OI)(CI)(M)` ; `web.config` : `(I)(M)`. **STOP** sur une ligne vide. ⚠️ Le filtre de
+  recherche se termine par **`:`** — `IIS APPPOOL\Argumentum` sans les deux-points matche aussi
+  `IIS APPPOOL\Argumentum-staging`, et la relecture validerait alors le mauvais principal (cause de la
+  première lecture de G1).
+- **Inverse, pour mémoire** : `icacls <racine> /remove:g 'IIS APPPOOL\Argumentum'`. ⛔ **Ne pas le jouer au
+  retour arrière** : le droit est inoffensif quand la prod resert `wwwroot`. Aucun nettoyage sans décision.
+
+### G1b — mode d'authentification de la base du staging (avant le swap)
+
+- **Porte** : si la base du staging est jointe en sécurité intégrée, l'**identité du pool** devient un
+  principal de base — et le pool de prod doit y exister. Compte seulement, jamais de contenu :
+  occurrences de `integrated security`/`trusted_connection` dans les deux `web.config`.
+- **Passe** si le staging rend `integrated=0` (authentification SQL : l'identité du pool ne joue pas).
+  Sinon, `SELECT name FROM ArgumentumGames_staging.sys.database_principals WHERE name =
+  N'IIS APPPOOL\Argumentum'` doit rendre **1** ligne ; **sinon STOP**.
+- **Mode de défaillance** : après le swap, le site de prod joint la base du staging avec **son** pool. Une
+  connexion intégrée sans principal correspondant = refus de connexion pour toutes les requêtes — un
+  défaut que la préprod ne reproduit pas, son pool y existant déjà.
+
+### G2 — comptes `<rewrite>`/`<rule ` égaux entre les deux `web.config` (avant le swap)
+
+- **Porte** : même nombre de blocs de réécriture et de règles des deux côtés. Mesuré au jour J : **0 = 0**.
+- **Mode de défaillance** : une règle présente d'un seul côté change le routage sans toucher au code —
+  et `1105` ne mesure que le résultat final, pas la règle qui l'a produit.
+- **Limite** : G2 compare des **comptes**. Une **valeur** de réglage peut différer à comptes égaux : c'est
+  exactement le cas de `SSLSetup`, porté par G3.
+
+### G3 — réglages de base qui diffèrent, dont `SSLSetup` (avant le swap, geste après l'étape 6)
+
+- **Porte** : noms des réglages `PortalSettings`/`HostSettings` qui diffèrent entre les deux bases.
+  **STOP** si l'un appartient à `ssl/alias/url/domain/redirect/https/smtp` (hors `DefaultPortalAlias`,
+  traité à l'étape 8). Mesuré au jour J : STOP sur `SSLSetup`.
+- **Ce que `SSLSetup` fait (source upstream DNN, lu le 23/11)** : `SiteSslSetup` = `Off` (0), `On` (1),
+  `Advanced` (2) ; chargé depuis `PortalSettings` (défaut `Off`). Sous `On`, le réécrivain d'URL de DNN
+  redirige toute requête non sécurisée vers HTTPS ; sous `Advanced`, seules les pages marquées sécurisées
+  (`BasicUrlRewriter`, `PortalSettingsController`).
+- **Mesure ai-01 du 23/11 20:20Z, depuis l'extérieur** : la 301 HTTP→HTTPS de la prod est **émise par
+  DNN** (cookies `dnn_IsMobile`/`language`, corps « Object moved » d'ASP.NET), pas par IIS — cohérent
+  avec G2 (0 règle des deux côtés). Elle dépend donc de `SSLSetup` **dans la base servie**. La valeur du
+  staging avait été posée pour un site de test **en HTTP** ; servie en prod, elle aurait laissé le site en
+  HTTP clair — et la sonde P1 ne l'aurait vu qu'après la bascule.
+- **Geste (décision de 20:40Z)** : `SSLSetup` du staging **recopié depuis la base de prod**, en transaction
+  gardée (`LEN ≤ 10`, `@@ROWCOUNT = 1`, `XACT_ABORT`), avec les lignes `avant`/`apres` postées. ⚠️
+  **Placement : dans la phase 1, après l'étape 6 bis, avant l'étape 7** (post ai-01 : « dans le §6bis,
+  après le §6 ») — avec la valeur de la prod, le site de test redirige vers HTTPS : le faire plus tôt casse
+  la répétition. La valeur se lit depuis la prod ; elle ne transite jamais par le dashboard dans l'autre sens. **Inverse écrit dans un fichier avant** la
+  transaction (la valeur `avant` du staging). Ce réglage ne joue pas au retour arrière, qui resert
+  `wwwroot` avec la base de prod.
+- **Les autres écarts de G3 n'arrêtent rien** : ce sont ceux d'une montée de version (clé de zone 2sxc
+  renommée, skins par défaut neufs, caches, version CRM).
+
+### Sondes après la bascule — P1, P1b, P2 (un écart est un `[WARN]`, pas un retour arrière)
+
+- **P1 — HTTP→HTTPS** : `http://www.argumentum.games/` doit répondre 301 vers HTTPS. C'est la sonde qui
+  aurait découvert `SSLSetup` trop tard ; elle reste nécessaire, parce qu'elle mesure ce que le visiteur
+  reçoit et pas ce que la base déclare.
+- **P1b — domaine nu** : `http://argumentum.games/` et `https://argumentum.games/` doivent répondre 301
+  vers `www` **avec le même schéma** (mesure ai-01 du 23/11 20:20Z). Un domaine nu qui répondrait
+  autrement sortirait une partie des visiteurs du site sans que la route `www` rougisse.
+- **P2 — rendu et contenu des 8 accueils** : `dir="rtl"` en ar et fa seulement, description non vide
+  (référence préprod du 23/11 13:00Z : 38 à 104 caractères), 7 liens de langue, et **≥ 1 occurrence** du
+  marqueur d'audience `G-VHLTL18PEW` sur chacune des 8 pages (servi par la prod **et** par la préprod,
+  mesuré 20:22Z).
+- **Discipline commune** : ces sondes **informent** — elles ne déclenchent pas de retour arrière. Un retour
+  arrière reste régi par les critères du script du jour J, pas par une sonde de contenu.
+
+### Limite de cette inscription
+
+Ces portes mesurent le jour J **de cette bascule**, sur les hôtes et les bases nommés par la décision de
+20:40Z. Elles ne sont pas une recette générale : une autre bascule re-mesure ses propres valeurs. La
+mesure de surface d'écriture de G1 (851 fichiers) vient de la **préprod**, pas du staging — elle établit
+la forme du droit (racine, hérité), pas un état de la prod.
