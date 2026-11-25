@@ -30,6 +30,8 @@ Fichier unique : `Cards/Rules/Argumentum_Rules_fr.json`. Deux commits distincts,
 | **commit A** — retrait du `@font-face` mort | 79 618 | `f3498b80c3cf1ee2f698d269ff97722545a6bc3f92724924340eced7481ce212` | 19 599 | 5 | 9 |
 | **commit B** — retrait de `card.cover-bingo safe` | 78 688 | `2fb8b1a68573b38d128063218f8670a459f96602906acad29af879db19f9c7dd` | 18 683 | 5 | 8 |
 
+Les trois sha256 sont ceux de la **copie de travail Windows** (38 fins de ligne CRLF), c'est-à-dire du fichier que le pipeline lit en Debug. Le blob Git est stocké en LF : `3e82b30dbc4efacea…` pour l'état final. Même contenu, empreinte différente — un relecteur qui hache le blob ne doit pas y lire une divergence.
+
 Soldes après les deux retraits (fichier entier / clé `css`) :
 
 | Marqueur | Fichier | `css` | Lecture |
