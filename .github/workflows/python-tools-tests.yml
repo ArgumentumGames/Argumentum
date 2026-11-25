@@ -67,8 +67,9 @@
 #        10 cas. Le cas 1 lit les index du depot reel (tout README.md sous docs/ ou
 #        tools/ qui porte la marque `<!-- index-of-record -->`) : chaque fichier
 #        suivi du dossier y est cite avec un statut, aucun lien mort. Le cas 2
-#        exige que les neuf dossiers consolides (REQUIRED_INDEXES) gardent leur
-#        marque. Les cas 6-13 eprouvent les detecteurs sur des depots `git init`
+#        exige que les dossiers consolides (REQUIRED_INDEXES) gardent leur
+#        marque ; la PR qui pose une marque y ajoute son dossier. Les cas 6-13
+#        eprouvent les detecteurs sur des depots `git init`
 #        jetables. Methode :
 #        docs/agents/consolidation.md.
 #     9. tools/test_issue-closing-block.py -- std-lib, offline, 18 cas. Le `gh` de
@@ -350,7 +351,8 @@ jobs:
         # 10 cas, std-lib + `git ls-files`. Tout README.md qui porte la marque
         # `<!-- index-of-record -->` doit citer chaque fichier suivi de son dossier,
         # avec un statut : un fichier ajoute sans sa ligne d'index rougit la PR.
-        # Les neuf dossiers de REQUIRED_INDEXES ne peuvent pas perdre la marque.
+        # Aucun dossier de REQUIRED_INDEXES ne peut perdre la marque ; la PR
+        # qui pose une marque y ajoute son dossier.
         run: python tools/test_docs-index-contract.py
 
       - name: Run the issue closing-block contract
