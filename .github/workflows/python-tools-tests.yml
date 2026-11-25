@@ -246,8 +246,9 @@ jobs:
         # 5 cas, std-lib, offline, ~0.4 s : execute tools/458-derive-run-registry.py
         # sur le registre officiel COMMITTE (toujours present : aucun artefact) et
         # epingle la copie d'execution de l'arbitrage ai-01 du 22/11 : empreinte de
-        # sortie a130a663... (1 166 868 octets ; 92bf1e06... / 1 166 864 avant la
-        # correction typographique P24-32), 673 -> 22 retirees -> 651 conservees,
+        # sortie ef3eaa6a... (1 187 696 octets ; a130a663... / 1 166 868 avant
+        # l'append P23-36 du 25/11, 92bf1e06... / 1 166 864 avant la correction
+        # typographique P24-32), 673 -> 22 retirees -> 651 conservees,
         # la carte 6A24AE92 garde ses autres champs, aucun marqueur -review survivant,
         # et controle inverse : un registre mute d'un octet est refuse (exit non nul,
         # aucune sortie ecrite). Toute derive LEGITIME du registre officiel rougit
