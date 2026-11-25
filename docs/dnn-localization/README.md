@@ -423,7 +423,8 @@ or instrument a row names was found on master — the **eleven** test classes an
 (`DnnPersianScriptMarkers`).
 
 Unlike §9's fragments, **four files of this tranche are named outside the folder**, and three of them are
-load-bearing: `458-item9bis-list-country-cldr-47.json` and `458-item9bis-list-country-build.py` at
+read by a test or a live tool — the build script excepted, its own row saying why it still counts:
+`458-item9bis-list-country-cldr-47.json` and `458-item9bis-list-country-build.py` at
 `DnnListCountryLocalizationGuardTests.cs:19-20` (the reproducible source of truth and its byte-exact
 constructor), `458-langpack-residu-visible-2026-11-05.md` at
 `DnnVisibleResidualLangpackGuardTests.cs:13` and `tools/457-p24-01-langpack-residu-visible.py:5` (source of
@@ -439,11 +440,12 @@ Statuses of this tranche: **3 `current`**, **2 `superseded`**, **30 `historical`
 
 **Where it stands on 2026-11-25.** The core family is complete in the three cultures of the grain (ar-SA in
 §8.2 and §9.1, fa-IR and zh-CN here): `SharedResources` 610, `GlobalResources` 202, `Exceptions` 132,
-`WebControls` 50, `FileUpload` 4 — the same 1 254-key denominator §9.1 measured on `6b101880`. The two
-translation fragments in this list are the inputs of the two packs, not copies of their output: each holds
-the 966 keys of its date, and the packs have moved by 32 keys since (measured above). `List_Country` is the
-separate CLDR grain: three packs of 256 keys each, byte-identical to the table below, which the guard names
-as its source of truth — that is why the table is the one `current` data file of the pair.
+`WebControls` 50, `FileUpload` 4 — **998 keys**, the AGR core of the 1 254-key denominator §9.1 measured
+on `6b101880`, which adds the 256 of `List_Country`. The two translation fragments in this list are the
+inputs of the two packs, not copies of their output: each holds the 966 keys of its date, and the packs
+have moved by 32 keys since (measured above). `List_Country` is the separate CLDR grain: three packs of
+256 keys each, byte-identical to the table below, which the guard names as its source of truth — that is
+why the table is the one `current` data file of the pair.
 
 | File | Date | Status | What it is |
 |---|---|---|---|
