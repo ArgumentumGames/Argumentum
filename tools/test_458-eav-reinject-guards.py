@@ -35,7 +35,7 @@ RETOUCHES P23-27 (contre-revue po-2024 c.7057778259) — trois proprietes de plu
       est une precision de prose, sans garde machine : le defaut y etait une
       implicature (« la rangee au MAX »), pas une phrase.
 
-RESERVES DE LA CONTRE-REVUE #2362 (po-2024 c.7131327983, P23-38) — deux cas de plus :
+RESERVES DE LA CONTRE-REVUE #2362 (ai-01 c.7131327983, P23-38) — deux cas de plus :
   R4  la clause WHERE de g1_entity_ids est la MEME que celle de la requete de
       comptage : les ids listes sont exactement ceux qui ont ete comptes. Le
       detecteur compare les SQL captures a l'execution (ce que l'outil ENVOIE), et
