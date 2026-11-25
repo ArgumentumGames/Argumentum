@@ -660,3 +660,54 @@ Ces portes mesurent le jour J **de cette bascule**, sur les hôtes et les bases 
 20:40Z. Elles ne sont pas une recette générale : une autre bascule re-mesure ses propres valeurs. La
 mesure de surface d'écriture de G1 (851 fichiers) vient de la **préprod**, pas du staging — elle établit
 la forme du droit (racine, hérité), pas un état de la prod.
+
+## 10. Révision du 2026-11-24 (P23-37) — ce que la bascule a appris
+
+Sources : les posts dashboard `web2-audience-reparee-20261124` (recopie des deux réglages d'audience, 10:00Z) et
+`web2-acme-releve-selfhosting-20261124` (relevé ACME, 10:04Z) ; le post de cause `web2-jour-j-p2-cause-20261124`
+(05:16Z), lu dans l'archive `workspace-Argumentum-2026-11-24T10-07-46.md` ; le bloc d'état tenu par ai-01
+(2026-11-24T20:40Z). **Les deux premiers posts n'ont pas pu être relus à la source depuis po-2023** : l'archive
+qui les contient (`…T20-13-44.md`, annoncée par la condensation de 20:13Z) ne figure pas dans les 65 archives que
+`read_archive` liste sur ce siège. Leurs chiffres sont donc cités **d'après le résumé de condensation de 20:13Z**,
+qui les cite lui-même, et recoupés partout où master permet de mesurer. Les empreintes sont recopiées sous leur
+forme abrégée (début…fin). Aucune valeur de réglage n'est inscrite ici : noms, tailles et empreintes seulement.
+
+### 10.1 — Les deux réglages d'audience du portail ne voyagent ni par git ni par la base
+
+- **Ce qui manquait après le swap (04:56Z).** `Portals\1\GoogleAnalytics.config` (607 o, sha256 `7853E378…76FC6`)
+  et `Portals\1\GoogleTagManager.config` (463 o, sha256 `83ED563A…8FF9`) sont dans l'ancien arbre, `wwwroot`. Ils
+  ne sont **pas suivis par git**, et l'arbre copié ne les avait pas : `staging-1041\DNNPlatform\Portals\1\` ne
+  portait aucun `*.config` (web2, 05:16Z). Ils ne sont pas en base non plus : le scan des colonnes texte des deux
+  bases rend 0 ligne. Les connecteurs existent des deux côtés (`DesktopModules\Connectors\GoogleTagManager\`,
+  `GoogleAnalytics4\`) : c'est leur **réglage par portail** qui manquait, pas le module.
+- **Effet mesuré.** Les 8 accueils servis ne portaient plus aucune balise de mesure d'audience — 0 occurrence du
+  marqueur de la sonde P2 (§9), contre 2 sur l'ancien site. C'était la seule régression fonctionnelle de la
+  bascule, établie par deux instruments (web2, ai-01).
+- **Réparation.** GO d'ai-01 à 05:40Z sous bornes (lecture d'abord ; recopie **additive**, fichier par fichier ;
+  jamais d'écrasement ; `wwwroot` seulement lu ; inverse = la suppression des deux fichiers, nommés un par un).
+  Exécutée par web2 à 10:00Z : `File.Copy(overwrite:false)`, sans recyclage de pool, sans purge de cache, sans
+  retouche d'ACL. Contrôle : 8/8 accueils en 200, les deux balises présentes (`web2-audience-reparee-20261124`) ;
+  re-mesuré par ai-01 à 12:30Z et par web2 à 14:48Z et 19:47Z.
+- **Piège d'instrument.** Le fichier du connecteur, `DesktopModules\Connectors\GoogleTagManager\GoogleTagManager.config`,
+  **est** suivi sur master. Un `git ls-files | grep GoogleTagManager.config` le trouve et ne prouve rien sur le
+  fichier du portail. Mesuré le 24/11 sur `0543ab69` : sous `DNNPlatform/Portals/1`, le seul `*.config` suivi est
+  `2sxc/web.config` ; `git log --all` sur les deux chemins de portail ne rend aucun commit.
+- **Pour le prochain changement d'arbre servi.** Ces deux fichiers se **listent et se recopient avec le portail**.
+  Ils ne suivent ni git, ni une copie d'arbre, ni la base ; et leur absence ne casse aucune page — seule la sonde
+  d'audience (P2) la voit.
+
+### 10.2 — Le renouvellement du certificat est en `SelfHosting` : aucun `web.config` enfant sous `.well-known`
+
+- **Mesure (web2, 10:04Z, `web2-acme-releve-selfhosting-20261124`).** `wacs.exe --list` : exit 0. Certificat de
+  `argumentum.games` : dernier succès le 07/11/2026 à 19:52:04Z, prochaine échéance le 01/01/2027, validation
+  **`SelfHosting`** (journal du 07/11, lignes 255, 503 et 552). Empreinte du certificat lié au 443 :
+  `47633888C89D7F250F68846A699B2AAB1134969C`, valide du 07/11/2026 18:53:54Z au 05/02/2027.
+- **Conséquence.** `.well-known\acme-challenge\web.config` est **absent des deux arbres** (`wwwroot` comme
+  `staging-1041\DNNPlatform`), et ce n'est pas un défaut : en `SelfHosting`, win-acme répond lui-même à la
+  validation depuis son propre processus, sans fichier pris dans l'arbre du site. La condition de recopie n'était
+  pas remplie : **aucun témoin posé, aucun geste** (bloc d'état ai-01 : « ACME, aucun geste »).
+- **Ce qui tient toujours.** Le fichier reste suivi sur master (`05f54ee8d`, 2026-07-25 : 12 lignes, zéro secret) et
+  reste requis là où win-acme répond au HTTP-01 par des fichiers déposés sous `.well-known` — le mécanisme que
+  décrit `go-live-turnkey-checklist.md` et que `machinekey-rotation-scrub-runbook.md` a conservé. Sa présence est une
+  propriété de la **méthode de validation de l'hôte**, pas de l'arbre DNN : la lire au `wacs --list` de l'hôte avant
+  de poser le fichier, ou de juger son absence comme un défaut.
