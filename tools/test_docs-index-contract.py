@@ -98,6 +98,7 @@ def indexes(root):
 REQUIRED_INDEXES = (
     "docs/corpus",
     "docs/dnn",
+    "docs/investigations",
     "docs/ontology",
     "docs/publication",
     "docs/release-dossier",
