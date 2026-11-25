@@ -3,11 +3,12 @@
 <!-- index-of-record -->
 
 > **Entry point for `docs/investigations`.**
-> The folder holds **147 tracked files** (`git ls-files docs/investigations`, re-measured 2026-11-24 on master
-> `0543ab69`): **83 root files**, **this README**, **63 files in nine subfolders**. It is the index of record,
+> The folder holds **156 tracked files** (`git ls-files docs/investigations`, re-measured 2026-11-25 on
+> `5e02dfae` plus the nine files of PR #2388): **83 root files**, **this README**, **72 files in ten subfolders**. It is the index of record,
 > written in two tranches. Tranche 1 (PR #2364) indexed the **49 root files of the 2025-10 → 2026-06 era** and
-> the **nine subfolders**; tranche 2 indexes the **34 remaining root files (2026-07 → 2026-11)**. Coverage:
-> **83/83 root files**, **9/9 subfolders**, the subfolders by folder link.
+> the **nine subfolders**; tranche 2 indexes the **34 remaining root files (2026-07 → 2026-11)**; a later
+> addition indexes the `2026-11-25-1369-sortie-de-repli/` subfolder (§11). Coverage:
+> **83/83 root files**, **10/10 subfolders**, the subfolders by folder link.
 > The `<!-- index-of-record -->` mark is posed since tranche 2: `tools/test_docs-index-contract.py` holds this
 > file to completeness, one status per row, and no dead link (see §13).
 
@@ -216,12 +217,13 @@ pass are delivered. The two 2sxc reports measure the **preprod base of 30/10**, 
 | [2026-09-30-1485-substitution-polices/](2026-09-30-1485-substitution-polices/) | 8 | `current` | Font substitution table (DINPro → permissive, + TrendSlab) with comparative renders on real faces; feeds the **open** #1485 licence decision (item 3.a, owner). Changes no template. |
 | [2026-10-22-gcc-scenarii-footer-dollar/](2026-10-22-gcc-scenarii-footer-dollar/) | 5 | `historical` | Grain #458 G-CC: removal of the `$` pictogram from the Scenarii card footer, with its escape. |
 | [2026-10-22-news5-mobile-overflow/](2026-10-22-news5-mobile-overflow/) | 3 | `historical` | Mobile horizontal overflow of the News5 overlay (grain #458 G-CC-bis): `scrollWidth` 539 for `clientWidth` 375 at 390 px, before deferred vignettes load. |
+| [2026-11-25-1369-sortie-de-repli/](2026-11-25-1369-sortie-de-repli/) | 9 | `current` | Grain #1369 (P23-08): the Rules_07 pilot illustration removed, with its A/B pixel comparison; the visual verdict is ai-01's and #2132 stays open. |
 | [archeologie-git/](archeologie-git/) | 21 | `historical` | Git archaeology: reference copies of the functional config plus ~15 historical versions for comparison. |
 | [diffs-git/](diffs-git/) | 3 | `historical` | Six-month diffs of `AssetConverterConfig`, `CardSetDocument` and `WebBasedGeneratorConfig`. |
 | [pdf-validation/](pdf-validation/) | 3 | `historical` | Node harness that validated the generated PDFs (`package.json` + `validate-pdfs.js`). |
 | [scripts/](scripts/) | 3 | `historical` | One-off diagnostic scripts: git-status analysis, translation scan, mindmap interactive session. |
 
-The nine rows link the **folder**: a link to a subfolder's `README.md` covers only that README, and the other files would read as uncited (§13).
+The ten rows link the **folder**: a link to a subfolder's `README.md` covers only that README, and the other files would read as uncited (§13).
 
 ---
 
@@ -243,7 +245,7 @@ link; every row that links a file of this folder carries **exactly one** status 
 case included. A file added under this folder without its row turns the pull request red, naming the file.
 
 A subfolder row links the **folder** (`name/`), never its `README.md`: a link to a subfolder's README covers
-only that README, and the other files of the subfolder would read as uncited. That is why the nine rows of §11
+only that README, and the other files of the subfolder would read as uncited. That is why the ten rows of §11
 use `name/`.
 
 The mark was posed with the proof the DoD asks for: one row of a file cited only once was removed from a copy
