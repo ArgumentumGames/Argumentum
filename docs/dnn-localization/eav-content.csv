@@ -693,6 +693,21 @@ D32E4150-C0AA-4758-946E-E8FF3E540A05|MapsLabelDirections,33,App-Resources,D32E41
 <ul>
 <li><a href=""/fallacies_fr.html"" target=""_blank"" rel=""noopener"">Une carte mentale au format SVG, utilisable nue avec des liens de r&eacute;f&eacute;rence externes ou int&eacute;gr&eacute;e dans une page Html avec l'affichage dans une modale du d&eacute;tail de chaque type d'argument fallacieux.</a><br><br></li>
 <li><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">Une ontologie au format OWL fournissant une hi&eacute;rarchie SKOS et les correspondances avec AIF.owl, le format </a><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">Argument Interchange Format</a><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener""> de r&eacute;f&eacute;rence proposant un mod&egrave;le de l'argumentation dont un certain nombre d'arguments fallacieux.</a></li>
+</ul>
+<h3>&nbsp;</h3>
+<h3>Comment parcourir la taxonomie</h3>
+<p>La carte mentale se parcourt comme un arbre : chaque famille se déploie en sous-familles jusqu’aux sophismes eux-mêmes, et chaque nœud porte ses liens de référence. Intégrée dans une page web, elle ouvre dans une modale le détail de chaque type d’argument fallacieux.</p>
+<p>L’ontologie se lit avec un outil du web sémantique : chaque sophisme y est un concept SKOS, relié à ses parents, ses enfants et ses termes voisins. Les correspondances AIF notent, branche par branche, ce que le procédé imite, ce qu’il attaque et comment, et, là où le corpus l’a déjà établie, la question critique qui permet de le démasquer.</p>
+<p>La taxonomie des vertus de l’argumentation décrit à son tour les pratiques qui rendent un échange solide. Elle est proposée dans les mêmes formats : <a href=""/Virtues_fr.html"" target=""_blank"" rel=""noopener"">sa carte mentale</a>.</p>
+<h3>&nbsp;</h3>
+<h3>À quoi elle sert</h3>
+<p>La taxonomie est le socle du matériel pédagogique du jeu : cartes, scénarios et mémos en dérivent directement. Hors du jeu, elle sert de référentiel pour relire un discours, construire un cours ou outiller l’analyse d’arguments. Plusieurs usages en sont déjà faits :</p>
+<ul>
+<li><a href=""/Actus/details/chaque-sophisme-a-sa-place-l-ontologie-d-argumentum-et-le-format-aif"" target=""_blank"" rel=""noopener"">Chaque sophisme à sa place : l’ontologie d’Argumentum et le format AIF</a></li>
+<li><a href=""/Actus/details/la-descente-guidee-dans-l-arbre-le-plugin-argumentum-du-projet-epita"" target=""_blank"" rel=""noopener"">La descente guidée dans l’arbre : le plugin Argumentum du projet Epita</a></li>
+<li><a href=""/Actus/details/des-carnets-de-cours-lisent-le-jeu-argumentum-dans-coursia"" target=""_blank"" rel=""noopener"">Des carnets de cours lisent le jeu : Argumentum dans CoursIA</a></li>
+<li><a href=""/Actus/details/sophismes-x-scenarios-le-jeu-comme-jeu-de-donnees"" target=""_blank"" rel=""noopener"">Sophismes × scénarios : le jeu comme jeu de données</a></li>
+<li><a href=""/Actus/details/la-dette-d-irreversibilite-du-discours-une-prediction-posee-sur-le-corpus-d-argumentum"" target=""_blank"" rel=""noopener"">La dette d’irréversibilité du discours : une prédiction posée sur le corpus d’Argumentum</a></li>
 </ul>","<p>Argumentum explores the art that has endured through the ages and shaped some of the finest pages of our history: argumentation.<br><br>The act of arguing differs from expressing oneself, conversing, or giving an opinion, because it involves presenting arguments intended to convince an audience of the validity of facts or decisions.<br><br>This gives rise to a formal protocol based on constructing a line of argument, as well as an intellectual code of conduct that enables it to be properly applied.</p>
 <h3> </h3>
 <h3>What is an argument?</h3>
@@ -719,6 +734,21 @@ D32E4150-C0AA-4758-946E-E8FF3E540A05|MapsLabelDirections,33,App-Resources,D32E41
 <ul>
 <li><a href=""/fallacies_en.html"" target=""_blank"" rel=""noopener"">An SVG mind map that can be used on its own with external reference links, or embedded in an Html page with details of each type of fallacious argument displayed in a modal window.</a><br><br></li>
 <li><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">An OWL ontology providing a SKOS hierarchy and mappings to AIF.owl, the reference </a><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">Argument Interchange Format</a><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">, which offers a model of argumentation that includes a number of fallacious arguments.</a></li>
+</ul>
+<h3>&nbsp;</h3>
+<h3>How to explore the taxonomy</h3>
+<p>The mind map can be explored as a tree: each family unfolds into subfamilies, down to the fallacies themselves, and every node carries its reference links. Embedded in a web page, it opens the details of each type of fallacious argument in a modal window.</p>
+<p>The ontology can be read with a semantic-web tool: every fallacy is a SKOS concept, connected to its parents, children and neighbouring terms. Branch by branch, the AIF mappings record what the device imitates, what it attacks and how, and, where the corpus has already established it, the critical question that exposes it.</p>
+<p>The taxonomy of argumentative virtues, in turn, describes the practices that make an exchange sound. It is available in the same formats: <a href=""/Virtues_en.html"" target=""_blank"" rel=""noopener"">its mind map</a>.</p>
+<h3>&nbsp;</h3>
+<h3>What it is for</h3>
+<p>The taxonomy underpins the game’s educational material: its cards, scenarios and memo sheets are directly derived from it. Beyond the game, it provides a reference framework for reviewing a speech, building a course or supporting argument analysis. It already serves several uses:</p>
+<ul>
+<li><a href=""/en/Actus/details/chaque-sophisme-a-sa-place-l-ontologie-d-argumentum-et-le-format-aif"" target=""_blank"" rel=""noopener"">Every fallacy in its place: the Argumentum ontology and the AIF format</a></li>
+<li><a href=""/en/Actus/details/la-descente-guidee-dans-l-arbre-le-plugin-argumentum-du-projet-epita"" target=""_blank"" rel=""noopener"">Guided descent through the tree: the Argumentum plugin from the Epita project</a></li>
+<li><a href=""/en/Actus/details/des-carnets-de-cours-lisent-le-jeu-argumentum-dans-coursia"" target=""_blank"" rel=""noopener"">Course Notebooks Read the Game: Argumentum in CoursIA</a></li>
+<li><a href=""/en/Actus/details/sophismes-x-scenarios-le-jeu-comme-jeu-de-donnees"" target=""_blank"" rel=""noopener"">Fallacies × Scenarios: The Game as a Dataset</a></li>
+<li><a href=""/en/Actus/details/la-dette-d-irreversibilite-du-discours-une-prediction-posee-sur-le-corpus-d-argumentum"" target=""_blank"" rel=""noopener"">The irreversibility debt of discourse: a prediction staked on the Argumentum corpus</a></li>
 </ul>","<p>Argumentum посвящён искусству, которое прошло сквозь века и создало прекраснейшие страницы нашей истории, — искусству аргументации.<br><br>Аргументация отличается от самовыражения, беседы или высказывания своего мнения тем, что предполагает изложение доводов, призванных убедить аудиторию в обоснованности фактов или решений.<br><br>Отсюда вытекают формальный порядок, основанный на построении системы доводов, и интеллектуальный кодекс поведения, обеспечивающий её надлежащее применение.</p>
 <h3> </h3>
 <h3>Что такое аргумент?</h3>
@@ -745,6 +775,21 @@ D32E4150-C0AA-4758-946E-E8FF3E540A05|MapsLabelDirections,33,App-Resources,D32E41
 <ul>
 <li><a href=""/fallacies_ru.html"" target=""_blank"" rel=""noopener"">Интеллект-карта в формате SVG, которую можно использовать отдельно со ссылками на внешние источники или встроить в Html-страницу, где подробные сведения о каждом типе ложного аргумента будут отображаться в модальном окне.</a><br><br></li>
 <li><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">Онтология в формате OWL, содержащая иерархию SKOS и соответствия с AIF.owl — эталонным форматом </a><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">Argument Interchange Format</a><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">, который предлагает модель аргументации, включающую ряд ложных аргументов.</a></li>
+</ul>
+<h3>&nbsp;</h3>
+<h3>Как изучать таксономию</h3>
+<p>Интеллект-карту можно читать как дерево: каждое семейство раскрывается в подсемейства вплоть до самих софизмов, а каждый узел содержит справочные ссылки. Будучи встроенной в веб-страницу, карта открывает во всплывающем окне подробное описание каждого типа ложного аргумента.</p>
+<p>Онтологию можно читать с помощью инструмента семантической паутины: каждый софизм представлен в ней как понятие SKOS, связанное с родительскими, дочерними и соседними терминами. Ветвь за ветвью соответствия AIF отмечают, что именно имитирует приём, что и как он опровергает, а там, где корпус это уже установил, — критический вопрос, позволяющий его разоблачить.</p>
+<p>Таксономия добродетелей аргументации, в свою очередь, описывает практики, которые делают обмен мнениями обоснованным. Она доступна в тех же форматах: <a href=""/Virtues_ru.html"" target=""_blank"" rel=""noopener"">её интеллект-карта</a>.</p>
+<h3>&nbsp;</h3>
+<h3>Для чего она нужна</h3>
+<p>Таксономия — основа учебных материалов игры: карточки, сценарии и памятки непосредственно производны от неё. Вне игры она служит ориентиром для перечитывания выступления, составления занятия или анализа аргументов. У неё уже есть несколько применений:</p>
+<ul>
+<li><a href=""/ru/Actus/details/chaque-sophisme-a-sa-place-l-ontologie-d-argumentum-et-le-format-aif"" target=""_blank"" rel=""noopener"">Каждый софизм на своём месте: онтология Argumentum и формат AIF</a></li>
+<li><a href=""/ru/Actus/details/la-descente-guidee-dans-l-arbre-le-plugin-argumentum-du-projet-epita"" target=""_blank"" rel=""noopener"">Управляемый спуск по дереву: плагин Argumentum проекта Epita</a></li>
+<li><a href=""/ru/Actus/details/des-carnets-de-cours-lisent-le-jeu-argumentum-dans-coursia"" target=""_blank"" rel=""noopener"">Учебные тетради читают игру: Argumentum в CoursIA</a></li>
+<li><a href=""/ru/Actus/details/sophismes-x-scenarios-le-jeu-comme-jeu-de-donnees"" target=""_blank"" rel=""noopener"">Софизмы × сценарии: игра как набор данных</a></li>
+<li><a href=""/ru/Actus/details/la-dette-d-irreversibilite-du-discours-une-prediction-posee-sur-le-corpus-d-argumentum"" target=""_blank"" rel=""noopener"">Долг необратимости дискурса: предсказание, заявленное для корпуса Argumentum</a></li>
 </ul>","<p>Argumentum se interessa por essa arte que atravessou os tempos e construiu algumas das mais belas páginas da nossa história: a argumentação.<br><br>O ato de argumentar se distingue de se expressar, conversar ou dar uma opinião, pois envolve a apresentação de argumentos destinados a convencer um público da validade de fatos ou decisões.<br><br>Disso resulta um protocolo formal baseado na construção de uma linha argumentativa e um código de conduta intelectual que permite sua correta aplicação.</p>
 <h3> </h3>
 <h3>O que é um argumento?</h3>
@@ -771,6 +816,21 @@ D32E4150-C0AA-4758-946E-E8FF3E540A05|MapsLabelDirections,33,App-Resources,D32E41
 <ul>
 <li><a href=""/fallacies_pt.html"" target=""_blank"" rel=""noopener"">Um mapa mental em formato SVG, que pode ser usado isoladamente com links externos de referência ou integrado a uma página Html, com a exibição, em uma janela modal, dos detalhes de cada tipo de argumento falacioso.</a><br><br></li>
 <li><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">Uma ontologia em formato OWL que fornece uma hierarquia SKOS e correspondências com AIF.owl, o formato de referência </a><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">Argument Interchange Format</a><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">, que propõe um modelo de argumentação incluindo diversos argumentos falaciosos.</a></li>
+</ul>
+<h3>&nbsp;</h3>
+<h3>Como percorrer a taxonomia</h3>
+<p>O mapa mental percorre-se como uma árvore: cada família desdobra-se em subfamílias até aos próprios sofismas, e cada nó contém as suas ligações de referência. Integrado numa página web, abre numa janela modal o detalhe de cada tipo de argumento falacioso.</p>
+<p>A ontologia lê-se com uma ferramenta da web semântica: cada sofisma é um conceito SKOS, ligado aos seus pais, filhos e termos vizinhos. Ramo a ramo, as correspondências AIF registam o que o procedimento imita, o que ataca e como e, quando o corpus já a estabeleceu, a questão crítica que permite desmascará-lo.</p>
+<p>A taxonomia das virtudes da argumentação descreve, por sua vez, as práticas que tornam sólida uma troca de argumentos. Está disponível nos mesmos formatos: <a href=""/Virtues_pt.html"" target=""_blank"" rel=""noopener"">o seu mapa mental</a>.</p>
+<h3>&nbsp;</h3>
+<h3>Para que serve</h3>
+<p>A taxonomia é a base do material pedagógico do jogo: as cartas, os cenários e os memos derivam diretamente dela. Fora do jogo, serve de referência para reler um discurso, construir uma aula ou apoiar a análise de argumentos. Já alimenta vários usos:</p>
+<ul>
+<li><a href=""/pt/Actus/details/chaque-sophisme-a-sa-place-l-ontologie-d-argumentum-et-le-format-aif"" target=""_blank"" rel=""noopener"">Cada falácia em seu lugar: a ontologia do Argumentum e o formato AIF</a></li>
+<li><a href=""/pt/Actus/details/la-descente-guidee-dans-l-arbre-le-plugin-argumentum-du-projet-epita"" target=""_blank"" rel=""noopener"">Descida guiada na árvore: o plugin Argumentum do projeto Epita</a></li>
+<li><a href=""/pt/Actus/details/des-carnets-de-cours-lisent-le-jeu-argumentum-dans-coursia"" target=""_blank"" rel=""noopener"">Cadernos de curso leem o jogo: Argumentum no CoursIA</a></li>
+<li><a href=""/pt/Actus/details/sophismes-x-scenarios-le-jeu-comme-jeu-de-donnees"" target=""_blank"" rel=""noopener"">Falácias × cenários: o jogo como conjunto de dados</a></li>
+<li><a href=""/pt/Actus/details/la-dette-d-irreversibilite-du-discours-une-prediction-posee-sur-le-corpus-d-argumentum"" target=""_blank"" rel=""noopener"">A dívida de irreversibilidade do discurso: uma previsão lançada sobre o corpus do Argumentum</a></li>
 </ul>","<p>Argumentum se interesa por el arte de la argumentación, que ha atravesado los siglos y construido algunas de las páginas más bellas de nuestra historia.<br><br>El acto de argumentar se distingue de expresarse, conversar o dar una opinión, pues implica exponer argumentos destinados a convencer a un público de la validez de hechos o decisiones.<br><br>De ello resulta un protocolo formal basado en la construcción de una argumentación, así como un código de conducta intelectual que permite aplicarla correctamente.</p>
 <h3> </h3>
 <h3>¿Qué es un argumento?</h3>
@@ -797,6 +857,21 @@ D32E4150-C0AA-4758-946E-E8FF3E540A05|MapsLabelDirections,33,App-Resources,D32E41
 <ul>
 <li><a href=""/fallacies_es.html"" target=""_blank"" rel=""noopener"">Un mapa mental en formato SVG, que puede utilizarse de forma independiente con enlaces de referencia externos o integrarse en una página HTML, mostrando en una ventana modal los detalles de cada tipo de argumento falaz.</a><br><br></li>
 <li><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">Una ontología en formato OWL que proporciona una jerarquía SKOS y las correspondencias con AIF.owl, el formato de referencia </a><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">Argument Interchange Format</a><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">, que propone un modelo de la argumentación que incluye diversos argumentos falaces.</a></li>
+</ul>
+<h3>&nbsp;</h3>
+<h3>Cómo recorrer la taxonomía</h3>
+<p>El mapa mental se recorre como un árbol: cada familia se despliega en subfamilias hasta llegar a los propios sofismas, y cada nodo contiene sus enlaces de referencia. Integrado en una página web, abre en una ventana modal el detalle de cada tipo de argumento falaz.</p>
+<p>La ontología se lee con una herramienta de la web semántica: cada sofisma es un concepto SKOS, relacionado con sus padres, sus hijos y sus términos vecinos. Rama por rama, las correspondencias AIF registran qué imita el procedimiento, qué ataca y cómo y, cuando el corpus ya la ha establecido, la cuestión crítica que permite desenmascararlo.</p>
+<p>La taxonomía de las virtudes de la argumentación describe, a su vez, las prácticas que hacen sólido un intercambio. Se ofrece en los mismos formatos: <a href=""/Virtues_es.html"" target=""_blank"" rel=""noopener"">su mapa mental</a>.</p>
+<h3>&nbsp;</h3>
+<h3>Para qué sirve</h3>
+<p>La taxonomía es la base del material pedagógico del juego: las cartas, los escenarios y los memos se derivan directamente de ella. Fuera del juego, sirve de referencia para releer un discurso, construir un curso o apoyar el análisis de argumentos. Ya alimenta varios usos:</p>
+<ul>
+<li><a href=""/es/Actus/details/chaque-sophisme-a-sa-place-l-ontologie-d-argumentum-et-le-format-aif"" target=""_blank"" rel=""noopener"">Cada falacia en su sitio: la ontología de Argumentum y el formato AIF</a></li>
+<li><a href=""/es/Actus/details/la-descente-guidee-dans-l-arbre-le-plugin-argumentum-du-projet-epita"" target=""_blank"" rel=""noopener"">Descenso guiado por el árbol: el plugin Argumentum del proyecto Epita</a></li>
+<li><a href=""/es/Actus/details/des-carnets-de-cours-lisent-le-jeu-argumentum-dans-coursia"" target=""_blank"" rel=""noopener"">Cuadernos de curso leen el juego: Argumentum en CoursIA</a></li>
+<li><a href=""/es/Actus/details/sophismes-x-scenarios-le-jeu-comme-jeu-de-donnees"" target=""_blank"" rel=""noopener"">Sofismas × escenarios: el juego como conjunto de datos</a></li>
+<li><a href=""/es/Actus/details/la-dette-d-irreversibilite-du-discours-une-prediction-posee-sur-le-corpus-d-argumentum"" target=""_blank"" rel=""noopener"">La deuda de irreversibilidad del discurso: una predicción planteada sobre el corpus de Argumentum</a></li>
 </ul>","<p>يهتم Argumentum بفن الحِجاج الذي عبر العصور وصنع بعضًا من أجمل صفحات تاريخنا.<br><br>يختلف فعل المحاججة عن التعبير عن النفس أو التحاور أو إبداء الرأي، لأنه ينطوي على عرض حجج تهدف إلى إقناع جمهور بصحة وقائع أو قرارات.<br><br>وينتج عن ذلك بروتوكول رسمي يستند إلى بناء منظومة حجاجية، ومدونة سلوك فكري تضمن حسن تطبيقها.</p>
 <h3> </h3>
 <h3>ما الحجة؟</h3>
@@ -823,6 +898,21 @@ D32E4150-C0AA-4758-946E-E8FF3E540A05|MapsLabelDirections,33,App-Resources,D32E41
 <ul>
 <li><a href=""/fallacies_ar.html"" target=""_blank"" rel=""noopener"">خريطة ذهنية بصيغة SVG، يمكن استخدامها مستقلة مع روابط مرجعية خارجية، أو دمجها في صفحة HTML مع عرض تفاصيل كل نوع من الحجج المغالِطة في نافذة منبثقة.</a><br><br></li>
 <li><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">أنطولوجيا بصيغة OWL توفر هرمية SKOS والمواءمات مع AIF.owl، أي الصيغة المرجعية </a><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">Argument Interchange Format</a><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener""> التي تقدم نموذجًا للحِجاج يشمل عددًا من الحجج المغالِطة.</a></li>
+</ul>
+<h3>&nbsp;</h3>
+<h3>كيف نستكشف التصنيف</h3>
+<p>تُستكشف الخريطة الذهنية كشجرة: تتفرع كل عائلة إلى عائلات فرعية وصولاً إلى المغالطات نفسها، وتحمل كل عقدة روابطها المرجعية. وعندما تُدمج في صفحة ويب، تفتح في نافذة منبثقة تفاصيل كل نوع من أنواع الحجاج المغالط.</p>
+<p>تُقرأ الأنطولوجيا بأداة من أدوات الويب الدلالي: تظهر فيها كل مغالطة بوصفها مفهوماً من مفاهيم SKOS، مرتبطاً بآبائه وأبنائه والمصطلحات المجاورة له. وتسجل مقابلات AIF، فرعاً فرعاً، ما يحاكيه الأسلوب، وما يهاجمه وكيف يهاجمه، وحيث يكون المتن قد أثبت ذلك سلفاً، السؤال النقدي الذي يكشفه.</p>
+<p>يصف تصنيف فضائل الحجاج، بدوره، الممارسات التي تجعل تبادل الحجج رصيناً. وهو متاح بالصيغ نفسها: <a href=""/Virtues_ar.html"" target=""_blank"" rel=""noopener"">خريطته الذهنية</a>.</p>
+<h3>&nbsp;</h3>
+<h3>فيما يُستخدم</h3>
+<p>يشكل التصنيف أساس المواد التعليمية للعبة: فالبطاقات والسيناريوهات والمذكرات مشتقة منه مباشرة. وخارج اللعبة، يعمل إطاراً مرجعياً لإعادة قراءة خطاب، أو بناء درس، أو دعم تحليل الحجج. وقد استُخدم بالفعل في عدة مجالات:</p>
+<ul>
+<li><a href=""/ar/Actus/details/chaque-sophisme-a-sa-place-l-ontologie-d-argumentum-et-le-format-aif"" target=""_blank"" rel=""noopener"">لكل مغالطة مكانها: أنطولوجيا Argumentum وصيغة AIF</a></li>
+<li><a href=""/ar/Actus/details/la-descente-guidee-dans-l-arbre-le-plugin-argumentum-du-projet-epita"" target=""_blank"" rel=""noopener"">النزول الموجّه في الشجرة: إضافة Argumentum من مشروع Epita</a></li>
+<li><a href=""/ar/Actus/details/des-carnets-de-cours-lisent-le-jeu-argumentum-dans-coursia"" target=""_blank"" rel=""noopener"">دفاتر دراسية تقرأ اللعبة: Argumentum في CoursIA</a></li>
+<li><a href=""/ar/Actus/details/sophismes-x-scenarios-le-jeu-comme-jeu-de-donnees"" target=""_blank"" rel=""noopener"">السفسطات × السيناريوهات: اللعبة كمجموعة بيانات</a></li>
+<li><a href=""/ar/Actus/details/la-dette-d-irreversibilite-du-discours-une-prediction-posee-sur-le-corpus-d-argumentum"" target=""_blank"" rel=""noopener"">دين اللارجعية في الخطاب: تنبؤ مطروح على مدونة Argumentum</a></li>
 </ul>","<p>Argumentum به هنر استدلال می‌پردازد؛ هنری که از دل اعصار گذشته و برخی از زیباترین صفحات تاریخ ما را رقم زده است.<br><br>عمل استدلال کردن با بیان خود، گفت‌وگو یا اظهار نظر تفاوت دارد، زیرا مستلزم ارائهٔ استدلال‌هایی است که می‌کوشند مخاطبان را به اعتبار واقعیت‌ها یا تصمیم‌ها متقاعد کنند.<br><br>از این امر، چارچوبی رسمی مبتنی بر ساختن مجموعه‌ای از استدلال‌ها و نیز آیین رفتاری فکری پدید می‌آید که اجرای درست آن را ممکن می‌سازد.</p>
 <h3> </h3>
 <h3>استدلال چیست؟</h3>
@@ -849,6 +939,21 @@ D32E4150-C0AA-4758-946E-E8FF3E540A05|MapsLabelDirections,33,App-Resources,D32E41
 <ul>
 <li><a href=""/fallacies_fa.html"" target=""_blank"" rel=""noopener"">یک نقشهٔ ذهنی با قالب SVG که می‌توان آن را به‌تنهایی همراه با پیوندهای مرجع خارجی به کار برد یا در یک صفحهٔ HTML ادغام کرد تا جزئیات هر نوع استدلال مغالطه‌آمیز در پنجره‌ای مودال نمایش داده شود.</a><br><br></li>
 <li><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">یک هستی‌شناسی با قالب OWL که سلسله‌مراتب SKOS و تطبیق‌ها با AIF.owl، یعنی قالب مرجع </a><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">Argument Interchange Format</a><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener""> را ارائه می‌دهد؛ قالبی که مدلی از استدلال، شامل شماری استدلال مغالطه‌آمیز، پیشنهاد می‌کند.</a></li>
+</ul>
+<h3>&nbsp;</h3>
+<h3>چگونه رده‌بندی را مرور کنیم</h3>
+<p>نقشهٔ ذهنی مانند درختی مرور می‌شود: هر خانواده به زیرخانواده‌هایی گشوده می‌شود تا به خود مغالطه‌ها برسد، و هر گره پیوندهای مرجع خود را دارد. این نقشه، هنگامی که در صفحهٔ وب تعبیه شود، جزئیات هر گونه استدلال مغالطه‌آمیز را در پنجره‌ای باز می‌کند.</p>
+<p>هستی‌شناسی با ابزاری از وب معنایی خوانده می‌شود: هر مغالطه در آن مفهومی از SKOS است که به والدان، فرزندان و اصطلاحات همسایه‌اش پیوند دارد. تناظرهای AIF، شاخه به شاخه، ثبت می‌کنند که شیوه چه چیزی را تقلید می‌کند، به چه چیزی و چگونه حمله می‌کند و، آنجا که پیکره پیش‌تر آن را برقرار کرده است، کدام پرسش انتقادی آن را افشا می‌کند.</p>
+<p>رده‌بندی فضایل استدلال‌ورزی نیز، به نوبهٔ خود، شیوه‌هایی را شرح می‌دهد که تبادل استدلال را استوار می‌کنند. این رده‌بندی در قالب‌های همان‌گونه ارائه می‌شود: <a href=""/Virtues_fa.html"" target=""_blank"" rel=""noopener"">نقشهٔ ذهنی آن</a>.</p>
+<h3>&nbsp;</h3>
+<h3>به چه کار می‌آید</h3>
+<p>رده‌بندی بنیان مواد آموزشی بازی است: کارت‌ها، سناریوها و یادآورها مستقیماً از آن برآمده‌اند. بیرون از بازی نیز چارچوبی مرجع برای بازخوانی سخنرانی، ساختن درس یا پشتیبانی از تحلیل استدلال‌ها به شمار می‌رود. این رده‌بندی اکنون چند کاربرد دارد:</p>
+<ul>
+<li><a href=""/fa/Actus/details/chaque-sophisme-a-sa-place-l-ontologie-d-argumentum-et-le-format-aif"" target=""_blank"" rel=""noopener"">هر مغالطه در جای خود: آنتولوژیِ Argumentum و قالب AIF</a></li>
+<li><a href=""/fa/Actus/details/la-descente-guidee-dans-l-arbre-le-plugin-argumentum-du-projet-epita"" target=""_blank"" rel=""noopener"">فرود هدایت‌شده در درخت: افزونهٔ Argumentum از پروژهٔ Epita</a></li>
+<li><a href=""/fa/Actus/details/des-carnets-de-cours-lisent-le-jeu-argumentum-dans-coursia"" target=""_blank"" rel=""noopener"">دفترهای درسی بازی را می‌خوانند: Argumentum در CoursIA</a></li>
+<li><a href=""/fa/Actus/details/sophismes-x-scenarios-le-jeu-comme-jeu-de-donnees"" target=""_blank"" rel=""noopener"">مغالطه‌ها × سناریوها: بازی به‌مثابه مجموعه‌داده</a></li>
+<li><a href=""/fa/Actus/details/la-dette-d-irreversibilite-du-discours-une-prediction-posee-sur-le-corpus-d-argumentum"" target=""_blank"" rel=""noopener"">بدهی بازگشت‌ناپذیری گفتمان: پیش‌بینی‌ای نهاده بر پیکرهٔ Argumentum</a></li>
 </ul>","<p>Argumentum 关注的是论证这门穿越时代、书写了人类历史华美篇章的艺术。<br><br>论证不同于表达、交谈或发表意见，因为它需要提出论据，以使受众相信事实或决定的有效性。<br><br>由此形成了一套以构建论证体系为基础的正式规范，以及一套确保其得到正确运用的思想行为准则。</p>
 <h3> </h3>
 <h3>什么是论证？</h3>
@@ -875,6 +980,21 @@ D32E4150-C0AA-4758-946E-E8FF3E540A05|MapsLabelDirections,33,App-Resources,D32E41
 <ul>
 <li><a href=""/fallacies_zh.html"" target=""_blank"" rel=""noopener"">SVG 格式的思维导图，既可独立使用并附带外部参考链接，也可嵌入 HTML 页面，通过模态窗口显示每类谬误论证的详细信息。</a><br><br></li>
 <li><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">OWL 格式的本体，提供 SKOS 层级结构以及与 AIF.owl 的映射；后者即参考格式 </a><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">Argument Interchange Format</a><a href=""/argumentum_fallacies.owl"" target=""_blank"" rel=""noopener"">，提出了一种涵盖若干谬误论证的论证模型。</a></li>
+</ul>
+<h3>&nbsp;</h3>
+<h3>如何浏览分类体系</h3>
+<p>思维导图可以像树一样浏览：每个类别展开为若干子类，直至谬误本身，每个节点都带有参考链接。嵌入网页后，它会在模态窗口中打开各类谬误论证的详细说明。</p>
+<p>本体可以借助语义网工具阅读：其中每个谬误都是一个 SKOS 概念，与其父项、子项及相邻术语相连。AIF 对应关系逐个分支记录该手法模仿什么、攻击什么以及如何攻击，并在语料库已经确立之处，记录能够揭示它的关键问题。</p>
+<p>论证美德分类体系则描述使交流扎实可靠的做法。它以相同格式提供：<a href=""/Virtues_zh.html"" target=""_blank"" rel=""noopener"">其思维导图</a>。</p>
+<h3>&nbsp;</h3>
+<h3>它有什么用途</h3>
+<p>该分类体系是游戏教学材料的基础：卡牌、情境和备忘卡都直接由此衍生。在游戏之外，它还为重读演说、设计课程或辅助论证分析提供参考框架。目前已有以下数种应用：</p>
+<ul>
+<li><a href=""/zh/Actus/details/chaque-sophisme-a-sa-place-l-ontologie-d-argumentum-et-le-format-aif"" target=""_blank"" rel=""noopener"">每个谬误各归其位：Argumentum 的本体论与 AIF 格式</a></li>
+<li><a href=""/zh/Actus/details/la-descente-guidee-dans-l-arbre-le-plugin-argumentum-du-projet-epita"" target=""_blank"" rel=""noopener"">树中引导式下行：Epita 项目的 Argumentum 插件</a></li>
+<li><a href=""/zh/Actus/details/des-carnets-de-cours-lisent-le-jeu-argumentum-dans-coursia"" target=""_blank"" rel=""noopener"">课程笔记本解读游戏：CoursIA 中的 Argumentum</a></li>
+<li><a href=""/zh/Actus/details/sophismes-x-scenarios-le-jeu-comme-jeu-de-donnees"" target=""_blank"" rel=""noopener"">谬论×情景：游戏即数据集</a></li>
+<li><a href=""/zh/Actus/details/la-dette-d-irreversibilite-du-discours-une-prediction-posee-sur-le-corpus-d-argumentum"" target=""_blank"" rel=""noopener"">话语的不可逆性债务：一项押在Argumentum语料库上的预测</a></li>
 </ul>"
 8A8636A4-069A-4692-A139-4773B161931B|Image,33,Content,8A8636A4-069A-4692-A139-4773B161931B,Image,Hyperlink,editorial,file:814,,,,,,,
 8A8636A4-069A-4692-A139-4773B161931B|ImageCaption,33,Content,8A8636A4-069A-4692-A139-4773B161931B,ImageCaption,String,editorial,,,,,,,,
@@ -6244,10 +6364,10 @@ AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78|Installation,60,Game Rule,AE1EDEFA-6F1B-459
 <p>Cada jogador pega um pequeno objeto diferente dos demais (moeda, feijão…) para a votação. O primeiro comprador é o jogador que primeiro se lembrar de um argumento enganador.</p>","<p>Según el número de jugadores y el nivel de dificultad deseado, se forma el mazo de cartas de argumentos falaces añadiendo los niveles indicados en la parte inferior derecha de las cartas por orden creciente. Se necesitan al menos 7 x el número de jugadores.</p>
 <p>Se decide la duración de la partida. Esta consta de una sucesión de rondas de unos 7 minutos. Al término del tiempo asignado, se termina la ronda en curso y el jugador con más puntos gana la partida. Se barajan las cartas de argumentos falaces, así como las cartas de escenario.</p>
 <p>Se forman 2 mazos de cartas de escenario colocados en el centro de la mesa. Se reparten a cada jugador 5 cartas de argumentos falaces que conserva para sí. El resto de las cartas constituye la reserva.</p>
-<p>Cada jugador se equipa con un pequeño objeto único (moneda, alubia...) para la votación. El primer robador es quien recuerde primero un argumento engañoso.</p>","<p>بحسب عدد اللاعبين ومستوى الصعوبة المرغوب فيه، تُشكَّل رزمة سحب بطاقات الحجج المغلوطة بإضافة المستويات المشار إليها في أسفل يمين البطاقات تصاعديًا. ويلزم لذلك حدًّا أدنى قدره 7 × عدد اللاعبين.</p>
+<p>Cada jugador se equipa con un pequeño objeto único (moneda, alubia…) para la votación. El primer robador es quien recuerde primero un argumento engañoso.</p>","<p>بحسب عدد اللاعبين ومستوى الصعوبة المرغوب فيه، تُشكَّل رزمة سحب بطاقات الحجج المغلوطة بإضافة المستويات المشار إليها في أسفل يمين البطاقات تصاعديًا. ويلزم لذلك حدًّا أدنى قدره 7 × عدد اللاعبين.</p>
 <p>يُختار زمن اللعب. ويتألف هذا الزمن من تعاقب جولات مدتها نحو 7 دقائق. وعند انتهاء الوقت المخصص، تُستكمل الجولة الجارية، ويحرز اللاعب الذي جمع أكبر عدد من النقاط الفوزَ في اللعبة. وتُخلط بطاقات الحجج المغلوطة، وكذلك بطاقات السيناريو.</p>
 <p>تُشكَّل رُزمتان من بطاقات السيناريو وتوضعان في وسط الطاولة. ويُوزَّع على كل لاعب 5 بطاقات من بطاقات الحجج المغلوطة يحتفظ بها لنفسه. أما بقية البطاقات فتشكّل المخزون.</p>
-<p>يأخذ كل لاعب معه شيئًا صغيرًا مميزًا وفريدًا (عملة معدنية، حبة فاصوليا...) للتصويت. والساحب الأول هو اللاعب الذي يتذكر أولًا حجةً خادعة.</p>","<p>بسته به تعداد بازیکنان و سطح دشواریِ موردنظر، دستهٔ کارت‌های استدلالِ مغالطه‌آمیز را با افزودنِ سطح‌هایی که در پایینِ سمت راستِ کارت‌ها مشخص شده‌اند، به ترتیبِ صعودی تشکیل می‌دهیم. حداقل به ۷ برابرِ تعدادِ بازیکنان کارت نیاز است.</p>
+<p>يأخذ كل لاعب معه شيئًا صغيرًا مميزًا وفريدًا (عملة معدنية، حبة فاصوليا…) للتصويت. والساحب الأول هو اللاعب الذي يتذكر أولًا حجةً خادعة.</p>","<p>بسته به تعداد بازیکنان و سطح دشواریِ موردنظر، دستهٔ کارت‌های استدلالِ مغالطه‌آمیز را با افزودنِ سطح‌هایی که در پایینِ سمت راستِ کارت‌ها مشخص شده‌اند، به ترتیبِ صعودی تشکیل می‌دهیم. حداقل به ۷ برابرِ تعدادِ بازیکنان کارت نیاز است.</p>
 <p>مدتِ بازی را انتخاب می‌کنیم. بازی شامل رشته‌ای از دورهای حدوداً ۷ دقیقه‌ای است. با پایانِ زمانِ تعیین‌شده، دورِ در جریان را به پایان می‌رسانیم و بازیکنی که بیشترین امتیاز را دارد برندهٔ بازی می‌شود. کارت‌های استدلالِ مغالطه‌آمیز و همچنین کارت‌های سناریو را بُر می‌زنیم.</p>
 <p>۲ دستهٔ کارتِ سناریو تشکیل می‌دهیم و آن‌ها را در وسطِ میز قرار می‌دهیم. به هر بازیکن ۵ کارتِ استدلالِ مغالطه‌آمیز می‌دهیم که نزدِ خود نگه می‌دارد. بقیهٔ کارت‌ها ذخیره را تشکیل می‌دهند.</p>
 <p>هر بازیکن یک شیء کوچک و منحصربه‌فرد برای رأی‌گیری همراه دارد (سکه، لوبیا، …). نخستین کارت‌کش کسی است که زودتر از همه یک استدلالِ فریبنده را به یاد بیاورد.</p>","<p>根据玩家人数和所需难度，通过按递增顺序加入卡牌右下角标示的等级，来组成谬误论证牌的抽牌堆。所需数量至少为玩家人数的 7 倍。</p>
@@ -6445,8 +6565,8 @@ AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78|Content,60,Game Rule,AE1EDEFA-6F1B-4593-823
 <ul>
 <li>本轮获胜者不抽新牌。 (✅🏆➜❌0🎴)</li>
 <li>其他所有玩家抽 1 张牌（❌🏆➜✅1🎴），或在 3 人或 4 人游戏中抽 2 张牌</li>
-<li>获得投票的评审团成员额外抽 1 张牌（✅🧲👇➜✅+1🎴)</li>
-<li>找出诡辩者所出牌的评审额外抽 1 张牌（✅👇🎭➜✅+1🎴)</li>
+<li>获得投票的评审团成员额外抽 1 张牌（✅🧲👇➜✅+1🎴）</li>
+<li>找出诡辩者所出牌的评审额外抽 1 张牌（✅👇🎭➜✅+1🎴）</li>
 <li>已打出的牌放回牌库。</li>
 <li>获胜者左侧的邻座成为下一轮的抽牌者。</li>
 </ul>"

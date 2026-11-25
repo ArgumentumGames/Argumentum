@@ -8,21 +8,26 @@ Link row of the existing card 6A24AE92 — the 4 cells carrying a pre-release UR
 Official registry is never modified. Usage: python -I derive_run_registry.py <official.csv> <out.csv>
 
 Auto-checks (each one a STOP, exit non nul) :
-  - l'empreinte d'entrée est celle du registre officiel (sha256[:16] ``277aac83e0b71e64``) ;
+  - l'empreinte d'entrée est celle du registre officiel (sha256[:16] ``caab704810924fb0``,
+    depuis P23-36 le 25/11 ; avant : ``fc23b9a748ce3758`` (P24-32), ``277aac83e0b71e64``) ;
   - pas de BOM ;
   - 673 lignes de corps -> 22 retirées -> 651 conservées ;
   - aucune chaîne ``-review`` ne survit dans ce qui reste ;
   - l'aller-retour du parse est identique.
 
-Empreinte de sortie attendue (calculée par ai-01 sur le blob master) :
-  sha256 = 92bf1e0624256e7f672035446461718f64e5cd6a64912390d72a1ebaf0e1fbc0 (1 166 864 octets).
+Empreinte de sortie attendue :
+  sha256 = ef3eaa6a8ca08f46394654fcd759fc21ced09d19897d4d5886f40204848258b4 (1 187 696 octets).
+Calculée par ai-01 sur le blob master pour l'empreinte 92bf1e06… (1 166 864 octets) ; re-mesurée
+par po-2024 (P24-32, 24/11) pour fc23b9a7… (1 166 868 octets) ; re-mesurée par po-2023 (P23-36,
+25/11) après l'append des 8 versions du bloc « Argumentation » (+20 828 octets), 673 -> 22 -> 651
+inchangé — contrôle cellule à cellule de la dérivée : 8 cellules différentes, les 8 du grain.
 Toute autre valeur : STOP, et poster les deux sorties.
 """
 import csv, hashlib, io, sys
 src, dst = sys.argv[1], sys.argv[2]
 raw = open(src, 'rb').read()
 print('input sha256[:16]', hashlib.sha256(raw).hexdigest()[:16], 'bytes', len(raw))
-assert hashlib.sha256(raw).hexdigest()[:16] == '277aac83e0b71e64', 'STOP: input is not the official registry'
+assert hashlib.sha256(raw).hexdigest()[:16] == 'caab704810924fb0', 'STOP: input is not the official registry'
 assert not raw.startswith(b'\xef\xbb\xbf')
 rows = list(csv.reader(io.StringIO(raw.decode('utf-8'), newline='')))
 hdr, body = rows[0], rows[1:]
