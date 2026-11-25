@@ -64,10 +64,12 @@
 #        ligne d'un deplacement de documentation) : chaque facon de perdre une ligne
 #        est vue, et un organe qui ne peut pas mesurer rend 2, jamais un vert.
 #     8. tools/test_docs-index-contract.py -- std-lib + `git ls-files`, offline,
-#        8 cas. Le cas 1 lit les index du depot reel (tout README.md sous docs/ ou
+#        10 cas. Le cas 1 lit les index du depot reel (tout README.md sous docs/ ou
 #        tools/ qui porte la marque `<!-- index-of-record -->`) : chaque fichier
-#        suivi du dossier y est cite avec un statut, aucun lien mort. Les cas 6-12
-#        eprouvent les detecteurs sur des depots `git init` jetables. Methode :
+#        suivi du dossier y est cite avec un statut, aucun lien mort. Le cas 2
+#        exige que les neuf dossiers consolides (REQUIRED_INDEXES) gardent leur
+#        marque. Les cas 6-13 eprouvent les detecteurs sur des depots `git init`
+#        jetables. Methode :
 #        docs/agents/consolidation.md.
 #     9. tools/test_issue-closing-block.py -- std-lib, offline, 18 cas. Le `gh` de
 #        tools/issue-closing-block.py est injecte : les tests le simulent, aucun appel
@@ -246,8 +248,9 @@ jobs:
         # 5 cas, std-lib, offline, ~0.4 s : execute tools/458-derive-run-registry.py
         # sur le registre officiel COMMITTE (toujours present : aucun artefact) et
         # epingle la copie d'execution de l'arbitrage ai-01 du 22/11 : empreinte de
-        # sortie a130a663... (1 166 868 octets ; 92bf1e06... / 1 166 864 avant la
-        # correction typographique P24-32), 673 -> 22 retirees -> 651 conservees,
+        # sortie ef3eaa6a... (1 187 696 octets ; a130a663... / 1 166 868 avant
+        # l'append P23-36 du 25/11, 92bf1e06... / 1 166 864 avant la correction
+        # typographique P24-32), 673 -> 22 retirees -> 651 conservees,
         # la carte 6A24AE92 garde ses autres champs, aucun marqueur -review survivant,
         # et controle inverse : un registre mute d'un octet est refuse (exit non nul,
         # aucune sortie ecrite). Toute derive LEGITIME du registre officiel rougit
@@ -344,9 +347,10 @@ jobs:
         run: python tools/test_doc-move-preservation.py
 
       - name: Run the index-of-record contract (docs/, tools/)
-        # 8 cas, std-lib + `git ls-files`. Tout README.md qui porte la marque
+        # 10 cas, std-lib + `git ls-files`. Tout README.md qui porte la marque
         # `<!-- index-of-record -->` doit citer chaque fichier suivi de son dossier,
         # avec un statut : un fichier ajoute sans sa ligne d'index rougit la PR.
+        # Les neuf dossiers de REQUIRED_INDEXES ne peuvent pas perdre la marque.
         run: python tools/test_docs-index-contract.py
 
       - name: Run the issue closing-block contract

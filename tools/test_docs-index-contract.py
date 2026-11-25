@@ -29,8 +29,10 @@ CE QUI EST ÉPINGLÉ, pour chaque index (sous `docs/` et `tools/`)
       exécuter)
    4. un sous-dossier qui porte son propre index est tenu par cet index-là ; l'index
       parent doit seulement le citer
-   5. plancher — au moins un index existe : sinon ce contrat est vert sans rien tenir
-   6-12. contrôles inverses, sur des dépôts `git init` jetables : chaque défaut ci-dessus EST
+   5. plancher — au moins un index existe : sinon ce contrat est vert sans rien tenir — et les
+      dossiers déjà consolidés (`REQUIRED_INDEXES`) portent toujours la marque : la perdre ne
+      les rend pas « non consolidés », cela les fait sortir du contrat sans bruit
+   6-13. contrôles inverses, sur des dépôts `git init` jetables : chaque défaut ci-dessus EST
       vu, et ce qui n'en est pas un (prose, lien hors dossier, fichier non suivi) ne l'est pas
 
 CE QUI N'EST PAS ÉPINGLÉ : que le statut soit JUSTE (c'est le jugement de qui consolide,
@@ -87,6 +89,33 @@ def indexes(root):
             if os.path.basename(rel) == "README.md" and is_index(read(root, rel)):
                 found.append(os.path.dirname(rel))
     return sorted(found)
+
+
+# Les dossiers qui DOIVENT rester des index of record. La marque est ce qui soumet un README
+# au contrat : la retirer ne déconsolide rien, cela sort le dossier du contrat sans bruit.
+# Triée, un dossier par ligne. Plancher, pas plafond : un index qui n'y figure pas est tenu
+# par test_01 dès qu'il porte la marque.
+REQUIRED_INDEXES = (
+    "docs/corpus",
+    "docs/dnn",
+    "docs/ontology",
+    "docs/publication",
+    "docs/release-dossier",
+    "docs/repo",
+    "docs/site",
+    "docs/taxonomy",
+    "docs/translation",
+)
+
+
+def unmarked_required(root, required=REQUIRED_INDEXES):
+    """Les dossiers requis dont le README manque ou ne porte plus la marque — vide = tous tiennent."""
+    found = []
+    for folder in required:
+        full = os.path.join(root, folder, "README.md")
+        if not os.path.isfile(full) or not is_index(read(root, folder + "/README.md")):
+            found.append(folder)
+    return found
 
 
 def cited(root, folder):
@@ -147,6 +176,12 @@ class DocsIndexContract(unittest.TestCase):
         self.assertTrue(found, "aucun README.md ne porte la marque %s" % MARKER)
         for folder in found:
             self.assertEqual(defects(ROOT, folder, found), [], folder)
+
+    def test_02_the_required_folders_are_still_indexes_of_record(self):
+        # La liste ne demande à personne d'être consolidé : elle interdit à un dossier qui
+        # l'est de quitter le contrat en perdant sa marque. Chaque dossier manquant est nommé.
+        self.assertEqual(unmarked_required(ROOT), [],
+                         "dossiers qui ne portent plus la marque %s" % MARKER)
 
 
 class InverseControls(unittest.TestCase):
@@ -261,6 +296,18 @@ class InverseControls(unittest.TestCase):
                 indexes(elsewhere)
         finally:
             shutil.rmtree(elsewhere, ignore_errors=True)
+
+    def test_13_a_required_folder_that_loses_the_mark_is_seen_and_named(self):
+        required = ("docs/area", "docs/gone")
+        # Un dossier requis sans README du tout est vu dès le départ ; celui qui porte la marque passe.
+        self.assertEqual(unmarked_required(self.root, required), ["docs/gone"])
+        # La marque disparaît : le dossier est nommé, dans l'ordre de la liste.
+        self.write("docs/area/README.md", "# Area\n\nNo mark any more.\n")
+        self.assertEqual(unmarked_required(self.root, required), ["docs/area", "docs/gone"])
+        # La citer n'est pas la porter, ni l'écrire dans un bloc de code.
+        for text in ("# Area\n\nAdd `" + MARKER + "` to opt in.\n", "# Area\n\n```\n" + MARKER + "\n```\n"):
+            self.write("docs/area/README.md", text)
+            self.assertEqual(unmarked_required(self.root, ("docs/area",)), ["docs/area"])
 
 
 if __name__ == "__main__":
