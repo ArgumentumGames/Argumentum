@@ -14,7 +14,7 @@ contre le registre committé, sans toucher à la base.
 CE QUI EST ÉPINGLÉ :
   1. Le registre officiel committé passe : 673 corps -> 22 retirées -> 651
      conservées, et l'empreinte de sortie est EXACTEMENT celle mesurée sur le
-     registre committé (``75a6028d…``, 1 186 808 octets depuis #2399 le 26/11 ;
+     registre committé (``03bb92ae…``, 1 187 152 octets depuis #2399 le 26/11 ;
      ``ef3eaa6a…``, 1 187 696 octets ; ``a130a663…``, 1 166 868 octets avant
      l'append P23-36 du 25/11 ; ``92bf1e06…``, 1 166 864 octets avant la correction
      typographique P24-32 du 24/11) - toute dérive du registre officiel rougit ici
@@ -43,9 +43,9 @@ HERE = pathlib.Path(__file__).resolve().parent
 TOOL = HERE / "458-derive-run-registry.py"
 REGISTRY = HERE.parent / "docs" / "dnn-localization" / "eav-content.csv"
 
-OFFICIAL_IN = "cf34842d691b8968"
-EXPECTED_OUT_SHA = "75a6028d09e6e5cf0a8724573e6588cfaff324a1918f6dbafdc240efc90a2f99"
-EXPECTED_OUT_BYTES = 1186808
+OFFICIAL_IN = "7f1fb16617e1ec53"
+EXPECTED_OUT_SHA = "03bb92aec3fa3af7e5cc7d2e4a61a417fb4f5b2324381b6c7eb2417a0e2fcb11"
+EXPECTED_OUT_BYTES = 1187152
 
 MISSING_ENTITIES = {
     "494AB453-EC8B-4372-A6F7-A4A13A142153",
