@@ -302,13 +302,15 @@ Fichiers : `NN-<lang>-<dossier>-planche.jpg` (320–600 Ko) et
   lisait le fichier brut, donc restait verte sur un appel commenté. Elle lit maintenant
   le code sans ses commentaires — littéraux copiés tels quels, y compris une chaîne
   interpolée avec les littéraux de ses trous — et porte un contrôle inverse : le même
-  fichier avec l'appel commenté doit lui échapper. Mesuré sur le fichier réel le 26/11
-  avec sauvegarde et restauration par empreinte : verte sur l'appel commenté avant,
-  rouge maintenant.
+  fichier avec l'appel commenté doit lui échapper. Sur l'appel commenté : verte sur
+  `d4519bf7` (mesuré par po-2024), rouge maintenant (mesuré sur le fichier réel le
+  26/11, avec sauvegarde et restauration par empreinte).
 - **Les empreintes des 11 fichiers** : SHA-256 épinglés dans `EmbeddedFontFaces`,
   vérifiés à la construction du CSS, et tenus égaux à la table de
   `Cards/fonts/README.md` par un test. Un octet retourné passé l'en-tête `wOF2`
-  allumait 0 test ; il lève maintenant une exception qui nomme le fichier.
+  allumait 0 test sur `d4519bf7` (mesuré par po-2024) ; appliqué au fichier réel le
+  26/11, il allume 8 tests rouges, et `BuildCss` lève une exception qui nomme le
+  fichier.
 
 ---
 
