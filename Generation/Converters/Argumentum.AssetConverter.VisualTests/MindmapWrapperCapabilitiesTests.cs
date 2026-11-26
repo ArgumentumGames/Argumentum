@@ -278,13 +278,19 @@ namespace Argumentum.AssetConverter.VisualTests
         /// seven rows on #pk=1084).
         /// </summary>
         private const string CardFitSweepJs = @"(arg) => {
-            // Optional argument (Cap25), both properties optional:
+            // Optional argument (Cap25), all three properties optional:
             //   minChars — before a node is opened, its title is lengthened to at least this many
             //              characters by repeating its own label (script and direction preserved);
-            //   only     — the keys of the only nodes to open (the fast inverse controls).
+            //   only     — the keys of the only nodes to open (the fast inverse controls);
+            //   sample   — open only this many nodes: a third of them the longest natural labels,
+            //              a third the busiest sheets, the rest evenly spaced over document order.
+            //              Opening all 1408 sheets per case cost the CI ~8 min on every pull
+            //              request (#2403), so the long-title stress takes a declared sample and
+            //              proves below that it kept the extremes it was chosen for.
             const opt = arg || {};
             const minChars = opt.minChars || 0;
             const only = opt.only || null;
+            const sample = opt.sample > 0 ? Math.floor(opt.sample) : 0;
             const host = document.getElementById('svgObject');
             const nodeDoc = (host && host.contentDocument) ? host.contentDocument : document;
             const all = Array.from(nodeDoc.querySelectorAll('g.node'));
@@ -303,11 +309,44 @@ namespace Argumentum.AssetConverter.VisualTests
                 if (out.violations.length < 12) out.violations.push(key + ':' + name);
             };
             const tol = 0.6;
+            // Relations per path, counted the way the card fills its own relation list (source or
+            // target): the busiest sheet is the one with the most rows on screen.
+            const relCount = {};
+            (nav.linkRecs || []).forEach((l) => {
+                if (l.source) relCount[l.source] = (relCount[l.source] || 0) + 1;
+                if (l.target) relCount[l.target] = (relCount[l.target] || 0) + 1;
+            });
+            const labelLen = (e) => (e.rec.label || '').length;
+            const opened = [];   // every node the navigation index resolves, in document order
             for (const n of all) {
                 const rec = nav.byPk[n.getAttribute('pk')] || nav.byPath[n.getAttribute('path')];
                 if (!rec) continue;
                 const key = n.getAttribute('pk') || n.getAttribute('path') || '?';
                 if (only && only.indexOf(key) < 0) continue;
+                opened.push({ n: n, rec: rec, key: key });
+            }
+            let targets = opened;
+            if (sample > 0 && opened.length > sample) {
+                const quota = Math.floor(sample / 3);
+                const byKey = (a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0);
+                const byLabel = opened.slice().sort((a, b) => labelLen(b) - labelLen(a) || byKey(a, b));
+                const byRel = opened.slice().sort(
+                    (a, b) => (relCount[b.rec.path] || 0) - (relCount[a.rec.path] || 0) || byKey(a, b));
+                const chosen = new Set();
+                byLabel.slice(0, quota).forEach((e) => chosen.add(e.key));
+                byRel.slice(0, quota).forEach((e) => chosen.add(e.key));
+                for (let i = 0; i < sample && chosen.size < sample; i++)
+                    chosen.add(opened[Math.floor(i * opened.length / sample)].key);
+                for (const e of opened) {
+                    if (chosen.size >= sample) break;
+                    chosen.add(e.key);
+                }
+                targets = opened.filter((e) => chosen.has(e.key));
+            }
+            const longestLabel = (arr) => arr.reduce((m, e) => Math.max(m, labelLen(e)), 0);
+            const busiest = (arr) => arr.reduce((m, e) => Math.max(m, relCount[e.rec.path] || 0), 0);
+            for (const t of targets) {
+                const n = t.n, rec = t.rec, key = t.key;
                 if (minChars > 0) {
                     const base = ((rec.label || n.textContent || '').trim()) || 'titre';
                     let long = base;
@@ -379,13 +418,18 @@ namespace Argumentum.AssetConverter.VisualTests
                 card.dispatchEvent(new MouseEvent('mouseleave'));
             }
             // Fields 7 and 8: shortest and longest title the sweep opened (characters).
+            // Fields 9 to 12: the longest natural label and the highest relation count over the
+            // whole map, then over what was opened — equal means the sample kept both extremes.
             return [String(out.all), String(out.nodes), String(out.withRelations), String(out.withLink),
                     String(out.withoutLink), JSON.stringify(out.tally), out.violations.join(' | '),
-                    String(out.nodes ? out.minTitleChars : 0), String(out.maxTitleChars)];
+                    String(out.nodes ? out.minTitleChars : 0), String(out.maxTitleChars),
+                    String(longestLabel(opened)), String(longestLabel(targets)),
+                    String(busiest(opened)), String(busiest(targets))];
         }";
 
         /// <summary>Asserts the sweep found no violation, and states what it actually covered.</summary>
-        private void AssertSweepClean(string[] sweep, string lang, string variant, int width, int height)
+        private void AssertSweepClean(string[] sweep, string lang, string variant, int width, int height,
+                                      int sampledNodes = 0)
         {
             Assert.NotNull(sweep);
             Assert.True(sweep.Length >= 7, "the sweep must return 7 fields");
@@ -395,9 +439,13 @@ namespace Argumentum.AssetConverter.VisualTests
             _output.WriteLine($"[{lang}/{variant} {width}x{height}] nodes={nodes}/{all} " +
                               $"withRelations={withRel} withLink={withLink} withoutLink={withoutLink} " +
                               $"titleChars={(sweep.Length > 8 ? sweep[7] + ".." + sweep[8] : "?")} tally={sweep[5]}");
-            Assert.True(nodes >= 200 && nodes == all,
-                $"the sweep must cover every navigable node ({nodes} of {all}) — a lower count means the " +
-                "navigation index did not resolve and the assertions below would be vacuous");
+            // A full sweep must reach every navigable node; a declared sample must reach exactly its
+            // size, bounded by the corpus. Anything else means the navigation index did not resolve
+            // and the assertions below would be vacuous.
+            var wanted = sampledNodes > 0 ? Math.Min(sampledNodes, all) : all;
+            Assert.True(nodes >= 200 && nodes == wanted,
+                $"the sweep must cover the nodes it promised ({nodes} opened, wanted {wanted}, map {all}) — " +
+                "another count means the navigation index did not resolve and the assertions below would be vacuous");
             Assert.True(withLink >= 1 && withoutLink >= 1,
                 $"the fixture must offer both a node WITH a destination ({withLink}) and one WITHOUT ({withoutLink}) — " +
                 "otherwise the link assertions of the sweep ran on one side only");
@@ -2194,15 +2242,29 @@ namespace Argumentum.AssetConverter.VisualTests
         }
 
         /// <summary>
-        /// #2400 — "un titre long". Every sheet of the map is opened with a title lengthened to at
-        /// least <see cref="LongTitleChars"/> characters and must still fit the card. The title is
-        /// lengthened by repeating the node's own label, so script and writing direction stay those
-        /// of the language under test. The sweep's three title notes had never been seen to fire on
-        /// the corpus: the second half of the control injects one style per note — a title cut by
-        /// its box, a title leaving the image section, a header band leaving the card — and requires
-        /// the note to fire, else "0 violation" would only say that no title was long enough.
+        /// #2400 — "un titre long". A declared sample of the map's sheets is opened with a title
+        /// lengthened to at least <see cref="LongTitleChars"/> characters and must still fit the
+        /// card. The title is lengthened by repeating the node's own label, so script and writing
+        /// direction stay those of the language under test. The sweep's three title notes had never
+        /// been seen to fire on the corpus: the second half of the control injects one style per
+        /// note — a title cut by its box, a title leaving the image section, a header band leaving
+        /// the card — and requires the note to fire, else "0 violation" would only say that no
+        /// title was long enough.
+        /// <para>
+        /// Why a sample and not every sheet: opening all 1408 sheets with a long title in each of
+        /// the eight cases took the behavioural workflow from about 4 minutes to 11 min 59 s, and
+        /// that workflow runs on every pull request. The property under test depends on the title's
+        /// length, the number of relations and whether the sheet carries a link — not on which
+        /// node carries them. The sample therefore keeps the longest natural labels, the busiest
+        /// sheets and evenly spaced ones, and the test asserts that both extremes are really in it.
+        /// The exhaustive sweep was measured once on these same template bytes, at commit e1ebce3d
+        /// of #2403: 34 controls red on the pre-#2400 templates, 102 green on the fix.
+        /// </para>
         /// </summary>
         private const int LongTitleChars = 240;
+
+        /// <summary>Sheets opened per case by the long-title sweep — see the rationale above.</summary>
+        private const int LongTitleSample = 200;
 
         private static readonly (string Css, string Note)[] TitleNoteMutants =
         {
@@ -2234,7 +2296,7 @@ namespace Argumentum.AssetConverter.VisualTests
         [InlineData("ar", "Fallacies_ar.content.svg", "inline", 1400, 900)]
         [InlineData("ar", "Fallacies_ar.content.svg", "ext", 390, 844)]
         [InlineData("ar", "Fallacies_ar.content.svg", "ext", 1400, 900)]
-        public async Task Cap25_LongTitle_EverySheetStillFits_AndTheControlSeesACutTitle(
+        public async Task Cap25_LongTitle_ASampleOfSheetsStillFits_AndTheControlSeesACutTitle(
             string lang, string svgFileName, string variant, int width, int height)
         {
             var page = variant == "ext"
@@ -2245,11 +2307,18 @@ namespace Argumentum.AssetConverter.VisualTests
                 if (variant == "ext") await WaitForExternalNavigationAsync(page);
                 else await WaitForViewportSettledAsync(page);
 
-                var longSweep = await page.EvaluateAsync<string[]>(CardFitSweepJs, new { minChars = LongTitleChars });
-                AssertSweepClean(longSweep, lang, variant + "+longTitle", width, height);
+                var longSweep = await page.EvaluateAsync<string[]>(CardFitSweepJs,
+                    new { minChars = LongTitleChars, sample = LongTitleSample });
+                AssertSweepClean(longSweep, lang, variant + "+longTitle", width, height, LongTitleSample);
                 Assert.True(int.Parse(longSweep[7]) >= LongTitleChars,
                     $"the sweep must really have opened long titles: the shortest it opened is {longSweep[7]} " +
                     $"characters, wanted at least {LongTitleChars}");
+                Assert.True(longSweep.Length >= 13, "the sweep must report the extremes it was asked to keep");
+                Assert.Equal(longSweep[9], longSweep[10]);   // the longest natural label of the map is in the sample
+                Assert.Equal(longSweep[11], longSweep[12]);  // so is its busiest sheet
+                _output.WriteLine($"[{lang}/{variant} {width}x{height}] long title over {longSweep[1]} sheets " +
+                                  $"of {longSweep[0]}: longest label {longSweep[9]} chars, " +
+                                  $"busiest sheet {longSweep[11]} relations, titles {longSweep[7]}..{longSweep[8]} chars");
 
                 var key = await page.EvaluateAsync<string>(FirstNodeKeyJs);
                 Assert.False(string.IsNullOrEmpty(key), "the navigation index must offer at least one node");
