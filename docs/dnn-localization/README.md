@@ -126,6 +126,12 @@ Everything else is the record that led to it.
 | [eav-content.csv](eav-content.csv) | 2026-11-19 | `current` | The **injection registry** (2sxc EAV pivot, 8 language columns). Read by the 147-cell plan and by `tools/458-eav-content-export.py verify`. |
 | [download-cards-canon.csv](download-cards-canon.csv) | 2026-10-28 | `historical` | Canonical download labels (Tarot/Poker, full/light) in 8 languages. No wired consumer measured on 2026-11-24 (no reference in `.md`/`.py`/`.cs`/`.json`). |
 
+### §5.1 — Instrument
+
+| File | Date | Status | What it is |
+|---|---|---|---|
+| [dnn-page-witness.py](dnn-page-witness.py) | 2026-11-26 | `current` | The **read-only recette witness** of #2398 / #2397 / #2181: anonymous GETs in the 8 cultures on both environments — the 2sxc error marker on 7 public journeys, the French body served on `/xx/Argumentation`, the FR menu link followed in the same session. Stdlib only; `--self-test` is the inverse control. Measured 2026-11-26: production 22 failures, preproduction 0. It **measures, it does not fix**: the three defects are not reproduced in preproduction. |
+
 ---
 
 ## §6 — Subfolders
