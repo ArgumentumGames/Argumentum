@@ -422,14 +422,15 @@ the 10.4.1 lot plus the two arbitrated legal values of §9.1). The **CLDR table 
 or instrument a row names was found on master — the **eleven** test classes and the one instrument
 (`DnnPersianScriptMarkers`).
 
-Unlike §9's fragments, **four files of this tranche are named outside the folder**, and three of them are
-read by a test or a live tool — the build script excepted, its own row saying why it still counts:
+Unlike §9's fragments, **four files of this tranche are named outside the folder** — in the doc comment of
+a test class or the header of a tool, and **none of them read at run time by the citation that names them**
+(the CLDR table is read by its builder, which no test runs — its own row says why it still counts):
 `458-item9bis-list-country-cldr-47.json` and `458-item9bis-list-country-build.py` at
 `DnnListCountryLocalizationGuardTests.cs:19-20` (the reproducible source of truth and its byte-exact
 constructor), `458-langpack-residu-visible-2026-11-05.md` at
-`DnnVisibleResidualLangpackGuardTests.cs:13` and `tools/457-p24-01-langpack-residu-visible.py:5` (source of
-the measure a live tool replays), and `458-newsletter-store-chain-2026-10-26.md` at
-`tools/458-eav-content-export.py:114` (the attribution the export relies on). A `.md` is dated by its own
+`DnnVisibleResidualLangpackGuardTests.cs:13` and `tools/457-p24-01-langpack-residu-visible.py:5` (the
+measure the tool's gestures derive from), and `458-newsletter-store-chain-2026-10-26.md` at
+`tools/458-eav-content-export.py:114` (where the export's attribution comes from). A `.md` is dated by its own
 date; a data file or a builder by the last commit that touched it; the two pack notes with neither a date
 in their name nor in their header (`458-item9bis-fa-ir-pack.md`, `458-item9bis-zh-cn-pack.md`) are dated by
 the commit that carried them.
@@ -492,7 +493,7 @@ happened on 24/11 (§0). The *visible* measure is the one still replayed — it 
 | File | Date | Status | What it is |
 |---|---|---|---|
 | [458-langpack-residu-2026-11-05.md](458-langpack-residu-2026-11-05.md) | 2026-11-05 | `historical` | The residual, dry: per-culture counts, the three families carrying almost all of it, what it is **not**, and §4's table of the three decisions to take before go-live with a recommended answer each. Cross-check: es-ES "suivies" = **192** here and "master resx: 192" in the build (#2148). |
-| [458-langpack-residu-visible-2026-11-05.md](458-langpack-residu-visible-2026-11-05.md) | 2026-11-05 | `current` | The **visible** part of the residual, measured *served* on preprod (7 pack cultures × 6 visitor surfaces, 05/11 ≈15:20Z; a hit = the exact English value of a residual neutral family present in the served body). Still the source of the measure replayed by `tools/457-p24-01-langpack-residu-visible.py:5` and cited by `DnnVisibleResidualLangpackGuardTests.cs:13` (#2154). |
+| [458-langpack-residu-visible-2026-11-05.md](458-langpack-residu-visible-2026-11-05.md) | 2026-11-05 | `current` | The **visible** part of the residual, measured *served* on preprod (7 pack cultures × 6 visitor surfaces, 05/11 ≈15:20Z; a hit = the exact English value of a residual neutral family present in the served body). Still the source of the measure cited — **not** replayed — by `tools/457-p24-01-langpack-residu-visible.py:5` and by `DnnVisibleResidualLangpackGuardTests.cs:13` (#2154). |
 
 ### §10.4 — pt-BR and the fa-IR lot 4a base (4 files)
 
