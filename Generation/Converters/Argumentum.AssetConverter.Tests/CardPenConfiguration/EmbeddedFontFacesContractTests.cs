@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using FluentAssertions;
 using Xunit;
@@ -250,9 +252,9 @@ namespace Argumentum.AssetConverter.Tests.CardPenConfiguration
 		}
 
 		[Fact]
-		public void Inject_PrependsTheFacesOnce()
+		public void Inject_PrependsTheFacesOnce_AndOnlyWhereAFamilyIsNamed()
 		{
-			var template = ".card { color: red; }";
+			var template = ".card { color: red; font-family: 'Barlow', 'Rubik', sans-serif; }";
 
 			var injected = EmbeddedFontFaces.Inject(template);
 
@@ -263,7 +265,170 @@ namespace Argumentum.AssetConverter.Tests.CardPenConfiguration
 			EmbeddedFontFaces.Inject(injected).Should().Be(injected,
 				"a document rendered twice (page pool, retry) must not carry the CSS twice");
 
-			EmbeddedFontFaces.Inject(string.Empty).Should().Be(EmbeddedFontFaces.Css + "\n");
+			var unreferenced = ".card { color: red; font-family: 'Dosis', sans-serif; }";
+			EmbeddedFontFaces.Inject(unreferenced).Should().Be(unreferenced,
+				"a document that names none of the embedded families gets no rule and no base64: " +
+				"measured on the Memo face, which moved 364 314 px when the faces were injected into " +
+				"a document that uses none of them (dossier 2026-11-26-1485-polices-avant-apres, §4)");
+
+			EmbeddedFontFaces.Inject(string.Empty).Should().Be(string.Empty,
+				"an empty style sheet names nothing, so it gets nothing");
+		}
+
+		[Theory]
+		[InlineData("font-family: 'Barlow', 'Rubik', sans-serif;", "the plain declaration")]
+		[InlineData("font: 300 1.2em 'Barlow';", "the shorthand carries the family too")]
+		[InlineData("--font-heading: BARLOW;", "a custom property, any case (a CSS family name is case-insensitive)")]
+		[InlineData("font-family: \"rubik\";", "double quotes")]
+		[InlineData("font-family: 'Alfa Slab One';", "a name with a space")]
+		[InlineData("font-family: 'Alfa  Slab\tOne';", "inner white space is not a single space")]
+		[InlineData("/* 'Barlow' replaces DINPro */", "a comment is not a declaration, but the gate errs on injecting")]
+		public void ReferencesAnEmbeddedFamily_SeesTheFamilyWhereverItIsNamed(string declaration, string because)
+		{
+			EmbeddedFontFaces.ReferencesAnEmbeddedFamily(declaration).Should().BeTrue(because + ": " +
+				"a document the gate wrongly skips renders in the fallback font with no message — " +
+				"the defect this whole change removes");
+		}
+
+		[Theory]
+		[InlineData("font-family: 'Dosis', 'Gadugi', sans-serif;", "the Memo face's own stack")]
+		[InlineData("font-family: 'Bebas Neue', 'Oswald', sans-serif;", "a family that stays remote")]
+		[InlineData("font-family: 'Barlow2';", "a longer name is not the family")]
+		[InlineData("font-family: 'Barlow-Light';", "so is a hyphenated one")]
+		public void ReferencesAnEmbeddedFamily_DoesNotSeeWhatIsNotTheFamily(string css, string because)
+		{
+			EmbeddedFontFaces.ReferencesAnEmbeddedFamily(css).Should().BeFalse(because);
+		}
+
+		[Fact]
+		public void ReferencesAnEmbeddedFamily_IsFalseWithoutAStyleSheet()
+		{
+			EmbeddedFontFaces.ReferencesAnEmbeddedFamily(null).Should().BeFalse();
+			EmbeddedFontFaces.ReferencesAnEmbeddedFamily(string.Empty).Should().BeFalse();
+		}
+
+		[Fact]
+		public void ReferencingACorpusOfTemplates_OnlyTheOnesThatNameAFamilyReceiveTheFaces()
+		{
+			var templates = Directory
+				.EnumerateFiles(Path.Combine(TestRepoRoot.Find(), "Cards"), "*.json", SearchOption.AllDirectories)
+				.Where(path => !path.Split(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
+					.Any(segment => string.Equals(segment, "Archive", StringComparison.OrdinalIgnoreCase)))
+				.Select(path => (Path: path, Document: JsonDocument.Parse(File.ReadAllText(path))))
+				.Where(t => t.Document.RootElement.ValueKind == JsonValueKind.Object
+					&& t.Document.RootElement.TryGetProperty("css", out _))
+				.ToList();
+
+			templates.Should().HaveCountGreaterOrEqualTo(10,
+				"an anti-collapse floor, not the corpus size: the twelve card templates outside Archive/ " +
+				"measured on 2026-11-26 are one more than the enabled CardSets use. A glob that stopped " +
+				"matching would otherwise certify an empty set");
+
+			var withoutFaces = templates
+				.Where(t => !EmbeddedFontFaces.ReferencesAnEmbeddedFamily(
+					t.Document.RootElement.GetProperty("css").GetString()))
+				.Select(t => Path.GetFileName(t.Path))
+				.OrderBy(name => name, StringComparer.Ordinal)
+				.ToList();
+
+			withoutFaces.Should().BeEquivalentTo(
+				new[] { "Argumentum_Fallacies_Face_3_fr.json", "Argumentum_Memo_Face_fr.json" },
+				"exactly two templates name none of the embedded families: the Memo face, whose render " +
+				"moved 364 314 px with the faces injected into a document that uses none of them, and " +
+				"Face_3, which no enabled document harvests. A third one arriving here is either a " +
+				"template that lost its family — a regression the gate would now turn into a silent " +
+				"fallback — or a new template the gate starves");
+
+			foreach (var template in templates)
+			{
+				var outsideCss = template.Document.RootElement
+					.EnumerateObject()
+					.Where(p => p.Name != "css"
+						&& p.Value.ValueKind == JsonValueKind.String
+						&& EmbeddedFontFaces.ReferencesAnEmbeddedFamily(p.Value.GetString()))
+					.Select(p => p.Name)
+					.ToList();
+
+				outsideCss.Should().BeEmpty(
+					"the gate reads the css key only, and {0} names an embedded family outside it: a " +
+					"document the gate skips would render in the fallback font with no message",
+					Path.GetFileName(template.Path));
+			}
+		}
+
+		[Fact]
+		public void EveryVendoredBinary_MatchesItsPinnedDigest()
+		{
+			EmbeddedFontFaces.DeclaredDigests.Should().HaveCount(EmbeddedFontFaces.DeclaredFiles.Count,
+				"every declared file must carry exactly one digest, or a file could be vendored with no " +
+				"expectation attached to it");
+
+			foreach (var relative in EmbeddedFontFaces.DeclaredFiles)
+			{
+				var path = Path.Combine(FontDirectory, relative.Replace('/', Path.DirectorySeparatorChar));
+				var digest = Convert.ToHexString(
+					System.Security.Cryptography.SHA256.HashData(File.ReadAllBytes(path))).ToLowerInvariant();
+
+				digest.Should().Be(EmbeddedFontFaces.DeclaredDigests[relative],
+					"{0} must be the file whose digest was measured and published in Cards/fonts/README.md; " +
+					"a download that came back different is the silent fallback this class exists to remove",
+					relative);
+			}
+		}
+
+		[Fact]
+		public void TheFontsReadme_HoldsTheSameDigestTable()
+		{
+			var readme = File.ReadAllText(Path.Combine(FontDirectory, "README.md"));
+
+			var rows = Regex.Matches(
+				readme,
+				@"^\|\s*`([^`]+\.woff2)`\s*\|\s*(\d+)\s*\|\s*`([0-9a-f]{64})`\s*\|\s*$",
+				RegexOptions.Multiline);
+
+			rows.Should().HaveCount(EmbeddedFontFaces.DeclaredFiles.Count,
+				"the README is the published table: one row per vendored binary, none missing, none extra");
+
+			long total = 0;
+			foreach (Match row in rows)
+			{
+				var file = row.Groups[1].Value;
+				var bytes = long.Parse(row.Groups[2].Value, CultureInfo.InvariantCulture);
+
+				EmbeddedFontFaces.DeclaredDigests.Should().ContainKey(file,
+					"the README publishes {0}, which EmbeddedFontFaces does not declare", file);
+				EmbeddedFontFaces.DeclaredDigests[file].Should().Be(row.Groups[3].Value,
+					"the README and the declaration must pin the same digest for {0}, or the published " +
+					"table certifies a file the harvest does not check", file);
+
+				var path = Path.Combine(FontDirectory, file.Replace('/', Path.DirectorySeparatorChar));
+				new FileInfo(path).Length.Should().Be(bytes,
+					"the README publishes {0}'s size, and a size is the first thing a truncated download changes", file);
+
+				total += bytes;
+			}
+
+			var stated = Regex.Match(readme, @"([\d\s]+)bytes of woff2 in total");
+			stated.Success.Should().BeTrue(
+				"the README states the total; without it the table is a sum nobody made");
+
+			long.Parse(Regex.Replace(stated.Groups[1].Value, @"\s+", string.Empty), CultureInfo.InvariantCulture)
+				.Should().Be(total,
+					"the total the README publishes must be the sum of its own rows");
+		}
+
+		[Fact]
+		public void AlteredBinary_Throws_InsteadOfEmbeddingIt()
+		{
+			using var directory = FontDirectoryCopy.WithFlippedByte("barlow/Barlow-Bold-latin.woff2", 100);
+
+			Action build = () => EmbeddedFontFaces.BuildCss(directory.Path);
+
+			build.Should().Throw<InvalidDataException>()
+				.Which.Message.Should().Contain("SHA-256")
+				.And.Contain("Barlow-Bold-latin.woff2",
+					"the counter-review measured this mutation green on every test: the four magic bytes " +
+					"were intact, and Chromium would have rejected the face without a word");
 		}
 
 		[Fact]
@@ -304,34 +469,316 @@ namespace Argumentum.AssetConverter.Tests.CardPenConfiguration
 				TestRepoRoot.Find(),
 				"Generation", "Converters", "Argumentum.AssetConverter", "WebBasedGenerator", "Cardpen", "HarvestManager.cs"));
 
-			var method = Regex.Match(source,
+			// Read through the comments, not around them: a guard that searched the raw file was
+			// green when the call was commented out — the natural form of a regression, and the
+			// mutation the counter-review measured (228 tests, exit code 0).
+			var code = WithoutComments(source);
+
+			code.Should().Contain("EmbeddedFontFaces.Inject",
+				"the scrubber must not be the reason the call disappears: the live line carries it");
+
+			var method = Regex.Match(code,
 				@"Task<CardPenHarvest>\s+GenerateImages\s*\(\s*IPage\s+page\s*,\s*CardSetPayload\s+cardSetDocument\s*,\s*CardSetInfo\s+cardSetInfo\s*\)");
 			method.Success.Should().BeTrue(
 				"this guard reads HarvestManager.GenerateImages(IPage, CardSetPayload, CardSetInfo). Its " +
 				"signature changed: re-point the guard, or it certifies a method it no longer reads");
 
-			var inject = Regex.Match(source, @"EmbeddedFontFaces\.Inject\((\w+)\.CardSetDocument\.css\)");
+			var inject = Regex.Match(code, @"EmbeddedFontFaces\.Inject\((\w+)\.CardSetDocument\.css\)");
 			inject.Success.Should().BeTrue(
-				"no call to EmbeddedFontFaces.Inject remains in HarvestManager.cs: the vendored fonts are " +
-				"declared, tested, and never sent to CardPen — every template falls back to whatever " +
+				"no live call to EmbeddedFontFaces.Inject remains in HarvestManager.cs: the vendored fonts " +
+				"are declared, tested, and never sent to CardPen — every template falls back to whatever " +
 				"font the machine has");
 
 			inject.Index.Should().BeGreaterThan(method.Index,
 				"the faces are injected inside GenerateImages, the method that serialises the document");
 
-			var body = source.Substring(method.Index, inject.Index - method.Index);
+			var body = code.Substring(method.Index, inject.Index - method.Index);
 			Regex.IsMatch(body, @"^\s*(?:public|private|internal|protected)\s", RegexOptions.Multiline)
 				.Should().BeFalse(
 					"another member is declared between the GenerateImages signature and the call: the " +
 					"injection left the method that serialises the document");
 
 			var serialize = new Regex(@"JsonSerializer\.Serialize\((\w+)\.CardSetDocument\)")
-				.Match(source, inject.Index + inject.Length);
+				.Match(code, inject.Index + inject.Length);
 			serialize.Success.Should().BeTrue(
 				"the document is no longer serialised after the injection: the css that was enriched is " +
 				"not the css CardPen receives");
 			serialize.Groups[1].Value.Should().Be(inject.Groups[1].Value,
 				"the css that receives the faces must belong to the document that is serialised");
+
+			// Inverse control, in the test: the same file with the call commented out must fail the
+			// search above. Without it, a scrubber that removed everything would certify anything.
+			const string call = "cardSetDocument.CardSetDocument.css = EmbeddedFontFaces.Inject(cardSetDocument.CardSetDocument.css);";
+			var commented = source.Replace(call, "// " + call);
+			commented.Should().NotBe(source, "the mutant must have landed: the call is still written as this guard expects");
+
+			Regex.IsMatch(WithoutComments(commented), @"EmbeddedFontFaces\.Inject\((\w+)\.CardSetDocument\.css\)")
+				.Should().BeFalse(
+					"a commented-out call is exactly what the guard must see through: the counter-review " +
+					"measured the raw-file version green on it");
+		}
+
+		/// <summary>
+		/// The source with every comment character replaced by a space — same length, so an index
+		/// found in the result is the same index in the argument. Literals are copied through, because
+		/// their <c>//</c> and <c>/*</c> are text: a string, a character, a verbatim string with its
+		/// doubled quotes, an interpolated string with the code of its holes (which may hold literals
+		/// of its own) and a raw string. An apostrophe inside a comment never reaches the literal
+		/// branch, the comment being skipped as a whole.
+		/// </summary>
+		private static string WithoutComments(string source)
+		{
+			var characters = source.ToCharArray();
+			var index = 0;
+			while (index < characters.Length)
+			{
+				index = ScanUnit(characters, index);
+			}
+
+			return new string(characters);
+		}
+
+		/// <summary>Scans one unit of code at <paramref name="index"/> and returns the index after it.</summary>
+		private static int ScanUnit(char[] characters, int index)
+		{
+			var current = characters[index];
+			var next = index + 1 < characters.Length ? characters[index + 1] : '\0';
+
+			if (current == '/')
+			{
+				if (next == '/')
+				{
+					return BlankLineComment(characters, index);
+				}
+
+				return next == '*' ? BlankBlockComment(characters, index) : index + 1;
+			}
+
+			if (current == '\'')
+			{
+				return SkipCharacter(characters, index);
+			}
+
+			var verbatim = false;
+			var interpolated = false;
+			var quote = index;
+			while (quote < characters.Length && (characters[quote] == '@' || characters[quote] == '$'))
+			{
+				if (characters[quote] == '@')
+				{
+					verbatim = true;
+				}
+				else
+				{
+					interpolated = true;
+				}
+
+				quote++;
+			}
+
+			if (quote >= characters.Length || characters[quote] != '"')
+			{
+				return index + 1;
+			}
+
+			var raw = quote + 2 < characters.Length && characters[quote + 1] == '"' && characters[quote + 2] == '"';
+			return raw
+				? SkipRawString(characters, quote)
+				: SkipString(characters, quote, verbatim, interpolated);
+		}
+
+		private static int SkipCharacter(char[] characters, int openingQuote)
+		{
+			var content = openingQuote + 1;
+			content = content < characters.Length && characters[content] == '\\'
+				? SkipEscape(characters, content)
+				: Math.Min(characters.Length, content + 1);
+			return Math.Min(characters.Length, content + 1);
+		}
+
+		/// <summary>Returns the index just past the escape sequence whose backslash is at <paramref name="index"/>.</summary>
+		private static int SkipEscape(char[] characters, int index)
+		{
+			var indexAfterBackslash = index + 1;
+			if (indexAfterBackslash >= characters.Length)
+			{
+				return indexAfterBackslash;
+			}
+
+			var kind = characters[indexAfterBackslash];
+			if (kind != 'u' && kind != 'U' && kind != 'x')
+			{
+				return indexAfterBackslash + 1;
+			}
+
+			var hexadecimal = kind == 'u' ? 4 : kind == 'U' ? 8 : 4;
+			var digits = 0;
+			while (digits < hexadecimal && indexAfterBackslash + 1 + digits < characters.Length
+				&& Uri.IsHexDigit(characters[indexAfterBackslash + 1 + digits]))
+			{
+				digits++;
+			}
+
+			return indexAfterBackslash + 1 + digits;
+		}
+
+		private static int SkipString(char[] characters, int openingQuote, bool verbatim, bool interpolated)
+		{
+			var index = openingQuote + 1;
+			while (index < characters.Length)
+			{
+				var current = characters[index];
+
+				if (current == '"')
+				{
+					if (verbatim && index + 1 < characters.Length && characters[index + 1] == '"')
+					{
+						index += 2;
+						continue;
+					}
+
+					return index + 1;
+				}
+
+				if (interpolated && current == '{')
+				{
+					if (index + 1 < characters.Length && characters[index + 1] == '{')
+					{
+						index += 2;
+						continue;
+					}
+
+					index = ScanHole(characters, index + 1);
+					continue;
+				}
+
+				index += !verbatim && current == '\\' ? 2 : 1;
+			}
+
+			return index;
+		}
+
+		/// <summary>
+		/// The code of an interpolation hole, from just after its <c>{</c> to just after its matching
+		/// <c>}</c> — comments included, since they are comments.
+		/// </summary>
+		private static int ScanHole(char[] characters, int index)
+		{
+			var depth = 1;
+			while (index < characters.Length && depth > 0)
+			{
+				if (characters[index] == '}')
+				{
+					depth--;
+					index++;
+				}
+				else if (characters[index] == '{')
+				{
+					depth++;
+					index++;
+				}
+				else
+				{
+					index = ScanUnit(characters, index);
+				}
+			}
+
+			return index;
+		}
+
+		private static int SkipRawString(char[] characters, int openingQuote)
+		{
+			var quotes = 0;
+			while (openingQuote + quotes < characters.Length && characters[openingQuote + quotes] == '"')
+			{
+				quotes++;
+			}
+
+			var index = openingQuote + quotes;
+			while (index < characters.Length)
+			{
+				if (characters[index] != '"')
+				{
+					index++;
+					continue;
+				}
+
+				var run = 0;
+				while (index + run < characters.Length && characters[index + run] == '"')
+				{
+					run++;
+				}
+
+				if (run >= quotes)
+				{
+					return index + run;
+				}
+
+				index += run;
+			}
+
+			return index;
+		}
+
+		private static int BlankLineComment(char[] characters, int index)
+		{
+			var end = index;
+			while (end < characters.Length && characters[end] != '\n')
+			{
+				end++;
+			}
+
+			Blank(characters, index, end);
+			return end;
+		}
+
+		private static int BlankBlockComment(char[] characters, int index)
+		{
+			var end = index + 2;
+			while (end + 1 < characters.Length && !(characters[end] == '*' && characters[end + 1] == '/'))
+			{
+				end++;
+			}
+
+			end = end + 1 < characters.Length ? end + 2 : characters.Length;
+			Blank(characters, index, end);
+			return end;
+		}
+
+		private static void Blank(char[] characters, int from, int to)
+		{
+			for (var position = from; position < to; position++)
+			{
+				if (characters[position] != '\n' && characters[position] != '\r')
+				{
+					characters[position] = ' ';
+				}
+			}
+		}
+
+		[Theory]
+		[InlineData("var a = 1; // commented();\nlive();", "var a = 1;", "commented();")]
+		[InlineData("/* commented();\n   still commented(); */ live();", "live();", "commented();")]
+		[InlineData("var url = \"http://x/y\"; live();", "http://x/y", null)]
+		[InlineData("var s = \"/* not a comment */\"; live();", "live();", null)]
+		[InlineData("var c = '\"'; live();", "live();", null)]
+		[InlineData("var v = @\"a \"\"quoted\"\" // not a comment\"; // commented();\nlive();", "not a comment", "commented();")]
+		[InlineData("var t = $\"{(a ? \"x\" : \"y\")}\"; // commented();\nlive();", "live();", "commented();")]
+		[InlineData("var r = \"\"\"raw \"\" not closed // here\"\"\"; // commented();\nlive();", "not closed // here", "commented();")]
+		[InlineData("// l'appel est commenté();\nlive();", "live();", "commenté();")]
+		[InlineData("var p = $\"{{literal}} {name}\"; // commented();\nlive();", "{{literal}} {name}", "commented();")]
+		public void WithoutComments_BlanksCommentsAndNothingElse(string source, string kept, string? blanked)
+		{
+			var code = WithoutComments(source);
+
+			code.Should().HaveLength(source.Length, "an index found in the result must be the index in the argument");
+			code.Count(c => c == '\n').Should().Be(source.Count(c => c == '\n'), "a line found in the result must be the line in the argument");
+
+			code.Should().Contain(kept, "text that is not a comment is copied through, quotes included");
+			if (blanked != null)
+			{
+				code.Should().NotContain(blanked, "a comment is not code, whatever it quotes");
+			}
 		}
 
 		/// <summary>A throwaway copy of <c>Cards/fonts</c>, one file removed or damaged.</summary>
@@ -357,6 +804,17 @@ namespace Argumentum.AssetConverter.Tests.CardPenConfiguration
 				File.WriteAllText(
 					System.IO.Path.Combine(copy.Path, relativeFile.Replace('/', System.IO.Path.DirectorySeparatorChar)),
 					"this is not a font");
+				return copy;
+			}
+
+			/// <summary>One byte flipped past the header: the WOFF2 magic survives, the file does not.</summary>
+			public static FontDirectoryCopy WithFlippedByte(string relativeFile, int offset)
+			{
+				var copy = Clone();
+				var path = System.IO.Path.Combine(copy.Path, relativeFile.Replace('/', System.IO.Path.DirectorySeparatorChar));
+				var bytes = File.ReadAllBytes(path);
+				bytes[offset] ^= 0xFF;
+				File.WriteAllBytes(path, bytes);
 				return copy;
 			}
 
