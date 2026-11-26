@@ -308,6 +308,13 @@ namespace Argumentum.AssetConverter.VisualTests
                 if (card.scrollHeight > card.clientHeight + 1 || card.scrollWidth > card.clientWidth + 1)
                     NOTE('cardScrolls', key);
                 if (ir.bottom > tr.top + 0.5) NOTE('titleBandOverlapsText', key);
+                // A long title: cut by its own box, or leaving the image section it belongs to.
+                const title = q('.title'), header = q('.header');
+                const trc = R(title), hr = R(header);
+                if (title.scrollHeight > title.clientHeight + 1 || title.scrollWidth > title.clientWidth + 1)
+                    NOTE('titleClipped', key);
+                if (trc.top < ir.top - tol || trc.bottom > ir.bottom + tol) NOTE('titleOutsideImageSection', key);
+                if (hr.top < cr.top - tol || hr.bottom > cr.bottom + tol) NOTE('headerOutsideCard', key);
                 if (!texte.classList.contains('mm-scroll') && texte.scrollHeight > texte.clientHeight + 1)
                     NOTE('textClipped', key);
 
