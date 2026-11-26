@@ -626,6 +626,10 @@ public class HarvestManager : IAsyncDisposable
 	              
 	              // ✅ CORRECTION BUG #3: Sérialiser normalement SANS ignorer les valeurs par défaut
 	              // TOUJOURS inclure rscount dans le JSON pour écraser les valeurs précédentes du formulaire
+	              // #1485 — les polices voyagent avec la charge utile, en data: URI (Cards/fonts).
+	              // Fait ici, juste avant la sérialisation : le document chargé reste sans le
+	              // poids de l'encodage, et un même document réutilisé n'est pas enrichi deux fois.
+	              cardSetDocument.CardSetDocument.css = EmbeddedFontFaces.Inject(cardSetDocument.CardSetDocument.css);
 	              var cardsJson = System.Text.Json.JsonSerializer.Serialize(cardSetDocument.CardSetDocument);
 	              
 	              // [DEBUG] Log JSON first chars to inspect escaping
