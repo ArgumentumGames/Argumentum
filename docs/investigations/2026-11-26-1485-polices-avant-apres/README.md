@@ -5,9 +5,13 @@
 **Portée mesurée** 6 CardSets × 2 langues (`fr`, `ru`), build **Debug**
 **Date** 2026-11-26 · lane `myia-po-2023`
 
-> Les rendus mesurés dans ce dossier sont ceux de `974319eb`. La restriction d'injection, les
-> empreintes épinglées et la garde du hook (§8) sont **postérieures** : aucun rendu n'a été relancé
-> pour elles, et le §4 dit à chaque fois ce qui est mesuré et ce qui est dérivé.
+> ⚠️ Ce dossier porte des **mesures**, pas un verdict visuel. Le verdict visuel est
+> réservé à `ai-01` (règle de la lane) : les planches ci-dessous lui sont destinées.
+>
+> Les rendus mesurés ici sont ceux de `974319eb`. La restriction d'injection, les
+> empreintes épinglées et la garde du hook (§8) sont **postérieures** : aucun rendu n'a
+> été relancé pour elles, et le §4 dit à chaque fois ce qui est mesuré et ce qui est
+> dérivé.
 
 > ⚠️ Ce dossier porte des **mesures**, pas un verdict visuel. Le verdict visuel est
 > réservé à `ai-01` (règle de la lane) : les planches ci-dessous lui sont destinées.
@@ -101,14 +105,14 @@ substituées. Cinq runs sur le même arbre, Memo seul, ont isolé la cause :
 | AVANT (arbre `4da09a14`) | — | référence |
 | APRÈS, injection **coupée** | rien | **identique à AVANT** |
 | APRÈS, injection active | 11 `@font-face` + WOFF2 réels (194 344 octets ; **259 144** caractères de base64) | différent : 364 314 px |
-| APRÈS, **déclarations seules** | 11 `@font-face`, `src` = `"AAAA"` (4 octets) | **identique au run actif** (même compte, même boîte) |
+| APRÈS, **déclarations seules** | 11 `@font-face`, `src` = `url(data:font/woff2;base64,AAAA)` (4 caractères, `url(` conservé) | **identique au run actif** (même compte, même boîte) |
 | APRÈS, **marqueur seul** | le commentaire `/* argumentum-embedded-fonts */` | **identique à l'injection coupée** |
 
 Trois conclusions, toutes mesurées :
 
 1. **Le commentaire est inerte** — il ne change rien, dans aucune langue.
 2. **Ce ne sont ni la taille ni les octets de police** : une charge invalide de
-   4 octets reproduit l'écart à l'identique.
+   4 caractères reproduit l'écart à l'identique.
 3. **La présence des déclarations suffit**, sur une carte qui ne les référence
    pas.
 
@@ -144,20 +148,33 @@ jeton de ce dossier (contre-revue po-2024, c.7202574459) :
    rien de plus : une règle `data:` **passe** ;
 3. les 11 règles injectées sont donc retenues ; `inlineAll` (l. 858) les rend telles
    quelles (`isSrcAsDataUrl`), et `embedFontsAlreadyDownloaded` (l. 533-541) réémet
-   le tout dans le clone, base64 comprise, pour **chaque** CardSet.
+   le tout dans un `<style>` ajouté au clone, base64 comprise, pour **chaque** carte
+   capturée — Memo compris.
 
-Ce que ce chemin ne peut pas expliquer : au run « déclarations seules » (`src` =
-`"AAAA"`, sans `url(`), le filtre de l'étape 2 **écarte** les règles — le clone n'en
-reçoit aucune — et l'écart est reproduit à l'identique. La présence des règles
-**dans le clone** n'est donc pas la variable ; celle qui reste mesurée est leur
-présence **dans le document vivant**.
+Ce chemin rend compte de la table : au run « déclarations seules », seul le corps
+base64 a été remplacé — `src: url(data:font/woff2;base64,AAAA)`, 4 caractères —
+donc `url(` est toujours là, les 11 règles passent le filtre et sont réémises comme
+au run actif. Ce qui varie d'une ligne à l'autre est la **présence des règles**,
+jamais leurs octets : une charge de 4 caractères n'est pas une police (Chromium la
+rejette : « OTS parsing error: file less than 4 bytes », mesuré en laboratoire le
+25/11), et le compte comme la boîte sont ceux du run actif. Au run « marqueur seul »,
+aucune règle n'est ajoutée et le rendu est celui de l'injection coupée.
 
-Candidat nommé, **non établi** : `frame.js:205-207` exécute trois passes
-d'ajustement sur le DOM vivant immédiatement après `getFontsBefore()` —
-`autoFitCardTitles`, `autoFitBodyText`, `autoFitFamilyGrid` (cette dernière porte
-explicitement la grille du dos Memo). Ce sont elles qui déplacent le rythme
-vertical, et elles mesurent à l'instant où le document vient de recevoir les
-règles. Aucun rendu n'a été rejoué pour départager ce candidat d'un autre.
+⚠️ **Erratum (26/11, soir).** Une première rédaction de ce paragraphe affirmait
+l'inverse : que le filtre écartait les règles du run « déclarations seules » et que
+le clone n'en recevait aucune. C'était faux. La description du run (« `src` =
+`"AAAA"` ») a été lue comme un `src` sans `url(` ; le mutant, retrouvé dans le
+journal de session, ne touchait que la charge (`ARGUMENTUM_FONT_INJECT_STUB=1` :
+`Convert.ToBase64String(bytes)` remplacé par `"AAAA"`). Le message du commit
+`6089e9eb` porte la même erreur ; il n'est pas réécrit.
+
+Ce qui reste **non établi** : l'étape qui transforme 11 règles réémises dans le
+clone — et présentes dans le document vivant — en un autre rythme vertical sur une
+carte dont aucune pile ne nomme leurs familles. Deux candidats, aucun départagé :
+le `<style>` du clone, et les trois passes d'ajustement que `frame.js:207-209`
+exécute sur le DOM vivant juste après `getFontsBefore()`. Aucun rendu n'a été
+rejoué pour les départager, et la restriction d'injection rend la question sans
+effet sur les gabarits livrés : aucun ne reçoit les règles sans nommer une famille.
 
 Le mécanisme exact n'est **pas** établi ; ce qui l'est, c'est que l'artefact est
 invisible aux instruments qui lisent le DOM :
@@ -181,11 +198,15 @@ invisible aux instruments qui lisent le DOM :
    déclarait `'DINPro'` avant), donc les règles y restent et son écart de 43,2 %
    demeure, mêlé à la substitution. La restriction répond à « ne pas toucher ceux
    qu'elle ne vise pas », pas à « expliquer le dos Memo ».
-2. **Les rendus de ce dossier mélangent deux causes** — la substitution voulue
-   (DINPro → Barlow) et cet artefact d'injection — pour tous les CardSets sauf
-   Memo, où l'artefact est isolé à l'état pur. Un verdict visuel « Barlow est-elle
-   la bonne substitution ? » se lit donc sur les planches **Memo** sans réserve,
-   et sur les autres **sous réserve** de cet écart.
+2. **Deux causes sur la même planche, sauf une.** La substitution voulue
+   (DINPro → Barlow/Rubik) et la présence des règles injectées s'appliquent ensemble
+   aux dix gabarits qui nomment une famille, dos Memo compris : sur `memo_back`, une
+   bande de 75 px de haut sans les déclarations, 43 % avec. La **face Memo** est le
+   seul rendu où l'artefact est seul — et elle ne porte aucune substitution, donc
+   elle n'informe pas sur le choix de police. Pour le verdict visuel : la **forme des
+   lettres** se lit sur toutes les planches ; la **mise en page** d'une carte
+   substituée ne s'attribue pas à la seule substitution. Aucun rendu n'a été relancé
+   depuis la restriction.
 3. **Aucune porte de non-régression du rendu.** Rien dans la suite de tests ne
    détecte cet écart ; c'est un manque, pas une garantie.
 
@@ -230,8 +251,8 @@ l'écart est localisé, un recadrage 1:1 des deux côtés.
 | 06 | `fr/Virtues/…argument_fondé_face.png` | Virtues, `fr` | 62 213 px (5,3 %) |
 | 07 | `ru/Rules/rules_01_face.png` | **contrôle : identique** | 0 |
 | 08 | `ru/Scenarii/…мать_цезаря_и_клеопатры_face.png` | Scenarii, `ru` | 122 903 px (15,6 %) |
-| 09 | `ru/Memo/memo_back.png` | **artefact isolé** (§4) | 492 293 px (42,1 %) |
-| 10 | `fr/Memo/memo_back.png` | **artefact isolé** (§4) | 505 896 px (43,2 %) |
+| 09 | `ru/Memo/memo_back.png` | substitution (bande) + artefact (§4) | 492 293 px (42,1 %) |
+| 10 | `fr/Memo/memo_back.png` | substitution (bande) + artefact (§4) | 505 896 px (43,2 %) |
 | 11 | `fr/Fallacies-Web/…argument_vide.png` | variante Web (400 dpi) | 23 186 px (3,8 %) |
 
 Fichiers : `NN-<lang>-<dossier>-planche.jpg` (320–600 Ko) et
@@ -268,9 +289,15 @@ Fichiers : `NN-<lang>-<dossier>-planche.jpg` (320–600 Ko) et
   seul l'*inlining* est sauté, et les règles sont réémises dans le clone pour
   chaque CardSet — le §4 le dit maintenant, avec ses lignes. La conséquence
   « restreindre l'injection » est appliquée (§4, *Conséquences*, point 1).
-- **Ce que la restriction laisse ouvert** : le dos Memo. Un rendu rejoué avec la
-  restriction, sur ce seul gabarit, départagerait « les règles dans le document »
-  d'un autre candidat ; il n'a pas été lancé.
+- **Erratum sur ce même §4** : la première correction prétendait que le run
+  « déclarations seules » était filtré et que le clone n'en recevait pas les
+  règles. Faux — le mutant de ce run conservait `url(`. Détail et provenance de
+  l'erreur dans l'erratum du §4.
+- **Ce qui reste ouvert** : le mécanisme de l'artefact sur la face Memo (quelle
+  étape déplace le rythme vertical). Il ne s'exerce plus sur aucun gabarit livré
+  depuis la restriction ; le dos Memo garde son écart, qui est celui de la
+  substitution sur un gabarit qui nomme les familles. Aucun rendu n'a été relancé
+  pour départager les deux candidats.
 - **La garde du hook (`HarvestManager_InjectsTheFacesIntoTheCssItSerialises`)** : elle
   lisait le fichier brut, donc restait verte sur un appel commenté. Elle lit maintenant
   le code sans ses commentaires — littéraux copiés tels quels, y compris une chaîne
