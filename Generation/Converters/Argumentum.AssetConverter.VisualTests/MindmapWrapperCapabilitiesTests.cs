@@ -277,7 +277,14 @@ namespace Argumentum.AssetConverter.VisualTests
         /// is therefore ONE row — a box too short to show one is the witness-2 defect (25 px for
         /// seven rows on #pk=1084).
         /// </summary>
-        private const string CardFitSweepJs = @"() => {
+        private const string CardFitSweepJs = @"(arg) => {
+            // Optional argument (Cap25), both properties optional:
+            //   minChars — before a node is opened, its title is lengthened to at least this many
+            //              characters by repeating its own label (script and direction preserved);
+            //   only     — the keys of the only nodes to open (the fast inverse controls).
+            const opt = arg || {};
+            const minChars = opt.minChars || 0;
+            const only = opt.only || null;
             const host = document.getElementById('svgObject');
             const nodeDoc = (host && host.contentDocument) ? host.contentDocument : document;
             const all = Array.from(nodeDoc.querySelectorAll('g.node'));
@@ -289,7 +296,8 @@ namespace Argumentum.AssetConverter.VisualTests
             const link = document.getElementById('externalLink');
             const R = (el) => el.getBoundingClientRect();
             const out = { all: all.length, nodes: 0, withRelations: 0, withLink: 0,
-                          withoutLink: 0, violations: [], tally: {} };
+                          withoutLink: 0, violations: [], tally: {},
+                          minTitleChars: Infinity, maxTitleChars: 0 };
             const NOTE = (name, key) => {
                 out.tally[name] = (out.tally[name] || 0) + 1;
                 if (out.violations.length < 12) out.violations.push(key + ':' + name);
@@ -299,6 +307,14 @@ namespace Argumentum.AssetConverter.VisualTests
                 const rec = nav.byPk[n.getAttribute('pk')] || nav.byPath[n.getAttribute('path')];
                 if (!rec) continue;
                 const key = n.getAttribute('pk') || n.getAttribute('path') || '?';
+                if (only && only.indexOf(key) < 0) continue;
+                if (minChars > 0) {
+                    const base = ((rec.label || n.textContent || '').trim()) || 'titre';
+                    let long = base;
+                    while (long.length < minChars) long += ' — ' + base;
+                    const textEl = n.querySelector('text');
+                    if (textEl) textEl.textContent = long;
+                }
                 nav.focusNode(rec);
                 out.nodes++;
                 const cr = R(card), br = R(body), ir = R(img), tr = R(texte), fr = R(foot), rr = R(rel);
@@ -315,6 +331,9 @@ namespace Argumentum.AssetConverter.VisualTests
                     NOTE('titleClipped', key);
                 if (trc.top < ir.top - tol || trc.bottom > ir.bottom + tol) NOTE('titleOutsideImageSection', key);
                 if (hr.top < cr.top - tol || hr.bottom > cr.bottom + tol) NOTE('headerOutsideCard', key);
+                const tchars = (title.textContent || '').length;
+                if (tchars > out.maxTitleChars) out.maxTitleChars = tchars;
+                if (tchars < out.minTitleChars) out.minTitleChars = tchars;
                 if (!texte.classList.contains('mm-scroll') && texte.scrollHeight > texte.clientHeight + 1)
                     NOTE('textClipped', key);
 
@@ -359,8 +378,10 @@ namespace Argumentum.AssetConverter.VisualTests
                 }
                 card.dispatchEvent(new MouseEvent('mouseleave'));
             }
+            // Fields 7 and 8: shortest and longest title the sweep opened (characters).
             return [String(out.all), String(out.nodes), String(out.withRelations), String(out.withLink),
-                    String(out.withoutLink), JSON.stringify(out.tally), out.violations.join(' | ')];
+                    String(out.withoutLink), JSON.stringify(out.tally), out.violations.join(' | '),
+                    String(out.nodes ? out.minTitleChars : 0), String(out.maxTitleChars)];
         }";
 
         /// <summary>Asserts the sweep found no violation, and states what it actually covered.</summary>
@@ -373,7 +394,7 @@ namespace Argumentum.AssetConverter.VisualTests
                 int.Parse(sweep[3]), int.Parse(sweep[4]));
             _output.WriteLine($"[{lang}/{variant} {width}x{height}] nodes={nodes}/{all} " +
                               $"withRelations={withRel} withLink={withLink} withoutLink={withoutLink} " +
-                              $"tally={sweep[5]}");
+                              $"titleChars={(sweep.Length > 8 ? sweep[7] + ".." + sweep[8] : "?")} tally={sweep[5]}");
             Assert.True(nodes >= 200 && nodes == all,
                 $"the sweep must cover every navigable node ({nodes} of {all}) — a lower count means the " +
                 "navigation index did not resolve and the assertions below would be vacuous");
@@ -2165,6 +2186,93 @@ namespace Argumentum.AssetConverter.VisualTests
                 var backSheet = await page.EvaluateAsync<string[]>(P2400RelationsStateJs);
                 Assert.Equal(Norm(sourceLabel), Norm(backSheet[6]));
                 Assert.Equal(expectedRows, int.Parse(backSheet[0]));
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        /// <summary>
+        /// #2400 — "un titre long". Every sheet of the map is opened with a title lengthened to at
+        /// least <see cref="LongTitleChars"/> characters and must still fit the card. The title is
+        /// lengthened by repeating the node's own label, so script and writing direction stay those
+        /// of the language under test. The sweep's three title notes had never been seen to fire on
+        /// the corpus: the second half of the control injects one style per note — a title cut by
+        /// its box, a title leaving the image section, a header band leaving the card — and requires
+        /// the note to fire, else "0 violation" would only say that no title was long enough.
+        /// </summary>
+        private const int LongTitleChars = 240;
+
+        private static readonly (string Css, string Note)[] TitleNoteMutants =
+        {
+            (".title { max-height: 6px !important; overflow: hidden !important; }", "titleClipped"),
+            (".title { position: relative !important; top: 2000px !important; }", "titleOutsideImageSection"),
+            (".header { position: relative !important; top: 2000px !important; }", "headerOutsideCard"),
+        };
+
+        private const string FirstNodeKeyJs = @"() => {
+            const nav = window.__mmNav;
+            for (const k of Object.keys(nav.byPk)) if (nav.byPk[k]) return k;
+            return '';
+        }";
+
+        /// <summary>Installs, replaces or — with an empty argument — removes one style element.</summary>
+        private const string SetMutantStyleJs = @"css => {
+            let st = document.getElementById('p2400-mutant');
+            if (!css) { if (st) st.remove(); return; }
+            if (!st) { st = document.createElement('style'); st.id = 'p2400-mutant'; document.head.appendChild(st); }
+            st.textContent = css;
+        }";
+
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg", "inline", 390, 844)]
+        [InlineData("fr", "Fallacies_fr.content.svg", "inline", 1400, 900)]
+        [InlineData("fr", "Fallacies_fr.content.svg", "ext", 390, 844)]
+        [InlineData("fr", "Fallacies_fr.content.svg", "ext", 1400, 900)]
+        [InlineData("ar", "Fallacies_ar.content.svg", "inline", 390, 844)]
+        [InlineData("ar", "Fallacies_ar.content.svg", "inline", 1400, 900)]
+        [InlineData("ar", "Fallacies_ar.content.svg", "ext", 390, 844)]
+        [InlineData("ar", "Fallacies_ar.content.svg", "ext", 1400, 900)]
+        public async Task Cap25_LongTitle_EverySheetStillFits_AndTheControlSeesACutTitle(
+            string lang, string svgFileName, string variant, int width, int height)
+        {
+            var page = variant == "ext"
+                ? await OpenExternalAsync(lang, svgFileName, width, height)
+                : await OpenPageAtAsync(await ComposeIncludedAsync(lang, svgFileName), width, height);
+            try
+            {
+                if (variant == "ext") await WaitForExternalNavigationAsync(page);
+                else await WaitForViewportSettledAsync(page);
+
+                var longSweep = await page.EvaluateAsync<string[]>(CardFitSweepJs, new { minChars = LongTitleChars });
+                AssertSweepClean(longSweep, lang, variant + "+longTitle", width, height);
+                Assert.True(int.Parse(longSweep[7]) >= LongTitleChars,
+                    $"the sweep must really have opened long titles: the shortest it opened is {longSweep[7]} " +
+                    $"characters, wanted at least {LongTitleChars}");
+
+                var key = await page.EvaluateAsync<string>(FirstNodeKeyJs);
+                Assert.False(string.IsNullOrEmpty(key), "the navigation index must offer at least one node");
+
+                foreach (var (css, note) in TitleNoteMutants)
+                {
+                    string[] mutant;
+                    await page.EvaluateAsync(SetMutantStyleJs, css);
+                    try
+                    {
+                        mutant = await page.EvaluateAsync<string[]>(CardFitSweepJs, new { only = new[] { key } });
+                    }
+                    finally
+                    {
+                        await page.EvaluateAsync(SetMutantStyleJs, "");
+                    }
+                    Assert.NotNull(mutant);
+                    Assert.Equal("1", mutant[1]);
+                    using var tally = System.Text.Json.JsonDocument.Parse(mutant[5]);
+                    Assert.True(tally.RootElement.TryGetProperty(note, out var count) && count.GetInt32() >= 1,
+                        $"the sweep must see '{note}' once this style is injected — tally={mutant[5]} | {css}");
+                    _output.WriteLine($"[{lang}/{variant} {width}x{height}] mutant '{note}': tally={mutant[5]}");
+                }
             }
             finally
             {
