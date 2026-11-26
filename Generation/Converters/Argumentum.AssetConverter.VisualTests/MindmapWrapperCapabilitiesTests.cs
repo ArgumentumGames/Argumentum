@@ -171,6 +171,212 @@ namespace Argumentum.AssetConverter.VisualTests
             return page;
         }
 
+        private static readonly string ExternalTemplatePath =
+            Path.Combine(RepoRoot, "Cards", "Fallacies", "Mindmaps", "external.html");
+
+        /// <summary>Same page, at an explicit viewport — the #2400 controls run desktop AND phone.</summary>
+        private async Task<IPage> OpenPageAtAsync(string wrapperPath, int width, int height)
+        {
+            var page = await _browser.NewPageAsync(new BrowserNewPageOptions
+            {
+                ViewportSize = new ViewportSize { Width = width, Height = height }
+            });
+            await page.GotoAsync("file:///" + wrapperPath.Replace('\\', '/'));
+            await page.WaitForLoadStateAsync(LoadState.Load);
+            return page;
+        }
+
+        /// <summary>
+        /// Compose the `_ext` variant (external.html) and serve it over a routed http origin.
+        ///
+        /// Under `file://` Chromium gives each file an opaque origin, so `svgObject.contentDocument`
+        /// — the object the wrapper's own JS reads — is not reachable from the page; a test
+        /// measuring it there would measure the harness, not the wrapper. The route answers the
+        /// wrapper and its SVG and leaves everything else alone.
+        /// </summary>
+        private async Task<IPage> OpenExternalAsync(string lang, string svgFileName, int width, int height)
+        {
+            Assert.True(File.Exists(ExternalTemplatePath), $"Missing template: {ExternalTemplatePath}");
+            var template = await File.ReadAllTextAsync(ExternalTemplatePath);
+            var wrapper = MindMapHtmlWrapper.FormatWrapper(
+                template, svgFileName, string.Empty, lang, "Argumentum");
+            Assert.DoesNotContain("[SVGPATH]", wrapper);
+            Assert.DoesNotContain("[SVGCONTENT]", wrapper);
+
+            var svgPath = GetSvgPath(lang, svgFileName);
+            Assert.True(File.Exists(svgPath), $"Missing SVG fixture: {svgPath}");
+            var svgBytes = await File.ReadAllBytesAsync(svgPath);
+
+            var page = await _browser.NewPageAsync(new BrowserNewPageOptions
+            {
+                ViewportSize = new ViewportSize { Width = width, Height = height }
+            });
+            const string origin = "http://mm.test";
+            await page.RouteAsync(origin + "/**", async route =>
+            {
+                var path = new Uri(route.Request.Url).AbsolutePath.TrimStart('/');
+                if (path == "wrapper.html")
+                {
+                    await route.FulfillAsync(new RouteFulfillOptions
+                    {
+                        ContentType = "text/html; charset=utf-8",
+                        Body = wrapper
+                    });
+                }
+                else if (path == svgFileName)
+                {
+                    await route.FulfillAsync(new RouteFulfillOptions
+                    {
+                        ContentType = "image/svg+xml",
+                        BodyBytes = svgBytes
+                    });
+                }
+                else
+                {
+                    await route.ContinueAsync();
+                }
+            });
+            await page.GotoAsync(origin + "/wrapper.html");
+            await page.WaitForLoadStateAsync(LoadState.Load);
+            return page;
+        }
+
+        /// <summary>
+        /// `_ext` only. The SVG lives in the `<object>`'s document and svg-pan-zoom runs THERE,
+        /// so the host-page `.svg-pan-zoom_viewport` the settle-wait reads does not exist. Wait
+        /// instead for what the #2400 controls consume: the navigation index, which the wrapper
+        /// builds last, once the object's document is parsed.
+        /// </summary>
+        private async Task WaitForExternalNavigationAsync(IPage page)
+        {
+            const string ready = @"() => {
+                const host = document.getElementById('svgObject');
+                const d = host && host.contentDocument;
+                if (!d || !d.querySelectorAll('g.node').length) return false;
+                const nav = window.__mmNav;
+                return !!(nav && nav.byPk && Object.keys(nav.byPk).length);
+            }";
+            var sw = System.Diagnostics.Stopwatch.StartNew();
+            while (sw.ElapsedMilliseconds < SettleMaxWaitMs)
+            {
+                if (await page.EvaluateAsync<bool>(ready)) return;
+                await page.WaitForTimeoutAsync(100);
+            }
+            throw new TimeoutException("the _ext wrapper's navigation index was not built within the settle budget");
+        }
+
+        /// <summary>
+        /// #2400 — open the sheet of EVERY node of the map in the page and return the geometric
+        /// violations. The node document is the `<object>`'s document for the `_ext` variant and
+        /// the page itself for the inline one, exactly as the wrapper's own JS resolves it.
+        ///
+        /// Every threshold below was calibrated on the corpus before being written down
+        /// (2026-11-26, `fr`/`ru`/`ar` × 1280x900 and 390x844, 705 relation-bearing sheets):
+        /// "at least one whole relation row is reachable" holds on 705/705, while boxes showing
+        /// fewer rows are capped by the template's own `max-height: 12vh` and scroll. The floor
+        /// is therefore ONE row — a box too short to show one is the witness-2 defect (25 px for
+        /// seven rows on #pk=1084).
+        /// </summary>
+        private const string CardFitSweepJs = @"() => {
+            const host = document.getElementById('svgObject');
+            const nodeDoc = (host && host.contentDocument) ? host.contentDocument : document;
+            const all = Array.from(nodeDoc.querySelectorAll('g.node'));
+            const nav = window.__mmNav;
+            const card = document.querySelector('card');
+            const q = (s) => card.querySelector(s);
+            const rel = q('.relations'), foot = q('.footer'), body = q('.body'),
+                  texte = q('.texte'), img = q('.imageSection');
+            const link = document.getElementById('externalLink');
+            const R = (el) => el.getBoundingClientRect();
+            const out = { all: all.length, nodes: 0, withRelations: 0, withLink: 0,
+                          withoutLink: 0, violations: [], tally: {} };
+            const NOTE = (name, key) => {
+                out.tally[name] = (out.tally[name] || 0) + 1;
+                if (out.violations.length < 12) out.violations.push(key + ':' + name);
+            };
+            const tol = 0.6;
+            for (const n of all) {
+                const rec = nav.byPk[n.getAttribute('pk')] || nav.byPath[n.getAttribute('path')];
+                if (!rec) continue;
+                const key = n.getAttribute('pk') || n.getAttribute('path') || '?';
+                nav.focusNode(rec);
+                out.nodes++;
+                const cr = R(card), br = R(body), ir = R(img), tr = R(texte), fr = R(foot), rr = R(rel);
+                if (br.top < cr.top - tol || br.bottom > cr.bottom + tol) NOTE('bodyOutsideCard', key);
+                if (fr.top < cr.top - tol || fr.bottom > cr.bottom + tol
+                    || fr.left < cr.left - tol || fr.right > cr.right + tol) NOTE('footerOutsideCard', key);
+                if (card.scrollHeight > card.clientHeight + 1 || card.scrollWidth > card.clientWidth + 1)
+                    NOTE('cardScrolls', key);
+                if (ir.bottom > tr.top + 0.5) NOTE('titleBandOverlapsText', key);
+                if (!texte.classList.contains('mm-scroll') && texte.scrollHeight > texte.clientHeight + 1)
+                    NOTE('textClipped', key);
+
+                if (rel.getClientRects().length > 0) {
+                    out.withRelations++;
+                    if (rr.top < cr.top - tol || rr.bottom > cr.bottom + tol
+                        || rr.left < cr.left - tol || rr.right > cr.right + tol) NOTE('relationsOutsideCard', key);
+                    if (fr.top < rr.bottom - 0.5 && fr.left < rr.right && fr.right > rr.left)
+                        NOTE('relationsUnderFooter', key);
+                    const rows = rel.querySelectorAll('.mm-relation').length;
+                    const cs = getComputedStyle(rel);
+                    const padT = parseFloat(cs.paddingTop) || 0, padB = parseFloat(cs.paddingBottom) || 0;
+                    const rowH = rows ? rel.querySelector('.mm-relation').getBoundingClientRect().height : 0;
+                    const scrollable = cs.overflowY === 'auto' || cs.overflowY === 'scroll';
+                    const allRowsVisible = rel.scrollHeight <= rel.clientHeight + 1;
+                    const visibleRows = rowH > 0
+                        ? Math.floor((rel.clientHeight - padT - padB + 0.5) / rowH) : 0;
+                    if (rows && visibleRows < 1)
+                        NOTE('relationsNoWholeRow', key + '(' + rows + 'rows/' + Math.round(rel.clientHeight) + 'px)');
+                    if (rows && !allRowsVisible && !scrollable) NOTE('relationsClippedNotScrollable', key);
+                }
+
+                const nodeLink = n.getAttribute('link');
+                const ls = getComputedStyle(link);
+                const shown = ls.display !== 'none' && link.getClientRects().length > 0;
+                if (nodeLink) {
+                    out.withLink++;
+                    const lr = R(link);
+                    const href = link.getAttribute('href');
+                    if (!shown) NOTE('linkHiddenThoughNodeHasOne', key);
+                    else {
+                        if (!(link.textContent || '').trim()) NOTE('linkWithoutText', key);
+                        if (!href || href === 'null' || href === '#') NOTE('linkDeadHref', key);
+                        else if (href !== nodeLink) NOTE('linkWrongDestination', key);
+                        if (!(lr.width >= 40 && lr.height >= 20)) NOTE('linkTooSmall', key);
+                        if (lr.top < ir.top - tol || lr.bottom > ir.bottom + tol) NOTE('linkOutsideImageSection', key);
+                    }
+                } else {
+                    out.withoutLink++;
+                    if (shown) NOTE('linkShownWithoutDestination', key);
+                    if (link.hasAttribute('href')) NOTE('linkHrefWithoutDestination', key);
+                }
+                card.dispatchEvent(new MouseEvent('mouseleave'));
+            }
+            return [String(out.all), String(out.nodes), String(out.withRelations), String(out.withLink),
+                    String(out.withoutLink), JSON.stringify(out.tally), out.violations.join(' | ')];
+        }";
+
+        /// <summary>Asserts the sweep found no violation, and states what it actually covered.</summary>
+        private void AssertSweepClean(string[] sweep, string lang, string variant, int width, int height)
+        {
+            Assert.NotNull(sweep);
+            Assert.True(sweep.Length >= 7, "the sweep must return 7 fields");
+            var (all, nodes, withRel, withLink, withoutLink) = (
+                int.Parse(sweep[0]), int.Parse(sweep[1]), int.Parse(sweep[2]),
+                int.Parse(sweep[3]), int.Parse(sweep[4]));
+            _output.WriteLine($"[{lang}/{variant} {width}x{height}] nodes={nodes}/{all} " +
+                              $"withRelations={withRel} withLink={withLink} withoutLink={withoutLink} " +
+                              $"tally={sweep[5]}");
+            Assert.True(nodes >= 200 && nodes == all,
+                $"the sweep must cover every navigable node ({nodes} of {all}) — a lower count means the " +
+                "navigation index did not resolve and the assertions below would be vacuous");
+            Assert.True(withLink >= 1 && withoutLink >= 1,
+                $"the fixture must offer both a node WITH a destination ({withLink}) and one WITHOUT ({withoutLink}) — " +
+                "otherwise the link assertions of the sweep ran on one side only");
+            Assert.True(string.IsNullOrEmpty(sweep[6]),
+                $"#2400 [{lang}/{variant} {width}x{height}] — {sweep[5]} | {sweep[6]}");
+        }
+
         private static string _transformScaleJs = @"el => { const m = el.getCTM(); return m ? m.a : null; }";
 
         private Task<double?> GetViewportScaleAsync(IPage page)
@@ -1577,6 +1783,381 @@ namespace Argumentum.AssetConverter.VisualTests
                 var distinctVerbs = new System.Collections.Generic.HashSet<string>(rowVerb);
                 Assert.True(distinctVerbs.Count == rowVerb.Count,
                     $"P23-21 [{lang}]: each verb must label exactly one legend row ({distinctVerbs.Count} distinct for {rowVerb.Count} rows)");
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        // ===== #2400 — the sheet fits inside the card, and the external link is a real link =====
+        //
+        // Two defects reproduced in the browser on the public site (issue #2400):
+        //   witness 1 — #pk=1356 : `#externalLink` carried an href and NO text, a 40x20 px empty
+        //               anchor at 390x844 and at 1280x900, in BOTH templates;
+        //   witness 2 — #pk=1084 at 390x844 : seven relation rows, the relations box squeezed to
+        //               25 px (one row of seven) and the footer extending 16 px past the card,
+        //               13 px of overlap.
+        //
+        // Both are measured here on EVERY node of the real corpus rather than on the two
+        // witnesses: a reported defect is a probe, not a perimeter (AGENTS.md §4). The controls
+        // are red on the pre-#2400 templates — measured, not assumed: the PR body carries the
+        // same probe run against `git show HEAD:` copies of the two templates.
+        //
+        // The label table below is an INDEPENDENT ORACLE: it restates the eight labels instead
+        // of reading them from the template's MM_UI, which would test the implementation
+        // against itself (same discipline as P2321ExpectedUi above).
+
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg", 1400, 900)]
+        [InlineData("fr", "Fallacies_fr.content.svg", 390, 844)]
+        [InlineData("ru", "Fallacies_ru.content.svg", 1400, 900)]
+        [InlineData("ru", "Fallacies_ru.content.svg", 390, 844)]
+        [InlineData("ar", "Fallacies_ar.content.svg", 1400, 900)]
+        [InlineData("ar", "Fallacies_ar.content.svg", 390, 844)]
+        [InlineData("ru", "Argumentum_Virtues_MindMap_ru.content.svg", 1400, 900)]
+        [InlineData("ru", "Argumentum_Virtues_MindMap_ru.content.svg", 390, 844)]
+        public async Task Cap20_SheetStaysInsideCard_OnEveryNode_BothViewports(string lang, string svgFileName, int width, int height)
+        {
+            var wrapperPath = await ComposeIncludedAsync(lang, svgFileName);
+            var page = await OpenPageAtAsync(wrapperPath, width, height);
+            try
+            {
+                await WaitForViewportSettledAsync(page);
+                var sweep = await page.EvaluateAsync<string[]>(CardFitSweepJs);
+                AssertSweepClean(sweep, lang, "inline", width, height);
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg", 1400, 900)]
+        [InlineData("fr", "Fallacies_fr.content.svg", 390, 844)]
+        [InlineData("ar", "Fallacies_ar.content.svg", 1400, 900)]
+        [InlineData("ar", "Fallacies_ar.content.svg", 390, 844)]
+        public async Task Cap21_ExternalVariant_SheetStaysInsideCard_OnEveryNode(string lang, string svgFileName, int width, int height)
+        {
+            var page = await OpenExternalAsync(lang, svgFileName, width, height);
+            try
+            {
+                await WaitForExternalNavigationAsync(page);
+                var sweep = await page.EvaluateAsync<string[]>(CardFitSweepJs);
+                AssertSweepClean(sweep, lang, "ext", width, height);
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        private static readonly System.Collections.Generic.Dictionary<string, string> P2400LinkLabel =
+            new System.Collections.Generic.Dictionary<string, string>
+            {
+                ["fr"] = "Ouvrir le lien externe",
+                ["en"] = "Open the external link",
+                ["ru"] = "Открыть внешнюю ссылку",
+                ["pt"] = "Abrir o link externo",
+                ["es"] = "Abrir el enlace externo",
+                ["ar"] = "افتح الرابط الخارجي",
+                ["fa"] = "پیوند بیرونی را باز کنید",
+                ["zh"] = "打开外部链接",
+            };
+
+        /// <summary>Picks, from the corpus: a node WITH a destination, a SECOND node with a
+        /// DIFFERENT destination, and a node WITHOUT one. Never hardcodes a pk — the fixture
+        /// decides what its own data offers.</summary>
+        private const string P2400PickSheetsJs = @"() => {
+            const nav = window.__mmNav;
+            const withLink = [], without = [];
+            for (const k of Object.keys(nav.byPk)) {
+                const r = nav.byPk[k];
+                if (!r || !r.el) continue;
+                const l = r.el.getAttribute('link');
+                if (l) withLink.push({ pk: r.pk || k, label: r.label || '', link: l });
+                else without.push({ pk: r.pk || k, label: r.label || '' });
+            }
+            if (withLink.length < 2 || !without.length)
+                return ['', '', '', '', '', ''];
+            let b = null;
+            for (const w of withLink) if (w.link !== withLink[0].link) { b = w; break; }
+            return [withLink[0].pk, withLink[0].label, withLink[0].link,
+                    b ? b.pk : '', b ? b.link : '', without[0].pk];
+        }";
+
+        private const string P2400LinkStateJs = @"(arg) => {
+            const nav = window.__mmNav;
+            const card = document.querySelector('card');
+            const link = document.getElementById('externalLink');
+            const img = card.querySelector('.imageSection');
+            nav.focusNode(nav.byPk[arg.pk]);
+            const cs = getComputedStyle(link);
+            const r = link.getBoundingClientRect();
+            const ir = img.getBoundingClientRect();
+            const shown = cs.display !== 'none' && r.width > 0 && r.height > 0;
+            return [
+                shown ? 'shown' : 'hidden',
+                (link.textContent || ''),
+                link.getAttribute('href') || '',
+                link.getAttribute('target') || '',
+                link.getAttribute('rel') || '',
+                String(Math.round(r.width)),
+                String(Math.round(r.height)),
+                (r.top >= ir.top - 0.6 && r.bottom <= ir.bottom + 0.6) ? 'insideImageSection' : 'outsideImageSection'
+            ];
+        }";
+
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg", "inline")]
+        [InlineData("en", "Fallacies_en.content.svg", "inline")]
+        [InlineData("ru", "Fallacies_ru.content.svg", "inline")]
+        [InlineData("pt", "Fallacies_pt.content.svg", "inline")]
+        [InlineData("es", "Fallacies_es.content.svg", "inline")]
+        [InlineData("ar", "Fallacies_ar.content.svg", "inline")]
+        [InlineData("fa", "Fallacies_fa.content.svg", "inline")]
+        [InlineData("zh", "Fallacies_zh.content.svg", "inline")]
+        [InlineData("fr", "Fallacies_fr.content.svg", "ext")]
+        [InlineData("ar", "Fallacies_ar.content.svg", "ext")]
+        public async Task Cap22_ExternalLink_VisibleLocalisedLabel_HiddenWithoutDestination(string lang, string svgFileName, string variant)
+        {
+            var page = variant == "ext"
+                ? await OpenExternalAsync(lang, svgFileName, ViewportWidth, ViewportHeight)
+                : await OpenPageAtAsync(await ComposeIncludedAsync(lang, svgFileName), ViewportWidth, ViewportHeight);
+            try
+            {
+                if (variant == "ext") await WaitForExternalNavigationAsync(page);
+                else await WaitForViewportSettledAsync(page);
+
+                var pick = await page.EvaluateAsync<string[]>(P2400PickSheetsJs);
+                Assert.NotNull(pick);
+                Assert.True(pick.Length >= 6 && !string.IsNullOrEmpty(pick[0]) && !string.IsNullOrEmpty(pick[3]),
+                    $"#2400 [{lang}/{variant}]: the fixture must offer two distinct destinations and a node without one");
+                var (withPk, withLabel, withLink, secondPk, secondLink, withoutPk) =
+                    (pick[0], pick[1], pick[2], pick[3], pick[4], pick[5]);
+                _output.WriteLine($"[{lang}/{variant}] with-link pk={withPk} '{withLabel}' -> {withLink} | " +
+                                  $"second pk={secondPk} -> {secondLink} | without-link pk={withoutPk}");
+
+                var shown = await page.EvaluateAsync<string[]>(P2400LinkStateJs, new { pk = withPk });
+                _output.WriteLine($"[{lang}/{variant}] link text = '{shown[1]}'");
+                Assert.Equal("shown", shown[0]);
+                Assert.True(string.Equals(P2400LinkLabel[lang], shown[1], StringComparison.Ordinal),
+                    $"#2400 witness 1 [{lang}/{variant}]: pk={withPk} — the link must carry the visible label " +
+                    $"'{P2400LinkLabel[lang]}', got '{shown[1]}' (an empty anchor is the defect)");
+                Assert.Equal(withLink, shown[2]);
+                Assert.Equal("_blank", shown[3]);
+                Assert.Contains("noopener", shown[4]);
+                Assert.True(int.Parse(shown[5]) >= 40 && int.Parse(shown[6]) >= 20,
+                    $"#2400 [{lang}/{variant}]: the link's box is {shown[5]}x{shown[6]} px — too small to be a target");
+                Assert.Equal("insideImageSection", shown[7]);
+
+                // The second destination proves the href tracks the sheet, not the first node.
+                var second = await page.EvaluateAsync<string[]>(P2400LinkStateJs, new { pk = secondPk });
+                Assert.Equal("shown", second[0]);
+                Assert.Equal(secondLink, second[2]);
+                Assert.Equal(P2400LinkLabel[lang], second[1]);
+
+                // Inverse control: a node with no destination shows nothing, and carries no href.
+                var hidden = await page.EvaluateAsync<string[]>(P2400LinkStateJs, new { pk = withoutPk });
+                Assert.Equal("hidden", hidden[0]);
+                Assert.Equal("", hidden[2]);
+                Assert.True(int.Parse(hidden[5]) == 0 && int.Parse(hidden[6]) == 0,
+                    $"#2400 [{lang}/{variant}]: a hidden link must occupy no box, got {hidden[5]}x{hidden[6]}");
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg", "inline")]
+        [InlineData("fr", "Fallacies_fr.content.svg", "ext")]
+        public async Task Cap23_ExternalLinkDestination_FollowsEverySheetChange_BothPaths(string lang, string svgFileName, string variant)
+        {
+            var page = variant == "ext"
+                ? await OpenExternalAsync(lang, svgFileName, ViewportWidth, ViewportHeight)
+                : await OpenPageAtAsync(await ComposeIncludedAsync(lang, svgFileName), ViewportWidth, ViewportHeight);
+            try
+            {
+                if (variant == "ext") await WaitForExternalNavigationAsync(page);
+                else await WaitForViewportSettledAsync(page);
+                var pick = await page.EvaluateAsync<string[]>(P2400PickSheetsJs);
+                Assert.NotNull(pick);
+                Assert.True(pick.Length >= 6 && !string.IsNullOrEmpty(pick[3]) && !string.IsNullOrEmpty(pick[5]),
+                    $"#2400 [{lang}/{variant}]: the fixture must offer two destinations and a node without one");
+                var (aPk, aLink, bPk, bLink, cPk) = (pick[0], pick[2], pick[3], pick[4], pick[5]);
+
+                async Task<string[]> StateAsync(string pk) =>
+                    await page.EvaluateAsync<string[]>(P2400LinkStateJs, new { pk });
+
+                // Navigation path: A -> B -> none -> back to A.
+                Assert.Equal(aLink, (await StateAsync(aPk))[2]);
+                Assert.Equal(bLink, (await StateAsync(bPk))[2]);
+                var none = await StateAsync(cPk);
+                Assert.Equal("hidden", none[0]);
+                Assert.Equal("", none[2]);
+                Assert.Equal(aLink, (await StateAsync(aPk))[2]);
+
+                // Direct-click path (`showOverlay`), the one the visitor actually uses.
+                async Task<string[]> ClickStateAsync(string pk)
+                {
+                    await page.EvaluateAsync(
+                        @"pk => {
+                            const rec = window.__mmNav.byPk[pk];
+                            rec.el.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+                        }", pk);
+                    await page.WaitForTimeoutAsync(150);
+                    return await page.EvaluateAsync<string[]>(
+                        @"() => {
+                            const card = document.querySelector('card');
+                            const link = document.getElementById('externalLink');
+                            const cs = getComputedStyle(link);
+                            return [cs.display !== 'none' ? 'shown' : 'hidden',
+                                    link.getAttribute('href') || '',
+                                    (card.querySelector('.title').textContent || '').trim()];
+                        }");
+                }
+
+                var clickA = await ClickStateAsync(aPk);
+                Assert.Equal("shown", clickA[0]);
+                Assert.Equal(aLink, clickA[1]);
+                var clickB = await ClickStateAsync(bPk);
+                Assert.Equal("shown", clickB[0]);
+                Assert.Equal(bLink, clickB[1]);
+                var clickC = await ClickStateAsync(cPk);
+                Assert.Equal("hidden", clickC[0]);
+                Assert.Equal("", clickC[1]);
+                var clickBack = await ClickStateAsync(aPk);
+                Assert.Equal("shown", clickBack[0]);
+                Assert.Equal(aLink, clickBack[1]);
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        private const string P2400RelationsStateJs = @"() => {
+            const host = document.getElementById('svgObject');
+            const nodeDoc = (host && host.contentDocument) ? host.contentDocument : document;
+            const card = document.querySelector('card');
+            const rel = card.querySelector('.relations');
+            const foot = card.querySelector('.footer');
+            const leg = document.getElementById('mmLegend');
+            const list = document.getElementById('mmLegendList');
+            const cr = card.getBoundingClientRect();
+            const rr = rel.getBoundingClientRect();
+            const fr = foot.getBoundingClientRect();
+            const rows = rel.querySelectorAll('.mm-relation');
+            const cs = getComputedStyle(rel);
+            const rowH = rows.length ? rows[0].getBoundingClientRect().height : 0;
+            const padT = parseFloat(cs.paddingTop) || 0, padB = parseFloat(cs.paddingBottom) || 0;
+            const visibleRows = rowH > 0 ? Math.floor((rel.clientHeight - padT - padB + 0.5) / rowH) : 0;
+            const actives = Array.from(nodeDoc.querySelectorAll('.node.active'));
+            return [
+                String(rows.length),
+                String(visibleRows),
+                rr.top >= cr.top - 0.6 && rr.bottom <= cr.bottom + 0.6 ? 'relationsInsideCard' : 'relationsOutsideCard',
+                fr.top < rr.bottom - 0.5 && fr.left < rr.right && fr.right > rr.left ? 'overlapsFooter' : 'clearOfFooter',
+                card.scrollHeight > card.clientHeight + 1 ? 'cardScrolls' : 'cardFits',
+                card.classList.contains('hidden') ? 'cardHidden' : 'cardOpen',
+                (card.querySelector('.title').textContent || '').trim(),
+                getComputedStyle(leg).display !== 'none' ? 'legendShown' : 'legendHidden',
+                String(list ? list.children.length : 0),
+                (list ? list.textContent : '').replace(/\s+/g, ' ').trim(),
+                String(actives.length),
+                actives.length ? (actives[0].getAttribute('pk') || '') : '',
+                location.hash
+            ];
+        }";
+
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg", "inline")]
+        [InlineData("fr", "Fallacies_fr.content.svg", "ext")]
+        public async Task Cap24_DirectClickFillsRelations_RelationClickOpensTargetAndLegend(string lang, string svgFileName, string variant)
+        {
+            var page = variant == "ext"
+                ? await OpenExternalAsync(lang, svgFileName, ViewportWidth, ViewportHeight)
+                : await OpenPageAtAsync(await ComposeIncludedAsync(lang, svgFileName), ViewportWidth, ViewportHeight);
+            try
+            {
+                if (variant == "ext") await WaitForExternalNavigationAsync(page);
+                else await WaitForViewportSettledAsync(page);
+
+                // The node with the MOST relations in the corpus (7 on the current fixture) —
+                // derived, never a hardcoded pk, so the case keeps meaning if the data moves.
+                var pick = await page.EvaluateAsync<string[]>(@"() => {
+                    const nav = window.__mmNav;
+                    const counts = {};
+                    nav.linkRecs.forEach(l => {
+                        counts[l.source] = (counts[l.source] || 0) + 1;
+                        counts[l.target] = (counts[l.target] || 0) + 1;
+                    });
+                    let best = null;
+                    for (const p of Object.keys(counts)) if (!best || counts[p] > counts[best]) best = p;
+                    const rec = nav.byPath[best];
+                    return rec ? [rec.pk, rec.label, String(counts[best]), best] : ['', '', '0', ''];
+                }");
+                Assert.True(pick != null && !string.IsNullOrEmpty(pick[0]));
+                var (sourcePk, sourceLabel, expectedRows) = (pick[0], pick[1], int.Parse(pick[2]));
+                _output.WriteLine($"[{lang}/{variant}] busiest sheet pk={sourcePk} '{sourceLabel}' with {expectedRows} relations");
+                Assert.True(expectedRows >= 3, "the busiest sheet must carry enough relations for its box to overflow");
+
+                // DIRECT CLICK — the path that never filled the relations before #2400.
+                await page.EvaluateAsync(
+                    @"pk => {
+                        const rec = window.__mmNav.byPk[pk];
+                        rec.el.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+                    }", sourcePk);
+                await page.WaitForTimeoutAsync(300);
+
+                var afterDirect = await page.EvaluateAsync<string[]>(P2400RelationsStateJs);
+                Assert.NotNull(afterDirect);
+                Assert.Equal("cardOpen", afterDirect[5]);
+                Assert.Equal(Norm(sourceLabel), Norm(afterDirect[6]));
+                _output.WriteLine($"[{lang}/{variant}] direct click: rows={afterDirect[0]} visibleRows={afterDirect[1]} " +
+                                  $"legend={afterDirect[7]} legendRows={afterDirect[8]}");
+                Assert.Equal(expectedRows, int.Parse(afterDirect[0]));
+                Assert.Equal("relationsInsideCard", afterDirect[2]);
+                Assert.Equal("clearOfFooter", afterDirect[3]);
+                Assert.Equal("cardFits", afterDirect[4]);
+                Assert.True(int.Parse(afterDirect[1]) >= 1,
+                    $"#2400 witness 2 [{lang}/{variant}]: the relations box shows {afterDirect[1]} whole row(s) " +
+                    $"for {afterDirect[0]} relations — 25 px for seven rows is the defect");
+                Assert.Equal("legendShown", afterDirect[7]);
+                Assert.True(int.Parse(afterDirect[8]) >= 1, "the legend must list the verbs of the map");
+
+                // Relation row click: the target node becomes the active one, its own sheet fills,
+                // the legend survives — "cliquer une relation et vérifier les deux nœuds et la légende".
+                var firstRow = page.Locator("card .relations .mm-relation").First;
+                var rowText = Norm(await firstRow.EvaluateAsync<string>("el => el.textContent"));
+                await firstRow.ClickAsync();
+                await page.WaitForTimeoutAsync(500);
+                var afterRelation = await page.EvaluateAsync<string[]>(P2400RelationsStateJs);
+                Assert.NotNull(afterRelation);
+                _output.WriteLine($"[{lang}/{variant}] relation row '{rowText}' -> pk={afterRelation[11]} " +
+                                  $"'{afterRelation[6]}' rows={afterRelation[0]} active={afterRelation[10]} hash={afterRelation[12]}");
+
+                Assert.Equal("cardOpen", afterRelation[5]);
+                Assert.Equal("1", afterRelation[10]);
+                Assert.NotEqual(sourcePk, afterRelation[11]);
+                Assert.Equal("#pk=" + afterRelation[11], afterRelation[12]);
+                Assert.Contains(Norm(afterRelation[6]), rowText);
+                Assert.True(int.Parse(afterRelation[0]) >= 1, "the target's own relations must be listed on its sheet");
+                Assert.Equal("relationsInsideCard", afterRelation[2]);
+                Assert.Equal("clearOfFooter", afterRelation[3]);
+                Assert.Equal("cardFits", afterRelation[4]);
+                Assert.True(int.Parse(afterRelation[1]) >= 1);
+                Assert.Equal("legendShown", afterRelation[7]);
+                Assert.True(int.Parse(afterRelation[8]) >= 1);
+
+                // Both nodes: the source sheet is still reachable and refills its own relations.
+                await page.EvaluateAsync<string[]>(P2400LinkStateJs, new { pk = sourcePk });
+                var backSheet = await page.EvaluateAsync<string[]>(P2400RelationsStateJs);
+                Assert.Equal(Norm(sourceLabel), Norm(backSheet[6]));
+                Assert.Equal(expectedRows, int.Parse(backSheet[0]));
             }
             finally
             {

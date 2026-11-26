@@ -622,6 +622,58 @@
             cursor: pointer;
         }
 
+        /* #2400 — la fiche est bornee, ses enfants restent dedans.
+           bleed/cut/safe sont des elements INCONNUS du navigateur : leur `display` vaut
+           `inline`, donc `.body { height: 100% }` n'avait aucun parent defini et la carte
+           debordait en silence. Mesure sur #pk=1084, viewport 1280x900 : carte de 720 px
+           (bas a 802,5), contenu de 833,7 px — relations (820,1 a 891,2) et pied (878,2 a
+           916,2) entierement SOUS la carte, donc invisibles. On rend la chaine block/flex,
+           on plafonne `safe` a la carte, et `.body` devient une colonne reductible pour que
+           le contenu soit mesure (fitCard) plutot que deborde. */
+        card > bleed,
+        card > bleed > cut {
+            display: block;
+            height: 100%;
+        }
+
+        card > bleed > cut > safe {
+            display: flex;
+            flex-flow: column nowrap;
+            max-height: 100%;
+        }
+
+        card .body {
+            box-sizing: border-box;
+            height: auto;
+            min-height: 0;
+        }
+
+        /* la section image (lien + titre) ne s'ecrase jamais : ce sont le texte et les
+           relations qui cedent, en defilant dans leur cadre */
+        card .imageSection {
+            flex-shrink: 0;
+        }
+
+        card .texte.mm-scroll {
+            min-height: 0;
+            overflow-y: auto;
+        }
+
+        /* les relations ne collent pas au pied de page (13 px de chevauchement mesures) et
+           gardent la hauteur que le gabarit leur donne : sans `flex-shrink: 0` la boite
+           absorbait tout le manque et tombait a 25 px sur #pk=1084 (1 rangee visible sur 7,
+           mesure 2026-11-26) — le `max-height: 12vh` ne servait alors a rien. */
+        card .relations {
+            flex-shrink: 0;
+            margin-bottom: max(2vh, 14px);
+        }
+
+        /* `.hidden` (0,1,0) perdait contre `#externalLink` (1,0,0) : le lien restait affiche
+           meme quand le nœud n'avait aucune destination. */
+        #externalLink.hidden {
+            display: none;
+        }
+
         card .famille.mm-nav,
         card .sous_famille.mm-nav,
         card .Soussousfamille.mm-nav {
@@ -18470,7 +18522,7 @@
                             </div>
                         </div>
                         <div class="imageSection">
-                            <a id="externalLink" href="#" target="_blank"></a>
+                            <a id="externalLink" class="hidden" target="_blank" rel="noopener">Ouvrir le lien externe</a>
                             <div class="title">
                                 <div></div>
                             </div>
@@ -18505,6 +18557,10 @@
         let isNodeActive = false;
         let hideOverlayTimeout = null;
         let activeNode = null;
+        // #2400 — openNodeCard (clic direct) et fillRelations (navigation) vivent dans deux
+        // portees differentes : ce crochet les relie. Declare ici, affecte une fois fillRelations
+        // defini plus bas.
+        let onCardFilled = null;
 
         const nodes = document.querySelectorAll('.node');
 
@@ -18515,6 +18571,59 @@
                 activeNode.classList.remove('active');
                 activeNode = null;
             }
+        };
+
+        // #2400 — la passe verticale mesure desormais la hauteur REELLE du contenu de la fiche.
+        // L'ancien signal (`overlay.scrollHeight > overlay.clientHeight`) devenait aveugle des que
+        // les enfants etaient compresses par le flex, et il tournait AVANT le remplissage des
+        // relations. On somme donc les boites (marges comprises) des enfants directs de `.body`,
+        // on compare a la place disponible, et on reduit la typographie jusqu'a ce que ca tienne ;
+        // si ca ne tient pas au plancher de 10 px, le texte defile dans son cadre (jamais hors carte).
+        const cardBody = document.querySelector('card .body');
+        const cardTexte = document.querySelector('card .texte');
+        const cardRelations = document.querySelector('card .relations');
+        const fitTargets = () => [title, famille, sous_famille, Soussousfamille, description, example]
+            .filter(el => el && el.clientHeight);
+        const neededHeight = () => {
+            if (!cardBody) return 0;
+            let total = 0;
+            for (const child of cardBody.children) {
+                const r = child.getBoundingClientRect();
+                const cs = getComputedStyle(child);
+                // seul `display: none` ote un enfant. Une boite de hauteur nulle mais non vide est un
+                // enfant ECRASE par le flex : c'est exactement celui qu'il faut voir (mesure #2400 : la
+                // section image comptee absente, la passe ne reduisait rien et le titre se peignait
+                // sur le texte).
+                if (cs.display === 'none') continue;
+                // un cadre qui defile ne reclame que la place qu'il occupe : son contenu reste
+                // atteignable par defilement, il ne pousse pas la fiche hors de la carte.
+                const scrolls = child === cardRelations
+                    || (child === cardTexte && child.classList.contains('mm-scroll'));
+                const h = scrolls ? r.height : Math.max(r.height, child.scrollHeight);
+                total += h + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom);
+            }
+            return total;
+        };
+        const availableHeight = () => cardBody
+            ? cardBody.clientHeight - parseFloat(getComputedStyle(cardBody).paddingTop)
+            : 0;
+        const fitCard = () => {
+            if (!cardBody) return;
+            // on repart de la hauteur naturelle du texte : le cadre reduit d'une fiche defilante ne
+            // doit pas etre heritage par la fiche suivante
+            if (cardTexte) cardTexte.classList.remove('mm-scroll');
+            const els = fitTargets();
+            let vGuard = 0;
+            while (neededHeight() > availableHeight() + 1 && vGuard++ < 200) {
+                let shrunk = false;
+                for (const el of els) {
+                    const px = parseFloat(getComputedStyle(el).fontSize);
+                    if (px > 10) { el.style.fontSize = (px - 1) + 'px'; shrunk = true; }
+                }
+                if (!shrunk) break;
+            }
+            // dernier recours : le texte defile DANS son cadre plutot que de sortir de la carte
+            if (cardTexte) cardTexte.classList.toggle('mm-scroll', neededHeight() > availableHeight() + 1);
         };
 
         // #2190 lot 2 — le corps de showOverlay vit dans openNodeCard(targetNode) pour que la
@@ -18547,7 +18656,14 @@
             // d'exemple : l'attribut vaut "<p><i></i></p>", ce qui laissait un bandeau
             // blanc sur les 1772 fiches Vertus (8 langues) et sur 47 noeuds Sophismes.
             [description, example].forEach(el => { el.style.display = el.textContent.trim() === '' ? 'none' : ''; });
-            externalLink.href = targetNode.getAttribute('link');
+            // #2400 — le lien externe etait un <a> VIDE (40 x 20 px, href seul) quand le nœud avait
+            // une destination, et portait href="null" quand il n'en avait pas (getAttribute rend
+            // null, affecte en chaine). Il porte desormais un libelle visible, localise par
+            // applyUiStrings, et disparait faute de destination.
+            const nodeLink = targetNode.getAttribute('link');
+            externalLink.classList.toggle('hidden', !nodeLink);
+            if (nodeLink) { externalLink.setAttribute('href', nodeLink); }
+            else { externalLink.removeAttribute('href'); }
             niveau.textContent = targetNode.getAttribute('depth');
 
             overlay.removeAttribute('class');
@@ -18568,7 +18684,7 @@
             // sur 11 debordent, Sophismes autant que Vertus. On reduit jusqu'a ce que ca
             // tienne ; la regle CSS reste la taille nominale. Mesure APRES retrait de
             // .hidden : sur un element display:none, clientWidth vaut 0.
-            [title, famille, sous_famille, description, example].forEach(el => {
+            [title, famille, sous_famille, Soussousfamille, description, example].forEach(el => {
                 if (!el) return;
                 el.style.fontSize = '';
                 if (!el.clientWidth) return;
@@ -18582,17 +18698,9 @@
             // porte desormais un ratio fixe, donc le contenu peut deborder en hauteur la ou il
             // s'etalait librement avant. On reduit uniformement jusqu'a ce qu'il tienne.
             // Plancher 10px ; garde a 200 tours pour qu'un cas pathologique ne fige pas l'onglet.
-            const fitEls = [title, famille, sous_famille, Soussousfamille, description, example]
-                .filter(el => el && el.clientHeight);
-            let vGuard = 0;
-            while (overlay.scrollHeight > overlay.clientHeight && vGuard++ < 200) {
-                let shrunk = false;
-                for (const el of fitEls) {
-                    const px = parseFloat(getComputedStyle(el).fontSize);
-                    if (px > 10) { el.style.fontSize = (px - 1) + 'px'; shrunk = true; }
-                }
-                if (!shrunk) break;
-            }
+            // #2400 — la passe vit dans fitCard() et tourne APRES le remplissage de la fiche.
+            if (onCardFilled) onCardFilled(targetNode);
+            fitCard();
 
             targetNode.classList.add('active');
         };
@@ -18804,6 +18912,7 @@
                               legendSummary: 'Relations entre sophismes',
                               panelAria: 'Relation entre deux sophismes',
                               closeAria: 'Fermer le panneau de relation',
+                              externalLink: 'Ouvrir le lien externe',
                               relationAriaPrefix: 'relation : ',
                               verbs: { 'PredatesOn': 'précède', 'Denounces': 'dénonce',
                                        'Leverages': 'exploite', 'Allows': 'permet',
@@ -18815,6 +18924,7 @@
                               legendSummary: 'Relations between fallacies',
                               panelAria: 'Relation between two fallacies',
                               closeAria: 'Close the relation panel',
+                              externalLink: 'Open the external link',
                               relationAriaPrefix: 'relation: ',
                               verbs: { 'PredatesOn': 'precedes', 'Denounces': 'denounces',
                                        'Leverages': 'exploits', 'Allows': 'allows',
@@ -18826,6 +18936,7 @@
                               legendSummary: 'Связи между софизмами',
                               panelAria: 'Связь между двумя софизмами',
                               closeAria: 'Закрыть панель связей',
+                              externalLink: 'Открыть внешнюю ссылку',
                               relationAriaPrefix: 'связь: ',
                               verbs: { 'PredatesOn': 'предшествует', 'Denounces': 'разоблачает',
                                        'Leverages': 'использует', 'Allows': 'допускает',
@@ -18837,6 +18948,7 @@
                               legendSummary: 'Relações entre sofismas',
                               panelAria: 'Relação entre dois sofismas',
                               closeAria: 'Fechar o painel de relações',
+                              externalLink: 'Abrir o link externo',
                               relationAriaPrefix: 'relação: ',
                               verbs: { 'PredatesOn': 'precede', 'Denounces': 'denuncia',
                                        'Leverages': 'explora', 'Allows': 'permite',
@@ -18848,6 +18960,7 @@
                               legendSummary: 'Relaciones entre falacias',
                               panelAria: 'Relación entre dos falacias',
                               closeAria: 'Cerrar el panel de relaciones',
+                              externalLink: 'Abrir el enlace externo',
                               relationAriaPrefix: 'relación: ',
                               verbs: { 'PredatesOn': 'precede', 'Denounces': 'denuncia',
                                        'Leverages': 'explota', 'Allows': 'permite',
@@ -18859,6 +18972,7 @@
                               legendSummary: 'العلاقات بين المغالطات',
                               panelAria: 'علاقة بين مغالطتين',
                               closeAria: 'إغلاق لوحة العلاقات',
+                              externalLink: 'افتح الرابط الخارجي',
                               relationAriaPrefix: 'علاقة: ',
                               verbs: { 'PredatesOn': 'يسبق', 'Denounces': 'يفضح',
                                        'Leverages': 'يستغل', 'Allows': 'يتيح',
@@ -18870,6 +18984,7 @@
                               legendSummary: 'روابط میان مغلطه‌ها',
                               panelAria: 'رابطه میان دو مغلطه',
                               closeAria: 'بستن پنل رابطه',
+                              externalLink: 'پیوند بیرونی را باز کنید',
                               relationAriaPrefix: 'رابطه: ',
                               verbs: { 'PredatesOn': 'پیش می‌آید', 'Denounces': 'رسوا می‌کند',
                                        'Leverages': 'بهره می‌گیرد', 'Allows': 'ممکن می‌سازد',
@@ -18881,6 +18996,7 @@
                               legendSummary: '谬误之间的关系',
                               panelAria: '两个谬误之间的关系',
                               closeAria: '关闭关系面板',
+                              externalLink: '打开外部链接',
                               relationAriaPrefix: '关系：',
                               verbs: { 'PredatesOn': '先于', 'Denounces': '揭露',
                                        'Leverages': '利用', 'Allows': '容许',
@@ -18904,6 +19020,9 @@
                         });
                         var summary = hostDoc.querySelector('#mmLegend summary');
                         if (summary) summary.textContent = ui.legendSummary;
+                        // #2400 — libelle visible du lien externe, dans la langue du document.
+                        var ext = hostDoc.getElementById('externalLink');
+                        if (ext && ui.externalLink) ext.textContent = ui.externalLink;
                     })();
                     const verbLabels = ui.verbs;
 
@@ -18951,8 +19070,7 @@
                             panZoomInstance.panBy({ x: (cr.left + cr.width * 0.28) - c.x,
                                                     y: (cr.top + cr.height / 2) - c.y });
                         } catch (e) { console.error('navigation focus error', e); }
-                        openNodeCard(rec.el);
-                        fillRelations(rec);
+                        openNodeCard(rec.el);   // remplit aussi les relations (#2400, onCardFilled)
                     };
 
                     const navigateTo = (rec) => {
@@ -19131,6 +19249,17 @@
                         });
                         if (relationsEl.childElementCount) relationsEl.classList.remove('hidden');
                         else relationsEl.classList.add('hidden');
+                    };
+
+                    // #2400 — le crochet que openNodeCard appelle. Une seule voie de remplissage (clic
+                    // direct, #pk=, recherche, clic de relation), donc une seule passe verticale, toujours
+                    // posterieure aux relations. Avant, fillRelations n'etait appele que par focusNode : la
+                    // fiche ouverte au clic direct n'avait jamais ses relations.
+                    onCardFilled = (targetNode) => {
+                        const nodeEl = (targetNode.closest && targetNode.closest('.node')) || targetNode;
+                        const rec = byPath[nodeEl.getAttribute('path') || '']
+                                 || byPk[nodeEl.getAttribute('pk') || ''];
+                        if (rec) fillRelations(rec);
                     };
 
                     // Remontée : .famille → racine de famille, .sous_famille → niveau 2, etc.
