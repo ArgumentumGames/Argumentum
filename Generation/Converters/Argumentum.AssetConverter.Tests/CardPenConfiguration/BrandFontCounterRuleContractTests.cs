@@ -43,15 +43,16 @@ namespace Argumentum.AssetConverter.Tests.CardPenConfiguration
 	public class BrandFontCounterRuleContractTests
 	{
 		/// <summary>
-		/// Latin brand fonts a card may legitimately want on its brand mark. DINPro is also the
-		/// base card font, but on a brand container it is a deliberate re-assertion, not a sweep.
-		/// Alfa Slab One joined the list with #1485 (Rules masthead, OFF licence) when it took
-		/// over from TrendSlab. The two fonts that are NOT allowed as the counter-rule here are
+		/// Latin brand fonts a card may legitimately want on its brand mark. DINPro was the base
+		/// card font until #1485; Barlow and Rubik replaced it there, so a counter-rule that
+		/// re-asserts them is a deliberate re-assertion, not a sweep. Alfa Slab One joined the
+		/// list with #1485 (Rules masthead, OFL licence) when it took over from TrendSlab. The two
+		/// fonts that are NOT allowed as the counter-rule here are
 		/// the RTL/CJK glyph fonts — a counter-rule that re-declares Vazirmatn would be the
 		/// pendulum, not the fix.
 		/// </summary>
 		private static readonly Regex BrandFont = new Regex(
-			@"'?(?:Bebas Neue|TrendSlabW00-Four|Alfa Slab One|Oswald|Dosis|Gadugi|DINPro)'?",
+			@"'?(?:Bebas Neue|TrendSlabW00-Four|Alfa Slab One|Oswald|Dosis|Gadugi|DINPro|Barlow|Rubik)'?",
 			RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
 		private static readonly Regex LocalGlyphFont = new Regex(
@@ -351,7 +352,7 @@ namespace Argumentum.AssetConverter.Tests.CardPenConfiguration
 				HasCounterRule(css, scope).Should().BeTrue(
 					"{0} (used by {1}) sweeps the `.argu-lang-{2} *` scope at `!important`, which clobbers " +
 					"the latin brand mark; as of #1225 the scope MUST carry a counter-rule re-asserting a " +
-					"latin brand font (Bebas Neue / TrendSlab / Alfa Slab One / DINPro / …) on the brand container so the " +
+					"latin brand font (Bebas Neue / Alfa Slab One / Barlow / Rubik / …) on the brand container so the " +
 					"mark keeps its typeface. Absent that rule, the brand text falls back to Vazirmatn / " +
 					"Noto Sans SC and the mark renders in an Arabic/CJK body font — for the shared Fallacies " +
 					"back and the Rules «Argumentum» masthead this breaks mid-word.",

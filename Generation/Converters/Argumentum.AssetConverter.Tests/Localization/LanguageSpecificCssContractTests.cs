@@ -253,6 +253,14 @@ namespace Argumentum.AssetConverter.Tests.Localization
 		/// nothing — the glyphs still fall back to whatever the host happens to have. Found this way:
 		/// Argumentum_Scenarii_Back_fr.json shipped an empty <c>extCSS</c> while rendering a
 		/// translated category name, so its script text had no font at all.
+		///
+		/// <para><b>A third source since #1485.</b> A template no longer declares the faces the
+		/// pipeline embeds: <see cref="EmbeddedFontFaces"/> prepends them to every payload at
+		/// harvest, so a scoped rule may name <c>Barlow</c>, <c>Rubik</c> or <c>Alfa Slab One</c>
+		/// with no <c>@font-face</c> left in the template. The families are read from that CSS —
+		/// the very string the harvest injects, not a list kept by hand — and count as loaded. A
+		/// family that is neither there, nor in <c>extCSS</c>, nor in a local
+		/// <c>@font-face</c> is still a rule that cannot take effect.</para>
 		/// </summary>
 		[Theory]
 		[MemberData(nameof(TemplatePaths))]
@@ -261,10 +269,14 @@ namespace Argumentum.AssetConverter.Tests.Localization
 			var doc = LoadTemplate(relPath);
 			var css = doc.css ?? "";
 
-			// Where a font can legitimately come from: an external stylesheet, or a local @font-face.
+			// Where a font can legitimately come from: an external stylesheet, a local @font-face,
+			// or the faces the pipeline embeds in every payload. Only the family NAMES are taken
+			// from the embedded CSS: its base64 payload would otherwise be searched as text.
 			var loaded = (doc.extCSS ?? "") + " " +
 				string.Join(" ", Regex.Matches(css, @"@font-face\s*\{[^}]*\}", RegexOptions.Singleline)
-					.Select(m => m.Value));
+					.Select(m => m.Value)) + " " +
+				string.Join(" ", Regex.Matches(EmbeddedFontFaces.Css, @"font-family:\s*'([^']+)';")
+					.Select(m => m.Groups[1].Value));
 
 			var scoped = Regex.Matches(css,
 				@"\.argu-lang-(?:ar|fa|zh)[^{]*\{(?<body>[^}]*)\}", RegexOptions.Singleline);
@@ -283,7 +295,8 @@ namespace Argumentum.AssetConverter.Tests.Localization
 				 || loaded.Contains(family.Replace(" ", "+"), StringComparison.OrdinalIgnoreCase))
 					.Should().BeTrue(
 						$"{relPath} names font '{family}' in a language-scoped rule but never loads it "
-						+ $"(neither in extCSS nor in an @font-face) — the rule cannot take effect");
+						+ $"(neither in extCSS, nor in an @font-face, nor among the faces EmbeddedFontFaces " +
+						  $"embeds) — the rule cannot take effect");
 			}
 		}
 
