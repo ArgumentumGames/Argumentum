@@ -97,7 +97,7 @@
 #    12. tools/test_2190-served-mindmap-inventory.py -- std-lib + git, OFFLINE : le
 #        serveur HTTP est local et jetable, aucune préprod ni réseau externe. Témoin
 #        identique au blob, mutation d'octets et route absente doivent être distingués.
-#    13. tools/test_458-eav-reinject-guards.py -- std-lib, offline, 23 cas. Charge
+#    13. tools/test_458-eav-reinject-guards.py -- std-lib, offline, 25 cas. Charge
 #        tools/458-eav-reinject.py SANS se connecter (EXP.run_query remplace par un
 #        faux qui sert des rangees synthetiques) et eprouve les gardes de refus
 #        G1-G3 de la re-injection EAV (#2326, revue c.7053569313) : chaque garde
@@ -108,11 +108,13 @@
 #        par le refus G1 (et refus maintenu si la liste echoue), garde de source
 #        contre la formulation « rangee servie = ValueId MAX » refutee par M1/M3.
 #        Depuis P23-38, les deux reserves de la contre-revue #2362
-#        (c.7131327983) : la clause WHERE de g1_entity_ids est la meme que celle
-#        du comptage, comparee sur les SQL captures a l'execution avec une
-#        mutation par cote (R4) ; et l'avertissement « la base a bouge entre les
-#        deux lectures » a son cas court, son cas long, son temoin muet et sa
-#        mutation (R5).
+#        (c.7131327983) : le fragment FROM..WHERE de g1_entity_ids est le meme que
+#        celui du comptage, compare sur les SQL captures a l'execution avec une
+#        mutation par cote (R4) — l'ancre est FROM depuis la contre-revue po-2024
+#        de #2362 : un JOIN ajoute a la seule liste a sa mutation, et un controle
+#        inverse laisse verte une divergence hors FROM..WHERE ; et l'avertissement
+#        « la base a bouge entre les deux lectures » a son cas court, son cas long,
+#        son temoin muet et sa mutation (R5).
 #        Le faux run_query refuse tout SQL non attendu : une derive des
 #        requetes fait echouer le test bruyamment, jamais passer des rangees
 #        fausses. Condition d'execution documentee dans la docstring du fichier.
@@ -233,16 +235,17 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Run the EAV reinject guard contract (#458 P23-24 G1-G3, P23-27 R1-R3, P23-38 R4-R5)
-        # 23 cas, std-lib, offline : aucune connexion, aucun web.config. Les gardes
+        # 25 cas, std-lib, offline : aucune connexion, aucun web.config. Les gardes
         # de refus G1-G3 (paire (app, guid) multi-entites, vainqueur de carte sans
         # marge, carte non injective) sont eprouvees chacune par un temoin sain et
         # une MUTATION : la garde neutralisee dans le source doit laisser passer
         # le defaut — le test epingle la garde, pas un effet de bord. Les retouches
         # P23-27 (carte imprimee avant fetch_target, EntityId listes dans le refus
         # G1, source sans la formulation refutee par M1/M3) ont leur propre cas et
-        # leur propre mutation. Les reserves #2362 (c.7131327983) ajoutent la
-        # clause WHERE comparee sur les SQL captures (R4) et l'avertissement « la
-        # base a bouge entre les deux lectures » (R5).
+        # leur propre mutation. Les reserves #2362 (c.7131327983) ajoutent le
+        # fragment FROM..WHERE compare sur les SQL captures (R4, ancre FROM depuis
+        # la contre-revue po-2024 : mutation JOIN vue, divergence hors fragment
+        # verte) et l'avertissement « la base a bouge entre les deux lectures » (R5).
         run: python tools/test_458-eav-reinject-guards.py
 
   eav-derive-run-registry:

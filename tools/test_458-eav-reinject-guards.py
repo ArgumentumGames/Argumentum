@@ -36,10 +36,13 @@ RETOUCHES P23-27 (contre-revue po-2024 c.7057778259) — trois proprietes de plu
       implicature (« la rangee au MAX »), pas une phrase.
 
 RESERVES DE LA CONTRE-REVUE #2362 (ai-01 c.7131327983, P23-38) — deux cas de plus :
-  R4  la clause WHERE de g1_entity_ids est la MEME que celle de la requete de
-      comptage : les ids listes sont exactement ceux qui ont ete comptes. Le
-      detecteur compare les SQL captures a l'execution (ce que l'outil ENVOIE), et
-      deux mutations retirent `TransDeletedId IS NULL` d'un seul des deux cotes.
+  R4  le fragment FROM..WHERE de g1_entity_ids est le MEME que celui de la requete
+      de comptage : les ids listes sont exactement ceux qui ont ete comptes. Le
+      detecteur compare les SQL captures a l'execution (ce que l'outil ENVOIE) ;
+      deux mutations retirent `TransDeletedId IS NULL` d'un seul des deux cotes, une
+      troisieme ajoute un JOIN a la seule liste (contre-revue po-2024 : sous une
+      ancre WHERE, ce mutant restait vert), et un controle inverse verifie qu'une
+      divergence hors FROM..WHERE ne rougit pas.
   R5  l'avertissement « la base a bouge entre les deux lectures » (liste plus
       courte ou plus longue que le compte) a son cas, son temoin muet quand les
       deux concordent, et sa mutation.
@@ -87,12 +90,24 @@ def mutated_tool(tag):
                                         f'print(f"REFUS ({tag})')]))
 
 
-def where_of(sql):
-    """Fragment WHERE d'une requete, normalise : de « WHERE » a la clause suivante
-    (GROUP BY / ORDER BY / fin d'instruction). Sert a comparer deux requetes telles
-    qu'elles ont ete ENVOYEES, sans epingler leur mise en forme."""
-    m = re.search(r"\bWHERE\b(.*?)(?:\bGROUP BY\b|\bORDER BY\b|;)", sql, re.S)
-    assert m, f"requete sans WHERE: {sql[:120]!r}"
+def from_of(sql):
+    """Fragment `FROM..WHERE` d'une requete, normalise : de « FROM » a la clause
+    suivante (GROUP BY / ORDER BY / fin d'instruction). Sert a comparer deux
+    requetes telles qu'elles ont ete ENVOYEES, sans epingler leur mise en forme.
+
+    L'ancre est FROM, pas WHERE : un JOIN ajoute a une seule des deux requetes
+    change l'ensemble des lignes lues sans toucher un mot du WHERE. Constat de la
+    contre-revue po-2024 de #2362 — un `JOIN TsDynDataValue` sur la seule liste
+    des EntityId laissait R4 vert, alors que « les ids listes sont exactement ceux
+    qu'elle a comptes » (docstring de `g1_entity_ids`) ne tenait plus.
+
+    Limite : c'est la PREMIERE clause FROM de l'instruction qui est lue, et jusqu'a
+    GROUP BY / ORDER BY / fin. Une sous-requete dans le SELECT deroberait l'ancre a
+    la sienne ; aucune des deux requetes n'en porte. Detecteur des SQL envoyees, pas
+    une preuve d'equivalence des resultats.
+    """
+    m = re.search(r"\bFROM\b(.*?)(?:\bGROUP BY\b|\bORDER BY\b|;)", sql, re.S)
+    assert m, f"requete sans FROM: {sql[:120]!r}"
     return " ".join(m.group(1).split())
 
 
@@ -243,13 +258,15 @@ class G1MultiEntityPair(unittest.TestCase):
 
 
 class G1MemeClauseWhere(unittest.TestCase):
-    """R4 : la clause WHERE de g1_entity_ids est celle de la requete de comptage.
+    """R4 : le fragment FROM..WHERE de g1_entity_ids est celui de la requete de comptage.
 
     « Les ids listes sont exactement ceux qu'elle a comptes » est une affirmation du
     docstring de l'outil, tenue par RIEN avant ce cas : la mutation « sans
     TransDeletedId IS NULL », appliquee a une seule des deux requetes, laissait la
     suite verte. Le detecteur compare les SQL captures a l'execution — ce que
-    l'outil envoie, pas une formulation du source.
+    l'outil envoie, pas une formulation du source. L'ancre porte sur FROM et non sur
+    WHERE : un JOIN ajoute a la seule liste change les lignes lues sans toucher au
+    WHERE (constat po-2024, mutant ci-dessous).
     """
 
     def setUp(self):
@@ -261,7 +278,8 @@ class G1MemeClauseWhere(unittest.TestCase):
         self.dup = [{"app": 33, "g": "aaaaaaaa-0000-0000-0000-000000000001", "n": 2}]
 
     def clauses(self, mod):
-        """(WHERE du comptage, WHERE de la liste des EntityId), captures a l'execution."""
+        """(FROM..WHERE du comptage, FROM..WHERE de la liste des EntityId), captures
+        a l'execution."""
         fake = FakeQuery(mod, self.dup, val_rows_healthy(), eid_rows=[
             {"app": 33, "g": "AAAAAAAA-0000-0000-0000-000000000001", "eid": 101},
             {"app": 33, "g": "AAAAAAAA-0000-0000-0000-000000000001", "eid": 102}])
@@ -273,7 +291,7 @@ class G1MemeClauseWhere(unittest.TestCase):
         count = [s for s in fake.calls if "HAVING COUNT(DISTINCT e.EntityId) > 1" in s]
         listed = [s for s in fake.calls if "e.EntityId AS eid" in s]
         self.assertEqual((len(count), len(listed)), (1, 1), "une requete de chaque attendue")
-        return where_of(count[0]), where_of(listed[0])
+        return from_of(count[0]), from_of(listed[0])
 
     def mutant(self, replacements):
         ns = load_source(mutated_source(replacements))
@@ -311,6 +329,42 @@ class G1MemeClauseWhere(unittest.TestCase):
         compte, liste = self.clauses(mod)
         self.assertNotIn("e.TransDeletedId IS NULL", compte)
         self.assertNotEqual(compte, liste)
+
+    def test_mutation_join_dans_la_liste(self):
+        """Un JOIN ajoute a la SEULE liste des EntityId doit etre vu (po-2024).
+
+        Sous l'ancre WHERE de P23-38 ce mutant restait vert : le WHERE est identique
+        caractere pour caractere, et pourtant la requete ne lit plus les memes lignes
+        — un JOIN interne ne rend que les entites qui ont une valeur. La promesse du
+        docstring de `g1_entity_ids` tombe alors sans un rouge.
+        """
+        mod = self.mutant([(
+            "FROM TsDynDataEntity e\n"
+            "WHERE e.TransDeletedId IS NULL AND e.AppId IN ({in_apps})\n"
+            "  AND CONVERT(nvarchar(64), e.EntityGuid) IN ({in_guids});",
+            "FROM TsDynDataEntity e\n"
+            "JOIN TsDynDataValue v ON v.EntityId = e.EntityId\n"
+            "WHERE e.TransDeletedId IS NULL AND e.AppId IN ({in_apps})\n"
+            "  AND CONVERT(nvarchar(64), e.EntityGuid) IN ({in_guids});",
+        )])
+        compte, liste = self.clauses(mod)
+        self.assertIn("JOIN TsDynDataValue", liste)
+        self.assertNotIn("JOIN", compte)
+        self.assertNotEqual(compte, liste)
+
+    def test_mutation_select_seul_reste_verte(self):
+        """Controle inverse de l'ancre : une divergence hors FROM..WHERE ne rougit pas.
+
+        Sans ce cas, l'ancre FROM pourrait passer pour un « comparer toute la
+        requete » — et rougirait sur une divergence legitime de colonnes lues, que
+        R4 n'a jamais eu a interdire.
+        """
+        mod = self.mutant([(
+            "COUNT(DISTINCT e.EntityId) AS n",
+            "COUNT(DISTINCT e.EntityId) AS entites",
+        )])
+        compte, liste = self.clauses(mod)
+        self.assertEqual(compte, liste)
 
 
 class G1AvertissementBaseBougee(unittest.TestCase):

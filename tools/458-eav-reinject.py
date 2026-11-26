@@ -265,9 +265,12 @@ def resolve_target(conn, reg_rows):
 def g1_entity_ids(conn, in_apps, in_guids) -> dict:
     """EntityId vivants par paire (app, GUID), pour NOMMER le refus G1 (nit po-2024).
 
-    Meme clause WHERE que la requete de comptage : les ids listes sont exactement
-    ceux qu'elle a comptes. Aide au debogage seulement — si cette lecture echoue,
-    le refus tombe quand meme, sans les ids : la garde est le refus, pas la liste.
+    Meme fragment FROM..WHERE que la requete de comptage, sans jointure : les ids
+    listes sont exactement ceux qu'elle a comptes. Un JOIN ajoute ici change les
+    lignes lues sans toucher au WHERE — la garde R4 compare donc a partir de FROM
+    (`tools/test_458-eav-reinject-guards.py`). Aide au debogage seulement — si cette
+    lecture echoue, le refus tombe quand meme, sans les ids : la garde est le refus,
+    pas la liste.
     """
     try:
         rows = EXP.run_query(conn, f"""
