@@ -11,8 +11,15 @@ Seaux -- un caractere n'est teste que dans sa propre ecriture, partout ou il
 apparait :
   ru-cyr  lettres cyrilliques rencontrees dans une colonne `*_ru`
   ru-oth  le reste des colonnes `*_ru` (chiffres, ponctuation, mots latins)
-  la-let  lettres latines des colonnes `_fr/_en/_es/_pt` et du texte statique
+  la-let  lettres latines des colonnes `_fr/_en/_es/_pt`, des colonnes NUES
+          qu'un gabarit rend en `{{…}}`, et du texte statique des gabarits
   la-oth  le reste de ces memes colonnes et textes
+
+Une colonne nue n'est lue que si le mustache d'un gabarit rend une variable de ce
+nom : c'est le mustache qui decide qu'un caractere est imprime. Sans cette regle,
+`È` (Scenarii, « Adam et Ève », rendu par `{{enjeu}}` / `{{contexte}}`) manquait
+au seau latin, alors qu'a l'inverse `Remarques` ou `image`, qu'aucun gabarit ne
+rend, gonfleraient le seau d'un texte jamais imprime.
 
 ⚠️ Pourquoi ce decoupage : un verdict de substitution mesure sur `fr` ne dit RIEN
 du deck `ru`. Les gabarits sont uniques (`*_fr.json`) et servent les 8 langues ;
@@ -36,6 +43,10 @@ vaut un echec bruyant qu'une absence de mesure lue comme une couverture.
 
 Reseau : les polices et les `METADATA.pb` sont telecharges puis caches dans
 `--cache` (defaut : %TEMP%/argumentum-fontcache).
+
+Une source en echec -- URL injoignable, `family=` inconnue (404) -- donne une
+ligne `ERREUR` a sa place, et les autres polices du meme appel restent mesurees.
+Seul un conteneur illisible (WOFF2) sort en erreur nommee, expres.
 
 Usage:
   python -I font-coverage.py --repo <racine Argumentum> [--ref origin/master] \\
@@ -69,6 +80,11 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
 
 BUCKETS = ("ru-cyr", "ru-oth", "la-let", "la-oth")
+
+# `{{nom}}`, `{{{nom}}}`, `{{#nom}}`, `{{/nom}}`, `{{^nom}}`, `{{&nom}}` : le nom
+# d'une variable, sans ses accolades ni son marqueur. Un helper Handlebars
+# (`{{#ifCond a b}}`) est capture aussi -- aucun CSV ne porte une telle colonne.
+VARIABLE = re.compile(r"\{\{\{?\s*[#^/>!&]?\s*([A-Za-z0-9_.-]+)")
 
 
 # ------------------------------------------------------------------ telechargement
@@ -252,7 +268,12 @@ def _dialect(text: str):
 
 
 def corpus(repo: Path, ref: str) -> dict:
-    """Caracteres des CSV vivants et des gabarits, par seau. Lus dans <ref>."""
+    """Caracteres des CSV vivants et des gabarits, par seau. Lus dans <ref>.
+
+    Deux passages : les gabarits d'abord, pour connaitre les noms de variables
+    qu'un mustache rend ; puis les CSV, ou une colonne nue n'est lue que si son
+    nom figure parmi eux.
+    """
     out = subprocess.run(["git", "-C", str(repo), "ls-tree", "-r", "--name-only", ref, "Cards/"],
                          check=True, capture_output=True).stdout.decode("utf-8").split("\n")
     living = [f for f in out if f and "/Archive/" not in f and f.endswith((".csv", ".json"))]
@@ -262,35 +283,38 @@ def corpus(repo: Path, ref: str) -> dict:
                               capture_output=True).stdout
 
     buckets = {k: set() for k in BUCKETS}
+    rendered = set()                        # noms de variables qu'un mustache rend
     n_csv = n_tpl = n_cells = 0
-    for rel in living:
-        if rel.endswith(".csv"):
-            n_csv += 1
-            text = show(rel).decode("utf-8-sig", errors="replace")
-            for row in csv.DictReader(io.StringIO(text), dialect=_dialect(text)):
-                for key, val in row.items():
-                    if not val or key is None:
-                        continue
-                    k = key.strip()
-                    if k.endswith("_ru"):
-                        n_cells += 1
-                        buckets["ru-cyr"].update(c for c in val if 0x0400 <= ord(c) <= 0x052F)
-                        buckets["ru-oth"].update(c for c in val if not 0x0400 <= ord(c) <= 0x052F)
-                    elif re.search(r"_(fr|en|es|pt)$", k):
-                        buckets["la-let"].update(c for c in val if c.isalpha())
-                        buckets["la-oth"].update(c for c in val if not c.isalpha())
-        else:
-            n_tpl += 1
-            try:
-                doc = json.loads(show(rel).decode("utf-8-sig"))
-            except json.JSONDecodeError:
+    for rel in (r for r in living if r.endswith(".json")):
+        n_tpl += 1
+        try:
+            doc = json.loads(show(rel).decode("utf-8-sig"))
+        except json.JSONDecodeError:
+            continue
+        for key in ("mustache", "notes"):
+            val = doc.get(key) or ""
+            if not isinstance(val, str):
                 continue
-            for key in ("mustache", "notes"):
-                val = doc.get(key) or ""
-                if isinstance(val, str):
+            if key == "mustache":
+                rendered.update(v.lower() for v in VARIABLE.findall(val))
+            buckets["la-let"].update(c for c in val if c.isalpha())
+            buckets["la-oth"].update(c for c in val if not c.isalpha())
+    for rel in (r for r in living if r.endswith(".csv")):
+        n_csv += 1
+        text = show(rel).decode("utf-8-sig", errors="replace")
+        for row in csv.DictReader(io.StringIO(text), dialect=_dialect(text)):
+            for key, val in row.items():
+                if not val or key is None:
+                    continue
+                k = key.strip()
+                if k.endswith("_ru"):
+                    n_cells += 1
+                    buckets["ru-cyr"].update(c for c in val if 0x0400 <= ord(c) <= 0x052F)
+                    buckets["ru-oth"].update(c for c in val if not 0x0400 <= ord(c) <= 0x052F)
+                elif re.search(r"_(fr|en|es|pt)$", k) or k.lower() in rendered:
                     buckets["la-let"].update(c for c in val if c.isalpha())
                     buckets["la-oth"].update(c for c in val if not c.isalpha())
-    for name in buckets:                    # espaces et controles : aucun glyphe requis
+    for name in buckets:                    # controles et fins de ligne : aucun glyphe requis
         buckets[name] = {c for c in buckets[name] if ord(c) >= 0x20 and c not in "\t\r\n"}
     return {"buckets": buckets, "csv": n_csv, "tpl": n_tpl, "ru_cells": n_cells}
 
@@ -325,18 +349,25 @@ def main() -> None:
         print(f"  {name} : {len(b[name])} caracteres  {describe(b[name])}")
 
     rows = []
-    for label, src in [pair for spec in a.fonts for pair in resolve(spec, cache)]:
-        try:
-            data = fetch(src, label, cache) if src.startswith("http") else Path(src).read_bytes()
-            tables = sfnt_tables(data)
-            cov = cmap_codepoints(tables)
-        except Exception as exc:              # une source cassee ne doit pas perdre le tableau
-            rows.append((label, 0, 0, f"ERREUR {type(exc).__name__}: {str(exc)[:70]}",
+    for spec in a.fonts:
+        try:                                  # `resolve` est resolue par le reseau : un
+            pairs = resolve(spec, cache)      # `family=` inconnu (404) ne doit pas perdre le tableau
+        except Exception as exc:
+            rows.append((spec, 0, 0, f"ERREUR {type(exc).__name__}: {str(exc)[:70]}",
                          None, None, "-"))
             continue
-        missing = {n: {c for c in b[n] if ord(c) not in cov} for n in BUCKETS}
-        rows.append((label, len(data), len(cov), axes(tables), missing,
-                     os2_metrics(tables), wght_reach(tables)))
+        for label, src in pairs:
+            try:
+                data = fetch(src, label, cache) if src.startswith("http") else Path(src).read_bytes()
+                tables = sfnt_tables(data)
+                cov = cmap_codepoints(tables)
+            except Exception as exc:          # une source cassee ne doit pas perdre le tableau
+                rows.append((label, 0, 0, f"ERREUR {type(exc).__name__}: {str(exc)[:70]}",
+                             None, None, "-"))
+                continue
+            missing = {n: {c for c in b[n] if ord(c) not in cov} for n in BUCKETS}
+            rows.append((label, len(data), len(cov), axes(tables), missing,
+                         os2_metrics(tables), wght_reach(tables)))
 
     print()
     print(f"{'police':30s} {'octets':>8s} {'cmap':>5s}  "

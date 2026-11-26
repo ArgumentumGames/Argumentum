@@ -23,9 +23,17 @@ s'arrete a l'echappement) :
 fr/en/ru/pt/es. L'outil STRIPPE les commentaires avant de parser (sinon leur texte
 se lit comme des selecteurs) puis mesure l'affirmation plutot que de la citer.
 
-Limite assumee : les blocs `@media`/`@supports` sont aplatis (leurs regles internes
-sont traitees comme des regles ordinaires). Les selecteurs de ces blocs sont
-signales par un prefixe `@…` conserve dans le rapport.
+Les blocs `@media`/`@supports` ne sont PAS aplatis : chaque selecteur interne est
+rendu prefixe de l'en-tete de son bloc (`@media (max-width:600px) { .titre }`), et
+le compte de classes se fait sur le selecteur seul -- sinon `(min-width: 37.5em)`
+se lirait comme une classe `5em`. Les at-statements terminaux (`@import`,
+`@charset`, `@namespace …;`) sont retires avant le decoupage : sans cela
+l'at-statement se colle en tete de la regle suivante, qui commence alors par `@`
+et disparait du rapport.
+
+Un selecteur sans classe (`body`, `td`) ne porte aucun element a compter : le
+rapport l'ecrit « non mesure (heritage / selecteur de type) » plutot que
+« 0, dont 0 », qui se lirait comme un selecteur mesure et vide.
 
 Dependances : aucune (stdlib seule). Lecture seule sur le depot.
 
@@ -42,6 +50,8 @@ from pathlib import Path
 LANGS = ("fr", "en", "ru", "pt", "es", "ar", "fa", "zh")
 
 COMMENT = re.compile(r"/\*.*?\*/", re.S)
+AT_STMT = re.compile(r"@(?:import|charset|namespace)\b[^;{}]*;", re.S)
+AT_OPEN = re.compile(r"@(?!font-face\b)[a-zA-Z-]+[^{;]*\{", re.S)
 RULE = re.compile(r"([^{}]+)\{([^{}]*)\}", re.S)
 FAMILY = re.compile(r"font-family\s*:\s*([^;]+)", re.S)
 WEIGHT = re.compile(r"font-weight\s*:\s*([^;]+)", re.S)
@@ -58,17 +68,48 @@ def host(url: str) -> str:
     return m.group(1) if m else "(local)"
 
 
+def at_blocks(clean: str) -> list:
+    """(debut, fin, en-tete) de chaque bloc `@media`/`@supports`, accolades appariees.
+
+    `debut` est l'index du premier caractere INTERNE au bloc, `fin` celui de son
+    accolade fermante : une regle est dedans si son index de depart y tombe.
+    """
+    blocks = []
+    for m in AT_OPEN.finditer(clean):
+        depth, i = 1, m.end()
+        while i < len(clean) and depth:
+            depth += {"{": 1, "}": -1}.get(clean[i], 0)
+            i += 1
+        blocks.append((m.end(), i - 1, norm(m.group(0)[:-1])))
+    return blocks
+
+
+def bare(sel: str) -> str:
+    """Le selecteur seul, sans l'en-tete `@… {` dont `rules()` le prefixe."""
+    return norm(re.sub(r"\}\s*$", " ", re.sub(r"^@[^{]*\{", " ", sel)))
+
+
 def rules(css: str):
-    """(selecteur, declarations) pour chaque regle CSS, commentaires retires."""
-    clean = COMMENT.sub(" ", css)
+    """(selecteur, declarations) pour chaque regle CSS, commentaires et
+    at-statements terminaux retires ; selecteur prefixe de son bloc englobant.
+
+    Le prefixe est garde (il dit sous quelle condition la regle s'applique) mais
+    ne doit pas servir au compte de classes -- voir `bare()`.
+    """
+    clean = AT_STMT.sub(" ", COMMENT.sub(" ", css))
+    blocks = at_blocks(clean)
     for m in RULE.finditer(clean):
         head, body = norm(m.group(1)), m.group(2)
         if not head or head.endswith("@font-face") or head.startswith("@"):
             continue
+        ctx = ""
+        for start, end, header in blocks:      # le dernier commencant est le plus interne
+            if start <= m.start() < end:
+                ctx = header + " { "
         for sel in head.split(","):
             sel = norm(sel)
             if sel:
-                yield sel, body
+                yield ctx + sel, body
 
 
 def data_elements(mustache: str, cls: str) -> tuple:
@@ -118,13 +159,13 @@ def report(repo: Path, ref: str, tpl: str, family: str) -> dict:
     for sel, fams in seen.items():
         if family.lower() not in " ".join(fams).lower():
             continue
-        cls = re.findall(r"\.([A-Za-z0-9_-]+)", sel)
-        counts = [data_elements(mustache, c) for c in cls] or [(0, 0)]
+        cls = re.findall(r"\.([A-Za-z0-9_-]+)", bare(sel))
+        counts = [data_elements(mustache, c) for c in cls]
         out["carriers"].append({
             "selector": sel,
             "families": fams,
-            "elements": max(c[0] for c in counts),
-            "with_variable": max(c[1] for c in counts),
+            "elements": max(c[0] for c in counts) if cls else None,
+            "with_variable": max(c[1] for c in counts) if cls else None,
         })
 
     for lang in LANGS:
@@ -170,8 +211,11 @@ def main() -> None:
         print(f"  selecteurs portant {a.family} : {len(r['carriers'])}")
         for c in r["carriers"]:
             print(f"    {c['selector'][:58]:58s} -> {' | '.join(c['families'])[:60]}")
-            print(f"        elements portant la classe : {c['elements']}, "
-                  f"dont avec variable {{{{…}}}} : {c['with_variable']}")
+            if c["elements"] is None:
+                print("        non mesure (heritage / selecteur de type)")
+            else:
+                print(f"        elements portant la classe : {c['elements']}, "
+                      f"dont avec variable {{{{…}}}} : {c['with_variable']}")
         overrides = {lg: sc for lg, sc in r["scope"].items() if sc}
         print(f"  marqueur argu-lang dans le mustache : {r['marker_in_mustache'] or 'aucun'}")
         print(f"  classes de langue declarees en css  : {r['marker_in_css'] or 'aucune'}")
