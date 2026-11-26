@@ -5,6 +5,10 @@
 **Portée mesurée** 6 CardSets × 2 langues (`fr`, `ru`), build **Debug**
 **Date** 2026-11-26 · lane `myia-po-2023`
 
+> Les rendus mesurés dans ce dossier sont ceux de `974319eb`. La restriction d'injection, les
+> empreintes épinglées et la garde du hook (§8) sont **postérieures** : aucun rendu n'a été relancé
+> pour elles, et le §4 dit à chaque fois ce qui est mesuré et ce qui est dérivé.
+
 > ⚠️ Ce dossier porte des **mesures**, pas un verdict visuel. Le verdict visuel est
 > réservé à `ai-01` (règle de la lane) : les planches ci-dessous lui sont destinées.
 
@@ -15,8 +19,8 @@
 | Objet | Nature |
 |---|---|
 | `Cards/Fallacies/Argumentum_Fallacies_Face_fr.json` | 4 blocs `@font-face` DINPro **distants** (cdnfonts) retirés ; `'DINpro',sans-serif` → `'Barlow', 'Rubik',sans-serif` (2 sélecteurs) |
-| `WebBasedGenerator/Cardpen/EmbeddedFontFaces.cs` (nouveau) | 12 `@font-face` bâtis depuis des WOFF2 **embarqués** sous `Cards/fonts/`, émis en `data:font/woff2;base64,…`, `font-display: block`, `unicode-range` par sous-ensemble |
-| `WebBasedGenerator/Cardpen/HarvestManager.cs` | **une** ligne de comportement : `css = EmbeddedFontFaces.Inject(css)` avant sérialisation du payload |
+| `WebBasedGenerator/Cardpen/EmbeddedFontFaces.cs` (nouveau) | 11 `@font-face` bâtis depuis des WOFF2 **embarqués** sous `Cards/fonts/`, émis en `data:font/woff2;base64,…`, `font-display: block`, `unicode-range` par sous-ensemble |
+| `WebBasedGenerator/Cardpen/HarvestManager.cs` | **une** ligne de comportement : `css = EmbeddedFontFaces.Inject(css)` avant sérialisation du payload — `Inject` n'agit que sur un CSS qui nomme une famille embarquée |
 | `Cards/fonts/**` | WOFF2 `vendorés` (Barlow 300/500/700/900 ×latin/latin-ext, Rubik 300-900 ×cyrillic/cyrillic-ext, Alfa Slab One) |
 
 La forme `data:` est le seul véhicule **identique en Debug, en Release et sur une
@@ -96,8 +100,8 @@ substituées. Cinq runs sur le même arbre, Memo seul, ont isolé la cause :
 |---|---|---|
 | AVANT (arbre `4da09a14`) | — | référence |
 | APRÈS, injection **coupée** | rien | **identique à AVANT** |
-| APRÈS, injection active | 12 `@font-face` + WOFF2 réels (~1,5 Mo) | différent : 364 314 px |
-| APRÈS, **déclarations seules** | 12 `@font-face`, `src` = `"AAAA"` (4 octets) | **identique au run actif** (même compte, même boîte) |
+| APRÈS, injection active | 11 `@font-face` + WOFF2 réels (194 344 octets ; **259 144** caractères de base64) | différent : 364 314 px |
+| APRÈS, **déclarations seules** | 11 `@font-face`, `src` = `"AAAA"` (4 octets) | **identique au run actif** (même compte, même boîte) |
 | APRÈS, **marqueur seul** | le commentaire `/* argumentum-embedded-fonts */` | **identique à l'injection coupée** |
 
 Trois conclusions, toutes mesurées :
@@ -130,12 +134,31 @@ Et sur `memo_back`, l'écart AVANT→APRÈS couvre **43,2 % de la carte** (`fr`)
 
 ### Mécanisme : non établi, et invisible aux instruments du DOM
 
-`frame.js:204` appelle `domtoimage.getFontsBefore()` → `resolveAll()` →
-`readAll(document)` → filtre `CSSRule.FONT_FACE_RULE` → `inliner.shouldProcess(src)` ;
-les règles retenues sont résolues puis **inlinées dans le clone** capturé. Les
-`@font-face` injectés étant en `data:`, ils ne devraient pas passer ce filtre.
-La mesure dit le contraire, et l'effet observé (rythme vertical, faces locales
-inchangées) est celui d'une **perte de métriques de webfont dans le clone**.
+Le chemin de capture, relu dans le code — cette lecture **corrige** celle du premier
+jeton de ce dossier (contre-revue po-2024, c.7202574459) :
+
+1. `frame.js:204` appelle `domtoimage.getFontsBefore()` → `fontFaces.resolveAll()`
+   → `readAll(document)` ;
+2. `selectWebFontRules` (l. 909-917) garde les règles `CSSRule.FONT_FACE_RULE` dont
+   `src` passe `inliner.shouldProcess` (l. 824) — un test de **présence d'un `url(`**,
+   rien de plus : une règle `data:` **passe** ;
+3. les 11 règles injectées sont donc retenues ; `inlineAll` (l. 858) les rend telles
+   quelles (`isSrcAsDataUrl`), et `embedFontsAlreadyDownloaded` (l. 533-541) réémet
+   le tout dans le clone, base64 comprise, pour **chaque** CardSet.
+
+Ce que ce chemin ne peut pas expliquer : au run « déclarations seules » (`src` =
+`"AAAA"`, sans `url(`), le filtre de l'étape 2 **écarte** les règles — le clone n'en
+reçoit aucune — et l'écart est reproduit à l'identique. La présence des règles
+**dans le clone** n'est donc pas la variable ; celle qui reste mesurée est leur
+présence **dans le document vivant**.
+
+Candidat nommé, **non établi** : `frame.js:205-207` exécute trois passes
+d'ajustement sur le DOM vivant immédiatement après `getFontsBefore()` —
+`autoFitCardTitles`, `autoFitBodyText`, `autoFitFamilyGrid` (cette dernière porte
+explicitement la grille du dos Memo). Ce sont elles qui déplacent le rythme
+vertical, et elles mesurent à l'instant où le document vient de recevoir les
+règles. Aucun rendu n'a été rejoué pour départager ce candidat d'un autre.
+
 Le mécanisme exact n'est **pas** établi ; ce qui l'est, c'est que l'artefact est
 invisible aux instruments qui lisent le DOM :
 
@@ -146,10 +169,18 @@ invisible aux instruments qui lisent le DOM :
 
 ### Conséquences pour la revue
 
-1. **L'injection n'est pas neutre pour les CardSets qu'elle ne vise pas.** Elle
-   doit être restreinte aux documents dont le gabarit référence une famille
-   embarquée, ou l'écart Memo doit être accepté explicitement. Il ne peut pas
-   être passé sous silence : aucun test ne le verrait.
+1. **L'injection n'est pas neutre pour les CardSets qu'elle ne vise pas — corrigé
+   le 26/11.** `EmbeddedFontFaces.Inject` n'ajoute plus les règles à un document
+   dont le CSS ne nomme aucune des trois familles (`ReferencesAnEmbeddedFamily`),
+   et un test de corpus l'y tient : sur les 12 gabarits hors `Archive/`, **10**
+   reçoivent les 11 règles et **2** n'en reçoivent aucune
+   (`Argumentum_Memo_Face_fr.json`, et `Argumentum_Fallacies_Face_3_fr.json`, que
+   nul document activé ne récolte). Sur la **face** Memo, l'effet est celui du run
+   « injection coupée », mesuré identique à AVANT — **dérivé**, rendu non relancé.
+   Sur le **dos** Memo, **aucun** effet : son CSS nomme `'Barlow', 'Rubik'` (il
+   déclarait `'DINPro'` avant), donc les règles y restent et son écart de 43,2 %
+   demeure, mêlé à la substitution. La restriction répond à « ne pas toucher ceux
+   qu'elle ne vise pas », pas à « expliquer le dos Memo ».
 2. **Les rendus de ce dossier mélangent deux causes** — la substitution voulue
    (DINPro → Barlow) et cet artefact d'injection — pour tous les CardSets sauf
    Memo, où l'artefact est isolé à l'état pur. Un verdict visuel « Barlow est-elle
@@ -217,6 +248,40 @@ Fichiers : `NN-<lang>-<dossier>-planche.jpg` (320–600 Ko) et
   couvrir les deux écritures en jeu (latin, cyrillique) ; les autres n'ont pas
   été rendues.
 - **Aucun test automatisé de non-régression du rendu** (cf. §4.3).
+- **L'effet de la restriction d'injection sur le rendu** : la face Memo n'a pas été
+  re-rendue après la correction du 26/11 (effet dérivé du run « injection coupée »),
+  et le dos Memo garde son écart.
+
+---
+
+## 8. Corrections du 26/11 (contre-revue po-2024, c.7202574459)
+
+- **11 `@font-face`, pas 12** : c'est ce que `EmbeddedFontFaces.Faces` déclare et
+  ce que `Cards/fonts/` vend. Le chiffre 12 figurait trois fois (§1, §4) ; les runs
+  n'ont pas été rejoués — c'est un compte faux, pas une mesure fausse.
+- **La charge en base64** : 194 344 octets → **259 144** caractères tels que le CSS
+  les porte (chaque fichier encodé séparément, donc rempli séparément). La
+  dérivation sur le total, ⌈194 344 / 3⌉ × 4, donne 259 128 : les deux nombres
+  mesurent la même charge, à 16 caractères de remplissage près. « ~1,5 Mo » était
+  faux d'un facteur ~8.
+- **Lecture de code du §4** : les règles `data:` passent le filtre de sélection,
+  seul l'*inlining* est sauté, et les règles sont réémises dans le clone pour
+  chaque CardSet — le §4 le dit maintenant, avec ses lignes. La conséquence
+  « restreindre l'injection » est appliquée (§4, *Conséquences*, point 1).
+- **Ce que la restriction laisse ouvert** : le dos Memo. Un rendu rejoué avec la
+  restriction, sur ce seul gabarit, départagerait « les règles dans le document »
+  d'un autre candidat ; il n'a pas été lancé.
+- **La garde du hook (`HarvestManager_InjectsTheFacesIntoTheCssItSerialises`)** : elle
+  lisait le fichier brut, donc restait verte sur un appel commenté. Elle lit maintenant
+  le code sans ses commentaires — littéraux copiés tels quels, y compris une chaîne
+  interpolée avec les littéraux de ses trous — et porte un contrôle inverse : le même
+  fichier avec l'appel commenté doit lui échapper. Mesuré sur le fichier réel le 26/11
+  avec sauvegarde et restauration par empreinte : verte sur l'appel commenté avant,
+  rouge maintenant.
+- **Les empreintes des 11 fichiers** : SHA-256 épinglés dans `EmbeddedFontFaces`,
+  vérifiés à la construction du CSS, et tenus égaux à la table de
+  `Cards/fonts/README.md` par un test. Un octet retourné passé l'en-tête `wOF2`
+  allumait 0 test ; il lève maintenant une exception qui nomme le fichier.
 
 ---
 
