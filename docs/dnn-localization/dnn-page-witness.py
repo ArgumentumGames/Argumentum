@@ -4,7 +4,9 @@
 Trois familles de constats, chacune mesuree sur les HUIT cultures :
 
   1. marqueur 2sxc   — une page servie en HTTP 200 ne doit pas porter le message
-                       d'erreur de rendu 2sxc (bloc `<!--2sxc:error-->`).
+                       d'erreur de rendu 2sxc (bloc `<!--2sxc:error-->`), sur les
+                       sept parcours publics (accueil, Règles, Argumentation, liste
+                       et détail d'actualité, Amis, Téléchargements).
                        Demande de l'issue #2398 : « Ajouter un controle qui echoue
                        sur une reponse HTTP 200 portant le message ».
   2. bouton FR       — depuis chacun des sept accueils non francais, le lien
@@ -64,6 +66,18 @@ MARK_TEXT = "Error Showing Content"
 # Debut du corps francais de l'ancien contenu Argumentation (sans apostrophe,
 # pour ne pas dependre de l'entite HTML choisie par le gabarit).
 FR_BODY = "intéresse à cet art qui a traversé les âges"
+
+# Parcours publics sondes pour le marqueur 2sxc, dans cet ordre. Les slugs sont
+# accentues en francais et servis tels quels dans toutes les cultures (mesure du
+# 26/11 : 200 et lang correct sur les deux environnements).
+PAGES = [
+    ("accueil", ""),
+    ("Regles", "Règles"),
+    ("Argumentation", "Argumentation"),
+    ("actus", "actus"),
+    ("Amis", "Amis"),
+    ("Telechargements", "Téléchargements"),
+]
 
 LANG_RE = re.compile(r"<html[^>]*\blang=[\"']([^\"']+)[\"']", re.I)
 # Le menu 2shine rend ses href en QUOTES SIMPLES ; une regex a doubles quotes
@@ -136,11 +150,14 @@ def run(env_name, base, timeout):
     errors = []
 
     for culture, prefix in CULTURES:
-        home = base + "/" + (prefix + "/" if prefix else "")
+        basepath = base + "/" + (prefix + "/" if prefix else "")
+        home = basepath
+        actus_url = None
+        actus_html = None
 
-        # --- 1. marqueur 2sxc sur l'accueil, Amis et Argumentation (HTTP 200 seulement)
-        for label, path in (("accueil", ""), ("Amis", "Amis"), ("Argumentation", "Argumentation")):
-            url = base + "/" + (prefix + "/" if prefix else "") + path
+        # --- 1. marqueur 2sxc sur chaque parcours public (HTTP 200 seulement)
+        for label, path in PAGES:
+            url = basepath + urllib.parse.quote(path, safe="")
             try:
                 jar = CookieJar()
                 opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))
@@ -163,6 +180,28 @@ def run(env_name, base, timeout):
                     rows.append(("corps", "%s Argumentation" % culture, "ECHEC", "corps francais servi sous lang=%s" % page_lang(text)))
                 else:
                     rows.append(("corps", "%s Argumentation" % culture, "OK", "corps non francais"))
+
+            if label == "actus":
+                actus_url, actus_html = final, text
+
+        # --- 1bis. detail d'actualite : premiere page de detail liee depuis la liste.
+        # Le chemin s'ecrit /actus/details/ en francais et /Actus/details/ dans les
+        # autres cultures : le filtre est donc insensible a la casse.
+        if actus_html:
+            detail = next((html.unescape(h) for h in A_RE.findall(actus_html) if "details" in h.lower()), None)
+            if detail is None:
+                rows.append(("marqueur", "%s actu-detail" % culture, "ERREUR", "aucun lien de detail dans la liste"))
+            else:
+                durl = urllib.parse.urljoin(actus_url, detail)
+                try:
+                    _, dstatus, dtext = fetch(opener, durl, timeout)
+                    dhits = detect_2sxc(dtext)
+                    rows.append(("marqueur", "%s actu-detail" % culture, "ECHEC" if dhits else "OK",
+                                 (", ".join(dhits) + " (HTTP %s)" % dstatus) if dhits else "HTTP %s, aucun marqueur" % dstatus))
+                except urllib.error.HTTPError as e:
+                    rows.append(("marqueur", "%s actu-detail" % culture, "ERREUR", "HTTP %s" % e.code))
+                except Exception as e:
+                    errors.append("%s actu-detail : %s" % (culture, e))
 
         # --- 2. bouton FR depuis les sept accueils non francais, dans la MEME session
         if culture == "fr-FR":
