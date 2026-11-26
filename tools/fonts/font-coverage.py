@@ -42,10 +42,14 @@ WOFF2 est REFUSE avec une erreur nommee (il faudrait le module `brotli`) : mieux
 vaut un echec bruyant qu'une absence de mesure lue comme une couverture.
 
 Reseau : les polices et les `METADATA.pb` sont telecharges puis caches dans
-`--cache` (defaut : %TEMP%/argumentum-fontcache).
+`--cache` (defaut : %TEMP%/argumentum-fontcache) -- un fichier PAR URL (empreinte
+de l'URL) : deux URL differentes ne s'y servent jamais les octets l'une de
+l'autre, une meme URL n'y est telechargee qu'une fois. Un fichier en cache n'est
+jamais re-telecharge : pour relire une source modifiee, pointer `--cache` ailleurs.
 
-Une source en echec -- URL injoignable, `family=` inconnue (404) -- donne une
-ligne `ERREUR` a sa place, et les autres polices du meme appel restent mesurees.
+Une source en echec -- URL injoignable, `family=` inconnue (404) ou sans aucune
+police a mesurer -- donne une ligne `ERREUR` a sa place, et les autres polices du
+meme appel restent mesurees.
 Seul un conteneur illisible (WOFF2) sort en erreur nommee, expres.
 
 Usage:
@@ -66,6 +70,7 @@ Lecture seule sur le depot.
 """
 import argparse
 import csv
+import hashlib
 import io
 import json
 import re
@@ -75,6 +80,7 @@ import tempfile
 import urllib.request
 import zlib
 from pathlib import Path
+from urllib.parse import urlsplit
 
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
@@ -88,9 +94,17 @@ VARIABLE = re.compile(r"\{\{\{?\s*[#^/>!&]?\s*([A-Za-z0-9_.-]+)")
 
 
 # ------------------------------------------------------------------ telechargement
-def fetch(url: str, label: str, cache: Path) -> bytes:
+def cache_file(url: str, cache: Path) -> Path:
+    """Un fichier par URL : l'empreinte de l'URL est la cle. Le nom du fichier
+    distant n'est la que pour relire le dossier, il ne decide de rien -- deux URL
+    differentes ne se servent jamais les octets l'une de l'autre."""
+    name = re.sub(r"[^A-Za-z0-9._-]+", "_", urlsplit(url).path.rsplit("/", 1)[-1])[:60]
+    return cache / f"{name or 'file'}-{hashlib.sha256(url.encode('utf-8')).hexdigest()[:16]}"
+
+
+def fetch(url: str, cache: Path) -> bytes:
     cache.mkdir(parents=True, exist_ok=True)
-    hit = cache / re.sub(r"[^A-Za-z0-9._-]+", "_", label)[:80]
+    hit = cache_file(url, cache)
     if hit.exists():
         return hit.read_bytes()
     req = urllib.request.Request(url, headers={"User-Agent": UA})
@@ -179,8 +193,10 @@ def cmap_codepoints(tables: dict) -> set:
         (ngroups, ) = struct.unpack(">I", cmap[sub_off + 12:sub_off + 16])
         p = sub_off + 16
         for _ in range(ngroups):
-            start, end, _start_gid = struct.unpack(">III", cmap[p:p + 12])
-            covered.update(range(start, end + 1))             # format 12 : pas de trou dans un groupe
+            start, end, start_gid = struct.unpack(">III", cmap[p:p + 12])
+            # format 12 : pas de trou dans un groupe -- mais un groupe qui demarre au
+            # glyph id 0 mappe son premier point sur .notdef, qui ne rend rien.
+            covered.update(range(start + 1 if start_gid == 0 else start, end + 1))
             p += 12
     return covered
 
@@ -243,8 +259,7 @@ def resolve(spec: str, cache: Path):
     (etiquette, source) : `etiquette=url`, ou URL / chemin nu."""
     if spec.startswith("family="):
         fam = spec[len("family="):]
-        meta = fetch(f"https://raw.githubusercontent.com/google/fonts/main/ofl/{fam}/METADATA.pb",
-                     f"meta_{fam}", cache)
+        meta = fetch(f"https://raw.githubusercontent.com/google/fonts/main/ofl/{fam}/METADATA.pb", cache)
         files = re.findall(r'filename:\s*"([^"]+)"', meta.decode("utf-8", errors="replace"))
         base = f"https://raw.githubusercontent.com/google/fonts/main/ofl/{fam}/"
         static = [f for f in files
@@ -330,6 +345,10 @@ def both(cover: dict) -> str:
     return "oui" if not cover["ru-cyr"] and not cover["la-let"] else "NON"
 
 
+def _error_row(label: str, exc: Exception) -> tuple:
+    return (label, 0, 0, f"ERREUR {type(exc).__name__}: {str(exc)[:70]}", None, None, "-")
+
+
 # -------------------------------------------------------------------- main
 def main() -> None:
     ap = argparse.ArgumentParser()
@@ -353,17 +372,20 @@ def main() -> None:
         try:                                  # `resolve` est resolue par le reseau : un
             pairs = resolve(spec, cache)      # `family=` inconnu (404) ne doit pas perdre le tableau
         except Exception as exc:
-            rows.append((spec, 0, 0, f"ERREUR {type(exc).__name__}: {str(exc)[:70]}",
-                         None, None, "-"))
+            rows.append(_error_row(spec, exc))
+            continue
+        if not pairs:                         # une famille qui se deplie en rien : dite, jamais tue
+            rows.append(_error_row(spec, LookupError(
+                "METADATA.pb ne liste aucune police a mesurer "
+                "(ni statique Light/Medium/Bold/Black, ni variable)")))
             continue
         for label, src in pairs:
             try:
-                data = fetch(src, label, cache) if src.startswith("http") else Path(src).read_bytes()
+                data = fetch(src, cache) if src.startswith("http") else Path(src).read_bytes()
                 tables = sfnt_tables(data)
                 cov = cmap_codepoints(tables)
             except Exception as exc:          # une source cassee ne doit pas perdre le tableau
-                rows.append((label, 0, 0, f"ERREUR {type(exc).__name__}: {str(exc)[:70]}",
-                             None, None, "-"))
+                rows.append(_error_row(label, exc))
                 continue
             missing = {n: {c for c in b[n] if ord(c) not in cov} for n in BUCKETS}
             rows.append((label, len(data), len(cov), axes(tables), missing,
