@@ -45,7 +45,14 @@ Instruments (payés en flotte, ne pas les retirer) :
   · espaces insécables normalisés (`\\xa0`, `\\u202f`) — les gabarits en posent, et
     un motif littéral les rate ;
   · témoin par contrôle : une forme dont on SAIT qu'elle est présente (contre-preuve
-    que l'instrument voit le 1) et une forme dont on sait qu'elle est absente.
+    que l'instrument voit le 1) et une forme dont on sait qu'elle est absente ;
+  · requête de RÉVEIL avant la passe, avec sa PROPRE borne (`--wake-max-time`, 240 s) :
+    un site endormi se réveille par une requête, et la borne de passe (60 s) le coupe
+    avant qu'il réponde — mesuré par web2 le 24/11 : 93 à 107 s sur la prod endormie,
+    première passe rouge pour cette seule raison. Le rapport nomme le réveil et sa
+    durée ; **aucune réponse HTTP** dans la borne de réveil ⇒ les contrôles 1 à 3 ne
+    sont pas mesurés et la passe ne suit pas (un site muet coûte une borne de réveil,
+    pas 42 requêtes de passe).
 
 Usage :
     python tools/1105-cutover-day-controls.py --label preprod-baseline
@@ -57,7 +64,8 @@ Usage :
 Sortie : tableau markdown sur stdout (+ fichier avec --out) ; codes de sortie —
 **0** tous les contrôles durs passent · **1** un contrôle dur échoue (route non 200,
 legal EN inversé, FileLoadException présente, web.config de la cible qui ne porte
-pas les marqueurs du fichier vivant) · **2** `--require-webconfig` est posé sans
+pas les marqueurs du fichier vivant, **ou réveil sans réponse HTTP** — les contrôles
+1 à 3 ne sont alors pas mesurés) · **2** `--require-webconfig` est posé sans
 `--webconfig` : le contrôle pivot du jour J n'a PAS été mesuré, et ce vert-là
 n'existe pas (remarque 🟡 de la review #2165, mesurée : l'omission du drapeau
 sortait en code 0, lisible par machine comme un succès).
@@ -74,6 +82,7 @@ import json
 import re
 import subprocess
 import sys
+import time
 
 # ── Les 8 cultures servies, et le <html lang> attendu ────────────────────────────────
 CULTURES = {
@@ -100,6 +109,13 @@ CULTURES = {
 RTL_LANGS = ("ar", "fa")
 AUDIENCE_MARKER = "G-VHLTL18PEW"
 LANGUAGE_SELECTOR_CLASS = "to-shine-page-language"  # thème 2shine, mesuré sur le servi
+
+# ── Bornes de temps (secondes) ──────────────────────────────────────────────────────
+# Mesure web2 (24/11) : la prod endormie a mis 93 à 107 s à répondre à sa première
+# requête. La borne de PASSE reste à 60 s (une route chaude qui met 60 s est un
+# défaut) ; la requête de RÉVEIL porte la sienne, qui couvre le démarrage.
+PASS_MAX_TIME = 60
+WAKE_MAX_TIME = 240
 
 # ── Commutateur D1 : les 16 formes des DEUX gabarits RulesExplorer ───────────────────
 # Source unique : DNNPlatform/Portals/1/2sxc/Argumentum/_RulesExplorer_RuleDetail.cshtml
@@ -250,11 +266,16 @@ def to_int(digits: str) -> int | None:
     return int("".join(out)) if out else None
 
 
-def fetch(url: str, resolve: str | None, cb: str) -> tuple[int, str]:
-    """GET avec cache-buster et -L. Renvoie (statut, corps décodé)."""
+def fetch(
+    url: str, resolve: str | None, cb: str, max_time: int = PASS_MAX_TIME
+) -> tuple[int, str]:
+    """GET avec cache-buster et -L. Renvoie (statut, corps décodé).
+
+    `max_time` est la borne passée à curl. Statut **0** = aucune réponse HTTP dans la
+    borne (curl n'a rien reçu, sortie 28) — ce n'est pas un statut du site."""
     sep = "&" if "?" in url else "?"
     target = f"{url}{sep}cb={cb}"
-    cmd = ["curl", "-sL", "--max-time", "60", "-w", "\n%{http_code}", target]
+    cmd = ["curl", "-sL", "--max-time", str(max_time), "-w", "\n%{http_code}", target]
     if resolve:
         host = re.sub(r"^https?://", "", url).split("/")[0]
         scheme = "https" if url.startswith("https") else "http"
@@ -273,8 +294,38 @@ def fetch(url: str, resolve: str | None, cb: str) -> tuple[int, str]:
     return status, body.decode("utf-8", errors="replace")
 
 
+def wake_site(
+    base: str, resolve: str | None, cb: str, max_time: int = WAKE_MAX_TIME
+) -> dict:
+    """La requête d'éveil : une seule, sur la racine, avec sa propre borne.
+
+    Un site endormi se réveille PAR une requête (mesure web2 du 24/11 : 93 à 107 s sur
+    la prod endormie, au-delà de la borne de passe de 60 s — la première passe était
+    rouge pour cette seule raison). Cette requête n'est pas un contrôle : elle paie le
+    démarrage, et la passe qui suit juge.
+
+    `ok` ne dit qu'une chose : le site a-t-il répondu **du tout** (statut HTTP ≠ 0) ?
+    Un 503 est une réponse — la passe le jugera, et le rapport le montrera ici. Aucune
+    réponse dans la borne (`status` 0) ⇒ `main` ne lance pas la passe : un site qui ne
+    répond pas n'est pas un site dont on peut juger 32 routes, et l'attendre pour chacune
+    des 42 requêtes de la passe ne dirait rien de plus."""
+    t0 = time.monotonic()
+    status, _ = fetch(f"{base}/", resolve, cb, max_time=max_time)
+    return {
+        "url": "/",
+        "status": status,
+        "seconds": time.monotonic() - t0,
+        "max_time": max_time,
+        "ok": status != 0,
+    }
+
+
 def control_routes(
-    base: str, resolve: str | None, cb: str, keep: dict | None = None
+    base: str,
+    resolve: str | None,
+    cb: str,
+    keep: dict | None = None,
+    max_time: int = PASS_MAX_TIME,
 ) -> list[dict]:
     """8 cultures × 4 surfaces. Une route 404 est un échec DUR : c'est exactement ce
     que la bascule peut casser sans le dire (le /en/ 404 de la prod gelée).
@@ -289,7 +340,7 @@ def control_routes(
             ("privacy", f"{prefix}privacy"),
             ("règles", f"{prefix}Règles"),
         ):
-            status, body = fetch(f"{base}/{path}", resolve, cb)
+            status, body = fetch(f"{base}/{path}", resolve, cb, max_time=max_time)
             if keep is not None and surface == "accueil":
                 keep[lang] = body
             served = None
@@ -316,12 +367,14 @@ def control_routes(
     return rows
 
 
-def control_legal_en(base: str, resolve: str | None, cb: str) -> list[dict]:
+def control_legal_en(
+    base: str, resolve: str | None, cb: str, max_time: int = PASS_MAX_TIME
+) -> list[dict]:
     """Les DEUX sens, page par page : marqueur propre à la page PRÉSENT, texte stock
     de DNN ABSENT. Un seul sens ne distingue pas « texte restauré » de « page vide »."""
     rows = []
     for page, markers in LEGAL_PAGES.items():
-        status, body = fetch(f"{base}/en/{page}", resolve, cb)
+        status, body = fetch(f"{base}/en/{page}", resolve, cb, max_time=max_time)
         text = normalize(body)
         counts = {m: text.count(m) for m in markers}
         template = text.count(LEGAL_DNN_TEMPLATE)
@@ -338,12 +391,14 @@ def control_legal_en(base: str, resolve: str | None, cb: str) -> list[dict]:
     return rows
 
 
-def control_rules_d1(base: str, resolve: str | None, cb: str) -> list[dict]:
+def control_rules_d1(
+    base: str, resolve: str | None, cb: str, max_time: int = PASS_MAX_TIME
+) -> list[dict]:
     """Compteurs D1 servis par langue. On lit les NOMBRES au passage : c'est eux qui
     portent #1502 (« de 3 à 10 joueurs » côté cartes vs autre chose côté site)."""
     rows = []
     for lang, (prefix, expect_lang) in CULTURES.items():
-        status, body = fetch(f"{base}/{prefix}Règles", resolve, cb)
+        status, body = fetch(f"{base}/{prefix}Règles", resolve, cb, max_time=max_time)
         text = normalize(body)
         intervals = []
         for m in form_pattern(INTERVAL_FORMS[lang]).finditer(text):
@@ -540,15 +595,20 @@ def control_eventlog(hours: int) -> list[dict]:
     return rows
 
 
-def hard_failures(routes, legal, rules, events, webconfig) -> list[dict]:
+def hard_failures(routes, legal, rules, events, webconfig, wake=None) -> list[dict]:
     """Les lignes en échec DUR — elles seules décident du code de sortie 1.
 
     La sonde P2 n'est PAS un paramètre, et c'est le contrat : le runbook dit de ces
     sondes qu'elles « informent » et ne déclenchent pas de retour arrière. Un écart P2
     est nommé dans la ligne « Verdict » (voir `render_md`), jamais ici ; le contrat
-    hors ligne épingle les deux sens — écart P2 ⇒ code inchangé, route rouge ⇒ code 1."""
+    hors ligne épingle les deux sens — écart P2 ⇒ code inchangé, route rouge ⇒ code 1.
+
+    `wake` (P24-50) n'entre que sur UN état : aucune réponse HTTP à la requête d'éveil.
+    Ce n'est pas un écart de sonde, c'est l'absence d'un site à contrôler ; un 503 à
+    l'éveil, lui, n'entre pas — la passe le juge comme la route qu'il est."""
     return (
-        [r for r in routes if not r["ok"]]
+        ([] if wake is None or wake.get("ok") is not False else [wake])
+        + [r for r in routes if not r["ok"]]
         + [r for r in legal if not r["ok"]]
         + [r for r in rules if not r["ok"]]
         + [r for r in events if r.get("ok") is False]
@@ -558,23 +618,60 @@ def hard_failures(routes, legal, rules, events, webconfig) -> list[dict]:
 
 def render_md(
     label: str, base: str, stamp: str, routes, legal, rules, events, webconfig,
-    webconfig_required: bool = False, home=None,
+    webconfig_required: bool = False, home=None, wake=None,
 ) -> str:
+    # L'état du réveil commande ce que « non mesuré » veut dire dans les sections 1-3
+    # et 6 : `--skip-web` est un choix de l'opérateur, un réveil muet est un constat.
+    dead = wake is not None and wake.get("ok") is False
+    unmeasured = (
+        "⛔ **Non mesuré** — réveil sans réponse HTTP (voir la ligne « Réveil »)."
+        if dead
+        else "⚠️ **Non mesuré** (`--skip-web`)."
+    )
+    if wake is None:
+        wake_line = "- Réveil : non demandé (`--skip-web`)."
+    elif wake.get("requested") is False:  # état d'instrument du contrat hors ligne
+        wake_line = "- Réveil : non exécuté (état d'instrument du contrat)."
+    elif wake["status"] == 0:
+        wake_line = (
+            f"- Réveil : ⛔ **aucune réponse HTTP en {wake['max_time']} s** "
+            "(borne de réveil) — contrôles 1 à 3 **non mesurés**, code de sortie 1."
+        )
+    else:
+        wake_line = (
+            f"- Réveil : `GET /` → **{wake['status']} en {wake['seconds']:.0f} s** "
+            f"(borne de réveil {wake['max_time']} s"
+            + (
+                f" ; borne de passe {wake['pass_max_time']} s)"
+                if wake.get("pass_max_time") is not None
+                else ")"
+            )
+            + "."
+        )
     out = [
         f"# Contrôles du jour J — ligne de base `{label}`",
         "",
         f"- Cible : `{base}`",
         f"- Mesuré : {stamp} (lecture seule, cache-buster `?cb=` sur chaque sonde, `-L`)",
+        wake_line,
         "",
         "## 1. Routes (8 cultures × 4 surfaces)",
         "",
     ]
     if not routes:
-        out += [
-            "⚠️ **Non mesuré** (`--skip-web`) — normal **avant que le site soit servi** : "
-            "aucune route n'a de sens à ce moment-là, et un 503 lu comme un échec ferait "
-            "reculer à tort.",
-        ]
+        if dead:
+            out.append(
+                "⛔ **Non mesuré** — réveil sans réponse HTTP : la passe 8 × 4 n'a pas été "
+                "lancée. Un site qui ne répond pas n'est pas un site dont on peut juger les "
+                "routes ; relancer une fois la cible réveillée, et si elle ne répond "
+                "toujours pas, c'est le constat du jour."
+            )
+        else:
+            out += [
+                "⚠️ **Non mesuré** (`--skip-web`) — normal **avant que le site soit servi** : "
+                "aucune route n'a de sens à ce moment-là, et un 503 lu comme un échec ferait "
+                "reculer à tort.",
+            ]
     else:
         out += ["| Langue | Surface | URL | Statut | `<html lang>` | Octets |", "|---|---|---|---|---|---|"]
         for r in routes:
@@ -585,7 +682,7 @@ def render_md(
             )
     out += ["", "## 2. Texte légal anglais (les deux sens)", ""]
     if not legal:
-        out.append("⚠️ **Non mesuré** (`--skip-web`).")
+        out.append(unmeasured)
     else:
         out += [
             "| Page | Statut | Marqueur propre à la page | Texte stock DNN | Verdict |",
@@ -611,7 +708,7 @@ def render_md(
         "",
     ]
     if not rules:
-        out.append("⚠️ **Non mesuré** (`--skip-web`).")
+        out.append(unmeasured)
     else:
         out += [
             "| Langue | Statut | Intervalles | Nombres lus | Min==max | 3→10 | 4→10 | 4→8 |",
@@ -707,7 +804,7 @@ def render_md(
         ]
     out += ["", "## 6. Sonde P2 — rendu et contenu des 8 accueils (#131)", ""]
     if not home:
-        out.append("⚠️ **Non mesuré** (`--skip-web`).")
+        out.append(unmeasured)
     else:
         out += [
             "| Langue | `dir` | Description (car.) | Sélecteur de langue | Marqueur d'audience | Verdict |",
@@ -753,8 +850,12 @@ def render_md(
             "change pas le code de sortie (runbook, « Sondes après la bascule »). Un sélecteur à **0 bloc**",
             "est d'abord un signal d'instrument (classe du thème renommée), pas un résultat.",
         ]
-    hard_fail = hard_failures(routes, legal, rules, events, webconfig)
+    hard_fail = hard_failures(routes, legal, rules, events, webconfig, wake)
     verdict = "❌ " + str(len(hard_fail)) + " échec(s) dur(s)" if hard_fail else "✅ tous les contrôles durs passent"
+    if dead:
+        # Un réveil muet n'est pas une ligne de tableau : c'est la raison pour laquelle
+        # les sections 1 à 3 sont vides. Il se lit ici, nommé, avant tout le reste.
+        verdict += " · ⛔ **réveil sans réponse HTTP** (contrôles 1 à 3 non mesurés)"
     if not webconfig:
         # Une absence de mesure ne doit pas se lire dans la même ligne qu'un « tout passe ».
         if webconfig_required:
@@ -816,6 +917,19 @@ def main() -> int:
         help="échouer (code 2) si --webconfig manque : le jour J, l'oubli du contrôle "
         "pivot ne doit pas se lire comme un succès (review #2165, remarque 🟡)",
     )
+    ap.add_argument(
+        "--max-time",
+        type=int,
+        default=PASS_MAX_TIME,
+        help=f"borne de chaque requête de la passe, en secondes (défaut {PASS_MAX_TIME})",
+    )
+    ap.add_argument(
+        "--wake-max-time",
+        type=int,
+        default=WAKE_MAX_TIME,
+        help=f"borne de la requête de réveil, en secondes (défaut {WAKE_MAX_TIME} ; "
+        "mesuré 93 à 107 s sur la prod endormie le 24/11)",
+    )
     ap.add_argument("--out", default=None, help="fichier markdown à écrire")
     args = ap.parse_args()
 
@@ -823,14 +937,34 @@ def main() -> int:
     cb = _dt.datetime.now().strftime("%Y%m%d%H%M%S")
     stamp = _dt.datetime.now().strftime("%Y-%m-%d %H:%M")
 
+    # Le réveil se dit AUSSI sur la console pendant qu'il attend : un opérateur qui voit
+    # le script se taire 100 s doit savoir que c'est le site qui dort, pas l'instrument.
+    wake = None
+    dead = False
+    if not args.skip_web:
+        print(
+            f"[réveil] GET / — borne {args.wake_max_time} s (le site peut être endormi)",
+            file=sys.stderr,
+            flush=True,
+        )
+        wake = wake_site(base, args.resolve, cb, args.wake_max_time)
+        wake["pass_max_time"] = args.max_time
+        dead = not wake["ok"]
+        print(
+            f"[réveil] statut {wake['status']} en {wake['seconds']:.0f} s"
+            + (" — passe non lancée" if dead else ""),
+            file=sys.stderr,
+            flush=True,
+        )
+    off = args.skip_web or dead
     home_bodies: dict = {}
-    routes = [] if args.skip_web else control_routes(base, args.resolve, cb, keep=home_bodies)
-    legal = [] if args.skip_web else control_legal_en(base, args.resolve, cb)
-    rules = [] if args.skip_web else control_rules_d1(base, args.resolve, cb)
+    routes = [] if off else control_routes(base, args.resolve, cb, keep=home_bodies, max_time=args.max_time)
+    legal = [] if off else control_legal_en(base, args.resolve, cb, max_time=args.max_time)
+    rules = [] if off else control_rules_d1(base, args.resolve, cb, max_time=args.max_time)
     # La sonde P2 lit les corps d'accueil que ROUTES vient de fetcher : zéro requête en plus.
     home = (
         []
-        if args.skip_web
+        if off
         else control_home_render(
             home_bodies, {r["lang"]: r["status"] for r in routes if r["surface"] == "accueil"}
         )
@@ -839,7 +973,8 @@ def main() -> int:
     webconfig = [] if not args.webconfig else control_webconfig(args.webconfig, args.webconfig_size)
 
     md = render_md(
-        args.label, base, stamp, routes, legal, rules, events, webconfig, args.require_webconfig, home
+        args.label, base, stamp, routes, legal, rules, events, webconfig,
+        args.require_webconfig, home, wake,
     )
     print(md)
     if args.out:
@@ -847,7 +982,7 @@ def main() -> int:
             fh.write(md)
         print(f"\n[écrit] {args.out}", file=sys.stderr)
 
-    hard_fail = hard_failures(routes, legal, rules, events, webconfig)
+    hard_fail = hard_failures(routes, legal, rules, events, webconfig, wake)
     if args.require_webconfig and not args.webconfig:
         # Code distinct de l'échec dur : ici rien n'a échoué, mais le contrôle pivot du
         # jour J n'a pas été mesuré. Un code 0 serait un vert machine-lisible sans la

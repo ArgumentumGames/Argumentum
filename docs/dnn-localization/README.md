@@ -1,14 +1,16 @@
-# DNN Localization & Upgrade Arc — Index of record (tranches 1–3/4, measured 2026-11-25)
+# DNN Localization & Upgrade Arc — Index of record (tranches 1–4/4, measured 2026-11-25)
+
+<!-- index-of-record -->
 
 > **Entry point for the `#131` / `#132` / `#457` DNN documentation arc.**
 > The folder holds **217 tracked files** (`git ls-files docs/dnn-localization`, measured 2026-11-24). This
-> README is being rebuilt as an **index of record, by tranches**: tranche 1 indexes the **49 root files
-> whose name is not `458-*`** — the 48 documents of §1–§6 plus this README — and the two subfolders;
-> tranche 2 (§8) indexes the **first 49 of the 134 `458-*` files**, tranche 3 (§9) the **next 50**;
-> tranche 4 indexes the **35 that remain**.
-> ⚠️ The
-> `<!-- index-of-record -->` mark is posed at the **last** tranche: this file does not carry it yet, and
-> the contract `tools/test_docs-index-contract.py` holds only a marked README to completeness.
+> README is an **index of record, in four tranches**: tranche 1 (§1–§7) indexes the **49 root files whose
+> name is not `458-*`** — the 48 documents plus this README — and the two subfolders; tranche 2 (§8) the
+> **first 49 of the 134 `458-*` files**, tranche 3 (§9) the **next 50**, tranche 4 (§10) the **35 that
+> remain**. All 134 are indexed.
+> ⚠️ The mark above submits this file to `python tools/test_docs-index-contract.py` — completeness, one
+> status per row, no dead link (§12). Until tranche 4 this file was a navigation index that happened to
+> carry statuses; it is now a contract.
 
 **Status vocabulary** (`docs/agents/consolidation.md`): `current` = says today's state, or governs a
 gesture still to come — re-read against master on 2026-11-24; `superseded` = a later document replaces it
@@ -123,6 +125,12 @@ Everything else is the record that led to it.
 | [dnn-ui-strings.csv](dnn-ui-strings.csv) | 2026-10-26 | `current` | The 11-row UI-strings artifact of #490 (2 `ui.*` + 9 `res.*`), 8 languages. ⛔ Never touch — see §7. |
 | [eav-content.csv](eav-content.csv) | 2026-11-19 | `current` | The **injection registry** (2sxc EAV pivot, 8 language columns). Read by the 147-cell plan and by `tools/458-eav-content-export.py verify`. |
 | [download-cards-canon.csv](download-cards-canon.csv) | 2026-10-28 | `historical` | Canonical download labels (Tarot/Poker, full/light) in 8 languages. No wired consumer measured on 2026-11-24 (no reference in `.md`/`.py`/`.cs`/`.json`). |
+
+### §5.1 — Instrument
+
+| File | Date | Status | What it is |
+|---|---|---|---|
+| [dnn-page-witness.py](dnn-page-witness.py) | 2026-11-26 | `current` | The **read-only recette witness** of #2398 / #2397 / #2181: anonymous GETs in the 8 cultures on both environments — the 2sxc error marker on 7 public journeys (list **and** detail), the FR menu link followed in the same session, and the presence of the **old French text** in the main body of `/xx/Argumentation`. Three guards precede any OK: the page read must be served in the expected culture (else `ERREUR`, never a verdict), the news detail must be the first link **under that culture's Actus path** with its destination verified, and a main body must exist (`dnn_ContentPane`, ≥ 400 chars). No line ever disappears: each culture always yields 7 constats (FR) or 9 (70 in all). Stdlib only; `--self-test` is the inverse control; the end-to-end fixtures (fake `fetch`, the three false greens of counter-review c.7202541558, one healthy site) are [`tools/test_2398-page-witness.py`](../../tools/test_2398-page-witness.py), wired in `python-tools-tests.yml`. Measured 2026-11-26 with the guards open: **production 22 failures** (8 `Amis` markers — every culture incl. FR, 7 old-FR bodies of 5070–6136 chars, 7 FR hrefs equal to the current URL), **preproduction 0** (70/70 judged, bodies 1417–4755 chars, FR link followed to `/` in `fr-FR` from each departure culture), 0 instrument errors. It **measures, it does not fix**. |
 
 ---
 
@@ -402,22 +410,177 @@ the guards' closed lists cannot see it. Both are leads for the pool; this index 
 
 ---
 
-## §10 — Remaining tranches
+## §10 — `458-*` records, tranche 4/4 (35 files)
 
-Tranche 1 covers the 49 root files that are not `458-*`, plus the two subfolders; tranche 2 (§8) covers
-the **first 49 `458-*` files**; tranche 3 (§9) the **next 50**. Tranche 4 indexes the **35 that remain** —
-cut on the same `git ls-files` order, one PR, branched from master **after** this one merged — never
-stacked (a chain on the same README re-conflicts at every squash, measured 23/11). The
-`<!-- index-of-record -->` mark is posed at **that** tranche, and the DoD mutant — "a row of a file
-cited only once removed, contract red and named" — is played on **that** PR, not on this one. Until then
-this file is a navigation index that happens to carry statuses, not a contract.
+This tranche takes the **35 that remain** after the 50 of §9, cut the same mechanical way on `git ls-files`
+order: from `458-item9bis-fa-IR.translations.json` to `458-tier3-mobius5-brevo-2026-10-25.md`. It is
+**29 `.md`, 3 data files** (the two fa-IR / zh-CN translation fragments and the CLDR table) **and 3 `.py`**
+(the two pack builders and the module-level measure instrument). With it the **134 `458-*` files are all
+indexed** — §8 49, §9 50, §10 35 — and §1–§6 carry the 48 root documents that are not `458-*`.
 
-The former navigation index is kept **byte for byte** at the end of this file, under *Archive*. It is not
-indexed row by row: it is part of this file. It sits in a fenced block on purpose: the contract holds
-every table row that links to a file of this folder to a status, and the rows of the former index carry
-none — fenced, the record stays exact and the contract stays readable.
+The row conventions of §8 apply unchanged. Three families of figures were re-measured for this index on
+**2026-11-25**, on master `64a81a5d`, with no base replayed. The **two translation fragments against the
+packs they fed**: 966 keys each, **965 byte-identical, 1 differs** in each — the same key,
+`GlobalResources::EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_BODY.Text`, re-translated after them by the
+§8.2 grain (`d4b2ac3f`) — **0 absent**, while the pack holds **32 keys the fragment never had** (the 30 of
+the 10.4.1 lot plus the two arbitrated legal values of §9.1). The **CLDR table against the three committed
+`List_Country` packs**: 256 values per culture, **0 differing, 0 absent on either side**. And every guard
+or instrument a row names was found on master — the **eleven** test classes and the one instrument
+(`DnnPersianScriptMarkers`).
 
-*po-2023 — pool #458, P23-34, tranches 1–3 · 25/11/2026.*
+Unlike §9's fragments, **four files of this tranche are named outside the folder** — in the doc comment of
+a test class or the header of a tool, and **none of them read at run time by the citation that names them**
+(the CLDR table is read by its builder, which no test runs — its own row says why it still counts):
+`458-item9bis-list-country-cldr-47.json` and `458-item9bis-list-country-build.py` at
+`DnnListCountryLocalizationGuardTests.cs:19-20` (the reproducible source of truth and its byte-exact
+constructor), `458-langpack-residu-visible-2026-11-05.md` at
+`DnnVisibleResidualLangpackGuardTests.cs:13` and `tools/457-p24-01-langpack-residu-visible.py:5` (the
+measure the tool's gestures derive from), and `458-newsletter-store-chain-2026-10-26.md` at
+`tools/458-eav-content-export.py:114` (where the export's attribution comes from). A `.md` is dated by its own
+date; a data file or a builder by the last commit that touched it; the two pack notes with neither a date
+in their name nor in their header (`458-item9bis-fa-ir-pack.md`, `458-item9bis-zh-cn-pack.md`) are dated by
+the commit that carried them.
+
+Statuses of this tranche: **3 `current`**, **2 `superseded`**, **30 `historical`**.
+
+### §10.1 — The AGR core family: the fa-IR and zh-CN packs, and the `List_Country` grain (11 files)
+
+**Where it stands on 2026-11-25.** The core family is complete in the three cultures of the grain (ar-SA in
+§8.2 and §9.1, fa-IR and zh-CN here): `SharedResources` 610, `GlobalResources` 202, `Exceptions` 132,
+`WebControls` 50, `FileUpload` 4 — **998 keys**, the AGR core of the 1 254-key denominator §9.1 measured
+on `6b101880`, which adds the 256 of `List_Country`. The two translation fragments in this list are the
+inputs of the two packs, not copies of their output: each holds the 966 keys of its date, and the packs
+have moved by 32 keys since (measured above). `List_Country` is the separate CLDR grain: three packs of
+256 keys each, byte-identical to the table below, which the guard names as its source of truth — that is
+why the table is the one `current` data file of the pair.
+
+| File | Date | Status | What it is |
+|---|---|---|---|
+| [458-item9bis-fa-IR.translations.json](458-item9bis-fa-IR.translations.json) | 2026-10-30 | `historical` | Source fragment of the fa-IR core packs — 5 files, **966 keys** (FileUpload 4, WebControls 50, Exceptions 132, GlobalResources 170, SharedResources 610). Against master 2026-11-25: **965 byte-identical, 1 differs** (`GlobalResources::EMAIL_PASSWORD_REMINDER_USER_ISNOT_APPROVED_BODY.Text`, re-translated by the §8.2 grain `d4b2ac3f`), 0 absent, and 32 pack keys that post-date it. Fed `458-item9bis-langpack-build.py`; carried by the squashed commit of #2067–#2070 (`efb82ae0`). |
+| [458-item9bis-fa-ir-pack.md](458-item9bis-fa-ir-pack.md) | 2026-10-30 | `historical` | The fa-IR pack note (Tier 2, lot 3): the **same perimeter** as lots 1–2, the key set identical to zh-CN and ar-SA (measured at merge: the same 356 translated keys). Dated by the commit that carried it — no date in its name or header (#2067–#2070). |
+| [458-item9bis-langpack-build.py](458-item9bis-langpack-build.py) | 2026-10-31 | `historical` | Builder of the AGR core packs: reads the neutral, writes `<family>.<culture>.resx` in `utf-8-sig`, `{0}`/`{1}` placeholders pinned. A one-shot authoring instrument — executed by no test, cited by no code; the guards read the `.resx` (#2067–#2070). |
+| [458-item9bis-zh-CN.translations.json](458-item9bis-zh-CN.translations.json) | 2026-10-30 | `historical` | Source fragment of the zh-CN core packs — the same 5 files, **966 keys**; against master 2026-11-25 **965 byte-identical, 1 differs** (the same key as the fa-IR fragment), 0 absent, 32 pack keys post-dating it (#2067–#2070). |
+| [458-item9bis-zh-cn-pack.md](458-item9bis-zh-cn-pack.md) | 2026-10-30 | `historical` | The zh-CN pack note: DNN resource files for the `App_GlobalResources` chrome — buttons, messages, validation, authentication mails: **static admin/portal content, no impact on the game cards or the PDFs**. Dated by the commit that carried it (#2067–#2070). |
+| [458-item9bis-sharedresources-zh-2026-10-30.md](458-item9bis-sharedresources-zh-2026-10-30.md) | 2026-10-30 | `historical` | `SharedResources` zh-CN — the **first complete** pack of the family. Its errata of 30/10 (NanoClaw review): the UTF-8 **BOM is re-emitted on write**, not "preserved" — the builder reads the neutral in `utf-8-sig` and writes in `utf-8-sig` (#2079). |
+| [458-item9bis-sharedresources-ar-2026-10-30.md](458-item9bis-sharedresources-ar-2026-10-30.md) | 2026-10-30 | `historical` | `SharedResources` ar-SA, the **second complete** pack: **3 keys → 610**; branch stacked on the zh-CN one (§6 of the report) (#2080). |
+| [458-item9bis-sharedresources-fa-2026-10-30.md](458-item9bis-sharedresources-fa-2026-10-30.md) | 2026-10-30 | `historical` | `SharedResources` fa-IR, the **third complete** pack, with its errata: the BOM is re-emitted (§3), and the un-reproducible key figure of §5.1.3 is replaced by the measured count delivered at the guard's closure (2 297) and after merge (2 904) (#2081). |
+| [458-item9bis-list-country-ar-fa-zh-2026-10-30.md](458-item9bis-list-country-ar-fa-zh-2026-10-30.md) | 2026-10-30 | `historical` | `List_Country` ar-SA / fa-IR / zh-CN: **3 × 256 keys from CLDR release-47**; the entry measure was 256 keys to produce per language with **no file for ar/fa/zh** (#2082). |
+| [458-item9bis-list-country-build.py](458-item9bis-list-country-build.py) | 2026-10-30 | `current` | The **byte-exact constructor** of the three packs, from the neutral plus the CLDR table. Still load-bearing: `DnnListCountryLocalizationGuardTests.cs:20` names it as the reference constructor whose output the guard pins — deleting it breaks what "reproducible source of truth" means, even though no test executes it (#2082). |
+| [458-item9bis-list-country-cldr-47.json](458-item9bis-list-country-cldr-47.json) | 2026-10-30 | `current` | The CLDR release-47 table: a `provenance` block (source, download date, version check against the ru-RU precedent, the regional-locale note) plus **256 values per culture** for ar-SA / fa-IR / zh-CN. **Still consumed** — the reproducible source of truth of the three committed packs, named at `DnnListCountryLocalizationGuardTests.cs:19`; re-measured 2026-11-25: **256/256 identical per culture**, 0 absent either way (#2082). |
+
+### §10.2 — The `module-level` family: measure, residual perimeter and the guards' socle (7 files)
+
+**Where it stands on 2026-11-25.** Every guard this family named exists on master and runs: the two fa-IR
+`Controls`/`Admin` classes, the four zh-CN ones (`Controls`, `Admin`, `DtmAdmin`, `DtmModules`), and the
+`DnnPersianScriptMarkers` instrument that keeps a Persian pack from passing the Arabic guards. The residual
+perimeter's **v3** is the one that stands: **99 files / 5 664 keys** for ar-SA and fa-IR, with the state
+after the lot 4a delivery (`623f8fd8`) recorded in the same report. The socle report leaves one declared
+follow-up, a one-line conversion of the 15th hand-copied read-helper after the merge of #2111.
+
+| File | Date | Status | What it is |
+|---|---|---|---|
+| [458-item9bis-modulelevel-extract.py](458-item9bis-modulelevel-extract.py) | 2026-10-30 | `historical` | Read-only measure of the **MODULE-LEVEL** family (`App_LocalResources`): how many files, how many keys, and what is missing for ar-SA / fa-IR / zh-CN — the measure that gave **96 files, 2 355 keys per language** (#2072). |
+| [458-item9bis-modulelevel-mesure-2026-10-30.md](458-item9bis-modulelevel-mesure-2026-10-30.md) | 2026-10-30 | `historical` | The real measure of the module-level family for the three cultures — 96 files, 2 355 keys per language — taken on the dispatch of ai-01 of 29/10 (§5 and §7 of #458) (#2072). |
+| [458-item9bis-fa-ar-distinction-2026-10-31.md](458-item9bis-fa-ar-distinction-2026-10-31.md) | 2026-10-31 | `historical` | Distinguishing **Persian from Arabic** in the fa-IR guards (4 tests): `DnnModuleLevelControlsFaResxGuardTests`, `DnnModuleLevelAdminFaResxGuardTests`, plus the new `DnnPersianScriptMarkers` instrument — **0 `.resx` touched**. Born of the question « would a full copy of ar-SA pass the fa guards at 100 % ? » (NanoClaw review of #2097, item 6 of the po-2023 pool) (#2101). |
+| [458-item9bis-zh-script-2026-10-31.md](458-item9bis-zh-script-2026-10-31.md) | 2026-10-31 | `historical` | Chinese-script control on the **three** zh-CN guards (**60 tests**): `DnnModuleLevelControlsZhResxGuardTests`, `DnnModuleLevelAdminZhResxGuardTests`, `DnnModuleLevelDtmAdminZhResxGuardTests` — 3 test files, 0 `.resx` touched (#2098). |
+| [458-item9bis-zh-script-dtm-modules-2026-10-31.md](458-item9bis-zh-script-dtm-modules-2026-10-31.md) | 2026-10-31 | `historical` | The same control on the **fourth** zh-CN guard (**28 tests**): `DnnModuleLevelDtmModulesZhResxGuardTests`, unblocked by the merge of #2098 (#2105). |
+| [458-item9bis-guard-socle-2026-11-01.md](458-item9bis-guard-socle-2026-11-01.md) | 2026-11-01 | `historical` | The guards' **socle**: the `CommittedBlob` primitive written once (`Dnn/DnnResxGuardSocle.cs`, with 4 facts that measure the socle itself) and **14 guards migrated** to a one-line delegation — −298 / +14 lines, no caller touched. Its error paths made explicit: a timeout that kills the process tree and names the command, a non-zero exit that says « commit **before** measuring », git absent from the PATH, an empty path refused before calling git. Plus the two 🟡 notes of #2105; one declared follow-up — converting the 15th copy after the merge of #2111 (#2112). |
+| [458-item9bis-residual-perimeter-2026-11-01.md](458-item9bis-residual-perimeter-2026-11-01.md) | 2026-11-01 | `historical` | The **residual perimeter** ar-SA / fa-IR, v3: **99 files / 5 664 keys**. Its section on the 7 files of the « Reste » bucket names the fifth and costliest of five instrument errors — each time the *definition of the object* was wrong, never the tool applying it; a later section records the state after the lot 4a delivery (`623f8fd8`). Completed on 02/11 (#2113). |
+
+### §10.3 — The langpack residual, two measures of 2026-11-05 (2 files)
+
+**Where it stands on 2026-11-25.** The residual is carried by three families — NBrightBuy ×25, the admin
+console, and pt-BR 105 families — and the dry measure's §4 holds a table of three go-live decisions with a
+recommended answer each. That table is a **record of the recommendations**, not a live checklist: the swap
+happened on 24/11 (§0). The *visible* measure is the one still replayed — it is the source of the measure of
+`tools/457-p24-01-langpack-residu-visible.py` and was cited at the birth of
+`DnnVisibleResidualLangpackGuardTests` (#2154), which is why it, and not its dry twin, carries `current`.
+
+| File | Date | Status | What it is |
+|---|---|---|---|
+| [458-langpack-residu-2026-11-05.md](458-langpack-residu-2026-11-05.md) | 2026-11-05 | `historical` | The residual, dry: per-culture counts, the three families carrying almost all of it, what it is **not**, and §4's table of the three decisions to take before go-live with a recommended answer each. Cross-check: es-ES "suivies" = **192** here and "master resx: 192" in the build (#2148). |
+| [458-langpack-residu-visible-2026-11-05.md](458-langpack-residu-visible-2026-11-05.md) | 2026-11-05 | `current` | The **visible** part of the residual, measured *served* on preprod (7 pack cultures × 6 visitor surfaces, 05/11 ≈15:20Z; a hit = the exact English value of a residual neutral family present in the served body). Still the source of the measure cited — **not** replayed — by `tools/457-p24-01-langpack-residu-visible.py:5` and by `DnnVisibleResidualLangpackGuardTests.cs:13` (#2154). |
+
+### §10.4 — pt-BR and the fa-IR lot 4a base (4 files)
+
+**Where it stands on 2026-11-25.** The three gestures this group measured are guarded on master:
+`DnnPtBrContinentalResxGuardTests`, `DnnSecurityDeadKeysPtBrGuardTests` (the 13 dead keys),
+`DnnSecurityPtBrAuditScannerGuardTests` (the 66 cells and 10 created keys). The lot 4a base note is the
+arithmetic that closed the fa-IR perimeter **before** any guard was written — 37 neutral files with an ar-SA
+sibling and no fa-IR sibling, "37, and not one more", measured on blobs rather than on disk.
+
+| File | Date | Status | What it is |
+|---|---|---|---|
+| [458-lot4a-fa-ir-base-arithmetique-2026-11-03.md](458-lot4a-fa-ir-base-arithmetique-2026-11-03.md) | 2026-11-03 | `historical` | The **arithmetic of the fa-IR base**, closed before any guard: the perimeter is **37** neutral `DesktopModules/**/*.resx` files with an ar-SA sibling and **no fa-IR** sibling — derived in §2, measured on **blobs** in §3, confirmed against the pool in §4; §5 names the two figures that do not reproduce and what was set aside; §7 states what the note authorizes — the whole lot, since the guard requires it whole (#2131). |
+| [458-ptbr-pt-continental-measure-2026-11-02.md](458-ptbr-pt-continental-measure-2026-11-02.md) | 2026-11-02 | `historical` | The pt-PT → pt-BR grain: **the nominative list first** — 13 cells in 2 forms over 140 `*.pt-BR.resx` files, with two instrument traps paid and named (an unaccented class inventing 136 defects; a one-eyed plural marker returning 0 by blindness); §6 the guard `DnnPtBrContinentalResxGuardTests` with its red measured, not asserted (#2126). |
+| [458-ptbr-security-13-cles-mortes-2026-11-02.md](458-ptbr-security-13-cles-mortes-2026-11-02.md) | 2026-11-02 | `historical` | `security.pt-BR.resx`: **the 13 dead keys**, named and pinned by `DnnSecurityDeadKeysPtBrGuardTests.cs` (#2118). |
+| [458-ptbr-security-audit-scanner-2026-11-02.md](458-ptbr-security-audit-scanner-2026-11-02.md) | 2026-11-02 | `historical` | `security.pt-BR.resx`, Audit/Scanner volet: **66 cells rewritten + 10 keys created**, pinned by `DnnSecurityPtBrAuditScannerGuardTests.cs` (#2125). |
+
+### §10.5 — Site surfaces, measured on preprod (11 files)
+
+**Where it stands on 2026-11-25.** These are preprod measures of surfaces — footer, sitemap lever, login
+link, `/terms` `/privacy`, the newsletter chain, the Tier 3 forms, site→cards, and the two RuleMemo
+injections. The RuleMemo gestures were **preprod content injections only** (4 then 22 cells), which §0 now
+records as part of the state the swap carried. The newsletter group is a chain of three measures of the same
+day: the third one corrects both of its predecessors on a **named point each** (which app renders the
+newsletter), so the two earlier ones are `superseded` and the third survives — it is the attribution
+`tools/458-eav-content-export.py:114` relies on for the app 48 export.
+
+| File | Date | Status | What it is |
+|---|---|---|---|
+| [458-site-vs-cards-exhaustivite-2026-10-12.md](458-site-vs-cards-exhaustivite-2026-10-12.md) | 2026-10-12 | `historical` | Site → cards exhaustiveness: the **8 site-only sections classified, 0 missing rule**; classification, 0 write; instrument `docs/corpus/rules-site-vs-cards.py`, replayed from its committed location (#1868). |
+| [458-tier3-mobius5-brevo-2026-10-25.md](458-tier3-mobius5-brevo-2026-10-25.md) | 2026-10-25 | `historical` | Tier 3 measures, read-only: the **Mobius5 contact form** and the **Brevo newsletter** — no DB write, no code, no deployment; preprod `dnn.argumentum.myia.io`, master `10aeb190` served (#1983). |
+| [458-landingpage-footer-2026-10-25.md](458-landingpage-footer-2026-10-25.md) | 2026-10-25 | `historical` | The `Landingpage.ascx` footer: **no page selects it**; the 8/8 served `href` measured under each label; the label/target inversion is **real in the file and not served**. The correctif is in the repository and takes effect the day a page selects the template, or on a skin-pack reinstall (#1984). |
+| [458-loginlink-attribution-2026-10-25.md](458-loginlink-attribution-2026-10-25.md) | 2026-10-25 | `historical` | The core login link (`dnn_DnnLogin_loginLink`, 5/8): the resx named, the missing cultures named, and the finding that it is **already covered** by the chrome Tier 1 file of po-2024 (#1993). |
+| [458-sitemap-cl-lever-2026-10-25.md](458-sitemap-cl-lever-2026-10-25.md) | 2026-10-25 | `historical` | Empty preprod sitemap: the lever is the portal row **`ContentLocalizationEnabled`**, measured both ways and restored; §3 the culture servitude does **not** depend on the portal flag; §4 the measured interaction — a populated sitemap **XOR** the skin's `hreflang`; §5 the instrument traps met (#1991). |
+| [458-terms-privacy-attribution-2026-10-25.md](458-terms-privacy-attribution-2026-10-25.md) | 2026-10-25 | `historical` | `/terms` `/privacy`: the text lives in `GlobalResources.<culture>.resx`, keys `MESSAGE_PORTAL_*.Text`; the state per culture, and §3 the grain handed to po-2024 — an **attribution, not an execution** (#1992). |
+| [458-newsletter-form-unserved-translations-2026-10-26.md](458-newsletter-form-unserved-translations-2026-10-26.md) | 2026-10-26 | `superseded` by [458-newsletter-store-chain-2026-10-26.md](458-newsletter-store-chain-2026-10-26.md) | The morning measure: the form is translated but not served — its §3 attributed the rendering to **app 33 / entity 10176**, which has no consumer. What the successor keeps as true: §1 (the served text identical on the 8 cultures) and §2 (the app 48 `HtmlFragment` lead — **the right one**) (#2014). |
+| [458-newsletter-rendered-store-identified-2026-10-26.md](458-newsletter-rendered-store-identified-2026-10-26.md) | 2026-10-26 | `superseded` by [458-newsletter-store-chain-2026-10-26.md](458-newsletter-store-chain-2026-10-26.md) | The afternoon measure: it identified the rendered store as **app 50 MobiusForms5** — that is the **contact form's** store, not the newsletter's. Corrected by the successor, whose §4 names the cause (an instrument reading the wrong table). What it keeps as true: the measure on 10176 (no consumer) and the elimination of the shared flag (#2014). |
+| [458-newsletter-store-chain-2026-10-26.md](458-newsletter-store-chain-2026-10-26.md) | 2026-10-26 | `historical` | The chain, measured end to end: the served newsletter is the **Sendinblue HTML fragment of app 48** (E10181, `Html`, 13 314 characters, **no dimension row**), reached by `item 10172 → ContentGroupReference 10179 → app 48`; `_SnippetInject.cshtml` does `@Html.Raw(Content.Html)`, and `Content` resolves dimensions — so dims 7–13 on E10181 **would** be served: that is the path of a correctif, none posed. This is the surviving attribution, used at `tools/458-eav-content-export.py:114` (#2014). |
+| [458-rulememo-injection-2026-10-25.md](458-rulememo-injection-2026-10-25.md) | 2026-10-25 | `historical` | Injection of the rule card-name prefix (`RuleMemoCardFileNamePrefix`): **4 cells**, preprod only, pure addition; base `dc42437c`, gate = the translation of #1979 (#1988). |
+| [458-rulememo-harmonisation-injection-2026-10-26.md](458-rulememo-harmonisation-injection-2026-10-26.md) | 2026-10-26 | `historical` | The **harmonised** RuleMemo set injected: **22 UPDATE cells**, preprod only, gap 51 → 29; gate = the merge of #2011 (`7e53347b`); direct successor of the 4-cell note above (#2015). |
+
+---
+
+## §11 — How to read this folder
+
+These are **dated measures**, not living references. A number quoted here is the number of its date: the
+history of this folder is full of counts that were true when written and are not today (key totals, file
+perimeters, families of residuals). Before quoting one in an issue or a devis, re-measure it against the
+tree — and prefer the latest report of the same subject, not the most detailed one. `current` means the
+file was re-read against master on the date of this index; `historical` means it is evidence of a closed
+work; `superseded` means a named successor replaces it. For a **data file or a builder**, `current` says
+it is still consumed (by a guard, a tool, or a pack whose content it defines) — not that its numbers are
+today's.
+
+## §12 — The contract, from this tranche on
+
+This README carries the `<!-- index-of-record -->` mark since tranche 4. `python tools/test_docs-index-contract.py`
+holds it to three things: every tracked file of `docs/dnn-localization` is cited, directly or through a
+folder link; every row that links a file of this folder carries **exactly one** status in backticks; no link
+is dead, case included. A file added under this folder without its row turns the pull request red, naming
+the file. The counts this file accounts for move when a file is added — `git ls-files docs/dnn-localization`
+is the instrument, and the figures above are dated: **217 tracked files** = 134 `458-*` + 49 root files
+(48 documents and this README) + 34 files behind the two folder links of §6.
+
+A subfolder row links the **folder** (`name/`), never its `README.md`: a link to a subfolder's README covers
+only that README, and the other files of the subfolder would read as uncited. That is why the rows of §6
+use `name/`.
+
+The mark was posed with the proofs the DoD asks for, and the rule born of #2380 was applied in the same
+pull request: `docs/dnn-localization` joined `REQUIRED_INDEXES` in `tools/test_docs-index-contract.py`, so
+losing the mark now reddens `test_02` and names the folder instead of silently leaving the contract. Two
+mutants were played on a copy of this branch: a row of a file cited only once removed ⇒ `test_01` red,
+naming the file; the mark line removed ⇒ `test_02` red, naming `['docs/dnn-localization']`, with the
+inverse control — the same mutant tree against master's list — clean, which is what proves the new entry
+is the cause. Both were restored by `cp` and verified at `sha256`.
+
+The former navigation index is kept **byte for byte** at the end of this file, under *Archive*. It is part
+of this file, not indexed row by row: it sits in a fenced block on purpose — the contract holds every table
+row that links to a file of this folder to a status, and the rows of the former index carry none. Fenced,
+the record stays exact and the contract stays readable.
+
+*po-2023 — pool #458, P23-34, tranches 1–4 · 25/11/2026.*
 
 ---
 

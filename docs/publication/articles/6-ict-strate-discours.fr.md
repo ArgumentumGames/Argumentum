@@ -18,13 +18,13 @@ La strate ne commence pas par une conclusion mais par un pari consigné : les r
 
 La strate est « cadrée et non livrée », mais sa graine est exécutée : trois carnets — des documents mêlant texte et code exécutable — et leur capstone.
 
-[**Trajectoires de croyance**](https://github.com/jsboige/CoursIA/blob/7eea21ebefe/MyIA.AI.Notebooks/IIT/ICT-Series/ICT-Argumentation-BeliefTrajectories-Python.ipynb) applique l’instrumentation de la série à des trajectoires argumentatives sur des régimes synthétiques, un anneau délibératif et une cascade populiste. Son constat est sans détour : le corpus réel d’Argumentum n’y est pas mesuré, la transposition reste ouverte.
+[**Trajectoires de croyance**](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/IIT/ICT-Series/ICT-Argumentation-BeliefTrajectories-Python.ipynb) applique l’instrumentation de la série à des trajectoires argumentatives sur des régimes synthétiques, un anneau délibératif et une cascade populiste. Son constat est sans détour : le corpus réel d’Argumentum n’y est pas mesuré, la transposition reste ouverte.
 
-[**Acceptabilité lue comme formules quantifiées**](https://github.com/jsboige/CoursIA/blob/7eea21ebefe/MyIA.AI.Notebooks/IIT/ICT-Series/ICT-Argumentation-QBFAcceptance-Python.ipynb) relit les deux verdicts classiques des graphes d’attaques — crédule, sceptique — comme des formules booléennes quantifiées, où alternent des « pour tout » et des « il existe » : être crédule, c’est chercher un témoin ; être sceptique, c’est exiger que tout résiste.
+[**Acceptabilité lue comme formules quantifiées**](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/IIT/ICT-Series/ICT-Argumentation-QBFAcceptance-Python.ipynb) relit les deux verdicts classiques des graphes d’attaques — crédule, sceptique — comme des formules booléennes quantifiées, où alternent des « pour tout » et des « il existe » : être crédule, c’est chercher un témoin ; être sceptique, c’est exiger que tout résiste.
 
-[**Maintenance de la vérité**](https://github.com/jsboige/CoursIA/blob/7eea21ebefe/MyIA.AI.Notebooks/IIT/ICT-Series/ICT-Argumentation-TruthMaintenance-Python.ipynb) ajoute la couche de révision : deux moteurs classiques, JTMS et ATMS — des systèmes qui retirent les conséquences d’une prémisse abrogée —, portés du projet Epita avec une preuve de fidélité ligne à ligne, puis un pont vers la sémantique du graphe d’attaques.
+[**Maintenance de la vérité**](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/IIT/ICT-Series/ICT-Argumentation-TruthMaintenance-Python.ipynb) ajoute la couche de révision : deux moteurs classiques, JTMS et ATMS — des systèmes qui retirent les conséquences d’une prémisse abrogée —, portés du projet Epita avec une preuve de fidélité ligne à ligne, puis un pont vers la sémantique du graphe d’attaques.
 
-Le [**capstone**](https://github.com/jsboige/CoursIA/blob/7eea21ebefe/MyIA.AI.Notebooks/IIT/ICT-Series/ICT-Argumentation-Capstone-Python.ipynb) consomme les trois sans les recopier. Celui qui doit mesurer la prédiction sur le corpus réel, lui, en est au stade de la note de conception.
+Le [**capstone**](https://github.com/jsboige/CoursIA/blob/main/MyIA.AI.Notebooks/IIT/ICT-Series/ICT-Argumentation-Capstone-Python.ipynb) consomme les trois sans les recopier. Celui qui doit mesurer la prédiction sur le corpus réel, lui, en est au stade de la note de conception.
 
 ## Ce que le jeu apporte
 

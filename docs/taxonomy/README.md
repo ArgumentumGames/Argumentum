@@ -434,10 +434,17 @@ Trois chantiers, **tous clos** : #192 et #600 forment la **piste `link_*`** (mes
 la couverture → résoudre les URL candidates → harnais d'application), #497 est la
 **couche relationnelle transverse** entre grappes. Aucune de leurs pièces n'est
 `current` : les trois issues sont CLOSED/MERGED, et aucun de leurs scripts n'est
-appelé par la CI ni importé par un outil (`git grep` de chaque nom hors
-`docs/taxonomy` : seul `192-link-coverage-langlinks-probe` est **cité**, dans la
-docstring de `tools/link-langlinks-resolve.py`, qui étend sa mesure en résolution —
-vérifié sur la **forme** : cet outil n'importe que la std-lib).
+appelé par la CI ni importé par un outil (`git grep -F` de chaque **nom de fichier**
+hors `docs/taxonomy`, quatre lignes distinctes en quatre fichiers : seul
+`192-link-coverage-langlinks-probe.py` est **cité par un outil** — la docstring de
+`tools/link-langlinks-resolve.py` et sa notice `tools/link-langlinks-resolve.md` ;
+cet outil étend sa mesure en résolution — vérifié sur la **forme** : il n'importe que
+la std-lib ; trois autres pièces n'y sont citées que par des documents —
+`192-native-ratification-checklist.md` et `192-terminology-glossary-register.md`
+dans `docs/release-dossier/458-grain9-sweep-references-2026-09-15.md`,
+`497-pilot-crosslinks.csv` dans `tools/validate_taxonomy_annotations.md` ; les tiges
+sans extension ne reparaissent dehors que dans des documents et dans des noms de
+branche du relevé `docs/quality/415-refs-pre-phase2-2026-09-21.txt`).
 
 ### #192 — couverture de traduction et terminologie (juin 2026)
 
