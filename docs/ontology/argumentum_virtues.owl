@@ -2694,7 +2694,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#groundedArgument</IRI>
-    <Literal xml:lang="en">Well-structured argument, based on facts or solid reasoning</Literal>
+    <Literal xml:lang="en">Well-structured argument, based on facts or solid reasoning.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -2754,7 +2754,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#realArgument</IRI>
-    <Literal xml:lang="en">Argument based on concrete and verifiable elements, rather than on opinions or assumptions</Literal>
+    <Literal xml:lang="en">Argument based on concrete and verifiable elements, rather than on opinions or assumptions.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -2829,7 +2829,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#deductiveArgument</IRI>
-    <Literal xml:lang="en">Argument that logically derives a conclusion from premises accepted as true</Literal>
+    <Literal xml:lang="en">Argument that logically derives a conclusion from premises accepted as true.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -2904,7 +2904,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#inductiveArgument</IRI>
-    <Literal xml:lang="en">Argument that proposes a probable conclusion from specific examples, while remaining open to revision</Literal>
+    <Literal xml:lang="en">Argument that proposes a probable conclusion from specific examples, while remaining open to revision.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -2914,7 +2914,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#inductiveArgument</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Raisonnement_inductif</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Induction_(logique)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -2964,7 +2964,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#tangibleEvidence</IRI>
-    <Literal xml:lang="en">Evidence supporting the argument through concrete examples, testimonies, or verifiable scientific facts</Literal>
+    <Literal xml:lang="en">Evidence supporting the argument through concrete examples, testimonies, or verifiable scientific facts.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -2974,7 +2974,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#tangibleEvidence</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Preuve_(logique)</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Preuve</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -3039,7 +3039,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#clearObjective</IRI>
-    <Literal xml:lang="en">Precise establishment of the debate objective and the parties' positions</Literal>
+    <Literal xml:lang="en">Precise establishment of the debate objective and the parties' positions.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -3099,7 +3099,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#providingExamples</IRI>
-    <Literal xml:lang="en">Support for argumentation through specific and relevant examples to make it more understandable</Literal>
+    <Literal xml:lang="en">Support for argumentation through specific and relevant examples to make it more understandable.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -3242,6 +3242,11 @@
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Citation</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#citingSources</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Référence_bibliographique</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#tangibleEvidence</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#citingSources</IRI>
@@ -3289,7 +3294,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#unbiasedReasoning</IRI>
-    <Literal xml:lang="en">Reasoning based on rational logic and facts that avoids preconceived conclusions</Literal>
+    <Literal xml:lang="en">Reasoning based on rational logic and facts that avoids preconceived conclusions.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -3364,7 +3369,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#reliablePremises</IRI>
-    <Literal xml:lang="en">Bases of an argument considered solid and credible</Literal>
+    <Literal xml:lang="en">Bases of an argument considered solid and credible.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -3422,11 +3427,6 @@
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Reliability</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#credibleSources</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Fiabilit%C3%A9_des_sources</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#reliablePremises</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#credibleSources</IRI>
@@ -3480,11 +3480,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Reliability#In_journalism</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellEvaluatedSource</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Fiabilit%C3%A9_des_sources#M%C3%A9thodes_d'%C3%A9valuation_de_la_fiabilit%C3%A9_des_sources</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -3659,7 +3654,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#competentAuthority</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Autorit%C3%A9_cognitive</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Crédibilité</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -3854,7 +3849,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validatedConclusion</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Preuve_science</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Preuve</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -3925,6 +3920,11 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#confirmedInformation</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Journalism</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#confirmedInformation</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Journalisme</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -4050,6 +4050,16 @@
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#empiricalEvidence</IRI>
     <Literal xml:lang="en">Relying on verifiable empirical data to support arguments.</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#empiricalEvidence</IRI>
+    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Empirical_evidence</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#empiricalEvidence</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Preuve_empirique</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -4254,12 +4264,17 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#impartialSources</IRI>
-    <Literal xml:lang="en">Selection of objective sources, free of personal interest, for an argumentation grounded in truth rather than opinion.</Literal>
+    <Literal xml:lang="en">Objective sources, free of personal interest, for argumentation grounded in facts rather than opinion.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#impartialSources</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Impartiality</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#impartialSources</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Impartialité</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -4334,7 +4349,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#sourcesFreeOfSocioEconomicBias</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Source_impartiale</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Impartialité</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -4405,11 +4420,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#fairInterpretation</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Interpretation_(philosophy)</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fairInterpretation</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Interpr%C3%A9tation_(philosophie)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -4530,11 +4540,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Objectivity_(philosophy)</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonPartisanInterpretation</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Objectivit%C3%A9_(philosophie)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -5224,7 +5229,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#justifiedTechnicalTerminology</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Terme_technique</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Jargon</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -6022,11 +6027,6 @@
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Distancing</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#emotionalBalance</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Distanciation_(psychologie)</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#honestPresentation</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#emotionalBalance</IRI>
@@ -6094,12 +6094,12 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#emotionalNeutrality</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Collusion</Literal>
+    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Equanimity</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#emotionalNeutrality</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Connivence_(psychologie)</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Équanimité</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -6239,12 +6239,17 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#noBlackmailThroughConsequences</IRI>
-    <Literal xml:lang="en">Manipulating one's interlocutor by resorting to threats or promises constitutes an affront to honest and ethical exchange.</Literal>
+    <Literal xml:lang="en">Refusing to manipulate one's interlocutor through threats or promises linked to consequences.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#noBlackmailThroughConsequences</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Emotional_blackmail</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#noBlackmailThroughConsequences</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Chantage_émotionnel</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -6594,12 +6599,12 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#quantitativeReasoning</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Mathematical_method</Literal>
+    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Numeracy</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#quantitativeReasoning</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/M%C3%A9thode_math%C3%A9matique</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Numératie</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -6674,7 +6679,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#justifiedGeneralizations</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/G%C3%A9n%C3%A9ralisation_%28logique%29</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Généralisation</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -6725,11 +6730,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#representativeSampling</IRI>
     <Literal xml:lang="en">Sampling must be representative of the studied population to avoid biases in generalized conclusions.</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#representativeSampling</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/%C3%89chantillonnage_statistique</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -6854,7 +6854,12 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#legitimateTransfer</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Transfert_(logique)</Literal>
+    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Argument_from_analogy</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#legitimateTransfer</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Analogie</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -7004,7 +7009,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#establishedCorrelations</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Corr%C3%A9lation_et_d%C3%A9pendance#Relation_de_causalit%C3%A9</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Corrélation_n'implique_pas_causalité</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -7079,7 +7084,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#methodicalEstimation</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Estimation_statistique</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Théorie_de_l'estimation</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -7329,12 +7334,12 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#finiteSupport</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Finite_probability_space</Literal>
+    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Sample_space</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#finiteSupport</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Espace_probabilis%C3%A9_fini</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Univers_(probabilit%C3%A9s)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -7529,7 +7534,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#clearPresentationOfData</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Qualit%C3%A9_de_la_donn%C3%A9e</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Qualité_des_données</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -7589,7 +7594,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#exactCalculations</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Pr%C3%A9cision_num%C3%A9rique</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Précision</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -7649,7 +7654,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#numericalAccuracy</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Pr%C3%A9cision_num%C3%A9rique</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Précision</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -7897,16 +7902,6 @@
     <Literal xml:lang="en">A rigorous method that combines acceptable premises with valid rules of inference to reach a coherent and justified conclusion.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#inferentialMastery</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Valid_reasoning</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#inferentialMastery</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Raisonnement_valide</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgument</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#inferentialMastery</IRI>
@@ -8045,16 +8040,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#independenceOfPremisesFromTheConclusion</IRI>
     <Literal xml:lang="en">Premises must support the conclusion without presupposing it.</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#independenceOfPremisesFromTheConclusion</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Valid_reasoning</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#independenceOfPremisesFromTheConclusion</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Raisonnement_valide</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -8279,7 +8264,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#rigorousConstructionOfStatements</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Raisonnement_valide#Structure_logique_de_l'argument_valide</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Validité_(logique)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -8354,7 +8339,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#wellFormedPropositionalStatements</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Proposition_(logique)</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Théorème</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -8572,16 +8557,6 @@
     <Literal xml:lang="en">Logical sequence of statements leading to a conclusion that is difficult to refute.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#correctDeductions</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Valid_reasoning</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#correctDeductions</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Raisonnement_valide</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#inferentialMastery</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#correctDeductions</IRI>
@@ -8644,17 +8619,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#stepwiseReasoning</IRI>
-    <Literal xml:lang="en">Progressive reasoning method using a series of intermediate inferences to reach a rigorous conclusion</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#stepwiseReasoning</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Conjectural_reasoning</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#stepwiseReasoning</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Raisonnement_conjectural</Literal>
+    <Literal xml:lang="en">Progressive reasoning method using a series of intermediate inferences to reach a rigorous conclusion.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -8719,7 +8684,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#coherentDemonstration</IRI>
-    <Literal xml:lang="en">Rigorous and logical sequence of arguments that does not reveal inconsistencies between its different parts</Literal>
+    <Literal xml:lang="en">Rigorous and logical sequence of arguments that does not reveal inconsistencies between its different parts.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -8855,16 +8820,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#absenceOfInternalContradictions</IRI>
     <Literal xml:lang="en">A reasoning process is considered valid when its premises and conclusion are free from any logical contradiction.</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#absenceOfInternalContradictions</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Coherence_(philosophy)</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#absenceOfInternalContradictions</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Coh%C3%A9rence_(philosophie)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -9299,7 +9254,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#inference:ConjunctionIntroduction</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Conjonction_(logique)</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Conjonction_logique</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -9359,7 +9314,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#inference:ConjunctionElimination</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Disjonction_(logique)</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Disjonction_logique</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -9434,7 +9389,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#inference:DoubleNegation</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/N%C3%A9gation_(logique)#Double_n.C3.A9gation</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/N%C3%A9gation_logique</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -9564,12 +9519,12 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#inference:UnitResolution</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Synthetic_reasoning</Literal>
+    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Resolution_(logic)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#inference:UnitResolution</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Raisonnement_synth%C3%A9tique</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Règle_de_résolution</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -10834,12 +10789,12 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#datisiSyllogism</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Datisi</Literal>
+    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Syllogism#Standard-form_syllogisms</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#datisiSyllogism</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Syllogisme_Datisi</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Syllogisme#Les_variantes_du_syllogisme_standard</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -11132,16 +11087,6 @@
     <Literal xml:lang="en">A fourth-figure syllogism with two universal premises, producing a universal conclusion.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#camenesSyllogism</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Syllogism_caménien</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#camenesSyllogism</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Syllogisme_cam%C3%A9nien</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#fourthFigureSyllogism</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#camenesSyllogism</IRI>
@@ -11214,7 +11159,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#dimatisSyllogism</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Syllogisme_dimaris</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Syllogisme</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -11289,7 +11234,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#fesapoSyllogism</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Syllogisme_de_mode_permis</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Logique_traditionnelle</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -11364,7 +11309,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#fresisonSyllogism</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Syllogisme_de_mode_permis</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Logique_traditionnelle</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -11439,7 +11384,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#bamalipSyllogism</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Syllogisme_de_mode_permis</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Logique_traditionnelle</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -11494,7 +11439,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#acceptableInformalLogic</IRI>
-    <Literal xml:lang="en">Acceptable informal logic</Literal>
+    <Literal xml:lang="en">Solid informal logic</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
@@ -11574,7 +11519,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#correctAnalyticalReasoning</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Raisonnement_analytique</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Raison</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -11649,7 +11594,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#correctSyntheticReasoning</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Raisonnement_synth%C3%A9tique</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Distinction_analytique-synthétique</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -11769,7 +11714,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#correctAbductiveReasoning</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Raisonnement_abductif</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Abduction_(logique)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -11910,16 +11855,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#lexicalPrecision</IRI>
     <Literal xml:lang="en">Precise and appropriate use of language to avoid ambiguities and communication errors.</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#lexicalPrecision</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Rigorous_language</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#lexicalPrecision</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Langage_rigoureux</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -12234,7 +12169,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#conformingDefinition</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Terminologie_technique</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Jargon</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -12294,7 +12229,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#appropriateTechnicalTerminology</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Terminologie_technique</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Jargon</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -12367,6 +12302,11 @@
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Definition</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#consistentDefinition</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Définition</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#clearDefinitions</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#consistentDefinition</IRI>
@@ -12420,6 +12360,11 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#justifiedComparisons</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Analogy</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#justifiedComparisons</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Analogie</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -12490,6 +12435,11 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#adequateComparison</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Analogy</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#adequateComparison</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Analogie</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -12639,7 +12589,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#relevantAssociation</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Sophisme_d%27association</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Sophisme_par_association</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -12770,6 +12720,11 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#clearSyntax</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Syntax</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#clearSyntax</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Syntaxe</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -12949,7 +12904,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#unambiguousExpressions</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Ambigu%C3%AFt%C3%A9_(linguistique)</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Ambiguïté</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -13080,11 +13035,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#intellectualHonesty</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Intellectual_honesty</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#intellectualHonesty</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Honn%C3%AAtet%C3%A9_intellectuelle</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -13225,6 +13175,11 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#truthOfFacts</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Truth</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#truthOfFacts</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Vérité</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -13372,11 +13327,6 @@
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Objectivity</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#balancedConsideration</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Objectivit%C3%A9_(presse)</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#fidelityToFacts</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#balancedConsideration</IRI>
@@ -13497,11 +13447,6 @@
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Transparency_(behavior)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#fullDisclosure</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Transparence_(droit)</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#balancedConsideration</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#fullDisclosure</IRI>
@@ -13570,6 +13515,11 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#clarityOfIssues</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Framing_(social_sciences)</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#clarityOfIssues</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Cadrage_(sciences_sociales)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -13784,7 +13734,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#appropriateLevelOfProof</IRI>
-    <Literal xml:lang="en">The expected objective for the opponent must be attainable and fair, with measurable, clear and well-defined criteria for assessing success.</Literal>
+    <Literal xml:lang="en">Requirement of clear, measurable and fair criteria for evaluating the success of an argumentation.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -13867,11 +13817,6 @@
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Intellectual_honesty</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#clearPositioning</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Honn%C3%AAtet%C3%A9_intellectuelle</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#clarityOfIssues</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#clearPositioning</IRI>
@@ -13929,7 +13874,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#nonComplacentObjective</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Objectif_SMART</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Objectifs_et_indicateurs_SMART</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -14125,11 +14070,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#objectivityEffort</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Objectivity_(philosophy)</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#objectivityEffort</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Objectivit%C3%A9_(philosophie)</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -14424,12 +14364,12 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#interculturalAwareness</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Cultural_open-mindedness</Literal>
+    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Intercultural_competence</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#interculturalAwareness</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Ouverture_culturelle</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Comp%C3%A9tence_interculturelle</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -14485,6 +14425,11 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#recognitionOfPersonalCulturalBiases</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Cultural_bias</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#recognitionOfPersonalCulturalBiases</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Biais_culturel</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -14632,6 +14577,11 @@
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Political_neutrality</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#distancingFromIdeologies</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Neutralité_(relations_internationales)</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#objectivityEffort</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#distancingFromIdeologies</IRI>
@@ -14744,7 +14694,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#prefLabel" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#takingTheOpponentsIdeologicalBiasesIntoAccount</IRI>
-    <Literal xml:lang="en">Taking the opponent's ideological biases into account</Literal>
+    <Literal xml:lang="en">Taking the parties' ideological biases into account</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
@@ -14952,16 +14902,6 @@
     <Literal xml:lang="en">Structured dialogue in which active listening and mutual consideration guide progress toward agreement or deeper understanding.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enrichingExchange</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Constructive_dialogue</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#enrichingExchange</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Discussion_constructive</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#validArgument</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#enrichingExchange</IRI>
@@ -15027,16 +14967,6 @@
     <Literal xml:lang="en">Proactive and open approach, grounded in substantial arguments to feed a constructive dialogue.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#positiveContribution</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Constructive_discussion</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#positiveContribution</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Discussion_constructive</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#enrichingExchange</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#positiveContribution</IRI>
@@ -15085,11 +15015,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#recognitionOfAnObjectiveReality</IRI>
     <Literal xml:lang="en">Admission and use of objective facts as the basis of a solid line of argument.</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#recognitionOfAnObjectiveReality</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Constructive_discussion</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -15852,6 +15777,11 @@
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Cognitive_bias</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#identificationOfOnesBiases</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Biais_cognitif</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfFallibility</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#identificationOfOnesBiases</IRI>
@@ -16060,6 +15990,11 @@
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#opennessToChange</IRI>
     <Literal xml:lang="en">https://en.wikipedia.org/wiki/Open-mindedness</Literal>
+  </AnnotationAssertion>
+  <AnnotationAssertion>
+    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
+    <IRI>https://www.argumentum.games/argumentum_virtues.owl#opennessToChange</IRI>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Ouverture_d'esprit</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -16437,16 +16372,6 @@
     <Literal xml:lang="en">Ensuring that all participants identify, understand and discuss the most important elements to maximize the effectiveness of the discussion.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#focusOnTheEssentials</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/PRIOR_method</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#focusOnTheEssentials</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/M%C3%A9thode_PRIOR</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#effectiveParticipation</IRI>
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#focusOnTheEssentials</IRI>
@@ -16499,12 +16424,12 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#takingAllottedTimeIntoAccount</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/METHOD_PRIOR</Literal>
+    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Time_management</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#takingAllottedTimeIntoAccount</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/M%C3%A9thode_PRIOR</Literal>
+    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Gestion_du_temps</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -16554,7 +16479,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#principleOfCharity</IRI>
-    <Literal xml:lang="en">An intellectually honest approach that adopts the strongest and most coherent interpretation of the interlocutor's arguments.</Literal>
+    <Literal xml:lang="en">Adopt the strongest and most coherent interpretation of the interlocutor's arguments.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -16690,16 +16615,6 @@
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#respectForThePerson</IRI>
     <Literal xml:lang="en">Fair and considerate treatment of each participant, valuing their contributions and ensuring individual dignity.</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#respectForThePerson</IRI>
-    <Literal xml:lang="en">https://en.wikipedia.org/wiki/Respect_for_personhood</Literal>
-  </AnnotationAssertion>
-  <AnnotationAssertion>
-    <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
-    <IRI>https://www.argumentum.games/argumentum_virtues.owl#respectForThePerson</IRI>
-    <Literal xml:lang="fr">https://fr.wikipedia.org/wiki/Valeurs_de_la_R%C3%A9publique_fran%C3%A7aise#Respect_de_la_personne_humaine</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />
@@ -17569,7 +17484,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#doNotInterrupt</IRI>
-    <Literal xml:lang="en">It is important to let each participant speak without interruption in order to allow complete expression and attentive listening</Literal>
+    <Literal xml:lang="en">It is important to let each participant speak without interruption in order to allow complete expression and attentive listening.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2000/01/rdf-schema#seeAlso" />
@@ -17624,7 +17539,7 @@
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#definition" />
     <IRI>https://www.argumentum.games/argumentum_virtues.owl#respectfulTone</IRI>
-    <Literal xml:lang="en">It is important to use a cordial and non-aggressive tone to express one's point of view</Literal>
+    <Literal xml:lang="en">It is important to use a cordial and non-aggressive tone to express one's point of view.</Literal>
   </AnnotationAssertion>
   <AnnotationAssertion>
     <AnnotationProperty IRI="http://www.w3.org/2004/02/skos/core#narrower" />

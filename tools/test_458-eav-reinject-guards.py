@@ -46,7 +46,19 @@ RESERVES DE LA CONTRE-REVUE #2362 (ai-01 c.7131327983, P23-38) — deux cas de p
   R5  l'avertissement « la base a bouge entre les deux lectures » (liste plus
       courte ou plus longue que le compte) a son cas, son temoin muet quand les
       deux concordent, et sa mutation.
-"""
+ECRASEMENT NOMME (P24-51, ne de la mesure de P24-32). Le bloc de tete dit qu'un
+CONFLIT « aucune ecriture » ; la base servie porte encore l'ancienne valeur du
+registre pour trois cellules corrigees en typographie. Quatre proprietes de plus :
+  F1  --force ne sort du CONFLIT que la cellule NOMMEE (GUID complet, champ,
+      langue) ; tout autre conflit refuse l'apply comme avant (compute_actions).
+  F2  un nom qui ne designe aucune cellule du plan est un REFUS (faute de frappe) ;
+      un nom dont la cellule n'est pas en conflit est rapporte sans ecriture forcee.
+  F3  le writer epingle la rangee lue par le dry-run (ValueId MAX de la dimension)
+      et exige qu'elle porte ENCORE la valeur mesuree, comparaison ORDINALE — une
+      rangee, sinon ROLLBACK (WRITER_PS, lue ici, jamais executee).
+  F4  la valeur d'avant d'un ecrasement est sauvegardee AVANT la transaction
+      (`reinject-force-prior-*.json`, ecrit avant l'appel du writer) — garde de
+      SOURCE, comme R3 : elle voit la place du nom, pas le contenu du fichier."""
 import contextlib
 import importlib.util
 import io
@@ -597,6 +609,148 @@ class SourceSansLaRegleRefutee(unittest.TestCase):
             mutant = src.replace(marker, "# " + h + "\n    " + marker)
             hits = self.accusations(mutant)
             self.assertEqual(len(hits), 1, f"reintroduction non vue: {h!r} -> {hits}")
+
+
+class ForceNomme(unittest.TestCase):
+    """F1/F2 (P24-51) : un CONFLIT ne s'ecrit que si la cellule est NOMMEE, entiere."""
+
+    GUID = "AE1EDEFA-6F1B-4593-8230-97FA1EDF4F78"
+    OLD = "alubia..."     # l'ancienne valeur du registre, encore en base
+    NEW = "alubia…"       # la correction typographique (P24-32)
+    KEY = (GUID, "Installation", "es")
+
+    def setUp(self):
+        self.mod = load_tool()
+        self.plan = [{"app_id": 60, "entity_guid": self.GUID, "field": "Installation",
+                      "lang": "es", "value": self.NEW, "content_type": "Configuration"}]
+        self.target = {"existing": {(60, self.GUID, "Installation", 0): "Installation",
+                                    (60, self.GUID, "Installation", 12): self.OLD},
+                       "lang_dim_by_app": {60: {"es": 12}}}
+
+    def ops(self, mod, force=None):
+        return mod.compute_actions(self.plan, self.target, {60: 60}, force=force)
+
+    def check_forcee(self, mod):
+        """Ce que F1 demande : nommee => FORCE, avec sa valeur d'avant, et au plan d'ecriture."""
+        (a,) = self.ops(mod, force={self.KEY})
+        self.assertEqual(a["op"], "FORCE")
+        self.assertEqual((a["dim"], a["db_value"], a["value"]), (12, self.OLD, self.NEW))
+        self.assertEqual(mod.planned_writes([a]), [a])
+
+    def test_sans_nom_le_conflit_refuse(self):
+        (a,) = self.ops(self.mod)
+        self.assertEqual(a["op"], "CONFLICT")
+        self.assertEqual(self.mod.planned_writes([a]), [])
+
+    def test_nommee_la_cellule_passe_en_force(self):
+        self.check_forcee(self.mod)
+
+    def test_un_autre_nom_ne_force_rien(self):
+        autre = {(self.GUID, "Installation", "ru")}
+        (a,) = self.ops(self.mod, force=autre)
+        self.assertEqual(a["op"], "CONFLICT")   # la cellule es n'est pas nommee
+        self.assertEqual(self.mod.unmatched_force([a], autre), sorted(autre))
+
+    def test_mutation_f1_retombe_en_conflit(self):
+        """F1 neutralisee (la clause `in force`): la meme entree donne CONFLICT — c'est
+        bien `test_nommee_la_cellule_passe_en_force` qui voit la classification."""
+        ns = load_source(mutated_source([(
+            "elif (g.upper(), field, lang) in force:", "elif False:")]))
+        (a,) = self.ops(type("M", (), ns), force={self.KEY})
+        self.assertEqual(a["op"], "CONFLICT")
+
+    def test_nom_hors_conflit_rapporte_sans_forcer(self):
+        """F2 : une cellule nommee qui n'est PAS en conflit n'est pas ecrite."""
+        self.target["existing"][(60, self.GUID, "Installation", 12)] = self.NEW
+        (a,) = self.ops(self.mod, force={self.KEY})
+        self.assertEqual(a["op"], "SKIP_SAME")
+        self.assertEqual(self.mod.planned_writes([a]), [])
+        self.assertEqual(self.mod.unmatched_force([a], {self.KEY}), [])
+
+    def test_parse_force(self):
+        """Le GUID doit etre COMPLET, la langue doit exister : un prefixe ne nomme rien."""
+        p = self.mod.parse_force
+        self.assertEqual(p(f"{self.GUID.lower()}:Installation:es"), self.KEY)
+        for bad in ("AE1EDEFA:Installation:es",       # prefixe de 8 : refuse
+                    f"{self.GUID}:Installation:xx",    # langue inconnue
+                    f"{self.GUID}:Installation",       # deux morceaux
+                    f"{self.GUID}::es",                # champ vide
+                    f"{self.GUID}:A:B:es"):            # quatre morceaux
+            self.assertIsNone(p(bad), bad)
+
+    def test_cli_refuse_un_force_mal_forme_avant_toute_lecture(self):
+        """Le REFUS tombe avant le registre et avant la base : rien n'est lu."""
+        self.mod.read_registry = lambda path=None: self.fail("registre lu avant le refus")
+        self.mod.EXP.read_connection_string = (
+            lambda *a, **k: self.fail("base lue avant le refus"))
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            rc = self.mod.main(["--force", "AE1EDEFA:Installation:es"])
+        self.assertEqual(rc, 1)
+        self.assertIn("REFUS: --force mal forme", out.getvalue())
+
+
+class WriterForce(unittest.TestCase):
+    """F3/F4 (P24-51) : la branche FORCE du writer, et la sauvegarde d'avant — LUES."""
+
+    START = '} elseif ($w.op -eq "FORCE") {'
+    END = "# Reecritures de BASE fr (FR_DRIFT)"
+    # Ce que la branche doit porter, formes ecrites (detecteur de source, pas une preuve
+    # que le script fait ce qu'il dit — lui, seule la lane qui sert la base l'execute).
+    ASSERTS = (
+        "[System.StringComparison]::Ordinal",                        # comparaison exacte
+        "UPDATE TsDynDataValue SET [Value]=@v WHERE ValueId=@vid",   # rangee epinglee
+        "ORDER BY v.ValueId DESC",                                   # ... la MAX lue au dry-run
+        "if ($n -ne 1)",                                             # une rangee, sinon throw
+        "$old = $w.db_value",                                        # la valeur d'avant du PLAN
+        "WITH (UPDLOCK,HOLDLOCK)",                                   # sous verrou
+    )
+
+    def block(self, text):
+        i = text.index(self.START)
+        return text[i:text.index(self.END, i)]
+
+    def check(self, text):
+        b = self.block(text)
+        self.assertEqual([a for a in self.ASSERTS if a not in b], [])
+
+    def test_une_seule_branche_et_conforme(self):
+        ps = load_tool().WRITER_PS
+        self.assertEqual(ps.count(self.START), 1)   # un seul chemin FORCE : celui qu'on lit
+        self.check(ps)
+
+    def test_mutation_comparaison_non_ordinale_rougit(self):
+        ns = load_source(mutated_source([
+            (", [System.StringComparison]::Ordinal)", ")")]))
+        with self.assertRaises(AssertionError):
+            self.check(ns["WRITER_PS"])
+
+    def test_mutation_update_non_epinglee_rougit(self):
+        ns = load_source(mutated_source([(
+            "UPDATE TsDynDataValue SET [Value]=@v WHERE ValueId=@vid",
+            "UPDATE TsDynDataValue SET [Value]=@v WHERE EntityId=@e")]))
+        with self.assertRaises(AssertionError):
+            self.check(ns["WRITER_PS"])
+
+    def test_mutation_sans_verrou_rougit(self):
+        ns = load_source(mutated_source([(
+            "SELECT TOP 1 v.ValueId, CONVERT(nvarchar(max), v.[Value]) FROM TsDynDataValue v WITH (UPDLOCK,HOLDLOCK)",
+            "SELECT TOP 1 v.ValueId, CONVERT(nvarchar(max), v.[Value]) FROM TsDynDataValue v")]))
+        with self.assertRaises(AssertionError):
+            self.check(ns["WRITER_PS"])
+
+    def check_prior_force_avant_writer(self, src):
+        """F4, garde de SOURCE : le fichier des valeurs d'avant est ecrit AVANT l'appel."""
+        self.assertLess(src.index("reinject-force-prior-{stamp}.json"),
+                        src.index("return run_writer("))
+
+    def test_prior_force_sauvegarde_avant_le_writer(self):
+        self.check_prior_force_avant_writer(TOOL.read_text(encoding="utf-8"))
+
+    def test_mutation_prior_force_absent_rougit(self):
+        mutant = mutated_source([("reinject-force-prior-{stamp}.json", "reinject-aucun-{stamp}.json")])
+        with self.assertRaises(ValueError):
+            self.check_prior_force_avant_writer(mutant)
 
 
 if __name__ == "__main__":

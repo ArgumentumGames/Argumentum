@@ -1,6 +1,7 @@
 # Tests Python offline std-lib : garde d'arbre #1460 + suite DNN i18n #457 + gardes export EAV #458 (charpente #1460)
 # + auto-test du gate de merge (scripts/gates) + contrat d'octets des CSV de donnees + contrats de la documentation pour agents + contrat des index de reference + outil du bloc de cloture des issues + garde des liens transverses des mindmaps #2190.
 # + contrat Node du bundle BS5 Accordion4 #2317 (job separe, aucun npm install).
+# + temoins des sondes de polices #1485 (cle de cache, glyphe nul, famille vide).
 #
 # POURQUOI UN WORKFLOW DISTINCT DE build.yml
 #   build.yml est le pipeline dotnet principal : il fait tourner 1129 tests .NET a
@@ -19,7 +20,7 @@
 #   d'execution sera documentee. C'est la distinction posee en tete de
 #   docs/quality/1460-charpente-suite-regression.md.
 #
-#   CABLES A CE JOUR (16), avec la condition qui les autorise ici :
+#   CABLES A CE JOUR (18), avec la condition qui les autorise ici :
 #     1. tools/test_1460-structure-charpente-pilot.py -- std-lib, 7 cas, arbres
 #        synthetiques ; aucun Target/ requis (le cas 7 est un grounding sur le depot
 #        reel, volontairement NON asserte).
@@ -67,8 +68,9 @@
 #        10 cas. Le cas 1 lit les index du depot reel (tout README.md sous docs/ ou
 #        tools/ qui porte la marque `<!-- index-of-record -->`) : chaque fichier
 #        suivi du dossier y est cite avec un statut, aucun lien mort. Le cas 2
-#        exige que les neuf dossiers consolides (REQUIRED_INDEXES) gardent leur
-#        marque. Les cas 6-13 eprouvent les detecteurs sur des depots `git init`
+#        exige que les dossiers consolides (REQUIRED_INDEXES) gardent leur
+#        marque ; la PR qui pose une marque y ajoute son dossier. Les cas 6-13
+#        eprouvent les detecteurs sur des depots `git init`
 #        jetables. Methode :
 #        docs/agents/consolidation.md.
 #     9. tools/test_issue-closing-block.py -- std-lib, offline, 18 cas. Le `gh` de
@@ -97,7 +99,7 @@
 #    12. tools/test_2190-served-mindmap-inventory.py -- std-lib + git, OFFLINE : le
 #        serveur HTTP est local et jetable, aucune préprod ni réseau externe. Témoin
 #        identique au blob, mutation d'octets et route absente doivent être distingués.
-#    13. tools/test_458-eav-reinject-guards.py -- std-lib, offline, 25 cas. Charge
+#    13. tools/test_458-eav-reinject-guards.py -- std-lib, offline, 38 cas. Charge
 #        tools/458-eav-reinject.py SANS se connecter (EXP.run_query remplace par un
 #        faux qui sert des rangees synthetiques) et eprouve les gardes de refus
 #        G1-G3 de la re-injection EAV (#2326, revue c.7053569313) : chaque garde
@@ -115,6 +117,15 @@
 #        inverse laisse verte une divergence hors FROM..WHERE ; et l'avertissement
 #        « la base a bouge entre les deux lectures » a son cas court, son cas long,
 #        son temoin muet et sa mutation (R5).
+#        Depuis l'ecrasement nomme (--force, #2181) : seule la cellule NOMMEE sort
+#        du CONFLIT, un nom qui ne designe rien est refuse avant toute lecture, et
+#        la branche FORCE du script writer est LUE (comparaison ordinale, rangee
+#        epinglee par ValueId, sous verrou) avec sa mutation. Le script writer
+#        n'est jamais execute ici : seule la lane qui sert la base l'execute.
+#        Deux instruments de ce grain se lancent A LA MAIN, hors CI (ils rejouent
+#        des suites entieres) : tools/2181-reinject-mutations.py (12 mutations de
+#        l'outil, temoin 38/38) et tools/2181-reinject-rehearsal.py (repetition du
+#        plan entre deux registres, aucune base).
 #        Le faux run_query refuse tout SQL non attendu : une derive des
 #        requetes fait echouer le test bruyamment, jamais passer des rangees
 #        fausses. Condition d'execution documentee dans la docstring du fichier.
@@ -139,15 +150,42 @@
 #        `actions/checkout` clone en `fetch-depth: 1` — mesure sur un corpus tronque,
 #        il ne verrait aucun candidat et un vert a compte nul ne serait pas une mesure.
 #        Condition d'execution documentee dans la docstring du fichier.
-#    16. tools/test_1105-home-render-p2.py -- std-lib, offline, 25 cas, ~0.1 s. Charge
+#    16. tools/test_1105-home-render-p2.py -- std-lib, offline, 33 cas, ~0.1 s. Charge
 #        tools/1105-cutover-day-controls.py et eprouve sa sonde P2 (section 6 du
 #        rapport : dir="rtl" en ar et fa seulement, meta description non vide,
 #        selecteur de langue a 7 liens, marqueur d'audience) sur du HTML
 #        SYNTHETIQUE, dans la forme mesuree sur le servi le 24/11. Le cas bout-en-bout
 #        execute main() avec un `fetch` FAUX : aucun curl, aucun reseau, le site servi
 #        n'est jamais demande. Il epingle aussi la discipline du runbook : un ecart de
-#        cette sonde laisse le code de sortie a 0, une route rouge sort 1.
+#        cette sonde laisse le code de sortie a 0, une route rouge sort 1. Depuis
+#        P24-50, il eprouve le REVEIL du site endormi : transport a demarrage a froid
+#        et horloge SIMULES (un serveur qui ne repond qu'apres la borne de passe passe
+#        grace a l'eveil ; le meme sans eveil rougit a l'ancienne borne), un serveur
+#        muet sort 1 sans faire tourner la passe, un 503 a l'eveil n'est pas un site
+#        muet, et les bornes 60 / 240 sont epinglees en litteraux.
 #        Condition d'execution documentee dans la docstring du fichier.
+#    17. tools/test_2398-page-witness.py -- std-lib, offline, 19 cas, ~0.1 s. Charge
+#        docs/dnn-localization/dnn-page-witness.py (le temoin HTTP des trois defauts
+#        servis en prod : marqueur 2sxc, bouton FR, ancien texte FR) et execute son
+#        run() EN ENTIER avec un `fetch` FAUX : aucun reseau, les deux environnements
+#        servis ne sont jamais demandes. Un site synthetique sain rend 70 constats OK ;
+#        chaque defaut injecte rougit SON constat et lui seul, et aucune ligne ne
+#        saute. Les trois faux verts de la contre-revue c.7202541558 (reponses toutes
+#        en fr-FR, Argumentation sans corps, lien /legal/details avant l'article) y
+#        sont des cas ; contre l'ancien blob d956ab0d, le meme fichier rougit 15 cas
+#        sur 19. Condition d'execution documentee dans la docstring du fichier.
+#    18. tools/fonts/test_font-coverage.py -- std-lib + `git`, OFFLINE, 8 cas,
+#        ~1,5 s. `urlopen` est remplace par un faux qui REFUSE toute URL non
+#        attendue, les polices sont synthetiques (sfnt nu de trois tables) ; le
+#        corpus est lu dans le checkout (`--ref HEAD`). Eprouve
+#        tools/fonts/font-coverage.py (#1485) apres la contre-revue c.7191872553 :
+#        la cle du cache est l'URL (deux URL sous une meme etiquette = deux
+#        telechargements ; une meme URL reutilisee = un), le premier point d'un
+#        groupe format 12 de glyph id 0 n'est pas couvert (singleton compris), et
+#        une famille qui se deplie en rien donne une ligne ERREUR -- chacun avec
+#        son controle sain. Les memes assertions sur le fichier d'avant
+#        (4af6ccae) donnent 5 rouges sur 8. Condition d'execution documentee
+#        dans la docstring du fichier.
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
 #   - push sur master / pull_request : déclenchés, y compris les changements du
@@ -361,7 +399,8 @@ jobs:
         # 10 cas, std-lib + `git ls-files`. Tout README.md qui porte la marque
         # `<!-- index-of-record -->` doit citer chaque fichier suivi de son dossier,
         # avec un statut : un fichier ajoute sans sa ligne d'index rougit la PR.
-        # Les neuf dossiers de REQUIRED_INDEXES ne peuvent pas perdre la marque.
+        # Aucun dossier de REQUIRED_INDEXES ne peut perdre la marque ; la PR
+        # qui pose une marque y ajoute son dossier.
         run: python tools/test_docs-index-contract.py
 
       - name: Run the issue closing-block contract
@@ -404,3 +443,33 @@ jobs:
       - name: Run the served mindmap inventory contract (#2190)
         # Std-lib + git, serveur HTTP LOCAL jetable : jamais la préprod en CI.
         run: python tools/test_2190-served-mindmap-inventory.py
+
+  page-witness-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run the HTTP page witness contract (#2398 #2397 #2181)
+        # 19 cas, std-lib, offline, ~0.1 s : run() du temoin est execute avec un
+        # `fetch` FAUX sur un site synthetique — aucun site servi, aucun reseau. Le
+        # site sain rend 70 constats OK ; chaque defaut injecte (tout en fr-FR, corps
+        # absent, lien de detail hors Actus, atterrissage hors racine...) rougit SON
+        # constat et lui seul, et aucune ligne ne saute.
+        run: python tools/test_2398-page-witness.py
+
+  font-coverage-probes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Run the font coverage probes contract (#1485)
+        # 8 cas, std-lib + git, OFFLINE : `urlopen` est remplace par un faux qui
+        # refuse toute URL non attendue, les polices sont synthetiques, le corpus
+        # est lu dans le checkout (`--ref HEAD`). La cle du cache est l'URL, le
+        # premier point d'un groupe format 12 de glyph id 0 n'est pas couvert,
+        # une famille qui se deplie en rien donne une ligne ERREUR.
+        run: python tools/fonts/test_font-coverage.py
