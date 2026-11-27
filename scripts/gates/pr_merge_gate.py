@@ -3,7 +3,8 @@
 
 Mechanises the checklist a merger runs before `gh pr merge`: PR state, pinned
 head, merge state, CI, reviews, inline threads, lane signature, counter-review,
-closing keywords, diff hygiene, protected paths, single taxonomy-CSV PR.
+closing keywords, diff hygiene, protected paths, single taxonomy-CSV PR, and a
+file added under an index of record that no index cites.
 It never merges and never writes to GitHub.
 
 Exit codes: 0 PASS, 3 HOLD, 2 BLOCK, 1 blind instrument (API failure,
@@ -46,6 +47,17 @@ ATTRIB_RE = re.compile(r"^(?:\U0001F916\s*Generated with\b.*|Co-Authored-By:\s.*
 # it reviewed -- an arbitration comment from another lane is not a counter-review
 # (measured on a live PR). Formal review objects keep their own rule.
 COUNTER_REVIEW_RE = re.compile(r"contre-revue|counter-review", re.I)
+
+# R13 : un dossier « index de record » est un README.md qui porte la marque, seule
+# sur sa ligne et hors bloc de code ; il s'engage à citer chaque fichier du dossier.
+# Deux casses de master par un fichier AJOUTÉ non cité (#2263 le 14/11, #2372 le
+# 27/11) : la porte le voit AVANT le squash, en lisant l'index sur master ET sur la
+# tête de la PR. Mêmes formes de lien que tools/test_docs-index-contract.py.
+INDEX_MARKER = "<!-- index-of-record -->"
+INDEX_FILE = "README.md"
+INDEX_FENCE = re.compile(r"^ {0,3}(`{3,}|~{3,})")
+INDEX_LINK = re.compile(r"""\]\(\s*(<[^<>\n]*>|[^()\s]+)(?:\s+(?:"[^"\n]*"|'[^'\n]*'))?\s*\)""")
+INDEX_REFDEF = re.compile(r"(?m)^ {0,3}\[(?!\^)[^\]\n]+\]:[ \t]*(<[^<>\n]*>|\S+)")
 
 
 def declares_counter_review(body):
@@ -202,6 +214,58 @@ def _required_contexts(runner, base, ref):
     return {"source": "REPLI NOMMÉ (%s)" % why, "contexts": list(FALLBACK_CONTEXTS)}
 
 
+def _github_text(runner, repo, path, ref, cache):
+    """Un fichier à une révision, ou None quand il n'existe pas là.
+
+    Un 404 est une RÉPONSE (absence à cette révision) ; tout autre échec est un
+    instrument aveugle, jamais une absence -- la règle du gate entier.
+    """
+    key = (path, ref)
+    if key in cache:
+        return cache[key]
+    endpoint = "repos/%s/contents/%s?ref=%s" % (repo, path, ref)
+    rc, out, err = runner(["api", "-H", "Accept: application/vnd.github.raw", endpoint])
+    if rc != 0:
+        line = _first_line(err).lower()
+        if "404" in line or "not found" in line:
+            cache[key] = None
+        else:
+            raise Blind("index de record : lecture de %s@%s en échec -- %s"
+                        % (path, ref, _first_line(err) or "sans message"))
+    else:
+        cache[key] = out
+    return cache[key]
+
+
+def _index_of_record(runner, repo, head, files):
+    """Pour chaque fichier AJOUTÉ, l'index de record qui le tient -- lu sur master et sur la tête.
+
+    L'index responsable est le README.md marqué le PLUS PROCHE : un sous-dossier qui
+    porte le sien tient ses fichiers, et le parent ne doit citer que ce sous-dossier
+    (même découpage que tools/test_docs-index-contract.py). Aucun index au-dessus :
+    le fichier n'est tenu à rien, et la règle le DIT au lieu de se taire.
+    """
+    cache, reads = {}, []
+    for f in files:
+        if f.get("status") != "added":
+            continue
+        path = f.get("filename")
+        folder = path.rpartition("/")[0]
+        entry = {"path": path, "folder": None, "index": None, "master": None, "head": None}
+        while True:
+            rel = (folder + "/" if folder else "") + INDEX_FILE
+            text = _github_text(runner, repo, rel, "master", cache)
+            if text is not None and _index_marker(text):
+                entry.update(folder=folder, index=rel, master=text,
+                             head=_github_text(runner, repo, rel, head, cache))
+                break
+            if not folder:
+                break
+            folder = folder.rpartition("/")[0]
+        reads.append(entry)
+    return {"reads": reads}
+
+
 def collect(pr, repo=DEFAULT_REPO, runner=gh_run, sleep=time.sleep):
     """Read everything the rules need. Raises Blind on any core failure."""
     base = "repos/%s" % repo
@@ -255,6 +319,7 @@ def collect(pr, repo=DEFAULT_REPO, runner=gh_run, sleep=time.sleep):
     _expect_count("fichiers", len(raw), slim.get("changed_files"))
     snap["files"] = [{k: f.get(k) for k in ("filename", "previous_filename", "status", "additions",
                                             "deletions", "patch")} for f in raw]
+    snap["index_of_record"] = _index_of_record(runner, repo, head, snap["files"])
 
     raw, _ = _api_pages(runner, pr_path + "/commits", "commits")
     _expect_count("commits", len(raw), slim.get("commits"))
@@ -842,12 +907,80 @@ def r12_csv(s, o, c):
     return reasons, "aucun CSV sous Cards/ touché"
 
 
+def _index_marker(text):
+    """La marque « index de record », seule sur sa ligne et HORS bloc de code.
+
+    La citer n'est pas la porter : un README qui montre la marque dans un exemple
+    ne devient pas un index (même règle que tools/test_docs-index-contract.py).
+    """
+    fence = None
+    for line in (text or "").replace("\r\n", "\n").split("\n"):
+        mark = INDEX_FENCE.match(line)
+        if fence is None:
+            if mark:
+                fence = mark.group(1)[0]
+            elif line.strip() == INDEX_MARKER:
+                return True
+        elif mark and mark.group(1)[0] == fence and line.strip() == mark.group(1):
+            fence = None
+    return False
+
+
+def _index_targets(text, folder):
+    """Les chemins du dépôt liés par le README du dossier `folder`, relatifs résolus."""
+    out = []
+    for target in list(INDEX_LINK.findall(text or "")) + list(INDEX_REFDEF.findall(text or "")):
+        target = target.strip()
+        if target.startswith("<") and target.endswith(">"):
+            target = target[1:-1]
+        if re.match(r"^[A-Za-z][A-Za-z0-9+.\-]*:", target) or target.startswith("//"):
+            continue                                    # lien externe
+        path = target.split("#")[0].split("?")[0]
+        if not path:
+            continue                                    # ancre seule
+        where = path.lstrip("/") if path.startswith("/") else (folder + "/" if folder else "") + path
+        out.append(os.path.normpath(where).replace(os.sep, "/"))
+    return out
+
+
+def _index_cites(text, folder, path):
+    """Le README cite le fichier, ou un dossier qui le contient -- le contrat compte
+    un sous-dossier cité comme citation de ce qu'il contient."""
+    return any(where == path or path.startswith(where + "/") for where in _index_targets(text, folder))
+
+
+def r13_index(s, o, c):
+    reads = s["index_of_record"]["reads"]
+    cited, free, held = [], [], []
+    for r in reads:
+        if not r.get("folder"):
+            free.append(r["path"])
+        elif any(_index_cites(text, r["folder"], r["path"])
+                 for text in (r.get("master"), r.get("head")) if text is not None):
+            cited.append(r)
+        else:
+            held.append(r)
+    reasons = []
+    if held:
+        reasons.append(("HOLD", "fichier(s) ajouté(s) non cité(s) par l'index de record : %s -- citer le "
+                        "fichier (ou son dossier) dans l'index de master ou dans celui de la PR ; sans "
+                        "cette ligne, le contrat d'index rougit APRÈS le squash"
+                        % _cap(["%s <- %s" % (r["path"], r.get("index")) for r in held], 4)))
+    if cited:
+        reasons.append(("INFO", "cité(s) par un index de record : %s"
+                        % _cap(["%s <- %s" % (r["path"], r.get("index")) for r in cited], 3)))
+    if free:
+        reasons.append(("INFO", "aucun index de record au-dessus : %s" % _cap(free, 3)))
+    return reasons, "aucun fichier ajouté sous un index de record (lecture sur master et sur la tête)"
+
+
 RULES = (
     ("R1", "état", r1_state), ("R2", "tête épinglée", r2_head), ("R3", "état de fusion", r3_mergeable),
     ("R4", "CI", r4_ci), ("R5", "revues", r5_reviews), ("R6", "fils inline", r6_threads),
     ("R7", "signature de lane", r7_signature), ("R8", "contre-revue", r8_counter_review),
     ("R9", "mots de fermeture", r9_closing), ("R10", "hygiène du diff", r10_diff),
     ("R11", "chemins protégés", r11_paths), ("R12", "CSV de taxonomie", r12_csv),
+    ("R13", "index de record", r13_index),
 )
 
 
@@ -887,6 +1020,13 @@ def _validate(s):
                        ("inline_comments", "review_comments"), ("commits", "commits")):
         need(len(s[key]) == pr.get(field), "%s : %d lus pour %s annoncés" % (key, len(s[key]), pr.get(field)))
     need(all(isinstance(f, dict) and f.get("filename") for f in s["files"]), "fichier sans nom")
+    ior = s.get("index_of_record")
+    need(isinstance(ior, dict) and isinstance(ior.get("reads"), list),
+         "index de record : lecture absente de l'instantané")
+    added = sum(1 for f in s["files"] if f.get("status") == "added")
+    need(len(ior["reads"]) == added,
+         "index de record : %d lecture(s) pour %d fichier(s) ajouté(s)"
+         % (len(ior["reads"]), added))
     need("diff_text" in s, "diff absent")
     if TAXONOMY_CSV in _touched(s):
         need(isinstance(s.get("csv_taxonomy_other_prs"), list),
@@ -941,6 +1081,8 @@ NOT_ESTABLISHED = (
     "n'authentifie pas qui a écrit -- R7 et R8 voient l'oubli, pas l'usurpation ;",
     "R5 (prose), R8 (dates et déclaration par mot-clé) et R10 (motifs) sont des heuristiques : "
     "leur silence n'est pas une preuve.",
+    "R13 lit l'index sur master et sur la tête de la PR ; il ne juge pas le STATUT de la ligne "
+    "(contrat : tools/test_docs-index-contract.py), ni un fichier ajouté hors de tout index.",
 )
 
 
@@ -1136,6 +1278,7 @@ def _fx_snapshot():
         "checks": checks, "statuses": [],
         "required_contexts": {"source": "auto-test", "contexts": list(FALLBACK_CONTEXTS)},
         "csv_taxonomy_other_prs": None,
+        "index_of_record": {"reads": []},
     }
     return _fx_sync(snap)
 
@@ -1158,7 +1301,24 @@ def _fx_add_file(snap, path, lines):
     snap["files"].append({"filename": path, "previous_filename": None, "status": "added",
                           "additions": len(lines), "deletions": 0,
                           "patch": "@@ -0,0 +1,%d @@\n%s" % (len(lines), "\n".join("+" + ln for ln in lines))})
+    # Le collecteur lit un index par fichier ajouté ; « aucun index au-dessus » est
+    # la lecture par défaut, les cas R13 la remplacent par _fx_index.
+    snap["index_of_record"]["reads"].append({"path": path, "folder": None, "index": None,
+                                             "master": None, "head": None})
     return _fx_sync(snap)
+
+
+def _fx_index(snap, path, folder, master, head=None):
+    """Installe la lecture d'index que le collecteur aurait produite pour `path`."""
+    entry = {"path": path, "folder": folder,
+             "index": (folder + "/" if folder else "") + INDEX_FILE, "master": master, "head": head}
+    reads = snap["index_of_record"]["reads"]
+    for i, r in enumerate(reads):
+        if r.get("path") == path:
+            reads[i] = entry
+            return snap
+    reads.append(entry)
+    return snap
 
 
 def _fx_comment(snap, body, when, login="owner"):
@@ -1220,6 +1380,14 @@ def _fx_runner(snap, fail=None, short_files=False, tamper=None, unknown_reads=0)
             return listing(snap["inline_comments"])
         if tail == "pulls/%d/files" % num:
             return listing(snap["files"][:-1] if short_files else snap["files"])
+        if tail and tail.startswith("contents/"):
+            rel = tail[len("contents/"):]
+            ref = next((p[4:] for p in query.split("&") if p.startswith("ref=")), "")
+            served = (snap.get("index_of_record") or {}).get("content") or {}
+            text = (served.get(ref) or {}).get(rel)
+            if text is None:
+                return 1, "", "gh: Not Found (HTTP 404)"
+            return 0, text, ""
         if tail == "pulls/%d/commits" % num:
             return listing([{"sha": c["sha"], "commit": {"message": c["message"]}} for c in snap["commits"]])
         if tail == "commits/%s/check-runs" % head:
@@ -1607,6 +1775,72 @@ def self_test(out):
     case("autre PR ouverte sur le CSV de taxonomie", "R12", "BLOCK", taxonomy([{"number": 99, "title": "t"}]))
     control("CSV de taxonomie, seule PR ouverte", taxonomy([]), None, "R12", "INFO")
     control("autre CSV sous Cards/", add("Cards/Rules/x.csv"), None, "R12", "INFO")
+
+    # --- R13
+    Q_BARE = ("# Qualité\n\n" + INDEX_MARKER + "\n\n| Fichier | Statut |\n|---|---|\n"
+              "| [autre](autre-2026-11-20.md) | `historical` |\n")
+    Q_LINE = "| [131](131-reveil-demarrage-a-froid-2026-11-24.md) | `historical` |\n"
+    Q_PATH = "docs/quality/131-reveil-demarrage-a-froid-2026-11-24.md"
+
+    def added_indexed(master=Q_BARE, head=None):
+        def mutate(s):
+            _fx_add_file(s, Q_PATH, ["# constat"])
+            _fx_index(s, Q_PATH, "docs/quality", master, head)
+        return mutate
+
+    snap, res = case("fichier ajouté sous un index de record, non cité (rejeu du cas #2372)",
+                     "R13", "HOLD", added_indexed())
+    check("R13 : le fichier ET l'index sont nommés dans la sortie",
+          Q_PATH in render(snap, res) and "docs/quality/README.md" in render(snap, res))
+    control("cité par l'index de MASTER", added_indexed(master=Q_BARE + Q_LINE), None, "R13", "INFO")
+    control("cité par l'index de la PR seulement", added_indexed(head=Q_BARE + Q_LINE), None, "R13", "INFO")
+
+    def cited_by_folder(s):
+        path = "docs/quality/sub/x.md"
+        _fx_add_file(s, path, ["x"])
+        _fx_index(s, path, "docs/quality",
+                  "# Q\n\n" + INDEX_MARKER + "\n\n| [sub](sub/) | `current` |\n")
+    control("cité par un lien vers son dossier", cited_by_folder, None, "R13", "INFO")
+
+    def nearest_index(s):
+        path = "docs/quality/sub/x.md"
+        _fx_add_file(s, path, ["x"])
+        _fx_index(s, path, "docs/quality/sub",
+                  "# Sub\n\n" + INDEX_MARKER + "\n\n| [x](x.md) | `current` |\n")
+    control("sous-index le plus proche : cité", nearest_index, None, "R13", "INFO")
+
+    def new_subindex(cited):
+        def mutate(s):
+            path = "docs/quality/sub/README.md"
+            _fx_add_file(s, path, ["# Sub"])
+            _fx_index(s, path, "docs/quality", Q_BARE + ("| [sub](sub/) | `current` |\n" if cited else ""))
+        return mutate
+    case("sous-index ajouté, non cité par le parent", "R13", "HOLD", new_subindex(False))
+    control("sous-index ajouté, cité par le parent", new_subindex(True), None, "R13", "INFO")
+    control("fichier ajouté hors de tout index", add("tools/x.py"), None, "R13", "INFO")
+    check("R13 : la marque seule hors bloc de code est portée",
+          _index_marker("# T\n\n" + INDEX_MARKER + "\n") and not _index_marker("| " + INDEX_MARKER + " |"))
+    check("R13 : la marque dans un bloc de code n'est pas portée",
+          not _index_marker("```\n" + INDEX_MARKER + "\n```\n")
+          and not _index_marker("~~~\n" + INDEX_MARKER + "\n~~~\n"))
+    blind("index de record : lecture manquante pour un fichier ajouté",
+          lambda s: (added_indexed()(s), s["index_of_record"]["reads"].pop()))
+    blind("index de record : clé absente de l'instantané", lambda s: s.pop("index_of_record"))
+
+    def with_content(head_text):
+        snap = copy.deepcopy(base)
+        added_indexed()(snap)
+        snap["index_of_record"]["content"] = {"master": {"docs/quality/README.md": Q_BARE},
+                                              _FX_HEAD: {"docs/quality/README.md": head_text}}
+        return snap
+    rc, text = run_main(["4242"], _fx_runner(with_content(Q_BARE + Q_LINE)))
+    check("collecte : index lu sur master ET sur la tête, cité par la PR -> PASS",
+          rc == 0 and "R13  INFO" in text)
+    rc, text = run_main(["4242"], _fx_runner(with_content(Q_BARE)))
+    check("collecte : non cité sur les deux révisions -> HOLD, code 3", rc == 3 and "R13  HOLD" in text)
+    rc, text = run_main(["4242"], _fx_runner(with_content(Q_BARE), fail="contents/"))
+    check("collecte : lecture de l'index en échec -> code 1, aucun verdict",
+          rc == 1 and "VERDICT" not in text)
 
     # --- blind snapshots: never a verdict
     blind("instantané sans liste de fichiers", lambda s: s.pop("files"))

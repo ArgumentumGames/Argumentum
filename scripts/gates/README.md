@@ -39,6 +39,7 @@ Verdict = worst level. BLOCK > HOLD > INFO.
 | R10 | diff hygiene (added lines) | token and private-key formats | secret-like assignment, profile path, mention of the `.keys` directory; any file the scan could not fully read |
 | R11 | protected paths | printed reference (`Cards/*/Archive`, CardPen `examples`, the directories themselves included), env files (`.env`, `.env.*`, `.env-*`, `.envrc`), `.keys` directory, `*.pfx` | workflows, `.claude`, `AGENTS.md`, `CLAUDE.md`, `scripts/gates`, `web.config`, env models (`.env.example`, `.sample`, `.template`, `.dist`) |
 | R12 | taxonomy CSV | another open PR touches the taxonomy CSV | (any CSV under `Cards/`: INFO, re-parse reminder) |
+| R13 | index of record | | a file **added** by the PR, under a folder whose `README.md` on **master** carries `<!-- index-of-record -->` (nearest such README), is cited neither in master's README nor in the PR's README. A link to a sub-folder counts as citing what it holds; a marker inside a code block is not a marker |
 
 Required CI contexts are read live from the branch ruleset; if that read fails
 the gate falls back to a named list and **says so** in its output.
