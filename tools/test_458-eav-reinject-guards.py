@@ -64,6 +64,8 @@ import importlib.util
 import io
 import pathlib
 import re
+import shutil
+import tempfile
 import unittest
 
 HERE = pathlib.Path(__file__).resolve().parent
@@ -704,6 +706,8 @@ class WriterForce(unittest.TestCase):
         "if ($n -ne 1)",                                             # une rangee, sinon throw
         "$old = $w.db_value",                                        # la valeur d'avant du PLAN
         "WITH (UPDLOCK,HOLDLOCK)",                                   # sous verrou
+        "if (-not $r.Read())",                                       # la rangee epinglee est LUE...
+        "aucune rangee a cette dimension",                           # ...absente = refus nomme (M1)
     )
 
     def block(self, text):
@@ -739,6 +743,18 @@ class WriterForce(unittest.TestCase):
         with self.assertRaises(AssertionError):
             self.check(ns["WRITER_PS"])
 
+    def test_mutation_sans_refus_de_rangee_rougit(self):
+        """M1 (verification du merger de #2373, c.7218159963) : retirer ce refus laissait
+        38/38 verts. Le comportement restait sur (catch + ROLLBACK de la transaction),
+        mais AUCUN cas ne fixait le refus lui-meme — donc rien n'empechait de le perdre.
+        Ici le refus est retire en entier : les deux assertions de la branche tombent."""
+        ns = load_source(mutated_source([(
+            'if (-not $r.Read()) { $r.Close(); throw "FORCE $guid.$field dim$dim : '
+            'aucune rangee a cette dimension (base modifiee depuis le dry-run?)" }',
+            "# M1 : refus de rangee absente retire")]))
+        with self.assertRaises(AssertionError):
+            self.check(ns["WRITER_PS"])
+
     def check_prior_force_avant_writer(self, src):
         """F4, garde de SOURCE : le fichier des valeurs d'avant est ecrit AVANT l'appel."""
         self.assertLess(src.index("reinject-force-prior-{stamp}.json"),
@@ -751,6 +767,344 @@ class WriterForce(unittest.TestCase):
         mutant = mutated_source([("reinject-force-prior-{stamp}.json", "reinject-aucun-{stamp}.json")])
         with self.assertRaises(ValueError):
             self.check_prior_force_avant_writer(mutant)
+
+
+class PerimetreBorneOnlyCell(unittest.TestCase):
+    """#2181 (W2-14) : `--only-cell GUID:CHAMP:LANGUE` borne l'ECRITURE, pas la mesure.
+
+    Le fait reproduit est celui de la premiere passe W2-14 (web2, 27/11, c.7215188925) :
+    sur le registre derive, la seule raison qui refusait `--apply` etait 3 CONFLIT sur
+    une AUTRE entite (la regle AE1EDEFA, Installation es/ar/zh) ; le lot des 7 langues
+    du bloc « L'argumentation » n'en portait aucun. `--only-cell` resserre le plan
+    d'ecriture sur les cellules nommees ; la carte d'apps, la lecture de la cible (G1)
+    et la preservation restent mesurees sur le registre COMPLET — un perimetre de
+    lecture borne ferait perdre leur marge a la carte (G2 refuse une egalite) et
+    masquerait les paires G1 hors lot.
+
+    Tout est hors ligne : registre synthetique sur disque, `EXP.run_query` remplace par
+    une cible synthetique, `EXP.read_connection_string` par une chaine factice. Aucun
+    `curl`, aucune base, aucun `powershell` (les cas `--apply` s'arretent aux refus).
+    """
+    BODY = {"app_id": "33", "entity_guid": "8A8636A4-069A-4692-A139-4773B161931B",
+            "content_type": "Content", "field": "Text"}
+    B = {"app_id": "33", "entity_guid": "BBBBBBBB-0000-0000-0000-00000000000B",
+         "content_type": "Content", "field": "Summary"}
+
+    def setUp(self):
+        self.mod = load_tool()
+        self.tmp = pathlib.Path(tempfile.mkdtemp(prefix="onlycell-"))
+        self.addCleanup(shutil.rmtree, self.tmp, True)
+        self.registry = self.tmp / "eav-content.csv"
+        self.write_registry()
+        self.fr_report = self.tmp / "fr-report.json"
+        self.log = self.TargetLog()
+
+    # -- le registre synthetique : le bloc (7 traductions) + une AUTRE entite en
+    #    conflit sur es, hors du lot. Le fr du bloc est exclu par defaut (PRESERVED).
+    def write_registry(self):
+        header = ("key,app_id,content_type,entity_guid,field,field_type,value_kind,"
+                  "fr,en,ru,pt,es,ar,fa,zh")
+        rows = []
+        body = dict(self.BODY, fr="Corps du registre (adouci)")
+        body.update({lang: "Bloc %s" % lang for lang in self.mod.LANGS})
+        rows.append(body)
+        b = dict(self.B, fr="Base B", en="B en", es="B es du registre")
+        rows.append(b)
+        with open(self.registry, "w", newline="", encoding="utf-8") as fh:
+            fh.write(header + "\r\n")
+            for r in rows:
+                vals = [f"{r['entity_guid']}|{r['field']}", r["app_id"], r["content_type"],
+                        r["entity_guid"], r["field"], "String", "editorial"]
+                vals += [r.get(lang, "") or "" for lang in ("fr",) + tuple(self.mod.LANGS)]
+                fh.write(",".join('"%s"' % v.replace('"', '""') for v in vals) + "\r\n")
+
+    class TargetLog:
+        """Cible synthetique : sert les deux entites, compte les appels, garde les SQL."""
+        def __init__(self):
+            self.sqls = []
+
+        def __call__(self, conn, sql):
+            self.sqls.append(sql)
+            if "HAVING COUNT(DISTINCT e.EntityId) > 1" in sql:
+                return []
+            if "e.EntityId AS eid" in sql:
+                return []
+            if "FROM TsDynDataApp" in sql:
+                return [{"app": 33, "zone": 3}]
+            if "FROM TsDynDataDimension" in sql:
+                spec = importlib.util.spec_from_file_location(
+                    "eavexp_probe2", HERE / "458-eav-content-export.py")
+                exp = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(exp)
+                return [{"id": 7 + i, "ext": ext, "zone": 3}
+                        for i, ext in enumerate(sorted(exp.DIM_EXTERNAL_KEY.values()))
+                        if ext != "fr-FR"]
+            if "ct.Name IN" in sql and "vd.ValueId IS NULL" in sql:  # build_app_map
+                return [
+                    {"app": 33, "g": "8A8636A4-069A-4692-A139-4773B161931B",
+                     "f": "Text", "val": "Corps du registre (adouci)"},
+                    {"app": 33, "g": "BBBBBBBB-0000-0000-0000-00000000000B",
+                     "f": "Summary", "val": "Base B"},
+                    {"app": 2, "g": "8A8636A4-069A-4692-A139-4773B161931B",
+                     "f": "Text", "val": "corps de la copie demo"},
+                ]
+            if "TOP 1 v.ValueId AS vid" in sql:  # preservation du bloc #2181
+                return [{"vid": 27942, "val": "Corps servi (plus long)"}]
+            if "CONVERT(nvarchar(64), e.EntityGuid) AS g, e.EntityId AS id" in sql:
+                return []  # aucune entite News synthetique
+            if "ORDER BY app, entity_guid, field, dimension_id, vid" in sql:
+                return self.rows()
+            raise AssertionError("SQL inattendu sous cible synthetique:\n" + sql[:200])
+
+        def rows(self):
+            # base (dim 0) des deux entites ; le fr du bloc DIFFERE du registre (exclu
+            # par defaut, donc jamais compare), celui de B concorde ; B.es est en
+            # CONFLIT ; toutes les traductions du bloc sont ABSENTES (7 INSERT).
+            out = [
+                {"app": 33, "entity_guid": "8A8636A4-069A-4692-A139-4773B161931B",
+                 "entity_id": 11915, "field": "Text", "dimension_id": None, "vid": 27942,
+                 "val": "Corps servi (plus long)"},
+                {"app": 33, "entity_guid": "BBBBBBBB-0000-0000-0000-00000000000B",
+                 "entity_id": 13001, "field": "Summary", "dimension_id": None, "vid": 500,
+                 "val": "Base B"},
+                {"app": 33, "entity_guid": "BBBBBBBB-0000-0000-0000-00000000000B",
+                 "entity_id": 13001, "field": "Summary", "dimension_id": 9, "vid": 501,
+                 "val": "B es servi, different"},
+            ]
+            return out
+
+    def run_main(self, extra=()):
+        self.mod.EXP.run_query = self.log
+        self.mod.EXP.read_connection_string = lambda p: "Server=synthetic;Database=x"
+        argv = ["--config", str(self.tmp / "web.config"), "--registry", str(self.registry),
+                "--fr-report", str(self.fr_report)] + list(extra)
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            rc = self.mod.main(argv)
+        return rc, buf.getvalue()
+
+    def only_cells(self, which="body"):
+        if which == "body":
+            return [(self.BODY["entity_guid"], "Text", lang) for lang in self.mod.LANGS]
+        return [(self.B["entity_guid"], "Summary", lang) for lang in ("en", "es")]
+
+    def args_for(self, cells, **flags):
+        argv = []
+        for g, f, lang in cells:
+            argv += ["--only-cell", f"{g}:{f}:{lang}"]
+        if flags.get("include_preserved"):
+            argv.append("--include-preserved-2181")
+        return argv
+
+    # -- formes -------------------------------------------------------------------
+    def test_parse_only_cell_formes(self):
+        p = self.mod.parse_only_cell
+        self.assertEqual(p("8a8636a4-069a-4692-a139-4773b161931b:Text:en"),
+                         ("8A8636A4-069A-4692-A139-4773B161931B", "Text", "en"))
+        self.assertEqual(p("8A8636A4-069A-4692-A139-4773B161931B:Text:fr")[2], "fr")
+        # MEME validateur que --force : 32 hex sans tirets n'est pas une cle (uuid le
+        # tolérait, FORCE_GUID_RE non) — le témoin est la fonction voisine, pas une idée.
+        self.assertIsNone(p("8A8636A4069A4692A1394773B161931B:Text:ru"))
+        self.assertIsNone(self.mod.parse_force("8A8636A4069A4692A1394773B161931B:Text:ru"))
+        self.assertEqual(self.mod.parse_force("8a8636a4-069a-4692-a139-4773b161931b:Text:ru"),
+                         p("8a8636a4-069a-4692-a139-4773b161931b:Text:ru"))
+        for bad in ("8A8636A4:Text:en", "8A8636A4-069A-4692-A139-4773B161931B:Text",
+                    "8A8636A4-069A-4692-A139-4773B161931B:Text:de",
+                    "8A8636A4-069A-4692-A139-4773B161931B::en",
+                    "pas-un-guid:Text:en", ""):
+            self.assertIsNone(p(bad), bad)
+
+    def test_scope_plan_borne_et_garde_les_bases_fr_nommees(self):
+        plan = [{"entity_guid": self.BODY["entity_guid"], "field": "Text", "lang": "en"},
+                {"entity_guid": self.B["entity_guid"], "field": "Summary", "lang": "en"}]
+        fr = [{"entity_guid": self.B["entity_guid"], "field": "Summary", "lang": "fr"}]
+        kept, kept_fr, unknown = self.mod.scope_plan(
+            plan, fr, {(self.B["entity_guid"], "Summary", "fr")})
+        self.assertEqual(kept, [])
+        self.assertEqual(kept_fr, fr)
+        self.assertEqual(unknown, [])
+        kept, kept_fr, unknown = self.mod.scope_plan(
+            plan, fr, {(self.B["entity_guid"], "Summary", "ru")})
+        self.assertEqual((kept, kept_fr), ([], []))
+        self.assertEqual(unknown, [(self.B["entity_guid"], "Summary", "ru")])
+
+    def test_les_deux_listes_se_partagent_les_ops(self):
+        # Bloquantes des le dry-run : reglage oublie (levier : un drapeau) et cellule
+        # jamais inscriptible (file:NNN). Montrees a blanc, refusees a l'apply : la
+        # politique de base fr.
+        nw = self.mod.named_cells_not_written
+        pol = self.mod.named_cells_policy
+        acts = [{"op": "SKIP_PRESERVED_2181"}, {"op": "SKIP_SAME"}, {"op": "INSERT"}]
+        fr = [{"op": "FR_EXCLUDED"}, {"op": "FR_DB_LOCAL"}, {"op": "FR_SAME"}]
+        self.assertEqual([a["op"] for a in nw(acts, fr)], ["SKIP_PRESERVED_2181", "FR_DB_LOCAL"])
+        self.assertEqual([a["op"] for a in pol(acts, fr)], ["FR_EXCLUDED"])
+
+    # -- refus de perimetre ---------------------------------------------------------
+    def test_un_nom_absent_du_plan_est_refuse_avant_toute_lecture(self):
+        # `ru` de B est vide au registre : le nom ne designe aucune cellule. Un
+        # perimetre borne a rien rendrait « plan coherent » sans ecrire.
+        rc, out = self.run_main(self.args_for(
+            [(self.B["entity_guid"], "Summary", "ru")]))
+        self.assertEqual(rc, 1, out)
+        self.assertIn("--only-cell nomme une cellule absente du plan", out)
+        self.assertEqual(self.log.sqls, [], "le refus tombe avant la connexion")
+
+    def test_un_nom_mal_forme_est_refuse(self):
+        rc, out = self.run_main(["--only-cell", "pas-un-guid:Summary:en"])
+        self.assertEqual(rc, 1, out)
+        self.assertIn("REFUS: --only-cell mal forme", out)
+        self.assertEqual(self.log.sqls, [])
+
+    # -- le fait de W2-14, reproduit puis leve --------------------------------------
+    def test_le_conflit_hors_lot_bloque_l_apply_sans_perimetre(self):
+        rc, out = self.run_main(["--include-preserved-2181"])
+        self.assertEqual(rc, 1, out[-900:])
+        self.assertIn("CONFLICT: 1", out)
+        self.assertIn("VERDICT: ECHEC", out)
+        rc, out = self.run_main(["--include-preserved-2181", "--apply",
+                                 "--backup-dir", str(self.tmp / "backup")])
+        self.assertEqual(rc, 1, out[-900:])
+        # Le message EXACT : le refus des apps #2182 partage le prefixe
+        # « REFUS d'appliquer » et suffirait a une assertion sur le prefixe.
+        self.assertIn("REFUS d'appliquer: conflits ou cibles manquantes non arbitres.", out)
+
+    def test_le_perimetre_borne_leve_le_blocage_et_ne_garde_que_ses_cellules(self):
+        rc, out = self.run_main(self.args_for(self.only_cells("body"), include_preserved=True))
+        self.assertEqual(rc, 0, out[-900:])
+        self.assertIn("INSERT: 7", out)
+        self.assertNotIn("CONFLICT", out.split("DRY-RUN")[0])
+        self.assertIn("perimetre (--only-cell): 7 cellule(s) nommee(s)", out)
+        self.assertIn("2 cellule(s) traduisible(s) et 2 base(s) fr HORS perimetre", out)
+        self.assertIn("VERDICT: plan coherent, pret pour --apply", out)
+        # Le perimetre passe les gardes : le run va jusqu'au refus de sauvegarde.
+        rc, out = self.run_main(self.args_for(self.only_cells("body"),
+                                              include_preserved=True) + ["--apply"])
+        self.assertEqual(rc, 1, out[-600:])
+        self.assertIn("REFUS: --apply exige --backup-dir", out)
+
+    def test_le_plan_borne_ne_borne_pas_la_lecture_de_la_cible(self):
+        self.run_main(self.args_for(self.only_cells("body"), include_preserved=True))
+        big = [s for s in self.log.sqls
+               if "ORDER BY app, entity_guid, field, dimension_id, vid" in s]
+        self.assertEqual(len(big), 1)
+        # L'autre entite (hors lot) est LUE : la garde G1 et la preservation la voient.
+        self.assertIn(self.B["entity_guid"], big[0])
+        self.assertIn(self.BODY["entity_guid"], big[0])
+
+    def test_une_cellule_nommee_ecartee_par_defaut_refuse_l_apply(self):
+        # Sans --include-preserved-2181 les 7 cellules nommees tombent en SKIP : le
+        # run n'ecrirait RIEN en pretendant un plan coherent.
+        rc, out = self.run_main(self.args_for(self.only_cells("body")))
+        self.assertEqual(rc, 1, out[-900:])
+        self.assertIn("7 cellule(s) NOMMEE(S) qu'un reglage ecarte de l'ecriture", out)
+        self.assertIn("--include-preserved-2181", out)
+        self.assertIn("VERDICT: ECHEC", out)
+        rc, out = self.run_main(self.args_for(self.only_cells("body")) + [
+            "--apply", "--backup-dir", str(self.tmp / "backup")])
+        self.assertEqual(rc, 1, out[-600:])
+        self.assertIn("REFUS d'appliquer: conflits ou cibles manquantes non arbitres.", out)
+
+    def test_une_base_fr_hors_perimetre_n_est_pas_comparee(self):
+        # Lot = B.en seulement : la base fr du BLOC (exclue par defaut) ne doit pas
+        # entrer dans le perimetre, sinon une cellule NON nommee se lirait
+        # « NOMMEE(S) EXCLUE(S) » et sa base fr serait comparee.
+        rc, out = self.run_main(self.args_for([(self.B["entity_guid"], "Summary", "en")]))
+        self.assertEqual(rc, 0, out[-900:])
+        self.assertIn("INSERT: 1", out)
+        self.assertNotIn("FR_EXCLUDED", out)
+        # la section des bases fr est VIDE, et les 2 bases du registre sont hors lot.
+        self.assertIn("base fr (dim-0) :\nperimetre (--only-cell): 1 cellule(s) nommee(s)", out)
+        self.assertIn("et 2 base(s) fr HORS perimetre", out)
+
+    # -- les bases fr nommees ------------------------------------------------------
+    def append_registry(self, guid, field, **langs):
+        with open(self.registry, "a", newline="", encoding="utf-8") as fh:
+            vals = [f"{guid}|{field}", "33", "Content", guid, field, "String", "editorial",
+                    langs.get("fr", "")]
+            vals += [langs.get(lang, "") for lang in self.mod.LANGS]
+            fh.write(",".join('"%s"' % v for v in vals) + "\r\n")
+
+    def with_base_row(self, guid, field, value):
+        base_rows = self.log.rows
+        self.log.rows = lambda: base_rows() + [
+            {"app": 33, "entity_guid": guid, "entity_id": 14001, "field": field,
+             "dimension_id": None, "vid": 600, "val": value}]
+
+    def test_une_base_fr_nommee_exclue_est_montree_a_blanc_et_refusee_a_l_apply(self):
+        # La base fr du bloc #2181 est preservee par defaut (arbitrage du 20/11).
+        # La NOMMER ne leve pas l'exclusion — aucune option ne la leve, pas meme
+        # --include-preserved-2181 (drapeau des traductions). A blanc : montree, et
+        # le verdict ne dit pas « pret pour --apply ». En apply : refuse.
+        cell = f"{self.BODY['entity_guid']}:Text:fr"
+        for extra in ([], ["--include-preserved-2181"]):
+            rc, out = self.run_main(["--only-cell", cell] + extra)
+            self.assertEqual(rc, 0, (extra, out[-900:]))
+            self.assertIn("1 cellule(s) NOMMEE(S) EXCLUE(S) par la politique de base fr", out)
+            self.assertIn("FR_EXCLUDED", out)
+            self.assertIn("0 cellule(s) inscriptible(s) ; 1 nommee(s) EXCLUE(S)", out)
+            self.assertNotIn("pret pour --apply", out)
+        rc, out = self.run_main(["--only-cell", cell, "--apply",
+                                 "--backup-dir", str(self.tmp / "backup")])
+        self.assertEqual(rc, 1, out[-600:])
+        self.assertIn("REFUS d'appliquer: cellule(s) nommee(s) exclue(s) par la politique", out)
+
+    def test_la_passe_de_onze_cellules_de_w2_09_se_joue_a_blanc(self):
+        # W2-09 : « un mode a blanc borne aux 11 cellules (dont le francais) » — les
+        # 7 langues du bloc, son francais, et les 3 cellules de P24-32. Jouee sur une
+        # cible synthetique : le conflit d'une AUTRE entite ne bloque plus, les 10
+        # cellules inscriptibles sont coherentes, le francais du bloc est MONTRE comme
+        # exclu — et l'apply le refuse tant qu'il reste nomme.
+        e = "EEEEEEEE-0000-0000-0000-00000000000E"
+        self.append_registry(e, "Installation", fr="Base E", en="E en", ru="E ru", zh="E zh")
+        self.with_base_row(e, "Installation", "Base E")
+        cells = self.only_cells("body") + [(self.BODY["entity_guid"], "Text", "fr")] + [
+            (e, "Installation", lang) for lang in ("en", "ru", "zh")]
+        self.assertEqual(len(cells), 11)
+        # sans le drapeau du bloc : les 7 traductions tomberaient en SKIP — refus
+        rc, out = self.run_main(self.args_for(cells))
+        self.assertEqual(rc, 1, out[-900:])
+        self.assertIn("VERDICT: ECHEC", out)
+        # a blanc, drapeau leve
+        rc, out = self.run_main(self.args_for(cells, include_preserved=True))
+        self.assertEqual(rc, 0, out[-900:])
+        self.assertIn("INSERT: 10", out)
+        self.assertNotIn("CONFLICT", out.split("DRY-RUN")[0])
+        self.assertIn("perimetre (--only-cell): 11 cellule(s) nommee(s)", out)
+        self.assertIn("1 cellule(s) NOMMEE(S) EXCLUE(S) par la politique de base fr", out)
+        self.assertIn("10 cellule(s) inscriptible(s) ; 1 nommee(s) EXCLUE(S)", out)
+        # l'apply des 11 refuse ; celui des 10 part (jusqu'au refus de sauvegarde)
+        rc, out = self.run_main(self.args_for(cells, include_preserved=True) + [
+            "--apply", "--backup-dir", str(self.tmp / "backup")])
+        self.assertEqual(rc, 1, out[-600:])
+        self.assertIn("REFUS d'appliquer: cellule(s) nommee(s) exclue(s) par la politique", out)
+        ten = self.args_for([c for c in cells if c[2] != "fr"], include_preserved=True)
+        rc, out = self.run_main(ten + ["--apply"])
+        self.assertEqual(rc, 1, out[-600:])
+        self.assertIn("REFUS: --apply exige --backup-dir", out)
+
+    def test_une_base_fr_nommee_hors_bloc_se_reecrit(self):
+        # Controle inverse : une base fr NON exclue qui derive s'ecrit bien en mode
+        # borne — l'exclusion ci-dessus est celle de la politique, pas celle du mode.
+        d = "DDDDDDDD-0000-0000-0000-00000000000D"
+        self.append_registry(d, "Title", fr="Titre D du registre")
+        self.with_base_row(d, "Title", "Titre D servi")
+        rc, out = self.run_main(["--only-cell", f"{d}:Title:fr"])
+        self.assertEqual(rc, 0, out[-900:])
+        self.assertIn("FR_DRIFT: 1", out)
+        self.assertIn("1 REECRITURE(S) de base fr", out)
+        self.assertIn("VERDICT: plan coherent, pret pour --apply", out)
+        rc, out = self.run_main(["--only-cell", f"{d}:Title:fr", "--apply"])
+        self.assertEqual(rc, 1, out[-600:])
+        self.assertIn("REFUS: --apply exige --backup-dir", out)
+
+    def test_une_reference_file_nommee_est_refusee(self):
+        # `file:NNN` = id ADAM local a la base : jamais ecrit, quel que soit le nom.
+        c = "CCCCCCCC-0000-0000-0000-00000000000C"
+        self.append_registry(c, "Link", fr="file:777")
+        self.with_base_row(c, "Link", "file:42")
+        rc, out = self.run_main(["--only-cell", f"{c}:Link:fr"])
+        self.assertEqual(rc, 1, out[-900:])
+        self.assertIn("FR_DB_LOCAL (reference file:NNN locale", out)
 
 
 if __name__ == "__main__":
