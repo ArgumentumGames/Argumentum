@@ -100,11 +100,12 @@ Several files here are cited by path from guard tests, from the generator config
 |---|---|---|---|
 | [`luna6-essai-2026-11-10/`](luna6-essai-2026-11-10/) | 2026-11-10 / 11 | `historical` | A model trial detecting translation defects on Fallacies clusters (#1520, closed; #2231): the dossier `README.md`, the seven files of its instruments (scripts and prompts), the planted-defect control and the raw and aggregated results — sixteen files, zero writes under `Cards/`. Its first draft was corrected on review and is kept in its annex C: the corrected §1 holds |
 
-### Cascade-drift scan — #458 (P24-07)
+### Cascade-drift scan — #458 / #2173 (P24-07, P24-44)
 
 | File | Dated | Status | What it is |
 |---|---|---|---|
 | [`458-cascade-drift-scan-2026-11-23.md`](458-cascade-drift-scan-2026-11-23.md) | 2026-11-23 | `historical` | Measured run of `tools/458-cascade-drift-scan.py`: Fallacies 45 candidates on 13 PKs, Virtues 0, Scenarii out of the instrument's `_fr`/`_<lang>` schema. Measures the detector's blind spot (an FR round-trip A→A'→A flags aligned cells: 19 of the 45), reads the 8 remaining groups (no content loss demonstrated; ar/fa only assumed, not oracled), and records guard #2235 green 23/23. Zero CSV writes; the retranslation it may call for is owner-gated (named key + credit) |
+| [`2173-cascade-26-2026-11-25.md`](2173-cascade-26-2026-11-25.md) | 2026-11-25 | `current` | P24-44: the 26 cascade-drift candidates still actionable at HEAD, read one by one — French before and after, every language cell of the eight groups, its last write. 24 `aligned`, 2 typography only (the numbers of PK 644 in pt and ar, written in letters), none to retranslate: the 26 are exactly the translated cells that the 2026-05-28 FR pass left untouched, and in all eight the FR changed in form, not in proposition. The verdicts on ru/ar/fa/zh are the lane's reading, glossed word by word — not an oracle. Zero CSV writes, no API call; two reproduction scripts in its §6 |
 
 ## Contradictions
 
