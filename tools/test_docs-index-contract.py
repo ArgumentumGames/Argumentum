@@ -94,7 +94,7 @@ def indexes(root):
 # Les dossiers qui DOIVENT rester des index of record. La marque est ce qui soumet un README
 # au contrat : la retirer ne déconsolide rien, cela sort le dossier du contrat sans bruit.
 # Triée, un dossier par ligne. Plancher, pas plafond : un index qui n'y figure pas est tenu
-# par test_01 dès qu'il porte la marque.
+# par test_01 dès qu'il porte la marque. La PR qui pose une marque y ajoute son dossier.
 REQUIRED_INDEXES = (
     "docs/corpus",
     "docs/dnn",
@@ -102,6 +102,7 @@ REQUIRED_INDEXES = (
     "docs/investigations",
     "docs/ontology",
     "docs/publication",
+    "docs/quality",
     "docs/release-dossier",
     "docs/repo",
     "docs/site",
