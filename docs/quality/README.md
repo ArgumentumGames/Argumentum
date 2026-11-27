@@ -4,7 +4,7 @@
 
 This folder is an **index of record**, as defined in [`docs/agents/consolidation.md`](../agents/consolidation.md): every tracked file in it is listed below with what it is worth today. Add a file here and you add its line — `python tools/test_docs-index-contract.py` goes red otherwise. A file marked `current` was re-read against `master` on the date below; a `superseded` one names its successor on its line; a `historical` one was true at its date and is neither executed nor "corrected" now.
 
-Measured 2026-11-25 on `6b101880`, before this README: **61 tracked files** (`git ls-files docs/quality | wc -l`) — 57 Markdown, 1 Python, 2 text, 1 JSON. No README existed; this one indexes all 61 in a single tranche (the guide's bound is "about sixty", and no pull request is stacked on this file). Issue states were read the same day in one bulk call. Re-measure before quoting a count; the issue says what is open. Statuses: **6 `current`, 1 `superseded`, 54 `historical`.**
+Measured 2026-11-25 on `6b101880`, before this README: **61 tracked files** (`git ls-files docs/quality | wc -l`) — 57 Markdown, 1 Python, 2 text, 1 JSON. No README existed; this one indexes all 61 in a single tranche (the guide's bound is "about sixty", and no pull request is stacked on this file). Issue states were read the same day in one bulk call. Re-measure before quoting a count; the issue says what is open. Statuses: **6 `current`, 1 `superseded`, 54 `historical`.** Later files carry their line here without re-measuring that tranche — `2181-ecrasement-nomme-reinjection-2026-11-24.md` (#2373, 27/11) is the first: 63 tracked files with it.
 
 Several files are cited **by path** from guard tests, workflows and other indexes — moving one breaks those references: `1049-webroot-guard.md` and `1244a-dnn-bin-untrack-provenance.md` from `DnnWebrootGuardTests.cs` / `DnnBinUntrackGuardTests.cs` (and `.gitignore`); `visual-tests-release-gate.md` from `build.yml`, `mindmap-wrapper-behaviour.yml`, `AGENTS.md` §8 and the licence inventory; `1460-charpente-suite-regression.md` from `python-tools-tests.yml` and `AGENTS.md` §8; `415-filter-repo-runbook-post-tag.md` from `docs/repo/README.md`; `1066-cutover-runbook-2026-11-04.md` from the `docs/dnn`, `docs/publication` and `docs/site` indexes; `1502-g7-regles-site-vs-cartes-2026-09-23.md` from `docs/corpus/rules-site-vs-cards.py`.
 
@@ -102,10 +102,11 @@ Several files are cited **by path** from guard tests, workflows and other indexe
 | [`1460-phase-c-virtues-2026-11-07.md`](1460-phase-c-virtues-2026-11-07.md) | 2026-11-07 | `historical` | Phase C organ 3: the same family-colour organ transposed to Virtues, and the two template facts that changed the shared engine |
 | [`1460-phase-c-garde-bloc-2026-11-08.md`](1460-phase-c-garde-bloc-2026-11-08.md) | 2026-11-08 | `historical` | Phase C: the block guard that closed the "red at 0.1, green at 0.0" hole of the colour-distinct grouping |
 
-### Corpus arbitration and dated audits — #1499, #994, #192, #795, #1548
+### Corpus arbitration and dated audits — #2181, #1499, #994, #192, #795, #1548
 
 | File | Dated | Status | What it is |
 |---|---|---|---|
+| [`2181-ecrasement-nomme-reinjection-2026-11-24.md`](2181-ecrasement-nomme-reinjection-2026-11-24.md) | 2026-11-24 | `historical` | Grain P24-51 of #2181: a cell whose registry and served base are both full and different is `CONFLICT` and `--apply` refuses it; the named `--force GUID:CHAMP:LANGUE` route makes the three P24-32 cells reachable (`FORCE 3`, plan unchanged elsewhere) — measured in dry-run on a synthetic target, the served base itself being web2's W2-11 measurement |
 | [`1499-636-desc-2022-2026-09-25.md`](1499-636-desc-2022-2026-09-25.md) | 2026-09-25 | `historical` | Grain ② of #1499: PK 636 restored to its 2022 definition in the 8 `desc_*` cells — 1 CSV row, −106 bytes, measured before/after. #1499 closed |
 | [`1499-g1-fallacies-dossier-2026-09-23.md`](1499-g1-fallacies-dossier-2026-09-23.md) | 2026-09-23 | `historical` | G1 v3: Fallacies renaming arbitration dossier, instrument run as delivered, no CSV write — the owner decides card by card |
 | [`1499-g2-fallacies-exemples-2026-09-23.md`](1499-g2-fallacies-exemples-2026-09-23.md) | 2026-09-23 | `historical` | G2: the `example_fr` field, 132 non-IDENT cells measured, 111 forming the arbitration surface — no write |

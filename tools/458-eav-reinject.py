@@ -33,6 +33,20 @@ sont stables.
   - registre non-vide != base (les deux pleins) -> CONFLIT : aucune ecriture, liste
   - registre vide                              -> on saute (pas d'effacement)
 
+ECRASEMENT NOMME (--force ; ne de P24-32, 24/11). Un conflit reste un refus, SAUF si
+l'operateur nomme la cellule entiere : --force GUID:CHAMP:LANGUE (cumulable, GUID
+complet, langue parmi les 7). Elle passe alors en FORCE et rien d'autre ne bouge : sa
+valeur d'avant (celle de la base) est sauvegardee dans --backup-dir AVANT la
+transaction ; l'UPDATE in-tx epingle la rangee que le dry-run a lue (ValueId MAX de la
+dimension) sous verrou et exige qu'elle porte ENCORE exactement la valeur mesuree,
+comparaison ordinale — une rangee, sinon ROLLBACK ; la relecture in-tx la relit comme
+toute ecriture. Un nom qui
+ne designe aucune cellule du plan est un REFUS (faute de frappe) ; un nom dont la
+cellule n'est PAS en conflit est rapporte, sans ecriture forcee. Cas fondateur : trois
+cellules corrigees en typographie au registre (P24-32) que la base servie porte encore
+dans leur ancienne valeur — les deux cotes sont pleins, et c'est la frappe qui dit
+« celle-ci, et son contenu d'avant ».
+
 FRANCAIS DE BASE (revue ai-01 c.7038852934). La colonne `fr` du registre est comparee
 a la valeur de base (dim-0) de la cible — sur l'entite epingle par la carte (app, guid).
 Au sein d'une (entite, attribut) plusieurs rangees dim-0 peuvent coexister (2sxc
@@ -69,6 +83,7 @@ import datetime
 import hashlib
 import json
 import pathlib
+import re
 import sys
 
 # Import du module d'export : on reutilise la connexion, la lecture SQL par lignes et la
@@ -494,9 +509,13 @@ def fr_report(fr_actions) -> list[dict]:
     } for a in fr_actions if a["op"] == "FR_DRIFT"]
 
 
-def compute_actions(plan, target, app_map, allow_preserved=False):
+def compute_actions(plan, target, app_map, allow_preserved=False, force=None):
+    """Classe chaque cellule du plan (voir PERIMETRE, en tete). `force` est l'ensemble
+    des cles (GUID majuscule, champ, langue) nommees par --force : elles seules quittent
+    CONFLICT pour FORCE ; un conflit non nomme reste CONFLICT, donc refuse."""
     existing = target["existing"]
     lang_dim_by_app = target["lang_dim_by_app"]
+    force = force or frozenset()
     actions = []
     for p in plan:
         g, field, lang = p["entity_guid"], p["field"], p["lang"]
@@ -518,9 +537,46 @@ def compute_actions(plan, target, app_map, allow_preserved=False):
             actions.append({**p, "op": "UPDATE", "dim": dim, "target_app": ta})
         elif cur == p["value"]:
             actions.append({**p, "op": "SKIP_SAME", "dim": dim})
+        elif (g.upper(), field, lang) in force:
+            # Ecrasement NOMME (P24-32) : les deux cotes pleins, la cellule designee une a une.
+            # La valeur cible voyage avec l'action : sauvegarde AVANT, comparaison in-tx.
+            actions.append({**p, "op": "FORCE", "dim": dim, "target_app": ta, "db_value": cur})
         else:
             actions.append({**p, "op": "CONFLICT", "dim": dim, "db_value": cur})
     return actions
+
+
+# Une cle --force est (GUID complet, champ, langue). GUID COMPLET, pas le prefixe de 8
+# dont l'outil se sert pour ECRIRE ses rapports : un prefixe n'est pas un identifiant
+# (145 GUIDs distincts, 145 prefixes distincts au registre le 24/11 — un etat mesure,
+# pas une promesse du registre).
+FORCE_GUID_RE = re.compile(r"^[0-9A-F]{8}(-[0-9A-F]{4}){3}-[0-9A-F]{12}$")
+WRITE_OPS = ("INSERT", "UPDATE", "FORCE")
+
+
+def parse_force(item: str):
+    """`GUID:CHAMP:LANGUE` -> cle normalisee (GUID majuscule, champ, langue), sinon None."""
+    parts = item.split(":")
+    if len(parts) != 3 or not parts[1] or parts[2] not in LANGS:
+        return None
+    if not FORCE_GUID_RE.match(parts[0].upper()):
+        return None
+    return (parts[0].upper(), parts[1], parts[2])
+
+
+def force_key(action) -> tuple:
+    return (action["entity_guid"].upper(), action["field"], action["lang"])
+
+
+def unmatched_force(actions, force_keys) -> list:
+    """Les cles --force qui ne designent AUCUNE cellule classee du plan : faute de frappe."""
+    seen = {force_key(a) for a in actions}
+    return sorted(k for k in force_keys if k not in seen)
+
+
+def planned_writes(actions) -> list:
+    """Les actions que le writer executera : jamais un CONFLICT, jamais un MISSING."""
+    return [a for a in actions if a["op"] in WRITE_OPS]
 
 
 def main(argv=None) -> int:
@@ -539,6 +595,11 @@ def main(argv=None) -> int:
                          "le bloc #2181 est exclu par defaut")
     ap.add_argument("--fr-report", default="fr-drift-report.json",
                     help="fichier ou ecrire la liste FR_DRIFT (defaut: ./fr-drift-report.json)")
+    ap.add_argument("--force", action="append", default=[], metavar="GUID:FIELD:LANG",
+                    help="ecrasement NOMME (cumulable) : la cellule en CONFLIT designee par son "
+                         "GUID COMPLET, son champ et sa langue est reecrite depuis le registre — "
+                         "valeur d'avant sauvegardee, concurrence optimiste in-tx. Toute autre "
+                         "cellule en conflit continue de refuser l'apply")
     args = ap.parse_args(argv)
 
     excludes = {(PRESERVED_2181_GUID, PRESERVED_2181_FIELD)}
@@ -548,6 +609,14 @@ def main(argv=None) -> int:
             print(f"REFUS: --fr-exclude mal forme ({item!r}) — attendu GUID:FIELD")
             return 1
         excludes.add((g.upper(), f))
+    force_keys = set()
+    for item in args.force:
+        key = parse_force(item)
+        if key is None:
+            print(f"REFUS: --force mal forme ({item!r}) — attendu GUID-complet:CHAMP:LANGUE "
+                  f"(langue parmi {', '.join(LANGS)})")
+            return 1
+        force_keys.add(key)
 
     reg = read_registry(args.registry)
     CURRENT_PLAN = build_plan(reg)
@@ -559,8 +628,15 @@ def main(argv=None) -> int:
     # refuser (G1, dimension absente) et l'operateur doit deja lire la carte.
     app_map_info, target = resolve_target(conn, reg)
     actions = compute_actions(CURRENT_PLAN, target, app_map_info["map"],
-                              allow_preserved=args.include_preserved_2181)
+                              allow_preserved=args.include_preserved_2181, force=force_keys)
     fr_actions = compute_fr_actions(CURRENT_FR_PLAN, target, app_map_info["map"], excludes)
+    unknown = unmatched_force(actions, force_keys)
+    if unknown:
+        # Une faute de frappe dans --force ne doit pas se lire « rien a forcer » : le nom
+        # ne designe aucune cellule du plan, donc l'operateur croit avoir nomme autre chose.
+        print("REFUS: --force nomme une cellule qui n'est pas au plan (GUID/champ/langue) : "
+              + "; ".join(f"{g[:8]}… {f} [{lang}]" for g, f, lang in unknown))
+        return 1
 
     counts = {}
     for a in actions:
@@ -619,17 +695,32 @@ def main(argv=None) -> int:
         for a in conflicts[:15]:
             print(f"  - {a['entity_guid'][:8]} {a['field']} [{a['lang']}] "
                   f"db={len(a['db_value'])}c registre={len(a['value'])}c")
+    forced = [a for a in actions if a["op"] == "FORCE"]
+    if forced:
+        # Pas de troncature ici : chaque ligne a ete NOMMEE par l'operateur (--force), il
+        # doit pouvoir les relire toutes avant d'ecrire — c'est du contenu qui REMPLACE.
+        print(f"\n{len(forced)} ECRASEMENT(S) NOMME(S) (--force) — la valeur d'avant est "
+              f"sauvegardee dans --backup-dir, puis remplacee en --apply :")
+        for a in forced:
+            print(f"  - {a['entity_guid'][:8]} {a['field']} [{a['lang']}] "
+                  f"db={len(a['db_value'])}c -> registre={len(a['value'])}c")
+    idle = [a for a in actions if a["op"] != "FORCE" and force_key(a) in force_keys]
+    if idle:
+        print(f"\nNOTE: {len(idle)} cellule(s) nommee(s) par --force ne sont PAS en conflit "
+              f"({', '.join(sorted({a['op'] for a in idle}))}) — rapportees, sans ecriture forcee.")
     if fr_missing:
         print(f"\n{len(fr_missing)} cellule(s) de base fr SANS valeur sur la cible (extrait):")
         for a in fr_missing[:15]:
             print(f"  - {a['entity_guid'][:8]} {a['content_type']}.{a['field']}")
 
     fr_writes = [{**a, "op": "FR_UPDATE"} for a in fr_actions if a["op"] == "FR_DRIFT"]
-    writes = [a for a in actions if a["op"] in ("INSERT", "UPDATE")]
+    writes = planned_writes(actions)
+    n_forced = sum(1 for a in writes if a["op"] == "FORCE")
     if not args.apply:
         print(f"\nDRY-RUN: {len(writes)} ecriture(s) dimensionnees prevues "
-              f"({counts.get('INSERT',0)} INSERT + {counts.get('UPDATE',0)} UPDATE) "
-              f"+ {len(fr_writes)} REECRITURE(S) de base fr (FR_DRIFT non exclues). "
+              f"({counts.get('INSERT',0)} INSERT + {counts.get('UPDATE',0)} UPDATE"
+              + (f" + {n_forced} ECRASEMENT(S) NOMME(S)" if n_forced else "")
+              + f") + {len(fr_writes)} REECRITURE(S) de base fr (FR_DRIFT non exclues). "
               f"Aucune ecriture effectuee.")
         blocked = conflicts or missing or fr_missing
         print("VERDICT: " + ("ECHEC (conflits ou cibles manquantes a arbitrer)" if blocked
@@ -651,8 +742,21 @@ def main(argv=None) -> int:
                      "field": a["field"], "prior_value": a["db_value"], "new_value": a["value"]}
                     for a in fr_actions if a["op"] == "FR_DRIFT"],
                    ensure_ascii=False, indent=1), encoding="utf-8")
+    # Valeurs cible des ECRASEMENTS NOMMES (--force) : meme discipline, AVANT la transaction.
+    # Un fichier a part : son inverse se lit sans melanger les bases fr et les cellules.
+    forced = [a for a in writes if a["op"] == "FORCE"]
+    if forced:
+        (backup_dir / f"reinject-force-prior-{stamp}.json").write_text(
+            json.dumps([{"entity_guid": a["entity_guid"], "content_type": a["content_type"],
+                         "field": a["field"], "lang": a["lang"], "dim": a["dim"],
+                         "target_app": a["target_app"],
+                         "prior_value": a["db_value"], "new_value": a["value"]}
+                        for a in forced],
+                       ensure_ascii=False, indent=1), encoding="utf-8")
     (backup_dir / f"reinject-plan-{stamp}.json").write_text(
-        json.dumps({"writes": [{k: a[k] for k in ('entity_guid','field','lang','op','dim','value','target_app')} for a in writes],
+        json.dumps({"writes": [{k: a[k] for k in ('entity_guid','field','lang','op','dim','value','target_app')
+                                            + (('db_value',) if a["op"] == "FORCE" else ())}
+                               for a in writes],
                     "fr_writes": [{k: a[k] for k in ('entity_guid','field','lang','op','value','target_app')} for a in fr_writes],
                     "preservation_before": {k: v for k, v in pres_before.items() if k != "block_2181"}
                                           | {"block_2181": [{kk: vv for kk, vv in b.items() if kk != "value"}
@@ -660,7 +764,9 @@ def main(argv=None) -> int:
                     ensure_ascii=False, indent=1),
         encoding="utf-8")
     print(f"plan + valeurs anterieures FR + preservation AVANT sauvegardes dans {backup_dir} "
-          f"({len(writes)} ecritures dimensionnees + {len(fr_writes)} bases fr)")
+          f"({len(writes)} ecritures dimensionnees"
+          + (f" dont {len(forced)} ecrasement(s) nomme(s), valeur d'avant sauvegardee" if forced else "")
+          + f" + {len(fr_writes)} bases fr)")
     return run_writer(conn, writes, fr_writes, pres_before, backup_dir, stamp, app_map_info["map"])
 
 
@@ -670,25 +776,10 @@ def main(argv=None) -> int:
 # TsDynDataValueDimension ; UPDATE des rangees dimensionnees vides. Appariement par
 # (EntityId resolu du GUID, AttributeId resolu du (ContentType, field), DimensionId).
 # ---------------------------------------------------------------------------
-def run_writer(conn, writes, fr_writes, pres_before, backup_dir, stamp, app_map) -> int:
-    import os
-    import subprocess
-    import tempfile
-
-    payload_file = backup_dir / f"reinject-payload-{stamp}.json"
-    b2181 = pres_before["block_2181"][0] if pres_before["block_2181"] else {}
-    payload_file.write_text(json.dumps({
-        "writes": writes,
-        "fr_writes": fr_writes,
-        # Preservation par le CONTENU lui-meme : l'egalite exacte in-tx est plus forte
-        # qu'une empreinte et evite la limite 8000 octets de HASHBYTES (le bloc fait
-        # 6709 caracteres = 13418 octets en UTF-16). L'empreinte sha256 est rapportee
-        # a part pour le journal.
-        "expected_2181_value": b2181.get("value", ""),
-        "expected_2181_vid": b2181.get("value_id"),
-    }, ensure_ascii=False), encoding="utf-8")
-
-    ps = r'''
+# Le script du writer, CONSTANTE DE MODULE : les gardes hors ligne le LISENT (branche
+# FORCE, comparaison ordinale, epingle au ValueId) sans base ni PowerShell. Le texte du
+# script est deplace tel quel ; les seules lignes ajoutees sont celles de la branche FORCE.
+WRITER_PS = r'''
 $ErrorActionPreference = "Stop"
 Add-Type -AssemblyName System.Data
 $payload  = Get-Content -LiteralPath $env:REINJECT_PAYLOAD -Raw -Encoding UTF8 | ConvertFrom-Json
@@ -699,7 +790,7 @@ $conn.Open()
 $tx = $conn.BeginTransaction()
 try {
     $cmd = $conn.CreateCommand(); $cmd.Transaction = $tx; $cmd.CommandTimeout = 600
-    $inserted = 0; $updated = 0; $frupdated = 0
+    $inserted = 0; $updated = 0; $frupdated = 0; $forced = 0
     foreach ($w in $writes) {
         $guid = $w.entity_guid; $field = $w.field; $ct = $w.content_type; $val = $w.value
         $app = [int]$w.target_app
@@ -752,6 +843,37 @@ WHERE v.EntityId=@e AND v.AttributeId=@a AND (v.[Value] IS NULL OR v.[Value]=N''
             $n = $cmd.ExecuteNonQuery()
             if ($n -ne 1) { throw "UPDATE $guid.$field dim$dim : $n rangee(s) touchee(s), attendu 1 (valeur non vide?)" }
             $updated++
+        } elseif ($w.op -eq "FORCE") {
+            # Ecrasement NOMME (--force, P24-32). Le dry-run a lu, pour (entite, attribut,
+            # dimension), la rangee au ValueId MAX. On epingle CETTE rangee sous verrou, on
+            # exige qu'elle porte ENCORE la valeur du dry-run — comparaison ORDINALE en
+            # PowerShell, parce que l'egalite SQL suit le classement de la colonne (elle
+            # ignore la casse) — puis on l'ecrit par son ValueId. Une valeur anterieure
+            # differente, ou la rangee disparue, est un ROLLBACK : rien n'est ecrase.
+            $old = $w.db_value
+            $cmd.Parameters.Clear()
+            $cmd.CommandText = @"
+SELECT TOP 1 v.ValueId, CONVERT(nvarchar(max), v.[Value]) FROM TsDynDataValue v WITH (UPDLOCK,HOLDLOCK)
+JOIN TsDynDataValueDimension vd ON vd.ValueId=v.ValueId AND vd.DimensionId=@d
+WHERE v.EntityId=@e AND v.AttributeId=@a
+ORDER BY v.ValueId DESC
+"@
+            [void]$cmd.Parameters.Add("@d",[System.Data.SqlDbType]::Int); $cmd.Parameters["@d"].Value=$dim
+            [void]$cmd.Parameters.Add("@e",[System.Data.SqlDbType]::Int); $cmd.Parameters["@e"].Value=$eid
+            [void]$cmd.Parameters.Add("@a",[System.Data.SqlDbType]::Int); $cmd.Parameters["@a"].Value=$aid
+            $r = $cmd.ExecuteReader()
+            if (-not $r.Read()) { $r.Close(); throw "FORCE $guid.$field dim$dim : aucune rangee a cette dimension (base modifiee depuis le dry-run?)" }
+            $vidf = [int]$r.GetInt32(0); $cur = $r.GetValue(1); $r.Close()
+            if ($null -eq $cur -or -not [string]::Equals([string]$cur, [string]$old, [System.StringComparison]::Ordinal)) {
+                throw "FORCE $guid.$field dim$dim : la valeur en base n'est plus celle du dry-run - ROLLBACK"
+            }
+            $cmd.Parameters.Clear()
+            $cmd.CommandText = "UPDATE TsDynDataValue SET [Value]=@v WHERE ValueId=@vid"
+            [void]$cmd.Parameters.Add("@v",[System.Data.SqlDbType]::NVarChar,-1); $cmd.Parameters["@v"].Value=$val
+            [void]$cmd.Parameters.Add("@vid",[System.Data.SqlDbType]::Int); $cmd.Parameters["@vid"].Value=$vidf
+            $n = $cmd.ExecuteNonQuery()
+            if ($n -ne 1) { throw "FORCE $guid.$field dim$dim : $n rangee(s) touchee(s), attendu 1" }
+            $forced++
         }
     }
     # Reecritures de BASE fr (FR_DRIFT) : la rangee dim-0 seulement, et seulement si
@@ -864,7 +986,7 @@ ORDER BY v.ValueId DESC
     if ($n2182 -ne 7) { throw "preservation #2182: $n2182/7 entites News - ROLLBACK" }
 
     $tx.Commit()
-    Write-Host "COMMIT OK: INSERT=$inserted UPDATE=$updated FR_UPDATE=$frupdated ; relecture in-tx conforme ; #2181 identique ; #2182=$n2182/7"
+    Write-Host "COMMIT OK: INSERT=$inserted UPDATE=$updated FORCE=$forced FR_UPDATE=$frupdated ; relecture in-tx conforme ; #2181 identique ; #2182=$n2182/7"
     $conn.Close()
 }
 catch {
@@ -874,6 +996,27 @@ catch {
     exit 1
 }
 '''
+
+
+def run_writer(conn, writes, fr_writes, pres_before, backup_dir, stamp, app_map) -> int:
+    import os
+    import subprocess
+    import tempfile
+
+    payload_file = backup_dir / f"reinject-payload-{stamp}.json"
+    b2181 = pres_before["block_2181"][0] if pres_before["block_2181"] else {}
+    payload_file.write_text(json.dumps({
+        "writes": writes,
+        "fr_writes": fr_writes,
+        # Preservation par le CONTENU lui-meme : l'egalite exacte in-tx est plus forte
+        # qu'une empreinte et evite la limite 8000 octets de HASHBYTES (le bloc fait
+        # 6709 caracteres = 13418 octets en UTF-16). L'empreinte sha256 est rapportee
+        # a part pour le journal.
+        "expected_2181_value": b2181.get("value", ""),
+        "expected_2181_vid": b2181.get("value_id"),
+    }, ensure_ascii=False), encoding="utf-8")
+
+    ps = WRITER_PS
     env = os.environ.copy()
     env["REINJECT_CS"] = conn
     env["REINJECT_PAYLOAD"] = str(payload_file)
