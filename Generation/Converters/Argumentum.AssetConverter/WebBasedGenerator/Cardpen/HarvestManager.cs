@@ -554,6 +554,12 @@ public class HarvestManager : IAsyncDisposable
 			var faces = await GenerateImages(page, cardSetDocuments.front, configCardSet.Config.FaceCardSetInfo);
 			currentHarvest.Faces = faces;
 
+			// #1485: which fonts actually paint the letters of the face DOM. A declared family
+			// that lacks the glyphs of a script (Barlow vs Cyrillic, measured 25/11/2026) is
+			// silently replaced by a system font — the PNG then ships a face nobody chose. Runs
+			// on every card set, while the face DOM is still in the iframe.
+			await ProbeFonts(page, configCardSet, currentLanguage ?? "", "face");
+
 			// Issue #190 phase 1 / #1567 grain 3: opportunistic overflow detection on the face
 			// cards of the two decks that carry a body of prose — Virtues and the Fallacies
 			// (Sophismes), whose es "Quaternio terminorum" title crosses its banner.
@@ -582,6 +588,7 @@ public class HarvestManager : IAsyncDisposable
 			{
 				var backs = await GenerateImages(page, cardSetDocuments.back, configCardSet.Config.BackCardSetInfo);
 				currentHarvest.Backs = backs;
+				await ProbeFonts(page, configCardSet, currentLanguage ?? "", "back");
 			}
 		}
 		finally
@@ -593,6 +600,37 @@ public class HarvestManager : IAsyncDisposable
 		}
 
 		return currentHarvest;
+	}
+
+	/// <summary>
+	/// Font fallback probe (#1485) on the DOM the <c>#cpOutput</c> iframe currently holds.
+	/// Writes the markdown report under <c>Target/&lt;lang&gt;/QA/</c> and logs one summary line,
+	/// plus one Problem line per finding and per <c>@font-face</c> in error. Non-fatal for the
+	/// harvest — but never silent: a probe that cannot run is logged at Problem level, so it
+	/// cannot read as a clean bill.
+	/// </summary>
+	/// <param name="page">The CardPen page.</param>
+	/// <param name="configCardSet">Card set being harvested (name for the report).</param>
+	/// <param name="language">Harvested language.</param>
+	/// <param name="side">What the iframe holds: "face" or "back".</param>
+	private async Task ProbeFonts(IPage page, CardSetJob configCardSet, string language, string side)
+	{
+		var where = $"{configCardSet.Name} {language} {side}".Trim();
+		try
+		{
+			var report = await FontFallbackDetector.DetectAsync(page.FrameLocator("#cpOutput"), configCardSet.Name, language, side);
+			var qaDir = Path.Combine(AssetConverterConfig.GetBaseTargetDirectory(language), "QA");
+			var reportPath = Path.Combine(qaDir, $"{configCardSet.Name}_fonts_{side}_{language}.md");
+			FontFallbackDetector.WriteMarkdownReport(report, reportPath);
+			foreach (var line in FontFallbackDetector.BuildLogLines(report, reportPath))
+			{
+				Logger.Log(line.Message, line.IsProblem ? MessageType.Problem : MessageType.Info);
+			}
+		}
+		catch (Exception ex)
+		{
+			Logger.Log($"[FONT-PROBE] {where}: the font probe did not run — {ex.Message}", MessageType.Problem);
+		}
 	}
 
 
