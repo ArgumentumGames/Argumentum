@@ -8,21 +8,34 @@ Link row of the existing card 6A24AE92 — the 4 cells carrying a pre-release UR
 Official registry is never modified. Usage: python -I derive_run_registry.py <official.csv> <out.csv>
 
 Auto-checks (each one a STOP, exit non nul) :
-  - l'empreinte d'entrée est celle du registre officiel (sha256[:16] ``277aac83e0b71e64``) ;
+  - l'empreinte d'entrée est celle du registre officiel (sha256[:16] ``7f1fb16617e1ec53``,
+    depuis #2399 le 26/11 ; avant : ``caab704810924fb0`` (P23-36, 25/11),
+    ``fc23b9a748ce3758`` (P24-32), ``277aac83e0b71e64``) ;
   - pas de BOM ;
   - 673 lignes de corps -> 22 retirées -> 651 conservées ;
   - aucune chaîne ``-review`` ne survit dans ce qui reste ;
   - l'aller-retour du parse est identique.
 
-Empreinte de sortie attendue (calculée par ai-01 sur le blob master) :
-  sha256 = 92bf1e0624256e7f672035446461718f64e5cd6a64912390d72a1ebaf0e1fbc0 (1 166 864 octets).
+Empreinte de sortie attendue :
+  sha256 = 03bb92aec3fa3af7e5cc7d2e4a61a417fb4f5b2324381b6c7eb2417a0e2fcb11 (1 187 152 octets).
+Historique, une empreinte de sortie par empreinte d'entrée :
+  - 92bf1e06… (1 166 864 octets) : calculée par ai-01 sur le blob master ;
+  - fc23b9a7… (1 166 868 octets) : re-mesurée par po-2024 (P24-32, 24/11) ;
+  - caab7048… (1 197 651 octets) : ef3eaa6a… (1 187 696 octets), re-mesurée par po-2023
+    (P23-36, 25/11) après l'append des 8 versions du bloc « Argumentation » (+20 828 octets) —
+    673 -> 22 -> 651 inchangé, contrôle cellule à cellule de la dérivée : 8 cellules, les 8 du grain ;
+  - 7f1fb166… (1 197 107 octets) : celle en tête, re-mesurée par po-2024 (#2399, 26/11) après la
+    bascule des 72 liens de lecture des neuf carnets CoursIA de l'épingle 7eea21ebefe vers main
+    (arbitrage ai-01 c.7202556397 : les six autres liens de lecture restent épinglés) —
+    673 -> 22 -> 651 inchangé, contrôle cellule à cellule de la dérivée : 16 cellules, les 16 du
+    grain (2 articles × 8 langues).
 Toute autre valeur : STOP, et poster les deux sorties.
 """
 import csv, hashlib, io, sys
 src, dst = sys.argv[1], sys.argv[2]
 raw = open(src, 'rb').read()
 print('input sha256[:16]', hashlib.sha256(raw).hexdigest()[:16], 'bytes', len(raw))
-assert hashlib.sha256(raw).hexdigest()[:16] == '277aac83e0b71e64', 'STOP: input is not the official registry'
+assert hashlib.sha256(raw).hexdigest()[:16] == '7f1fb16617e1ec53', 'STOP: input is not the official registry'
 assert not raw.startswith(b'\xef\xbb\xbf')
 rows = list(csv.reader(io.StringIO(raw.decode('utf-8'), newline='')))
 hdr, body = rows[0], rows[1:]

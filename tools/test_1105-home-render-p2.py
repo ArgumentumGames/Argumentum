@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Contrat de la sonde P2 du script du jour J (#131, P24-45).
+"""Contrat du script du jour J : sonde P2 et reveil d'un site endormi (#131).
 
     python tools/test_1105-home-render-p2.py
 
@@ -8,13 +8,18 @@ POURQUOI CE FICHIER EXISTE. La sonde P2 du runbook (« Sondes apres la bascule �
 etait faite a la main sur les 8 accueils : `dir="rtl"` en ar et fa SEULEMENT, meta
 description non vide, 7 liens de langue, marqueur d'audience >= 1. P24-45 l'ajoute au
 script du jour J (`tools/1105-cutover-day-controls.py`, section 6 du rapport), et ce
-contrat epingle que chaque lecture voit son defaut.
+contrat epingle que chaque lecture voit son defaut. P24-50 y joint le REVEIL : la prod
+endormie a mis 93 a 107 s a repondre le 24/11 (rapporte par web2), au-dela de la borne
+de passe de 60 s — la requete d'eveil a sa propre borne, le rapport la nomme, et un
+site qui ne repond pas du tout ne fait pas tourner 42 requetes pour rien.
 
 CONDITION D'EXECUTION : std-lib seulement, OFFLINE. Le module est charge pour ses
 fonctions pures (`analyze_home`, `control_home_render`, `hard_failures`) ; le cas
-bout-en-bout remplace `fetch` par un faux qui sert du HTML synthetique. Aucun `curl`,
-aucun DNS, aucun reseau, aucune horloge. `curl` est requis par le script en usage
-reel, pas par ce contrat.
+bout-en-bout remplace `fetch` par un faux qui sert du HTML synthetique ET une horloge
+simulee (`mod.time.monotonic`) : le serveur a demarrage a froid est un ETAT du faux
+transport, pas une attente reelle. Aucun `curl` lance, aucun DNS, aucun reseau, aucune
+horloge lue. La forme de la ligne de commande de `fetch` (la borne qui atteint
+`--max-time`) est eprouvee separement, sur `subprocess.run` neutralise.
 
 CE QUI EST EPINGLE :
   1. Le temoin : 8 accueils sains => les 4 lectures vertes sur les 8, et les deux
@@ -38,10 +43,23 @@ CE QUI EST EPINGLE :
   7. Les formes attendues sont epinglees en LITTERAUX ici (ar et fa seulement, le
      marqueur public, la classe du theme, les 8 cultures et leurs prefixes) : un
      reglage du module mute ne peut pas emporter le temoin avec lui.
+  8. Le comportement de la direction, en litteraux, pour `fa` : une page `fa` servie
+     en `ltr` est rouge et une page `fa` servie en `rtl` est verte (P24-50, review
+     ai-01 c.7143482432 — jusqu'ici seule l'epingle des constantes voyait `fa`
+     retire de `RTL_LANGS` ; ces deux cas le voient aussi).
+  9. Le reveil (P24-50) : un serveur qui ne repond qu'APRES la borne de passe passe
+     grace a l'eveil, et le rapport nomme statut, duree et bornes ; le meme serveur,
+     sans eveil, rougit sur sa premiere route a l'ancienne borne (le controle qui
+     montre que c'est bien l'eveil qui sauve la passe) ; un serveur muet sort 1 sans
+     faire tourner la passe ; un serveur qui repond 503 a l'eveil n'est PAS un site
+     muet — la passe le juge. `--skip-web` n'envoie aucun reveil. Bornes par defaut
+     epinglees (60 / 240), et les bornes passees en ligne de commande atteignent
+     `curl --max-time`.
 """
 import importlib.util
 import io
 import os
+import types
 import unittest
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -186,6 +204,21 @@ class P2HomeRender(unittest.TestCase):
     def test_ltr_on_an_rtl_language_is_red(self):
         self.assertFalse(run_rows({"ar": html_page("ar", dir_attr="ltr")})["ar"]["dir_ok"])
 
+    def test_fa_served_ltr_is_red_and_fa_served_rtl_is_green(self):
+        # P24-50 : le cas de comportement que la review ai-01 (c.7143482432) demandait
+        # a cote de l'epinglage des constantes. La page est construite en litteral
+        # (`dir_attr=`), PAS derivee de RTL_LANGS comme le fait le temoin : retirer
+        # `fa` de RTL_LANGS rend le premier cas vert, et cette assertion rougit.
+        ltr = run_rows({"fa": html_page("fa", dir_attr="ltr")})["fa"]
+        self.assertEqual(ltr["dir_expected"], "rtl")
+        self.assertEqual(ltr["dir"], "ltr")
+        self.assertFalse(ltr["dir_ok"], "une page fa servie en ltr doit etre rouge")
+        self.assertFalse(ltr["ok"])
+        rtl = run_rows({"fa": html_page("fa", dir_attr="rtl")})["fa"]
+        self.assertEqual(rtl["dir"], "rtl")
+        self.assertTrue(rtl["dir_ok"], "une page fa servie en rtl est verte")
+        self.assertTrue(rtl["ok"])
+
     def test_missing_dir_is_not_ltr(self):
         row = run_rows({"fa": html_page("fa", dir_attr=None)})["fa"]
         self.assertIsNone(row["dir"])
@@ -310,29 +343,58 @@ def fake_pages():
     return pages
 
 
-def fake_fetch(pages, statuses=None):
-    def fetch(url, resolve, cb):
+def fake_fetch(pages, statuses=None, calls=None, cold=None, clock=None):
+    """Un faux transport qui sert les pages ET modele un serveur endormi.
+
+    `calls` recoit `(url, max_time)` de chaque requete — c'est lui qui prouve quelle
+    borne a atteint le transport. `cold` / `clock` modelisent le demarrage a froid :
+    le serveur ne peut pas repondre avant `cold["ready_after"]` secondes apres sa
+    PREMIERE requete, et une requete dont la borne est plus courte que l'attente
+    rend (0, "") — exactement ce que curl fait (sortie 28, statut 000). Aucun
+    `sleep` : `clock` est une liste `[t]` simulee, que `mod.time.monotonic` rend.
+    """
+    def fetch(url, resolve, cb, max_time=MOD.PASS_MAX_TIME):
         assert url.startswith(BASE), "le contrat ne sort pas de son faux domaine : %r" % url
+        if calls is not None:
+            calls.append((url, max_time))
         path = url[len(BASE):].split("?")[0]
+        if clock is not None and cold is not None:
+            now = clock[0]
+            cold.setdefault("start", now)
+            wait = max(0.0, cold["start"] + cold["ready_after"] - now)
+            if wait > max_time:
+                clock[0] = now + max_time
+                return 0, ""
+            clock[0] = now + wait
         status = (statuses or {}).get(path, 200)
         return status, (pages.get(path, "") if status == 200 else "")
     return fetch
 
 
-def run_main(argv_extra=(), pages=None, statuses=None):
-    """`main()` en entier, hors ligne : `fetch` et le journal sont remplaces."""
+def run_main(argv_extra=(), pages=None, statuses=None, calls=None, cold=None,
+             clock=None, mutate=None):
+    """`main()` en entier, hors ligne : `fetch`, l'horloge et le journal sont remplaces.
+
+    `mutate(mod)` s'applique au module juste avant `main()` : c'est par la que le
+    controle du reveil desactive l'eveil (mutation M8), au lieu de maintenir un
+    drapeau `--no-wake` dans l'outil que personne n'utiliserait en production."""
     mod = load()
-    mod.fetch = fake_fetch(pages if pages is not None else fake_pages(), statuses)
+    mod.fetch = fake_fetch(pages if pages is not None else fake_pages(), statuses,
+                           calls, cold, clock)
+    if clock is not None:
+        mod.time = types.SimpleNamespace(monotonic=lambda: clock[0])
     mod.control_eventlog = lambda hours: []
+    if mutate is not None:
+        mutate(mod)
     argv = ["1105-cutover-day-controls.py", "--base-url", BASE,
             "--skip-eventlog", "--label", "contrat"] + list(argv_extra)
-    buf = io.StringIO()
-    old_argv, old_stdout = mod.sys.argv, mod.sys.stdout
-    mod.sys.argv, mod.sys.stdout = argv, buf
+    buf, err = io.StringIO(), io.StringIO()
+    old = (mod.sys.argv, mod.sys.stdout, mod.sys.stderr)
+    mod.sys.argv, mod.sys.stdout, mod.sys.stderr = argv, buf, err
     try:
         code = mod.main()
     finally:
-        mod.sys.argv, mod.sys.stdout = old_argv, old_stdout
+        mod.sys.argv, mod.sys.stdout, mod.sys.stderr = old
     return code, buf.getvalue()
 
 
@@ -365,6 +427,104 @@ class ExitCodeDiscipline(unittest.TestCase):
         self.assertIn("**Non mesuré** (`--skip-web`)", sec6)
         self.assertNotIn("| fr |", sec6)
         self.assertNotIn("sonde P2**", md[md.index("**Verdict**"):])
+
+
+class ColdStartWake(unittest.TestCase):
+    """P24-50 — le reveil d'un site endormi (mesure web2 du 24/11 : 93 a 107 s)."""
+
+    def test_bounds_are_pinned_as_literals_and_cover_the_measured_start(self):
+        self.assertEqual(MOD.PASS_MAX_TIME, 60)
+        self.assertEqual(MOD.WAKE_MAX_TIME, 240)
+        # La borne de reveil couvre la mesure rapportee (93 a 107 s), pas l'inverse.
+        self.assertGreater(MOD.WAKE_MAX_TIME, 107)
+
+    def test_the_bound_reaches_curl_max_time(self):
+        # Le transport reel est un sous-processus curl : ce que le faux `fetch` ne peut
+        # pas montrer, c'est que la borne arrive jusqu'a la ligne de commande.
+        mod = load()
+        seen = {}
+
+        class Done:
+            stdout = b"<html></html>\n200"
+
+        def fake_run(cmd, capture_output=False):
+            seen["cmd"] = cmd
+            return Done()
+
+        mod.subprocess = types.SimpleNamespace(run=fake_run)
+        status, _ = mod.fetch("https://sonde.invalid/fr/", None, "cb", max_time=240)
+        self.assertEqual(status, 200)
+        self.assertEqual(seen["cmd"][seen["cmd"].index("--max-time") + 1], "240")
+        mod.fetch("https://sonde.invalid/fr/", None, "cb")
+        self.assertEqual(seen["cmd"][seen["cmd"].index("--max-time") + 1], "60")
+
+    def test_cold_server_after_the_old_bound_passes_thanks_to_the_wake(self):
+        # Le serveur ne peut pas repondre avant 97 s — au-dela de la borne de passe
+        # (60 s), dans la mesure de web2. L'eveil, lui, a 240 s : il passe, la passe
+        # suit sur un site chaud, et le rapport nomme statut, duree et bornes.
+        clock, calls, cold = [0.0], [], {"ready_after": 97.0}
+        code, md = run_main(calls=calls, cold=cold, clock=clock)
+        self.assertEqual(code, 0, md[-800:])
+        self.assertEqual(calls[0], (BASE + "/", 240), "le reveil porte la borne de reveil")
+        self.assertTrue(all(mt == 60 for _, mt in calls[1:]), "la passe garde la sienne")
+        self.assertEqual(clock[0], 97.0, "une seule attente : celle du demarrage")
+        # 1 reveil + 42 requetes de passe (32 routes, 2 pages legales, 8 pages Regles) :
+        # le compte que dit la docstring, lu sur le transport.
+        self.assertEqual(len(calls), 43)
+        self.assertIn(
+            "- Réveil : `GET /` → **200 en 97 s** "
+            "(borne de réveil 240 s ; borne de passe 60 s)", md)
+
+    def test_same_cold_server_without_the_wake_is_red_at_the_old_bound(self):
+        # Le controle : le meme serveur, la passe SANS l'eveil. La premiere route est
+        # coupee a 60 s (statut 0) et rougit ; les suivantes passent (le site s'est
+        # reveille pendant l'attente). C'est ce rouge-la que l'eveil supprime — et il
+        # se rejoue en entier par `main()`, avec l'eveil neutralise (mutation M8).
+        clock, calls, cold = [0.0], [], {"ready_after": 97.0}
+
+        def no_wake(base, resolve, cb, max_time=None):
+            return {"url": "/", "status": None, "seconds": 0.0, "max_time": max_time,
+                    "requested": False, "ok": True}
+
+        code, md = run_main(calls=calls, cold=cold, clock=clock,
+                           mutate=lambda m: setattr(m, "wake_site", no_wake))
+        self.assertEqual(code, 1, md[-800:])
+        self.assertIn("- Réveil : non exécuté (état d'instrument du contrat).", md)
+        first = next(l for l in md.splitlines() if l.startswith("| fr | accueil |"))
+        self.assertIn("❌ 0", first)
+        self.assertEqual(clock[0], 97.0)
+
+    def test_mute_server_exits_one_without_running_the_pass(self):
+        # Aucune reponse HTTP : le site n'est pas « lent », il est absent. La passe ne
+        # doit pas couter 41 bornes de 60 s pour le dire — une seule borne de reveil.
+        clock, calls = [0.0], []
+        code, md = run_main(argv_extra=["--wake-max-time", "30", "--max-time", "5"],
+                            calls=calls, cold={"ready_after": float("inf")}, clock=clock)
+        self.assertEqual(code, 1, md[-800:])
+        self.assertEqual(len(calls), 1, "aucune requete de passe apres un reveil muet")
+        self.assertEqual(calls[0], (BASE + "/", 30))
+        self.assertEqual(clock[0], 30.0)
+        self.assertIn("aucune réponse HTTP en 30 s", md)
+        self.assertIn("⛔ **réveil sans réponse HTTP** (contrôles 1 à 3 non mesurés)", md)
+        sec1 = md[md.index("## 1."):md.index("## 2.")]
+        self.assertIn("réveil sans réponse HTTP", sec1)
+        self.assertNotIn("--skip-web", sec1, "un reveil muet n'est pas un choix de l'operateur")
+
+    def test_an_http_status_at_the_wake_is_not_a_mute_site(self):
+        # 503 est une REPONSE : le site est la, la passe juge la route comme elle est.
+        calls = []
+        code, md = run_main(statuses={"/": 503}, calls=calls)
+        self.assertEqual(code, 1, md[-800:])
+        self.assertGreater(len(calls), 1, "un statut HTTP ne coupe pas la passe")
+        self.assertIn("Réveil : `GET /` → **503 en", md)
+        self.assertNotIn("réveil sans réponse HTTP", md)
+
+    def test_skip_web_sends_no_wake(self):
+        calls = []
+        code, md = run_main(argv_extra=["--skip-web"], calls=calls)
+        self.assertEqual(code, 0, md[-800:])
+        self.assertEqual(calls, [], "l'etape 5 n'envoie aucune requete, reveil compris")
+        self.assertIn("- Réveil : non demandé (`--skip-web`).", md)
 
 
 if __name__ == "__main__":

@@ -32,7 +32,7 @@
 | **#1049** | web.config versionné = panne totale | **phase 2, au moment de la bascule** : le site servi vivra dans une **copie hors dépôt**. ⚠️ **Mesuré le 22/11 (P23-05)** : la **préprod est encore servie par le checkout git**, pas par une copie — le « comme la préprod depuis 08/10 » était faux (corrigé à l'étape 5 et au §8). Phase 1 faite (fichier sorti du dépôt, 2 tests CI) | **web2** | le dépôt ne peut plus écrire sur le `web.config` vivant ; discriminateur = les 4 comptes de l'étape 5 (rendus par le script du jour J) + taille 83 211 o | n/a — structurel ; la panne existe seulement si le fichier versionné atteint un webroot |
 | **#1091** | Compte stocké en mot de passe **Clear** (depuis 2020) | **Étape retirée du déroulé** (décision ai-01 du 14/11, motif au canal privé — cf. §7). La ligne reste comme trace ; le geste Clear → Hashed n'est plus exécuté. ⛔ aucune valeur, empreinte ou sel ne transite par une issue, un commit, le dashboard ou un fichier | — | n/a — étape retirée | ⛔ **jamais** de retour à Clear |
 | **#1502** | Règles du site divergé des cartes (4-10 vs 3-10 joueurs) | couvert par la **ré-injection EAV courant** (cf. #457) : la prod ne peut pas servir le corpus tel quel | **web2** (injection prod) ; po-2023 (script + essai à blanc préprod, mesures) | compteurs « de 3 à 10 joueurs » ×5 formes sur `/Règles`, par langue ; cf. garde `RulesExplorerD1PlayerCountGuardTests` | snapshot pré-injection, transaction gardée, rollback SQL borné |
-| **#457** | Localiser le site (8 langues) | se **ferme à la mise en ligne** : l'injection EAV courant + les packs de langue + l'activation portail + les **dimensions 2sxc** (étape 11 bis, P23-25) installés ce jour-là. ⚠️ **Préalable app 48, à chaque copie prod→staging** (arbitrage ai-01 du 22/11, option d) : la prod porte les 2 coquilles typographiques (`&nbsp;` → espace) de la cellule fr du formulaire newsletter (`FB8362B1-…`/Html, ValueId 23452) — réaligner le staging **avant le dry-run v4** (sinon refus G2) : sha `491ff712c7fb8c9b` → `da87843404410f1a` (13 303 → 13 314 o), `@@ROWCOUNT`=1, backup + inverse écrits **avant** le geste — geste détaillé : `ai01-arbitrage-app48-20261122`. Puis **dériver la copie d'exécution** du registre avant le dry-run v4 : `python tools/458-derive-run-registry.py <registre officiel> <sortie>` (arbitrage ai-01 du 22/11, option iii) — 673 lignes → **22 retirées / 651 conservées**, sortie sha `92bf1e0624256e7f…`, **1 166 864 o** ; l'outil refuse toute entrée qui n'est pas l'officiel (empreinte d'entrée `277aac83e0b71e64`) et la CI (`eav-derive-run-registry`) épingle l'empreinte de sortie, si bien qu'une dérive **légitime** du registre rougit **avant** d'atteindre le staging — outil et test se mettent à jour ensemble, même commit. ⚠️ **Puis les compteurs de joueurs, seconde étape de la même famille, elle aussi à chaque copie prod→staging** (arbitrage ai-01 du 23/11, **P23-31**) : ils viennent de `MinNbPlayers`/`MaxNbPlayers` (type **Number**, non traduisibles, donc **exclus du registre par construction** — aucune réinjection ne les transporte) et la **carte imprimée fait foi** : *L'école des menteurs* **4 → 3**, *Le Bingo* **10 → 20** (École et Bingo : lecture seule préalable, **une** valeur servie par attribut attendue, STOP sinon ; sauvegarde + inverse écrits avant ; `@@ROWCOUNT`=1 ; relecture in-tx ; COMMIT ; recyclage mtime). Preuve : intervalles servis `{1→8, 1→20, 2→8, 3→10}` sur les 8 routes `/{lang}/Règles`, parlote en forme simple (« 4 »). ⚠️ Si la parlote rend « de 4 à 4 », le gabarit servi est celui de la prod — **STOP** et poster le sha256 du `_RulesExplorer_RuleList.cshtml` servi à côté de celui du blob master (`7961b591…`) | **web2** (geste prod) ; po-2023 (script/essai + relevé préprod) ; po-2024 (packs) | sondes visa 21/21 par langue ; sélecteur 8 langues ; témoins fr intacts ; dims résolues sans REFUS au dry-run ; app 48 alignée (relecture sha `da878434…`) | désinstall langpack **sans** « Delete Files » (R8) ; DELETE dims par id mesuré (inverse écrit avant COMMIT) ; rollback EAV borné |
+| **#457** | Localiser le site (8 langues) | se **ferme à la mise en ligne** : l'injection EAV courant + les packs de langue + l'activation portail + les **dimensions 2sxc** (étape 11 bis, P23-25) installés ce jour-là. ⚠️ **Préalable app 48, à chaque copie prod→staging** (arbitrage ai-01 du 22/11, option d) : la prod porte les 2 coquilles typographiques (`&nbsp;` → espace) de la cellule fr du formulaire newsletter (`FB8362B1-…`/Html, ValueId 23452) — réaligner le staging **avant le dry-run v4** (sinon refus G2) : sha `491ff712c7fb8c9b` → `da87843404410f1a` (13 303 → 13 314 o), `@@ROWCOUNT`=1, backup + inverse écrits **avant** le geste — geste détaillé : `ai01-arbitrage-app48-20261122`. Puis **dériver la copie d'exécution** du registre avant le dry-run v4 : `python tools/458-derive-run-registry.py <registre officiel> <sortie>` (arbitrage ai-01 du 22/11, option iii) — 673 lignes → **22 retirées / 651 conservées**, sortie sha `a130a663b9374655…`, **1 166 868 o** (re-mesuré par P24-32 le 24/11 : 3 cellules typographiques corrigées au registre, +4 o ; avant : `92bf1e06…` / 1 166 864 o) ; l'outil refuse toute entrée qui n'est pas l'officiel (empreinte d'entrée `fc23b9a748ce3758`) et la CI (`eav-derive-run-registry`) épingle l'empreinte de sortie, si bien qu'une dérive **légitime** du registre rougit **avant** d'atteindre le staging — outil et test se mettent à jour ensemble, même commit. ⚠️ **Puis les compteurs de joueurs, seconde étape de la même famille, elle aussi à chaque copie prod→staging** (arbitrage ai-01 du 23/11, **P23-31**) : ils viennent de `MinNbPlayers`/`MaxNbPlayers` (type **Number**, non traduisibles, donc **exclus du registre par construction** — aucune réinjection ne les transporte) et la **carte imprimée fait foi** : *L'école des menteurs* **4 → 3**, *Le Bingo* **10 → 20** (École et Bingo : lecture seule préalable, **une** valeur servie par attribut attendue, STOP sinon ; sauvegarde + inverse écrits avant ; `@@ROWCOUNT`=1 ; relecture in-tx ; COMMIT ; recyclage mtime). Preuve : intervalles servis `{1→8, 1→20, 2→8, 3→10}` sur les 8 routes `/{lang}/Règles`, parlote en forme simple (« 4 »). ⚠️ Si la parlote rend « de 4 à 4 », le gabarit servi est celui de la prod — **STOP** et poster le sha256 du `_RulesExplorer_RuleList.cshtml` servi à côté de celui du blob master (`7961b591…`) | **web2** (geste prod) ; po-2023 (script/essai + relevé préprod) ; po-2024 (packs) | sondes visa 21/21 par langue ; sélecteur 8 langues ; témoins fr intacts ; dims résolues sans REFUS au dry-run ; app 48 alignée (relecture sha `da878434…`) | désinstall langpack **sans** « Delete Files » (R8) ; DELETE dims par id mesuré (inverse écrit avant COMMIT) ; rollback EAV borné |
 | **#135** | Article d'actus + tous les téléchargements | **jour de la mise en ligne** : publier l'article News annonçant la version + rafraîchir tous les liens de téléchargement vers la release #134 ; périmètre mesuré en amont (brouillons + relevé des liens servis) | **web2** (édition + lien prod) ; ai-01 (texte/verdict) ; po-2023 (mesures) | chaque lien servi pointe vers un asset publié de #134 ; `Print.Play` = nom réécrit par GitHub | article = brouillon tant que non annoncé ; liens = tableau de remplacement à blanc |
 | **#133** | Publication OWL — **option A** (ai-01, 05/11) | **Répétition faite en préprod le 05/11** : les deux blobs du dépôt déployés à la racine du webroot, **sous les noms que les IRI déclarent** (`argumentum_fallacies.owl`, `argumentum_virtues.owl`) — ⚠️ le fichier du dépôt s'appelle `argumentum.owl`, l'IRI non : la cible est le **nom servi**, l'option A n'est pas un renommage. L'artefact remplacé (4 795 192 o, non suivi, mtime 28/08) était **périmé** et `virtues` **absent (404)** | **web2** (même geste en prod) ; po-2023 (répétition préprod, faite) ; ai-01 (verdict) | `HTTP 200` **et** taille exacte **et** `sha256` égal au blob du dépôt **et** `Content-Type: application/xml` (§6, mesuré 21/11) sur les deux URLs (préprod : 5 993 701 / 1 094 832, mesuré 05/11) ; puis lien depuis la **page des téléchargements** (#135, 8 langues — décision ai-01 du 05/11 : la page Argumentation n'est pas modifiée) | restaurer la **copie de préservation** de l'artefact 4,8 Mo (suivi nulle part = non régénérable ici) |
 | **#136** | Entités taxonomie 2sxc | état **re-mesuré le 05/11** ([c.6662268609](https://github.com/ArgumentumGames/Argumentum/issues/136#issuecomment-6662268609)) : `Game Rule` (ct **377**, app **60**) = **5 entités** publiées, `Title` 5/5 dans les **8 cultures** — inventaire identique au 30/10, **l'import d'essai n'a pas été exécuté**. ⛔ La « couverture complète par attribut » de la v1 était **fausse** : le rapport du 30/10 n'a mesuré que `Title` et dit lui-même que l'audit par attribut **n'a pas été exécuté**. L'export prêt = **128 entités = 16 par culture × 8** (#2050) — et « 16 » y est un compte d'**entités, pas de règles** ([#2075](https://github.com/ArgumentumGames/Argumentum/issues/2075), qui tranche) : par culture, la **racine `Rules`** + `Rules_01…Rules_15`, quand le CSV porte **15 lignes plates** (`Dnn2sxcConfig.cs:256`, revérifié 22/11) — la formulation « 16 » de [#2157](https://github.com/ArgumentumGames/Argumentum/issues/2157) lit ce compte d'entités comme un compte de règles : **c'est la note contredite**. La base porte la **fiche de jeu** (`Game Rule`, 5), l'export le **texte par ligne CSV** — ni redondants, ni équivalents ; l'import **n'est pas nécessaire au rendu actuel** et **créerait un 14ᵉ content-type** (app 60 : 13, aucun `Rule`). Import **post-mise en ligne** : il **change une page relue** (fiches plus nombreuses qu'aujourd'hui — compte servi non mesuré, l'import n'ayant jamais tourné) | ai-01 | `/Règles` fr sert **5 fiches** = les 5 entités ; ⛔ ne pas écrire « rendu = corpus CSV » (15 lignes au CSV ; 16 entités/culture en comptant la racine) | n/a (constat) ou rollback EAV |
@@ -177,6 +177,16 @@ C1, ré-injection EAV, packs de langue, article et liens #135, fichiers E12, wra
     (`tools/458-eav-reinject.py`, paquet P23-24 v4) **refuse** toute dimension de langue absente de
     la zone des apps cibles (REFUS explicite, pas un skip) : sans les dimensions, le dry-run même
     ne passe pas. Exécuter dans l'ordre **11 → 11 bis → 10**.
+    ⚠️ **Cellule en conflit** (les deux côtés pleins et différents — cas de P24-32 : trois
+    cellules d'un app corrigées en typographie au registre, que la base porte encore dans
+    leur ancienne valeur) : l'outil ne l'écrit **pas** de lui-même. Elle ne s'écrit que
+    **nommée, une à une** : `--force GUID-complet:CHAMP:LANGUE` (cumulable ; un préfixe de
+    GUID est refusé). Le dry-run liste chaque écrasement nommé avec ses deux longueurs, la
+    valeur d'avant est sauvegardée avec le plan (`reinject-force-prior-*.json`), et
+    l'écriture exige, dans la transaction, que la rangée porte encore exactement cette
+    valeur — sinon ROLLBACK, rien n'est écrasé. Tout autre conflit refuse l'apply, comme
+    avant. Le mode à blanc de W2-11 **doit donc montrer ces cellules en `CONFLICT`** sans
+    `--force` : c'est l'état attendu, pas un écart de la PR.
 11. **Langpacks installés** (R8) : `Install/Install.aspx?mode=installresources` restauré du zip
     d'upgrade, **quarantaine des strays** `Install/*/` (le trigger installe tout), install = crée la
     langue host, **n'active pas le portail** ; contrôle 0 écart `git status` avant/après.
@@ -286,6 +296,14 @@ C1, ré-injection EAV, packs de langue, article et liens #135, fichiers E12, wra
     python tools/1105-cutover-day-controls.py --base-url https://www.argumentum.games `
         --label prod-jour-j --out docs/quality/controles-jour-j-prod-<date>.md
     ```
+
+    ⚠️ **Site endormi** : une requête d'**éveil** précède la passe, avec sa propre borne
+    (`--wake-max-time`, défaut **240 s** — mesuré 93 à 107 s sur la prod endormie le
+    24/11, rapporté par web2 ; la borne de passe reste 60 s). Le rapport la nomme
+    (« Réveil : `GET /` → 200 en N s »). **Aucune** réponse HTTP dans cette borne ⇒
+    contrôles 1 à 3 **non mesurés**, code **1**, et la passe ne tourne pas : une borne
+    au lieu de 42 requêtes. Un statut HTTP à l'éveil (même 503) n'est **pas** ce cas —
+    le site répond, la passe le juge.
 
     ⚠️ **Le journal lu est celui de la machine qui exécute le script**, et le script nomme
     désormais cette machine dans sa sortie (`machine dont le journal est lu : …`). Le jour J,
@@ -660,3 +678,54 @@ Ces portes mesurent le jour J **de cette bascule**, sur les hôtes et les bases 
 20:40Z. Elles ne sont pas une recette générale : une autre bascule re-mesure ses propres valeurs. La
 mesure de surface d'écriture de G1 (851 fichiers) vient de la **préprod**, pas du staging — elle établit
 la forme du droit (racine, hérité), pas un état de la prod.
+
+## 10. Révision du 2026-11-24 (P23-37) — ce que la bascule a appris
+
+Sources : les posts dashboard `web2-audience-reparee-20261124` (recopie des deux réglages d'audience, 10:00Z) et
+`web2-acme-releve-selfhosting-20261124` (relevé ACME, 10:04Z) ; le post de cause `web2-jour-j-p2-cause-20261124`
+(05:16Z), lu dans l'archive `workspace-Argumentum-2026-11-24T10-07-46.md` ; le bloc d'état tenu par ai-01
+(2026-11-24T20:40Z). **Les deux premiers posts n'ont pas pu être relus à la source depuis po-2023** : l'archive
+qui les contient (`…T20-13-44.md`, annoncée par la condensation de 20:13Z) ne figure pas dans les 65 archives que
+`read_archive` liste sur ce siège. Leurs chiffres sont donc cités **d'après le résumé de condensation de 20:13Z**,
+qui les cite lui-même, et recoupés partout où master permet de mesurer. Les empreintes sont recopiées sous leur
+forme abrégée (début…fin). Aucune valeur de réglage n'est inscrite ici : noms, tailles et empreintes seulement.
+
+### 10.1 — Les deux réglages d'audience du portail ne voyagent ni par git ni par la base
+
+- **Ce qui manquait après le swap (04:56Z).** `Portals\1\GoogleAnalytics.config` (607 o, sha256 `7853E378…76FC6`)
+  et `Portals\1\GoogleTagManager.config` (463 o, sha256 `83ED563A…8FF9`) sont dans l'ancien arbre, `wwwroot`. Ils
+  ne sont **pas suivis par git**, et l'arbre copié ne les avait pas : `staging-1041\DNNPlatform\Portals\1\` ne
+  portait aucun `*.config` (web2, 05:16Z). Ils ne sont pas en base non plus : le scan des colonnes texte des deux
+  bases rend 0 ligne. Les connecteurs existent des deux côtés (`DesktopModules\Connectors\GoogleTagManager\`,
+  `GoogleAnalytics4\`) : c'est leur **réglage par portail** qui manquait, pas le module.
+- **Effet mesuré.** Les 8 accueils servis ne portaient plus aucune balise de mesure d'audience — 0 occurrence du
+  marqueur de la sonde P2 (§9), contre 2 sur l'ancien site. C'était la seule régression fonctionnelle de la
+  bascule, établie par deux instruments (web2, ai-01).
+- **Réparation.** GO d'ai-01 à 05:40Z sous bornes (lecture d'abord ; recopie **additive**, fichier par fichier ;
+  jamais d'écrasement ; `wwwroot` seulement lu ; inverse = la suppression des deux fichiers, nommés un par un).
+  Exécutée par web2 à 10:00Z : `File.Copy(overwrite:false)`, sans recyclage de pool, sans purge de cache, sans
+  retouche d'ACL. Contrôle : 8/8 accueils en 200, les deux balises présentes (`web2-audience-reparee-20261124`) ;
+  re-mesuré par ai-01 à 12:30Z et par web2 à 14:48Z et 19:47Z.
+- **Piège d'instrument.** Le fichier du connecteur, `DesktopModules\Connectors\GoogleTagManager\GoogleTagManager.config`,
+  **est** suivi sur master. Un `git ls-files | grep GoogleTagManager.config` le trouve et ne prouve rien sur le
+  fichier du portail. Mesuré le 24/11 sur `0543ab69` : sous `DNNPlatform/Portals/1`, le seul `*.config` suivi est
+  `2sxc/web.config` ; `git log --all` sur les deux chemins de portail ne rend aucun commit.
+- **Pour le prochain changement d'arbre servi.** Ces deux fichiers se **listent et se recopient avec le portail**.
+  Ils ne suivent ni git, ni une copie d'arbre, ni la base ; et leur absence ne casse aucune page — seule la sonde
+  d'audience (P2) la voit.
+
+### 10.2 — Le renouvellement du certificat est en `SelfHosting` : aucun `web.config` enfant sous `.well-known`
+
+- **Mesure (web2, 10:04Z, `web2-acme-releve-selfhosting-20261124`).** `wacs.exe --list` : exit 0. Certificat de
+  `argumentum.games` : dernier succès le 07/11/2026 à 19:52:04Z, prochaine échéance le 01/01/2027, validation
+  **`SelfHosting`** (journal du 07/11, lignes 255, 503 et 552). Empreinte du certificat lié au 443 :
+  `47633888C89D7F250F68846A699B2AAB1134969C`, valide du 07/11/2026 18:53:54Z au 05/02/2027.
+- **Conséquence.** `.well-known\acme-challenge\web.config` est **absent des deux arbres** (`wwwroot` comme
+  `staging-1041\DNNPlatform`), et ce n'est pas un défaut : en `SelfHosting`, win-acme répond lui-même à la
+  validation depuis son propre processus, sans fichier pris dans l'arbre du site. La condition de recopie n'était
+  pas remplie : **aucun témoin posé, aucun geste** (bloc d'état ai-01 : « ACME, aucun geste »).
+- **Ce qui tient toujours.** Le fichier reste suivi sur master (`05f54ee8d`, 2026-07-25 : 12 lignes, zéro secret) et
+  reste requis là où win-acme répond au HTTP-01 par des fichiers déposés sous `.well-known` — le mécanisme que
+  décrit `go-live-turnkey-checklist.md` et que `machinekey-rotation-scrub-runbook.md` a conservé. Sa présence est une
+  propriété de la **méthode de validation de l'hôte**, pas de l'arbre DNN : la lire au `wacs --list` de l'hôte avant
+  de poser le fichier, ou de juger son absence comme un défaut.
