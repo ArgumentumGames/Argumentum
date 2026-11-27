@@ -2447,6 +2447,17 @@ namespace Argumentum.AssetConverter.VisualTests
         // whole line of its first row, and only when that makes the text whole. On 512x360, `fr`:
         // 170 sheets owe it their whole text in 143, 167 in 124.
         //
+        // The link's size is 3 vh — the description's (3.2 vh), under the sub-family's (3.4 vh) —
+        // and not the family label's (5.6 vh), which was measured and set aside (Chromium 124, the
+        // four faces loaded): at 512x360 the `fr` label holds on one line only up to 14.5 px
+        // (4.03 vh, its box at 86.3 % of the card) and `ar` up to 17 px. Declared at 5.6 vh the
+        // link falls to the 15 px floor of its 20 px target and still wraps — on all 1361
+        // link-bearing sheets — so 747 sheets cut their text in `fr` (452 at 3 vh), up to 178 px
+        // hidden, the link's imprint at 15.23 % of the card. At 1280x900 the horizontal pass caps
+        // it at 33.4 px on DARVO (wider than the description) for 7.15 % to 9.06 % of the card,
+        // against 5.65 % to 7.56 % at 3 vh, with the same coverage: no sheet cuts its text in
+        // either, and 3 do at 640x450 in both (36 px hidden against 35).
+        //
         // And the state these contracts are read in is forced, not hoped for: the four faces come
         // from a CDN and are requested lazily, so the same sheet reads 31 px hidden with them
         // loaded, 42 px read before they arrive and 54 px with the CDN unreachable (Chromium 124).

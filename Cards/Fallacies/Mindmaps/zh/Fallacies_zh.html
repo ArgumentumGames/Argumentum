@@ -420,9 +420,16 @@
            CSS court il passe sur deux lignes et remplit la section image — 146,7 x 56 px, soit
            26,7 % de la fiche, sur les 1361 fiches a lien a 512x360 (une fenetre de 1280x900 pixels
            sur un ecran a 250 %), et le texte passe en defilement. Il suit desormais la fiche :
-           corps en vh au tiers du libelle de famille (3 vh, entre `sous_famille` 3,4 vh et
-           `desc_fr` 3,2 vh), une seule ligne, et il participe aux deux passes d'ajustement
-           (horizontale puis fitCard). */
+           corps en vh — 3 vh, la taille de `desc_fr` (3,2 vh) sous celle de `sous_famille`
+           (3,4 vh) — une seule ligne, et il participe aux deux passes d'ajustement (horizontale
+           puis fitCard). « De l'ordre du libelle de famille » (5,6 vh) a ete mesure puis ecarte :
+           a 512x360 le libelle `fr` ne tient sur une ligne que jusqu'a 14,5 px (4,03 vh, boite a
+           86,3 % de la fiche) et `ar` jusqu'a 17 px ; declare a 5,6 vh, le lien s'arrete au
+           plancher de sa cible (15 px) puis passe sur deux lignes sur les 1361 fiches, 747 fiches
+           coupent leur texte (contre 452 a 3 vh), jusqu'a 178 px caches, empreinte 15,23 % ; en
+           1280x900 la passe horizontale le ramene a 33,4 px (DARVO), plus gros que la description,
+           pour 7,15 a 9,06 % contre 5,65 a 7,56 % a 3 vh, a couverture identique (aucune fiche ne
+           coupe, 3 en 640x450 dans les deux cas, 36 px contre 35). */
         #externalLink {
             display: flex;
             justify-content: center;
