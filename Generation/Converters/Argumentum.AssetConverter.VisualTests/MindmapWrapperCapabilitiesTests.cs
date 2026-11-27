@@ -174,13 +174,17 @@ namespace Argumentum.AssetConverter.VisualTests
         private static readonly string ExternalTemplatePath =
             Path.Combine(RepoRoot, "Cards", "Fallacies", "Mindmaps", "external.html");
 
-        /// <summary>Same page, at an explicit viewport — the #2400 controls run desktop AND phone.</summary>
-        private async Task<IPage> OpenPageAtAsync(string wrapperPath, int width, int height)
+        /// <summary>Same page, at an explicit viewport — the #2400 controls run desktop AND phone.
+        /// <paramref name="beforeNavigate"/> runs on the fresh page before any of its requests
+        /// leaves: Cap27 installs there the route that holds the document's web fonts back.</summary>
+        private async Task<IPage> OpenPageAtAsync(string wrapperPath, int width, int height,
+            Func<IPage, Task>? beforeNavigate = null)
         {
             var page = await _browser.NewPageAsync(new BrowserNewPageOptions
             {
                 ViewportSize = new ViewportSize { Width = width, Height = height }
             });
+            if (beforeNavigate != null) await beforeNavigate(page);
             await page.GotoAsync("file:///" + wrapperPath.Replace('\\', '/'));
             await page.WaitForLoadStateAsync(LoadState.Load);
             return page;
@@ -193,8 +197,11 @@ namespace Argumentum.AssetConverter.VisualTests
         /// — the object the wrapper's own JS reads — is not reachable from the page; a test
         /// measuring it there would measure the harness, not the wrapper. The route answers the
         /// wrapper and its SVG and leaves everything else alone.
+        /// <paramref name="beforeNavigate"/> runs on the fresh page before the route below and
+        /// before the navigation (Cap27).
         /// </summary>
-        private async Task<IPage> OpenExternalAsync(string lang, string svgFileName, int width, int height)
+        private async Task<IPage> OpenExternalAsync(string lang, string svgFileName, int width, int height,
+            Func<IPage, Task>? beforeNavigate = null)
         {
             Assert.True(File.Exists(ExternalTemplatePath), $"Missing template: {ExternalTemplatePath}");
             var template = await File.ReadAllTextAsync(ExternalTemplatePath);
@@ -211,6 +218,7 @@ namespace Argumentum.AssetConverter.VisualTests
             {
                 ViewportSize = new ViewportSize { Width = width, Height = height }
             });
+            if (beforeNavigate != null) await beforeNavigate(page);
             const string origin = "http://mm.test";
             await page.RouteAsync(origin + "/**", async route =>
             {
@@ -286,11 +294,15 @@ namespace Argumentum.AssetConverter.VisualTests
             //              a third the busiest sheets, the rest evenly spaced over document order.
             //              Opening all 1408 sheets per case cost the CI ~8 min on every pull
             //              request (#2403), so the long-title stress takes a declared sample and
-            //              proves below that it kept the extremes it was chosen for.
+            //              proves below that it kept the extremes it was chosen for;
+            //   noTextCut — judge the text even when its frame scrolls (Cap20/Cap21 only: their
+            //              titles are natural, so a scrolling frame there is a defect; Cap25
+            //              lengthens titles on purpose and keeps the last-resort scroll).
             const opt = arg || {};
             const minChars = opt.minChars || 0;
             const only = opt.only || null;
             const sample = opt.sample > 0 ? Math.floor(opt.sample) : 0;
+            const noTextCut = !!opt.noTextCut;
             const host = document.getElementById('svgObject');
             const nodeDoc = (host && host.contentDocument) ? host.contentDocument : document;
             const all = Array.from(nodeDoc.querySelectorAll('g.node'));
@@ -298,9 +310,20 @@ namespace Argumentum.AssetConverter.VisualTests
             const card = document.querySelector('card');
             const q = (s) => card.querySelector(s);
             const rel = q('.relations'), foot = q('.footer'), body = q('.body'),
-                  texte = q('.texte'), img = q('.imageSection');
+                  texte = q('.texte'), img = q('.imageSection'),
+                  desc = q('.desc_fr'), exemple = q('.exemple_fr');
             const link = document.getElementById('externalLink');
             const R = (el) => el.getBoundingClientRect();
+            // The TEXT area of a block, its own padding removed: the footer badge sits on the
+            // family-coloured band's corner by design, and only a glyph under it is a defect.
+            const contentRect = (el) => {
+                const r = R(el), cs = getComputedStyle(el);
+                const pl = parseFloat(cs.paddingLeft) || 0, pr = parseFloat(cs.paddingRight) || 0,
+                      pt = parseFloat(cs.paddingTop) || 0, pb = parseFloat(cs.paddingBottom) || 0;
+                return { left: r.left + pl, right: r.right - pr, top: r.top + pt, bottom: r.bottom - pb };
+            };
+            const overlap = (a, b) => Math.min(a.right, b.right) > Math.max(a.left, b.left) + 0.5
+                && Math.min(a.bottom, b.bottom) > Math.max(a.top, b.top) + 0.5;
             const out = { all: all.length, nodes: 0, withRelations: 0, withLink: 0,
                           withoutLink: 0, violations: [], tally: {},
                           minTitleChars: Infinity, maxTitleChars: 0 };
@@ -370,11 +393,24 @@ namespace Argumentum.AssetConverter.VisualTests
                     NOTE('titleClipped', key);
                 if (trc.top < ir.top - tol || trc.bottom > ir.bottom + tol) NOTE('titleOutsideImageSection', key);
                 if (hr.top < cr.top - tol || hr.bottom > cr.bottom + tol) NOTE('headerOutsideCard', key);
+                // #2403 reserve 1 — the badge must clear the TEXT, not only the boxes: it overlaps
+                // the example's box on 703 of 1408 sheets, which is that block's own padding corner.
+                // Measured on the fix: 0 sheet where a glyph is under the badge (fr, ar).
+                const footOverText = (desc && getComputedStyle(desc).display !== 'none'
+                                      && overlap(contentRect(desc), fr))
+                    || (exemple && getComputedStyle(exemple).display !== 'none'
+                                      && overlap(contentRect(exemple), fr));
+                if (footOverText) NOTE('footerOverText', key);
                 const tchars = (title.textContent || '').length;
                 if (tchars > out.maxTitleChars) out.maxTitleChars = tchars;
                 if (tchars < out.minTitleChars) out.minTitleChars = tchars;
-                if (!texte.classList.contains('mm-scroll') && texte.scrollHeight > texte.clientHeight + 1)
-                    NOTE('textClipped', key);
+                // #2403 — a scrolling frame that cuts the text does not mean the sheet fits: the sweep
+                // used to count it as clean, so a frame showing 128 of 186 px read as green. With
+                // `noTextCut` (natural titles) the frame's own overflow is a violation; otherwise
+                // only a frame clipped by the card is (Cap25 lengthens titles on purpose).
+                const textOverflows = texte.scrollHeight > texte.clientHeight + 1;
+                if (textOverflows && (noTextCut || !texte.classList.contains('mm-scroll')))
+                    NOTE('textClipped', key + (texte.classList.contains('mm-scroll') ? '(scroll)' : ''));
 
                 if (rel.getClientRects().length > 0) {
                     out.withRelations++;
@@ -393,6 +429,13 @@ namespace Argumentum.AssetConverter.VisualTests
                     if (rows && visibleRows < 1)
                         NOTE('relationsNoWholeRow', key + '(' + rows + 'rows/' + Math.round(rel.clientHeight) + 'px)');
                     if (rows && !allRowsVisible && !scrollable) NOTE('relationsClippedNotScrollable', key);
+                    // #2403 reserve 2 — in a right-to-left sheet the rows must start at the
+                    // inline start (the right): `text-align: left` pushed them to the far side.
+                    if (rows) {
+                        const r0 = getComputedStyle(rel.querySelector('.mm-relation'));
+                        if (r0.direction === 'rtl' && r0.textAlign !== 'start')
+                            NOTE('relationRowsNotAtInlineStart', key);
+                    }
                 }
 
                 const nodeLink = n.getAttribute('link');
@@ -407,8 +450,29 @@ namespace Argumentum.AssetConverter.VisualTests
                         if (!(link.textContent || '').trim()) NOTE('linkWithoutText', key);
                         if (!href || href === 'null' || href === '#') NOTE('linkDeadHref', key);
                         else if (href !== nodeLink) NOTE('linkWrongDestination', key);
-                        if (!(lr.width >= 40 && lr.height >= 20)) NOTE('linkTooSmall', key);
+                        // A target, not a 0x0 anchor. The height floor follows the viewport (20 px
+                        // at 900 px tall, 12.6 px at 450): a fixed 20 px floor would call the
+                        // pre-#2400 fixed-px link correct and its vh-sized replacement too
+                        // small on a short viewport.
+                        const minTargetH = Math.min(20, 0.028 * window.innerHeight);
+                        if (!(lr.width >= 40 && lr.height >= minTargetH - 0.5)) NOTE('linkTooSmall', key);
                         if (lr.top < ir.top - tol || lr.bottom > ir.bottom + tol) NOTE('linkOutsideImageSection', key);
+                        // #2403 — the link follows the sheet: ONE line, and an imprint of at most
+                        // 9 % of the card's height (box + margins). Pre-fix (6c2505d1), one line at
+                        // 10.8 % on a CSS 1280x900 viewport, but two lines on 1361 of 1361 link-bearing
+                        // sheets at 26.7 % once the sheet is short (CSS 512x360, i.e. a 1280x900
+                        // window on a 250 % display). Post-fix: one line on every link-bearing
+                        // sheet, 5.7 % to 7.6 %, fr and ar, 512x360 to 1280x900.
+                        // The line count is read from the TEXT RANGE, not from the box: the box
+                        // carries the padding, so at the 10 px floor (Cap25's long titles) a
+                        // one-line link is 20.5 px tall against a 18.4 px bound and read as two
+                        // lines on 194 of 197 sheets — measured, false.
+                        const rngT = document.createRange();
+                        rngT.selectNodeContents(link);
+                        if (rngT.getClientRects().length > 1) NOTE('linkOnTwoLines', key);
+                        const lmt = parseFloat(ls.marginTop) || 0, lmb = parseFloat(ls.marginBottom) || 0;
+                        if (lr.height + lmt + lmb > 0.09 * cr.height) NOTE('linkFootprintTooTall', key);
+                        if (lr.width > ir.width + tol) NOTE('linkWiderThanImageSection', key);
                     }
                 } else {
                     out.withoutLink++;
@@ -1900,7 +1964,7 @@ namespace Argumentum.AssetConverter.VisualTests
             try
             {
                 await WaitForViewportSettledAsync(page);
-                var sweep = await page.EvaluateAsync<string[]>(CardFitSweepJs);
+                var sweep = await page.EvaluateAsync<string[]>(CardFitSweepJs, new { noTextCut = true });
                 AssertSweepClean(sweep, lang, "inline", width, height);
             }
             finally
@@ -1920,7 +1984,7 @@ namespace Argumentum.AssetConverter.VisualTests
             try
             {
                 await WaitForExternalNavigationAsync(page);
-                var sweep = await page.EvaluateAsync<string[]>(CardFitSweepJs);
+                var sweep = await page.EvaluateAsync<string[]>(CardFitSweepJs, new { noTextCut = true });
                 AssertSweepClean(sweep, lang, "ext", width, height);
             }
             finally
@@ -2347,6 +2411,670 @@ namespace Argumentum.AssetConverter.VisualTests
             {
                 await page.CloseAsync();
             }
+        }
+
+        // ===== #2403 — second pass of #2400: the link follows the sheet, and a cut text is a defect =====
+        //
+        // Verdict of ai-01 on 6c2505d1: the link had become "the largest element of the sheet" —
+        // 16 px fixed in a sheet typeset in vh — and the text paid for it; and Cap20..Cap25 counted
+        // a scrolling frame that cuts the text as "the sheet fits".
+        //
+        // The verdict's figures are read on a CSS 512x360 viewport — a 1280x900 window on a display
+        // scaled at 250 %: there the pre-#2403 link, two lines, fills the image section at
+        // 146.7 x 56 CSS px, i.e. 366.8 x 140 device px (the verdict reads "about 366 x 140"), and
+        // DARVO's text frame shows 130 of its 193 px (the verdict: 128 of 186). Measured on
+        // 6c2505d1, `fr`, 1408 sheets: at a CSS 640x450 the link is on two lines on 1361 of 1361
+        // link-bearing sheets (26.7 % of the card) and 392 sheets cut their text; at a CSS 1280x900
+        // it is on one line (10.8 %) and no sheet does.
+        //
+        // The fix, measured twice on the same bytes with the four DINPro faces loaded — Chromium
+        // 143 (the reviewer's browser) and the Chromium 124 of the suite's own driver, `fr` and
+        // `ar`, 512x360 to 1280x900, 1408 sheets per run: the link is on one line on all 1361
+        // link-bearing sheets in both; its imprint is 5.65 % to 7.56 % of the card in both; no
+        // sheet cuts its text at 1280x900 in either; at 640x450, 3 sheets cut theirs in `fr` and
+        // 0 in `ar` in both, at most 50 px hidden in 143 (#pk=200) and 35 px in 124 (#pk=1300).
+        // At 512x360 the card is 288 px tall: 450 sheets in `fr` and 31 in `ar` still cut their
+        // text there in 143 (452 and 31 in 124), at the 10 px floor of the type — up to 198 px
+        // hidden (#pk=200, `fr`) in 143 and 156 px in 124, more than two lines on 406 in 143 and
+        // 344 in 124 — a residual stated to the reviewer, not a pass. The two browsers agree on
+        // which sheets owe their whole text to a yielded relations frame and on the height that
+        // frame is given (#pk=1084, 7 relations, 25.19 px, in both); they differ on the counts,
+        // never on the link's geometry.
+        //
+        // What gives the text its room, in the template: the link follows the sheet (vh-sized,
+        // one line, a floor of its own), the badge is the width of the border band (2.8 vh), and
+        // the relations frame yields height to the text before the text scrolls — down to one
+        // whole line of its first row, and only when that makes the text whole. On 512x360, `fr`:
+        // 170 sheets owe it their whole text in 143, 167 in 124.
+        //
+        // And the state these contracts are read in is forced, not hoped for: the four faces come
+        // from a CDN and are requested lazily, so the same sheet reads 31 px hidden with them
+        // loaded, 42 px read before they arrive and 54 px with the CDN unreachable (Chromium 124).
+        // Cap26 loads them first and fails by name if one cannot be had; Cap27 walks the reader
+        // who clicks first — see the cold-document control at the end of this class.
+        //
+        // Three sheets, named by the verdict and picked from the corpus — never a hardcoded pk.
+
+        /// <summary>The label of the DARVO sheet per language — an independent oracle, like the
+        /// link labels: in `ar` the acronym is transliterated, so a Latin match finds nothing
+        /// there (measured: the pick returned no sheet in `ar`). With the parenthetical removed,
+        /// compared on the normalised label.</summary>
+        private static readonly System.Collections.Generic.Dictionary<string, string> P2400DarvoLabel =
+            new System.Collections.Generic.Dictionary<string, string>
+            {
+                ["fr"] = "DARVO",
+                ["ar"] = "دارفو",
+            };
+
+        /// <summary>
+        /// Picks the three sheets the verdict names. The DARVO sheet is the one whose label, with
+        /// its parentheticals removed, is the language's label of the DARVO sheet: if the data
+        /// stops offering it the case fails loudly instead of quietly testing another sheet. The
+        /// median is taken among the sheets that carry a link (the size of the link is what is
+        /// under test), by relation count and by description length — the two measures the
+        /// verdict names.
+        /// </summary>
+        private const string P2400PickThreeSheetsJs = @"(darvoWanted) => {
+            const nav = window.__mmNav;
+            const keys = Object.keys(nav.byPk);
+            const relCount = {};
+            (nav.linkRecs || []).forEach((l) => {
+                if (l.source) relCount[l.source] = (relCount[l.source] || 0) + 1;
+                if (l.target) relCount[l.target] = (relCount[l.target] || 0) + 1;
+            });
+            const norm = (s) => (s || '').replace(/\([^)]*\)/g, '').replace(/\s+/g, ' ').trim().toUpperCase();
+            const num = (k) => (isNaN(Number(k)) ? 1e9 : Number(k));
+            const byKey = (a, b) => num(a) - num(b) || (a < b ? -1 : a > b ? 1 : 0);
+            const rels = (k) => relCount[nav.byPk[k].path] || 0;
+            let darvo = '';
+            for (const k of keys.slice().sort(byKey)) if (norm(nav.byPk[k].label) === norm(darvoWanted)) { darvo = k; break; }
+            let busiest = '', busiestRel = -1;
+            for (const k of keys.slice().sort(byKey)) {
+                if (rels(k) > busiestRel) { busiest = k; busiestRel = rels(k); }
+            }
+            const withLink = keys.filter((k) => nav.byPk[k].el.getAttribute('link'));
+            const descLen = (k) => (nav.byPk[k].el.getAttribute('description') || '').length;
+            const ranks = (fn) => {
+                const m = {};
+                withLink.slice().sort((a, b) => fn(a) - fn(b) || byKey(a, b)).forEach((k, i) => { m[k] = i; });
+                return m;
+            };
+            const rRel = ranks(rels), rDesc = ranks(descLen);
+            const mid = Math.floor(withLink.length / 2);
+            let median = '', best = Infinity;
+            for (const k of withLink.slice().sort(byKey)) {
+                const d = Math.abs(rRel[k] - mid) + Math.abs(rDesc[k] - mid);
+                if (d < best) { best = d; median = k; }
+            }
+            const L = (k) => k ? (nav.byPk[k].label || '') : '';
+            return [darvo, L(darvo), median, L(median), busiest, L(busiest),
+                    String(busiestRel), String(rels(median)), String(descLen(median)),
+                    String(withLink.length)];
+        }";
+
+        /// <summary>
+        /// Opens one sheet and reads the contracts of the verdict, without deciding anything.
+        /// Field 2 lists every frame of the sheet that scrolls because its content overflows:
+        /// the text frame (`div.texte`) and the relations frame (`div.relations`) are the two the
+        /// template can produce. Fields 11 to 13 read the relations frame: whether it still shows
+        /// a whole line of its first row (a frame that gave height back to the text can be
+        /// shorter than that row), how many pixels of text the text frame hides, and the height
+        /// the frame was given when it yielded (empty when it kept its own).
+        /// </summary>
+        private const string P2400SheetContractJs = @"(pk) => {
+            const nav = window.__mmNav;
+            nav.focusNode(nav.byPk[pk]);
+            const card = document.querySelector('card');
+            const q = (s) => card.querySelector(s);
+            const texte = q('.texte'), rel = q('.relations'), foot = q('.footer'),
+                  img = q('.imageSection'), link = document.getElementById('externalLink');
+            const R = (el) => el.getBoundingClientRect();
+            const cr = R(card), fr = R(foot), ir = R(img), lr = R(link);
+            const ls = getComputedStyle(link);
+            const shown = ls.display !== 'none' && link.getClientRects().length > 0;
+            const rngT = document.createRange();
+            rngT.selectNodeContents(link);
+            const lines = rngT.getClientRects().length;
+            const lmt = parseFloat(ls.marginTop) || 0, lmb = parseFloat(ls.marginBottom) || 0;
+            const frames = Array.from(card.querySelectorAll('*')).filter((el) => {
+                const cs = getComputedStyle(el);
+                return (cs.overflowY === 'auto' || cs.overflowY === 'scroll')
+                    && el.scrollHeight > el.clientHeight + 1;
+            }).map((el) => el.tagName.toLowerCase() + '.' +
+                (typeof el.className === 'string' ? el.className.trim().replace(/\s+/g, '.') : '') +
+                ':' + el.scrollHeight + '/' + el.clientHeight);
+            const rows = rel.querySelectorAll('.mm-relation');
+            let startGap = '';
+            if (rows.length) {
+                const rng = document.createRange();
+                rng.selectNodeContents(rows[0]);
+                const t = rng.getBoundingClientRect(), box = R(rel), cs = getComputedStyle(rel);
+                const padR = parseFloat(cs.paddingRight) || 0, padL = parseFloat(cs.paddingLeft) || 0;
+                startGap = getComputedStyle(rows[0]).direction === 'rtl'
+                    ? String(+(box.right - padR - t.right).toFixed(1))
+                    : String(+(t.left - (box.left + padL)).toFixed(1));
+            }
+            let relLine = 'relNoRows';
+            if (rows.length) {
+                const rcs = getComputedStyle(rel), rowCs = getComputedStyle(rows[0]);
+                const inner = rel.clientHeight
+                    - (parseFloat(rcs.paddingTop) || 0) - (parseFloat(rcs.paddingBottom) || 0);
+                const line = parseFloat(rowCs.lineHeight) || parseFloat(rowCs.fontSize) || 12;
+                relLine = inner >= line - 0.5 ? 'relFrameShowsALine' : 'relFrameBelowALine';
+            }
+            const content = (el) => {
+                const r = R(el), cs = getComputedStyle(el);
+                const pl = parseFloat(cs.paddingLeft) || 0, pr = parseFloat(cs.paddingRight) || 0,
+                      pt = parseFloat(cs.paddingTop) || 0, pb = parseFloat(cs.paddingBottom) || 0;
+                return { left: r.left + pl, right: r.right - pr, top: r.top + pt, bottom: r.bottom - pb };
+            };
+            const overlap = (a, b) => Math.min(a.right, b.right) > Math.max(a.left, b.left) + 0.5
+                && Math.min(a.bottom, b.bottom) > Math.max(a.top, b.top) + 0.5;
+            let overText = false;
+            for (const s of ['.desc_fr', '.exemple_fr']) {
+                const el = q(s);
+                if (el && getComputedStyle(el).display !== 'none' && overlap(content(el), fr)) overText = true;
+            }
+            return [
+                pk,
+                texte.scrollHeight > texte.clientHeight + 1 ? 'textCut' : 'textFits',
+                frames.join(','),
+                !shown ? 'linkHidden' : (lines > 1 ? 'linkTwoLines' : 'linkOneLine'),
+                String(+((lr.height + lmt + lmb) / cr.height).toFixed(4)),
+                lr.left >= ir.left - 0.6 && lr.right <= ir.right + 0.6
+                    && lr.top >= ir.top - 0.6 && lr.bottom <= ir.bottom + 0.6
+                    ? 'insideImageSection' : 'outsideImageSection',
+                String(+fr.width.toFixed(1)),
+                String(+fr.height.toFixed(1)),
+                overText ? 'overText' : 'clearOfText',
+                String(rows.length),
+                startGap,
+                relLine,
+                String(Math.max(0, texte.scrollHeight - texte.clientHeight)),
+                rel.style.maxHeight || ''
+            ];
+        }";
+
+        /// <summary>
+        /// Finds, at the viewport the page has now, the sheet that owes its whole text to its
+        /// relations frame: the frame carries a height of its own (it yielded) and the text frame
+        /// no longer overflows. Among those, the one with the most relations — the case the
+        /// verdict allows a scrolling relations frame for. A viewport where no sheet needed the
+        /// yield returns an empty key: the caller says so instead of reading a pass there.
+        /// </summary>
+        private const string P2400PickYieldedJs = @"() => {
+            const nav = window.__mmNav;
+            const card = document.querySelector('card');
+            const rel = card.querySelector('.relations'), texte = card.querySelector('.texte');
+            const relCount = {};
+            (nav.linkRecs || []).forEach((l) => {
+                if (l.source) relCount[l.source] = (relCount[l.source] || 0) + 1;
+                if (l.target) relCount[l.target] = (relCount[l.target] || 0) + 1;
+            });
+            const num = (k) => (isNaN(Number(k)) ? 1e9 : Number(k));
+            const byKey = (a, b) => num(a) - num(b) || (a < b ? -1 : a > b ? 1 : 0);
+            let best = '', bestRel = -1, yielded = 0, frame = '';
+            for (const k of Object.keys(nav.byPk).sort(byKey)) {
+                nav.focusNode(nav.byPk[k]);
+                if (!rel.style.maxHeight || texte.scrollHeight > texte.clientHeight + 1) continue;
+                yielded++;
+                const c = relCount[nav.byPk[k].path] || 0;
+                if (c > bestRel) { bestRel = c; best = k; frame = rel.style.maxHeight; }
+            }
+            card.dispatchEvent(new MouseEvent('mouseleave'));
+            return [best, best ? (nav.byPk[best].label || '') : '', String(bestRel), String(yielded), frame];
+        }";
+
+        /// <summary>The upper bound of the link's imprint (box + margins) as a share of the card's
+        /// height — the same 9 % the corpus sweep notes as `linkFootprintTooTall`. Calibrated
+        /// between the two measured states: 10.8 % at a CSS 1280x900 viewport and 26.7 % at 512x360
+        /// before; 5.7 % to 7.6 % after over the 1361 link-bearing sheets, `fr` and `ar`, 512x360
+        /// to 1280x900.</summary>
+        private const double LinkImprintMax = 0.09;
+
+        /// <summary>How many pixels of text the busiest sheet may still hide at the verdict's own
+        /// window (CSS 512x360): 31 px measured in `fr` on #pk=2, whose 170 px of text need more
+        /// than the 139 px its frame holds once the type is at its 10 px floor and the relations
+        /// frame is down to one line (it gives nothing back there: the text stays cut, so the frame
+        /// keeps its own height). In `ar` the same sheet is whole.
+        ///
+        /// That reading is a function of the document's web-font state, which the case now
+        /// forces before it reads anything: 31 px with the four DINPro faces loaded, 42 px on the
+        /// same sheet read before they arrive, 54 px with the CDN unreachable and the text laid
+        /// out in the fallback font (all three measured in the Chromium 124 of the suite's own
+        /// driver). The bound keeps its value beside the force rather than growing to admit the
+        /// states the force removes: with the faces loaded the reading does not depend on them
+        /// arriving, and a case that silently measured 54 px would be measuring a state no
+        /// reader with the CDN up ever sees. A bound, not a target — it leaves one line of
+        /// floor-size type (13.5 px) of slack over the loaded reading, and a corpus edit that
+        /// deepens the deficit trips it.</summary>
+        private const double ResidualHiddenPxMax = 48;
+
+        /// <summary>The three viewports of the control, shortest last: a CSS 1280x900 one, a
+        /// 640x450 one, and the verdict's own window — a 1280x900 window on a display scaled at
+        /// 250 % is a CSS 512x360 viewport.</summary>
+        private static readonly (int Width, int Height)[] P2403Viewports =
+            { (1280, 900), (640, 450), (512, 360) };
+
+        /// <summary>The four DINPro faces the sheet lays its own text in, in the `document.fonts`
+        /// shorthand. They come from a CDN and are requested lazily — the 900 one by the first
+        /// sheet whose text is laid out — so "the faces are loaded" is a state the case has to
+        /// force, not a property it may assume (see the residual bound above).</summary>
+        private static readonly string[] P2403FontSpecs =
+            { "300 12px DINPro", "500 12px DINPro", "700 12px DINPro", "900 12px DINPro" };
+
+        /// <summary>Loads the wanted faces and reports each as `spec=loaded` or `spec=missing`;
+        /// the caller fails on a missing one, naming it, instead of measuring the fallback font's
+        /// layout in its place.</summary>
+        private const string P2403FontsJs = @"async (specs) => {
+            for (const spec of specs) {
+                try { await document.fonts.load(spec); } catch (e) { /* reported by check() below */ }
+            }
+            await document.fonts.ready;
+            return specs.map((spec) => spec + '=' + (document.fonts.check(spec) ? 'loaded' : 'missing'));
+        }";
+
+        /// <summary>Reads the open sheet's frames WITHOUT opening it again: the contract probe
+        /// refits the sheet, so it cannot read what a late event left behind. Returns the pixels
+        /// of text the frame hides, whether the text scrolls, the height the relations frame was
+        /// given, the raw `scrollHeight/clientHeight` of the text, and the type the three fitted
+        /// elements were left at — the size is the part of the fit a font swap silently
+        /// invalidates (it is chosen for the font that was laid out).</summary>
+        private const string P2403OpenSheetFramesJs = @"() => {
+            const card = document.querySelector('card');
+            const texte = card.querySelector('.texte'), rel = card.querySelector('.relations');
+            const px = (s) => { const el = card.querySelector(s); return el ? getComputedStyle(el).fontSize : ''; };
+            return [String(Math.max(0, texte.scrollHeight - texte.clientHeight)),
+                    texte.classList.contains('mm-scroll') ? 'textScrolls' : 'textNoScroll',
+                    rel.style.maxHeight || '',
+                    texte.scrollHeight + '/' + texte.clientHeight,
+                    px('.desc_fr'), px('.exemple_fr'), px('#externalLink')];
+        }";
+
+        /// <summary>The link rule of the pre-#2403 template, reinjected verbatim: 16 px, two lines,
+        /// the imprint of 78 px. The mutation the verdict asks for.</summary>
+        private const string LinkPxMutantCss =
+            "#externalLink { font-size: 16px !important; line-height: normal !important; " +
+            "padding: 10px 20px !important; margin: 20px auto !important; white-space: normal !important; }";
+
+        /// <summary>The badge of the pre-#2403 template: 4 vh, wider than the 2.8 vh border band.</summary>
+        private const string FooterVh4MutantCss = ".footer { width: 4vh !important; height: 4vh !important; }";
+
+        /// <summary>The relation rows of the pre-#2403 template, pushed to the far side of an
+        /// right-to-left sheet. Measured on #pk=1084 in `ar`: 126 px from the inline start.</summary>
+        private const string RowsLeftMutantCss = "card .relations .mm-relation { text-align: left !important; }";
+
+        /// <summary>A text frame that cuts what it shows — the state Cap20..Cap25 used to pass.</summary>
+        private const string TextCutMutantCss = "card .texte { max-height: 60px !important; overflow-y: auto !important; }";
+
+        private static double Num(string s) => double.Parse(s, System.Globalization.CultureInfo.InvariantCulture);
+
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg", "inline")]
+        [InlineData("fr", "Fallacies_fr.content.svg", "ext")]
+        [InlineData("ar", "Fallacies_ar.content.svg", "inline")]
+        [InlineData("ar", "Fallacies_ar.content.svg", "ext")]
+        public async Task Cap26_LinkFollowsTheSheet_AndNoFrameCutsTheText_OnTheNamedSheets(
+            string lang, string svgFileName, string variant)
+        {
+            var page = variant == "ext"
+                ? await OpenExternalAsync(lang, svgFileName, 1280, 900)
+                : await OpenPageAtAsync(await ComposeIncludedAsync(lang, svgFileName), 1280, 900);
+            try
+            {
+                if (variant == "ext") await WaitForExternalNavigationAsync(page);
+                else await WaitForViewportSettledAsync(page);
+
+                var pick = await page.EvaluateAsync<string[]>(P2400PickThreeSheetsJs, P2400DarvoLabel[lang]);
+                Assert.NotNull(pick);
+                Assert.True(pick.Length >= 10 && !string.IsNullOrEmpty(pick[0]) && !string.IsNullOrEmpty(pick[2])
+                            && !string.IsNullOrEmpty(pick[4]),
+                    $"#2403 [{lang}/{variant}]: the fixture must offer a DARVO sheet, a median one and a busiest one — got {string.Join(" | ", pick)}");
+                var (darvoPk, medianPk, busiestPk) = (pick[0], pick[2], pick[4]);
+                Assert.Contains(P2400DarvoLabel[lang], pick[1]);
+                Assert.True(int.Parse(pick[6]) >= 3, "the busiest sheet must carry enough relations for its frame to scroll");
+                _output.WriteLine($"[{lang}/{variant}] DARVO pk={darvoPk} '{pick[1]}' | median pk={medianPk} '{pick[3]}' " +
+                                  $"({pick[7]} relations, description {pick[8]} chars, among {pick[9]} link-bearing sheets) | " +
+                                  $"busiest pk={busiestPk} '{pick[5]}' ({pick[6]} relations)");
+
+                // The three roles may fall on one sheet (a median sheet that is also the busiest):
+                // each sheet is judged once, under its last role — `busiest` is the only one
+                // allowed a scrolling frame, and it must keep that allowance.
+                var sheets = new[] { (darvoPk, "darvo"), (medianPk, "median"), (busiestPk, "busiest") }
+                    .GroupBy(x => x.Item1).Select(g => g.Last()).ToList();
+
+                // ---- the state the contracts are read in -----------------------------------------
+                // The sheet's fit is a function of the font actually laid out, and the four DINPro
+                // faces are requested lazily: a read taken before they arrive measures the
+                // fallback font's geometry (42 px hidden on #pk=2 where the loaded state hides 31,
+                // 54 px with the CDN unreachable). Force them first, and fail by name if one
+                // cannot be had — a silent fallback reading would pass this control on a state no
+                // reader with the CDN up ever sees.
+                var faces = await page.EvaluateAsync<string[]>(P2403FontsJs, P2403FontSpecs);
+                Assert.NotNull(faces);
+                foreach (var face in faces)
+                    Assert.True(face.EndsWith("=loaded", StringComparison.Ordinal),
+                        $"#2403 [{lang}/{variant}]: the sheet's web font is not available — '{face}'. The contract is " +
+                        "read in the loaded state only; check fonts.cdnfonts.com before reading anything into this run.");
+                _output.WriteLine($"[{lang}/{variant}] faces: {string.Join(", ", faces)}");
+
+                // ---- the contracts, on the three viewports ---------------------------------------
+                var yieldedSeen = 0;
+                foreach (var (width, height) in P2403Viewports)
+                {
+                    await page.SetViewportSizeAsync(width, height);
+                    var verdictWindow = width == 512;
+                    foreach (var (pk, role) in sheets)
+                    {
+                        var s = await page.EvaluateAsync<string[]>(P2400SheetContractJs, pk);
+                        Assert.NotNull(s);
+                        _output.WriteLine($"[{lang}/{variant} {width}x{height}] {role} pk={pk}: {s[1]} frames='{s[2]}' " +
+                                          $"link={s[3]} imprint={s[4]} badge={s[6]}x{s[7]} {s[8]} rows={s[9]} " +
+                                          $"startGap={s[10]} relFrame={s[11]} hidden={s[12]}px");
+                        Assert.Equal("linkOneLine", s[3]);
+                        Assert.True(Num(s[4]) <= LinkImprintMax,
+                            $"#2403 [{lang}/{variant} {width}x{height}] {role} pk={pk}: the link's imprint is {s[4]} of the card's " +
+                            $"height, wanted at most {LinkImprintMax}");
+                        Assert.Equal("insideImageSection", s[5]);
+                        var wantedBadge = 0.028 * height;
+                        Assert.True(Math.Abs(Num(s[6]) - wantedBadge) <= 1.5 && Math.Abs(Num(s[7]) - wantedBadge) <= 1.5,
+                            $"#2403 [{lang}/{variant} {width}x{height}] {role} pk={pk}: the badge is {s[6]}x{s[7]} px, wanted the " +
+                            $"{wantedBadge:F1}px of the border band");
+                        Assert.Equal("clearOfText", s[8]);
+                        if (!string.IsNullOrEmpty(s[10]))
+                            Assert.True(Num(s[10]) <= 1.0,
+                                $"#2403 [{lang}/{variant} {width}x{height}] {role} pk={pk}: the relation rows start {s[10]} px " +
+                                "from the inline start");
+                        Assert.NotEqual("relFrameBelowALine", s[11]);
+                        // The verdict's control: no scrolling frame on DARVO and on a median sheet.
+                        // At the verdict's own window the busiest sheet is the one case the type
+                        // cannot make whole (measured in `fr`: 170 px of text for 139 at the 10 px
+                        // floor, its relations frame back at its own height because one line of it
+                        // did not suffice): it is held to a bounded residual rather than passed
+                        // over in silence.
+                        if (role == "busiest" && verdictWindow && s[1] == "textCut")
+                        {
+                            Assert.True(Num(s[12]) <= ResidualHiddenPxMax,
+                                $"#2403 [{lang}/{variant} {width}x{height}] {role} pk={pk}: the text frame hides {s[12]} px, " +
+                                $"above the {ResidualHiddenPxMax} px measured at this window");
+                            foreach (var frame in s[2].Split(','))
+                                Assert.True(frame.StartsWith("div.relations") || frame.StartsWith("div.texte.mm-scroll"),
+                                    $"#2403 [{lang}/{variant} {width}x{height}] {role} pk={pk}: unexpected frame '{frame}'");
+                            continue;
+                        }
+                        Assert.Equal("textFits", s[1]);
+                        if (!string.IsNullOrEmpty(s[2]))
+                        {
+                            Assert.True(role == "busiest",
+                                $"#2403 [{lang}/{variant} {width}x{height}] {role} pk={pk}: only the busiest sheet may keep a " +
+                                $"scrolling frame, got '{s[2]}'");
+                            foreach (var frame in s[2].Split(','))
+                                Assert.StartsWith("div.relations", frame);
+                        }
+                    }
+
+                    // #2403 (2e passe) — the relations frame yields height to the text before the
+                    // text scrolls, and only when that makes the text whole: the sheet that owes
+                    // its whole text to its frame is judged here, at this viewport.
+                    var y = await page.EvaluateAsync<string[]>(P2400PickYieldedJs);
+                    Assert.NotNull(y);
+                    if (string.IsNullOrEmpty(y[0]))
+                    {
+                        _output.WriteLine($"[{lang}/{variant} {width}x{height}] no sheet needed its relations frame to " +
+                                          "yield here — the yield is not exercised at this viewport");
+                    }
+                    else
+                    {
+                        yieldedSeen++;
+                        var ys = await page.EvaluateAsync<string[]>(P2400SheetContractJs, y[0]);
+                        _output.WriteLine($"[{lang}/{variant} {width}x{height}] yielded pk={y[0]} '{y[1]}' " +
+                                          $"({y[2]} relations, frame {y[4]}, {y[3]} sheets rescued at this viewport): " +
+                                          $"{ys[1]} frames='{ys[2]}' relFrame={ys[11]}");
+                        Assert.Equal("textFits", ys[1]);
+                        Assert.False(string.IsNullOrEmpty(ys[2]),
+                            $"#2403 [{lang}/{variant} {width}x{height}] the rescued sheet pk={y[0]} must keep its relations " +
+                            "frame scrolling");
+                        foreach (var frame in ys[2].Split(','))
+                            Assert.StartsWith("div.relations", frame);
+                        Assert.Equal("relFrameShowsALine", ys[11]);
+                        Assert.True(int.Parse(y[2]) >= 1,
+                            $"#2403 [{lang}/{variant} {width}x{height}] the rescued sheet pk={y[0]} must be a " +
+                            $"relation-bearing sheet, got {y[2]}");
+                    }
+                }
+                Assert.True(yieldedSeen >= 1,
+                    "#2403: no viewport exercised the relations frame yielding — the pass that gives the text its room " +
+                    "is untested");
+
+                // ---- each contract must be able to fail ------------------------------------------
+                async Task<string[]> UnderAsync(string css, string pk)
+                {
+                    string[] s;
+                    await page.EvaluateAsync(SetMutantStyleJs, css);
+                    try { s = await page.EvaluateAsync<string[]>(P2400SheetContractJs, pk); }
+                    finally { await page.EvaluateAsync(SetMutantStyleJs, ""); }
+                    return s;
+                }
+
+                // 1. The mutation the verdict asks for: the link back to 16 px on two lines. Every
+                //    viewport must see it; and at the verdict's own window the two lines must be
+                //    what pushes a named sheet's text into its frame — the defect read on the first
+                //    head — so that "the text is whole" is a contract the link can break.
+                var cutByLink = false;
+                foreach (var (width, height) in P2403Viewports)
+                {
+                    await page.SetViewportSizeAsync(width, height);
+                    var tripped = false;
+                    foreach (var (pk, role) in sheets)
+                    {
+                        var m = await UnderAsync(LinkPxMutantCss, pk);
+                        var twoLines = m[3] == "linkTwoLines";
+                        var tooTall = Num(m[4]) > LinkImprintMax;
+                        _output.WriteLine($"[{lang}/{variant} {width}x{height}] mutant 'link back to 16 px': {role} pk={pk} " +
+                                          $"link={m[3]} imprint={m[4]} text={m[1]} frames='{m[2]}' hidden={m[12]}px");
+                        if (width == 512 && role != "busiest" && m[1] == "textCut") cutByLink = true;
+                        tripped |= twoLines || tooTall;
+                    }
+                    Assert.True(tripped,
+                        $"#2403 [{lang}/{variant} {width}x{height}]: putting the link back to 16 px must break the control — " +
+                        "neither 'one line' nor the imprint bound saw it");
+                }
+                Assert.True(cutByLink,
+                    $"#2403 [{lang}/{variant}]: at the verdict's window (512x360) the link back to 16 px on two lines must " +
+                    "cut the text of the DARVO or of the median sheet — the control would not see the defect it exists for");
+
+                // 2. A text frame that cuts what it shows.
+                await page.SetViewportSizeAsync(1280, 900);
+                var cut = await UnderAsync(TextCutMutantCss, darvoPk);
+                Assert.NotEqual("textFits", cut[1]);
+                Assert.Contains("div.texte", cut[2]);
+
+                // 3. The badge back to 4 vh.
+                var badge = await UnderAsync(FooterVh4MutantCss, darvoPk);
+                Assert.True(Math.Abs(Num(badge[6]) - 0.028 * 900) > 1.5,
+                    $"#2403: a 4 vh badge must break the control, got {badge[6]} px");
+
+                // 4. The relation rows pushed to the far side — meaningful in a right-to-left
+                //    sheet only: in ltr `left` and `start` lay the text at the same place.
+                if (lang == "ar")
+                {
+                    var rows = await UnderAsync(RowsLeftMutantCss, busiestPk);
+                    Assert.True(Num(rows[10]) > 10,
+                        $"#2403: `text-align: left` must push the rows away from the inline start, gap={rows[10]}");
+                }
+                else
+                {
+                    _output.WriteLine($"[{lang}/{variant}] mutant 'rows to the left' not run: the sheet is left-to-right");
+                }
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        /// <summary>
+        /// The first sheet a reader opens on a document whose web fonts are not in cache yet.
+        /// DINPro is requested by the first layout of a sheet's text, so that sheet is fitted on
+        /// the fallback font — and, on the template this case was written against, nothing
+        /// refitted it when the real font swapped in. Measured there (Chromium 124, CSS 512x360,
+        /// `fr`, a fresh browser context per sheet, three sheets, identical readings in the
+        /// `inline` and `_ext` variants):
+        ///
+        ///   sheet            at the open        after the swap, no refit   a warm open
+        ///   DARVO #pk=1356   207/204, 3 px      170/170, text still scrolls  170/170, no scroll
+        ///   #pk=2            181/139, 42 px     170/139, 31 px              170/139, 31 px
+        ///   #pk=1084         161/128, 33 px     146/128, 18 px, no frame    146/146, 0 px, 25.19 px frame
+        ///
+        /// So the cold fit's residue that survives the swap is the text frame still carrying
+        /// `.mm-scroll` on the sheet that ends up whole (DARVO) and the relations frame that never
+        /// yields its height (#pk=1084, 18 px hidden where a warm open is whole); #pk=2 resolves by
+        /// itself. The type sizes (9.52 / 9.44 / 10.8 px) coincide in the three states: these
+        /// sheets sit at the 10 px floor either way, and this case does not claim more than that.
+        /// The template now refits the open sheet when the document's fonts finish arriving; here
+        /// the route holds the sheet's faces, the sheet is opened while they are in flight, the
+        /// route lets them through, and the sheet must then read exactly as a warm open does.
+        ///
+        /// The walk is checked, not assumed: the face must be absent at the open (and the route
+        /// must have seen the request), and each sheet must have read differently at the open
+        /// than at a warm open — otherwise the case would be comparing two warm reads and would
+        /// pass on a document that never had the defect.
+        ///
+        /// Witnesses: DARVO, whose text ends up whole, and the sheet the warm state rescues by
+        /// yielding its relations frame (#pk=1084 at this viewport, picked on the page itself
+        /// once its fonts are in), which keeps 18 px hidden without the refit.
+        ///
+        /// `fr` only: the DINPro swap is a property of the Latin text; `ar` sets its own text in
+        /// another font, and its cold state is not what this case walks.
+        ///
+        /// What the route may hold: the two faces a SHEET lays out and the page does not — Black
+        /// (900, the description) and Bold (700, the depth badge). Measured after `load` on the
+        /// `fr` inline, `fr` `_ext` and `ar` inline wrappers: only `DINPro-Medium` has been
+        /// requested (500 loaded, 300/700/900 unloaded). The page's own text is set in that
+        /// face; a request held there keeps the document from ever reaching `load` — Cap27's
+        /// first run timed out in `GotoAsync` for exactly that reason — and it is not the state
+        /// this case walks: the reader it walks has a loaded page and clicks before the sheet's
+        /// own faces have answered.
+        /// </summary>
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg", "inline")]
+        [InlineData("fr", "Fallacies_fr.content.svg", "ext")]
+        public async Task Cap27_SheetOpenedBeforeTheWebFontsArrive_IsRefittedWhenTheyDo(
+            string lang, string svgFileName, string variant)
+        {
+            string[] sheetFaces = { "**/DINPro-Bold*", "**/DINPro-Black*" };
+            const string faceProbeJs = "() => document.fonts.check('900 12px DINPro')";
+            var inlinePath = variant == "ext" ? string.Empty : await ComposeIncludedAsync(lang, svgFileName);
+
+            // Filled on the first page: DARVO from the corpus, then — once that page's fonts are
+            // in — the sheet the warm state owes its whole text to its relations frame.
+            var pks = new string[2];
+            var witnessedCold = 0;
+
+            for (var round = 0; round < 2; round++)
+            {
+                var role = round == 0 ? "darvo" : "yielded";
+                var gate = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
+                var held = new int[1];
+                Func<IPage, Task> holdFonts = async p =>
+                {
+                    foreach (var glob in sheetFaces)
+                    {
+                        await p.RouteAsync(glob, async route =>
+                        {
+                            Interlocked.Increment(ref held[0]);
+                            await gate.Task;
+                            await route.ContinueAsync();
+                        });
+                    }
+                };
+
+                // Every page gets its own browser context — hence its own (empty) font cache — so
+                // each sheet is a cold document and needs its own gate.
+                var page = variant == "ext"
+                    ? await OpenExternalAsync(lang, svgFileName, 512, 360, holdFonts)
+                    : await OpenPageAtAsync(inlinePath, 512, 360, holdFonts);
+                try
+                {
+                    if (variant == "ext") await WaitForExternalNavigationAsync(page);
+                    else await WaitForViewportSettledAsync(page);
+
+                    if (round == 0)
+                    {
+                        var pick = await page.EvaluateAsync<string[]>(P2400PickThreeSheetsJs, P2400DarvoLabel[lang]);
+                        Assert.NotNull(pick);
+                        Assert.True(pick.Length >= 10 && !string.IsNullOrEmpty(pick[0]) && int.Parse(pick[6]) >= 3,
+                            $"#2403 [{lang}/{variant}] cold: the fixture must offer the DARVO sheet and a " +
+                            $"relation-bearing sheet — got {string.Join(" | ", pick)}");
+                        Assert.Contains(P2400DarvoLabel[lang], pick[1]);
+                        pks[0] = pick[0];
+                    }
+                    var pk = pks[round];
+
+                    // Open the sheet with the font responses still held: this is the reader who
+                    // clicks before the CDN answers, and the fit that runs on fallback metrics.
+                    await page.EvaluateAsync<string[]>(P2400SheetContractJs, pk);
+                    var atOpen = await page.EvaluateAsync<string[]>(P2403OpenSheetFramesJs);
+                    var fontAtOpen = await page.EvaluateAsync<bool>(faceProbeJs);
+                    _output.WriteLine($"[{lang}/{variant} cold] {role} pk={pk}: at the open {atOpen[3]} " +
+                                      $"hidden={atOpen[0]}px text={atOpen[1]} relFrame='{atOpen[2]}' " +
+                                      $"desc={atOpen[4]} exemple={atOpen[5]} link={atOpen[6]} " +
+                                      $"font={(fontAtOpen ? "loaded" : "absent")} heldRequests={held[0]}");
+                    Assert.False(fontAtOpen,
+                        $"#2403 [{lang}/{variant}] {role} pk={pk}: the web font was already available when the sheet " +
+                        "opened — the walk did not reach the cold state and would compare two warm reads");
+                    Assert.True(held[0] >= 1,
+                        $"#2403 [{lang}/{variant}] {role} pk={pk}: the route never saw a font request, so no face was " +
+                        "in flight when the sheet opened — the cold state was not created");
+
+                    // Let the fonts through, wait for the face to land, then let the swap and the
+                    // refit settle: they are separate tasks from the load that completes.
+                    gate.TrySetResult(true);
+                    var sw = System.Diagnostics.Stopwatch.StartNew();
+                    var arrived = false;
+                    while (sw.ElapsedMilliseconds < SettleMaxWaitMs)
+                    {
+                        if (arrived = await page.EvaluateAsync<bool>(faceProbeJs)) break;
+                        await page.WaitForTimeoutAsync(100);
+                    }
+                    Assert.True(arrived, $"#2403 [{lang}/{variant}] {role} pk={pk}: the web font did not arrive within " +
+                                         $"{SettleMaxWaitMs} ms of the release");
+                    await page.WaitForTimeoutAsync(400);
+
+                    // Read the sheet as the refit left it, then as a warm open lays it out.
+                    var after = await page.EvaluateAsync<string[]>(P2403OpenSheetFramesJs);
+                    await page.EvaluateAsync<string[]>(P2400SheetContractJs, pk);
+                    var warm = await page.EvaluateAsync<string[]>(P2403OpenSheetFramesJs);
+                    _output.WriteLine($"[{lang}/{variant} cold] {role} pk={pk}: after the fonts arrived " +
+                                      $"{after[3]} hidden={after[0]}px text={after[1]} relFrame='{after[2]}' " +
+                                      $"desc={after[4]} exemple={after[5]} link={after[6]} | " +
+                                      $"a warm open {warm[3]} hidden={warm[0]}px relFrame='{warm[2]}' " +
+                                      $"desc={warm[4]} exemple={warm[5]} link={warm[6]}");
+                    if (!atOpen.SequenceEqual(warm)) witnessedCold++;
+                    Assert.Equal(warm, after);
+
+                    if (round == 0)
+                    {
+                        // The second witness, read on this page now that its fonts are in: the
+                        // sheet the yield rescues at this viewport.
+                        var y = await page.EvaluateAsync<string[]>(P2400PickYieldedJs);
+                        Assert.NotNull(y);
+                        Assert.True(!string.IsNullOrEmpty(y[0]) && int.Parse(y[2]) >= 1 && int.Parse(y[3]) >= 1,
+                            $"#2403 [{lang}/{variant}] cold: no sheet owes its whole text to its relations frame at " +
+                            $"512x360 — the second witness has nothing to be measured on: {string.Join(" | ", y)}");
+                        pks[1] = y[0];
+                        _output.WriteLine($"[{lang}/{variant} cold] second witness: pk={pks[1]} '{y[1]}' " +
+                                          $"({y[2]} relations, frame {y[4]}, {y[3]} sheets rescued at this viewport)");
+                    }
+                }
+                finally
+                {
+                    gate.TrySetResult(true);
+                    await page.CloseAsync();
+                }
+            }
+
+            Assert.Equal(2, witnessedCold);
         }
     }
 }

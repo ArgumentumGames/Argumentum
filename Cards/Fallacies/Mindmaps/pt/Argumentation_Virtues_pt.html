@@ -413,21 +413,40 @@
             overflow-wrap: break-word;
         }
 
+        /* #2400 (2e passe, verdict ai-01) — le lien etait le seul element de la fiche taille en
+           px fixes (16 px, marges 20 px, marge interieure 10 x 20) dans une fiche typographiee en
+           vh : 78 px d'empreinte a toute taille d'ecran. Mesure sur 6c2505d1, fr, 1408 fiches : a
+           1280x900 pixels CSS il tient sur une ligne et prend 10,8 % de la fiche ; sur un viewport
+           CSS court il passe sur deux lignes et remplit la section image — 146,7 x 56 px, soit
+           26,7 % de la fiche, sur les 1361 fiches a lien a 512x360 (une fenetre de 1280x900 pixels
+           sur un ecran a 250 %), et le texte passe en defilement. Il suit desormais la fiche :
+           corps en vh au tiers du libelle de famille (3 vh, entre `sous_famille` 3,4 vh et
+           `desc_fr` 3,2 vh), une seule ligne, et il participe aux deux passes d'ajustement
+           (horizontale puis fitCard). */
         #externalLink {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 20px auto;
-            padding: 10px 20px;
-            font-size: 16px;
+            margin: 1vh auto 0.6vh;
+            padding: 0.5vh 1.4vh;
+            font-size: 3vh;
+            line-height: 1.15;
+            white-space: nowrap;
             color: white;
             background-color: var(--color-text-1);
             border: none;
             text-align: center;
             text-decoration: none;
             cursor: pointer;
+            /* #2403 (2e passe) — la transition ne porte plus que les trois proprietes du survol.
+               En `transition: all`, changer `font-size` (ou la marge, la marge interieure) ne se
+               lisait pas : la lecture synchrone juste apres rendait l'ANCIENNE taille pendant
+               400 ms, donc les deux passes d'ajustement mesuraient un lien qui n'existait plus.
+               Mesure : fiche rouverte apres un passage 1280x900 -> 640x450, le lien sortait a
+               25 px et passait sur deux lignes, empreinte 19,9 % de la fiche au lieu de 7,6 %. */
+            transition-property: color, background-color, box-shadow;
             transition-duration: 0.4s;
-            border-radius: 4px;
+            border-radius: 0.6vh;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
         }
 
@@ -442,12 +461,20 @@
         /* Pied de page */
         /* -------------------------------------------------------------------------------- */
 
+        /* #2400 (2e passe) — l'insigne du pied de page recouvrait le coin du texte sur 703 fiches
+           sur 1408 (1280x900, fr et ar) : a 4 vh il deborde la bande de bordure (2,8 vh). Il est
+           ramene a la largeur de la bordure, et `card .relations` garde sa marge basse a la meme
+           valeur pour qu'aucune rangee ne passe dessous. */
         .footer {
             position: absolute;
             bottom: 0;
             right: 0;
-            width: 4vh;
-            height: 4vh;
+            /* #2403 (2e passe) — 2,8 vh est la largeur de la bordure de la fiche, et c'est la
+               place que l'insigne doit occuper : sans border-box sa bordure de 1 px s'ajoutait au
+               cadre et l'insigne mesurait 27,2 px pour 25,2 px demandes. */
+            box-sizing: border-box;
+            width: 2.8vh;
+            height: 2.8vh;
             background-color: #fff;
             border: 1px solid;
             border-color: var(--color-background);
@@ -458,7 +485,8 @@
         }
 
         .niveau {
-            font-size: 2.8vh;
+            font-size: 2vh;
+            line-height: 1;
             font-weight: bold;
             text-align: right;
             color: var(--color-background);
@@ -612,7 +640,9 @@
         card .relations .mm-relation {
             display: block;
             width: 100%;
-            text-align: left;
+            /* #2400 (2e passe) — `left` alignait a gauche en `ar` et `fa` (fiche en `dir=rtl`) ;
+               `start` suit le sens d'ecriture du document. */
+            text-align: start;
             border: 0;
             padding: 2px 0;
             background: none;
@@ -665,7 +695,7 @@
            mesure 2026-11-26) — le `max-height: 12vh` ne servait alors a rien. */
         card .relations {
             flex-shrink: 0;
-            margin-bottom: max(2vh, 14px);
+            margin-bottom: max(2.8vh, 14px);
         }
 
         /* `.hidden` (0,1,0) perdait contre `#externalLink` (1,0,0) : le lien restait affiche
@@ -4079,7 +4109,9 @@
         const cardBody = document.querySelector('card .body');
         const cardTexte = document.querySelector('card .texte');
         const cardRelations = document.querySelector('card .relations');
-        const fitTargets = () => [title, famille, sous_famille, Soussousfamille, description, example]
+        // #2400 (2e passe) — le lien fait partie des cibles : il suit la fiche quand elle doit
+        // se reduire, au lieu de garder sa taille pendant que le texte cede.
+        const fitTargets = () => [title, famille, sous_famille, Soussousfamille, description, example, externalLink]
             .filter(el => el && el.clientHeight);
         const neededHeight = () => {
             if (!cardBody) return 0;
@@ -4104,20 +4136,63 @@
         const availableHeight = () => cardBody
             ? cardBody.clientHeight - parseFloat(getComputedStyle(cardBody).paddingTop)
             : 0;
+        // #2403 (2e passe) — plancher du lien. La passe verticale reduit toute la typographie
+        // jusqu'a 10 px ; un lien a 9,3 px (mesure : titre de 240 caracteres en 390x844) n'est
+        // plus une cible de 20 px de haut, le plancher que la fiche s'est donne pour lui. Le
+        // lien s'arrete donc a la plus petite taille qui garde cette cible, lue sur la feuille
+        // (marge interieure, interligne), et jamais en dessous de 10 px.
+        const linkFloor = () => {
+            if (!externalLink) return 10;
+            const cs = getComputedStyle(externalLink);
+            const padY = (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0);
+            const px = parseFloat(cs.fontSize) || 1;
+            const ratio = (parseFloat(cs.lineHeight) || px) / px;
+            return Math.max(10, Math.ceil((20 - padY) / ratio));
+        };
         const fitCard = () => {
             if (!cardBody) return;
             // on repart de la hauteur naturelle du texte : le cadre reduit d'une fiche defilante ne
             // doit pas etre heritage par la fiche suivante
             if (cardTexte) cardTexte.classList.remove('mm-scroll');
+            if (cardRelations) cardRelations.style.maxHeight = '';
             const els = fitTargets();
             let vGuard = 0;
             while (neededHeight() > availableHeight() + 1 && vGuard++ < 200) {
                 let shrunk = false;
                 for (const el of els) {
                     const px = parseFloat(getComputedStyle(el).fontSize);
-                    if (px > 10) { el.style.fontSize = (px - 1) + 'px'; shrunk = true; }
+                    const floor = el === externalLink ? linkFloor() : 10;
+                    if (px > floor) {
+                        const next = el === externalLink && px - 1 < floor ? floor : px - 1;
+                        el.style.fontSize = next + 'px'; shrunk = true;
+                    }
                 }
                 if (!shrunk) break;
+            }
+            // #2403 (2e passe) — avant que le texte ne defile, le cadre des relations lui cede de la
+            // place : c'est le seul cadre ou le defilement est admis (arbitrage ai-01). Le cadre
+            // rend 2 px par tour, jusqu'a montrer une ligne entiere de la premiere relation, et
+            // seulement si cela rend le texte entier ; sinon il reprend sa hauteur et le texte
+            // defile comme avant. Mesure 512x360 (fenetre 1280x900 sur un ecran a 250 %), fiche
+            // #pk=1084 : le texte demandait 145 px pour 128, le cadre des relations en prenait
+            // 51 pour une rangee de 69 — apres : cadre 33 px, texte 146/146, 0 px caches.
+            if (cardTexte && cardRelations && cardRelations.getClientRects().length
+                && neededHeight() > availableHeight() + 1) {
+                const rcs = getComputedStyle(cardRelations);
+                const extra = (parseFloat(rcs.paddingTop) || 0) + (parseFloat(rcs.paddingBottom) || 0)
+                    + (parseFloat(rcs.borderTopWidth) || 0) + (parseFloat(rcs.borderBottomWidth) || 0);
+                const rowEl = cardRelations.querySelector('.mm-relation');
+                const rowCs = rowEl ? getComputedStyle(rowEl) : null;
+                const rowPad = rowCs ? (parseFloat(rowCs.paddingTop) || 0) + (parseFloat(rowCs.paddingBottom) || 0) : 0;
+                const rowLine = rowCs ? (parseFloat(rowCs.lineHeight) || parseFloat(rowCs.fontSize) || 12) : 12;
+                const floor = Math.ceil(extra + rowPad + rowLine);
+                let h = cardRelations.getBoundingClientRect().height;
+                let rGuard = 0;
+                while (h - 2 >= floor && neededHeight() > availableHeight() + 1 && rGuard++ < 200) {
+                    h -= 2;
+                    cardRelations.style.maxHeight = (h - extra) + 'px';
+                }
+                if (neededHeight() > availableHeight() + 1) cardRelations.style.maxHeight = '';
             }
             // dernier recours : le texte defile DANS son cadre plutot que de sortir de la carte
             if (cardTexte) cardTexte.classList.toggle('mm-scroll', neededHeight() > availableHeight() + 1);
@@ -4191,6 +4266,30 @@
                 }
             });
 
+            // #2400 (2e passe) — le lien repart de sa taille nominale a chaque fiche (sinon il
+            // heriterait de la reduction de la fiche precedente) et se reduit si son libelle
+            // depasse la largeur utile de la section image. En `nowrap` la boite prend la
+            // largeur du texte : `scrollWidth > clientWidth` ne se declenche jamais, c'est la
+            // comparaison a la section qui voit le debordement (sinon `card { overflow: hidden }`
+            // couperait le libelle). Plancher : celui du lien (`linkFloor`), puis repli sur deux lignes en dernier
+            // recours — les libelles `ru`/`fa` tombent a la police systeme (Bebas Neue n'a ni
+            // cyrillique ni arabe) et sont donc plus larges que les latins.
+            externalLink.style.fontSize = '';
+            externalLink.style.whiteSpace = '';
+            if (externalLink.clientWidth) {
+                const imgSection = externalLink.parentElement;
+                const maxWidth = imgSection ? imgSection.clientWidth : 0;
+                let linkPx = parseFloat(getComputedStyle(externalLink).fontSize);
+                const tooWide = () => maxWidth > 0
+                    && externalLink.getBoundingClientRect().width > maxWidth;
+                const floor = linkFloor();
+                while (linkPx > floor && tooWide()) {
+                    linkPx = linkPx - 1 < floor ? floor : linkPx - 1;
+                    externalLink.style.fontSize = linkPx + 'px';
+                }
+                if (tooWide()) externalLink.style.whiteSpace = 'normal';
+            }
+
             // #1253 - passe verticale, symetrique de la passe horizontale ci-dessus. La boite
             // porte desormais un ratio fixe, donc le contenu peut deborder en hauteur la ou il
             // s'etalait librement avant. On reduit uniformement jusqu'a ce qu'il tienne.
@@ -4235,6 +4334,25 @@
                 hideOverlay();
             }
         });
+
+        // #2403 (2e passe) — la fiche est ajustee avec la police presente au moment de
+        // l'ouverture. La graisse DINPro du texte de fiche vient d'un CDN et n'est demandee
+        // qu'a la premiere mise en page de ce texte : sur un document a froid, la premiere
+        // fiche ouverte est ajustee sur la police de repli, puis la police arrive, le texte
+        // se retaille, et rien ne refaisait l'ajustement. Mesure (Chromium 124, 512x360,
+        // `fr`, `inline` et `_ext` identiques) sur trois fiches : DARVO 207/204 (3 px
+        // caches) a l'ouverture, puis 170/170 mais son cadre de texte restait defilant,
+        // la ou une ouverture a chaud ne le laisse pas defiler ; #pk=1084 161/128 (33 px)
+        // a l'ouverture, 18 px caches apres l'arrivee de la police, sans que le cadre des
+        // relations rende sa hauteur (25,19 px a chaud, texte 146/146) ; #pk=2 se retablit
+        // seul (181/139 puis 170/139, comme a chaud). On refait donc l'ajustement de la
+        // fiche ouverte quand les polices du document ont fini d'arriver : openNodeCard
+        // repond a la fiche deja ouverte, sans effet de bord (ni zoom ni bascule).
+        if (document.fonts) {
+            document.fonts.addEventListener('loadingdone', () => {
+                if (activeNode) openNodeCard(activeNode);
+            });
+        }
 
             //Zoom
 
