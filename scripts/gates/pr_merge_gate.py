@@ -50,9 +50,20 @@ COUNTER_REVIEW_RE = re.compile(r"contre-revue|counter-review", re.I)
 
 # R13 : un dossier « index de record » est un README.md qui porte la marque, seule
 # sur sa ligne et hors bloc de code ; il s'engage à citer chaque fichier du dossier.
-# Deux casses de master par un fichier AJOUTÉ non cité (#2263 le 14/11, #2372 le
-# 27/11) : la porte le voit AVANT le squash, en lisant l'index sur master ET sur la
-# tête de la PR. Mêmes formes de lien que tools/test_docs-index-contract.py.
+# Deux casses de master de cette famille, sous DEUX formes différentes :
+#   - 27/11 : un fichier AJOUTÉ sous un index déjà sur master (#2384 pose l'index de
+#     docs/quality, #2372 ajoute le fichier 131). C'est CETTE forme que R13 retient,
+#     AVANT le squash, en lisant l'index sur master ET sur la tête de la PR.
+#   - 14/11 : l'inverse -- #2263 ajoute articles/README.md alors qu'aucun index
+#     n'existe (rien ne casse), puis #2252 CRÉE les trois index et omet
+#     articles/README.md, déjà suivi. R13 ne voit PAS cette forme : elle ne parcourt
+#     que les fichiers AJOUTÉS (statut `added`, ci-dessous), pas l'index créé
+#     au-dessus d'un fichier déjà là.
+# Le lecteur n'est pas le contrat : sur les dix formes mesurées en contre-revue
+# (27/11), deux concordent avec tools/test_docs-index-contract.py, six passent quand
+# le contrat refuse (renommés, copies, liens en bloc de code, cibles `%20`, liens
+# vers un ancêtre) et deux retiennent à tort. Le rejeu du contrat réel sur l'arbre
+# fusionné remplace ce lecteur (grain de suite, #458).
 INDEX_MARKER = "<!-- index-of-record -->"
 INDEX_FILE = "README.md"
 INDEX_FENCE = re.compile(r"^ {0,3}(`{3,}|~{3,})")
