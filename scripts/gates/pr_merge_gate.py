@@ -3,8 +3,9 @@
 
 Mechanises the checklist a merger runs before `gh pr merge`: PR state, pinned
 head, merge state, CI, reviews, inline threads, lane signature, counter-review,
-closing keywords, diff hygiene, protected paths, single taxonomy-CSV PR, and a
-file added under an index of record that no index cites.
+closing keywords, diff hygiene, protected paths, single taxonomy-CSV PR, and the
+docs index-of-record contract, replayed on the merged tree -- a PR that adds a file
+its index does not cite is held before the squash, not after.
 It never merges and never writes to GitHub.
 
 Exit codes: 0 PASS, 3 HOLD, 2 BLOCK, 1 blind instrument (API failure,
@@ -17,11 +18,14 @@ See scripts/gates/README.md.
 from __future__ import annotations
 
 import argparse
+import ast
 import copy
 import io
 import json
 import os
 import re
+import shutil
+import stat
 import subprocess
 import sys
 import tempfile
@@ -48,27 +52,35 @@ ATTRIB_RE = re.compile(r"^(?:\U0001F916\s*Generated with\b.*|Co-Authored-By:\s.*
 # (measured on a live PR). Formal review objects keep their own rule.
 COUNTER_REVIEW_RE = re.compile(r"contre-revue|counter-review", re.I)
 
-# R13 : un dossier « index de record » est un README.md qui porte la marque, seule
-# sur sa ligne et hors bloc de code ; il s'engage à citer chaque fichier du dossier.
-# Deux casses de master de cette famille, sous DEUX formes différentes :
+# R13 : la porte ne réimplémente pas le lecteur des index de dossier -- elle REJOUE
+# le contrat réel (tools/test_docs-index-contract.py) sur l'ARBRE FUSIONNÉ :
+#   git fetch origin <base> -> merge-tree --write-tree <base> <tête> -> commit-tree
+#   -> worktree --detach -> python -B <contrat> DocsIndexContract (les deux assertions
+#   réelles ; les contrôles inverses du contrat tournent dans le job CI `agent-docs-contracts`)
+# La base est rafraîchie d'abord : sur un clone périmé, l'arbre lu n'est pas celui du
+# squash, et le rejeu y disait VERT là où le squash rougit (mesuré 27/11/2026).
+# Un lecteur réimplémenté valait moins : sur les dix formes mesurées en contre-revue
+# po-2023 (27/11), deux concordaient avec le contrat ; six passaient quand il refuse
+# (index créé par la PR au-dessus d'un fichier déjà suivi, renommé, copié, lien `./`,
+# lien vers le dossier parent, ligne qui cite dans un bloc de code) ; deux retenaient
+# à tort (sous-index cité par `sub/README.md`, cible écrite `%20`). Le rejeu rend le
+# verdict du contrat sur l'arbre fusionné, sur tous les dossiers à la fois.
+# Casses de master de cette famille, vues par le même rejeu :
 #   - 27/11 : un fichier AJOUTÉ sous un index déjà sur master (#2384 pose l'index de
-#     docs/quality, #2372 ajoute le fichier 131). C'est CETTE forme que R13 retient,
-#     AVANT le squash, en lisant l'index sur master ET sur la tête de la PR.
-#   - 14/11 : l'inverse -- #2263 ajoute articles/README.md alors qu'aucun index
+#     docs/quality, #2372 ajoute le fichier 131) -- merge-tree propre, contrat rouge
+#     APRÈS le squash (#2409 l'a réparée).
+#   - 14/11 : la forme inverse -- #2263 ajoute articles/README.md alors qu'aucun index
 #     n'existe (rien ne casse), puis #2252 CRÉE les trois index et omet
-#     articles/README.md, déjà suivi. R13 ne voit PAS cette forme : elle ne parcourt
-#     que les fichiers AJOUTÉS (statut `added`, ci-dessous), pas l'index créé
-#     au-dessus d'un fichier déjà là.
-# Le lecteur n'est pas le contrat : sur les dix formes mesurées en contre-revue
-# (27/11), deux concordent avec tools/test_docs-index-contract.py, six passent quand
-# le contrat refuse (renommés, copies, liens en bloc de code, cibles `%20`, liens
-# vers un ancêtre) et deux retiennent à tort. Le rejeu du contrat réel sur l'arbre
-# fusionné remplace ce lecteur (grain de suite, #458).
-INDEX_MARKER = "<!-- index-of-record -->"
-INDEX_FILE = "README.md"
-INDEX_FENCE = re.compile(r"^ {0,3}(`{3,}|~{3,})")
-INDEX_LINK = re.compile(r"""\]\(\s*(<[^<>\n]*>|[^()\s]+)(?:\s+(?:"[^"\n]*"|'[^'\n]*'))?\s*\)""")
-INDEX_REFDEF = re.compile(r"(?m)^ {0,3}\[(?!\^)[^\]\n]+\]:[ \t]*(<[^<>\n]*>|\S+)")
+#     articles/README.md, déjà suivi. Le contrat la voit sur l'arbre fusionné de #2252.
+# Un instrument qui ne peut pas lire (git absent, dépôt local absent ou sans origin,
+# base non rafraîchissable, tête introuvable, conflit de fusion, contrat absent de
+# l'arbre, sortie non reconnue) est AVEUGLE : code 1, jamais PASS.
+DOCS_CONTRACT = "tools/test_docs-index-contract.py"
+DOCS_CONTRACT_CLASS = "DocsIndexContract"
+DOCS_CONTRACT_TESTS = 2      # les deux assertions réelles ; `Ran 1 test` n'est pas un vert
+DOCS_CONTRACT_TIMEOUT = 180  # secondes, PAR sous-processus ; le contrat seul mesure 2 à 12 s
+DOCS_INDEX_MARKER = "<!-- index-of-record -->"   # la marque que le contrat reconnaît
+REPO_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 def declares_counter_review(body):
@@ -225,60 +237,186 @@ def _required_contexts(runner, base, ref):
     return {"source": "REPLI NOMMÉ (%s)" % why, "contexts": list(FALLBACK_CONTEXTS)}
 
 
-def _github_text(runner, repo, path, ref, cache):
-    """Un fichier à une révision, ou None quand il n'existe pas là.
+def _assertion_message(block):
+    """Le message d'une `AssertionError`, sans rien de ce qui suit.
 
-    Un 404 est une RÉPONSE (absence à cette révision) ; tout autre échec est un
-    instrument aveugle, jamais une absence -- la règle du gate entier.
+    `block` commence APRÈS `AssertionError: `. Ce qu'unittest imprime ensuite : la ligne
+    vide, le diff s'il y en a un, la règle de séparation, le bilan. Mesuré (27/11/2026,
+    Python 3.13) : le message tient sur sa première ligne -- une liste longue est
+    raccourcie par unittest (`[N chars]`), elle ne se replie pas. On s'arrête à la
+    première ligne vide ou à la règle, pour ne pas citer le bilan comme un défaut.
     """
-    key = (path, ref)
-    if key in cache:
-        return cache[key]
-    endpoint = "repos/%s/contents/%s?ref=%s" % (repo, path, ref)
-    rc, out, err = runner(["api", "-H", "Accept: application/vnd.github.raw", endpoint])
-    if rc != 0:
-        line = _first_line(err).lower()
-        if "404" in line or "not found" in line:
-            cache[key] = None
-        else:
-            raise Blind("index de record : lecture de %s@%s en échec -- %s"
-                        % (path, ref, _first_line(err) or "sans message"))
-    else:
-        cache[key] = out
-    return cache[key]
+    lines = []
+    for line in block.replace("\r", "").split("\n"):
+        stripped = line.strip()
+        if not stripped or (len(stripped) >= 10 and set(stripped) == {"-"}):
+            break
+        lines.append(stripped)
+    return " ".join(lines)
 
 
-def _index_of_record(runner, repo, head, files):
-    """Pour chaque fichier AJOUTÉ, l'index de record qui le tient -- lu sur master et sur la tête.
+def _contract_verdict(rc, text):
+    """La sortie de `python -B <contrat> DocsIndexContract`, LUE telle quelle.
 
-    L'index responsable est le README.md marqué le PLUS PROCHE : un sous-dossier qui
-    porte le sien tient ses fichiers, et le parent ne doit citer que ce sous-dossier
-    (même découpage que tools/test_docs-index-contract.py). Aucun index au-dessus :
-    le fichier n'est tenu à rien, et la règle le DIT au lieu de se taire.
+    Vert seulement si les deux assertions réelles ont tourné et passé : un bilan
+    `Ran 1 test ... OK` n'est pas un vert, c'est un instrument qui n'a pas tout vu.
+    Rouge seulement sur `AssertionError` -- le message du contrat est repris, jamais
+    re-dérivé (c'est lui qui nomme le fichier non cité), et repris JUSQU'À la ligne vide
+    ou la règle d'unittest qui le suivent : jamais le diff, jamais le bilan (mesuré
+    27/11/2026 : sur le plancher du contrat, `aucun README.md ne porte la marque`, le
+    défaut cité embarquait la règle et `Ran 2 tests … FAILED`).
+    Un `ERROR` (traceback,
+    `RuntimeError: git ls-files a échoué`) est un instrument aveugle, pas un rouge :
+    le contrat dit qu'il ne peut pas voir, la porte ne traduit pas cela en défaut.
     """
-    cache, reads = {}, []
-    for f in files:
-        if f.get("status") != "added":
-            continue
-        path = f.get("filename")
-        folder = path.rpartition("/")[0]
-        entry = {"path": path, "folder": None, "index": None, "master": None, "head": None}
-        while True:
-            rel = (folder + "/" if folder else "") + INDEX_FILE
-            text = _github_text(runner, repo, rel, "master", cache)
-            if text is not None and _index_marker(text):
-                entry.update(folder=folder, index=rel, master=text,
-                             head=_github_text(runner, repo, rel, head, cache))
-                break
-            if not folder:
-                break
-            folder = folder.rpartition("/")[0]
-        reads.append(entry)
-    return {"reads": reads}
+    def blind(why):
+        return {"status": "blind", "tree": "", "defects": [], "detail": why}
+
+    counts = re.findall(r"^Ran (\d+) tests? in ", text, re.M)
+    if len(counts) != 1 or int(counts[0]) != DOCS_CONTRACT_TESTS:
+        return blind("sortie non reconnue (pas un bilan `Ran %d tests` unique) -- %s"
+                     % (DOCS_CONTRACT_TESTS, _first_line(text) or "sortie vide"))
+    failed = re.search(r"^FAILED \(([^)]*)\)", text, re.M)
+    if rc == 0 and not failed and re.search(r"^OK\b", text, re.M):
+        return {"status": "ok", "tree": "", "defects": [], "detail": ""}
+    errors = re.search(r"errors=(\d+)", failed.group(1)) if failed else None
+    if rc == 1 and failed and not (errors and int(errors.group(1))):
+        blocks = [block.strip() for block in text.split("AssertionError: ")[1:]]
+        defects = [_assertion_message(block)[:300] for block in blocks]
+        defects = [defect for defect in defects if defect]
+        if defects:
+            return {"status": "red", "tree": "", "defects": defects, "detail": failed.group(1)}
+        return blind("sortie rouge sans `AssertionError` lisible")
+    return blind("sortie non reconnue (rc=%s, %s) -- %s"
+                 % (rc, failed.group(1) if failed else "sans bilan d'échec",
+                    _first_line(text) or "sortie vide"))
 
 
-def collect(pr, repo=DEFAULT_REPO, runner=gh_run, sleep=time.sleep):
-    """Read everything the rules need. Raises Blind on any core failure."""
+def _docs_replay(number, base_ref, head_sha, root=None):
+    """Rejoue le contrat des index de dossier sur l'ARBRE FUSIONNÉ de la PR.
+
+    Forme : fetch de la base depuis origin -> merge-tree --write-tree -> commit-tree ->
+    worktree add --detach -> `python -B <contrat> DocsIndexContract` -> worktree remove.
+    Le contrat est lu DANS l'arbre fusionné, pas dans le checkout : c'est la version que
+    le squash rendra exécutable, et `git ls-files` y voit les fichiers suivis du merge.
+    `-B` évite tout `__pycache__`, donc le worktree reste propre et se retire sans
+    `--force`.
+
+    La base est rafraîchie, jamais présumée à jour (mesuré 27/11/2026) : sur un clone
+    périmé, le rejeu disait VERT là où le squash rougit. Master crée un index
+    au-dessus d'un dossier déjà suivi (forme #2252/#2263), une PR branchée avant ajoute
+    un fichier dessous -- couvert par le lien de dossier de l'ancienne base, dû au nouvel
+    index après le squash.
+
+    Coût mesuré sur ce dépôt (27/11/2026, machine partagée) : 16 à 37 s par rejeu sur
+    9 passes SANS le fetch de la base, 19,9 / 23,7 / 35,6 s sur 3 passes AVEC (le
+    fetch : 1,0 à 1,6 s) -- extraction complète de l'arbre 11 à 17 s, son retrait 3 à
+    8 s, le contrat 2 à 12 s. L'écart entre deux passes est attribué à la charge de
+    la machine, non isolé. L'extraction est COMPLÈTE et doit le rester : clairsemée
+    (`sparse-checkout set docs tools`), elle rend le contrat rouge à tort -- `lien mort
+    : ../../.github/workflows/static.yml` -- sur l'arbre fusionné comme sur la tête,
+    parce qu'un index de `docs/` lie un fichier hors de `docs/` et que le contrat lit
+    le système de fichiers. Même raison pour l'absence de raccourci « la PR ne touche
+    ni `docs/` ni `tools/` » : retirer ce fichier lié casse un index sans toucher ni
+    l'un ni l'autre.
+
+    Écritures : ce qu'un `git fetch` écrit (la référence de suivi
+    `refs/remotes/origin/<base>`, `FETCH_HEAD` pour la tête) et un worktree temporaire,
+    retiré ensuite ; rien sur GitHub.
+    Tout empêchement de lire rend AVEUGLE (code 1) : jamais une absence, jamais un vert.
+    """
+    top = root or REPO_ROOT
+    state = {"git_error": None}
+
+    def git(*args):
+        try:
+            return subprocess.run(["git", "-C", top] + list(args), capture_output=True,
+                                  timeout=DOCS_CONTRACT_TIMEOUT)
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            state["git_error"] = "%s: %s" % (type(exc).__name__, exc)
+            return subprocess.CompletedProcess(args, 1, b"", b"")
+
+    def blind(why):
+        return {"status": "blind", "tree": "", "defects": [], "detail": why}
+
+    def said(done):
+        return (_first_line(done.stderr.decode("utf-8", "replace"))
+                or _first_line(done.stdout.decode("utf-8", "replace")) or "sans message")
+
+    base = "refs/remotes/origin/%s" % base_ref
+    # Le dépôt local d'abord : depuis un répertoire qui n'en est pas un, dire « base
+    # absente, faites un fetch » enverrait l'opérateur chercher ce qui n'y est pour rien.
+    done = git("rev-parse", "--is-inside-work-tree")
+    if state["git_error"]:
+        return blind("git indisponible (%s)" % state["git_error"])
+    if done.returncode != 0 or b"true" not in done.stdout:
+        return blind("dépôt local absent ou illisible depuis %s" % top)
+    # La base est RAFRAÎCHIE, jamais présumée à jour. Mesuré (27/11/2026) : sur un clone
+    # périmé, le rejeu dit VERT là où le squash rougit -- master crée un index
+    # au-dessus d'un dossier déjà suivi (forme #2252/#2263), la PR ajoute un fichier
+    # dessous ; l'arbre lu (ancienne base + tête) n'est pas celui que le squash rendra.
+    # Un fetch qui échoue n'est pas « base absente » : c'est un instrument qui n'a pas pu
+    # lire la vraie base -- aveugle, code 1.
+    fetched = git("fetch", "--quiet", "--no-tags", "--no-auto-gc", "--no-recurse-submodules", "origin",
+                  "+refs/heads/%s:refs/remotes/origin/%s" % (base_ref, base_ref))
+    if fetched.returncode != 0:
+        return blind("base %s : fetch origin en échec -- %s" % (base_ref, said(fetched)))
+    done = git("rev-parse", "--verify", "--quiet", base + "^{commit}")
+    if done.returncode != 0:
+        return blind("base %s : fetch réussi, référence introuvable ensuite -- %s"
+                     % (base_ref, said(done)))
+    done = git("rev-parse", "--verify", "--quiet", head_sha + "^{commit}")
+    if done.returncode != 0:
+        git("fetch", "--quiet", "--no-tags", "--no-auto-gc", "--no-recurse-submodules", "origin",
+            "refs/pull/%d/head" % number)
+        done = git("rev-parse", "--verify", "--quiet", head_sha + "^{commit}")
+        if done.returncode != 0:
+            return blind("tête %s absente du dépôt local (fetch refs/pull/%d/head)"
+                         % (head_sha[:12], number))
+    merged = git("merge-tree", "--write-tree", base, head_sha)
+    if merged.returncode != 0:
+        return blind("arbre fusionné non calculable (conflit, base illisible) -- %s" % said(merged))
+    tree = (merged.stdout.decode("utf-8", "replace").split("\n") or [""])[0].strip()
+    if not re.match(r"^[0-9a-f]{40,64}$", tree):
+        return blind("merge-tree n'a pas rendu d'oid d'arbre -- %s"
+                     % (_first_line(merged.stdout.decode("utf-8", "replace")) or "sortie vide"))
+    made = git("commit-tree", tree, "-p", base, "-p", head_sha, "-m", "gate-docs-replay")
+    if made.returncode != 0:
+        return blind("commit-tree en échec -- %s" % said(made))
+    commit = made.stdout.decode("utf-8", "replace").strip().split("\n")[0].strip()
+    work = tempfile.mkdtemp(prefix="gate-docs-replay-")
+    added = git("worktree", "add", "--detach", work, commit)
+    try:
+        if added.returncode != 0:
+            return blind("worktree de rejeu non créé -- %s"
+                         % (_first_line(added.stderr.decode("utf-8", "replace")) or "sans message"))
+        contract = os.path.join(work, *DOCS_CONTRACT.split("/"))
+        if not os.path.isfile(contract):
+            return blind("contrat absent de l'arbre fusionné (%s)" % DOCS_CONTRACT)
+        try:
+            run = subprocess.run([sys.executable, "-B", contract, DOCS_CONTRACT_CLASS],
+                                 cwd=work, capture_output=True, timeout=DOCS_CONTRACT_TIMEOUT)
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            return blind("contrat non exécutable -- %s: %s" % (type(exc).__name__, exc))
+        text = (run.stdout + b"\n" + run.stderr).decode("utf-8", "replace")
+        verdict = _contract_verdict(run.returncode, text)
+        if verdict["status"] != "blind":
+            verdict["tree"] = tree
+        return verdict
+    finally:
+        git("worktree", "remove", work)
+        try:
+            os.rmdir(work)                    # seulement s'il est vide (retrait réussi)
+        except OSError:
+            pass
+
+
+def collect(pr, repo=DEFAULT_REPO, runner=gh_run, sleep=time.sleep, replay=None):
+    """Read everything the rules need. Raises Blind on any core failure.
+
+    `replay` is the docs-contract replay (git side); the self-test injects it so the
+    fake-gh cases stay offline. A replay that cannot see raises here: no verdict.
+    """
     base = "repos/%s" % repo
     pr_path = "%s/pulls/%d" % (base, pr)
     prj = _api_json(runner, pr_path, "PR")
@@ -330,7 +468,14 @@ def collect(pr, repo=DEFAULT_REPO, runner=gh_run, sleep=time.sleep):
     _expect_count("fichiers", len(raw), slim.get("changed_files"))
     snap["files"] = [{k: f.get(k) for k in ("filename", "previous_filename", "status", "additions",
                                             "deletions", "patch")} for f in raw]
-    snap["index_of_record"] = _index_of_record(runner, repo, head, snap["files"])
+
+    # R13 : le contrat réel rejoué sur l'arbre fusionné. Aveugle = aucune lecture,
+    # donc aucun verdict -- la règle du gate entier.
+    contract = (replay or _docs_replay)(pr, slim["base"]["ref"], head)
+    if contract.get("status") == "blind":
+        raise Blind("index de record : contrat des index de dossier non rejoué -- %s"
+                    % (contract.get("detail") or "cause non nommée"))
+    snap["docs_contract"] = contract
 
     raw, _ = _api_pages(runner, pr_path + "/commits", "commits")
     _expect_count("commits", len(raw), slim.get("commits"))
@@ -918,71 +1063,27 @@ def r12_csv(s, o, c):
     return reasons, "aucun CSV sous Cards/ touché"
 
 
-def _index_marker(text):
-    """La marque « index de record », seule sur sa ligne et HORS bloc de code.
-
-    La citer n'est pas la porter : un README qui montre la marque dans un exemple
-    ne devient pas un index (même règle que tools/test_docs-index-contract.py).
-    """
-    fence = None
-    for line in (text or "").replace("\r\n", "\n").split("\n"):
-        mark = INDEX_FENCE.match(line)
-        if fence is None:
-            if mark:
-                fence = mark.group(1)[0]
-            elif line.strip() == INDEX_MARKER:
-                return True
-        elif mark and mark.group(1)[0] == fence and line.strip() == mark.group(1):
-            fence = None
-    return False
-
-
-def _index_targets(text, folder):
-    """Les chemins du dépôt liés par le README du dossier `folder`, relatifs résolus."""
-    out = []
-    for target in list(INDEX_LINK.findall(text or "")) + list(INDEX_REFDEF.findall(text or "")):
-        target = target.strip()
-        if target.startswith("<") and target.endswith(">"):
-            target = target[1:-1]
-        if re.match(r"^[A-Za-z][A-Za-z0-9+.\-]*:", target) or target.startswith("//"):
-            continue                                    # lien externe
-        path = target.split("#")[0].split("?")[0]
-        if not path:
-            continue                                    # ancre seule
-        where = path.lstrip("/") if path.startswith("/") else (folder + "/" if folder else "") + path
-        out.append(os.path.normpath(where).replace(os.sep, "/"))
-    return out
-
-
-def _index_cites(text, folder, path):
-    """Le README cite le fichier, ou un dossier qui le contient -- le contrat compte
-    un sous-dossier cité comme citation de ce qu'il contient."""
-    return any(where == path or path.startswith(where + "/") for where in _index_targets(text, folder))
-
-
 def r13_index(s, o, c):
-    reads = s["index_of_record"]["reads"]
-    cited, free, held = [], [], []
-    for r in reads:
-        if not r.get("folder"):
-            free.append(r["path"])
-        elif any(_index_cites(text, r["folder"], r["path"])
-                 for text in (r.get("master"), r.get("head")) if text is not None):
-            cited.append(r)
-        else:
-            held.append(r)
-    reasons = []
-    if held:
-        reasons.append(("HOLD", "fichier(s) ajouté(s) non cité(s) par l'index de record : %s -- citer le "
-                        "fichier (ou son dossier) dans l'index de master ou dans celui de la PR ; sans "
-                        "cette ligne, le contrat d'index rougit APRÈS le squash"
-                        % _cap(["%s <- %s" % (r["path"], r.get("index")) for r in held], 4)))
-    if cited:
-        reasons.append(("INFO", "cité(s) par un index de record : %s"
-                        % _cap(["%s <- %s" % (r["path"], r.get("index")) for r in cited], 3)))
-    if free:
-        reasons.append(("INFO", "aucun index de record au-dessus : %s" % _cap(free, 3)))
-    return reasons, "aucun fichier ajouté sous un index de record (lecture sur master et sur la tête)"
+    """Le contrat des index de dossier, tel que le rejeu l'a rendu sur l'arbre fusionné.
+
+    La règle ne lit aucun README : elle rapporte le verdict et les mots du contrat
+    (tools/test_docs-index-contract.py). Vert = les deux assertions réelles ont passé
+    sur l'arbre que le squash produira si master ne bouge pas d'ici la fusion ; le
+    reste du job `agent-docs-contracts` (contrôles inverses, contrats voisins) n'est
+    pas couvert ici.
+    """
+    dc = s["docs_contract"]
+    status = dc.get("status")
+    if status not in ("ok", "red"):
+        raise Blind("index de record : contrat non rejoué (statut %r)" % (status,))
+    if status == "red":
+        defects = dc.get("defects") or []
+        return [("HOLD", "le contrat %s refuse l'arbre fusionné (arbre %s) : %s -- "
+                          "c'est le contrat qui rougira APRÈS le squash ; ajouter la ligne d'index (ou "
+                          "corriger le lien/statut) dans cette PR"
+                          % (DOCS_CONTRACT, dc.get("tree") or "?", _cap(defects, 4)))], \
+               "contrat %s vert sur l'arbre fusionné (arbre %s)" % (DOCS_CONTRACT, dc.get("tree"))
+    return [], "contrat %s vert sur l'arbre fusionné (arbre %s)" % (DOCS_CONTRACT, dc.get("tree"))
 
 
 RULES = (
@@ -1031,13 +1132,17 @@ def _validate(s):
                        ("inline_comments", "review_comments"), ("commits", "commits")):
         need(len(s[key]) == pr.get(field), "%s : %d lus pour %s annoncés" % (key, len(s[key]), pr.get(field)))
     need(all(isinstance(f, dict) and f.get("filename") for f in s["files"]), "fichier sans nom")
-    ior = s.get("index_of_record")
-    need(isinstance(ior, dict) and isinstance(ior.get("reads"), list),
-         "index de record : lecture absente de l'instantané")
-    added = sum(1 for f in s["files"] if f.get("status") == "added")
-    need(len(ior["reads"]) == added,
-         "index de record : %d lecture(s) pour %d fichier(s) ajouté(s)"
-         % (len(ior["reads"]), added))
+    dc = s.get("docs_contract")
+    need(isinstance(dc, dict), "contrat des index de dossier : rejeu absent de l'instantané")
+    need(dc.get("status") in ("ok", "red"),
+         "contrat des index de dossier : statut %r -- un rejeu aveugle ne porte pas de verdict"
+         % (dc.get("status"),))
+    need(isinstance(dc.get("defects"), list) and all(isinstance(d, str) for d in dc["defects"]),
+         "contrat des index de dossier : défauts illisibles")
+    need((dc.get("status") == "ok") == (not dc["defects"]),
+         "contrat des index de dossier : statut %r avec %d défaut(s) -- instantané incohérent"
+         % (dc.get("status"), len(dc["defects"])))
+    need(isinstance(dc.get("tree"), str) and dc["tree"], "contrat des index de dossier : arbre fusionné non consigné")
     need("diff_text" in s, "diff absent")
     if TAXONOMY_CSV in _touched(s):
         need(isinstance(s.get("csv_taxonomy_other_prs"), list),
@@ -1092,8 +1197,11 @@ NOT_ESTABLISHED = (
     "n'authentifie pas qui a écrit -- R7 et R8 voient l'oubli, pas l'usurpation ;",
     "R5 (prose), R8 (dates et déclaration par mot-clé) et R10 (motifs) sont des heuristiques : "
     "leur silence n'est pas une preuve.",
-    "R13 lit l'index sur master et sur la tête de la PR ; il ne juge pas le STATUT de la ligne "
-    "(contrat : tools/test_docs-index-contract.py), ni un fichier ajouté hors de tout index.",
+    "R13 rejoue le contrat des index de dossier sur l'arbre fusionné (`git merge-tree`), pas dans "
+    "le checkout : il ne re-vérifie pas le contrat lui-même (ses contrôles inverses tournent dans "
+    "le job `agent-docs-contracts`) et n'atteint pas une PR dont l'arbre fusionné n'est pas "
+    "calculable (conflit, base non rafraîchissable depuis origin, tête absente) -- code 1, jamais "
+    "un verdict.",
 )
 
 
@@ -1193,7 +1301,7 @@ def _write_json(path, data):
     os.replace(tmp, path)
 
 
-def main(argv=None, runner=gh_run, out=None, sleep=time.sleep):
+def main(argv=None, runner=gh_run, out=None, sleep=time.sleep, replay=None):
     out = out or sys.stdout
     args = build_parser().parse_args(argv)
     if args.self_test:
@@ -1213,7 +1321,7 @@ def main(argv=None, runner=gh_run, out=None, sleep=time.sleep):
             if args.pr is None:
                 raise Blind("numéro de PR absent")
             origin = "lecture en direct"
-            snap = collect(args.pr, args.repo, runner=runner, sleep=sleep)
+            snap = collect(args.pr, args.repo, runner=runner, sleep=sleep, replay=replay)
         if args.snapshot_out:
             _write_json(args.snapshot_out, snap)
         result = evaluate(snap, options)
@@ -1240,6 +1348,7 @@ def main(argv=None, runner=gh_run, out=None, sleep=time.sleep):
 # --------------------------------------------------------------------------
 
 _FX_HEAD = "a1b2c3d4" * 5
+_FX_TREE = "22ba3f6a" * 5
 _FX_ATTRIB = "\U0001F916 Generated with [Claude Code](https://claude.com/claude-code)"
 _FX_AFTER, _FX_BEFORE = "2026-01-01T12:00:00Z", "2025-12-31T12:00:00Z"
 # Secret-shaped strings are assembled at run time: none exists literally in this file.
@@ -1289,7 +1398,7 @@ def _fx_snapshot():
         "checks": checks, "statuses": [],
         "required_contexts": {"source": "auto-test", "contexts": list(FALLBACK_CONTEXTS)},
         "csv_taxonomy_other_prs": None,
-        "index_of_record": {"reads": []},
+        "docs_contract": {"status": "ok", "tree": _FX_TREE, "defects": [], "detail": ""},
     }
     return _fx_sync(snap)
 
@@ -1312,24 +1421,21 @@ def _fx_add_file(snap, path, lines):
     snap["files"].append({"filename": path, "previous_filename": None, "status": "added",
                           "additions": len(lines), "deletions": 0,
                           "patch": "@@ -0,0 +1,%d @@\n%s" % (len(lines), "\n".join("+" + ln for ln in lines))})
-    # Le collecteur lit un index par fichier ajouté ; « aucun index au-dessus » est
-    # la lecture par défaut, les cas R13 la remplacent par _fx_index.
-    snap["index_of_record"]["reads"].append({"path": path, "folder": None, "index": None,
-                                             "master": None, "head": None})
     return _fx_sync(snap)
 
 
-def _fx_index(snap, path, folder, master, head=None):
-    """Installe la lecture d'index que le collecteur aurait produite pour `path`."""
-    entry = {"path": path, "folder": folder,
-             "index": (folder + "/" if folder else "") + INDEX_FILE, "master": master, "head": head}
-    reads = snap["index_of_record"]["reads"]
-    for i, r in enumerate(reads):
-        if r.get("path") == path:
-            reads[i] = entry
-            return snap
-    reads.append(entry)
+def _fx_contract(snap, status="ok", defects=(), detail="", tree=_FX_TREE):
+    """Installe ce que le rejeu du contrat aurait rendu pour cet arbre fusionné."""
+    snap["docs_contract"] = {"status": status, "tree": "" if status == "blind" else tree,
+                             "defects": list(defects), "detail": detail}
     return snap
+
+
+def _fx_replay(contract):
+    """Un rejeu figé : rend le contrat donné, sans git."""
+    def replay(_number, _base_ref, _head_sha, root=None):
+        return copy.deepcopy(contract)
+    return replay
 
 
 def _fx_comment(snap, body, when, login="owner"):
@@ -1343,7 +1449,7 @@ def _fx_review(state, when=_FX_AFTER, body="", login="reviewer", commit=_FX_HEAD
             "commit_id": commit, "body": body}
 
 
-def _fx_runner(snap, fail=None, short_files=False, tamper=None, unknown_reads=0):
+def _fx_runner(snap, fail=None, short_files=False, tamper=None, unknown_reads=0, replay=None):
     """Fake `gh`: serves a snapshot back through the API shapes collect() reads.
 
     `fail` makes one endpoint exit non-zero. `tamper` makes one endpoint ANSWER
@@ -1351,6 +1457,8 @@ def _fx_runner(snap, fail=None, short_files=False, tamper=None, unknown_reads=0)
     "graphql-errors", while carrying an `errors` envelope next to complete data --
     the partial reads a guard on the return code alone would wave through.
     `unknown_reads` serves that many first PR reads with an uncomputed merge state.
+    The runner also carries the docs-contract replay (`run.replay`), so `main` can
+    run the whole collector without git or a network.
     """
     pr, head, num = snap["pr"], snap["pr"]["head"]["sha"], snap["pr"]["number"]
     prefix = "repos/%s/" % snap["repo"]
@@ -1391,14 +1499,6 @@ def _fx_runner(snap, fail=None, short_files=False, tamper=None, unknown_reads=0)
             return listing(snap["inline_comments"])
         if tail == "pulls/%d/files" % num:
             return listing(snap["files"][:-1] if short_files else snap["files"])
-        if tail and tail.startswith("contents/"):
-            rel = tail[len("contents/"):]
-            ref = next((p[4:] for p in query.split("&") if p.startswith("ref=")), "")
-            served = (snap.get("index_of_record") or {}).get("content") or {}
-            text = (served.get(ref) or {}).get(rel)
-            if text is None:
-                return 1, "", "gh: Not Found (HTTP 404)"
-            return 0, text, ""
         if tail == "pulls/%d/commits" % num:
             return listing([{"sha": c["sha"], "commit": {"message": c["message"]}} for c in snap["commits"]])
         if tail == "commits/%s/check-runs" % head:
@@ -1418,12 +1518,49 @@ def _fx_runner(snap, fail=None, short_files=False, tamper=None, unknown_reads=0)
         return 1, "", "HTTP 404: unrouted %s" % path
 
     run.seen = seen
+    run.replay = replay or _fx_replay(snap.get("docs_contract")
+                                      or {"status": "ok", "tree": _FX_TREE, "defects": [], "detail": ""})
     return run
 
 
 # --------------------------------------------------------------------------
 # Offline self-test: cases
 # --------------------------------------------------------------------------
+
+def _rm_tree(path):
+    """Retire un dépôt jetable SANS RESTE. Les objets git sont en lecture seule : sous
+    Windows `shutil.rmtree(ignore_errors=True)` les laisse en place sans rien dire
+    (mesuré : 4 dépôts par exécution d'auto-test). Rend le booléen de l'absence."""
+    for base, _dirs, names in os.walk(path):
+        for name in names:
+            try:
+                os.chmod(os.path.join(base, name), stat.S_IWRITE)
+            except OSError:
+                pass
+    shutil.rmtree(path, ignore_errors=True)
+    return not os.path.exists(path)
+
+
+def _required_indexes(path):
+    """Les dossiers que le contrat exige de garder marqués, lus dans SA source (AST).
+
+    Le fixture du rejeu les dérive du contrat au lieu de les recopier : un dossier
+    ajouté à `REQUIRED_INDEXES` suit sans que l'auto-test se mette à dériver.
+    """
+    try:
+        with io.open(path, encoding="utf-8") as handle:
+            tree = ast.parse(handle.read())
+    except (OSError, SyntaxError, ValueError):
+        return ()
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and any(getattr(t, "id", "") == "REQUIRED_INDEXES"
+                                                for t in node.targets):
+            try:
+                return tuple(name for name in ast.literal_eval(node.value) if isinstance(name, str))
+            except (ValueError, SyntaxError):
+                return ()
+    return ()
+
 
 def self_test(out):
     results = []
@@ -1469,9 +1606,10 @@ def self_test(out):
         except Blind:
             check("aveugle : %s" % label, True)
 
-    def run_main(argv, runner):
+    def run_main(argv, runner, replay=None):
         buf = io.StringIO()
-        return main(argv, runner=runner, out=buf, sleep=lambda _s: None), buf.getvalue()
+        return main(argv, runner=runner, out=buf, sleep=lambda _s: None,
+                    replay=replay or getattr(runner, "replay", None)), buf.getvalue()
 
     # --- baseline
     res = evaluate(base)
@@ -1787,71 +1925,246 @@ def self_test(out):
     control("CSV de taxonomie, seule PR ouverte", taxonomy([]), None, "R12", "INFO")
     control("autre CSV sous Cards/", add("Cards/Rules/x.csv"), None, "R12", "INFO")
 
-    # --- R13
-    Q_BARE = ("# Qualité\n\n" + INDEX_MARKER + "\n\n| Fichier | Statut |\n|---|---|\n"
-              "| [autre](autre-2026-11-20.md) | `historical` |\n")
-    Q_LINE = "| [131](131-reveil-demarrage-a-froid-2026-11-24.md) | `historical` |\n"
-    Q_PATH = "docs/quality/131-reveil-demarrage-a-froid-2026-11-24.md"
+    # --- R13 : la lecture de la sortie du contrat (unitaire, sans git)
+    OK_OUT = "Ran 2 tests in 0.12s\n\nOK\n"
+    ASSERT = ("FAIL: test_01 (__main__.DocsIndexContract)\n---\n"
+              "AssertionError: Lists differ: ['non cité : docs/quality/x.md'] != []\n")
+    check("sortie du contrat : 2 tests, OK -> vert", _contract_verdict(0, OK_OUT)["status"] == "ok")
+    check("sortie du contrat : 1 seul test exécuté -> AVEUGLE (un bilan partiel n'est pas un vert)",
+          _contract_verdict(0, OK_OUT.replace("Ran 2 tests", "Ran 1 test"))["status"] == "blind")
+    parsed = _contract_verdict(1, "Ran 2 tests in 0.1s\n\nFAILED (failures=1)\n" + ASSERT)
+    check("sortie du contrat : AssertionError -> rouge, message du contrat repris mot pour mot",
+          parsed["status"] == "red" and "non cité : docs/quality/x.md" in parsed["defects"][0])
+    check("sortie du contrat : ERROR (traceback) -> AVEUGLE, jamais un défaut",
+          _contract_verdict(1, "Ran 2 tests in 0.1s\n\nFAILED (errors=1)\n")["status"] == "blind")
+    check("sortie du contrat : rouge sans AssertionError lisible -> AVEUGLE",
+          _contract_verdict(1, "Ran 2 tests in 0.1s\n\nFAILED (failures=1)\n")["status"] == "blind")
+    check("sortie du contrat : rc=0 sans bilan -> AVEUGLE", _contract_verdict(0, "OK\n")["status"] == "blind")
+    check("sortie du contrat : sortie vide -> AVEUGLE", _contract_verdict(1, "")["status"] == "blind")
+    check("sortie du contrat : FAILED imprimé alors que rc=0 -> AVEUGLE",
+          _contract_verdict(0, "Ran 2 tests in 0.1s\n\nFAILED (failures=1)\n" + ASSERT)["status"]
+          == "blind")
+    check("sortie du contrat : un AssertionError à côté d'un ERROR -> AVEUGLE (lecture incomplète)",
+          _contract_verdict(1, "Ran 2 tests in 0.1s\n\nFAILED (failures=1, errors=1)\n" + ASSERT)["status"]
+          == "blind")
+    check("sortie du contrat : deux bilans dans la sortie -> AVEUGLE",
+          _contract_verdict(0, OK_OUT + OK_OUT)["status"] == "blind")
+    # Forme RÉELLE d'unittest (mesurée 27/11/2026) : le message, une ligne vide, la règle,
+    # le bilan. Le plancher du contrat (`assertTrue`) n'a pas de diff -- sa règle suit
+    # la ligne vide de près ; un défaut cité ne doit embarquer ni la règle ni le bilan.
+    RULE = "-" * 70
+    floor = ("FAIL: test_01 (__main__.DocsIndexContract)\n" + RULE + "\n"
+             "Traceback (most recent call last):\n"
+             "  File \"tools/test_docs-index-contract.py\", line 179, in test_01\n"
+             "AssertionError: [] is not true : aucun README.md ne porte la marque "
+             "<!-- index-of-record -->\n\n" + RULE + "\n")
+    floored = _contract_verdict(1, floor + "Ran 2 tests in 0.231s\n\nFAILED (failures=1)\n")
+    check("sortie du contrat : message suivi de la règle d'unittest -> rouge, le défaut s'arrête au message",
+          floored["status"] == "red" and floored["defects"]
+          == ["[] is not true : aucun README.md ne porte la marque <!-- index-of-record -->"])
+    differed = ("FAIL: test_01 (__main__.DocsIndexContract)\n" + RULE + "\n"
+                "AssertionError: Lists differ: ['non cité : docs/quality/x.md'] != []\n\n"
+                "First list contains 1 additional elements.\nFirst extra element 0:\n"
+                "'non cité : docs/quality/x.md'\n\n+ []\n- ['non cité : docs/quality/x.md']\n\n"
+                + RULE + "\n")
+    got = _contract_verdict(1, differed + "Ran 2 tests in 0.1s\n\nFAILED (failures=1)\n")
+    check("sortie du contrat : le diff d'unittest n'entre pas dans le défaut",
+          got["status"] == "red"
+          and got["defects"] == ["Lists differ: ['non cité : docs/quality/x.md'] != []"])
 
-    def added_indexed(master=Q_BARE, head=None):
-        def mutate(s):
-            _fx_add_file(s, Q_PATH, ["# constat"])
-            _fx_index(s, Q_PATH, "docs/quality", master, head)
-        return mutate
+    # --- R13 : le contrat des index de dossier, rejoué sur l'arbre fusionné
+    Q_DEFECT = "non cité : docs/quality/131-reveil-demarrage-a-froid-2026-11-24.md"
 
-    snap, res = case("fichier ajouté sous un index de record, non cité (rejeu du cas #2372)",
-                     "R13", "HOLD", added_indexed())
-    check("R13 : le fichier ET l'index sont nommés dans la sortie",
-          Q_PATH in render(snap, res) and "docs/quality/README.md" in render(snap, res))
-    control("cité par l'index de MASTER", added_indexed(master=Q_BARE + Q_LINE), None, "R13", "INFO")
-    control("cité par l'index de la PR seulement", added_indexed(head=Q_BARE + Q_LINE), None, "R13", "INFO")
+    def contract_red(s):
+        _fx_add_file(s, "docs/quality/131-reveil-demarrage-a-froid-2026-11-24.md", ["# constat"])
+        _fx_contract(s, "red", defects=[Q_DEFECT])
 
-    def cited_by_folder(s):
-        path = "docs/quality/sub/x.md"
-        _fx_add_file(s, path, ["x"])
-        _fx_index(s, path, "docs/quality",
-                  "# Q\n\n" + INDEX_MARKER + "\n\n| [sub](sub/) | `current` |\n")
-    control("cité par un lien vers son dossier", cited_by_folder, None, "R13", "INFO")
+    snap, res = case("contrat rouge sur l'arbre fusionné (rejeu du cas #2372)", "R13", "HOLD", contract_red)
+    check("R13 : le défaut nommé par le contrat ET le chemin du contrat sont dans la sortie",
+          Q_DEFECT in render(snap, res) and DOCS_CONTRACT in render(snap, res))
+    control("contrat vert sur l'arbre fusionné", lambda s: None, None, "R13", "OK")
+    check("R13 : vert -> l'arbre fusionné rejoué est nommé",
+          _FX_TREE[:12] in render(base, evaluate(base)))
 
-    def nearest_index(s):
-        path = "docs/quality/sub/x.md"
-        _fx_add_file(s, path, ["x"])
-        _fx_index(s, path, "docs/quality/sub",
-                  "# Sub\n\n" + INDEX_MARKER + "\n\n| [x](x.md) | `current` |\n")
-    control("sous-index le plus proche : cité", nearest_index, None, "R13", "INFO")
+    # Mutants du consommateur, nommés par ce qu'ils font : chacun doit être VU.
+    blind("mutant : rejeu absent de l'instantané", lambda s: s.pop("docs_contract"))
+    blind("mutant : rejeu aveugle consigné comme un instantané",
+          lambda s: _fx_contract(s, "blind", detail="git ls-files a échoué (simulé)"))
+    blind("mutant : rouge sans défaut nommé (rien à dire = rien vu)",
+          lambda s: _fx_contract(s, "red"))
+    blind("mutant : vert portant des défauts (statut et liste se contredisent)",
+          lambda s: _fx_contract(s, "ok", defects=[Q_DEFECT]))
+    blind("mutant : arbre fusionné non consigné", lambda s: _fx_contract(s, tree=""))
 
-    def new_subindex(cited):
-        def mutate(s):
-            path = "docs/quality/sub/README.md"
-            _fx_add_file(s, path, ["# Sub"])
-            _fx_index(s, path, "docs/quality", Q_BARE + ("| [sub](sub/) | `current` |\n" if cited else ""))
-        return mutate
-    case("sous-index ajouté, non cité par le parent", "R13", "HOLD", new_subindex(False))
-    control("sous-index ajouté, cité par le parent", new_subindex(True), None, "R13", "INFO")
-    control("fichier ajouté hors de tout index", add("tools/x.py"), None, "R13", "INFO")
-    check("R13 : la marque seule hors bloc de code est portée",
-          _index_marker("# T\n\n" + INDEX_MARKER + "\n") and not _index_marker("| " + INDEX_MARKER + " |"))
-    check("R13 : la marque dans un bloc de code n'est pas portée",
-          not _index_marker("```\n" + INDEX_MARKER + "\n```\n")
-          and not _index_marker("~~~\n" + INDEX_MARKER + "\n~~~\n"))
-    blind("index de record : lecture manquante pour un fichier ajouté",
-          lambda s: (added_indexed()(s), s["index_of_record"]["reads"].pop()))
-    blind("index de record : clé absente de l'instantané", lambda s: s.pop("index_of_record"))
+    # Le rejeu lui-même, sur des dépôts jetables : git réel, contrat réel.
+    required = _required_indexes(os.path.join(REPO_ROOT, *DOCS_CONTRACT.split("/")))
+    check("rejeu : les %d dossiers requis sont lus dans la source du contrat" % len(required),
+          len(required) >= 10)
 
-    def with_content(head_text):
-        snap = copy.deepcopy(base)
-        added_indexed()(snap)
-        snap["index_of_record"]["content"] = {"master": {"docs/quality/README.md": Q_BARE},
-                                              _FX_HEAD: {"docs/quality/README.md": head_text}}
-        return snap
-    rc, text = run_main(["4242"], _fx_runner(with_content(Q_BARE + Q_LINE)))
-    check("collecte : index lu sur master ET sur la tête, cité par la PR -> PASS",
-          rc == 0 and "R13  INFO" in text)
-    rc, text = run_main(["4242"], _fx_runner(with_content(Q_BARE)))
-    check("collecte : non cité sur les deux révisions -> HOLD, code 3", rc == 3 and "R13  HOLD" in text)
-    rc, text = run_main(["4242"], _fx_runner(with_content(Q_BARE), fail="contents/"))
-    check("collecte : lecture de l'index en échec -> code 1, aucun verdict",
-          rc == 1 and "VERDICT" not in text)
+    def _git_lite(cwd, *args):
+        return subprocess.run(["git", "-C", cwd] + list(args), capture_output=True, timeout=120)
+
+    def _put(root, rel, text):
+        full = os.path.join(root, *rel.split("/"))
+        if not os.path.isdir(os.path.dirname(full)):
+            os.makedirs(os.path.dirname(full))
+        with io.open(full, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(text)
+
+    def _replay_base():
+        """Base verte : contrats + les index requis marqués. `root` est un clone dont
+        l'origin est un dépôt nu sur disque ; sa base est sous refs/remotes/origin/master
+        -- ce qu'un `git fetch` laisse derrière lui. Le gate rafraîchit cette base avant
+        de la lire : un dépôt sans origin ne le laisserait pas faire."""
+        root = tempfile.mkdtemp(prefix="gate-replay-")
+        origin = tempfile.mkdtemp(prefix="gate-replay-origin-")
+        _git_lite(origin, "init", "-q", "--bare")
+        _git_lite(root, "init", "-q")
+        _git_lite(root, "checkout", "-q", "-b", "master")
+        _git_lite(root, "config", "user.email", "selftest@example.invalid")
+        _git_lite(root, "config", "user.name", "selftest")
+        for rel in (DOCS_CONTRACT, "tools/test_agent-docs-contract.py"):
+            with io.open(os.path.join(REPO_ROOT, *rel.split("/")), encoding="utf-8") as fh:
+                _put(root, rel, fh.read())
+        for folder in required:
+            _put(root, folder + "/README.md", "# %s\n\n%s\n" % (folder, DOCS_INDEX_MARKER))
+        # docs/taxonomy tient un sous-dossier par un lien de dossier : forme licite du
+        # contrat, dont le cas « base locale périmée » a besoin.
+        _put(root, "docs/taxonomy/README.md",
+             "# docs/taxonomy\n\n%s\n\n| [sub](sub/) | `current` |\n" % DOCS_INDEX_MARKER)
+        _put(root, "docs/taxonomy/sub/x.md", "# X\n")
+        _git_lite(root, "add", "-A")
+        _git_lite(root, "commit", "-q", "-m", "base")
+        base_sha = _git_lite(root, "rev-parse", "HEAD").stdout.decode().strip()
+        _git_lite(root, "remote", "add", "origin", origin)
+        _git_lite(root, "push", "-q", "origin", "master")
+        _git_lite(root, "fetch", "-q", "--no-tags", "origin")
+        return root, origin, base_sha
+
+    def _head_commit(root, base_sha, write, drop_contract=False):
+        """Une tête de PR par-dessus la base verte ; rend son sha. Une base, quatre têtes :
+        `git init` + commits + origin nu coûtent plusieurs secondes sur Windows, inutile
+        de payer cela par cas."""
+        _git_lite(root, "checkout", "-q", "--force", base_sha)
+        _git_lite(root, "clean", "-fdq")
+        write(root)
+        if drop_contract:
+            _git_lite(root, "rm", "-q", "--", DOCS_CONTRACT)
+        _git_lite(root, "add", "-A")
+        _git_lite(root, "commit", "-q", "-m", "head")
+        return _git_lite(root, "rev-parse", "HEAD").stdout.decode().strip()
+
+    def _sha(repo, ref):
+        return _git_lite(repo, "rev-parse", "--verify", "--quiet", ref).stdout.decode().strip()
+
+    NEW = "docs/quality/131-reveil-demarrage-a-froid-2026-11-24.md"
+
+    def _uncited_tree(root):
+        _put(root, NEW, "# constat\n")
+
+    def _cited_tree(root):
+        _uncited_tree(root)
+        _put(root, "docs/quality/README.md",
+             "# docs/quality\n\n%s\n\n| [131](131-reveil-demarrage-a-froid-2026-11-24.md) | `current` |\n"
+             % DOCS_INDEX_MARKER)
+
+    root, origin, base_sha = _replay_base()
+    try:
+        check("rejeu : la base du clone est sous refs/remotes/origin/master (état posé par un fetch)",
+              _sha(root, "refs/remotes/origin/master") == base_sha
+              and _sha(origin, "refs/heads/master") == base_sha)
+        heads = {name: _head_commit(root, base_sha, write, drop)
+                 for name, write, drop in (("rouge", _uncited_tree, False),
+                                           ("vert", _cited_tree, False),
+                                           ("aveugle", lambda r: None, True))}
+        # (cas, base, tête, statut attendu, cause attendue dans `detail` -- un aveugle nomme
+        # sa cause : sans cela, muter une garde redondante en un autre aveugle se verrait à peine)
+        for label, base_ref, head_sha, want, cause in (
+                ("tête non citée -> contrat ROUGE", "master", heads["rouge"], "red", ""),
+                ("tête citée -> contrat VERT", "master", heads["vert"], "ok", ""),
+                ("contrat retiré de la tête -> AVEUGLE", "master", heads["aveugle"], "blind",
+                 "contrat absent de l'arbre fusionné"),
+                ("base absente d'origin -> AVEUGLE", "absente", heads["rouge"], "blind",
+                 "fetch origin en échec"),
+                ("tête absente du dépôt local -> AVEUGLE", "master", "0" * 40, "blind",
+                 "tête 000000000000 absente du dépôt local")):
+            got = _docs_replay(4242, base_ref, head_sha, root=root)
+            check("rejeu : %s (statut %s%s)" % (label, got["status"],
+                                                ", cause : %s" % got["detail"] if cause else ""),
+                  got["status"] == want and cause in got["detail"])
+            if want == "red":
+                check("rejeu : le contrat nomme le fichier non cité, mot pour mot",
+                      any(Q_DEFECT in defect for defect in got["defects"]))
+                check("rejeu : l'arbre fusionné (40 hex) est consigné", len(got.get("tree") or "") == 40)
+
+        # Base locale PÉRIMÉE. origin/master bouge : un index est créé au-dessus d'un
+        # dossier déjà suivi (la forme #2252/#2263). La tête, branchée sur l'ancienne
+        # base, ajoute un fichier sous ce dossier : couvert par le lien de dossier de
+        # l'ancienne base (vert), dû au nouvel index après le squash (rouge). Mesuré
+        # 27/11/2026 : sans rafraîchir la base, le rejeu disait VERT.
+        _git_lite(root, "checkout", "-q", "--force", base_sha)
+        _put(root, "docs/taxonomy/sub/README.md",
+             "# Sub\n\n%s\n\n- [x](x.md) — `current`\n" % DOCS_INDEX_MARKER)
+        _git_lite(root, "add", "-A")
+        _git_lite(root, "commit", "-q", "-m", "origin a bougé")
+        moved = _sha(root, "HEAD")
+        _git_lite(root, "push", "-q", "origin", moved + ":refs/heads/master")
+        stale_head = _head_commit(root, base_sha, lambda r: _put(r, "docs/taxonomy/sub/new.md", "# N\n"))
+        _git_lite(root, "update-ref", "refs/remotes/origin/master", base_sha)
+        check("rejeu : état posé -- origin/master a bougé, le clone ne le sait pas",
+              _sha(origin, "refs/heads/master") == moved and moved != base_sha
+              and _sha(root, "refs/remotes/origin/master") == base_sha)
+        got = _docs_replay(4242, "master", stale_head, root=root)
+        check("rejeu : base locale périmée -> ROUGE, le verdict du squash et non celui du clone",
+              got["status"] == "red"
+              and any("non cité : docs/taxonomy/sub/new.md" in defect for defect in got["defects"]))
+        check("rejeu : la base rafraîchie, la référence de suivi du clone a suivi",
+              _sha(root, "refs/remotes/origin/master") == moved)
+
+        # origin injoignable : la base n'est pas lue, donc pas de verdict.
+        good_url = _git_lite(root, "remote", "get-url", "origin").stdout.decode().strip()
+        _git_lite(root, "remote", "set-url", "origin", os.path.join(root, "no-such-origin"))
+        got = _docs_replay(4242, "master", heads["rouge"], root=root)
+        check("rejeu : origin injoignable -> AVEUGLE (cause : fetch origin en échec), la tête ne suffit pas",
+              got["status"] == "blind" and "fetch origin en échec" in got["detail"])
+        _git_lite(root, "remote", "set-url", "origin", good_url)
+
+        listed = _git_lite(root, "worktree", "list").stdout.decode().strip().splitlines()
+        check("rejeu : aucun worktree de rejeu laissé dans le dépôt (%d worktree(s))" % len(listed),
+              len(listed) == 1)
+    finally:
+        gone = _rm_tree(root)
+        gone_origin = _rm_tree(origin)
+    check("rejeu : aucun dépôt jetable laissé derrière (clone %s, origin %s)"
+          % ("retiré" if gone else "RESTANT", "retiré" if gone_origin else "RESTANT"),
+          gone and gone_origin)
+    got = _docs_replay(4242, "master", _FX_HEAD, root=os.path.join(tempfile.gettempdir(),
+                                                                  "gate-replay-absent"))
+    check("rejeu : un répertoire qui n'est pas un dépôt -> AVEUGLE (cause : dépôt local absent)",
+          got["status"] == "blind" and "dépôt local absent ou illisible" in got["detail"])
+    repo_no_origin = tempfile.mkdtemp(prefix="gate-replay-noorigin-")
+    try:
+        _git_lite(repo_no_origin, "init", "-q")
+        got = _docs_replay(4242, "master", _FX_HEAD, root=repo_no_origin)
+        check("rejeu : un dépôt sans origin -> AVEUGLE (cause : fetch origin en échec)",
+              got["status"] == "blind" and "fetch origin en échec" in got["detail"])
+    finally:
+        gone = _rm_tree(repo_no_origin)
+    check("rejeu : dépôt sans origin retiré", gone)
+
+    # Le collecteur, de bout en bout, avec le rejeu injecté. Le cas aveugle exige la
+    # CAUSE dans la sortie : c'est la garde de `collect` qui parle, pas le repli de
+    # `_validate` (les deux rendraient code 1 -- muter l'une doit se voir).
+    red = copy.deepcopy(base)
+    contract_red(red)
+    rc, text = run_main(["4242"], _fx_runner(red))
+    check("collecte : contrat rouge -> HOLD, code 3", rc == 3 and "R13  HOLD" in text
+          and Q_DEFECT in text)
+    rc, text = run_main(["4242"], _fx_runner(base, replay=_fx_replay(
+        {"status": "blind", "tree": "", "defects": [], "detail": "git ls-files a échoué (simulé)"})))
+    check("collecte : rejeu aveugle -> code 1, aucun verdict, la cause dite par la collecte",
+          rc == 1 and "AVEUGLE" in text and "VERDICT" not in text
+          and "non rejoué -- git ls-files a échoué (simulé)" in text)
 
     # --- blind snapshots: never a verdict
     blind("instantané sans liste de fichiers", lambda s: s.pop("files"))
@@ -1866,7 +2179,9 @@ def self_test(out):
     rc, text = run_main(["4242"], _fx_runner(base))
     check("collecte factice -> PASS, code 0", rc == 0 and "VERDICT : PASS" in text
           and ("--match-head-commit " + _FX_HEAD) in text)
-    replay = json.loads(json.dumps(collect(4242, DEFAULT_REPO, runner=_fx_runner(base), sleep=lambda _s: None)))
+    fake = _fx_runner(base)
+    replay = json.loads(json.dumps(collect(4242, DEFAULT_REPO, runner=fake, sleep=lambda _s: None,
+                                           replay=fake.replay)))
     check("instantané sérialisable, même verdict rejoué", evaluate(replay)["verdict"] == "PASS")
     for needle in ("pulls/4242", "issues/4242/comments", "/reviews", "pulls/4242/comments", "/files",
                    "pulls/4242/commits", "check-runs", "/status", "commits/" + _FX_HEAD, "graphql"):
