@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Linq;
+using System.Text;
 using FluentAssertions;
 using Xunit;
 
@@ -12,15 +14,21 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
     /// backs, for every card set — and that a probe that cannot run is logged as a Problem.
     /// The #190 overflow detector stayed dead for months behind a call that existed, a catch
     /// that swallowed, and a log line nobody saw.
+    /// These tests read the source with its COMMENTS REMOVED (see <see cref="WithoutComments"/>):
+    /// a probe silenced with <c>//</c> still contains its call text, so the raw text matched it
+    /// and the whole organ stayed green (measured 2026-11-27 by po-2024, c.7210566223: 27/27 with
+    /// both calls commented out, on a probe no test executes in a real harvest).
     /// </summary>
     public class FontFallbackDetectorWiringTests
     {
         private const string FaceProbeCall = "await ProbeFonts(page, configCardSet, currentLanguage ?? \"\", \"face\");";
         private const string BackProbeCall = "await ProbeFonts(page, configCardSet, currentLanguage ?? \"\", \"back\");";
 
-        private static string Source(string fileName)
+        private static string RawSource(string fileName)
             => File.ReadAllText(Path.Combine(TestRepoRoot.Find(),
                 "Generation", "Converters", "Argumentum.AssetConverter", "WebBasedGenerator", "Cardpen", fileName));
+
+        private static string Source(string fileName) => WithoutComments(RawSource(fileName));
 
         [Fact]
         public void Harvest_ProbesTheFacesBeforeTheBacksOverwriteTheIframe_ThenTheBacks()
@@ -91,6 +99,189 @@ namespace Argumentum.AssetConverter.Tests.WebBasedGenerator
             // script binds (element, args) and reads the element's own document.
             source.Should().Contain("private const string ProbeScript = @\"async (element, args) => {");
             source.Should().Contain("iframe.Locator(\"body\").EvaluateAsync<JsonElement>(");
+        }
+
+        /// <summary>
+        /// The inverse control the wiring guard was missing: silence one probe with a line comment
+        /// and the guard must read the call as ABSENT. The mutation is applied to the real source
+        /// text, and the text is asserted to still carry the call afterwards — otherwise the test
+        /// would pass on a mutation that silently did nothing.
+        /// </summary>
+        [Theory]
+        [InlineData("face")]
+        [InlineData("back")]
+        public void WiringGuard_ReadsACommentedOutProbeCallAsAbsent(string side)
+        {
+            var raw = RawSource("HarvestManager.cs");
+            var call = side == "face" ? FaceProbeCall : BackProbeCall;
+
+            raw.Should().Contain(call);
+            WithoutComments(raw).Should().Contain(call, "the guard sees a live call");
+
+            var at = raw.IndexOf(call, StringComparison.Ordinal);
+            var lineStart = raw.LastIndexOf('\n', at) + 1;
+            var commented = raw.Insert(lineStart, "// ");
+
+            commented.Length.Should().Be(raw.Length + 3, "the mutation landed: three characters added");
+            commented.Substring(lineStart).TrimStart().Should().StartWith("//",
+                "the probe now sits behind a line comment");
+            commented.Should().Contain(call, "commenting out does not delete the text — that is the whole trap");
+            WithoutComments(commented).Should().NotContain(call,
+                "a probe silenced by a comment must read as absent, or the organ is green on a dead probe");
+        }
+
+        /// <summary>
+        /// Same trap, other comment form: a block comment swallows the call just as well.
+        /// </summary>
+        [Fact]
+        public void WiringGuard_ReadsABlockCommentedProbeCallAsAbsent()
+        {
+            var raw = RawSource("HarvestManager.cs");
+            var at = raw.IndexOf(FaceProbeCall, StringComparison.Ordinal);
+            var lineStart = raw.LastIndexOf('\n', at) + 1;
+            var lineEnd = raw.IndexOf('\n', at);
+
+            var commented = raw.Substring(0, lineStart) + "/* " + raw.Substring(lineStart, lineEnd - lineStart)
+                                                       + " */" + raw.Substring(lineEnd);
+
+            commented.Should().Contain("/* ", "the mutation landed");
+            WithoutComments(commented).Should().NotContain(FaceProbeCall);
+            WithoutComments(commented).Length.Should().Be(commented.Length,
+                "the stripper keeps the length, whatever the comment form");
+        }
+
+        /// <summary>
+        /// The stripper's own guard, because a comment remover that eats too much would quietly
+        /// blind every test of this class. Two traps measured on the real file: a URL inside a
+        /// normal string, and a multi-line verbatim string holding the harvest script.
+        /// </summary>
+        [Fact]
+        public void WithoutComments_KeepsTheCodeAndEatsOnlyTheProse()
+        {
+            var raw = RawSource("HarvestManager.cs");
+            var stripped = WithoutComments(raw);
+
+            stripped.Length.Should().Be(raw.Length, "same length: a position taken on one text means the same place in the file");
+            stripped.Count(c => c == '\n').Should().Be(raw.Count(c => c == '\n'), "line numbers survive");
+
+            stripped.Should().Contain(FaceProbeCall).And.Contain(BackProbeCall);
+            stripped.Should().Contain("\"https://raw.githubusercontent.com/ArgumentumGames/Argumentum/master/\"",
+                "a // inside a string literal is not a C# comment — eating it truncates the line");
+            stripped.Should().Contain("string script = @\"", "the multi-line verbatim string is copied verbatim");
+            stripped.Should().NotContain("#1485: which fonts actually paint the letters of the face DOM",
+                "and the prose is gone — otherwise this stripper removes nothing");
+        }
+
+        /// <summary>
+        /// Every comment becomes spaces and newlines stay: the text keeps the length of the file
+        /// it came from, so an index taken on one is valid on the other. String and character
+        /// literals are copied as they are, escapes included — a URL, a JS comment inside the
+        /// harvest script or an <c>@"…""…"</c> pair is not a C# comment.
+        /// </summary>
+        private static string WithoutComments(string source)
+        {
+            var stripped = new StringBuilder(source.Length);
+            var i = 0;
+            while (i < source.Length)
+            {
+                var c = source[i];
+                var next = i + 1 < source.Length ? source[i + 1] : '\0';
+
+                if (c == '/' && next == '/')
+                {
+                    while (i < source.Length && source[i] != '\n')
+                    {
+                        stripped.Append(' ');
+                        i++;
+                    }
+                    continue;
+                }
+
+                if (c == '/' && next == '*')
+                {
+                    stripped.Append(' ').Append(' ');
+                    i += 2;
+                    while (i < source.Length)
+                    {
+                        if (source[i] == '*' && i + 1 < source.Length && source[i + 1] == '/')
+                        {
+                            stripped.Append(' ').Append(' ');
+                            i += 2;
+                            break;
+                        }
+                        stripped.Append(source[i] == '\n' ? '\n' : ' ');
+                        i++;
+                    }
+                    continue;
+                }
+
+                // @"…", $@"…", @$"…" — doubled quote is the escape, the backslash is literal
+                var quoteAt = -1;
+                if (c == '@' && next == '"')
+                {
+                    quoteAt = i + 1;
+                }
+                else if ((c == '$' && next == '@') || (c == '@' && next == '$'))
+                {
+                    if (i + 2 < source.Length && source[i + 2] == '"') quoteAt = i + 2;
+                }
+
+                if (quoteAt >= 0)
+                {
+                    while (i <= quoteAt)
+                    {
+                        stripped.Append(source[i]);
+                        i++;
+                    }
+                    while (i < source.Length)
+                    {
+                        if (source[i] == '"' && i + 1 < source.Length && source[i + 1] == '"')
+                        {
+                            stripped.Append('"').Append('"');
+                            i += 2;
+                            continue;
+                        }
+                        if (source[i] == '"')
+                        {
+                            stripped.Append('"');
+                            i++;
+                            break;
+                        }
+                        stripped.Append(source[i]);
+                        i++;
+                    }
+                    continue;
+                }
+
+                if (c == '"' || c == '\'')
+                {
+                    var quote = c;
+                    stripped.Append(quote);
+                    i++;
+                    while (i < source.Length)
+                    {
+                        if (source[i] == '\\' && i + 1 < source.Length)
+                        {
+                            stripped.Append(source[i]).Append(source[i + 1]);
+                            i += 2;
+                            continue;
+                        }
+                        if (source[i] == quote)
+                        {
+                            stripped.Append(quote);
+                            i++;
+                            break;
+                        }
+                        stripped.Append(source[i]);
+                        i++;
+                    }
+                    continue;
+                }
+
+                stripped.Append(c);
+                i++;
+            }
+            return stripped.ToString();
         }
 
         private static int Count(string text, string needle)
