@@ -299,11 +299,25 @@ C1, ré-injection EAV, packs de langue, article et liens #135, fichiers E12, wra
 
     ⚠️ **Site endormi** : une requête d'**éveil** précède la passe, avec sa propre borne
     (`--wake-max-time`, défaut **240 s** — mesuré 93 à 107 s sur la prod endormie le
-    24/11, rapporté par web2 ; la borne de passe reste 60 s). Le rapport la nomme
-    (« Réveil : `GET /` → 200 en N s »). **Aucune** réponse HTTP dans cette borne ⇒
-    contrôles 1 à 3 **non mesurés**, code **1**, et la passe ne tourne pas : une borne
-    au lieu de 42 requêtes. Un statut HTTP à l'éveil (même 503) n'est **pas** ce cas —
-    le site répond, la passe le juge.
+    24/11, rapporté par web2). Les **42 requêtes de la passe** gardent chacune la leur :
+    `--max-time`, défaut **60 s**. Le rapport nomme les deux (« Réveil : `GET /` → 200 en
+    N s », avec ses deux bornes). **Aucune** réponse HTTP dans la borne d'éveil ⇒
+    contrôles 1 à 3 **et sonde P2 non mesurés**, code **1**, et la passe ne tourne pas :
+    une borne au lieu de 42 requêtes. La sonde P2 (§ 9 ; section 6 du rapport) lit les
+    corps d'accueil que la passe a fetchés — sans passe, elle n'a rien à lire. Un statut
+    HTTP à l'éveil (même 503) n'est **pas** ce cas — le site répond, la passe le juge.
+
+    ⚠️ **`--max-time` ne raccourcit pas une passe saine : baissée, elle rougit une route
+    lente.** Une réponse qui arrive après la borne n'est pas reçue — `curl` sort en 28 et
+    rend `000` —, le script lit le statut **0** (« aucune réponse HTTP dans la borne » : ce
+    n'est pas un statut du site), la route compte en échec **dur** (code **1**) et la sonde
+    P2 de cet accueil passe en « non mesuré ». Mesuré le 27/11 en boucle locale (vrai
+    `curl`, pages synthétiques du contrat, hors prod) : un accueil qui répond en 4 s est
+    **vert** à la borne par défaut, **rouge** à `--max-time 2` ; sans la latence, vert à
+    `--max-time 2`. Une route rougie sous une borne baissée se re-joue **à 60** avant
+    d'être lue comme un défaut du site — à 60, une route qui ne répond pas est bien un
+    défaut, et la borne ne doit pas le couvrir
+    ([trouvaille du 24/11](131-reveil-demarrage-a-froid-2026-11-24.md)).
 
     ⚠️ **Le journal lu est celui de la machine qui exécute le script**, et le script nomme
     désormais cette machine dans sa sortie (`machine dont le journal est lu : …`). Le jour J,

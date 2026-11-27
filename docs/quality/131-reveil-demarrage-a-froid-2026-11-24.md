@@ -33,6 +33,11 @@ l'attente.
 rien reçu). Les contrôles 1 à 3 sont alors non mesurés, le code est 1, et la passe ne
 tourne pas — un site qui ne répond pas n'est pas un site dont on peut juger 32 routes.
 
+> **Erratum (27/11, P24-58)** : la sonde P2 (section 6 du rapport) est **elle aussi** non
+> mesurée dans cet état — elle lit les corps d'accueil que la passe a fetchés. Le texte du
+> 24/11 reste tel quel ; la règle d'usage complète est au runbook `1066`, phase 3,
+> étape 17.
+
 **Un statut HTTP à l'éveil — même un 503 — n'est pas cet état** : le site répond, la
 passe le juge comme la route qu'il est. C'est le refus d'un critère « différent de 200 »,
 qui lirait un site présent comme un site absent.
