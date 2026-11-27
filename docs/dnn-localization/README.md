@@ -126,6 +126,12 @@ Everything else is the record that led to it.
 | [eav-content.csv](eav-content.csv) | 2026-11-19 | `current` | The **injection registry** (2sxc EAV pivot, 8 language columns). Read by the 147-cell plan and by `tools/458-eav-content-export.py verify`. |
 | [download-cards-canon.csv](download-cards-canon.csv) | 2026-10-28 | `historical` | Canonical download labels (Tarot/Poker, full/light) in 8 languages. No wired consumer measured on 2026-11-24 (no reference in `.md`/`.py`/`.cs`/`.json`). |
 
+### §5.1 — Instrument
+
+| File | Date | Status | What it is |
+|---|---|---|---|
+| [dnn-page-witness.py](dnn-page-witness.py) | 2026-11-26 | `current` | The **read-only recette witness** of #2398 / #2397 / #2181: anonymous GETs in the 8 cultures on both environments — the 2sxc error marker on 7 public journeys (list **and** detail), the FR menu link followed in the same session, and the presence of the **old French text** in the main body of `/xx/Argumentation`. Three guards precede any OK: the page read must be served in the expected culture (else `ERREUR`, never a verdict), the news detail must be the first link **under that culture's Actus path** with its destination verified, and a main body must exist (`dnn_ContentPane`, ≥ 400 chars). No line ever disappears: each culture always yields 7 constats (FR) or 9 (70 in all). Stdlib only; `--self-test` is the inverse control; the end-to-end fixtures (fake `fetch`, the three false greens of counter-review c.7202541558, one healthy site) are [`tools/test_2398-page-witness.py`](../../tools/test_2398-page-witness.py), wired in `python-tools-tests.yml`. Measured 2026-11-26 with the guards open: **production 22 failures** (8 `Amis` markers — every culture incl. FR, 7 old-FR bodies of 5070–6136 chars, 7 FR hrefs equal to the current URL), **preproduction 0** (70/70 judged, bodies 1417–4755 chars, FR link followed to `/` in `fr-FR` from each departure culture), 0 instrument errors. It **measures, it does not fix**. |
+
 ---
 
 ## §6 — Subfolders
