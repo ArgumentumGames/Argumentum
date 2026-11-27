@@ -41383,7 +41383,7 @@
     <Language>pt-BR</Language>
     <Name>Falácia probabilística</Name>
     <Description>Vocês utilizam mal as probabilidades para apoiar seu argumento, o que distorce o seu raciocínio.</Description>
-    <Example>O DNA deixado pelo autor deste crime apresenta uma particularidade encontrada no acusado, que só ocorre em dez por cento da população; logo, pode-se afirmar com noventa por cento de certeza que este homem é culpado.</Example>
+    <Example>O DNA deixado pelo autor deste crime apresenta uma particularidade encontrada no acusado, que só ocorre em 10% da população; logo, pode-se afirmar com 90% de certeza que este homem é culpado.</Example>
     <Parent>64dc9fcf-07d5-d981-9300-a96b9ecfd4c0</Parent>
   </Entity>
   <Entity Type="Fallacy">
@@ -41399,7 +41399,7 @@
     <Language>ar-SA</Language>
     <Name>احتمالات مشوهة</Name>
     <Description>تستخدمون الاحتمالات بشكل خاطئ لدعم حجتكم، مما يشوه استنتاجكم المنطقي.</Description>
-    <Example>الحمض النووي الذي تركه مرتكب هذه الجريمة يحتوي على صفة موجودة لدى المتهم لا توجد إلا لدى عشرة بالمائة من السكان؛ لذلك يمكننا التأكيد بنسبة تسعين بالمائة أن هذا الرجل مذنب.</Example>
+    <Example>الحمض النووي الذي تركه مرتكب هذه الجريمة يحتوي على صفة موجودة لدى المتهم لا توجد إلا لدى 10٪ من السكان؛ لذلك يمكننا التأكيد بنسبة 90٪ أن هذا الرجل مذنب.</Example>
     <Parent>64dc9fcf-07d5-d981-9300-a96b9ecfd4c0</Parent>
   </Entity>
   <Entity Type="Fallacy">
