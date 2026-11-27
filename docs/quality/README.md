@@ -49,6 +49,7 @@ Several files are cited **by path** from guard tests, workflows and other indexe
 | [`1180-recette-preprod-2026-09-17.md`](1180-recette-preprod-2026-09-17.md) | 2026-09-17 | `historical` | Preprod acceptance of 17/09: gaps E4/E6/E7 closed, "preprod nickel" state of that date |
 | [`controles-jour-j-baseline-preprod-2026-11-05.md`](controles-jour-j-baseline-preprod-2026-11-05.md) | 2026-11-05 | `historical` | Day-J control baseline on preprod: 8 cultures × 4 surfaces, statuses, `<html lang>`, bytes. The reference the post-swap probes are compared against |
 | [`131-p2-sonde-accueils-2026-11-24.md`](131-p2-sonde-accueils-2026-11-24.md) | 2026-11-24 | `historical` | P24-45: first reading of probe P2 (analytics marker on the 8 homepages) now rendered by `tools/1105-cutover-day-controls.py`, and its bounds |
+| [`131-reveil-demarrage-a-froid-2026-11-24.md`](131-reveil-demarrage-a-froid-2026-11-24.md) | 2026-11-24 | `historical` | P24-50: why `tools/1105-cutover-day-controls.py` sends one wake-up request (`GET /`, own bound 240 s) before the pass, whose 60 s bound is unchanged — the sleeping production took 93 to 107 s to answer (reported by web2); a mute site exits 1 without running the pass. Also the `fa`-served-`ltr` behaviour case of probe P2 |
 
 ### Site content — rules, drafts, downloads, ontology, database, accordion — #135, #1502, #133, #1091, #2317
 
