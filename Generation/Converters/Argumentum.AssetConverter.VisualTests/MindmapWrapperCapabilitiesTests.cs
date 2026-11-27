@@ -460,9 +460,10 @@ namespace Argumentum.AssetConverter.VisualTests
                         // #2403 — the link follows the sheet: ONE line, and an imprint of at most
                         // 9 % of the card's height (box + margins). Pre-fix (6c2505d1), one line at
                         // 10.8 % on a CSS 1280x900 viewport, but two lines on 1361 of 1361 link-bearing
-                        // sheets at 26.7 % once the sheet is short (CSS 512x360, i.e. a 1280x900
-                        // window on a 250 % display). Post-fix: one line on every link-bearing
-                        // sheet, 5.7 % to 7.6 %, fr and ar, 512x360 to 1280x900.
+                        // sheets once the sheet is short: 33.3 % of the card at 512x360, 26.7 % at
+                        // 640x450 (the same 96 px of box + margins over a shorter card). Post-fix:
+                        // one line on every link-bearing sheet, 5.7 % to 7.6 %, fr and ar, 512x360
+                        // to 1280x900.
                         // The line count is read from the TEXT RANGE, not from the box: the box
                         // carries the padding, so at the 10 px floor (Cap25's long titles) a
                         // one-line link is 20.5 px tall against a 18.4 px bound and read as two
@@ -2460,9 +2461,12 @@ namespace Argumentum.AssetConverter.VisualTests
         //
         // And the state these contracts are read in is forced, not hoped for: the four faces come
         // from a CDN and are requested lazily, so the same sheet reads 31 px hidden with them
-        // loaded, 42 px read before they arrive and 54 px with the CDN unreachable (Chromium 124).
-        // Cap26 loads them first and fails by name if one cannot be had; Cap27 walks the reader
-        // who clicks first — see the cold-document control at the end of this class.
+        // loaded and 42 px read before they arrive — and 42 px again with the CDN unreachable,
+        // because the fallback face is the one laid out in both states (measured 2026-11-27,
+        // Chromium 124, `fr`, 512x360, #pk=2: 42 px in both, and 0 px at 1280x900 and 640x450
+        // with every font request aborted). Cap26 loads them first and fails by name if one
+        // cannot be had; Cap27 walks the reader who clicks first — see the cold-document control
+        // at the end of this class.
         //
         // Three sheets, named by the verdict and picked from the corpus — never a hardcoded pk.
 
@@ -2638,8 +2642,9 @@ namespace Argumentum.AssetConverter.VisualTests
 
         /// <summary>The upper bound of the link's imprint (box + margins) as a share of the card's
         /// height — the same 9 % the corpus sweep notes as `linkFootprintTooTall`. Calibrated
-        /// between the two measured states: 10.8 % at a CSS 1280x900 viewport and 26.7 % at 512x360
-        /// before; 5.7 % to 7.6 % after over the 1361 link-bearing sheets, `fr` and `ar`, 512x360
+        /// between the two measured states: 10.8 % at a CSS 1280x900 viewport and 33.3 % at 512x360
+        /// (26.7 % at 640x450 — the same 96 px of box + margins over a taller card) before; 5.7 % to
+        /// 7.6 % after over the 1361 link-bearing sheets, `fr` and `ar`, 512x360
         /// to 1280x900.</summary>
         private const double LinkImprintMax = 0.09;
 
@@ -2651,14 +2656,16 @@ namespace Argumentum.AssetConverter.VisualTests
         ///
         /// That reading is a function of the document's web-font state, which the case now
         /// forces before it reads anything: 31 px with the four DINPro faces loaded, 42 px on the
-        /// same sheet read before they arrive, 54 px with the CDN unreachable and the text laid
-        /// out in the fallback font (all three measured in the Chromium 124 of the suite's own
-        /// driver). The bound keeps its value beside the force rather than growing to admit the
-        /// states the force removes: with the faces loaded the reading does not depend on them
-        /// arriving, and a case that silently measured 54 px would be measuring a state no
-        /// reader with the CDN up ever sees. A bound, not a target — it leaves one line of
-        /// floor-size type (13.5 px) of slack over the loaded reading, and a corpus edit that
-        /// deepens the deficit trips it.</summary>
+        /// same sheet read before they arrive, and 42 px again with the CDN unreachable — the
+        /// fallback face is the one laid out in both states, so "the fonts will never come" and
+        /// "the fonts are on their way" read alike (measured 2026-11-27 in the Chromium 124 of
+        /// the suite's own driver, all font requests aborted; 0 px hidden at 1280x900 and at
+        /// 640x450 with the CDN down). The bound keeps its value beside the force rather than
+        /// growing to admit the states the force removes: with the faces loaded the reading does
+        /// not depend on them arriving, and a case that silently measured 42 px would be
+        /// measuring a state no reader with the CDN up ever sees. A bound, not a target — it
+        /// leaves one line of floor-size type (13.5 px) of slack over the loaded reading, and a
+        /// corpus edit that deepens the deficit trips it.</summary>
         private const double ResidualHiddenPxMax = 48;
 
         /// <summary>The three viewports of the control, shortest last: a CSS 1280x900 one, a
@@ -2757,8 +2764,9 @@ namespace Argumentum.AssetConverter.VisualTests
                 // ---- the state the contracts are read in -----------------------------------------
                 // The sheet's fit is a function of the font actually laid out, and the four DINPro
                 // faces are requested lazily: a read taken before they arrive measures the
-                // fallback font's geometry (42 px hidden on #pk=2 where the loaded state hides 31,
-                // 54 px with the CDN unreachable). Force them first, and fail by name if one
+                // fallback font's geometry (42 px hidden on #pk=2 where the loaded state hides 31
+                // — and the same 42 px with the CDN unreachable, the fallback face being the one
+                // laid out in both states; measured 2026-11-27). Force them first, and fail by name if one
                 // cannot be had — a silent fallback reading would pass this control on a state no
                 // reader with the CDN up ever sees.
                 var faces = await page.EvaluateAsync<string[]>(P2403FontsJs, P2403FontSpecs);
