@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Falacia — Argumentum</title>
     <style>
+        /* #2407 — meme cause que dans le gabarit inline : la marge par defaut de `body` porte le
+           debordement, et ici `100vw` / `100vh` le rendent visible. Mesure sur les gabarits
+           d'avant correctif, fiche ouverte : `scrollWidth` 203 pour `clientWidth` 195 a 195x422
+           CSS, 164 pour 156 a 156x338 ; apres correctif, egalite dans les deux. La hauteur en
+           pourcentage suit la boite et non le viewport, donc elle ne depend plus d'une barre de
+           defilement. */
+        html, body {
+            margin: 0;
+            height: 100%;
+        }
+
         body {
             font-family: 'DINPro', sans-serif;
         }
@@ -15,8 +26,8 @@
 
         #mindmap {
             position: relative;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
         }
 
         #svgObject {
@@ -607,6 +618,16 @@
             padding-left: 18px;
         }
 
+        /* #2407 — en fenetre courte, la barre de recherche et la legende recouvrent la fiche
+           ouverte. `visibility` (et non `display`) garde les boites mesurables, donc la decision
+           se rejoue a l'identique au redimensionnement. `pointer-events` retire les clics qui
+           partaient dans la couche invisible. */
+        body.mm-layer-hidden #mmToolbar,
+        body.mm-layer-hidden #mmLegend {
+            visibility: hidden;
+            pointer-events: none;
+        }
+
         #mmLinkPanel {
             position: fixed;
             top: 12px;
@@ -850,6 +871,27 @@
                 const svgDocument = svgObject.contentDocument || svgObject.getSVGDocument();
                 const nodes = svgDocument.querySelectorAll('.node');
 
+                // #2407 — en fenetre courte, la barre de recherche et la legende recouvrent la fiche
+                // ouverte (mesure sur les gabarits d'avant correctif : a 195x422 le bord bas de la
+                // fiche rend `mmLegend`, a 156x338 le bord haut rend `mmSearch` et le bord bas le
+                // resume de la legende). La couche passe au-dessus par
+                // construction (z-index 200 contre 100) : quand la fiche la recouvre, on la retire
+                // de la vue. La decision est MESUREE (intersection des boites), pas un seuil en dur
+                // — la hauteur de la legende depend de son contenu, c'est un `<details>`.
+                // `visibility` et non `display` : les boites restent mesurables, la decision se
+                // rejoue donc a l'identique au redimensionnement.
+                const navLayer = ['mmToolbar', 'mmLegend']
+                    .map(id => document.getElementById(id))
+                    .filter(el => el);
+                const boxesIntersect = (a, b) => a.width > 0 && b.width > 0
+                    && a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
+                const refreshNavLayer = () => {
+                    const cardBox = overlay.getBoundingClientRect();
+                    const covered = isNodeActive
+                        && navLayer.some(el => boxesIntersect(cardBox, el.getBoundingClientRect()));
+                    document.body.classList.toggle('mm-layer-hidden', covered);
+                };
+
                 const hideOverlay = () => {
                     overlay.classList.add('hidden');
                     isNodeActive = false;
@@ -857,6 +899,7 @@
                         activeNode.classList.remove('active');
                         activeNode = null;
                     }
+                    refreshNavLayer();
                 };
 
                 // #2400 — la passe verticale mesure desormais la hauteur REELLE du contenu de la fiche.
@@ -1081,6 +1124,10 @@
                     fitCard();
 
                     targetNode.classList.add('active');
+                    // #2407 — la couche de navigation s'efface si la fiche ouverte la recouvre.
+                    // Mesure APRES la mise en page de la fiche (et apres `fitCard`, qui peut
+                    // reduire le texte).
+                    refreshNavLayer();
                 };
 
                 const showOverlay = (e) => {
@@ -1376,6 +1423,9 @@
                             window.addEventListener('resize', function () {
                                 panZoomInstance.resize();
                                 requestAnimationFrame(recenterRoot);
+                                // #2407 — la fiche est en vh et en pourcentage : un
+                                // redimensionnement deplace le recouvrement.
+                                requestAnimationFrame(refreshNavLayer);
                             });
                             window.addEventListener('orientationchange', function () {
                                 panZoomInstance.resize();
