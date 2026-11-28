@@ -32,7 +32,7 @@ import tempfile
 import time
 from datetime import datetime, timezone
 
-SCHEMA = 1
+SCHEMA = 2  # 2 = le snapshot porte la lecture des piles (P24-64)
 DEFAULT_REPO = "ArgumentumGames/Argumentum"
 DEFAULT_MERGER_LANE = "ai-01"
 MERGE_IDENTITY = "jsboige"
@@ -175,7 +175,9 @@ def _slim_pr(p):
         "comments", "review_comments", "commits", "additions", "deletions", "changed_files",
         "html_url")}
     out["user"] = _slim_user(p.get("user"))
-    out["head"] = {"sha": p["head"]["sha"], "ref": p["head"].get("ref")}
+    hrepo = p["head"].get("repo")
+    hrepo = hrepo.get("full_name") if isinstance(hrepo, dict) else hrepo
+    out["head"] = {"sha": p["head"]["sha"], "ref": p["head"].get("ref"), "repo": hrepo}
     out["base"] = {"ref": p["base"]["ref"]}
     return out
 
@@ -680,12 +682,36 @@ def collect(pr, repo=DEFAULT_REPO, runner=gh_run, sleep=time.sleep, replay=None,
     snap["threads"] = _collect_threads(runner, repo, pr)
     snap["required_contexts"] = _required_contexts(runner, base, slim["base"]["ref"])
 
+    # P24-64 : la porte voit les piles. Une PR ouverte peut avoir pour base la
+    # branche de tête de la PR jugée : supprimer cette branche à la fusion ferme
+    # la PR du dessus. Mesure du 28/11/2026 : #2416 fermée à 04:26:35Z, trois
+    # secondes après la fusion de #2413 (04:26:31Z) qui supprimait sa branche.
+    # La lecture des PR ouvertes est donc inconditionnelle : une porte qui ne peut
+    # pas vérifier les piles ne rend pas de verdict là-dessus.
+    opens, _ = _api_pages(runner, "%s/pulls?state=open" % base, "PR ouvertes")
+    head_ref = slim["head"].get("ref")
+    head_repo = slim["head"].get("repo") or repo
+    snap["stacked_prs"] = []
+    if head_ref:
+        for other in opens:
+            if not isinstance(other, dict) or other.get("number") == pr:
+                continue
+            obase = other.get("base") or {}
+            if obase.get("ref") != head_ref:
+                continue
+            obase_repo = (obase.get("repo") or {}).get("full_name") or head_repo
+            if obase_repo != head_repo:
+                # la branche de la pile vit dans un autre dépôt : la supprimer ici ne la touche pas
+                continue
+            snap["stacked_prs"].append({"number": other.get("number"), "title": other.get("title"),
+                                        "base_ref": obase.get("ref"),
+                                        "head_ref": (other.get("head") or {}).get("ref")})
+
     touched = set()
     for f in snap["files"]:
         touched.update(p for p in (f.get("filename"), f.get("previous_filename")) if p)
     snap["csv_taxonomy_other_prs"] = None
     if TAXONOMY_CSV in touched:
-        opens, _ = _api_pages(runner, "%s/pulls?state=open" % base, "PR ouvertes")
         others = []
         for other in opens:
             num = other.get("number")
@@ -1341,13 +1367,30 @@ def r13_index(s, o, c):
     return [], "contrat %s vert sur l'arbre fusionné (arbre %s)%s" % (DOCS_CONTRACT, dc.get("tree"), tail)
 
 
+def r14_stack(s, o, c):
+    """Piles : une PR ouverte a pour base la branche de tête de la PR jugée.
+
+    Supprimer la branche de tête à la fusion ferme la PR empilée dessus : GitHub
+    ferme la PR dont la base vient de disparaître. Mesure du 28/11/2026 : #2416
+    fermée trois secondes après la fusion de #2413, qui supprimait sa branche.
+    """
+    stacked = s.get("stacked_prs") or []
+    head_ref = s["pr"]["head"].get("ref") or "?"
+    if not stacked:
+        return [], "aucune PR ouverte n'a pour base la branche de tête (%s)" % head_ref
+    numbers = ", ".join("#%s" % p.get("number") for p in stacked)
+    return [("HOLD", "PR empilée : %s a pour base la branche de tête %s -- la supprimer à la fusion "
+            "(suppression de branche) fermerait %s : merger la pile d'abord, ou fusionner sans "
+            "supprimer la branche" % (numbers, head_ref, numbers))], ""
+
+
 RULES = (
     ("R1", "état", r1_state), ("R2", "tête épinglée", r2_head), ("R3", "état de fusion", r3_mergeable),
     ("R4", "CI", r4_ci), ("R5", "revues", r5_reviews), ("R6", "fils inline", r6_threads),
     ("R7", "signature de lane", r7_signature), ("R8", "contre-revue", r8_counter_review),
     ("R9", "mots de fermeture", r9_closing), ("R10", "hygiène du diff", r10_diff),
     ("R11", "chemins protégés", r11_paths), ("R12", "CSV de taxonomie", r12_csv),
-    ("R13", "index de record", r13_index),
+    ("R13", "index de record", r13_index), ("R14", "piles", r14_stack),
 )
 
 
@@ -1397,6 +1440,9 @@ def _validate(s):
     need((dc.get("status") == "ok") == (not dc["defects"]),
          "contrat des index de dossier : statut %r avec %d défaut(s) -- instantané incohérent"
          % (dc.get("status"), len(dc["defects"])))
+    need(isinstance(s.get("stacked_prs"), list),
+         "piles : les PR ouvertes n'ont pas été lues -- une porte qui ne voit pas les piles "
+         "ne rend pas de verdict")
     need(isinstance(dc.get("tree"), str) and dc["tree"], "contrat des index de dossier : arbre fusionné non consigné")
     need("diff_text" in s, "diff absent")
     if TAXONOMY_CSV in _touched(s):
@@ -1406,8 +1452,13 @@ def _validate(s):
 
 def merge_command(s):
     repo_opt = "" if s.get("repo") == DEFAULT_REPO else " -R %s" % s.get("repo")
-    return ("GH_TOKEN=$(gh auth token --user %s) gh pr merge %d%s --squash --delete-branch "
-            "--match-head-commit %s" % (MERGE_IDENTITY, s["pr"]["number"], repo_opt, s["pr"]["head"]["sha"]))
+    # P24-64 : la branche de tête ne doit pas disparaître si une PR ouverte est
+    # empilée dessus. La commande perd alors la suppression de branche -- y compris
+    # si la règle R14 est désactivée ou contournée : la commande reste sûre.
+    delete = "" if (s.get("stacked_prs") or []) else " --delete-branch"
+    return ("GH_TOKEN=$(gh auth token --user %s) gh pr merge %d%s --squash%s "
+            "--match-head-commit %s" % (MERGE_IDENTITY, s["pr"]["number"], repo_opt, delete,
+                                        s["pr"]["head"]["sha"]))
 
 
 def evaluate(snapshot, options=None, disabled=frozenset()):
@@ -1440,7 +1491,7 @@ def evaluate(snapshot, options=None, disabled=frozenset()):
                "deletions": pr.get("deletions")}
     return {"verdict": verdict, "exit_code": EXIT_CODES[verdict], "findings": findings, "surface": surface,
             "head": c["head"], "lane": c["lane"], "required_contexts": snapshot["required_contexts"],
-            "disabled": sorted(disabled),
+            "disabled": sorted(disabled), "stacked_prs": snapshot.get("stacked_prs") or [],
             "merge_command": merge_command(snapshot) if verdict == "PASS" and not disabled else None}
 
 
@@ -1482,6 +1533,14 @@ def render(s, result, origin="lecture en direct"):
         out.append("  " + result["merge_command"])
     elif result["verdict"] == "PASS":
         out.append("  (règles désactivées : %s -- aucune commande de merge)" % ", ".join(result["disabled"]))
+    elif result["verdict"] == "HOLD" and result.get("stacked_prs"):
+        # P24-64 : pile ouverte. La variante est donnée SANS suppression de branche :
+        # le verdict reste HOLD, la fusion reste une décision du merger.
+        numbers = ", ".join("#%s" % p.get("number") for p in result["stacked_prs"])
+        out.append("")
+        out.append("Pile ouverte (%s). Variante SANS suppression de branche -- le verdict reste HOLD ; "
+                   "la fusion reste une décision du merger :" % numbers)
+        out.append("  " + merge_command(s))
     out.append("")
     out.append("Ce que ce gate n'établit pas :")
     out.extend("  - " + line for line in NOT_ESTABLISHED)
@@ -1641,7 +1700,9 @@ def _fx_snapshot():
                "state": "open", "draft": False, "merged": False, "mergeable": True,
                "mergeable_state": "clean", "comments": 0, "review_comments": 0, "commits": 1,
                "additions": 0, "deletions": 0, "changed_files": 0, "html_url": "",
-               "user": dict(user), "head": {"sha": _FX_HEAD, "ref": "feat/x"}, "base": {"ref": "master"}},
+               "user": dict(user),
+               "head": {"sha": _FX_HEAD, "ref": "feat/x", "repo": {"full_name": DEFAULT_REPO}},
+               "base": {"ref": "master"}},
         "head_commit": {"sha": _FX_HEAD, "date": "2026-01-01T10:00:00Z"},
         "issue_comments": [], "inline_comments": [], "threads": [],
         "reviews": [{"id": 1, "user": dict(user), "state": "COMMENTED", "submitted_at": "2026-01-01T11:00:00Z",
@@ -1653,6 +1714,8 @@ def _fx_snapshot():
         "checks": checks, "statuses": [],
         "required_contexts": {"source": "auto-test", "contexts": list(FALLBACK_CONTEXTS)},
         "csv_taxonomy_other_prs": None,
+        "stacked_prs": [],
+        "open_prs": None,
         "docs_contract": {"status": "ok", "tree": _FX_TREE, "defects": [], "detail": ""},
         "numstat": {"status": "absent", "counts": {},
                     "detail": "annonce de l'API et lignes lues concordent"},
@@ -1804,7 +1867,10 @@ def _fx_runner(snap, fail=None, short_files=False, tamper=None, unknown_reads=0,
             return 0, json.dumps([{"type": "pull_request"}, {"type": "required_status_checks",
                                   "parameters": {"required_status_checks": ctxs}}]), ""
         if tail == "pulls":
-            return listing([{"number": num, "user": {"login": "owner"}, "title": "self"}])
+            served = snap.get("open_prs")
+            if served is None:
+                served = [{"number": num, "user": {"login": "owner"}, "title": "self"}]
+            return listing(served)
         return 1, "", "HTTP 404: unrouted %s" % path
 
     run.seen = seen
@@ -2680,6 +2746,51 @@ def self_test(out):
           rc == 1 and "AVEUGLE" in text and "VERDICT" not in text
           and "non rejoué -- git ls-files a échoué (simulé)" in text)
 
+    # --- P24-64 : la porte voit les piles
+    def stack(s):
+        s["stacked_prs"].append({"number": 4243, "title": "feat(y): pile au-dessus",
+                                 "base_ref": "feat/x", "head_ref": "feat/y"})
+        return s
+
+    stack_snap, stack_res = case("pile ouverte sur la branche de tête", "R14", "HOLD", stack)
+    control("aucune pile ouverte", nop, None, "R14", "OK")
+    stack_text = render(stack_snap, stack_res)
+    check("R14 : la sortie HOLD d'une pile donne la commande SANS suppression de branche",
+          "gh pr merge" in stack_text and "--delete-branch" not in stack_text)
+    check("R14 : la commande de merge perd la suppression de branche quand une pile est ouverte",
+          "--delete-branch" not in merge_command(stack_snap))
+    check("R14 : sans pile, la commande de merge supprime la branche",
+          "--delete-branch" in merge_command(base))
+    # La pile doit etre vue par la COLLECTE, pas seulement par la regle pure :
+    # le lecteur des PR ouvertes sert la pile, la porte s'en apercoit.
+    piled = copy.deepcopy(base)
+    piled["open_prs"] = [{"number": 4243, "title": "feat(y): pile", "user": {"login": "owner"},
+                          "base": {"ref": "feat/x", "repo": {"full_name": DEFAULT_REPO}},
+                          "head": {"ref": "feat/y"}}]
+    rc, text = run_main(["4242"], _fx_runner(piled))
+    check("collecte : une PR ouverte sur la branche de tête -> HOLD, code 3, la pile est nommée",
+          rc == 3 and "R14  HOLD" in text and "#4243" in text)
+    # Controle inverse : une PR ouverte sur une AUTRE branche n'est pas une pile.
+    other = copy.deepcopy(base)
+    other["open_prs"] = [{"number": 4244, "title": "feat(z): autre branche",
+                          "user": {"login": "owner"},
+                          "base": {"ref": "feat/autre", "repo": {"full_name": DEFAULT_REPO}},
+                          "head": {"ref": "feat/z"}}]
+    rc, text = run_main(["4242"], _fx_runner(other))
+    check("collecte : une PR ouverte sur une autre branche -> PASS, pas de pile",
+          rc == 0 and "R14  OK" in text)
+    # Une pile dont la branche de base vit dans un AUTRE depot : la supprimer ici
+    # ne la touche pas.
+    fork = copy.deepcopy(base)
+    fork["open_prs"] = [{"number": 4245, "title": "feat(w): pile dans un fork",
+                         "user": {"login": "owner"},
+                         "base": {"ref": "feat/x", "repo": {"full_name": "Autre/Depot"}},
+                         "head": {"ref": "feat/w"}}]
+    rc, text = run_main(["4242"], _fx_runner(fork))
+    check("collecte : une pile basée dans un autre dépôt -> PASS, la branche d'ici ne la touche pas",
+          rc == 0 and "R14  OK" in text)
+    blind("instantané sans la lecture des piles", lambda s: s.pop("stacked_prs"))
+
     # --- blind snapshots: never a verdict
     blind("instantané sans liste de fichiers", lambda s: s.pop("files"))
     blind("fichiers lus != annoncés", lambda s: s["pr"].update(changed_files=7))
@@ -2755,7 +2866,7 @@ def self_test(out):
     rc, text = run_main(["4242"], _fx_runner(with_tax))
     check("CSV de taxonomie : PR ouvertes lues par la collecte", rc == 0 and "R12  INFO" in text)
     rc, text = run_main(["4242"], _fx_runner(with_tax, fail="state=open"))
-    check("CSV de taxonomie : lecture des PR ouvertes en échec -> code 1", rc == 1)
+    check("lecture des PR ouvertes en échec -> code 1 (la porte ne peut pas voir les piles)", rc == 1)
     rc, text = run_main(["4242", "--json"], _fx_runner(base, fail="/reviews"))
     check("échec en sortie JSON -> code 1, verdict AVEUGLE", rc == 1 and json.loads(text)["verdict"] == "AVEUGLE")
     rc, text = run_main(["--from-snapshot", os.path.join("no-such-dir", "no-such-snapshot.json")], _fx_runner(base))
