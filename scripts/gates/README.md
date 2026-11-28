@@ -36,13 +36,49 @@ Verdict = worst level. BLOCK > HOLD > INFO.
 | R7 | lane signature | | last body line is not a literal `*lane*` |
 | R8 | counter-review | | none on the head, when the PR is from the merger's lane or `--require-counter-review`. Formal reviews keep their rule (attached to the head commit); a **comment** counts only when posted after the head, declaring itself counter-review (`contre-revue` / `counter-review`, case-insensitive) **and** naming the head (first 8 hex chars of its SHA). When R8 finds nothing, it names the post-head comments it saw and excluded, and any counter-review another lane declared on a **previous** head (the stacked-PR case after a base merge): it does not count, and the message says what to compare |
 | R9 | closing keywords | | body, title or a commit message will close an issue: keyword + `#N`, `owner/repo#N`, `GH-N` or an issue/PR URL |
-| R10 | diff hygiene (added lines) | token and private-key formats | secret-like assignment, profile path, mention of the `.keys` directory; any file the scan could not fully read |
+| R10 | diff hygiene (added lines) | token and private-key formats | secret-like assignment, profile path, mention of the `.keys` directory; any file the scan could not fully read (the count comes from git, not from the API's announcement — see below) |
 | R11 | protected paths | printed reference (`Cards/*/Archive`, CardPen `examples`, the directories themselves included), env files (`.env`, `.env.*`, `.env-*`, `.envrc`), `.keys` directory, `*.pfx` | workflows, `.claude`, `AGENTS.md`, `CLAUDE.md`, `scripts/gates`, `web.config`, env models (`.env.example`, `.sample`, `.template`, `.dist`), `tools/test_docs-index-contract.py` (the contract R13 re-executes — a pull request that weakens it would be replayed with its own weakened instrument) |
 | R12 | taxonomy CSV | another open PR touches the taxonomy CSV | (any CSV under `Cards/`: INFO, re-parse reminder) |
 | R13 | docs index of record | | `tools/test_docs-index-contract.py` returns **red** when replayed on the PR's **merged tree** (`git merge-tree` → `commit-tree` → a detached worktree → `python -B … DocsIndexContract`). The message quotes the contract's own `AssertionError`, never a re-read of it. A replay that cannot see (no local repo or no `origin`, an `origin` that names another repository, base that cannot be refreshed, head missing, merge conflict, contract absent from the tree, unrecognised output) is **blind**: exit 1, never a PASS. A replay worktree that could not be removed is **named** (path + removal command) in the R13 line — the verdict stays the contract's |
 
 Required CI contexts are read live from the branch ruleset; if that read fails
 the gate falls back to a named list and **says so** in its output.
+
+### R10 counts with git, not with the API's announcement
+
+The API `pulls/N/files` announces, for every file, how many lines it adds. Past
+a diff budget it **truncates that announcement**: the last files come announced
+`additions: 0`, `changes: 0`, and without a `patch` — while the unified diff,
+downloaded separately, carries their lines. **Measured** on #2403 (2026-11-28):
+the API announces 0 for four files whose `git diff --numstat` counts 278, 278,
+1512 and 4 added lines; the unified diff carries all 38 files, and the number
+of lines the gate reads matches `--numstat` on the 38 (0 discrepancy).
+
+Taking the announcement as the reference therefore produced a false HOLD —
+"scan AVEUGLE on 4 files", for files that had been read in full. The reference
+is now **git's count**:
+
+```bash
+git fetch --quiet --no-tags origin +refs/heads/<base_ref>:refs/remotes/origin/<base_ref>
+git fetch --quiet --no-tags origin refs/pull/<N>/head
+git diff --numstat -z <merge-base> <head>
+```
+
+Git is asked only when its answer can change the verdict: a file read with a
+count different from the announcement, or a file announced 0 without a `patch`.
+Where the announcement and the lines read agree, git is not asked and the gate
+behaves exactly as before — the cross-check never invents a HOLD.
+
+A file whose **read** count differs from git's count stays blind: HOLD. A file
+read in full whose announcement git contradicts is reported (INFO) — the file is
+named, the announcement is named, the verdict does not change. A cross-check
+that cannot read (no local repository, an `origin` naming another repository, a
+base that cannot be refreshed, a head that is absent) never lifts anything: the
+HOLD stays and names the failure.
+
+The reads happen in the local clone of the pull request's own repository, like
+R13's replay: the origin's URL is checked against it, and the only writes are
+the ones a `git fetch` makes.
 
 ### R13 replays the contract, it does not re-read the indexes
 
