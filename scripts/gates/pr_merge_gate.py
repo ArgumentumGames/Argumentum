@@ -1790,6 +1790,23 @@ def _fx_truncate(snap, path="docs/big.md", lines=("alpha", "beta", "gamma"), in_
     return snap
 
 
+def _fx_fallback(snap, path="docs/big.md"):
+    """Le repli : le diff unifié est refusé, et un fichier est annoncé 0 sans patch.
+
+    Deux refus qui se cumulent : l'API ne livre pas le diff unifié (406) et elle
+    annonce 0 ligne sans patch pour le dernier fichier. En repli, ce fichier
+    n'est lu par AUCUN canal -- le diff ne le porte pas, il n'a pas de patch.
+    Le second declencheur de `_needs_crosscheck` est le seul qui peut le voir :
+    le premier compare l'annonce de l'API aux lignes lues, et il n'y en a pas.
+    """
+    if path:
+        snap["files"].append({"filename": path, "previous_filename": None, "status": "modified",
+                               "additions": 0, "deletions": 0, "patch": None})
+        snap["pr"]["changed_files"] = len(snap["files"])
+    snap["diff_text"], snap["diff_error"] = None, "HTTP 406"
+    return snap
+
+
 def _fx_comment(snap, body, when, login="owner"):
     snap["issue_comments"].append({"id": len(snap["issue_comments"]) + 1, "created_at": when, "body": body,
                                    "user": {"login": login, "type": "User"}})
@@ -2253,6 +2270,14 @@ def self_test(out):
           _needs_crosscheck(base) is False)
     check("recoupement : il tourne sur une annonce tronquée (0 annoncé, des lignes lues)",
           _needs_crosscheck(_fx_truncate(copy.deepcopy(base))) is True)
+    # P24-64 : la garde de M6. En repli, le fichier annonce 0 sans patch n'est lu
+    # par aucun canal : seul le second declencheur le voit. Sans lui, le
+    # recoupement ne tourne pas et le fichier non lu passe en INFO au lieu de HOLD.
+    check("recoupement : il tourne en repli sur un fichier annoncé 0 sans patch "
+          "(le second déclencheur, seul à le voir)",
+          _needs_crosscheck(_fx_fallback(copy.deepcopy(base))) is True)
+    check("recoupement : le repli seul ne le déclenche pas (contrôle inverse)",
+          _needs_crosscheck(_fx_fallback(copy.deepcopy(base), path=None)) is False)
 
     def git_vouches(s):
         _fx_truncate(s)
@@ -2816,6 +2841,19 @@ def self_test(out):
     rc, text = run_main(["4242"], fake)
     check("collecte : API tronquée, recoupée par git -> PASS, code 0, la contradiction est dite",
           rc == 0 and "VERDICT : PASS" in text and "annonce de l'API contredite par git" in text)
+    # P24-64 : la garde de M6, de bout en bout. Le diff unifié est refuse (le
+    # repli) ET un fichier est annonce 0 sans patch : le recoupement ne peut
+    # tourner que si le second declencheur le voit. Sous M6 (declencheur retire),
+    # le recoupement ne tourne pas, le fichier passe en INFO et le verdict
+    # devient PASS : ce cas rougit.
+    fb = copy.deepcopy(base)
+    _fx_fallback(fb)
+    fake = _fx_runner(fb, fail="diff", numstat=_fx_numstat({"docs/big.md": 3}))
+    rc, text = run_main(["4242"], fake)
+    check("collecte : repli + fichier annoncé 0 sans patch que git dit porteur de 3 lignes "
+          "-> HOLD, code 3, le recoupement a tourné",
+          rc == 3 and "R10  HOLD" in text and fake.numstat.seen["calls"] == 1
+          and "3 lignes ajoutées selon git" in text)
     fake = _fx_runner(base)
     rc, text = run_main(["4242"], fake)
     check("collecte : sans écart, le recoupement ne tourne pas",

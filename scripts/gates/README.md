@@ -238,6 +238,36 @@ gate that cannot read the open pull requests cannot say a word about the
 stacks, so it renders no verdict at all (exit 1), like every other unreadable
 source.
 
+### The M6 guard: a file only the second trigger can see
+
+The collector has a **fallback**: when the API refuses the unified diff
+(`Accept: application/vnd.github.v3.diff` -> 406), the added lines are read
+from the per-file `patch` field instead. A file announced with `additions: 0`
+and **no** `patch` is then read by **no channel at all** — the unified diff is
+unavailable and there is no patch to parse.
+
+`_needs_crosscheck` has two triggers, and only the second one sees that file:
+
+- the first compares the API's announcement with the lines actually read — here
+  both are 0, so it stays quiet;
+- the second (`no patch` + `announced 0`) fires.
+
+If the second trigger is removed (mutation **M6**), the crosscheck never runs:
+the file is never vouched for by git, it lands in the "not confirmed by git"
+INFO, and the gate renders **PASS** on a file it never read. Nothing in the
+suite caught it: every truncation case kept the unified diff, where the first
+trigger fires.
+
+The guard is therefore two cases, both of which go red under M6:
+
+| case | what it pins |
+|---|---|
+| `_needs_crosscheck(...) is True` on a fallback snapshot (no unified diff, one file announced 0 without patch) | the second trigger fires on the file no channel reads |
+| an end-to-end collection: the diff endpoint fails, git says the file carries 3 lines | the crosscheck **runs** (the numstat is called once) and the verdict is **HOLD**, naming git's count — under M6 the crosscheck never runs, the file lands in INFO and the verdict is PASS |
+
+One inverse control is kept: the fallback alone, every patch present, must not
+trigger the crosscheck.
+
 ### Acknowledgements
 
 | Option | Lifts | Never lifts |
