@@ -4,6 +4,13 @@
 **Base :** `origin/master` `3162ae5f` (rebased après la fusion de #2373, `--force`) · **Registre :**
 `docs/dnn-localization/eav-content.csv` (pivot, pas la base)
 
+> **Mise à jour 2026-11-28 (P24-54).** Ce constat écrit, en §2 et en §4, qu'« aucune option ne lève
+> l'exclusion » de la base fr du bloc. Ce n'est plus vrai depuis le levier nommé
+> `--fr-force GUID:CHAMP`, qui la lève **pour le seul nom de la base fr du bloc** :
+> [`2181-levier-nomme-base-fr-bloc-2026-11-28.md`](2181-levier-nomme-base-fr-bloc-2026-11-28.md).
+> Par défaut (sans le levier), tout ce qui suit tient. Les chiffres du §5 sont ceux de la date du
+> constat : la suite compte 93 cas et la batterie 59 mutations depuis P24-54.
+
 ---
 
 ## 1. Ce qui bloquait

@@ -99,7 +99,7 @@
 #    12. tools/test_2190-served-mindmap-inventory.py -- std-lib + git, OFFLINE : le
 #        serveur HTTP est local et jetable, aucune préprod ni réseau externe. Témoin
 #        identique au blob, mutation d'octets et route absente doivent être distingués.
-#    13. tools/test_458-eav-reinject-guards.py -- std-lib, offline, 57 cas. Charge
+#    13. tools/test_458-eav-reinject-guards.py -- std-lib, offline, 93 cas. Charge
 #        tools/458-eav-reinject.py SANS se connecter (EXP.run_query remplace par un
 #        faux qui sert des rangees synthetiques) et eprouve les gardes de refus
 #        G1-G3 de la re-injection EAV (#2326, revue c.7053569313) : chaque garde
@@ -134,9 +134,20 @@
 #        cellules (dont le francais) » de W2-09 sur une cible synthetique.
 #        Les deux validateurs de nom (--force, --only-cell) sont le MEME
 #        (FORCE_GUID_RE) : un seul analyseur pour une seule forme de cle.
+#        Depuis P24-54 (#2181), le levier NOMME de la base fr du bloc,
+#        `--fr-force GUID:CHAMP` : il n'accepte qu'un seul nom (la base fr du bloc
+#        « L'argumentation », champ Text, GUID complet) ; sans lui la base reste
+#        FR_EXCLUDED comme sur master, et le rapport ne porte aucune section du
+#        levier. La branche FR_FORCE du script writer est LUE (comparaison
+#        ordinale de la valeur d'avant, rangee epinglee par ValueId, sous verrou),
+#        et les lignes de DECISION de la garde « #2181 identique » sont JOUEES
+#        sous chaque PowerShell disponible (`powershell` 5.1, `pwsh` 7) sur un
+#        payload factice, contre six mutants. Sans shell, ce cas est saute sur un
+#        poste et ROUGE en CI : un contrat aveugle ne doit pas etre vert.
 #        Deux instruments de ce grain se lancent A LA MAIN, hors CI (ils rejouent
-#        des suites entieres) : tools/2181-reinject-mutations.py (34 mutations de
-#        l'outil — N1-N13 l'ecrasement nomme, N14-N34 le mode borne — temoin 57/57)
+#        des suites entieres) : tools/2181-reinject-mutations.py (59 mutations de
+#        l'outil — N1-N13 l'ecrasement nomme, N14-N34 le mode borne, N35-N59 le
+#        levier de la base fr — temoin 93/93)
 #        et tools/2181-reinject-rehearsal.py (repetition du
 #        plan entre deux registres, aucune base).
 #        Le faux run_query refuse tout SQL non attendu : une derive des
@@ -295,8 +306,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Run the EAV reinject guard contract (#458 P23-24 G1-G3, P23-27 R1-R3, P23-38 R4-R5, #2181 --force, --only-cell)
-        # 57 cas, std-lib, offline : aucune connexion, aucun web.config. Les gardes
+      - name: Ensure a PowerShell shell is present (the #2181 guard is played under it)
+        # Le cas « la garde « #2181 identique » est jouee sous powershell » ne peut pas
+        # se sauter en CI : un contrat aveugle ne doit pas etre vert. L'image
+        # ubuntu-latest en porte un ; si elle change, cette etape l'installe plutot
+        # que de laisser le contrat se taire en silence.
+        run: |
+          if ! command -v pwsh >/dev/null 2>&1 && ! command -v powershell >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y powershell
+          fi
+          command -v pwsh || command -v powershell
+
+      - name: Run the EAV reinject guard contract (#458 P23-24 G1-G3, P23-27 R1-R3, P23-38 R4-R5, #2181 --force, --only-cell, --fr-force)
+        # 93 cas, std-lib, offline : aucune connexion, aucun web.config. Les gardes
         # de refus G1-G3 (paire (app, guid) multi-entites, vainqueur de carte sans
         # marge, carte non injective) sont eprouvees chacune par un temoin sain et
         # une MUTATION : la garde neutralisee dans le source doit laisser passer
@@ -307,6 +330,9 @@ jobs:
         # fragment FROM..WHERE compare sur les SQL captures (R4, ancre FROM depuis
         # la contre-revue po-2024 : mutation JOIN vue, divergence hors fragment
         # verte) et l'avertissement « la base a bouge entre les deux lectures » (R5).
+        # Depuis #2181 : --force, --only-cell, puis --fr-force (P24-54), le levier
+        # nomme de la base fr du bloc — la garde « #2181 identique » du script
+        # writer est jouee sous les PowerShell disponibles du runner.
         run: python tools/test_458-eav-reinject-guards.py
 
   eav-derive-run-registry:
