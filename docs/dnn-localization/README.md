@@ -3,9 +3,9 @@
 <!-- index-of-record -->
 
 > **Entry point for the `#131` / `#132` / `#457` DNN documentation arc.**
-> The folder holds **217 tracked files** (`git ls-files docs/dnn-localization`, measured 2026-11-24). This
-> README is an **index of record, in four tranches**: tranche 1 (§1–§7) indexes the **49 root files whose
-> name is not `458-*`** — the 48 documents plus this README — and the two subfolders; tranche 2 (§8) the
+> The folder holds **219 tracked files** (`git ls-files docs/dnn-localization`, measured 2026-11-27). This
+> README is an **index of record, in four tranches**: tranche 1 (§1–§7) indexes the **51 root files whose
+> name is not `458-*`** — the 50 documents plus this README — and the two subfolders; tranche 2 (§8) the
 > **first 49 of the 134 `458-*` files**, tranche 3 (§9) the **next 50**, tranche 4 (§10) the **35 that
 > remain**. All 134 are indexed.
 > ⚠️ The mark above submits this file to `python tools/test_docs-index-contract.py` — completeness, one
@@ -73,6 +73,7 @@ spine planned is the one that went live on 24/11 (§0).
 | [457-t3-globalresources-arbitrage-dossier-2026-10-10.md](457-t3-globalresources-arbitrage-dossier-2026-10-10.md) | 2026-10-10 | `historical` | Arbitration dossier for `GlobalResources.<culture>.resx`: composition, real surface, upstream. Reco: upstream es+pt installs are a lane gesture on preprod; production needs the owner GO. |
 | [457-t3-ui-labels-measured.md](457-t3-ui-labels-measured.md) | 2026-10-10 | `historical` | T3 measure-only: which UI labels are done, which are a no-op, which remain. Erratum of 10/10 after counter-review. |
 | [457-p24-01-residu-visible-traductions-2026-11-14.md](457-p24-01-residu-visible-traductions-2026-11-14.md) | 2026-11-14 | `historical` | P24-01: the visible part of the langpack residue, translated. |
+| [2181-perimetre-borne-only-cell-2026-11-27.md](2181-perimetre-borne-only-cell-2026-11-27.md) | 2026-11-27 | `current` | `--only-cell`: the bounded dry-run of `tools/458-eav-reinject.py` that W2-09/W2-14 needs — write plan bounded to the named cells, app map / target read / preservation still on the full registry; the block's fr base is shown at dry-run and refused at apply. |
 
 ---
 
@@ -560,8 +561,8 @@ holds it to three things: every tracked file of `docs/dnn-localization` is cited
 folder link; every row that links a file of this folder carries **exactly one** status in backticks; no link
 is dead, case included. A file added under this folder without its row turns the pull request red, naming
 the file. The counts this file accounts for move when a file is added — `git ls-files docs/dnn-localization`
-is the instrument, and the figures above are dated: **217 tracked files** = 134 `458-*` + 49 root files
-(48 documents and this README) + 34 files behind the two folder links of §6.
+is the instrument, and the figures above are dated: **219 tracked files** = 134 `458-*` + 51 root files
+(50 documents and this README) + 34 files behind the two folder links of §6.
 
 A subfolder row links the **folder** (`name/`), never its `README.md`: a link to a subfolder's README covers
 only that README, and the other files of the subfolder would read as uncited. That is why the rows of §6

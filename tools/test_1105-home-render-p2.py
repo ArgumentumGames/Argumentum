@@ -55,6 +55,10 @@ CE QUI EST EPINGLE :
      muet — la passe le juge. `--skip-web` n'envoie aucun reveil. Bornes par defaut
      epinglees (60 / 240), et les bornes passees en ligne de commande atteignent
      `curl --max-time`.
+ 10. La sonde P2 sous un reveil muet (P24-62) : la section 6 se dit NON MESUREE, elle
+     ne porte AUCUNE ligne d'accueil, et elle le dit differemment de `--skip-web`
+     (un reveil muet est un constat, pas un choix de l'operateur). Les deux lignes de
+     sortie — « Reveil » et « Verdict » — nomment la sonde P2.
 """
 import importlib.util
 import io
@@ -505,10 +509,35 @@ class ColdStartWake(unittest.TestCase):
         self.assertEqual(calls[0], (BASE + "/", 30))
         self.assertEqual(clock[0], 30.0)
         self.assertIn("aucune réponse HTTP en 30 s", md)
-        self.assertIn("⛔ **réveil sans réponse HTTP** (contrôles 1 à 3 non mesurés)", md)
+        self.assertIn(
+            "⛔ **réveil sans réponse HTTP** (contrôles 1 à 3 **et la sonde P2** non mesurés)",
+            md)
         sec1 = md[md.index("## 1."):md.index("## 2.")]
         self.assertIn("réveil sans réponse HTTP", sec1)
         self.assertNotIn("--skip-web", sec1, "un reveil muet n'est pas un choix de l'operateur")
+
+    def test_a_mute_wake_leaves_the_p2_probe_unmeasured(self):
+        # P24-62 — le reveil muet coupe la PASSE, donc la sonde P2 n'a rien a lire :
+        # elle lit les corps d'accueil que ROUTES fetch. La section 6 doit le dire,
+        # et le dire differemment de `--skip-web` (un choix) : un reveil muet est un
+        # constat. Sans ce cas, la section 6 pourrait porter un tableau de mesures
+        # prises sur une passe qui n'a pas tourne (ou rien dire du tout).
+        clock, calls = [0.0], []
+        code, md = run_main(argv_extra=["--wake-max-time", "30", "--max-time", "5"],
+                            calls=calls, cold={"ready_after": float("inf")}, clock=clock)
+        self.assertEqual(code, 1, md[-800:])
+        sec6 = md[md.index("## 6. Sonde P2"):]
+        # La section 6 ellee : les sections 1 a 3 portent la meme phrase, et une
+        # assertion sur tout le rapport serait verte sans que la sonde le dise.
+        self.assertIn("⛔ **Non mesuré** — réveil sans réponse HTTP", sec6)
+        self.assertNotIn("--skip-web", sec6,
+                         "un reveil muet n'est pas un choix de l'operateur")
+        self.assertNotIn("| fr |", sec6, "aucune accueil n'a ete mesure")
+        # La ligne de reveil et le verdict nomment la sonde P2 : c'est elle qui manque.
+        self.assertIn("contrôles 1 à 3 **et la sonde P2** non mesurés", md)
+        self.assertNotIn("écart(s) de la sonde P2",
+                         md[md.index("**Verdict**"):],
+                         "un probe non mesure n'est pas un ecart")
 
     def test_an_http_status_at_the_wake_is_not_a_mute_site(self):
         # 503 est une REPONSE : le site est la, la passe juge la route comme elle est.

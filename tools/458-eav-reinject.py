@@ -579,6 +579,75 @@ def planned_writes(actions) -> list:
     return [a for a in actions if a["op"] in WRITE_OPS]
 
 
+# ---------------------------------------------------------------------------
+# Perimetre borne (#2181, W2-14) : `--only-cell GUID:CHAMP:LANGUE`, cumulable.
+#
+# Une seule passe d'ecriture refusait tant qu'UNE cellule du registre etait en
+# conflit, meme hors du lot : la garde `conflits or cibles manquantes` lit le plan
+# ENTIER. Le mode borne resserre l'ECRITURE sur les cellules nommees — et rien
+# d'autre : la carte d'apps, la lecture de la cible (G1) et la preservation sont
+# mesurees sur le registre COMPLET, comme sans `--only-cell` (une carte mesuree
+# sur un registre tranche perd sa marge : G2 refuserait un vainqueur a egalite).
+# ---------------------------------------------------------------------------
+# Ops d'une cellule NOMMEE qu'un reglage par defaut ecarte de l'ecriture. En mode
+# borne chaque action vient d'un nom explicite : l'operateur croit avoir demande
+# l'ecriture de cette cellule, et le run n'ecrirait rien — d'ou le refus.
+SCOPED_NO_WRITE_OPS = ("SKIP_PRESERVED_2181", "FR_DB_LOCAL")
+# FR_EXCLUDED a part : ce n'est pas un oubli de reglage, c'est la POLITIQUE de base
+# fr (bloc #2181 preserve par arbitrage du 20/11, ou --fr-exclude). Le mode a blanc
+# doit pouvoir la MONTRER — W2-09 demande un mode a blanc borne aux 11 cellules
+# « dont le francais », et aucune option ne leve cette exclusion : refuser le
+# dry-run rendrait cette passe impossible. `--apply`, lui, refuse.
+SCOPED_POLICY_OPS = ("FR_EXCLUDED",)
+NO_WRITE_HINTS = {
+    "SKIP_PRESERVED_2181": " (ajouter --include-preserved-2181)",
+    "FR_DB_LOCAL": " (reference file:NNN locale a la base — jamais ecrite : retirer ce nom)",
+}
+
+
+def parse_only_cell(item: str):
+    """`GUID:CHAMP:LANGUE` -> cle normalisee (GUID majuscule, champ, langue), sinon None.
+
+    MEME validateur que `--force` (FORCE_GUID_RE) : GUID COMPLET, casse indifferente,
+    normalise en majuscules. Deux validateurs voisins pour la meme forme de cle
+    finiraient par diverger sur un cas limite. Langue : l'une des 7 traduites, ou `fr`
+    pour la cellule de BASE (dim-0). Le champ est pris tel quel : c'est le StaticName
+    du schema, compare a l'identique.
+    """
+    parts = item.split(":")
+    if len(parts) != 3 or not parts[1]:
+        return None
+    if parts[2] not in LANGS and parts[2] != "fr":
+        return None
+    if not FORCE_GUID_RE.match(parts[0].upper()):
+        return None
+    return (parts[0].upper(), parts[1], parts[2])
+
+
+def scope_plan(plan, fr_plan, only: set):
+    """Borne les deux plans aux cellules nommees ; rend (plan, fr_plan, inconnues).
+
+    `inconnues` = les noms qui ne designent aucune cellule des deux plans. Une faute
+    de frappe y aboutit : un perimetre borne a rien s'ecrirait « plan coherent ».
+    """
+    known = {(p["entity_guid"].upper(), p["field"], p["lang"]) for p in plan}
+    known |= {(p["entity_guid"].upper(), p["field"], "fr") for p in fr_plan}
+    inconnues = sorted(k for k in only if k not in known)
+    kept = [p for p in plan if (p["entity_guid"].upper(), p["field"], p["lang"]) in only]
+    kept_fr = [p for p in fr_plan if (p["entity_guid"].upper(), p["field"], "fr") in only]
+    return kept, kept_fr, inconnues
+
+
+def named_cells_not_written(actions, fr_actions) -> list[dict]:
+    """Les actions du perimetre borne qu'un reglage ecarterait de l'ecriture."""
+    return [a for a in list(actions) + list(fr_actions) if a["op"] in SCOPED_NO_WRITE_OPS]
+
+
+def named_cells_policy(actions, fr_actions) -> list[dict]:
+    """Les cellules nommees que la politique de base fr tient hors ecriture."""
+    return [a for a in list(actions) + list(fr_actions) if a["op"] in SCOPED_POLICY_OPS]
+
+
 def main(argv=None) -> int:
     global CURRENT_PLAN, CURRENT_FR_PLAN
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
@@ -600,6 +669,10 @@ def main(argv=None) -> int:
                          "GUID COMPLET, son champ et sa langue est reecrite depuis le registre — "
                          "valeur d'avant sauvegardee, concurrence optimiste in-tx. Toute autre "
                          "cellule en conflit continue de refuser l'apply")
+    ap.add_argument("--only-cell", action="append", default=[], metavar="GUID:CHAMP:LANGUE",
+                    help="borne l'ECRITURE aux cellules nommees (cumulable, 'fr' pour la base "
+                         "dim-0) ; la carte d'apps, la cible et la preservation restent "
+                         "mesurees sur le registre complet")
     args = ap.parse_args(argv)
 
     excludes = {(PRESERVED_2181_GUID, PRESERVED_2181_FIELD)}
@@ -618,23 +691,45 @@ def main(argv=None) -> int:
             return 1
         force_keys.add(key)
 
+    only = set()
+    for item in args.only_cell:
+        key = parse_only_cell(item)
+        if key is None:
+            print(f"REFUS: --only-cell mal forme ({item!r}) — attendu GUID-complet:CHAMP:LANGUE "
+                  f"(langue parmi {', '.join(LANGS)} ou fr)")
+            return 1
+        only.add(key)
+
     reg = read_registry(args.registry)
     CURRENT_PLAN = build_plan(reg)
     CURRENT_FR_PLAN = build_fr_plan(reg)
+    # `plan`/`fr_plan` = ce que l'ECRITURE considere ; les globals gardent le plan
+    # complet (carte d'apps, cible, preservation, apps #2182).
+    plan, fr_plan = CURRENT_PLAN, CURRENT_FR_PLAN
+    if only:
+        plan, fr_plan, inconnues = scope_plan(CURRENT_PLAN, CURRENT_FR_PLAN, only)
+        if inconnues:
+            # Une faute de frappe ne doit pas se lire « perimetre vide, donc rien a faire ».
+            print("REFUS: --only-cell nomme une cellule absente du plan (vide au registre ou "
+                  "inconnue) : " + "; ".join(f"{g[:8]}… {f} [{lang}]" for g, f, lang in inconnues))
+            return 1
     conn = EXP.read_connection_string(pathlib.Path(args.config))
     print(f"registre: {len(reg)} lignes, {len(CURRENT_PLAN)} cellules traductibles non vides, "
           f"{len(CURRENT_FR_PLAN)} cellules de base fr")
     # Carte d'apps imprimee AVANT la lecture de la cible (P23-27) : fetch_target peut
     # refuser (G1, dimension absente) et l'operateur doit deja lire la carte.
     app_map_info, target = resolve_target(conn, reg)
-    actions = compute_actions(CURRENT_PLAN, target, app_map_info["map"],
+    actions = compute_actions(plan, target, app_map_info["map"],
                               allow_preserved=args.include_preserved_2181, force=force_keys)
-    fr_actions = compute_fr_actions(CURRENT_FR_PLAN, target, app_map_info["map"], excludes)
+    fr_actions = compute_fr_actions(fr_plan, target, app_map_info["map"], excludes)
     unknown = unmatched_force(actions, force_keys)
     if unknown:
         # Une faute de frappe dans --force ne doit pas se lire « rien a forcer » : le nom
         # ne designe aucune cellule du plan, donc l'operateur croit avoir nomme autre chose.
-        print("REFUS: --force nomme une cellule qui n'est pas au plan (GUID/champ/langue) : "
+        # En mode borne, le plan EST le perimetre : un nom hors perimetre est un contresens
+        # (demander l'ecriture d'une cellule qu'on vient d'exclure), refuse de meme.
+        print("REFUS: --force nomme une cellule qui n'est pas au %s (GUID/champ/langue) : "
+              % ("perimetre" if only else "plan")
               + "; ".join(f"{g[:8]}… {f} [{lang}]" for g, f, lang in unknown))
         return 1
 
@@ -650,6 +745,15 @@ def main(argv=None) -> int:
     print("base fr (dim-0) :")
     for op in sorted(fr_counts):
         print(f"  {op}: {fr_counts[op]}")
+    if only:
+        print(f"perimetre (--only-cell): {len(only)} cellule(s) nommee(s) — "
+              f"{len(CURRENT_PLAN) - len(plan)} cellule(s) traduisible(s) et "
+              f"{len(CURRENT_FR_PLAN) - len(fr_plan)} base(s) fr HORS perimetre : "
+              f"ni evaluees, ni ecrites, et aucune comparaison de base fr pour elles")
+    # En mode borne, tout le perimetre a ete NOMME : une cellule qu'un reglage ecarte
+    # de l'ecriture est un refus, pas une note.
+    noop = named_cells_not_written(actions, fr_actions) if only else []
+    policy = named_cells_policy(actions, fr_actions) if only else []
 
     # Rapport FR : listes dans un fichier (GUID court, ContentType.champ, longueurs).
     report = fr_report(fr_actions)
@@ -712,6 +816,18 @@ def main(argv=None) -> int:
         print(f"\n{len(fr_missing)} cellule(s) de base fr SANS valeur sur la cible (extrait):")
         for a in fr_missing[:15]:
             print(f"  - {a['entity_guid'][:8]} {a['content_type']}.{a['field']}")
+    if noop:
+        print(f"\n{len(noop)} cellule(s) NOMMEE(S) qu'un reglage ecarte de l'ecriture — "
+              f"elles ne s'ecriraient pas :")
+        for a in noop:
+            print(f"  - {a['entity_guid'][:8]} {a['field']} [{a.get('lang', 'fr')}] {a['op']}"
+                  + NO_WRITE_HINTS.get(a["op"], ""))
+    if policy:
+        print(f"\n{len(policy)} cellule(s) NOMMEE(S) EXCLUE(S) par la politique de base fr "
+              f"(bloc #2181 par defaut, ou --fr-exclude) — aucune option ne leve "
+              f"l'exclusion : le mode a blanc les montre, --apply les refusera :")
+        for a in policy:
+            print(f"  - {a['entity_guid'][:8]} {a['field']} [{a.get('lang', 'fr')}] {a['op']}")
 
     fr_writes = [{**a, "op": "FR_UPDATE"} for a in fr_actions if a["op"] == "FR_DRIFT"]
     writes = planned_writes(actions)
@@ -722,13 +838,41 @@ def main(argv=None) -> int:
               + (f" + {n_forced} ECRASEMENT(S) NOMME(S)" if n_forced else "")
               + f") + {len(fr_writes)} REECRITURE(S) de base fr (FR_DRIFT non exclues). "
               f"Aucune ecriture effectuee.")
-        blocked = conflicts or missing or fr_missing
-        print("VERDICT: " + ("ECHEC (conflits ou cibles manquantes a arbitrer)" if blocked
-                             else "plan coherent, pret pour --apply"))
-        return 1 if blocked else 0
+        # `noop` n'est PAS un conflit : ce sont des cellules NOMMEES qu'un reglage
+        # ecarte (drapeau absent, reference file:NNN). Rien n'y est a arbitrer — le
+        # levier est le drapeau, ou le nom a retirer. Les confondre envoyait
+        # l'operateur chercher un conflit qui n'existe pas (contre-revue po-2023
+        # 6093174887 §4.4). Le verdict imprime deja la liste juste au-dessus, il
+        # doit la nommer ici aussi.
+        hard = conflicts or missing or fr_missing
+        if hard:
+            verdict = "ECHEC (conflits ou cibles manquantes a arbitrer)"
+        elif noop:
+            verdict = (f"ECHEC ({len(noop)} cellule(s) NOMMEE(S) qu'un reglage ecarte de "
+                       f"l'ecriture — rien a arbitrer)")
+        elif policy:
+            # Les cellules inscriptibles sont coherentes ; les exclues ne s'ecriront
+            # pas et --apply refusera tant qu'elles restent nommees.
+            verdict = (f"plan coherent pour les {len(only) - len(policy)} cellule(s) "
+                       f"inscriptible(s) ; {len(policy)} nommee(s) EXCLUE(S) par la politique "
+                       f"de base fr — retiree(s) du perimetre pour appliquer")
+        else:
+            verdict = "plan coherent, pret pour --apply"
+        print("VERDICT: " + verdict)
+        return 1 if (hard or noop) else 0
 
     if conflicts or missing or fr_missing:
         print("REFUS d'appliquer: conflits ou cibles manquantes non arbitres.")
+        return 1
+    if noop:
+        # Meme distinction qu'au dry-run : une cellule nommee qu'un reglage ecarte
+        # n'est ni un conflit ni une cible manquante.
+        print("REFUS d'appliquer: cellule(s) nommee(s) qu'un reglage ecarte de l'ecriture "
+              "— lever le reglage ou retirer ces noms.")
+        return 1
+    if policy:
+        print("REFUS d'appliquer: cellule(s) nommee(s) exclue(s) par la politique de base fr "
+              "— retirer ces noms, ou faire lever l'exclusion par un arbitrage.")
         return 1
     if not args.backup_dir:
         print("REFUS: --apply exige --backup-dir (hors depot).")

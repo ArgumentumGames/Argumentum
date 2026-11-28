@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""#2181 / P24-51 - batterie de mutations du controle nomme, INDEPENDANTE des gardes.
+"""#2181 / P24-51 et P24-55 - batterie de mutations du controle nomme, INDEPENDANTE des gardes.
 
     python tools/2181-reinject-mutations.py [--work-dir <dossier>]
 
 Chaque mutation est une reecriture textuelle de `tools/458-eav-reinject.py` appliquee a
-une COPIE (outil + module d'export + suite de gardes) ; la suite ENTIERE (38 cas) est
+une COPIE (outil + module d'export + suite de gardes) ; la suite ENTIERE (53 cas) est
 rejouee sur la copie et doit rougir sur le cas nomme d'avance. La copie NON mutee
-(temoin) doit rester 38/38 : sans ce temoin, un rouge ne prouverait rien.
+(temoin) doit rester 53/53 : sans ce temoin, un rouge ne prouverait rien.
+
+DEUX SERIES. N1-N13 : l'ecrasement nomme `--force` (P24-51). N14-N29 : le mode borne
+`--only-cell` (P24-55) — d'abord jouees en batterie de session non commise, elles sont
+ici pour etre rejouables par qui relit.
 
 POURQUOI une batterie a part. Les mutations vivantes de la suite (ForceNomme.mutation,
 WriterForce.check/block) eprouvent les HELPERS de la suite : elles etablissent que
@@ -77,6 +81,115 @@ MUTATIONS = [
             return 1""", """f"(langue parmi {', '.join(LANGS)})")
             return 0""")],
      "test_cli_refuse_un_force_mal_forme_avant_toute_lecture"),
+    # M1 de la verification du merger de #2373 (ai-01, c.7218159963) : ce refus retire
+    # laissait 38/38 VERTS. Le comportement restait sur (catch + ROLLBACK), mais rien
+    # ne fixait le refus : la suite le fixe depuis, et cette batterie le re-eprouve
+    # sur une copie, independamment de l'auteur du cas.
+    ("N13 refus de rangee FORCE retire (M1)",
+     [('if (-not $r.Read()) { $r.Close(); throw "FORCE $guid.$field dim$dim : '
+       'aucune rangee a cette dimension (base modifiee depuis le dry-run?)" }',
+       "# M1 : refus de rangee absente retire")],
+     "test_une_seule_branche_et_conforme"),
+    # P24-55 : les deux validateurs de nom sont le MEME (FORCE_GUID_RE). Un second
+    # analyseur pour la meme forme de cle derive : ce mutant le montre.
+    ("N14 --only-cell sans le validateur de --force",
+     [("""    if parts[2] not in LANGS and parts[2] != "fr":
+        return None
+    if not FORCE_GUID_RE.match(parts[0].upper()):""",
+       """    if parts[2] not in LANGS and parts[2] != "fr":
+        return None
+    if not parts[0]:""")],
+     "test_parse_only_cell_formes"),
+    # P24-55 (suite) : les 15 mutations du mode borne `--only-cell`, d'abord jouees en
+    # batterie de session (non commise, #2405) puis rabattues ici pour etre rejouables.
+    # Chacune retire UNE garde ; le cas nomme est celui qui la fixe.
+    ("N15 --only-cell ne borne plus les traductions",
+     [("    plan, fr_plan = CURRENT_PLAN, CURRENT_FR_PLAN\n    if only:",
+       "    plan, fr_plan = CURRENT_PLAN, CURRENT_FR_PLAN\n    if False:")],
+     "test_le_perimetre_borne_leve_le_blocage_et_ne_garde_que_ses_cellules"),
+    ("N16 scope_plan garde toutes les traductions",
+     [('    kept = [p for p in plan if (p["entity_guid"].upper(), p["field"], p["lang"]) in only]',
+       "    kept = list(plan)")],
+     "test_scope_plan_borne_et_garde_les_bases_fr_nommees"),
+    ("N17 --only-cell ne borne plus les bases fr",
+     [('    kept_fr = [p for p in fr_plan if (p["entity_guid"].upper(), p["field"], "fr") in only]',
+       "    kept_fr = list(fr_plan)")],
+     "test_une_base_fr_hors_perimetre_n_est_pas_comparee"),
+    ("N18 un nom inconnu n'est plus refuse",
+     [("        if inconnues:", "        if False:")],
+     "test_un_nom_absent_du_plan_est_refuse_avant_toute_lecture"),
+    ("N19 un nom --only-cell mal forme n'est plus refuse",
+     [("        key = parse_only_cell(item)\n        if key is None:",
+       "        key = parse_only_cell(item)\n        if False:")],
+     "test_un_nom_mal_forme_est_refuse"),
+    ("N20 le dry-run ne rend plus 1 sur une cellule nommee ecartee",
+     [("        return 1 if (hard or noop) else 0", "        return 1 if hard else 0")],
+     "test_une_cellule_nommee_ecartee_par_defaut_refuse_l_apply"),
+    ("N21 l'apply ne refuse plus sur une cellule nommee ecartee",
+     [('    if noop:\n        # Meme distinction qu\'au dry-run', '    if False:\n        # Meme distinction qu\'au dry-run')],
+     "test_une_cellule_nommee_ecartee_par_defaut_refuse_l_apply"),
+    ("N22 FR_EXCLUDED redevient un refus du dry-run",
+     [('SCOPED_NO_WRITE_OPS = ("SKIP_PRESERVED_2181", "FR_DB_LOCAL")',
+       'SCOPED_NO_WRITE_OPS = ("SKIP_PRESERVED_2181", "FR_DB_LOCAL", "FR_EXCLUDED")')],
+     "test_une_base_fr_nommee_exclue_est_montree_a_blanc_et_refusee_a_l_apply"),
+    ("N23 FR_DB_LOCAL n'est plus une op sans ecriture",
+     [('SCOPED_NO_WRITE_OPS = ("SKIP_PRESERVED_2181", "FR_DB_LOCAL")',
+       'SCOPED_NO_WRITE_OPS = ("SKIP_PRESERVED_2181",)')],
+     "test_une_reference_file_nommee_est_refusee"),
+    ("N24 SKIP_PRESERVED_2181 n'est plus une op sans ecriture",
+     [('SCOPED_NO_WRITE_OPS = ("SKIP_PRESERVED_2181", "FR_DB_LOCAL")',
+       'SCOPED_NO_WRITE_OPS = ("FR_DB_LOCAL",)')],
+     "test_une_cellule_nommee_ecartee_par_defaut_refuse_l_apply"),
+    ("N25 la politique de base fr n'est plus montree",
+     [('SCOPED_POLICY_OPS = ("FR_EXCLUDED",)', "SCOPED_POLICY_OPS = ()")],
+     "test_une_base_fr_nommee_exclue_est_montree_a_blanc_et_refusee_a_l_apply"),
+    ("N26 la politique de base fr ne refuse plus l'apply",
+     [('    if policy:\n        print("REFUS d\'appliquer: cellule(s) nommee(s)',
+       '    if False:\n        print("REFUS d\'appliquer: cellule(s) nommee(s)')],
+     "test_la_passe_de_onze_cellules_de_w2_09_se_joue_a_blanc"),
+    ("N27 le verdict annonce pret a appliquer malgre une exclusion",
+     [("        elif policy:", "        elif False:")],
+     "test_la_passe_de_onze_cellules_de_w2_09_se_joue_a_blanc"),
+    ("N28 --only-cell accepte une langue inconnue",
+     [('    if parts[2] not in LANGS and parts[2] != "fr":', "    if False:")],
+     "test_parse_only_cell_formes"),
+    ("N29 --only-cell ne normalise pas le GUID en majuscules",
+     [("""    if parts[2] not in LANGS and parts[2] != "fr":
+        return None
+    if not FORCE_GUID_RE.match(parts[0].upper()):
+        return None
+    return (parts[0].upper(), parts[1], parts[2])""",
+       """    if parts[2] not in LANGS and parts[2] != "fr":
+        return None
+    if not FORCE_GUID_RE.match(parts[0].upper()):
+        return None
+    return (parts[0], parts[1], parts[2])""")],
+     "test_parse_only_cell_formes"),
+    # P24-55 (contre-revue po-2023 c.6093174887, §3.1 à §3.3) : les cinq mutations
+    # que cette revue nommait « non vues » sur la tête d2c59224. Chacune retire UNE
+    # garde du mode borne ; le cas qui la fixe est nomme d'avance.
+    ("N30 le plan d'ecriture n'est plus borne (plan complet)",
+     [("    writes = planned_writes(actions)",
+       "    writes = planned_writes(compute_actions(CURRENT_PLAN, target, "
+       "app_map_info[\"map\"], allow_preserved=args.include_preserved_2181, "
+       "force=force_keys))")],
+     "test_l_apply_borne_ne_transmet_au_writer_que_les_cellules_nommees"),
+    ("N31 les bases fr ecrites ne sont plus bornees (plan complet)",
+     [('    fr_writes = [{**a, "op": "FR_UPDATE"} for a in fr_actions if a["op"] == "FR_DRIFT"]',
+       '    fr_writes = [{**a, "op": "FR_UPDATE"} for a in compute_fr_actions(CURRENT_FR_PLAN, '
+       'target, app_map_info["map"], excludes) if a["op"] == "FR_DRIFT"]')],
+     "test_l_apply_borne_ne_transmet_au_writer_que_les_cellules_nommees"),
+    ("N32 le reglage ecarte bloque meme hors perimetre (noop)",
+     [("    noop = named_cells_not_written(actions, fr_actions) if only else []",
+       "    noop = named_cells_not_written(actions, fr_actions)")],
+     "test_sans_only_cell_les_reglages_hors_perimetre_ne_bloquent_pas"),
+    ("N33 la politique de base fr bloque meme hors perimetre (policy)",
+     [("    policy = named_cells_policy(actions, fr_actions) if only else []",
+       "    policy = named_cells_policy(actions, fr_actions)")],
+     "test_sans_only_cell_les_reglages_hors_perimetre_ne_bloquent_pas"),
+    ("N34 --force hors perimetre n'est plus refuse",
+     [("    if unknown:", "    if False:")],
+     "test_force_hors_perimetre_est_refuse"),
 ]
 
 

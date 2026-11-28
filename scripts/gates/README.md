@@ -37,12 +37,119 @@ Verdict = worst level. BLOCK > HOLD > INFO.
 | R8 | counter-review | | none on the head, when the PR is from the merger's lane or `--require-counter-review`. Formal reviews keep their rule (attached to the head commit); a **comment** counts only when posted after the head, declaring itself counter-review (`contre-revue` / `counter-review`, case-insensitive) **and** naming the head (first 8 hex chars of its SHA). When R8 finds nothing, it names the post-head comments it saw and excluded, and any counter-review another lane declared on a **previous** head (the stacked-PR case after a base merge): it does not count, and the message says what to compare |
 | R9 | closing keywords | | body, title or a commit message will close an issue: keyword + `#N`, `owner/repo#N`, `GH-N` or an issue/PR URL |
 | R10 | diff hygiene (added lines) | token and private-key formats | secret-like assignment, profile path, mention of the `.keys` directory; any file the scan could not fully read |
-| R11 | protected paths | printed reference (`Cards/*/Archive`, CardPen `examples`, the directories themselves included), env files (`.env`, `.env.*`, `.env-*`, `.envrc`), `.keys` directory, `*.pfx` | workflows, `.claude`, `AGENTS.md`, `CLAUDE.md`, `scripts/gates`, `web.config`, env models (`.env.example`, `.sample`, `.template`, `.dist`) |
+| R11 | protected paths | printed reference (`Cards/*/Archive`, CardPen `examples`, the directories themselves included), env files (`.env`, `.env.*`, `.env-*`, `.envrc`), `.keys` directory, `*.pfx` | workflows, `.claude`, `AGENTS.md`, `CLAUDE.md`, `scripts/gates`, `web.config`, env models (`.env.example`, `.sample`, `.template`, `.dist`), `tools/test_docs-index-contract.py` (the contract R13 re-executes — a pull request that weakens it would be replayed with its own weakened instrument) |
 | R12 | taxonomy CSV | another open PR touches the taxonomy CSV | (any CSV under `Cards/`: INFO, re-parse reminder) |
-| R13 | index of record | | a file **added** by the PR, under a folder whose `README.md` on **master** carries `<!-- index-of-record -->` (nearest such README), is cited neither in master's README nor in the PR's README. A link to a sub-folder counts as citing what it holds; a marker inside a code block is not a marker |
+| R13 | docs index of record | | `tools/test_docs-index-contract.py` returns **red** when replayed on the PR's **merged tree** (`git merge-tree` → `commit-tree` → a detached worktree → `python -B … DocsIndexContract`). The message quotes the contract's own `AssertionError`, never a re-read of it. A replay that cannot see (no local repo or no `origin`, an `origin` that names another repository, base that cannot be refreshed, head missing, merge conflict, contract absent from the tree, unrecognised output) is **blind**: exit 1, never a PASS. A replay worktree that could not be removed is **named** (path + removal command) in the R13 line — the verdict stays the contract's |
 
 Required CI contexts are read live from the branch ruleset; if that read fails
 the gate falls back to a named list and **says so** in its output.
+
+### R13 replays the contract, it does not re-read the indexes
+
+`tools/test_docs-index-contract.py` is the source of truth for "an index of
+record cites every tracked file of its folder". R13 runs **that file**, on the
+tree the squash will produce:
+
+```bash
+git fetch --quiet --no-tags origin +refs/heads/<base_ref>:refs/remotes/origin/<base_ref>
+git merge-tree --write-tree refs/remotes/origin/<base_ref> <head>   # merged tree
+git commit-tree <tree> -p <base> -p <head> -m gate-docs-replay  # identified
+git worktree add --detach <tmp> <commit>
+python -B <tmp>/tools/test_docs-index-contract.py DocsIndexContract
+git worktree remove <tmp>
+```
+
+`<base_ref>` is the pull request's own base branch, read from GitHub — it is
+**not** `master` in general: the example above writes `master` because the
+pull request it describes targets `master`, and the code takes the base the
+pull request declares.
+
+The base is **refreshed first**, never presumed current. **Measured** on
+2026-11-27: on a clone whose `origin/master` is behind, the replay said green
+where the squash is red. `master` creates an index of record above a folder
+already tracked (the #2252/#2263 form); a pull request branched before adds a
+file under it — covered by the old base's folder link, owed to the new index
+after the squash. The old base plus the head is not the tree the squash will
+produce, so reading it is reading the wrong thing. A fetch that fails (no
+`origin`, unreachable, no such branch) is blind: exit 1.
+
+The writes in the local clone are the ones a `git fetch` makes — the
+remote-tracking ref **and** `FETCH_HEAD` — plus the **temporary registration**
+of the replay worktree under `.git/worktrees/`, which `git worktree remove`
+takes back. Nothing else is written: the replay reads a tree, it does not
+publish it.
+
+**The replay runs in the local clone of the pull request's own repository.**
+The origin's URL is checked against the repository the pull request belongs to;
+if the local `origin` names another repository, the replay goes **blind** (exit
+1) rather than replaying a contract against the wrong tree.
+
+**A merge conflict is blind too.** `git merge-tree --write-tree` cannot compute
+the merged tree of a base and a head that touch the same lines; the replay says
+so and exits 1. It never renders a verdict about a tree it could not build.
+
+**A worktree that could not be removed is named, not hidden.** If
+`git worktree remove` fails, the checkout stays on disk and its registration
+stays under `.git/worktrees/`. The R13 line then carries the path and the
+removal command (`git worktree remove <path>`), and the verdict stays the
+contract's own — the leak is reported, the verdict is not invented.
+
+The contract stops at the **first** failing index (`assertEqual` inside its
+loop), so does the message: it names that index's defects, and a second failing
+index shows on the next run.
+
+The quoted message is the assertion's own first lines — cut at the blank line
+(the diff), at unittest's separator, or at 300 characters — so the bilan is
+never reported as a defect. **Measured** on 2026-11-27: the contract's floor
+(`aucun README.md ne porte la marque`) had its rule and `Ran 2 tests … FAILED`
+pulled into the quoted defect before this cut.
+
+The class is run because the contract's inverse controls belong to its own CI
+job (`agent-docs-contracts`); `-B` keeps the worktree free of `__pycache__` so it
+removes without `--force`.
+
+The replay checks out the **whole** merged tree, and that is what it costs.
+**Measured** on 2026-11-27 on one worker machine shared with other lanes, nine
+passes of `_docs_replay(2410, "master", b99aa59a)` before the base fetch was
+added (16 s to 37 s per replay) and three after (19.9 s, 23.7 s, 35.6 s): the
+fetch 1.0 s to 1.6 s, the checkout 11 s to 17 s, its removal 3 s to 8 s, the
+contract itself 2 s to 12 s. The spread between two passes is attributed to
+load on that machine, not isolated. The cost on another machine, and on a CI
+runner, was not measured.
+
+A sparse checkout is not a shortcut. **Measured** the same day:
+`sparse-checkout set docs tools` makes the contract red where the full tree is
+green — `lien mort : ../../.github/workflows/static.yml`, on the merged tree and
+on the pull request's head alike — because an index of `docs/` links a file
+outside `docs/`, and the contract reads the filesystem. For the same reason the
+gate does not skip the replay when a pull request touches neither `docs/` nor
+`tools/`: **derived** from that mechanism, deleting the linked file would break
+an index without touching either.
+
+A locally re-implemented reader came first and was wrong where it mattered: on
+the ten index forms measured in po-2023's counter-review (2026-11-27), two
+agreed with the contract; six passed where the contract refuses — an index the
+pull request creates above an already-tracked file, a rename, a copy, a `./`
+link, a link to the parent folder, a citing line inside a code block; two held
+where it does not — a sub-index cited by `sub/README.md`, a `%20` target.
+Replaying the contract also settles the form the reader could not see: an index
+**created** above an already-tracked file (#2252 created the three indexes and
+omitted `articles/README.md`, #2263 having added it four minutes earlier).
+
+A `git archive` extract was the first form tried, and it cannot see in either
+placement — **measured** on 2026-11-27. Outside any repository, the contract
+raises `RuntimeError: git ls-files a échoué` (`FAILED (errors=1)`): the gate
+reads a blind instrument, exit 1. Nested inside the enclosing repository,
+`git ls-files` lists nothing under the ignored extract, the contract's floor
+fires (`aucun README.md ne porte la marque`) and the gate reads a **red** — about
+the extract, not about the pull request. The merged tree is therefore replayed
+as a detached worktree of the local repository, where `git ls-files` answers
+about the merged tree itself.
+
+Green means the two real assertions ran and passed on the merged tree: a
+`Ran 1 test … OK` is not a green, it is an instrument that did not see
+everything. A traceback or a `RuntimeError: git ls-files a échoué` is the
+contract saying it cannot see — a blind instrument, not a defect.
 
 R11 matches protected paths **whatever their case**: the repository tracks both
 `Web.config` and `web.config`, and a case-exact rule let the first one through.
