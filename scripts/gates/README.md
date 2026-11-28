@@ -37,9 +37,9 @@ Verdict = worst level. BLOCK > HOLD > INFO.
 | R8 | counter-review | | none on the head, when the PR is from the merger's lane or `--require-counter-review`. Formal reviews keep their rule (attached to the head commit); a **comment** counts only when posted after the head, declaring itself counter-review (`contre-revue` / `counter-review`, case-insensitive) **and** naming the head (first 8 hex chars of its SHA). When R8 finds nothing, it names the post-head comments it saw and excluded, and any counter-review another lane declared on a **previous** head (the stacked-PR case after a base merge): it does not count, and the message says what to compare |
 | R9 | closing keywords | | body, title or a commit message will close an issue: keyword + `#N`, `owner/repo#N`, `GH-N` or an issue/PR URL |
 | R10 | diff hygiene (added lines) | token and private-key formats | secret-like assignment, profile path, mention of the `.keys` directory; any file the scan could not fully read |
-| R11 | protected paths | printed reference (`Cards/*/Archive`, CardPen `examples`, the directories themselves included), env files (`.env`, `.env.*`, `.env-*`, `.envrc`), `.keys` directory, `*.pfx` | workflows, `.claude`, `AGENTS.md`, `CLAUDE.md`, `scripts/gates`, `web.config`, env models (`.env.example`, `.sample`, `.template`, `.dist`) |
+| R11 | protected paths | printed reference (`Cards/*/Archive`, CardPen `examples`, the directories themselves included), env files (`.env`, `.env.*`, `.env-*`, `.envrc`), `.keys` directory, `*.pfx` | workflows, `.claude`, `AGENTS.md`, `CLAUDE.md`, `scripts/gates`, `web.config`, env models (`.env.example`, `.sample`, `.template`, `.dist`), `tools/test_docs-index-contract.py` (the contract R13 re-executes — a pull request that weakens it would be replayed with its own weakened instrument) |
 | R12 | taxonomy CSV | another open PR touches the taxonomy CSV | (any CSV under `Cards/`: INFO, re-parse reminder) |
-| R13 | docs index of record | | `tools/test_docs-index-contract.py` returns **red** when replayed on the PR's **merged tree** (`git merge-tree` → `commit-tree` → a detached worktree → `python -B … DocsIndexContract`). The message quotes the contract's own `AssertionError`, never a re-read of it. A replay that cannot see (no local repo or no `origin`, base that cannot be refreshed, head missing, merge conflict, contract absent from the tree, unrecognised output) is **blind**: exit 1, never a PASS |
+| R13 | docs index of record | | `tools/test_docs-index-contract.py` returns **red** when replayed on the PR's **merged tree** (`git merge-tree` → `commit-tree` → a detached worktree → `python -B … DocsIndexContract`). The message quotes the contract's own `AssertionError`, never a re-read of it. A replay that cannot see (no local repo or no `origin`, an `origin` that names another repository, base that cannot be refreshed, head missing, merge conflict, contract absent from the tree, unrecognised output) is **blind**: exit 1, never a PASS. A replay worktree that could not be removed is **named** (path + removal command) in the R13 line — the verdict stays the contract's |
 
 Required CI contexts are read live from the branch ruleset; if that read fails
 the gate falls back to a named list and **says so** in its output.
@@ -51,13 +51,18 @@ record cites every tracked file of its folder". R13 runs **that file**, on the
 tree the squash will produce:
 
 ```bash
-git fetch --quiet --no-tags origin +refs/heads/master:refs/remotes/origin/master
-git merge-tree --write-tree refs/remotes/origin/master <head>   # merged tree
+git fetch --quiet --no-tags origin +refs/heads/<base_ref>:refs/remotes/origin/<base_ref>
+git merge-tree --write-tree refs/remotes/origin/<base_ref> <head>   # merged tree
 git commit-tree <tree> -p <base> -p <head> -m gate-docs-replay  # identified
 git worktree add --detach <tmp> <commit>
 python -B <tmp>/tools/test_docs-index-contract.py DocsIndexContract
 git worktree remove <tmp>
 ```
+
+`<base_ref>` is the pull request's own base branch, read from GitHub — it is
+**not** `master` in general: the example above writes `master` because the
+pull request it describes targets `master`, and the code takes the base the
+pull request declares.
 
 The base is **refreshed first**, never presumed current. **Measured** on
 2026-11-27: on a clone whose `origin/master` is behind, the replay said green
@@ -66,8 +71,28 @@ already tracked (the #2252/#2263 form); a pull request branched before adds a
 file under it — covered by the old base's folder link, owed to the new index
 after the squash. The old base plus the head is not the tree the squash will
 produce, so reading it is reading the wrong thing. A fetch that fails (no
-`origin`, unreachable, no such branch) is blind: exit 1. The only write in the
-local clone is the remote-tracking ref — what a `git fetch` writes.
+`origin`, unreachable, no such branch) is blind: exit 1.
+
+The writes in the local clone are the ones a `git fetch` makes — the
+remote-tracking ref **and** `FETCH_HEAD` — plus the **temporary registration**
+of the replay worktree under `.git/worktrees/`, which `git worktree remove`
+takes back. Nothing else is written: the replay reads a tree, it does not
+publish it.
+
+**The replay runs in the local clone of the pull request's own repository.**
+The origin's URL is checked against the repository the pull request belongs to;
+if the local `origin` names another repository, the replay goes **blind** (exit
+1) rather than replaying a contract against the wrong tree.
+
+**A merge conflict is blind too.** `git merge-tree --write-tree` cannot compute
+the merged tree of a base and a head that touch the same lines; the replay says
+so and exits 1. It never renders a verdict about a tree it could not build.
+
+**A worktree that could not be removed is named, not hidden.** If
+`git worktree remove` fails, the checkout stays on disk and its registration
+stays under `.git/worktrees/`. The R13 line then carries the path and the
+removal command (`git worktree remove <path>`), and the verdict stays the
+contract's own — the leak is reported, the verdict is not invented.
 
 The contract stops at the **first** failing index (`assertEqual` inside its
 loop), so does the message: it names that index's defects, and a second failing

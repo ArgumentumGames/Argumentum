@@ -292,7 +292,23 @@ def _contract_verdict(rc, text):
                     _first_line(text) or "sortie vide"))
 
 
-def _docs_replay(number, base_ref, head_sha, root=None):
+def _origin_names_repo(url, repo):
+    """L'URL de l'origin designe-t-elle le depot `repo` (`Owner/Repo`) ?
+
+    Formes vues : `https://github.com/<owner>/<repo>.git`, `git@github.com:<owner>/<repo>.git`,
+    un chemin local. La comparaison porte sur le couple `owner/repo`, casse indifférente.
+    Une forme qui ne porte pas ce couple ne vaut PAS confirmation : le rejeu se fait dans
+    le clone LOCAL, sur son origin -- si ce clone n'est pas celui du depot de la PR, le
+    contrat est rejoue sur le mauvais arbre, et un vert y serait un vert sur rien.
+    """
+    u = (url or "").strip().rstrip("/")
+    if u.endswith(".git"):
+        u = u[:-4]
+    m = re.search(r"[:/]([^/:]+/[^/:]+)$", u)
+    return bool(m) and m.group(1).lower() == repo.lower()
+
+
+def _docs_replay(number, base_ref, head_sha, root=None, repo=None, runner=None):
     """Rejoue le contrat des index de dossier sur l'ARBRE FUSIONNÉ de la PR.
 
     Forme : fetch de la base depuis origin -> merge-tree --write-tree -> commit-tree ->
@@ -307,6 +323,12 @@ def _docs_replay(number, base_ref, head_sha, root=None):
     au-dessus d'un dossier déjà suivi (forme #2252/#2263), une PR branchée avant ajoute
     un fichier dessous -- couvert par le lien de dossier de l'ancienne base, dû au nouvel
     index après le squash.
+
+    `repo` : le dépôt de la PR (`Owner/Repo`). Le rejeu se fait dans le clone local, sur
+    SON origin : si le clone n'est pas celui du dépôt demandé, le contrat rejoué porterait
+    sur un autre arbre -- c'est un AVEUGLE, pas un vert. `runner` : couture de test, un
+    `git(*args)` qui remplace l'appel système (le self-test en use pour faire échouer le
+    retrait du worktree).
 
     Coût mesuré sur ce dépôt (27/11/2026, machine partagée) : 16 à 37 s par rejeu sur
     9 passes SANS le fetch de la base, 19,9 / 23,7 / 35,6 s sur 3 passes AVEC (le
@@ -324,12 +346,18 @@ def _docs_replay(number, base_ref, head_sha, root=None):
     `refs/remotes/origin/<base>`, `FETCH_HEAD` pour la tête) et un worktree temporaire,
     retiré ensuite ; rien sur GitHub.
     Tout empêchement de lire rend AVEUGLE (code 1) : jamais une absence, jamais un vert.
+    Un retrait de worktree EN ÉCHEC ne change pas le verdict (le contrat a bien été
+    rejoué) mais laisse une fuite : un checkout complet et son enregistrement sous
+    `.git/worktrees/`. Elle est nommée (chemin + commande de retrait) et reprise dans la
+    ligne R13 -- sinon rien ne la nommerait.
     """
     top = root or REPO_ROOT
     state = {"git_error": None}
 
     def git(*args):
         try:
+            if runner is not None:
+                return runner(top, *args)
             return subprocess.run(["git", "-C", top] + list(args), capture_output=True,
                                   timeout=DOCS_CONTRACT_TIMEOUT)
         except (OSError, subprocess.TimeoutExpired) as exc:
@@ -351,6 +379,15 @@ def _docs_replay(number, base_ref, head_sha, root=None):
         return blind("git indisponible (%s)" % state["git_error"])
     if done.returncode != 0 or b"true" not in done.stdout:
         return blind("dépôt local absent ou illisible depuis %s" % top)
+    # Le rejeu se fait dans le clone LOCAL, sur son origin. Si ce clone n'est pas celui du
+    # dépôt demandé (`--repo`), le contrat rejoué porterait sur un autre arbre : c'est un
+    # AVEUGLE, jamais un vert (revue ai-01, P24-60).
+    if repo:
+        origin = git("remote", "get-url", "origin")
+        if origin.returncode != 0 or not _origin_names_repo(
+                origin.stdout.decode("utf-8", "replace"), repo):
+            return blind("origin local (%s) ne designe pas le depot %s -- le rejeu se fait dans "
+                         "le clone de ce depot" % (said(origin) or "inconnu", repo))
     # La base est RAFRAÎCHIE, jamais présumée à jour. Mesuré (27/11/2026) : sur un clone
     # périmé, le rejeu dit VERT là où le squash rougit -- master crée un index
     # au-dessus d'un dossier déjà suivi (forme #2252/#2263), la PR ajoute un fichier
@@ -386,29 +423,40 @@ def _docs_replay(number, base_ref, head_sha, root=None):
     commit = made.stdout.decode("utf-8", "replace").strip().split("\n")[0].strip()
     work = tempfile.mkdtemp(prefix="gate-docs-replay-")
     added = git("worktree", "add", "--detach", work, commit)
+    result = blind("rejeu interrompu")
     try:
         if added.returncode != 0:
-            return blind("worktree de rejeu non créé -- %s"
-                         % (_first_line(added.stderr.decode("utf-8", "replace")) or "sans message"))
-        contract = os.path.join(work, *DOCS_CONTRACT.split("/"))
-        if not os.path.isfile(contract):
-            return blind("contrat absent de l'arbre fusionné (%s)" % DOCS_CONTRACT)
-        try:
-            run = subprocess.run([sys.executable, "-B", contract, DOCS_CONTRACT_CLASS],
-                                 cwd=work, capture_output=True, timeout=DOCS_CONTRACT_TIMEOUT)
-        except (OSError, subprocess.TimeoutExpired) as exc:
-            return blind("contrat non exécutable -- %s: %s" % (type(exc).__name__, exc))
-        text = (run.stdout + b"\n" + run.stderr).decode("utf-8", "replace")
-        verdict = _contract_verdict(run.returncode, text)
-        if verdict["status"] != "blind":
-            verdict["tree"] = tree
-        return verdict
+            result = blind("worktree de rejeu non créé -- %s"
+                           % (_first_line(added.stderr.decode("utf-8", "replace")) or "sans message"))
+        else:
+            contract = os.path.join(work, *DOCS_CONTRACT.split("/"))
+            if not os.path.isfile(contract):
+                result = blind("contrat absent de l'arbre fusionné (%s)" % DOCS_CONTRACT)
+            else:
+                try:
+                    run = subprocess.run([sys.executable, "-B", contract, DOCS_CONTRACT_CLASS],
+                                         cwd=work, capture_output=True, timeout=DOCS_CONTRACT_TIMEOUT)
+                except (OSError, subprocess.TimeoutExpired) as exc:
+                    result = blind("contrat non exécutable -- %s: %s" % (type(exc).__name__, exc))
+                else:
+                    text = (run.stdout + b"\n" + run.stderr).decode("utf-8", "replace")
+                    result = _contract_verdict(run.returncode, text)
+                    if result["status"] != "blind":
+                        result["tree"] = tree
     finally:
-        git("worktree", "remove", work)
+        removed = git("worktree", "remove", work)
         try:
             os.rmdir(work)                    # seulement s'il est vide (retrait réussi)
         except OSError:
             pass
+        # Un retrait en échec laisse un CHECKOUT COMPLET et son enregistrement sous
+        # `.git/worktrees/` : sous Windows, un verrou de fichier suffit. Le verdict
+        # reste le sien (le contrat a bien été rejoué), mais la fuite est NOMMÉE --
+        # chemin et commande de retrait -- et reprise dans la ligne R13.
+        if removed.returncode != 0 or os.path.isdir(work):
+            result["leak"] = ("worktree de rejeu NON RETIRE : %s -- retrait : git worktree remove %s"
+                              % (work, work))
+    return result
 
 
 def collect(pr, repo=DEFAULT_REPO, runner=gh_run, sleep=time.sleep, replay=None):
@@ -471,7 +519,7 @@ def collect(pr, repo=DEFAULT_REPO, runner=gh_run, sleep=time.sleep, replay=None)
 
     # R13 : le contrat réel rejoué sur l'arbre fusionné. Aveugle = aucune lecture,
     # donc aucun verdict -- la règle du gate entier.
-    contract = (replay or _docs_replay)(pr, slim["base"]["ref"], head)
+    contract = (replay or _docs_replay)(pr, slim["base"]["ref"], head, repo=repo)
     if contract.get("status") == "blind":
         raise Blind("index de record : contrat des index de dossier non rejoué -- %s"
                     % (contract.get("detail") or "cause non nommée"))
@@ -644,7 +692,12 @@ CLOSING_RE = re.compile(
 ARCHIVE_GLOBS = ("Cards/*/Archive", "Cards/*/Archive/**",
                  "Generation/CardPen/examples", "Generation/CardPen/examples/**")
 SENSITIVE_GLOBS = (".github/workflows/**", ".claude/**", "AGENTS.md", "CLAUDE.md",
-                   "scripts/gates/**", "**/web.config")
+                   "scripts/gates/**", "**/web.config",
+                   # Le contrat que R13 REJOUE : une PR qui l'affaiblit (une assertion
+                   # retirée, une entrée de REQUIRED_INDEXES enlevée) serait rejouée
+                   # affaiblie, sans HOLD. Le gate lui-même est protégé ; ce fichier, que
+                   # la porte exécute, ne l'était pas (revue ai-01, P24-60).
+                   "tools/test_docs-index-contract.py")
 _KEYS_DIR = "." + "keys"
 _ENV_RE = re.compile(r"^\.env(?:rc)?(?:$|[._-])")
 ENV_MODELS = tuple(".env" + sfx for sfx in (".example", ".sample", ".template", ".dist"))
@@ -1076,14 +1129,21 @@ def r13_index(s, o, c):
     status = dc.get("status")
     if status not in ("ok", "red"):
         raise Blind("index de record : contrat non rejoué (statut %r)" % (status,))
+    # Une FUITE de rejeu (worktree non retiré) ne change pas le verdict -- le contrat a
+    # bien été rejoué -- mais elle doit être NOMMÉE dans la ligne R13 : sans cela, un
+    # checkout complet et son enregistrement sous `.git/worktrees/` resteraient sur
+    # disque sans que rien ne les nomme (revue ai-01, P24-60).
+    leak = dc.get("leak") or ""
+    tail = (" ; " + leak) if leak else ""
     if status == "red":
         defects = dc.get("defects") or []
         return [("HOLD", "le contrat %s refuse l'arbre fusionné (arbre %s) : %s -- "
                           "c'est le contrat qui rougira APRÈS le squash ; ajouter la ligne d'index (ou "
                           "corriger le lien/statut) dans cette PR"
                           % (DOCS_CONTRACT, dc.get("tree") or "?", _cap(defects, 4)))], \
-               "contrat %s vert sur l'arbre fusionné (arbre %s)" % (DOCS_CONTRACT, dc.get("tree"))
-    return [], "contrat %s vert sur l'arbre fusionné (arbre %s)" % (DOCS_CONTRACT, dc.get("tree"))
+               ("contrat %s vert sur l'arbre fusionné (arbre %s)%s"
+                % (DOCS_CONTRACT, dc.get("tree"), tail))
+    return [], "contrat %s vert sur l'arbre fusionné (arbre %s)%s" % (DOCS_CONTRACT, dc.get("tree"), tail)
 
 
 RULES = (
@@ -1433,7 +1493,7 @@ def _fx_contract(snap, status="ok", defects=(), detail="", tree=_FX_TREE):
 
 def _fx_replay(contract):
     """Un rejeu figé : rend le contrat donné, sans git."""
-    def replay(_number, _base_ref, _head_sha, root=None):
+    def replay(_number, _base_ref, _head_sha, root=None, repo=None, runner=None):
         return copy.deepcopy(contract)
     return replay
 
@@ -1891,6 +1951,7 @@ def self_test(out):
     case("configuration d'agent", "R11", "HOLD", add(".claude/skills/x/SKILL.md"))
     case("point d'entrée des agents", "R11", "HOLD", add("AGENTS.md"))
     case("le gate lui-même", "R11", "HOLD", add("scripts/gates/x.py"))
+    case("le contrat que la porte rejoue", "R11", "HOLD", add("tools/test_docs-index-contract.py"))
     case("web.config imbriqué", "R11", "HOLD", add("site/app/web.config"))
     # Case: the repository tracks `Web.config` AND `web.config`; on Windows they are one file.
     case("Web.config, majuscule (forme réelle du dépôt)", "R11", "HOLD", add("DNNPlatform/Install/Web.config"))
@@ -1971,6 +2032,14 @@ def self_test(out):
     check("sortie du contrat : le diff d'unittest n'entre pas dans le défaut",
           got["status"] == "red"
           and got["defects"] == ["Lists differ: ['non cité : docs/quality/x.md'] != []"])
+    # La coupe à la RÈGLE d'unittest : forme DÉFENSIVE (le message suivi de la règle,
+    # sans ligne vide entre les deux). Sur les formes réelles la coupe à la ligne vide
+    # passe toujours avant — donc, sans ce cas, le mutant qui retire la coupe à la règle
+    # survivait (revue ai-01, P24-60). La forme n'est pas mesurée sur une sortie réelle :
+    # elle est écrite ici pour que la coupe ne soit pas un code mort.
+    check("sortie du contrat : message suivi de la règle d'unittest (sans ligne vide) -> "
+          "le défaut s'arrête au message",
+          _assertion_message("msg du defaut\n" + "-" * 70 + "\nRan 2 tests") == "msg du defaut")
 
     # --- R13 : le contrat des index de dossier, rejoué sur l'arbre fusionné
     Q_DEFECT = "non cité : docs/quality/131-reveil-demarrage-a-froid-2026-11-24.md"
@@ -2003,6 +2072,20 @@ def self_test(out):
 
     def _git_lite(cwd, *args):
         return subprocess.run(["git", "-C", cwd] + list(args), capture_output=True, timeout=120)
+
+    # L'ORIGINE du clone doit désigner le dépôt de la porte : c'est là que le rejeu se
+    # fait (revue ai-01, P24-60).
+    check("origine : une URL https désigne le dépôt",
+          _origin_names_repo("https://github.com/ArgumentumGames/Argumentum.git", DEFAULT_REPO))
+    check("origine : une URL ssh désigne le dépôt",
+          _origin_names_repo("git@github.com:ArgumentumGames/Argumentum.git", DEFAULT_REPO))
+    check("origine : un autre dépôt ne désigne pas le dépôt",
+          not _origin_names_repo("https://github.com/Autre/Depot.git", DEFAULT_REPO))
+    check("origine : une forme inconnue ne vaut pas confirmation",
+          not _origin_names_repo("/chemin/local/dossier", DEFAULT_REPO))
+    real_origin = _git_lite(REPO_ROOT, "remote", "get-url", "origin").stdout.decode().strip()
+    check("origine : le clone du dépôt nomme bien le dépôt de la porte (%s)" % real_origin,
+          _origin_names_repo(real_origin, DEFAULT_REPO))
 
     def _put(root, rel, text):
         full = os.path.join(root, *rel.split("/"))
@@ -2120,6 +2203,61 @@ def self_test(out):
               and any("non cité : docs/taxonomy/sub/new.md" in defect for defect in got["defects"]))
         check("rejeu : la base rafraîchie, la référence de suivi du clone a suivi",
               _sha(root, "refs/remotes/origin/master") == moved)
+
+        # FUITE DE MÉNAGE : un retrait de worktree en échec (sous Windows, un verrou de
+        # fichier suffit) laissait un checkout complet ET son enregistrement sous
+        # `.git/worktrees/`, sans que rien ne les nomme (revue ai-01, P24-60). Le verdict
+        # reste le sien — le contrat a bien été rejoué — mais la fuite est nommée et
+        # reprise dans la ligne R13.
+        def _git_no_remove(cwd, *args):
+            if args[:2] == ("worktree", "remove"):
+                return subprocess.CompletedProcess(list(args), 1, b"",
+                                                   b"fatal: worktree contains modified or untracked files")
+            return _git_lite(cwd, *args)
+
+        got = _docs_replay(4242, "master", heads["vert"], root=root, runner=_git_no_remove)
+        leak = got.get("leak") or ""
+        check("rejeu : un retrait de worktree en échec -> le verdict reste le sien, la fuite est nommée "
+              "(chemin + commande de retrait)",
+              got["status"] == "ok" and "NON RETIRE" in leak and "git worktree remove" in leak)
+        snap = copy.deepcopy(base)
+        snap["docs_contract"] = dict(snap["docs_contract"], leak=leak)
+        check("R13 : la fuite de worktree est nommée dans la ligne R13",
+              bool(leak) and leak in render(snap, evaluate(snap)))
+        # Ménage : le worktree laissé et son enregistrement doivent disparaître avant
+        # le relevé final des worktrees.
+        leaked = leak.split("NON RETIRE : ", 1)[-1].split(" -- ")[0] if leak else ""
+        if leaked:
+            _git_lite(root, "worktree", "remove", "--force", leaked)
+            _rm_tree(leaked)
+
+        # CONFLIT de fusion : l'arbre fusionné n'est pas calculable -> AVEUGLE, jamais un
+        # verdict. Aucun cas ne tenait cette promesse (revue ai-01, P24-60) : le seul
+        # cas « conflit » de la suite est celui de R3 (`mergeable_state=dirty`), qui ne
+        # passe pas par R13. Sous le mutant « if False and merged.returncode », le rejeu
+        # poursuivrait sur l'arbre en marqueurs de conflit et rendrait un VERT.
+        _git_lite(root, "checkout", "-q", "--force", moved)
+        _put(root, "docs/taxonomy/sub/x.md", "# X version PR\n")
+        _git_lite(root, "add", "-A")
+        _git_lite(root, "commit", "-q", "-m", "pr")
+        conflict_head = _sha(root, "HEAD")
+        _git_lite(root, "checkout", "-q", "--force", moved)
+        _put(root, "docs/taxonomy/sub/x.md", "# X version origin\n")
+        _git_lite(root, "add", "-A")
+        _git_lite(root, "commit", "-q", "-m", "origin")
+        conflict_base = _sha(root, "HEAD")
+        _git_lite(root, "push", "-q", "origin", conflict_base + ":refs/heads/master")
+        got = _docs_replay(4242, "master", conflict_head, root=root)
+        check("rejeu : conflit de fusion -> AVEUGLE (cause : arbre fusionné non calculable), "
+              "jamais un verdict",
+              got["status"] == "blind" and "arbre fusionné non calculable" in got["detail"])
+
+        # L'ORIGINE local doit être celui du dépôt de la PR : le rejeu se fait dans le
+        # clone local, donc un clone d'un autre dépôt rejouerait le contrat sur le mauvais
+        # arbre (revue ai-01, P24-60).
+        got = _docs_replay(4242, "master", conflict_head, root=root, repo="Autre/Depot")
+        check("rejeu : un origin local qui ne désigne pas le dépôt de la PR -> AVEUGLE",
+              got["status"] == "blind" and "ne designe pas le depot" in got["detail"])
 
         # origin injoignable : la base n'est pas lue, donc pas de verdict.
         good_url = _git_lite(root, "remote", "get-url", "origin").stdout.decode().strip()
