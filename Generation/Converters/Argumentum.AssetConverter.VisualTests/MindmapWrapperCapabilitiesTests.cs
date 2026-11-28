@@ -3289,5 +3289,199 @@ namespace Argumentum.AssetConverter.VisualTests
                 await page.CloseAsync();
             }
         }
+
+        // ---- #2407 — fenetre courte : la fiche ouverte doit rester au-dessus ---------------
+
+        /// <summary>
+        /// Opens the first sheet of the navigation index through the page's own API, the same
+        /// entry point a reader uses (Cap28 already relies on `focusNode`).
+        /// </summary>
+        private const string P2407OpenFirstSheetJs = @"() => {
+            const nav = window.__mmNav;
+            if (!nav) return ['no-nav'];
+            const keys = Object.keys(nav.byPk || {});
+            if (!keys.length) return ['no-sheet'];
+            const num = (k) => (isNaN(Number(k)) ? 1e9 : Number(k));
+            keys.sort((a, b) => num(a) - num(b) || (a < b ? -1 : a > b ? 1 : 0));
+            nav.focusNode(nav.byPk[keys[0]]);
+            return ['ok', keys[0]];
+        }";
+
+        /// <summary>
+        /// The short-window measure itself. It asks the two questions the issue names — is the
+        /// point AT the sheet's top and bottom edge inside the sheet, and does the document scroll
+        /// sideways — plus the state of the navigation layer, so a green cannot come from a layer
+        /// that was never on top.
+        /// </summary>
+        private const string P2407ShortWindowMeasureJs = @"() => {
+            const card = document.querySelector('card');
+            if (!card) return ['no-card'];
+            if (card.classList.contains('hidden')) return ['card-hidden'];
+            const de = document.documentElement;
+            const r = card.getBoundingClientRect();
+            const sw = Math.max(de.scrollWidth, document.body.scrollWidth);
+            const probe = (x, y) => {
+                const el = document.elementFromPoint(x, y);
+                if (!el) return 'nothing';
+                return card.contains(el) ? 'card' : (el.id || (el.className && el.className.toString()) || el.tagName);
+            };
+            const topAt = probe(r.left + r.width / 2, Math.max(0, r.top + 1));
+            const bottomAt = probe(r.left + r.width / 2, Math.min(de.clientHeight - 1, r.bottom - 1));
+            const layers = ['mmToolbar', 'mmLegend'].map((id) => {
+                const el = document.getElementById(id);
+                if (!el) return id + ':absent:-';
+                const b = el.getBoundingClientRect();
+                const covered = b.width > 0 && r.width > 0
+                    && b.left < r.right && r.left < b.right && b.top < r.bottom && r.top < b.bottom;
+                return id + ':' + (covered ? 'covered' : 'clear') + ':' + getComputedStyle(el).visibility;
+            });
+            return [
+                String(sw), String(de.clientWidth), String(de.clientHeight),
+                String(Math.round(r.top)), String(Math.round(r.bottom)),
+                String(Math.round(r.left)), String(Math.round(r.right)),
+                topAt, bottomAt, layers.join(','),
+                document.body.classList.contains('mm-layer-hidden') ? 'class-on' : 'class-off'
+            ];
+        }";
+
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg", "inline", 195, 422)]
+        [InlineData("fr", "Fallacies_fr.content.svg", "inline", 156, 338)]
+        [InlineData("fr", "Fallacies_fr.content.svg", "ext", 195, 422)]
+        [InlineData("fr", "Fallacies_fr.content.svg", "ext", 156, 338)]
+        public async Task Cap29_ShortWindow_TheSheetStaysOnTop_AndThePageDoesNotScrollSideways(
+            string lang, string svgFileName, string variant, int width, int height)
+        {
+            var inlinePath = variant == "ext" ? string.Empty : await ComposeIncludedAsync(lang, svgFileName);
+            var page = variant == "ext"
+                ? await OpenExternalAsync(lang, svgFileName, width, height)
+                : await OpenPageAtAsync(inlinePath, width, height);
+            try
+            {
+                if (variant == "ext") await WaitForExternalNavigationAsync(page);
+                else await WaitForViewportSettledAsync(page);
+
+                var opened = await page.EvaluateAsync<string[]>(P2407OpenFirstSheetJs);
+                Assert.Equal("ok", opened[0]);
+                await page.WaitForFunctionAsync(
+                    "() => { const c = document.querySelector('card'); return c && !c.classList.contains('hidden'); }");
+                await page.WaitForTimeoutAsync(300);
+
+                var m = await page.EvaluateAsync<string[]>(P2407ShortWindowMeasureJs);
+                Assert.NotNull(m);
+                Assert.True(m.Length >= 11, $"#2407 [{lang}/{variant} {width}x{height}] no measure: [{string.Join("|", m)}]");
+                _output.WriteLine($"[{lang}/{variant} {width}x{height}] #2407 sheet pk={opened[1]} " +
+                                  $"box y={m[3]}..{m[4]} x={m[5]}..{m[6]} | scrollWidth={m[0]} clientWidth={m[1]} " +
+                                  $"| top→{m[7]} bottom→{m[8]} | {m[9]} | {m[10]}");
+
+                Assert.True(int.Parse(m[0]) <= int.Parse(m[1]),
+                    $"#2407 [{lang}/{variant} {width}x{height}] the page scrolls sideways: " +
+                    $"scrollWidth {m[0]} > clientWidth {m[1]}");
+                Assert.Equal("card", m[7]);
+                Assert.Equal("card", m[8]);
+
+                // The case only proves something if a layer really was over the sheet: an
+                // assertion that passes because nothing was ever on top measures the fixture, not
+                // the rule.
+                var covered = m[9].Split(',').Where(s => s.Contains(":covered:")).ToArray();
+                Assert.True(covered.Length >= 1,
+                    $"#2407 [{lang}/{variant} {width}x{height}] no navigation layer covers the sheet — " +
+                    $"the case cannot pass on an absent population ({m[9]})");
+                foreach (var c in covered)
+                {
+                    Assert.EndsWith(":hidden", c);
+                }
+                Assert.Equal("class-on", m[10]);
+
+                // The decision is measured, not latched: a viewport tall enough to clear the layer
+                // must give it back, and coming back to the short window must hide it again.
+                await page.SetViewportSizeAsync(1280, 900);
+                await page.WaitForTimeoutAsync(300);
+                var tall = await page.EvaluateAsync<string[]>(P2407ShortWindowMeasureJs);
+                _output.WriteLine($"[{lang}/{variant}] #2407 at 1280x900: {tall[9]} | {tall[10]}");
+                Assert.DoesNotContain(":covered:", tall[9]);
+                Assert.Equal("class-off", tall[10]);
+                Assert.DoesNotContain(":hidden", tall[9]);
+                Assert.Equal("card", tall[7]);
+                Assert.Equal("card", tall[8]);
+
+                await page.SetViewportSizeAsync(width, height);
+                await page.WaitForTimeoutAsync(300);
+                var back = await page.EvaluateAsync<string[]>(P2407ShortWindowMeasureJs);
+                _output.WriteLine($"[{lang}/{variant} {width}x{height}] #2407 back: {back[9]} | {back[10]}");
+                Assert.Equal(m[9], back[9]);
+                Assert.Equal("class-on", back[10]);
+                Assert.Equal("card", back[7]);
+                Assert.Equal("card", back[8]);
+                Assert.True(int.Parse(back[0]) <= int.Parse(back[1]),
+                    $"#2407 [{lang}/{variant} {width}x{height}] sideways scroll came back: {back[0]} > {back[1]}");
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
+
+        /// <summary>
+        /// The inverse control: the same measure on a page where the fix is reverted by CSS — the
+        /// template's own pre-#2407 values (default `body` margin, `96vw`/`100vw` sizing with no
+        /// clamp, layer visible even when the class is on). It must be RED, and it must say which
+        /// clause went red: a control that fails for an unrelated reason proves nothing.
+        /// </summary>
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg", "inline", 195, 422)]
+        [InlineData("fr", "Fallacies_fr.content.svg", "ext", 195, 422)]
+        public async Task Cap29Inverse_WithoutTheFix_TheSameMeasureIsRed(
+            string lang, string svgFileName, string variant, int width, int height)
+        {
+            var inlinePath = variant == "ext" ? string.Empty : await ComposeIncludedAsync(lang, svgFileName);
+            var page = variant == "ext"
+                ? await OpenExternalAsync(lang, svgFileName, width, height)
+                : await OpenPageAtAsync(inlinePath, width, height);
+            try
+            {
+                if (variant == "ext") await WaitForExternalNavigationAsync(page);
+                else await WaitForViewportSettledAsync(page);
+
+                var mutant = variant == "ext"
+                    ? "html, body { margin: 8px !important; height: auto !important; } " +
+                      "#mindmap { width: 100vw !important; height: 100vh !important; } " +
+                      "body.mm-layer-hidden #mmToolbar, body.mm-layer-hidden #mmLegend " +
+                      "{ visibility: visible !important; pointer-events: auto !important; }"
+                    : "body { margin: 8px !important; } " +
+                      "#mindmap > svg { max-width: none !important; } " +
+                      "body.mm-layer-hidden #mmToolbar, body.mm-layer-hidden #mmLegend " +
+                      "{ visibility: visible !important; pointer-events: auto !important; }";
+                await page.EvaluateAsync(SetMutantStyleJs, mutant);
+
+                // Re-open on the mutated layout: the class is recomputed from a fresh measure.
+                var opened = await page.EvaluateAsync<string[]>(P2407OpenFirstSheetJs);
+                Assert.Equal("ok", opened[0]);
+                await page.WaitForFunctionAsync(
+                    "() => { const c = document.querySelector('card'); return c && !c.classList.contains('hidden'); }");
+                await page.WaitForTimeoutAsync(300);
+
+                var m = await page.EvaluateAsync<string[]>(P2407ShortWindowMeasureJs);
+                _output.WriteLine($"[{lang}/{variant} INVERSE] #2407 scrollWidth={m[0]} clientWidth={m[1]} " +
+                                  $"top→{m[7]} bottom→{m[8]} | {m[9]} | {m[10]}");
+
+                var sideways = int.Parse(m[0]) > int.Parse(m[1]);
+                var topLost = m[7] != "card";
+                var bottomLost = m[8] != "card";
+                var layerOnTop = m[9].Contains(":covered:visible");
+                Assert.True(sideways || topLost || bottomLost || layerOnTop,
+                    "#2407 INVERSE control is GREEN: reverting the fix changed nothing, so the " +
+                    $"control never had a hold on the defect (scrollWidth={m[0]} clientWidth={m[1]} " +
+                    $"top→{m[7]} bottom→{m[8]} {m[9]})");
+                // Name the clause that went red, so a later reader knows which mechanism the
+                // control actually exercised at this window.
+                _output.WriteLine($"[{lang}/{variant} INVERSE] red clauses: " +
+                                  $"sideways={sideways} topLost={topLost} bottomLost={bottomLost} layerOnTop={layerOnTop}");
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
     }
 }

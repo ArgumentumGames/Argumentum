@@ -99,7 +99,7 @@
 #    12. tools/test_2190-served-mindmap-inventory.py -- std-lib + git, OFFLINE : le
 #        serveur HTTP est local et jetable, aucune préprod ni réseau externe. Témoin
 #        identique au blob, mutation d'octets et route absente doivent être distingués.
-#    13. tools/test_458-eav-reinject-guards.py -- std-lib, offline, 38 cas. Charge
+#    13. tools/test_458-eav-reinject-guards.py -- std-lib, offline, 57 cas. Charge
 #        tools/458-eav-reinject.py SANS se connecter (EXP.run_query remplace par un
 #        faux qui sert des rangees synthetiques) et eprouve les gardes de refus
 #        G1-G3 de la re-injection EAV (#2326, revue c.7053569313) : chaque garde
@@ -122,9 +122,22 @@
 #        la branche FORCE du script writer est LUE (comparaison ordinale, rangee
 #        epinglee par ValueId, sous verrou) avec sa mutation. Le script writer
 #        n'est jamais execute ici : seule la lane qui sert la base l'execute.
+#        Depuis #2181 (W2-09/W2-14), le mode borne `--only-cell GUID:CHAMP:LANGUE` :
+#        il resserre l'ECRITURE sur les cellules nommees et laisse la carte d'apps,
+#        la lecture de la cible (G1) et la preservation sur le registre COMPLET (une
+#        carte mesuree sur un registre tranche perdrait sa marge, G2). Cas : le
+#        conflit d'une autre entite ne bloque plus un lot sain, la cible reste lue
+#        en entier, un nom inconnu ou mal forme est refuse avant toute connexion,
+#        une cellule nommee qu'un reglage ecarte est refusee (SKIP du bloc sans son
+#        drapeau, reference file:NNN), et la politique de base fr (bloc #2181) est
+#        MONTREE a blanc puis REFUSEE a l'apply. Un cas rejoue la passe « 11
+#        cellules (dont le francais) » de W2-09 sur une cible synthetique.
+#        Les deux validateurs de nom (--force, --only-cell) sont le MEME
+#        (FORCE_GUID_RE) : un seul analyseur pour une seule forme de cle.
 #        Deux instruments de ce grain se lancent A LA MAIN, hors CI (ils rejouent
-#        des suites entieres) : tools/2181-reinject-mutations.py (12 mutations de
-#        l'outil, temoin 38/38) et tools/2181-reinject-rehearsal.py (repetition du
+#        des suites entieres) : tools/2181-reinject-mutations.py (34 mutations de
+#        l'outil — N1-N13 l'ecrasement nomme, N14-N34 le mode borne — temoin 57/57)
+#        et tools/2181-reinject-rehearsal.py (repetition du
 #        plan entre deux registres, aucune base).
 #        Le faux run_query refuse tout SQL non attendu : une derive des
 #        requetes fait echouer le test bruyamment, jamais passer des rangees
@@ -150,7 +163,7 @@
 #        `actions/checkout` clone en `fetch-depth: 1` — mesure sur un corpus tronque,
 #        il ne verrait aucun candidat et un vert a compte nul ne serait pas une mesure.
 #        Condition d'execution documentee dans la docstring du fichier.
-#    16. tools/test_1105-home-render-p2.py -- std-lib, offline, 33 cas, ~0.1 s. Charge
+#    16. tools/test_1105-home-render-p2.py -- std-lib, offline, 34 cas, ~0.1 s. Charge
 #        tools/1105-cutover-day-controls.py et eprouve sa sonde P2 (section 6 du
 #        rapport : dir="rtl" en ar et fa seulement, meta description non vide,
 #        selecteur de langue a 7 liens, marqueur d'audience) sur du HTML
@@ -282,8 +295,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Run the EAV reinject guard contract (#458 P23-24 G1-G3, P23-27 R1-R3, P23-38 R4-R5)
-        # 25 cas, std-lib, offline : aucune connexion, aucun web.config. Les gardes
+      - name: Run the EAV reinject guard contract (#458 P23-24 G1-G3, P23-27 R1-R3, P23-38 R4-R5, #2181 --force, --only-cell)
+        # 57 cas, std-lib, offline : aucune connexion, aucun web.config. Les gardes
         # de refus G1-G3 (paire (app, guid) multi-entites, vainqueur de carte sans
         # marge, carte non injective) sont eprouvees chacune par un temoin sain et
         # une MUTATION : la garde neutralisee dans le source doit laisser passer

@@ -290,6 +290,44 @@ namespace Argumentum.AssetConverter.Tests.MindmapGeneration
                 "#2190 lot 3 (P23-21): every shipped mindmap artifact — inlining AND _ext — must carry the MM_UI localisation layer; a file missing here was skipped by the wrapper re-derivation");
         }
 
+        // #2407: in a short window the open sheet is covered by the navigation layer (measured
+        // at 195x422 and 156x338 CSS: `elementFromPoint` at the sheet's bottom edge returned the
+        // legend, at 156x338 the top edge returned the search box). The layer now yields when a
+        // MEASURED box intersection says the sheet covers it — `visibility` (not `display`) so the
+        // boxes stay measurable and the decision is replayable on resize. The behavioural proof
+        // lives in Cap29; this headless scan is the variant-parity belt: skip the re-derivation
+        // after patching a root template and this is the test that goes red on the 34 files.
+        private static readonly string[] RequiredP2407ShortWindowLayer =
+        {
+            "boxesIntersect",
+            "refreshNavLayer",
+            "mm-layer-hidden"
+        };
+
+        [Fact]
+        public void AllCommittedMindmapHtmlFiles_CarryP2407ShortWindowLayerAnchors()
+        {
+            var files = Directory.EnumerateFiles(MindmapsRoot, "*.html", SearchOption.AllDirectories)
+                .OrderBy(f => f)
+                .ToList();
+            files.Count.Should().BeGreaterThanOrEqualTo(34,
+                "anti-collapse floor: 8 langs x {Fallacies,Virtues} x {embed,_ext} + cards_fr pair + 2 templates");
+
+            var missing = new List<string>();
+            foreach (var file in files)
+            {
+                var content = File.ReadAllText(file);
+                foreach (var needle in RequiredP2407ShortWindowLayer)
+                {
+                    if (!content.Contains(needle))
+                        missing.Add($"{Path.GetFileName(file)}: missing '{needle}'");
+                }
+            }
+
+            missing.Should().BeEmpty(
+                "#2407: every shipped mindmap artifact — inlining AND _ext — must carry the short-window layer rule; a file missing here was skipped by the wrapper re-derivation");
+        }
+
         /// <summary>
         /// #2190 lot 2 — the Fallacies content SVGs (8 languages + the FR-only cards variant)
         /// must carry the navigation anchors on EVERY node: <c>pk</c> (deep links) and
