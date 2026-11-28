@@ -97,11 +97,13 @@ L'origine du « 17 » n'est pas établie : le compteur de la console d'une sessi
 | Le gestionnaire d'envoi du formulaire tiers n'est donc jamais branché | dérivé | `b.addEventListener("submit", …)` est **après** l'instruction fautive, dans le même module |
 | Le bouton « SUBSCRIBE » appartient au formulaire **DNN** | mesuré | `button.sib-form-block__button` (`type=submit`), `closest('form').id === "Form"`, action `/en/`, méthode `post` |
 | ⇒ un clic sur « SUBSCRIBE » renverrait le formulaire du site vers `/<langue>/` au lieu de Brevo | **dérivé** (jamais exécuté : aucune soumission) | le propriétaire du bouton est mesuré ; l'effet du clic ne l'est pas |
-| La `</form>` du Brevo ferme le formulaire DNN **avant** la fin du corps | mesuré | 6 067 octets avant la fin (15:35–16:20Z), 6 154 à la re-mesure de 17:02Z — un chiffre **daté**, comme les offsets du §1.2 ; reste hors formulaire : `FOOTER#to-shine-page-footer`, `INPUT#ScrollTop`, `INPUT#__dnnVariable`, un `LINK`, 5 `SCRIPT` |
+| La `</form>` du Brevo ferme le formulaire DNN **avant** la fin du corps | mesuré | écart **entre les deux `</form>`** : 6 067 octets (15:35–16:20Z), 6 154 à la re-mesure de 17:02Z ; **jusqu'à `</body>` : 6 169** (les 15 octets qui séparent la 2ᵉ `</form>` de `</body>`) — un chiffre **daté**, comme les offsets du §1.2 ; reste hors formulaire : `FOOTER#to-shine-page-footer`, `INPUT#ScrollTop`, `INPUT#__dnnVariable`, un `LINK`, 5 `SCRIPT` |
 | Aucun `__doPostBack` dans cette queue | mesuré | 0 occurrence | 
 | Le formulaire de contact Mobius reste dans le formulaire DNN | mesuré | `#Subject`, `#SenderName`, `#SenderMail` → `closest('form').id === "Form"` |
 
 La dernière ligne de la queue (`INPUT#__dnnVariable`, `INPUT#ScrollTop`) est hors formulaire à cause de la fermeture anticipée. L'effet visible est faible (aucun `__doPostBack` ne s'y trouve) — mais la cause et la queue sont, elles, mesurées.
+
+⚠️ **Les deux écarts du tableau ne sont pas le même chiffre, et l'un bouge plus que l'autre.** Relecture du 28/11 **20:46Z** (prod `/en/`, 91 140 o — la longueur totale est celle de la re-mesure de 17:02Z) : `</form>` Brevo à 84 886, `</form>` DNN à 91 035, `</body>` à 91 050 ⇒ écart **entre les deux `</form>`** = **6 149**, jusqu'à `</body>` = **6 164** (*mesuré*, lecture seule). Les **positions** ont bougé de quelques octets entre les deux lectures (contenu partiellement volatil : jeton Cloudflare), mais l'**écart de 15** entre la 2ᵉ `</form>` et `</body>` est identique dans les deux — c'est cet écart-là qui porte le sens, pas la position.
 
 ---
 
