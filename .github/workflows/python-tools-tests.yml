@@ -20,7 +20,7 @@
 #   d'execution sera documentee. C'est la distinction posee en tete de
 #   docs/quality/1460-charpente-suite-regression.md.
 #
-#   CABLES A CE JOUR (18), avec la condition qui les autorise ici :
+#   CABLES A CE JOUR (19), avec la condition qui les autorise ici :
 #     1. tools/test_1460-structure-charpente-pilot.py -- std-lib, 7 cas, arbres
 #        synthetiques ; aucun Target/ requis (le cas 7 est un grounding sur le depot
 #        reel, volontairement NON asserte).
@@ -186,6 +186,16 @@
 #        son controle sain. Les memes assertions sur le fichier d'avant
 #        (4af6ccae) donnent 5 rouges sur 8. Condition d'execution documentee
 #        dans la docstring du fichier.
+#    19. tools/test_133-owl-snapshot-pin.py -- std-lib + `git`, OFFLINE, 4 cas,
+#        ~1,6 s. Epingle l'instantane docs/ontology/v1.0.0/ (P24-57) : les deux oids
+#        des blobs committes (`git rev-parse HEAD:<chemin>`, pas un hachage du
+#        fichier de travail), l'ensemble exact des deux fichiers, et l'ontologyIRI
+#        que l'instantane partage avec son canonique (la phrase du §6 du README).
+#        Controles inverses : un octet retourne dans les octets du blob rend un oid
+#        DIFFERENT, et les octets intacts rendent l'oid epingle. `git` et `HEAD`
+#        doivent etre lisibles ; sinon les cas echouent, jamais un saut (un contrat
+#        aveugle ne doit pas etre vert). Condition d'execution documentee dans la
+#        docstring du fichier.
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
 #   - push sur master / pull_request : déclenchés, y compris les changements du
@@ -402,6 +412,12 @@ jobs:
         # Aucun dossier de REQUIRED_INDEXES ne peut perdre la marque ; la PR
         # qui pose une marque y ajoute son dossier.
         run: python tools/test_docs-index-contract.py
+
+      - name: Run the ontology snapshot pin (docs/ontology/v1.0.0/)
+        # 4 cas, std-lib + `git` : les deux oids de l'instantane, son ensemble de
+        # fichiers, l'ontologyIRI partage avec le canonique, et deux controles
+        # inverses (un octet retourne => oid different ; octets intacts => oid epingle).
+        run: python tools/test_133-owl-snapshot-pin.py
 
       - name: Run the issue closing-block contract
         # 18 cas, std-lib, `gh` simule : le texte d'origine d'une issue ne change jamais.
