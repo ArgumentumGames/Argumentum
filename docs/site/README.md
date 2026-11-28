@@ -28,6 +28,7 @@ Dates are the first and last commits touching the file (`git log`).
 | [`1781-corrections-contenu-preprod.md`](1781-corrections-contenu-preprod.md) | 2026-10-07 | `historical` | Manifest of every content correction written on the preprod for #1781 (v3.2), with backups and served checks. Its open-items table still holds one live divergence, carried by #1502 — see above |
 | [`1781-grains-DEF-recherches.md`](1781-grains-DEF-recherches.md) | 2026-10-07 | `historical` | Measurements and recommendations for grains D, E and F (nothing written for those), then the grains posed afterwards, with a summary of every write of the pass |
 | [`1781-mesure-site-en-anglais.md`](1781-mesure-site-en-anglais.md) | 2026-10-08 | `historical` | What an English version of the site would cost, measured on 2026-10-08 (pages, words, mechanisms). Overtaken by the multilingual site of #457 — see the contradictions |
+| [`2421-formulaire-inscription-tiers-imbrique.md`](2421-formulaire-inscription-tiers-imbrique.md) | 2026-11-28 | `current` | The measured cause of #2421 — the Brevo `<form id="sib-form">` is nested inside the skin's `<form id="Form">`, so the HTML5 parser drops it and the third-party script throws on every page of the site (48 pages measured on prod and on the preprod), with the remedy (the iframe variant already in the EAV registry), its exact gesture for web2, and the control to replay. Read-only measurement — nothing was written |
 
 ## Contradictions between documents
 
