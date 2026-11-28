@@ -7,6 +7,14 @@
     <style>
         body {
             font-family: 'DINPro', sans-serif;
+            /* #2407 — la marge par defaut de `body` (8 px) n'entraine pas seulement une bande
+               blanche : elle porte le debordement horizontal. Mesure a 156x338 CSS, fiche ouverte :
+               sans cette remise a zero `scrollWidth` = 158 pour `clientWidth` = 156 ; avec, 156 =
+               156. Isolee en ne changeant QUE cette declaration, elle suffit (idem pour
+               `max-width: 100%` seul, voir la regle du SVG ; `display: block` seul ne la corrige
+               pas). A 195x422 le debordement lateral n'existait deja pas : c'est la fenetre la
+               plus etroite qui le montre. */
+            margin: 0;
         }
 
         .hidden {
@@ -29,6 +37,17 @@
         #mindmap {
             position: relative;
             direction: ltr;
+        }
+
+        /* #2407 — deux declarations, deux roles distincts, mesures separement. `max-width: 100%`
+           est le garde-fou : le SVG porte `width="96vw"` et, seul des deux, il ramene le document
+           a la largeur utile (156 = 156 a 156x338 CSS, la ou la reference sans correctif lit 158).
+           `display: block` retire l'interligne de base d'un element inline — il garde le plan
+           solidaire de sa boite, mais mesure seul il ne change ni `scrollWidth` ni les bords de la
+           fiche a ces deux fenetres : il est la pour la mise en page, pas pour le defaut. */
+        #mindmap > svg {
+            display: block;
+            max-width: 100%;
         }
 
         .node:hover {
@@ -613,6 +632,19 @@
         #mmLegend ul {
             margin: 6px 0 2px;
             padding-left: 18px;
+        }
+
+        /* #2407 — la couche de navigation passe AU-DESSUS de la fiche par construction (barre et
+           legende en `z-index: 200`, fiche en 100) : en fenetre courte elle la recouvre. Mesure sur
+           les gabarits d'avant correctif, fiche ouverte : a 195x422 CSS le bord bas de la fiche
+           rend `mmLegend`, a 156x338 le bord haut rend `mmSearch` et le bord bas le resume de la
+           legende. Quand la fiche ouverte la recouvre, la couche quitte la vue — par `visibility`,
+           jamais `display` : ses boites restent mesurables, donc la decision se rejoue a l'identique
+           apres un redimensionnement au lieu de se refermer sur elle-meme. */
+        body.mm-layer-hidden #mmToolbar,
+        body.mm-layer-hidden #mmLegend {
+            visibility: hidden;
+            pointer-events: none;
         }
 
         #mmLinkPanel {
@@ -20555,6 +20587,26 @@
 
         const nodes = document.querySelectorAll('.node');
 
+        // #2407 — en fenetre courte, la barre de recherche et la legende recouvrent la fiche
+        // ouverte (mesure sur les gabarits d'avant correctif : a 195x422 le bord bas de la fiche
+        // rend `mmLegend`, a 156x338 le bord haut rend `mmSearch`). La couche passe au-dessus par construction
+        // (z-index 200 contre 100) : quand la fiche la recouvre, on la retire de la vue. La
+        // decision est MESUREE (intersection des boites), pas un seuil en dur — la hauteur de la
+        // legende depend de son contenu, c'est un `<details>`. `visibility` et non `display` :
+        // les boites restent mesurables, la decision se rejoue donc a l'identique au
+        // redimensionnement, sans dependre de son propre effet.
+        const navLayer = ['mmToolbar', 'mmLegend']
+            .map(id => document.getElementById(id))
+            .filter(el => el);
+        const boxesIntersect = (a, b) => a.width > 0 && b.width > 0
+            && a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom;
+        const refreshNavLayer = () => {
+            const cardBox = overlay.getBoundingClientRect();
+            const covered = isNodeActive
+                && navLayer.some(el => boxesIntersect(cardBox, el.getBoundingClientRect()));
+            document.body.classList.toggle('mm-layer-hidden', covered);
+        };
+
         const hideOverlay = () => {
             overlay.classList.add('hidden');
             isNodeActive = false;
@@ -20562,6 +20614,7 @@
                 activeNode.classList.remove('active');
                 activeNode = null;
             }
+            refreshNavLayer();
         };
 
         // #2400 — la passe verticale mesure desormais la hauteur REELLE du contenu de la fiche.
@@ -20785,6 +20838,9 @@
             fitCard();
 
             targetNode.classList.add('active');
+            // #2407 — la couche de navigation s'efface si la fiche ouverte la recouvre. Mesure
+            // APRES la mise en page de la fiche (et apres `fitCard`, qui peut reduire le texte).
+            refreshNavLayer();
         };
 
         const showOverlay = (e) => {
@@ -20985,6 +21041,9 @@
                 window.addEventListener('resize', function () {
                     panZoomInstance.resize();
                     requestAnimationFrame(recenterRoot);
+                    // #2407 — la fiche est en vh et en pourcentage : un redimensionnement deplace
+                    // le recouvrement, la decision doit donc etre rejouee.
+                    requestAnimationFrame(refreshNavLayer);
                 });
                 window.addEventListener('orientationchange', function () {
                     panZoomInstance.resize();
