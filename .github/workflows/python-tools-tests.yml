@@ -20,7 +20,7 @@
 #   d'execution sera documentee. C'est la distinction posee en tete de
 #   docs/quality/1460-charpente-suite-regression.md.
 #
-#   CABLES A CE JOUR (19), avec la condition qui les autorise ici :
+#   CABLES A CE JOUR (20), avec la condition qui les autorise ici :
 #     1. tools/test_1460-structure-charpente-pilot.py -- std-lib, 7 cas, arbres
 #        synthetiques ; aucun Target/ requis (le cas 7 est un grounding sur le depot
 #        reel, volontairement NON asserte).
@@ -209,6 +209,17 @@
 #        doivent etre lisibles ; sinon les cas echouent, jamais un saut (un contrat
 #        aveugle ne doit pas etre vert). Condition d'execution documentee dans la
 #        docstring du fichier.
+#    20. tools/test_133-ontology-index-page.py -- std-lib, OFFLINE, 9 cas, ~0,1 s.
+#        Epingle la page d'accueil lisible du dossier docs/ontology/ (P24-46) :
+#        le script relu sur l'arbre regenere docs/ontology/index.html OCTET POUR
+#        OCTET (le DoD « script rejoue => diff 0 »). Les cas 2 a 8 travaillent sur
+#        un jeu d'essai minuscule construit dans un dossier temporaire ; ils
+#        eprouvent que le controle `--check` VOIT une page perimee (un octet
+#        change dans un .owl, une page modifiee a la main, un .owl ajoute au
+#        dossier) et que la generation est deterministe (deux generations, les
+#        memes octets). Une annotation absente de l'en-tete n'est pas inventee :
+#        la ligne n'apparait pas sur la page. Condition d'execution documentee
+#        dans la docstring du fichier.
 #
 # DEPLOIEMENT -- lire le bloc `on:` ci-dessous, il fait foi
 #   - push sur master / pull_request : déclenchés, y compris les changements du
@@ -431,6 +442,14 @@ jobs:
         # fichiers, l'ontologyIRI partage avec le canonique, et deux controles
         # inverses (un octet retourne => oid different ; octets intacts => oid epingle).
         run: python tools/test_133-owl-snapshot-pin.py
+
+      - name: Run the ontology index page contract (docs/ontology/index.html)
+        # 9 cas, std-lib, offline : le script relu regenere la page OCTET POUR OCTET
+        # (le DoD « script rejoue => diff 0 »), et le controle `--check` voit une page
+        # perimee : un octet change dans un .owl, une page modifiee a la main, un .owl
+        # ajoute au dossier. La generation est deterministe : deux generations, les
+        # memes octets.
+        run: python tools/test_133-ontology-index-page.py
 
       - name: Run the issue closing-block contract
         # 18 cas, std-lib, `gh` simule : le texte d'origine d'une issue ne change jamais.
