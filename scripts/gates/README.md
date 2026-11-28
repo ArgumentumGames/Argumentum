@@ -40,6 +40,7 @@ Verdict = worst level. BLOCK > HOLD > INFO.
 | R11 | protected paths | printed reference (`Cards/*/Archive`, CardPen `examples`, the directories themselves included), env files (`.env`, `.env.*`, `.env-*`, `.envrc`), `.keys` directory, `*.pfx` | workflows, `.claude`, `AGENTS.md`, `CLAUDE.md`, `scripts/gates`, `web.config`, env models (`.env.example`, `.sample`, `.template`, `.dist`), `tools/test_docs-index-contract.py` (the contract R13 re-executes — a pull request that weakens it would be replayed with its own weakened instrument) |
 | R12 | taxonomy CSV | another open PR touches the taxonomy CSV | (any CSV under `Cards/`: INFO, re-parse reminder) |
 | R13 | docs index of record | | `tools/test_docs-index-contract.py` returns **red** when replayed on the PR's **merged tree** (`git merge-tree` → `commit-tree` → a detached worktree → `python -B … DocsIndexContract`). The message quotes the contract's own `AssertionError`, never a re-read of it. A replay that cannot see (no local repo or no `origin`, an `origin` that names another repository, base that cannot be refreshed, head missing, merge conflict, contract absent from the tree, unrecognised output) is **blind**: exit 1, never a PASS. A replay worktree that could not be removed is **named** (path + removal command) in the R13 line — the verdict stays the contract's |
+| R14 | stacked pull requests | | an **open** pull request takes the judged PR's head branch as its base, in the same repository — merging with the branch deletion closes it (see below) |
 
 Required CI contexts are read live from the branch ruleset; if that read fails
 the gate falls back to a named list and **says so** in its output.
@@ -195,6 +196,77 @@ holds or blocks, the cause is in view and R3 only notes it. When none does, the
 cause is somewhere the gate does not look (an approval rule of the ruleset, a
 state not yet recomputed): a PASS there would print a command GitHub refuses, so
 R3 holds.
+
+### R14 sees the stacks
+
+A pull request can be **stacked**: another open pull request takes the judged
+PR's head branch as its base. Deleting that branch at merge time closes the
+stacked PR — GitHub closes a pull request whose base branch disappears.
+
+**Measured** on 2026-11-28, PR #2416 (events read from the API):
+
+| time (UTC) | event |
+|---|---|
+| 04:25:44 | #2416 cross-references #2413 — the stack |
+| 04:26:31 | #2413 merged (squash) |
+| 04:26:34 | `base_ref_deleted` on **#2416** — the branch removed with `--delete-branch` |
+| 04:26:35 | **#2416 closed** |
+| 04:27:09 | #2416 reopened |
+| 04:27:12 | #2416 re-targeted (`base_ref_changed`) |
+
+Three seconds separate the merge from the closure, and the deleted base branch
+is the only thing between them: **the deletion is the cause**. The pull
+request was reopened and re-targeted by hand 34 and 37 seconds later.
+
+R14 therefore reads the open pull requests — one listing (`pulls?state=open`),
+already read for R12 — and, when one of them takes the judged PR's head branch
+as its base **in the same repository**, holds the merge and names the stacked
+pull request.
+
+The printed merge command then **loses `--delete-branch`**: the branch a stack
+sits on must outlive its base. The command is safe by construction, even if R14
+is disabled or bypassed — the flag is dropped by the very fact that holds the
+verdict. On that HOLD the gate prints that variant, labelled as such: the
+verdict stays HOLD, the merge stays the merger's decision.
+
+Two things R14 does **not** see: a stack whose base branch lives in another
+repository (deleting a branch here does not touch it), and a stack opened
+**after** the collection — the gate reads what is open at the moment it reads.
+
+Since the open-PR listing is what R14 needs, it is read **unconditionally**: a
+gate that cannot read the open pull requests cannot say a word about the
+stacks, so it renders no verdict at all (exit 1), like every other unreadable
+source.
+
+### The M6 guard: a file only the second trigger can see
+
+The collector has a **fallback**: when the API refuses the unified diff
+(`Accept: application/vnd.github.v3.diff` -> 406), the added lines are read
+from the per-file `patch` field instead. A file announced with `additions: 0`
+and **no** `patch` is then read by **no channel at all** — the unified diff is
+unavailable and there is no patch to parse.
+
+`_needs_crosscheck` has two triggers, and only the second one sees that file:
+
+- the first compares the API's announcement with the lines actually read — here
+  both are 0, so it stays quiet;
+- the second (`no patch` + `announced 0`) fires.
+
+If the second trigger is removed (mutation **M6**), the crosscheck never runs:
+the file is never vouched for by git, it lands in the "not confirmed by git"
+INFO, and the gate renders **PASS** on a file it never read. Nothing in the
+suite caught it: every truncation case kept the unified diff, where the first
+trigger fires.
+
+The guard is therefore two cases, both of which go red under M6:
+
+| case | what it pins |
+|---|---|
+| `_needs_crosscheck(...) is True` on a fallback snapshot (no unified diff, one file announced 0 without patch) | the second trigger fires on the file no channel reads |
+| an end-to-end collection: the diff endpoint fails, git says the file carries 3 lines | the crosscheck **runs** (the numstat is called once) and the verdict is **HOLD**, naming git's count — under M6 the crosscheck never runs, the file lands in INFO and the verdict is PASS |
+
+One inverse control is kept: the fallback alone, every patch present, must not
+trigger the crosscheck.
 
 ### Acknowledgements
 

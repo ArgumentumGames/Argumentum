@@ -104,7 +104,7 @@ Avant tout merge / comment / dispatch / review :
 
 ## Phase 3 — Merger ce qui est mergeable
 
-**Organe : `python scripts/gates/pr_merge_gate.py N --expect-head <sha relu>`** — il mécanise la liste ci-dessous (état, tête, CI, revues, fils inline, signature de lane, contre-revue, mots de fermeture, hygiène du diff, chemins protégés, PR unique sur le CSV de taxonomie) et rend `0` PASS · `3` HOLD · `2` BLOCK · `1` instrument aveugle (jamais un PASS). **Il ne lit pas le fond à ta place** : body, commentaires, revues et diff restent dus (Phase 2) — sa sortie se termine par la surface de lecture. Règles, acquittements et limites : [`scripts/gates/README.md`](../../../scripts/gates/README.md).
+**Organe : `python scripts/gates/pr_merge_gate.py N --expect-head <sha relu>`** — il mécanise la liste ci-dessous (état, tête, CI, revues, fils inline, signature de lane, contre-revue, mots de fermeture, hygiène du diff, chemins protégés, PR unique sur le CSV de taxonomie, PR empilées) et rend `0` PASS · `3` HOLD · `2` BLOCK · `1` instrument aveugle (jamais un PASS). **Il ne lit pas le fond à ta place** : body, commentaires, revues et diff restent dus (Phase 2) — sa sortie se termine par la surface de lecture. Règles, acquittements et limites : [`scripts/gates/README.md`](../../../scripts/gates/README.md).
 
 **Critères (TOUS vrais)** :
 
