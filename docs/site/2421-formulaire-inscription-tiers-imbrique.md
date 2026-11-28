@@ -6,7 +6,7 @@
 
 **Instrument principal** : le HTML brut servi (lecture HTTP), analysé avec `DOMParser` dans la page (parseur HTML5 local, sans ressource) ; le DOM vivant (Chromium, Playwright) ; les octets du script tiers (téléchargement direct, `sha256` comparé) ; le témoin `docs/dnn-localization/dnn-page-witness.py` ; l'outil `tools/458-eav-reinject.py` en dry-run (SELECT seuls).
 
-**Horodatage** : 28/11/2026, ~15:35–16:20Z. Base du dépôt : `origin/master` `21d64b7d`.
+**Horodatage** : 28/11/2026, ~15:35–16:20Z ; **re-mesures du ~17:10Z** après la contre-revue de po-2024 (§1.2, §5.2, §6.4). Base du dépôt : `origin/master` `21d64b7d`.
 
 ---
 
@@ -38,14 +38,16 @@ Le bundle compte **17** appels `.setAttribute(` ; **un seul** est non protégé 
 
 ### 1.2 Pourquoi `#sib-form` n'existe pas
 
-Le HTML brut servi de `/en/` fait 89 647 octets (*mesuré*). Les balises de formulaire y sont, dans cet ordre (*mesuré*, offsets en octets) :
+Le HTML brut servi de `/en/` porte **2** ouvertures `<form` et **2** fermetures `</form>`, dans cet ordre (*mesuré*, offsets en **octets**).
 
-| Offset | Balise |
-|---:|---|
-| 4 416 | `<form method="post" action="/en/" id="Form" enctype="multipart/form-data">` — le formulaire du skin 2shineBS5 |
-| 75 952 | `<form id="sib-form" method="POST" action="https://d426a943.sibforms.com/serve/MUIE…">` — le formulaire Brevo |
-| 83 551 | `</form>` — **la balise de fin du Brevo** : c'est elle qui ferme le formulaire DNN |
-| 89 618 | `</form>` — la vraie fin du formulaire DNN |
+⚠️ **Les offsets sont datés, pas constants** : la page servie varie d'une requête à l'autre — elle a gagné 1 493 octets entre 15:35–16:20Z et 16:46Z (cause non mesurée) et deux lectures à quelques minutes d'écart ont la **même longueur** mais des **empreintes distinctes**. **L'invariant à citer est l'ordre et l'imbrication, pas la position** ; les deux colonnes ci-dessous sont deux mesures datées du même fait.
+
+| Ordre | Balise | 15:35–16:20Z (89 647 o) | ~17:10Z (91 140 o) |
+|---:|---|---:|---:|
+| 1 | `<form method="post" action="/en/" id="Form" enctype="multipart/form-data">` — le formulaire du skin 2shineBS5 | 4 416 | 4 423 |
+| 2 | `<form id="sib-form" method="POST" action="https://d426a943.sibforms.com/serve/MUIE…">` — le formulaire Brevo, **à l'intérieur** | 75 952 | 77 354 |
+| 3 | `</form>` — **la balise de fin du Brevo** : c'est elle qui ferme le formulaire DNN | 83 551 | 84 953 |
+| 4 | `</form>` — la vraie fin du formulaire DNN | 89 618 | 91 107 |
 
 Règle HTML5 (« *A start tag whose tag name is 'form': if the form element pointer is not null, ignore the token* ») : un `<form>` imbriqué **n'entre pas dans le DOM**, et la `</form>` qui le suit ferme le formulaire englobant (*mesuré*, par le contrôle apparié ci-dessous).
 
@@ -83,6 +85,8 @@ Rapporté d'ai-01 (28/11 12:25Z) : « 17 occurrences sur 10 pages ». Mesuré : 
 
 L'origine du « 17 » n'est pas établie : le compteur de la console d'une session de navigateur cumule les lignes de toutes les navigations, alors que le défaut est par page. Je ne l'attribue donc à rien (*non établi*) — mais le chiffre **1 par page** est le mien, mesuré.
 
+⚠️ **Ce que le « 1 » compte** : les **exceptions non rattrapées** (`pageerror`), pas les lignes de la console — un lecteur peut lire « 1 erreur console » et obtenir un autre nombre avec un autre instrument. La contre-revue de po-2024 (*rapporté*, 16:46–16:52Z) voit **3** lignes d'erreur par page sur son instrument, les 2 autres étant « Permissions policy violation: unload is not allowed », sans rapport avec l'issue. **Non reproduit sur l'instrument de po-2023** (*mesuré*, ~17:02Z, `/en/` et `/en/Amis`, prod) : **1** exception `setAttribute` par page et **0** ligne d'erreur de console. L'écart entre les deux instruments n'est pas expliqué ; il ne touche pas le défaut, qui est l'exception `setAttribute` — **1 par page, sur les deux instruments**.
+
 ---
 
 ## 3. Ce que le défaut casse (et ce qu'il ne casse pas)
@@ -93,7 +97,7 @@ L'origine du « 17 » n'est pas établie : le compteur de la console d'une sessi
 | Le gestionnaire d'envoi du formulaire tiers n'est donc jamais branché | dérivé | `b.addEventListener("submit", …)` est **après** l'instruction fautive, dans le même module |
 | Le bouton « SUBSCRIBE » appartient au formulaire **DNN** | mesuré | `button.sib-form-block__button` (`type=submit`), `closest('form').id === "Form"`, action `/en/`, méthode `post` |
 | ⇒ un clic sur « SUBSCRIBE » renverrait le formulaire du site vers `/<langue>/` au lieu de Brevo | **dérivé** (jamais exécuté : aucune soumission) | le propriétaire du bouton est mesuré ; l'effet du clic ne l'est pas |
-| La `</form>` du Brevo ferme le formulaire DNN 6 067 octets avant la fin du corps | mesuré | reste hors formulaire : `FOOTER#to-shine-page-footer`, `INPUT#ScrollTop`, `INPUT#__dnnVariable`, un `LINK`, 5 `SCRIPT` |
+| La `</form>` du Brevo ferme le formulaire DNN **avant** la fin du corps | mesuré | 6 067 octets avant la fin (15:35–16:20Z), 6 154 à la re-mesure du ~17:10Z — un chiffre **daté**, comme les offsets du §1.2 ; reste hors formulaire : `FOOTER#to-shine-page-footer`, `INPUT#ScrollTop`, `INPUT#__dnnVariable`, un `LINK`, 5 `SCRIPT` |
 | Aucun `__doPostBack` dans cette queue | mesuré | 0 occurrence | 
 | Le formulaire de contact Mobius reste dans le formulaire DNN | mesuré | `#Subject`, `#SenderName`, `#SenderMail` → `closest('form').id === "Form"` |
 
@@ -140,15 +144,17 @@ Le formulaire de contact Mobius, lui, est bien présent (`div.app-mobius5-wrappe
 
 | Clé du registre | App | Type | Contenu | Langues |
 |---|---:|---|---|---|
-| `FB8362B1-1A0D-4621-8F64-5CCB1D6E2F91\|Html` | 48 | HtmlFragment | le snippet **avec** `<form id="sib-form">` et le script — **c'est celui qui est servi** | 8 (12 476 – 13 337 o) |
-| `1D949D90-51BF-48EB-A71D-3B5F6D29B5A9\|Text` | 33 | Content | **l'`<iframe>`** vers la page hébergée Brevo (447 o) | 8 (valeur **identique** dans les 8) |
-| `44088360-FA3E-45CB-BFA7-81440906202D\|Text` | 33 | Content | le snippet **sans** `<form>` et **sans** le script (5 029 – 5 763 o) | 8 |
+| `FB8362B1-1A0D-4621-8F64-5CCB1D6E2F91\|Html` | 48 | HtmlFragment | le snippet **avec** `<form id="sib-form">` et le script — **c'est celui qui est servi** | 8 valeurs distinctes : 12 476 – 13 314 **caractères** (13 002 – 13 938 octets UTF-8) |
+| `1D949D90-51BF-48EB-A71D-3B5F6D29B5A9\|Text` | 33 | Content | **l'`<iframe>`** vers la page hébergée Brevo (447 caractères = 447 octets) | 8 (valeur **identique** dans les 8) |
+| `44088360-FA3E-45CB-BFA7-81440906202D\|Text` | 33 | Content | le snippet **sans** `<form>` et **sans** le script | 8 valeurs distinctes : 5 029 – 5 763 **caractères** (5 418 – 6 117 octets UTF-8) |
 
 L'URL du formulaire de la copie servie et l'`src` de l'iframe de la copie app 33 sont **le même octet** : 244 caractères, `https://d426a943.sibforms.com/serve/MUIEALayZPjEZxs-opk0OzYmVW3jhLQf3cnrC_OTywqy0s99xaHFqf0z3OqsCCsKf36Qvvfk6NepqHRTDHt2rWcQ9vhCIEGD4X4PM-rwWg_VZcUIRiraY8iJ9DvWbCZCFFw36up8e7ee5FPY8iDQ5sOIYn_Y0kzhxy4m3xQOfM94NmhfbKZ76hlh52U7D-GrcUHrxTpD2uD59W6O` (*mesuré*). **On ne remplace donc pas un formulaire par un autre : on rend le sien à son propre rendu.**
 
 **Contrôle positif, mesuré** — la page Brevo hébergée, ouverte dans Chromium : HTTP 200, **0 erreur**, un formulaire `#sib-form` présent (action relative `/serve/MUIE…` sur l'hôte Brevo), bouton « S'INSCRIRE », le même `main.js` et le même `sib-styles.css` demandés. Le même script, dans un document où le formulaire n'est pas imbriqué : il trouve son élément. **C'est la démonstration que le remède fonctionne, sans rien écrire.**
 
-**Ce que l'option A coûte** : le formulaire hébergé est en **français pour tout le monde** — la réponse est identique (15 611 octets) pour `Accept-Language: fr-FR`, `en-US` et `zh-CN`, bouton « S'INSCRIRE » dans les trois cas (*mesuré*). Les 7 accueil non francophones perdent donc les libellés localisés du formulaire (le snippet in-page les porte : 8 valeurs distinctes, 12 476 – 13 337 o).
+**Ce que l'option A coûte** : le formulaire hébergé est en **français pour tout le monde** — la réponse a la **même longueur (15 611 octets)** pour `Accept-Language: fr-FR`, `en-US` et `zh-CN`, bouton « S'INSCRIRE » dans les trois cas (*mesuré*).
+
+⚠️ **« Même longueur » ne veut pas dire « mêmes octets »** : le jeton Cloudflare `data-cfemail` change **à chaque requête, même langue comprise** — deux lectures `fr-FR` à quelques secondes d'écart diffèrent d'**une seule ligne sur 398**, et cette ligne est la seule (*mesuré*, ~17:05Z ; empreintes des quatre requêtes toutes distinctes). Le libellé des autres champs n'a pas été relu ligne à ligne entre les langues : le constat « français pour tout le monde » repose sur le bouton « S'INSCRIRE » lu dans les trois langues. Les 7 accueil non francophones perdent donc les libellés localisés du formulaire (le snippet in-page les porte : 8 valeurs distinctes, 12 476 – 13 314 caractères).
 
 ### 5.3 Option A′ — l'`<iframe>` qui héberge **notre** snippet localisé
 
@@ -217,7 +223,7 @@ Les 8 langues sont `fr` (base, dim-0) et les 7 de `LANGS` (`en ru pt es ar fa zh
 
 ### 6.3 Étape 2 — le changement de registre (dépôt)
 
-La valeur à écrire dans les 8 cellules `FB8362B1-…|Html` est **exactement** celle de la copie app 33 (`1D949D90-…|Text`, 447 o, identique dans les 8 langues) :
+La valeur à écrire dans les 8 cellules `FB8362B1-…|Html` est **exactement** celle de la copie app 33 (`1D949D90-…|Text`, 447 caractères = 447 octets, identique dans les 8 langues) :
 
 ```html
 <p><iframe style="display: block; margin-left: auto; margin-right: auto; max-width: 100%;" src="https://d426a943.sibforms.com/serve/MUIEALayZPjEZxs-opk0OzYmVW3jhLQf3cnrC_OTywqy0s99xaHFqf0z3OqsCCsKf36Qvvfk6NepqHRTDHt2rWcQ9vhCIEGD4X4PM-rwWg_VZcUIRiraY8iJ9DvWbCZCFFw36up8e7ee5FPY8iDQ5sOIYn_Y0kzhxy4m3xQOfM94NmhfbKZ76hlh52U7D-GrcUHrxTpD2uD59W6O" width="540" height="305" frameborder="0" scrolling="auto" allowfullscreen="allowfullscreen"></iframe></p>
@@ -233,7 +239,6 @@ Le registre est le **producteur**, jamais un miroir : la modification se fait da
 python tools/458-eav-reinject.py \
   --config <web.config du site servi> \
   --only-cell … (les 8) \
-  --force FB8362B1-1A0D-4621-8F64-5CCB1D6E2F91:Html:fr \
   --force FB8362B1-1A0D-4621-8F64-5CCB1D6E2F91:Html:en \
   --force FB8362B1-1A0D-4621-8F64-5CCB1D6E2F91:Html:ru \
   --force FB8362B1-1A0D-4621-8F64-5CCB1D6E2F91:Html:pt \
@@ -244,7 +249,11 @@ python tools/458-eav-reinject.py \
   --apply --backup-dir <hors dépôt>
 ```
 
-`--force` est indispensable : les deux côtés sont pleins et différents, donc l'outil refuse par défaut (CONFLICT) ; le nom de la cellule autorise **cette** cellule et rien d'autre. `--backup-dir` est **exigé** en apply et doit être hors du dépôt : l'ancienne valeur des 8 cellules y est écrite **avant** la transaction (la valeur d'avant, pas l'après : c'est la base de retour arrière). L'UPDATE ré-pince la ligne lue par le dry-run, sous verrou, et exige qu'elle porte encore exactement la valeur mesurée.
+`--force` est indispensable **pour les 7 traductions** : les deux côtés sont pleins et différents, donc l'outil refuse par défaut (CONFLICT) ; le nom de la cellule autorise **cette** cellule et rien d'autre.
+
+⚠️ **Pas de `--force …:Html:fr`.** La langue d'un `--force` doit être l'une des **7** de `LANGS` (`en ru pt es ar fa zh`) : `parse_force` rend `None` pour `fr` et l'outil sort en `REFUS: --force mal forme` — **avant toute connexion**, donc avant toute écriture (*mesuré*, ~17:00Z, sur `master`, sans `--apply` et avec un `--config` inexistant : le refus tombe en rc 1 ; **contrôle positif** : la même commande avec `--force …:Html:en` franchit cette étape et va lire le `web.config` — l'instrument distingue bien les deux cas). La **base `fr`** de la cellule est portée par `--only-cell …:Html:fr` seule — `parse_only_cell` accepte `fr` pour la cellule de base (dim-0) — et sa dérive (`FR_DRIFT`) est **réécrite à l'apply sans `--force`** (`fr_writes`, même outil). *Signalé par la contre-revue de po-2024, rejoué et confirmé ici.*
+
+`--backup-dir` est **exigé** en apply et doit être hors du dépôt : l'ancienne valeur des 8 cellules y est écrite **avant** la transaction (la valeur d'avant, pas l'après : c'est la base de retour arrière). L'UPDATE ré-pince la ligne lue par le dry-run, sous verrou, et exige qu'elle porte encore exactement la valeur mesurée.
 
 ### 6.5 Étape 4 — le contrôle après écriture
 
@@ -260,7 +269,7 @@ Le témoin `dnn-page-witness.py --env prod` doit rester à son niveau actuel : l
 
 ### 6.6 Retour arrière
 
-Les 8 valeurs d'avant sont dans le `--backup-dir` (JSON, une entrée par valeur touchée) ; il suffit de réinjecter ces valeurs par le même chemin (`--only-cell` + `--force` + `--apply`), ou de restaurer les lignes par SQL. **Le gel #972 (le `web.config`) n'est pas touché** par ce geste : ni le fichier, ni la base lisent ce que l'outil ne réécrit pas (la préservation est vérifiée avant et après, dans la même transaction).
+Les 8 valeurs d'avant sont dans le `--backup-dir` (JSON, une entrée par valeur touchée) ; il suffit de réinjecter ces valeurs par le même chemin (`--only-cell` sur les 8, `--force` sur les **7 traductions** seulement — la même règle qu'au §6.4 — et `--apply`), ou de restaurer les lignes par SQL. **Le gel #972 (le `web.config`) n'est pas touché** par ce geste : ni le fichier, ni la base lisent ce que l'outil ne réécrit pas (la préservation est vérifiée avant et après, dans la même transaction).
 
 ---
 
