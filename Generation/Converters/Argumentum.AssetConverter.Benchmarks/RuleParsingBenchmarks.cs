@@ -88,6 +88,21 @@ public class InProcessShortConfig : ManualConfig
 {
     public InProcessShortConfig()
     {
+        // Multi-runtime (mesure du delta runtime, CoursIA #18770) : InProcess ne peut
+        // cibler qu'un runtime par run -- quand DOTNET_MULTI_RUNTIME=1, on n'ajoute PAS
+        // le job InProcess et BDN utilise son job par defaut (process enfant). Le
+        // protocole de reference (baseline net9 InProcess, PR #1705) reste le job
+        // ci-dessous. Sur TFM -windows, --runtimes net10.0 genere un projet NU1201
+        // (net10.0 nu vs net9.0-windows, mesure), et le process enfant BDN ignore
+        // DOTNET_ROOT (spawn via le muxer du PATH, mesure) : chaque jambe multi-
+        // runtime se joue donc sur le MEME binaire net9.0-windows lance directement
+        // (l'apphost honore DOTNET_ROOT), runtime epingle par DOTNET_ROOT +
+        // DOTNET_ROLL_FORWARD et atteste par le probe --info [Host] -- en InProcess
+        // le processus hote EST le processus mesure. Voir benchmarks/MULTI-RUNTIME-
+        // net9-net10-net11.md.
+        if (Environment.GetEnvironmentVariable("DOTNET_MULTI_RUNTIME") == "1")
+            return;
+
         AddJob(Job.ShortRun
             .WithToolchain(InProcessEmitToolchain.Instance)
             .WithInvocationCount(1)
