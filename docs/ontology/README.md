@@ -296,12 +296,15 @@ portal / LOV remain follow-ups.
 
 ## 8. Index of record — les fichiers du dossier
 
-Mesuré le 2026-11-24 sur master `0543ab69`. Le dossier comptait **24 fichiers suivis**
-(`git ls-files docs/ontology | wc -l`) : les deux artefacts (table ci-dessus), ce README, **neuf
-constats datés**, le sous-dossier [`aif-export/`](aif-export/) (10 fichiers couverts par leur
+Mesuré le 2026-11-24 sur master `0543ab69`. Le dossier comptait alors **24 fichiers suivis**
+(`git ls-files docs/ontology | wc -l`) : les deux artefacts (table ci-dessus), ce README, les
+constats datés, le sous-dossier [`aif-export/`](aif-export/) (10 fichiers couverts par leur
 ligne ci-dessous — son propre README ne porte pas la marque, il n'engage que lui) et le
-sous-dossier [`v1.0.0/`](v1.0.0/) (2 fichiers, couverts par leur ligne ci-dessous). La page
-d'accueil [`index.html`](index.html), ajoutée le 2026-11-28 (P24-46), porte le compte à **25**.
+sous-dossier [`v1.0.0/`](v1.0.0/) (2 fichiers, couverts par leur ligne ci-dessous).
+
+**Le compte courant ne se récite pas, il se re-mesure** : même commande (`git ls-files
+docs/ontology | wc -l`). Chaque fichier ajouté depuis porte sa ligne au tableau des fichiers
+ci-dessous, et c'est ce tableau qui fait foi — un total écrit ici serait faux au fichier suivant.
 
 ### Où en sont les deux sujets
 
