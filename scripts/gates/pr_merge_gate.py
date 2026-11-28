@@ -459,11 +459,130 @@ def _docs_replay(number, base_ref, head_sha, root=None, repo=None, runner=None):
     return result
 
 
-def collect(pr, repo=DEFAULT_REPO, runner=gh_run, sleep=time.sleep, replay=None):
+def _parse_numstat(text):
+    """`git diff --numstat -z` -> {chemin: lignes ajoutées}.
+
+    Le format `-z` : un enregistrement par changement, « ajoutées\\tsupprimées\\tchemin\\0 ».
+    Pour un renommage, le chemin ne tient pas dans le troisième champ : il vient en
+    deux morceaux, l'ancien puis le nouveau — c'est le NOUVEAU qui est retenu (c'est
+    lui que la PR affiche). Un fichier binaire vaut « -\\t-\\tchemin » : le compte y
+    est inconnu, on n'invente pas de référence (le fichier compte 0, comme l'API
+    l'annonce).
+    """
+    counts, fields, i = {}, text.split("\0"), 0
+    while i < len(fields):
+        field = fields[i]
+        i += 1
+        if not field:
+            continue
+        parts = field.split("\t", 2)
+        add, path = parts[0], None
+        if len(parts) >= 3 and parts[2]:
+            path = parts[2]
+        elif len(parts) >= 2 and i + 1 < len(fields):
+            i += 1                      # l'ancien chemin
+            path = fields[i]            # le nouveau
+            i += 1
+        if path is None:
+            continue
+        if add == "-":
+            continue                    # binaire : pas de compte, pas de référence
+        try:
+            counts[path] = int(add)
+        except ValueError:
+            continue
+    return counts
+
+
+def _numstat(number, base_ref, head_sha, root=None, repo=None, git_runner=None):
+    """Les comptes de lignes ajoutées par fichier, lus dans GIT et non dans l'API.
+
+    L'API `pulls/N/files` tronque ses annonces sur les grosses PR : au-delà d'un budget
+    de diff, les DERNIERS fichiers sont annoncés `additions: 0`, `deletions: 0`,
+    `changes: 0` et sans `patch` — alors que le diff unifié, lui, porte leurs lignes.
+    Mesuré sur #2403 (28/11/2026) : l'API annonce 0 pour quatre fichiers dont
+    `git diff --numstat` dit 278, 278, 1512 et 4 lignes ajoutées ; le diff unifié porte
+    les 38 fichiers, et le compte de lignes lues concorde avec le `--numstat` sur les
+    38 (0 écart). Une porte qui comparait l'ANNONCE de l'API aux lignes lues y voyait
+    donc quatre fichiers « non lus » qui l'étaient : faux HOLD « scan AVEUGLE ».
+
+    Ici la référence n'est plus l'annonce de l'API mais le COMPTE de git : la question
+    n'est plus « l'API a-t-elle bien compté ? » mais « ai-je lu toutes les lignes
+    ajoutées de ce fichier ? ». Un fichier dont le compte lu diffère du compte git
+    reste AVEUGLE ; un fichier dont les comptes concordent est lu, quel que soit ce
+    que l'API en a dit.
+
+    Écritures : `git fetch` (base et tête) dans le clone local. Rien sur GitHub.
+    Toute empêchement de lire rend AVEUGLE (status « blind ») : un instrument qui ne
+    peut pas lire ne lève jamais un doute — le HOLD reste, il se nomme.
+    """
+    top = root or REPO_ROOT
+    state = {"git_error": None}
+
+    def git(*args):
+        try:
+            if git_runner is not None:
+                return git_runner(top, *args)
+            return subprocess.run(["git", "-C", top] + list(args), capture_output=True,
+                                  timeout=DOCS_CONTRACT_TIMEOUT)
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            state["git_error"] = "%s: %s" % (type(exc).__name__, exc)
+            return subprocess.CompletedProcess(args, 1, b"", b"")
+
+    def blind(why):
+        return {"status": "blind", "counts": {}, "detail": why}
+
+    def said(done):
+        return (_first_line(done.stderr.decode("utf-8", "replace"))
+                or _first_line(done.stdout.decode("utf-8", "replace")) or "sans message")
+
+    done = git("rev-parse", "--is-inside-work-tree")
+    if state["git_error"]:
+        return blind("git indisponible (%s)" % state["git_error"])
+    if done.returncode != 0 or b"true" not in done.stdout:
+        return blind("dépôt local absent ou illisible depuis %s" % top)
+    # Le recoupement se fait dans le clone local, sur SON origin : sur le clone d'un
+    # autre dépôt, les comptes porteraient sur un autre arbre (revue ai-01, P24-60).
+    if repo:
+        origin = git("remote", "get-url", "origin")
+        if origin.returncode != 0 or not _origin_names_repo(
+                origin.stdout.decode("utf-8", "replace"), repo):
+            return blind("origin local (%s) ne designe pas le depot %s -- le recoupement se fait "
+                         "dans le clone de ce depot" % (said(origin) or "inconnu", repo))
+    base = "refs/remotes/origin/%s" % base_ref
+    fetched = git("fetch", "--quiet", "--no-tags", "--no-auto-gc", "--no-recurse-submodules", "origin",
+                  "+refs/heads/%s:refs/remotes/origin/%s" % (base_ref, base_ref))
+    if fetched.returncode != 0:
+        return blind("base %s : fetch origin en échec -- %s" % (base_ref, said(fetched)))
+    done = git("rev-parse", "--verify", "--quiet", base + "^{commit}")
+    if done.returncode != 0:
+        return blind("base %s : fetch réussi, référence introuvable ensuite -- %s"
+                     % (base_ref, said(done)))
+    done = git("rev-parse", "--verify", "--quiet", head_sha + "^{commit}")
+    if done.returncode != 0:
+        git("fetch", "--quiet", "--no-tags", "--no-auto-gc", "--no-recurse-submodules", "origin",
+            "refs/pull/%d/head" % number)
+        done = git("rev-parse", "--verify", "--quiet", head_sha + "^{commit}")
+        if done.returncode != 0:
+            return blind("tête %s absente du dépôt local (fetch refs/pull/%d/head)"
+                         % (head_sha[:12], number))
+    mb = git("merge-base", base, head_sha)
+    if mb.returncode != 0:
+        return blind("base de fusion introuvable (%s...%s) -- %s" % (base_ref, head_sha[:12], said(mb)))
+    merge_base = mb.stdout.decode("utf-8", "replace").strip().split("\n")[0].strip()
+    done = git("diff", "--numstat", "-z", merge_base, head_sha)
+    if done.returncode != 0:
+        return blind("git diff --numstat en échec -- %s" % said(done))
+    counts = _parse_numstat(done.stdout.decode("utf-8", "replace"))
+    return {"status": "ok", "counts": counts, "detail": ""}
+
+
+def collect(pr, repo=DEFAULT_REPO, runner=gh_run, sleep=time.sleep, replay=None, numstat=None):
     """Read everything the rules need. Raises Blind on any core failure.
 
     `replay` is the docs-contract replay (git side); the self-test injects it so the
     fake-gh cases stay offline. A replay that cannot see raises here: no verdict.
+    `numstat` is the git-side count cross-check (P24-61), injected the same way.
     """
     base = "repos/%s" % repo
     pr_path = "%s/pulls/%d" % (base, pr)
@@ -536,6 +655,15 @@ def collect(pr, repo=DEFAULT_REPO, runner=gh_run, sleep=time.sleep, replay=None)
     else:
         snap["diff_text"] = None
         snap["diff_error"] = _first_line(err) or "réponse inattendue"
+
+    # P24-61 : le compte de référence vient de GIT quand l'annonce de l'API et les
+    # lignes lues ne concordent pas -- ou quand un fichier sans patch est annoncé 0.
+    # Ailleurs le recoupement ne tourne pas : il ne peut rien changer.
+    snap["numstat"] = {"status": "absent", "counts": {}, "detail": "annonce de l'API et lignes lues concordent"}
+    if _needs_crosscheck(snap):
+        ns = (numstat or _numstat)(pr, slim["base"]["ref"], head, repo=repo)
+        snap["numstat"] = (ns if isinstance(ns, dict) and ns.get("status") in ("ok", "blind")
+                           else {"status": "blind", "counts": {}, "detail": "réponse inattendue du recoupement"})
 
     raw, total = _api_pages(runner, "%s/commits/%s/check-runs" % (base, head), "check-runs", key="check_runs")
     _expect_count("check-runs", len(raw), total)
@@ -787,29 +915,83 @@ def _parse_diff(text, single_path=None):
     return added
 
 
-def _added_lines(s):
-    """-> (added, blind, mode). `blind` names every file the scan could not fully read."""
-    files = s["files"]
+def _read_added(s):
+    """-> (added, mode) : les lignes ajoutées lues, et par quel canal."""
     if s.get("diff_text") is not None:
-        added, mode = _parse_diff(s["diff_text"]), "diff unifié"
-    else:
-        added = {}
-        for f in files:
-            if f.get("patch"):
-                added.update(_parse_diff(f["patch"], single_path=f["filename"]))
-        mode = "REPLI sur les patchs par fichier (diff unifié indisponible : %s)" % (
-            s.get("diff_error") or "raison inconnue")
-    blind, names = [], set()
+        return _parse_diff(s["diff_text"]), "diff unifié"
+    added = {}
+    for f in s["files"]:
+        if f.get("patch"):
+            added.update(_parse_diff(f["patch"], single_path=f["filename"]))
+    return added, "REPLI sur les patchs par fichier (diff unifié indisponible : %s)" % (
+        s.get("diff_error") or "raison inconnue")
+
+
+def _needs_crosscheck(s):
+    """Vrai quand le recoupement par git peut changer le verdict -- et seulement alors.
+
+    Deux cas, tous deux mesurés sur #2403 :
+    - un fichier lu avec un compte différent de l'annonce de l'API (le diff unifié
+      porte des lignes que l'API annonce 0) : c'est le cas qui retient à tort ;
+    - un fichier sans patch, annoncé 0 ligne : rien ne dit s'il n'a rien à lire ou si
+      l'API a tronqué (en repli, il n'est alors pas lu du tout). Git tranche.
+    Partout ailleurs l'annonce de l'API et les lignes lues concordent : le recoupement
+    ne tourne pas, il ne peut donc ni lever ni retenir quoi que ce soit. Le recoupement
+    ne retient JAMAIS un fichier que l'annonce de l'API laissait passer, sauf un
+    fichier sans patch que git dit porteur de lignes -- un vrai fichier non lu.
+    """
+    added = _read_added(s)[0]
+    for f in s["files"]:
+        said = f.get("additions") or 0
+        if len(added.get(f["filename"], [])) != said:
+            return True
+        if not f.get("patch") and said == 0:
+            return True
+    return False
+
+
+def _added_lines(s):
+    """-> (added, blind, mode, api_wrong, unconfirmed). `blind` names every file the
+    scan could not fully read; `api_wrong` every file whose API announcement git
+    contradicts; `unconfirmed` every zero-announced, patch-less file that git could
+    not vouch for.
+
+    La référence d'un « fichier lu » est le compte de GIT (`git diff --numstat`,
+    `s["numstat"]`) quand le recoupement a tourné, et l'annonce de l'API sinon.
+    L'annonce de l'API n'est pas fiable sur les grosses PR : tronquée, elle dit 0 pour
+    un fichier qui en compte 1512 (mesuré sur #2403). Un fichier dont le compte lu
+    égale le compte git est LU ; la contradiction de l'API est rapportée (INFO), elle
+    ne retient pas. Sans référence git on ferme sur l'annonce de l'API : un doute
+    qui ne peut pas être levé reste un HOLD, il se nomme.
+    """
+    files = s["files"]
+    added, mode = _read_added(s)
+    ns = s.get("numstat") if isinstance(s.get("numstat"), dict) else None
+    counts = (ns.get("counts") or {}) if ns and ns.get("status") == "ok" else None
+    blind, api_wrong, unconfirmed, names = [], [], [], set()
     for f in files:
         names.add(f["filename"])
-        want, got = f.get("additions") or 0, len(added.get(f["filename"], []))
-        if got != want:
-            blind.append("%s (%d lignes ajoutées annoncées, %d lues)" % (f["filename"], want, got))
+        said = f.get("additions") or 0
+        got = len(added.get(f["filename"], []))
+        if counts is not None and f["filename"] in counts:
+            # La référence est git. L'annonce de l'API, si elle diffère, est une
+            # troncature de l'API, pas un fichier non lu.
+            truth = counts[f["filename"]]
+            if truth != said and got == truth:
+                # Lu dans le diff, compté par git : c'est l'ANNONCE qui est fausse.
+                api_wrong.append("%s (annoncées %d par l'API, %d par git)" % (f["filename"], said, truth))
+            if got != truth:
+                blind.append("%s (%d lignes ajoutées selon git, %d lues)" % (f["filename"], truth, got))
+        else:
+            if got != said:
+                blind.append("%s (%d lignes ajoutées annoncées, %d lues)" % (f["filename"], said, got))
+            if not f.get("patch") and said == 0 and got == 0:
+                # Ni patch ni lignes : git n'a pas donné de compte pour ce fichier
+                # (binaire, ou recoupement indisponible). Le zéro n'est pas confirmé.
+                unconfirmed.append(f["filename"])
     for extra in sorted(str(p) for p in set(added) - names):
         blind.append("%s (dans le diff, absent de la liste des fichiers)" % extra)
-    return added, blind, mode
-
-
+    return added, blind, mode, api_wrong, unconfirmed
 def _context(s):
     return {"head": s["pr"]["head"]["sha"], "head_dt": _ts(s["head_commit"]["date"]),
             "lane": lane_signature(s["pr"].get("body")), "author": s["pr"]["user"]["login"]}
@@ -1044,7 +1226,7 @@ def r9_closing(s, o, c):
 
 
 def r10_diff(s, o, c):
-    added, blind, mode = _added_lines(s)
+    added, blind, mode, api_wrong, unconfirmed = _added_lines(s)
     groups, reasons = {}, []
     for path in sorted(added, key=str):
         for lineno, text in added[path]:
@@ -1064,6 +1246,19 @@ def r10_diff(s, o, c):
         reasons.append((level, text))
     if blind:
         reasons.append(("HOLD", "scan AVEUGLE sur %d fichier(s), sans dérogation : %s" % (len(blind), _cap(blind, 4))))
+        cross = s.get("numstat") if isinstance(s.get("numstat"), dict) else None
+        if cross and cross.get("status") == "blind":
+            # Fail-closed : un recoupement qui n'a pas pu lire ne lève aucun doute.
+            reasons.append(("HOLD", "recoupement par git indisponible -- %s : l'annonce de l'API ne peut pas "
+                                    "être contestée, le doute reste" % (cross.get("detail") or "cause non nommée")))
+    if api_wrong:
+        # L'API a tronqué son annonce ; le diff unifié, lui, portait les lignes. Le
+        # fichier est lu : la contradiction est rapportée, elle ne retient pas.
+        reasons.append(("INFO", "annonce de l'API contredite par git -- troncature de l'API, "
+                                "fichier(s) lu(s) malgré tout : %s" % _cap(api_wrong, 4)))
+    if unconfirmed:
+        reasons.append(("INFO", "zéro ligne annoncé sans patch, non confirmé par git (binaire ou "
+                                "recoupement indisponible) : %s" % _cap(unconfirmed, 4)))
     if s.get("diff_text") is None:
         reasons.append(("INFO", mode))
     return reasons, "%d ligne(s) ajoutée(s) lue(s) dans %d fichier(s) (%s), aucun motif" % (
@@ -1361,7 +1556,7 @@ def _write_json(path, data):
     os.replace(tmp, path)
 
 
-def main(argv=None, runner=gh_run, out=None, sleep=time.sleep, replay=None):
+def main(argv=None, runner=gh_run, out=None, sleep=time.sleep, replay=None, numstat=None):
     out = out or sys.stdout
     args = build_parser().parse_args(argv)
     if args.self_test:
@@ -1381,7 +1576,7 @@ def main(argv=None, runner=gh_run, out=None, sleep=time.sleep, replay=None):
             if args.pr is None:
                 raise Blind("numéro de PR absent")
             origin = "lecture en direct"
-            snap = collect(args.pr, args.repo, runner=runner, sleep=sleep, replay=replay)
+            snap = collect(args.pr, args.repo, runner=runner, sleep=sleep, replay=replay, numstat=numstat)
         if args.snapshot_out:
             _write_json(args.snapshot_out, snap)
         result = evaluate(snap, options)
@@ -1459,6 +1654,8 @@ def _fx_snapshot():
         "required_contexts": {"source": "auto-test", "contexts": list(FALLBACK_CONTEXTS)},
         "csv_taxonomy_other_prs": None,
         "docs_contract": {"status": "ok", "tree": _FX_TREE, "defects": [], "detail": ""},
+        "numstat": {"status": "absent", "counts": {},
+                    "detail": "annonce de l'API et lignes lues concordent"},
     }
     return _fx_sync(snap)
 
@@ -1498,6 +1695,38 @@ def _fx_replay(contract):
     return replay
 
 
+def _fx_numstat(counts=None, status=None, detail=""):
+    """Un recoupement figé : rend le compte git donné, sans git. Compte ses appels."""
+    seen = {"calls": 0}
+
+    def numstat(_number, _base_ref, _head_sha, root=None, repo=None, git_runner=None):
+        seen["calls"] += 1
+        return {"status": status or ("ok" if counts is not None else "blind"),
+                "counts": dict(counts or {}), "detail": detail}
+
+    numstat.seen = seen
+    return numstat
+
+
+def _fx_truncate(snap, path="docs/big.md", lines=("alpha", "beta", "gamma"), in_diff=True):
+    """L'API tronque : le fichier est annonce 0 ligne et sans patch.
+
+    Mesure sur #2403 (28/11/2026) : au-dela d'un budget de diff, `pulls/N/files`
+    annonce `additions: 0` et ne donne pas de patch pour les DERNIERS fichiers, alors
+    que le diff unifie porte leurs lignes. `in_diff=False` simule le fichier
+    reellement absent du diff : c'est le vrai fichier non lu.
+    """
+    snap["files"].append({"filename": path, "previous_filename": None, "status": "modified",
+                           "additions": 0, "deletions": 0, "patch": None})
+    snap["pr"]["changed_files"] = len(snap["files"])
+    if in_diff:
+        snap["diff_text"] += ("diff --git a/%s b/%s\nindex 1111111..2222222 100644\n"
+                              "--- a/%s\n+++ b/%s\n@@ -0,0 +1,%d @@\n%s\n"
+                              % (path, path, path, path, len(lines),
+                                 "\n".join("+" + line for line in lines)))
+    return snap
+
+
 def _fx_comment(snap, body, when, login="owner"):
     snap["issue_comments"].append({"id": len(snap["issue_comments"]) + 1, "created_at": when, "body": body,
                                    "user": {"login": login, "type": "User"}})
@@ -1509,7 +1738,8 @@ def _fx_review(state, when=_FX_AFTER, body="", login="reviewer", commit=_FX_HEAD
             "commit_id": commit, "body": body}
 
 
-def _fx_runner(snap, fail=None, short_files=False, tamper=None, unknown_reads=0, replay=None):
+def _fx_runner(snap, fail=None, short_files=False, tamper=None, unknown_reads=0, replay=None,
+               numstat=None):
     """Fake `gh`: serves a snapshot back through the API shapes collect() reads.
 
     `fail` makes one endpoint exit non-zero. `tamper` makes one endpoint ANSWER
@@ -1580,6 +1810,7 @@ def _fx_runner(snap, fail=None, short_files=False, tamper=None, unknown_reads=0,
     run.seen = seen
     run.replay = replay or _fx_replay(snap.get("docs_contract")
                                       or {"status": "ok", "tree": _FX_TREE, "defects": [], "detail": ""})
+    run.numstat = numstat or _fx_numstat()
     return run
 
 
@@ -1669,7 +1900,8 @@ def self_test(out):
     def run_main(argv, runner, replay=None):
         buf = io.StringIO()
         return main(argv, runner=runner, out=buf, sleep=lambda _s: None,
-                    replay=replay or getattr(runner, "replay", None)), buf.getvalue()
+                    replay=replay or getattr(runner, "replay", None),
+                    numstat=getattr(runner, "numstat", None)), buf.getvalue()
 
     # --- baseline
     res = evaluate(base)
@@ -1931,6 +2163,90 @@ def self_test(out):
     def fallback_ok(s):
         s["diff_text"], s["diff_error"] = None, "HTTP 406"
     control("repli sur les patchs, tous présents", fallback_ok, None, "R10", "INFO")
+
+    # --- R10 : la troncature de l'API (P24-61). Mesuré sur #2403 -- au-delà d'un budget
+    # de diff, `pulls/N/files` annonce `additions: 0` et ne donne pas de patch pour les
+    # DERNIERS fichiers, alors que le diff unifié porte leurs lignes. L'annonce de l'API
+    # n'est pas une référence : le compte de git en est une.
+    def r10_reasons(res):
+        return [text for _level, text in
+                next(f["reasons"] for f in res["findings"] if f["rule"] == "R10")]
+
+    check("numstat -z : ajout simple", _parse_numstat("3\t1\ta.py\0") == {"a.py": 3})
+    check("numstat -z : plusieurs enregistrements",
+          _parse_numstat("3\t1\ta.py\x005\t0\tb.md\x00") == {"a.py": 3, "b.md": 5})
+    check("numstat -z : renommage -- l'ancien chemin est sauté, le NOUVEAU retenu",
+          _parse_numstat("0\t0\t\0old/dir/a.py\0new/dir/b.py\0") == {"new/dir/b.py": 0})
+    check("numstat -z : binaire -- pas de compte, pas de référence",
+          _parse_numstat("-\t-\timg.png\0") == {})
+    check("numstat -z : le rendu réel de git sur un renommage (167fbd33, R076)",
+          _parse_numstat("7\t0\t.gitignore\x00981\t823\t\x00DNNPlatform/web.config\x00"
+                         "DNNPlatform/web.config.example\x00")
+          == {".gitignore": 7, "DNNPlatform/web.config.example": 981})
+    check("recoupement : il ne tourne pas quand l'annonce et les lignes lues concordent",
+          _needs_crosscheck(base) is False)
+    check("recoupement : il tourne sur une annonce tronquée (0 annoncé, des lignes lues)",
+          _needs_crosscheck(_fx_truncate(copy.deepcopy(base))) is True)
+
+    def git_vouches(s):
+        _fx_truncate(s)
+        s["numstat"] = {"status": "ok", "counts": {"docs/big.md": 3}, "detail": ""}
+
+    snap, res = control("API tronquée, recoupée par git : le fichier est lu, plus de HOLD",
+                        git_vouches, None, "R10", "INFO")
+    check("R10 troncature recoupée : l'annonce contredite est nommée, fichier et comptes",
+          any("annonce de l'API contredite par git" in t and "docs/big.md" in t
+              and "0 par l'API, 3 par git" in t for t in r10_reasons(res)))
+
+    def no_crosscheck(s):
+        _fx_truncate(s)             # « absent » : l'annonce de l'API reste la référence
+    snap, res = case("API tronquée SANS recoupement : HOLD -- c'est le recoupement qui lève",
+                     "R10", "HOLD", no_crosscheck)
+    check("R10 sans recoupement : le HOLD nomme le fichier et les deux comptes",
+          "docs/big.md (0 lignes ajoutées annoncées, 3 lues)" in render(snap, res))
+
+    def git_blind(s):
+        _fx_truncate(s)
+        s["numstat"] = {"status": "blind", "counts": {}, "detail": "tête absente du dépôt local (simulé)"}
+    snap, res = case("API tronquée, recoupement indisponible : HOLD, et la cause est dite",
+                     "R10", "HOLD", git_blind)
+    check("R10 recoupement indisponible : la cause est dans la sortie",
+          "tête absente du dépôt local (simulé)" in render(snap, res))
+
+    def absent_from_diff(s):
+        _fx_truncate(s, in_diff=False)
+        s["numstat"] = {"status": "ok", "counts": {"docs/big.md": 3}, "detail": ""}
+    snap, res = case("API tronquée ET fichier absent du diff : HOLD même recoupé (vrai non lu)",
+                     "R10", "HOLD", absent_from_diff)
+    check("R10 fichier non lu : c'est le compte de git qui est dit",
+          "docs/big.md (3 lignes ajoutées selon git, 0 lues)" in render(snap, res))
+    check("R10 fichier non lu : la contradiction de l'API n'est pas alléguée",
+          not any("annonce de l'API contredite" in t for t in r10_reasons(res)))
+
+    def repli_unread(s):
+        _fx_truncate(s)
+        s["diff_text"], s["diff_error"] = None, "HTTP 406"
+        s["numstat"] = {"status": "ok", "counts": {"docs/big.md": 3}, "detail": ""}
+    snap, res = case("repli : fichier sans patch annoncé 0 que git dit porteur de 3 lignes : HOLD",
+                     "R10", "HOLD", repli_unread)
+    check("R10 repli, fichier non lu : le compte de git est dit",
+          "3 lignes ajoutées selon git, 0 lues" in render(snap, res))
+
+    def repli_nothing(s):
+        _fx_truncate(s)
+        s["diff_text"], s["diff_error"] = None, "HTTP 406"
+        s["numstat"] = {"status": "ok", "counts": {"docs/big.md": 0}, "detail": ""}
+    control("repli : fichier sans patch annoncé 0, git dit 0 : il n'y a rien à lire",
+            repli_nothing, None, "R10", "INFO")
+
+    def zero_unconfirmed(s):
+        _fx_truncate(s, in_diff=False)
+        s["diff_text"], s["diff_error"] = None, "HTTP 406"
+        s["numstat"] = {"status": "blind", "counts": {}, "detail": "origin local (simulé)"}
+    snap, res = control("zéro annoncé sans patch, git muet : PASS, et le zéro est dit non confirmé",
+                        zero_unconfirmed, None, "R10", "INFO")
+    check("R10 zéro non confirmé : le fichier est nommé",
+          any("non confirmé par git" in t and "docs/big.md" in t for t in r10_reasons(res)))
     check("diff : numéros de ligne", _parse_diff(base["diff_text"]) == {
         "tools/sample.py": [(2, "added alpha"), (3, "added beta")]})
     check("diff : chemin avec espaces", _diff_path("b/" + TAXONOMY_CSV + "\t") == TAXONOMY_CSV)
@@ -2290,6 +2606,66 @@ def self_test(out):
         gone = _rm_tree(repo_no_origin)
     check("rejeu : dépôt sans origin retiré", gone)
 
+    # --- Le recoupement par git, sur un dépôt jetable : git réel, comptes réels.
+    # La tête de PR est faite dans un AUTRE clone et publiée sous refs/pull/7/head :
+    # le clone de la porte ne la connaît pas, il doit la chercher (le chemin réel).
+    num_root = num_origin = num_other = None
+    try:
+        num_root = tempfile.mkdtemp(prefix="gate-numstat-")
+        num_origin = tempfile.mkdtemp(prefix="gate-numstat-origin-")
+        _git_lite(num_origin, "init", "-q", "--bare")
+        _git_lite(num_root, "clone", "-q", num_origin, num_root)
+        _git_lite(num_root, "checkout", "-q", "-b", "master")
+        _git_lite(num_root, "config", "user.email", "selftest@example.invalid")
+        _git_lite(num_root, "config", "user.name", "selftest")
+        _put(num_root, "docs/keep.md", "# base\n")
+        _put(num_root, "docs/old.md", "".join("ligne %d\n" % i for i in range(40)))
+        _git_lite(num_root, "add", "-A")
+        _git_lite(num_root, "commit", "-q", "-m", "base")
+        _git_lite(num_root, "push", "-q", "origin", "master")
+        num_other = tempfile.mkdtemp(prefix="gate-numstat-other-")
+        _git_lite(num_other, "clone", "-q", num_origin, num_other)
+        _git_lite(num_other, "checkout", "-q", "master")
+        _git_lite(num_other, "config", "user.email", "selftest@example.invalid")
+        _git_lite(num_other, "config", "user.name", "selftest")
+        _put(num_other, "docs/keep.md", "# base\n+un\n+deux\n+trois\n")
+        _git_lite(num_other, "mv", "docs/old.md", "docs/new.md")
+        _put(num_other, "docs/new.md", "".join("ligne %d\n" % i for i in range(39)) + "changée\n")
+        with io.open(os.path.join(num_other, "docs", "img.bin"), "wb") as handle:
+            handle.write(bytes(range(256)) * 4)
+        _git_lite(num_other, "add", "-A")
+        _git_lite(num_other, "commit", "-q", "-m", "head")
+        num_head = _sha(num_other, "HEAD")
+        _git_lite(num_other, "push", "-q", "origin", num_head + ":refs/pull/7/head")
+        got = _numstat(7, "master", num_head, root=num_root)
+        check("recoupement : tête absente du clone, fetch de refs/pull/7/head, comptes justes",
+              got["status"] == "ok" and got["counts"] == {"docs/keep.md": 3, "docs/new.md": 1},
+              )
+        check("recoupement : le binaire n'a pas de compte (pas de référence inventée)",
+              "docs/img.bin" not in got.get("counts", {}))
+        got = _numstat(7, "master", "0" * 40, root=num_root)
+        check("recoupement : une tête introuvable -> AVEUGLE, la cause est dite",
+              got["status"] == "blind" and "absente du dépôt local" in got["detail"])
+        got = _numstat(7, "branche-inexistante", num_head, root=num_root)
+        check("recoupement : une base introuvable -> AVEUGLE, la cause est dite",
+              got["status"] == "blind" and "fetch origin en échec" in got["detail"])
+        nowhere = tempfile.mkdtemp(prefix="gate-numstat-nowhere-")
+        try:
+            got = _numstat(7, "master", num_head, root=nowhere)
+            check("recoupement : un répertoire qui n'est pas un dépôt -> AVEUGLE",
+                  got["status"] == "blind" and "dépôt local absent" in got["detail"])
+        finally:
+            _rm_tree(nowhere)
+        got = _numstat(7, "master", num_head, root=num_root, repo=DEFAULT_REPO)
+        check("recoupement : un clone dont l'origin ne désigne pas le dépôt -> AVEUGLE",
+              got["status"] == "blind" and "ne designe pas le depot" in got["detail"])
+    finally:
+        for path in (num_root, num_origin, num_other):
+            if path:
+                _rm_tree(path)
+    check("recoupement : les dépôts jetables sont retirés",
+          not any(os.path.exists(p) for p in (num_root, num_origin, num_other) if p))
+
     # Le collecteur, de bout en bout, avec le rejeu injecté. Le cas aveugle exige la
     # CAUSE dans la sortie : c'est la garde de `collect` qui parle, pas le repli de
     # `_validate` (les deux rendraient code 1 -- muter l'une doit se voir).
@@ -2317,9 +2693,25 @@ def self_test(out):
     rc, text = run_main(["4242"], _fx_runner(base))
     check("collecte factice -> PASS, code 0", rc == 0 and "VERDICT : PASS" in text
           and ("--match-head-commit " + _FX_HEAD) in text)
+    # Le recoupement, de bout en bout : il tourne quand il peut changer le verdict, et
+    # pas sinon.
+    cut = copy.deepcopy(base)
+    _fx_truncate(cut)
+    fake = _fx_runner(cut)
+    rc, text = run_main(["4242"], fake)
+    check("collecte : API tronquée, recoupement indisponible -> HOLD, code 3, il a tourné",
+          rc == 3 and "R10  HOLD" in text and fake.numstat.seen["calls"] == 1)
+    fake = _fx_runner(cut, numstat=_fx_numstat({"docs/big.md": 3}))
+    rc, text = run_main(["4242"], fake)
+    check("collecte : API tronquée, recoupée par git -> PASS, code 0, la contradiction est dite",
+          rc == 0 and "VERDICT : PASS" in text and "annonce de l'API contredite par git" in text)
+    fake = _fx_runner(base)
+    rc, text = run_main(["4242"], fake)
+    check("collecte : sans écart, le recoupement ne tourne pas",
+          rc == 0 and fake.numstat.seen["calls"] == 0)
     fake = _fx_runner(base)
     replay = json.loads(json.dumps(collect(4242, DEFAULT_REPO, runner=fake, sleep=lambda _s: None,
-                                           replay=fake.replay)))
+                                           replay=fake.replay, numstat=fake.numstat)))
     check("instantané sérialisable, même verdict rejoué", evaluate(replay)["verdict"] == "PASS")
     for needle in ("pulls/4242", "issues/4242/comments", "/reviews", "pulls/4242/comments", "/files",
                    "pulls/4242/commits", "check-runs", "/status", "commits/" + _FX_HEAD, "graphql"):
