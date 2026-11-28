@@ -1,17 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""#2181 / P24-51 et P24-55 - batterie de mutations du controle nomme, INDEPENDANTE des gardes.
+"""#2181 / P24-51, P24-55 et P24-54 - batterie de mutations du controle nomme, INDEPENDANTE des gardes.
 
     python tools/2181-reinject-mutations.py [--work-dir <dossier>]
 
 Chaque mutation est une reecriture textuelle de `tools/458-eav-reinject.py` appliquee a
-une COPIE (outil + module d'export + suite de gardes) ; la suite ENTIERE (53 cas) est
+une COPIE (outil + module d'export + suite de gardes) ; la suite ENTIERE (93 cas) est
 rejouee sur la copie et doit rougir sur le cas nomme d'avance. La copie NON mutee
-(temoin) doit rester 53/53 : sans ce temoin, un rouge ne prouverait rien.
+(temoin) doit rester 93/93 : sans ce temoin, un rouge ne prouverait rien.
 
-DEUX SERIES. N1-N13 : l'ecrasement nomme `--force` (P24-51). N14-N29 : le mode borne
+TROIS SERIES. N1-N13 : l'ecrasement nomme `--force` (P24-51). N14-N29 : le mode borne
 `--only-cell` (P24-55) — d'abord jouees en batterie de session non commise, elles sont
-ici pour etre rejouables par qui relit.
+ici pour etre rejouables par qui relit ; N30-N34 : les cinq mutations de la contre-revue
+po-2023 de ce mode. N35-N59 : le levier nomme de la base fr du bloc, `--fr-force`
+(P24-54) — parseur, classification, perimetre, transmission, writer, garde « #2181
+identique », post-contrat, rapport et fichier de resultat.
 
 POURQUOI une batterie a part. Les mutations vivantes de la suite (ForceNomme.mutation,
 WriterForce.check/block) eprouvent les HELPERS de la suite : elles etablissent que
@@ -20,10 +23,13 @@ l'OUTIL — un cas peut passer sans rien garder, et personne ne le voit en relis
 suite. Ici c'est l'outil qui est mute, et le cas qui doit le voir est nomme d'avance :
 l'auteur des gardes ne peut pas etre le seul juge de leur pouvoir de detection.
 
-CE QUE CELA N'ETABLIT PAS. Le script writer n'est jamais execute (aucune base, aucun
-PowerShell) : une mutation du script est vue par les gardes de FORME, pas par un vrai
-run. Et les aiguilles sont textuelles : si l'outil change, une aiguille absente ARRETE
-la batterie en la nommant — jamais un vert par disparition.
+CE QUE CELA N'ETABLIT PAS. Le script writer n'est jamais execute contre une base
+(aucune base, aucune transaction) : une mutation du script est vue par les gardes de
+FORME, et — depuis P24-54 — par les lignes de DECISION de la garde « #2181 identique »,
+jouees sous PowerShell sur un payload factice (il faut un shell sur la machine : sans
+lui, ce cas est saute et N47, N48 et N51 ne sont plus vus que de forme). Et les
+aiguilles sont textuelles : si l'outil change, une aiguille absente ARRETE la
+batterie en la nommant — jamais un vert par disparition.
 
 Sortie : code 0 si le temoin est vert et chaque mutation vue par son cas, 1 sinon.
 """
@@ -190,6 +196,96 @@ MUTATIONS = [
     ("N34 --force hors perimetre n'est plus refuse",
      [("    if unknown:", "    if False:")],
      "test_force_hors_perimetre_est_refuse"),
+    # P24-54 : le levier nomme de la base fr du bloc, `--fr-force GUID:CHAMP`. Chaque
+    # mutation retire UNE decision ; le cas qui la fixe est nomme d'avance.
+    ("N35 --fr-force accepte n'importe quel nom",
+     [("        if key != levier:", "        if False:")],
+     "test_le_nom_faux_est_refuse_avant_toute_lecture"),
+    ("N36 --fr-force mal forme accepte (GUID incomplet)",
+     [("""    if len(parts) != 2 or not parts[1]:
+        return None
+    if not FORCE_GUID_RE.match(parts[0].upper()):
+        return None""", """    if len(parts) != 2 or not parts[1]:
+        return None""")],
+     "test_le_nom_faux_est_refuse_avant_toute_lecture"),
+    ("N37 le levier ne leve pas l'exclusion",
+     [("        excludes.discard(levier)", "        pass")],
+     "test_le_nom_complet_reecrit_la_base"),
+    ("N38 une base nommee reste classee FR_DRIFT",
+     [('            op = "FR_FORCE" if (g.upper(), field) in named else "FR_DRIFT"',
+       '            op = "FR_DRIFT"')],
+     "test_le_nom_complet_reecrit_la_base"),
+    ("N39 toute base qui derive devient FR_FORCE",
+     [('(g.upper(), field) in named else "FR_DRIFT"', 'True else "FR_DRIFT"')],
+     "test_une_base_fr_nommee_hors_bloc_se_reecrit"),
+    ("N40 exclue et nommee sur la meme base : plus de refus",
+     [("        if key in excluded_by_name:", "        if False:")],
+     "test_exclue_et_nommee_sur_la_meme_base_refuse"),
+    ("N41 --fr-force hors perimetre accepte",
+     [('    if named and not any((p["entity_guid"].upper(), p["field"]) in named for p in fr_plan):',
+       "    if False:")],
+     "test_le_levier_hors_perimetre_est_refuse"),
+    ("N42 la base nommee n'est pas transmise au writer",
+     [('    fr_writes += [{**a, "op": "FR_FORCE"} for a in fr_actions if a["op"] == "FR_FORCE"]',
+       "    pass")],
+     "test_l_apply_transmet_un_fr_force_et_sauvegarde_l_avant_avant_le_writer"),
+    ("N43 fichier des valeurs d'avant d'une base nommee absent",
+     [("reinject-fr-force-prior-{stamp}.json", "reinject-fr-force-aucun-{stamp}.json")],
+     "test_l_apply_transmet_un_fr_force_et_sauvegarde_l_avant_avant_le_writer"),
+    ("N44 la branche FR_FORCE tombe dans FR_UPDATE (sans continue)",
+     [("            $frforced++\n            continue\n", "            $frforced++\n")],
+     "test_une_seule_branche_fr_force_et_conforme"),
+    ("N45 FR_FORCE : la valeur d'avant n'est plus verifiee (writer)",
+     [('throw "FR_FORCE $guid.$field : la valeur en base n\'est plus celle du dry-run - ROLLBACK"',
+       'Write-Host "FR_FORCE : valeur d\'avant differente, on ecrit quand meme"')],
+     "test_une_seule_branche_fr_force_et_conforme"),
+    ("N46 FR_FORCE : plusieurs rangees acceptees (writer)",
+     [('if ($n -ne 1) { throw "FR_FORCE', 'if ($false) { throw "FR_FORCE')],
+     "test_une_seule_branche_fr_force_et_conforme"),
+    ("N47 la garde accepte n'importe quel nom de FR_FORCE",
+     [('([string]$ff[0].entity_guid) -ieq "8A8636A4-069A-4692-A139-4773B161931B"',
+       '([string]$ff[0].entity_guid) -ieq ([string]$ff[0].entity_guid)')],
+     "test_la_garde_est_jouee_sous_powershell"),
+    ("N48 la garde accepte le nom plusieurs fois",
+     [("$ff.Count -eq 1 -and ", "$ff.Count -ge 1 -and ")],
+     "test_la_garde_est_jouee_sous_powershell"),
+    ("N49 la garde ne verifie plus la rangee reecrite",
+     [("if ($vidfr -ne [int]$payload.expected_2181_vid) { throw", "if ($false) { throw")],
+     "test_la_garde_est_jouee_sous_powershell"),
+    ("N50 la garde ne verifie plus que la base vaut le registre",
+     [('if ($null -eq $v2181 -or -not ([string]$v2181 -ceq [string]$ff[0].value)) { throw',
+       "if ($false) { throw")],
+     "test_la_garde_est_jouee_sous_powershell"),
+    ("N51 le refus d'avant ne depend plus du nom (garde sans condition)",
+     [("if (-not $named2181 -and (", "if ((")],
+     "test_la_garde_est_jouee_sous_powershell"),
+    ("N52 le post-contrat accepte toute base changee",
+     [("    conforme = nommee if nomme else same", "    conforme = True")],
+     "test_sans_fr_force_une_base_changee_est_un_echec"),
+    ("N53 le post-contrat suit un FR_FORCE d'un autre nom",
+     [("""    nomme = (len(ff) == 1 and str(ff[0].get("entity_guid", "")).upper() == PRESERVED_2181_GUID
+             and ff[0].get("field") == PRESERVED_2181_FIELD)""",
+       "    nomme = (len(ff) == 1)")],
+     "test_un_fr_force_d_un_autre_nom_ne_relache_rien"),
+    ("N54 le post-contrat ne compare plus la base au registre",
+     [('                  and apres[0]["value"] == ff[0]["value"]\n', "\n")],
+     "test_base_apres_differente_du_registre_est_un_echec"),
+    ("N55 le post-contrat ne verifie plus la rangee mesuree",
+     [('                  and apres[0]["value_id"] == avant[0]["value_id"]\n', "\n")],
+     "test_autre_rangee_est_un_echec"),
+    ("N56 le post-contrat ne verifie plus les News #2182",
+     [("nommee = bool(nomme and same_2182 and len(avant) == 1", "nommee = bool(nomme and len(avant) == 1")],
+     "test_une_news_2182_disparue_est_un_echec"),
+    ("N57 le post-contrat accepte un plan nomme dont la base n'a pas bouge",
+     [('                  and apres[0]["value"] != avant[0]["value"])', "                  and True)")],
+     "test_le_nom_une_base_deja_egale_au_registre_n_est_pas_une_reecriture"),
+    ("N58 le rapport porte la section du levier meme sans levier",
+     [('                   | ({"fr_named": named_report} if named_report else {}),',
+       '                   | ({"fr_named": named_report}),')],
+     "test_sans_le_levier_le_bloc_reste_exclu"),
+    ("N59 le fichier de resultat porte la cle du levier meme sans levier",
+     [("    if nomme:\n", "    if True:\n")],
+     "test_sans_fr_force_une_base_intacte_est_conforme"),
 ]
 
 

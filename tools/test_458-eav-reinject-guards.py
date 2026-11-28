@@ -73,15 +73,42 @@ BORNE JUSQU'AU WRITER (P24-55, contre-revue po-2023 c.6093174887) — trois de p
   B4  quand le seul blocage est une cellule nommee qu'un reglage ecarte, le verdict et
       le refus d'apply ne parlent pas de « conflits ou cibles manquantes » — il n'y en
       a pas ; ils nomment le reglage. Le temoin de l'autre branche est le cas du
-      conflit hors lot, qui epingle la phrase quand le conflit existe."""
+      conflit hors lot, qui epingle la phrase quand le conflit existe.
+
+LEVIER NOMME de la base fr du bloc (P24-54). La base fr du bloc « L'argumentation »
+est FR_EXCLUDED par defaut (arbitrage du 20/11) et AUCUNE option ne levait l'exclusion :
+la correction du registre n'avait aucun chemin vers la base servie. `--fr-force
+GUID:CHAMP` la leve pour UN nom, le sien. Neuf proprietes de plus :
+  L1  sans le levier, le bloc reste FR_EXCLUDED — nomme ou pas en `--only-cell` ;
+  L2  le nom complet leve l'exclusion pour cette seule base : op FR_FORCE (jamais le
+      chemin FR_UPDATE), montree a blanc, GUID COMPLET au rapport ;
+  L3  tout autre nom, et toute forme incomplete, est un REFUS avant toute lecture ;
+  L4  exclue (`--fr-exclude`) ET nommee (`--fr-force`) sur la meme base : REFUS ;
+  L5  le levier sur une base hors du perimetre `--only-cell` est un REFUS de perimetre ;
+  L6  une base nommee deja egale au registre est FR_SAME : rien a reecrire ;
+  L7  l'apply transmet UN FR_FORCE avec sa valeur d'avant, et ecrit
+      `reinject-fr-force-prior-*.json` AVANT l'appel du writer (capteur) ;
+  L8  la branche FR_FORCE du writer porte la discipline de `--force` (source LUE), et
+      la garde « #2181 identique » n'accepte que LE nom, UNE fois, sur la rangee du
+      dry-run, la base valant le registre — cette garde est aussi JOUEE : ses lignes de
+      decision sont extraites du script et executees sous PowerShell, un payload factice
+      a la main (le script entier, lui, exige la base) ;
+  L9  le post-contrat de `run_writer` n'accepte la base changee que pour LE nom, UNE
+      fois, la base valant le registre sur la rangee mesuree avant, #2182 intact.
+"""
 import contextlib
+import hashlib
 import importlib.util
 import io
+import json
+import os
 import pathlib
 import re
 import shutil
+import subprocess
 import tempfile
 import unittest
+from unittest import mock
 
 HERE = pathlib.Path(__file__).resolve().parent
 TOOL = HERE / "458-eav-reinject.py"
@@ -1059,9 +1086,11 @@ class PerimetreBorneOnlyCell(unittest.TestCase):
 
     def test_une_base_fr_nommee_exclue_est_montree_a_blanc_et_refusee_a_l_apply(self):
         # La base fr du bloc #2181 est preservee par defaut (arbitrage du 20/11).
-        # La NOMMER ne leve pas l'exclusion — aucune option ne la leve, pas meme
-        # --include-preserved-2181 (drapeau des traductions). A blanc : montree, et
-        # le verdict ne dit pas « pret pour --apply ». En apply : refuse.
+        # La NOMMER n'est pas le levier : ni `--only-cell`, ni meme
+        # --include-preserved-2181 (drapeau des traductions) ne levent l'exclusion —
+        # seul `--fr-force` la leve, et pour ce nom (P24-54, `LevierBaseFrBloc`).
+        # A blanc : montree, et le verdict ne dit pas « pret pour --apply ». En apply :
+        # refuse.
         cell = f"{self.BODY['entity_guid']}:Text:fr"
         for extra in ([], ["--include-preserved-2181"]):
             rc, out = self.run_main(["--only-cell", cell] + extra)
@@ -1225,6 +1254,694 @@ class PerimetreBorneOnlyCell(unittest.TestCase):
             + ["--force", f"{self.BODY['entity_guid']}:Text:ru"])
         self.assertEqual(rc, 1, out[-900:])
         self.assertIn("REFUS: --force nomme une cellule qui n'est pas au perimetre", out)
+
+
+# ---------------------------------------------------------------------------
+# P24-54 : le levier NOMME de la base fr du bloc #2181 (`--fr-force GUID:CHAMP`).
+# ---------------------------------------------------------------------------
+def powershell_disponibles():
+    """Les shells PowerShell de la machine, le plus ancien d'abord : le writer part
+    sous `powershell` (Windows PowerShell 5.1) ; `pwsh` est celui d'une CI Linux."""
+    return [b for b in ("powershell", "pwsh") if shutil.which(b)]
+
+
+# Le harnais qui JOUE la garde : une fonction par variante du bloc de decision, les cas
+# en JSON, une ligne par (variante, cas). Les messages sont en ASCII : ce qui traverse
+# le pipe ne depend pas de la page de code de la console.
+HARNAIS_PS = r"""
+$ErrorActionPreference = "Stop"
+try { [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 } catch {}
+%s
+$cases = ConvertFrom-Json -InputObject ([System.IO.File]::ReadAllText($env:FRFF_CASES, [System.Text.Encoding]::UTF8))
+foreach ($v in $env:FRFF_VARIANTES.Split("|")) {
+    foreach ($c in $cases) {
+        $script:dernier = "?"
+        $res = "PASSE"
+        try {
+            & ("Invoke-Garde-" + $v) -frwrites $c.frwrites -payload @{ expected_2181_vid = [int]$c.vid_attendu; expected_2181_value = [string]$c.valeur_attendue } -vidfr ([int]$c.vid_ecrit) -v2181 $c.valeur_lue
+        } catch { $res = "THROW: " + $_.Exception.Message }
+        Write-Output ("CAS|" + $v + "|" + $c.nom + "|" + $script:dernier + "|" + $res)
+    }
+}
+foreach ($k in @("reel", "brise")) {
+    $t = $null; $e = $null
+    $chemin = if ($k -eq "reel") { $env:FRFF_PS } else { $env:FRFF_PS_BRISE }
+    [void][System.Management.Automation.Language.Parser]::ParseInput([System.IO.File]::ReadAllText($chemin, [System.Text.Encoding]::UTF8), [ref]$t, [ref]$e)
+    Write-Output ("PARSE|" + $k + "|" + @($e).Count + "|" + ((@($e) | ForEach-Object { $_.Message }) -join " / "))
+}
+"""
+
+
+def ligne_bloc(valeur, vid=27942):
+    """Une ligne de `preservation_probe` pour le bloc #2181 (meme forme que l'outil)."""
+    return {"value_id": vid, "len": len(valeur),
+            "sha256": hashlib.sha256(valeur.encode("utf-16-le")).hexdigest(), "value": valeur}
+
+
+class LevierBaseFrBloc(unittest.TestCase):
+    """L1 a L7 : `--fr-force`, du parseur au seuil du writer.
+
+    Le banc est celui de `PerimetreBorneOnlyCell`, COMPOSE : un heritage ferait charger
+    ses cas une seconde fois sous un autre nom de classe. Sa cible synthetique sert, pour
+    la base fr du bloc, « Corps servi (plus long) » (ValueId 27942) ; son registre porte
+    « Corps du registre (adouci) ». Le GUID du banc EST celui du bloc — la base que la
+    prod sert en avance sur le registre (6709 c. contre 6687, #2181 c.7218258887).
+    """
+    SERVI = "Corps servi (plus long)"
+    REGISTRE = "Corps du registre (adouci)"
+
+    def setUp(self):
+        self.h = PerimetreBorneOnlyCell(methodName="test_parse_only_cell_formes")
+        self.h.setUp()
+        self.addCleanup(self.h.doCleanups)
+        self.mod = self.h.mod
+        self.G = self.h.BODY["entity_guid"]
+        self.NOM = f"{self.G}:Text"
+
+    def report(self):
+        return json.loads(self.h.fr_report.read_text(encoding="utf-8"))
+
+    def capteur(self):
+        """`run_writer` remplace : garde ce qui lui est TRANSMIS, et un instantane du
+        dossier de sauvegarde AU MOMENT de l'appel — c'est la preuve que la valeur d'avant
+        est ecrite avant le writer, pas apres."""
+        vu = {"appels": 0, "fr": None, "writes": None, "fichiers": None, "backup": None}
+
+        def sensor(conn, writes, fr_writes, pres_before, backup_dir, stamp, app_map):
+            vu["appels"] += 1
+            vu["fr"] = [dict(w) for w in fr_writes]
+            vu["writes"] = [dict(w) for w in writes]
+            vu["backup"] = pathlib.Path(backup_dir)
+            vu["fichiers"] = sorted(p.name for p in vu["backup"].iterdir())
+            return 0
+
+        original = self.mod.run_writer
+        self.mod.run_writer = sensor
+        self.addCleanup(setattr, self.mod, "run_writer", original)
+        return vu
+
+    # -- L1, L2 -------------------------------------------------------------------
+    def test_le_banc_parle_du_vrai_bloc(self):
+        # Sans cette amorce, tout ce qui suit eprouverait un GUID que l'outil ne connait pas.
+        self.assertEqual(self.G, self.mod.PRESERVED_2181_GUID)
+        self.assertEqual(self.h.BODY["field"], self.mod.PRESERVED_2181_FIELD)
+        self.assertEqual([r["val"] for r in self.h.log.rows() if r["vid"] == 27942], [self.SERVI])
+
+    def test_sans_le_levier_le_bloc_reste_exclu(self):
+        for extra in ([], ["--only-cell", f"{self.G}:Text:fr"]):
+            rc, out = self.h.run_main(extra)
+            self.assertIn("FR_EXCLUDED: 1", out, extra)
+            self.assertNotIn("FR_FORCE", out, extra)
+            self.assertNotIn("NOMMEE(S) de base fr", out, extra)
+            # La ligne du dry-run ne parle pas d'un levier que personne n'a leve.
+            self.assertNotIn("--fr-force", out.split("DRY-RUN")[-1].split("VERDICT")[0], extra)
+            # Sans levier, le rapport ne porte AUCUNE section du levier : il reste celui
+            # de master, octet pour octet.
+            self.assertNotIn("fr_named", self.report(), extra)
+
+    def test_le_nom_complet_reecrit_la_base(self):
+        for nom in (self.NOM, f"{self.G.lower()}:Text"):  # un GUID ne distingue pas la casse
+            rc, out = self.h.run_main(["--only-cell", f"{self.G}:Text:fr", "--fr-force", nom])
+            self.assertEqual(rc, 0, out[-900:])
+            self.assertIn("base fr (dim-0) :\n  FR_FORCE: 1", out)
+            self.assertNotIn("FR_EXCLUDED", out)
+            self.assertNotIn("NOMMEE(S) EXCLUE(S)", out)
+            self.assertIn("1 REECRITURE(S) NOMMEE(S) de base fr (--fr-force)", out)
+            # GUID COMPLET sur la ligne que l'operateur relit avant de nommer la base.
+            self.assertIn(f"  - {self.G} Content.Text [fr] db={len(self.SERVI)}c "
+                          f"-> registre={len(self.REGISTRE)}c", out)
+            self.assertIn("+ 1 REECRITURE(S) de base fr (FR_DRIFT non exclues, "
+                          "dont 1 NOMMEE(S) par --fr-force)", out)
+            self.assertIn("VERDICT: plan coherent, pret pour --apply", out)
+            self.assertEqual(self.report()["fr_named"], [{
+                "guid": self.G, "key": f"{self.G}/Text", "content_type": "Content",
+                "field": "Text", "len_base": len(self.SERVI), "len_registre": len(self.REGISTRE)}])
+            self.assertEqual(self.report()["excluded"], [])
+
+    # -- L3, L4, L5 : les refus ----------------------------------------------------
+    def test_le_nom_faux_est_refuse_avant_toute_lecture(self):
+        # Un nom JUSTE mais pas le sien : l'outil refuse, et dit lequel il attend.
+        faux = {"un autre GUID": f"{self.h.B['entity_guid']}:Summary",
+                "un autre champ": f"{self.G}:Summary",
+                "le champ en minuscules": f"{self.G}:text"}
+        for label, nom in faux.items():
+            rc, out = self.h.run_main(["--fr-force", nom])
+            self.assertEqual(rc, 1, (label, out[-400:]))
+            self.assertIn("REFUS: --fr-force n'accepte qu'un nom, celui de la base fr du "
+                          "bloc #2181", out, label)
+            self.assertIn(f"({self.G} champ Text) — refuse", out, label)
+        incomplets = ("8A8636A4:Text", self.G.replace("-", "") + ":Text", f"{self.G}:Text:fr",
+                      f"{self.G}:", f"{self.G}::", "", ":Text")
+        for nom in incomplets:
+            rc, out = self.h.run_main(["--fr-force", nom])
+            self.assertEqual(rc, 1, (nom, out[-300:]))
+            self.assertIn("REFUS: --fr-force mal forme", out, nom)
+        self.assertEqual(self.h.log.sqls, [], "aucune lecture de la cible")
+
+    def test_exclue_et_nommee_sur_la_meme_base_refuse(self):
+        rc, out = self.h.run_main(["--fr-exclude", self.NOM, "--fr-force", f"{self.G.lower()}:Text"])
+        self.assertEqual(rc, 1, out[-400:])
+        self.assertIn("REFUS: --fr-force et --fr-exclude nomment la meme base fr "
+                      "(8A8636A4… Text) — choisir l'un des deux", out)
+        self.assertEqual(self.h.log.sqls, [])
+
+    def test_le_levier_hors_perimetre_est_refuse(self):
+        # Le lot ne nomme qu'une traduction : la base fr n'y est pas. Croire avoir demande
+        # sa reecriture et n'ecrire rien — meme contresens que --force hors perimetre.
+        rc, out = self.h.run_main(["--only-cell", f"{self.G}:Text:en", "--include-preserved-2181",
+                                   "--fr-force", self.NOM])
+        self.assertEqual(rc, 1, out[-400:])
+        self.assertIn("REFUS: --fr-force nomme une base fr qui n'est pas au perimetre : "
+                      "8A8636A4… Text", out)
+        self.assertEqual(self.h.log.sqls, [], "le refus tombe avant la connexion")
+        # Controle inverse : la base nommee au perimetre, le levier passe.
+        rc, out = self.h.run_main(["--only-cell", f"{self.G}:Text:fr", "--only-cell",
+                                   f"{self.G}:Text:en", "--include-preserved-2181",
+                                   "--fr-force", self.NOM])
+        self.assertEqual(rc, 0, out[-900:])
+        self.assertIn("INSERT: 1", out)
+        self.assertIn("FR_FORCE: 1", out)
+        self.assertIn("VERDICT: plan coherent, pret pour --apply", out)
+
+    # -- L6 ------------------------------------------------------------------------
+    def test_une_base_deja_egale_au_registre_rien_a_reecrire(self):
+        rows = self.h.log.rows
+        self.h.log.rows = lambda: [dict(r, val=self.REGISTRE) if r["vid"] == 27942 else r
+                                   for r in rows()]
+        vu = self.capteur()
+        rc, out = self.h.run_main(["--only-cell", f"{self.G}:Text:fr", "--fr-force", self.NOM,
+                                   "--apply", "--backup-dir", str(self.h.tmp / "backup")])
+        self.assertEqual(rc, 0, out[-900:])
+        self.assertIn("FR_SAME: 1", out)
+        self.assertNotIn("FR_FORCE", out)
+        self.assertNotIn("NOMMEE(S) de base fr", out)
+        self.assertEqual(vu["fr"], [])
+        self.assertEqual([n for n in vu["fichiers"] if "fr-force-prior" in n], [])
+
+    # -- L7 ------------------------------------------------------------------------
+    def test_l_apply_transmet_un_fr_force_et_sauvegarde_l_avant_avant_le_writer(self):
+        vu = self.capteur()
+        rc, out = self.h.run_main(["--only-cell", f"{self.G}:Text:fr", "--fr-force", self.NOM,
+                                   "--apply", "--backup-dir", str(self.h.tmp / "backup")])
+        self.assertEqual(rc, 0, out[-900:])
+        self.assertEqual(vu["appels"], 1, out[-600:])
+        self.assertEqual(vu["writes"], [])
+        (w,) = vu["fr"]
+        self.assertEqual({k: w[k] for k in ("entity_guid", "field", "lang", "op", "db_value",
+                                            "value", "target_app")},
+                         {"entity_guid": self.G, "field": "Text", "lang": "fr", "op": "FR_FORCE",
+                          "db_value": self.SERVI, "value": self.REGISTRE, "target_app": 33})
+        self.assertIn("1 base(s) fr nommee(s) (--fr-force), valeur d'avant sauvegardee "
+                      "+ 1 bases fr", out)
+        # L'inverse se lit : la valeur d'avant, la nouvelle valeur, et la rangee mesuree.
+        (nom,) = [n for n in vu["fichiers"] if n.startswith("reinject-fr-force-prior-")]
+        avant = json.loads((vu["backup"] / nom).read_text(encoding="utf-8"))
+        self.assertEqual(avant, [{"entity_guid": self.G, "content_type": "Content", "field": "Text",
+                                  "lang": "fr", "target_app": 33, "base_value_id": 27942,
+                                  "prior_value": self.SERVI, "new_value": self.REGISTRE}])
+
+    def test_sans_le_levier_rien_de_cela_n_arrive_au_writer(self):
+        vu = self.capteur()
+        rc, out = self.h.run_main(["--only-cell", f"{self.G}:Text:en", "--include-preserved-2181",
+                                   "--apply", "--backup-dir", str(self.h.tmp / "backup")])
+        self.assertEqual(rc, 0, out[-900:])
+        self.assertEqual(vu["fr"], [])
+        self.assertEqual([n for n in vu["fichiers"] if "fr-force-prior" in n], [])
+        self.assertNotIn("base(s) fr nommee(s)", out)
+
+
+class WriterFrForce(unittest.TestCase):
+    """L8 (branche) : le chemin FR_FORCE du writer, LU — il exige la base pour tourner.
+
+    Il porte la discipline de `--force` (branche de P24-51), sur la rangee de BASE :
+    la MAX lue au dry-run, sous verrou, la valeur d'avant comparee OCTETALEMENT, une
+    rangee, sinon ROLLBACK — et il ne tombe JAMAIS dans le chemin FR_UPDATE.
+    """
+
+    START = 'if ($w.op -eq "FR_FORCE") {'
+    END = "# Epingle une seule rangee dim-0"
+    ORDINAL = "[string]::Equals([string]$cur, [string]$old, [System.StringComparison]::Ordinal)"
+    REFUS_ORDINAL = ("throw \"FR_FORCE $guid.$field : la valeur en base n'est plus celle du "
+                     "dry-run - ROLLBACK\"")
+    ASSERTS = (
+        ORDINAL,                                                    # la valeur d'avant, octets a octets
+        "UPDATE TsDynDataValue SET [Value]=@v WHERE ValueId=@vid",  # rangee epinglee par son ValueId
+        "ORDER BY v.ValueId DESC",                                  # ... la MAX lue au dry-run
+        "WITH (UPDLOCK,HOLDLOCK)",                                  # sous verrou
+        "LEFT JOIN TsDynDataValueDimension vd ON vd.ValueId = v.ValueId",
+        "AND vd.ValueId IS NULL",                                   # la rangee de BASE (dim-0)
+        "if (-not $r.Read())",                                      # la rangee epinglee est LUE...
+        "aucune rangee de base (dim-0)",                            # ...absente = refus nomme
+        "if ($n -ne 1)",                                            # une rangee, sinon throw
+        REFUS_ORDINAL,                                              # valeur d'avant differente = refus
+        "$frforced++",
+        "continue",                                                 # jamais le chemin FR_UPDATE ensuite
+    )
+
+    def block(self, text):
+        self.assertEqual(text.count(self.START), 1)   # un seul chemin FR_FORCE
+        i = text.index(self.START)
+        return text[i:text.index(self.END, i)]
+
+    def check(self, text):
+        b = self.block(text)
+        self.assertEqual([a for a in self.ASSERTS if a not in b], [])
+        self.assertEqual(b.count("continue"), 1)
+        self.assertNotIn("@old", b)   # pas l'egalite SQL du chemin FR_UPDATE
+        # Apres la resolution de l'entite (le G1 in-tx vaut pour elle aussi), avant
+        # l'epingle du chemin FR_UPDATE.
+        self.assertLess(text.index('throw "FR G1 in-tx: plusieurs entites'), text.index(self.START))
+        self.assertLess(text.index(self.END),
+                        text.index("SELECT MAX(v.ValueId) FROM TsDynDataValue v WITH (UPDLOCK,HOLDLOCK)"))
+
+    def test_une_seule_branche_fr_force_et_conforme(self):
+        self.check(load_tool().WRITER_PS)
+
+    def test_mutation_fr_force_non_ordinale_rougit(self):
+        ns = load_source(mutated_source([(self.ORDINAL, "($cur -eq $old)")]))
+        with self.assertRaises(AssertionError):
+            self.check(ns["WRITER_PS"])
+
+    def test_mutation_fr_force_update_non_epinglee_rougit(self):
+        ns = load_source(mutated_source([(
+            "UPDATE TsDynDataValue SET [Value]=@v WHERE ValueId=@vid",
+            "UPDATE TsDynDataValue SET [Value]=@v WHERE EntityId=@e")]))
+        with self.assertRaises(AssertionError):
+            self.check(ns["WRITER_PS"])
+
+    def test_mutation_fr_force_sans_verrou_rougit(self):
+        ns = load_source(mutated_source([(
+            "SELECT TOP 1 v.ValueId, CONVERT(nvarchar(max), v.[Value]) FROM TsDynDataValue v WITH (UPDLOCK,HOLDLOCK)",
+            "SELECT TOP 1 v.ValueId, CONVERT(nvarchar(max), v.[Value]) FROM TsDynDataValue v")]))
+        with self.assertRaises(AssertionError):
+            self.check(ns["WRITER_PS"])
+
+    def test_mutation_fr_force_hors_base_rougit(self):
+        # Sans `vd.ValueId IS NULL`, la rangee epinglee pourrait etre une TRADUCTION.
+        ns = load_source(mutated_source([(
+            "WHERE v.EntityId=@e AND v.AttributeId=@a AND vd.ValueId IS NULL",
+            "WHERE v.EntityId=@e AND v.AttributeId=@a")]))
+        with self.assertRaises(AssertionError):
+            self.check(ns["WRITER_PS"])
+
+    def test_mutation_fr_force_sans_refus_de_rangee_rougit(self):
+        ns = load_source(mutated_source([(
+            'if (-not $r.Read()) { $r.Close(); throw "FR_FORCE $guid.$field : aucune rangee de '
+            'base (dim-0) — base modifiee depuis le dry-run" }',
+            "# refus de rangee absente retire")]))
+        with self.assertRaises(AssertionError):
+            self.check(ns["WRITER_PS"])
+
+    def test_mutation_fr_force_plusieurs_rangees_rougit(self):
+        ns = load_source(mutated_source([(
+            'if ($n -ne 1) { throw "FR_FORCE', 'if ($false) { throw "FR_FORCE')]))
+        with self.assertRaises(AssertionError):
+            self.check(ns["WRITER_PS"])
+
+    def test_mutation_fr_force_tombe_dans_fr_update_rougit(self):
+        # Sans `continue`, la base nommee prendrait AUSSI le chemin FR_UPDATE : un second
+        # UPDATE sur la meme rangee, sous egalite SQL.
+        ns = load_source(mutated_source([(
+            "            $frforced++\n            continue\n", "            $frforced++\n")]))
+        with self.assertRaises(AssertionError):
+            self.check(ns["WRITER_PS"])
+
+
+class Garde2181Levier(unittest.TestCase):
+    """L8 (garde) : « #2181 identique » ne cede que pour LE nom, UNE fois.
+
+    Deux instruments. Le premier LIT le script : le nom ecrit en LITTERAL, le refus
+    d'avant toujours present — une fois —, la verification de rangee. Le second JOUE :
+    les lignes de DECISION de la garde sont extraites de `WRITER_PS` telles quelles et
+    executees sous PowerShell sur un payload factice — le cas sain, et chacun des cas
+    qui doit rougir. Sans PowerShell sur la machine, le second est saute et le dit ; en
+    CI, l'absence est un ECHEC : une garde sautee n'y serait jamais vue.
+
+    Ce que le second n'etablit pas : que le VRAI script, lui, fait cela. La lecture
+    (premier instrument) et le refus d'une valeur qui n'est pas celle du dry-run
+    (`WriterFrForce`) sont les deux autres cotes ; le script entier exige la base.
+    """
+
+    START = '    $ff = @($frwrites | Where-Object { $_.op -eq "FR_FORCE" })'
+    FIN = "    if (-not $named2181 -and ("
+    NOMMEE = "    $named2181 = ("
+    REFUS = ('if (-not $named2181 -and ($null -eq $v2181 -or -not ([string]$v2181 -ceq '
+             '[string]$payload.expected_2181_value))) { throw "preservation #2181: valeur de base '
+             'MODIFIEE (attendu identique au dry-run) - ROLLBACK" }')
+    # Les quatre lignes qui lisent la base (remplacees, a l'execution, par la valeur lue).
+    LECTURES = ("    $cmd.", "    [void]$cmd.", "    $v2181 = ")
+    ANCIEN = "THROW: preservation #2181: valeur de base MODIFIEE (attendu identique au dry-run) - ROLLBACK"
+    VALEUR = "THROW: preservation #2181 (base fr nommee) : la base ne vaut pas le registre - ROLLBACK"
+    RANGEE = ("THROW: preservation #2181 (base fr nommee) : la rangee reecrite n'est pas celle "
+              "du dry-run - ROLLBACK")
+    AUTRE = "BBBBBBBB-0000-0000-0000-00000000000B"
+
+    # -- ce qui est LIT --------------------------------------------------------------
+    def decision(self, text):
+        """Les lignes de decision de la garde, DECALEES de 4 espaces, dans l'ordre.
+
+        Les quatre lignes qui lisent la base (`$cmd...`) sont remplacees, a l'execution,
+        par la valeur lue passee en parametre. Toute autre forme entre les deux bornes —
+        une deuxieme naissance du bloc, une cinquieme lecture, une decision entre le
+        predicat et son bloc — est un echec : le harnais ne jouerait plus la garde lue.
+        """
+        lines = text.split("\n")
+        debuts = [i for i, l in enumerate(lines) if l == self.START]
+        fins = [i for i, l in enumerate(lines) if l.startswith(self.FIN)]
+        self.assertEqual((len(debuts), len(fins)), (1, 1), "la garde doit tenir en UN bloc")
+        garde, lectures, captures = [], 0, 0
+        for l in lines[debuts[0]:fins[0] + 1]:
+            if l.startswith(self.LECTURES):
+                lectures += 1
+                continue
+            garde.append(l[4:])
+            if l.startswith(self.NOMMEE):
+                garde.append("$script:dernier = [string]$named2181")   # sonde du harnais
+                captures += 1
+        self.assertEqual((lectures, captures), (4, 1))
+        i = next((k for k, l in enumerate(garde) if l.startswith(self.NOMMEE[4:])), None)
+        self.assertIsNotNone(i, "le predicat de la garde est introuvable")
+        self.assertEqual(garde[i + 2], "if ($named2181) {")
+        return garde
+
+    def check_source(self, text, mod):
+        self.assertEqual(text.count(self.REFUS), 1, "le refus d'avant, une fois, inchange")
+        self.assertIn("$ff.Count -eq 1 -and ", text)                  # UNE fois, pas « au moins »
+        # Le nom est ecrit en LITTERAL dans le script, pas recu du payload — et ce
+        # litteral est celui de la constante de l'outil (les deux ne doivent pas diverger).
+        self.assertIn(f'-ieq "{mod.PRESERVED_2181_GUID}"', text)
+        self.assertIn(f'-ceq "{mod.PRESERVED_2181_FIELD}"', text)
+        self.assertIn("if ($vidfr -ne [int]$payload.expected_2181_vid) { throw", text)
+        self.assertIn("[string]$v2181 -ceq [string]$ff[0].value", text)
+        self.decision(text)
+        # Apres la relecture in-tx, avant le COMMIT.
+        self.assertLess(text.index("RELECTURE FR ECHEC"), text.index(self.START))
+        self.assertLess(text.index(self.START), text.index("$tx.Commit()"))
+
+    def test_la_garde_est_lue_dans_le_script(self):
+        mod = load_tool()
+        self.check_source(mod.WRITER_PS, mod)
+
+    def test_mutation_le_refus_d_avant_perd_sa_condition_rougit(self):
+        ns = load_source(mutated_source([("if (-not $named2181 -and (", "if ((")]))
+        with self.assertRaises(AssertionError):
+            self.check_source(ns["WRITER_PS"], load_tool())
+
+    def test_mutation_le_nom_deux_fois_accepte_rougit(self):
+        ns = load_source(mutated_source([("$ff.Count -eq 1 -and ", "$ff.Count -ge 1 -and ")]))
+        with self.assertRaises(AssertionError):
+            self.check_source(ns["WRITER_PS"], load_tool())
+
+    def test_mutation_le_nom_litteral_diverge_de_la_constante_rougit(self):
+        ns = load_source(mutated_source([(
+            '-ieq "8A8636A4-069A-4692-A139-4773B161931B"',
+            '-ieq "0A8636A4-069A-4692-A139-4773B161931B"')]))
+        with self.assertRaises(AssertionError):
+            self.check_source(ns["WRITER_PS"], load_tool())
+
+    def test_mutation_sans_verification_de_rangee_rougit(self):
+        ns = load_source(mutated_source([(
+            "if ($vidfr -ne [int]$payload.expected_2181_vid) { throw", "if ($false) { throw")]))
+        with self.assertRaises(AssertionError):
+            self.check_source(ns["WRITER_PS"], load_tool())
+
+    def test_mutation_le_nom_n_est_plus_verifie_rougit(self):
+        ns = load_source(mutated_source([(
+            '([string]$ff[0].entity_guid) -ieq "8A8636A4-069A-4692-A139-4773B161931B" -and ',
+            "")]))
+        with self.assertRaises(AssertionError):
+            self.check_source(ns["WRITER_PS"], load_tool())
+
+    # -- ce qui est JOUE --------------------------------------------------------------
+    def cas(self, g, f):
+        """(nom, frwrites, ValueId epingle par la branche, valeur lue in-tx, nomme, issue).
+
+        La valeur attendue au dry-run est « avant » partout, la valeur du registre
+        « registre ». `None` = liste absente (pas une liste vide) : PowerShell les
+        distingue, la garde ne doit pas.
+        """
+        def ff(guid, champ):
+            return {"op": "FR_FORCE", "entity_guid": guid, "field": champ, "value": "registre"}
+        return [
+            ("sans_FR_FORCE_base_intacte", [], 0, "avant", "False", "PASSE"),
+            ("sans_FR_FORCE_liste_absente", None, 0, "avant", "False", "PASSE"),
+            ("sans_FR_FORCE_base_modifiee", [], 0, "apres", "False", self.ANCIEN),
+            ("une_FR_UPDATE_base_intacte", [{"op": "FR_UPDATE", "entity_guid": g, "field": f}],
+             0, "avant", "False", "PASSE"),
+            ("le_nom_base_egale_au_registre", [ff(g, f)], 27942, "registre", "True", "PASSE"),
+            ("le_nom_en_minuscules_base_egale_au_registre", [ff(g.lower(), f)], 27942,
+             "registre", "True", "PASSE"),
+            ("le_nom_base_differente_du_registre", [ff(g, f)], 27942, "autre", "True", self.VALEUR),
+            ("le_nom_autre_rangee", [ff(g, f)], 27940, "registre", "True", self.RANGEE),
+            ("le_nom_rangee_juste_base_nulle", [ff(g, f)], 27942, None, "True", self.VALEUR),
+            ("un_AUTRE_GUID", [ff(self.AUTRE, f)], 27942, "registre", "False", self.ANCIEN),
+            ("le_GUID_du_bloc_un_AUTRE_champ", [ff(g, "Summary")], 27942, "registre",
+             "False", self.ANCIEN),
+            ("le_champ_d_une_autre_casse", [ff(g, "text")], 27942, "registre", "False", self.ANCIEN),
+            ("le_nom_DEUX_fois", [ff(g, f), ff(g, f)], 27942, "registre", "False", self.ANCIEN),
+            ("le_nom_ET_un_autre", [ff(g, f), ff(self.AUTRE, f)], 27942, "registre",
+             "False", self.ANCIEN),
+        ]
+
+    def variantes(self, mod):
+        """(nom, remplacements sur le bloc de decision, cas qui DOIT changer).
+
+        Chaque variante retire UNE decision de la garde — dans une COPIE du bloc, le
+        bloc reel reste celui qui est joue en premier. Le cas nomme est celui qui passe
+        (ou echoue) autrement des qu'elle manque.
+        """
+        g, f = mod.PRESERVED_2181_GUID, mod.PRESERVED_2181_FIELD
+        return [
+            ("le_nom_deux_fois", [("$ff.Count -eq 1", "$ff.Count -ge 1")], "le_nom_DEUX_fois"),
+            ("n_importe_quel_GUID", [(f'([string]$ff[0].entity_guid) -ieq "{g}"',
+                                      '([string]$ff[0].entity_guid) -ieq ([string]$ff[0].entity_guid)')],
+             "un_AUTRE_GUID"),
+            ("champ_insensible", [(f'-ceq "{f}"', f'-ieq "{f}"')], "le_champ_d_une_autre_casse"),
+            ("sans_verification_de_rangee",
+             [("if ($vidfr -ne [int]$payload.expected_2181_vid) { throw", "if ($false) { throw")],
+             "le_nom_autre_rangee"),
+            ("sans_verification_de_valeur",
+             [("if ($null -eq $v2181 -or -not ([string]$v2181 -ceq [string]$ff[0].value)) { throw",
+               "if ($false) { throw")], "le_nom_base_differente_du_registre"),
+            ("refus_sans_condition", [("if (-not $named2181 -and (", "if ((")],
+             "le_nom_base_egale_au_registre"),
+        ]
+
+    def fonction(self, nom, lignes):
+        return ("function Invoke-Garde-%s {\n    param($frwrites, $payload, $vidfr, $v2181)\n%s\n}\n"
+                % (nom, "\n".join(lignes)))
+
+    def jouer(self, ps, binaire):
+        """Un processus PowerShell : toutes les variantes, tous les cas, les 2 parses."""
+        mod = load_tool()
+        cas = self.cas(mod.PRESERVED_2181_GUID, mod.PRESERVED_2181_FIELD)
+        reel = self.decision(ps)
+        texte = "\n".join(reel)
+        variantes = [("reel", texte)]
+        for nom, remplacements, _ in self.variantes(mod):
+            t = texte
+            for aiguille, remplace in remplacements:
+                assert t.count(aiguille) == 1, f"aiguille de variante introuvable ou ambigue: {aiguille[:60]!r}"
+                t = t.replace(aiguille, remplace)
+            variantes.append((nom, t))
+        d = pathlib.Path(tempfile.mkdtemp(prefix="garde2181-"))
+        self.addCleanup(shutil.rmtree, d, True)
+        (d / "harnais.ps1").write_text(
+            HARNAIS_PS % "".join(self.fonction(n, t.split("\n")) for n, t in variantes),
+            encoding="utf-8-sig")
+        (d / "reel.ps1").write_text(ps, encoding="utf-8")
+        (d / "brise.ps1").write_text(ps + "\n}\n", encoding="utf-8")   # une accolade de trop
+        (d / "cas.json").write_text(json.dumps([
+            {"nom": n, "frwrites": fr, "vid_attendu": 27942, "valeur_attendue": "avant",
+             "vid_ecrit": vid, "valeur_lue": lu} for n, fr, vid, lu, _, _ in cas]), encoding="utf-8")
+        env = os.environ.copy()
+        env.update(FRFF_CASES=str(d / "cas.json"), FRFF_PS=str(d / "reel.ps1"),
+                   FRFF_PS_BRISE=str(d / "brise.ps1"),
+                   FRFF_VARIANTES="|".join(n for n, _ in variantes))
+        p = subprocess.run([binaire, "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass",
+                            "-File", str(d / "harnais.ps1")],
+                           capture_output=True, text=True, encoding="utf-8", errors="replace",
+                           env=env, timeout=300)
+        vus, parses = {}, {}
+        for l in p.stdout.splitlines():
+            c = l.split("|")
+            if c[0] == "CAS" and len(c) >= 5:
+                vus[(c[1], c[2])] = (c[3], "|".join(c[4:]))
+            elif c[0] == "PARSE" and len(c) >= 4:
+                parses[c[1]] = (int(c[2]), "|".join(c[3:]))
+        self.assertEqual(p.returncode, 0, p.stderr[-800:])
+        self.assertEqual(len(vus), len(cas) * len(variantes), (p.stdout[-800:], p.stderr[-800:]))
+        self.assertEqual(sorted(parses), ["brise", "reel"], p.stdout[-800:])
+        return vus, parses
+
+    def test_la_garde_est_jouee_sous_powershell(self):
+        mod = load_tool()
+        dispo = powershell_disponibles()
+        if not dispo:
+            if os.environ.get("CI"):
+                self.fail("CI sans PowerShell : la garde jouee ne peut pas l'etre (instrument absent)")
+            self.skipTest("aucun PowerShell sur cette machine : garde LUE, pas JOUEE")
+        attendu = {n: (nomme, issue) for n, _, _, _, nomme, issue in
+                   self.cas(mod.PRESERVED_2181_GUID, mod.PRESERVED_2181_FIELD)}
+        for binaire in dispo:
+            with self.subTest(shell=binaire):
+                vus, parses = self.jouer(mod.WRITER_PS, binaire)
+                for n, (nomme, issue) in attendu.items():
+                    self.assertEqual(vus[("reel", n)], (nomme, issue), n)
+                for v, _, temoin in self.variantes(mod):
+                    self.assertNotEqual(vus[(v, temoin)], vus[("reel", temoin)], (v, temoin))
+                # Le script ENTIER se parse — et l'instrument voit un script casse.
+                self.assertEqual(parses["reel"], (0, ""), parses["reel"])
+                self.assertGreaterEqual(parses["brise"][0], 1, parses["brise"])
+
+    def test_le_script_tient_sur_une_ligne_de_commande(self):
+        # Le writer part par `-Command <script>` : Windows borne une ligne de commande a
+        # 32 767 caracteres. Au dela, l'outil ne parte plus — loudement, mais sans dire pourquoi.
+        self.assertLess(len(load_tool().WRITER_PS), 30_000)
+
+
+class PostContratLevier(unittest.TestCase):
+    """L9 : le post-contrat de `run_writer` (APRES le COMMIT), sur un writer factice.
+
+    Le contrat general — « preservation APRES identique a AVANT » — ne cede que sur la
+    base du bloc, et seulement pour LE nom, UNE fois, la base valant le registre sur la
+    rangee mesuree avant, les 7 News #2182 intactes. Le script PowerShell n'est pas
+    lance : `subprocess.run` est remplace, la sonde de preservation sert AVANT puis APRES.
+    """
+
+    def setUp(self):
+        self.mod = load_tool()
+        self.G = self.mod.PRESERVED_2181_GUID
+        self.F = self.mod.PRESERVED_2181_FIELD
+        self.AVANT = "Corps servi (plus long)"
+        self.REGISTRE = "Corps du registre (adouci)"
+        self.news = [{"guid": g.upper(), "entity_id": i + 1}
+                     for i, g in enumerate(self.mod.NEWS_2182_GUIDS)]
+        self.assertEqual(len(self.news), 7)
+        self.tmp = pathlib.Path(tempfile.mkdtemp(prefix="postcontrat-"))
+        self.addCleanup(shutil.rmtree, self.tmp, True)
+        self.appels = []
+
+    def fr_force(self, **touches):
+        return {"entity_guid": self.G, "field": self.F, "lang": "fr", "op": "FR_FORCE",
+                "value": self.REGISTRE, "db_value": self.AVANT, "target_app": 33,
+                "content_type": "Content"} | touches
+
+    def appliquer(self, fr_writes, apres, news_apres=None, avant_valeur=None):
+        mod = self.mod
+        # Les apps #2182 se resolvent par la carte, sur le plan COMPLET.
+        mod.CURRENT_PLAN = [{"app_id": "33", "entity_guid": mod.NEWS_2182_GUIDS[0],
+                             "field": "Title", "lang": "en"}]
+        if avant_valeur is None:
+            avant_valeur = self.AVANT
+        avant = {"block_2181": [ligne_bloc(avant_valeur)], "news_2182": self.news}
+        pile = [dict(apres, news_2182=self.news if news_apres is None else news_apres)]
+        mod.preservation_probe = lambda conn, app_map=None: pile.pop(0)
+
+        def faux_writer(cmdl, **kwargs):
+            self.appels.append((cmdl[0], kwargs.get("env") or {}))
+            return subprocess.CompletedProcess(cmdl, 0, stdout="COMMIT OK\n", stderr="")
+
+        out = io.StringIO()
+        with mock.patch("subprocess.run", faux_writer), contextlib.redirect_stdout(out):
+            rc = mod.run_writer("Server=synthetic;Database=x", [], list(fr_writes), avant,
+                                self.tmp, "20261128T000000Z", {"33": 33})
+        self.assertEqual(len(pile), 0, "la sonde doit etre lue AVANT et APRES, pas plus")
+        resultat = json.loads((self.tmp / "reinject-result-20261128T000000Z.json")
+                              .read_text(encoding="utf-8"))
+        return rc, out.getvalue(), resultat
+
+    def test_sans_fr_force_une_base_intacte_est_conforme(self):
+        rc, out, r = self.appliquer([], {"block_2181": [ligne_bloc(self.AVANT)]})
+        self.assertEqual((rc, r["preservation_intact"]), (0, True))
+        # Sans levier, le fichier de resultat est celui de master : aucune cle du levier.
+        self.assertEqual(set(r), {"preservation_after", "preservation_intact"})
+        self.assertIn("preservation APRES identique a AVANT: True", out)
+        self.assertIn("VERDICT: apply termine — preservation OK", out)
+        self.assertNotIn("LEVIER --fr-force", out)
+
+    def test_sans_fr_force_une_base_changee_est_un_echec(self):
+        rc, out, r = self.appliquer([], {"block_2181": [ligne_bloc("autre chose")]})
+        self.assertEqual(rc, 1, out)
+        self.assertEqual(r["preservation_intact"], False)
+        self.assertEqual(set(r), {"preservation_after", "preservation_intact"})
+        self.assertIn("VERDICT: apply termine — ⚠️ PRESERVATION A QUALIFIER", out)
+
+    def test_le_nom_base_egale_au_registre_sur_la_rangee_du_dry_run_est_conforme(self):
+        rc, out, r = self.appliquer([self.fr_force()], {"block_2181": [ligne_bloc(self.REGISTRE)]})
+        self.assertEqual(rc, 0, out)
+        # Honnete : la base N'EST PAS identique. Le post-contrat le dit, et dit pourquoi il l'accepte.
+        self.assertEqual((r["preservation_intact"], r["base_fr_2181_reecrite_nommee"]),
+                         (False, True))
+        self.assertIn("preservation APRES identique a AVANT: False", out)
+        self.assertIn(f"LEVIER --fr-force : base fr du bloc #2181 reecrite NOMMEMENT, comme "
+                      f"demande — rangee du dry-run (ValueId 27942), apres = registre "
+                      f"({len(self.REGISTRE)} c.), avant = {len(self.AVANT)} c.", out)
+        self.assertIn("reinject-fr-force-prior-20261128T000000Z.json", out)
+        self.assertIn("VERDICT: apply termine — preservation OK", out)
+
+    def test_un_fr_force_d_un_autre_nom_ne_relache_rien(self):
+        alien = self.fr_force(entity_guid="BBBBBBBB-0000-0000-0000-00000000000B", field="Summary",
+                              value="autre chose")
+        rc, out, r = self.appliquer([alien], {"block_2181": [ligne_bloc("autre chose")]})
+        self.assertEqual(rc, 1, out)
+        # Un FR_FORCE d'un autre nom n'est pas « le levier » : le fichier de resultat ne
+        # porte meme pas la cle.
+        self.assertNotIn("base_fr_2181_reecrite_nommee", r)
+        self.assertNotIn("reecrite NOMMEMENT, comme demande", out)
+
+    def test_le_nom_deux_fois_ne_relache_rien(self):
+        rc, out, r = self.appliquer([self.fr_force(), self.fr_force()],
+                                    {"block_2181": [ligne_bloc(self.REGISTRE)]})
+        self.assertEqual(rc, 1, out)
+        self.assertNotIn("base_fr_2181_reecrite_nommee", r)
+
+    def test_base_apres_differente_du_registre_est_un_echec(self):
+        rc, out, r = self.appliquer([self.fr_force()], {"block_2181": [ligne_bloc(
+            self.REGISTRE[:-4])]})   # tronquee : ce n'est pas le registre
+        self.assertEqual(rc, 1, out)
+        self.assertIn("le post-contrat la REFUSE", out)
+        self.assertEqual(r["base_fr_2181_reecrite_nommee"], False)
+
+    def test_autre_rangee_est_un_echec(self):
+        rc, out, r = self.appliquer([self.fr_force()], {"block_2181": [ligne_bloc(self.REGISTRE, 27941)]})
+        self.assertEqual(rc, 1, out)
+        self.assertEqual(r["base_fr_2181_reecrite_nommee"], False)
+
+    def test_le_nom_sans_changement_de_base_est_un_echec(self):
+        # Le plan nomme la base et elle n'a pas bouge : l'ecriture demandee n'a pas eu lieu.
+        rc, out, r = self.appliquer([self.fr_force()], {"block_2181": [ligne_bloc(self.AVANT)]})
+        self.assertEqual(rc, 1, out)
+        self.assertEqual((r["preservation_intact"], r["base_fr_2181_reecrite_nommee"]), (True, False))
+        self.assertIn("VERDICT: apply termine — ⚠️ PRESERVATION A QUALIFIER", out)
+
+    def test_le_nom_une_base_deja_egale_au_registre_n_est_pas_une_reecriture(self):
+        # AVANT vaut deja le registre, APRES aussi : rien n'a ete reecrit, et le post-contrat ne
+        # dit pas « reecrite » sur la seule foi du plan — il compare SES deux mesures. Etat que le
+        # dry-run ne produit pas (une base egale au registre est FR_SAME) : ce cas epingle la
+        # comparaison AVANT/APRES elle-meme, que le cas precedent n'atteint pas.
+        rc, out, r = self.appliquer([self.fr_force()], {"block_2181": [ligne_bloc(self.REGISTRE)]},
+                                    avant_valeur=self.REGISTRE)
+        self.assertEqual(rc, 1, out)
+        self.assertEqual((r["preservation_intact"], r["base_fr_2181_reecrite_nommee"]), (True, False))
+        self.assertIn("preservation APRES identique a AVANT: True", out)
+        self.assertNotIn("reecrite NOMMEMENT, comme demande", out)
+        self.assertIn("le post-contrat la REFUSE", out)
+
+    def test_une_news_2182_disparue_est_un_echec(self):
+        rc, out, r = self.appliquer([self.fr_force()], {"block_2181": [ligne_bloc(self.REGISTRE)]},
+                                    news_apres=self.news[:6])
+        self.assertEqual(rc, 1, out)
+        self.assertEqual(r["base_fr_2181_reecrite_nommee"], False)
+
+    def test_le_payload_porte_la_base_et_sa_valeur_d_avant(self):
+        rc, out, r = self.appliquer([self.fr_force()], {"block_2181": [ligne_bloc(self.REGISTRE)]})
+        ((binaire, env),) = self.appels
+        self.assertEqual(binaire, "powershell")
+        payload = json.loads(pathlib.Path(env["REINJECT_PAYLOAD"]).read_text(encoding="utf-8"))
+        self.assertEqual(payload["fr_writes"], [self.fr_force()])
+        self.assertEqual((payload["expected_2181_vid"], payload["expected_2181_value"]),
+                         (27942, self.AVANT))
 
 
 if __name__ == "__main__":

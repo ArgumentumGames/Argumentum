@@ -47,6 +47,23 @@ cellules corrigees en typographie au registre (P24-32) que la base servie porte 
 dans leur ancienne valeur — les deux cotes sont pleins, et c'est la frappe qui dit
 « celle-ci, et son contenu d'avant ».
 
+LEVIER NOMME de la base fr du bloc #2181 (--fr-force GUID:CHAMP ; depuis P24-54, le 28/11).
+La base fr du bloc « L'argumentation » est exclue de la reecriture par defaut (arbitrage
+du 20/11 : la prod est en avance). Le registre, depuis, a ete corrige : 6687 caracteres
+(empreinte ae3f216e…, sha256 des octets UTF-8 — re-mesure par po-2024 le 28/11) contre
+6709 en production (9bd05ea5… — RAPPORTE par web2, #2181 c.7218258887) : la correction
+n'est pas en production. Aucune option ne levait
+l'exclusion. --fr-force la leve pour UN seul nom, le sien (GUID complet, champ Text) :
+tout autre nom est un REFUS. Nomme, le bloc est reecrit depuis le registre sous la
+discipline de --force : valeur d'avant sauvegardee dans --backup-dir AVANT la transaction
+(`reinject-fr-force-prior-*.json`), rangee de base epinglee sous verrou, comparaison
+ORDINALE in-tx contre la valeur du dry-run, une rangee, sinon ROLLBACK. La garde de
+preservation « #2181 identique » n'accepte cette reecriture que pour CE nom, et exige
+alors que la base vaut exactement le registre, sur la rangee mesuree au dry-run. Sans
+le nom, rien ne change : le bloc reste FR_EXCLUDED, et la sortie, le rapport et le
+fichier de resultat sont ceux d'avant, octet pour octet (deux phrases pres, qui
+disaient qu'aucune option ne levait l'exclusion).
+
 FRANCAIS DE BASE (revue ai-01 c.7038852934). La colonne `fr` du registre est comparee
 a la valeur de base (dim-0) de la cible — sur l'entite epingle par la carte (app, guid).
 Au sein d'une (entite, attribut) plusieurs rangees dim-0 peuvent coexister (2sxc
@@ -75,6 +92,9 @@ AVANT le premier INSERT/UPDATE (hors depot, jamais committe).
 USAGE
   python tools/458-eav-reinject.py --config DNNPlatform/web.config            # dry-run
   python tools/458-eav-reinject.py --config <web.config cible> --apply --backup-dir <hors-depot>
+  # levier NOMME de la base fr du bloc #2181 (P24-54) : dry-run, puis apply
+  python tools/458-eav-reinject.py --config <web.config cible> --fr-force 8A8636A4-069A-4692-A139-4773B161931B:Text
+  python tools/458-eav-reinject.py --config <web.config cible> --fr-force 8A8636A4-069A-4692-A139-4773B161931B:Text --apply --backup-dir <hors-depot>
 """
 from __future__ import annotations
 
@@ -464,14 +484,19 @@ def preservation_probe(conn, app_map=None) -> dict:
     return out
 
 
-def compute_fr_actions(fr_plan, target, app_map, excludes: set) -> list[dict]:
+def compute_fr_actions(fr_plan, target, app_map, excludes: set, named=frozenset()) -> list[dict]:
     """Classe chaque cellule de base fr du registre contre la cible.
 
     FR_SAME       base cible == fr du registre (rien a faire)
     FR_DRIFT      les deux non vides, differents -> REECRITURE en --apply
+    FR_FORCE      comme FR_DRIFT, mais NOMMEE par --fr-force (P24-54) : reecrite sous
+                  la discipline de --force (une rangee, comparaison ordinale in-tx)
     FR_EXCLUDED   exclue explicitement (defaut : bloc #2181, prod en avance)
     FR_DB_LOCAL   reference adam 'file:NNN' divergente -> JAMAIS ecrite (voir ci-dessous)
     FR_MISSING    aucune valeur de base sur la cible -> refuse l'apply
+
+    `named` = les cles (GUID majuscule, champ) que --fr-force designe. Sans elles, la
+    classification est celle d'avant P24-54, a la ligne pres.
     """
     existing = target["existing"]
     actions = []
@@ -493,7 +518,8 @@ def compute_fr_actions(fr_plan, target, app_map, excludes: set) -> list[dict]:
             # pas une politique : jamais ecrit, toujours rapporte.
             actions.append({**p, "op": "FR_DB_LOCAL", "db_value": base})
         else:
-            actions.append({**p, "op": "FR_DRIFT", "db_value": base, "target_app": ta})
+            op = "FR_FORCE" if (g.upper(), field) in named else "FR_DRIFT"
+            actions.append({**p, "op": op, "db_value": base, "target_app": ta})
     return actions
 
 
@@ -507,6 +533,21 @@ def fr_report(fr_actions) -> list[dict]:
         "len_base": len(a["db_value"]),
         "len_registre": len(a["value"]),
     } for a in fr_actions if a["op"] == "FR_DRIFT"]
+
+
+def fr_named_report(fr_actions) -> list[dict]:
+    """Liste des cellules FR_FORCE (--fr-force) : meme forme que le rapport FR_DRIFT.
+
+    Le GUID est COMPLET : la ligne est ce que l'operateur relit avant de nommer la base.
+    """
+    return [{
+        "guid": a["entity_guid"],
+        "key": f"{a['entity_guid']}/{a['field']}",
+        "content_type": a["content_type"],
+        "field": a["field"],
+        "len_base": len(a["db_value"]),
+        "len_registre": len(a["value"]),
+    } for a in fr_actions if a["op"] == "FR_FORCE"]
 
 
 def compute_actions(plan, target, app_map, allow_preserved=False, force=None):
@@ -596,8 +637,9 @@ SCOPED_NO_WRITE_OPS = ("SKIP_PRESERVED_2181", "FR_DB_LOCAL")
 # FR_EXCLUDED a part : ce n'est pas un oubli de reglage, c'est la POLITIQUE de base
 # fr (bloc #2181 preserve par arbitrage du 20/11, ou --fr-exclude). Le mode a blanc
 # doit pouvoir la MONTRER — W2-09 demande un mode a blanc borne aux 11 cellules
-# « dont le francais », et aucune option ne leve cette exclusion : refuser le
-# dry-run rendrait cette passe impossible. `--apply`, lui, refuse.
+# « dont le francais » : refuser le dry-run rendrait cette passe impossible.
+# `--apply`, lui, refuse. Un seul levier leve l'exclusion, et pour un seul nom — la
+# base fr du bloc, par `--fr-force` (P24-54).
 SCOPED_POLICY_OPS = ("FR_EXCLUDED",)
 NO_WRITE_HINTS = {
     "SKIP_PRESERVED_2181": " (ajouter --include-preserved-2181)",
@@ -622,6 +664,22 @@ def parse_only_cell(item: str):
     if not FORCE_GUID_RE.match(parts[0].upper()):
         return None
     return (parts[0].upper(), parts[1], parts[2])
+
+
+def parse_fr_force(item: str):
+    """`GUID:CHAMP` -> cle normalisee (GUID majuscule, champ), sinon None.
+
+    MEME validateur de GUID que --force et --only-cell (FORCE_GUID_RE) : GUID COMPLET,
+    casse indifferente. Le champ est pris tel quel : c'est le StaticName du schema,
+    compare a l'identique. La forme d'un nom est une ; ce qu'il designe, c'est a
+    main() de le dire — et --fr-force n'en accepte qu'un (P24-54).
+    """
+    parts = item.split(":")
+    if len(parts) != 2 or not parts[1]:
+        return None
+    if not FORCE_GUID_RE.match(parts[0].upper()):
+        return None
+    return (parts[0].upper(), parts[1])
 
 
 def scope_plan(plan, fr_plan, only: set):
@@ -662,6 +720,12 @@ def main(argv=None) -> int:
     ap.add_argument("--fr-exclude", action="append", default=[], metavar="GUID:FIELD",
                     help="exclut une cellule de base fr de la reecriture (cumulable) ; "
                          "le bloc #2181 est exclu par defaut")
+    ap.add_argument("--fr-force", action="append", default=[], metavar="GUID:FIELD",
+                    help="reecriture NOMMEE de la base fr du bloc #2181, leve son exclusion "
+                         "par defaut — UN seul nom accepte, le sien (GUID COMPLET, champ) ; "
+                         "discipline de --force : valeur d'avant sauvegardee avant la "
+                         "transaction, rangee epinglee sous verrou, comparaison ordinale "
+                         "in-tx, une rangee")
     ap.add_argument("--fr-report", default="fr-drift-report.json",
                     help="fichier ou ecrire la liste FR_DRIFT (defaut: ./fr-drift-report.json)")
     ap.add_argument("--force", action="append", default=[], metavar="GUID:FIELD:LANG",
@@ -676,12 +740,14 @@ def main(argv=None) -> int:
     args = ap.parse_args(argv)
 
     excludes = {(PRESERVED_2181_GUID, PRESERVED_2181_FIELD)}
+    excluded_by_name = set()  # ce que --fr-exclude designe, a distinguer du defaut
     for item in args.fr_exclude:
         g, _, f = item.partition(":")
         if not g or not f:
             print(f"REFUS: --fr-exclude mal forme ({item!r}) — attendu GUID:FIELD")
             return 1
         excludes.add((g.upper(), f))
+        excluded_by_name.add((g.upper(), f))
     force_keys = set()
     for item in args.force:
         key = parse_force(item)
@@ -700,6 +766,33 @@ def main(argv=None) -> int:
             return 1
         only.add(key)
 
+    # Levier NOMME de la base fr du bloc #2181 (P24-54). Trois refus, tous avant toute
+    # lecture du registre et de la base.
+    named = set()
+    levier = (PRESERVED_2181_GUID, PRESERVED_2181_FIELD)
+    for item in args.fr_force:
+        key = parse_fr_force(item)
+        if key is None:
+            print(f"REFUS: --fr-force mal forme ({item!r}) — attendu GUID-complet:CHAMP")
+            return 1
+        if key != levier:
+            # Le levier n'accepte qu'UN nom : celui de la base fr du bloc. Tout autre
+            # nom est une faute de frappe ou une tentative — les deux refusent, et rien
+            # d'autre que ce bloc ne quitte FR_EXCLUDED par ce chemin.
+            print(f"REFUS: --fr-force n'accepte qu'un nom, celui de la base fr du bloc #2181 "
+                  f"({levier[0]} champ {levier[1]}) — refuse : {key[0]} champ {key[1]}")
+            return 1
+        if key in excluded_by_name:
+            # Exclue ET nommee sur la meme ligne de commande : les deux reglages se
+            # contredisent, rien ne dit lequel l'operateur voulait.
+            print(f"REFUS: --fr-force et --fr-exclude nomment la meme base fr "
+                  f"({key[0][:8]}… {key[1]}) — choisir l'un des deux")
+            return 1
+        named.add(key)
+    if named:
+        # Le levier leve l'exclusion PAR DEFAUT du bloc — et seulement elle.
+        excludes.discard(levier)
+
     reg = read_registry(args.registry)
     CURRENT_PLAN = build_plan(reg)
     CURRENT_FR_PLAN = build_fr_plan(reg)
@@ -713,6 +806,14 @@ def main(argv=None) -> int:
             print("REFUS: --only-cell nomme une cellule absente du plan (vide au registre ou "
                   "inconnue) : " + "; ".join(f"{g[:8]}… {f} [{lang}]" for g, f, lang in inconnues))
             return 1
+    if named and not any((p["entity_guid"].upper(), p["field"]) in named for p in fr_plan):
+        # Le nom ne designe aucune base fr du plan d'ecriture : hors perimetre borne, ou
+        # cellule vide au registre. Meme contresens que --force hors perimetre — croire
+        # avoir demande la reecriture de la base et n'ecrire rien.
+        print("REFUS: --fr-force nomme une base fr qui n'est pas au %s : "
+              % ("perimetre" if only else "plan")
+              + "; ".join(f"{g[:8]}… {f}" for g, f in sorted(named)))
+        return 1
     conn = EXP.read_connection_string(pathlib.Path(args.config))
     print(f"registre: {len(reg)} lignes, {len(CURRENT_PLAN)} cellules traductibles non vides, "
           f"{len(CURRENT_FR_PLAN)} cellules de base fr")
@@ -721,7 +822,7 @@ def main(argv=None) -> int:
     app_map_info, target = resolve_target(conn, reg)
     actions = compute_actions(plan, target, app_map_info["map"],
                               allow_preserved=args.include_preserved_2181, force=force_keys)
-    fr_actions = compute_fr_actions(fr_plan, target, app_map_info["map"], excludes)
+    fr_actions = compute_fr_actions(fr_plan, target, app_map_info["map"], excludes, named=named)
     unknown = unmatched_force(actions, force_keys)
     if unknown:
         # Une faute de frappe dans --force ne doit pas se lire « rien a forcer » : le nom
@@ -757,7 +858,10 @@ def main(argv=None) -> int:
 
     # Rapport FR : listes dans un fichier (GUID court, ContentType.champ, longueurs).
     report = fr_report(fr_actions)
+    named_report = fr_named_report(fr_actions)
     pathlib.Path(args.fr_report).write_text(
+        # `fr_named` (bases fr reecrites NOMMEMENT, --fr-force) n'apparait que si le levier a
+        # servi : sans lui, le rapport est celui de master, octet pour octet.
         json.dumps({"fr_drift": report,
                     "app_map": app_map_info["evidence"],
                     "excluded": [
@@ -768,7 +872,8 @@ def main(argv=None) -> int:
             # references file:NNN divergentes — jamais ecrites, id ADAM locaux a la base
             {"key": f"{a['entity_guid']}/{a['field']}", "len_base": len(a["db_value"]),
              "len_registre": len(a["value"])}
-            for a in fr_actions if a["op"] == "FR_DB_LOCAL"]},
+            for a in fr_actions if a["op"] == "FR_DB_LOCAL"]}
+                   | ({"fr_named": named_report} if named_report else {}),
             ensure_ascii=False, indent=1), encoding="utf-8")
     if report:
         print(f"  FR_DRIFT detaille -> {args.fr_report} ({len(report)} cellule(s))")
@@ -812,6 +917,16 @@ def main(argv=None) -> int:
     if idle:
         print(f"\nNOTE: {len(idle)} cellule(s) nommee(s) par --force ne sont PAS en conflit "
               f"({', '.join(sorted({a['op'] for a in idle}))}) — rapportees, sans ecriture forcee.")
+    fr_forced = [a for a in fr_actions if a["op"] == "FR_FORCE"]
+    if fr_forced:
+        # Pas de troncature : la ligne a ete NOMMEE par l'operateur (--fr-force), il doit
+        # pouvoir la relire avant d'ecrire — c'est une base fr qui REMPLACE une autre.
+        print(f"\n{len(fr_forced)} REECRITURE(S) NOMMEE(S) de base fr (--fr-force) — la valeur "
+              f"d'avant est sauvegardee dans --backup-dir, puis remplacee en --apply "
+              f"(une rangee, comparaison ordinale in-tx) :")
+        for a in fr_forced:
+            print(f"  - {a['entity_guid']} {a['content_type']}.{a['field']} [fr] "
+                  f"db={len(a['db_value'])}c -> registre={len(a['value'])}c")
     if fr_missing:
         print(f"\n{len(fr_missing)} cellule(s) de base fr SANS valeur sur la cible (extrait):")
         for a in fr_missing[:15]:
@@ -824,20 +939,26 @@ def main(argv=None) -> int:
                   + NO_WRITE_HINTS.get(a["op"], ""))
     if policy:
         print(f"\n{len(policy)} cellule(s) NOMMEE(S) EXCLUE(S) par la politique de base fr "
-              f"(bloc #2181 par defaut, ou --fr-exclude) — aucune option ne leve "
-              f"l'exclusion : le mode a blanc les montre, --apply les refusera :")
+              f"(bloc #2181 par defaut, ou --fr-exclude) — un seul levier la leve, pour "
+              f"le seul nom du bloc (--fr-force) : le mode a blanc les montre, --apply "
+              f"les refusera :")
         for a in policy:
             print(f"  - {a['entity_guid'][:8]} {a['field']} [{a.get('lang', 'fr')}] {a['op']}")
 
     fr_writes = [{**a, "op": "FR_UPDATE"} for a in fr_actions if a["op"] == "FR_DRIFT"]
+    # Reecritures NOMMEES d'une base fr (--fr-force, P24-54) : la discipline de --force,
+    # une branche a part du writer — jamais le chemin FR_UPDATE (egalite SQL).
+    fr_writes += [{**a, "op": "FR_FORCE"} for a in fr_actions if a["op"] == "FR_FORCE"]
     writes = planned_writes(actions)
     n_forced = sum(1 for a in writes if a["op"] == "FORCE")
+    n_fr_forced = sum(1 for a in fr_writes if a["op"] == "FR_FORCE")
     if not args.apply:
         print(f"\nDRY-RUN: {len(writes)} ecriture(s) dimensionnees prevues "
               f"({counts.get('INSERT',0)} INSERT + {counts.get('UPDATE',0)} UPDATE"
               + (f" + {n_forced} ECRASEMENT(S) NOMME(S)" if n_forced else "")
-              + f") + {len(fr_writes)} REECRITURE(S) de base fr (FR_DRIFT non exclues). "
-              f"Aucune ecriture effectuee.")
+              + f") + {len(fr_writes)} REECRITURE(S) de base fr (FR_DRIFT non exclues"
+              + (f", dont {n_fr_forced} NOMMEE(S) par --fr-force" if n_fr_forced else "")
+              + "). Aucune ecriture effectuee.")
         # `noop` n'est PAS un conflit : ce sont des cellules NOMMEES qu'un reglage
         # ecarte (drapeau absent, reference file:NNN). Rien n'y est a arbitrer — le
         # levier est le drapeau, ou le nom a retirer. Les confondre envoyait
@@ -872,7 +993,8 @@ def main(argv=None) -> int:
         return 1
     if policy:
         print("REFUS d'appliquer: cellule(s) nommee(s) exclue(s) par la politique de base fr "
-              "— retirer ces noms, ou faire lever l'exclusion par un arbitrage.")
+              "— retirer ces noms, ou nommer la base fr du bloc #2181 par --fr-force "
+              "(le seul levier, pour ce seul nom).")
         return 1
     if not args.backup_dir:
         print("REFUS: --apply exige --backup-dir (hors depot).")
@@ -886,6 +1008,20 @@ def main(argv=None) -> int:
                      "field": a["field"], "prior_value": a["db_value"], "new_value": a["value"]}
                     for a in fr_actions if a["op"] == "FR_DRIFT"],
                    ensure_ascii=False, indent=1), encoding="utf-8")
+    # Valeur d'avant d'une base fr reecrite NOMMEMENT (--fr-force) : meme discipline, et un
+    # fichier a part — son inverse se lit sans melanger les bases fr du plan.
+    fr_forced = [a for a in fr_actions if a["op"] == "FR_FORCE"]
+    if fr_forced:
+        (backup_dir / f"reinject-fr-force-prior-{stamp}.json").write_text(
+            json.dumps([{"entity_guid": a["entity_guid"], "content_type": a["content_type"],
+                         "field": a["field"], "lang": a["lang"],
+                         "target_app": a["target_app"],
+                         # La rangee de base mesuree au dry-run : c'est elle que le
+                         # writer epingle, et elle que l'inverse reecrira.
+                         "base_value_id": b2181.get("value_id"),
+                         "prior_value": a["db_value"], "new_value": a["value"]}
+                        for a in fr_forced],
+                       ensure_ascii=False, indent=1), encoding="utf-8")
     # Valeurs cible des ECRASEMENTS NOMMES (--force) : meme discipline, AVANT la transaction.
     # Un fichier a part : son inverse se lit sans melanger les bases fr et les cellules.
     forced = [a for a in writes if a["op"] == "FORCE"]
@@ -910,6 +1046,8 @@ def main(argv=None) -> int:
     print(f"plan + valeurs anterieures FR + preservation AVANT sauvegardes dans {backup_dir} "
           f"({len(writes)} ecritures dimensionnees"
           + (f" dont {len(forced)} ecrasement(s) nomme(s), valeur d'avant sauvegardee" if forced else "")
+          + (f" + {n_fr_forced} base(s) fr nommee(s) (--fr-force), valeur d'avant sauvegardee"
+             if n_fr_forced else "")
           + f" + {len(fr_writes)} bases fr)")
     return run_writer(conn, writes, fr_writes, pres_before, backup_dir, stamp, app_map_info["map"])
 
@@ -934,7 +1072,7 @@ $conn.Open()
 $tx = $conn.BeginTransaction()
 try {
     $cmd = $conn.CreateCommand(); $cmd.Transaction = $tx; $cmd.CommandTimeout = 600
-    $inserted = 0; $updated = 0; $frupdated = 0; $forced = 0
+    $inserted = 0; $updated = 0; $frupdated = 0; $forced = 0; $frforced = 0; $vidfr = 0
     foreach ($w in $writes) {
         $guid = $w.entity_guid; $field = $w.field; $ct = $w.content_type; $val = $w.value
         $app = [int]$w.target_app
@@ -1042,6 +1180,38 @@ WHERE e.EntityGuid = @g AND e.AppId = @app AND c.Name = @ct AND a.StaticName = @
         $eid = $r.GetInt32(0); $aid = $r.GetInt32(1)
         if ($r.Read()) { $r.Close(); throw "FR G1 in-tx: plusieurs entites pour $guid (app $app) $ct.$field — base modifiee depuis le dry-run" }
         $r.Close()
+        if ($w.op -eq "FR_FORCE") {
+            # Reecriture NOMMEE d'une base fr (--fr-force, P24-54) : la discipline de FORCE.
+            # On epingle la rangee de base (dim-0) au ValueId MAX sous verrou, on exige
+            # qu'elle porte ENCORE la valeur du dry-run — comparaison ORDINALE, parce que
+            # l'egalite SQL suit le classement de la colonne — puis on l'ecrit par son
+            # ValueId : une rangee. Une valeur anterieure differente, ou la rangee
+            # disparue, est un ROLLBACK : rien n'est ecrase. Le chemin FR_UPDATE (egalite
+            # SQL sur la valeur d'avant) n'est pas pris pour une base nommee.
+            $cmd.Parameters.Clear()
+            $cmd.CommandText = @"
+SELECT TOP 1 v.ValueId, CONVERT(nvarchar(max), v.[Value]) FROM TsDynDataValue v WITH (UPDLOCK,HOLDLOCK)
+LEFT JOIN TsDynDataValueDimension vd ON vd.ValueId = v.ValueId
+WHERE v.EntityId=@e AND v.AttributeId=@a AND vd.ValueId IS NULL
+ORDER BY v.ValueId DESC
+"@
+            [void]$cmd.Parameters.Add("@e",[System.Data.SqlDbType]::Int); $cmd.Parameters["@e"].Value=$eid
+            [void]$cmd.Parameters.Add("@a",[System.Data.SqlDbType]::Int); $cmd.Parameters["@a"].Value=$aid
+            $r = $cmd.ExecuteReader()
+            if (-not $r.Read()) { $r.Close(); throw "FR_FORCE $guid.$field : aucune rangee de base (dim-0) — base modifiee depuis le dry-run" }
+            $vidfr = [int]$r.GetInt32(0); $cur = $r.GetValue(1); $r.Close()
+            if ($null -eq $cur -or -not [string]::Equals([string]$cur, [string]$old, [System.StringComparison]::Ordinal)) {
+                throw "FR_FORCE $guid.$field : la valeur en base n'est plus celle du dry-run - ROLLBACK"
+            }
+            $cmd.Parameters.Clear()
+            $cmd.CommandText = "UPDATE TsDynDataValue SET [Value]=@v WHERE ValueId=@vid"
+            [void]$cmd.Parameters.Add("@v",[System.Data.SqlDbType]::NVarChar,-1); $cmd.Parameters["@v"].Value=$val
+            [void]$cmd.Parameters.Add("@vid",[System.Data.SqlDbType]::Int); $cmd.Parameters["@vid"].Value=$vidfr
+            $n = $cmd.ExecuteNonQuery()
+            if ($n -ne 1) { throw "FR_FORCE $guid.$field : $n rangee(s) touchee(s), attendu 1" }
+            $frforced++
+            continue
+        }
 
         # Epingle une seule rangee dim-0 : 2sxc est append-only, une (entite, attribut)
         # peut en porter plusieurs (mesure 20/11 : 961 paires). Le choix du ValueId MAX
@@ -1117,11 +1287,24 @@ ORDER BY v.ValueId DESC
     # Preservation #2181 : la valeur de base du bloc, identique OCTET PAR OCTET a ce que
     # le dry-run a mesure (l'egalite exacte est plus forte qu'une empreinte, et HASHBYTES
     # est limite a 8000 octets -- le bloc en fait 13418 en UTF-16).
+    # LEVIER NOMME (--fr-force, P24-54) : la garde n'accepte la reecriture de cette base
+    # que pour UN nom -- le sien, GUID complet et champ, UNE fois. Le nom est ecrit ICI,
+    # pas recu du payload : un payload qui presenterait un autre nom, ou deux fois le
+    # bon, laisse la garde telle quelle. Sans le nom : la derniere ligne, inchangee.
+    $ff = @($frwrites | Where-Object { $_.op -eq "FR_FORCE" })
+    $named2181 = ($ff.Count -eq 1 -and ([string]$ff[0].entity_guid) -ieq "8A8636A4-069A-4692-A139-4773B161931B" -and ([string]$ff[0].field) -ceq "Text")
     $cmd.Parameters.Clear()
     $cmd.CommandText = "SELECT CONVERT(nvarchar(max), [Value]) FROM TsDynDataValue WHERE ValueId=@vid"
     [void]$cmd.Parameters.Add("@vid",[System.Data.SqlDbType]::Int); $cmd.Parameters["@vid"].Value=[int]$payload.expected_2181_vid
     $v2181 = $cmd.ExecuteScalar()
-    if ($null -eq $v2181 -or -not ([string]$v2181 -ceq [string]$payload.expected_2181_value)) { throw "preservation #2181: valeur de base MODIFIEE (attendu identique au dry-run) - ROLLBACK" }
+    if ($named2181) {
+        # La base du bloc vaut desormais le REGISTRE, sur la rangee mesuree au dry-run :
+        # le ValueId epingle par la branche FR_FORCE est celui du dry-run, sinon ce n'est
+        # pas la rangee qu'on avait mesuree.
+        if ($vidfr -ne [int]$payload.expected_2181_vid) { throw "preservation #2181 (base fr nommee) : la rangee reecrite n'est pas celle du dry-run - ROLLBACK" }
+        if ($null -eq $v2181 -or -not ([string]$v2181 -ceq [string]$ff[0].value)) { throw "preservation #2181 (base fr nommee) : la base ne vaut pas le registre - ROLLBACK" }
+    }
+    if (-not $named2181 -and ($null -eq $v2181 -or -not ([string]$v2181 -ceq [string]$payload.expected_2181_value))) { throw "preservation #2181: valeur de base MODIFIEE (attendu identique au dry-run) - ROLLBACK" }
     # Preservation #2182 : les 7 entites News toujours presentes (comptees dans leur
     # app cible — la carte mesuree — sinon une copie demo des memes GUID fausserait le compte).
     $cmd.Parameters.Clear()
@@ -1130,7 +1313,9 @@ ORDER BY v.ValueId DESC
     if ($n2182 -ne 7) { throw "preservation #2182: $n2182/7 entites News - ROLLBACK" }
 
     $tx.Commit()
-    Write-Host "COMMIT OK: INSERT=$inserted UPDATE=$updated FORCE=$forced FR_UPDATE=$frupdated ; relecture in-tx conforme ; #2181 identique ; #2182=$n2182/7"
+    $ffcount = ""; if ($frforced -gt 0) { $ffcount = " FR_FORCE=$frforced" }
+    $p2181 = "#2181 identique"; if ($named2181) { $p2181 = "#2181 base fr reecrite NOMMEMENT (rangee du dry-run, valeur = registre)" }
+    Write-Host "COMMIT OK: INSERT=$inserted UPDATE=$updated FORCE=$forced FR_UPDATE=$frupdated$ffcount ; relecture in-tx conforme ; $p2181 ; #2182=$n2182/7"
     $conn.Close()
 }
 catch {
@@ -1183,15 +1368,44 @@ def run_writer(conn, writes, fr_writes, pres_before, backup_dir, stamp, app_map)
         return 1
 
     pres_after = preservation_probe(conn, app_map)
-    same = (pres_after["block_2181"] == pres_before["block_2181"]
-            and pres_after["news_2182"] == pres_before["news_2182"])
+    same_2182 = pres_after["news_2182"] == pres_before["news_2182"]
+    same = (pres_after["block_2181"] == pres_before["block_2181"] and same_2182)
+    # Post-contrat du LEVIER NOMME (--fr-force, P24-54). Le contrat general — « APRES
+    # identique a AVANT » — ne cede que sur UN point, et seulement si le plan porte
+    # EXACTEMENT une reecriture FR_FORCE au nom du bloc (GUID complet, champ, une
+    # fois) : alors la base du bloc doit valoir le REGISTRE apres — octet pour octet —
+    # sur la rangee mesuree avant, et les 7 News #2182 rester intactes. Un FR_FORCE
+    # d'un autre nom, ou deux, ne relache rien. Un plan nomme dont la base n'aurait pas
+    # bouge n'est pas « preserve » : l'ecriture demandee n'a pas eu lieu.
+    ff = [a for a in fr_writes if a.get("op") == "FR_FORCE"]
+    nomme = (len(ff) == 1 and str(ff[0].get("entity_guid", "")).upper() == PRESERVED_2181_GUID
+             and ff[0].get("field") == PRESERVED_2181_FIELD)
+    avant, apres = pres_before["block_2181"], pres_after["block_2181"]
+    nommee = bool(nomme and same_2182 and len(avant) == 1 and len(apres) == 1
+                  and apres[0]["value_id"] == avant[0]["value_id"]
+                  and apres[0]["value"] == ff[0]["value"]
+                  and apres[0]["value"] != avant[0]["value"])
+    conforme = nommee if nomme else same
+    resultat = {"preservation_after": pres_after, "preservation_intact": same}
+    if nomme:
+        # La cle du levier n'apparait que si le plan nomme la base : sans lui, le fichier
+        # de resultat est celui de master, octet pour octet.
+        resultat["base_fr_2181_reecrite_nommee"] = nommee
     (backup_dir / f"reinject-result-{stamp}.json").write_text(
-        json.dumps({"preservation_after": pres_after, "preservation_intact": same}, ensure_ascii=False, indent=1),
-        encoding="utf-8")
+        json.dumps(resultat, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"preservation APRES identique a AVANT: {same}")
-    print("VERDICT: apply termine" + (" — preservation OK" if same else " — ⚠️ PRESERVATION A QUALIFIER"))
+    if nommee:
+        print(f"LEVIER --fr-force : base fr du bloc #2181 reecrite NOMMEMENT, comme demande — "
+              f"rangee du dry-run (ValueId {apres[0]['value_id']}), apres = registre "
+              f"({len(apres[0]['value'])} c.), avant = {len(avant[0]['value'])} c. ; #2182 intact ; "
+              f"valeur d'avant dans reinject-fr-force-prior-{stamp}.json")
+    elif nomme:
+        print("LEVIER --fr-force : le plan nomme la base fr du bloc, et le post-contrat la REFUSE "
+              "(base inchangee, ou differente du registre, ou autre rangee, ou #2182 touche).")
+    etat = ("preservation OK" if conforme else "⚠️ PRESERVATION A QUALIFIER")
+    print("VERDICT: apply termine — " + etat)
     print("Rappel lane: recycler l'app-domain par mtime web.config (sha256 inchange), jamais iisreset.")
-    return 0 if same else 1
+    return 0 if conforme else 1
 
 
 if __name__ == "__main__":
