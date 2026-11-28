@@ -157,6 +157,18 @@ path serves the **latest** generation and the version lives in `owl:versionInfo`
 is frozen: [`tools/test_133-owl-snapshot-pin.py`](../../tools/test_133-owl-snapshot-pin.py) pins its two
 oids (`6ae37077…` / `a9f5b7ec…`) and the shared `ontologyIRI`, so one changed byte reddens the CI.
 
+A readable page sits at the entry of the folder: [`index.html`](index.html) is the human-readable
+index of what is served here — which file, under which namespace IRI, at which version, with which
+bytes (sha256). It is **generated** from the files of the folder by
+[`tools/133-ontology-index-page.py`](../../tools/133-ontology-index-page.py) — every figure on it is
+read from the `.owl` headers or computed on the bytes, never copied from a document. It carries **no
+date**, so replaying the script yields the same bytes: `python tools/133-ontology-index-page.py --check`
+exits 0 only while the page still matches the files it describes, and the contract
+[`tools/test_133-ontology-index-page.py`](../../tools/test_133-ontology-index-page.py) runs that check in
+CI, so one changed byte in an `.owl` reddens the pull request. The folder being mounted as a whole by
+`static.yml`, the page is served at `…/docs/ontology/index.html` — **derived** from the mount, not
+measured (the served URLs of the artefacts are the ones measured above).
+
 ### Post-merge smoke
 
 ```bash
@@ -284,11 +296,12 @@ portal / LOV remain follow-ups.
 
 ## 8. Index of record — les fichiers du dossier
 
-Mesuré le 2026-11-24 sur master `0543ab69`. Le dossier compte **24 fichiers suivis**
+Mesuré le 2026-11-24 sur master `0543ab69`. Le dossier comptait **24 fichiers suivis**
 (`git ls-files docs/ontology | wc -l`) : les deux artefacts (table ci-dessus), ce README, **neuf
 constats datés**, le sous-dossier [`aif-export/`](aif-export/) (10 fichiers couverts par leur
 ligne ci-dessous — son propre README ne porte pas la marque, il n'engage que lui) et le
-sous-dossier [`v1.0.0/`](v1.0.0/) (2 fichiers, couverts par leur ligne ci-dessous).
+sous-dossier [`v1.0.0/`](v1.0.0/) (2 fichiers, couverts par leur ligne ci-dessous). La page
+d'accueil [`index.html`](index.html), ajoutée le 2026-11-28 (P24-46), porte le compte à **25**.
 
 ### Où en sont les deux sujets
 
@@ -309,6 +322,7 @@ sous-dossier [`v1.0.0/`](v1.0.0/) (2 fichiers, couverts par leur ligne ci-dessou
 
 | Fichier | Daté | Statut | Ce que c'est |
 |---|---|---|---|
+| [`index.html`](index.html) | 2026-11-28 | `current` | Page d'accueil lisible du dossier (P24-46) : quel fichier, sous quel IRI d'espace de noms, en quelle version, avec quels octets (sha256). Elle est **générée** par [`tools/133-ontology-index-page.py`](../../tools/133-ontology-index-page.py) à partir des fichiers eux-mêmes, porte **aucune date** (rejeu ⇒ octets identiques) et son contrôle `--check` échoue dès qu'un `.owl` du dossier change — garde [`tools/test_133-ontology-index-page.py`](../../tools/test_133-ontology-index-page.py) |
 | [`133-etat-servi-2026-11-05.md`](133-etat-servi-2026-11-05.md) | 2026-11-05 | `historical` | Mesure HTTP lecture-seule de l'état servi, canal par canal (05/11) — l'état courant de la publication vit sur [#133](https://github.com/ArgumentumGames/Argumentum/issues/133) et dans le smoke ci-dessus |
 | [`133-owl-publication-certificate.md`](133-owl-publication-certificate.md) | 2026-07-12 | `historical` | Certificat « publication-safe » de l'artefact de juillet — l'OWL a été régénéré depuis (15/09 puis 17/11) sans nouveau certificat |
 | [`133-owl-virtues-peremption-mesuree-2026-10-09.md`](133-owl-virtues-peremption-mesuree-2026-10-09.md) | 2026-10-09 | `historical` | Péremption mesurée de l'OWL Vertus et coût caché d'une régénération (rupture d'IRI) — la décision vive est le gel, pris le 17/11 sur [#133](https://github.com/ArgumentumGames/Argumentum/issues/133) |
