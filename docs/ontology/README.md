@@ -146,6 +146,17 @@ step: regenerating the OWL, committing it and merging republishes it.
 
 CardPen keeps its position at the artifact **root**, so its served URLs are unchanged.
 
+**The `v1.0.0/` snapshot is served too, and it declares the same `ontologyIRI`.** `static.yml` mounts
+all of `docs/ontology/`, so `…/docs/ontology/v1.0.0/argumentum.owl` and `…/argumentum_virtues.owl`
+answer as well — measured 2026-11-28: `200`, `application/rdf+xml`, body byte-identical to the
+committed blobs (sha256 `e6da4eb8…` / `d4099c79…`, 6 019 161 and 1 094 832 bytes). Both declare the
+`ontologyIRI` of their canonical counterpart (`https://www.argumentum.games/argumentum_fallacies.owl#`
+/ `…_virtues.owl#`). **Accepted** (ai-01 arbitration, 2026-11-27): these are the bytes the site served
+until the 24/11 Virtues regeneration, and a readable versioned snapshot is normal use — the canonical
+path serves the **latest** generation and the version lives in `owl:versionInfo` (§6.1). The snapshot
+is frozen: [`tools/test_133-owl-snapshot-pin.py`](../../tools/test_133-owl-snapshot-pin.py) pins its two
+oids (`6ae37077…` / `a9f5b7ec…`) and the shared `ontologyIRI`, so one changed byte reddens the CI.
+
 ### Post-merge smoke
 
 ```bash

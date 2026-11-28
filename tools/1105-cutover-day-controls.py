@@ -47,12 +47,13 @@ Instruments (payés en flotte, ne pas les retirer) :
   · témoin par contrôle : une forme dont on SAIT qu'elle est présente (contre-preuve
     que l'instrument voit le 1) et une forme dont on sait qu'elle est absente ;
   · requête de RÉVEIL avant la passe, avec sa PROPRE borne (`--wake-max-time`, 240 s) :
-    un site endormi se réveille par une requête, et la borne de passe (60 s) le coupe
-    avant qu'il réponde — mesuré par web2 le 24/11 : 93 à 107 s sur la prod endormie,
-    première passe rouge pour cette seule raison. Le rapport nomme le réveil et sa
-    durée ; **aucune réponse HTTP** dans la borne de réveil ⇒ les contrôles 1 à 3 ne
-    sont pas mesurés et la passe ne suit pas (un site muet coûte une borne de réveil,
-    pas 42 requêtes de passe).
+    un site endormi se réveille par une requête, et la borne de passe (`--max-time`,
+    60 s) le coupe avant qu'il réponde — mesuré par web2 le 24/11 : 93 à 107 s sur la
+    prod endormie, première passe rouge pour cette seule raison. Le rapport nomme le
+    réveil et sa durée ; **aucune réponse HTTP** dans la borne de réveil ⇒ la passe ne
+    suit pas, et les contrôles 1 à 3 **plus la sonde P2** (section 6 : elle lit les
+    corps d'accueil que ROUTES fetch, elle n'a rien à lire sans la passe) ne sont pas
+    mesurés (un site muet coûte une borne de réveil, pas 42 requêtes de passe).
 
 Usage :
     python tools/1105-cutover-day-controls.py --label preprod-baseline
@@ -65,12 +66,12 @@ Sortie : tableau markdown sur stdout (+ fichier avec --out) ; codes de sortie �
 **0** tous les contrôles durs passent · **1** un contrôle dur échoue (route non 200,
 legal EN inversé, FileLoadException présente, web.config de la cible qui ne porte
 pas les marqueurs du fichier vivant, **ou réveil sans réponse HTTP** — les contrôles
-1 à 3 ne sont alors pas mesurés) · **2** `--require-webconfig` est posé sans
-`--webconfig` : le contrôle pivot du jour J n'a PAS été mesuré, et ce vert-là
-n'existe pas (remarque 🟡 de la review #2165, mesurée : l'omission du drapeau
-sortait en code 0, lisible par machine comme un succès).
-La sonde P2 (section 6) **n'entre pas** dans ce code : ses écarts sont nommés dans
-la ligne « Verdict », et rien d'autre.
+1 à 3 **et la sonde P2** (section 6) ne sont alors pas mesurés) · **2**
+`--require-webconfig` est posé sans `--webconfig` : le contrôle pivot du jour J n'a
+PAS été mesuré, et ce vert-là n'existe pas (remarque 🟡 de la review #2165, mesurée :
+l'omission du drapeau sortait en code 0, lisible par machine comme un succès).
+Un **écart** de la sonde P2 (section 6) **n'entre pas** dans ce code **de sortie** :
+il est nommé dans la ligne « Verdict », et rien d'autre.
 """
 
 from __future__ import annotations
