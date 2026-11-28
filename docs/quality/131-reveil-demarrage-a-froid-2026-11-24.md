@@ -48,10 +48,11 @@ démarrage.
 
 ## Vérifié
 
-- `python -I tools/test_1105-home-render-p2.py` : **33 cas, OK** (25 avant). Le serveur
+- `python -I tools/test_1105-home-render-p2.py` : **34 cas, OK** (33 le 24/11, 25 avant
+  P24-50). Le serveur
   à démarrage à froid est un **état du faux transport** avec horloge simulée — aucun
   `sleep`, aucun curl, aucun réseau.
-- **Batterie de mutations** (8, sur des copies du module) — chacune rougit sur le cas
+- **Batterie de mutations** (10, sur des copies du module) — chacune rougit sur le cas
   nommé :
 
 | Mutation | Cas rouge |
@@ -59,11 +60,30 @@ démarrage.
 | M2 — `fa` retiré de `RTL_LANGS` | `test_fa_served_ltr_is_red_and_fa_served_rtl_is_green` **et** `test_expected_shapes_are_pinned_as_literals` |
 | M8 — l'éveil envoyé sans sa borne | `test_cold_server_after_the_old_bound_passes_thanks_to_the_wake`, `test_mute_server_exits_one_without_running_the_pass` |
 | M9 — un éveil muet hors des échecs durs | `test_mute_server_exits_one_without_running_the_pass` |
-| M10 — la passe tourne après un éveil muet | `test_mute_server_exits_one_without_running_the_pass` |
+| M10 — la passe tourne après un éveil muet (`off = args.skip_web or dead` → `off = args.skip_web`) | `test_mute_server_exits_one_without_running_the_pass` **et** `test_a_mute_wake_leaves_the_p2_probe_unmeasured` |
 | M11 — le réveil absent du rapport | 5 cas |
 | M12 — un statut HTTP à l'éveil lu comme un site muet | `test_an_http_status_at_the_wake_is_not_a_mute_site` |
 | M13 — `--skip-web` envoie un éveil | `test_skip_web_sends_no_wake` |
 | M14 — durée de l'éveil non mesurée (0 s) | `test_cold_server_after_the_old_bound_passes_thanks_to_the_wake` |
+| M15 — la sonde P2 est mesurée même quand la passe n'a pas tourné (`if off` → `if args.skip_web` dans le calcul de `home`) | `test_a_mute_wake_leaves_the_p2_probe_unmeasured` — **seul** cas rouge |
+| M16 — les deux lignes de sortie retombent sur « contrôles 1 à 3 » (le nom de la sonde P2 disparaît) | `test_a_mute_wake_leaves_the_p2_probe_unmeasured` **et** `test_mute_server_exits_one_without_running_the_pass` |
+
+  M15 est le mutant qui **isole** le cas P24-62 : il ne touche qu'à la garde de la
+  sonde P2, et il ne fait rougir que lui. Le cas nouveau est donc ce qui tient la
+  sonde, et pas le compte de requêtes du cas précédent.
+
+- **P24-62 (28/11) — la sonde P2 nommée dans les deux lignes de sortie.** La docstring
+  du script et le runbook (`1066`, phase 3, étape 17) disaient déjà « contrôles 1 à 3
+  **et** la sonde P2 » ; les deux lignes **rendues** — la ligne « Réveil » et la ligne
+  « Verdict » — disaient encore « contrôles 1 à 3 » seules. Un opérateur qui lisait le
+  rapport d'un réveil muet ne pouvait pas savoir que la section 6 est vide **parce que
+  la passe n'a pas tourné** : il pouvait la lire comme une sonde qui n'a rien trouvé.
+  Les deux lignes nomment maintenant la sonde P2, et le contrat
+  (`tools/test_1105-home-render-p2.py`, cas
+  `test_a_mute_wake_leaves_the_p2_probe_unmeasured`) épingle la section 6 sous un
+  réveil muet : elle se dit **non mesurée**, elle ne porte **aucune** ligne d'accueil,
+  et elle le dit différemment de `--skip-web` — un réveil muet est un constat, pas un
+  choix de l'opérateur.
 
   Jusqu'ici, M2 n'était vue **que** par l'épingle des constantes (revue ai-01 de #2367).
   Le cas de comportement la voit aussi : une page `fa` servie en `ltr` est rouge, une

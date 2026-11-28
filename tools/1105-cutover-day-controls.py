@@ -636,7 +636,8 @@ def render_md(
     elif wake["status"] == 0:
         wake_line = (
             f"- Réveil : ⛔ **aucune réponse HTTP en {wake['max_time']} s** "
-            "(borne de réveil) — contrôles 1 à 3 **non mesurés**, code de sortie 1."
+            "(borne de réveil) — contrôles 1 à 3 **et la sonde P2** non mesurés, "
+            "code de sortie 1."
         )
     else:
         wake_line = (
@@ -855,8 +856,12 @@ def render_md(
     verdict = "❌ " + str(len(hard_fail)) + " échec(s) dur(s)" if hard_fail else "✅ tous les contrôles durs passent"
     if dead:
         # Un réveil muet n'est pas une ligne de tableau : c'est la raison pour laquelle
-        # les sections 1 à 3 sont vides. Il se lit ici, nommé, avant tout le reste.
-        verdict += " · ⛔ **réveil sans réponse HTTP** (contrôles 1 à 3 non mesurés)"
+        # les sections 1 à 3 ET la section 6 (la sonde P2, qui lit les corps d'accueil
+        # que la passe aurait fetchés) sont vides. Il se lit ici, nommé, avant tout le reste.
+        verdict += (
+            " · ⛔ **réveil sans réponse HTTP** "
+            "(contrôles 1 à 3 **et la sonde P2** non mesurés)"
+        )
     if not webconfig:
         # Une absence de mesure ne doit pas se lire dans la même ligne qu'un « tout passe ».
         if webconfig_required:
