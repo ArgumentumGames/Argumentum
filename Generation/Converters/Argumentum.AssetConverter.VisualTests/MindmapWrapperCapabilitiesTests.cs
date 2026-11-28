@@ -3095,5 +3095,199 @@ namespace Argumentum.AssetConverter.VisualTests
 
             Assert.Equal(2, witnessedCold);
         }
+
+        // -------------------------------------------------------------------------------------
+        // #2406 — la fiche effacait son propre nœud de sous-sous-famille.
+        //
+        // Defect: `sous_famille.textContent = …` replaces the container's children, DETACHING the
+        // `.Soussousfamille` span; the next line then wrote the sub-sub-family into that detached
+        // node. No sheet ever displayed it (fr: 1379 of 1408 nodes carry the attribute), and the
+        // level-3 climb installed by `wireFamilyNav` kept its listener on a node that had left the
+        // document — the first open killed it for the rest of the page.
+        //
+        // The control opens EVERY shallow sheet (depth <= 3: the ones that must stay silent) and a
+        // DECLARED sample of the deep ones (depth > 3: the ones that must show the line), then
+        // asserts what the fix owes: the element stays in the document, it carries the attribute
+        // verbatim, it is shown exactly when the ancestor it names is not the sheet itself, and it
+        // starts a line of its own. Cap20/Cap21 keep sweeping every sheet for the fit the line
+        // costs, so this case does not re-judge the whole sheet.
+        //
+        // Three cases: the two variants of the Fallacies map (fr inline, ar `_ext`) and the Virtues
+        // map, which the issue listed as unmeasured and which carries the same attribute with the
+        // same structure (194 carriers: 131 deep, 63 at level 3). The Virtues case opens every one
+        // of its deep sheets (no sample needed at that size); the Fallacies ones declare one.
+        //
+        // Red before the fix, measured rather than assumed: the same case run against the two
+        // templates as `git show <base>:` hands them reports `elementDetached` on every sheet it
+        // opens (PR body carries the run).
+        // -------------------------------------------------------------------------------------
+        private const string P2406SubSubFamilySweepJs = @"(arg) => {
+            const opt = arg || {};
+            const deepSample = opt.deepSample > 0 ? Math.floor(opt.deepSample) : 0;
+            const nav = window.__mmNav;
+            const card = document.querySelector('card');
+            const sf = card.querySelector('.sous_famille');
+            const ssf = card.querySelector('.Soussousfamille');
+            const R = (el) => el.getBoundingClientRect();
+            const out = { nodes: 0, deep: 0, shallow: 0, shown: 0, hidden: 0, longest: 0,
+                          violations: [], tally: {} };
+            const NOTE = (name, key) => {
+                out.tally[name] = (out.tally[name] || 0) + 1;
+                if (out.violations.length < 12) out.violations.push(key + ':' + name);
+            };
+            const num = (k) => (isNaN(Number(k)) ? 1e9 : Number(k));
+            const byKey = (a, b) => num(a) - num(b) || (a < b ? -1 : a > b ? 1 : 0);
+            const depthOf = (k) => parseInt(nav.byPk[k].el.getAttribute('depth'), 10);
+            const deep = Object.keys(nav.byPk).filter((k) => depthOf(k) > 3).sort(byKey);
+            const shallow = Object.keys(nav.byPk).filter((k) => !(depthOf(k) > 3)).sort(byKey);
+            // Declared sample of the deep population: evenly spaced, plus its two extremes (the
+            // longest and the shortest sub-sub-family label) so the widest line is exercised.
+            let deepTargets = deep;
+            if (deepSample > 0 && deep.length > deepSample) {
+                const chosen = new Set();
+                for (let i = 0; i < deepSample; i++)
+                    chosen.add(deep[Math.floor(i * deep.length / deepSample)]);
+                const len = (k) => (nav.byPk[k].el.getAttribute('subsubfamily') || '').trim().length;
+                const byLen = deep.slice().sort((a, b) => len(b) - len(a) || byKey(a, b));
+                chosen.add(byLen[0]);
+                chosen.add(byLen[byLen.length - 1]);
+                deepTargets = Array.from(chosen).sort(byKey);
+            }
+            for (const k of shallow.concat(deepTargets)) {
+                const rec = nav.byPk[k];
+                nav.focusNode(rec);
+                out.nodes++;
+                const depth = depthOf(k);
+                const want = (rec.el.getAttribute('subsubfamily') || '').trim();
+                const expectShown = depth > 3 && !!want;
+                if (expectShown) out.deep++; else out.shallow++;
+                if (!ssf) { NOTE('elementMissing', k); continue; }
+                if (!ssf.isConnected) { NOTE('elementDetached', k); continue; }
+                const got = (ssf.textContent || '').trim();
+                if (got !== want) NOTE('textMismatch', k + '=' + got);
+                const cs = getComputedStyle(ssf);
+                const visible = cs.display !== 'none' && ssf.clientHeight > 0;
+                if (visible !== expectShown) {
+                    NOTE(expectShown ? 'notShown' : 'shownWhereItShouldNotBe', k);
+                    continue;
+                }
+                if (!visible) { out.hidden++; continue; }
+                out.shown++;
+                if (got.length > out.longest) out.longest = got.length;
+                if (cs.display !== 'block') NOTE('notABlock', k);
+                if (Math.abs(ssf.clientWidth - sf.clientWidth) > 1) NOTE('notFullWidth', k);
+                const wantSf = (rec.el.getAttribute('subfamily') || '').trim();
+                const sfText = sf.firstChild && sf.firstChild.nodeType === 3
+                    ? sf.firstChild.textContent.trim() : '';
+                if (sfText !== wantSf) NOTE('subFamilyLost', k);
+                // Its OWN line: on the same line the span's top sits with the text (a few pixels
+                // under the container's top); stacked, it clears at least half a line box.
+                const sfCs = getComputedStyle(sf);
+                const line = parseFloat(sfCs.lineHeight) || parseFloat(sfCs.fontSize) || 12;
+                if (R(ssf).top < R(sf).top + line * 0.5) NOTE('notOnItsOwnLine', k);
+                const hr = R(card.querySelector('.header')), cr = R(card);
+                if (hr.top < cr.top - 0.6 || hr.bottom > cr.bottom + 0.6) NOTE('headerOutsideCard', k);
+            }
+            return [
+                String(out.nodes), String(out.deep), String(out.shallow),
+                String(out.shown), String(out.hidden),
+                out.violations.join('|'),
+                Object.keys(out.tally).sort().map((t) => t + '=' + out.tally[t]).join(','),
+                String(out.longest),
+                String(deep.length), String(shallow.length)
+            ];
+        }";
+
+        /// <summary>
+        /// The level-3 climb the fix restores: picks a sheet deeper than level 3 straight from the
+        /// navigation index, opens it, and names the ancestor its sub-sub-family line holds.
+        /// </summary>
+        private const string P2406PickDeepSheetJs = @"() => {
+            const nav = window.__mmNav;
+            const keys = Object.keys(nav.byPk);
+            const num = (k) => (isNaN(Number(k)) ? 1e9 : Number(k));
+            const byKey = (a, b) => num(a) - num(b) || (a < b ? -1 : a > b ? 1 : 0);
+            for (const k of keys.slice().sort(byKey)) {
+                const rec = nav.byPk[k];
+                const path = rec.path || '';
+                const parts = path.split('.');
+                if (parts.length <= 3) continue;
+                const want = (rec.el.getAttribute('subsubfamily') || '').trim();
+                if (!want) continue;
+                const ancPath = parts.slice(0, 3).join('.');
+                const anc = nav.byPath[ancPath];
+                if (!anc) continue;
+                nav.focusNode(rec);
+                return [k, path, want, ancPath, anc.label || '', rec.label || '', String(parts.length)];
+            }
+            return [];
+        }";
+
+        [Theory]
+        [InlineData("fr", "Fallacies_fr.content.svg", "inline", 160)]
+        [InlineData("ar", "Fallacies_ar.content.svg", "ext", 120)]
+        [InlineData("fr", "Argumentum_Virtues_MindMap_fr.content.svg", "inline", 0)]
+        public async Task Cap28_SubSubFamily_IsShownBelowLevel3_OnEverySheet_AndClimbsToIt(
+            string lang, string svgFileName, string variant, int deepSample)
+        {
+            var inlinePath = variant == "ext" ? string.Empty : await ComposeIncludedAsync(lang, svgFileName);
+            var page = variant == "ext"
+                ? await OpenExternalAsync(lang, svgFileName, 1400, 900)
+                : await OpenPageAtAsync(inlinePath, 1400, 900);
+            try
+            {
+                if (variant == "ext") await WaitForExternalNavigationAsync(page);
+                else await WaitForViewportSettledAsync(page);
+
+                var sweep = await page.EvaluateAsync<string[]>(P2406SubSubFamilySweepJs, new { deepSample });
+                Assert.NotNull(sweep);
+                _output.WriteLine($"[{lang}/{variant}] #2406 sub-sub-family: {sweep[0]} sheets opened " +
+                                  $"({sweep[1]} deep expected shown, {sweep[2]} shallow expected silent) → " +
+                                  $"shown={sweep[3]} hidden={sweep[4]} longestLabel={sweep[7]} " +
+                                  $"populations deep={sweep[8]} shallow={sweep[9]} tally={sweep[6]}");
+
+                Assert.True(sweep[5].Length == 0,
+                    $"#2406 [{lang}/{variant}] the sheet must keep its sub-sub-family line: {sweep[5]}");
+                Assert.True(int.Parse(sweep[2]) >= 3,
+                    $"#2406 [{lang}/{variant}] the fixture offers no level-3 sheet, so nothing here proves " +
+                    "the silence rule — the case cannot pass on an absent population");
+                Assert.True(int.Parse(sweep[1]) >= 10,
+                    $"#2406 [{lang}/{variant}] the fixture offers no sheet below level 3 with a sub-sub-family");
+                Assert.Equal(sweep[1], sweep[3]);
+                Assert.Equal(sweep[2], sweep[4]);
+                Assert.True(int.Parse(sweep[7]) >= 8,
+                    $"#2406 [{lang}/{variant}] no long sub-sub-family label was opened — the sample missed " +
+                    "the widest line it exists to exercise");
+
+                // The climb. Before the fix the listener sat on a node the first open had removed
+                // from the document, so clicking the line did nothing after the sheet was open.
+                // Labels are compared with their whitespace folded: an SVG label is cut into
+                // `tspan`s at every line break, and the title receives that text as is.
+                static string FoldWs(string? s) =>
+                    string.IsNullOrEmpty(s) ? string.Empty : System.Text.RegularExpressions.Regex.Replace(s, @"\s+", " ").Trim();
+                var pick = await page.EvaluateAsync<string[]>(P2406PickDeepSheetJs);
+                Assert.NotNull(pick);
+                Assert.True(pick.Length >= 7,
+                    $"#2406 [{lang}/{variant}] no sheet deeper than level 3 in the fixture: [{string.Join("|", pick)}]");
+                _output.WriteLine($"[{lang}/{variant}] #2406 climb: sheet pk={pick[0]} '{pick[5]}' " +
+                                  $"(depth {pick[6]}) names '{pick[2]}' → ancestor path {pick[3]} '{pick[4]}'");
+                var lineText = await page.Locator("card .Soussousfamille").EvaluateAsync<string>("el => el.textContent");
+                Assert.Equal(FoldWs(pick[2]), FoldWs(lineText));
+                var ssfBox = await page.Locator("card .Soussousfamille").BoundingBoxAsync();
+                Assert.True(ssfBox != null && ssfBox.Height > 0,
+                    $"#2406 [{lang}/{variant}] the sub-sub-family line is not a clickable box on a deep sheet");
+                await page.Locator("card .Soussousfamille").ClickAsync();
+                await page.WaitForTimeoutAsync(400);
+                var afterTitle = await page.Locator("card .title").EvaluateAsync<string>("el => el.textContent");
+                var afterDepth = await page.Locator("card .niveau").EvaluateAsync<string>("el => el.textContent");
+                _output.WriteLine($"[{lang}/{variant}] #2406 after the click: '{afterTitle}' depth={afterDepth}");
+                Assert.Equal(FoldWs(pick[4]), FoldWs(afterTitle));
+                Assert.Equal("3", (afterDepth ?? string.Empty).Trim());
+            }
+            finally
+            {
+                await page.CloseAsync();
+            }
+        }
     }
 }

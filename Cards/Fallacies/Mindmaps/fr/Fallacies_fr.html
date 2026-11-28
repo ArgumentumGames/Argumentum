@@ -316,6 +316,21 @@
             text-align: center;
         }
 
+        /* #2406 — la sous-sous-famille prend sa propre ligne sous la sous-famille. C'etait un
+           `span` EN LIGNE dans le conteneur : les deux passes d'ajustement ne voient que des
+           boites (`clientWidth` et `clientHeight` valent 0 sur un element en ligne, #995 b),
+           elle n'aurait donc ete ni ajustee en largeur, ni comptee en hauteur. L'ecriture est
+           explicite et non `display: block` sur `.Soussousfamille` nu : la regle de retrait
+           ci-dessous doit rester a specificite superieure (.hidden, 0-1-0, perdrait contre
+           le bloc ci-dessus — meme piege que `#externalLink.hidden`, plus bas). */
+        .sous_famille .Soussousfamille {
+            display: block;
+        }
+
+        .sous_famille .Soussousfamille.mm-empty {
+            display: none;
+        }
+
         .contentWrapper {
             display: flex;
             flex-direction: column;
@@ -20872,8 +20887,27 @@
 
             title.textContent = targetNode.textContent;
             famille.textContent = targetNode.getAttribute('family');
-            sous_famille.textContent = targetNode.getAttribute('subfamily');
-            Soussousfamille.textContent = targetNode.getAttribute('subsubfamily');
+            // #2406 — le libelle de sous-famille etait ecrit par `sous_famille.textContent`,
+            // ce qui DETACHAIT l'enfant `.Soussousfamille` : la ligne suivante ecrivait
+            // alors dans un nœud hors document, et l'attribut `subsubfamily` n'a jamais ete
+            // affiche (Sophismes fr : 1379 nœuds sur 1408 portent cet attribut). Le libelle
+            // est desormais un nœud texte dedie, et l'element garde sa place — donc son
+            // ecouteur de remontee de niveau 3 pose par wireFamilyNav.
+            const nodeDepth = parseInt(targetNode.getAttribute('depth'), 10);
+            const subSubFamily = (targetNode.getAttribute('subsubfamily') || '').trim();
+            sous_famille.replaceChildren(
+                document.createTextNode(targetNode.getAttribute('subfamily') || ''), Soussousfamille);
+            // L'attribut porte l'ANCETRE de niveau 3 de la fiche ; un nœud de niveau 3 est
+            // son propre ancetre, et la ligne vaudrait alors le titre juste en dessous
+            // (mesure sur les 17 cartes commitees : 63 nœuds de niveau 3 par carte, tous
+            // porteurs ; fr 47 portent exactement le libelle de leur fiche, ru 27, en 61 —
+            // les autres sont decoares, comme « Evasion (en) »). La ligne ne s'affiche donc
+            // que SOUS le niveau 3 : la regle lit la structure, pas une comparaison de
+            // chaines, et donne le meme resultat dans les 8 langues.
+            Soussousfamille.textContent = subSubFamily;
+            // Un attribut vide retire aussi la ligne (aucun cas dans les 17 cartes commitees :
+            // l'attribut y est non vide sur toute profondeur >= 3).
+            Soussousfamille.classList.toggle('mm-empty', !(nodeDepth > 3) || !subSubFamily);
             description.innerHTML = targetNode.getAttribute('description');
             example.innerHTML = targetNode.getAttribute('example');
             // #995 — ne pas reserver de surface pour une case vide. Les vertus n'ont pas
@@ -20908,7 +20942,10 @@
             // sur 11 debordent, Sophismes autant que Vertus. On reduit jusqu'a ce que ca
             // tienne ; la regle CSS reste la taille nominale. Mesure APRES retrait de
             // .hidden : sur un element display:none, clientWidth vaut 0.
-            [title, famille, sous_famille, Soussousfamille, description, example].forEach(el => {
+            // #2406 — la sous-sous-famille passe AVANT son conteneur : le debordement d'un
+            // enfant entre dans le `scrollWidth` du parent, et reduire le parent ne resout
+            // rien — il descendait au plancher pour un texte qui n'etait pas le sien.
+            [title, famille, Soussousfamille, sous_famille, description, example].forEach(el => {
                 if (!el) return;
                 el.style.fontSize = '';
                 if (!el.clientWidth) return;
