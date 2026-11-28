@@ -58,7 +58,22 @@ registre pour trois cellules corrigees en typographie. Quatre proprietes de plus
       rangee, sinon ROLLBACK (WRITER_PS, lue ici, jamais executee).
   F4  la valeur d'avant d'un ecrasement est sauvegardee AVANT la transaction
       (`reinject-force-prior-*.json`, ecrit avant l'appel du writer) — garde de
-      SOURCE, comme R3 : elle voit la place du nom, pas le contenu du fichier."""
+      SOURCE, comme R3 : elle voit la place du nom, pas le contenu du fichier.
+
+BORNE JUSQU'AU WRITER (P24-55, contre-revue po-2023 c.6093174887) — trois de plus :
+  B1  l'apply borne ne transmet au writer QUE les cellules nommees : 7 traductions
+      nommees -> 7 INSERT et aucune base fr, meme quand une base fr hors lot derive.
+      Le writer est remplace par un CAPTEUR (il n'ecrit rien) : c'est ce que l'apply
+      PASSE qui est affirme, pas un effet en base. Controle inverse : nommer en plus
+      B Summary en et sa base fr rend 8 ecritures dimensionnees dont 1 FR_UPDATE.
+  B2  les deux listes de cellules ecartees (`SKIP_PRESERVED_2181`, `FR_EXCLUDED`) ne
+      valent que pour un perimetre NOMME : sans `--only-cell` elles ne bloquent ni le
+      dry-run ni l'apply (une cellule que personne n'a nommee n'est pas une demande).
+  B3  `--force` sur une cellule que `--only-cell` a exclue est un REFUS de perimetre.
+  B4  quand le seul blocage est une cellule nommee qu'un reglage ecarte, le verdict et
+      le refus d'apply ne parlent pas de « conflits ou cibles manquantes » — il n'y en
+      a pas ; ils nomment le reglage. Le temoin de l'autre branche est le cas du
+      conflit hors lot, qui epingle la phrase quand le conflit existe."""
 import contextlib
 import importlib.util
 import io
@@ -783,7 +798,8 @@ class PerimetreBorneOnlyCell(unittest.TestCase):
 
     Tout est hors ligne : registre synthetique sur disque, `EXP.run_query` remplace par
     une cible synthetique, `EXP.read_connection_string` par une chaine factice. Aucun
-    `curl`, aucune base, aucun `powershell` (les cas `--apply` s'arretent aux refus).
+    `curl`, aucune base, aucun `powershell` (les cas `--apply` s'arretent aux refus, ou
+    remplacent `run_writer` par un capteur qui ne lance rien).
     """
     BODY = {"app_id": "33", "entity_guid": "8A8636A4-069A-4692-A139-4773B161931B",
             "content_type": "Content", "field": "Text"}
@@ -999,10 +1015,21 @@ class PerimetreBorneOnlyCell(unittest.TestCase):
         self.assertIn("7 cellule(s) NOMMEE(S) qu'un reglage ecarte de l'ecriture", out)
         self.assertIn("--include-preserved-2181", out)
         self.assertIn("VERDICT: ECHEC", out)
-        rc, out = self.run_main(self.args_for(self.only_cells("body")) + [
-            "--apply", "--backup-dir", str(self.tmp / "backup")])
+        # Le seul blocage est un REGLAGE, pas un conflit : le verdict doit le nommer,
+        # sinon il envoie chercher des « conflits ou cibles manquantes » qui n'existent
+        # pas (contre-revue po-2023 6093174887, §4.4). Le temoin de l'autre branche
+        # est `test_le_conflit_hors_lot_bloque_l_apply_sans_perimetre`, qui epingle la
+        # phrase « conflits ou cibles manquantes » quand il y a vraiment un conflit.
+        self.assertIn("ECHEC (7 cellule(s) NOMMEE(S) qu'un reglage ecarte de l'ecriture "
+                      "— rien a arbitrer)", out)
+        self.assertNotIn("conflits ou cibles manquantes", out)
+        # Sans --backup-dir : meme mute, l'apply ne peut pas atteindre le writer
+        # PowerShell ; le refus epingle est celui du reglage, qui vient avant.
+        rc, out = self.run_main(self.args_for(self.only_cells("body")) + ["--apply"])
         self.assertEqual(rc, 1, out[-600:])
-        self.assertIn("REFUS d'appliquer: conflits ou cibles manquantes non arbitres.", out)
+        self.assertIn("REFUS d'appliquer: cellule(s) nommee(s) qu'un reglage ecarte de "
+                      "l'ecriture", out)
+        self.assertNotIn("conflits ou cibles manquantes", out)
 
     def test_une_base_fr_hors_perimetre_n_est_pas_comparee(self):
         # Lot = B.en seulement : la base fr du BLOC (exclue par defaut) ne doit pas
@@ -1105,6 +1132,99 @@ class PerimetreBorneOnlyCell(unittest.TestCase):
         rc, out = self.run_main(["--only-cell", f"{c}:Link:fr"])
         self.assertEqual(rc, 1, out[-900:])
         self.assertIn("FR_DB_LOCAL (reference file:NNN locale", out)
+
+    # -- ce que l'apply borne TRANSMET au writer (contre-revue po-2023 6093174887 §3.1) --
+    def capteur(self):
+        """Remplace `run_writer` : garde les ecritures transmises, n'ecrit rien.
+
+        Le writer PowerShell ne s'execute qu'avec la base servie ; la promesse du mode
+        borne est ce qu'il PASSE a ce writer. Avant ces cas, aucun `--apply` de la
+        suite n'atteignait `run_writer` : tous s'arretoient a un refus, et l'on
+        n'affirmait donc rien de ce qui part.
+        """
+        vu = {"writes": None, "fr": None, "appels": 0}
+
+        def sensor(conn, writes, fr_writes, pres_before, backup_dir, stamp, app_map):
+            vu["appels"] += 1
+            vu["writes"] = sorted((w["entity_guid"], w["field"], w["lang"], w["op"])
+                                  for w in writes)
+            vu["fr"] = sorted((w["entity_guid"], w["field"], w["lang"], w["op"])
+                              for w in fr_writes)
+            return 0
+
+        original = self.mod.run_writer
+        self.mod.run_writer = sensor
+        self.addCleanup(setattr, self.mod, "run_writer", original)
+        return vu
+
+    def test_l_apply_borne_ne_transmet_au_writer_que_les_cellules_nommees(self):
+        # La base fr de B DERIVE de la cible : hors perimetre ce serait un FR_DRIFT.
+        # Le lot ne nomme que les 7 traductions du bloc -> 7 INSERT, aucune base fr.
+        self.with_base_row(self.B["entity_guid"], "Summary", "Base B servie")
+        vu = self.capteur()
+        rc, out = self.run_main(self.args_for(self.only_cells("body"), include_preserved=True)
+                                + ["--apply", "--backup-dir", str(self.tmp / "backup")])
+        self.assertEqual(rc, 0, out[-900:])
+        self.assertEqual(vu["appels"], 1, out[-900:])
+        self.assertEqual(vu["writes"], sorted(
+            (self.BODY["entity_guid"], "Text", lang, "INSERT") for lang in self.mod.LANGS))
+        self.assertEqual(vu["fr"], [])
+
+    def test_controle_inverse_nommer_la_base_et_la_traduction_transmet_huit_ecritures(self):
+        # Controle inverse du cas precedent : les deux cellules NOMMEES de B partent
+        # bien (8 ecritures dimensionnees, dont B Summary en ; 1 base fr). Sans lui,
+        # un perimetre qui ne transmettrait RIEN passerait pour « la borne marche ».
+        self.with_base_row(self.B["entity_guid"], "Summary", "Base B servie")
+        vu = self.capteur()
+        cells = self.only_cells("body") + [(self.B["entity_guid"], "Summary", "en"),
+                                           (self.B["entity_guid"], "Summary", "fr")]
+        rc, out = self.run_main(self.args_for(cells, include_preserved=True)
+                                + ["--apply", "--backup-dir", str(self.tmp / "backup")])
+        self.assertEqual(rc, 0, out[-900:])
+        self.assertEqual(len(vu["writes"]), 8, vu["writes"])
+        self.assertIn((self.B["entity_guid"], "Summary", "en", "INSERT"), vu["writes"])
+        self.assertEqual(vu["fr"], [(self.B["entity_guid"], "Summary", "fr", "FR_UPDATE")])
+
+    def test_sans_only_cell_les_reglages_hors_perimetre_ne_bloquent_pas(self):
+        """§3.2 : sans `--only-cell`, SKIP_PRESERVED_2181 et FR_EXCLUDED ne bloquent rien.
+
+        Le mode borne a ete ajoute pour qu'un conflit d'une AUTRE entite ne bloque plus ;
+        il ne doit pas, a l'inverse, rendre bloquant ce qui ne l'etait pas. Cible rendue
+        conforme sur son seul conflit (B Summary es) : il ne reste que 7 SKIP et 1
+        FR_EXCLUDED, et le plan est coherent. Ces deux listes ne valent que pour un
+        perimetre NOMME — hors mode borne, elles decrivent des cellules que personne
+        n'a demandees.
+        """
+        base_rows = self.log.rows
+        self.log.rows = lambda: [
+            dict(r, val="B es du registre")
+            if (r["entity_guid"] == self.B["entity_guid"] and r["field"] == "Summary"
+                and r["dimension_id"] == 9) else r
+            for r in base_rows()]
+        rc, out = self.run_main([])
+        self.assertEqual(rc, 0, out[-900:])
+        self.assertIn("SKIP_PRESERVED_2181: 7", out)
+        self.assertIn("FR_EXCLUDED: 1", out)
+        self.assertNotIn("NOMMEE(S)", out)
+        self.assertIn("VERDICT: plan coherent, pret pour --apply", out)
+        # L'apply passe les deux listes : il s'arrete au dossier de sauvegarde.
+        rc, out = self.run_main(["--apply"])
+        self.assertEqual(rc, 1, out[-600:])
+        self.assertIn("REFUS: --apply exige --backup-dir", out)
+
+    def test_force_hors_perimetre_est_refuse(self):
+        """§3.3 : `--force` sur une cellule que `--only-cell` a exclue est un contresens.
+
+        Demander l'ecrasement d'une cellule qu'on vient de retirer du perimetre n'a pas
+        de sens lisible : c'est une faute de perimetre, pas « rien a forcer ». Le refus
+        tombe apres la lecture de la cible (il se calcule sur les actions), et avant
+        toute ecriture.
+        """
+        rc, out = self.run_main(
+            self.args_for([(self.B["entity_guid"], "Summary", "en")])
+            + ["--force", f"{self.BODY['entity_guid']}:Text:ru"])
+        self.assertEqual(rc, 1, out[-900:])
+        self.assertIn("REFUS: --force nomme une cellule qui n'est pas au perimetre", out)
 
 
 if __name__ == "__main__":

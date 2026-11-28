@@ -838,9 +838,18 @@ def main(argv=None) -> int:
               + (f" + {n_forced} ECRASEMENT(S) NOMME(S)" if n_forced else "")
               + f") + {len(fr_writes)} REECRITURE(S) de base fr (FR_DRIFT non exclues). "
               f"Aucune ecriture effectuee.")
-        blocked = conflicts or missing or fr_missing or noop
-        if blocked:
+        # `noop` n'est PAS un conflit : ce sont des cellules NOMMEES qu'un reglage
+        # ecarte (drapeau absent, reference file:NNN). Rien n'y est a arbitrer — le
+        # levier est le drapeau, ou le nom a retirer. Les confondre envoyait
+        # l'operateur chercher un conflit qui n'existe pas (contre-revue po-2023
+        # 6093174887 §4.4). Le verdict imprime deja la liste juste au-dessus, il
+        # doit la nommer ici aussi.
+        hard = conflicts or missing or fr_missing
+        if hard:
             verdict = "ECHEC (conflits ou cibles manquantes a arbitrer)"
+        elif noop:
+            verdict = (f"ECHEC ({len(noop)} cellule(s) NOMMEE(S) qu'un reglage ecarte de "
+                       f"l'ecriture — rien a arbitrer)")
         elif policy:
             # Les cellules inscriptibles sont coherentes ; les exclues ne s'ecriront
             # pas et --apply refusera tant qu'elles restent nommees.
@@ -850,10 +859,16 @@ def main(argv=None) -> int:
         else:
             verdict = "plan coherent, pret pour --apply"
         print("VERDICT: " + verdict)
-        return 1 if blocked else 0
+        return 1 if (hard or noop) else 0
 
-    if conflicts or missing or fr_missing or noop:
+    if conflicts or missing or fr_missing:
         print("REFUS d'appliquer: conflits ou cibles manquantes non arbitres.")
+        return 1
+    if noop:
+        # Meme distinction qu'au dry-run : une cellule nommee qu'un reglage ecarte
+        # n'est ni un conflit ni une cible manquante.
+        print("REFUS d'appliquer: cellule(s) nommee(s) qu'un reglage ecarte de l'ecriture "
+              "— lever le reglage ou retirer ces noms.")
         return 1
     if policy:
         print("REFUS d'appliquer: cellule(s) nommee(s) exclue(s) par la politique de base fr "

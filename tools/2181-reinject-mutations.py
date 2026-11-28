@@ -122,13 +122,11 @@ MUTATIONS = [
      [("        key = parse_only_cell(item)\n        if key is None:",
        "        key = parse_only_cell(item)\n        if False:")],
      "test_un_nom_mal_forme_est_refuse"),
-    ("N20 le dry-run ne bloque plus sur une cellule nommee ecartee",
-     [("        blocked = conflicts or missing or fr_missing or noop",
-       "        blocked = conflicts or missing or fr_missing")],
+    ("N20 le dry-run ne rend plus 1 sur une cellule nommee ecartee",
+     [("        return 1 if (hard or noop) else 0", "        return 1 if hard else 0")],
      "test_une_cellule_nommee_ecartee_par_defaut_refuse_l_apply"),
-    ("N21 l'apply ne bloque plus sur une cellule nommee ecartee",
-     [('    if conflicts or missing or fr_missing or noop:\n        print("REFUS d\'appliquer',
-       '    if conflicts or missing or fr_missing:\n        print("REFUS d\'appliquer')],
+    ("N21 l'apply ne refuse plus sur une cellule nommee ecartee",
+     [('    if noop:\n        # Meme distinction qu\'au dry-run', '    if False:\n        # Meme distinction qu\'au dry-run')],
      "test_une_cellule_nommee_ecartee_par_defaut_refuse_l_apply"),
     ("N22 FR_EXCLUDED redevient un refus du dry-run",
      [('SCOPED_NO_WRITE_OPS = ("SKIP_PRESERVED_2181", "FR_DB_LOCAL")',
@@ -167,6 +165,31 @@ MUTATIONS = [
         return None
     return (parts[0], parts[1], parts[2])""")],
      "test_parse_only_cell_formes"),
+    # P24-55 (contre-revue po-2023 c.6093174887, §3.1 à §3.3) : les cinq mutations
+    # que cette revue nommait « non vues » sur la tête d2c59224. Chacune retire UNE
+    # garde du mode borne ; le cas qui la fixe est nomme d'avance.
+    ("N30 le plan d'ecriture n'est plus borne (plan complet)",
+     [("    writes = planned_writes(actions)",
+       "    writes = planned_writes(compute_actions(CURRENT_PLAN, target, "
+       "app_map_info[\"map\"], allow_preserved=args.include_preserved_2181, "
+       "force=force_keys))")],
+     "test_l_apply_borne_ne_transmet_au_writer_que_les_cellules_nommees"),
+    ("N31 les bases fr ecrites ne sont plus bornees (plan complet)",
+     [('    fr_writes = [{**a, "op": "FR_UPDATE"} for a in fr_actions if a["op"] == "FR_DRIFT"]',
+       '    fr_writes = [{**a, "op": "FR_UPDATE"} for a in compute_fr_actions(CURRENT_FR_PLAN, '
+       'target, app_map_info["map"], excludes) if a["op"] == "FR_DRIFT"]')],
+     "test_l_apply_borne_ne_transmet_au_writer_que_les_cellules_nommees"),
+    ("N32 le reglage ecarte bloque meme hors perimetre (noop)",
+     [("    noop = named_cells_not_written(actions, fr_actions) if only else []",
+       "    noop = named_cells_not_written(actions, fr_actions)")],
+     "test_sans_only_cell_les_reglages_hors_perimetre_ne_bloquent_pas"),
+    ("N33 la politique de base fr bloque meme hors perimetre (policy)",
+     [("    policy = named_cells_policy(actions, fr_actions) if only else []",
+       "    policy = named_cells_policy(actions, fr_actions)")],
+     "test_sans_only_cell_les_reglages_hors_perimetre_ne_bloquent_pas"),
+    ("N34 --force hors perimetre n'est plus refuse",
+     [("    if unknown:", "    if False:")],
+     "test_force_hors_perimetre_est_refuse"),
 ]
 
 

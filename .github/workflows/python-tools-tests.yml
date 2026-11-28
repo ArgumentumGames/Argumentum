@@ -99,7 +99,7 @@
 #    12. tools/test_2190-served-mindmap-inventory.py -- std-lib + git, OFFLINE : le
 #        serveur HTTP est local et jetable, aucune préprod ni réseau externe. Témoin
 #        identique au blob, mutation d'octets et route absente doivent être distingués.
-#    13. tools/test_458-eav-reinject-guards.py -- std-lib, offline, 53 cas. Charge
+#    13. tools/test_458-eav-reinject-guards.py -- std-lib, offline, 57 cas. Charge
 #        tools/458-eav-reinject.py SANS se connecter (EXP.run_query remplace par un
 #        faux qui sert des rangees synthetiques) et eprouve les gardes de refus
 #        G1-G3 de la re-injection EAV (#2326, revue c.7053569313) : chaque garde
@@ -135,8 +135,8 @@
 #        Les deux validateurs de nom (--force, --only-cell) sont le MEME
 #        (FORCE_GUID_RE) : un seul analyseur pour une seule forme de cle.
 #        Deux instruments de ce grain se lancent A LA MAIN, hors CI (ils rejouent
-#        des suites entieres) : tools/2181-reinject-mutations.py (29 mutations de
-#        l'outil — N1-N13 l'ecrasement nomme, N14-N29 le mode borne — temoin 53/53)
+#        des suites entieres) : tools/2181-reinject-mutations.py (34 mutations de
+#        l'outil — N1-N13 l'ecrasement nomme, N14-N34 le mode borne — temoin 57/57)
 #        et tools/2181-reinject-rehearsal.py (repetition du
 #        plan entre deux registres, aucune base).
 #        Le faux run_query refuse tout SQL non attendu : une derive des
@@ -286,7 +286,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Run the EAV reinject guard contract (#458 P23-24 G1-G3, P23-27 R1-R3, P23-38 R4-R5, #2181 --force, --only-cell)
-        # 53 cas, std-lib, offline : aucune connexion, aucun web.config. Les gardes
+        # 57 cas, std-lib, offline : aucune connexion, aucun web.config. Les gardes
         # de refus G1-G3 (paire (app, guid) multi-entites, vainqueur de carte sans
         # marge, carte non injective) sont eprouvees chacune par un temoin sain et
         # une MUTATION : la garde neutralisee dans le source doit laisser passer
