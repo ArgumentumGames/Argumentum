@@ -288,7 +288,10 @@ Mesuré le 2026-11-24 sur master `0543ab69`. Le dossier compte **24 fichiers sui
 (`git ls-files docs/ontology | wc -l`) : les deux artefacts (table ci-dessus), ce README, **neuf
 constats datés**, le sous-dossier [`aif-export/`](aif-export/) (10 fichiers couverts par leur
 ligne ci-dessous — son propre README ne porte pas la marque, il n'engage que lui) et le
-sous-dossier [`v1.0.0/`](v1.0.0/) (2 fichiers, couverts par leur ligne ci-dessous).
+sous-dossier [`v1.0.0/`](v1.0.0/) (2 fichiers, couverts par leur ligne ci-dessous). Le
+brouillon de note de version
+[`133-owl-note-de-version-brouillon-2026-11-28.md`](133-owl-note-de-version-brouillon-2026-11-28.md),
+ajouté le 2026-11-28 (P24-47), porte le compte à **25**.
 
 ### Où en sont les deux sujets
 
@@ -309,6 +312,7 @@ sous-dossier [`v1.0.0/`](v1.0.0/) (2 fichiers, couverts par leur ligne ci-dessou
 
 | Fichier | Daté | Statut | Ce que c'est |
 |---|---|---|---|
+| [`133-owl-note-de-version-brouillon-2026-11-28.md`](133-owl-note-de-version-brouillon-2026-11-28.md) | 2026-11-28 | `current` | **Brouillon** de note de version de l'ontologie (P24-47, reprend CL-06) : les changements de sens entre le blob servi (`v1.0.0/`) et le blob de master, **classés par IRI**, chaque changement rattaché au commit qui a changé la cellule CSV responsable. Généré par [`tools/133-owl-release-note.py`](../../tools/133-owl-release-note.py) à partir du delta de [`tools/133-owl-regen-delta.py`](../../tools/133-owl-regen-delta.py) ; son contrôle `--check` relit l'historique du CSV (câblage CI à faire). **Rien n'est publié** par ce document |
 | [`133-etat-servi-2026-11-05.md`](133-etat-servi-2026-11-05.md) | 2026-11-05 | `historical` | Mesure HTTP lecture-seule de l'état servi, canal par canal (05/11) — l'état courant de la publication vit sur [#133](https://github.com/ArgumentumGames/Argumentum/issues/133) et dans le smoke ci-dessus |
 | [`133-owl-publication-certificate.md`](133-owl-publication-certificate.md) | 2026-07-12 | `historical` | Certificat « publication-safe » de l'artefact de juillet — l'OWL a été régénéré depuis (15/09 puis 17/11) sans nouveau certificat |
 | [`133-owl-virtues-peremption-mesuree-2026-10-09.md`](133-owl-virtues-peremption-mesuree-2026-10-09.md) | 2026-10-09 | `historical` | Péremption mesurée de l'OWL Vertus et coût caché d'une régénération (rupture d'IRI) — la décision vive est le gel, pris le 17/11 sur [#133](https://github.com/ArgumentumGames/Argumentum/issues/133) |
