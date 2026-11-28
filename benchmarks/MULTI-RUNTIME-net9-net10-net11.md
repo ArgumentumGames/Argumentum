@@ -6,7 +6,7 @@ Suite directe de la [baseline net9](BASELINE-net9.0.md) : le **même binaire** `
 
 | Élément | Valeur |
 | --- | --- |
-| Commit mesuré | `a51b0339` (branche de la PR #1705, sur `master`) |
+| Contenu mesuré | le code de `7efc9bdf` (le bump BenchmarkDotNet et la garde multi-runtime de cette PR) : la base `a51b0339` — tête de la PR #1705, désormais dans `master` — **plus** le passage de BenchmarkDotNet à 0.15.8. `a51b0339` seul porte 0.14.0 et ne peut pas être l'état mesuré ; l'état mesuré est celui qui porte le passage à 0.15.8 |
 | Binaire | `net9.0-windows` unique, mesuré sous chaque runtime par roll-forward |
 | Runtimes | .NET 9.0.19 (9.0.1926.36724) · 10.0.11 (10.0.1126.37416) · 11.0.0-rc.3 (11.0.26.52348), X64 RyuJIT x86-64-v3 |
 | SDK | 10.0.400 (build ; aucun SDK requis pour la mesure) |
@@ -35,7 +35,7 @@ Le pattern multi-runtime de semantic-fleet (CoursIA #107) ne se transpose pas te
 ## Lecture
 
 - **Parsing de règles : aucun delta runtime significatif.** Les trois jambes se chevauchent largement (erreurs ±9 à ±23 %, jambes de ~6 s enchaînées) ; net11 n'est ni plus rapide ni plus lent de façon séparable du bruit. Un jeu de contrôle en process enfant (protocole 5/15, jambes ~100 s) mesurait net9 = 2 919,5 ± 155,6 / 5 046,5 ± 225,8 us et net10 = 3 070,7 ± 153,1 / 5 079,3 ± 185,2 us — plat lui aussi.
-- **Allocations identiques** au dixième de KB près sur les trois runtimes : aucun changement de layout ou de comportement GC sur ces chemins.
+- **Allocations identiques à 0,4 KB près au plus** d'un runtime à l'autre (tableau ci-dessus : 162,5–162,8 · 854,6–855,0 · 57,6–57,9 KB) : aucun changement de layout ou de comportement GC sur ces chemins.
 - **Timestamping : tendance non concluable.** La suite 565 → 381 → 245 us ressemble au gain annoncé par le digest, mais la jambe net9 porte ±31 % et le contrôle process enfant mesure net9 ≈ net10 ≈ 302-308 us — la tendance n'est pas stable d'un protocole à l'autre. net11 à 244,6 ± 29,5 us passe sous les deux mesures de contrôle ; suggestif, à re-mesurer (jambes espacées, plusieurs répétitions) avant toute affirmation.
 - **Effet protocole mesuré** : 500 règles = 5 046 us (process enfant, jambes espacées) vs 7 579 us (InProcess enchaînées) sur net9 — les comparaisons ne se font qu'au sein d'un même protocole ; c'est le cas du tableau ci-dessus.
 
