@@ -5,9 +5,20 @@
     python tools/133-owl-release-note.py --repo . \
         --old docs/ontology/v1.0.0/argumentum_virtues.owl --csv-old c1491de9 \
         --new docs/ontology/argumentum_virtues.owl --csv-new HEAD \
+        --other-old docs/ontology/v1.0.0/argumentum.owl --other-new docs/ontology/argumentum.owl \
         --date 2026-11-28 --out docs/ontology/133-owl-note-de-version-brouillon-2026-11-28.md
 
-    python tools/133-owl-release-note.py ... --check    # la note est-elle à jour ?
+    # la note est-elle à jour ? LA MÊME COMMANDE, --check en plus. Sans
+    # --other-old/--other-new, la section « ce qui n'a pas changé » perd sa ligne
+    # sur l'autre artefact, et --check répond « perime » sur un arbre correct.
+    python tools/133-owl-release-note.py --repo . \
+        --old docs/ontology/v1.0.0/argumentum_virtues.owl --csv-old c1491de9 \
+        --new docs/ontology/argumentum_virtues.owl --csv-new HEAD \
+        --other-old docs/ontology/v1.0.0/argumentum.owl --other-new docs/ontology/argumentum.owl \
+        --date 2026-11-28 --out docs/ontology/133-owl-note-de-version-brouillon-2026-11-28.md --check
+
+    À lancer depuis la racine du dépôt : `--old` et `--new` sont ouverts relativement
+    au répertoire courant, pas à `--repo`.
 
 CE QUE CE FICHIER FAIT. Il rédige le **brouillon de note de version** de l'ontologie :
 les changements de sens entre le blob servi et le blob de master, **classés par IRI**, et
@@ -26,12 +37,14 @@ D'OUIN VIENT CHAQUE LIGNE.
     tombe sur la même chaîne dans une autre cellule.
   · l'IRI vient du registre (`OwlIriRegistry.cs`), pas d'une convention de nom.
 
-CE QUI EMPÊCHE LE BROUILLON DE MENTIR. Un changement d'OWL qu'aucune transition de cellule
-n'explique entre les deux refs est **nommé et fait échouer** le script (code de sortie 4) :
-un brouillon qui n'explique pas un changement n'est pas une note de version. De même, un
-changement d'OWL que le registre ne rattache à aucune cellule — ni pk ni colonne (code de
-sortie 5) — arrête tout avant même la recherche de cause : une note qui attribue à
-« personne » n'est pas une note. Les deux sorties écrivent leur motif sur stderr.
+CE QUI EMPÊCHE LE BROUILLON DE MENTIR. Le script **échoue plutôt que de produire une note
+qui n'explique pas un changement**. L'autorité sur les causes est l'instrument de delta :
+**son code de sortie est propagé tel quel** — 2 : l'instrument a lui-même échoué ; 3 : une
+IRI perdue ; 4 : un changement d'OWL sans cause dans le CSV ; 5 : un changement de CSV
+sans effet sur l'OWL ; 6 : une clé hors oracle. Deux échecs sont en propre à ce script : un
+changement que le registre ne rattache à aucune cellule — ni pk ni colonne — sort en **7**,
+et une cellule porteuse dont aucun commit de la plage n'explique la transition sort en
+**8**. Tous les motifs sont écrits sur stderr.
 
 DETERMINISME. Aucune date n'est lue dans l'horloge : la date vient de `--date`, les
 commits sont lus dans le dépôt. Les mêmes entrées donnent le même brouillon, octet pour
@@ -146,6 +159,14 @@ def render(ctx):
     out = []
     w = out.append
 
+    # La ligne « l'autre artefact » : sans elle, la commande rejouee perd la
+    # section « ce qui n'a pas changé » et `--check` dit « perime » sur un arbre
+    # correct. Elle n'est ecrite que si l'appelant a fourni les deux faces.
+    other_line = ""
+    if ctx.get("other_old") and ctx.get("other_new"):
+        other_line = ("  --other-old %s --other-new %s \\"
+                      % (ctx["other_old"], ctx["other_new"]))
+
     w("# Note de version de l'ontologie — BROUILLON (%s)" % date)
     w("")
     w("> **BROUILLON — aucune version n'est publiée par ce document.** Il n'y a ni tag, ni")
@@ -173,7 +194,8 @@ def render(ctx):
     w("**%d clés de l'OWL ont changé, sur %d IRI.** Chaque changement porte son commit ;" %
       (ctx["n_rows"], ctx["n_subjects"]))
     w("aucun n'est sans cause : le script échoue plutôt que de produire une note qui")
-    w("n'explique pas un changement (code 4).")
+    w("n'explique pas un changement — il **propage le code de sortie de l'instrument de")
+    w("delta**, 4 pour un changement d'OWL sans cause dans le CSV.")
     w("")
     w("| Champ | Changements | IRI touchées |")
     w("|---|---:|---:|")
@@ -220,11 +242,24 @@ def render(ctx):
     w("python tools/133-owl-release-note.py --repo . \\")
     w("  --old %s --csv-old %s \\" % (ctx["old_file"], ctx["csv_old"]))
     w("  --new %s --csv-new %s \\" % (ctx["new_file"], ctx["csv_new"]))
+    if other_line:
+        w(other_line)
     w("  --date %s --out %s" % (date, ctx["out_file"]))
     w("")
-    w("# le brouillon est-il à jour ?")
-    w("python tools/133-owl-release-note.py ... --check")
+    w("# le brouillon est-il à jour ? LA MÊME COMMANDE, --check en plus.")
+    w("python tools/133-owl-release-note.py --repo . \\")
+    w("  --old %s --csv-old %s \\" % (ctx["old_file"], ctx["csv_old"]))
+    w("  --new %s --csv-new %s \\" % (ctx["new_file"], ctx["csv_new"]))
+    if other_line:
+        w(other_line)
+    w("  --date %s --out %s --check" % (date, ctx["out_file"]))
     w("```")
+    w("")
+    w("Ces commandes se lancent **depuis la racine du dépôt** : `--old` et `--new` sont")
+    w("ouverts relativement au répertoire courant, pas à `--repo`. Sans")
+    w("`--other-old`/`--other-new`, la section « ce qui n'a pas changé » perd sa ligne sur")
+    w("l'autre artefact — et `--check` répond alors « brouillon perime » sur un arbre")
+    w("correct.")
     w("")
     w("Le delta vient de [`tools/133-owl-regen-delta.py`](../../tools/133-owl-regen-delta.py) :")
     w("l'attendu est **calculé depuis le CSV**, la valeur constatée est lue dans le XML —")
@@ -255,8 +290,16 @@ def build(ctx):
             done = subprocess.run(argv, capture_output=True, text=True,
                                   encoding="utf-8", errors="replace")
         if done.returncode != 0:
-            raise RuntimeError("l'instrument de delta a rendu %d : %s"
-                               % (done.returncode, done.stdout[-600:] + done.stderr[-600:]))
+            # Le code de sortie de l'instrument EST le verdict : 3 IRI perdue,
+            # 4 changement d'OWL sans cause CSV, 5 changement de CSV sans effet,
+            # 6 clé hors oracle, 2 instrument en erreur. On le **propage** tel quel
+            # au lieu de l'enfermer dans une RuntimeError (sortie 1) : la RuntimeError
+            # disait « l'outil a planté » là où l'outil avait raison, et la note
+            # annonçait un « code 4 » que le script ne rendait jamais.
+            sys.stderr.write(done.stdout[-4000:] or "")
+            sys.stderr.write(done.stderr[-2000:] or "")
+            sys.stderr.write("\ninstrument de delta : sortie %d\n" % done.returncode)
+            raise SystemExit(done.returncode)
         with open(tmp.name, encoding="utf-8") as fh:
             report = json.load(fh)
     finally:
@@ -277,7 +320,7 @@ def build(ctx):
         column = (row["inputs"] or [None])[0]
         if pk is None or column is None:
             print("changement sans pk ni colonne : %r" % (row,), file=sys.stderr)
-            raise SystemExit(5)
+            raise SystemExit(7)
         row["_pk"] = pk
         row["_column"] = column
         cells.add((pk, column))
@@ -290,7 +333,7 @@ def build(ctx):
         if not chain:
             print("changement sans cause CSV : pk=%s %s" % (row["_pk"], row["_column"]),
                   file=sys.stderr)
-            raise SystemExit(4)
+            raise SystemExit(8)
         names = []
         for commit, when, subject, avant, apres in chain:
             names.append("`%s` (%s) %s" % (commit, when, subject))

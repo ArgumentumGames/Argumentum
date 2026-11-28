@@ -24,7 +24,8 @@ comparaison est rejouable hors ligne.
 
 **114 clés de l'OWL ont changé, sur 89 IRI.** Chaque changement porte son commit ;
 aucun n'est sans cause : le script échoue plutôt que de produire une note qui
-n'explique pas un changement (code 4).
+n'explique pas un changement — il **propage le code de sortie de l'instrument de
+delta**, 4 pour un changement d'OWL sans cause dans le CSV.
 
 | Champ | Changements | IRI touchées |
 |---|---:|---:|
@@ -617,11 +618,22 @@ python tools/133-owl-regen-delta.py --repo . \
 python tools/133-owl-release-note.py --repo . \
   --old docs/ontology/v1.0.0/argumentum_virtues.owl --csv-old c1491de9 \
   --new docs/ontology/argumentum_virtues.owl --csv-new HEAD \
+  --other-old docs/ontology/v1.0.0/argumentum.owl --other-new docs/ontology/argumentum.owl \
   --date 2026-11-28 --out docs/ontology/133-owl-note-de-version-brouillon-2026-11-28.md
 
-# le brouillon est-il à jour ?
-python tools/133-owl-release-note.py ... --check
+# le brouillon est-il à jour ? LA MÊME COMMANDE, --check en plus.
+python tools/133-owl-release-note.py --repo . \
+  --old docs/ontology/v1.0.0/argumentum_virtues.owl --csv-old c1491de9 \
+  --new docs/ontology/argumentum_virtues.owl --csv-new HEAD \
+  --other-old docs/ontology/v1.0.0/argumentum.owl --other-new docs/ontology/argumentum.owl \
+  --date 2026-11-28 --out docs/ontology/133-owl-note-de-version-brouillon-2026-11-28.md --check
 ```
+
+Ces commandes se lancent **depuis la racine du dépôt** : `--old` et `--new` sont
+ouverts relativement au répertoire courant, pas à `--repo`. Sans
+`--other-old`/`--other-new`, la section « ce qui n'a pas changé » perd sa ligne sur
+l'autre artefact — et `--check` répond alors « brouillon perime » sur un arbre
+correct.
 
 Le delta vient de [`tools/133-owl-regen-delta.py`](../../tools/133-owl-regen-delta.py) :
 l'attendu est **calculé depuis le CSV**, la valeur constatée est lue dans le XML —
