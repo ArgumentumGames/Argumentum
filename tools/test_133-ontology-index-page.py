@@ -16,6 +16,13 @@ CE QUE CE CONTRAT TIENT.
      la page est perimee — elle ne se resynchronise pas toute seule.
   4. La generation est **deterministe** : deux generations donnent les memes
      octets (aucune date, aucun horodatage dans la page).
+  5. Tout `href` **relatif** de la page designe un fichier **present dans
+     `docs/ontology/`** — l'arbre servi par Pages (`static.yml` n'y assemble que
+     `Generation/CardPen/` et `docs/ontology/`). Un lien relatif qui sort de
+     l'arbre servi est un 404 la ou la page est lue : mesure du 28/11 sur le lien
+     de licence `../../LICENSE-CONTENT.md`. Les liens absolus (une `URL` avec
+     schema) ne sont pas soumis a la regle : ils designent ce qu'ils designent.
+     Le cas de controle remet le lien relatif et exige que l'instrument le nomme.
 
 CONDITION D'EXECUTION : std-lib seulement, hors ligne. Les cas 2 a 4 travaillent
 sur un **jeu d'essai** minuscule (deux `.owl` de quelques lignes), construit dans
@@ -31,6 +38,7 @@ import contextlib
 import importlib.util
 import io
 import os
+import re
 import shutil
 import tempfile
 import unittest
@@ -78,6 +86,33 @@ def load():
 
 MOD = load()
 
+HREF_RE = re.compile(r'href="([^"]+)"')
+
+
+def links_outside_served_tree(folder, page):
+    """Les `href` **relatifs** de la page qui ne designent pas un fichier servi.
+
+    L'arbre servi est `folder` lui-meme (`docs/ontology/` monte par `static.yml`).
+    Un lien relatif est donc recevable s'il **reste** dans ce dossier et si le
+    fichier existe ; un lien qui en sort est un 404 la ou la page est lue, un
+    lien qui n'y existe pas non plus. Les liens absolus (un schema dans l'URL)
+    ne sont pas soumis a la regle : ils designent ce qu'ils designent.
+
+    Renvoie la liste des (href, motif) — vide quand tous les liens relatifs
+    sont servables.
+    """
+    base = os.path.normpath(folder)
+    out = []
+    for href in HREF_RE.findall(page):
+        if not href or href.startswith("#") or "://" in href or href.startswith("mailto:"):
+            continue
+        target = os.path.normpath(os.path.join(base, href))
+        if not target.startswith(base + os.sep):
+            out.append((href, "sort de l'arbre servi"))
+        elif not os.path.isfile(target):
+            out.append((href, "absent de l'arbre servi"))
+    return out
+
 
 def run(argv):
     """`main()` du script, sortie capturee — renvoie (code, stdout, stderr)."""
@@ -96,6 +131,9 @@ class FixtureTree(object):
         os.makedirs(os.path.join(self.folder, "v1.0.0"))
         self.write("a.owl", FIXTURE.format(name="a"))
         self.write(os.path.join("v1.0.0", "a.owl"), FIXTURE.format(name="a"))
+        # La page lie `README.md` : l'arbre d'essai doit le porter, sinon le
+        # contrat des liens le prendrait pour un fichier absent.
+        self.write("README.md", "# fixture\n")
         return self
 
     def __exit__(self, *exc):
@@ -242,6 +280,62 @@ class OntologyIndexPage(unittest.TestCase):
                 page = fh.read()
             self.assertNotIn("creativecommons.org/licenses", page)
             self.assertNotIn("<dt>Licence</dt>", page)
+
+
+    def test_the_page_links_only_what_pages_serves(self):
+        # La page est lue sur Pages, ou l'arbre servi est `docs/ontology/`. Tout
+        # `href` relatif doit donc designer un fichier de cet arbre. Le lien de
+        # licence etait `../../LICENSE-CONTENT.md` : 404 mesure sur Pages, le
+        # fichier etant a la racine du depot, hors de l'arbre servi.
+        with FixtureTree() as tree:
+            code, out, err = tree.generate()
+            self.assertEqual(code, 0, err)
+            with open(tree.page(), encoding="utf-8") as fh:
+                page = fh.read()
+            hors = links_outside_served_tree(tree.folder, page)
+            self.assertEqual(hors, [], "liens hors de l'arbre servi : %r" % (hors,))
+            # Le lien de licence est absolu : il ne depend pas de l'arbre servi.
+            self.assertIn("https://github.com/ArgumentumGames/Argumentum/blob/master/"
+                          "LICENSE-CONTENT.md", page)
+
+    def test_the_committed_page_links_only_what_pages_serves(self):
+        # Le meme contrat sur la page committée, donc sur le vrai dossier.
+        folder = os.path.join(ROOT, "docs", "ontology")
+        page_path = os.path.join(folder, "index.html")
+        with open(page_path, encoding="utf-8") as fh:
+            page = fh.read()
+        hors = links_outside_served_tree(folder, page)
+        self.assertEqual(hors, [], "liens hors de l'arbre servi : %r" % (hors,))
+
+    def test_a_link_leaving_the_served_tree_is_named(self):
+        # Controle de discrimination : le mutant du 28/11 (le lien de licence
+        # remis en relatif) doit etre **nomme** par l'instrument. Sans ce cas,
+        # un instrument qui ne verrait rien resterait vert.
+        with FixtureTree() as tree:
+            tree.generate()
+            with open(tree.page(), encoding="utf-8") as fh:
+                page = fh.read()
+            mutant = page.replace(
+                'href="https://github.com/ArgumentumGames/Argumentum/blob/master/'
+                'LICENSE-CONTENT.md"',
+                'href="../../LICENSE-CONTENT.md"')
+            self.assertNotEqual(page, mutant, "le mutant n'a pas ete applique")
+            hors = links_outside_served_tree(tree.folder, mutant)
+            self.assertTrue(hors, "le lien hors de l'arbre servi doit etre vu")
+            self.assertEqual(hors[0][0], "../../LICENSE-CONTENT.md")
+
+    def test_a_link_to_a_missing_file_is_named(self):
+        # L'autre moitie de la regle : un lien relatif **dans** l'arbre servi mais
+        # dont le fichier n'existe pas est aussi un 404 sur Pages.
+        with FixtureTree() as tree:
+            tree.generate()
+            with open(tree.page(), encoding="utf-8") as fh:
+                page = fh.read()
+            mutant = page.replace('href="README.md"', 'href="absent.md"')
+            self.assertNotEqual(page, mutant, "le mutant n'a pas ete applique")
+            hors = links_outside_served_tree(tree.folder, mutant)
+            self.assertTrue(hors, "le lien vers un fichier absent doit etre vu")
+            self.assertEqual(hors[0][0], "absent.md")
 
 
 if __name__ == "__main__":

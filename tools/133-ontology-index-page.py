@@ -28,6 +28,16 @@ LE CONTROLE. `--check` regenere la page et la compare a celle du disque : sortie
 si identiques, sortie 1 (et le diff) sinon. Il ne se fie jamais au fichier de la
 page : il le compare a une regeneration.
 
+LES LIENS. La page est faite pour etre lue **sur Pages**, ou `static.yml` ne sert
+que `Generation/CardPen/` (a la racine) et `docs/ontology/` (sous `/docs/ontology/`).
+Un lien **relatif** de la page doit donc designer un fichier **present dans
+`docs/ontology/`** : c'est l'arbre servi. Mesure du 28/11 : `../../LICENSE-CONTENT.md`
+renvoie 404 sur Pages (le fichier est a la racine du depot, hors de l'arbre servi),
+alors que `README.md` et les deux `.owl` repondent 200. Le lien de licence est donc
+**absolu** (l'adresse du fichier sur GitHub) ; le contrat
+`tools/test_133-ontology-index-page.py` refuse tout `href` relatif qui sort de
+l'arbre servi.
+
 LIMITES. La page decrit ce que le dossier contient, pas ce que l'hote sert ; le
 service effectif se verifie par `tools/133-pages-owl-smoke.sh`. Les IRI d'espace de
 noms ne resolvent pas vers un document (fait mesure, dit au §6 du README).
@@ -226,7 +236,7 @@ def render(folder):
         "    document. The files are fetched by URL — the served URLs and their",
         '    <code>Content-Type</code> are in the <a href="README.md">README</a>, §6.</li>',
         "    <li>The licence of the corpus files is CC BY-SA 4.0; the code that produces",
-        '    them is LGPL-3.0 (see <a href="../../LICENSE-CONTENT.md">LICENSE-CONTENT.md</a>).</li>',
+        '    them is LGPL-3.0 (see <a href="https://github.com/ArgumentumGames/Argumentum/blob/master/LICENSE-CONTENT.md">LICENSE-CONTENT.md</a>).</li>',
         "    <li>This page is generated from the files of the folder by",
         "    <code>tools/133-ontology-index-page.py</code>. It carries no date, so that",
         "    replaying the script yields the same bytes;",
