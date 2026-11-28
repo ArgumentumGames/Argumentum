@@ -51,3 +51,16 @@ Cards/Scenarii/*Cards.csv -text
 # blob, it only stops the smudge.
 DNNPlatform/Portals/_default/Skins/2shineBS5/App_LocalResources/*.resx text eol=lf
 DNNPlatform/DesktopModules/AuthenticationServices/*/App_LocalResources/Login.ascx.*.resx text eol=lf
+
+# docs/ontology carries artefacts compared BYTE FOR BYTE by their own generators:
+# tools/133-ontology-index-page.py and tools/133-owl-release-note.py write LF
+# (newline="\n") and their --check re-reads the file on disk with newline="" to
+# compare raw bytes. A core.autocrlf=true checkout - the Git-for-Windows default,
+# so every Windows box of the cluster - smudges them to CRLF and the control goes
+# red on a correct tree (measured 2026-11-28 on po-2023's counter-review of #2419
+# and #2420: blob 5 550 B LF vs 5 656 B on disk, 106 CR; the inverse control, LF
+# bytes copied back, returns rc 0). `text eol=lf` pins the checkout to the blob on
+# every box, same remedy as the resx twins and the dnn_i18n fixtures above. Globs,
+# not file names: the rule has to hold for the next generated page/note too.
+docs/ontology/*.html text eol=lf
+docs/ontology/*.md text eol=lf

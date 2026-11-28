@@ -5,7 +5,7 @@
     python tools/133-owl-release-note.py --repo . \
         --old docs/ontology/v1.0.0/argumentum_virtues.owl --csv-old c1491de9 \
         --new docs/ontology/argumentum_virtues.owl --csv-new HEAD \
-        --date 2026-11-28 --out docs/ontology/133-note-de-version-ontologie-brouillon-2026-11-28.md
+        --date 2026-11-28 --out docs/ontology/133-owl-note-de-version-brouillon-2026-11-28.md
 
     python tools/133-owl-release-note.py ... --check    # la note est-elle à jour ?
 
@@ -26,11 +26,12 @@ D'OUIN VIENT CHAQUE LIGNE.
     tombe sur la même chaîne dans une autre cellule.
   · l'IRI vient du registre (`OwlIriRegistry.cs`), pas d'une convention de nom.
 
-CE QUI EMPÊCHE LE BROUILLON DE MENTIR. Un changement d'OWL dont la cellule CSV n'a pas
-bougé entre les deux refs est **nommé et fait échouer** le script (code 4) : un brouillon
-qui n'explique pas un changement n'est pas une note de version. De même, une transition
-de cellule dont le commit ne serait pas trouvé (code 5) arrête tout : une note qui
-attribue à « personne » n'est pas une note.
+CE QUI EMPÊCHE LE BROUILLON DE MENTIR. Un changement d'OWL qu'aucune transition de cellule
+n'explique entre les deux refs est **nommé et fait échouer** le script (code de sortie 4) :
+un brouillon qui n'explique pas un changement n'est pas une note de version. De même, un
+changement d'OWL que le registre ne rattache à aucune cellule — ni pk ni colonne (code de
+sortie 5) — arrête tout avant même la recherche de cause : une note qui attribue à
+« personne » n'est pas une note. Les deux sorties écrivent leur motif sur stderr.
 
 DETERMINISME. Aucune date n'est lue dans l'horloge : la date vient de `--date`, les
 commits sont lus dans le dépôt. Les mêmes entrées donnent le même brouillon, octet pour
@@ -275,7 +276,8 @@ def build(ctx):
         pk = fragment_to_pk.get(row["subject"])
         column = (row["inputs"] or [None])[0]
         if pk is None or column is None:
-            raise SystemExit("changement sans pk ni colonne : %r" % (row,))
+            print("changement sans pk ni colonne : %r" % (row,), file=sys.stderr)
+            raise SystemExit(5)
         row["_pk"] = pk
         row["_column"] = column
         cells.add((pk, column))
@@ -286,7 +288,9 @@ def build(ctx):
     for row in rows:
         chain = chains[(row["_pk"], row["_column"])]
         if not chain:
-            raise SystemExit("changement sans cause CSV : pk=%s %s" % (row["_pk"], row["_column"]))
+            print("changement sans cause CSV : pk=%s %s" % (row["_pk"], row["_column"]),
+                  file=sys.stderr)
+            raise SystemExit(4)
         names = []
         for commit, when, subject, avant, apres in chain:
             names.append("`%s` (%s) %s" % (commit, when, subject))
