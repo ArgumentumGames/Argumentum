@@ -150,7 +150,7 @@
 #        `actions/checkout` clone en `fetch-depth: 1` — mesure sur un corpus tronque,
 #        il ne verrait aucun candidat et un vert a compte nul ne serait pas une mesure.
 #        Condition d'execution documentee dans la docstring du fichier.
-#    16. tools/test_1105-home-render-p2.py -- std-lib, offline, 33 cas, ~0.1 s. Charge
+#    16. tools/test_1105-home-render-p2.py -- std-lib, offline, 34 cas, ~0.1 s. Charge
 #        tools/1105-cutover-day-controls.py et eprouve sa sonde P2 (section 6 du
 #        rapport : dir="rtl" en ar et fa seulement, meta description non vide,
 #        selecteur de langue a 7 liens, marqueur d'audience) sur du HTML
